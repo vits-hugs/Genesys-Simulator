@@ -1,339 +1,289 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configurationDescriptor version="100">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Arquivos de Cabeçalho"
+                   projectFiles="true">
+      <itemPath>Traits.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Arquivos de Código-Fonte"
+                   projectFiles="true">
+      <itemPath>main.cpp</itemPath>
+    </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Arquivos de Recurso"
                    projectFiles="true">
     </logicalFolder>
-    <logicalFolder name="f9" displayName="Configuration" projectFiles="true">
-      <itemPath>Traits.h</itemPath>
-    </logicalFolder>
-    <logicalFolder name="f1" displayName="Kernel" projectFiles="true">
-      <logicalFolder name="f4" displayName="Simulator" projectFiles="true">
-        <logicalFolder name="f2" displayName="SimulatorParts" projectFiles="true">
-          <logicalFolder name="f1" displayName="SimulationSubParts" projectFiles="true">
-            <logicalFolder name="f1" displayName="Impl" projectFiles="true">
-              <logicalFolder name="f2" displayName="Parser" projectFiles="true">
-                <itemPath>parserBisonFlex/Genesys++-driver.cpp</itemPath>
-                <itemPath>parserBisonFlex/Genesys++-driver.h</itemPath>
-                <itemPath>parserBisonFlex/Genesys++-scanner.cpp</itemPath>
-                <itemPath>parserBisonFlex/GenesysParser.cpp</itemPath>
-                <itemPath>parserBisonFlex/GenesysParser.h</itemPath>
-                <itemPath>parserBisonFlex/parser/bisonparser.yy</itemPath>
-                <itemPath>parserBisonFlex/parser/lexerparser.ll</itemPath>
-                <itemPath>parserBisonFlex/location.hh</itemPath>
-                <itemPath>parserBisonFlex/obj_t.cpp</itemPath>
-                <itemPath>parserBisonFlex/obj_t.h</itemPath>
-                <itemPath>parserBisonFlex/position.hh</itemPath>
-                <itemPath>parserBisonFlex/stack.hh</itemPath>
-              </logicalFolder>
-              <itemPath>ParserDefaultImpl1.cpp</itemPath>
-              <itemPath>ParserDefaultImpl1.h</itemPath>
-              <itemPath>parserBisonFlex/ParserDefaultImpl2.cpp</itemPath>
-              <itemPath>parserBisonFlex/ParserDefaultImpl2.h</itemPath>
-              <itemPath>PluginConnectorDummyImpl1.cpp</itemPath>
-              <itemPath>PluginConnectorDummyImpl1.h</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f2" displayName="Interfaces" projectFiles="true">
-              <itemPath>Parser_if.h</itemPath>
-              <itemPath>PluginConnector_if.h</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f3" displayName="ModelParts" projectFiles="true">
-              <logicalFolder name="f2" displayName="ModelSubParts" projectFiles="true">
-                <logicalFolder name="f4" displayName="Elements" projectFiles="true">
-                  <itemPath>Attribute.cpp</itemPath>
-                  <itemPath>Attribute.h</itemPath>
-                  <itemPath>Counter.cpp</itemPath>
-                  <itemPath>Counter.h</itemPath>
-                  <itemPath>Entity.cpp</itemPath>
-                  <itemPath>Entity.h</itemPath>
-                  <itemPath>EntityType.cpp</itemPath>
-                  <itemPath>EntityType.h</itemPath>
-                  <itemPath>StatisticsCollector.cpp</itemPath>
-                  <itemPath>StatisticsCollector.h</itemPath>
-                </logicalFolder>
-                <logicalFolder name="f2" displayName="Impl" projectFiles="true">
-                  <itemPath>ModelCheckerDefaultImpl1.cpp</itemPath>
-                  <itemPath>ModelCheckerDefaultImpl1.h</itemPath>
-                  <itemPath>ModelPersistenceDefaultImpl1.cpp</itemPath>
-                  <itemPath>ModelPersistenceDefaultImpl1.h</itemPath>
-                  <itemPath>SimulationReporterDefaultImpl1.cpp</itemPath>
-                  <itemPath>SimulationReporterDefaultImpl1.h</itemPath>
-                </logicalFolder>
-                <logicalFolder name="f1" displayName="Interfaces" projectFiles="true">
-                  <itemPath>ModelChecker_if.h</itemPath>
-                  <itemPath>ModelPersistence_if.h</itemPath>
-                  <itemPath>SimulationReporter_if.h</itemPath>
-                </logicalFolder>
-                <itemPath>ConnectionManager.cpp</itemPath>
-                <itemPath>ConnectionManager.h</itemPath>
-                <itemPath>ModelComponent.cpp</itemPath>
-                <itemPath>ModelComponent.h</itemPath>
-                <itemPath>ModelElement.cpp</itemPath>
-                <itemPath>ModelElement.h</itemPath>
-                <itemPath>PersistentObject_base.h</itemPath>
-                <itemPath>SinkModelComponent.cpp</itemPath>
-                <itemPath>SinkModelComponent.h</itemPath>
-                <itemPath>SourceModelComponent.cpp</itemPath>
-                <itemPath>SourceModelComponent.h</itemPath>
-              </logicalFolder>
-              <itemPath>ComponentManager.cpp</itemPath>
-              <itemPath>ComponentManager.h</itemPath>
-              <itemPath>ElementManager.cpp</itemPath>
-              <itemPath>ElementManager.h</itemPath>
-              <itemPath>ModelInfo.cpp</itemPath>
-              <itemPath>ModelInfo.h</itemPath>
-              <itemPath>ModelSimulation.cpp</itemPath>
-              <itemPath>ModelSimulation.h</itemPath>
-              <itemPath>OnEventManager.cpp</itemPath>
-              <itemPath>OnEventManager.h</itemPath>
-              <itemPath>SimulationControl.cpp</itemPath>
-              <itemPath>SimulationControl.h</itemPath>
-              <itemPath>SimulationResponse.cpp</itemPath>
-              <itemPath>SimulationResponse.h</itemPath>
-            </logicalFolder>
-            <itemPath>DefineGetterSetter.h</itemPath>
-            <itemPath>Event.cpp</itemPath>
-            <itemPath>Event.h</itemPath>
-            <itemPath>Model.cpp</itemPath>
-            <itemPath>Model.h</itemPath>
-            <itemPath>ParserChangesInformation.cpp</itemPath>
-            <itemPath>ParserChangesInformation.h</itemPath>
-            <itemPath>Plugin.cpp</itemPath>
-            <itemPath>Plugin.h</itemPath>
-            <itemPath>PluginInformation.cpp</itemPath>
-            <itemPath>PluginInformation.h</itemPath>
-          </logicalFolder>
-          <itemPath>LicenceManager.cpp</itemPath>
-          <itemPath>LicenceManager.h</itemPath>
-          <itemPath>ModelManager.cpp</itemPath>
-          <itemPath>ModelManager.h</itemPath>
-          <itemPath>ParserManager.cpp</itemPath>
-          <itemPath>ParserManager.h</itemPath>
-          <itemPath>PluginManager.cpp</itemPath>
-          <itemPath>PluginManager.h</itemPath>
-          <itemPath>TraceManager.cpp</itemPath>
-          <itemPath>TraceManager.h</itemPath>
-        </logicalFolder>
-        <itemPath>Simulator.cpp</itemPath>
-        <itemPath>Simulator.h</itemPath>
-      </logicalFolder>
-      <logicalFolder name="f2" displayName="Statistics" projectFiles="true">
-        <logicalFolder name="f2" displayName="Impl" projectFiles="true">
-          <itemPath>CollectorDatafileDefaultImpl1.cpp</itemPath>
-          <itemPath>CollectorDatafileDefaultImpl1.h</itemPath>
-          <itemPath>CollectorDefaultImpl1.cpp</itemPath>
-          <itemPath>CollectorDefaultImpl1.h</itemPath>
-          <itemPath>SamplerBoostImpl.cpp</itemPath>
-          <itemPath>SamplerBoostImpl.h</itemPath>
-          <itemPath>SamplerDefaultImpl1.cpp</itemPath>
-          <itemPath>SamplerDefaultImpl1.h</itemPath>
-          <itemPath>SamplerStudents20202g1.cpp</itemPath>
-          <itemPath>SamplerStudents20202g1.h</itemPath>
-          <itemPath>StatisticsDataFileDefaultImpl.cpp</itemPath>
-          <itemPath>StatisticsDataFileDefaultImpl.h</itemPath>
-          <itemPath>StatisticsDefaultImpl1.cpp</itemPath>
-          <itemPath>StatisticsDefaultImpl1.h</itemPath>
-        </logicalFolder>
-        <logicalFolder name="f1" displayName="Interfaces" projectFiles="true">
-          <itemPath>CollectorDatafile_if.h</itemPath>
-          <itemPath>Collector_if.h</itemPath>
-          <itemPath>Sampler_if.h</itemPath>
-          <itemPath>StatisticsDataFile_if.h</itemPath>
-          <itemPath>Statistics_if.h</itemPath>
-        </logicalFolder>
-      </logicalFolder>
-      <logicalFolder name="f1" displayName="Util" projectFiles="true">
-        <itemPath>List.h</itemPath>
-        <itemPath>Util.cpp</itemPath>
-        <itemPath>Util.h</itemPath>
-      </logicalFolder>
-    </logicalFolder>
-    <logicalFolder name="f3" displayName="Plugins" projectFiles="true">
-      <logicalFolder name="f2" displayName="Components" projectFiles="true">
-        <itemPath>Assign.cpp</itemPath>
-        <itemPath>Assign.h</itemPath>
-        <itemPath>Create.cpp</itemPath>
-        <itemPath>Create.h</itemPath>
-        <itemPath>Decide.cpp</itemPath>
-        <itemPath>Decide.h</itemPath>
-        <itemPath>Delay.cpp</itemPath>
-        <itemPath>Delay.h</itemPath>
-        <itemPath>Dispose.cpp</itemPath>
-        <itemPath>Dispose.h</itemPath>
-        <itemPath>Dummy.cpp</itemPath>
-        <itemPath>Dummy.h</itemPath>
-        <itemPath>Enter.cpp</itemPath>
-        <itemPath>Enter.h</itemPath>
-        <itemPath>Hold.cpp</itemPath>
-        <itemPath>Hold.h</itemPath>
-        <itemPath>Leave.cpp</itemPath>
-        <itemPath>Leave.h</itemPath>
-        <itemPath>Match.cpp</itemPath>
-        <itemPath>Match.h</itemPath>
-        <itemPath>PickUp.cpp</itemPath>
-        <itemPath>PickUp.h</itemPath>
-        <itemPath>Record.cpp</itemPath>
-        <itemPath>Record.h</itemPath>
-        <itemPath>Release.cpp</itemPath>
-        <itemPath>Release.h</itemPath>
-        <itemPath>Route.cpp</itemPath>
-        <itemPath>Route.h</itemPath>
-        <itemPath>Seize.cpp</itemPath>
-        <itemPath>Seize.h</itemPath>
-        <itemPath>Signal.cpp</itemPath>
-        <itemPath>Signal.h</itemPath>
-        <itemPath>Submodel.cpp</itemPath>
-        <itemPath>Submodel.h</itemPath>
-        <itemPath>Write.cpp</itemPath>
-        <itemPath>Write.h</itemPath>
-      </logicalFolder>
-      <logicalFolder name="f1" displayName="Elements" projectFiles="true">
-        <logicalFolder name="f1" displayName="Subelement" projectFiles="true">
-          <itemPath>QueueableItemRequest.cpp</itemPath>
-          <itemPath>QueueableItemRequest.h</itemPath>
-          <itemPath>SeizableItemRequest.cpp</itemPath>
-          <itemPath>SeizableItemRequest.h</itemPath>
-        </logicalFolder>
-        <itemPath>EntityGroup.cpp</itemPath>
-        <itemPath>EntityGroup.h</itemPath>
-        <itemPath>Failure.cpp</itemPath>
-        <itemPath>Failure.h</itemPath>
-        <itemPath>File.cpp</itemPath>
-        <itemPath>File.h</itemPath>
-        <itemPath>Formula.cpp</itemPath>
-        <itemPath>Formula.h</itemPath>
-        <itemPath>OLD_ODEelement.cpp</itemPath>
-        <itemPath>OLD_ODEelement.h</itemPath>
-        <itemPath>Queue.cpp</itemPath>
-        <itemPath>Queue.h</itemPath>
-        <itemPath>Resource.cpp</itemPath>
-        <itemPath>Resource.h</itemPath>
-        <itemPath>Schedule.cpp</itemPath>
-        <itemPath>Schedule.h</itemPath>
-        <itemPath>Sequence.cpp</itemPath>
-        <itemPath>Sequence.h</itemPath>
-        <itemPath>Set.cpp</itemPath>
-        <itemPath>Set.h</itemPath>
-        <itemPath>Station.cpp</itemPath>
-        <itemPath>Station.h</itemPath>
-        <itemPath>Storage.cpp</itemPath>
-        <itemPath>Storage.h</itemPath>
-        <itemPath>Variable.cpp</itemPath>
-        <itemPath>Variable.h</itemPath>
-      </logicalFolder>
-    </logicalFolder>
-    <logicalFolder name="f4" displayName="Statistics" projectFiles="true">
-      <logicalFolder name="f1" displayName="Impl" projectFiles="true">
-        <itemPath>FitterDefaultImpl1.cpp</itemPath>
-        <itemPath>FitterDefaultImpl1.h</itemPath>
-        <itemPath>HypothesisTesterBoostImpl.cpp</itemPath>
-        <itemPath>HypothesisTesterBoostImpl.h</itemPath>
-        <itemPath>HypothesisTesterDefaultImpl1.cpp</itemPath>
-        <itemPath>HypothesisTesterDefaultImpl1.h</itemPath>
-        <itemPath>IntegratorDefaultImpl1.cpp</itemPath>
-        <itemPath>IntegratorDefaultImpl1.h</itemPath>
-        <itemPath>ProbDistribBoostImpl.cpp</itemPath>
-        <itemPath>ProbDistribBoostImpl.h</itemPath>
-        <itemPath>ProbDistribDefaultImpl1.cpp</itemPath>
-        <itemPath>ProbDistribDefaultImpl1.h</itemPath>
-      </logicalFolder>
-      <logicalFolder name="f2" displayName="Interfaces" projectFiles="true">
-        <itemPath>AnalysisOfVariance_if.h</itemPath>
-        <itemPath>Fitter_if.h</itemPath>
-        <itemPath>HypothesisTester_if.h</itemPath>
-        <itemPath>Integrator_if.h</itemPath>
-        <itemPath>Prob_Distrib_if.h</itemPath>
-      </logicalFolder>
-    </logicalFolder>
-    <logicalFolder name="f8" displayName="Tools" projectFiles="true">
-      <logicalFolder name="f1"
-                     displayName="Distributed Parallel Execution"
-                     projectFiles="true">
-      </logicalFolder>
-      <logicalFolder name="f4" displayName="Experiment Manager" projectFiles="true">
-        <logicalFolder name="f1" displayName="Impl" projectFiles="true">
-          <itemPath>ExperimentDesignDefaultImpl1.cpp</itemPath>
-          <itemPath>ExperimentDesignDefaultImpl1.h</itemPath>
-          <itemPath>ExperimentDesignDummyImpl.cpp</itemPath>
-          <itemPath>ExperimentDesignDummyImpl.h</itemPath>
-          <itemPath>ExperimentManagerDefaultImpl1.cpp</itemPath>
-          <itemPath>ExperimentManagerDefaultImpl1.h</itemPath>
-        </logicalFolder>
-        <logicalFolder name="f2" displayName="Interfaces" projectFiles="true">
-          <itemPath>ExperimentDesign_if.h</itemPath>
-          <itemPath>ExperimetManager_if.h</itemPath>
-          <itemPath>ScenarioExperiment_if.h</itemPath>
-        </logicalFolder>
-        <itemPath>FactorOrInteractionContribution.cpp</itemPath>
-        <itemPath>FactorOrInteractionContribution.h</itemPath>
-        <itemPath>SimulationScenario.cpp</itemPath>
-        <itemPath>SimulationScenario.h</itemPath>
-      </logicalFolder>
-      <logicalFolder name="f5" displayName="System Optimization" projectFiles="true">
-      </logicalFolder>
-      <itemPath>RequirementTester.cpp</itemPath>
-      <itemPath>RequirementTester.h</itemPath>
-      <itemPath>ToolManager.cpp</itemPath>
-      <itemPath>ToolManager.h</itemPath>
-    </logicalFolder>
-    <logicalFolder name="f10"
-                   displayName="User Program Interfaces"
-                   projectFiles="true">
-      <logicalFolder name="f3" displayName="ModelExamples" projectFiles="true">
-        <itemPath>Model_AssignWrite3Seizes.cpp</itemPath>
-        <itemPath>Model_AssignWrite3Seizes.h</itemPath>
-        <itemPath>Model_CreateDelayDispose.cpp</itemPath>
-        <itemPath>Model_CreateDelayDispose.h</itemPath>
-        <itemPath>Model_CreateDelayDispose2.cpp</itemPath>
-        <itemPath>Model_CreteDelayDispose2.h</itemPath>
-        <itemPath>Model_SeizeDelayRelease1.cpp</itemPath>
-        <itemPath>Model_SeizeDelayRelease1.h</itemPath>
-        <itemPath>Model_SeizeDelayReleaseMany.cpp</itemPath>
-        <itemPath>Model_SeizeDelayReleaseMany.h</itemPath>
-        <itemPath>Model_StatationRouteSequence.cpp</itemPath>
-        <itemPath>Model_StatationRouteSequence.h</itemPath>
-        <itemPath>Modelo_SistemaOperacional02.cpp</itemPath>
-        <itemPath>Modelo_SistemaOperacional02.h</itemPath>
-        <itemPath>Modelo_SistemaOperacional03.cpp</itemPath>
-        <itemPath>Modelo_SistemaOperacional03.h</itemPath>
-      </logicalFolder>
-      <logicalFolder name="f1" displayName="SimpleTests" projectFiles="true">
-        <logicalFolder name="f2"
-                       displayName="TestSpecificComponents"
+    <logicalFolder name="kernel" displayName="kernel" projectFiles="true">
+      <logicalFolder name="simulator" displayName="simulator" projectFiles="true">
+        <logicalFolder name="parserBisonFlex"
+                       displayName="parserBisonFlex"
                        projectFiles="true">
-          <itemPath>TestEnterLeaveRoute.cpp</itemPath>
-          <itemPath>TestEnterLeaveRoute.h</itemPath>
-          <itemPath>TestFunctions.cpp</itemPath>
-          <itemPath>TestFunctions.h</itemPath>
-          <itemPath>TestMatricesOfAttributesAndVariables.cpp</itemPath>
-          <itemPath>TestMatricesOfAttributesAndVariables.h</itemPath>
-          <itemPath>TestParser.cpp</itemPath>
-          <itemPath>TestParser.h</itemPath>
-          <itemPath>TestSimulationControlAndSimulationResponse.cpp</itemPath>
-          <itemPath>TestSimulationControlAndSimulationResponse.h</itemPath>
+          <logicalFolder name="parser" displayName="parser" projectFiles="true">
+            <itemPath>kernel/simulator/parserBisonFlex/parser/.Genesys++-parser.yy.swp</itemPath>
+            <itemPath>kernel/simulator/parserBisonFlex/parser/Makefile</itemPath>
+            <itemPath>kernel/simulator/parserBisonFlex/parser/bisonparser.yy</itemPath>
+            <itemPath>kernel/simulator/parserBisonFlex/parser/lexerparser.ll</itemPath>
+          </logicalFolder>
+          <itemPath>kernel/simulator/parserBisonFlex/Genesys++-driver.cpp</itemPath>
+          <itemPath>kernel/simulator/parserBisonFlex/Genesys++-driver.h</itemPath>
+          <itemPath>kernel/simulator/parserBisonFlex/Genesys++-scanner.cpp</itemPath>
+          <itemPath>kernel/simulator/parserBisonFlex/GenesysParser.cpp</itemPath>
+          <itemPath>kernel/simulator/parserBisonFlex/GenesysParser.h</itemPath>
+          <itemPath>kernel/simulator/parserBisonFlex/GenesysParser.output</itemPath>
+          <itemPath>kernel/simulator/parserBisonFlex/location.hh</itemPath>
+          <itemPath>kernel/simulator/parserBisonFlex/obj_t.cpp</itemPath>
+          <itemPath>kernel/simulator/parserBisonFlex/obj_t.h</itemPath>
+          <itemPath>kernel/simulator/parserBisonFlex/position.hh</itemPath>
+          <itemPath>kernel/simulator/parserBisonFlex/stack.hh</itemPath>
         </logicalFolder>
-        <itemPath>FullSimulationOfComplexModel.cpp</itemPath>
-        <itemPath>FullSimulationOfComplexModel.h</itemPath>
+        <itemPath>kernel/simulator/Attribute.cpp</itemPath>
+        <itemPath>kernel/simulator/Attribute.h</itemPath>
+        <itemPath>kernel/simulator/ComponentManager.cpp</itemPath>
+        <itemPath>kernel/simulator/ComponentManager.h</itemPath>
+        <itemPath>kernel/simulator/ConnectionManager.cpp</itemPath>
+        <itemPath>kernel/simulator/ConnectionManager.h</itemPath>
+        <itemPath>kernel/simulator/Counter.cpp</itemPath>
+        <itemPath>kernel/simulator/Counter.h</itemPath>
+        <itemPath>kernel/simulator/DefineGetterSetter.h</itemPath>
+        <itemPath>kernel/simulator/ElementManager.cpp</itemPath>
+        <itemPath>kernel/simulator/ElementManager.h</itemPath>
+        <itemPath>kernel/simulator/ElementManager_if.h</itemPath>
+        <itemPath>kernel/simulator/Entity.cpp</itemPath>
+        <itemPath>kernel/simulator/Entity.h</itemPath>
+        <itemPath>kernel/simulator/EntityType.cpp</itemPath>
+        <itemPath>kernel/simulator/EntityType.h</itemPath>
+        <itemPath>kernel/simulator/Event.cpp</itemPath>
+        <itemPath>kernel/simulator/Event.h</itemPath>
+        <itemPath>kernel/simulator/ExperimentManager.cpp</itemPath>
+        <itemPath>kernel/simulator/ExperimentManager.h</itemPath>
+        <itemPath>kernel/simulator/ExperimentManagerDefaultImpl1.cpp</itemPath>
+        <itemPath>kernel/simulator/ExperimentManagerDefaultImpl1.h</itemPath>
+        <itemPath>kernel/simulator/ExperimetManager_if.h</itemPath>
+        <itemPath>kernel/simulator/LicenceManager.cpp</itemPath>
+        <itemPath>kernel/simulator/LicenceManager.h</itemPath>
+        <itemPath>kernel/simulator/Model.cpp</itemPath>
+        <itemPath>kernel/simulator/Model.h</itemPath>
+        <itemPath>kernel/simulator/ModelCheckerDefaultImpl1.cpp</itemPath>
+        <itemPath>kernel/simulator/ModelCheckerDefaultImpl1.h</itemPath>
+        <itemPath>kernel/simulator/ModelChecker_if.h</itemPath>
+        <itemPath>kernel/simulator/ModelComponent.cpp</itemPath>
+        <itemPath>kernel/simulator/ModelComponent.h</itemPath>
+        <itemPath>kernel/simulator/ModelElement.cpp</itemPath>
+        <itemPath>kernel/simulator/ModelElement.h</itemPath>
+        <itemPath>kernel/simulator/ModelInfo.cpp</itemPath>
+        <itemPath>kernel/simulator/ModelInfo.h</itemPath>
+        <itemPath>kernel/simulator/ModelManager.cpp</itemPath>
+        <itemPath>kernel/simulator/ModelManager.h</itemPath>
+        <itemPath>kernel/simulator/ModelPersistenceDefaultImpl1.cpp</itemPath>
+        <itemPath>kernel/simulator/ModelPersistenceDefaultImpl1.h</itemPath>
+        <itemPath>kernel/simulator/ModelPersistence_if.h</itemPath>
+        <itemPath>kernel/simulator/ModelSimulation.cpp</itemPath>
+        <itemPath>kernel/simulator/ModelSimulation.h</itemPath>
+        <itemPath>kernel/simulator/OnEventManager.cpp</itemPath>
+        <itemPath>kernel/simulator/OnEventManager.h</itemPath>
+        <itemPath>kernel/simulator/ParserChangesInformation.cpp</itemPath>
+        <itemPath>kernel/simulator/ParserChangesInformation.h</itemPath>
+        <itemPath>kernel/simulator/ParserDefaultImpl1.cpp</itemPath>
+        <itemPath>kernel/simulator/ParserDefaultImpl1.h</itemPath>
+        <itemPath>kernel/simulator/ParserDefaultImpl2.cpp</itemPath>
+        <itemPath>kernel/simulator/ParserDefaultImpl2.h</itemPath>
+        <itemPath>kernel/simulator/ParserManager.cpp</itemPath>
+        <itemPath>kernel/simulator/ParserManager.h</itemPath>
+        <itemPath>kernel/simulator/Parser_if.h</itemPath>
+        <itemPath>kernel/simulator/PersistentObject_base.h</itemPath>
+        <itemPath>kernel/simulator/Plugin.cpp</itemPath>
+        <itemPath>kernel/simulator/Plugin.h</itemPath>
+        <itemPath>kernel/simulator/PluginConnectorDummyImpl1.cpp</itemPath>
+        <itemPath>kernel/simulator/PluginConnectorDummyImpl1.h</itemPath>
+        <itemPath>kernel/simulator/PluginConnector_if.h</itemPath>
+        <itemPath>kernel/simulator/PluginInformation.cpp</itemPath>
+        <itemPath>kernel/simulator/PluginInformation.h</itemPath>
+        <itemPath>kernel/simulator/PluginManager.cpp</itemPath>
+        <itemPath>kernel/simulator/PluginManager.h</itemPath>
+        <itemPath>kernel/simulator/ScenarioExperiment_if.h</itemPath>
+        <itemPath>kernel/simulator/SimulationControl.cpp</itemPath>
+        <itemPath>kernel/simulator/SimulationControl.h</itemPath>
+        <itemPath>kernel/simulator/SimulationExperiment.cpp</itemPath>
+        <itemPath>kernel/simulator/SimulationExperiment.h</itemPath>
+        <itemPath>kernel/simulator/SimulationReporterDefaultImpl1.cpp</itemPath>
+        <itemPath>kernel/simulator/SimulationReporterDefaultImpl1.h</itemPath>
+        <itemPath>kernel/simulator/SimulationReporter_if.h</itemPath>
+        <itemPath>kernel/simulator/SimulationResponse.cpp</itemPath>
+        <itemPath>kernel/simulator/SimulationResponse.h</itemPath>
+        <itemPath>kernel/simulator/SimulationScenario.cpp</itemPath>
+        <itemPath>kernel/simulator/SimulationScenario.h</itemPath>
+        <itemPath>kernel/simulator/Simulator.cpp</itemPath>
+        <itemPath>kernel/simulator/Simulator.h</itemPath>
+        <itemPath>kernel/simulator/SinkModelComponent.cpp</itemPath>
+        <itemPath>kernel/simulator/SinkModelComponent.h</itemPath>
+        <itemPath>kernel/simulator/SourceModelComponent.cpp</itemPath>
+        <itemPath>kernel/simulator/SourceModelComponent.h</itemPath>
+        <itemPath>kernel/simulator/StatisticsCollector.cpp</itemPath>
+        <itemPath>kernel/simulator/StatisticsCollector.h</itemPath>
+        <itemPath>kernel/simulator/TraceManager.cpp</itemPath>
+        <itemPath>kernel/simulator/TraceManager.h</itemPath>
       </logicalFolder>
-      <logicalFolder name="f2" displayName="UserInterfaces" projectFiles="true">
-        <logicalFolder name="f1" displayName="Console" projectFiles="true">
-          <itemPath>GenesysConsole.cpp</itemPath>
-          <itemPath>GenesysConsole.h</itemPath>
-        </logicalFolder>
-        <logicalFolder name="f2" displayName="GUI" projectFiles="true">
-          <itemPath>GenesysGUI.cpp</itemPath>
-          <itemPath>GenesysGUI.h</itemPath>
-        </logicalFolder>
+      <logicalFolder name="statistics" displayName="statistics" projectFiles="true">
+        <itemPath>kernel/statistics/CollectorDatafileDefaultImpl1.cpp</itemPath>
+        <itemPath>kernel/statistics/CollectorDatafileDefaultImpl1.h</itemPath>
+        <itemPath>kernel/statistics/CollectorDatafile_if.h</itemPath>
+        <itemPath>kernel/statistics/CollectorDefaultImpl1.cpp</itemPath>
+        <itemPath>kernel/statistics/CollectorDefaultImpl1.h</itemPath>
+        <itemPath>kernel/statistics/Collector_if.h</itemPath>
+        <itemPath>kernel/statistics/SamplerBoostImpl.cpp</itemPath>
+        <itemPath>kernel/statistics/SamplerBoostImpl.h</itemPath>
+        <itemPath>kernel/statistics/SamplerDefaultImpl1.cpp</itemPath>
+        <itemPath>kernel/statistics/SamplerDefaultImpl1.h</itemPath>
+        <itemPath>kernel/statistics/SamplerStudents20202g1.cpp</itemPath>
+        <itemPath>kernel/statistics/SamplerStudents20202g1.h</itemPath>
+        <itemPath>kernel/statistics/Sampler_if.h</itemPath>
+        <itemPath>kernel/statistics/StatisticsDataFileDefaultImpl.cpp</itemPath>
+        <itemPath>kernel/statistics/StatisticsDataFileDefaultImpl.h</itemPath>
+        <itemPath>kernel/statistics/StatisticsDataFile_if.h</itemPath>
+        <itemPath>kernel/statistics/StatisticsDefaultImpl1.cpp</itemPath>
+        <itemPath>kernel/statistics/StatisticsDefaultImpl1.h</itemPath>
+        <itemPath>kernel/statistics/Statistics_if.h</itemPath>
       </logicalFolder>
-      <itemPath>BaseConsoleGenesysApplication.cpp</itemPath>
-      <itemPath>BaseConsoleGenesysApplication.h</itemPath>
-      <itemPath>GenesysApplication_if.h</itemPath>
-      <itemPath>main.cpp</itemPath>
+      <logicalFolder name="util" displayName="util" projectFiles="true">
+        <itemPath>kernel/util/List.h</itemPath>
+        <itemPath>kernel/util/Util.cpp</itemPath>
+        <itemPath>kernel/util/Util.h</itemPath>
+      </logicalFolder>
+      <itemPath>kernel/TraitsKernel.h</itemPath>
     </logicalFolder>
-    <logicalFolder name="f6" displayName="Util" projectFiles="true">
-      <itemPath>MathMeth.cpp</itemPath>
-      <itemPath>MathMeth.h</itemPath>
+    <logicalFolder name="plugins" displayName="plugins" projectFiles="true">
+      <logicalFolder name="components" displayName="components" projectFiles="true">
+        <itemPath>plugins/components/Access.cpp</itemPath>
+        <itemPath>plugins/components/Access.h</itemPath>
+        <itemPath>plugins/components/Assign.cpp</itemPath>
+        <itemPath>plugins/components/Assign.h</itemPath>
+        <itemPath>plugins/components/Batch.cpp</itemPath>
+        <itemPath>plugins/components/Batch.h</itemPath>
+        <itemPath>plugins/components/CellularAutomata.cpp</itemPath>
+        <itemPath>plugins/components/CellularAutomata.h</itemPath>
+        <itemPath>plugins/components/Create.cpp</itemPath>
+        <itemPath>plugins/components/Create.h</itemPath>
+        <itemPath>plugins/components/Decide.cpp</itemPath>
+        <itemPath>plugins/components/Decide.h</itemPath>
+        <itemPath>plugins/components/Delay.cpp</itemPath>
+        <itemPath>plugins/components/Delay.h</itemPath>
+        <itemPath>plugins/components/Dispose.cpp</itemPath>
+        <itemPath>plugins/components/Dispose.h</itemPath>
+        <itemPath>plugins/components/DropOff.cpp</itemPath>
+        <itemPath>plugins/components/DropOff.h</itemPath>
+        <itemPath>plugins/components/Dummy.cpp</itemPath>
+        <itemPath>plugins/components/Dummy.h</itemPath>
+        <itemPath>plugins/components/Enter.cpp</itemPath>
+        <itemPath>plugins/components/Enter.h</itemPath>
+        <itemPath>plugins/components/Exit.cpp</itemPath>
+        <itemPath>plugins/components/Exit.h</itemPath>
+        <itemPath>plugins/components/Formula.cpp</itemPath>
+        <itemPath>plugins/components/Formula.h</itemPath>
+        <itemPath>plugins/components/Hold.cpp</itemPath>
+        <itemPath>plugins/components/Hold.h</itemPath>
+        <itemPath>plugins/components/LSODE.cpp</itemPath>
+        <itemPath>plugins/components/LSODE.h</itemPath>
+        <itemPath>plugins/components/Leave.cpp</itemPath>
+        <itemPath>plugins/components/Leave.h</itemPath>
+        <itemPath>plugins/components/MarkovChain.cpp</itemPath>
+        <itemPath>plugins/components/MarkovChain.h</itemPath>
+        <itemPath>plugins/components/Match.cpp</itemPath>
+        <itemPath>plugins/components/Match.h</itemPath>
+        <itemPath>plugins/components/OLD_ODEelement.cpp</itemPath>
+        <itemPath>plugins/components/OLD_ODEelement.h</itemPath>
+        <itemPath>plugins/components/PickStation.cpp</itemPath>
+        <itemPath>plugins/components/PickStation.h</itemPath>
+        <itemPath>plugins/components/PickUp.cpp</itemPath>
+        <itemPath>plugins/components/PickUp.h</itemPath>
+        <itemPath>plugins/components/Record.cpp</itemPath>
+        <itemPath>plugins/components/Record.h</itemPath>
+        <itemPath>plugins/components/Release.cpp</itemPath>
+        <itemPath>plugins/components/Release.h</itemPath>
+        <itemPath>plugins/components/Remove.cpp</itemPath>
+        <itemPath>plugins/components/Remove.h</itemPath>
+        <itemPath>plugins/components/Route.cpp</itemPath>
+        <itemPath>plugins/components/Route.h</itemPath>
+        <itemPath>plugins/components/Search.cpp</itemPath>
+        <itemPath>plugins/components/Search.h</itemPath>
+        <itemPath>plugins/components/SeizableItemRequest.cpp</itemPath>
+        <itemPath>plugins/components/SeizableItemRequest.h</itemPath>
+        <itemPath>plugins/components/Seize.cpp</itemPath>
+        <itemPath>plugins/components/Seize.h</itemPath>
+        <itemPath>plugins/components/Separate.cpp</itemPath>
+        <itemPath>plugins/components/Separate.h</itemPath>
+        <itemPath>plugins/components/Signal.cpp</itemPath>
+        <itemPath>plugins/components/Signal.h</itemPath>
+        <itemPath>plugins/components/Start.cpp</itemPath>
+        <itemPath>plugins/components/Start.h</itemPath>
+        <itemPath>plugins/components/Stop.cpp</itemPath>
+        <itemPath>plugins/components/Stop.h</itemPath>
+        <itemPath>plugins/components/Store.cpp</itemPath>
+        <itemPath>plugins/components/Store.h</itemPath>
+        <itemPath>plugins/components/Submodel.cpp</itemPath>
+        <itemPath>plugins/components/Submodel.h</itemPath>
+        <itemPath>plugins/components/Unstore.cpp</itemPath>
+        <itemPath>plugins/components/Unstore.h</itemPath>
+        <itemPath>plugins/components/Write.cpp</itemPath>
+        <itemPath>plugins/components/Write.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="elements" displayName="elements" projectFiles="true">
+        <itemPath>plugins/elements/EntityGroup.cpp</itemPath>
+        <itemPath>plugins/elements/EntityGroup.h</itemPath>
+        <itemPath>plugins/elements/Failure.cpp</itemPath>
+        <itemPath>plugins/elements/Failure.h</itemPath>
+        <itemPath>plugins/elements/File.cpp</itemPath>
+        <itemPath>plugins/elements/File.h</itemPath>
+        <itemPath>plugins/elements/Queue.cpp</itemPath>
+        <itemPath>plugins/elements/Queue.h</itemPath>
+        <itemPath>plugins/elements/QueueableItemRequest.cpp</itemPath>
+        <itemPath>plugins/elements/QueueableItemRequest.h</itemPath>
+        <itemPath>plugins/elements/Resource.cpp</itemPath>
+        <itemPath>plugins/elements/Resource.h</itemPath>
+        <itemPath>plugins/elements/Schedule.cpp</itemPath>
+        <itemPath>plugins/elements/Schedule.h</itemPath>
+        <itemPath>plugins/elements/Sequence.cpp</itemPath>
+        <itemPath>plugins/elements/Sequence.h</itemPath>
+        <itemPath>plugins/elements/Set.cpp</itemPath>
+        <itemPath>plugins/elements/Set.h</itemPath>
+        <itemPath>plugins/elements/Station.cpp</itemPath>
+        <itemPath>plugins/elements/Station.h</itemPath>
+        <itemPath>plugins/elements/Storage.cpp</itemPath>
+        <itemPath>plugins/elements/Storage.h</itemPath>
+        <itemPath>plugins/elements/Variable.cpp</itemPath>
+        <itemPath>plugins/elements/Variable.h</itemPath>
+      </logicalFolder>
+    </logicalFolder>
+    <logicalFolder name="userInterfaces"
+                   displayName="userInterfaces"
+                   projectFiles="true">
+      <logicalFolder name="gui" displayName="gui" projectFiles="true">
+        <logicalFolder name="qt" displayName="qt" projectFiles="true">
+          <itemPath>userInterfaces/gui/qt/GenesysQtGUI.cpp</itemPath>
+          <itemPath>userInterfaces/gui/qt/GenesysQtGUI.h</itemPath>
+          <itemPath>userInterfaces/gui/qt/dialogabout.cpp</itemPath>
+          <itemPath>userInterfaces/gui/qt/dialogabout.h</itemPath>
+          <itemPath>userInterfaces/gui/qt/dialogabout.ui</itemPath>
+          <itemPath>userInterfaces/gui/qt/dialogmodelinformation.cpp</itemPath>
+          <itemPath>userInterfaces/gui/qt/dialogmodelinformation.h</itemPath>
+          <itemPath>userInterfaces/gui/qt/dialogmodelinformation.ui</itemPath>
+          <itemPath>userInterfaces/gui/qt/mainwindow.cpp</itemPath>
+          <itemPath>userInterfaces/gui/qt/mainwindow.h</itemPath>
+          <itemPath>userInterfaces/gui/qt/mainwindow.ui</itemPath>
+          <itemPath>userInterfaces/gui/qt/mapkernelandui.cpp</itemPath>
+          <itemPath>userInterfaces/gui/qt/mapkernelandui.h</itemPath>
+          <itemPath>userInterfaces/gui/qt/resources.qrc</itemPath>
+        </logicalFolder>
+      </logicalFolder>
+      <logicalFolder name="terminal" displayName="terminal" projectFiles="true">
+        <itemPath>userInterfaces/terminal/GenesysShell_if.h</itemPath>
+        <itemPath>userInterfaces/terminal/GenesysTerminalApp.cpp</itemPath>
+        <itemPath>userInterfaces/terminal/GenesysTerminalApp.h</itemPath>
+      </logicalFolder>
+      <itemPath>userInterfaces/BaseConsoleGenesysApplication.cpp</itemPath>
+      <itemPath>userInterfaces/BaseConsoleGenesysApplication.h</itemPath>
+      <itemPath>userInterfaces/GenesysApplication_if.h</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Arquivos de Teste"
@@ -347,559 +297,850 @@
       <itemPath>Makefile</itemPath>
     </logicalFolder>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>kernel</Elem>
+    <Elem>plugins</Elem>
+    <Elem>userInterfaces</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
-    <conf name="Debug" type="1">
+    <conf name="Debug" type="4">
       <toolsSet>
         <compilerSet>default</compilerSet>
         <dependencyChecking>true</dependencyChecking>
-        <rebuildPropChanged>true</rebuildPropChanged>
+        <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
+      <qt>
+        <version>210520</version>
+        <modules>core gui widgets</modules>
+      </qt>
       <compileType>
         <ccTool>
           <standard>11</standard>
-          <commandLine>-fpermissive</commandLine>
         </ccTool>
-        <asmTool>
-          <warningLevel>2</warningLevel>
-        </asmTool>
       </compileType>
-      <item path="AnalysisOfVariance_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Assign.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Assign.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Attribute.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Attribute.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="BaseConsoleGenesysApplication.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="BaseConsoleGenesysApplication.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="CollectorDatafileDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="CollectorDatafileDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="CollectorDatafile_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="CollectorDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="CollectorDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Collector_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ComponentManager.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ComponentManager.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ConnectionManager.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ConnectionManager.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Counter.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Counter.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Create.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Create.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Decide.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Decide.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="DefineGetterSetter.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Delay.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Delay.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Dispose.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Dispose.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Dummy.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Dummy.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ElementManager.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ElementManager.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Enter.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Enter.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Entity.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Entity.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="EntityGroup.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="EntityGroup.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="EntityType.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="EntityType.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Event.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Event.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ExperimentDesignDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ExperimentDesignDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ExperimentDesignDummyImpl.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ExperimentDesignDummyImpl.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ExperimentDesign_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ExperimentManagerDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ExperimentManagerDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ExperimetManager_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="FactorOrInteractionContribution.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="FactorOrInteractionContribution.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Failure.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Failure.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="File.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="File.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="FitterDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="FitterDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Fitter_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Formula.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Formula.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="FullSimulationOfComplexModel.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="FullSimulationOfComplexModel.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="GenesysApplication_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="GenesysConsole.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="GenesysConsole.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="GenesysGUI.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="GenesysGUI.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Hold.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Hold.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="HypothesisTesterBoostImpl.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="HypothesisTesterBoostImpl.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="HypothesisTesterDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="HypothesisTesterDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="HypothesisTester_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="IntegratorDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="IntegratorDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Integrator_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Leave.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Leave.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="LicenceManager.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="LicenceManager.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="List.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Match.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Match.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="MathMeth.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="MathMeth.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Model.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Model.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ModelCheckerDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ModelCheckerDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ModelChecker_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ModelComponent.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ModelComponent.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ModelElement.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ModelElement.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ModelInfo.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ModelInfo.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ModelManager.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ModelManager.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ModelPersistenceDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ModelPersistenceDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ModelPersistence_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ModelSimulation.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ModelSimulation.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Model_AssignWrite3Seizes.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Model_AssignWrite3Seizes.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Model_CreateDelayDispose.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Model_CreateDelayDispose.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Model_CreateDelayDispose2.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Model_CreteDelayDispose2.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Model_SeizeDelayRelease1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Model_SeizeDelayRelease1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Model_SeizeDelayReleaseMany.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Model_SeizeDelayReleaseMany.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Model_StatationRouteSequence.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Model_StatationRouteSequence.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Modelo_SistemaOperacional02.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Modelo_SistemaOperacional02.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Modelo_SistemaOperacional03.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Modelo_SistemaOperacional03.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="OLD_ODEelement.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="OLD_ODEelement.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="OnEventManager.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="OnEventManager.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ParserChangesInformation.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ParserChangesInformation.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ParserDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ParserDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ParserManager.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ParserManager.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Parser_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="PersistentObject_base.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="PickUp.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="PickUp.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Plugin.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Plugin.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="PluginConnectorDummyImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="PluginConnectorDummyImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="PluginConnector_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="PluginInformation.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="PluginInformation.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="PluginManager.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="PluginManager.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ProbDistribBoostImpl.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ProbDistribBoostImpl.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ProbDistribDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ProbDistribDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Prob_Distrib_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Queue.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Queue.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="QueueableItemRequest.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="QueueableItemRequest.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Record.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Record.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Release.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Release.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="RequirementTester.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="RequirementTester.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Resource.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Resource.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Route.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Route.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="SamplerBoostImpl.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="SamplerBoostImpl.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="SamplerDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="SamplerDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="SamplerStudents20202g1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="SamplerStudents20202g1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Sampler_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ScenarioExperiment_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Schedule.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Schedule.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="SeizableItemRequest.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="SeizableItemRequest.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Seize.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Seize.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Sequence.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Sequence.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Set.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Set.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Signal.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Signal.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="SimulationControl.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="SimulationControl.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="SimulationReporterDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="SimulationReporterDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="SimulationReporter_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="SimulationResponse.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="SimulationResponse.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="SimulationScenario.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="SimulationScenario.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Simulator.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Simulator.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="SinkModelComponent.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="SinkModelComponent.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="SourceModelComponent.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="SourceModelComponent.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Station.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Station.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="StatisticsCollector.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="StatisticsCollector.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="StatisticsDataFileDefaultImpl.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="StatisticsDataFileDefaultImpl.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="StatisticsDataFile_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="StatisticsDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="StatisticsDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Statistics_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Storage.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Storage.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Submodel.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Submodel.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="TestEnterLeaveRoute.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="TestEnterLeaveRoute.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="TestFunctions.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="TestFunctions.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="TestMatricesOfAttributesAndVariables.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="TestMatricesOfAttributesAndVariables.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="TestParser.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="TestParser.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="TestSimulationControlAndSimulationResponse.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="TestSimulationControlAndSimulationResponse.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="ToolManager.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ToolManager.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="TraceManager.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="TraceManager.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Traits.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Util.cpp" ex="false" tool="1" flavor2="0">
+      <item path="kernel/TraitsKernel.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Util.h" ex="false" tool="3" flavor2="0">
+      <item path="kernel/simulator/Attribute.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Variable.cpp" ex="false" tool="1" flavor2="0">
+      <item path="kernel/simulator/Attribute.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Variable.h" ex="false" tool="3" flavor2="0">
+      <item path="kernel/simulator/ComponentManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
-      <item path="Write.cpp" ex="false" tool="1" flavor2="0">
+      <item path="kernel/simulator/ComponentManager.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="Write.h" ex="false" tool="3" flavor2="0">
+      <item path="kernel/simulator/ConnectionManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ConnectionManager.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/Counter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/simulator/Counter.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/DefineGetterSetter.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ElementManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ElementManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ElementManager_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/Entity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/simulator/Entity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/EntityType.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/simulator/EntityType.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/Event.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/simulator/Event.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ExperimentManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ExperimentManager.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ExperimentManagerDefaultImpl1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ExperimentManagerDefaultImpl1.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ExperimetManager_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/LicenceManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/LicenceManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/Model.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/simulator/Model.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelCheckerDefaultImpl1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelCheckerDefaultImpl1.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelChecker_if.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelComponent.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelComponent.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelElement.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelElement.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelInfo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelInfo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelPersistenceDefaultImpl1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelPersistenceDefaultImpl1.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelPersistence_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelSimulation.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelSimulation.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/OnEventManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/OnEventManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ParserChangesInformation.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ParserChangesInformation.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ParserDefaultImpl1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ParserDefaultImpl1.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ParserDefaultImpl2.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ParserDefaultImpl2.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ParserManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ParserManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/Parser_if.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/PersistentObject_base.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/Plugin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/simulator/Plugin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/PluginConnectorDummyImpl1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/PluginConnectorDummyImpl1.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/PluginConnector_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/PluginInformation.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/PluginInformation.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/PluginManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/simulator/PluginManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ScenarioExperiment_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/SimulationControl.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/SimulationControl.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/SimulationExperiment.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/SimulationExperiment.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/SimulationReporterDefaultImpl1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/SimulationReporterDefaultImpl1.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/SimulationReporter_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/SimulationResponse.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/SimulationResponse.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/SimulationScenario.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/SimulationScenario.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/Simulator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/simulator/Simulator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/SinkModelComponent.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/SinkModelComponent.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/SourceModelComponent.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/SourceModelComponent.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/StatisticsCollector.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/StatisticsCollector.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/TraceManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/simulator/TraceManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/Genesys++-driver.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/Genesys++-driver.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/Genesys++-scanner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/GenesysParser.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/GenesysParser.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/GenesysParser.output"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/location.hh"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/obj_t.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/obj_t.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/parser/.Genesys++-parser.yy.swp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/parser/Makefile"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/parser/bisonparser.yy"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/parser/lexerparser.ll"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/position.hh"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/stack.hh"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/CollectorDatafileDefaultImpl1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/CollectorDatafileDefaultImpl1.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/CollectorDatafile_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/CollectorDefaultImpl1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/CollectorDefaultImpl1.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/Collector_if.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/statistics/SamplerBoostImpl.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/SamplerBoostImpl.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/SamplerDefaultImpl1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/SamplerDefaultImpl1.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/SamplerStudents20202g1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/SamplerStudents20202g1.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/Sampler_if.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/statistics/StatisticsDataFileDefaultImpl.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/StatisticsDataFileDefaultImpl.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/StatisticsDataFile_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/StatisticsDefaultImpl1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/StatisticsDefaultImpl1.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/Statistics_if.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/util/List.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/util/Util.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/util/Util.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="parserBisonFlex/Genesys++-driver.cpp"
+      <item path="plugins/components/Access.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Access.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Assign.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Assign.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Batch.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Batch.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/CellularAutomata.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="parserBisonFlex/Genesys++-driver.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/components/CellularAutomata.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="parserBisonFlex/Genesys++-scanner.cpp"
+      <item path="plugins/components/Create.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Create.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Decide.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Decide.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Delay.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Delay.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Dispose.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Dispose.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/DropOff.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/DropOff.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Dummy.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Dummy.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Enter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Enter.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Exit.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Exit.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Formula.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Formula.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Hold.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Hold.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/LSODE.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/LSODE.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Leave.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Leave.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/MarkovChain.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/MarkovChain.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Match.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Match.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/OLD_ODEelement.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="parserBisonFlex/GenesysParser.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/components/OLD_ODEelement.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="parserBisonFlex/GenesysParser.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/components/PickStation.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="parserBisonFlex/ParserDefaultImpl2.cpp"
+      <item path="plugins/components/PickStation.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/PickUp.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/PickUp.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Record.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Record.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Release.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Release.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Remove.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Remove.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Route.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Route.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Search.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Search.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/SeizableItemRequest.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="parserBisonFlex/ParserDefaultImpl2.h"
+      <item path="plugins/components/SeizableItemRequest.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="parserBisonFlex/location.hh" ex="false" tool="3" flavor2="0">
+      <item path="plugins/components/Seize.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="parserBisonFlex/obj_t.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/components/Seize.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="parserBisonFlex/obj_t.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/components/Separate.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="parserBisonFlex/parser/bisonparser.yy"
+      <item path="plugins/components/Separate.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Signal.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Signal.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Start.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Start.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Stop.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Stop.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Store.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Store.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Submodel.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Submodel.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Unstore.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Unstore.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Write.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Write.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/elements/EntityGroup.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/EntityGroup.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/elements/Failure.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/Failure.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/elements/File.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/File.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/elements/Queue.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/Queue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/elements/QueueableItemRequest.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="plugins/elements/QueueableItemRequest.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="parserBisonFlex/parser/lexerparser.ll"
+      <item path="plugins/elements/Resource.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/Resource.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/elements/Schedule.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/Schedule.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/elements/Sequence.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/Sequence.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/elements/Set.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/Set.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/elements/Station.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/Station.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/elements/Storage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/Storage.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/elements/Variable.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/Variable.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="userInterfaces/BaseConsoleGenesysApplication.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/BaseConsoleGenesysApplication.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="parserBisonFlex/position.hh" ex="false" tool="3" flavor2="0">
+      <item path="userInterfaces/GenesysApplication_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="parserBisonFlex/stack.hh" ex="false" tool="3" flavor2="0">
+      <item path="userInterfaces/gui/qt/GenesysQtGUI.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/GenesysQtGUI.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/dialogabout.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/dialogabout.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/dialogabout.ui"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/dialogmodelinformation.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/dialogmodelinformation.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/dialogmodelinformation.ui"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/mainwindow.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/mainwindow.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/mainwindow.ui"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/mapkernelandui.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/mapkernelandui.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/resources.qrc"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/terminal/GenesysShell_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/terminal/GenesysTerminalApp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/terminal/GenesysTerminalApp.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
     </conf>
-    <conf name="Release" type="1">
+    <conf name="Release" type="4">
       <toolsSet>
         <compilerSet>default</compilerSet>
         <dependencyChecking>true</dependencyChecking>
-        <rebuildPropChanged>true</rebuildPropChanged>
+        <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
+      <qt>
+        <buildMode>1</buildMode>
+        <modules>core gui widgets</modules>
+      </qt>
       <compileType>
         <cTool>
           <developmentMode>5</developmentMode>
@@ -914,534 +1155,816 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="AnalysisOfVariance_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Assign.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Assign.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Attribute.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Attribute.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="BaseConsoleGenesysApplication.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="BaseConsoleGenesysApplication.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="CollectorDatafileDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="CollectorDatafileDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="CollectorDatafile_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="CollectorDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="CollectorDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Collector_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ComponentManager.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ComponentManager.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ConnectionManager.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ConnectionManager.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Counter.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Counter.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Create.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Create.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Decide.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Decide.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="DefineGetterSetter.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Delay.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Delay.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Dispose.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Dispose.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Dummy.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Dummy.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ElementManager.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ElementManager.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Enter.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Enter.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Entity.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Entity.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="EntityGroup.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="EntityGroup.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="EntityType.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="EntityType.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Event.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Event.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ExperimentDesignDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ExperimentDesignDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ExperimentDesignDummyImpl.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ExperimentDesignDummyImpl.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ExperimentDesign_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ExperimentManagerDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ExperimentManagerDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ExperimetManager_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="FactorOrInteractionContribution.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="FactorOrInteractionContribution.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Failure.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Failure.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="File.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="File.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="FitterDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="FitterDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Fitter_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Formula.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Formula.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="FullSimulationOfComplexModel.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="FullSimulationOfComplexModel.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="GenesysApplication_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="GenesysConsole.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="GenesysConsole.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="GenesysGUI.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="GenesysGUI.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Hold.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Hold.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="HypothesisTesterBoostImpl.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="HypothesisTesterBoostImpl.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="HypothesisTesterDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="HypothesisTesterDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="HypothesisTester_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="IntegratorDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="IntegratorDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Integrator_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Leave.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Leave.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="LicenceManager.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="LicenceManager.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="List.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Match.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Match.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="MathMeth.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="MathMeth.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Model.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Model.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ModelCheckerDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ModelCheckerDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ModelChecker_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ModelComponent.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ModelComponent.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ModelElement.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ModelElement.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ModelInfo.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ModelInfo.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ModelManager.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ModelManager.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ModelPersistenceDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ModelPersistenceDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ModelPersistence_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ModelSimulation.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ModelSimulation.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Model_AssignWrite3Seizes.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Model_AssignWrite3Seizes.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Model_CreateDelayDispose.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Model_CreateDelayDispose.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Model_CreateDelayDispose2.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Model_CreteDelayDispose2.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Model_SeizeDelayRelease1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Model_SeizeDelayRelease1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Model_SeizeDelayReleaseMany.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Model_SeizeDelayReleaseMany.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Model_StatationRouteSequence.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Model_StatationRouteSequence.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Modelo_SistemaOperacional02.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Modelo_SistemaOperacional02.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Modelo_SistemaOperacional03.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Modelo_SistemaOperacional03.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="OLD_ODEelement.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="OLD_ODEelement.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="OnEventManager.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="OnEventManager.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ParserChangesInformation.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ParserChangesInformation.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ParserDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ParserDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ParserManager.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ParserManager.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Parser_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="PersistentObject_base.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="PickUp.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="PickUp.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Plugin.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Plugin.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="PluginConnectorDummyImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="PluginConnectorDummyImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="PluginConnector_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="PluginInformation.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="PluginInformation.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="PluginManager.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="PluginManager.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ProbDistribBoostImpl.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ProbDistribBoostImpl.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ProbDistribDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ProbDistribDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Prob_Distrib_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Queue.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Queue.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="QueueableItemRequest.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="QueueableItemRequest.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Record.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Record.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Release.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Release.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="RequirementTester.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="RequirementTester.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Resource.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Resource.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Route.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Route.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="SamplerBoostImpl.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="SamplerBoostImpl.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="SamplerDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="SamplerDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="SamplerStudents20202g1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="SamplerStudents20202g1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Sampler_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ScenarioExperiment_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Schedule.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Schedule.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="SeizableItemRequest.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="SeizableItemRequest.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Seize.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Seize.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Sequence.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Sequence.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Set.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Set.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Signal.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Signal.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="SimulationControl.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="SimulationControl.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="SimulationReporterDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="SimulationReporterDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="SimulationReporter_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="SimulationResponse.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="SimulationResponse.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="SimulationScenario.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="SimulationScenario.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Simulator.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Simulator.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="SinkModelComponent.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="SinkModelComponent.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="SourceModelComponent.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="SourceModelComponent.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Station.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Station.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="StatisticsCollector.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="StatisticsCollector.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="StatisticsDataFileDefaultImpl.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="StatisticsDataFileDefaultImpl.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="StatisticsDataFile_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="StatisticsDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="StatisticsDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Statistics_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Storage.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Storage.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Submodel.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Submodel.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="TestEnterLeaveRoute.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="TestEnterLeaveRoute.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="TestFunctions.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="TestFunctions.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="TestMatricesOfAttributesAndVariables.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="TestMatricesOfAttributesAndVariables.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="TestParser.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="TestParser.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="TestSimulationControlAndSimulationResponse.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="TestSimulationControlAndSimulationResponse.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="ToolManager.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ToolManager.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="TraceManager.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="TraceManager.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Traits.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Util.cpp" ex="false" tool="1" flavor2="0">
+      <item path="kernel/TraitsKernel.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Util.h" ex="false" tool="3" flavor2="0">
+      <item path="kernel/simulator/Attribute.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Variable.cpp" ex="false" tool="1" flavor2="0">
+      <item path="kernel/simulator/Attribute.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Variable.h" ex="false" tool="3" flavor2="0">
+      <item path="kernel/simulator/ComponentManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
-      <item path="Write.cpp" ex="false" tool="1" flavor2="0">
+      <item path="kernel/simulator/ComponentManager.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="Write.h" ex="false" tool="3" flavor2="0">
+      <item path="kernel/simulator/ConnectionManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ConnectionManager.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/Counter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/simulator/Counter.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/DefineGetterSetter.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ElementManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ElementManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ElementManager_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/Entity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/simulator/Entity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/EntityType.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/simulator/EntityType.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/Event.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/simulator/Event.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ExperimentManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ExperimentManager.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ExperimentManagerDefaultImpl1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ExperimentManagerDefaultImpl1.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ExperimetManager_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/LicenceManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/LicenceManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/Model.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/simulator/Model.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelCheckerDefaultImpl1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelCheckerDefaultImpl1.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelChecker_if.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelComponent.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelComponent.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelElement.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelElement.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelInfo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelInfo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelPersistenceDefaultImpl1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelPersistenceDefaultImpl1.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelPersistence_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelSimulation.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelSimulation.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/OnEventManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/OnEventManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ParserChangesInformation.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ParserChangesInformation.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ParserDefaultImpl1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ParserDefaultImpl1.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ParserDefaultImpl2.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ParserDefaultImpl2.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ParserManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ParserManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/Parser_if.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/PersistentObject_base.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/Plugin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/simulator/Plugin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/PluginConnectorDummyImpl1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/PluginConnectorDummyImpl1.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/PluginConnector_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/PluginInformation.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/PluginInformation.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/PluginManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/simulator/PluginManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ScenarioExperiment_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/SimulationControl.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/SimulationControl.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/SimulationExperiment.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/SimulationExperiment.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/SimulationReporterDefaultImpl1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/SimulationReporterDefaultImpl1.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/SimulationReporter_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/SimulationResponse.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/SimulationResponse.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/SimulationScenario.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/SimulationScenario.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/Simulator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/simulator/Simulator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/SinkModelComponent.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/SinkModelComponent.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/SourceModelComponent.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/SourceModelComponent.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/StatisticsCollector.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/StatisticsCollector.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/TraceManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/simulator/TraceManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/Genesys++-driver.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/Genesys++-driver.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/Genesys++-scanner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/GenesysParser.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/GenesysParser.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/GenesysParser.output"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/location.hh"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/obj_t.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/obj_t.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/parser/.Genesys++-parser.yy.swp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/parser/Makefile"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/parser/bisonparser.yy"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/parser/lexerparser.ll"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/position.hh"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/parserBisonFlex/stack.hh"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/CollectorDatafileDefaultImpl1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/CollectorDatafileDefaultImpl1.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/CollectorDatafile_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/CollectorDefaultImpl1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/CollectorDefaultImpl1.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/Collector_if.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/statistics/SamplerBoostImpl.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/SamplerBoostImpl.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/SamplerDefaultImpl1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/SamplerDefaultImpl1.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/SamplerStudents20202g1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/SamplerStudents20202g1.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/Sampler_if.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/statistics/StatisticsDataFileDefaultImpl.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/StatisticsDataFileDefaultImpl.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/StatisticsDataFile_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/StatisticsDefaultImpl1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/StatisticsDefaultImpl1.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="kernel/statistics/Statistics_if.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/util/List.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/util/Util.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/util/Util.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="parserBisonFlex/Genesys++-driver.cpp"
+      <item path="plugins/components/Access.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Access.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Assign.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Assign.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Batch.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Batch.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/CellularAutomata.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="parserBisonFlex/Genesys++-driver.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/components/CellularAutomata.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="parserBisonFlex/Genesys++-scanner.cpp"
+      <item path="plugins/components/Create.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Create.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Decide.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Decide.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Delay.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Delay.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Dispose.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Dispose.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/DropOff.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/DropOff.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Dummy.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Dummy.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Enter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Enter.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Exit.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Exit.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Formula.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Formula.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Hold.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Hold.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/LSODE.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/LSODE.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Leave.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Leave.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/MarkovChain.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/MarkovChain.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Match.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Match.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/OLD_ODEelement.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="parserBisonFlex/GenesysParser.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/components/OLD_ODEelement.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="parserBisonFlex/GenesysParser.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/components/PickStation.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="parserBisonFlex/ParserDefaultImpl2.cpp"
+      <item path="plugins/components/PickStation.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/PickUp.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/PickUp.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Record.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Record.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Release.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Release.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Remove.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Remove.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Route.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Route.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Search.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Search.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/SeizableItemRequest.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="parserBisonFlex/ParserDefaultImpl2.h"
+      <item path="plugins/components/SeizableItemRequest.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="parserBisonFlex/location.hh" ex="false" tool="3" flavor2="0">
+      <item path="plugins/components/Seize.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="parserBisonFlex/obj_t.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/components/Seize.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="parserBisonFlex/obj_t.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/components/Separate.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="parserBisonFlex/parser/bisonparser.yy"
+      <item path="plugins/components/Separate.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Signal.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Signal.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Start.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Start.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Stop.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Stop.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Store.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Store.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Submodel.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Submodel.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Unstore.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Unstore.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/Write.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Write.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/elements/EntityGroup.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/EntityGroup.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/elements/Failure.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/Failure.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/elements/File.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/File.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/elements/Queue.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/Queue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/elements/QueueableItemRequest.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="plugins/elements/QueueableItemRequest.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="parserBisonFlex/parser/lexerparser.ll"
+      <item path="plugins/elements/Resource.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/Resource.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/elements/Schedule.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/Schedule.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/elements/Sequence.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/Sequence.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/elements/Set.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/Set.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/elements/Station.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/Station.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/elements/Storage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/Storage.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/elements/Variable.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/Variable.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="userInterfaces/BaseConsoleGenesysApplication.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/BaseConsoleGenesysApplication.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="parserBisonFlex/position.hh" ex="false" tool="3" flavor2="0">
+      <item path="userInterfaces/GenesysApplication_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="parserBisonFlex/stack.hh" ex="false" tool="3" flavor2="0">
+      <item path="userInterfaces/gui/qt/GenesysQtGUI.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/GenesysQtGUI.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/dialogabout.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/dialogabout.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/dialogabout.ui"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/dialogmodelinformation.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/dialogmodelinformation.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/dialogmodelinformation.ui"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/mainwindow.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/mainwindow.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/mainwindow.ui"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/mapkernelandui.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/mapkernelandui.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/resources.qrc"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/terminal/GenesysShell_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/terminal/GenesysTerminalApp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/terminal/GenesysTerminalApp.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
     </conf>
   </confs>
