@@ -61,7 +61,6 @@ bool Hold::_check(std::string* errorMessage) {
 
 PluginInformation* Hold::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Hold>(), &Hold::LoadInstance);
-	// ...
-	return info;
+    return info;
 }
 

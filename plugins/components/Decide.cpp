@@ -78,9 +78,9 @@ bool Decide::_check(std::string* errorMessage) {
 
 PluginInformation* Decide::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Decide>(), &Decide::LoadInstance);
-    Decide* comp = new Decide(nullptr);
-    info->setFields(comp->_saveInstance());
-    comp->~Decide();
+    //Decide* comp = new Decide(nullptr);
+    //info->setFields(comp->_saveInstance());
+    //comp->~Decide();
 	return info;
 }
 

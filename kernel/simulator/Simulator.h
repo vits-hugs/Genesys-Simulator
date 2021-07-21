@@ -28,7 +28,7 @@
 
 //namespace GenesysKernel {
 	/*!
-	 * The main class of the ReGenesys KERNEL simulation. It gives access to simulation models and tools.
+ * The main class of the Genesys KERNEL simulation. It gives access to simulation models and tools.
 	 * Simulation is the top level class and is supossed to be available to application as a dynamic linked library.
 	 */
 	class Simulator {

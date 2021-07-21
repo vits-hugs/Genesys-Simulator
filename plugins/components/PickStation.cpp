@@ -62,7 +62,7 @@ bool PickStation::_check(std::string* errorMessage) {
 
 PluginInformation* PickStation::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<PickStation>(), &PickStation::LoadInstance);
-	// ...
+    info->insertDynamicLibFileDependence("station.so");
 	return info;
 }
 

@@ -11,6 +11,9 @@
  * Created on 20 de maio de 2021, 14:37
  */
 
+// no ubuntu, instalar libqt5webkit5-dev
+// sudo apt-get install libqt5webkit5-dev
+
 #ifndef GENESYSQTGUI_H
 #define GENESYSQTGUI_H
 

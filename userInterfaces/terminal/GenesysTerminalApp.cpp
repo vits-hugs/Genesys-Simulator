@@ -29,7 +29,7 @@ void GenesysTerminalApp::Trace(std::string message) {
 }
 
 void GenesysTerminalApp::run(List<std::string>* commandlineArgs) {
-    Trace("ReGenesys Shell is running. Type your command. For help, type the command \"help\".");
+    Trace("Genesys Shell is running. Type your command. For help, type the command \"help\".");
 	//this->insertFakePluginsByHand(_simulator);
     std::string inputText; //,longPrefix, separator;
 	while (true) {

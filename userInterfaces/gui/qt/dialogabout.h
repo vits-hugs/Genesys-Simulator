@@ -2,6 +2,7 @@
 #define DIALOGABOUT_H
 
 #include <QDialog>
+#include <QString>
 
 namespace Ui {
 class DialogAbout;
@@ -14,7 +15,8 @@ class DialogAbout : public QDialog
 public:
     explicit DialogAbout(QWidget *parent = 0);
     ~DialogAbout();
-
+public:
+    void setLabelVersion(QString version);
 private:
     Ui::DialogAbout *ui;
 };

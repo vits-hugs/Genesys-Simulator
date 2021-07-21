@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.12.8
+** Created by: Qt User Interface Compiler version 5.15.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -356,7 +356,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1082, 21));
+        menuBar->setGeometry(QRect(0, 0, 1082, 24));
         menuEdit = new QMenu(menuBar);
         menuEdit->setObjectName(QString::fromUtf8("menuEdit"));
         menuModel = new QMenu(menuBar);
@@ -403,7 +403,7 @@ public:
         verticalLayout->addWidget(listWidget_ComponentPlugins);
 
         dockWidgetComponents->setWidget(dockWidgetContents);
-        MainWindow->addDockWidget(static_cast<Qt::DockWidgetArea>(1), dockWidgetComponents);
+        MainWindow->addDockWidget(Qt::LeftDockWidgetArea, dockWidgetComponents);
         dockWidgetProperties = new QDockWidget(MainWindow);
         dockWidgetProperties->setObjectName(QString::fromUtf8("dockWidgetProperties"));
         dockWidgetProperties->setFeatures(QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable);
@@ -421,7 +421,7 @@ public:
         verticalLayout_3->addWidget(tableView_Properties);
 
         dockWidgetProperties->setWidget(dockWidgetContents_3);
-        MainWindow->addDockWidget(static_cast<Qt::DockWidgetArea>(2), dockWidgetProperties);
+        MainWindow->addDockWidget(Qt::RightDockWidgetArea, dockWidgetProperties);
         dockWidgetConsole = new QDockWidget(MainWindow);
         dockWidgetConsole->setObjectName(QString::fromUtf8("dockWidgetConsole"));
         dockWidgetConsole->setFloating(false);
@@ -448,7 +448,7 @@ public:
         verticalLayout_4->addWidget(textEdit_Console);
 
         dockWidgetConsole->setWidget(dockWidgetContents_4);
-        MainWindow->addDockWidget(static_cast<Qt::DockWidgetArea>(8), dockWidgetConsole);
+        MainWindow->addDockWidget(Qt::BottomDockWidgetArea, dockWidgetConsole);
         dockWidget = new QDockWidget(MainWindow);
         dockWidget->setObjectName(QString::fromUtf8("dockWidget"));
         dockWidget->setFeatures(QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable);
@@ -467,7 +467,7 @@ public:
         verticalLayout_5->addWidget(textEdit_Report);
 
         dockWidget->setWidget(dockWidgetContents_5);
-        MainWindow->addDockWidget(static_cast<Qt::DockWidgetArea>(8), dockWidget);
+        MainWindow->addDockWidget(Qt::BottomDockWidgetArea, dockWidget);
         dockWidgetExperiments = new QDockWidget(MainWindow);
         dockWidgetExperiments->setObjectName(QString::fromUtf8("dockWidgetExperiments"));
         dockWidgetContents_6 = new QWidget();
@@ -477,7 +477,7 @@ public:
         listWidget->setGeometry(QRect(10, 10, 181, 61));
         listWidget->setAutoFillBackground(false);
         dockWidgetExperiments->setWidget(dockWidgetContents_6);
-        MainWindow->addDockWidget(static_cast<Qt::DockWidgetArea>(1), dockWidgetExperiments);
+        MainWindow->addDockWidget(Qt::LeftDockWidgetArea, dockWidgetExperiments);
 
         menuBar->addAction(menuSimulator->menuAction());
         menuBar->addAction(menuEdit->menuAction());
@@ -558,142 +558,142 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "GenESyS -- Generic and Expansible System Simulator", nullptr));
-        actionNew->setText(QApplication::translate("MainWindow", "New", nullptr));
-#ifndef QT_NO_TOOLTIP
-        actionNew->setToolTip(QApplication::translate("MainWindow", "New simulation model", nullptr));
-#endif // QT_NO_TOOLTIP
-        actionOpen->setText(QApplication::translate("MainWindow", "Open", nullptr));
-#ifndef QT_NO_SHORTCUT
-        actionOpen->setShortcut(QApplication::translate("MainWindow", "Ctrl+O", nullptr));
-#endif // QT_NO_SHORTCUT
-        actionClose->setText(QApplication::translate("MainWindow", "Close", nullptr));
-#ifndef QT_NO_SHORTCUT
-        actionClose->setShortcut(QApplication::translate("MainWindow", "Ctrl+W", nullptr));
-#endif // QT_NO_SHORTCUT
-        actionSave->setText(QApplication::translate("MainWindow", "Save", nullptr));
-#ifndef QT_NO_SHORTCUT
-        actionSave->setShortcut(QApplication::translate("MainWindow", "Ctrl+S", nullptr));
-#endif // QT_NO_SHORTCUT
-        actionSave_as->setText(QApplication::translate("MainWindow", "Save all", nullptr));
-#ifndef QT_NO_SHORTCUT
-        actionSave_as->setShortcut(QApplication::translate("MainWindow", "Ctrl+A", nullptr));
-#endif // QT_NO_SHORTCUT
-        actionExit->setText(QApplication::translate("MainWindow", "Exit", nullptr));
-#ifndef QT_NO_SHORTCUT
-        actionExit->setShortcut(QApplication::translate("MainWindow", "Ctrl+F4", nullptr));
-#endif // QT_NO_SHORTCUT
-        actionUndo->setText(QApplication::translate("MainWindow", "Undo", nullptr));
-#ifndef QT_NO_SHORTCUT
-        actionUndo->setShortcut(QApplication::translate("MainWindow", "Ctrl+Z", nullptr));
-#endif // QT_NO_SHORTCUT
-        actionRedo->setText(QApplication::translate("MainWindow", "Redo", nullptr));
-#ifndef QT_NO_SHORTCUT
-        actionRedo->setShortcut(QApplication::translate("MainWindow", "Ctrl+Shift+Z", nullptr));
-#endif // QT_NO_SHORTCUT
-        actionCut->setText(QApplication::translate("MainWindow", "Cut", nullptr));
-#ifndef QT_NO_SHORTCUT
-        actionCut->setShortcut(QApplication::translate("MainWindow", "Ctrl+X", nullptr));
-#endif // QT_NO_SHORTCUT
-        actionCopy->setText(QApplication::translate("MainWindow", "Copy", nullptr));
-#ifndef QT_NO_SHORTCUT
-        actionCopy->setShortcut(QApplication::translate("MainWindow", "Ctrl+C", nullptr));
-#endif // QT_NO_SHORTCUT
-        actionPaste->setText(QApplication::translate("MainWindow", "Paste", nullptr));
-#ifndef QT_NO_SHORTCUT
-        actionPaste->setShortcut(QApplication::translate("MainWindow", "Ctrl+V", nullptr));
-#endif // QT_NO_SHORTCUT
-        actionFind->setText(QApplication::translate("MainWindow", "Find", nullptr));
-#ifndef QT_NO_SHORTCUT
-        actionFind->setShortcut(QApplication::translate("MainWindow", "Ctrl+F", nullptr));
-#endif // QT_NO_SHORTCUT
-        actionReplace->setText(QApplication::translate("MainWindow", "Replace", nullptr));
-#ifndef QT_NO_SHORTCUT
-        actionReplace->setShortcut(QApplication::translate("MainWindow", "Ctrl+H", nullptr));
-#endif // QT_NO_SHORTCUT
-        actionGroup->setText(QApplication::translate("MainWindow", "Group", nullptr));
-        actionZoom_In->setText(QApplication::translate("MainWindow", "Zoom In", nullptr));
-#ifndef QT_NO_SHORTCUT
-        actionZoom_In->setShortcut(QApplication::translate("MainWindow", "Ctrl+=", nullptr));
-#endif // QT_NO_SHORTCUT
-        actionZoom_Out->setText(QApplication::translate("MainWindow", "Zoom Out", nullptr));
-#ifndef QT_NO_SHORTCUT
-        actionZoom_Out->setShortcut(QApplication::translate("MainWindow", "Ctrl+-", nullptr));
-#endif // QT_NO_SHORTCUT
-        actionZoom_Factor->setText(QApplication::translate("MainWindow", "Zoom Factor", nullptr));
-        actionGrid->setText(QApplication::translate("MainWindow", "Grid", nullptr));
-        actionSnap->setText(QApplication::translate("MainWindow", "Snap", nullptr));
-        actionInput_Analyser->setText(QApplication::translate("MainWindow", "Input Analyser", nullptr));
-        actionOutput_Analyser->setText(QApplication::translate("MainWindow", "Output Analyser", nullptr));
-        actionScenario_Manager->setText(QApplication::translate("MainWindow", "Scenario Manager", nullptr));
-        actionOptimizaton->setText(QApplication::translate("MainWindow", "Optimizaton", nullptr));
-        actionPreferences->setText(QApplication::translate("MainWindow", "Preferences", nullptr));
-        actionCheck_Model->setText(QApplication::translate("MainWindow", "Check", nullptr));
-#ifndef QT_NO_SHORTCUT
-        actionCheck_Model->setShortcut(QApplication::translate("MainWindow", "F4", nullptr));
-#endif // QT_NO_SHORTCUT
-        actionStart->setText(QApplication::translate("MainWindow", "Start", nullptr));
-#ifndef QT_NO_SHORTCUT
-        actionStart->setShortcut(QApplication::translate("MainWindow", "F5", nullptr));
-#endif // QT_NO_SHORTCUT
-        actionStep->setText(QApplication::translate("MainWindow", "Step", nullptr));
-#ifndef QT_NO_SHORTCUT
-        actionStep->setShortcut(QApplication::translate("MainWindow", "F7", nullptr));
-#endif // QT_NO_SHORTCUT
-        actionStop->setText(QApplication::translate("MainWindow", "Stop", nullptr));
-#ifndef QT_NO_SHORTCUT
-        actionStop->setShortcut(QApplication::translate("MainWindow", "F10", nullptr));
-#endif // QT_NO_SHORTCUT
-        actionRun_Control->setText(QApplication::translate("MainWindow", "Settings", nullptr));
-        actionComponents->setText(QApplication::translate("MainWindow", "Plugins", nullptr));
-        actionElements->setText(QApplication::translate("MainWindow", "Experiments", nullptr));
-        actionModels->setText(QApplication::translate("MainWindow", "Models", nullptr));
-        actionConsole->setText(QApplication::translate("MainWindow", "Console", nullptr));
-        actionProperties->setText(QApplication::translate("MainWindow", "Properties", nullptr));
-        actionEditor->setText(QApplication::translate("MainWindow", "Reports", nullptr));
-        actionDocumentation->setText(QApplication::translate("MainWindow", "Documentation", nullptr));
-#ifndef QT_NO_SHORTCUT
-        actionDocumentation->setShortcut(QApplication::translate("MainWindow", "F1", nullptr));
-#endif // QT_NO_SHORTCUT
-        actionSupport->setText(QApplication::translate("MainWindow", "Support", nullptr));
-#ifndef QT_NO_SHORTCUT
-        actionSupport->setShortcut(QApplication::translate("MainWindow", "Ctrl+F1", nullptr));
-#endif // QT_NO_SHORTCUT
-        actionAbout->setText(QApplication::translate("MainWindow", "About...", nullptr));
-#ifndef QT_NO_SHORTCUT
-        actionAbout->setShortcut(QApplication::translate("MainWindow", "Ctrl+Shift+F1", nullptr));
-#endif // QT_NO_SHORTCUT
-        actionTop->setText(QApplication::translate("MainWindow", "Top", nullptr));
-        actionBottom->setText(QApplication::translate("MainWindow", "Bottom", nullptr));
-        actionInformation->setText(QApplication::translate("MainWindow", "Information", nullptr));
-        actionReport->setText(QApplication::translate("MainWindow", "Report", nullptr));
-        actionComponents_2->setText(QApplication::translate("MainWindow", "Components", nullptr));
-        actionElements_2->setText(QApplication::translate("MainWindow", "Elements", nullptr));
-        actionTrace->setText(QApplication::translate("MainWindow", "Trace", nullptr));
-        actionEvents->setText(QApplication::translate("MainWindow", "Events", nullptr));
-        actionPause->setText(QApplication::translate("MainWindow", "Pause", nullptr));
-        actionExit_2->setText(QApplication::translate("MainWindow", "Exit", nullptr));
-        actionPlugins->setText(QApplication::translate("MainWindow", "Plugins", nullptr));
-        actionPreferences_2->setText(QApplication::translate("MainWindow", "Preferences", nullptr));
-        actionModels_2->setText(QApplication::translate("MainWindow", "Models", nullptr));
-        actionExperiments->setText(QApplication::translate("MainWindow", "Experiments", nullptr));
-        tabWidgetModels->setTabText(tabWidgetModels->indexOf(tabModel1), QApplication::translate("MainWindow", "Model 1", nullptr));
-        tabWidgetModels->setTabText(tabWidgetModels->indexOf(tabModel2), QApplication::translate("MainWindow", "Model 2", nullptr));
-        menuEdit->setTitle(QApplication::translate("MainWindow", "Edit", nullptr));
-        menuModel->setTitle(QApplication::translate("MainWindow", "Model", nullptr));
-        menuWindow->setTitle(QApplication::translate("MainWindow", "Window", nullptr));
-        menuHelp->setTitle(QApplication::translate("MainWindow", "Help", nullptr));
-        menuView->setTitle(QApplication::translate("MainWindow", "View", nullptr));
-        menuArrange->setTitle(QApplication::translate("MainWindow", "Arrange", nullptr));
-        menuSimulator->setTitle(QApplication::translate("MainWindow", "Simulator", nullptr));
-        toolBarEdit->setWindowTitle(QApplication::translate("MainWindow", "toolBar", nullptr));
-        toolBar->setWindowTitle(QApplication::translate("MainWindow", "toolBar", nullptr));
-        toolBarSimulator->setWindowTitle(QApplication::translate("MainWindow", "toolBar_2", nullptr));
-        dockWidgetComponents->setWindowTitle(QApplication::translate("MainWindow", "Plugins", nullptr));
-        dockWidgetProperties->setWindowTitle(QApplication::translate("MainWindow", "Properties", nullptr));
-        dockWidgetConsole->setWindowTitle(QApplication::translate("MainWindow", "Traces", nullptr));
-        dockWidget->setWindowTitle(QApplication::translate("MainWindow", "Reports", nullptr));
-        dockWidgetExperiments->setWindowTitle(QApplication::translate("MainWindow", "Experiments", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "GenESyS -- Generic and Expansible System Simulator", nullptr));
+        actionNew->setText(QCoreApplication::translate("MainWindow", "New", nullptr));
+#if QT_CONFIG(tooltip)
+        actionNew->setToolTip(QCoreApplication::translate("MainWindow", "New simulation model", nullptr));
+#endif // QT_CONFIG(tooltip)
+        actionOpen->setText(QCoreApplication::translate("MainWindow", "Open", nullptr));
+#if QT_CONFIG(shortcut)
+        actionOpen->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+O", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionClose->setText(QCoreApplication::translate("MainWindow", "Close", nullptr));
+#if QT_CONFIG(shortcut)
+        actionClose->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+W", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionSave->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
+#if QT_CONFIG(shortcut)
+        actionSave->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+S", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionSave_as->setText(QCoreApplication::translate("MainWindow", "Save all", nullptr));
+#if QT_CONFIG(shortcut)
+        actionSave_as->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+A", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionExit->setText(QCoreApplication::translate("MainWindow", "Exit", nullptr));
+#if QT_CONFIG(shortcut)
+        actionExit->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+F4", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionUndo->setText(QCoreApplication::translate("MainWindow", "Undo", nullptr));
+#if QT_CONFIG(shortcut)
+        actionUndo->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+Z", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionRedo->setText(QCoreApplication::translate("MainWindow", "Redo", nullptr));
+#if QT_CONFIG(shortcut)
+        actionRedo->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+Shift+Z", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionCut->setText(QCoreApplication::translate("MainWindow", "Cut", nullptr));
+#if QT_CONFIG(shortcut)
+        actionCut->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+X", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionCopy->setText(QCoreApplication::translate("MainWindow", "Copy", nullptr));
+#if QT_CONFIG(shortcut)
+        actionCopy->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+C", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionPaste->setText(QCoreApplication::translate("MainWindow", "Paste", nullptr));
+#if QT_CONFIG(shortcut)
+        actionPaste->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+V", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionFind->setText(QCoreApplication::translate("MainWindow", "Find", nullptr));
+#if QT_CONFIG(shortcut)
+        actionFind->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+F", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionReplace->setText(QCoreApplication::translate("MainWindow", "Replace", nullptr));
+#if QT_CONFIG(shortcut)
+        actionReplace->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+H", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionGroup->setText(QCoreApplication::translate("MainWindow", "Group", nullptr));
+        actionZoom_In->setText(QCoreApplication::translate("MainWindow", "Zoom In", nullptr));
+#if QT_CONFIG(shortcut)
+        actionZoom_In->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+=", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionZoom_Out->setText(QCoreApplication::translate("MainWindow", "Zoom Out", nullptr));
+#if QT_CONFIG(shortcut)
+        actionZoom_Out->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+-", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionZoom_Factor->setText(QCoreApplication::translate("MainWindow", "Zoom Factor", nullptr));
+        actionGrid->setText(QCoreApplication::translate("MainWindow", "Grid", nullptr));
+        actionSnap->setText(QCoreApplication::translate("MainWindow", "Snap", nullptr));
+        actionInput_Analyser->setText(QCoreApplication::translate("MainWindow", "Input Analyser", nullptr));
+        actionOutput_Analyser->setText(QCoreApplication::translate("MainWindow", "Output Analyser", nullptr));
+        actionScenario_Manager->setText(QCoreApplication::translate("MainWindow", "Scenario Manager", nullptr));
+        actionOptimizaton->setText(QCoreApplication::translate("MainWindow", "Optimizaton", nullptr));
+        actionPreferences->setText(QCoreApplication::translate("MainWindow", "Preferences", nullptr));
+        actionCheck_Model->setText(QCoreApplication::translate("MainWindow", "Check", nullptr));
+#if QT_CONFIG(shortcut)
+        actionCheck_Model->setShortcut(QCoreApplication::translate("MainWindow", "F4", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionStart->setText(QCoreApplication::translate("MainWindow", "Start", nullptr));
+#if QT_CONFIG(shortcut)
+        actionStart->setShortcut(QCoreApplication::translate("MainWindow", "F5", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionStep->setText(QCoreApplication::translate("MainWindow", "Step", nullptr));
+#if QT_CONFIG(shortcut)
+        actionStep->setShortcut(QCoreApplication::translate("MainWindow", "F7", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionStop->setText(QCoreApplication::translate("MainWindow", "Stop", nullptr));
+#if QT_CONFIG(shortcut)
+        actionStop->setShortcut(QCoreApplication::translate("MainWindow", "F10", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionRun_Control->setText(QCoreApplication::translate("MainWindow", "Settings", nullptr));
+        actionComponents->setText(QCoreApplication::translate("MainWindow", "Plugins", nullptr));
+        actionElements->setText(QCoreApplication::translate("MainWindow", "Experiments", nullptr));
+        actionModels->setText(QCoreApplication::translate("MainWindow", "Models", nullptr));
+        actionConsole->setText(QCoreApplication::translate("MainWindow", "Console", nullptr));
+        actionProperties->setText(QCoreApplication::translate("MainWindow", "Properties", nullptr));
+        actionEditor->setText(QCoreApplication::translate("MainWindow", "Reports", nullptr));
+        actionDocumentation->setText(QCoreApplication::translate("MainWindow", "Documentation", nullptr));
+#if QT_CONFIG(shortcut)
+        actionDocumentation->setShortcut(QCoreApplication::translate("MainWindow", "F1", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionSupport->setText(QCoreApplication::translate("MainWindow", "Support", nullptr));
+#if QT_CONFIG(shortcut)
+        actionSupport->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+F1", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionAbout->setText(QCoreApplication::translate("MainWindow", "About...", nullptr));
+#if QT_CONFIG(shortcut)
+        actionAbout->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+Shift+F1", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionTop->setText(QCoreApplication::translate("MainWindow", "Top", nullptr));
+        actionBottom->setText(QCoreApplication::translate("MainWindow", "Bottom", nullptr));
+        actionInformation->setText(QCoreApplication::translate("MainWindow", "Information", nullptr));
+        actionReport->setText(QCoreApplication::translate("MainWindow", "Report", nullptr));
+        actionComponents_2->setText(QCoreApplication::translate("MainWindow", "Components", nullptr));
+        actionElements_2->setText(QCoreApplication::translate("MainWindow", "Elements", nullptr));
+        actionTrace->setText(QCoreApplication::translate("MainWindow", "Trace", nullptr));
+        actionEvents->setText(QCoreApplication::translate("MainWindow", "Events", nullptr));
+        actionPause->setText(QCoreApplication::translate("MainWindow", "Pause", nullptr));
+        actionExit_2->setText(QCoreApplication::translate("MainWindow", "Exit", nullptr));
+        actionPlugins->setText(QCoreApplication::translate("MainWindow", "Plugins", nullptr));
+        actionPreferences_2->setText(QCoreApplication::translate("MainWindow", "Preferences", nullptr));
+        actionModels_2->setText(QCoreApplication::translate("MainWindow", "Models", nullptr));
+        actionExperiments->setText(QCoreApplication::translate("MainWindow", "Experiments", nullptr));
+        tabWidgetModels->setTabText(tabWidgetModels->indexOf(tabModel1), QCoreApplication::translate("MainWindow", "Model 1", nullptr));
+        tabWidgetModels->setTabText(tabWidgetModels->indexOf(tabModel2), QCoreApplication::translate("MainWindow", "Model 2", nullptr));
+        menuEdit->setTitle(QCoreApplication::translate("MainWindow", "Edit", nullptr));
+        menuModel->setTitle(QCoreApplication::translate("MainWindow", "Model", nullptr));
+        menuWindow->setTitle(QCoreApplication::translate("MainWindow", "Window", nullptr));
+        menuHelp->setTitle(QCoreApplication::translate("MainWindow", "Help", nullptr));
+        menuView->setTitle(QCoreApplication::translate("MainWindow", "View", nullptr));
+        menuArrange->setTitle(QCoreApplication::translate("MainWindow", "Arrange", nullptr));
+        menuSimulator->setTitle(QCoreApplication::translate("MainWindow", "Simulator", nullptr));
+        toolBarEdit->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
+        toolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
+        toolBarSimulator->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar_2", nullptr));
+        dockWidgetComponents->setWindowTitle(QCoreApplication::translate("MainWindow", "Plugins", nullptr));
+        dockWidgetProperties->setWindowTitle(QCoreApplication::translate("MainWindow", "Properties", nullptr));
+        dockWidgetConsole->setWindowTitle(QCoreApplication::translate("MainWindow", "Traces", nullptr));
+        dockWidget->setWindowTitle(QCoreApplication::translate("MainWindow", "Reports", nullptr));
+        dockWidgetExperiments->setWindowTitle(QCoreApplication::translate("MainWindow", "Experiments", nullptr));
     } // retranslateUi
 
 };

@@ -23,7 +23,7 @@ int main(int argc, char** argv) {
     GenesysApplication_if *app = new Traits<GenesysApplication_if>::Application();
     int res = app->main(argc, argv);
     // that's all folks!!
-    std::cout << "Press ENTER to quit...";
-    std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
+    //std::cout << "Press ENTER to quit...";
+    //std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
     return res;
 }

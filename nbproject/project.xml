@@ -13,6 +13,7 @@
                 <sourceRootElem>kernel</sourceRootElem>
                 <sourceRootElem>plugins</sourceRootElem>
                 <sourceRootElem>userInterfaces</sourceRootElem>
+                <sourceRootElem>tools</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

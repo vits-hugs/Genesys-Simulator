@@ -1,5 +1,6 @@
-<RCC>
-    <qresource prefix="/rec">
+<?xml version="1.0" encoding="utf-8"?>
+<RCC version="1.0">
+    <qresource>
         <file>resources/software_genesys.gif</file>
         <file>resources/icons/pack3/png/24x24/3d bar chart.png</file>
         <file>resources/icons/pack3/png/24x24/Abort.png</file>
@@ -121,6 +122,7 @@
         <file>resources/icons/pack3/png/24x24/Linux.png</file>
         <file>resources/icons/pack3/png/24x24/List.png</file>
         <file>resources/icons/pack3/png/24x24/Load.png</file>
+        <file>resources/icons/pack3/png/24x24/LoadInv.png</file>
         <file>resources/icons/pack3/png/24x24/Lock.png</file>
         <file>resources/icons/pack3/png/24x24/Low rating.png</file>
         <file>resources/icons/pack3/png/24x24/Magic wand.png</file>

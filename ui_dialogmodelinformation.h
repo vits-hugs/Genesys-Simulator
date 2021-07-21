@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'dialogmodelinformation.ui'
 **
-** Created by: Qt User Interface Compiler version 5.12.8
+** Created by: Qt User Interface Compiler version 5.15.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -132,13 +132,13 @@ public:
 
         verticalLayout->addWidget(buttonBox);
 
-#ifndef QT_NO_SHORTCUT
+#if QT_CONFIG(shortcut)
         label_2->setBuddy(lineEdit_AnalystName);
         label_4->setBuddy(lineEdit_ProjectTitle);
         label->setBuddy(lineEdit_ModelName);
         label_3->setBuddy(lineEdit_Description);
         label_5->setBuddy(lineEdit_Version);
-#endif // QT_NO_SHORTCUT
+#endif // QT_CONFIG(shortcut)
         QWidget::setTabOrder(lineEdit_AnalystName, lineEdit_ProjectTitle);
         QWidget::setTabOrder(lineEdit_ProjectTitle, lineEdit_ModelName);
         QWidget::setTabOrder(lineEdit_ModelName, lineEdit_Description);
@@ -153,12 +153,12 @@ public:
 
     void retranslateUi(QDialog *DialogModelInformation)
     {
-        DialogModelInformation->setWindowTitle(QApplication::translate("DialogModelInformation", "Model Information", nullptr));
-        label_2->setText(QApplication::translate("DialogModelInformation", "Analyst Name:", nullptr));
-        label_4->setText(QApplication::translate("DialogModelInformation", "Project Title:", nullptr));
-        label->setText(QApplication::translate("DialogModelInformation", "Model Name:", nullptr));
-        label_3->setText(QApplication::translate("DialogModelInformation", "Description:", nullptr));
-        label_5->setText(QApplication::translate("DialogModelInformation", "Version:", nullptr));
+        DialogModelInformation->setWindowTitle(QCoreApplication::translate("DialogModelInformation", "Model Information", nullptr));
+        label_2->setText(QCoreApplication::translate("DialogModelInformation", "Analyst Name:", nullptr));
+        label_4->setText(QCoreApplication::translate("DialogModelInformation", "Project Title:", nullptr));
+        label->setText(QCoreApplication::translate("DialogModelInformation", "Model Name:", nullptr));
+        label_3->setText(QCoreApplication::translate("DialogModelInformation", "Description:", nullptr));
+        label_5->setText(QCoreApplication::translate("DialogModelInformation", "Version:", nullptr));
     } // retranslateUi
 
 };

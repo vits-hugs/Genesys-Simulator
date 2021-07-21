@@ -14,6 +14,7 @@
     <logicalFolder name="ResourceFiles"
                    displayName="Arquivos de Recurso"
                    projectFiles="true">
+      <itemPath>userInterfaces/gui/qt/guiresources.qrc</itemPath>
     </logicalFolder>
     <logicalFolder name="kernel" displayName="kernel" projectFiles="true">
       <logicalFolder name="simulator" displayName="simulator" projectFiles="true">
@@ -255,9 +256,29 @@
         <itemPath>plugins/elements/Variable.h</itemPath>
       </logicalFolder>
     </logicalFolder>
+    <logicalFolder name="f1" displayName="tools" projectFiles="true">
+      <itemPath>tools/HypothesisTester_if.h</itemPath>
+      <itemPath>tools/Integrator_if.h</itemPath>
+    </logicalFolder>
     <logicalFolder name="userInterfaces"
                    displayName="userInterfaces"
                    projectFiles="true">
+      <logicalFolder name="f1" displayName="examples" projectFiles="true">
+        <itemPath>userInterfaces/examples/FullSimulationOfComplexModel.cpp</itemPath>
+        <itemPath>userInterfaces/examples/FullSimulationOfComplexModel.h</itemPath>
+        <itemPath>userInterfaces/examples/Model_AssignWrite3Seizes.cpp</itemPath>
+        <itemPath>userInterfaces/examples/Model_AssignWrite3Seizes.h</itemPath>
+        <itemPath>userInterfaces/examples/Model_CreateDelayDispose.cpp</itemPath>
+        <itemPath>userInterfaces/examples/Model_CreateDelayDispose.h</itemPath>
+        <itemPath>userInterfaces/examples/Model_CreateDelayDispose2.cpp</itemPath>
+        <itemPath>userInterfaces/examples/Model_CreteDelayDispose2.h</itemPath>
+        <itemPath>userInterfaces/examples/Model_SeizeDelayRelease1.cpp</itemPath>
+        <itemPath>userInterfaces/examples/Model_SeizeDelayRelease1.h</itemPath>
+        <itemPath>userInterfaces/examples/Model_SeizeDelayReleaseMany.cpp</itemPath>
+        <itemPath>userInterfaces/examples/Model_SeizeDelayReleaseMany.h</itemPath>
+        <itemPath>userInterfaces/examples/Model_StatationRouteSequence.cpp</itemPath>
+        <itemPath>userInterfaces/examples/Model_StatationRouteSequence.h</itemPath>
+      </logicalFolder>
       <logicalFolder name="gui" displayName="gui" projectFiles="true">
         <logicalFolder name="qt" displayName="qt" projectFiles="true">
           <itemPath>userInterfaces/gui/qt/GenesysQtGUI.cpp</itemPath>
@@ -273,7 +294,6 @@
           <itemPath>userInterfaces/gui/qt/mainwindow.ui</itemPath>
           <itemPath>userInterfaces/gui/qt/mapkernelandui.cpp</itemPath>
           <itemPath>userInterfaces/gui/qt/mapkernelandui.h</itemPath>
-          <itemPath>userInterfaces/gui/qt/resources.qrc</itemPath>
         </logicalFolder>
       </logicalFolder>
       <logicalFolder name="terminal" displayName="terminal" projectFiles="true">
@@ -301,6 +321,7 @@
     <Elem>kernel</Elem>
     <Elem>plugins</Elem>
     <Elem>userInterfaces</Elem>
+    <Elem>tools</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -1033,6 +1054,10 @@
       </item>
       <item path="plugins/elements/Variable.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="tools/HypothesisTester_if.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tools/Integrator_if.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="userInterfaces/BaseConsoleGenesysApplication.cpp"
             ex="false"
             tool="1"
@@ -1044,6 +1069,76 @@
             flavor2="0">
       </item>
       <item path="userInterfaces/GenesysApplication_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/FullSimulationOfComplexModel.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/FullSimulationOfComplexModel.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Model_AssignWrite3Seizes.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Model_AssignWrite3Seizes.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Model_CreateDelayDispose.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Model_CreateDelayDispose.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Model_CreateDelayDispose2.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Model_CreteDelayDispose2.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Model_SeizeDelayRelease1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Model_SeizeDelayRelease1.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Model_SeizeDelayReleaseMany.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Model_SeizeDelayReleaseMany.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Model_StatationRouteSequence.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Model_StatationRouteSequence.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -1088,6 +1183,11 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="userInterfaces/gui/qt/guiresources.qrc"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="userInterfaces/gui/qt/mainwindow.cpp"
             ex="false"
             tool="1"
@@ -1106,11 +1206,6 @@
             flavor2="0">
       </item>
       <item path="userInterfaces/gui/qt/mapkernelandui.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/resources.qrc"
             ex="false"
             tool="3"
             flavor2="0">
@@ -1869,6 +1964,10 @@
       </item>
       <item path="plugins/elements/Variable.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="tools/HypothesisTester_if.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tools/Integrator_if.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="userInterfaces/BaseConsoleGenesysApplication.cpp"
             ex="false"
             tool="1"
@@ -1880,6 +1979,76 @@
             flavor2="0">
       </item>
       <item path="userInterfaces/GenesysApplication_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/FullSimulationOfComplexModel.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/FullSimulationOfComplexModel.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Model_AssignWrite3Seizes.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Model_AssignWrite3Seizes.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Model_CreateDelayDispose.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Model_CreateDelayDispose.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Model_CreateDelayDispose2.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Model_CreteDelayDispose2.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Model_SeizeDelayRelease1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Model_SeizeDelayRelease1.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Model_SeizeDelayReleaseMany.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Model_SeizeDelayReleaseMany.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Model_StatationRouteSequence.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Model_StatationRouteSequence.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -1924,6 +2093,11 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="userInterfaces/gui/qt/guiresources.qrc"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="userInterfaces/gui/qt/mainwindow.cpp"
             ex="false"
             tool="1"
@@ -1942,11 +2116,6 @@
             flavor2="0">
       </item>
       <item path="userInterfaces/gui/qt/mapkernelandui.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/resources.qrc"
             ex="false"
             tool="3"
             flavor2="0">

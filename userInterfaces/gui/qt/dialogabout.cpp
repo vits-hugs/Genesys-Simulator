@@ -12,3 +12,7 @@ DialogAbout::~DialogAbout()
 {
     delete ui;
 }
+
+void DialogAbout::setLabelVersion(QString version) {
+    this->ui->labelVersionGenesys->setText("Version " + version);
+}

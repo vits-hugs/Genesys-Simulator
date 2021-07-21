@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'dialogabout.ui'
 **
-** Created by: Qt User Interface Compiler version 5.14.2
+** Created by: Qt User Interface Compiler version 5.15.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -31,7 +31,7 @@ public:
     QLabel *label_2;
     QLabel *labelAuthor;
     QLabel *labelInstitution;
-    QLabel *labelVersion;
+    QLabel *labelVersionGenesys;
     QTextEdit *textEditDescription;
     QDialogButtonBox *buttonOk;
 
@@ -39,7 +39,7 @@ public:
     {
         if (DialogAbout->objectName().isEmpty())
             DialogAbout->setObjectName(QString::fromUtf8("DialogAbout"));
-        DialogAbout->resize(415, 224);
+        DialogAbout->resize(469, 227);
         DialogAbout->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
         DialogAbout->setModal(true);
         verticalLayout_3 = new QVBoxLayout(DialogAbout);
@@ -76,10 +76,10 @@ public:
 
         verticalLayout_2->addWidget(labelInstitution);
 
-        labelVersion = new QLabel(DialogAbout);
-        labelVersion->setObjectName(QString::fromUtf8("labelVersion"));
+        labelVersionGenesys = new QLabel(DialogAbout);
+        labelVersionGenesys->setObjectName(QString::fromUtf8("labelVersionGenesys"));
 
-        verticalLayout_2->addWidget(labelVersion);
+        verticalLayout_2->addWidget(labelVersionGenesys);
 
 
         horizontalLayout_2->addLayout(verticalLayout_2);
@@ -120,13 +120,13 @@ public:
         label_2->setText(QCoreApplication::translate("DialogAbout", "Generic and Expansible System Simulator", nullptr));
         labelAuthor->setText(QCoreApplication::translate("DialogAbout", "Author: Prof. Dr. Ing. Rafael Luiz Cancian", nullptr));
         labelInstitution->setText(QCoreApplication::translate("DialogAbout", "Federal University of Santa Catarina, Brazil", nullptr));
-        labelVersion->setText(QCoreApplication::translate("DialogAbout", "Version 19.11 (DayOfTheDead 19)", nullptr));
+        labelVersionGenesys->setText(QCoreApplication::translate("DialogAbout", "Version 19.11 (DayOfTheDead 19)", nullptr));
         textEditDescription->setHtml(QCoreApplication::translate("DialogAbout", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Ubuntu'; font-size:9pt; font-weight:400; font-style:normal;\" bgcolor=\"#eeeeee\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Tahoma,Arial,sans-serif'; font-size:8pt; color:#000000;\">Genesys is a result of teaching and researchactivities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics andsimulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesysdevelopment he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of thattool, including its graphical interface. Genesys allowed the inclusion of new simulat"
-                        "ion components through dynamiclink libraries and also the parallel execution of simulation models in a distributed environment. The developmentof Genesys continued until 2007, when the professor stopped teaching systems simulation.</span></p></body></html>", nullptr));
+"</style></head><body style=\" font-family:'DejaVu LGC Sans'; font-size:9pt; font-weight:400; font-style:normal;\" bgcolor=\"#eeeeee\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Tahoma,Arial,sans-serif'; font-size:8pt; color:#000000;\">Genesys is a result of teaching and researchactivities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics andsimulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesysdevelopment he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of thattool, including its graphical interface. Genesys allowed the inclusion of ne"
+                        "w simulation components through dynamiclink libraries and also the parallel execution of simulation models in a distributed environment. The developmentof Genesys continued until 2007, when the professor stopped teaching systems simulation.</span></p></body></html>", nullptr));
     } // retranslateUi
 
 };

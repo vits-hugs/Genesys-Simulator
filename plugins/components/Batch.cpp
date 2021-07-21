@@ -62,8 +62,8 @@ bool Batch::_check(std::string* errorMessage) {
 
 PluginInformation* Batch::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Batch>(), &Batch::LoadInstance);
-	// ...
-	return info;
+    info->insertDynamicLibFileDependence("entitygroup.so");
+    return info;
 }
 
 

@@ -43,7 +43,7 @@ private:
 	void tryExecuteCommand(std::string inputText, std::string longPrefix, std::string separator);
 private:
 	Simulator* _simulator = new Simulator();
-	std::string _prompt = "$ReGenesys> ";
+    std::string _prompt = "$Genesys> ";
     std::string _parameter;
 };
 
