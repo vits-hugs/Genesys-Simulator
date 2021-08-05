@@ -22,7 +22,6 @@
                        displayName="parserBisonFlex"
                        projectFiles="true">
           <logicalFolder name="parser" displayName="parser" projectFiles="true">
-            <itemPath>kernel/simulator/parserBisonFlex/parser/.Genesys++-parser.yy.swp</itemPath>
             <itemPath>kernel/simulator/parserBisonFlex/parser/Makefile</itemPath>
             <itemPath>kernel/simulator/parserBisonFlex/parser/bisonparser.yy</itemPath>
             <itemPath>kernel/simulator/parserBisonFlex/parser/lexerparser.ll</itemPath>
@@ -236,6 +235,8 @@
         <itemPath>plugins/elements/Failure.h</itemPath>
         <itemPath>plugins/elements/File.cpp</itemPath>
         <itemPath>plugins/elements/File.h</itemPath>
+        <itemPath>plugins/elements/Formula.cpp</itemPath>
+        <itemPath>plugins/elements/Formula.h</itemPath>
         <itemPath>plugins/elements/Queue.cpp</itemPath>
         <itemPath>plugins/elements/Queue.h</itemPath>
         <itemPath>plugins/elements/QueueableItemRequest.cpp</itemPath>
@@ -278,6 +279,10 @@
         <itemPath>userInterfaces/examples/Model_SeizeDelayReleaseMany.h</itemPath>
         <itemPath>userInterfaces/examples/Model_StatationRouteSequence.cpp</itemPath>
         <itemPath>userInterfaces/examples/Model_StatationRouteSequence.h</itemPath>
+        <itemPath>userInterfaces/examples/Modelo_SistemaOperacional02.cpp</itemPath>
+        <itemPath>userInterfaces/examples/Modelo_SistemaOperacional02.h</itemPath>
+        <itemPath>userInterfaces/examples/Modelo_SistemaOperacional03.cpp</itemPath>
+        <itemPath>userInterfaces/examples/Modelo_SistemaOperacional03.h</itemPath>
       </logicalFolder>
       <logicalFolder name="gui" displayName="gui" projectFiles="true">
         <logicalFolder name="qt" displayName="qt" projectFiles="true">
@@ -289,6 +294,9 @@
           <itemPath>userInterfaces/gui/qt/dialogmodelinformation.cpp</itemPath>
           <itemPath>userInterfaces/gui/qt/dialogmodelinformation.h</itemPath>
           <itemPath>userInterfaces/gui/qt/dialogmodelinformation.ui</itemPath>
+          <itemPath>userInterfaces/gui/qt/formPlugins.cpp</itemPath>
+          <itemPath>userInterfaces/gui/qt/formPlugins.h</itemPath>
+          <itemPath>userInterfaces/gui/qt/formPlugins.ui</itemPath>
           <itemPath>userInterfaces/gui/qt/mainwindow.cpp</itemPath>
           <itemPath>userInterfaces/gui/qt/mainwindow.h</itemPath>
           <itemPath>userInterfaces/gui/qt/mainwindow.ui</itemPath>
@@ -340,6 +348,48 @@
           <standard>11</standard>
         </ccTool>
       </compileType>
+      <packaging>
+        <packType>Debian</packType>
+        <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+        </packFileList>
+        <packInfoList>
+          <packInfoListElem name="Package" value="20192022GenESyS" mandatory="true"/>
+          <packInfoListElem name="Version" value="1.0" mandatory="true"/>
+          <packInfoListElem name="Architecture" value="i386" mandatory="false"/>
+          <packInfoListElem name="Maintainer" value="rlcancian" mandatory="false"/>
+          <packInfoListElem name="Description" value="..." mandatory="false"/>
+        </packInfoList>
+      </packaging>
       <item path="Traits.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="kernel/TraitsKernel.h" ex="false" tool="3" flavor2="0">
@@ -714,11 +764,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="kernel/simulator/parserBisonFlex/parser/.Genesys++-parser.yy.swp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="kernel/simulator/parserBisonFlex/parser/Makefile"
             ex="false"
             tool="3"
@@ -1012,6 +1057,10 @@
       </item>
       <item path="plugins/elements/File.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="plugins/elements/Formula.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/Formula.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="plugins/elements/Queue.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="plugins/elements/Queue.h" ex="false" tool="3" flavor2="0">
@@ -1143,6 +1192,26 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="userInterfaces/examples/Modelo_SistemaOperacional02.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Modelo_SistemaOperacional02.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Modelo_SistemaOperacional03.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Modelo_SistemaOperacional03.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="userInterfaces/gui/qt/GenesysQtGUI.cpp"
             ex="false"
             tool="1"
@@ -1179,6 +1248,21 @@
             flavor2="0">
       </item>
       <item path="userInterfaces/gui/qt/dialogmodelinformation.ui"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/formPlugins.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/formPlugins.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/formPlugins.ui"
             ex="false"
             tool="3"
             flavor2="0">
@@ -1624,11 +1708,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="kernel/simulator/parserBisonFlex/parser/.Genesys++-parser.yy.swp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="kernel/simulator/parserBisonFlex/parser/Makefile"
             ex="false"
             tool="3"
@@ -1922,6 +2001,10 @@
       </item>
       <item path="plugins/elements/File.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="plugins/elements/Formula.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/Formula.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="plugins/elements/Queue.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="plugins/elements/Queue.h" ex="false" tool="3" flavor2="0">
@@ -2053,6 +2136,26 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="userInterfaces/examples/Modelo_SistemaOperacional02.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Modelo_SistemaOperacional02.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Modelo_SistemaOperacional03.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Modelo_SistemaOperacional03.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="userInterfaces/gui/qt/GenesysQtGUI.cpp"
             ex="false"
             tool="1"
@@ -2089,6 +2192,21 @@
             flavor2="0">
       </item>
       <item path="userInterfaces/gui/qt/dialogmodelinformation.ui"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/formPlugins.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/formPlugins.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/gui/qt/formPlugins.ui"
             ex="false"
             tool="3"
             flavor2="0">

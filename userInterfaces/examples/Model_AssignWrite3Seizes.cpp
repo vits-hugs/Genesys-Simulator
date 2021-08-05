@@ -40,7 +40,7 @@ Model_AssignWrite3Seizes::Model_AssignWrite3Seizes() {
 
 int Model_AssignWrite3Seizes::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L6_internal); //modelResult); //componentArrival);
+	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L7_internal); //modelResult); //componentArrival);
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	this->insertFakePluginsByHand(genesys);
 

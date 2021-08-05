@@ -79,7 +79,7 @@ void Release::_execute(Entity* entity) {
 					index = _parentModel->parseExpression(seizable->getIndex());
 					break;
 			}
-			_parentModel->getTracer()->trace("Member of set " + set->getName() + " chosen index " + std::to_string(index), Util::TraceLevel::L7_detailed);
+			_parentModel->getTracer()->trace("Member of set " + set->getName() + " chosen index " + std::to_string(index), Util::TraceLevel::L8_detailed);
 			resource = static_cast<Resource*> (set->getElementSet()->getAtRank(index));
 			assert(resource != nullptr);
 		}

@@ -96,7 +96,7 @@ double Entity::getAttributeValue(std::string index, std::string attributeName) {
 			return 0.0;
 		}
 	}
-	_parentModel->getTracer()->trace(Util::TraceLevel::L2_errorRecover, "Attribute \"" + attributeName + "\" not found");
+	_parentModel->getTracer()->trace(Util::TraceLevel::L3_errorRecover, "Attribute \"" + attributeName + "\" not found");
 	return 0.0; /* \todo: !! Never should happen. check how to report */
 }
 
@@ -128,7 +128,7 @@ void Entity::setAttributeValue(std::string index, std::string attributeName, dou
 			map->insert({index, value}); // (map->end(), std::pair<std::string, double>(index, value));
 		}
 	} else
-		_parentModel->getTracer()->trace(Util::TraceLevel::L2_errorRecover, "Attribute \"" + attributeName + "\" not found");
+		_parentModel->getTracer()->trace(Util::TraceLevel::L3_errorRecover, "Attribute \"" + attributeName + "\" not found");
 
 }
 
@@ -146,8 +146,9 @@ Util::identification Entity::entityNumber() const {
 }
 
 bool Entity::_loadInstance(std::map<std::string, std::string>* fields) {
-	// never lods an entity
-	return true;
+    // never loads an entity 
+    fields = nullptr; // just to use the parameter and avoid warning for not using it
+    return fields;
 }
 
 std::map<std::string, std::string>* Entity::_saveInstance() {
@@ -155,5 +156,6 @@ std::map<std::string, std::string>* Entity::_saveInstance() {
 }
 
 bool Entity::_check(std::string* errorMessage) {
+    *errorMessage += "";
 	return true;
 }

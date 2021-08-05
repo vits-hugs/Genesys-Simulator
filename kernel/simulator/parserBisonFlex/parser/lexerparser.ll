@@ -13,11 +13,23 @@
 # include "../ModelElement.h"
 # include "../Attribute.h"
 # include "../StatisticsCollector.h"
-//# include "../Variable.h"
-//# include "../Queue.h"
-//# include "../Formula.h"
-//# include "../Resource.h"
-//# include "../Set.h"
+/**begin_Includes_plugins**/
+/**begin_Includes:Variable**/
+#include "../../../plugins/elements/Variable.h"
+/**end_Includes:Variable**/
+/**begin_Includes:Queue**/
+#include "../../../plugins/elements/Queue.h"
+/**end_Includes:Queue**/
+/**begin_Includes:Formula**/
+#include "../../../plugins/elements/Formula.h"
+/**end_Includes:Formula**/
+/**begin_Includes:Resource**/
+#include "../../../plugins/elements/Resource.h"
+/**end_Includes:Resource**/
+/**begin_Includes:Set**/
+#include "../../../plugins/elements/Set.h"
+/**end_Includes:Set**/
+/**end_Includes_plugins**/
 
 
 // Work around an incompatibility in flex (at least versions
@@ -55,7 +67,7 @@ L      [A-Za-z0-9_.]+
 	//Will not fail because of regex
 	//std::string text("Found Hexadecimal: ");
 	//text += yytext;
-	//driver.getModel()->getTraceManager()->trace(Util::TraceLevel::L8_mostDetailed, text);
+	//driver.getModel()->getTraceManager()->trace(Util::TraceLevel::L9_mostDetailed, text);
 	return yy::genesyspp_parser::make_NUMH(obj_t(atof(yytext), std::string("Hexadecimal")),loc);
       }
 
@@ -64,7 +76,7 @@ L      [A-Za-z0-9_.]+
        //Will not fail because of regex
        //std::string text("Found Float: ");
        //text += yytext;
-       //driver.getModel()->getTraceManager()->trace(Util::TraceLevel::L8_mostDetailed, text);
+       //driver.getModel()->getTraceManager()->trace(Util::TraceLevel::L9_mostDetailed, text);
        return yy::genesyspp_parser::make_NUMD(obj_t(atof(yytext),std::string("Float")), loc);
      }
 
@@ -73,7 +85,7 @@ L      [A-Za-z0-9_.]+
        //Will not fail because of regex
        //std::string text("Found Decimal: ");
        //text += yytext;
-       //driver.getModel()->getTraceManager()->trace(Util::TraceLevel::L8_mostDetailed, text);
+       //driver.getModel()->getTraceManager()->trace(Util::TraceLevel::L9_mostDetailed, text);
        return yy::genesyspp_parser::make_NUMD(obj_t(atof(yytext),std::string("Decimal")), loc);
       }
 
@@ -190,44 +202,44 @@ T
         }
 
         // check VARIABLE
-//        element = driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), std::string(yytext));
-//        if (element != nullptr) { // it is a variable
-//            Variable* var = static_cast<Variable*>(element);
-//            //double variableID = var->getId();// ->getValue(); // var->getId()
-//	    //std::cout << "FOUND VARIABLE " << var->getName() <<" ID " << var->getId() << std::endl;
-//            return yy::genesyspp_parser::make_VARI(obj_t(0, Util::TypeOf<Variable>(), var->getId()),loc);
-//        }
+        element = driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), std::string(yytext));
+        if (element != nullptr) { // it is a variable
+            Variable* var = static_cast<Variable*>(element);
+            //double variableID = var->getId();// ->getValue(); // var->getId()
+	    //std::cout << "FOUND VARIABLE " << var->getName() <<" ID " << var->getId() << std::endl;
+            return yy::genesyspp_parser::make_VARI(obj_t(0, Util::TypeOf<Variable>(), var->getId()),loc);
+        }
 
         // Should be definied by plugin FORMULA
         // check FORMULA
-//        element = driver.getModel()->getElements()->getElement(Util::TypeOf<Formula>(), std::string(yytext));
-//        if (element != nullptr) { // it is a FORMULA
-//            Formula* form = static_cast<Formula*>(element);
-//            //double formulaValue = form->getValue(); // return only formula ID
-//	    //std::cout << "FOUND FORMULA " << form->getName() <<" ID " << form->getId() << std::endl;
-//            return yy::genesyspp_parser::make_FORM(obj_t(0, Util::TypeOf<Formula>(), form->getId()),loc);
-//        }
+        element = driver.getModel()->getElements()->getElement(Util::TypeOf<Formula>(), std::string(yytext));
+        if (element != nullptr) { // it is a FORMULA
+            Formula* form = static_cast<Formula*>(element);
+            //double formulaValue = form->getValue(); // return only formula ID
+	    //std::cout << "FOUND FORMULA " << form->getName() <<" ID " << form->getId() << std::endl;
+            return yy::genesyspp_parser::make_FORM(obj_t(0, Util::TypeOf<Formula>(), form->getId()),loc);
+        }
 
         // Should be definied by plugin QUEUE
         // check QUEUE
-//        element = driver.getModel()->getElements()->getElement(Util::TypeOf<Queue>(), std::string(yytext));
-//        if (element != nullptr) { 
-//            return yy::genesyspp_parser::make_QUEUE(obj_t(0, Util::TypeOf<Queue>(), element->getId()),loc);
-//        }
+        element = driver.getModel()->getElements()->getElement(Util::TypeOf<Queue>(), std::string(yytext));
+        if (element != nullptr) { 
+            return yy::genesyspp_parser::make_QUEUE(obj_t(0, Util::TypeOf<Queue>(), element->getId()),loc);
+        }
 
 	// Should be definied by plugin RESOURCE
         // check RESOURCE
-//        element = driver.getModel()->getElements()->getElement(Util::TypeOf<Resource>(), std::string(yytext));
-//        if (element != nullptr) { 
-//            return yy::genesyspp_parser::make_RESOURCE(obj_t(0, Util::TypeOf<Resource>(), element->getId()),loc);
-//        }
+        element = driver.getModel()->getElements()->getElement(Util::TypeOf<Resource>(), std::string(yytext));
+        if (element != nullptr) { 
+            return yy::genesyspp_parser::make_RESOURCE(obj_t(0, Util::TypeOf<Resource>(), element->getId()),loc);
+        }
 
         // Should be definied by plugin SET
         //check SET
-//        element = driver.getModel()->getElements()->getElement(Util::TypeOf<Set>(), std::string(yytext));
-//        if (element != nullptr) { 
-//            return yy::genesyspp_parser::make_SET(obj_t(0, Util::TypeOf<Set>(), element->getId()),loc);
-//        }
+        element = driver.getModel()->getElements()->getElement(Util::TypeOf<Set>(), std::string(yytext));
+        if (element != nullptr) { 
+            return yy::genesyspp_parser::make_SET(obj_t(0, Util::TypeOf<Set>(), element->getId()),loc);
+        }
 
         // Should be definied by plugin STATISTICSCOLLECTOR
         //check CSTAT

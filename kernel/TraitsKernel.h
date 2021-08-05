@@ -34,7 +34,7 @@
 
 template <typename T>
 struct TraitsKernel {
-    static const Util::TraceLevel traceLevel = Util::TraceLevel::L3_results;
+    static const Util::TraceLevel traceLevel = Util::TraceLevel::L2_results;
 };
 
 /*
@@ -44,7 +44,7 @@ struct TraitsKernel {
 template <> struct TraitsKernel<SimulationReporter_if> {
     typedef SimulationReporterDefaultImpl1 Implementation;
     typedef Counter CounterImplementation;
-    static const Util::TraceLevel traceLevel = Util::TraceLevel::L3_results;
+    static const Util::TraceLevel traceLevel = Util::TraceLevel::L2_results;
 };
 
 template <> struct TraitsKernel<PluginConnector_if> {
@@ -69,23 +69,23 @@ template <> struct TraitsKernel<ModelComponent> {
 	typedef StatisticsDefaultImpl1 StatisticsCollector_StatisticsImplementation;
 	typedef CollectorDefaultImpl1 StatisticsCollector_CollectorImplementation;
 	static constexpr bool reportStatistics = true;
-	static const Util::TraceLevel traceLevel = Util::TraceLevel::L3_results;
+	static const Util::TraceLevel traceLevel = Util::TraceLevel::L2_results;
 };
 
 template <> struct TraitsKernel<ModelElement> {
 	static constexpr bool reportStatistics = true;
-	static const Util::TraceLevel traceLevel = Util::TraceLevel::L3_results;
+	static const Util::TraceLevel traceLevel = Util::TraceLevel::L2_results;
 };
 
 template <> struct TraitsKernel<ModelChecker_if> {
     typedef ModelCheckerDefaultImpl1 Implementation;
-    static const Util::TraceLevel traceLevel = Util::TraceLevel::L3_results;
+    static const Util::TraceLevel traceLevel = Util::TraceLevel::L2_results;
 };
 
 
 template <> struct TraitsKernel<ModelPersistence_if> {
     typedef ModelPersistenceDefaultImpl1 Implementation;
-    static const Util::TraceLevel traceLevel = Util::TraceLevel::L3_results;
+    static const Util::TraceLevel traceLevel = Util::TraceLevel::L2_results;
 };
 
 /*

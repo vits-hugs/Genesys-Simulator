@@ -40,7 +40,7 @@ void Match::_execute(Entity* entity) {
 bool Match::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
-		//...
+		// \todo: not implemented yet
 	}
 	return res;
 }
@@ -50,13 +50,13 @@ void Match::_initBetweenReplications() {
 
 std::map<std::string, std::string>* Match::_saveInstance() {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
-	//...
+	// \todo: not implemented yet
 	return fields;
 }
 
 bool Match::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	//...
+	// \todo: not implemented yet
 	return resultAll;
 }
 

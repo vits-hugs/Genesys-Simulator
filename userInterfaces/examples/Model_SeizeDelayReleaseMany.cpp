@@ -39,7 +39,7 @@ int Model_SeizeDelayReleaseMany::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	this->insertFakePluginsByHand(genesys);
 	this->setDefaultTraceHandlers(genesys->getTracer());
-	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L7_detailed);
+	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L8_detailed);
 	Model* m = genesys->getModels()->newModel();
 	//m->load("./models/Model_SeizeDelayReleaseMany.txt");
 	//genesys->getModels()->current()->getSimulation()->start();

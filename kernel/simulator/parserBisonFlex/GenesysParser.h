@@ -1,8 +1,8 @@
-// A Bison parser, made by GNU Bison 3.5.1.
+// A Bison parser, made by GNU Bison 3.7.5.
 
 // Skeleton interface for Bison LALR(1) parsers in C++
 
-// Copyright (C) 2002-2015, 2018-2020 Free Software Foundation, Inc.
+// Copyright (C) 2002-2015, 2018-2021 Free Software Foundation, Inc.
 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,8 +38,9 @@
 
 // C++ LALR(1) parser skeleton written by Akim Demaille.
 
-// Undocumented macros, especially those whose name start with YY_,
-// are private implementation details.  Do not rely on them.
+// DO NOT RELY ON FEATURES THAT ARE NOT DOCUMENTED in the manual,
+// especially those whose name start with YY_ or yy_.  They are
+// private implementation details that can be changed or removed.
 
 #ifndef YY_YY_GENESYSPARSER_H_INCLUDED
 # define YY_YY_GENESYSPARSER_H_INCLUDED
@@ -51,18 +52,28 @@
 #include "obj_t.h"
 #include "../../util/Util.h"
 #include "../Attribute.h"
-//
-// include to Plugin header files should be specified by plugins themselves
-//
-//#include "../Variable.h"
-//#include "../Queue.h"
-//#include "../Formula.h"
-//#include "../Resource.h"
-//#include "../Set.h"
+/****begin_Includes_plugins****/
+/**begin_Includes:Variable**/
+#include "../../../plugins/elements/Variable.h"
+/**end_Includes:Variable**/
+/**begin_Includes:Queue**/
+#include "../../../plugins/elements/Queue.h"
+/**end_Includes:Queue**/
+/**begin_Includes:Formula**/
+#include "../../../plugins/elements/Formula.h"
+/**end_Includes:Formula**/
+/**begin_Includes:Resource**/
+#include "../../../plugins/elements/Resource.h"
+/**end_Includes:Resource**/
+/**begin_Includes:Set**/
+#include "../../../plugins/elements/Set.h"
+/**end_Includes:Set**/
+/****end_Includes_plugins****/
+
 class genesyspp_driver;
 
 
-#line 66 "../GenesysParser.h"
+#line 77 "../GenesysParser.h"
 
 # include <cassert>
 # include <cstdlib> // std::abort
@@ -133,9 +144,9 @@ class genesyspp_driver;
 
 /* Suppress unused-variable warnings by "using" E.  */
 #if ! defined lint || defined __GNUC__
-# define YYUSE(E) ((void) (E))
+# define YY_USE(E) ((void) (E))
 #else
-# define YYUSE(E) /* empty */
+# define YY_USE(E) /* empty */
 #endif
 
 #if defined __GNUC__ && ! defined __ICC && 407 <= __GNUC__ * 100 + __GNUC_MINOR__
@@ -196,7 +207,7 @@ class genesyspp_driver;
 #endif
 
 namespace yy {
-#line 200 "../GenesysParser.h"
+#line 211 "../GenesysParser.h"
 
 
 
@@ -231,6 +242,13 @@ namespace yy {
       YY_ASSERT (sizeof (T) <= size);
       new (yyas_<T> ()) T (YY_MOVE (t));
     }
+
+#if 201103L <= YY_CPLUSPLUS
+    /// Non copyable.
+    semantic_type (const self_type&) = delete;
+    /// Non copyable.
+    self_type& operator= (const self_type&) = delete;
+#endif
 
     /// Destruction, allowed only if empty.
     ~semantic_type () YY_NOEXCEPT
@@ -375,9 +393,12 @@ namespace yy {
     }
 
   private:
-    /// Prohibit blind copies.
-    self_type& operator= (const self_type&);
+#if YY_CPLUSPLUS < 201103L
+    /// Non copyable.
     semantic_type (const self_type&);
+    /// Non copyable.
+    self_type& operator= (const self_type&);
+#endif
 
     /// Accessor to raw memory as \a T.
     template <typename T>
@@ -436,6 +457,8 @@ namespace yy {
       // cTO
       // cDO
       // ATRIB
+      // CSTAT
+      // fTAVG
       // ILLEGAL
       // RESOURCE
       // fNR
@@ -452,8 +475,6 @@ namespace yy {
       // fAQUE
       // SET
       // fNUMSET
-      // CSTAT
-      // fTAVG
       // VARI
       // FORM
       // input
@@ -475,8 +496,8 @@ namespace yy {
       // illegal
       // atributo
       // variavel
-      // atribuicao
       // formula
+      // atribuicao
       // funcaoPlugin
       char dummy1[sizeof (obj_t)];
     };
@@ -521,101 +542,214 @@ namespace yy {
       location_type location;
     };
 
-    /// Tokens.
+    /// Token kinds.
     struct token
     {
-      enum yytokentype
+      enum token_kind_type
       {
-        END = 0,
-        NUMD = 258,
-        NUMH = 259,
-        CTEZERO = 260,
-        oLE = 261,
-        oGE = 262,
-        oEQ = 263,
-        oNE = 264,
-        oAND = 265,
-        oOR = 266,
-        oNOT = 267,
-        fSIN = 268,
-        fCOS = 269,
-        fROUND = 270,
-        fMOD = 271,
-        fTRUNC = 272,
-        fFRAC = 273,
-        fEXP = 274,
-        fRND1 = 275,
-        fEXPO = 276,
-        fNORM = 277,
-        fUNIF = 278,
-        fWEIB = 279,
-        fLOGN = 280,
-        fGAMM = 281,
-        fERLA = 282,
-        fTRIA = 283,
-        fBETA = 284,
-        fDISC = 285,
-        fTNOW = 286,
-        fTFIN = 287,
-        cIF = 288,
-        cELSE = 289,
-        cFOR = 290,
-        cTO = 291,
-        cDO = 292,
-        ATRIB = 293,
-        ILLEGAL = 294,
-        RESOURCE = 295,
-        fNR = 296,
-        fMR = 297,
-        fIRF = 298,
-        fRESSEIZES = 299,
-        fSTATE = 300,
-        fSETSUM = 301,
-        QUEUE = 302,
-        fNQ = 303,
-        fFIRSTINQ = 304,
-        fLASTINQ = 305,
-        fSAQUE = 306,
-        fAQUE = 307,
-        SET = 308,
-        fNUMSET = 309,
-        CSTAT = 310,
-        fTAVG = 311,
-        VARI = 312,
-        FORM = 313,
-        LPAREN = 314,
-        RPAREN = 315,
-        LBRACKET = 316,
-        RBRACKET = 317,
-        PLUS = 318,
-        MINUS = 319,
-        STAR = 320,
-        POWER = 321,
-        SLASH = 322,
-        LESS = 323,
-        GREATER = 324,
-        ASSIGN = 325,
-        COMMA = 326,
-        NEG = 327
+        YYEMPTY = -2,
+    END = 0,                       // "end of file"
+    YYerror = 256,                 // error
+    YYUNDEF = 257,                 // "invalid token"
+    NUMD = 258,                    // NUMD
+    NUMH = 259,                    // NUMH
+    CTEZERO = 260,                 // CTEZERO
+    oLE = 261,                     // oLE
+    oGE = 262,                     // oGE
+    oEQ = 263,                     // oEQ
+    oNE = 264,                     // oNE
+    oAND = 265,                    // oAND
+    oOR = 266,                     // oOR
+    oNOT = 267,                    // oNOT
+    fSIN = 268,                    // fSIN
+    fCOS = 269,                    // fCOS
+    fROUND = 270,                  // fROUND
+    fMOD = 271,                    // fMOD
+    fTRUNC = 272,                  // fTRUNC
+    fFRAC = 273,                   // fFRAC
+    fEXP = 274,                    // fEXP
+    fRND1 = 275,                   // fRND1
+    fEXPO = 276,                   // fEXPO
+    fNORM = 277,                   // fNORM
+    fUNIF = 278,                   // fUNIF
+    fWEIB = 279,                   // fWEIB
+    fLOGN = 280,                   // fLOGN
+    fGAMM = 281,                   // fGAMM
+    fERLA = 282,                   // fERLA
+    fTRIA = 283,                   // fTRIA
+    fBETA = 284,                   // fBETA
+    fDISC = 285,                   // fDISC
+    fTNOW = 286,                   // fTNOW
+    fTFIN = 287,                   // fTFIN
+    cIF = 288,                     // cIF
+    cELSE = 289,                   // cELSE
+    cFOR = 290,                    // cFOR
+    cTO = 291,                     // cTO
+    cDO = 292,                     // cDO
+    ATRIB = 293,                   // ATRIB
+    CSTAT = 294,                   // CSTAT
+    fTAVG = 295,                   // fTAVG
+    ILLEGAL = 296,                 // ILLEGAL
+    RESOURCE = 297,                // RESOURCE
+    fNR = 298,                     // fNR
+    fMR = 299,                     // fMR
+    fIRF = 300,                    // fIRF
+    fRESSEIZES = 301,              // fRESSEIZES
+    fSTATE = 302,                  // fSTATE
+    fSETSUM = 303,                 // fSETSUM
+    QUEUE = 304,                   // QUEUE
+    fNQ = 305,                     // fNQ
+    fFIRSTINQ = 306,               // fFIRSTINQ
+    fLASTINQ = 307,                // fLASTINQ
+    fSAQUE = 308,                  // fSAQUE
+    fAQUE = 309,                   // fAQUE
+    SET = 310,                     // SET
+    fNUMSET = 311,                 // fNUMSET
+    VARI = 312,                    // VARI
+    FORM = 313,                    // FORM
+    LPAREN = 314,                  // "("
+    RPAREN = 315,                  // ")"
+    LBRACKET = 316,                // "["
+    RBRACKET = 317,                // "]"
+    PLUS = 318,                    // "+"
+    MINUS = 319,                   // "-"
+    STAR = 320,                    // "*"
+    POWER = 321,                   // "^"
+    SLASH = 322,                   // "/"
+    LESS = 323,                    // "<"
+    GREATER = 324,                 // ">"
+    ASSIGN = 325,                  // "="
+    COMMA = 326,                   // ","
+    NEG = 327                      // NEG
+      };
+      /// Backward compatibility alias (Bison 3.6).
+      typedef token_kind_type yytokentype;
+    };
+
+    /// Token kind, as returned by yylex.
+    typedef token::yytokentype token_kind_type;
+
+    /// Backward compatibility alias (Bison 3.6).
+    typedef token_kind_type token_type;
+
+    /// Symbol kinds.
+    struct symbol_kind
+    {
+      enum symbol_kind_type
+      {
+        YYNTOKENS = 75, ///< Number of tokens.
+        S_YYEMPTY = -2,
+        S_YYEOF = 0,                             // "end of file"
+        S_YYerror = 1,                           // error
+        S_YYUNDEF = 2,                           // "invalid token"
+        S_NUMD = 3,                              // NUMD
+        S_NUMH = 4,                              // NUMH
+        S_CTEZERO = 5,                           // CTEZERO
+        S_oLE = 6,                               // oLE
+        S_oGE = 7,                               // oGE
+        S_oEQ = 8,                               // oEQ
+        S_oNE = 9,                               // oNE
+        S_oAND = 10,                             // oAND
+        S_oOR = 11,                              // oOR
+        S_oNOT = 12,                             // oNOT
+        S_fSIN = 13,                             // fSIN
+        S_fCOS = 14,                             // fCOS
+        S_fROUND = 15,                           // fROUND
+        S_fMOD = 16,                             // fMOD
+        S_fTRUNC = 17,                           // fTRUNC
+        S_fFRAC = 18,                            // fFRAC
+        S_fEXP = 19,                             // fEXP
+        S_fRND1 = 20,                            // fRND1
+        S_fEXPO = 21,                            // fEXPO
+        S_fNORM = 22,                            // fNORM
+        S_fUNIF = 23,                            // fUNIF
+        S_fWEIB = 24,                            // fWEIB
+        S_fLOGN = 25,                            // fLOGN
+        S_fGAMM = 26,                            // fGAMM
+        S_fERLA = 27,                            // fERLA
+        S_fTRIA = 28,                            // fTRIA
+        S_fBETA = 29,                            // fBETA
+        S_fDISC = 30,                            // fDISC
+        S_fTNOW = 31,                            // fTNOW
+        S_fTFIN = 32,                            // fTFIN
+        S_cIF = 33,                              // cIF
+        S_cELSE = 34,                            // cELSE
+        S_cFOR = 35,                             // cFOR
+        S_cTO = 36,                              // cTO
+        S_cDO = 37,                              // cDO
+        S_ATRIB = 38,                            // ATRIB
+        S_CSTAT = 39,                            // CSTAT
+        S_fTAVG = 40,                            // fTAVG
+        S_ILLEGAL = 41,                          // ILLEGAL
+        S_RESOURCE = 42,                         // RESOURCE
+        S_fNR = 43,                              // fNR
+        S_fMR = 44,                              // fMR
+        S_fIRF = 45,                             // fIRF
+        S_fRESSEIZES = 46,                       // fRESSEIZES
+        S_fSTATE = 47,                           // fSTATE
+        S_fSETSUM = 48,                          // fSETSUM
+        S_QUEUE = 49,                            // QUEUE
+        S_fNQ = 50,                              // fNQ
+        S_fFIRSTINQ = 51,                        // fFIRSTINQ
+        S_fLASTINQ = 52,                         // fLASTINQ
+        S_fSAQUE = 53,                           // fSAQUE
+        S_fAQUE = 54,                            // fAQUE
+        S_SET = 55,                              // SET
+        S_fNUMSET = 56,                          // fNUMSET
+        S_VARI = 57,                             // VARI
+        S_FORM = 58,                             // FORM
+        S_LPAREN = 59,                           // "("
+        S_RPAREN = 60,                           // ")"
+        S_LBRACKET = 61,                         // "["
+        S_RBRACKET = 62,                         // "]"
+        S_PLUS = 63,                             // "+"
+        S_MINUS = 64,                            // "-"
+        S_STAR = 65,                             // "*"
+        S_POWER = 66,                            // "^"
+        S_SLASH = 67,                            // "/"
+        S_LESS = 68,                             // "<"
+        S_GREATER = 69,                          // ">"
+        S_ASSIGN = 70,                           // "="
+        S_COMMA = 71,                            // ","
+        S_NEG = 72,                              // NEG
+        S_73_n_ = 73,                            // '\n'
+        S_74_USER_ = 74,                         // "USER"
+        S_YYACCEPT = 75,                         // $accept
+        S_input = 76,                            // input
+        S_programa = 77,                         // programa
+        S_expressao = 78,                        // expressao
+        S_numero = 79,                           // numero
+        S_aritmetica = 80,                       // aritmetica
+        S_relacional = 81,                       // relacional
+        S_comando = 82,                          // comando
+        S_comandoIF = 83,                        // comandoIF
+        S_comandoFOR = 84,                       // comandoFOR
+        S_funcao = 85,                           // funcao
+        S_funcaoKernel = 86,                     // funcaoKernel
+        S_funcaoTrig = 87,                       // funcaoTrig
+        S_funcaoArit = 88,                       // funcaoArit
+        S_funcaoProb = 89,                       // funcaoProb
+        S_funcaoUser = 90,                       // funcaoUser
+        S_listaparm = 91,                        // listaparm
+        S_illegal = 92,                          // illegal
+        S_atributo = 93,                         // atributo
+        S_variavel = 94,                         // variavel
+        S_formula = 95,                          // formula
+        S_atribuicao = 96,                       // atribuicao
+        S_funcaoPlugin = 97                      // funcaoPlugin
       };
     };
 
-    /// (External) token type, as returned by yylex.
-    typedef token::yytokentype token_type;
+    /// (Internal) symbol kind.
+    typedef symbol_kind::symbol_kind_type symbol_kind_type;
 
-    /// Symbol type: an internal symbol number.
-    typedef int symbol_number_type;
-
-    /// The symbol type number to denote an empty symbol.
-    enum { empty_symbol = -2 };
-
-    /// Internal symbol number for tokens (subsumed by symbol_number_type).
-    typedef signed char token_number_type;
+    /// The number of tokens.
+    static const symbol_kind_type YYNTOKENS = symbol_kind::YYNTOKENS;
 
     /// A complete symbol.
     ///
-    /// Expects its Base type to provide access to the symbol type
-    /// via type_get ().
+    /// Expects its Base type to provide access to the symbol kind
+    /// via kind ().
     ///
     /// Provide access to semantic value and location.
     template <typename Base>
@@ -632,13 +766,105 @@ namespace yy {
 
 #if 201103L <= YY_CPLUSPLUS
       /// Move constructor.
-      basic_symbol (basic_symbol&& that);
+      basic_symbol (basic_symbol&& that)
+        : Base (std::move (that))
+        , value ()
+        , location (std::move (that.location))
+      {
+        switch (this->kind ())
+    {
+      case symbol_kind::S_NUMD: // NUMD
+      case symbol_kind::S_NUMH: // NUMH
+      case symbol_kind::S_CTEZERO: // CTEZERO
+      case symbol_kind::S_oLE: // oLE
+      case symbol_kind::S_oGE: // oGE
+      case symbol_kind::S_oEQ: // oEQ
+      case symbol_kind::S_oNE: // oNE
+      case symbol_kind::S_oAND: // oAND
+      case symbol_kind::S_oOR: // oOR
+      case symbol_kind::S_oNOT: // oNOT
+      case symbol_kind::S_fSIN: // fSIN
+      case symbol_kind::S_fCOS: // fCOS
+      case symbol_kind::S_fROUND: // fROUND
+      case symbol_kind::S_fMOD: // fMOD
+      case symbol_kind::S_fTRUNC: // fTRUNC
+      case symbol_kind::S_fFRAC: // fFRAC
+      case symbol_kind::S_fEXP: // fEXP
+      case symbol_kind::S_fRND1: // fRND1
+      case symbol_kind::S_fEXPO: // fEXPO
+      case symbol_kind::S_fNORM: // fNORM
+      case symbol_kind::S_fUNIF: // fUNIF
+      case symbol_kind::S_fWEIB: // fWEIB
+      case symbol_kind::S_fLOGN: // fLOGN
+      case symbol_kind::S_fGAMM: // fGAMM
+      case symbol_kind::S_fERLA: // fERLA
+      case symbol_kind::S_fTRIA: // fTRIA
+      case symbol_kind::S_fBETA: // fBETA
+      case symbol_kind::S_fDISC: // fDISC
+      case symbol_kind::S_fTNOW: // fTNOW
+      case symbol_kind::S_fTFIN: // fTFIN
+      case symbol_kind::S_cIF: // cIF
+      case symbol_kind::S_cELSE: // cELSE
+      case symbol_kind::S_cFOR: // cFOR
+      case symbol_kind::S_cTO: // cTO
+      case symbol_kind::S_cDO: // cDO
+      case symbol_kind::S_ATRIB: // ATRIB
+      case symbol_kind::S_CSTAT: // CSTAT
+      case symbol_kind::S_fTAVG: // fTAVG
+      case symbol_kind::S_ILLEGAL: // ILLEGAL
+      case symbol_kind::S_RESOURCE: // RESOURCE
+      case symbol_kind::S_fNR: // fNR
+      case symbol_kind::S_fMR: // fMR
+      case symbol_kind::S_fIRF: // fIRF
+      case symbol_kind::S_fRESSEIZES: // fRESSEIZES
+      case symbol_kind::S_fSTATE: // fSTATE
+      case symbol_kind::S_fSETSUM: // fSETSUM
+      case symbol_kind::S_QUEUE: // QUEUE
+      case symbol_kind::S_fNQ: // fNQ
+      case symbol_kind::S_fFIRSTINQ: // fFIRSTINQ
+      case symbol_kind::S_fLASTINQ: // fLASTINQ
+      case symbol_kind::S_fSAQUE: // fSAQUE
+      case symbol_kind::S_fAQUE: // fAQUE
+      case symbol_kind::S_SET: // SET
+      case symbol_kind::S_fNUMSET: // fNUMSET
+      case symbol_kind::S_VARI: // VARI
+      case symbol_kind::S_FORM: // FORM
+      case symbol_kind::S_input: // input
+      case symbol_kind::S_programa: // programa
+      case symbol_kind::S_expressao: // expressao
+      case symbol_kind::S_numero: // numero
+      case symbol_kind::S_aritmetica: // aritmetica
+      case symbol_kind::S_relacional: // relacional
+      case symbol_kind::S_comando: // comando
+      case symbol_kind::S_comandoIF: // comandoIF
+      case symbol_kind::S_comandoFOR: // comandoFOR
+      case symbol_kind::S_funcao: // funcao
+      case symbol_kind::S_funcaoKernel: // funcaoKernel
+      case symbol_kind::S_funcaoTrig: // funcaoTrig
+      case symbol_kind::S_funcaoArit: // funcaoArit
+      case symbol_kind::S_funcaoProb: // funcaoProb
+      case symbol_kind::S_funcaoUser: // funcaoUser
+      case symbol_kind::S_listaparm: // listaparm
+      case symbol_kind::S_illegal: // illegal
+      case symbol_kind::S_atributo: // atributo
+      case symbol_kind::S_variavel: // variavel
+      case symbol_kind::S_formula: // formula
+      case symbol_kind::S_atribuicao: // atribuicao
+      case symbol_kind::S_funcaoPlugin: // funcaoPlugin
+        value.move< obj_t > (std::move (that.value));
+        break;
+
+      default:
+        break;
+    }
+
+      }
 #endif
 
       /// Copy constructor.
       basic_symbol (const basic_symbol& that);
 
-      /// Constructor for valueless symbols, and symbols from each type.
+      /// Constructors for typed symbols.
 #if 201103L <= YY_CPLUSPLUS
       basic_symbol (typename Base::kind_type t, location_type&& l)
         : Base (t)
@@ -650,6 +876,7 @@ namespace yy {
         , location (l)
       {}
 #endif
+
 #if 201103L <= YY_CPLUSPLUS
       basic_symbol (typename Base::kind_type t, obj_t&& v, location_type&& l)
         : Base (t)
@@ -671,99 +898,99 @@ namespace yy {
       }
 
       /// Destroy contents, and record that is empty.
-      void clear ()
+      void clear () YY_NOEXCEPT
       {
         // User destructor.
-        symbol_number_type yytype = this->type_get ();
+        symbol_kind_type yykind = this->kind ();
         basic_symbol<Base>& yysym = *this;
         (void) yysym;
-        switch (yytype)
+        switch (yykind)
         {
        default:
           break;
         }
 
-        // Type destructor.
-switch (yytype)
+        // Value type destructor.
+switch (yykind)
     {
-      case 3: // NUMD
-      case 4: // NUMH
-      case 5: // CTEZERO
-      case 6: // oLE
-      case 7: // oGE
-      case 8: // oEQ
-      case 9: // oNE
-      case 10: // oAND
-      case 11: // oOR
-      case 12: // oNOT
-      case 13: // fSIN
-      case 14: // fCOS
-      case 15: // fROUND
-      case 16: // fMOD
-      case 17: // fTRUNC
-      case 18: // fFRAC
-      case 19: // fEXP
-      case 20: // fRND1
-      case 21: // fEXPO
-      case 22: // fNORM
-      case 23: // fUNIF
-      case 24: // fWEIB
-      case 25: // fLOGN
-      case 26: // fGAMM
-      case 27: // fERLA
-      case 28: // fTRIA
-      case 29: // fBETA
-      case 30: // fDISC
-      case 31: // fTNOW
-      case 32: // fTFIN
-      case 33: // cIF
-      case 34: // cELSE
-      case 35: // cFOR
-      case 36: // cTO
-      case 37: // cDO
-      case 38: // ATRIB
-      case 39: // ILLEGAL
-      case 40: // RESOURCE
-      case 41: // fNR
-      case 42: // fMR
-      case 43: // fIRF
-      case 44: // fRESSEIZES
-      case 45: // fSTATE
-      case 46: // fSETSUM
-      case 47: // QUEUE
-      case 48: // fNQ
-      case 49: // fFIRSTINQ
-      case 50: // fLASTINQ
-      case 51: // fSAQUE
-      case 52: // fAQUE
-      case 53: // SET
-      case 54: // fNUMSET
-      case 55: // CSTAT
-      case 56: // fTAVG
-      case 57: // VARI
-      case 58: // FORM
-      case 76: // input
-      case 77: // programa
-      case 78: // expressao
-      case 79: // numero
-      case 80: // aritmetica
-      case 81: // relacional
-      case 82: // comando
-      case 83: // comandoIF
-      case 84: // comandoFOR
-      case 85: // funcao
-      case 86: // funcaoKernel
-      case 87: // funcaoTrig
-      case 88: // funcaoArit
-      case 89: // funcaoProb
-      case 90: // funcaoUser
-      case 91: // listaparm
-      case 92: // illegal
-      case 93: // atributo
-      case 94: // variavel
-      case 95: // atribuicao
-      case 96: // formula
-      case 97: // funcaoPlugin
+      case symbol_kind::S_NUMD: // NUMD
+      case symbol_kind::S_NUMH: // NUMH
+      case symbol_kind::S_CTEZERO: // CTEZERO
+      case symbol_kind::S_oLE: // oLE
+      case symbol_kind::S_oGE: // oGE
+      case symbol_kind::S_oEQ: // oEQ
+      case symbol_kind::S_oNE: // oNE
+      case symbol_kind::S_oAND: // oAND
+      case symbol_kind::S_oOR: // oOR
+      case symbol_kind::S_oNOT: // oNOT
+      case symbol_kind::S_fSIN: // fSIN
+      case symbol_kind::S_fCOS: // fCOS
+      case symbol_kind::S_fROUND: // fROUND
+      case symbol_kind::S_fMOD: // fMOD
+      case symbol_kind::S_fTRUNC: // fTRUNC
+      case symbol_kind::S_fFRAC: // fFRAC
+      case symbol_kind::S_fEXP: // fEXP
+      case symbol_kind::S_fRND1: // fRND1
+      case symbol_kind::S_fEXPO: // fEXPO
+      case symbol_kind::S_fNORM: // fNORM
+      case symbol_kind::S_fUNIF: // fUNIF
+      case symbol_kind::S_fWEIB: // fWEIB
+      case symbol_kind::S_fLOGN: // fLOGN
+      case symbol_kind::S_fGAMM: // fGAMM
+      case symbol_kind::S_fERLA: // fERLA
+      case symbol_kind::S_fTRIA: // fTRIA
+      case symbol_kind::S_fBETA: // fBETA
+      case symbol_kind::S_fDISC: // fDISC
+      case symbol_kind::S_fTNOW: // fTNOW
+      case symbol_kind::S_fTFIN: // fTFIN
+      case symbol_kind::S_cIF: // cIF
+      case symbol_kind::S_cELSE: // cELSE
+      case symbol_kind::S_cFOR: // cFOR
+      case symbol_kind::S_cTO: // cTO
+      case symbol_kind::S_cDO: // cDO
+      case symbol_kind::S_ATRIB: // ATRIB
+      case symbol_kind::S_CSTAT: // CSTAT
+      case symbol_kind::S_fTAVG: // fTAVG
+      case symbol_kind::S_ILLEGAL: // ILLEGAL
+      case symbol_kind::S_RESOURCE: // RESOURCE
+      case symbol_kind::S_fNR: // fNR
+      case symbol_kind::S_fMR: // fMR
+      case symbol_kind::S_fIRF: // fIRF
+      case symbol_kind::S_fRESSEIZES: // fRESSEIZES
+      case symbol_kind::S_fSTATE: // fSTATE
+      case symbol_kind::S_fSETSUM: // fSETSUM
+      case symbol_kind::S_QUEUE: // QUEUE
+      case symbol_kind::S_fNQ: // fNQ
+      case symbol_kind::S_fFIRSTINQ: // fFIRSTINQ
+      case symbol_kind::S_fLASTINQ: // fLASTINQ
+      case symbol_kind::S_fSAQUE: // fSAQUE
+      case symbol_kind::S_fAQUE: // fAQUE
+      case symbol_kind::S_SET: // SET
+      case symbol_kind::S_fNUMSET: // fNUMSET
+      case symbol_kind::S_VARI: // VARI
+      case symbol_kind::S_FORM: // FORM
+      case symbol_kind::S_input: // input
+      case symbol_kind::S_programa: // programa
+      case symbol_kind::S_expressao: // expressao
+      case symbol_kind::S_numero: // numero
+      case symbol_kind::S_aritmetica: // aritmetica
+      case symbol_kind::S_relacional: // relacional
+      case symbol_kind::S_comando: // comando
+      case symbol_kind::S_comandoIF: // comandoIF
+      case symbol_kind::S_comandoFOR: // comandoFOR
+      case symbol_kind::S_funcao: // funcao
+      case symbol_kind::S_funcaoKernel: // funcaoKernel
+      case symbol_kind::S_funcaoTrig: // funcaoTrig
+      case symbol_kind::S_funcaoArit: // funcaoArit
+      case symbol_kind::S_funcaoProb: // funcaoProb
+      case symbol_kind::S_funcaoUser: // funcaoUser
+      case symbol_kind::S_listaparm: // listaparm
+      case symbol_kind::S_illegal: // illegal
+      case symbol_kind::S_atributo: // atributo
+      case symbol_kind::S_variavel: // variavel
+      case symbol_kind::S_formula: // formula
+      case symbol_kind::S_atribuicao: // atribuicao
+      case symbol_kind::S_funcaoPlugin: // funcaoPlugin
         value.template destroy< obj_t > ();
         break;
 
@@ -773,6 +1000,15 @@ switch (yytype)
 
         Base::clear ();
       }
+
+      /// The user-facing name of this symbol.
+      std::string name () const YY_NOEXCEPT
+      {
+        return genesyspp_parser::symbol_name (this->kind ());
+      }
+
+      /// Backward compatibility (Bison 3.6).
+      symbol_kind_type type_get () const YY_NOEXCEPT;
 
       /// Whether empty.
       bool empty () const YY_NOEXCEPT;
@@ -794,46 +1030,51 @@ switch (yytype)
     };
 
     /// Type access provider for token (enum) based symbols.
-    struct by_type
+    struct by_kind
     {
       /// Default constructor.
-      by_type ();
+      by_kind ();
 
 #if 201103L <= YY_CPLUSPLUS
       /// Move constructor.
-      by_type (by_type&& that);
+      by_kind (by_kind&& that);
 #endif
 
       /// Copy constructor.
-      by_type (const by_type& that);
+      by_kind (const by_kind& that);
 
-      /// The symbol type as needed by the constructor.
-      typedef token_type kind_type;
+      /// The symbol kind as needed by the constructor.
+      typedef token_kind_type kind_type;
 
       /// Constructor from (external) token numbers.
-      by_type (kind_type t);
+      by_kind (kind_type t);
 
       /// Record that this symbol is empty.
-      void clear ();
+      void clear () YY_NOEXCEPT;
 
-      /// Steal the symbol type from \a that.
-      void move (by_type& that);
+      /// Steal the symbol kind from \a that.
+      void move (by_kind& that);
 
       /// The (internal) type number (corresponding to \a type).
       /// \a empty when empty.
-      symbol_number_type type_get () const YY_NOEXCEPT;
+      symbol_kind_type kind () const YY_NOEXCEPT;
 
-      /// The symbol type.
-      /// \a empty_symbol when empty.
-      /// An int, not token_number_type, to be able to store empty_symbol.
-      int type;
+      /// Backward compatibility (Bison 3.6).
+      symbol_kind_type type_get () const YY_NOEXCEPT;
+
+      /// The symbol kind.
+      /// \a S_YYEMPTY when empty.
+      symbol_kind_type kind_;
     };
 
+    /// Backward compatibility for a private implementation detail (Bison 3.6).
+    typedef by_kind by_type;
+
     /// "External" symbols: returned by the scanner.
-    struct symbol_type : basic_symbol<by_type>
+    struct symbol_type : basic_symbol<by_kind>
     {
       /// Superclass.
-      typedef basic_symbol<by_type> super_type;
+      typedef basic_symbol<by_kind> super_type;
 
       /// Empty symbol.
       symbol_type () {}
@@ -842,34 +1083,39 @@ switch (yytype)
 #if 201103L <= YY_CPLUSPLUS
       symbol_type (int tok, location_type l)
         : super_type(token_type (tok), std::move (l))
-      {
-        YY_ASSERT (tok == token::END || tok == token::LPAREN || tok == token::RPAREN || tok == token::LBRACKET || tok == token::RBRACKET || tok == token::PLUS || tok == token::MINUS || tok == token::STAR || tok == token::POWER || tok == token::SLASH || tok == token::LESS || tok == token::GREATER || tok == token::ASSIGN || tok == token::COMMA || tok == token::NEG || tok == 10 || tok == 328);
-      }
 #else
       symbol_type (int tok, const location_type& l)
         : super_type(token_type (tok), l)
-      {
-        YY_ASSERT (tok == token::END || tok == token::LPAREN || tok == token::RPAREN || tok == token::LBRACKET || tok == token::RBRACKET || tok == token::PLUS || tok == token::MINUS || tok == token::STAR || tok == token::POWER || tok == token::SLASH || tok == token::LESS || tok == token::GREATER || tok == token::ASSIGN || tok == token::COMMA || tok == token::NEG || tok == 10 || tok == 328);
-      }
 #endif
+      {
+        YY_ASSERT (tok == token::END
+                   || (token::YYerror <= tok && tok <= token::YYUNDEF)
+                   || (token::LPAREN <= tok && tok <= token::NEG)
+                   || tok == 10
+                   || tok == 328);
+      }
 #if 201103L <= YY_CPLUSPLUS
       symbol_type (int tok, obj_t v, location_type l)
         : super_type(token_type (tok), std::move (v), std::move (l))
-      {
-        YY_ASSERT (tok == token::NUMD || tok == token::NUMH || tok == token::CTEZERO || tok == token::oLE || tok == token::oGE || tok == token::oEQ || tok == token::oNE || tok == token::oAND || tok == token::oOR || tok == token::oNOT || tok == token::fSIN || tok == token::fCOS || tok == token::fROUND || tok == token::fMOD || tok == token::fTRUNC || tok == token::fFRAC || tok == token::fEXP || tok == token::fRND1 || tok == token::fEXPO || tok == token::fNORM || tok == token::fUNIF || tok == token::fWEIB || tok == token::fLOGN || tok == token::fGAMM || tok == token::fERLA || tok == token::fTRIA || tok == token::fBETA || tok == token::fDISC || tok == token::fTNOW || tok == token::fTFIN || tok == token::cIF || tok == token::cELSE || tok == token::cFOR || tok == token::cTO || tok == token::cDO || tok == token::ATRIB || tok == token::ILLEGAL || tok == token::RESOURCE || tok == token::fNR || tok == token::fMR || tok == token::fIRF || tok == token::fRESSEIZES || tok == token::fSTATE || tok == token::fSETSUM || tok == token::QUEUE || tok == token::fNQ || tok == token::fFIRSTINQ || tok == token::fLASTINQ || tok == token::fSAQUE || tok == token::fAQUE || tok == token::SET || tok == token::fNUMSET || tok == token::CSTAT || tok == token::fTAVG || tok == token::VARI || tok == token::FORM);
-      }
 #else
       symbol_type (int tok, const obj_t& v, const location_type& l)
         : super_type(token_type (tok), v, l)
-      {
-        YY_ASSERT (tok == token::NUMD || tok == token::NUMH || tok == token::CTEZERO || tok == token::oLE || tok == token::oGE || tok == token::oEQ || tok == token::oNE || tok == token::oAND || tok == token::oOR || tok == token::oNOT || tok == token::fSIN || tok == token::fCOS || tok == token::fROUND || tok == token::fMOD || tok == token::fTRUNC || tok == token::fFRAC || tok == token::fEXP || tok == token::fRND1 || tok == token::fEXPO || tok == token::fNORM || tok == token::fUNIF || tok == token::fWEIB || tok == token::fLOGN || tok == token::fGAMM || tok == token::fERLA || tok == token::fTRIA || tok == token::fBETA || tok == token::fDISC || tok == token::fTNOW || tok == token::fTFIN || tok == token::cIF || tok == token::cELSE || tok == token::cFOR || tok == token::cTO || tok == token::cDO || tok == token::ATRIB || tok == token::ILLEGAL || tok == token::RESOURCE || tok == token::fNR || tok == token::fMR || tok == token::fIRF || tok == token::fRESSEIZES || tok == token::fSTATE || tok == token::fSETSUM || tok == token::QUEUE || tok == token::fNQ || tok == token::fFIRSTINQ || tok == token::fLASTINQ || tok == token::fSAQUE || tok == token::fAQUE || tok == token::SET || tok == token::fNUMSET || tok == token::CSTAT || tok == token::fTAVG || tok == token::VARI || tok == token::FORM);
-      }
 #endif
+      {
+        YY_ASSERT ((token::NUMD <= tok && tok <= token::FORM));
+      }
     };
 
     /// Build a parser object.
     genesyspp_parser (genesyspp_driver& driver_yyarg);
     virtual ~genesyspp_parser ();
+
+#if 201103L <= YY_CPLUSPLUS
+    /// Non copyable.
+    genesyspp_parser (const genesyspp_parser&) = delete;
+    /// Non copyable.
+    genesyspp_parser& operator= (const genesyspp_parser&) = delete;
+#endif
 
     /// Parse.  An alias for parse ().
     /// \returns  0 iff parsing succeeded.
@@ -901,6 +1147,10 @@ switch (yytype)
     /// Report a syntax error.
     void error (const syntax_error& err);
 
+    /// The user-facing name of the symbol whose (internal) number is
+    /// YYSYMBOL.  No bounds checking.
+    static std::string symbol_name (symbol_kind_type yysymbol);
+
     // Implementation of make_symbol for each symbol type.
 #if 201103L <= YY_CPLUSPLUS
       static
@@ -915,6 +1165,36 @@ switch (yytype)
       make_END (const location_type& l)
       {
         return symbol_type (token::END, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_YYerror (location_type l)
+      {
+        return symbol_type (token::YYerror, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_YYerror (const location_type& l)
+      {
+        return symbol_type (token::YYerror, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_YYUNDEF (location_type l)
+      {
+        return symbol_type (token::YYUNDEF, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_YYUNDEF (const location_type& l)
+      {
+        return symbol_type (token::YYUNDEF, l);
       }
 #endif
 #if 201103L <= YY_CPLUSPLUS
@@ -1460,6 +1740,36 @@ switch (yytype)
 #if 201103L <= YY_CPLUSPLUS
       static
       symbol_type
+      make_CSTAT (obj_t v, location_type l)
+      {
+        return symbol_type (token::CSTAT, std::move (v), std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_CSTAT (const obj_t& v, const location_type& l)
+      {
+        return symbol_type (token::CSTAT, v, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_fTAVG (obj_t v, location_type l)
+      {
+        return symbol_type (token::fTAVG, std::move (v), std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_fTAVG (const obj_t& v, const location_type& l)
+      {
+        return symbol_type (token::fTAVG, v, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
       make_ILLEGAL (obj_t v, location_type l)
       {
         return symbol_type (token::ILLEGAL, std::move (v), std::move (l));
@@ -1695,36 +2005,6 @@ switch (yytype)
       make_fNUMSET (const obj_t& v, const location_type& l)
       {
         return symbol_type (token::fNUMSET, v, l);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_CSTAT (obj_t v, location_type l)
-      {
-        return symbol_type (token::CSTAT, std::move (v), std::move (l));
-      }
-#else
-      static
-      symbol_type
-      make_CSTAT (const obj_t& v, const location_type& l)
-      {
-        return symbol_type (token::CSTAT, v, l);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_fTAVG (obj_t v, location_type l)
-      {
-        return symbol_type (token::fTAVG, std::move (v), std::move (l));
-      }
-#else
-      static
-      symbol_type
-      make_fTAVG (const obj_t& v, const location_type& l)
-      {
-        return symbol_type (token::fTAVG, v, l);
       }
 #endif
 #if 201103L <= YY_CPLUSPLUS
@@ -1969,20 +2249,43 @@ switch (yytype)
 #endif
 
 
+    class context
+    {
+    public:
+      context (const genesyspp_parser& yyparser, const symbol_type& yyla);
+      const symbol_type& lookahead () const YY_NOEXCEPT { return yyla_; }
+      symbol_kind_type token () const YY_NOEXCEPT { return yyla_.kind (); }
+      const location_type& location () const YY_NOEXCEPT { return yyla_.location; }
+
+      /// Put in YYARG at most YYARGN of the expected tokens, and return the
+      /// number of tokens stored in YYARG.  If YYARG is null, return the
+      /// number of expected tokens (guaranteed to be less than YYNTOKENS).
+      int expected_tokens (symbol_kind_type yyarg[], int yyargn) const;
+
+    private:
+      const genesyspp_parser& yyparser_;
+      const symbol_type& yyla_;
+    };
+
   private:
-    /// This class is not copyable.
+#if YY_CPLUSPLUS < 201103L
+    /// Non copyable.
     genesyspp_parser (const genesyspp_parser&);
+    /// Non copyable.
     genesyspp_parser& operator= (const genesyspp_parser&);
+#endif
+
 
     /// Stored state numbers (used for stacks).
-    typedef unsigned char state_type;
+    typedef short state_type;
+
+    /// The arguments of the error message.
+    int yy_syntax_error_arguments_ (const context& yyctx,
+                                    symbol_kind_type yyarg[], int yyargn) const;
 
     /// Generate an error message.
-    /// \param yystate   the state where the error occurred.
-    /// \param yyla      the lookahead token.
-    virtual std::string yysyntax_error_ (state_type yystate,
-                                         const symbol_type& yyla) const;
-
+    /// \param yyctx     the context in which the error occurred.
+    virtual std::string yysyntax_error_ (const context& yyctx) const;
     /// Compute post-reduction state.
     /// \param yystate   the current state
     /// \param yysym     the nonterminal to push on the stack
@@ -1999,10 +2302,17 @@ switch (yytype)
     static const short yypact_ninf_;
     static const signed char yytable_ninf_;
 
-    /// Convert a scanner token number \a t to a symbol number.
-    /// In theory \a t should be a token_type, but character literals
+    /// Convert a scanner token kind \a t to a symbol kind.
+    /// In theory \a t should be a token_kind_type, but character literals
     /// are valid, yet not members of the token_type enum.
-    static token_number_type yytranslate_ (int t);
+    static symbol_kind_type yytranslate_ (int t);
+
+    /// Convert the symbol name \a n to a form suitable for a diagnostic.
+    static std::string yytnamerr_ (const char *yystr);
+
+    /// For a symbol, its name in clear.
+    static const char* const yytname_[];
+
 
     // Tables.
     // YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
@@ -2018,7 +2328,7 @@ switch (yytype)
     static const short yypgoto_[];
 
     // YYDEFGOTO[NTERM-NUM].
-    static const signed char yydefgoto_[];
+    static const unsigned char yydefgoto_[];
 
     // YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
     // positive, shift that token.  If negative, reduce the rule whose
@@ -2038,26 +2348,20 @@ switch (yytype)
     static const signed char yyr2_[];
 
 
-    /// Convert the symbol name \a n to a form suitable for a diagnostic.
-    static std::string yytnamerr_ (const char *n);
-
-
-    /// For a symbol, its name in clear.
-    static const char* const yytname_[];
 #if YYDEBUG
     // YYRLINE[YYN] -- Source line where rule number YYN was defined.
     static const short yyrline_[];
     /// Report on the debug stream that the rule \a r is going to be reduced.
-    virtual void yy_reduce_print_ (int r);
+    virtual void yy_reduce_print_ (int r) const;
     /// Print the state stack on the debug stream.
-    virtual void yystack_print_ ();
+    virtual void yy_stack_print_ () const;
 
     /// Debugging level.
     int yydebug_;
     /// Debug stream.
     std::ostream* yycdebug_;
 
-    /// \brief Display a symbol type, value and location.
+    /// \brief Display a symbol kind, value and location.
     /// \param yyo    The output stream.
     /// \param yysym  The symbol.
     template <typename Base>
@@ -2078,7 +2382,7 @@ switch (yytype)
       /// Default constructor.
       by_state () YY_NOEXCEPT;
 
-      /// The symbol type as needed by the constructor.
+      /// The symbol kind as needed by the constructor.
       typedef state_type kind_type;
 
       /// Constructor.
@@ -2090,12 +2394,12 @@ switch (yytype)
       /// Record that this symbol is empty.
       void clear () YY_NOEXCEPT;
 
-      /// Steal the symbol type from \a that.
+      /// Steal the symbol kind from \a that.
       void move (by_state& that);
 
-      /// The (internal) type number (corresponding to \a state).
-      /// \a empty_symbol when empty.
-      symbol_number_type type_get () const YY_NOEXCEPT;
+      /// The symbol kind (corresponding to \a state).
+      /// \a symbol_kind::S_YYEMPTY when empty.
+      symbol_kind_type kind () const YY_NOEXCEPT;
 
       /// The state number used to denote an empty symbol.
       /// We use the initial state, as it does not have a value.
@@ -2134,14 +2438,21 @@ switch (yytype)
     {
     public:
       // Hide our reversed order.
-      typedef typename S::reverse_iterator iterator;
-      typedef typename S::const_reverse_iterator const_iterator;
+      typedef typename S::iterator iterator;
+      typedef typename S::const_iterator const_iterator;
       typedef typename S::size_type size_type;
       typedef typename std::ptrdiff_t index_type;
 
       stack (size_type n = 200)
         : seq_ (n)
       {}
+
+#if 201103L <= YY_CPLUSPLUS
+      /// Non copyable.
+      stack (const stack&) = delete;
+      /// Non copyable.
+      stack& operator= (const stack&) = delete;
+#endif
 
       /// Random access.
       ///
@@ -2193,24 +2504,18 @@ switch (yytype)
         return index_type (seq_.size ());
       }
 
-      std::ptrdiff_t
-      ssize () const YY_NOEXCEPT
-      {
-        return std::ptrdiff_t (size ());
-      }
-
       /// Iterator on top of the stack (going downwards).
       const_iterator
       begin () const YY_NOEXCEPT
       {
-        return seq_.rbegin ();
+        return seq_.begin ();
       }
 
       /// Bottom of the stack.
       const_iterator
       end () const YY_NOEXCEPT
       {
-        return seq_.rend ();
+        return seq_.end ();
       }
 
       /// Present a slice of the top of a stack.
@@ -2234,8 +2539,12 @@ switch (yytype)
       };
 
     private:
+#if YY_CPLUSPLUS < 201103L
+      /// Non copyable.
       stack (const stack&);
+      /// Non copyable.
       stack& operator= (const stack&);
+#endif
       /// The wrapped container.
       S seq_;
     };
@@ -2265,33 +2574,28 @@ switch (yytype)
     /// Pop \a n symbols from the stack.
     void yypop_ (int n = 1);
 
-    /// Some specific tokens.
-    static const token_number_type yy_error_token_ = 1;
-    static const token_number_type yy_undef_token_ = 2;
-
     /// Constants.
     enum
     {
-      yyeof_ = 0,
-      yylast_ = 1227,     ///< Last index in yytable_.
+      yylast_ = 1570,     ///< Last index in yytable_.
       yynnts_ = 23,  ///< Number of nonterminal symbols.
-      yyfinal_ = 6, ///< Termination state number.
-      yyntokens_ = 75  ///< Number of tokens.
+      yyfinal_ = 6 ///< Termination state number.
     };
 
 
     // User arguments.
     genesyspp_driver& driver;
+
   };
 
   inline
-  genesyspp_parser::token_number_type
+  genesyspp_parser::symbol_kind_type
   genesyspp_parser::yytranslate_ (int t)
   {
     // YYTRANSLATE[TOKEN-NUM] -- Symbol number corresponding to
     // TOKEN-NUM as returned by yylex.
     static
-    const token_number_type
+    const signed char
     translate_table[] =
     {
        0,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -2328,200 +2632,104 @@ switch (yytype)
       55,    56,    57,    58,    59,    60,    61,    62,    63,    64,
       65,    66,    67,    68,    69,    70,    71,    72,    74
     };
-    const int user_token_number_max_ = 328;
+    // Last valid token kind.
+    const int code_max = 328;
 
     if (t <= 0)
-      return yyeof_;
-    else if (t <= user_token_number_max_)
-      return translate_table[t];
+      return symbol_kind::S_YYEOF;
+    else if (t <= code_max)
+      return YY_CAST (symbol_kind_type, translate_table[t]);
     else
-      return yy_undef_token_;
+      return symbol_kind::S_YYUNDEF;
   }
 
   // basic_symbol.
-#if 201103L <= YY_CPLUSPLUS
-  template <typename Base>
-  genesyspp_parser::basic_symbol<Base>::basic_symbol (basic_symbol&& that)
-    : Base (std::move (that))
-    , value ()
-    , location (std::move (that.location))
-  {
-    switch (this->type_get ())
-    {
-      case 3: // NUMD
-      case 4: // NUMH
-      case 5: // CTEZERO
-      case 6: // oLE
-      case 7: // oGE
-      case 8: // oEQ
-      case 9: // oNE
-      case 10: // oAND
-      case 11: // oOR
-      case 12: // oNOT
-      case 13: // fSIN
-      case 14: // fCOS
-      case 15: // fROUND
-      case 16: // fMOD
-      case 17: // fTRUNC
-      case 18: // fFRAC
-      case 19: // fEXP
-      case 20: // fRND1
-      case 21: // fEXPO
-      case 22: // fNORM
-      case 23: // fUNIF
-      case 24: // fWEIB
-      case 25: // fLOGN
-      case 26: // fGAMM
-      case 27: // fERLA
-      case 28: // fTRIA
-      case 29: // fBETA
-      case 30: // fDISC
-      case 31: // fTNOW
-      case 32: // fTFIN
-      case 33: // cIF
-      case 34: // cELSE
-      case 35: // cFOR
-      case 36: // cTO
-      case 37: // cDO
-      case 38: // ATRIB
-      case 39: // ILLEGAL
-      case 40: // RESOURCE
-      case 41: // fNR
-      case 42: // fMR
-      case 43: // fIRF
-      case 44: // fRESSEIZES
-      case 45: // fSTATE
-      case 46: // fSETSUM
-      case 47: // QUEUE
-      case 48: // fNQ
-      case 49: // fFIRSTINQ
-      case 50: // fLASTINQ
-      case 51: // fSAQUE
-      case 52: // fAQUE
-      case 53: // SET
-      case 54: // fNUMSET
-      case 55: // CSTAT
-      case 56: // fTAVG
-      case 57: // VARI
-      case 58: // FORM
-      case 76: // input
-      case 77: // programa
-      case 78: // expressao
-      case 79: // numero
-      case 80: // aritmetica
-      case 81: // relacional
-      case 82: // comando
-      case 83: // comandoIF
-      case 84: // comandoFOR
-      case 85: // funcao
-      case 86: // funcaoKernel
-      case 87: // funcaoTrig
-      case 88: // funcaoArit
-      case 89: // funcaoProb
-      case 90: // funcaoUser
-      case 91: // listaparm
-      case 92: // illegal
-      case 93: // atributo
-      case 94: // variavel
-      case 95: // atribuicao
-      case 96: // formula
-      case 97: // funcaoPlugin
-        value.move< obj_t > (std::move (that.value));
-        break;
-
-      default:
-        break;
-    }
-
-  }
-#endif
-
   template <typename Base>
   genesyspp_parser::basic_symbol<Base>::basic_symbol (const basic_symbol& that)
     : Base (that)
     , value ()
     , location (that.location)
   {
-    switch (this->type_get ())
+    switch (this->kind ())
     {
-      case 3: // NUMD
-      case 4: // NUMH
-      case 5: // CTEZERO
-      case 6: // oLE
-      case 7: // oGE
-      case 8: // oEQ
-      case 9: // oNE
-      case 10: // oAND
-      case 11: // oOR
-      case 12: // oNOT
-      case 13: // fSIN
-      case 14: // fCOS
-      case 15: // fROUND
-      case 16: // fMOD
-      case 17: // fTRUNC
-      case 18: // fFRAC
-      case 19: // fEXP
-      case 20: // fRND1
-      case 21: // fEXPO
-      case 22: // fNORM
-      case 23: // fUNIF
-      case 24: // fWEIB
-      case 25: // fLOGN
-      case 26: // fGAMM
-      case 27: // fERLA
-      case 28: // fTRIA
-      case 29: // fBETA
-      case 30: // fDISC
-      case 31: // fTNOW
-      case 32: // fTFIN
-      case 33: // cIF
-      case 34: // cELSE
-      case 35: // cFOR
-      case 36: // cTO
-      case 37: // cDO
-      case 38: // ATRIB
-      case 39: // ILLEGAL
-      case 40: // RESOURCE
-      case 41: // fNR
-      case 42: // fMR
-      case 43: // fIRF
-      case 44: // fRESSEIZES
-      case 45: // fSTATE
-      case 46: // fSETSUM
-      case 47: // QUEUE
-      case 48: // fNQ
-      case 49: // fFIRSTINQ
-      case 50: // fLASTINQ
-      case 51: // fSAQUE
-      case 52: // fAQUE
-      case 53: // SET
-      case 54: // fNUMSET
-      case 55: // CSTAT
-      case 56: // fTAVG
-      case 57: // VARI
-      case 58: // FORM
-      case 76: // input
-      case 77: // programa
-      case 78: // expressao
-      case 79: // numero
-      case 80: // aritmetica
-      case 81: // relacional
-      case 82: // comando
-      case 83: // comandoIF
-      case 84: // comandoFOR
-      case 85: // funcao
-      case 86: // funcaoKernel
-      case 87: // funcaoTrig
-      case 88: // funcaoArit
-      case 89: // funcaoProb
-      case 90: // funcaoUser
-      case 91: // listaparm
-      case 92: // illegal
-      case 93: // atributo
-      case 94: // variavel
-      case 95: // atribuicao
-      case 96: // formula
-      case 97: // funcaoPlugin
+      case symbol_kind::S_NUMD: // NUMD
+      case symbol_kind::S_NUMH: // NUMH
+      case symbol_kind::S_CTEZERO: // CTEZERO
+      case symbol_kind::S_oLE: // oLE
+      case symbol_kind::S_oGE: // oGE
+      case symbol_kind::S_oEQ: // oEQ
+      case symbol_kind::S_oNE: // oNE
+      case symbol_kind::S_oAND: // oAND
+      case symbol_kind::S_oOR: // oOR
+      case symbol_kind::S_oNOT: // oNOT
+      case symbol_kind::S_fSIN: // fSIN
+      case symbol_kind::S_fCOS: // fCOS
+      case symbol_kind::S_fROUND: // fROUND
+      case symbol_kind::S_fMOD: // fMOD
+      case symbol_kind::S_fTRUNC: // fTRUNC
+      case symbol_kind::S_fFRAC: // fFRAC
+      case symbol_kind::S_fEXP: // fEXP
+      case symbol_kind::S_fRND1: // fRND1
+      case symbol_kind::S_fEXPO: // fEXPO
+      case symbol_kind::S_fNORM: // fNORM
+      case symbol_kind::S_fUNIF: // fUNIF
+      case symbol_kind::S_fWEIB: // fWEIB
+      case symbol_kind::S_fLOGN: // fLOGN
+      case symbol_kind::S_fGAMM: // fGAMM
+      case symbol_kind::S_fERLA: // fERLA
+      case symbol_kind::S_fTRIA: // fTRIA
+      case symbol_kind::S_fBETA: // fBETA
+      case symbol_kind::S_fDISC: // fDISC
+      case symbol_kind::S_fTNOW: // fTNOW
+      case symbol_kind::S_fTFIN: // fTFIN
+      case symbol_kind::S_cIF: // cIF
+      case symbol_kind::S_cELSE: // cELSE
+      case symbol_kind::S_cFOR: // cFOR
+      case symbol_kind::S_cTO: // cTO
+      case symbol_kind::S_cDO: // cDO
+      case symbol_kind::S_ATRIB: // ATRIB
+      case symbol_kind::S_CSTAT: // CSTAT
+      case symbol_kind::S_fTAVG: // fTAVG
+      case symbol_kind::S_ILLEGAL: // ILLEGAL
+      case symbol_kind::S_RESOURCE: // RESOURCE
+      case symbol_kind::S_fNR: // fNR
+      case symbol_kind::S_fMR: // fMR
+      case symbol_kind::S_fIRF: // fIRF
+      case symbol_kind::S_fRESSEIZES: // fRESSEIZES
+      case symbol_kind::S_fSTATE: // fSTATE
+      case symbol_kind::S_fSETSUM: // fSETSUM
+      case symbol_kind::S_QUEUE: // QUEUE
+      case symbol_kind::S_fNQ: // fNQ
+      case symbol_kind::S_fFIRSTINQ: // fFIRSTINQ
+      case symbol_kind::S_fLASTINQ: // fLASTINQ
+      case symbol_kind::S_fSAQUE: // fSAQUE
+      case symbol_kind::S_fAQUE: // fAQUE
+      case symbol_kind::S_SET: // SET
+      case symbol_kind::S_fNUMSET: // fNUMSET
+      case symbol_kind::S_VARI: // VARI
+      case symbol_kind::S_FORM: // FORM
+      case symbol_kind::S_input: // input
+      case symbol_kind::S_programa: // programa
+      case symbol_kind::S_expressao: // expressao
+      case symbol_kind::S_numero: // numero
+      case symbol_kind::S_aritmetica: // aritmetica
+      case symbol_kind::S_relacional: // relacional
+      case symbol_kind::S_comando: // comando
+      case symbol_kind::S_comandoIF: // comandoIF
+      case symbol_kind::S_comandoFOR: // comandoFOR
+      case symbol_kind::S_funcao: // funcao
+      case symbol_kind::S_funcaoKernel: // funcaoKernel
+      case symbol_kind::S_funcaoTrig: // funcaoTrig
+      case symbol_kind::S_funcaoArit: // funcaoArit
+      case symbol_kind::S_funcaoProb: // funcaoProb
+      case symbol_kind::S_funcaoUser: // funcaoUser
+      case symbol_kind::S_listaparm: // listaparm
+      case symbol_kind::S_illegal: // illegal
+      case symbol_kind::S_atributo: // atributo
+      case symbol_kind::S_variavel: // variavel
+      case symbol_kind::S_formula: // formula
+      case symbol_kind::S_atribuicao: // atribuicao
+      case symbol_kind::S_funcaoPlugin: // funcaoPlugin
         value.copy< obj_t > (YY_MOVE (that.value));
         break;
 
@@ -2534,10 +2742,17 @@ switch (yytype)
 
 
   template <typename Base>
+  genesyspp_parser::symbol_kind_type
+  genesyspp_parser::basic_symbol<Base>::type_get () const YY_NOEXCEPT
+  {
+    return this->kind ();
+  }
+
+  template <typename Base>
   bool
   genesyspp_parser::basic_symbol<Base>::empty () const YY_NOEXCEPT
   {
-    return Base::type_get () == empty_symbol;
+    return this->kind () == symbol_kind::S_YYEMPTY;
   }
 
   template <typename Base>
@@ -2545,86 +2760,86 @@ switch (yytype)
   genesyspp_parser::basic_symbol<Base>::move (basic_symbol& s)
   {
     super_type::move (s);
-    switch (this->type_get ())
+    switch (this->kind ())
     {
-      case 3: // NUMD
-      case 4: // NUMH
-      case 5: // CTEZERO
-      case 6: // oLE
-      case 7: // oGE
-      case 8: // oEQ
-      case 9: // oNE
-      case 10: // oAND
-      case 11: // oOR
-      case 12: // oNOT
-      case 13: // fSIN
-      case 14: // fCOS
-      case 15: // fROUND
-      case 16: // fMOD
-      case 17: // fTRUNC
-      case 18: // fFRAC
-      case 19: // fEXP
-      case 20: // fRND1
-      case 21: // fEXPO
-      case 22: // fNORM
-      case 23: // fUNIF
-      case 24: // fWEIB
-      case 25: // fLOGN
-      case 26: // fGAMM
-      case 27: // fERLA
-      case 28: // fTRIA
-      case 29: // fBETA
-      case 30: // fDISC
-      case 31: // fTNOW
-      case 32: // fTFIN
-      case 33: // cIF
-      case 34: // cELSE
-      case 35: // cFOR
-      case 36: // cTO
-      case 37: // cDO
-      case 38: // ATRIB
-      case 39: // ILLEGAL
-      case 40: // RESOURCE
-      case 41: // fNR
-      case 42: // fMR
-      case 43: // fIRF
-      case 44: // fRESSEIZES
-      case 45: // fSTATE
-      case 46: // fSETSUM
-      case 47: // QUEUE
-      case 48: // fNQ
-      case 49: // fFIRSTINQ
-      case 50: // fLASTINQ
-      case 51: // fSAQUE
-      case 52: // fAQUE
-      case 53: // SET
-      case 54: // fNUMSET
-      case 55: // CSTAT
-      case 56: // fTAVG
-      case 57: // VARI
-      case 58: // FORM
-      case 76: // input
-      case 77: // programa
-      case 78: // expressao
-      case 79: // numero
-      case 80: // aritmetica
-      case 81: // relacional
-      case 82: // comando
-      case 83: // comandoIF
-      case 84: // comandoFOR
-      case 85: // funcao
-      case 86: // funcaoKernel
-      case 87: // funcaoTrig
-      case 88: // funcaoArit
-      case 89: // funcaoProb
-      case 90: // funcaoUser
-      case 91: // listaparm
-      case 92: // illegal
-      case 93: // atributo
-      case 94: // variavel
-      case 95: // atribuicao
-      case 96: // formula
-      case 97: // funcaoPlugin
+      case symbol_kind::S_NUMD: // NUMD
+      case symbol_kind::S_NUMH: // NUMH
+      case symbol_kind::S_CTEZERO: // CTEZERO
+      case symbol_kind::S_oLE: // oLE
+      case symbol_kind::S_oGE: // oGE
+      case symbol_kind::S_oEQ: // oEQ
+      case symbol_kind::S_oNE: // oNE
+      case symbol_kind::S_oAND: // oAND
+      case symbol_kind::S_oOR: // oOR
+      case symbol_kind::S_oNOT: // oNOT
+      case symbol_kind::S_fSIN: // fSIN
+      case symbol_kind::S_fCOS: // fCOS
+      case symbol_kind::S_fROUND: // fROUND
+      case symbol_kind::S_fMOD: // fMOD
+      case symbol_kind::S_fTRUNC: // fTRUNC
+      case symbol_kind::S_fFRAC: // fFRAC
+      case symbol_kind::S_fEXP: // fEXP
+      case symbol_kind::S_fRND1: // fRND1
+      case symbol_kind::S_fEXPO: // fEXPO
+      case symbol_kind::S_fNORM: // fNORM
+      case symbol_kind::S_fUNIF: // fUNIF
+      case symbol_kind::S_fWEIB: // fWEIB
+      case symbol_kind::S_fLOGN: // fLOGN
+      case symbol_kind::S_fGAMM: // fGAMM
+      case symbol_kind::S_fERLA: // fERLA
+      case symbol_kind::S_fTRIA: // fTRIA
+      case symbol_kind::S_fBETA: // fBETA
+      case symbol_kind::S_fDISC: // fDISC
+      case symbol_kind::S_fTNOW: // fTNOW
+      case symbol_kind::S_fTFIN: // fTFIN
+      case symbol_kind::S_cIF: // cIF
+      case symbol_kind::S_cELSE: // cELSE
+      case symbol_kind::S_cFOR: // cFOR
+      case symbol_kind::S_cTO: // cTO
+      case symbol_kind::S_cDO: // cDO
+      case symbol_kind::S_ATRIB: // ATRIB
+      case symbol_kind::S_CSTAT: // CSTAT
+      case symbol_kind::S_fTAVG: // fTAVG
+      case symbol_kind::S_ILLEGAL: // ILLEGAL
+      case symbol_kind::S_RESOURCE: // RESOURCE
+      case symbol_kind::S_fNR: // fNR
+      case symbol_kind::S_fMR: // fMR
+      case symbol_kind::S_fIRF: // fIRF
+      case symbol_kind::S_fRESSEIZES: // fRESSEIZES
+      case symbol_kind::S_fSTATE: // fSTATE
+      case symbol_kind::S_fSETSUM: // fSETSUM
+      case symbol_kind::S_QUEUE: // QUEUE
+      case symbol_kind::S_fNQ: // fNQ
+      case symbol_kind::S_fFIRSTINQ: // fFIRSTINQ
+      case symbol_kind::S_fLASTINQ: // fLASTINQ
+      case symbol_kind::S_fSAQUE: // fSAQUE
+      case symbol_kind::S_fAQUE: // fAQUE
+      case symbol_kind::S_SET: // SET
+      case symbol_kind::S_fNUMSET: // fNUMSET
+      case symbol_kind::S_VARI: // VARI
+      case symbol_kind::S_FORM: // FORM
+      case symbol_kind::S_input: // input
+      case symbol_kind::S_programa: // programa
+      case symbol_kind::S_expressao: // expressao
+      case symbol_kind::S_numero: // numero
+      case symbol_kind::S_aritmetica: // aritmetica
+      case symbol_kind::S_relacional: // relacional
+      case symbol_kind::S_comando: // comando
+      case symbol_kind::S_comandoIF: // comandoIF
+      case symbol_kind::S_comandoFOR: // comandoFOR
+      case symbol_kind::S_funcao: // funcao
+      case symbol_kind::S_funcaoKernel: // funcaoKernel
+      case symbol_kind::S_funcaoTrig: // funcaoTrig
+      case symbol_kind::S_funcaoArit: // funcaoArit
+      case symbol_kind::S_funcaoProb: // funcaoProb
+      case symbol_kind::S_funcaoUser: // funcaoUser
+      case symbol_kind::S_listaparm: // listaparm
+      case symbol_kind::S_illegal: // illegal
+      case symbol_kind::S_atributo: // atributo
+      case symbol_kind::S_variavel: // variavel
+      case symbol_kind::S_formula: // formula
+      case symbol_kind::S_atribuicao: // atribuicao
+      case symbol_kind::S_funcaoPlugin: // funcaoPlugin
         value.move< obj_t > (YY_MOVE (s.value));
         break;
 
@@ -2635,56 +2850,62 @@ switch (yytype)
     location = YY_MOVE (s.location);
   }
 
-  // by_type.
+  // by_kind.
   inline
-  genesyspp_parser::by_type::by_type ()
-    : type (empty_symbol)
+  genesyspp_parser::by_kind::by_kind ()
+    : kind_ (symbol_kind::S_YYEMPTY)
   {}
 
 #if 201103L <= YY_CPLUSPLUS
   inline
-  genesyspp_parser::by_type::by_type (by_type&& that)
-    : type (that.type)
+  genesyspp_parser::by_kind::by_kind (by_kind&& that)
+    : kind_ (that.kind_)
   {
     that.clear ();
   }
 #endif
 
   inline
-  genesyspp_parser::by_type::by_type (const by_type& that)
-    : type (that.type)
+  genesyspp_parser::by_kind::by_kind (const by_kind& that)
+    : kind_ (that.kind_)
   {}
 
   inline
-  genesyspp_parser::by_type::by_type (token_type t)
-    : type (yytranslate_ (t))
+  genesyspp_parser::by_kind::by_kind (token_kind_type t)
+    : kind_ (yytranslate_ (t))
   {}
 
   inline
   void
-  genesyspp_parser::by_type::clear ()
+  genesyspp_parser::by_kind::clear () YY_NOEXCEPT
   {
-    type = empty_symbol;
+    kind_ = symbol_kind::S_YYEMPTY;
   }
 
   inline
   void
-  genesyspp_parser::by_type::move (by_type& that)
+  genesyspp_parser::by_kind::move (by_kind& that)
   {
-    type = that.type;
+    kind_ = that.kind_;
     that.clear ();
   }
 
   inline
-  int
-  genesyspp_parser::by_type::type_get () const YY_NOEXCEPT
+  genesyspp_parser::symbol_kind_type
+  genesyspp_parser::by_kind::kind () const YY_NOEXCEPT
   {
-    return type;
+    return kind_;
+  }
+
+  inline
+  genesyspp_parser::symbol_kind_type
+  genesyspp_parser::by_kind::type_get () const YY_NOEXCEPT
+  {
+    return this->kind ();
   }
 
 } // yy
-#line 2687 "../GenesysParser.h"
-
+#line 2909 "../GenesysParser.h"
 
 
 

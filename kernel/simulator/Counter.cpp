@@ -77,6 +77,7 @@ std::map<std::string, std::string>* Counter::_saveInstance() {
 //std::list<std::map<std::string,std::string>*>* _saveInstance(std::string type){}
 
 bool Counter::_check(std::string* errorMessage) {
+    *errorMessage += "";
 	return true;
 }
 

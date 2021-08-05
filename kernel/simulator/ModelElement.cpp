@@ -45,7 +45,7 @@ bool ModelElement::hasChanged() const {
 //}
 
 ModelElement::~ModelElement() {
-	_parentModel->getTracer()->trace(Util::TraceLevel::L8_mostDetailed, "Removing Element \"" + this->_name + "\" from the model");
+	_parentModel->getTracer()->trace(Util::TraceLevel::L9_mostDetailed, "Removing Element \"" + this->_name + "\" from the model");
 	_removeChildrenElements();
 	_parentModel->getElements()->remove(this);
 }
@@ -103,7 +103,8 @@ std::map<std::string, std::string>* ModelElement::_saveInstance() {
 }
 
 bool ModelElement::_check(std::string* errorMessage) {
-	return true; // if there is no ovveride, return true
+    *errorMessage = ""; // just CLEAR the errormessage 
+    return true; // if there is no ovveride, return true
 }
 
 ParserChangesInformation* ModelElement::_getParserChangesInformation() {
@@ -188,7 +189,7 @@ std::string ModelElement::getClassname() const {
 }
 
 void ModelElement::InitBetweenReplications(ModelElement* element) {
-	element->_parentModel->getTracer()->trace("Initing element \"" + element->getName() + "\"", Util::TraceLevel::L7_detailed); //std::to_string(component->_id));
+	element->_parentModel->getTracer()->trace("Initing element \"" + element->getName() + "\"", Util::TraceLevel::L8_detailed); //std::to_string(component->_id));
 	try {
 		element->_initBetweenReplications();
 	} catch (const std::exception& e) {
@@ -224,7 +225,7 @@ std::map<std::string, std::string>* ModelElement::SaveInstance(ModelElement* ele
 }
 
 bool ModelElement::Check(ModelElement* element, std::string* errorMessage) {
-	//    element->_model->getTraceManager()->trace(Util::TraceLevel::L8_mostDetailed, "Checking " + element->_typename + ": " + element->_name); //std::to_string(element->_id));
+	//    element->_model->getTraceManager()->trace(Util::TraceLevel::L9_mostDetailed, "Checking " + element->_typename + ": " + element->_name); //std::to_string(element->_id));
 	bool res = false;
 	Util::IncIndent();
 	{

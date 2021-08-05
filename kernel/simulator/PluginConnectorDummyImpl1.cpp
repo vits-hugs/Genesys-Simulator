@@ -70,6 +70,8 @@ PluginConnectorDummyImpl1::PluginConnectorDummyImpl1() {
 }
 
 Plugin* PluginConnectorDummyImpl1::check(const std::string dynamicLibraryFilename) {
+    // \todo: not implemented yet!
+    //dynamicLibraryFilename = ""; // just to use it
     return nullptr; /**@ \todo:To implement */
 }
 
@@ -77,6 +79,8 @@ Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilen
     std::string fn = getFileName(dynamicLibraryFilename);
     StaticGetPluginInformation GetInfo = nullptr;
     Plugin* pluginResult = nullptr;
+    // ODO: Remove this mostruosity and and trully dynamically loaded libraries    
+    
     // model elements
 
 
@@ -197,10 +201,13 @@ Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilen
 }
 
 bool PluginConnectorDummyImpl1::disconnect(const std::string dynamicLibraryFilename) {
+    // \TODO: To implement!
+    //dynamicLibraryFilename = ""; // just to use ut
     return true;
 }
 
 bool PluginConnectorDummyImpl1::disconnect(Plugin* plugin) {
+    // \TODO: To implement!
     return true;
 }
 

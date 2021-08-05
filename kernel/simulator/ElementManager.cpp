@@ -32,10 +32,10 @@ bool ElementManager::insert(std::string elementTypename, ModelElement* anElement
 	if (listElements->find(anElement) == listElements->list()->end()) { //not found
 		listElements->insert(anElement);
 		_hasChanged = true;
-		this->_parentModel->getTracer()->trace(Util::TraceLevel::L7_detailed, anElement->getClassname() + " \"" + anElement->getName() + "\"" + " successfully inserted.");
+		this->_parentModel->getTracer()->trace(Util::TraceLevel::L8_detailed, anElement->getClassname() + " \"" + anElement->getName() + "\"" + " successfully inserted.");
 		return true;
 	} else {
-		this->_parentModel->getTracer()->trace(Util::TraceLevel::L7_detailed, anElement->getClassname() + " \"" + anElement->getName() + "\" already exists."); //could not be inserted.");
+		this->_parentModel->getTracer()->trace(Util::TraceLevel::L8_detailed, anElement->getClassname() + " \"" + anElement->getName() + "\" already exists."); //could not be inserted.");
 	}
 	return false;
 }
@@ -45,7 +45,7 @@ void ElementManager::remove(ModelElement* anElement) {
 	List<ModelElement*>* listElements = getElementList(elementTypename);
 	listElements->remove(anElement);
 	_hasChanged = true;
-	_parentModel->getTracer()->trace(Util::TraceLevel::L3_results, "Element successfully removed");
+	_parentModel->getTracer()->trace(Util::TraceLevel::L2_results, "Element successfully removed");
 
 }
 
@@ -97,7 +97,7 @@ unsigned int ElementManager::getNumberOfElements() {
 }
 
 void ElementManager::show() {
-	_parentModel->getTracer()->trace(Util::TraceLevel::L7_detailed, "Model Elements:");
+	_parentModel->getTracer()->trace(Util::TraceLevel::L8_detailed, "Model Elements:");
 	//std::map<std::string, List<ModelElement*>*>* _elements;
 	std::string key;
 	List<ModelElement*>* list;
@@ -106,11 +106,11 @@ void ElementManager::show() {
 		for (std::map<std::string, List<ModelElement*>*>::iterator infraIt = _elements->begin(); infraIt != _elements->end(); infraIt++) {
 			key = (*infraIt).first;
 			list = (*infraIt).second;
-			_parentModel->getTracer()->trace(Util::TraceLevel::L7_detailed, key + ": (" + std::to_string(list->size()) + ")");
+			_parentModel->getTracer()->trace(Util::TraceLevel::L8_detailed, key + ": (" + std::to_string(list->size()) + ")");
 			Util::IncIndent();
 			{
 				for (std::list<ModelElement*>::iterator it = list->list()->begin(); it != list->list()->end(); it++) {
-					_parentModel->getTracer()->trace(Util::TraceLevel::L7_detailed, (*it)->show());
+					_parentModel->getTracer()->trace(Util::TraceLevel::L8_detailed, (*it)->show());
 				}
 			}
 			Util::DecIndent();

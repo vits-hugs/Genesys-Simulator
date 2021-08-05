@@ -31,7 +31,7 @@ void ModelComponent::Execute(Entity* entity, ModelComponent* component, unsigned
 	// \todo: How can I know the number of inputs?
 	if (inputNumber > 0)
 		msg += " by input " + std::to_string(inputNumber);
-	component->_parentModel->getTracer()->trace(Util::TraceLevel::L5_arrival, msg);
+	component->_parentModel->getTracer()->trace(Util::TraceLevel::L6_arrival, msg);
 	Util::IncIndent();
 	try {
 		component->_execute(entity);
@@ -51,7 +51,7 @@ void ModelComponent::CreateInternalElements(ModelComponent* component) {
 }
 
 std::map<std::string, std::string>* ModelComponent::SaveInstance(ModelComponent* component) {
-	component->_parentModel->getTracer()->trace(Util::TraceLevel::L7_detailed, "Writing component \"" + component->getName() + "\""); //std::to_string(component->_id));
+	component->_parentModel->getTracer()->trace(Util::TraceLevel::L8_detailed, "Writing component \"" + component->getName() + "\""); //std::to_string(component->_id));
 	std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();
 	try {
 		fields = component->_saveInstance();
@@ -73,7 +73,7 @@ std::string ModelComponent::getDescription() const {
 }
 
 bool ModelComponent::Check(ModelComponent* component) {
-	component->_parentModel->getTracer()->trace(Util::TraceLevel::L7_detailed, "Checking " + component->_typename + ": \"" + component->getName() + "\""); //std::to_string(component->_id));
+	component->_parentModel->getTracer()->trace(Util::TraceLevel::L8_detailed, "Checking " + component->_typename + ": \"" + component->getName() + "\""); //std::to_string(component->_id));
 	bool res = false;
 	std::string* errorMessage = new std::string();
 	Util::IncIndent();

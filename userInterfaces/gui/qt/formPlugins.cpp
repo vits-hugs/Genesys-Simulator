@@ -4,15 +4,18 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   ParserChangesInformation.cpp
+/*
+ * File:   formPlugins.cpp
  * Author: rlcancian
- * 
- * Created on 11 de Setembro de 2019, 20:42
+ *
+ * Created on 22 de julho de 2021, 12:47
  */
 
-#include "ParserChangesInformation.h"
+#include "formPlugins.h"
 
-ParserChangesInformation::ParserChangesInformation() {
+formPlugins::formPlugins() {
+    widget.setupUi(this);
 }
 
+formPlugins::~formPlugins() {
+}

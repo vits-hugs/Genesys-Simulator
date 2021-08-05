@@ -30,7 +30,7 @@
 			_text = text;
 		}
 
-		TraceEvent(std::string text, Util::TraceLevel level = Util::TraceLevel::L7_detailed) {
+		TraceEvent(std::string text, Util::TraceLevel level = Util::TraceLevel::L8_detailed) {
 			_tracelevel = level;
 			_text = text;
 		}
@@ -50,7 +50,7 @@
 	class TraceErrorEvent : public TraceEvent {
 	public:
 
-		TraceErrorEvent(std::string text, std::exception e) : TraceEvent(text, Util::TraceLevel::L2_errorRecover) {
+		TraceErrorEvent(std::string text, std::exception e) : TraceEvent(text, Util::TraceLevel::L3_errorRecover) {
 			_e = e;
 		}
 
@@ -95,7 +95,7 @@
 	class TraceSimulationProcess : public TraceEvent {
 	public:
 
-		TraceSimulationProcess(std::string text, Util::TraceLevel level=Util::TraceLevel::L7_detailed) : TraceEvent(text, level) {
+		TraceSimulationProcess(std::string text, Util::TraceLevel level=Util::TraceLevel::L8_detailed) : TraceEvent(text, level) {
 		}
 	};
 
@@ -135,10 +135,10 @@
 		void traceReport(Util::TraceLevel level, std::string text);
 		void traceSimulation(Util::TraceLevel level, double time, Entity* entity, ModelComponent* component, std::string text);
 	public: // traces (invoke trace handlers) SINCE 20191025 NEW TRACES JUST INVERTED THE PARAMETERS, MAKING TRACELEVEL OPTIONAL
-		void trace(std::string text, Util::TraceLevel level = Util::TraceLevel::L7_detailed);
+		void trace(std::string text, Util::TraceLevel level = Util::TraceLevel::L8_detailed);
 		void traceError(std::string text, std::exception e);
-		void traceReport(std::string text, Util::TraceLevel level = Util::TraceLevel::L3_results);
-		void traceSimulation(double time, Entity* entity, ModelComponent* component, std::string text, Util::TraceLevel level = Util::TraceLevel::L7_detailed);
+		void traceReport(std::string text, Util::TraceLevel level = Util::TraceLevel::L2_results);
+		void traceSimulation(double time, Entity* entity, ModelComponent* component, std::string text, Util::TraceLevel level = Util::TraceLevel::L8_detailed);
 	public:
 		List<std::string>* errorMessages() const;
 		void setTraceLevel(Util::TraceLevel _traceLevel);
@@ -162,7 +162,7 @@
 		//Model* _model;
 		Simulator* _simulator;
 	private:
-		Util::TraceLevel _traceLevel; // = Util::TraceLevel::L8_mostDetailed;
+		Util::TraceLevel _traceLevel; // = Util::TraceLevel::L9_mostDetailed;
 		double _lastTimeTraceSimulation = -1.0;
 		Util::identification _lastEntityTraceSimulation = 0;
 		Util::identification _lastModuleTraceSimulation = 0;

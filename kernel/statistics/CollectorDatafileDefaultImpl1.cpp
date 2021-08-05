@@ -20,6 +20,7 @@ void CollectorDatafileDefaultImpl1::clear() {
 }
 
 void CollectorDatafileDefaultImpl1::addValue(double value) {
+    value = 0; // \todo: just to use it
 }
 
 double CollectorDatafileDefaultImpl1::getLastValue() {
@@ -31,6 +32,7 @@ unsigned long CollectorDatafileDefaultImpl1::numElements() {
 }
 
 double CollectorDatafileDefaultImpl1::getValue(unsigned int num) {
+    num = 0; // \todo: just to use it
 	return 0.0; // \todo:
 }
 
@@ -50,9 +52,9 @@ void CollectorDatafileDefaultImpl1::setDataFilename(std::string filename) {
 }
 
 void CollectorDatafileDefaultImpl1::setAddValueHandler(CollectorAddValueHandler addValueHandler) {
-
+    // \todo: just to use it
 }
 
 void CollectorDatafileDefaultImpl1::setClearHandler(CollectorClearHandler clearHandler) {
-
+    // \todo: just to use it
 }

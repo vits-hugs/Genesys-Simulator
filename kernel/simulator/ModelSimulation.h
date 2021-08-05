@@ -84,7 +84,8 @@ public: // only gets
 	List<ModelComponent*>* getBreakpointsOnComponent() const;
 public:
 	void loadInstance(std::map<std::string, std::string>* fields);
-	std::map<std::string, std::string>* saveInstance();
+    std::map<std::string, std::string>* saveInstance();
+    Event* getCurrentEvent() const;
 	/*
 	 * PRIVATE
 	 */
@@ -143,10 +144,12 @@ private:
 	std::chrono::system_clock::time_point _startTimeSimulation;
 	std::chrono::system_clock::time_point _startTimeReplication;
 private:
-	Entity* _currentEntity = nullptr;
-	ModelComponent* _currentComponent = nullptr;
-	unsigned int _currentInputNumber;
-	unsigned int _currentReplicationNumber;
+    // currenEntity, currentComponent and currentInputNumber could be taken throught currentEvent only
+    Entity* _currentEntity = nullptr;
+    ModelComponent* _currentComponent = nullptr;
+    unsigned int _currentInputNumber = 0;
+    Event* _currentEvent = nullptr;
+    unsigned int _currentReplicationNumber;
 	//std::chrono::steady_clock::time_point _replicationStartTime;
 	//std::chrono::steady_clock::time_point _replicationEndTime;
 private:

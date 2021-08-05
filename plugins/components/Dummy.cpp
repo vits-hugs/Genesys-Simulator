@@ -39,7 +39,7 @@ void Dummy::_execute(Entity* entity) {
 bool Dummy::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
-		//...
+		// \todo: not implemented yet
 	}
 	return res;
 }
@@ -49,13 +49,13 @@ void Dummy::_initBetweenReplications() {
 
 std::map<std::string, std::string>* Dummy::_saveInstance() {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
-	//...
+	// \todo: not implemented yet
 	return fields;
 }
 
 bool Dummy::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	//...
+	// \todo: not implemented yet
 	return resultAll;
 }
 

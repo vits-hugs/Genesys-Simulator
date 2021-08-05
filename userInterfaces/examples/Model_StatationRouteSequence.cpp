@@ -34,7 +34,7 @@ int Model_StatationRouteSequence::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	this->insertFakePluginsByHand(genesys);
 	this->setDefaultTraceHandlers(genesys->getTracer());
-	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L5_arrival);
+	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L6_arrival);
 	//genesys->getModels()->loadModel("./models/Model_StatationRouteSequence.txt");
 	//genesys->getModels()->current()->getSimulation()->start();
 	//return;

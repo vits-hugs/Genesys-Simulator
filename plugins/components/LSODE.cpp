@@ -132,7 +132,7 @@ void LSODE::_execute(Entity* entity) {
 bool LSODE::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
-		//...
+		// \todo: not implemented yet
 	}
 	return res;
 }
@@ -142,13 +142,13 @@ void LSODE::_initBetweenReplications() {
 
 std::map<std::string, std::string>* LSODE::_saveInstance() {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
-	//...
+	// \todo: not implemented yet
 	return fields;
 }
 
 bool LSODE::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	//...
+	// \todo: not implemented yet
 	return resultAll;
 }
 

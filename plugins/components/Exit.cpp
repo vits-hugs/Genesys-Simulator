@@ -40,7 +40,7 @@ void Exit::_execute(Entity* entity) {
 bool Exit::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
-		//...
+		// \todo: not implemented yet
 	}
 	return res;
 }
@@ -50,13 +50,13 @@ void Exit::_initBetweenReplications() {
 
 std::map<std::string, std::string>* Exit::_saveInstance() {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
-	//...
+	// \todo: not implemented yet
 	return fields;
 }
 
 bool Exit::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	//...
+	// \todo: not implemented yet
 	return resultAll;
 }
 

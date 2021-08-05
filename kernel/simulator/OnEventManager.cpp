@@ -35,8 +35,16 @@ void OnEventManager::addOnProcessEventHandler(simulationEventHandler EventHandle
 	_addOnHandler(_onEntityMoveHandlers, EventHandler);
 }
 
+void OnEventManager::addOnEntityCreateHandler(simulationEventHandler EventHandler) {
+    _addOnHandler(_onEntityCreateHandlers, EventHandler);
+}
+
 void OnEventManager::addOnEntityMoveHandler(simulationEventHandler EventHandler) {
-	_addOnHandler(_onEntityMoveHandlers, EventHandler);
+    _addOnHandler(_onEntityMoveHandlers, EventHandler);
+}
+
+void OnEventManager::addOnEntityRemoveHandler(simulationEventHandler EventHandler) {
+    _addOnHandler(_onEntityRemoveHandlers, EventHandler);
 }
 
 void OnEventManager::addOnReplicationEndHandler(simulationEventHandler EventHandler) {
@@ -84,8 +92,16 @@ void OnEventManager::NotifyReplicationEndHandlers(SimulationEvent* se) {
 	this->_NotifyHandlers(this->_onReplicationEndHandlers, se);
 }
 
+void OnEventManager::NotifyEntityCreateHandlers(SimulationEvent* se) {
+    this->_NotifyHandlers(this->_onEntityCreateHandlers, se);
+}
+
 void OnEventManager::NotifyEntityMoveHandlers(SimulationEvent* se) {
-	this->_NotifyHandlers(this->_onEntityMoveHandlers, se);
+    this->_NotifyHandlers(this->_onEntityMoveHandlers, se);
+}
+
+void OnEventManager::NotifyEntityRemoveHandlers(SimulationEvent* se) {
+    this->_NotifyHandlers(this->_onEntityRemoveHandlers, se);
 }
 
 void OnEventManager::NotifyProcessEventHandlers(SimulationEvent* se) {

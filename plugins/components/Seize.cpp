@@ -165,7 +165,7 @@ void Seize::_execute(Entity* entity) {
 					index = _parentModel->parseExpression(seizable->getIndex());
 					break;
 			}
-			_parentModel->getTracer()->trace("Member of set " + set->getName() + " chosen index " + std::to_string(index), Util::TraceLevel::L7_detailed);
+			_parentModel->getTracer()->trace("Member of set " + set->getName() + " chosen index " + std::to_string(index), Util::TraceLevel::L8_detailed);
 			resource = static_cast<Resource*> (set->getElementSet()->getAtRank(index));
 			assert(resource != nullptr);
 		}
@@ -178,7 +178,7 @@ void Seize::_execute(Entity* entity) {
 			} else { // assume SET
 				Set* set = _queueableItem->getSet();
 				unsigned int index = _parentModel->parseExpression(_queueableItem->getIndex());
-				_parentModel->getTracer()->trace("Member of set " + set->getName() + " chosen index " + std::to_string(index), Util::TraceLevel::L7_detailed);
+				_parentModel->getTracer()->trace("Member of set " + set->getName() + " chosen index " + std::to_string(index), Util::TraceLevel::L8_detailed);
 				queue = static_cast<Queue*> (set->getElementSet()->getAtRank(index));
 			}
 			queue->insertElement(waitingRec); // ->list()->insert(waitingRec);

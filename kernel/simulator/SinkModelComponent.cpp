@@ -35,5 +35,7 @@ std::map<std::string, std::string>* SinkModelComponent::_saveInstance() {
 }
 
 bool SinkModelComponent::_check(std::string* errorMessage) {
+    // \TODO: To implement!
+    *errorMessage += "";
 	return true;
 }

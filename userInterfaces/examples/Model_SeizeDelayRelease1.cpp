@@ -41,7 +41,7 @@ int Model_SeizeDelayRelease1::main(int argc, char** argv) {
 	// insert plugins
 	this->insertFakePluginsByHand(genesys);
 	this->setDefaultTraceHandlers(genesys->getTracer());
-	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L6_internal);
+	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L7_internal);
 	Model* model = genesys->getModels()->newModel();
 	// build the simulation model
 	// set model infos

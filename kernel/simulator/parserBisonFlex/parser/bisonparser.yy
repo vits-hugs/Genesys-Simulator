@@ -12,14 +12,24 @@
 #include "obj_t.h"
 #include "../../util/Util.h"
 #include "../Attribute.h"
-//
-// include to Plugin header files should be specified by plugins themselves
-//
-//#include "../Variable.h"
-//#include "../Queue.h"
-//#include "../Formula.h"
-//#include "../Resource.h"
-//#include "../Set.h"
+/****begin_Includes_plugins****/
+/**begin_Includes:Variable**/
+#include "../../../plugins/elements/Variable.h"
+/**end_Includes:Variable**/
+/**begin_Includes:Queue**/
+#include "../../../plugins/elements/Queue.h"
+/**end_Includes:Queue**/
+/**begin_Includes:Formula**/
+#include "../../../plugins/elements/Formula.h"
+/**end_Includes:Formula**/
+/**begin_Includes:Resource**/
+#include "../../../plugins/elements/Resource.h"
+/**end_Includes:Resource**/
+/**begin_Includes:Set**/
+#include "../../../plugins/elements/Set.h"
+/**end_Includes:Set**/
+/****end_Includes_plugins****/
+
 class genesyspp_driver;
 
 }
@@ -46,29 +56,24 @@ class genesyspp_driver;
 %token <obj_t> NUMD
 %token <obj_t> NUMH
 %token <obj_t> CTEZERO
-
 // relational operators
 %token <obj_t> oLE
 %token <obj_t> oGE
 %token <obj_t> oEQ
 %token <obj_t> oNE
-
 // logic operators
 %token <obj_t> oAND
 %token <obj_t> oOR
 %token <obj_t> oNOT
-
 // trigonometric functions
 %token <obj_t> fSIN
 %token <obj_t> fCOS
-
 // aritmetic functions
 %token <obj_t> fROUND
 %token <obj_t> fMOD
 %token <obj_t> fTRUNC
 %token <obj_t> fFRAC
 %token <obj_t> fEXP
-
 // probability distributionsformulaValue
 %token <obj_t> fRND1
 %token <obj_t> fEXPO
@@ -81,30 +86,23 @@ class genesyspp_driver;
 %token <obj_t> fTRIA
 %token <obj_t> fBETA
 %token <obj_t> fDISC
-
 // simulation infos
 %token <obj_t> fTNOW
 %token <obj_t> fTFIN
-
 // algoritmic functions
 %token <obj_t> cIF
 %token <obj_t> cELSE
 %token <obj_t> cFOR
 %token <obj_t> cTO
 %token <obj_t> cDO
-
 // kernel elements
 %token <obj_t> ATRIB
-
+%token <obj_t> CSTAT
+%token <obj_t> fTAVG
 %token <obj_t> ILLEGAL     /* illegal token */
 
-///////////////////////////////
-//
-// to be defined by plugins
-//
-///////////////////////////////
-
-// to be defined by RESOURCE plugin
+/****begin_Tokens_plugins****/
+/**begin_Tokens:Resource**/
 %token <obj_t> RESOURCE
 %token <obj_t> fNR
 %token <obj_t> fMR
@@ -112,31 +110,28 @@ class genesyspp_driver;
 %token <obj_t> fRESSEIZES
 %token <obj_t> fSTATE
 %token <obj_t> fSETSUM
-
-// to be defined by QUEUE plugin
+/**end_Tokens:Resource**/
+/**begin_Tokens:Queue**/
 %token <obj_t> QUEUE
 %token <obj_t> fNQ
 %token <obj_t> fFIRSTINQ
 %token <obj_t> fLASTINQ
 %token <obj_t> fSAQUE
 %token <obj_t> fAQUE
-
-// to be defined by SET plugin
+/**end_Tokens:Queue**/
+/**begin_Tokens:Set**/
 %token <obj_t> SET
 %token <obj_t> fNUMSET
-
-// to be defined by STATISTICSCOLECTOR plugin
-%token <obj_t> CSTAT
-%token <obj_t> fTAVG
-
-// to be defined by VARIABLE plugin
+/**end_Tokens:Set**/
+/**begin_Tokens:Variable**/
 %token <obj_t> VARI
-
-// to be defined by FORMULA plugin
+/**end_Tokens:Variable**/
+/**begin_Tokens:Formula**/
 %token <obj_t> FORM
+/**end_Tokens:Formula**/
+/****end_Tokens_plugins****/
 
-///////////////////////////////
-///////////////////////////////
+//
 %token LPAREN "("
 %token RPAREN ")"
 %token LBRACKET "["
@@ -175,25 +170,30 @@ class genesyspp_driver;
 %type <obj_t> listaparm
 %type <obj_t> illegal
 
-// to be defined by PLUGINS
+/****begin_TypeObj_plugins****/
+/**begin_TypeObj::Variable**/
 %type <obj_t> variavel
+/**end_TypeObj::Variable**/
+/**begin_TypeObj::Formula**/
 %type <obj_t> formula
+/**end_TypeObj::Formula**/
+/****end_TypeObj_plugins****/
 
-%left oNOT;
-%left oAND oOR;
-%left oLE oGE oEQ oNE LESS GREATER LBRACKET cELSE;
-%left MINUS PLUS;
-%left STAR SLASH;
+//%left oNOT;
+//%left oAND oOR;
+//%left oLE oGE oEQ oNE LESS GREATER LBRACKET cELSE;
+//%left MINUS PLUS;
+//%left STAR SLASH;
 %precedence NEG;
-%left fROUND fMOD fTRUNC fFRAC;
+//%left fROUND fMOD fTRUNC fFRAC;
 
-//%printer { yyoutput << $$; } <*>; //prints whren something
+//%printer { yyoutput << $$; } <*>; //prints when something
 %%
 
 ///////////////////////////////
 ///////////////////////////////+std::to_string(static_cast<unsigned int>($5.valor))
 ///////////////////////////////
-input	    : /* empty */
+input	    : %empty  /* empty */
             | input '\n' {YYACCEPT;}
             | input programa                    { driver.setResult($2.valor);}
             | illegal
@@ -211,10 +211,14 @@ expressao   : numero                           {$$.valor = $1.valor;}
             | relacional                       {$$.valor = $1.valor;}
             | "(" expressao ")"                {$$.valor = $2.valor;}
             | atributo                         {$$.valor = $1.valor;}
-// to be defined by plugin VARIABLE
+/****begin_Expression_plugins****/
+/**begin_Expression:Variable**/
             | variavel                         {$$.valor = $1.valor;}
-// to be defined by plugin FORMULA
+/**end_Expression:Variable**/
+/**begin_Expression:Formula**/
             | formula                          {$$.valor = $1.valor;}
+/**end_Expression:Formula**/
+/****end_Expression_plugins****/
             ;
 
 numero      : NUMD                             { $$.valor = $1.valor;}
@@ -260,9 +264,14 @@ funcao      : funcaoArit                       { $$.valor = $1.valor; }
             | funcaoUser                       { $$.valor = $1.valor; }
             ;
 
-funcaoKernel : fTNOW      { $$.valor = driver.getModel()->getSimulation()->getSimulatedTime();}
-             | fTFIN      { $$.valor = driver.getModel()->getSimulation()->getReplicationLength();}
-             ;
+funcaoKernel    : fTNOW      { $$.valor = driver.getModel()->getSimulation()->getSimulatedTime();}
+                | fTFIN      { $$.valor = driver.getModel()->getSimulation()->getReplicationLength();}
+                | CSTAT		 { $$.valor = 0; }
+                | fTAVG  "(" CSTAT ")"     {
+                    StatisticsCollector* cstat = ((StatisticsCollector*)(driver.getModel()->getElements()->getElement(Util::TypeOf<StatisticsCollector>(), $3.id)));
+                    double value = cstat->getStatistics()->average();
+                    $$.valor = value; }
+                ;
 
 funcaoTrig  : fSIN   "(" expressao ")"         { $$.valor = sin($3.valor); }
             | fCOS   "(" expressao ")"         { $$.valor = cos($3.valor); }
@@ -355,142 +364,126 @@ atributo    : ATRIB      {
 		}
             ;
 
-variavel     :   CTEZERO                                        { $$.valor = 0; }
-//variavel    : VARI  {$$.valor = ((Variable*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), $1.id)))->value();} 
-//            | VARI LBRACKET expressao RBRACKET	    { 
-//		    std::string index = std::to_string(static_cast<unsigned int>($3.valor));
-//		    $$.valor = ((Variable*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), $1.id)))->value(index); }
-//           | VARI LBRACKET expressao "," expressao RBRACKET	    { 
-//		    std::string index = std::to_string(static_cast<unsigned int>($3.valor))+","+std::to_string(static_cast<unsigned int>($5.valor)); 
-//		    $$.valor = ((Variable*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), $1.id)))->value(index);}
-//            | VARI LBRACKET expressao "," expressao "," expressao RBRACKET    { 
-//		    std::string index = std::to_string(static_cast<unsigned int>($3.valor))+","+std::to_string(static_cast<unsigned int>($5.valor))+","+std::to_string(static_cast<unsigned int>($7.valor));
-//		    $$.valor = ((Variable*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), $1.id)))->value(index);}
-//            ;
+/****begin_ExpressionProdution_plugins****/
+/**begin_ExpressionProdution:Variable**/
+variavel    : VARI  {$$.valor = ((Variable*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), $1.id)))->value();} 
+            | VARI LBRACKET expressao RBRACKET	    { 
+                std::string index = std::to_string(static_cast<unsigned int>($3.valor));
+                $$.valor = ((Variable*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), $1.id)))->value(index); }
+            | VARI LBRACKET expressao "," expressao RBRACKET	    { 
+                std::string index = std::to_string(static_cast<unsigned int>($3.valor))+","+std::to_string(static_cast<unsigned int>($5.valor)); 
+                $$.valor = ((Variable*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), $1.id)))->value(index);}
+            | VARI LBRACKET expressao "," expressao "," expressao RBRACKET    { 
+                std::string index = std::to_string(static_cast<unsigned int>($3.valor))+","+std::to_string(static_cast<unsigned int>($5.valor))+","+std::to_string(static_cast<unsigned int>($7.valor));
+                $$.valor = ((Variable*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), $1.id)))->value(index);}
+            ;
+/**end_ExpressionProdution:Variable**/
 
+/**begin_ExpressionProdution:Formula**/
+// \todo: THERE IS A PROBLEM WITH FORMULA: TO EVALUATE THE FORMULA EXPRESSION, PARSER IS REINVOKED, AND THEN IT CRASHES (NO REENTRACE?)
+formula     : FORM	    { 
+                $$.valor = ((Formula*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Formula>(), $1.id)))->value();} 
+            | FORM LBRACKET expressao RBRACKET {
+                std::string index = std::to_string(static_cast<unsigned int>($3.valor));
+                $$.valor = ((Formula*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Formula>(), $1.id)))->value(index);}
+            | FORM LBRACKET expressao "," expressao RBRACKET {
+                std::string index = std::to_string(static_cast<unsigned int>($3.valor)) +","+std::to_string(static_cast<unsigned int>($5.valor));
+                $$.valor = ((Formula*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Formula>(), $1.id)))->value(index);}
+            | FORM LBRACKET expressao "," expressao "," expressao RBRACKET {
+                std::string index = std::to_string(static_cast<unsigned int>($3.valor)) +","+std::to_string(static_cast<unsigned int>($5.valor))+","+std::to_string(static_cast<unsigned int>($7.valor));
+                $$.valor = ((Formula*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Formula>(), $1.id)))->value(index);}
+            ;
+/**end_ExpressionProdution:Formula**/
+/****end_ExpressionProdution_plugins****/
 
 //Check if want to set the atributo or variavel with expressao or just return the expressao value, for now just returns expressao value
 atribuicao  : ATRIB ASSIGN expressao    { 
-		    driver.getModel()->getSimulation()->getCurrentEntity()->setAttributeValue("", $1.id, $3.valor);
-		    $$.valor = $3.valor; }
-	    | ATRIB LBRACKET expressao RBRACKET ASSIGN expressao    { 
-		    std::string index = std::to_string(static_cast<unsigned int>($3.valor));
-		    driver.getModel()->getSimulation()->getCurrentEntity()->setAttributeValue(index, $1.id, $6.valor);
-		    $$.valor = $6.valor; }
-	    | ATRIB LBRACKET expressao "," expressao RBRACKET ASSIGN expressao   {
-		    std::string index = std::to_string(static_cast<unsigned int>($3.valor))+","+std::to_string(static_cast<unsigned int>($5.valor)); 
-		    driver.getModel()->getSimulation()->getCurrentEntity()->setAttributeValue(index, $1.id, $8.valor); 
-		    $$.valor = $8.valor;}
-	    | ATRIB LBRACKET expressao "," expressao "," expressao RBRACKET ASSIGN expressao      {
-		    std::string index = std::to_string(static_cast<unsigned int>($3.valor))+","+std::to_string(static_cast<unsigned int>($5.valor))+","+std::to_string(static_cast<unsigned int>($7.valor));
-		    driver.getModel()->getSimulation()->getCurrentEntity()->setAttributeValue(index, $1.id, $10.valor);
-		    $$.valor = $10.valor; }
-//            | VARI ASSIGN expressao        {
-//		    ((Variable*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), $1.id)))->setValue($3.valor);
-//		    $$.valor = $3.valor; }
-//            | VARI LBRACKET expressao RBRACKET ASSIGN expressao    { 
-//		    std::string index = std::to_string(static_cast<unsigned int>($3.valor));
-//		    ((Variable*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), $1.id)))->setValue(index, $6.valor); 
-//		    $$.valor = $6.valor; }
-//            | VARI LBRACKET expressao "," expressao RBRACKET ASSIGN expressao   {
-//		    std::string index = std::to_string(static_cast<unsigned int>($3.valor))+","+std::to_string(static_cast<unsigned int>($5.valor)); 
-//		    ((Variable*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), $1.id)))->setValue(index, $8.valor);
-//		    $$.valor = $8.valor; }
-//            | VARI LBRACKET expressao "," expressao "," expressao RBRACKET ASSIGN expressao      {
-//		    std::string index = std::to_string(static_cast<unsigned int>($3.valor))+","+std::to_string(static_cast<unsigned int>($5.valor))+","+std::to_string(static_cast<unsigned int>($7.valor));
-//		    ((Variable*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), $1.id)))->setValue(index, $10.valor); 
-//		    $$.valor = $10.valor; }
+                driver.getModel()->getSimulation()->getCurrentEntity()->setAttributeValue("", $1.id, $3.valor);
+                $$.valor = $3.valor; }
+            | ATRIB LBRACKET expressao RBRACKET ASSIGN expressao    { 
+                std::string index = std::to_string(static_cast<unsigned int>($3.valor));
+                driver.getModel()->getSimulation()->getCurrentEntity()->setAttributeValue(index, $1.id, $6.valor);
+                $$.valor = $6.valor; }
+            | ATRIB LBRACKET expressao "," expressao RBRACKET ASSIGN expressao   {
+                std::string index = std::to_string(static_cast<unsigned int>($3.valor))+","+std::to_string(static_cast<unsigned int>($5.valor)); 
+                driver.getModel()->getSimulation()->getCurrentEntity()->setAttributeValue(index, $1.id, $8.valor); 
+                $$.valor = $8.valor;}
+            | ATRIB LBRACKET expressao "," expressao "," expressao RBRACKET ASSIGN expressao      {
+                std::string index = std::to_string(static_cast<unsigned int>($3.valor))+","+std::to_string(static_cast<unsigned int>($5.valor))+","+std::to_string(static_cast<unsigned int>($7.valor));
+                driver.getModel()->getSimulation()->getCurrentEntity()->setAttributeValue(index, $1.id, $10.valor);
+                $$.valor = $10.valor; }
+/****begin_Assignment_plugins****/
+/**begin_Assignment:Variable**/
+            | VARI ASSIGN expressao        {
+                ((Variable*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), $1.id)))->setValue($3.valor);
+                $$.valor = $3.valor; }
+            | VARI LBRACKET expressao RBRACKET ASSIGN expressao    { 
+                std::string index = std::to_string(static_cast<unsigned int>($3.valor));
+                ((Variable*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), $1.id)))->setValue(index, $6.valor); 
+                $$.valor = $6.valor; }
+            | VARI LBRACKET expressao "," expressao RBRACKET ASSIGN expressao   {
+                std::string index = std::to_string(static_cast<unsigned int>($3.valor))+","+std::to_string(static_cast<unsigned int>($5.valor)); 
+                ((Variable*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), $1.id)))->setValue(index, $8.valor);
+                $$.valor = $8.valor; }
+            | VARI LBRACKET expressao "," expressao "," expressao RBRACKET ASSIGN expressao      {
+                std::string index = std::to_string(static_cast<unsigned int>($3.valor))+","+std::to_string(static_cast<unsigned int>($5.valor))+","+std::to_string(static_cast<unsigned int>($7.valor));
+                ((Variable*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), $1.id)))->setValue(index, $10.valor); 
+                $$.valor = $10.valor; }
+/**end_Assignment:Variable**/
+/****end_Assignment_plugins****/
             ;
-
-// \todo: THERE IS A PROBLEM WITH FORMULA: TO EVALUATE THE FORMULA EXPRESSION, PARSER IS REINVOKED, AND THEN IT CRASHES (NO REENTRACE?)
-formula     :   CTEZERO                                        { $$.valor = 0; }
-//formula     : FORM	    { 
-//		    $$.valor = ((Formula*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Formula>(), $1.id)))->value();} 
-//	    | FORM LBRACKET expressao RBRACKET {
-//		    std::string index = std::to_string(static_cast<unsigned int>($3.valor));
-//		    $$.valor = ((Formula*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Formula>(), $1.id)))->value(index);}
-//	    | FORM LBRACKET expressao "," expressao RBRACKET {
-//		    std::string index = std::to_string(static_cast<unsigned int>($3.valor)) +","+std::to_string(static_cast<unsigned int>($5.valor));
-//		    $$.valor = ((Formula*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Formula>(), $1.id)))->value(index);}
-//	    | FORM LBRACKET expressao "," expressao "," expressao RBRACKET {
-//		    std::string index = std::to_string(static_cast<unsigned int>($3.valor)) +","+std::to_string(static_cast<unsigned int>($5.valor))+","+std::to_string(static_cast<unsigned int>($7.valor));
-//		    $$.valor = ((Formula*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Formula>(), $1.id)))->value(index);}
-//            ;
 
 
 funcaoPlugin  : CTEZERO                                        { $$.valor = 0; }
+/**begin_FunctionProdution_plugins**/
+/**begin_FunctionProdution:Queue**/
+            | fNQ       "(" QUEUE ")"	    { $$.valor = ((Queue*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Queue>(), $3.id)))->size();}
+            | fLASTINQ  "(" QUEUE ")"       {/*For now does nothing because need acces to list of QUEUE, or at least the last element*/ }
+            | fFIRSTINQ "(" QUEUE ")"       { 
+                if (((Queue*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Queue>(), $3.id)))->size() > 0){
+                    //id da 1a entidade da fila, talvez pegar nome
+                    $$.valor = ((Queue*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Queue>(), $3.id)))->first()->getEntity()->getId();
+                }else{
+                    $$.valor = 0;
+                } }
+            | fSAQUE "(" QUEUE "," ATRIB ")"   {   
+                Util::identification queueID = $3.id;
+                Util::identification attrID = $5.id;
+                double sum = ((Queue*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Queue>(), $3.id)))->sumAttributesFromWaiting(attrID);
+                $$.valor = sum; }
+            | fAQUE "(" QUEUE "," NUMD "," ATRIB ")" {
+                Util::identification queueID = $3.id;
+                Util::identification attrID = $7.id;
+                double value = ((Queue*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Queue>(), $3.id)))->getAttributeFromWaitingRank($5.valor-1, attrID); // rank starts on 0 in genesys
+                $$.valor = value; }
+/**end_FunctionProdution:Queue**/
 
-///////////////////////////////////
-// to be defined by the QUEUE plugin
-///////////////////////////////////
-//            |fNQ       "(" QUEUE ")"	    { $$.valor = ((Queue*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Queue>(), $3.id)))->size();}
-//            | fLASTINQ  "(" QUEUE ")"       {/*For now does nothing because need acces to list of QUEUE, or at least the last element*/ }
-//            | fFIRSTINQ "(" QUEUE ")"       { 
-//		    if (((Queue*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Queue>(), $3.id)))->size() > 0){
-//			//id da 1a entidade da fila, talvez pegar nome
-//			$$.valor = ((Queue*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Queue>(), $3.id)))->first()->getEntity()->getId();
-//		    }else{
-//			$$.valor = 0;
-//		    }
-//		}
-//	    | fSAQUE "(" QUEUE "," ATRIB ")"   {   
-//		     Util::identification queueID = $3.id;
-//		     Util::identification attrID = $5.id;
-//		     double sum = ((Queue*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Queue>(), $3.id)))->sumAttributesFromWaiting(attrID);
-//		      $$.valor = sum;
-//		}
-//	    | fAQUE "(" QUEUE "," NUMD "," ATRIB ")" {
-//		     Util::identification queueID = $3.id;
-//		     Util::identification attrID = $7.id;
-//		     double value = ((Queue*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Queue>(), $3.id)))->getAttributeFromWaitingRank($5.valor-1, attrID); // rank starts on 0 in genesys
-//		      $$.valor = value;
-//		}
-//
-///////////////////////////////////
-// to be defined by the RESOURCE plugin
-///////////////////////////////////
-//           | fMR        "(" RESOURCE ")"	{ $$.valor = ((Resource*)driver.getModel()->getElements()->getElement(Util::TypeOf<Resource>(), $3.id))->getCapacity();}
-//           | fNR        "(" RESOURCE ")"        { $$.valor = ((Resource*)driver.getModel()->getElements()->getElement(Util::TypeOf<Resource>(), $3.id))->getNumberBusy();}
-//           | fRESSEIZES "(" RESOURCE ")"        { /*For now does nothing because needs get Seizes, check with teacher*/}
-//           | fSTATE     "(" RESOURCE ")"        {  $$.valor = static_cast<int>(((Resource*)driver.getModel()->getElements()->getElement(Util::TypeOf<Resource>(), $3.id))->getResourceState()); }
-//
-//           | fIRF       "(" RESOURCE ")"        { $$.valor = ((Resource*)driver.getModel()->getElements()->getElement(Util::TypeOf<Resource>(), $3.id))->getResourceState() == Resource::ResourceState::FAILED ? 1 : 0; }
-//           | fSETSUM    "(" SET ")"  {
-//		    unsigned int count=0;
-//		    Resource* res;
-//		    List<ModelElement*>* setList = ((Set*)driver.getModel()->getElements()->getElement(Util::TypeOf<Set>(),$3.id))->getElementSet(); 
-//		    for (std::list<ModelElement*>::iterator it = setList->list()->begin(); it!=setList->list()->end(); it++) {
-//			res = dynamic_cast<Resource*>(*it);
-//			if (res != nullptr) {
-//			    if (res->getResourceState()==Resource::ResourceState::BUSY) {
-//				count++;
-//			    }
-//			}
-//		    }
-//		    $$.valor = count; 
-//		}
+/**begin_FunctionProdution:Resource**/
+           | fMR        "(" RESOURCE ")"	{ $$.valor = ((Resource*)driver.getModel()->getElements()->getElement(Util::TypeOf<Resource>(), $3.id))->getCapacity();}
+           | fNR        "(" RESOURCE ")"        { $$.valor = ((Resource*)driver.getModel()->getElements()->getElement(Util::TypeOf<Resource>(), $3.id))->getNumberBusy();}
+           | fRESSEIZES "(" RESOURCE ")"        { /*For now does nothing because needs get Seizes, check with teacher*/}
+           | fSTATE     "(" RESOURCE ")"        {  $$.valor = static_cast<int>(((Resource*)driver.getModel()->getElements()->getElement(Util::TypeOf<Resource>(), $3.id))->getResourceState()); }
+            | fIRF       "(" RESOURCE ")"        { $$.valor = ((Resource*)driver.getModel()->getElements()->getElement(Util::TypeOf<Resource>(), $3.id))->getResourceState() == Resource::ResourceState::FAILED ? 1 : 0; }
+           | fSETSUM    "(" SET ")"  {
+                unsigned int count=0;
+                Resource* res;
+                List<ModelElement*>* setList = ((Set*)driver.getModel()->getElements()->getElement(Util::TypeOf<Set>(),$3.id))->getElementSet(); 
+                for (std::list<ModelElement*>::iterator it = setList->list()->begin(); it!=setList->list()->end(); it++) {
+                    res = dynamic_cast<Resource*>(*it);
+                    if (res != nullptr) {
+                        if (res->getResourceState()==Resource::ResourceState::BUSY) {
+                            count++;
+                        }
+                    }
+                }
+                $$.valor = count; }
+/**end_FunctionProdution:Resource**/
 
-///////////////////////////////////
-// to be defined by the SET plugin
-///////////////////////////////////
-//           | fNUMSET    "(" SET ")"	{ $$.valor = ((Set*)driver.getModel()->getElements()->getElement(Util::TypeOf<Set>(),$3.id))->getElementSet()->size(); }
+/**begin_FunctionProdution:Set**/
+           | fNUMSET    "(" SET ")"	{ $$.valor = ((Set*)driver.getModel()->getElements()->getElement(Util::TypeOf<Set>(),$3.id))->getElementSet()->size(); }
 
-
-///////////////////////////////////
-// to be defined by the STATISTICSCOLLECTOR plugin
-///////////////////////////////////
-	   | CSTAT			{ $$.valor = 0; }
-           | fTAVG    "(" CSTAT ")"     {
-		    StatisticsCollector* cstat = ((StatisticsCollector*)(driver.getModel()->getElements()->getElement(Util::TypeOf<StatisticsCollector>(), $3.id)));
-		    double value = cstat->getStatistics()->average();
-		    $$.valor = value;
-		}
-
-
-///////////////////////////////////
-// to be defined by the ....... plugin
-///////////////////////////////////
-
+/**end_FunctionProdution:Set**/
+/****end_FunctionProdution_plugins****/
            ;
 
 

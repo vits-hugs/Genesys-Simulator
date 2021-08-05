@@ -4138,11 +4138,23 @@ char *yytext;
 # include "../ModelElement.h"
 # include "../Attribute.h"
 # include "../StatisticsCollector.h"
-//# include "../Variable.h"
-//# include "../Queue.h"
-//# include "../Formula.h"
-//# include "../Resource.h"
-//# include "../Set.h"
+/**begin_Includes_plugins**/
+/**begin_Includes:Variable**/
+#include "../../../plugins/elements/Variable.h"
+/**end_Includes:Variable**/
+/**begin_Includes:Queue**/
+#include "../../../plugins/elements/Queue.h"
+/**end_Includes:Queue**/
+/**begin_Includes:Formula**/
+#include "../../../plugins/elements/Formula.h"
+/**end_Includes:Formula**/
+/**begin_Includes:Resource**/
+#include "../../../plugins/elements/Resource.h"
+/**end_Includes:Resource**/
+/**begin_Includes:Set**/
+#include "../../../plugins/elements/Set.h"
+/**end_Includes:Set**/
+/**end_Includes_plugins**/
 
 
 // Work around an incompatibility in flex (at least versions
@@ -4154,13 +4166,13 @@ char *yytext;
 
 // The location of the current token.
 static yy::location loc;
-#line 4158 "../Genesys++-scanner.cpp"
+#line 4170 "../Genesys++-scanner.cpp"
 #define YY_NO_INPUT 1
-#line 36 "lexerparser.ll"
+#line 48 "lexerparser.ll"
   // Code run each time a pattern is matched.
   # define YY_USER_ACTION  loc.columns (yyleng);
-#line 4163 "../Genesys++-scanner.cpp"
-#line 4164 "../Genesys++-scanner.cpp"
+#line 4175 "../Genesys++-scanner.cpp"
+#line 4176 "../Genesys++-scanner.cpp"
 
 #define INITIAL 0
 
@@ -4359,17 +4371,17 @@ YY_DECL
 		}
 
 	{
-#line 45 "lexerparser.ll"
+#line 57 "lexerparser.ll"
 
 
 
-#line 49 "lexerparser.ll"
+#line 61 "lexerparser.ll"
   // Code run each time yylex is called.
   loc.step ();
 
 
 
-#line 4373 "../Genesys++-scanner.cpp"
+#line 4385 "../Genesys++-scanner.cpp"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -4416,276 +4428,276 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 54 "lexerparser.ll"
+#line 66 "lexerparser.ll"
 {
 	//Hexadecimal number
 	//Will not fail because of regex
 	//std::string text("Found Hexadecimal: ");
 	//text += yytext;
-	//driver.getModel()->getTraceManager()->trace(Util::TraceLevel::L8_mostDetailed, text);
+	//driver.getModel()->getTraceManager()->trace(Util::TraceLevel::L9_mostDetailed, text);
 	return yy::genesyspp_parser::make_NUMH(obj_t(atof(yytext), std::string("Hexadecimal")),loc);
       }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 63 "lexerparser.ll"
+#line 75 "lexerparser.ll"
 {
        //Float number
        //Will not fail because of regex
        //std::string text("Found Float: ");
        //text += yytext;
-       //driver.getModel()->getTraceManager()->trace(Util::TraceLevel::L8_mostDetailed, text);
+       //driver.getModel()->getTraceManager()->trace(Util::TraceLevel::L9_mostDetailed, text);
        return yy::genesyspp_parser::make_NUMD(obj_t(atof(yytext),std::string("Float")), loc);
      }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 72 "lexerparser.ll"
+#line 84 "lexerparser.ll"
 {
        //Decimal number
        //Will not fail because of regex
        //std::string text("Found Decimal: ");
        //text += yytext;
-       //driver.getModel()->getTraceManager()->trace(Util::TraceLevel::L8_mostDetailed, text);
+       //driver.getModel()->getTraceManager()->trace(Util::TraceLevel::L9_mostDetailed, text);
        return yy::genesyspp_parser::make_NUMD(obj_t(atof(yytext),std::string("Decimal")), loc);
       }
 	YY_BREAK
 // special symbols
 case 4:
 YY_RULE_SETUP
-#line 82 "lexerparser.ll"
+#line 94 "lexerparser.ll"
 { return (yy::genesyspp_parser::make_oLE(obj_t(0, std::string(yytext)), loc));}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 83 "lexerparser.ll"
+#line 95 "lexerparser.ll"
 { return (yy::genesyspp_parser::make_oGE(obj_t(0, std::string(yytext)), loc));}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 84 "lexerparser.ll"
+#line 96 "lexerparser.ll"
 { return (yy::genesyspp_parser::make_oEQ(obj_t(0, std::string(yytext)), loc));}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 85 "lexerparser.ll"
+#line 97 "lexerparser.ll"
 { return (yy::genesyspp_parser::make_oNE(obj_t(0, std::string(yytext)), loc));}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 86 "lexerparser.ll"
+#line 98 "lexerparser.ll"
 {return yy::genesyspp_parser::make_LESS(loc);}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 87 "lexerparser.ll"
+#line 99 "lexerparser.ll"
 {return yy::genesyspp_parser::make_GREATER(loc);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 88 "lexerparser.ll"
+#line 100 "lexerparser.ll"
 {return yy::genesyspp_parser::make_LPAREN(loc);}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 89 "lexerparser.ll"
+#line 101 "lexerparser.ll"
 {return yy::genesyspp_parser::make_RPAREN(loc);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 90 "lexerparser.ll"
+#line 102 "lexerparser.ll"
 {return yy::genesyspp_parser::make_PLUS(loc);}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 91 "lexerparser.ll"
+#line 103 "lexerparser.ll"
 {return yy::genesyspp_parser::make_MINUS(loc);}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 92 "lexerparser.ll"
+#line 104 "lexerparser.ll"
 {return yy::genesyspp_parser::make_STAR(loc);}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 93 "lexerparser.ll"
+#line 105 "lexerparser.ll"
 {return yy::genesyspp_parser::make_SLASH(loc);}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 94 "lexerparser.ll"
+#line 106 "lexerparser.ll"
 {return yy::genesyspp_parser::make_ASSIGN(loc);}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 95 "lexerparser.ll"
+#line 107 "lexerparser.ll"
 {return yy::genesyspp_parser::make_COMMA(loc);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 96 "lexerparser.ll"
+#line 108 "lexerparser.ll"
 {return yy::genesyspp_parser::make_LBRACKET(loc);}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 97 "lexerparser.ll"
+#line 109 "lexerparser.ll"
 {return yy::genesyspp_parser::make_RBRACKET(loc);}
 	YY_BREAK
 // boolean values
 case 20:
 YY_RULE_SETUP
-#line 100 "lexerparser.ll"
+#line 112 "lexerparser.ll"
 {return yy::genesyspp_parser::make_NUMD(obj_t(1, std::string(yytext)), loc);}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 101 "lexerparser.ll"
+#line 113 "lexerparser.ll"
 {return yy::genesyspp_parser::make_NUMD(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 // algorithmic functions
 case 22:
 YY_RULE_SETUP
-#line 104 "lexerparser.ll"
+#line 116 "lexerparser.ll"
 {return yy::genesyspp_parser::make_cIF(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 105 "lexerparser.ll"
+#line 117 "lexerparser.ll"
 {return yy::genesyspp_parser::make_cELSE(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 106 "lexerparser.ll"
+#line 118 "lexerparser.ll"
 {return yy::genesyspp_parser::make_cFOR(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 107 "lexerparser.ll"
+#line 119 "lexerparser.ll"
 {return yy::genesyspp_parser::make_cTO(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 108 "lexerparser.ll"
+#line 120 "lexerparser.ll"
 {return yy::genesyspp_parser::make_cDO(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 // logic funcions
 case 27:
 YY_RULE_SETUP
-#line 111 "lexerparser.ll"
+#line 123 "lexerparser.ll"
 {return yy::genesyspp_parser::make_oAND(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 112 "lexerparser.ll"
+#line 124 "lexerparser.ll"
 {return yy::genesyspp_parser::make_oOR(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 113 "lexerparser.ll"
+#line 125 "lexerparser.ll"
 {return yy::genesyspp_parser::make_oNOT(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 // trigonometric functions
 case 30:
 YY_RULE_SETUP
-#line 116 "lexerparser.ll"
+#line 128 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fSIN(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 117 "lexerparser.ll"
+#line 129 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fCOS(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 // aritmetic funcions
 case 32:
 YY_RULE_SETUP
-#line 120 "lexerparser.ll"
+#line 132 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fROUND(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 121 "lexerparser.ll"
+#line 133 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fMOD(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 122 "lexerparser.ll"
+#line 134 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fTRUNC(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 123 "lexerparser.ll"
+#line 135 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fFRAC(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 124 "lexerparser.ll"
+#line 136 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fEXP(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 // probability distributions
 case 37:
 YY_RULE_SETUP
-#line 127 "lexerparser.ll"
+#line 139 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fRND1(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 128 "lexerparser.ll"
+#line 140 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fEXPO(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 129 "lexerparser.ll"
+#line 141 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fNORM(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 130 "lexerparser.ll"
+#line 142 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fUNIF(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 131 "lexerparser.ll"
+#line 143 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fWEIB(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 132 "lexerparser.ll"
+#line 144 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fLOGN(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 133 "lexerparser.ll"
+#line 145 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fGAMM(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 134 "lexerparser.ll"
+#line 146 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fERLA(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 135 "lexerparser.ll"
+#line 147 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fTRIA(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 136 "lexerparser.ll"
+#line 148 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fBETA(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 137 "lexerparser.ll"
+#line 149 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fDISC(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 // simulation infos
 case 48:
 YY_RULE_SETUP
-#line 140 "lexerparser.ll"
+#line 152 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fTNOW(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 141 "lexerparser.ll"
+#line 153 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fTFIN(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 //
@@ -4693,52 +4705,52 @@ YY_RULE_SETUP
   //
 case 50:
 YY_RULE_SETUP
-#line 146 "lexerparser.ll"
+#line 158 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fNR(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 147 "lexerparser.ll"
+#line 159 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fMR(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 148 "lexerparser.ll"
+#line 160 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fIRF(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 149 "lexerparser.ll"
+#line 161 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fSTATE(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 150 "lexerparser.ll"
+#line 162 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fSETSUM(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 151 "lexerparser.ll"
+#line 163 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fRESSEIZES(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 152 "lexerparser.ll"
+#line 164 "lexerparser.ll"
 {return yy::genesyspp_parser::make_NUMD(obj_t(-1, std::string(yytext)), loc);}
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 153 "lexerparser.ll"
+#line 165 "lexerparser.ll"
 {return yy::genesyspp_parser::make_NUMD(obj_t(-2, std::string(yytext)), loc);}
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 154 "lexerparser.ll"
+#line 166 "lexerparser.ll"
 {return yy::genesyspp_parser::make_NUMD(obj_t(-3, std::string(yytext)), loc);}
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 155 "lexerparser.ll"
+#line 167 "lexerparser.ll"
 {return yy::genesyspp_parser::make_NUMD(obj_t(-4, std::string(yytext)), loc);}
 	YY_BREAK
 //
@@ -4746,27 +4758,27 @@ YY_RULE_SETUP
   //
 case 60:
 YY_RULE_SETUP
-#line 160 "lexerparser.ll"
+#line 172 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fNQ(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 161 "lexerparser.ll"
+#line 173 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fLASTINQ(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
-#line 162 "lexerparser.ll"
+#line 174 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fFIRSTINQ(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 163 "lexerparser.ll"
+#line 175 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fSAQUE(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
-#line 164 "lexerparser.ll"
+#line 176 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fAQUE(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 //
@@ -4774,7 +4786,7 @@ YY_RULE_SETUP
   //
 case 65:
 YY_RULE_SETUP
-#line 169 "lexerparser.ll"
+#line 181 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fNUMSET(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 //
@@ -4782,23 +4794,23 @@ YY_RULE_SETUP
   //
 case 66:
 YY_RULE_SETUP
-#line 175 "lexerparser.ll"
+#line 187 "lexerparser.ll"
 {return yy::genesyspp_parser::make_fTAVG(obj_t(0, std::string(yytext)), loc);}
 	YY_BREAK
 case 67:
 /* rule 67 can match eol */
 YY_RULE_SETUP
-#line 178 "lexerparser.ll"
+#line 190 "lexerparser.ll"
 ;
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 179 "lexerparser.ll"
+#line 191 "lexerparser.ll"
 
 	YY_BREAK
 case 69:
 YY_RULE_SETUP
-#line 181 "lexerparser.ll"
+#line 193 "lexerparser.ll"
 {
         ModelElement* element; 
 
@@ -4812,44 +4824,44 @@ YY_RULE_SETUP
         }
 
         // check VARIABLE
-//        element = driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), std::string(yytext));
-//        if (element != nullptr) { // it is a variable
-//            Variable* var = static_cast<Variable*>(element);
-//            //double variableID = var->getId();// ->getValue(); // var->getId()
-//	    //std::cout << "FOUND VARIABLE " << var->getName() <<" ID " << var->getId() << std::endl;
-//            return yy::genesyspp_parser::make_VARI(obj_t(0, Util::TypeOf<Variable>(), var->getId()),loc);
-//        }
+        element = driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), std::string(yytext));
+        if (element != nullptr) { // it is a variable
+            Variable* var = static_cast<Variable*>(element);
+            //double variableID = var->getId();// ->getValue(); // var->getId()
+	    //std::cout << "FOUND VARIABLE " << var->getName() <<" ID " << var->getId() << std::endl;
+            return yy::genesyspp_parser::make_VARI(obj_t(0, Util::TypeOf<Variable>(), var->getId()),loc);
+        }
 
         // Should be definied by plugin FORMULA
         // check FORMULA
-//        element = driver.getModel()->getElements()->getElement(Util::TypeOf<Formula>(), std::string(yytext));
-//        if (element != nullptr) { // it is a FORMULA
-//            Formula* form = static_cast<Formula*>(element);
-//            //double formulaValue = form->getValue(); // return only formula ID
-//	    //std::cout << "FOUND FORMULA " << form->getName() <<" ID " << form->getId() << std::endl;
-//            return yy::genesyspp_parser::make_FORM(obj_t(0, Util::TypeOf<Formula>(), form->getId()),loc);
-//        }
+        element = driver.getModel()->getElements()->getElement(Util::TypeOf<Formula>(), std::string(yytext));
+        if (element != nullptr) { // it is a FORMULA
+            Formula* form = static_cast<Formula*>(element);
+            //double formulaValue = form->getValue(); // return only formula ID
+	    //std::cout << "FOUND FORMULA " << form->getName() <<" ID " << form->getId() << std::endl;
+            return yy::genesyspp_parser::make_FORM(obj_t(0, Util::TypeOf<Formula>(), form->getId()),loc);
+        }
 
         // Should be definied by plugin QUEUE
         // check QUEUE
-//        element = driver.getModel()->getElements()->getElement(Util::TypeOf<Queue>(), std::string(yytext));
-//        if (element != nullptr) { 
-//            return yy::genesyspp_parser::make_QUEUE(obj_t(0, Util::TypeOf<Queue>(), element->getId()),loc);
-//        }
+        element = driver.getModel()->getElements()->getElement(Util::TypeOf<Queue>(), std::string(yytext));
+        if (element != nullptr) { 
+            return yy::genesyspp_parser::make_QUEUE(obj_t(0, Util::TypeOf<Queue>(), element->getId()),loc);
+        }
 
 	// Should be definied by plugin RESOURCE
         // check RESOURCE
-//        element = driver.getModel()->getElements()->getElement(Util::TypeOf<Resource>(), std::string(yytext));
-//        if (element != nullptr) { 
-//            return yy::genesyspp_parser::make_RESOURCE(obj_t(0, Util::TypeOf<Resource>(), element->getId()),loc);
-//        }
+        element = driver.getModel()->getElements()->getElement(Util::TypeOf<Resource>(), std::string(yytext));
+        if (element != nullptr) { 
+            return yy::genesyspp_parser::make_RESOURCE(obj_t(0, Util::TypeOf<Resource>(), element->getId()),loc);
+        }
 
         // Should be definied by plugin SET
         //check SET
-//        element = driver.getModel()->getElements()->getElement(Util::TypeOf<Set>(), std::string(yytext));
-//        if (element != nullptr) { 
-//            return yy::genesyspp_parser::make_SET(obj_t(0, Util::TypeOf<Set>(), element->getId()),loc);
-//        }
+        element = driver.getModel()->getElements()->getElement(Util::TypeOf<Set>(), std::string(yytext));
+        if (element != nullptr) { 
+            return yy::genesyspp_parser::make_SET(obj_t(0, Util::TypeOf<Set>(), element->getId()),loc);
+        }
 
         // Should be definied by plugin STATISTICSCOLLECTOR
         //check CSTAT
@@ -4865,19 +4877,19 @@ YY_RULE_SETUP
 	YY_BREAK
 case 70:
 YY_RULE_SETUP
-#line 245 "lexerparser.ll"
+#line 257 "lexerparser.ll"
 {return yy::genesyspp_parser::make_ILLEGAL(obj_t(1, std::string("Illegal")), loc);}
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
-#line 247 "lexerparser.ll"
+#line 259 "lexerparser.ll"
 {return yy::genesyspp_parser::make_END(loc);}
 	YY_BREAK
 case 71:
 YY_RULE_SETUP
-#line 250 "lexerparser.ll"
+#line 262 "lexerparser.ll"
 ECHO;
 	YY_BREAK
-#line 4881 "../Genesys++-scanner.cpp"
+#line 4893 "../Genesys++-scanner.cpp"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -5838,7 +5850,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 250 "lexerparser.ll"
+#line 262 "lexerparser.ll"
 
 
 void

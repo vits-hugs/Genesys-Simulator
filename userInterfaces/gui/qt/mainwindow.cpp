@@ -3,6 +3,7 @@
 #include "dialogabout.h"
 #include "dialogmodelinformation.h"
 #include "Traits.h"
+#include <Qt>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QStandardItem>
@@ -14,8 +15,6 @@
 #include <string>
 #include <limits.h>
 #include <unistd.h>
-#include <sys/types.h>
-#include <dirent.h>
 #include <errno.h>
 #include <vector>
 #include <string>
@@ -27,6 +26,14 @@ ui(new Ui::MainWindow) {
     ui->setupUi(this);
     connect(ui->actionAbout, SIGNAL(triggered(bool)), this, SLOT(on_actionAbout_triggered()));
 
+    // action menu on plugin list 
+    auto actView = new QAction("View", this);
+    // auto actDelete = new QAction("Delete", this);
+    // you can set up slot connections here or in designer
+    connect(actView, SIGNAL(triggered()), this, SLOT(viewItem()));
+    //connect(actDelete, SIGNAL(triggered()), this, SLOT(eraseItem()));
+    ui->listWidget_ComponentPlugins->setContextMenuPolicy(Qt::ActionsContextMenu);
+    ui->listWidget_ComponentPlugins->addActions({actView}); //, actDelete});
     //--------------------------
     // models
     //ui->tabWidgetModels->clear(); // no models openned
@@ -87,9 +94,10 @@ void MainWindow::_insertPluginUI(Plugin* plugin) {
                 plugtextAdds += ",SendTransfer";
                 item->setIcon(QIcon(":/resources/icons/pack3/png/24x24/LoadInv.png"));
             }
-            plugtextAdds += "\n" + plugin->getPluginInfo()->getObservation();
+            plugtextAdds += "\n" + plugin->getPluginInfo()->getObservation(); //getDescriptionHelp();
             plugtextAdds = plugtextAdds.erase(0, 1);
             item->setToolTip(QString::fromStdString(plugtextAdds));
+            item->setStatusTip(QString::fromStdString(plugtextAdds));
             ui->listWidget_ComponentPlugins->addItem(item);
         }
     }
@@ -99,31 +107,6 @@ void MainWindow::__simulationInsert_FAKE_Plugins() {
     //Util::TraceLevel tl = simulator->getTracer()->traceLevel();
     //simulator->getTracer()->setTraceLevel(Util::TraceLevel::debugOnly);
     PluginManager* plm = simulator->getPlugins();
-    char result[ PATH_MAX ];
-    ssize_t count = readlink("/proc/self/exe", result, PATH_MAX);
-    std::string pathExec = std::string(result, (count > 0) ? count : 0);
-    std::string execFile = getFileName(pathExec);
-    pathExec = pathExec.substr(0, pathExec.length() - execFile.length());
-    const std::string pathFromExecToPlugin = "/../../../plugins";
-    // read dir
-    std::string dir = pathExec + pathFromExecToPlugin;
-    std::vector<std::string> files = std::vector<std::string>();
-    //int getdir (string dir, vector<string> &files) {
-    DIR *dp;
-    struct dirent *dirp;
-    if ((dp = opendir(dir.c_str())) == NULL) {
-        std::cout << "Error(" << errno << ") opening " << dir << std::endl;
-    }
-
-    while ((dirp = readdir(dp)) != NULL) {
-        files.push_back(std::string(dirp->d_name));
-    }
-    closedir(dp);
-    //}
-    for (unsigned int i = 0; i < files.size(); i++) {
-        std::cout << files[i] << std::endl;
-    }
-
 
     _insertPluginUI(plm->insert("create.so"));
     _insertPluginUI(plm->insert("dispose.so"));
@@ -206,7 +189,7 @@ void MainWindow::_traceHandler(TraceEvent e) {
     // TODO: -- use e.getTracelevel() to set text style (color, bold, etc)
     if (e.getTracelevel() == Util::TraceLevel::L1_errorFatal)
         ui->textEdit_Console->setTextColor(QColor::fromRgb(255, 0, 0));
-    else if (e.getTracelevel() == Util::TraceLevel::L2_errorRecover)
+    else if (e.getTracelevel() == Util::TraceLevel::L3_errorRecover)
         ui->textEdit_Console->setTextColor(QColor::fromRgb(128, 0, 0));
     else {
         unsigned short grayVal = 5 * (static_cast<unsigned int> (e.getTracelevel()));
@@ -228,7 +211,7 @@ void MainWindow::_traceReportHandler(TraceEvent e) {
 void MainWindow::_traceSimulationHandler(TraceSimulationEvent e) {
     if (e.getTracelevel() == Util::TraceLevel::L1_errorFatal)
         ui->textEdit_Console->setTextColor(QColor::fromRgb(255, 64, 0));
-    else if (e.getTracelevel() == Util::TraceLevel::L2_errorRecover)
+    else if (e.getTracelevel() == Util::TraceLevel::L3_errorRecover)
         ui->textEdit_Console->setTextColor(QColor::fromRgb(128, 64, 0));
     else {
         unsigned short grayVal = 5 * (static_cast<unsigned int> (e.getTracelevel()));

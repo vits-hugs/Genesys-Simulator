@@ -98,5 +98,7 @@ std::map<std::string, std::string>* StatisticsCollector::_saveInstance() {
 }
 
 bool StatisticsCollector::_check(std::string* errorMessage) {
-	return true;
+    // \TODO: To implement!
+    *errorMessage += "";
+    return true;
 }

@@ -40,7 +40,7 @@ void Access::_execute(Entity* entity) {
 bool Access::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
-		//...
+		// \todo: not implemented yet
 	}
 	return res;
 }
@@ -50,14 +50,15 @@ void Access::_initBetweenReplications() {
 
 std::map<std::string, std::string>* Access::_saveInstance() {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
-	//...
+	// \todo: not implemented yet
 	return fields;
 }
 
 bool Access::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	//...
-	return resultAll;
+    // \todo: not implemented yet
+    *errorMessage += "";
+    return resultAll;
 }
 
 PluginInformation* Access::GetPluginInformation() {

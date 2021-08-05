@@ -40,7 +40,7 @@ void Batch::_execute(Entity* entity) {
 bool Batch::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
-		//...
+		// \todo: not implemented yet
 	}
 	return res;
 }
@@ -50,14 +50,15 @@ void Batch::_initBetweenReplications() {
 
 std::map<std::string, std::string>* Batch::_saveInstance() {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
-	//...
+	// \todo: not implemented yet
 	return fields;
 }
 
 bool Batch::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	//...
-	return resultAll;
+    *errorMessage += "";
+    // \todo: not implemented yet
+    return resultAll;
 }
 
 PluginInformation* Batch::GetPluginInformation() {

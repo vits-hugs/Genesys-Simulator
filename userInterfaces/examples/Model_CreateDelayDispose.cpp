@@ -39,7 +39,7 @@ int Model_CreateDelayDispose::main(int argc, char** argv) {
 	this->insertFakePluginsByHand(genesys);
 	// Handle traces and simulation events to output them
 	this->setDefaultTraceHandlers(genesys->getTracer());
-	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L5_arrival);
+	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L6_arrival);
 	Model* model = genesys->getModels()->newModel();
 	//model->load("./models/Model_CreateDelayDispose.txt");
 	//model->getSimulation()->start();
