@@ -12,8 +12,8 @@
  */
 
 
-#ifndef TRAITS_H
-#define TRAITS_H
+#ifndef TRAITSKERNEL_H
+#define TRAITSKERNEL_H
 
 
 #include "simulator/ModelPersistenceDefaultImpl1.h"
@@ -108,5 +108,5 @@ template <> struct TraitsKernel<Collector_if> {
 };
 //namespace\\}
 
-#endif /* TRAITS_H */
+#endif /* TRAITSKERNEL_H */
 

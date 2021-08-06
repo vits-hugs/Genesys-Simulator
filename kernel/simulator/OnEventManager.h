@@ -67,7 +67,8 @@ public: // event listeners (handlers)
     void addOnEntityMoveHandler(simulationEventHandler EventHandler);
     void addOnEntityRemoveHandler(simulationEventHandler EventHandler);
     void addOnSimulationStartHandler(simulationEventHandler EventHandler);
-    void addOnSimulationPausedStartHandler(simulationEventHandler EventHandler);
+    void addOnSimulationPausedHandler(simulationEventHandler EventHandler);
+    void addOnSimulationPausedResumeHandler(simulationEventHandler EventHandler);
     void addOnSimulationEndHandler(simulationEventHandler EventHandler);
     void addOnBreakpointHandler(simulationEventHandler EventHandler);
     // for handlers that are class members (methods)
@@ -82,7 +83,8 @@ public:
     void NotifyEntityMoveHandlers(SimulationEvent* se);
     void NotifyEntityRemoveHandlers(SimulationEvent* se);
     void NotifySimulationStartHandlers(SimulationEvent* se);
-    void NotifySimulationPausedStartHandlers(SimulationEvent* se);
+    void NotifySimulationPausedHandlers(SimulationEvent* se);
+    void NotifySimulationPausedResumeHandlers(SimulationEvent* se);
     void NotifySimulationEndHandlers(SimulationEvent* se);
     void NotifyBreakpointHandlers(SimulationEvent* se);
 private:
@@ -98,7 +100,8 @@ private: // events listener
     List<simulationEventHandler>* _onEntityMoveHandlers = new List<simulationEventHandler>();
     List<simulationEventHandler>* _onEntityRemoveHandlers = new List<simulationEventHandler>();
     List<simulationEventHandler>* _onSimulationStartHandlers = new List<simulationEventHandler>();
-    List<simulationEventHandler>* _onSimulationPausedStartHandlers = new List<simulationEventHandler>();
+    List<simulationEventHandler>* _onSimulationPausedHandlers = new List<simulationEventHandler>();
+    List<simulationEventHandler>* _onSimulationPausedResumeHandlers = new List<simulationEventHandler>();
     List<simulationEventHandler>* _onSimulationEndHandlers = new List<simulationEventHandler>();
     List<simulationEventHandler>* _onBreakpointHandlers = new List<simulationEventHandler>();
     // for handlers that are class members (methods)

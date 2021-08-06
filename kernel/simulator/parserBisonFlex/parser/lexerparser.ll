@@ -151,39 +151,37 @@ L      [A-Za-z0-9_.]+
 [tT][nN][oO][wW]  {return yy::genesyspp_parser::make_fTNOW(obj_t(0, std::string(yytext)), loc);}
 [tT][fF][iI][nN]  {return yy::genesyspp_parser::make_fTFIN(obj_t(0, std::string(yytext)), loc);}
 
-%{//
-  // to be defined by the RESOURCE plugin
-  //%}
-[nN][rR]                             {return yy::genesyspp_parser::make_fNR(obj_t(0, std::string(yytext)), loc);}
-[mM][rR]                             {return yy::genesyspp_parser::make_fMR(obj_t(0, std::string(yytext)), loc);}
-[iI][rR][fF]                         {return yy::genesyspp_parser::make_fIRF(obj_t(0, std::string(yytext)), loc);}
-[sS][tT][aA][tT][eE]                 {return yy::genesyspp_parser::make_fSTATE(obj_t(0, std::string(yytext)), loc);}
-[sS][eE][tT][sS][uU][mM]             {return yy::genesyspp_parser::make_fSETSUM(obj_t(0, std::string(yytext)), loc);}
-[rR][eE][sS][sS][eE][iI][zZ][eE][sS] {return yy::genesyspp_parser::make_fRESSEIZES(obj_t(0, std::string(yytext)), loc);}
+[tT][aA][vV][gG]  {return yy::genesyspp_parser::make_fTAVG(obj_t(0, std::string(yytext)), loc);}
+
+
+%{/****begin_Lexical_plugins****/%}
+
+%{/**begin_Lexical:Resource**/%}
+[nN][rR]                                        {return yy::genesyspp_parser::make_fNR(obj_t(0, std::string(yytext)), loc);}
+[mM][rR]                                        {return yy::genesyspp_parser::make_fMR(obj_t(0, std::string(yytext)), loc);}
+[iI][rR][fF]                                    {return yy::genesyspp_parser::make_fIRF(obj_t(0, std::string(yytext)), loc);}
+[sS][tT][aA][tT][eE]                            {return yy::genesyspp_parser::make_fSTATE(obj_t(0, std::string(yytext)), loc);}
+[sS][eE][tT][sS][uU][mM]                        {return yy::genesyspp_parser::make_fSETSUM(obj_t(0, std::string(yytext)), loc);}
+[rR][eE][sS][sS][eE][iI][zZ][eE][sS]            {return yy::genesyspp_parser::make_fRESSEIZES(obj_t(0, std::string(yytext)), loc);}
 [iI][dD][lL][eE][_][rR][eE][sS]                 {return yy::genesyspp_parser::make_NUMD(obj_t(-1, std::string(yytext)), loc);}
 [bB][uU][sS][yY][_][rR][eE][sS]                 {return yy::genesyspp_parser::make_NUMD(obj_t(-2, std::string(yytext)), loc);}
 [iI][nN][aA][cC][tT][iI][vV][eE][_][rR][eE][sS] {return yy::genesyspp_parser::make_NUMD(obj_t(-3, std::string(yytext)), loc);}
 [fF][aA][iI][lL][eE][dD][_][rR][eE][sS]         {return yy::genesyspp_parser::make_NUMD(obj_t(-4, std::string(yytext)), loc);}
+%{/**end_Lexical:Resource**/%}
 
-%{//
-  // to be defined by the QUEUE plugin
-  //%}
+%{/**begin_Lexical:Queue**/%}
 [nN][qQ]                             {return yy::genesyspp_parser::make_fNQ(obj_t(0, std::string(yytext)), loc);}
 [lL][aA][sS][tT][iI][nN][qQ]         {return yy::genesyspp_parser::make_fLASTINQ(obj_t(0, std::string(yytext)), loc);}
 [fF][iI][rR][sS][tT][iI][nN][qQ]     {return yy::genesyspp_parser::make_fFIRSTINQ(obj_t(0, std::string(yytext)), loc);}
 [sS][aA][qQ][uU][eE]                 {return yy::genesyspp_parser::make_fSAQUE(obj_t(0, std::string(yytext)), loc);}
 [aA][qQ][uU][eE]                     {return yy::genesyspp_parser::make_fAQUE(obj_t(0, std::string(yytext)), loc);}
+%{/**end_Lexical:Queue**/%}
 
-%{//
-  // to be defined by the SET plugin
-  //%}
+%{/**begin_Lexical:Set**/%}
 [nN][uU][mM][sS][eE][tT]             {return yy::genesyspp_parser::make_fNUMSET(obj_t(0, std::string(yytext)), loc);}
+%{/**end_Lexical:Set**/%}
 
-
-%{//
-  // to be defined by the CSTAT plugin
-  //%}
-[tT][aA][vV][gG]  {return yy::genesyspp_parser::make_fTAVG(obj_t(0, std::string(yytext)), loc);}
+%{/****end_Lexical_plugins****/%}
 
 
 [ \t\n]        ;
@@ -201,6 +199,9 @@ T
             return yy::genesyspp_parser::make_ATRIB(obj_t(0, Util::TypeOf<Attribute>(), element->getId()),loc);
         }
 
+/****begin_LexicalLiterals_plugins****/
+
+/**begin_LexicalLiterals:Variable**/
         // check VARIABLE
         element = driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), std::string(yytext));
         if (element != nullptr) { // it is a variable
@@ -209,8 +210,9 @@ T
 	    //std::cout << "FOUND VARIABLE " << var->getName() <<" ID " << var->getId() << std::endl;
             return yy::genesyspp_parser::make_VARI(obj_t(0, Util::TypeOf<Variable>(), var->getId()),loc);
         }
+/**end_LexicalLiterals:Variable**/
 
-        // Should be definied by plugin FORMULA
+/**begin_LexicalLiterals:Formula**/
         // check FORMULA
         element = driver.getModel()->getElements()->getElement(Util::TypeOf<Formula>(), std::string(yytext));
         if (element != nullptr) { // it is a FORMULA
@@ -219,36 +221,41 @@ T
 	    //std::cout << "FOUND FORMULA " << form->getName() <<" ID " << form->getId() << std::endl;
             return yy::genesyspp_parser::make_FORM(obj_t(0, Util::TypeOf<Formula>(), form->getId()),loc);
         }
+/**end_LexicalLiterals:Formula**/
 
-        // Should be definied by plugin QUEUE
+/**begin_LexicalLiterals:Queue**/
         // check QUEUE
         element = driver.getModel()->getElements()->getElement(Util::TypeOf<Queue>(), std::string(yytext));
         if (element != nullptr) { 
             return yy::genesyspp_parser::make_QUEUE(obj_t(0, Util::TypeOf<Queue>(), element->getId()),loc);
         }
+/**end_LexicalLiterals:Queue**/
 
-	// Should be definied by plugin RESOURCE
+/**begin_LexicalLiterals:Resource**/
         // check RESOURCE
         element = driver.getModel()->getElements()->getElement(Util::TypeOf<Resource>(), std::string(yytext));
         if (element != nullptr) { 
             return yy::genesyspp_parser::make_RESOURCE(obj_t(0, Util::TypeOf<Resource>(), element->getId()),loc);
         }
+/**end_LexicalLiterals:Resource**/
 
-        // Should be definied by plugin SET
+/**begin_LexicalLiterals:Set**/
         //check SET
         element = driver.getModel()->getElements()->getElement(Util::TypeOf<Set>(), std::string(yytext));
         if (element != nullptr) { 
             return yy::genesyspp_parser::make_SET(obj_t(0, Util::TypeOf<Set>(), element->getId()),loc);
         }
+/**end_LexicalLiterals:Set**/
 
-        // Should be definied by plugin STATISTICSCOLLECTOR
+/****end_LexicalLiterals_plugins****/
+
         //check CSTAT
         element = driver.getModel()->getElements()->getElement(Util::TypeOf<StatisticsCollector>(), std::string(yytext));
         if (element != nullptr) { 
             return yy::genesyspp_parser::make_CSTAT(obj_t(0, Util::TypeOf<StatisticsCollector>(), element->getId()),loc);
         }
 
-	// If no one before has identified this literal, then it is an ILLEGAL (not found) literal 
+	// If no one before has identified this literal, then it is an ILLEGAL (not found, unknown) literal 
         //Case not found retturns a illegal token
         return yy::genesyspp_parser::make_ILLEGAL(obj_t(0, std::string("Illegal")), loc);
       }
