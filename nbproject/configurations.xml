@@ -132,8 +132,6 @@
         <itemPath>kernel/statistics/CollectorDefaultImpl1.cpp</itemPath>
         <itemPath>kernel/statistics/CollectorDefaultImpl1.h</itemPath>
         <itemPath>kernel/statistics/Collector_if.h</itemPath>
-        <itemPath>kernel/statistics/SamplerBoostImpl.cpp</itemPath>
-        <itemPath>kernel/statistics/SamplerBoostImpl.h</itemPath>
         <itemPath>kernel/statistics/SamplerDefaultImpl1.cpp</itemPath>
         <itemPath>kernel/statistics/SamplerDefaultImpl1.h</itemPath>
         <itemPath>kernel/statistics/SamplerStudents20202g1.cpp</itemPath>
@@ -351,6 +349,12 @@
       <packaging>
         <packType>Debian</packType>
         <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
           <packFileListElem type="File"
                             to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
                             from="${OUTPUT_PATH}"
@@ -821,16 +825,6 @@
             flavor2="0">
       </item>
       <item path="kernel/statistics/Collector_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="kernel/statistics/SamplerBoostImpl.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="kernel/statistics/SamplerBoostImpl.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
       </item>
       <item path="kernel/statistics/SamplerDefaultImpl1.cpp"
             ex="false"
@@ -1765,16 +1759,6 @@
             flavor2="0">
       </item>
       <item path="kernel/statistics/Collector_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="kernel/statistics/SamplerBoostImpl.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="kernel/statistics/SamplerBoostImpl.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
       </item>
       <item path="kernel/statistics/SamplerDefaultImpl1.cpp"
             ex="false"

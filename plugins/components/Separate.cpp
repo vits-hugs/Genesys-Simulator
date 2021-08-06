@@ -59,6 +59,7 @@ std::map<std::string, std::string>* Separate::_saveInstance() {
 bool Separate::_check(std::string* errorMessage) {
     bool resultAll = true;
     // \todo: not implemented yet
+    *errorMessage += "";
     return resultAll;
 }
 

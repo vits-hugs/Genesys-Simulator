@@ -22,7 +22,7 @@ Formula::Formula(Model* model, std::string name) : ModelElement(model, Util::Typ
 
 std::string Formula::show() {
 	std::string expressions = "";
-	unsigned int i = 0;
+    //unsigned int i = 0;
 	// for (std::list<std::string>::iterator it = _formulaExpressions->list()->begin(); it != _formulaExpressions->list()->end(); it++) {
 	//expressions += "expression[" + std::to_string(i++) + "]=\"" + (*it) + "\"; ";
 	//}
@@ -100,11 +100,10 @@ std::map<std::string, std::string>* Formula::_saveInstance() {
 }
 
 bool Formula::_check(std::string* errorMessage) {
-	std::string errorMsg = "";
-	bool res, resAll = true;
+    bool res, resAll = true;
 	//unsigned int i = 0;
 	for (std::map<std::string, std::string>::iterator it = _formulaExpressions->begin(); it != _formulaExpressions->end(); it++) {
-		res = _parentModel->checkExpression((*it).second, "formula expression[" + (*it).first + "]", &errorMsg);
+        res = _parentModel->checkExpression((*it).second, "formula expression[" + (*it).first + "]", errorMessage); 
 		if (!res) {
 			_parentModel->getTracer()->trace(Util::TraceLevel::L1_errorFatal, "Error parsing expression \"" + (*it).second + "\"");
 		}

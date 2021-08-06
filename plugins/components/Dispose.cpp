@@ -50,7 +50,7 @@ std::map<std::string, std::string>* Dispose::_saveInstance() {
 }
 
 bool Dispose::_check(std::string* errorMessage) {
-	//
+    *errorMessage += "";
 	return true;
 }
 

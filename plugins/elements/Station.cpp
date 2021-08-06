@@ -112,8 +112,8 @@ bool Station::_check(std::string* errorMessage) {
 		if (_parentModel->getElements()->getElement(Util::TypeOf<Attribute>(), neededName) == nullptr) {
 			new Attribute(_parentModel, neededName);
 		}
-	}
-	//
+    }
+    *errorMessage += "";
 	return true;
 }
 

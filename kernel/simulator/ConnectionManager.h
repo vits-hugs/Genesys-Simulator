@@ -23,6 +23,9 @@
 
 	typedef std::pair<ModelComponent*, unsigned int> Connection;
 
+/**
+ * ConnectionManager defines how a ModelComponent is output connected to none, one or more following ModelComponents. It has a list of nextConnections, where each Connection is a pair, defining the next ModelComponent and an input port on that component (usefull only if the next component has more than one input). The number of the output conection is its rank in the nextConnections list. Min and max number of input and output connectons can be defined.
+ */
 	class ConnectionManager {
 	public:
 		ConnectionManager();

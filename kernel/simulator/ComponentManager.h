@@ -19,6 +19,9 @@
 //namespace GenesysKernel {
 	//class Model;
 
+/*!
+ * ComponentManager allows to insert, access, find, remove and over Models 
+ */
 	class ComponentManager {
 	public:
 		ComponentManager(Model* model);

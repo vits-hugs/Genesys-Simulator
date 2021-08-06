@@ -36,7 +36,7 @@
 		bool isIsValidPlugin() const;
 		PluginInformation* getPluginInfo() const;
 	public:
-		ModelElement* loadNew(Model* model, std::map<std::string, std::string>* fields);
+	ModelElement* loadNew(Model* model, std::map<std::string, std::string>* fields); ///< creates a new ModelElement from fields loaded from a file
 		bool loadAndInsertNew(Model* model, std::map<std::string, std::string>* fields);
 	private:
 		ModelComponent* _loadNewComponent(Model* model, std::map<std::string, std::string>* fields);

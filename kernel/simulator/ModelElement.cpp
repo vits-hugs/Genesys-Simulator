@@ -103,7 +103,7 @@ std::map<std::string, std::string>* ModelElement::_saveInstance() {
 }
 
 bool ModelElement::_check(std::string* errorMessage) {
-    *errorMessage = ""; // just CLEAR the errormessage 
+    *errorMessage += "";
     return true; // if there is no ovveride, return true
 }
 

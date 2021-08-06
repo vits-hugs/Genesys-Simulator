@@ -16,6 +16,7 @@
 #include "Traits.h"
 #include <experimental/filesystem>
 #include <sys/stat.h>
+#include <thread>
 
 /*
  * This is the MAIN application of GenESyS. It just calls the Application specificied on the configuration/traits file.
@@ -33,12 +34,14 @@ int main(int argc, char** argv) {
     for (unsigned int i = 0; i < files.size(); i++) {
         std::cout << files[i] << std::endl;
     } 
-     */  
+     */
     // do not change it. Set you own application in Traits file => Traits<GenesysApplication_if>::Application
     GenesysApplication_if *app = new Traits<GenesysApplication_if>::Application();
     int res = app->main(argc, argv);
     // that's all folks!!
-    //std::cout << "Press ENTER to quit...";
-    //std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
+    //for (unsigned int i = 0; i < 1e3; i++)
+    //    std::this_thread::yield(); // Give the IDE a try to output previous traces
+    std::cout << "Press ENTER to quit...";
+    std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
     return res;
 }

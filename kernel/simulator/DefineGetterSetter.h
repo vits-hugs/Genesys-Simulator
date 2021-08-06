@@ -17,11 +17,14 @@
 #include <functional>
 #include "../util/Util.h"
 
-typedef std::function<double() > GetterMember;
-typedef std::function<void(double) > SetterMember;
+typedef std::function<double() > GetterMember; //!< Pointer to a getter function that return a double. Used to get values from SimulationControl and Simulationresponse
+typedef std::function<void(double) > SetterMember; //!< Pointer to a setter function that sets a double. Used to set values to Simulationresponse
 
-typedef std::function<std::string() > GetterMemberString;
-typedef std::function<void(std::string) > SetterMemberString;
+typedef std::function<std::string() > GetterMemberString; //!< Pointer to a getter function that return a string. Used to get values from SimulationControl and Simulationresponse
+typedef std::function<void(std::string) > SetterMemberString; //!< Pointer to a setter function that sets a string. Used to set values to Simulationresponse
+
+typedef std::function<double() > GetterMemberBool; //!< Pointer to a getter function that return a bool. Used to get values from SimulationControl and Simulationresponse
+typedef std::function<void(double) > SetterMemberBool; //!< Pointer to a setter function that sets a bool. Used to set values to Simulationresponse
 
 // double
 

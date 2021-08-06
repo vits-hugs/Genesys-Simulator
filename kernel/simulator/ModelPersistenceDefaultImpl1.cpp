@@ -97,8 +97,8 @@ bool ModelPersistenceDefaultImpl1::save(std::string filename) {
 			std::ofstream savefile;
 			savefile.open(filename, std::ofstream::out);
 			//savefile << "# Genesys simulation model " << std::endl;
-			time_t now = time(0);
-			char* dt = ctime(&now);
+            ////time_t now = time(0);
+            ////char* dt = ctime(&now);
 			//savefile << "# Last saved on " << dt;
 			//savefile << "# simulator infos" << std::endl;
 			_saveContent(simulatorInfosToSave, &savefile);

@@ -19,6 +19,9 @@
 //namespace GenesysKernel {
 	class Simulator;
 
+/*!
+ LicenceManager just prints a licence agreement and checks for some resource limits.
+ */
 	class LicenceManager {
 	public:
 		LicenceManager(Simulator* simulator);

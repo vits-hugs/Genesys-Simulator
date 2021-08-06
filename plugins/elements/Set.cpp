@@ -84,7 +84,8 @@ std::map<std::string, std::string>* Set::_saveInstance() {
 
 bool Set::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	// resultAll |= ...
+    // resultAll |= ...
+    *errorMessage += "";
 	return resultAll;
 }
 

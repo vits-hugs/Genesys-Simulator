@@ -56,7 +56,8 @@ std::map<std::string, std::string>* Exit::_saveInstance() {
 
 bool Exit::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	// \todo: not implemented yet
+    // \todo: not implemented yet
+    *errorMessage += "";
 	return resultAll;
 }
 

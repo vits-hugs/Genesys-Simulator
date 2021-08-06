@@ -55,7 +55,8 @@ std::map<std::string, std::string>* DropOff::_saveInstance() {
 
 bool DropOff::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	// \todo: not implemented yet
+    // \todo: not implemented yet
+    *errorMessage += "";
 	return resultAll;
 }
 

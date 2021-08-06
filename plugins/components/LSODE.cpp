@@ -148,7 +148,8 @@ std::map<std::string, std::string>* LSODE::_saveInstance() {
 
 bool LSODE::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	// \todo: not implemented yet
+    // \todo: not implemented yet
+    *errorMessage += "";
 	return resultAll;
 }
 

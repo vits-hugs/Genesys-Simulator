@@ -171,6 +171,7 @@ std::map<std::string, std::string>* Resource::_saveInstance() {
 }
 
 bool Resource::_check(std::string* errorMessage) {
+    *errorMessage += "";
 	return true;
 }
 

@@ -18,13 +18,15 @@
 #include "Event.h"
 
 //namespace GenesysKernel {
-/* \todo: To implement as item (1) for DS3
+/* 
  * used to get and set values no matter the class (for process analyser)
  * should be a wait to invoke a getter or setter no matter the class (a pointer to a member function without specifying the class 
  */
 //typedef double (*memberFunctionGetDoubleVarHandler)(); //template<> ... typedef double (T::*getDoubleVarHandler)() or something like that
 //typedef void (*memberFunctionSetDoubleVarHandler)(double);
 
+/*! Stores an event that happened on a specific replication
+ */
 class SimulationEvent {
 public:
 
@@ -68,12 +70,11 @@ public: // event listeners (handlers)
     void addOnEntityRemoveHandler(simulationEventHandler EventHandler);
     void addOnSimulationStartHandler(simulationEventHandler EventHandler);
     void addOnSimulationPausedHandler(simulationEventHandler EventHandler);
-    void addOnSimulationPausedResumeHandler(simulationEventHandler EventHandler);
+	void addOnSimulationResumeHandler(simulationEventHandler EventHandler);
     void addOnSimulationEndHandler(simulationEventHandler EventHandler);
     void addOnBreakpointHandler(simulationEventHandler EventHandler);
     // for handlers that are class members (methods)
     template<typename Class> void addOnProcessEventHandler(Class * object, void (Class::*function)(SimulationEvent*));
-    //  \todo: ...
 public:
     void NotifyReplicationStartHandlers(SimulationEvent* se);
     void NotifyReplicationStepHandlers(SimulationEvent* se);
@@ -84,7 +85,7 @@ public:
     void NotifyEntityRemoveHandlers(SimulationEvent* se);
     void NotifySimulationStartHandlers(SimulationEvent* se);
     void NotifySimulationPausedHandlers(SimulationEvent* se);
-    void NotifySimulationPausedResumeHandlers(SimulationEvent* se);
+	void NotifySimulationResumeHandlers(SimulationEvent* se);
     void NotifySimulationEndHandlers(SimulationEvent* se);
     void NotifyBreakpointHandlers(SimulationEvent* se);
 private:
@@ -101,19 +102,18 @@ private: // events listener
     List<simulationEventHandler>* _onEntityRemoveHandlers = new List<simulationEventHandler>();
     List<simulationEventHandler>* _onSimulationStartHandlers = new List<simulationEventHandler>();
     List<simulationEventHandler>* _onSimulationPausedHandlers = new List<simulationEventHandler>();
-    List<simulationEventHandler>* _onSimulationPausedResumeHandlers = new List<simulationEventHandler>();
+	List<simulationEventHandler>* _onSimulationResumeHandlers = new List<simulationEventHandler>();
     List<simulationEventHandler>* _onSimulationEndHandlers = new List<simulationEventHandler>();
     List<simulationEventHandler>* _onBreakpointHandlers = new List<simulationEventHandler>();
     // for handlers that are class members (methods)
     List<simulationEventHandlerMethod>* _onProcessEventHandlerMethods = new List<simulationEventHandlerMethod>();
-    //  \todo: ...
 };
 
 // implementation for template methods
 
 template<typename Class> void OnEventManager::addOnProcessEventHandler(Class * object, void (Class::*function)(SimulationEvent*)) {
     simulationEventHandlerMethod handlerMethod = std::bind(function, object, std::placeholders::_1);
-    // \todo: if handlerMethod already insert, should not insert it again. Problem to solve <...> for function
+	// \todo: Complicated: if handlerMethod already insert, should not insert it again. Problem to solve <...> for function
     //if (_onProcessEventHandlerMethods->find(handlerMethod) == _onProcessEventHandlerMethods->list()->end())
     this->_onProcessEventHandlerMethods->insert(handlerMethod);
     // trying unique to solve the issue

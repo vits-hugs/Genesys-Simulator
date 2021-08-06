@@ -126,6 +126,7 @@ std::map<std::string, std::string>* Variable::_saveInstance() {
 }
 
 bool Variable::_check(std::string* errorMessage) {
+    *errorMessage += "";
 	return true;
 }
 
