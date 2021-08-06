@@ -42,7 +42,6 @@ static inline std::string map2str(std::map<std::string, std::string>* mapss) {
     res = res.substr(0, res.length() - 1);
     return res;
 }
-
 /*
 static inline void ltrim(std::string &s) {
     s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](int ch) {
@@ -65,6 +64,13 @@ static inline void trim(std::string &s) {
     rtrim(s);
 }
  */
+
+static inline std::string stdTruncIfInt(std::string strValue) {
+    if (strValue.substr(strValue.length() - 7, 7) == ".000000")
+        return strValue.substr(0, strValue.length() - 7);
+    else
+        return strValue;
+}
 
 static inline std::string trim(std::string str) {
     const char* typeOfWhitespaces = " \t\n\r\f\v";
@@ -188,7 +194,7 @@ private:
     static std::map<std::string, std::string> _S_TypeOf;
 
 public: // indentation and string
-    static unsigned int _S_indentation; // \todo: IS PRIVATE. ITS HERE JUST TO INCLUDE IT AS A WATCH
+    static unsigned int _S_indentation; // \todo: IT IS PRIVATE. ITS HERE JUST TO INCLUDE IT AS A WATCH
     static void SetIndent(const unsigned short indent);
     static void IncIndent();
     static void DecIndent();

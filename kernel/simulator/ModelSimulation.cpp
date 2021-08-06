@@ -87,26 +87,21 @@ void ModelSimulation::start() {
     }
     _isRunning = true;
     _isPaused = false;
-    //std::chrono::time_point<std::chrono::_V2::system_clock, std::chrono::duration<long int, std::ratio < 1, 1000000000 >> > replicationStartTime = std::chrono::high_resolution_clock::now();
     do {
-        // check if is the beggining of a new replication or not (the case of a previoulsy paused simulation)
         if (!_replicationIsInitiaded) {
             Util::SetIndent(1);
             _model->getOnEvents()->NotifyReplicationStartHandlers(new SimulationEvent(_currentReplicationNumber, nullptr));
             _initReplication();
             Util::IncIndent();
         }
-        // main simulation loop
-        do {
+        do { // main simulation loop
             _stepSimulation();
         } while (!_isReplicationEndCondition() && !_pauseRequested);
-
         if (!_pauseRequested) {
             Util::SetIndent(1); // force
             _replicationEnded();
             _currentReplicationNumber++;
             if (_currentReplicationNumber <= _numberOfReplications) {
-                //_initReplication();
                 if (_pauseOnReplication) {
                     _model->getTracer()->trace("End of replication. Simulation is paused.", Util::TraceLevel::L7_internal);
                     _pauseRequested = true;
@@ -116,17 +111,7 @@ void ModelSimulation::start() {
     } while (_currentReplicationNumber <= _numberOfReplications && !_pauseRequested);
     // all replications done (or paused during execution)
     if (!_pauseRequested) { // done
-        _simulationIsInitiated = false;
-        if (this->_showReportsAfterSimulation)
-            _simulationReporter->showSimulationStatistics(); //_cStatsSimulation);
-        Util::DecIndent();
-        // clear current event
-        _currentEntity = nullptr;
-        _currentComponent = nullptr;
-        //
-        std::chrono::duration<double> duration = std::chrono::system_clock::now() - this->_startTimeSimulation;
-        _model->getTracer()->trace(Util::TraceLevel::L2_results, "Simulation of model \"" + _info->getName() + "\" has finished. Elapsed time " + std::to_string(duration.count()) + " seconds.");
-        _model->getOnEvents()->NotifySimulationEndHandlers(new SimulationEvent(0, nullptr));
+        _simulationEnded();
     } else { // paused
         _model->getTracer()->trace("Replication paused", Util::TraceLevel::L9_mostDetailed);
         _model->getOnEvents()->NotifySimulationPausedHandlers(new SimulationEvent(_currentReplicationNumber, nullptr));
@@ -134,6 +119,20 @@ void ModelSimulation::start() {
         _isPaused = true;
     }
     _isRunning = false;
+}
+
+void ModelSimulation::_simulationEnded() {
+    _simulationIsInitiated = false;
+    if (this->_showReportsAfterSimulation)
+        _simulationReporter->showSimulationStatistics(); //_cStatsSimulation);
+    Util::DecIndent();
+    // clear current event
+    _currentEntity = nullptr;
+    _currentComponent = nullptr;
+    //
+    std::chrono::duration<double> duration = std::chrono::system_clock::now() - this->_startTimeSimulation;
+    _model->getTracer()->trace(Util::TraceLevel::L2_results, "Simulation of model \"" + _info->getName() + "\" has finished. Elapsed time " + std::to_string(duration.count()) + " seconds.");
+    _model->getOnEvents()->NotifySimulationEndHandlers(new SimulationEvent(0, nullptr));
 }
 
 void ModelSimulation::_replicationEnded() {
@@ -460,19 +459,6 @@ void ModelSimulation::step() {
     _pauseRequested = true;
     this->start();
     _pauseRequested = savedPauseRequest;
-    /*
-        if (_simulationIsInitiated && _replicationIsInitiaded) {
-            if (!_isReplicationEndCondition()) {
-                try {
-                    this->_stepSimulation();
-                } catch (std::exception *e) {
-                    _model->getTracer()->traceError((*e), "Error on simulation step");
-                }
-            } else {
-
-            }
-        }
-     */
 }
 
 void ModelSimulation::stop() {

@@ -64,14 +64,14 @@ std::string Entity::show() {
 		if (map->size() == 0) { // scalar
 			message += "NaN;"; //std::to_string(map->begin()->second) + ";";
 		} else if (map->size() == 1) { // scalar
-			message += std::to_string(map->begin()->second) + ",";
+            message += stdTruncIfInt(std::to_string(map->begin()->second)) + ", ";
 		} else {
 			// array or matrix
 			message += "[";
 			for (std::pair<std::string, double> valIt : *map) {
-				message += valIt.first + "=>" + std::to_string(valIt.second) + ",";
-			}
-			message = message.substr(0, message.length() - 1);
+                message += valIt.first + "=>" + stdTruncIfInt(std::to_string(valIt.second)) + ", ";
+                }
+            message = message.substr(0, message.length() - 2);
 			message += "];";
 		}
 		_attributeValues->next();
