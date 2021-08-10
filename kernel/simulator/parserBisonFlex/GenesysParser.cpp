@@ -1606,18 +1606,19 @@ namespace yy {
 
   case 91: // pluginFunction: fNQ "(" QUEUE ")"
 #line 471 "bisonparser.yy"
-                                    { yylhs.value.as < obj_t > ().valor = ((Queue*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Queue>(), yystack_[1].value.as < obj_t > ().id)))->size();}
-#line 1611 "../GenesysParser.cpp"
+                                    {   //std::cout << "Queue ID: " << $3.id << ", Size: " << ((Queue*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Queue>(), $3.id)))->size() << std::endl; 
+                                        yylhs.value.as < obj_t > ().valor = ((Queue*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Queue>(), yystack_[1].value.as < obj_t > ().id)))->size();}
+#line 1612 "../GenesysParser.cpp"
     break;
 
   case 92: // pluginFunction: fLASTINQ "(" QUEUE ")"
-#line 472 "bisonparser.yy"
+#line 473 "bisonparser.yy"
                                     {/*For now does nothing because need acces to list of QUEUE, or at least the last element*/ }
-#line 1617 "../GenesysParser.cpp"
+#line 1618 "../GenesysParser.cpp"
     break;
 
   case 93: // pluginFunction: fFIRSTINQ "(" QUEUE ")"
-#line 473 "bisonparser.yy"
+#line 474 "bisonparser.yy"
                                     { 
                 if (((Queue*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Queue>(), yystack_[1].value.as < obj_t > ().id)))->size() > 0){
                     //id da 1a entidade da fila, talvez pegar nome
@@ -1625,61 +1626,61 @@ namespace yy {
                 }else{
                     yylhs.value.as < obj_t > ().valor = 0;
                 } }
-#line 1629 "../GenesysParser.cpp"
+#line 1630 "../GenesysParser.cpp"
     break;
 
   case 94: // pluginFunction: fSAQUE "(" QUEUE "," ATRIB ")"
-#line 480 "bisonparser.yy"
+#line 481 "bisonparser.yy"
                                        {   
                 Util::identification queueID = yystack_[3].value.as < obj_t > ().id;
                 Util::identification attrID = yystack_[1].value.as < obj_t > ().id;
                 double sum = ((Queue*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Queue>(), yystack_[3].value.as < obj_t > ().id)))->sumAttributesFromWaiting(attrID);
                 yylhs.value.as < obj_t > ().valor = sum; }
-#line 1639 "../GenesysParser.cpp"
+#line 1640 "../GenesysParser.cpp"
     break;
 
   case 95: // pluginFunction: fAQUE "(" QUEUE "," NUMD "," ATRIB ")"
-#line 485 "bisonparser.yy"
+#line 486 "bisonparser.yy"
                                              {
                 Util::identification queueID = yystack_[5].value.as < obj_t > ().id;
                 Util::identification attrID = yystack_[1].value.as < obj_t > ().id;
                 double value = ((Queue*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Queue>(), yystack_[5].value.as < obj_t > ().id)))->getAttributeFromWaitingRank(yystack_[3].value.as < obj_t > ().valor-1, attrID); // rank starts on 0 in genesys
                 yylhs.value.as < obj_t > ().valor = value; }
-#line 1649 "../GenesysParser.cpp"
+#line 1650 "../GenesysParser.cpp"
     break;
 
   case 96: // pluginFunction: fMR "(" RESOURCE ")"
-#line 493 "bisonparser.yy"
+#line 494 "bisonparser.yy"
                                         { yylhs.value.as < obj_t > ().valor = ((Resource*)driver.getModel()->getElements()->getElement(Util::TypeOf<Resource>(), yystack_[1].value.as < obj_t > ().id))->getCapacity();}
-#line 1655 "../GenesysParser.cpp"
+#line 1656 "../GenesysParser.cpp"
     break;
 
   case 97: // pluginFunction: fNR "(" RESOURCE ")"
-#line 494 "bisonparser.yy"
+#line 495 "bisonparser.yy"
                                          { yylhs.value.as < obj_t > ().valor = ((Resource*)driver.getModel()->getElements()->getElement(Util::TypeOf<Resource>(), yystack_[1].value.as < obj_t > ().id))->getNumberBusy();}
-#line 1661 "../GenesysParser.cpp"
+#line 1662 "../GenesysParser.cpp"
     break;
 
   case 98: // pluginFunction: fRESSEIZES "(" RESOURCE ")"
-#line 495 "bisonparser.yy"
+#line 496 "bisonparser.yy"
                                          { /*For now does nothing because needs get Seizes, check with teacher*/}
-#line 1667 "../GenesysParser.cpp"
+#line 1668 "../GenesysParser.cpp"
     break;
 
   case 99: // pluginFunction: fSTATE "(" RESOURCE ")"
-#line 496 "bisonparser.yy"
+#line 497 "bisonparser.yy"
                                          {  yylhs.value.as < obj_t > ().valor = static_cast<int>(((Resource*)driver.getModel()->getElements()->getElement(Util::TypeOf<Resource>(), yystack_[1].value.as < obj_t > ().id))->getResourceState()); }
-#line 1673 "../GenesysParser.cpp"
+#line 1674 "../GenesysParser.cpp"
     break;
 
   case 100: // pluginFunction: fIRF "(" RESOURCE ")"
-#line 497 "bisonparser.yy"
+#line 498 "bisonparser.yy"
                                          { yylhs.value.as < obj_t > ().valor = ((Resource*)driver.getModel()->getElements()->getElement(Util::TypeOf<Resource>(), yystack_[1].value.as < obj_t > ().id))->getResourceState() == Resource::ResourceState::FAILED ? 1 : 0; }
-#line 1679 "../GenesysParser.cpp"
+#line 1680 "../GenesysParser.cpp"
     break;
 
   case 101: // pluginFunction: fSETSUM "(" SET ")"
-#line 498 "bisonparser.yy"
+#line 499 "bisonparser.yy"
                               {
                 unsigned int count=0;
                 Resource* res;
@@ -1693,17 +1694,17 @@ namespace yy {
                     }
                 }
                 yylhs.value.as < obj_t > ().valor = count; }
-#line 1697 "../GenesysParser.cpp"
+#line 1698 "../GenesysParser.cpp"
     break;
 
   case 102: // pluginFunction: fNUMSET "(" SET ")"
-#line 514 "bisonparser.yy"
+#line 515 "bisonparser.yy"
                                 { yylhs.value.as < obj_t > ().valor = ((Set*)driver.getModel()->getElements()->getElement(Util::TypeOf<Set>(),yystack_[1].value.as < obj_t > ().id))->getElementSet()->size(); }
-#line 1703 "../GenesysParser.cpp"
+#line 1704 "../GenesysParser.cpp"
     break;
 
 
-#line 1707 "../GenesysParser.cpp"
+#line 1708 "../GenesysParser.cpp"
 
             default:
               break;
@@ -2599,8 +2600,8 @@ namespace yy {
      316,   317,   318,   319,   320,   321,   322,   328,   333,   334,
      359,   368,   377,   386,   399,   400,   403,   406,   414,   416,
      419,   422,   430,   433,   437,   441,   447,   450,   454,   458,
-     468,   471,   472,   473,   480,   485,   493,   494,   495,   496,
-     497,   498,   514
+     468,   471,   473,   474,   481,   486,   494,   495,   496,   497,
+     498,   499,   515
   };
 
   void
@@ -2632,9 +2633,9 @@ namespace yy {
 
 
 } // yy
-#line 2636 "../GenesysParser.cpp"
+#line 2637 "../GenesysParser.cpp"
 
-#line 521 "bisonparser.yy"
+#line 522 "bisonparser.yy"
 
 void
 yy::genesyspp_parser::error (const location_type& l,

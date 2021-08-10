@@ -31,11 +31,11 @@ Resource::~Resource() {
 
 std::string Resource::show() {
 	return ModelElement::show() +
-			",capacity=" + std::to_string(_capacity) +
-			",costBusyByour=" + std::to_string(_costBusyHour) +
-			",costIdleByour=" + std::to_string(_costIdleHour) +
-			",costPerUse=" + std::to_string(_costPerUse) +
-			",state=" + std::to_string(static_cast<int> (_resourceState));
+            ",capacity=" + strTruncIfInt(std::to_string(_capacity)) +
+            ",costBusyByour=" + strTruncIfInt(std::to_string(_costBusyHour)) +
+            ",costIdleByour=" + strTruncIfInt(std::to_string(_costIdleHour)) +
+            ",costPerUse=" + strTruncIfInt(std::to_string(_costPerUse)) +
+            ",state=" + strTruncIfInt(std::to_string(static_cast<int> (_resourceState)));
 }
 
 void Resource::seize(unsigned int quantity, double tnow) {

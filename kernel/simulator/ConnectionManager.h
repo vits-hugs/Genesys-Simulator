@@ -36,8 +36,8 @@
 		ModelComponent* atRank(unsigned int rank); /*!< DEPRECTED. Use  getConnectionAtRank instead */
 		Connection* getFrontConnection();
 		Connection* getConnectionAtRank(unsigned int rank);
-		void insert(ModelComponent* component, unsigned int inputNumber = 0);
-		void insertAtRank(unsigned int rank, Connection* connection);
+	void insert(ModelComponent* component, unsigned int inputNumber = 0);
+	void insertAtRank(unsigned int rank, Connection* connection);
 		//void insert(ModelComponent* component, unsigned int inputNumber = 0);
 		std::list<Connection*>* list() const;
 		//void setCurrentOutputConnections(unsigned int _currentOutputConnections);

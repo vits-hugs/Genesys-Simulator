@@ -39,8 +39,10 @@ Connection* ConnectionManager::getConnectionAtRank(unsigned int rank) {
 }
 
 void ConnectionManager::insert(ModelComponent* component, unsigned int inputNumber) {
-	_nextConnections->insert(new Connection(component, inputNumber));
-	_currentOutputConnections++;
+    Connection* connection = new Connection(component, inputNumber);
+    unsigned int rank = _nextConnections->size();
+    _nextConnections->setAtRank(rank, connection);
+    _currentOutputConnections++;
 }
 
 void ConnectionManager::insertAtRank(unsigned int rank, Connection* connection) {

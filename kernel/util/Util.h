@@ -65,7 +65,7 @@ static inline void trim(std::string &s) {
 }
  */
 
-static inline std::string stdTruncIfInt(std::string strValue) {
+static inline std::string strTruncIfInt(std::string strValue) {
     if (strValue.substr(strValue.length() - 7, 7) == ".000000")
         return strValue.substr(0, strValue.length() - 7);
     else
