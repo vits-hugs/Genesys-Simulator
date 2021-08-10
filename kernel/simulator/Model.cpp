@@ -240,7 +240,7 @@ void Model::_createModelInternalElements() {
 	Util::IncIndent();
 
 	for (ModelComponent* component : *_componentManager) {
-		getTracer()->trace(Util::TraceLevel::L7_internal, "Internals for " + component->getClassname() + " \"" + component->getName() + "\"");
+        getTracer()->trace(Util::TraceLevel::L8_detailed, "Internals for " + component->getClassname() + " \"" + component->getName() + "\"");
 		Util::IncIndent();
 		ModelComponent::CreateInternalElements(component);
 		Util::DecIndent();
@@ -261,7 +261,7 @@ void Model::_createModelInternalElements() {
 		//	tracer()->trace(Util::TraceLevel::L7_internal, "Creating internal elements");
 		//}
 		for (std::list<ModelElement*>::iterator itel = modelElements->begin(); itel != modelElements->end(); itel++) {
-			getTracer()->trace(Util::TraceLevel::L7_internal, "Internals for " + (*itel)->getClassname() + " \"" + (*itel)->getName() + "\""); // (" + std::to_string(pos) + "/" + std::to_string(originalSize) + ")");
+            getTracer()->trace(Util::TraceLevel::L8_detailed, "Internals for " + (*itel)->getClassname() + " \"" + (*itel)->getName() + "\""); // (" + std::to_string(pos) + "/" + std::to_string(originalSize) + ")");
 			Util::IncIndent();
 			ModelElement::CreateInternalElements((*itel));
 			Util::DecIndent();

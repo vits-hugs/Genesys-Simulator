@@ -127,12 +127,20 @@ L      [A-Za-z0-9_.]+
 [sS][iI][nN]      {return yy::genesyspp_parser::make_fSIN(obj_t(0, std::string(yytext)), loc);}
 [cC][oO][sS]      {return yy::genesyspp_parser::make_fCOS(obj_t(0, std::string(yytext)), loc);}
 
-%{// aritmetic funcions %}
+%{// math funcions %}
 [rR][oO][uU][nN][dD]  {return yy::genesyspp_parser::make_fROUND(obj_t(0, std::string(yytext)), loc);}
 [mM][oO][dD]          {return yy::genesyspp_parser::make_fMOD(obj_t(0, std::string(yytext)), loc);}
 [tT][rR][uU][nN][cC]  {return yy::genesyspp_parser::make_fTRUNC(obj_t(0, std::string(yytext)), loc);}
 [fF][rR][aA][cC]      {return yy::genesyspp_parser::make_fFRAC(obj_t(0, std::string(yytext)), loc);}
 [eE][xX][pP]          {return yy::genesyspp_parser::make_fEXP(obj_t(0, std::string(yytext)), loc);}
+[sS][qQ][rR][tT]      {return yy::genesyspp_parser::make_fSQRT(obj_t(0, std::string(yytext)), loc);}
+[lL][oO][gG]          {return yy::genesyspp_parser::make_fLOG(obj_t(0, std::string(yytext)), loc);}
+[lL][nN]              {return yy::genesyspp_parser::make_fLN(obj_t(0, std::string(yytext)), loc);}
+
+%{// string functions %}
+[vV][aA][lL]          {return yy::genesyspp_parser::make_fVAL(obj_t(0, std::string(yytext)), loc);}
+[eE][vV][aA][lL]      {return yy::genesyspp_parser::make_fEVAL(obj_t(0, std::string(yytext)), loc);}
+[lL][eE][nN][gG]      {return yy::genesyspp_parser::make_fLENG(obj_t(0, std::string(yytext)), loc);}
 
 %{// probability distributions %}
 [rR][nN][dD]	  {return yy::genesyspp_parser::make_fRND1(obj_t(0, std::string(yytext)), loc);}
@@ -148,8 +156,11 @@ L      [A-Za-z0-9_.]+
 [dD][iI][sS][cC]  {return yy::genesyspp_parser::make_fDISC(obj_t(0, std::string(yytext)), loc);}
 
 %{// simulation infos %}
-[tT][nN][oO][wW]  {return yy::genesyspp_parser::make_fTNOW(obj_t(0, std::string(yytext)), loc);}
-[tT][fF][iI][nN]  {return yy::genesyspp_parser::make_fTFIN(obj_t(0, std::string(yytext)), loc);}
+[tT][nN][oO][wW]          {return yy::genesyspp_parser::make_fTNOW(obj_t(0, std::string(yytext)), loc);}
+[tT][fF][iI][nN]          {return yy::genesyspp_parser::make_fTFIN(obj_t(0, std::string(yytext)), loc);}
+[mM][aA][xX][rR][eE][pP]  {return yy::genesyspp_parser::make_fMAXREP(obj_t(0, std::string(yytext)), loc);}
+[nN][uU][mM][rR][eE][pP]  {return yy::genesyspp_parser::make_fNUMREP(obj_t(0, std::string(yytext)), loc);}
+[iI][dD][eE][nN][tT]      {return yy::genesyspp_parser::make_fIDENT(obj_t(0, std::string(yytext)), loc);}
 
 [tT][aA][vV][gG]  {return yy::genesyspp_parser::make_fTAVG(obj_t(0, std::string(yytext)), loc);}
 
@@ -162,6 +173,7 @@ L      [A-Za-z0-9_.]+
 [iI][rR][fF]                                    {return yy::genesyspp_parser::make_fIRF(obj_t(0, std::string(yytext)), loc);}
 [sS][tT][aA][tT][eE]                            {return yy::genesyspp_parser::make_fSTATE(obj_t(0, std::string(yytext)), loc);}
 [sS][eE][tT][sS][uU][mM]                        {return yy::genesyspp_parser::make_fSETSUM(obj_t(0, std::string(yytext)), loc);}
+[rR][eE][sS][uU][tT][iI][lL]                    {return yy::genesyspp_parser::make_fRESUTIL(obj_t(0, std::string(yytext)), loc);}
 [rR][eE][sS][sS][eE][iI][zZ][eE][sS]            {return yy::genesyspp_parser::make_fRESSEIZES(obj_t(0, std::string(yytext)), loc);}
 [iI][dD][lL][eE][_][rR][eE][sS]                 {return yy::genesyspp_parser::make_NUMD(obj_t(-1, std::string(yytext)), loc);}
 [bB][uU][sS][yY][_][rR][eE][sS]                 {return yy::genesyspp_parser::make_NUMD(obj_t(-2, std::string(yytext)), loc);}
@@ -175,11 +187,17 @@ L      [A-Za-z0-9_.]+
 [fF][iI][rR][sS][tT][iI][nN][qQ]     {return yy::genesyspp_parser::make_fFIRSTINQ(obj_t(0, std::string(yytext)), loc);}
 [sS][aA][qQ][uU][eE]                 {return yy::genesyspp_parser::make_fSAQUE(obj_t(0, std::string(yytext)), loc);}
 [aA][qQ][uU][eE]                     {return yy::genesyspp_parser::make_fAQUE(obj_t(0, std::string(yytext)), loc);}
+[eE][nN][tT][aA][tT][rR][aA][nN][kK] {return yy::genesyspp_parser::make_fENTATRANK(obj_t(0, std::string(yytext)), loc);}
 %{/**end_Lexical:Queue**/%}
 
 %{/**begin_Lexical:Set**/%}
 [nN][uU][mM][sS][eE][tT]             {return yy::genesyspp_parser::make_fNUMSET(obj_t(0, std::string(yytext)), loc);}
 %{/**end_Lexical:Set**/%}
+
+%{/**begin_Lexical:EntityGroup**/%}
+[nN][uU][mM][gG][rR]                 {return yy::genesyspp_parser::make_fNUMGR(obj_t(0, std::string(yytext)), loc);}
+[aA][tT][rR][gG][rR]                 {return yy::genesyspp_parser::make_fATRGR(obj_t(0, std::string(yytext)), loc);}
+%{/**end_Lexical:EntityGroup**/%}
 
 %{/****end_Lexical_plugins****/%}
 

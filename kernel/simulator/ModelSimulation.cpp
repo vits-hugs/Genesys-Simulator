@@ -151,15 +151,13 @@ void ModelSimulation::_actualizeSimulationStatistics() {
     const std::string UtilTypeOfCounter = Util::TypeOf<Counter>();
 
     StatisticsCollector *sc, *scSim;
-    //ModelElement* me;
     List<ModelElement*>* cstats = _model->getElements()->getElementList(Util::TypeOf<StatisticsCollector>());
     for (std::list<ModelElement*>::iterator itMod = cstats->list()->begin(); itMod != cstats->list()->end(); itMod++) {
         sc = dynamic_cast<StatisticsCollector*> ((*itMod));
         scSim = nullptr;
         for (std::list<ModelElement*>::iterator itSim = _statsCountersSimulation->list()->begin(); itSim != _statsCountersSimulation->list()->end(); itSim++) {
             if ((*itSim)->getClassname() == UtilTypeOfStatisticsCollector) {
-                if ((*itSim)->getName() == _cte_stCountSimulNamePrefix + sc->getName() && dynamic_cast<StatisticsCollector*> (*itSim)->getParent() == sc->getParent()) {
-                    // found
+                if ((*itSim)->getName() == _cte_stCountSimulNamePrefix + sc->getName() && dynamic_cast<StatisticsCollector*> (*itSim)->getParent() == sc->getParent()) { // found
                     scSim = dynamic_cast<StatisticsCollector*> (*itSim);
                     break;
                 }
@@ -206,6 +204,7 @@ void ModelSimulation::_actualizeSimulationStatistics() {
         assert(scSim != nullptr);
         scSim->getStatistics()->getCollector()->addValue(cnt->getCountValue());
     }
+    //_model->getTracer()->trace(Util::TraceLevel::L2_results, "Simulation stats: " + std::to_string(this->_statsCountersSimulation->size()));
 }
 
 void ModelSimulation::_showSimulationHeader() {
@@ -244,9 +243,9 @@ void ModelSimulation::_showSimulationHeader() {
 void ModelSimulation::_initSimulation() {
     _startTimeSimulation = std::chrono::system_clock::now();
     _showSimulationHeader();
-    //model->getTracer()->trace(Util::TraceLevel::L6_arrival, "------------------------------");
-    _model->getTracer()->trace(Util::TraceLevel::L6_arrival, "");
-    _model->getTracer()->trace(Util::TraceLevel::L6_arrival, "Simulation of model \"" + _info->getName() + "\" is starting.");
+    //model->getTracer()->trace(Util::TraceLevel::L5_event, "------------------------------");
+    _model->getTracer()->trace(Util::TraceLevel::L5_event, "");
+    _model->getTracer()->trace(Util::TraceLevel::L5_event, "Simulation of model \"" + _info->getName() + "\" is starting.");
     // defines the time scale factor to adjust replicatonLength to replicationBaseTime
     _replicationTimeScaleFactorToBase = Util::TimeUnitConvert(this->_replicationLengthTimeUnit, this->_replicationBaseTimeUnit);
     // copy all CStats and Counters (used in a replication) to CStats and counters for the whole simulation
@@ -285,14 +284,11 @@ void ModelSimulation::_initSimulation() {
 void ModelSimulation::_initReplication() {
     _startTimeReplication = std::chrono::system_clock::now();
     TraceManager* tm = _model->getTracer();
-    tm->trace(Util::TraceLevel::L6_arrival, "");
+    tm->trace(Util::TraceLevel::L5_event, "");
     tm->trace(Util::TraceLevel::L2_results, "Replication " + std::to_string(_currentReplicationNumber) + " of " + std::to_string(_numberOfReplications) + " is starting.");
-
     _model->getFutureEvents()->clear();
+    _model->getElements()->getElementList("Entity")->clear();
     _simulatedTime = 0.0;
-    //// removed in 20210805:  _pauseRequested = false;
-
-    //if (_currentReplicationNumber > 1) {
     // init all components between replications
     Util::IncIndent();
     tm->trace(Util::TraceLevel::L8_detailed, "Initing Replication");
@@ -300,15 +296,10 @@ void ModelSimulation::_initReplication() {
         ModelComponent::InitBetweenReplications((*it));
     }
     // init all elements between replications
-    ModelElement* element;
-    std::string elementType;
-    //std::string* errorMessage = new std::string();
     std::list<std::string>* elementTypes = _model->getElements()->getElementClassnames();
-    for (std::list<std::string>::iterator typeIt = elementTypes->begin(); typeIt != elementTypes->end(); typeIt++) {
-        elementType = (*typeIt);
+    for (std::string elementType : *elementTypes) {//std::list<std::string>::iterator typeIt = elementTypes->begin(); typeIt != elementTypes->end(); typeIt++) {
         List<ModelElement*>* elements = _model->getElements()->getElementList(elementType);
-        for (std::list<ModelElement*>::iterator it = elements->list()->begin(); it != elements->list()->end(); it++) {
-            element = (*it);
+        for (ModelElement* element : *elements->list()) {//std::list<ModelElement*>::iterator it = elements->list()->begin(); it != elements->list()->end(); it++) {
             ModelElement::InitBetweenReplications(element);
         }
     }
@@ -316,14 +307,12 @@ void ModelSimulation::_initReplication() {
     //}
     Util::ResetIdOfType(Util::TypeOf<Entity>());
     Util::ResetIdOfType(Util::TypeOf<Event>());
-
     // insert first creation events
     SourceModelComponent *source;
     Entity *newEntity;
     Event *newEvent;
     double creationTime;
     unsigned int numToCreate;
-    //std::list<ModelComponent*>* list = _model->getComponents()->list();
     for (std::list<ModelComponent*>::iterator it = _model->getComponents()->begin(); it != _model->getComponents()->end(); it++) {
         source = dynamic_cast<SourceModelComponent*> (*it);
         if (source != nullptr) {
@@ -338,7 +327,6 @@ void ModelSimulation::_initReplication() {
             source->setEntitiesCreated(numToCreate);
         }
     }
-
     if (this->_initializeStatisticsBetweenReplications) {
         _initStatistics();
     }
@@ -397,7 +385,7 @@ bool ModelSimulation::_checkBreakpointAt(Event* event) {
         } else {
             _justTriggeredBreakpointsOnComponent = event->getComponent();
             _model->getOnEvents()->NotifyBreakpointHandlers(se);
-            _model->getTracer()->trace("Breakpoint found at component '" + event->getComponent()->getName() + "'. Replication is paused.", Util::TraceLevel::L6_arrival);
+            _model->getTracer()->trace("Breakpoint found at component '" + event->getComponent()->getName() + "'. Replication is paused.", Util::TraceLevel::L5_event);
 
             res = true;
         }
@@ -408,7 +396,7 @@ bool ModelSimulation::_checkBreakpointAt(Event* event) {
         } else {
             _justTriggeredBreakpointsOnEntity = event->getEntity();
             _model->getOnEvents()->NotifyBreakpointHandlers(se);
-            _model->getTracer()->trace("Breakpoint found at entity '" + event->getEntity()->getName() + "'. Replication is paused.", Util::TraceLevel::L6_arrival);
+            _model->getTracer()->trace("Breakpoint found at entity '" + event->getEntity()->getName() + "'. Replication is paused.", Util::TraceLevel::L5_event);
             res = true;
         }
     }
@@ -421,7 +409,7 @@ bool ModelSimulation::_checkBreakpointAt(Event* event) {
             } else {
                 _justTriggeredBreakpointsOnTime = time;
                 _model->getOnEvents()->NotifyBreakpointHandlers(se);
-                _model->getTracer()->trace("Breakpoint found at time '" + std::to_string(event->getTime()) + "'. Replication is paused.", Util::TraceLevel::L6_arrival);
+                _model->getTracer()->trace("Breakpoint found at time '" + std::to_string(event->getTime()) + "'. Replication is paused.", Util::TraceLevel::L5_event);
                 return true;
             }
         }
@@ -430,10 +418,10 @@ bool ModelSimulation::_checkBreakpointAt(Event* event) {
 }
 
 void ModelSimulation::_processEvent(Event* event) {
-    //	_model->getTracer()->traceSimulation(Util::TraceLevel::L6_arrival, event->time(), event->entity(), event->component(), "");
-    _model->getTracer()->trace(Util::TraceLevel::L6_arrival, "Event {" + event->show() + "}");
+    //	_model->getTracer()->traceSimulation(Util::TraceLevel::75_event, event->time(), event->entity(), event->component(), "");
+    _model->getTracer()->trace(Util::TraceLevel::L5_event, "Event {" + event->show() + "}");
     Util::IncIndent();
-    _model->getTracer()->trace(Util::TraceLevel::L9_mostDetailed, "Entity " + event->getEntity()->show());
+    _model->getTracer()->trace(Util::TraceLevel::L8_detailed, "Entity " + event->getEntity()->show());
     this->_currentEvent = event;
     // next three lines could be removed since currentEvet is now available
     this->_currentEntity = event->getEntity();
@@ -656,6 +644,22 @@ std::map<std::string, std::string>* ModelSimulation::saveInstance() {
 
 Event* ModelSimulation::getCurrentEvent() const {
     return _currentEvent;
+}
+
+void ModelSimulation::setShowSimulationResposesInReport(bool _showSimulationResposesInReport) {
+    this->_showSimulationResposesInReport = _showSimulationResposesInReport;
+}
+
+bool ModelSimulation::isShowSimulationResposesInReport() const {
+    return _showSimulationResposesInReport;
+}
+
+void ModelSimulation::setShowSimulationControlsInReport(bool _showSimulationControlsInReport) {
+    this->_showSimulationControlsInReport = _showSimulationControlsInReport;
+}
+
+bool ModelSimulation::isShowSimulationControlsInReport() const {
+    return _showSimulationControlsInReport;
 }
 
 void ModelSimulation::setReplicationReportBaseTimeUnit(Util::TimeUnit _replicationReportBaseTimeUnit) {
