@@ -24,26 +24,26 @@ Regras inúteis na gramática
   102 illegal: ILLEGAL
 
 
-Estado 114 conflitos: 13 de deslocamento/redução
+Estado 114 conflitos: 1 de deslocamento/redução
 Estado 157 conflitos: 13 de deslocamento/redução
 Estado 172 conflitos: 13 de deslocamento/redução
-Estado 176 conflitos: 13 de deslocamento/redução
-Estado 177 conflitos: 13 de deslocamento/redução
-Estado 178 conflitos: 13 de deslocamento/redução
-Estado 179 conflitos: 13 de deslocamento/redução
-Estado 180 conflitos: 13 de deslocamento/redução
-Estado 181 conflitos: 13 de deslocamento/redução
-Estado 182 conflitos: 13 de deslocamento/redução
-Estado 183 conflitos: 13 de deslocamento/redução
-Estado 184 conflitos: 13 de deslocamento/redução
+Estado 176 conflitos: 1 de deslocamento/redução
+Estado 177 conflitos: 1 de deslocamento/redução
+Estado 178 conflitos: 1 de deslocamento/redução
+Estado 179 conflitos: 1 de deslocamento/redução
+Estado 180 conflitos: 1 de deslocamento/redução
+Estado 181 conflitos: 1 de deslocamento/redução
+Estado 182 conflitos: 1 de deslocamento/redução
+Estado 183 conflitos: 1 de deslocamento/redução
+Estado 184 conflitos: 1 de deslocamento/redução
 Estado 185 conflitos: 13 de deslocamento/redução
-Estado 186 conflitos: 13 de deslocamento/redução
-Estado 187 conflitos: 13 de deslocamento/redução
-Estado 188 conflitos: 13 de deslocamento/redução
+Estado 186 conflitos: 1 de deslocamento/redução
+Estado 187 conflitos: 1 de deslocamento/redução
+Estado 188 conflitos: 1 de deslocamento/redução
 Estado 247 conflitos: 14 de deslocamento/redução
 Estado 276 conflitos: 13 de deslocamento/redução
 Estado 281 conflitos: 13 de deslocamento/redução
-Estado 289 conflitos: 13 de deslocamento/redução
+Estado 289 conflitos: 1 de deslocamento/redução
 Estado 310 conflitos: 13 de deslocamento/redução
 Estado 313 conflitos: 13 de deslocamento/redução
 Estado 326 conflitos: 13 de deslocamento/redução
@@ -3172,33 +3172,9 @@ Estado 114
    27           | expression • oEQ expression
    28           | expression • oNE expression
 
-    oLE   deslocar, e ir ao estado 117
-    oGE   deslocar, e ir ao estado 118
-    oEQ   deslocar, e ir ao estado 119
-    oNE   deslocar, e ir ao estado 120
-    oAND  deslocar, e ir ao estado 121
-    oOR   deslocar, e ir ao estado 122
-    "+"   deslocar, e ir ao estado 123
-    "-"   deslocar, e ir ao estado 124
-    "*"   deslocar, e ir ao estado 125
-    "^"   deslocar, e ir ao estado 126
-    "/"   deslocar, e ir ao estado 127
-    "<"   deslocar, e ir ao estado 128
-    ">"   deslocar, e ir ao estado 129
+    "^"  deslocar, e ir ao estado 126
 
-    oLE      [reduzir usando a regra 20 (aritmetica)]
-    oGE      [reduzir usando a regra 20 (aritmetica)]
-    oEQ      [reduzir usando a regra 20 (aritmetica)]
-    oNE      [reduzir usando a regra 20 (aritmetica)]
-    oAND     [reduzir usando a regra 20 (aritmetica)]
-    oOR      [reduzir usando a regra 20 (aritmetica)]
-    "+"      [reduzir usando a regra 20 (aritmetica)]
-    "-"      [reduzir usando a regra 20 (aritmetica)]
-    "*"      [reduzir usando a regra 20 (aritmetica)]
     "^"      [reduzir usando a regra 20 (aritmetica)]
-    "/"      [reduzir usando a regra 20 (aritmetica)]
-    "<"      [reduzir usando a regra 20 (aritmetica)]
-    ">"      [reduzir usando a regra 20 (aritmetica)]
     $padrão  reduzir usando a regra 20 (aritmetica)
 
 
@@ -5586,33 +5562,13 @@ Estado 176
    27           | expression • oEQ expression
    28           | expression • oNE expression
 
-    oLE   deslocar, e ir ao estado 117
-    oGE   deslocar, e ir ao estado 118
-    oEQ   deslocar, e ir ao estado 119
-    oNE   deslocar, e ir ao estado 120
-    oAND  deslocar, e ir ao estado 121
-    oOR   deslocar, e ir ao estado 122
-    "+"   deslocar, e ir ao estado 123
-    "-"   deslocar, e ir ao estado 124
-    "*"   deslocar, e ir ao estado 125
-    "^"   deslocar, e ir ao estado 126
-    "/"   deslocar, e ir ao estado 127
-    "<"   deslocar, e ir ao estado 128
-    ">"   deslocar, e ir ao estado 129
+    "+"  deslocar, e ir ao estado 123
+    "-"  deslocar, e ir ao estado 124
+    "*"  deslocar, e ir ao estado 125
+    "^"  deslocar, e ir ao estado 126
+    "/"  deslocar, e ir ao estado 127
 
-    oLE      [reduzir usando a regra 25 (relacional)]
-    oGE      [reduzir usando a regra 25 (relacional)]
-    oEQ      [reduzir usando a regra 25 (relacional)]
-    oNE      [reduzir usando a regra 25 (relacional)]
-    oAND     [reduzir usando a regra 25 (relacional)]
-    oOR      [reduzir usando a regra 25 (relacional)]
-    "+"      [reduzir usando a regra 25 (relacional)]
-    "-"      [reduzir usando a regra 25 (relacional)]
-    "*"      [reduzir usando a regra 25 (relacional)]
     "^"      [reduzir usando a regra 25 (relacional)]
-    "/"      [reduzir usando a regra 25 (relacional)]
-    "<"      [reduzir usando a regra 25 (relacional)]
-    ">"      [reduzir usando a regra 25 (relacional)]
     $padrão  reduzir usando a regra 25 (relacional)
 
 
@@ -5633,33 +5589,13 @@ Estado 177
    27           | expression • oEQ expression
    28           | expression • oNE expression
 
-    oLE   deslocar, e ir ao estado 117
-    oGE   deslocar, e ir ao estado 118
-    oEQ   deslocar, e ir ao estado 119
-    oNE   deslocar, e ir ao estado 120
-    oAND  deslocar, e ir ao estado 121
-    oOR   deslocar, e ir ao estado 122
-    "+"   deslocar, e ir ao estado 123
-    "-"   deslocar, e ir ao estado 124
-    "*"   deslocar, e ir ao estado 125
-    "^"   deslocar, e ir ao estado 126
-    "/"   deslocar, e ir ao estado 127
-    "<"   deslocar, e ir ao estado 128
-    ">"   deslocar, e ir ao estado 129
+    "+"  deslocar, e ir ao estado 123
+    "-"  deslocar, e ir ao estado 124
+    "*"  deslocar, e ir ao estado 125
+    "^"  deslocar, e ir ao estado 126
+    "/"  deslocar, e ir ao estado 127
 
-    oLE      [reduzir usando a regra 26 (relacional)]
-    oGE      [reduzir usando a regra 26 (relacional)]
-    oEQ      [reduzir usando a regra 26 (relacional)]
-    oNE      [reduzir usando a regra 26 (relacional)]
-    oAND     [reduzir usando a regra 26 (relacional)]
-    oOR      [reduzir usando a regra 26 (relacional)]
-    "+"      [reduzir usando a regra 26 (relacional)]
-    "-"      [reduzir usando a regra 26 (relacional)]
-    "*"      [reduzir usando a regra 26 (relacional)]
     "^"      [reduzir usando a regra 26 (relacional)]
-    "/"      [reduzir usando a regra 26 (relacional)]
-    "<"      [reduzir usando a regra 26 (relacional)]
-    ">"      [reduzir usando a regra 26 (relacional)]
     $padrão  reduzir usando a regra 26 (relacional)
 
 
@@ -5680,33 +5616,13 @@ Estado 178
    27           | expression oEQ expression •
    28           | expression • oNE expression
 
-    oLE   deslocar, e ir ao estado 117
-    oGE   deslocar, e ir ao estado 118
-    oEQ   deslocar, e ir ao estado 119
-    oNE   deslocar, e ir ao estado 120
-    oAND  deslocar, e ir ao estado 121
-    oOR   deslocar, e ir ao estado 122
-    "+"   deslocar, e ir ao estado 123
-    "-"   deslocar, e ir ao estado 124
-    "*"   deslocar, e ir ao estado 125
-    "^"   deslocar, e ir ao estado 126
-    "/"   deslocar, e ir ao estado 127
-    "<"   deslocar, e ir ao estado 128
-    ">"   deslocar, e ir ao estado 129
+    "+"  deslocar, e ir ao estado 123
+    "-"  deslocar, e ir ao estado 124
+    "*"  deslocar, e ir ao estado 125
+    "^"  deslocar, e ir ao estado 126
+    "/"  deslocar, e ir ao estado 127
 
-    oLE      [reduzir usando a regra 27 (relacional)]
-    oGE      [reduzir usando a regra 27 (relacional)]
-    oEQ      [reduzir usando a regra 27 (relacional)]
-    oNE      [reduzir usando a regra 27 (relacional)]
-    oAND     [reduzir usando a regra 27 (relacional)]
-    oOR      [reduzir usando a regra 27 (relacional)]
-    "+"      [reduzir usando a regra 27 (relacional)]
-    "-"      [reduzir usando a regra 27 (relacional)]
-    "*"      [reduzir usando a regra 27 (relacional)]
     "^"      [reduzir usando a regra 27 (relacional)]
-    "/"      [reduzir usando a regra 27 (relacional)]
-    "<"      [reduzir usando a regra 27 (relacional)]
-    ">"      [reduzir usando a regra 27 (relacional)]
     $padrão  reduzir usando a regra 27 (relacional)
 
 
@@ -5727,33 +5643,13 @@ Estado 179
    28           | expression • oNE expression
    28           | expression oNE expression •
 
-    oLE   deslocar, e ir ao estado 117
-    oGE   deslocar, e ir ao estado 118
-    oEQ   deslocar, e ir ao estado 119
-    oNE   deslocar, e ir ao estado 120
-    oAND  deslocar, e ir ao estado 121
-    oOR   deslocar, e ir ao estado 122
-    "+"   deslocar, e ir ao estado 123
-    "-"   deslocar, e ir ao estado 124
-    "*"   deslocar, e ir ao estado 125
-    "^"   deslocar, e ir ao estado 126
-    "/"   deslocar, e ir ao estado 127
-    "<"   deslocar, e ir ao estado 128
-    ">"   deslocar, e ir ao estado 129
+    "+"  deslocar, e ir ao estado 123
+    "-"  deslocar, e ir ao estado 124
+    "*"  deslocar, e ir ao estado 125
+    "^"  deslocar, e ir ao estado 126
+    "/"  deslocar, e ir ao estado 127
 
-    oLE      [reduzir usando a regra 28 (relacional)]
-    oGE      [reduzir usando a regra 28 (relacional)]
-    oEQ      [reduzir usando a regra 28 (relacional)]
-    oNE      [reduzir usando a regra 28 (relacional)]
-    oAND     [reduzir usando a regra 28 (relacional)]
-    oOR      [reduzir usando a regra 28 (relacional)]
-    "+"      [reduzir usando a regra 28 (relacional)]
-    "-"      [reduzir usando a regra 28 (relacional)]
-    "*"      [reduzir usando a regra 28 (relacional)]
     "^"      [reduzir usando a regra 28 (relacional)]
-    "/"      [reduzir usando a regra 28 (relacional)]
-    "<"      [reduzir usando a regra 28 (relacional)]
-    ">"      [reduzir usando a regra 28 (relacional)]
     $padrão  reduzir usando a regra 28 (relacional)
 
 
@@ -5774,33 +5670,19 @@ Estado 180
    27           | expression • oEQ expression
    28           | expression • oNE expression
 
-    oLE   deslocar, e ir ao estado 117
-    oGE   deslocar, e ir ao estado 118
-    oEQ   deslocar, e ir ao estado 119
-    oNE   deslocar, e ir ao estado 120
-    oAND  deslocar, e ir ao estado 121
-    oOR   deslocar, e ir ao estado 122
-    "+"   deslocar, e ir ao estado 123
-    "-"   deslocar, e ir ao estado 124
-    "*"   deslocar, e ir ao estado 125
-    "^"   deslocar, e ir ao estado 126
-    "/"   deslocar, e ir ao estado 127
-    "<"   deslocar, e ir ao estado 128
-    ">"   deslocar, e ir ao estado 129
+    oLE  deslocar, e ir ao estado 117
+    oGE  deslocar, e ir ao estado 118
+    oEQ  deslocar, e ir ao estado 119
+    oNE  deslocar, e ir ao estado 120
+    "+"  deslocar, e ir ao estado 123
+    "-"  deslocar, e ir ao estado 124
+    "*"  deslocar, e ir ao estado 125
+    "^"  deslocar, e ir ao estado 126
+    "/"  deslocar, e ir ao estado 127
+    "<"  deslocar, e ir ao estado 128
+    ">"  deslocar, e ir ao estado 129
 
-    oLE      [reduzir usando a regra 21 (relacional)]
-    oGE      [reduzir usando a regra 21 (relacional)]
-    oEQ      [reduzir usando a regra 21 (relacional)]
-    oNE      [reduzir usando a regra 21 (relacional)]
-    oAND     [reduzir usando a regra 21 (relacional)]
-    oOR      [reduzir usando a regra 21 (relacional)]
-    "+"      [reduzir usando a regra 21 (relacional)]
-    "-"      [reduzir usando a regra 21 (relacional)]
-    "*"      [reduzir usando a regra 21 (relacional)]
     "^"      [reduzir usando a regra 21 (relacional)]
-    "/"      [reduzir usando a regra 21 (relacional)]
-    "<"      [reduzir usando a regra 21 (relacional)]
-    ">"      [reduzir usando a regra 21 (relacional)]
     $padrão  reduzir usando a regra 21 (relacional)
 
 
@@ -5821,33 +5703,19 @@ Estado 181
    27           | expression • oEQ expression
    28           | expression • oNE expression
 
-    oLE   deslocar, e ir ao estado 117
-    oGE   deslocar, e ir ao estado 118
-    oEQ   deslocar, e ir ao estado 119
-    oNE   deslocar, e ir ao estado 120
-    oAND  deslocar, e ir ao estado 121
-    oOR   deslocar, e ir ao estado 122
-    "+"   deslocar, e ir ao estado 123
-    "-"   deslocar, e ir ao estado 124
-    "*"   deslocar, e ir ao estado 125
-    "^"   deslocar, e ir ao estado 126
-    "/"   deslocar, e ir ao estado 127
-    "<"   deslocar, e ir ao estado 128
-    ">"   deslocar, e ir ao estado 129
+    oLE  deslocar, e ir ao estado 117
+    oGE  deslocar, e ir ao estado 118
+    oEQ  deslocar, e ir ao estado 119
+    oNE  deslocar, e ir ao estado 120
+    "+"  deslocar, e ir ao estado 123
+    "-"  deslocar, e ir ao estado 124
+    "*"  deslocar, e ir ao estado 125
+    "^"  deslocar, e ir ao estado 126
+    "/"  deslocar, e ir ao estado 127
+    "<"  deslocar, e ir ao estado 128
+    ">"  deslocar, e ir ao estado 129
 
-    oLE      [reduzir usando a regra 22 (relacional)]
-    oGE      [reduzir usando a regra 22 (relacional)]
-    oEQ      [reduzir usando a regra 22 (relacional)]
-    oNE      [reduzir usando a regra 22 (relacional)]
-    oAND     [reduzir usando a regra 22 (relacional)]
-    oOR      [reduzir usando a regra 22 (relacional)]
-    "+"      [reduzir usando a regra 22 (relacional)]
-    "-"      [reduzir usando a regra 22 (relacional)]
-    "*"      [reduzir usando a regra 22 (relacional)]
     "^"      [reduzir usando a regra 22 (relacional)]
-    "/"      [reduzir usando a regra 22 (relacional)]
-    "<"      [reduzir usando a regra 22 (relacional)]
-    ">"      [reduzir usando a regra 22 (relacional)]
     $padrão  reduzir usando a regra 22 (relacional)
 
 
@@ -5868,33 +5736,11 @@ Estado 182
    27           | expression • oEQ expression
    28           | expression • oNE expression
 
-    oLE   deslocar, e ir ao estado 117
-    oGE   deslocar, e ir ao estado 118
-    oEQ   deslocar, e ir ao estado 119
-    oNE   deslocar, e ir ao estado 120
-    oAND  deslocar, e ir ao estado 121
-    oOR   deslocar, e ir ao estado 122
-    "+"   deslocar, e ir ao estado 123
-    "-"   deslocar, e ir ao estado 124
-    "*"   deslocar, e ir ao estado 125
-    "^"   deslocar, e ir ao estado 126
-    "/"   deslocar, e ir ao estado 127
-    "<"   deslocar, e ir ao estado 128
-    ">"   deslocar, e ir ao estado 129
+    "*"  deslocar, e ir ao estado 125
+    "^"  deslocar, e ir ao estado 126
+    "/"  deslocar, e ir ao estado 127
 
-    oLE      [reduzir usando a regra 15 (aritmetica)]
-    oGE      [reduzir usando a regra 15 (aritmetica)]
-    oEQ      [reduzir usando a regra 15 (aritmetica)]
-    oNE      [reduzir usando a regra 15 (aritmetica)]
-    oAND     [reduzir usando a regra 15 (aritmetica)]
-    oOR      [reduzir usando a regra 15 (aritmetica)]
-    "+"      [reduzir usando a regra 15 (aritmetica)]
-    "-"      [reduzir usando a regra 15 (aritmetica)]
-    "*"      [reduzir usando a regra 15 (aritmetica)]
     "^"      [reduzir usando a regra 15 (aritmetica)]
-    "/"      [reduzir usando a regra 15 (aritmetica)]
-    "<"      [reduzir usando a regra 15 (aritmetica)]
-    ">"      [reduzir usando a regra 15 (aritmetica)]
     $padrão  reduzir usando a regra 15 (aritmetica)
 
 
@@ -5915,33 +5761,11 @@ Estado 183
    27           | expression • oEQ expression
    28           | expression • oNE expression
 
-    oLE   deslocar, e ir ao estado 117
-    oGE   deslocar, e ir ao estado 118
-    oEQ   deslocar, e ir ao estado 119
-    oNE   deslocar, e ir ao estado 120
-    oAND  deslocar, e ir ao estado 121
-    oOR   deslocar, e ir ao estado 122
-    "+"   deslocar, e ir ao estado 123
-    "-"   deslocar, e ir ao estado 124
-    "*"   deslocar, e ir ao estado 125
-    "^"   deslocar, e ir ao estado 126
-    "/"   deslocar, e ir ao estado 127
-    "<"   deslocar, e ir ao estado 128
-    ">"   deslocar, e ir ao estado 129
+    "*"  deslocar, e ir ao estado 125
+    "^"  deslocar, e ir ao estado 126
+    "/"  deslocar, e ir ao estado 127
 
-    oLE      [reduzir usando a regra 16 (aritmetica)]
-    oGE      [reduzir usando a regra 16 (aritmetica)]
-    oEQ      [reduzir usando a regra 16 (aritmetica)]
-    oNE      [reduzir usando a regra 16 (aritmetica)]
-    oAND     [reduzir usando a regra 16 (aritmetica)]
-    oOR      [reduzir usando a regra 16 (aritmetica)]
-    "+"      [reduzir usando a regra 16 (aritmetica)]
-    "-"      [reduzir usando a regra 16 (aritmetica)]
-    "*"      [reduzir usando a regra 16 (aritmetica)]
     "^"      [reduzir usando a regra 16 (aritmetica)]
-    "/"      [reduzir usando a regra 16 (aritmetica)]
-    "<"      [reduzir usando a regra 16 (aritmetica)]
-    ">"      [reduzir usando a regra 16 (aritmetica)]
     $padrão  reduzir usando a regra 16 (aritmetica)
 
 
@@ -5962,33 +5786,9 @@ Estado 184
    27           | expression • oEQ expression
    28           | expression • oNE expression
 
-    oLE   deslocar, e ir ao estado 117
-    oGE   deslocar, e ir ao estado 118
-    oEQ   deslocar, e ir ao estado 119
-    oNE   deslocar, e ir ao estado 120
-    oAND  deslocar, e ir ao estado 121
-    oOR   deslocar, e ir ao estado 122
-    "+"   deslocar, e ir ao estado 123
-    "-"   deslocar, e ir ao estado 124
-    "*"   deslocar, e ir ao estado 125
-    "^"   deslocar, e ir ao estado 126
-    "/"   deslocar, e ir ao estado 127
-    "<"   deslocar, e ir ao estado 128
-    ">"   deslocar, e ir ao estado 129
+    "^"  deslocar, e ir ao estado 126
 
-    oLE      [reduzir usando a regra 18 (aritmetica)]
-    oGE      [reduzir usando a regra 18 (aritmetica)]
-    oEQ      [reduzir usando a regra 18 (aritmetica)]
-    oNE      [reduzir usando a regra 18 (aritmetica)]
-    oAND     [reduzir usando a regra 18 (aritmetica)]
-    oOR      [reduzir usando a regra 18 (aritmetica)]
-    "+"      [reduzir usando a regra 18 (aritmetica)]
-    "-"      [reduzir usando a regra 18 (aritmetica)]
-    "*"      [reduzir usando a regra 18 (aritmetica)]
     "^"      [reduzir usando a regra 18 (aritmetica)]
-    "/"      [reduzir usando a regra 18 (aritmetica)]
-    "<"      [reduzir usando a regra 18 (aritmetica)]
-    ">"      [reduzir usando a regra 18 (aritmetica)]
     $padrão  reduzir usando a regra 18 (aritmetica)
 
 
@@ -6056,33 +5856,9 @@ Estado 186
    27           | expression • oEQ expression
    28           | expression • oNE expression
 
-    oLE   deslocar, e ir ao estado 117
-    oGE   deslocar, e ir ao estado 118
-    oEQ   deslocar, e ir ao estado 119
-    oNE   deslocar, e ir ao estado 120
-    oAND  deslocar, e ir ao estado 121
-    oOR   deslocar, e ir ao estado 122
-    "+"   deslocar, e ir ao estado 123
-    "-"   deslocar, e ir ao estado 124
-    "*"   deslocar, e ir ao estado 125
-    "^"   deslocar, e ir ao estado 126
-    "/"   deslocar, e ir ao estado 127
-    "<"   deslocar, e ir ao estado 128
-    ">"   deslocar, e ir ao estado 129
+    "^"  deslocar, e ir ao estado 126
 
-    oLE      [reduzir usando a regra 17 (aritmetica)]
-    oGE      [reduzir usando a regra 17 (aritmetica)]
-    oEQ      [reduzir usando a regra 17 (aritmetica)]
-    oNE      [reduzir usando a regra 17 (aritmetica)]
-    oAND     [reduzir usando a regra 17 (aritmetica)]
-    oOR      [reduzir usando a regra 17 (aritmetica)]
-    "+"      [reduzir usando a regra 17 (aritmetica)]
-    "-"      [reduzir usando a regra 17 (aritmetica)]
-    "*"      [reduzir usando a regra 17 (aritmetica)]
     "^"      [reduzir usando a regra 17 (aritmetica)]
-    "/"      [reduzir usando a regra 17 (aritmetica)]
-    "<"      [reduzir usando a regra 17 (aritmetica)]
-    ">"      [reduzir usando a regra 17 (aritmetica)]
     $padrão  reduzir usando a regra 17 (aritmetica)
 
 
@@ -6103,33 +5879,13 @@ Estado 187
    27           | expression • oEQ expression
    28           | expression • oNE expression
 
-    oLE   deslocar, e ir ao estado 117
-    oGE   deslocar, e ir ao estado 118
-    oEQ   deslocar, e ir ao estado 119
-    oNE   deslocar, e ir ao estado 120
-    oAND  deslocar, e ir ao estado 121
-    oOR   deslocar, e ir ao estado 122
-    "+"   deslocar, e ir ao estado 123
-    "-"   deslocar, e ir ao estado 124
-    "*"   deslocar, e ir ao estado 125
-    "^"   deslocar, e ir ao estado 126
-    "/"   deslocar, e ir ao estado 127
-    "<"   deslocar, e ir ao estado 128
-    ">"   deslocar, e ir ao estado 129
+    "+"  deslocar, e ir ao estado 123
+    "-"  deslocar, e ir ao estado 124
+    "*"  deslocar, e ir ao estado 125
+    "^"  deslocar, e ir ao estado 126
+    "/"  deslocar, e ir ao estado 127
 
-    oLE      [reduzir usando a regra 23 (relacional)]
-    oGE      [reduzir usando a regra 23 (relacional)]
-    oEQ      [reduzir usando a regra 23 (relacional)]
-    oNE      [reduzir usando a regra 23 (relacional)]
-    oAND     [reduzir usando a regra 23 (relacional)]
-    oOR      [reduzir usando a regra 23 (relacional)]
-    "+"      [reduzir usando a regra 23 (relacional)]
-    "-"      [reduzir usando a regra 23 (relacional)]
-    "*"      [reduzir usando a regra 23 (relacional)]
     "^"      [reduzir usando a regra 23 (relacional)]
-    "/"      [reduzir usando a regra 23 (relacional)]
-    "<"      [reduzir usando a regra 23 (relacional)]
-    ">"      [reduzir usando a regra 23 (relacional)]
     $padrão  reduzir usando a regra 23 (relacional)
 
 
@@ -6150,33 +5906,13 @@ Estado 188
    27           | expression • oEQ expression
    28           | expression • oNE expression
 
-    oLE   deslocar, e ir ao estado 117
-    oGE   deslocar, e ir ao estado 118
-    oEQ   deslocar, e ir ao estado 119
-    oNE   deslocar, e ir ao estado 120
-    oAND  deslocar, e ir ao estado 121
-    oOR   deslocar, e ir ao estado 122
-    "+"   deslocar, e ir ao estado 123
-    "-"   deslocar, e ir ao estado 124
-    "*"   deslocar, e ir ao estado 125
-    "^"   deslocar, e ir ao estado 126
-    "/"   deslocar, e ir ao estado 127
-    "<"   deslocar, e ir ao estado 128
-    ">"   deslocar, e ir ao estado 129
+    "+"  deslocar, e ir ao estado 123
+    "-"  deslocar, e ir ao estado 124
+    "*"  deslocar, e ir ao estado 125
+    "^"  deslocar, e ir ao estado 126
+    "/"  deslocar, e ir ao estado 127
 
-    oLE      [reduzir usando a regra 24 (relacional)]
-    oGE      [reduzir usando a regra 24 (relacional)]
-    oEQ      [reduzir usando a regra 24 (relacional)]
-    oNE      [reduzir usando a regra 24 (relacional)]
-    oAND     [reduzir usando a regra 24 (relacional)]
-    oOR      [reduzir usando a regra 24 (relacional)]
-    "+"      [reduzir usando a regra 24 (relacional)]
-    "-"      [reduzir usando a regra 24 (relacional)]
-    "*"      [reduzir usando a regra 24 (relacional)]
     "^"      [reduzir usando a regra 24 (relacional)]
-    "/"      [reduzir usando a regra 24 (relacional)]
-    "<"      [reduzir usando a regra 24 (relacional)]
-    ">"      [reduzir usando a regra 24 (relacional)]
     $padrão  reduzir usando a regra 24 (relacional)
 
 
@@ -9564,33 +9300,13 @@ Estado 289
    28           | expression • oNE expression
    31 comandoIF: cIF "(" expression ")" expression cELSE expression •
 
-    oLE   deslocar, e ir ao estado 117
-    oGE   deslocar, e ir ao estado 118
-    oEQ   deslocar, e ir ao estado 119
-    oNE   deslocar, e ir ao estado 120
-    oAND  deslocar, e ir ao estado 121
-    oOR   deslocar, e ir ao estado 122
-    "+"   deslocar, e ir ao estado 123
-    "-"   deslocar, e ir ao estado 124
-    "*"   deslocar, e ir ao estado 125
-    "^"   deslocar, e ir ao estado 126
-    "/"   deslocar, e ir ao estado 127
-    "<"   deslocar, e ir ao estado 128
-    ">"   deslocar, e ir ao estado 129
+    "+"  deslocar, e ir ao estado 123
+    "-"  deslocar, e ir ao estado 124
+    "*"  deslocar, e ir ao estado 125
+    "^"  deslocar, e ir ao estado 126
+    "/"  deslocar, e ir ao estado 127
 
-    oLE      [reduzir usando a regra 31 (comandoIF)]
-    oGE      [reduzir usando a regra 31 (comandoIF)]
-    oEQ      [reduzir usando a regra 31 (comandoIF)]
-    oNE      [reduzir usando a regra 31 (comandoIF)]
-    oAND     [reduzir usando a regra 31 (comandoIF)]
-    oOR      [reduzir usando a regra 31 (comandoIF)]
-    "+"      [reduzir usando a regra 31 (comandoIF)]
-    "-"      [reduzir usando a regra 31 (comandoIF)]
-    "*"      [reduzir usando a regra 31 (comandoIF)]
     "^"      [reduzir usando a regra 31 (comandoIF)]
-    "/"      [reduzir usando a regra 31 (comandoIF)]
-    "<"      [reduzir usando a regra 31 (comandoIF)]
-    ">"      [reduzir usando a regra 31 (comandoIF)]
     $padrão  reduzir usando a regra 31 (comandoIF)
 
 

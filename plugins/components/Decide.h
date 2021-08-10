@@ -15,6 +15,7 @@
 #define DECIDE_H
 
 #include "../../kernel/simulator/ModelComponent.h"
+#include "../../kernel/simulator/Counter.h"
 
 /*!
  Decide module
@@ -88,8 +89,10 @@ protected:
 	virtual void _initBetweenReplications();
 	virtual std::map<std::string, std::string>* _saveInstance();
 	virtual bool _check(std::string* errorMessage);
+	virtual void _createInternalElements();
 private:
 	List<std::string>* _conditions = new List<std::string>();
+	List<Counter*>* _numberOuts = nullptr;
 private:
 
 };

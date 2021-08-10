@@ -194,13 +194,13 @@ class genesyspp_driver;
 /**end_TypeObj::Formula**/
 /****end_TypeObj_plugins****/
 
-//%left oNOT;
-//%left oAND oOR;
-//%left oLE oGE oEQ oNE LESS GREATER LBRACKET cELSE;
-//%left MINUS PLUS;
-//%left STAR SLASH;
+%left oAND oOR;
+%left oNOT;
+%left oLE oGE oEQ oNE LESS GREATER LBRACKET cELSE;
+%left MINUS PLUS;
+%left STAR SLASH;
 %precedence NEG;
-//%left fROUND fMOD fTRUNC fFRAC;
+%left fROUND fMOD fTRUNC fFRAC fLOG fLN fSQRT;
 
 //%printer { yyoutput << $$; } <*>; //prints when something
 %%
