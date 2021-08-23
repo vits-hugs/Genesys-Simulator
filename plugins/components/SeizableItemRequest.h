@@ -16,7 +16,7 @@
 
 #include "../elements/Resource.h"
 #include "../elements/Set.h"
-#include "../../kernel/simulator/ComponentManager.h"
+#include "../../kernel/simulator/ElementManager.h"
 
 // \todo should inhere from a common base to QueueableItemRequest
 class SeizableItemRequest  {
@@ -58,7 +58,8 @@ public:
 	void setLastMemberSeized(unsigned int lastMemberSeized);
 	unsigned int getLastMemberSeized() const;
     ModelElement* getSeizable() const;
-    void setComponentManager(ComponentManager* _componentManager);
+    void setElementManager(ElementManager* _elementManager);
+	//void setComponentManager(ComponentManager* _componentManager);
 
 private:
 
@@ -79,7 +80,8 @@ private:
 	std::string _index;
 	unsigned int _lastMemberSeized = 0;
 private:
-	ComponentManager* _componentManager;
+	//ComponentManager* _componentManager;
+	ElementManager* _elementManager;
 };
 
 #endif /* SEIZABLEITEMREQUEST_H */

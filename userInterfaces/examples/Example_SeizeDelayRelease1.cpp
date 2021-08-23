@@ -41,8 +41,9 @@ int Example_SeizeDelayRelease1::main(int argc, char** argv) {
 	// insert plugins
 	this->insertFakePluginsByHand(genesys);
 	this->setDefaultTraceHandlers(genesys->getTracer());
-	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L7_internal);
-	Model* model = genesys->getModels()->newModel();
+    genesys->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
+    Model* model = genesys->getModels()->newModel();
+    if (false) {
 	// build the simulation model
 	// set model infos
 	ModelSimulation* sim = model->getSimulation();
@@ -87,9 +88,14 @@ int Example_SeizeDelayRelease1::main(int argc, char** argv) {
 	delay1->getNextComponents()->insert(release1);
 	release1->getNextComponents()->insert(dispose1);
 	// save the model into a text file
-	model->save("./models/Model_SeizeDelayRelease1.txt");
-	// execute the simulation
-	sim->start();
+        model->save("./models/Model_SeizeDelayRelease1.txt");
+        // execute the simulation
+        sim->start();
+    } else {
+        model->load("./models/Model_SeizeDelayRelease1.txt");
+        model->show();
+        model->getSimulation()->start();
+    }
 
 	return 0;
 };

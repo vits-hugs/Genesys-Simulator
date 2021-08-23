@@ -10,10 +10,7 @@
             <sourceEncoding>UTF-8</sourceEncoding>
             <make-dep-projects/>
             <sourceRootList>
-                <sourceRootElem>kernel</sourceRootElem>
-                <sourceRootElem>plugins</sourceRootElem>
-                <sourceRootElem>userInterfaces</sourceRootElem>
-                <sourceRootElem>tools</sourceRootElem>
+                <sourceRootElem>.</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

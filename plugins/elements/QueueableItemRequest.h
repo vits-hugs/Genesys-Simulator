@@ -16,14 +16,14 @@
 
 #include "Queue.h"
 #include "Set.h"
-#include "../../kernel/simulator/ComponentManager.h"
+#include "../../kernel/simulator/ElementManager.h"
 
 // \todo should inhere from a common base to SeizeableItemRequest
 class QueueableItemRequest {
 public:
 
 	enum class QueueableType : int {
-		QUEUE = 1, SET = 2, HOLD = 3
+		QUEUE = 1, SET = 2//, HOLD = 3
 	};
 
 public:
@@ -45,8 +45,9 @@ public:
 	//
 	void setQueueableType(QueueableType queueableType);
 	QueueableType getQueueableType() const;
-    ModelElement* getQueueable() const;
-    void setComponentManager(ComponentManager* _componentManager);
+	ModelElement* getQueueable() const;
+	void setElementManager(ElementManager* _elementManager);
+	//void setComponentManager(ComponentManager* _componentManager);
 
 private:
 
@@ -62,7 +63,8 @@ private:
 	std::string _queueableName;
 	std::string _index;
 private:
-	ComponentManager* _componentManager;
+	//ComponentManager* _componentManager;
+	ElementManager* _elementManager;
 };
 
 

@@ -107,7 +107,7 @@ bool Release::_loadInstance(std::map<std::string, std::string>* fields) {
 		unsigned short numRequests = LoadField(fields, "resquestSize", DEFAULT.releaseRequestSize);
 		for (unsigned short i = 0; i < numRequests; i++) {
 			SeizableItemRequest* itemRequest = new SeizableItemRequest(nullptr);
-			itemRequest->setComponentManager(_parentModel->getComponents());
+            itemRequest->setElementManager(_parentModel->getElements());
 			itemRequest->loadInstance(fields, i);
 			//Resource* resource = static_cast<Resource*> (_parentModel->getElements()->getElement(Util::TypeOf<Resource>(), itemRequest->getResourceName()));
 			//itemRequest->setResource(resource);

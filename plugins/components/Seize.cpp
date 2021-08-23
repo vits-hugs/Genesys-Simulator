@@ -209,20 +209,15 @@ bool Seize::_loadInstance(std::map<std::string, std::string>* fields) {
 		//Queue* queue = dynamic_cast<Queue*> (_parentModel->getElements()->getElement(Util::TypeOf<Queue>(), queueName));
 		//this->_queue = queue;
 		//QueueableItem
-		QueueableItemRequest* queueable = new QueueableItemRequest(nullptr);
-		queueable->setComponentManager(_parentModel->getComponents());
-		queueable->loadInstance(fields);
-		// \TODO: It may be a QUEUE or a SET. Shoud create ANY of them in the model! (QueueableItemRequest can't do it since it's not a ModelElement)
-		// SeizableItemRequests
-		unsigned short numRequests = LoadField(fields, "resquestSize", DEFAULT.seizeRequestSize);
+        //QueueableItemRequest*
+        _queueableItem = new QueueableItemRequest(nullptr);
+        _queueableItem->setElementManager(_parentModel->getElements());
+        _queueableItem->loadInstance(fields);
+        unsigned short numRequests = LoadField(fields, "resquestSize", DEFAULT.seizeRequestSize);
 		for (unsigned short i = 0; i < numRequests; i++) {
 			SeizableItemRequest* itemRequest = new SeizableItemRequest(nullptr);
-			itemRequest->setComponentManager(_parentModel->getComponents());
-			itemRequest->loadInstance(fields, i);
-			// \TODO: It may be a RESOURCE or a SET. Shoud create ANY of them in the model! (SeizableItemRequest can't do it since it's not a ModelElement)
-			//Resource* resource = static_cast<Resource*> (_parentModel->getElements()->getElement(Util::TypeOf<Resource>(), itemRequest->getResourceName()));
-			//itemRequest->setResource(resource);
-			//this->_seizeRequests->insert(itemRequest);
+            itemRequest->setElementManager(_parentModel->getElements());
+            itemRequest->loadInstance(fields, i);
 		}
 
 	}
@@ -260,9 +255,9 @@ bool Seize::_check(std::string* errorMessage) {
 	}
 	// \todo Check QueueableItem
 	if (_queueableItem->getQueueableType() == QueueableItemRequest::QueueableType::QUEUE) {
-		resultAll &= _parentModel->getElements()->check(Util::TypeOf<Queue>(), _queueableItem->getQueue(), "Queue", errorMessage);
+        resultAll &= _parentModel->getElements()->check(Util::TypeOf<Queue>(), _queueableItem->getQueue(), "Queueable Queue", errorMessage);
 	} else if (_queueableItem->getQueueableType() == QueueableItemRequest::QueueableType::SET) {
-		resultAll &= _parentModel->getElements()->check(Util::TypeOf<Set>(), _queueableItem->getSet(), "Set", errorMessage);
+        resultAll &= _parentModel->getElements()->check(Util::TypeOf<Set>(), _queueableItem->getSet(), "Queueable Set", errorMessage);
 	}
 	//resultAll &= _parentModel->getElements()->check(Util::TypeOf<Attribute>(), _saveAttribute, "SaveAttribute", false, errorMessage);
 	return resultAll;

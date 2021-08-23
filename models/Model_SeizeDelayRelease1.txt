@@ -1,6 +1,6 @@
 0   SimulatorInfo "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=210420 
 0   ModelInfo  "Model 1" 
-0   ModelSimulation "fixed experiment name in ModelSimulation" numberOfReplications=2 replicationLength=120.000000 
+0   ModelSimulation "fixed experiment name in ModelSimulation" numberOfReplications=20 replicationLength=120.000000 
 1   EntityType "Customer" 
 3   Resource   "Machine_1" 
 4   Queue      "Seize_1.Queue" 

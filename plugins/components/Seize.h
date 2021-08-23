@@ -142,7 +142,7 @@ public: // get & set
     //std::string getResourceName() const;
     //void setQueueName(std::string queueName) throw ();
     //std::string getQueueName() const;
-    void setQueue(Queue* queue);
+	void setQueue(Queue* queue); ///< Deprected
     //Queue* getQueue() const;
     List<SeizableItemRequest*>* getSeizeRequests() const;
     void setQueueableItem(QueueableItemRequest* _queueableItem);
