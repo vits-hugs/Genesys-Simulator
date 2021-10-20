@@ -12,7 +12,7 @@
  * Created on 21 de Junho de 2018, 12:47
  */
 
-/* The RELEASE branch */
+/* The DEVELOPMENT2021 branch */
 
 #include <iostream>
 #include "Traits.h"
