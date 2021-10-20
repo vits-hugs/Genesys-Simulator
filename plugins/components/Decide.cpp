@@ -95,11 +95,8 @@ void Decide::_createInternalElements() {
             _numberOuts->insert(counter);
             _childrenElements->insert({"CountNumberOut" + std::to_string(i), counter});
         }
-        // \todo _childrenElements->insert("Count_number_in", _numberOut);
     } else if (!_reportStatistics && _numberOuts != nullptr) {
         this->_removeChildrenElements();
-        // \todo _childrenElements->remove("Count_number_in");
-        //_numberOut->~Counter();
         _numberOuts = nullptr;
     }
 

@@ -62,7 +62,7 @@ template <> struct TraitsKernel<Parser_if> {
  */
 
 template <> struct TraitsKernel<Model> {
-    static const Util::TraceLevel traceLevel = Util::TraceLevel::L4_warning;
+    static const Util::TraceLevel traceLevel = Util::TraceLevel::L5_event;
 };
 
 template <> struct TraitsKernel<ModelComponent> {

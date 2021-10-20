@@ -103,7 +103,7 @@ void SimulationReporterDefaultImpl1::showReplicationStatistics() {
     Util::DecIndent();
     Util::DecIndent();
     for (auto const mapmapItem : *mapMapTypeStat) {
-        _model->getTracer()->traceReport("Statistis for " + mapmapItem.first + ":");
+        _model->getTracer()->traceReport("Statistics for " + mapmapItem.first + ":");
         Util::IncIndent();
         {
             for (auto const mapItem : *(mapmapItem.second)) {
@@ -219,7 +219,7 @@ void SimulationReporterDefaultImpl1::showSimulationStatistics() {//List<Statisti
     Util::DecIndent();
     Util::DecIndent();
     for (auto const mapmapItem : *mapMapTypeStat) {
-        _model->getTracer()->traceReport("Statistis for " + mapmapItem.first + ":");
+        _model->getTracer()->traceReport("Statistics for " + mapmapItem.first + ":");
         Util::IncIndent();
         {
             for (auto const mapItem : *(mapmapItem.second)) {

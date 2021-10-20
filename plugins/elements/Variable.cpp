@@ -19,7 +19,13 @@ Variable::Variable(Model* model, std::string name) : ModelElement(model, Util::T
 }
 
 std::string Variable::show() {
-	return ModelElement::show(); // \todo: include values
+    std::string text = "values:{";
+    for (std::pair<std::string, double> var : * this->_values) {
+        text += var.first + "=" + strTruncIfInt(std::to_string(var.second)) + ", ";
+    }
+    text = text.substr(0, text.length() - 2);
+    text += "}";
+    return ModelElement::show(); 
 }
 
 PluginInformation* Variable::GetPluginInformation() {

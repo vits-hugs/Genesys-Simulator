@@ -18,6 +18,7 @@
 #include "userInterfaces/terminal/GenesysTerminalApp.h"
 #include "userInterfaces/gui/qt/GenesysQtGUI.h"
 #include "userInterfaces/examples/Example_SeizeDelayRelease1.h"
+#include "userInterfaces/examples/book/Example01.h"
 //#include "userInterfaces/examples/Example_SistemaOperacional03.h"
 
 template <typename T>
@@ -29,10 +30,9 @@ struct Traits {
  */
 
 template <> struct Traits<GenesysApplication_if> {
-	static const Util::TraceLevel traceLevel = Util::TraceLevel::L9_mostDetailed;
-	typedef Example_SeizeDelayRelease1 Application;
-	//typedef Example_SistemaOperacional03 Application;
-    //typedef GenesysQtGUI Application;
+    static const Util::TraceLevel traceLevel = Util::TraceLevel::L6_arrival;
+    typedef Example01 Application;
+
 };
 
 #endif /* TRAITS_H */
