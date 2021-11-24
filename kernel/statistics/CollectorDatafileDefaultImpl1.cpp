@@ -12,43 +12,83 @@
  */
 
 #include "CollectorDatafileDefaultImpl1.h"
+#include <fstream>
+#include <iostream>
+#include <iomanip>
+#include <limits>
+#include <sstream>
 
 CollectorDatafileDefaultImpl1::CollectorDatafileDefaultImpl1() {
 }
 
 void CollectorDatafileDefaultImpl1::clear() {
+    std::ofstream file;
+    try {
+        file.open(_filename, std::ofstream::out | std::ofstream::trunc);
+        file.close();
+    } catch (const std::exception& e) {
+        throw "ERROR - can't open the file ";
+    }
+    _numElements = 0;
+    _lastValaue = NULL;
 }
 
 void CollectorDatafileDefaultImpl1::addValue(double value) {
-    value = 0; // \todo: just to use it
+    std::ofstream file;
+    try {
+        if (this->_numElements > 0) {
+            file.open(_filename, std::ofstream::out | std::ofstream::app);
+        } else {
+            file.open(_filename, std::ofstream::out | std::ofstream::trunc);
+        }
+        file.write(reinterpret_cast<char*> (&value), sizeof (valueType));
+        file.close();
+    } catch (const std::exception& e) {
+        throw "ERROR - can't open the file ";
+    }
+    _numElements++;
+    _lastValaue = value;
 }
 
 double CollectorDatafileDefaultImpl1::getLastValue() {
-	return 0.0; // \todo:
+    return _lastValaue;
 }
 
 unsigned long CollectorDatafileDefaultImpl1::numElements() {
-	return 0.0; // \todo:
+    return _numElements;
 }
 
 double CollectorDatafileDefaultImpl1::getValue(unsigned int num) {
-    num = 0; // \todo: just to use it
-	return 0.0; // \todo:
+    std::ifstream file;
+    valueType value;
+    if (num > _numElements) {
+        throw "ERROR - num greater than numElements";
+    }
+    try {
+        file.open(_filename, std::ifstream::binary | std::ifstream::in);
+        file.seekg(sizeof (valueType) * num);
+        //valueType d;
+        file.read(reinterpret_cast<char*> (&value), sizeof (valueType));
+        file.close();
+    } catch (const std::exception& e) {
+        throw "ERROR - can't open the file or get the line ";
+    }
+    return value;
 }
 
 double CollectorDatafileDefaultImpl1::getNextValue() {
-	return 0.0; // \todo:
+    return 0.0; // \todo:
 }
 
 void CollectorDatafileDefaultImpl1::seekFirstValue() {
 }
 
 std::string CollectorDatafileDefaultImpl1::getDataFilename() {
-	return _filename;
+    return _filename;
 }
 
 void CollectorDatafileDefaultImpl1::setDataFilename(std::string filename) {
-	_filename = filename;
+    _filename = filename;
 }
 
 void CollectorDatafileDefaultImpl1::setAddValueHandler(CollectorAddValueHandler addValueHandler) {

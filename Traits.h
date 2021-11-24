@@ -21,6 +21,8 @@
 #include "userInterfaces/examples/book/Example01.h"
 //#include "userInterfaces/examples/Example_SistemaOperacional03.h"
 
+#include "tools/IntegratorDefaultImpl1.h"
+
 template <typename T>
 struct Traits {
 };
@@ -33,6 +35,11 @@ template <> struct Traits<GenesysApplication_if> {
     static const Util::TraceLevel traceLevel = Util::TraceLevel::L6_arrival;
     typedef Example01 Application;
 
+};
+
+template <> struct Traits<Integrator_if> {
+    typedef IntegratorDefaultImpl1 Implementation;
+    static constexpr double MaxSteps = 1e3;
 };
 
 #endif /* TRAITS_H */

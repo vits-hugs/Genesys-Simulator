@@ -26,6 +26,7 @@
 #include "statistics/CollectorDatafileDefaultImpl1.h"
 #include "statistics/CollectorDefaultImpl1.h"
 #include "statistics/StatisticsDefaultImpl1.h"
+#include "statistics/StatisticsDataFileDefaultImpl.h"
 #include "statistics/SamplerDefaultImpl1.h"
 
 
@@ -94,6 +95,11 @@ template <> struct TraitsKernel<ModelPersistence_if> {
 template <> struct TraitsKernel<Statistics_if> {
     typedef StatisticsDefaultImpl1 Implementation;
     typedef CollectorDefaultImpl1 CollectorImplementation;
+    static constexpr double SignificanceLevel = 0.05;
+};
+template <> struct TraitsKernel<StatisticsDatafile_if> {
+    typedef StatisticsDatafileDefaultImpl1 Implementation;
+    typedef CollectorDatafileDefaultImpl1 CollectorImplementation;
     static constexpr double SignificanceLevel = 0.05;
 };
 

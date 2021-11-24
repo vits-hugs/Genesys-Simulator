@@ -134,9 +134,9 @@
         <itemPath>kernel/statistics/Collector_if.h</itemPath>
         <itemPath>kernel/statistics/SamplerDefaultImpl1.cpp</itemPath>
         <itemPath>kernel/statistics/SamplerDefaultImpl1.h</itemPath>
-        <itemPath>kernel/statistics/SamplerStudents20202g1.cpp</itemPath>
-        <itemPath>kernel/statistics/SamplerStudents20202g1.h</itemPath>
         <itemPath>kernel/statistics/Sampler_if.h</itemPath>
+        <itemPath>kernel/statistics/SorttFile.cpp</itemPath>
+        <itemPath>kernel/statistics/SorttFile.h</itemPath>
         <itemPath>kernel/statistics/StatisticsDataFileDefaultImpl.cpp</itemPath>
         <itemPath>kernel/statistics/StatisticsDataFileDefaultImpl.h</itemPath>
         <itemPath>kernel/statistics/StatisticsDataFile_if.h</itemPath>
@@ -262,7 +262,11 @@
     </logicalFolder>
     <logicalFolder name="f1" displayName="tools" projectFiles="true">
       <itemPath>tools/HypothesisTester_if.h</itemPath>
+      <itemPath>tools/IntegratorDefaultImpl1.cpp</itemPath>
+      <itemPath>tools/IntegratorDefaultImpl1.h</itemPath>
       <itemPath>tools/Integrator_if.h</itemPath>
+      <itemPath>tools/ProbabilityDistribution.cpp</itemPath>
+      <itemPath>tools/ProbabilityDistribution.h</itemPath>
     </logicalFolder>
     <logicalFolder name="userInterfaces"
                    displayName="userInterfaces"
@@ -324,6 +328,17 @@
                    displayName="Arquivos de Teste"
                    projectFiles="false"
                    kind="TEST_LOGICAL_FOLDER">
+      <logicalFolder name="f1"
+                     displayName="testProbabilityDistribution"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/testProbabilityDistribution.cpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f2"
+                     displayName="testProbabilityDistribution"
+                     projectFiles="true"
+                     kind="TEST">
+      </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Arquivos Importantes"
@@ -421,6 +436,30 @@
                             perm="755"
                             owner="root"
                             group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
         </packFileList>
         <packInfoList>
           <packInfoListElem name="Package" value="20192022GenESyS" mandatory="true"/>
@@ -432,6 +471,28 @@
       </packaging>
       <item path="Traits.h" ex="false" tool="3" flavor2="0">
       </item>
+      <folder path="TestFiles/f1">
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f1</output>
+          <linkerLibItems>
+            <linkerOptionItem>-lcunit</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f2">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f2</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
       <item path="kernel/TraitsKernel.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="kernel/simulator/Attribute.cpp" ex="false" tool="1" flavor2="0">
@@ -866,17 +927,11 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="kernel/statistics/SamplerStudents20202g1.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="kernel/statistics/SamplerStudents20202g1.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="kernel/statistics/Sampler_if.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/statistics/SorttFile.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/statistics/SorttFile.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="kernel/statistics/StatisticsDataFileDefaultImpl.cpp"
             ex="false"
@@ -1135,9 +1190,22 @@
       </item>
       <item path="plugins/elements/Variable.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="tests/testProbabilityDistribution.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="tools/HypothesisTester_if.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="tools/IntegratorDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tools/IntegratorDefaultImpl1.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="tools/Integrator_if.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tools/ProbabilityDistribution.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tools/ProbabilityDistribution.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="userInterfaces/BaseConsoleGenesysApplication.cpp"
             ex="false"
@@ -1378,6 +1446,28 @@
       </compileType>
       <item path="Traits.h" ex="false" tool="3" flavor2="0">
       </item>
+      <folder path="TestFiles/f1">
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f1</output>
+          <linkerLibItems>
+            <linkerOptionItem>-lcunit</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f2">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f2</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
       <item path="kernel/TraitsKernel.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="kernel/simulator/Attribute.cpp" ex="false" tool="1" flavor2="0">
@@ -1812,17 +1902,11 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="kernel/statistics/SamplerStudents20202g1.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="kernel/statistics/SamplerStudents20202g1.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="kernel/statistics/Sampler_if.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/statistics/SorttFile.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="kernel/statistics/SorttFile.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="kernel/statistics/StatisticsDataFileDefaultImpl.cpp"
             ex="false"
@@ -2081,9 +2165,22 @@
       </item>
       <item path="plugins/elements/Variable.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="tests/testProbabilityDistribution.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="tools/HypothesisTester_if.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="tools/IntegratorDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tools/IntegratorDefaultImpl1.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="tools/Integrator_if.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tools/ProbabilityDistribution.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tools/ProbabilityDistribution.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="userInterfaces/BaseConsoleGenesysApplication.cpp"
             ex="false"

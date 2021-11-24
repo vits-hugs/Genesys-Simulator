@@ -45,7 +45,7 @@
 		ModelManager* getModels() const;
 		TraceManager* getTracer() const;
 		ParserManager* getParser() const;
-        ExperimentManager* getExperimenter() const;
+                ExperimentManager* getExperimenter() const;
 	private:
 	private: // attributes 1:1 objects
 		LicenceManager* _licenceManager;

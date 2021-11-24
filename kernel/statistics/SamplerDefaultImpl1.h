@@ -17,42 +17,50 @@
 #include "Sampler_if.h"
 //namespace GenesysKernel {
 
-	class SamplerDefaultImpl1 : public Sampler_if {
-	public:
+class SamplerDefaultImpl1 : public Sampler_if {
+public:
 
-		struct DefaultImpl1RNG_Parameters : public RNG_Parameters {
-			unsigned int seed = 666;
-			unsigned int module = 2147483647;
-			unsigned int multiplier = 950706376;
-			~DefaultImpl1RNG_Parameters() = default;
-		};
-	public:
-		SamplerDefaultImpl1();
-		virtual ~SamplerDefaultImpl1() = default;
-	public: // probability distributions
-		virtual double random();
-		virtual double sampleBeta(double alpha, double beta, double infLimit, double supLimit);
-		virtual double sampleDiscrete(double acumProb, double value, ...);
-		virtual double sampleErlang(double mean, int M);
-		virtual double sampleExponential(double mean);
-		virtual double sampleGamma(double mean, double alpha);
-		virtual double sampleLogNormal(double mean, double stddev);
-		virtual double sampleNormal(double mean, double stddev);
-		virtual double sampleTriangular(double min, double mode, double max);
-		virtual double sampleUniform(double min, double max);
-		virtual double sampleWeibull(double alpha, double scale);
-	public:
-		void reset(); ///< reinitialize seed and other parameters so (pseudo) random number sequence will be generated again.
-	public:
-		virtual void setRNGparameters(RNG_Parameters* param);
-		virtual RNG_Parameters* getRNGparameters() const;
-	private:
-		double _gammaJonk(double alpha);
-	private:
-		RNG_Parameters* _param = new DefaultImpl1RNG_Parameters();
-		unsigned int _xi;
-		//bool _normalflag;
-	};
+    struct DefaultImpl1RNG_Parameters : public RNG_Parameters {
+        uint32_t seed = 16021974;
+        uint32_t a = 279470273u; // multiplier
+        uint32_t m = 0xfffffffb; // module
+        uint32_t c = 0; // increment
+        ~DefaultImpl1RNG_Parameters() = default;
+    };
+public:
+    SamplerDefaultImpl1();
+    virtual ~SamplerDefaultImpl1() = default;
+public: // RNG
+    virtual double random();
+public: // continuous probability distributions
+    virtual double sampleBeta(double alpha, double beta, double infLimit, double supLimit);
+    virtual double sampleBeta(double alpha, double beta);
+    virtual double sampleErlang(double mean, int M);
+    virtual double sampleExponential(double mean);
+    virtual double sampleGamma(double mean, double alpha);
+    virtual double sampleGumbell(double mode, double scale);
+    virtual double sampleLogNormal(double mean, double stddev);
+    virtual double sampleNormal(double mean, double stddev);
+    virtual double sampleTriangular(double min, double mode, double max);
+    virtual double sampleUniform(double min, double max);
+    virtual double sampleWeibull(double alpha, double scale);
+    public: // discrete probability distributions   
+    virtual double sampleBinomial(int trials, double p);
+    virtual double sampleBernoulli(double p);
+    virtual double sampleDiscrete(double acumProb, double value, ...);
+    virtual double sampleDiscrete(double acumProb, double *prob, double *value, int size);
+    virtual double sampleGeometric(double p);
+public:
+    void reset(); ///< reinitialize seed and other parameters so (pseudo) random number sequence will be generated again.
+public:
+    virtual void setRNGparameters(RNG_Parameters* param);
+    virtual RNG_Parameters* getRNGparameters() const;
+private:
+    RNG_Parameters* _param = new DefaultImpl1RNG_Parameters();
+    uint32_t _xi;
+    bool _normalflag;
+    double _lastnormal;
+};
 //namespace\\}
 #endif /* SAMPLERDEFAULTIMPL1_H */
 
