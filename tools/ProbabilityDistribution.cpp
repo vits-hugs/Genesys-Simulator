@@ -11,9 +11,12 @@
  */
 
 #include "ProbabilityDistribution.h"
-
+#include "../Traits.h"
 #include <math.h> 
 #include <cassert>
+
+std::map<std::string, double>* ProbabilityDistribution::memory = new std::map<std::string, double>();
+Integrator_if* ProbabilityDistribution::integrator = new Traits<Integrator_if>::Implementation(Traits<Integrator_if>::Precision, Traits<Integrator_if>::MaxSteps);
 
 double ProbabilityDistribution::beta(double x, double alpha, double beta) {
     double x1 = _gammaFunction(alpha + beta) / (_gammaFunction(alpha) * _gammaFunction(beta));
@@ -22,10 +25,10 @@ double ProbabilityDistribution::beta(double x, double alpha, double beta) {
     return x1*x2;
 }
 
-double ProbabilityDistribution::chi2(double x, double m) {
+double ProbabilityDistribution::chi2(double x, double degreeFreedom) {
     if (x >= 0) {
-        double x1 = pow(x, m / 2 - 1) * pow(M_E, -x / 2);
-        double x2 = pow(2, m / 2) * _gammaFunction(m / 2);
+        double x1 = pow(x, degreeFreedom / 2 - 1) * pow(M_E, -x / 2);
+        double x2 = pow(2, degreeFreedom / 2) * _gammaFunction(degreeFreedom / 2);
         return x1 / x2;
     } else
         return 0.0;
@@ -110,21 +113,157 @@ double ProbabilityDistribution::weibull(double x, double shape, double scale) {
 }
 // inverse
 
+double ProbabilityDistribution::_findInverseChi2(double a, double fa, double b, double fb, unsigned int recursions, double cumulativeProbability, double degreeFreedom) {
+    double x = ((cumulativeProbability - fa) / (fb - fa)) * (b - a) + a;
+    double fx = fa + integrator->integrate(a, x, ProbabilityDistribution::chi2, degreeFreedom);
+    ++recursions;
+    if ((recursions == integrator->getMaxSteps()) || (abs(fx - cumulativeProbability) <= integrator->getPrecision())) {
+        return x;
+    } else if (fx < cumulativeProbability) {
+        return ProbabilityDistribution::_findInverseChi2(x, fx, b, fb, recursions, cumulativeProbability, degreeFreedom);
+    } else {
+        return ProbabilityDistribution::_findInverseChi2(a, fa, x, fx, recursions, cumulativeProbability, degreeFreedom);
+    }
+}
+
 double ProbabilityDistribution::inverseChi2(double cumulativeProbability, double m) {
-    return 0.0;
+    std::string key = "chi2(" + std::to_string(m) + ")" + std::to_string(cumulativeProbability);
+    auto search = ProbabilityDistribution::memory->find(key);
+    if (search != ProbabilityDistribution::memory->end()) { //found
+        return search->second;
+    } else {
+        double a, fa;
+        double b, fb;
+        a = 0.0;
+        fa = 0.0;
+        b = 1000.0; ///TODO: Is there a way to better determine the upper limit?
+        unsigned int savedSteps = integrator->getMaxSteps();
+        integrator->setMaxSteps(1e3);
+        fb = integrator->integrate(a, b, ProbabilityDistribution::chi2, m);
+        //integrator->setMaxSteps(1e3);
+        double inv = ProbabilityDistribution::_findInverseChi2(a, fa, b, fb, 0, cumulativeProbability, m);
+        integrator->setMaxSteps(savedSteps);
+        std::pair<std::string, double> pair = std::pair<std::string, double>(key, inv);
+        ProbabilityDistribution::memory->insert(pair);
+        return inv;
+    }
+}
+
+double ProbabilityDistribution::_findInverseFFisherSnedecor(double a, double fa, double b, double fb, unsigned int recursions, double cumulativeProbability, double d1, double d2) {
+    double x = ((cumulativeProbability - fa) / (fb - fa)) * (b - a) + a;
+    double fx = fa + integrator->integrate(a, x, ProbabilityDistribution::fisherSnedecor, d1, d2);
+    ++recursions;
+    if ((recursions == integrator->getMaxSteps()) || (abs(fx - cumulativeProbability) <= integrator->getPrecision())) {
+        return x;
+    } else if (fx < cumulativeProbability) {
+        return ProbabilityDistribution::_findInverseFFisherSnedecor(x, fx, b, fb, recursions, cumulativeProbability, d1, d2);
+    } else {
+        return ProbabilityDistribution::_findInverseFFisherSnedecor(a, fa, x, fx, recursions, cumulativeProbability, d1, d2);
+    }
 }
 
 double ProbabilityDistribution::inverseFFisherSnedecor(double cumulativeProbability, double d1, double d2) {
-    return 0.0;
+    std::string key = "fisher(" + std::to_string(d1) + "," + std::to_string(d2) + ")" + std::to_string(cumulativeProbability);
+    auto search = ProbabilityDistribution::memory->find(key);
+    if (search != ProbabilityDistribution::memory->end()) { //found
+        return search->second;
+    } else {
+        double a, fa;
+        double b, fb;
+        a = 0.0;
+        fa = 0.0;
+        b = 10000.0; ///TODO: Is there a way to better determine the upper limit?
+        unsigned int savedSteps = integrator->getMaxSteps();
+        integrator->setMaxSteps(1e4);
+        fb = integrator->integrate(a, b, ProbabilityDistribution::fisherSnedecor, d1, d2);
+        //integrator->setMaxSteps(1e3);
+        double inv = ProbabilityDistribution::_findInverseFFisherSnedecor(a, fa, b, fb, 0, cumulativeProbability, d1, d2);
+        integrator->setMaxSteps(savedSteps);
+        std::pair<std::string, double> pair = std::pair<std::string, double>(key, inv);
+        ProbabilityDistribution::memory->insert(pair);
+        return inv;
+    }
+}
+
+double ProbabilityDistribution::_findInverseNormal(double a, double fa, double b, double fb, unsigned int recursions, double cumulativeProbability, double mean, double stddev) {
+    double x = ((cumulativeProbability - fa) / (fb - fa)) * (b - a) + a;
+    double fx = fa + integrator->integrate(a, x, ProbabilityDistribution::normal, mean, stddev);
+    ++recursions;
+    if ((recursions == integrator->getMaxSteps()) || (abs(fx - cumulativeProbability) <= integrator->getPrecision())) {
+        return x;
+    } else if (fx < cumulativeProbability) {
+        return ProbabilityDistribution::_findInverseNormal(x, fx, b, fb, recursions, cumulativeProbability, mean, stddev);
+    } else {
+        return ProbabilityDistribution::_findInverseNormal(a, fa, x, fx, recursions, cumulativeProbability, mean, stddev);
+    }
 }
 
 double ProbabilityDistribution::inverseNormal(double cumulativeProbability, double mean, double stddev) {
-    return 0.0;
+    std::string key = "normal(" + std::to_string(mean) + "," + std::to_string(stddev) + ")" + std::to_string(cumulativeProbability);
+    auto search = ProbabilityDistribution::memory->find(key);
+    if (search != ProbabilityDistribution::memory->end()) { //found
+        return search->second;
+    } else {
+        double a, fa;
+        double b, fb;
+        if (cumulativeProbability <= 0.5) { ///TODO: Could be better
+            a = mean - stddev * 5.0;
+            fa = 0.0;
+            b = mean;
+            fb = 0.5;
+        } else {
+            a = mean;
+            fa = 0.5;
+            b = mean + stddev * 5.0;
+            fb = 1.0;
+        }
+        double inv = ProbabilityDistribution::_findInverseNormal(a, fa, b, fb, 0, cumulativeProbability, mean, stddev);
+        std::pair<std::string, double> pair = std::pair<std::string, double>(key, inv);
+        ProbabilityDistribution::memory->insert(pair);
+        return inv;
+    }
+}
+
+double ProbabilityDistribution::_findInverseTStudent(double a, double fa, double b, double fb, unsigned int recursions, double cumulativeProbability, double mean, double stddev, double degreeFreedom) {
+    double x = ((cumulativeProbability - fa) / (fb - fa)) * (b - a) + a;
+    double fx = fa + integrator->integrate(a, x, ProbabilityDistribution::tStudent, mean, stddev, degreeFreedom);
+    ++recursions;
+    if ((recursions == integrator->getMaxSteps()) || (abs(fx - cumulativeProbability) <= integrator->getPrecision())) {
+        return x;
+    } else if (fx < cumulativeProbability) {
+        return ProbabilityDistribution::_findInverseTStudent(x, fx, b, fb, recursions, cumulativeProbability, mean, stddev, degreeFreedom);
+    } else {
+        return ProbabilityDistribution::_findInverseTStudent(a, fa, x, fx, recursions, cumulativeProbability, mean, stddev, degreeFreedom);
+    }
 }
 
 double ProbabilityDistribution::inverseTStudent(double cumulativeProbability, double mean, double stddev, double degreeFreedom) {
-    return 0.0;
+    std::string key = "tstudent(" + std::to_string(mean) + "," + std::to_string(stddev) + "," + std::to_string(degreeFreedom) + ")" + std::to_string(cumulativeProbability);
+    auto search = ProbabilityDistribution::memory->find(key);
+    if (search != ProbabilityDistribution::memory->end()) { //found
+        return search->second;
+    } else {
+        double a, fa;
+        double b, fb;
+        if (cumulativeProbability <= 0.5) { ///TODO: Could be better
+            a = mean - stddev * 5.0;
+            fa = 0.0;
+            b = mean;
+            fb = 0.5;
+        } else {
+            a = mean;
+            fa = 0.5;
+            b = mean + stddev * 5.0;
+            fb = 1.0;
+        }
+        double inv = ProbabilityDistribution::_findInverseTStudent(a, fa, b, fb, 0, cumulativeProbability, mean, stddev, degreeFreedom);
+        std::pair<std::string, double> pair = std::pair<std::string, double>(key, inv);
+        ProbabilityDistribution::memory->insert(pair);
+        return inv;
+    }
 }
+
+//************************
 
 double ProbabilityDistribution::_gammaFunction(double x) {
     return tgamma(x); ///TODO: Implement by myself

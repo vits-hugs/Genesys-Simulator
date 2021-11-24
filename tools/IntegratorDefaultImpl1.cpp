@@ -11,8 +11,9 @@
  */
 
 #include "IntegratorDefaultImpl1.h"
+#include <math.h>
 
-IntegratorDefaultImpl1::IntegratorDefaultImpl1(double precision, double steps) {
+IntegratorDefaultImpl1::IntegratorDefaultImpl1(double precision, unsigned int steps) {
     _precision = precision;
     _steps = steps;
 }
@@ -25,22 +26,26 @@ double IntegratorDefaultImpl1::getPrecision() {
     return _precision;
 }
 
-void IntegratorDefaultImpl1::setSteps(double steps) {
+void IntegratorDefaultImpl1::setMaxSteps(double steps) {
     _steps = steps;
 }
 
-double IntegratorDefaultImpl1::getSteps() {
+double IntegratorDefaultImpl1::getMaxSteps() {
     return _steps;
 }
 
 double IntegratorDefaultImpl1::integrate(double min, double max, double (*f)(double, double), double p2) {
     // Simpson's 1/3 rule
-
-    double h = (max - min) / _steps; // distance between points
+    double steps = _steps;
+    double h = (max - min) / steps; // distance between points
+    if (h < _precision) {
+        steps = (max - min) / _precision;
+        h = (max - min) / steps;
+    }
     double x, c; // x is the point being evaluated, c is the weight
     double sum = 0.0;
-    for (int i = 0; i <= _steps; i++) {
-        if (i == 0 || i == _steps)
+    for (int i = 0; i <= steps; i++) {
+        if (i == 0 || i == steps)
             c = 1;
         else if (i % 2 == 0)
             c = 2;
@@ -55,11 +60,16 @@ double IntegratorDefaultImpl1::integrate(double min, double max, double (*f)(dou
 double IntegratorDefaultImpl1::integrate(double min, double max, double (*f)(double, double, double), double p2, double p3) {
     // Simpson's 1/3 rule
 
-    double h = (max - min) / _steps; // distance between points
+    unsigned int steps = _steps;
+    double h = (max - min) / steps; // distance between points
+    if (h < _precision) {
+        steps = ceil((max - min) / _precision);
+        h = (max - min) / steps;
+    }
     double x, c; // x is the point being evaluated, c is the weight
     double sum = 0.0;
-    for (int i = 0; i <= _steps; i++) {
-        if (i == 0 || i == _steps)
+    for (int i = 0; i <= steps; i++) {
+        if (i == 0 || i == steps)
             c = 1;
         else if (i % 2 == 0)
             c = 2;
@@ -73,12 +83,16 @@ double IntegratorDefaultImpl1::integrate(double min, double max, double (*f)(dou
 
 double IntegratorDefaultImpl1::integrate(double min, double max, double (*f)(double, double, double, double), double p2, double p3, double p4) {
     // Simpson's 1/3 rule
-
-    double h = (max - min) / _steps; // distance between points
+    double steps = _steps;
+    double h = (max - min) / steps; // distance between points
+    if (h < _precision) {
+        steps = (max - min) / _precision;
+        h = (max - min) / steps;
+    }
     double x, c; // x is the point being evaluated, c is the weight
     double sum = 0.0;
-    for (int i = 0; i <= _steps; i++) {
-        if (i == 0 || i == _steps)
+    for (int i = 0; i <= steps; i++) {
+        if (i == 0 || i == steps)
             c = 1;
         else if (i % 2 == 0)
             c = 2;
@@ -92,12 +106,16 @@ double IntegratorDefaultImpl1::integrate(double min, double max, double (*f)(dou
 
 double IntegratorDefaultImpl1::integrate(double min, double max, double (*f)(double, double, double, double, double), double p2, double p3, double p4, double p5) {
     // Simpson's 1/3 rule
-
-    double h = (max - min) / _steps; // distance between points
+    double steps = _steps;
+    double h = (max - min) / steps; // distance between points
+    if (h < _precision) {
+        steps = (max - min) / _precision;
+        h = (max - min) / steps;
+    }
     double x, c; // x is the point being evaluated, c is the weight
     double sum = 0.0;
-    for (int i = 0; i <= _steps; i++) {
-        if (i == 0 || i == _steps)
+    for (int i = 0; i <= steps; i++) {
+        if (i == 0 || i == steps)
             c = 1;
         else if (i % 2 == 0)
             c = 2;

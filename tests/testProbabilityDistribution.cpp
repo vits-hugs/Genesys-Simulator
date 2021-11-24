@@ -59,18 +59,25 @@ void test2() {
     std::cout << x << std::endl;
 }
 
+void test3() {
+    double x = ProbabilityDistribution::inverseNormal(0.975, 0.0, 1.0);
+    std::cout << x << std::endl;
+    x = ProbabilityDistribution::inverseTStudent(0.975, 0.0, 1.0, 18);
+    x = ProbabilityDistribution::inverseTStudent(0.975, 0.0, 1.0, 18);
+    std::cout << x << std::endl;
+    x = ProbabilityDistribution::inverseFFisherSnedecor(0.975, 2.0, 1.0);
+    std::cout << x << std::endl;
+    x = ProbabilityDistribution::inverseChi2(0.975, 5);
+    std::cout << x << std::endl;
+}
+
 int main(int argc, char** argv) {
     std::cout << "%SUITE_STARTING% testProbabilityDistribution" << std::endl;
     std::cout << "%SUITE_STARTED%" << std::endl;
 
-    //std::cout << "%TEST_STARTED% test1 (testProbabilityDistribution)" << std::endl;
     //test1();
-    // std::cout << "%TEST_FINISHED% time=0 test1 (testProbabilityDistribution)" << std::endl;
-
-    //std::cout << "%TEST_STARTED% test2 (testProbabilityDistribution)\n" << std::endl;
-    test2();
-    // std::cout << "%TEST_FINISHED% time=0 test2 (testProbabilityDistribution)" << std::endl;
-
+    //test2();
+    test3();
     // std::cout << "%SUITE_FINISHED% time=0" << std::endl;
 
     return (EXIT_SUCCESS);

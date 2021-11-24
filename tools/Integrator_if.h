@@ -23,8 +23,8 @@ class Integrator_if {
 public:
     virtual void setPrecision(double e) = 0;
     virtual double getPrecision() = 0;
-    virtual void setSteps(double steps) = 0;
-    virtual double getSteps() = 0;
+    virtual void setMaxSteps(double steps) = 0;
+    virtual double getMaxSteps() = 0;
     virtual double integrate(double min, double max, double (*f)(double, double), double p2) = 0;
     virtual double integrate(double min, double max, double (*f)(double, double, double), double p2, double p3) = 0;
     virtual double integrate(double min, double max, double (*f)(double, double, double, double), double p2, double p3, double p4) = 0;

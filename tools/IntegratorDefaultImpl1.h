@@ -17,20 +17,20 @@
 
 class IntegratorDefaultImpl1 : public Integrator_if {
 public:
-    IntegratorDefaultImpl1(double precision = 1e-6, double steps = 1e3);
+    IntegratorDefaultImpl1(double precision = 1e-6, unsigned int steps = 1e3);
     virtual ~IntegratorDefaultImpl1() = default;
 public:
     virtual void setPrecision(double e);
     virtual double getPrecision();
-    virtual void setSteps(double steps);
-    virtual double getSteps();
+    virtual void setMaxSteps(double steps);
+    virtual double getMaxSteps();
     virtual double integrate(double min, double max, double (*f)(double, double), double p2);
     virtual double integrate(double min, double max, double (*f)(double, double, double), double p2, double p3);
     virtual double integrate(double min, double max, double (*f)(double, double, double, double), double p2, double p3, double p4);
     virtual double integrate(double min, double max, double (*f)(double, double, double, double, double), double p2, double p3, double p4, double p5);
 private:
     double _precision;
-    double _steps;
+    unsigned int _steps;
 };
 
 #endif /* INTEGRATORDEFAULTIMPL1_H */

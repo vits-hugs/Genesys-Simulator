@@ -32,9 +32,9 @@ public:
     };
 public:
     // confidence intervals
-    virtual double averageConfidenceInterval(double avg, unsigned int n, double confidenceLevel, H1Comparition comp) = 0;
-    virtual double proportionConfidenceInterval(double prop, unsigned int n, double confidenceLevel, H1Comparition comp) = 0;
-    virtual double varianceConfidenceInterval(double var, unsigned int n, double confidenceLevel, H1Comparition comp) = 0;
+    virtual double averageConfidenceInterval(double avg, double stddev, unsigned int n, double confidenceLevel) = 0;
+    virtual double proportionConfidenceInterval(double prop, unsigned int n, double confidenceLevel) = 0;
+    virtual double varianceConfidenceInterval(double var, unsigned int n, double confidenceLevel) = 0;
     // confidence intervals based on datafile
     virtual double averageConfidenceInterval(std::string sampleDataFilename, double confidenceLevel, H1Comparition comp) = 0;
     virtual double proportionConfidenceInterval(std::string sampleDataFilename, checkProportionFunction function, double confidenceLevel, H1Comparition comp) = 0;

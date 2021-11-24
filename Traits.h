@@ -39,7 +39,8 @@ template <> struct Traits<GenesysApplication_if> {
 
 template <> struct Traits<Integrator_if> {
     typedef IntegratorDefaultImpl1 Implementation;
-    static constexpr double MaxSteps = 1e3;
+    static constexpr double Precision = 1e-5;
+    static constexpr unsigned int MaxSteps = 1e2;
 };
 
 #endif /* TRAITS_H */
