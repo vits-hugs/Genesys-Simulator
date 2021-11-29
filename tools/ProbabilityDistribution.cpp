@@ -206,7 +206,7 @@ double ProbabilityDistribution::inverseNormal(double cumulativeProbability, doub
     } else {
         double a, fa;
         double b, fb;
-        if (cumulativeProbability <= 0.5) { ///TODO: Could be better
+        if (cumulativeProbability <= 0.5) { ///TODO: Could be better (separate into 1,2,3xstddev)
             a = mean - stddev * 5.0;
             fa = 0.0;
             b = mean;

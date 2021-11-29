@@ -23,6 +23,8 @@
 #include "../kernel/statistics/SamplerDefaultImpl1.h"
 #include "../kernel/statistics/CollectorDatafileDefaultImpl1.h"
 #include "../kernel/statistics/StatisticsDataFileDefaultImpl.h"
+#include "../Traits.h"
+#include "../tools/HypothesisTester_if.h"
 
 void test1() {
     //std::cout << "testProbabilityDistribution test 1" << std::endl;
@@ -71,13 +73,33 @@ void test3() {
     std::cout << x << std::endl;
 }
 
+void test4() {
+    HypothesisTester_if* ht = new Traits<HypothesisTester_if>::Implementation();
+    HypothesisTester_if::ConfidenceInterval ic = ht->averageConfidenceInterval(100, 10, 200, 0.95);
+    double x;
+    x = ProbabilityDistribution::inverseFFisherSnedecor(0.05, 7, 16);
+    x = ProbabilityDistribution::inverseFFisherSnedecor(0.025, 7, 16);
+    x = ProbabilityDistribution::inverseFFisherSnedecor(1.0 - 0.05, 16, 7);
+    x = ProbabilityDistribution::inverseFFisherSnedecor(1.0 - 0.025, 16, 7);
+    ic = ht->varianceRatioConfidenceInterval(46.5, 8, 23.4, 17, 0.95);
+    std::cout << "[" << ic.inferiorLimit() << "," << ic.superiorLimit() << "]" << std::endl;
+}
+
+void test5() {
+    HypothesisTester_if* ht = new Traits<HypothesisTester_if>::Implementation();
+    HypothesisTester_if::TestResult result = ht->testAverage(90.0, 10.0, 25, 84.0, 0.95, HypothesisTester_if::H1Comparition::LESS_THAN);
+    std::cout << result.errorTypeI() << result.pValue() << result.rejectH0() << std::endl;
+}
+
 int main(int argc, char** argv) {
     std::cout << "%SUITE_STARTING% testProbabilityDistribution" << std::endl;
     std::cout << "%SUITE_STARTED%" << std::endl;
 
     //test1();
     //test2();
-    test3();
+    //test3();
+    //test4();
+    test5();
     // std::cout << "%SUITE_FINISHED% time=0" << std::endl;
 
     return (EXIT_SUCCESS);

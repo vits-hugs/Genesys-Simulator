@@ -20,8 +20,9 @@
 #include "userInterfaces/examples/Example_SeizeDelayRelease1.h"
 #include "userInterfaces/examples/book/Example01.h"
 //#include "userInterfaces/examples/Example_SistemaOperacional03.h"
-
 #include "tools/IntegratorDefaultImpl1.h"
+#include "tools/HypothesisTesterDefaultImpl1.h"
+#include "tools/HypothesisTester_if.h"
 
 template <typename T>
 struct Traits {
@@ -43,5 +44,9 @@ template <> struct Traits<Integrator_if> {
     static constexpr unsigned int MaxSteps = 1e2;
 };
 
+template <> struct Traits<HypothesisTester_if> {
+    typedef HypothesisTesterDefaultImpl1 Implementation;
+    static constexpr unsigned int ConfidenceLevel = 95;
+};
 #endif /* TRAITS_H */
 
