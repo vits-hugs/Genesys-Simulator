@@ -110,38 +110,49 @@ HypothesisTester_if::TestResult HypothesisTesterDefaultImpl1::testAverage(double
 }
 
 HypothesisTester_if::TestResult HypothesisTesterDefaultImpl1::testProportion(double prop, unsigned int n, double proptest, HypothesisTester_if::H1Comparition comp) {
+    return HypothesisTester_if::TestResult(0.0, 0.0, false, 0.0, 0.0); ///TODO: not implemented yet
 }
 
 HypothesisTester_if::TestResult HypothesisTesterDefaultImpl1::testVariance(double var, unsigned int n, double vartest, HypothesisTester_if::H1Comparition comp) {
+    return HypothesisTester_if::TestResult(0.0, 0.0, false, 0.0, 0.0); ///TODO: not implemented yet
 }
 // two populations
 
 HypothesisTester_if::TestResult HypothesisTesterDefaultImpl1::testAverage(double avg1, unsigned int n1, double avg2, unsigned int n2, HypothesisTester_if::H1Comparition comp) {
+    return HypothesisTester_if::TestResult(0.0, 0.0, false, 0.0, 0.0); ///TODO: not implemented yet
 }
 
 HypothesisTester_if::TestResult HypothesisTesterDefaultImpl1::testProportion(double prop1, unsigned int n1, double prop2, unsigned int n2, HypothesisTester_if::H1Comparition comp) {
+    return HypothesisTester_if::TestResult(0.0, 0.0, false, 0.0, 0.0); ///TODO: not implemented yet
 }
 
 HypothesisTester_if::TestResult HypothesisTesterDefaultImpl1::testVariance(double var1, unsigned int n1, double var2, unsigned int n2, HypothesisTester_if::H1Comparition comp) {
+    return HypothesisTester_if::TestResult(0.0, 0.0, false, 0.0, 0.0); ///TODO: not implemented yet
 }
 // one population based on datafile
 
 HypothesisTester_if::TestResult HypothesisTesterDefaultImpl1::testAverage(std::string sampleDataFilename, double avgSample, HypothesisTester_if::H1Comparition comp) {
+    return HypothesisTester_if::TestResult(0.0, 0.0, false, 0.0, 0.0); ///TODO: not implemented yet
 }
 
 HypothesisTester_if::TestResult HypothesisTesterDefaultImpl1::testProportion(std::string sampleDataFilename, checkProportionFunction function, double proptest, HypothesisTester_if::H1Comparition comp) {
+    return HypothesisTester_if::TestResult(0.0, 0.0, false, 0.0, 0.0); ///TODO: not implemented yet
 }
 
 HypothesisTester_if::TestResult HypothesisTesterDefaultImpl1::testVariance(std::string sampleDataFilename, double vartest, HypothesisTester_if::H1Comparition comp) {
+    return HypothesisTester_if::TestResult(0.0, 0.0, false, 0.0, 0.0); ///TODO: not implemented yet
 }
 // two populations based on datafile
 
 HypothesisTester_if::TestResult HypothesisTesterDefaultImpl1::testAverage(std::string firstSampleDataFilename, std::string secondSampleDataFilename, HypothesisTester_if::H1Comparition comp) {
+    return HypothesisTester_if::TestResult(0.0, 0.0, false, 0.0, 0.0); ///TODO: not implemented yet
 }
 
 HypothesisTester_if::TestResult HypothesisTesterDefaultImpl1::testProportion(std::string firstSampleDataFilename, std::string secondSampleDataFilename, checkProportionFunction function, HypothesisTester_if::H1Comparition comp) {
+    return HypothesisTester_if::TestResult(0.0, 0.0, false, 0.0, 0.0); ///TODO: not implemented yet
 }
 
 HypothesisTester_if::TestResult HypothesisTesterDefaultImpl1::testVariance(std::string firstSampleDataFilename, std::string secondSampleDataFilename, HypothesisTester_if::H1Comparition comp) {
+    return HypothesisTester_if::TestResult(0.0, 0.0, false, 0.0, 0.0); ///TODO: not implemented yet
 }
 // @TODO: Add interface for non-parametrical tests, such as chi-square (based on values and on datafile)

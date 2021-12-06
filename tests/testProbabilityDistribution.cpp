@@ -91,7 +91,7 @@ void test5() {
     std::cout << result.errorTypeI() << result.pValue() << result.rejectH0() << std::endl;
 }
 
-int main(int argc, char** argv) {
+int mainn(int argc, char** argv) {
     std::cout << "%SUITE_STARTING% testProbabilityDistribution" << std::endl;
     std::cout << "%SUITE_STARTED%" << std::endl;
 

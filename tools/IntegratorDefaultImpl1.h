@@ -23,7 +23,7 @@ public:
     virtual void setPrecision(double e);
     virtual double getPrecision();
     virtual void setMaxSteps(double steps);
-    virtual double getMaxSteps();
+    virtual double getMaxSteps(); 
     virtual double integrate(double min, double max, double (*f)(double, double), double p2);
     virtual double integrate(double min, double max, double (*f)(double, double, double), double p2, double p3);
     virtual double integrate(double min, double max, double (*f)(double, double, double, double), double p2, double p3, double p4);

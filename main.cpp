@@ -23,7 +23,7 @@
 /*
  * This is the MAIN application of GenESyS. It just calls the Application specificied on the configuration/traits file.
  */
-int mainn(int argc, char** argv) {
+int main(int argc, char** argv) {
     /*
     std::string argv_str(argv[0]);
     std::string base = argv_str.substr(0, argv_str.find_last_of("/"));

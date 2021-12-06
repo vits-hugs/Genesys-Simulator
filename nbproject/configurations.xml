@@ -278,6 +278,8 @@
         <itemPath>userInterfaces/examples/book/Example01.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="examples" projectFiles="true">
+        <itemPath>userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.cpp</itemPath>
+        <itemPath>userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.h</itemPath>
         <itemPath>userInterfaces/examples/Example_AssignWrite3Seizes.cpp</itemPath>
         <itemPath>userInterfaces/examples/Example_CreateDelayDispose.cpp</itemPath>
         <itemPath>userInterfaces/examples/Example_CreateDelayDispose.h</itemPath>
@@ -362,11 +364,8 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <qt>
-        <version>210520</version>
+        <version>211201</version>
         <modules>core gui widgets</modules>
-        <defs>
-          <Elem>QMAKE_CXXFLAGS</Elem>
-        </defs>
       </qt>
       <compileType>
         <ccTool>
@@ -377,6 +376,24 @@
         <packType>Debian</packType>
         <verbose>false</verbose>
         <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
           <packFileListElem type="File"
                             to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
                             from="${OUTPUT_PATH}"
@@ -1265,6 +1282,16 @@
             flavor2="0">
       </item>
       <item path="userInterfaces/GenesysApplication_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2250,6 +2277,16 @@
             flavor2="0">
       </item>
       <item path="userInterfaces/GenesysApplication_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.h"
             ex="false"
             tool="3"
             flavor2="0">
