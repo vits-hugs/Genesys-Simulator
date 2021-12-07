@@ -14,8 +14,8 @@
 #ifndef QUEUEABLEITEMREQUEST_H
 #define QUEUEABLEITEMREQUEST_H
 
-#include "Queue.h"
-#include "Set.h"
+#include "../elements/Queue.h"
+#include "../elements/Set.h"
 #include "../../kernel/simulator/ElementManager.h"
 
 // \todo should inhere from a common base to SeizeableItemRequest

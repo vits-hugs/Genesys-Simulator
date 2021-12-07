@@ -21,7 +21,7 @@
 #include "../elements/Queue.h"
 #include "../../kernel/simulator/Plugin.h"
 #include "SeizableItemRequest.h"
-#include "../elements/QueueableItemRequest.h"
+#include "../components/QueueableItemRequest.h"
 
 class WaitingResource : public Waiting {
 public:

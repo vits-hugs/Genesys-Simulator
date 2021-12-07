@@ -240,8 +240,8 @@
         <itemPath>plugins/elements/Formula.h</itemPath>
         <itemPath>plugins/elements/Queue.cpp</itemPath>
         <itemPath>plugins/elements/Queue.h</itemPath>
-        <itemPath>plugins/elements/QueueableItemRequest.cpp</itemPath>
-        <itemPath>plugins/elements/QueueableItemRequest.h</itemPath>
+        <itemPath>plugins/components/QueueableItemRequest.cpp</itemPath>
+        <itemPath>plugins/components/QueueableItemRequest.h</itemPath>
         <itemPath>plugins/elements/Resource.cpp</itemPath>
         <itemPath>plugins/elements/Resource.h</itemPath>
         <itemPath>plugins/elements/Schedule.cpp</itemPath>
@@ -1120,6 +1120,16 @@
       </item>
       <item path="plugins/components/PickUp.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="plugins/components/QueueableItemRequest.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="plugins/components/QueueableItemRequest.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="plugins/components/Record.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="plugins/components/Record.h" ex="false" tool="3" flavor2="0">
@@ -1205,16 +1215,6 @@
       <item path="plugins/elements/Queue.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="plugins/elements/Queue.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="plugins/elements/QueueableItemRequest.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="plugins/elements/QueueableItemRequest.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
       </item>
       <item path="plugins/elements/Resource.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -2115,6 +2115,16 @@
       </item>
       <item path="plugins/components/PickUp.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="plugins/components/QueueableItemRequest.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="plugins/components/QueueableItemRequest.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="plugins/components/Record.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="plugins/components/Record.h" ex="false" tool="3" flavor2="0">
@@ -2200,16 +2210,6 @@
       <item path="plugins/elements/Queue.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="plugins/elements/Queue.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="plugins/elements/QueueableItemRequest.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="plugins/elements/QueueableItemRequest.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
       </item>
       <item path="plugins/elements/Resource.cpp" ex="false" tool="1" flavor2="0">
       </item>
