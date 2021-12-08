@@ -7,7 +7,7 @@
 *****************************************************************************/
 
 #include <memory>
-#include "userInterfaces/gui/qt/formPlugins.h"
+#include "userInterfaces/gui/qt/forms/formPlugins.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)

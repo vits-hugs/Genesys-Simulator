@@ -10,16 +10,16 @@
  * Created on 19 de outubro de 2021, 16:23
  */
 
-#ifndef EXAMPLE01_H
-#define EXAMPLE01_H
+#ifndef BOOK_CAP02_EXAMPLE01_H
+#define BOOK_CAP02_EXAMPLE01_H
 
 #include "../../BaseConsoleGenesysApplication.h"
 
-class Example01 : public BaseConsoleGenesysApplication {
+class Book_Cap02_Example01 : public BaseConsoleGenesysApplication {
 public:
-    Example01();
+    Book_Cap02_Example01();
     virtual int main(int argc, char** argv);
 };
 
-#endif /* EXAMPLE01_H */
+#endif /* BOOK_CAP02_EXAMPLE01_H */
 

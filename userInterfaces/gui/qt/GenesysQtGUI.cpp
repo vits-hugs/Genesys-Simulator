@@ -13,7 +13,7 @@
 
 #include "GenesysQtGUI.h"
 #include <QApplication>
-#include "mainwindow.h"
+#include "mainWindow/mainwindow.h"
 
 GenesysQtGUI::GenesysQtGUI() {
 }

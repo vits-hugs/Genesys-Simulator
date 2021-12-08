@@ -10,17 +10,17 @@
  * Created on 19 de outubro de 2021, 16:23
  */
 
-#include "Example01.h"
+#include "Book_Cap02_Example01.h"
 #include "../../../kernel/simulator/Simulator.h"
 #include "../../../kernel/simulator/EntityType.h"
 #include "../../../plugins/components/Create.h"
 #include "../../../plugins/components/Delay.h"
 #include "../../../plugins/components/Dispose.h"
 
-Example01::Example01() {
+Book_Cap02_Example01::Book_Cap02_Example01() {
 }
 
-int Example01::main(int argc, char** argv) {
+int Book_Cap02_Example01::main(int argc, char** argv) {
     Simulator* genesys = new Simulator();
     this->insertFakePluginsByHand(genesys);
     this->setDefaultTraceHandlers(genesys->getTracer());

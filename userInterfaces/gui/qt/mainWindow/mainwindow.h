@@ -2,9 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "mapkernelandui.h"
-#include "../../../kernel/simulator/Simulator.h"
-#include "../../../kernel/simulator/Plugin.h"
+#include "../mapkernelandui.h"
+#include "../../../../kernel/simulator/Simulator.h"
+#include "../../../../kernel/simulator/Plugin.h"
 
 namespace Ui {
 class MainWindow;

@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "dialogabout.h"
-#include "dialogmodelinformation.h"
+#include "../dialogs/dialogabout.h"
+#include "../dialogs/dialogmodelinformation.h"
 #include "Traits.h"
 #include <Qt>
 #include <QFileDialog>
