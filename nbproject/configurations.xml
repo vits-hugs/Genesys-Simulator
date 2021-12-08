@@ -284,20 +284,26 @@
       </logicalFolder>
       <logicalFolder name="gui" displayName="gui" projectFiles="true">
         <logicalFolder name="qt" displayName="qt" projectFiles="true">
+          <logicalFolder name="f1" displayName="dialogs" projectFiles="true">
+            <itemPath>userInterfaces/gui/qt/dialogs/dialogabout.cpp</itemPath>
+            <itemPath>userInterfaces/gui/qt/dialogs/dialogabout.h</itemPath>
+            <itemPath>userInterfaces/gui/qt/dialogs/dialogabout.ui</itemPath>
+            <itemPath>userInterfaces/gui/qt/dialogs/dialogmodelinformation.cpp</itemPath>
+            <itemPath>userInterfaces/gui/qt/dialogs/dialogmodelinformation.h</itemPath>
+            <itemPath>userInterfaces/gui/qt/dialogs/dialogmodelinformation.ui</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f2" displayName="forms" projectFiles="true">
+            <itemPath>userInterfaces/gui/qt/forms/formPlugins.cpp</itemPath>
+            <itemPath>userInterfaces/gui/qt/forms/formPlugins.h</itemPath>
+            <itemPath>userInterfaces/gui/qt/forms/formPlugins.ui</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f3" displayName="mainWindow" projectFiles="true">
+            <itemPath>userInterfaces/gui/qt/mainWindow/mainwindow.cpp</itemPath>
+            <itemPath>userInterfaces/gui/qt/mainWindow/mainwindow.h</itemPath>
+            <itemPath>userInterfaces/gui/qt/mainWindow/mainwindow.ui</itemPath>
+          </logicalFolder>
           <itemPath>userInterfaces/gui/qt/GenesysQtGUI.cpp</itemPath>
           <itemPath>userInterfaces/gui/qt/GenesysQtGUI.h</itemPath>
-          <itemPath>userInterfaces/gui/qt/dialogs/dialogabout.cpp</itemPath>
-          <itemPath>userInterfaces/gui/qt/dialogs/dialogabout.h</itemPath>
-          <itemPath>userInterfaces/gui/qt/dialogs/dialogabout.ui</itemPath>
-          <itemPath>userInterfaces/gui/qt/dialogs/dialogmodelinformation.cpp</itemPath>
-          <itemPath>userInterfaces/gui/qt/dialogs/dialogmodelinformation.h</itemPath>
-          <itemPath>userInterfaces/gui/qt/dialogs/dialogmodelinformation.ui</itemPath>
-          <itemPath>userInterfaces/gui/qt/forms/formPlugins.cpp</itemPath>
-          <itemPath>userInterfaces/gui/qt/forms/formPlugins.h</itemPath>
-          <itemPath>userInterfaces/gui/qt/forms/formPlugins.ui</itemPath>
-          <itemPath>userInterfaces/gui/qt/mainWindow/mainwindow.cpp</itemPath>
-          <itemPath>userInterfaces/gui/qt/mainWindow/mainwindow.h</itemPath>
-          <itemPath>userInterfaces/gui/qt/mainWindow/mainwindow.ui</itemPath>
           <itemPath>userInterfaces/gui/qt/mapkernelandui.cpp</itemPath>
           <itemPath>userInterfaces/gui/qt/mapkernelandui.h</itemPath>
         </logicalFolder>

@@ -118,36 +118,33 @@ public:
     QMenu *menuWindow;
     QMenu *menuHelp;
     QMenu *menuSimulator;
-    QToolBar *toolBarModel;
     QStatusBar *statusBar;
-    QToolBar *toolBarEdit;
     QToolBar *toolBar;
-    QToolBar *toolBarSimulator;
-    QDockWidget *dockWidgetComponents;
-    QWidget *dockWidgetContents;
+    QDockWidget *dockWidgetPlugins;
+    QWidget *dockWidgetPlugins_2;
     QVBoxLayout *verticalLayout;
-    QListWidget *listWidget_ComponentPlugins;
+    QListWidget *listWidget_Plugins;
     QDockWidget *dockWidgetProperties;
-    QWidget *dockWidgetContents_3;
+    QWidget *dockWidgetContents_Properties;
     QVBoxLayout *verticalLayout_3;
     QTableView *tableView_Properties;
     QDockWidget *dockWidgetConsole;
-    QWidget *dockWidgetContents_4;
+    QWidget *dockWidgetContents_Console;
     QVBoxLayout *verticalLayout_4;
     QTextEdit *textEdit_Console;
-    QDockWidget *dockWidget;
-    QWidget *dockWidgetContents_5;
+    QDockWidget *dockWidgetReports;
+    QWidget *dockWidgetContents_Reports;
     QVBoxLayout *verticalLayout_5;
     QTextEdit *textEdit_Report;
     QDockWidget *dockWidgetExperiments;
-    QWidget *dockWidgetContents_6;
-    QListWidget *listWidget;
+    QWidget *dockWidgetContents_Experiments;
+    QListWidget *listWidget_Experiments;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(1082, 619);
+        MainWindow->resize(1273, 724);
         MainWindow->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
         actionNew = new QAction(MainWindow);
         actionNew->setObjectName(QString::fromUtf8("actionNew"));
@@ -386,6 +383,15 @@ public:
         graphicsView = new QGraphicsView(tabModel1);
         graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
         graphicsView->setFrameShape(QFrame::WinPanel);
+        graphicsView->setFrameShadow(QFrame::Sunken);
+        graphicsView->setLineWidth(2);
+        graphicsView->setMidLineWidth(1);
+        graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+        graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+        QBrush brush(QColor(238, 238, 238, 255));
+        brush.setStyle(Qt::SolidPattern);
+        graphicsView->setBackgroundBrush(brush);
+        graphicsView->setDragMode(QGraphicsView::NoDrag);
 
         horizontalLayout->addWidget(graphicsView);
 
@@ -403,7 +409,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1082, 24));
+        menuBar->setGeometry(QRect(0, 0, 1273, 24));
         menuEdit = new QMenu(menuBar);
         menuEdit->setObjectName(QString::fromUtf8("menuEdit"));
         menuModel = new QMenu(menuBar);
@@ -418,67 +424,59 @@ public:
         menuSimulator = new QMenu(menuBar);
         menuSimulator->setObjectName(QString::fromUtf8("menuSimulator"));
         MainWindow->setMenuBar(menuBar);
-        toolBarModel = new QToolBar(MainWindow);
-        toolBarModel->setObjectName(QString::fromUtf8("toolBarModel"));
-        MainWindow->addToolBar(Qt::TopToolBarArea, toolBarModel);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QString::fromUtf8("statusBar"));
         MainWindow->setStatusBar(statusBar);
-        toolBarEdit = new QToolBar(MainWindow);
-        toolBarEdit->setObjectName(QString::fromUtf8("toolBarEdit"));
-        MainWindow->addToolBar(Qt::TopToolBarArea, toolBarEdit);
         toolBar = new QToolBar(MainWindow);
         toolBar->setObjectName(QString::fromUtf8("toolBar"));
         MainWindow->addToolBar(Qt::TopToolBarArea, toolBar);
-        toolBarSimulator = new QToolBar(MainWindow);
-        toolBarSimulator->setObjectName(QString::fromUtf8("toolBarSimulator"));
-        MainWindow->addToolBar(Qt::TopToolBarArea, toolBarSimulator);
-        dockWidgetComponents = new QDockWidget(MainWindow);
-        dockWidgetComponents->setObjectName(QString::fromUtf8("dockWidgetComponents"));
-        dockWidgetComponents->setFeatures(QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable);
-        dockWidgetContents = new QWidget();
-        dockWidgetContents->setObjectName(QString::fromUtf8("dockWidgetContents"));
-        verticalLayout = new QVBoxLayout(dockWidgetContents);
+        dockWidgetPlugins = new QDockWidget(MainWindow);
+        dockWidgetPlugins->setObjectName(QString::fromUtf8("dockWidgetPlugins"));
+        dockWidgetPlugins->setAutoFillBackground(false);
+        dockWidgetPlugins->setFeatures(QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable);
+        dockWidgetPlugins_2 = new QWidget();
+        dockWidgetPlugins_2->setObjectName(QString::fromUtf8("dockWidgetPlugins_2"));
+        verticalLayout = new QVBoxLayout(dockWidgetPlugins_2);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        listWidget_ComponentPlugins = new QListWidget(dockWidgetContents);
-        listWidget_ComponentPlugins->setObjectName(QString::fromUtf8("listWidget_ComponentPlugins"));
+        listWidget_Plugins = new QListWidget(dockWidgetPlugins_2);
+        listWidget_Plugins->setObjectName(QString::fromUtf8("listWidget_Plugins"));
 
-        verticalLayout->addWidget(listWidget_ComponentPlugins);
+        verticalLayout->addWidget(listWidget_Plugins);
 
-        dockWidgetComponents->setWidget(dockWidgetContents);
-        MainWindow->addDockWidget(Qt::LeftDockWidgetArea, dockWidgetComponents);
+        dockWidgetPlugins->setWidget(dockWidgetPlugins_2);
+        MainWindow->addDockWidget(Qt::LeftDockWidgetArea, dockWidgetPlugins);
         dockWidgetProperties = new QDockWidget(MainWindow);
         dockWidgetProperties->setObjectName(QString::fromUtf8("dockWidgetProperties"));
         dockWidgetProperties->setFeatures(QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable);
-        dockWidgetContents_3 = new QWidget();
-        dockWidgetContents_3->setObjectName(QString::fromUtf8("dockWidgetContents_3"));
-        verticalLayout_3 = new QVBoxLayout(dockWidgetContents_3);
+        dockWidgetContents_Properties = new QWidget();
+        dockWidgetContents_Properties->setObjectName(QString::fromUtf8("dockWidgetContents_Properties"));
+        verticalLayout_3 = new QVBoxLayout(dockWidgetContents_Properties);
         verticalLayout_3->setSpacing(6);
         verticalLayout_3->setContentsMargins(11, 11, 11, 11);
         verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
-        tableView_Properties = new QTableView(dockWidgetContents_3);
+        tableView_Properties = new QTableView(dockWidgetContents_Properties);
         tableView_Properties->setObjectName(QString::fromUtf8("tableView_Properties"));
         tableView_Properties->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
         tableView_Properties->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 
         verticalLayout_3->addWidget(tableView_Properties);
 
-        dockWidgetProperties->setWidget(dockWidgetContents_3);
+        dockWidgetProperties->setWidget(dockWidgetContents_Properties);
         MainWindow->addDockWidget(Qt::RightDockWidgetArea, dockWidgetProperties);
         dockWidgetConsole = new QDockWidget(MainWindow);
         dockWidgetConsole->setObjectName(QString::fromUtf8("dockWidgetConsole"));
         dockWidgetConsole->setFloating(false);
         dockWidgetConsole->setFeatures(QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable);
         dockWidgetConsole->setAllowedAreas(Qt::AllDockWidgetAreas);
-        dockWidgetContents_4 = new QWidget();
-        dockWidgetContents_4->setObjectName(QString::fromUtf8("dockWidgetContents_4"));
-        verticalLayout_4 = new QVBoxLayout(dockWidgetContents_4);
+        dockWidgetContents_Console = new QWidget();
+        dockWidgetContents_Console->setObjectName(QString::fromUtf8("dockWidgetContents_Console"));
+        verticalLayout_4 = new QVBoxLayout(dockWidgetContents_Console);
         verticalLayout_4->setSpacing(6);
         verticalLayout_4->setContentsMargins(11, 11, 11, 11);
         verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
-        textEdit_Console = new QTextEdit(dockWidgetContents_4);
+        textEdit_Console = new QTextEdit(dockWidgetContents_Console);
         textEdit_Console->setObjectName(QString::fromUtf8("textEdit_Console"));
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
@@ -492,18 +490,18 @@ public:
 
         verticalLayout_4->addWidget(textEdit_Console);
 
-        dockWidgetConsole->setWidget(dockWidgetContents_4);
+        dockWidgetConsole->setWidget(dockWidgetContents_Console);
         MainWindow->addDockWidget(Qt::BottomDockWidgetArea, dockWidgetConsole);
-        dockWidget = new QDockWidget(MainWindow);
-        dockWidget->setObjectName(QString::fromUtf8("dockWidget"));
-        dockWidget->setFeatures(QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable);
-        dockWidgetContents_5 = new QWidget();
-        dockWidgetContents_5->setObjectName(QString::fromUtf8("dockWidgetContents_5"));
-        verticalLayout_5 = new QVBoxLayout(dockWidgetContents_5);
+        dockWidgetReports = new QDockWidget(MainWindow);
+        dockWidgetReports->setObjectName(QString::fromUtf8("dockWidgetReports"));
+        dockWidgetReports->setFeatures(QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable);
+        dockWidgetContents_Reports = new QWidget();
+        dockWidgetContents_Reports->setObjectName(QString::fromUtf8("dockWidgetContents_Reports"));
+        verticalLayout_5 = new QVBoxLayout(dockWidgetContents_Reports);
         verticalLayout_5->setSpacing(6);
         verticalLayout_5->setContentsMargins(11, 11, 11, 11);
         verticalLayout_5->setObjectName(QString::fromUtf8("verticalLayout_5"));
-        textEdit_Report = new QTextEdit(dockWidgetContents_5);
+        textEdit_Report = new QTextEdit(dockWidgetContents_Reports);
         textEdit_Report->setObjectName(QString::fromUtf8("textEdit_Report"));
         sizePolicy.setHeightForWidth(textEdit_Report->sizePolicy().hasHeightForWidth());
         textEdit_Report->setSizePolicy(sizePolicy);
@@ -511,17 +509,18 @@ public:
 
         verticalLayout_5->addWidget(textEdit_Report);
 
-        dockWidget->setWidget(dockWidgetContents_5);
-        MainWindow->addDockWidget(Qt::BottomDockWidgetArea, dockWidget);
+        dockWidgetReports->setWidget(dockWidgetContents_Reports);
+        MainWindow->addDockWidget(Qt::BottomDockWidgetArea, dockWidgetReports);
         dockWidgetExperiments = new QDockWidget(MainWindow);
         dockWidgetExperiments->setObjectName(QString::fromUtf8("dockWidgetExperiments"));
-        dockWidgetContents_6 = new QWidget();
-        dockWidgetContents_6->setObjectName(QString::fromUtf8("dockWidgetContents_6"));
-        listWidget = new QListWidget(dockWidgetContents_6);
-        listWidget->setObjectName(QString::fromUtf8("listWidget"));
-        listWidget->setGeometry(QRect(10, 10, 181, 101));
-        listWidget->setAutoFillBackground(false);
-        dockWidgetExperiments->setWidget(dockWidgetContents_6);
+        dockWidgetContents_Experiments = new QWidget();
+        dockWidgetContents_Experiments->setObjectName(QString::fromUtf8("dockWidgetContents_Experiments"));
+        dockWidgetContents_Experiments->setMinimumSize(QSize(0, 144));
+        listWidget_Experiments = new QListWidget(dockWidgetContents_Experiments);
+        listWidget_Experiments->setObjectName(QString::fromUtf8("listWidget_Experiments"));
+        listWidget_Experiments->setGeometry(QRect(10, 10, 201, 161));
+        listWidget_Experiments->setAutoFillBackground(false);
+        dockWidgetExperiments->setWidget(dockWidgetContents_Experiments);
         MainWindow->addDockWidget(Qt::LeftDockWidgetArea, dockWidgetExperiments);
 
         menuBar->addAction(menuSimulator->menuAction());
@@ -558,11 +557,11 @@ public:
         menuView_2->addAction(actionGroup_2);
         menuWindow->addAction(actionComponents);
         menuWindow->addAction(actionElements);
-        menuWindow->addAction(actionModels);
-        menuWindow->addSeparator();
         menuWindow->addAction(actionProperties);
         menuWindow->addAction(actionEditor);
         menuWindow->addAction(actionConsole);
+        menuWindow->addSeparator();
+        menuWindow->addAction(actionModels);
         menuWindow->addSeparator();
         menuWindow->addAction(actionArranje_2);
         menuHelp->addAction(actionDocumentation);
@@ -577,30 +576,8 @@ public:
         menuSimulator->addAction(actionPreferences_2);
         menuSimulator->addSeparator();
         menuSimulator->addAction(actionExit_2);
-        toolBarModel->addAction(actionNew);
-        toolBarModel->addAction(actionOpen);
-        toolBarModel->addAction(actionClose);
-        toolBarModel->addAction(actionSave);
-        toolBarModel->addAction(actionSave_as);
-        toolBarModel->addSeparator();
-        toolBarModel->addAction(actionExit);
-        toolBarEdit->addAction(actionUndo);
-        toolBarEdit->addAction(actionRedo);
-        toolBarEdit->addSeparator();
-        toolBarEdit->addAction(actionCut);
-        toolBarEdit->addAction(actionCopy);
-        toolBarEdit->addAction(actionPaste);
-        toolBarEdit->addSeparator();
-        toolBarEdit->addAction(actionFind);
-        toolBarEdit->addAction(actionReplace);
-        toolBar->addAction(actionZoom_In);
         toolBar->addAction(actionZoom_Out);
         toolBar->addAction(actionZoom_Factor);
-        toolBarSimulator->addAction(actionStart);
-        toolBarSimulator->addAction(actionPause);
-        toolBarSimulator->addAction(actionStep);
-        toolBarSimulator->addAction(actionStop);
-        toolBarSimulator->addAction(actionRun_Control);
 
         retranslateUi(MainWindow);
 
@@ -755,13 +732,11 @@ public:
         menuWindow->setTitle(QCoreApplication::translate("MainWindow", "Window", nullptr));
         menuHelp->setTitle(QCoreApplication::translate("MainWindow", "Help", nullptr));
         menuSimulator->setTitle(QCoreApplication::translate("MainWindow", "Simulator", nullptr));
-        toolBarEdit->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
         toolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
-        toolBarSimulator->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar_2", nullptr));
-        dockWidgetComponents->setWindowTitle(QCoreApplication::translate("MainWindow", "Plugins", nullptr));
+        dockWidgetPlugins->setWindowTitle(QCoreApplication::translate("MainWindow", "Plugins", nullptr));
         dockWidgetProperties->setWindowTitle(QCoreApplication::translate("MainWindow", "Properties", nullptr));
         dockWidgetConsole->setWindowTitle(QCoreApplication::translate("MainWindow", "Traces", nullptr));
-        dockWidget->setWindowTitle(QCoreApplication::translate("MainWindow", "Reports", nullptr));
+        dockWidgetReports->setWindowTitle(QCoreApplication::translate("MainWindow", "Reports", nullptr));
         dockWidgetExperiments->setWindowTitle(QCoreApplication::translate("MainWindow", "Experiments", nullptr));
     } // retranslateUi
 

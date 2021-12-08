@@ -124,7 +124,7 @@ bool SequenceStep::_loadInstance(std::map<std::string, std::string>* fields) {
 }
 
 std::map<std::string, std::string>* SequenceStep::_saveInstance() {
-
+    //\TODO
 }
 
 std::list<SequenceStep::Assignment*>* SequenceStep::getAssignments() const {

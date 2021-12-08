@@ -32,8 +32,8 @@ ui(new Ui::MainWindow) {
     // you can set up slot connections here or in designer
     connect(actView, SIGNAL(triggered()), this, SLOT(viewItem()));
     //connect(actDelete, SIGNAL(triggered()), this, SLOT(eraseItem()));
-    ui->listWidget_ComponentPlugins->setContextMenuPolicy(Qt::ActionsContextMenu);
-    ui->listWidget_ComponentPlugins->addActions({actView}); //, actDelete});
+    ui->listWidget_Plugins->setContextMenuPolicy(Qt::ActionsContextMenu);
+    ui->listWidget_Plugins->addActions({actView}); //, actDelete});
     //--------------------------
     // models
     //ui->tabWidgetModels->clear(); // no models openned
@@ -98,7 +98,7 @@ void MainWindow::_insertPluginUI(Plugin* plugin) {
             plugtextAdds = plugtextAdds.erase(0, 1);
             item->setToolTip(QString::fromStdString(plugtextAdds));
             item->setStatusTip(QString::fromStdString(plugtextAdds));
-            ui->listWidget_ComponentPlugins->addItem(item);
+            ui->listWidget_Plugins->addItem(item);
         }
     }
 }

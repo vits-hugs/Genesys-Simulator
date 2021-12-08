@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
+ <author>Rafael Luiz Cancian</author>
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1082</width>
-    <height>619</height>
+    <width>1273</width>
+    <height>724</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -91,7 +92,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1082</width>
+     <width>1273</width>
      <height>24</height>
     </rect>
    </property>
@@ -332,8 +333,8 @@
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>256</width>
-       <height>121</height>
+       <width>201</width>
+       <height>161</height>
       </rect>
      </property>
      <property name="autoFillBackground">
@@ -878,7 +879,24 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="guiresources.qrc"/>
+  <include location="../guiresources.qrc"/>
  </resources>
  <connections/>
+ <designerdata>
+  <property name="gridDeltaX">
+   <number>10</number>
+  </property>
+  <property name="gridDeltaY">
+   <number>10</number>
+  </property>
+  <property name="gridSnapX">
+   <bool>true</bool>
+  </property>
+  <property name="gridSnapY">
+   <bool>true</bool>
+  </property>
+  <property name="gridVisible">
+   <bool>true</bool>
+  </property>
+ </designerdata>
 </ui>

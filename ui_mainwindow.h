@@ -144,7 +144,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(1082, 619);
+        MainWindow->resize(1273, 724);
         MainWindow->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
         actionNew = new QAction(MainWindow);
         actionNew->setObjectName(QString::fromUtf8("actionNew"));
@@ -409,7 +409,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1082, 24));
+        menuBar->setGeometry(QRect(0, 0, 1273, 24));
         menuEdit = new QMenu(menuBar);
         menuEdit->setObjectName(QString::fromUtf8("menuEdit"));
         menuModel = new QMenu(menuBar);
@@ -518,7 +518,7 @@ public:
         dockWidgetContents_Experiments->setMinimumSize(QSize(0, 144));
         listWidget_Experiments = new QListWidget(dockWidgetContents_Experiments);
         listWidget_Experiments->setObjectName(QString::fromUtf8("listWidget_Experiments"));
-        listWidget_Experiments->setGeometry(QRect(10, 10, 256, 121));
+        listWidget_Experiments->setGeometry(QRect(10, 10, 201, 161));
         listWidget_Experiments->setAutoFillBackground(false);
         dockWidgetExperiments->setWidget(dockWidgetContents_Experiments);
         MainWindow->addDockWidget(Qt::LeftDockWidgetArea, dockWidgetExperiments);
