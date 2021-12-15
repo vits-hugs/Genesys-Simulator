@@ -35,6 +35,7 @@ int Book_Cap02_Example01::main(int argc, char** argv) {
     create1->getNextComponents()->insert(delay1);
     delay1->getNextComponents()->insert(dispose1);
     model->getSimulation()->setReplicationLength(30);
+    model->getSimulation()->setNumberOfReplications(100);
     model->getSimulation()->start();
     return 0;
 }

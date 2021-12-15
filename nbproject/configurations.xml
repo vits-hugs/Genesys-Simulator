@@ -154,9 +154,11 @@
     </logicalFolder>
     <logicalFolder name="plugins" displayName="plugins" projectFiles="true">
       <logicalFolder name="components" displayName="components" projectFiles="true">
+        <itemPath>plugins/components/Access.cpp</itemPath>
         <itemPath>plugins/components/Access.h</itemPath>
         <itemPath>plugins/components/Assign.cpp</itemPath>
         <itemPath>plugins/components/Assign.h</itemPath>
+        <itemPath>plugins/components/Batch.cpp</itemPath>
         <itemPath>plugins/components/Batch.h</itemPath>
         <itemPath>plugins/components/CellularAutomata.cpp</itemPath>
         <itemPath>plugins/components/CellularAutomata.h</itemPath>
@@ -164,48 +166,63 @@
         <itemPath>plugins/components/Create.h</itemPath>
         <itemPath>plugins/components/Decide.cpp</itemPath>
         <itemPath>plugins/components/Decide.h</itemPath>
+        <itemPath>plugins/components/Delay.cpp</itemPath>
         <itemPath>plugins/components/Delay.h</itemPath>
         <itemPath>plugins/components/Dispose.cpp</itemPath>
         <itemPath>plugins/components/Dispose.h</itemPath>
+        <itemPath>plugins/components/DropOff.cpp</itemPath>
         <itemPath>plugins/components/DropOff.h</itemPath>
+        <itemPath>plugins/components/Dummy.cpp</itemPath>
         <itemPath>plugins/components/Dummy.h</itemPath>
         <itemPath>plugins/components/Enter.cpp</itemPath>
         <itemPath>plugins/components/Enter.h</itemPath>
+        <itemPath>plugins/components/Exit.cpp</itemPath>
         <itemPath>plugins/components/Exit.h</itemPath>
-        <itemPath>plugins/components/Formula.cpp</itemPath>
-        <itemPath>plugins/components/Formula.h</itemPath>
+        <itemPath>plugins/components/Hold.cpp</itemPath>
         <itemPath>plugins/components/Hold.h</itemPath>
+        <itemPath>plugins/components/LSODE.cpp</itemPath>
         <itemPath>plugins/components/LSODE.h</itemPath>
         <itemPath>plugins/components/Leave.cpp</itemPath>
         <itemPath>plugins/components/Leave.h</itemPath>
         <itemPath>plugins/components/MarkovChain.cpp</itemPath>
         <itemPath>plugins/components/MarkovChain.h</itemPath>
+        <itemPath>plugins/components/Match.cpp</itemPath>
         <itemPath>plugins/components/Match.h</itemPath>
+        <itemPath>plugins/components/OLD_ODEelement.cpp</itemPath>
         <itemPath>plugins/components/OLD_ODEelement.h</itemPath>
         <itemPath>plugins/components/PickStation.cpp</itemPath>
         <itemPath>plugins/components/PickStation.h</itemPath>
         <itemPath>plugins/components/PickUp.cpp</itemPath>
         <itemPath>plugins/components/PickUp.h</itemPath>
+        <itemPath>plugins/components/QueueableItemRequest.cpp</itemPath>
+        <itemPath>plugins/components/QueueableItemRequest.h</itemPath>
         <itemPath>plugins/components/Record.cpp</itemPath>
         <itemPath>plugins/components/Record.h</itemPath>
+        <itemPath>plugins/components/Release.cpp</itemPath>
         <itemPath>plugins/components/Release.h</itemPath>
         <itemPath>plugins/components/Remove.cpp</itemPath>
         <itemPath>plugins/components/Remove.h</itemPath>
+        <itemPath>plugins/components/Route.cpp</itemPath>
         <itemPath>plugins/components/Route.h</itemPath>
+        <itemPath>plugins/components/Search.cpp</itemPath>
         <itemPath>plugins/components/Search.h</itemPath>
         <itemPath>plugins/components/SeizableItemRequest.cpp</itemPath>
         <itemPath>plugins/components/SeizableItemRequest.h</itemPath>
+        <itemPath>plugins/components/Seize.cpp</itemPath>
         <itemPath>plugins/components/Seize.h</itemPath>
         <itemPath>plugins/components/Separate.cpp</itemPath>
         <itemPath>plugins/components/Separate.h</itemPath>
         <itemPath>plugins/components/Signal.cpp</itemPath>
         <itemPath>plugins/components/Signal.h</itemPath>
+        <itemPath>plugins/components/Start.cpp</itemPath>
         <itemPath>plugins/components/Start.h</itemPath>
         <itemPath>plugins/components/Stop.cpp</itemPath>
         <itemPath>plugins/components/Stop.h</itemPath>
         <itemPath>plugins/components/Store.cpp</itemPath>
         <itemPath>plugins/components/Store.h</itemPath>
+        <itemPath>plugins/components/Submodel.cpp</itemPath>
         <itemPath>plugins/components/Submodel.h</itemPath>
+        <itemPath>plugins/components/Unstore.cpp</itemPath>
         <itemPath>plugins/components/Unstore.h</itemPath>
         <itemPath>plugins/components/Write.cpp</itemPath>
         <itemPath>plugins/components/Write.h</itemPath>
@@ -213,31 +230,29 @@
       <logicalFolder name="f2" displayName="data definitions" projectFiles="true">
       </logicalFolder>
       <logicalFolder name="elements" displayName="elements" projectFiles="true">
-        <itemPath>userInterfaces/gui/qt/plugins/elements/EntityGroup.cpp</itemPath>
+        <itemPath>plugins/elements/EntityGroup.cpp</itemPath>
         <itemPath>plugins/elements/EntityGroup.h</itemPath>
-        <itemPath>userInterfaces/gui/qt/plugins/elements/Failure.cpp</itemPath>
+        <itemPath>plugins/elements/Failure.cpp</itemPath>
         <itemPath>plugins/elements/Failure.h</itemPath>
-        <itemPath>userInterfaces/gui/qt/plugins/elements/File.cpp</itemPath>
+        <itemPath>plugins/elements/File.cpp</itemPath>
         <itemPath>plugins/elements/File.h</itemPath>
-        <itemPath>userInterfaces/gui/qt/plugins/elements/Formula.cpp</itemPath>
+        <itemPath>plugins/elements/Formula.cpp</itemPath>
         <itemPath>plugins/elements/Formula.h</itemPath>
-        <itemPath>userInterfaces/gui/qt/plugins/elements/Queue.cpp</itemPath>
+        <itemPath>plugins/elements/Queue.cpp</itemPath>
         <itemPath>plugins/elements/Queue.h</itemPath>
-        <itemPath>userInterfaces/gui/qt/plugins/components/QueueableItemRequest.cpp</itemPath>
-        <itemPath>plugins/components/QueueableItemRequest.h</itemPath>
-        <itemPath>userInterfaces/gui/qt/plugins/elements/Resource.cpp</itemPath>
+        <itemPath>plugins/elements/Resource.cpp</itemPath>
         <itemPath>plugins/elements/Resource.h</itemPath>
-        <itemPath>userInterfaces/gui/qt/plugins/elements/Schedule.cpp</itemPath>
+        <itemPath>plugins/elements/Schedule.cpp</itemPath>
         <itemPath>plugins/elements/Schedule.h</itemPath>
-        <itemPath>userInterfaces/gui/qt/plugins/elements/Sequence.cpp</itemPath>
+        <itemPath>plugins/elements/Sequence.cpp</itemPath>
         <itemPath>plugins/elements/Sequence.h</itemPath>
-        <itemPath>userInterfaces/gui/qt/plugins/elements/Set.cpp</itemPath>
+        <itemPath>plugins/elements/Set.cpp</itemPath>
         <itemPath>plugins/elements/Set.h</itemPath>
-        <itemPath>userInterfaces/gui/qt/plugins/elements/Station.cpp</itemPath>
+        <itemPath>plugins/elements/Station.cpp</itemPath>
         <itemPath>plugins/elements/Station.h</itemPath>
-        <itemPath>userInterfaces/gui/qt/plugins/elements/Storage.cpp</itemPath>
+        <itemPath>plugins/elements/Storage.cpp</itemPath>
         <itemPath>plugins/elements/Storage.h</itemPath>
-        <itemPath>userInterfaces/gui/qt/plugins/elements/Variable.cpp</itemPath>
+        <itemPath>plugins/elements/Variable.cpp</itemPath>
         <itemPath>plugins/elements/Variable.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="old arena templates" projectFiles="true">
@@ -308,6 +323,8 @@
           <itemPath>userInterfaces/gui/qt/mapkernelandui.h</itemPath>
         </logicalFolder>
       </logicalFolder>
+      <logicalFolder name="f3" displayName="smarts" projectFiles="true">
+      </logicalFolder>
       <logicalFolder name="terminal" displayName="terminal" projectFiles="true">
         <itemPath>userInterfaces/terminal/GenesysShell_if.h</itemPath>
         <itemPath>userInterfaces/terminal/GenesysTerminalApp.cpp</itemPath>
@@ -365,6 +382,12 @@
         <packType>Debian</packType>
         <verbose>false</verbose>
         <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
           <packFileListElem type="File"
                             to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
                             from="${OUTPUT_PATH}"
@@ -1079,10 +1102,6 @@
       </item>
       <item path="plugins/components/Exit.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/components/Formula.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="plugins/components/Formula.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="plugins/components/Hold.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="plugins/components/Hold.h" ex="false" tool="3" flavor2="0">
@@ -1480,71 +1499,6 @@
       <item path="userInterfaces/gui/qt/mapkernelandui.h"
             ex="false"
             tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/plugins/components/QueueableItemRequest.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/plugins/elements/EntityGroup.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/plugins/elements/Failure.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/plugins/elements/File.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/plugins/elements/Formula.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/plugins/elements/Queue.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/plugins/elements/Resource.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/plugins/elements/Schedule.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/plugins/elements/Sequence.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/plugins/elements/Set.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/plugins/elements/Station.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/plugins/elements/Storage.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/plugins/elements/Variable.cpp"
-            ex="false"
-            tool="1"
             flavor2="0">
       </item>
       <item path="userInterfaces/terminal/GenesysShell_if.h"
@@ -2142,10 +2096,6 @@
       </item>
       <item path="plugins/components/Exit.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/components/Formula.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="plugins/components/Formula.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="plugins/components/Hold.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="plugins/components/Hold.h" ex="false" tool="3" flavor2="0">
@@ -2543,71 +2493,6 @@
       <item path="userInterfaces/gui/qt/mapkernelandui.h"
             ex="false"
             tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/plugins/components/QueueableItemRequest.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/plugins/elements/EntityGroup.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/plugins/elements/Failure.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/plugins/elements/File.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/plugins/elements/Formula.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/plugins/elements/Queue.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/plugins/elements/Resource.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/plugins/elements/Schedule.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/plugins/elements/Sequence.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/plugins/elements/Set.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/plugins/elements/Station.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/plugins/elements/Storage.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/plugins/elements/Variable.cpp"
-            ex="false"
-            tool="1"
             flavor2="0">
       </item>
       <item path="userInterfaces/terminal/GenesysShell_if.h"

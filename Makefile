@@ -15,8 +15,8 @@ EQ            = =
 CC            = gcc
 CXX           = g++
 DEFINES       = -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
-CFLAGS        = -pipe -g -D_REENTRANT -fPIC $(DEFINES)
-CXXFLAGS      = -pipe -g -D_REENTRANT -fPIC $(DEFINES)
+CFLAGS        = -pipe -g -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
+CXXFLAGS      = -pipe -g -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
 INCPATH       = -Inbproject -I. -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
 QMAKE         = /usr/lib/qt5/bin/qmake
 DEL_FILE      = rm -f
@@ -1206,7 +1206,7 @@ compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
-	g++ -pipe -g -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
+	g++ -pipe -g -Wall -Wextra -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
 compiler_moc_header_make_all: moc_dialogabout.cpp moc_dialogmodelinformation.cpp moc_formPlugins.cpp moc_mainwindow.cpp
 compiler_moc_header_clean:
@@ -1228,6 +1228,45 @@ moc_formPlugins.cpp: userInterfaces/gui/qt/forms/formPlugins.h \
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/nbproject -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include userInterfaces/gui/qt/forms/formPlugins.h -o moc_formPlugins.cpp
 
 moc_mainwindow.cpp: userInterfaces/gui/qt/mainWindow/mainwindow.h \
+		userInterfaces/gui/qt/mapkernelandui.h \
+		kernel/simulator/Model.h \
+		kernel/util/List.h \
+		kernel/util/Util.h \
+		kernel/simulator/ModelElement.h \
+		kernel/simulator/ParserChangesInformation.h \
+		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/Plugin.h \
+		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Entity.h \
+		kernel/simulator/EntityType.h \
+		kernel/simulator/StatisticsCollector.h \
+		kernel/statistics/Statistics_if.h \
+		kernel/statistics/Collector_if.h \
+		kernel/simulator/ElementManager.h \
+		kernel/simulator/ConnectionManager.h \
+		kernel/simulator/Event.h \
+		kernel/simulator/ModelChecker_if.h \
+		kernel/simulator/Parser_if.h \
+		kernel/statistics/Sampler_if.h \
+		kernel/simulator/ModelPersistence_if.h \
+		kernel/simulator/ComponentManager.h \
+		kernel/simulator/TraceManager.h \
+		kernel/simulator/OnEventManager.h \
+		kernel/simulator/ModelInfo.h \
+		kernel/simulator/ModelSimulation.h \
+		kernel/simulator/SimulationReporter_if.h \
+		kernel/simulator/SimulationResponse.h \
+		kernel/simulator/DefineGetterSetter.h \
+		kernel/simulator/SimulationControl.h \
+		kernel/simulator/Simulator.h \
+		kernel/simulator/LicenceManager.h \
+		kernel/simulator/PluginManager.h \
+		kernel/simulator/PluginConnector_if.h \
+		kernel/simulator/ModelManager.h \
+		kernel/simulator/ParserManager.h \
+		kernel/simulator/ExperimentManager.h \
+		kernel/simulator/SimulationExperiment.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/nbproject -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include userInterfaces/gui/qt/mainWindow/mainwindow.h -o moc_mainwindow.cpp
@@ -2834,8 +2873,8 @@ build/Debug/GNU-Linux/main.o: main.cpp Traits.h \
 		kernel/simulator/SimulationExperiment.h \
 		userInterfaces/gui/qt/GenesysQtGUI.h \
 		userInterfaces/examples/Example_SeizeDelayRelease1.h \
-		userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.h \
 		userInterfaces/examples/book/Book_Cap02_Example01.h \
+		userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.h \
 		tools/IntegratorDefaultImpl1.h \
 		tools/Integrator_if.h \
 		tools/HypothesisTesterDefaultImpl1.h \
@@ -4421,8 +4460,8 @@ build/Debug/GNU-Linux/testProbabilityDistribution.o: tests/testProbabilityDistri
 		kernel/simulator/SimulationExperiment.h \
 		userInterfaces/gui/qt/GenesysQtGUI.h \
 		userInterfaces/examples/Example_SeizeDelayRelease1.h \
-		userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.h \
 		userInterfaces/examples/book/Book_Cap02_Example01.h \
+		userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.h \
 		tools/HypothesisTesterDefaultImpl1.h \
 		tools/HypothesisTester_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/testProbabilityDistribution.o tests/testProbabilityDistribution.cpp
@@ -4540,8 +4579,8 @@ build/Debug/GNU-Linux/ProbabilityDistribution.o: tools/ProbabilityDistribution.c
 		kernel/simulator/SimulationExperiment.h \
 		userInterfaces/gui/qt/GenesysQtGUI.h \
 		userInterfaces/examples/Example_SeizeDelayRelease1.h \
-		userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.h \
 		userInterfaces/examples/book/Book_Cap02_Example01.h \
+		userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.h \
 		tools/IntegratorDefaultImpl1.h \
 		tools/HypothesisTesterDefaultImpl1.h \
 		tools/HypothesisTester_if.h
@@ -5088,7 +5127,47 @@ build/Debug/GNU-Linux/Book_Cap02_Example01.o: userInterfaces/examples/book/Book_
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Book_Cap02_Example01.o userInterfaces/examples/book/Book_Cap02_Example01.cpp
 
 build/Debug/GNU-Linux/GenesysQtGUI.o: userInterfaces/gui/qt/GenesysQtGUI.cpp userInterfaces/gui/qt/GenesysQtGUI.h \
-		userInterfaces/GenesysApplication_if.h
+		userInterfaces/GenesysApplication_if.h \
+		userInterfaces/gui/qt/mainWindow/mainwindow.h \
+		userInterfaces/gui/qt/mapkernelandui.h \
+		kernel/simulator/Model.h \
+		kernel/util/List.h \
+		kernel/util/Util.h \
+		kernel/simulator/ModelElement.h \
+		kernel/simulator/ParserChangesInformation.h \
+		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/Plugin.h \
+		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Entity.h \
+		kernel/simulator/EntityType.h \
+		kernel/simulator/StatisticsCollector.h \
+		kernel/statistics/Statistics_if.h \
+		kernel/statistics/Collector_if.h \
+		kernel/simulator/ElementManager.h \
+		kernel/simulator/ConnectionManager.h \
+		kernel/simulator/Event.h \
+		kernel/simulator/ModelChecker_if.h \
+		kernel/simulator/Parser_if.h \
+		kernel/statistics/Sampler_if.h \
+		kernel/simulator/ModelPersistence_if.h \
+		kernel/simulator/ComponentManager.h \
+		kernel/simulator/TraceManager.h \
+		kernel/simulator/OnEventManager.h \
+		kernel/simulator/ModelInfo.h \
+		kernel/simulator/ModelSimulation.h \
+		kernel/simulator/SimulationReporter_if.h \
+		kernel/simulator/SimulationResponse.h \
+		kernel/simulator/DefineGetterSetter.h \
+		kernel/simulator/SimulationControl.h \
+		kernel/simulator/Simulator.h \
+		kernel/simulator/LicenceManager.h \
+		kernel/simulator/PluginManager.h \
+		kernel/simulator/PluginConnector_if.h \
+		kernel/simulator/ModelManager.h \
+		kernel/simulator/ParserManager.h \
+		kernel/simulator/ExperimentManager.h \
+		kernel/simulator/SimulationExperiment.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/GenesysQtGUI.o userInterfaces/gui/qt/GenesysQtGUI.cpp
 
 build/Debug/GNU-Linux/dialogabout.o: userInterfaces/gui/qt/dialogs/dialogabout.cpp userInterfaces/gui/qt/dialogs/dialogabout.h \
@@ -5104,42 +5183,38 @@ build/Debug/GNU-Linux/formPlugins.o: userInterfaces/gui/qt/forms/formPlugins.cpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/formPlugins.o userInterfaces/gui/qt/forms/formPlugins.cpp
 
 build/Debug/GNU-Linux/mainwindow.o: userInterfaces/gui/qt/mainWindow/mainwindow.cpp userInterfaces/gui/qt/mainWindow/mainwindow.h \
-		userInterfaces/gui/qt/mainWindow/ui_mainwindow.h \
-		Traits.h \
-		kernel/util/Util.h \
-		userInterfaces/terminal/GenesysTerminalApp.h \
-		userInterfaces/BaseConsoleGenesysApplication.h \
-		userInterfaces/GenesysApplication_if.h \
-		kernel/simulator/TraceManager.h \
+		userInterfaces/gui/qt/mapkernelandui.h \
+		kernel/simulator/Model.h \
 		kernel/util/List.h \
+		kernel/util/Util.h \
 		kernel/simulator/ModelElement.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
-		kernel/simulator/OnEventManager.h \
-		kernel/simulator/Event.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/Plugin.h \
+		kernel/simulator/PluginInformation.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
 		kernel/statistics/Statistics_if.h \
 		kernel/statistics/Collector_if.h \
 		kernel/simulator/ElementManager.h \
-		kernel/simulator/Plugin.h \
-		kernel/simulator/PluginInformation.h \
-		kernel/simulator/ModelComponent.h \
 		kernel/simulator/ConnectionManager.h \
-		kernel/simulator/Simulator.h \
-		kernel/simulator/Model.h \
+		kernel/simulator/Event.h \
 		kernel/simulator/ModelChecker_if.h \
 		kernel/simulator/Parser_if.h \
 		kernel/statistics/Sampler_if.h \
 		kernel/simulator/ModelPersistence_if.h \
 		kernel/simulator/ComponentManager.h \
+		kernel/simulator/TraceManager.h \
+		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
 		kernel/simulator/SimulationResponse.h \
 		kernel/simulator/DefineGetterSetter.h \
 		kernel/simulator/SimulationControl.h \
+		kernel/simulator/Simulator.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -5147,10 +5222,17 @@ build/Debug/GNU-Linux/mainwindow.o: userInterfaces/gui/qt/mainWindow/mainwindow.
 		kernel/simulator/ParserManager.h \
 		kernel/simulator/ExperimentManager.h \
 		kernel/simulator/SimulationExperiment.h \
+		userInterfaces/gui/qt/mainWindow/ui_mainwindow.h \
+		userInterfaces/gui/qt/dialogs/dialogabout.h \
+		userInterfaces/gui/qt/dialogs/dialogmodelinformation.h \
+		Traits.h \
+		userInterfaces/terminal/GenesysTerminalApp.h \
+		userInterfaces/BaseConsoleGenesysApplication.h \
+		userInterfaces/GenesysApplication_if.h \
 		userInterfaces/gui/qt/GenesysQtGUI.h \
 		userInterfaces/examples/Example_SeizeDelayRelease1.h \
-		userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.h \
 		userInterfaces/examples/book/Book_Cap02_Example01.h \
+		userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.h \
 		tools/IntegratorDefaultImpl1.h \
 		tools/Integrator_if.h \
 		tools/HypothesisTesterDefaultImpl1.h \
