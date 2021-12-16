@@ -37,8 +37,8 @@ struct Traits {
 template <> struct Traits<GenesysApplication_if> {
     static const Util::TraceLevel traceLevel = Util::TraceLevel::L6_arrival;
     //typedef Example_AnElectronicAssemblyAndTestSystem Application;
-    //typedef Example01 Application;
     typedef Book_Cap02_Example01 Application;
+    //typedef Book_Cap02_Example01 Application;
 };
 
 template <> struct Traits<Integrator_if> {

@@ -104,7 +104,7 @@
 		ModelSimulation* _simulation;
 		// 1:n
 		//List<ModelComponent*>* _components;
-		List<Event*>* _futureEvents;
+    List<Event*>* _futureEvents; ///< This is the calendar of future events, chronologically sorted, from where events are taken to be processed. This is one of the most important structures in Event driven simulation system
 		// for process analyser
 		List<SimulationResponse*>* _responses;
 		List<SimulationControl*>* _controls;

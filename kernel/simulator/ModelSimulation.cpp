@@ -20,9 +20,9 @@
 #include "SourceModelComponent.h"
 #include "StatisticsCollector.h"
 #include "Counter.h"
-#include "../TraitsKernel.h"
 #include "SimulationControl.h"
 #include "ComponentManager.h"
+#include "../TraitsKernel.h"
 
 //using namespace GenesysKernel;
 
@@ -63,7 +63,7 @@ void ModelSimulation::_traceReplicationEnded() {
     } else if (_model->parseExpression(_terminatingCondition)) {
         causeTerminated = "termination condition was achieved";
     } else causeTerminated = "unknown";
-    std::chrono::duration<double> duration = std::chrono::system_clock::now() - this->_startTimeReplication;
+    std::chrono::duration<double> duration = std::chrono::system_clock::now() - this->_startRealSimulationTimeReplication;
     std::string message = "Replication " + std::to_string(_currentReplicationNumber) + " of " + std::to_string(_numberOfReplications) + " has finished with last event at time " + std::to_string(_simulatedTime) + " " + Util::StrTimeUnitLong(_replicationBaseTimeUnit) + " because " + causeTerminated + "; Elapsed time " + std::to_string(duration.count()) + " seconds.";
     _model->getTracer()->trace(Util::TraceLevel::L2_results, message);
 }
@@ -93,7 +93,7 @@ void ModelSimulation::start() {
             _initReplication();
             Util::IncIndent();
         }
-        do { // main simulation loop
+        do { // this is the main simulation loop
             _stepSimulation();
         } while (!_isReplicationEndCondition() && !_pauseRequested);
         if (!_pauseRequested) {
@@ -129,7 +129,7 @@ void ModelSimulation::_simulationEnded() {
     _currentEntity = nullptr;
     _currentComponent = nullptr;
     //
-    std::chrono::duration<double> duration = std::chrono::system_clock::now() - this->_startTimeSimulation;
+    std::chrono::duration<double> duration = std::chrono::system_clock::now() - this->_startRealSimulationTimeSimulation;
     _model->getTracer()->trace(Util::TraceLevel::L2_results, "Simulation of model \"" + _info->getName() + "\" has finished. Elapsed time " + std::to_string(duration.count()) + " seconds.");
     _model->getOnEvents()->NotifySimulationEndHandlers(new SimulationEvent(0, nullptr));
 }
@@ -240,7 +240,7 @@ void ModelSimulation::_showSimulationHeader() {
  * Initialize once for all replications
  */
 void ModelSimulation::_initSimulation() {
-    _startTimeSimulation = std::chrono::system_clock::now();
+    _startRealSimulationTimeSimulation = std::chrono::system_clock::now();
     _showSimulationHeader();
     //model->getTracer()->trace(Util::TraceLevel::L5_event, "------------------------------");
     _model->getTracer()->trace(Util::TraceLevel::L5_event, "");
@@ -281,7 +281,7 @@ void ModelSimulation::_initSimulation() {
 }
 
 void ModelSimulation::_initReplication() {
-    _startTimeReplication = std::chrono::system_clock::now();
+    _startRealSimulationTimeReplication = std::chrono::system_clock::now();
     TraceManager* tm = _model->getTracer();
     tm->trace(Util::TraceLevel::L5_event, "");
     tm->trace(Util::TraceLevel::L2_results, "Replication " + std::to_string(_currentReplicationNumber) + " of " + std::to_string(_numberOfReplications) + " is starting.");
@@ -426,8 +426,10 @@ void ModelSimulation::_processEvent(Event* event) {
     this->_currentEntity = event->getEntity();
     this->_currentComponent = event->getComponent();
     this->_currentInputNumber = event->getComponentInputNumber();
-    assert(_simulatedTime <= event->getTime());
-    _simulatedTime = event->getTime();
+    //assert(_simulatedTime <= event->getTime()); // _simulatedTime only goes forward (futureEvents is chronologically sorted
+    if (event->getTime() >= _simulatedTime) { // the philosophical approach taken is: if the next event is in the past, lets just assume it's happening rigth now...
+        _simulatedTime = event->getTime();
+    }
     _model->getOnEvents()->NotifyProcessEventHandlers(new SimulationEvent(_currentReplicationNumber, event));
     try {
         //event->getComponent()->Execute(event->getEntity(), event->getComponent()); // Execute is static
@@ -435,10 +437,14 @@ void ModelSimulation::_processEvent(Event* event) {
     } catch (std::exception *e) {
         _model->getTracer()->traceError(*e, "Error on processing event (" + event->show() + ")");
     }
+    if (_pauseOnEvent) {
+        _pauseRequested = true;
+    }
     Util::DecIndent();
 }
 
 void ModelSimulation::pause() {
+    _pauseRequested = true;
 }
 
 void ModelSimulation::step() {

@@ -325,6 +325,8 @@
       </logicalFolder>
       <logicalFolder name="f3" displayName="smarts" projectFiles="true">
       </logicalFolder>
+      <logicalFolder name="f4" displayName="teaching" projectFiles="true">
+      </logicalFolder>
       <logicalFolder name="terminal" displayName="terminal" projectFiles="true">
         <itemPath>userInterfaces/terminal/GenesysShell_if.h</itemPath>
         <itemPath>userInterfaces/terminal/GenesysTerminalApp.cpp</itemPath>
