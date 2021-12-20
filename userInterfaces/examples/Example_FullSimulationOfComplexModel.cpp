@@ -87,7 +87,7 @@ int FullSimulationOfComplexModel::main(int argc, char** argv) {
 	filaSeize1->setOrderRule(Queue::OrderRule::FIFO);
 
 	Seize* seize1 = new Seize(model);
-	seize1->getSeizeRequests()->insert(new SeizableItemRequest(maquina1));
+	seize1->getSeizeRequests()->insert(new SeizableItem(maquina1));
 	seize1->setQueue(filaSeize1);
 
 	Delay* delay1 = new Delay(model);
@@ -95,7 +95,7 @@ int FullSimulationOfComplexModel::main(int argc, char** argv) {
 	delay1->setDelayTimeUnit(Util::TimeUnit::minute);
 
 	Release* release1 = new Release(model);
-	release1->getReleaseRequests()->insert(new SeizableItemRequest(maquina1));
+	release1->getReleaseRequests()->insert(new SeizableItem(maquina1));
 
 	Record* record1 = new Record(model);
 	record1->setExpressionName("Tempo total no sistema");

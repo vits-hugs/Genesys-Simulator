@@ -56,18 +56,18 @@ int Example_SeizeDelayReleaseMany::main(int argc, char** argv) {
 	Queue* queueSeize1 = new Queue(m);
 	queueSeize1->setOrderRule(Queue::OrderRule::FIFO);
 	Seize* seize1 = new Seize(m);
-	seize1->getSeizeRequests()->insert(new SeizableItemRequest(machine1));
-	seize1->getSeizeRequests()->insert(new SeizableItemRequest(machine2));
-	seize1->getSeizeRequests()->insert(new SeizableItemRequest(machine3));
-	seize1->getSeizeRequests()->insert(new SeizableItemRequest(machine4));
+	seize1->getSeizeRequests()->insert(new SeizableItem(machine1));
+	seize1->getSeizeRequests()->insert(new SeizableItem(machine2));
+	seize1->getSeizeRequests()->insert(new SeizableItem(machine3));
+	seize1->getSeizeRequests()->insert(new SeizableItem(machine4));
 	seize1->setQueue(queueSeize1);
 	Delay* delay1 = new Delay(m);
 	delay1->setDelayExpression("unif(1,2)");
 	Release* release1 = new Release(m);
-	release1->getReleaseRequests()->insert(new SeizableItemRequest(machine1));
-	release1->getReleaseRequests()->insert(new SeizableItemRequest(machine2));
-	release1->getReleaseRequests()->insert(new SeizableItemRequest(machine3));
-	release1->getReleaseRequests()->insert(new SeizableItemRequest(machine4));
+	release1->getReleaseRequests()->insert(new SeizableItem(machine1));
+	release1->getReleaseRequests()->insert(new SeizableItem(machine2));
+	release1->getReleaseRequests()->insert(new SeizableItem(machine3));
+	release1->getReleaseRequests()->insert(new SeizableItem(machine4));
 	Dispose* dispose1 = new Dispose(m);
 	// connect model components to create a "workflow"
 	create1->getNextComponents()->insert(seize1);

@@ -5,13 +5,14 @@
  */
 
 /* 
- * File:   SecondExampleOfSimulation.cpp
+ * File:   FirstExampleOfSimulation.cpp
  * Author: rlcancian
  * 
- * Created on 3 de Setembro de 2019, 18:59
+ * Created on 3 de Setembro de 2019, 18:34
  */
 
-#include "Example_CreteDelayDispose2.h"
+#include "Example_Delay.h"
+
 // you have to included need libs
 
 // GEnSyS Simulator
@@ -25,54 +26,47 @@
 // Model elements
 #include "../../kernel/simulator/EntityType.h"
 
-Example_CreateDelayDispose2::Example_CreateDelayDispose2() {
+Example_Delay::Example_Delay() {
 }
+
 /**
  * This is the main function of the application. 
  * It instanciates the simulator, builds a simulation model and then simulate that model.
  */
-int Example_CreateDelayDispose2::main(int argc, char** argv) {
+int Example_Delay::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	// set the trace level of simulation to "blockArrival" level, which is an intermediate level of tracing
-	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L6_arrival);
-	// Handle traces and simulation events to output them
-	this->setDefaultTraceHandlers(genesys->getTracer());
 	// insert "fake plugins" since plugins based on dynamic loaded library are not implemented yet
 	this->insertFakePluginsByHand(genesys);
+	// Handle traces and simulation events to output them
+	this->setDefaultTraceHandlers(genesys->getTracer());
+	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L6_arrival);
 	Model* model = genesys->getModels()->newModel();
+	//model->load("./models/Model_CreateDelayDispose.txt");
+	//model->getSimulation()->start();
+	//return 0;
+	//
 	// build the simulation model
-	// set general info about the model
-	ModelInfo* infos = model->getInfos();
-	infos->setAnalystName("Your name");
-	infos->setProjectTitle("The title of the project");
-	infos->setDescription("This simulation model tests one of the most basic models possible.");
-
-	ModelSimulation* sim = model->getSimulation();
-	sim->setReplicationLength(30);
-	sim->setReplicationLengthTimeUnit(Util::TimeUnit::minute); // each replication will last 30 minutes (simulated time)
-	sim->setNumberOfReplications(3); // replicates the simulation 3 times
+	// if no ModelInfo is provided, then the model will be simulated once (one replication) and the replication length will be 3600 seconds (simulated time)
+	model->getSimulation()->setReplicationLength(60);
 	// create a (Source)ModelElement of type EntityType, used by a ModelComponent that follows
 	EntityType* entityType1 = new EntityType(model, "Type_of_Representative_Entity");
 	// create a ModelComponent of type Create, used to insert entities into the model
 	Create* create1 = new Create(model);
 	create1->setEntityType(entityType1);
-	create1->setTimeBetweenCreationsExpression("Expo(2)");
-	create1->setTimeUnit(Util::TimeUnit::minute);
-	create1->setEntitiesPerCreation(1);
+	create1->setTimeBetweenCreationsExpression("1.5"); // create one new entity every 1.5 seconds
 	// create a ModelComponent of type Delay, used to represent a time delay
 	Delay* delay1 = new Delay(model);
-	delay1->setDelayExpression("NORM(1,0.2)");
-	delay1->setDelayTimeUnit(Util::TimeUnit::minute);
+	// if nothing else is set, the delay will take 1 second
 	// create a (Sink)ModelComponent of type Dispose, used to remove entities from the model
-	Dispose* dispose1 = new Dispose(model);
-	// connect model components to create a "workflow"
+	Dispose* dispose1 = new Dispose(model); // insert the component into the model
+	// connect model components to create a "workflow" -- should always start from a SourceModelComponent and end at a SinkModelComponent (it will be checked)
 	create1->getNextComponents()->insert(delay1);
 	delay1->getNextComponents()->insert(dispose1);
 	// save the model into a text file
-	model->save("./models/Model_CreateDelayDispose2.txt");
-	// execute the simulation
-	sim->start();
-
+	model->save("./models/Model_CreateDelayDispose.txt");
+	// execute the simulation util completed and show the report
+	model->getSimulation()->start();
+	genesys->~Simulator();
 	return 0;
 };
 

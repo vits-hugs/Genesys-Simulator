@@ -19,8 +19,8 @@
 #include "Assign.h"
 
 Create::Create(Model* model, std::string name) : SourceModelComponent(model, Util::TypeOf<Create>(), name) {
-    //_numberOut = new Counter(_parentModel, getName() + "." + "Count_number_in", this);
-    // \todo Check if element has already been inserted and this is not needed: _parentModel->elements()->insert(_numberOut);
+    //_numberIn = new Counter(_parentModel, getName() + "." + "Count_number_in", this);
+    // \todo Check if element has already been inserted and this is not needed: _parentModel->elements()->insert(_numberIn);
     _connections->setMinInputConnections(0);
     _connections->setMaxInputConnections(0);
     GetterMember getter = DefineGetterMember<SourceModelComponent>(this, &Create::getEntitiesPerCreation);
@@ -44,23 +44,24 @@ void Create::_execute(Entity* entity) {
     //entity->setAttributeValue("Entity.Picture", 1); // ->find("Entity.ArrivalTime")->second->setValue(tnow);
     double timeBetweenCreations, timeScale, newArrivalTime;
     unsigned int _maxCreations = _parentModel->parseExpression(this->_maxCreationsExpression);
+    if (tnow != _lastArrival) {
+        _lastArrival = tnow;
+            timeBetweenCreations = _parentModel->parseExpression(this->_timeBetweenCreationsExpression);
+            timeScale = Util::TimeUnitConvert(this->_timeBetweenCreationsTimeUnit, _parentModel->getSimulation()->getReplicationBaseTimeUnit());
+            newArrivalTime = tnow + timeBetweenCreations*timeScale;
     for (unsigned int i = 0; i<this->_entitiesPerCreation; i++) {
         if (_entitiesCreatedSoFar < _maxCreations) {
             _entitiesCreatedSoFar++;
             Entity* newEntity = new Entity(_parentModel);
             newEntity->setEntityType(entity->getEntityType());
-            //_parentModel->elements()->insert(newEntity); // ->getEntities()->insert(newEntity);
-            timeBetweenCreations = _parentModel->parseExpression(this->_timeBetweenCreationsExpression);
-            timeScale = Util::TimeUnitConvert(this->_timeBetweenCreationsTimeUnit, _parentModel->getSimulation()->getReplicationBaseTimeUnit());
-            newArrivalTime = tnow + timeBetweenCreations*timeScale;
             Event* newEvent = new Event(newArrivalTime, newEntity, this);
             _parentModel->getFutureEvents()->insert(newEvent);
             _parentModel->getTracer()->trace("Arrival of entity " + std::to_string(newEntity->entityNumber()) + " schedule for time " + std::to_string(newArrivalTime) + Util::StrTimeUnitShort(_parentModel->getSimulation()->getReplicationBaseTimeUnit()));
-            //_model->getTrace()->trace("Arrival of entity "+std::to_string(entity->getId()) + " schedule for time " +std::to_string(newArrivalTime));
         }
     }
+    }
     if (_reportStatistics)
-        _numberOut->incCountValue();
+        _numberIn->incCountValue();
     _parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection(), 0.0);
 }
 
@@ -102,14 +103,14 @@ bool Create::_check(std::string* errorMessage) {
 }
 
 void Create::_createInternalElements() {
-    if (_reportStatistics && _numberOut == nullptr) {
-        _numberOut = new Counter(_parentModel, getName() + "." + "CountNumberIn", this);
-        _childrenElements->insert({"CountNumberIn", _numberOut});
-        // \todo _childrenElements->insert("Count_number_in", _numberOut);
-    } else if (!_reportStatistics && _numberOut != nullptr) {
+    if (_reportStatistics && _numberIn == nullptr) {
+        _numberIn = new Counter(_parentModel, getName() + "." + "CountNumberIn", this);
+        _childrenElements->insert({"CountNumberIn", _numberIn});
+        // \todo _childrenElements->insert("Count_number_in", _numberIn);
+    } else if (!_reportStatistics && _numberIn != nullptr) {
         this->_removeChildrenElements();
         // \todo _childrenElements->remove("Count_number_in");
-        //_numberOut->~Counter();
-        _numberOut = nullptr;
+        //_numberIn->~Counter();
+        _numberIn = nullptr;
     }
 }

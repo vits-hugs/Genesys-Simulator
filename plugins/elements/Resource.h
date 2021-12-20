@@ -20,7 +20,7 @@
 #include "../../kernel/simulator/Counter.h"
 #include "../../kernel/simulator/Plugin.h"
 
-class SeizableItemRequest;
+class SeizableItem;
 
 /*!
 Resource module

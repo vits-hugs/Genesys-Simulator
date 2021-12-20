@@ -69,7 +69,7 @@ int Example_SeizeDelayRelease1::main(int argc, char** argv) {
 	Seize* seize1 = new Seize(model);
 	//seize1->setResource(machine1);
 	//seize1->setQuantity("1");
-	seize1->getSeizeRequests()->insert(new SeizableItemRequest(machine1, "1"));
+	seize1->getSeizeRequests()->insert(new SeizableItem(machine1, "1"));
 	seize1->setQueue(queueSeize1);
 	//
 	Delay* delay1 = new Delay(model);
@@ -79,7 +79,7 @@ int Example_SeizeDelayRelease1::main(int argc, char** argv) {
 	Release* release1 = new Release(model);
 	//release1->setResource(machine1);
 	//release1->setQuantity("1");
-	release1->getReleaseRequests()->insert(new SeizableItemRequest(machine1, "1"));
+	release1->getReleaseRequests()->insert(new SeizableItem(machine1, "1"));
 	//
 	Dispose* dispose1 = new Dispose(model);
 	// connect model components to create a "workflow"

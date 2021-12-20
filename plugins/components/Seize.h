@@ -20,8 +20,8 @@
 #include "../elements/Resource.h"
 #include "../elements/Queue.h"
 #include "../../kernel/simulator/Plugin.h"
-#include "SeizableItemRequest.h"
-#include "../components/QueueableItemRequest.h"
+#include "SeizableItem.h"
+#include "QueueableItem.h"
 
 class WaitingResource : public Waiting {
 public:
@@ -142,11 +142,13 @@ public: // get & set
     //std::string getResourceName() const;
     //void setQueueName(std::string queueName) throw ();
     //std::string getQueueName() const;
-	void setQueue(Queue* queue); ///< Deprected
+    void setQueue(Queue* queue); ///< Deprected
     //Queue* getQueue() const;
-    List<SeizableItemRequest*>* getSeizeRequests() const;
-    void setQueueableItem(QueueableItemRequest* _queueableItem);
-    QueueableItemRequest* getQueueableItem() const;
+    List<SeizableItem*>* getSeizeRequests() const;
+    void setQueueableItem(QueueableItem* _queueableItem);
+    QueueableItem* getQueueableItem() const;
+    void setSaveAttribute(std::string _saveAttribute);
+    std::string getSaveAttribute() const;
 protected:
     virtual void _execute(Entity* entity);
     virtual bool _loadInstance(std::map<std::string, std::string>* fields);
@@ -163,13 +165,15 @@ private:
         unsigned int allocationType = 0; // uint ? enum?
         unsigned short priority = 0;
         unsigned int seizeRequestSize = 1;
+        std::string saveAttribute = "";
     } DEFAULT;
     unsigned int _allocationType = DEFAULT.allocationType; // uint ? enum?
     unsigned short _priority = DEFAULT.priority;
-    QueueableItemRequest* _queueableItem; //Queue* _queue; // usually has a queue, but not always (it could be a hold or a set) 
-    List<SeizableItemRequest*>* _seizeRequests = new List<SeizableItemRequest*>();
+    std::string _saveAttribute = "";
+    QueueableItem* _queueableItem; //Queue* _queue; // usually has a queue, but not always (it could be a hold or a set)
+    List<SeizableItem*>* _seizeRequests = new List<SeizableItem*>();
 private: // not gets or sets
-    //	unsigned int _lastMemberSeized = 0; //  now _seizeRequest is a list and it was moved to SeizableItemRequest
+    //	unsigned int _lastMemberSeized = 0; //  now _seizeRequest is a list and it was moved to SeizableItem
 };
 
 #endif /* SEIZE_H */

@@ -26,7 +26,7 @@ std::string Release::show() {
 			"priority=" + std::to_string(_priority) +
 			"releaseRequests={";
 	unsigned short i = 0;
-	for (SeizableItemRequest* item : *_releaseRequests->list()) {
+	for (SeizableItem* item : *_releaseRequests->list()) {
 		txt += "request" + std::to_string(i++) + "=[" + item->show() + "],";
 	}
 	txt = txt.substr(0, txt.length() - 1) + "}";
@@ -41,7 +41,7 @@ unsigned short Release::priority() const {
 	return _priority;
 }
 
-List<SeizableItemRequest*>* Release::getReleaseRequests() const {
+List<SeizableItem*>* Release::getReleaseRequests() const {
 	return _releaseRequests;
 }
 
@@ -54,28 +54,28 @@ List<SeizableItemRequest*>* Release::getReleaseRequests() const {
 //}
 
 void Release::_execute(Entity* entity) {
-	for (SeizableItemRequest* seizable : *_releaseRequests->list()) {
+	for (SeizableItem* seizable : *_releaseRequests->list()) {
 		Resource* resource;
-		if (seizable->getSeizableType() == SeizableItemRequest::SeizableType::RESOURCE) {
+		if (seizable->getSeizableType() == SeizableItem::SeizableType::RESOURCE) {
 			resource = seizable->getResource();
 		} else { // assume SET
-			SeizableItemRequest::SelectionRule rule = seizable->getSelectionRule();
+			SeizableItem::SelectionRule rule = seizable->getSelectionRule();
 			Set* set = seizable->getSet();
 			unsigned int index = 0;
 			switch (rule) { // \todo: Rules for release are DIFFERENT (least and first member seized)
-				case SeizableItemRequest::SelectionRule::CYCLICAL:
+				case SeizableItem::SelectionRule::CYCLICAL:
 					index = (seizable->getLastMemberSeized() + 1) % _releaseRequests->list()->size();
 					break;
-				case SeizableItemRequest::SelectionRule::LARGESTREMAININGCAPACITY:
+				case SeizableItem::SelectionRule::LARGESTREMAININGCAPACITY:
 					// \todo
 					break;
-				case SeizableItemRequest::SelectionRule::RANDOM:
+				case SeizableItem::SelectionRule::RANDOM:
 					index = trunc(rand() * _releaseRequests->list()->size());
 					break;
-				case SeizableItemRequest::SelectionRule::SMALLESTNUMBERBUSY:
+				case SeizableItem::SelectionRule::SMALLESTNUMBERBUSY:
 					// \todo
 					break;
-				case SeizableItemRequest::SelectionRule::SPECIFICMEMBER:
+				case SeizableItem::SelectionRule::SPECIFICMEMBER:
 					index = _parentModel->parseExpression(seizable->getIndex());
 					break;
 			}
@@ -92,10 +92,10 @@ void Release::_execute(Entity* entity) {
 }
 
 void Release::_initBetweenReplications() {
-	//for (SeizableItemRequest* seizable : *_releaseRequests->list()) {
-	//	if (seizable->getSeizableType() == SeizableItemRequest::SeizableType::RESOURCE)
+	//for (SeizableItem* seizable : *_releaseRequests->list()) {
+	//	if (seizable->getSeizableType() == SeizableItem::SeizableType::RESOURCE)
 	//		seizable->getResource()->initBetweenReplications();
-	//	else if (seizable->getSeizableType() == SeizableItemRequest::SeizableType::SET)
+	//	else if (seizable->getSeizableType() == SeizableItem::SeizableType::SET)
 	//		seizable->getSet()->initBetweenReplications();
 	//}
 }
@@ -106,12 +106,12 @@ bool Release::_loadInstance(std::map<std::string, std::string>* fields) {
 		this->_priority = std::stoi(LoadField(fields, "priority", "0"));
 		unsigned short numRequests = LoadField(fields, "resquestSize", DEFAULT.releaseRequestSize);
 		for (unsigned short i = 0; i < numRequests; i++) {
-			SeizableItemRequest* itemRequest = new SeizableItemRequest(nullptr);
-            itemRequest->setElementManager(_parentModel->getElements());
-			itemRequest->loadInstance(fields, i);
-			//Resource* resource = static_cast<Resource*> (_parentModel->getElements()->getElement(Util::TypeOf<Resource>(), itemRequest->getResourceName()));
-			//itemRequest->setResource(resource);
-			//this->_releaseRequests->insert(itemRequest);
+			SeizableItem* Item = new SeizableItem(nullptr);
+            Item->setElementManager(_parentModel->getElements());
+			Item->loadInstance(fields, i);
+			//Resource* resource = static_cast<Resource*> (_parentModel->getElements()->getElement(Util::TypeOf<Resource>(), Item->getResourceName()));
+			//Item->setResource(resource);
+			//this->_releaseRequests->insert(Item);
 		}
 	}
 	return res;
@@ -122,7 +122,7 @@ std::map<std::string, std::string>* Release::_saveInstance() {
 	if (_priority != 0) SaveField(fields, "priority", std::to_string(this->_priority));
 	SaveField(fields, "resquestSize", _releaseRequests->size(), DEFAULT.releaseRequestSize);
 	unsigned short i = 0;
-	for (SeizableItemRequest* request : *_releaseRequests->list()) {
+	for (SeizableItem* request : *_releaseRequests->list()) {
 		std::map<std::string, std::string>* seizablefields = request->saveInstance(i);
 		fields->insert(seizablefields->begin(), seizablefields->end());
 		i++;
@@ -133,11 +133,11 @@ std::map<std::string, std::string>* Release::_saveInstance() {
 bool Release::_check(std::string* errorMessage) {
 	bool resultAll = true;
 
-	for (SeizableItemRequest* seizable : * _releaseRequests->list()) {
+	for (SeizableItem* seizable : * _releaseRequests->list()) {
 		resultAll &= _parentModel->checkExpression(seizable->getQuantityExpression(), "quantity", errorMessage);
-		if (seizable->getSeizableType() == SeizableItemRequest::SeizableType::RESOURCE) {
+		if (seizable->getSeizableType() == SeizableItem::SeizableType::RESOURCE) {
 			resultAll &= _parentModel->getElements()->check(Util::TypeOf<Resource>(), seizable->getResource(), "Resource", errorMessage);
-		} else if (seizable->getSeizableType() == SeizableItemRequest::SeizableType::SET) {
+		} else if (seizable->getSeizableType() == SeizableItem::SeizableType::SET) {
 			resultAll &= _parentModel->getElements()->check(Util::TypeOf<Set>(), seizable->getSet(), "Set", errorMessage);
 		}
 		// \todo: Should be checking saveAttribute, index, etc

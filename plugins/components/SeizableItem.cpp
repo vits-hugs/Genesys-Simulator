@@ -5,18 +5,18 @@
  */
 
 /* 
- * File:   SeizableItemRequest.cpp
+ * File:   SeizableItem.cpp
  * Author: rlcancian
  * 
  * Created on 10 de abril de 2021, 08:45
  */
 
-#include "SeizableItemRequest.h"
+#include "SeizableItem.h"
 #include "../../kernel/simulator/ModelElement.h"
 #include "../../kernel/simulator/Model.h"
 #include <cassert>
 
-SeizableItemRequest::SeizableItemRequest(ModelElement* resourceOrSet, std::string quantityExpression, SeizableItemRequest::SeizableType resourceType, SeizableItemRequest::SelectionRule selectionRule, std::string saveAttribute, std::string index) {
+SeizableItem::SeizableItem(ModelElement* resourceOrSet, std::string quantityExpression, SeizableItem::SeizableType resourceType, SeizableItem::SelectionRule selectionRule, std::string saveAttribute, std::string index) {
     _seizableType = resourceType;
     _resourceOrSet = resourceOrSet;
     _quantityExpression = quantityExpression;
@@ -25,19 +25,19 @@ SeizableItemRequest::SeizableItemRequest(ModelElement* resourceOrSet, std::strin
     _index = index;
 }
 
-bool SeizableItemRequest::loadInstance(std::map<std::string, std::string>* fields) {
+bool SeizableItem::loadInstance(std::map<std::string, std::string>* fields) {
     bool res = true;
     try {
-        _seizableType = static_cast<SeizableItemRequest::SeizableType> (LoadField(fields, "seizableType", static_cast<int> (DEFAULT.seizableType)));
+        _seizableType = static_cast<SeizableItem::SeizableType> (LoadField(fields, "seizableType", static_cast<int> (DEFAULT.seizableType)));
         _seizableName = LoadField(fields, "seizable", "");
         _quantityExpression = LoadField(fields, "quantityExpression", DEFAULT.quantityExpression);
-        _selectionRule = static_cast<SeizableItemRequest::SelectionRule> (LoadField(fields, "selectionRule", static_cast<int> (DEFAULT.selectionRule)));
+        _selectionRule = static_cast<SeizableItem::SelectionRule> (LoadField(fields, "selectionRule", static_cast<int> (DEFAULT.selectionRule)));
         _saveAttribute = LoadField(fields, "saveAttribute", DEFAULT.saveAttribute);
         _index = LoadField(fields, "index", DEFAULT.index);
         if (_elementManager != nullptr) {
-            if (_seizableType == SeizableItemRequest::SeizableType::RESOURCE) {
+            if (_seizableType == SeizableItem::SeizableType::RESOURCE) {
                 _resourceOrSet = _elementManager->getElement(Util::TypeOf<Resource>(), _seizableName);
-            } else if (_seizableType == SeizableItemRequest::SeizableType::SET) {
+            } else if (_seizableType == SeizableItem::SeizableType::SET) {
                 _resourceOrSet = _elementManager->getElement(Util::TypeOf<Set>(), _seizableName);
             }
             assert(_resourceOrSet != nullptr);
@@ -48,20 +48,20 @@ bool SeizableItemRequest::loadInstance(std::map<std::string, std::string>* field
     return res;
 }
 
-bool SeizableItemRequest::loadInstance(std::map<std::string, std::string>* fields, unsigned int parentIndex) {
+bool SeizableItem::loadInstance(std::map<std::string, std::string>* fields, unsigned int parentIndex) {
     bool res = true;
     std::string num = std::to_string(parentIndex);
     try {
-        _seizableType = static_cast<SeizableItemRequest::SeizableType> (LoadField(fields, "seizableType" + num, static_cast<int> (DEFAULT.seizableType)));
+        _seizableType = static_cast<SeizableItem::SeizableType> (LoadField(fields, "seizableType" + num, static_cast<int> (DEFAULT.seizableType)));
         _seizableName = LoadField(fields, "seizable" + num, "");
         _quantityExpression = LoadField(fields, "quantityExpression" + num, DEFAULT.quantityExpression);
-        _selectionRule = static_cast<SeizableItemRequest::SelectionRule> (LoadField(fields, "selectionRule" + num, static_cast<int> (DEFAULT.selectionRule)));
+        _selectionRule = static_cast<SeizableItem::SelectionRule> (LoadField(fields, "selectionRule" + num, static_cast<int> (DEFAULT.selectionRule)));
         _saveAttribute = LoadField(fields, "saveAttribute" + num, DEFAULT.saveAttribute);
         _index = LoadField(fields, "index" + num, DEFAULT.index);
         if (_elementManager != nullptr) {
-            if (_seizableType == SeizableItemRequest::SeizableType::RESOURCE) {
+            if (_seizableType == SeizableItem::SeizableType::RESOURCE) {
                 _resourceOrSet = _elementManager->getElement(Util::TypeOf<Resource>(), _seizableName);
-            } else if (_seizableType == SeizableItemRequest::SeizableType::SET) {
+            } else if (_seizableType == SeizableItem::SeizableType::SET) {
                 _resourceOrSet = _elementManager->getElement(Util::TypeOf<Set>(), _seizableName);
             }
             assert(_resourceOrSet != nullptr);
@@ -72,7 +72,7 @@ bool SeizableItemRequest::loadInstance(std::map<std::string, std::string>* field
     return res;
 }
 
-std::map<std::string, std::string>* SeizableItemRequest::saveInstance(unsigned int parentIndex) {
+std::map<std::string, std::string>* SeizableItem::saveInstance(unsigned int parentIndex) {
     std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();
     std::string num = std::to_string(parentIndex);
     SaveField(fields, "seizableType" + num, static_cast<int> (_seizableType), static_cast<int> (DEFAULT.seizableType));
@@ -85,7 +85,7 @@ std::map<std::string, std::string>* SeizableItemRequest::saveInstance(unsigned i
     return fields;
 }
 
-std::map<std::string, std::string>* SeizableItemRequest::saveInstance() {
+std::map<std::string, std::string>* SeizableItem::saveInstance() {
     std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();
     SaveField(fields, "seizableType", static_cast<int> (_seizableType), static_cast<int> (DEFAULT.seizableType));
     SaveField(fields, "resourceId", _resourceOrSet->getId());
@@ -97,89 +97,89 @@ std::map<std::string, std::string>* SeizableItemRequest::saveInstance() {
     return fields;
 }
 
-std::string SeizableItemRequest::show() {
+std::string SeizableItem::show() {
     return "resourceType=" + std::to_string(static_cast<int> (_seizableType)) + ",resource=\"" + _resourceOrSet->getName() + "\",quantityExpression=\"" + _quantityExpression + "\", selectionRule=" + std::to_string(static_cast<int> (_selectionRule)) + ", _saveAttribute=\"" + _saveAttribute + "\",index=\"" + _index + "\"";
 }
 
-void SeizableItemRequest::setIndex(std::string index) {
+void SeizableItem::setIndex(std::string index) {
     this->_index = index;
 }
 
-std::string SeizableItemRequest::getIndex() const {
+std::string SeizableItem::getIndex() const {
     return _index;
 }
 
-void SeizableItemRequest::setSaveAttribute(std::string saveAttribute) {
+void SeizableItem::setSaveAttribute(std::string saveAttribute) {
     this->_saveAttribute = saveAttribute;
 }
 
-std::string SeizableItemRequest::getSaveAttribute() const {
+std::string SeizableItem::getSaveAttribute() const {
     return _saveAttribute;
 }
 
-void SeizableItemRequest::setSelectionRule(SeizableItemRequest::SelectionRule selectionRule) {
+void SeizableItem::setSelectionRule(SeizableItem::SelectionRule selectionRule) {
     this->_selectionRule = selectionRule;
 }
 
-SeizableItemRequest::SelectionRule SeizableItemRequest::getSelectionRule() const {
+SeizableItem::SelectionRule SeizableItem::getSelectionRule() const {
     return _selectionRule;
 }
 
-void SeizableItemRequest::setQuantityExpression(std::string quantityExpression) {
+void SeizableItem::setQuantityExpression(std::string quantityExpression) {
     this->_quantityExpression = quantityExpression;
 }
 
-std::string SeizableItemRequest::getQuantityExpression() const {
+std::string SeizableItem::getQuantityExpression() const {
     return _quantityExpression;
 }
 
-std::string SeizableItemRequest::getResourceName() const {
+std::string SeizableItem::getResourceName() const {
     return _seizableName;
 }
 
-void SeizableItemRequest::setResource(Resource* resource) {
+void SeizableItem::setResource(Resource* resource) {
     this->_resourceOrSet = resource;
     _seizableName = resource->getName();
 }
 
-Resource* SeizableItemRequest::getResource() const {
+Resource* SeizableItem::getResource() const {
     return static_cast<Resource*> (_resourceOrSet);
 }
 
-void SeizableItemRequest::setSet(Set* set) {
+void SeizableItem::setSet(Set* set) {
     this->_resourceOrSet = set;
     _seizableName = set->getName();
 }
 
-Set* SeizableItemRequest::getSet() const {
+Set* SeizableItem::getSet() const {
     return static_cast<Set*> (_resourceOrSet);
 }
 
-void SeizableItemRequest::setSeizableType(SeizableItemRequest::SeizableType resourceType) {
+void SeizableItem::setSeizableType(SeizableItem::SeizableType resourceType) {
     this->_seizableType = resourceType;
 }
 
-SeizableItemRequest::SeizableType SeizableItemRequest::getSeizableType() const {
+SeizableItem::SeizableType SeizableItem::getSeizableType() const {
     return _seizableType;
 }
 
-void SeizableItemRequest::setLastMemberSeized(unsigned int lastMemberSeized) {
+void SeizableItem::setLastMemberSeized(unsigned int lastMemberSeized) {
     this->_lastMemberSeized = lastMemberSeized;
 }
 
-unsigned int SeizableItemRequest::getLastMemberSeized() const {
+unsigned int SeizableItem::getLastMemberSeized() const {
     return _lastMemberSeized;
 }
 
-ModelElement* SeizableItemRequest::getSeizable() const {
+ModelElement* SeizableItem::getSeizable() const {
     return _resourceOrSet;
 }
 
-void SeizableItemRequest::setElementManager(ElementManager* _elementManager) {
+void SeizableItem::setElementManager(ElementManager* _elementManager) {
     this->_elementManager = _elementManager;
 }
 
-//void SeizableItemRequest::setComponentManager(ComponentManager* _componentManager) {
+//void SeizableItem::setComponentManager(ComponentManager* _componentManager) {
 //	this->_componentManager = _componentManager;
 //}
 

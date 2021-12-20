@@ -11,7 +11,7 @@
  * Created on 3 de Setembro de 2019, 18:34
  */
 
-#include "Example_CreateDelayDispose.h"
+#include "Example_Dummy.h"
 
 // you have to included need libs
 
@@ -26,14 +26,14 @@
 // Model elements
 #include "../../kernel/simulator/EntityType.h"
 
-Example_CreateDelayDispose::Example_CreateDelayDispose() {
+Example_Dummy::Example_Dummy() {
 }
 
 /**
  * This is the main function of the application. 
  * It instanciates the simulator, builds a simulation model and then simulate that model.
  */
-int Example_CreateDelayDispose::main(int argc, char** argv) {
+int Example_Dummy::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	// insert "fake plugins" since plugins based on dynamic loaded library are not implemented yet
 	this->insertFakePluginsByHand(genesys);

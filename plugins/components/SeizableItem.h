@@ -5,21 +5,22 @@
  */
 
 /* 
- * File:   SeizableItemRequest.h
+ * File:   SeizableItem.h
  * Author: rlcancian
  *
  * Created on 10 de abril de 2021, 08:45
  */
 
-#ifndef SEIZABLEITEMREQUEST_H
-#define SEIZABLEITEMREQUEST_H
+#ifndef SEIZABLEITEM_H
+#define SEIZABLEITEM_H
 
 #include "../elements/Resource.h"
 #include "../elements/Set.h"
 #include "../../kernel/simulator/ElementManager.h"
 
-// \todo should inhere from a common base to QueueableItemRequest
-class SeizableItemRequest  {
+// \todo should inhere from a common base to QueueableItem
+
+class SeizableItem {
 public:
 
 	enum class SelectionRule : int {
@@ -31,7 +32,7 @@ public:
 	};
 
 public:
-	SeizableItemRequest(ModelElement* resourceOrSet, std::string quantityExpression = "1", SeizableItemRequest::SeizableType resourceType = SeizableItemRequest::SeizableType::RESOURCE, SeizableItemRequest::SelectionRule selectionRule = SeizableItemRequest::SelectionRule::LARGESTREMAININGCAPACITY, std::string saveAttribute = "", std::string index = "0");
+    SeizableItem(ModelElement* resourceOrSet, std::string quantityExpression = "1", SeizableItem::SeizableType resourceType = SeizableItem::SeizableType::RESOURCE, SeizableItem::SelectionRule selectionRule = SeizableItem::SelectionRule::LARGESTREMAININGCAPACITY, std::string saveAttribute = "", std::string index = "0");
 
 public: 
 	bool loadInstance(std::map<std::string, std::string>* fields, unsigned int parentIndex);
@@ -65,8 +66,8 @@ private:
 
 	const struct DEFAULT_VALUES {
 		const std::string quantityExpression = "1";
-		const SeizableItemRequest::SeizableType seizableType = SeizableItemRequest::SeizableType::RESOURCE;
-		const SeizableItemRequest::SelectionRule selectionRule = SeizableItemRequest::SelectionRule::LARGESTREMAININGCAPACITY;
+        const SeizableItem::SeizableType seizableType = SeizableItem::SeizableType::RESOURCE;
+        const SeizableItem::SelectionRule selectionRule = SeizableItem::SelectionRule::LARGESTREMAININGCAPACITY;
 		const std::string saveAttribute = "";
 		const std::string index = "0";
 	} DEFAULT;
@@ -84,5 +85,5 @@ private:
 	ElementManager* _elementManager;
 };
 
-#endif /* SEIZABLEITEMREQUEST_H */
+#endif /* SEIZABLEITEM_H */
 

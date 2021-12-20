@@ -1,6 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configurationDescriptor version="100">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="userInterfaces"
+                   displayName="applications"
+                   projectFiles="true">
+      <logicalFolder name="f2" displayName="book" projectFiles="true">
+        <itemPath>userInterfaces/examples/book/Book_Cap02_Example01.cpp</itemPath>
+        <itemPath>userInterfaces/examples/book/Book_Cap02_Example01.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f1" displayName="examples" projectFiles="true">
+        <itemPath>userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.cpp</itemPath>
+        <itemPath>userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.h</itemPath>
+        <itemPath>userInterfaces/examples/Example_AssignWrite3Seizes.cpp</itemPath>
+        <itemPath>userInterfaces/examples/Example_Delay.cpp</itemPath>
+        <itemPath>userInterfaces/examples/Example_Delay.h</itemPath>
+        <itemPath>userInterfaces/examples/Example_Delay2.cpp</itemPath>
+        <itemPath>userInterfaces/examples/Example_Delay2.h</itemPath>
+        <itemPath>userInterfaces/examples/Example_Dummy.cpp</itemPath>
+        <itemPath>userInterfaces/examples/Example_Dummy.h</itemPath>
+        <itemPath>userInterfaces/examples/Example_FullSimulationOfComplexModel.cpp</itemPath>
+        <itemPath>userInterfaces/examples/Example_FullSimulationOfComplexModel.h</itemPath>
+        <itemPath>userInterfaces/examples/Example_Process.cpp</itemPath>
+        <itemPath>userInterfaces/examples/Example_Process.h</itemPath>
+        <itemPath>userInterfaces/examples/Example_SeizeDelayRelease1.cpp</itemPath>
+        <itemPath>userInterfaces/examples/Example_SeizeDelayRelease1.h</itemPath>
+        <itemPath>userInterfaces/examples/Example_SeizeDelayReleaseMany.cpp</itemPath>
+        <itemPath>userInterfaces/examples/Example_SeizeDelayReleaseMany.h</itemPath>
+        <itemPath>userInterfaces/examples/Example_StatationRouteSequence.cpp</itemPath>
+        <itemPath>userInterfaces/examples/Example_StatationRouteSequence.h</itemPath>
+        <itemPath>userInterfaces/examples/Examplel_AssignWrite3Seizes.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="gui" displayName="gui" projectFiles="true">
+        <logicalFolder name="qt" displayName="qt" projectFiles="true">
+          <logicalFolder name="f1" displayName="dialogs" projectFiles="true">
+            <itemPath>userInterfaces/gui/qt/dialogs/dialogabout.cpp</itemPath>
+            <itemPath>userInterfaces/gui/qt/dialogs/dialogabout.h</itemPath>
+            <itemPath>userInterfaces/gui/qt/dialogs/dialogabout.ui</itemPath>
+            <itemPath>userInterfaces/gui/qt/dialogs/dialogmodelinformation.cpp</itemPath>
+            <itemPath>userInterfaces/gui/qt/dialogs/dialogmodelinformation.h</itemPath>
+            <itemPath>userInterfaces/gui/qt/dialogs/dialogmodelinformation.ui</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f2" displayName="forms" projectFiles="true">
+            <itemPath>userInterfaces/gui/qt/forms/formPlugins.cpp</itemPath>
+            <itemPath>userInterfaces/gui/qt/forms/formPlugins.h</itemPath>
+            <itemPath>userInterfaces/gui/qt/forms/formPlugins.ui</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f3" displayName="mainWindow" projectFiles="true">
+            <itemPath>userInterfaces/gui/qt/mainWindow/mainwindow.cpp</itemPath>
+            <itemPath>userInterfaces/gui/qt/mainWindow/mainwindow.h</itemPath>
+            <itemPath>userInterfaces/gui/qt/mainWindow/mainwindow.ui</itemPath>
+          </logicalFolder>
+          <itemPath>userInterfaces/gui/qt/GenesysQtGUI.cpp</itemPath>
+          <itemPath>userInterfaces/gui/qt/GenesysQtGUI.h</itemPath>
+          <itemPath>userInterfaces/gui/qt/mapkernelandui.cpp</itemPath>
+          <itemPath>userInterfaces/gui/qt/mapkernelandui.h</itemPath>
+        </logicalFolder>
+      </logicalFolder>
+      <logicalFolder name="f3" displayName="smarts" projectFiles="true">
+      </logicalFolder>
+      <logicalFolder name="f4" displayName="teaching" projectFiles="true">
+      </logicalFolder>
+      <logicalFolder name="terminal" displayName="terminal" projectFiles="true">
+        <itemPath>userInterfaces/terminal/GenesysShell_if.h</itemPath>
+        <itemPath>userInterfaces/terminal/GenesysTerminalApp.cpp</itemPath>
+        <itemPath>userInterfaces/terminal/GenesysTerminalApp.h</itemPath>
+      </logicalFolder>
+      <itemPath>userInterfaces/BaseConsoleGenesysApplication.cpp</itemPath>
+      <itemPath>userInterfaces/BaseConsoleGenesysApplication.h</itemPath>
+      <itemPath>userInterfaces/GenesysApplication_if.h</itemPath>
+    </logicalFolder>
     <logicalFolder name="HeaderFiles"
                    displayName="Arquivos de Cabeçalho"
                    projectFiles="true">
@@ -194,8 +262,10 @@
         <itemPath>plugins/components/PickStation.h</itemPath>
         <itemPath>plugins/components/PickUp.cpp</itemPath>
         <itemPath>plugins/components/PickUp.h</itemPath>
-        <itemPath>plugins/components/QueueableItemRequest.cpp</itemPath>
-        <itemPath>plugins/components/QueueableItemRequest.h</itemPath>
+        <itemPath>plugins/components/Process.cpp</itemPath>
+        <itemPath>plugins/components/Process.h</itemPath>
+        <itemPath>plugins/components/QueueableItem.cpp</itemPath>
+        <itemPath>plugins/components/QueueableItem.h</itemPath>
         <itemPath>plugins/components/Record.cpp</itemPath>
         <itemPath>plugins/components/Record.h</itemPath>
         <itemPath>plugins/components/Release.cpp</itemPath>
@@ -206,8 +276,8 @@
         <itemPath>plugins/components/Route.h</itemPath>
         <itemPath>plugins/components/Search.cpp</itemPath>
         <itemPath>plugins/components/Search.h</itemPath>
-        <itemPath>plugins/components/SeizableItemRequest.cpp</itemPath>
-        <itemPath>plugins/components/SeizableItemRequest.h</itemPath>
+        <itemPath>plugins/components/SeizableItem.cpp</itemPath>
+        <itemPath>plugins/components/SeizableItem.h</itemPath>
         <itemPath>plugins/components/Seize.cpp</itemPath>
         <itemPath>plugins/components/Seize.h</itemPath>
         <itemPath>plugins/components/Separate.cpp</itemPath>
@@ -268,74 +338,6 @@
       <itemPath>tools/ProbabilityDistribution.cpp</itemPath>
       <itemPath>tools/ProbabilityDistribution.h</itemPath>
     </logicalFolder>
-    <logicalFolder name="userInterfaces"
-                   displayName="userInterfaces"
-                   projectFiles="true">
-      <logicalFolder name="f2" displayName="book" projectFiles="true">
-        <itemPath>userInterfaces/examples/book/Book_Cap02_Example01.cpp</itemPath>
-        <itemPath>userInterfaces/examples/book/Book_Cap02_Example01.h</itemPath>
-      </logicalFolder>
-      <logicalFolder name="f1" displayName="examples" projectFiles="true">
-        <itemPath>userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.cpp</itemPath>
-        <itemPath>userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.h</itemPath>
-        <itemPath>userInterfaces/examples/Example_AssignWrite3Seizes.cpp</itemPath>
-        <itemPath>userInterfaces/examples/Example_CreateDelayDispose.cpp</itemPath>
-        <itemPath>userInterfaces/examples/Example_CreateDelayDispose.h</itemPath>
-        <itemPath>userInterfaces/examples/Example_CreateDelayDispose2.cpp</itemPath>
-        <itemPath>userInterfaces/examples/Example_CreteDelayDispose2.h</itemPath>
-        <itemPath>userInterfaces/examples/Example_FullSimulationOfComplexModel.cpp</itemPath>
-        <itemPath>userInterfaces/examples/Example_FullSimulationOfComplexModel.h</itemPath>
-        <itemPath>userInterfaces/examples/Example_SeizeDelayRelease1.cpp</itemPath>
-        <itemPath>userInterfaces/examples/Example_SeizeDelayRelease1.h</itemPath>
-        <itemPath>userInterfaces/examples/Example_SeizeDelayReleaseMany.cpp</itemPath>
-        <itemPath>userInterfaces/examples/Example_SeizeDelayReleaseMany.h</itemPath>
-        <itemPath>userInterfaces/examples/Example_SistemaOperacional02.cpp</itemPath>
-        <itemPath>userInterfaces/examples/Example_SistemaOperacional02.h</itemPath>
-        <itemPath>userInterfaces/examples/Example_SistemaOperacional03.cpp</itemPath>
-        <itemPath>userInterfaces/examples/Example_SistemaOperacional03.h</itemPath>
-        <itemPath>userInterfaces/examples/Example_StatationRouteSequence.cpp</itemPath>
-        <itemPath>userInterfaces/examples/Example_StatationRouteSequence.h</itemPath>
-        <itemPath>userInterfaces/examples/Examplel_AssignWrite3Seizes.h</itemPath>
-      </logicalFolder>
-      <logicalFolder name="gui" displayName="gui" projectFiles="true">
-        <logicalFolder name="qt" displayName="qt" projectFiles="true">
-          <logicalFolder name="f1" displayName="dialogs" projectFiles="true">
-            <itemPath>userInterfaces/gui/qt/dialogs/dialogabout.cpp</itemPath>
-            <itemPath>userInterfaces/gui/qt/dialogs/dialogabout.h</itemPath>
-            <itemPath>userInterfaces/gui/qt/dialogs/dialogabout.ui</itemPath>
-            <itemPath>userInterfaces/gui/qt/dialogs/dialogmodelinformation.cpp</itemPath>
-            <itemPath>userInterfaces/gui/qt/dialogs/dialogmodelinformation.h</itemPath>
-            <itemPath>userInterfaces/gui/qt/dialogs/dialogmodelinformation.ui</itemPath>
-          </logicalFolder>
-          <logicalFolder name="f2" displayName="forms" projectFiles="true">
-            <itemPath>userInterfaces/gui/qt/forms/formPlugins.cpp</itemPath>
-            <itemPath>userInterfaces/gui/qt/forms/formPlugins.h</itemPath>
-            <itemPath>userInterfaces/gui/qt/forms/formPlugins.ui</itemPath>
-          </logicalFolder>
-          <logicalFolder name="f3" displayName="mainWindow" projectFiles="true">
-            <itemPath>userInterfaces/gui/qt/mainWindow/mainwindow.cpp</itemPath>
-            <itemPath>userInterfaces/gui/qt/mainWindow/mainwindow.h</itemPath>
-            <itemPath>userInterfaces/gui/qt/mainWindow/mainwindow.ui</itemPath>
-          </logicalFolder>
-          <itemPath>userInterfaces/gui/qt/GenesysQtGUI.cpp</itemPath>
-          <itemPath>userInterfaces/gui/qt/GenesysQtGUI.h</itemPath>
-          <itemPath>userInterfaces/gui/qt/mapkernelandui.cpp</itemPath>
-          <itemPath>userInterfaces/gui/qt/mapkernelandui.h</itemPath>
-        </logicalFolder>
-      </logicalFolder>
-      <logicalFolder name="f3" displayName="smarts" projectFiles="true">
-      </logicalFolder>
-      <logicalFolder name="f4" displayName="teaching" projectFiles="true">
-      </logicalFolder>
-      <logicalFolder name="terminal" displayName="terminal" projectFiles="true">
-        <itemPath>userInterfaces/terminal/GenesysShell_if.h</itemPath>
-        <itemPath>userInterfaces/terminal/GenesysTerminalApp.cpp</itemPath>
-        <itemPath>userInterfaces/terminal/GenesysTerminalApp.h</itemPath>
-      </logicalFolder>
-      <itemPath>userInterfaces/BaseConsoleGenesysApplication.cpp</itemPath>
-      <itemPath>userInterfaces/BaseConsoleGenesysApplication.h</itemPath>
-      <itemPath>userInterfaces/GenesysApplication_if.h</itemPath>
-    </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Arquivos de Teste"
                    projectFiles="false"
@@ -384,6 +386,12 @@
         <packType>Debian</packType>
         <verbose>false</verbose>
         <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
           <packFileListElem type="File"
                             to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
                             from="${OUTPUT_PATH}"
@@ -1142,15 +1150,16 @@
       </item>
       <item path="plugins/components/PickUp.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/components/QueueableItemRequest.cpp"
+      <item path="plugins/components/Process.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Process.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/QueueableItem.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="plugins/components/QueueableItemRequest.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
+      <item path="plugins/components/QueueableItem.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="plugins/components/Record.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1172,15 +1181,12 @@
       </item>
       <item path="plugins/components/Search.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/components/SeizableItemRequest.cpp"
+      <item path="plugins/components/SeizableItem.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="plugins/components/SeizableItemRequest.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
+      <item path="plugins/components/SeizableItem.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="plugins/components/Seize.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1323,22 +1329,32 @@
             tool="1"
             flavor2="0">
       </item>
-      <item path="userInterfaces/examples/Example_CreateDelayDispose.cpp"
+      <item path="userInterfaces/examples/Example_Delay.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="userInterfaces/examples/Example_CreateDelayDispose.h"
+      <item path="userInterfaces/examples/Example_Delay.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="userInterfaces/examples/Example_CreateDelayDispose2.cpp"
+      <item path="userInterfaces/examples/Example_Delay2.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="userInterfaces/examples/Example_CreteDelayDispose2.h"
+      <item path="userInterfaces/examples/Example_Delay2.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Example_Dummy.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Example_Dummy.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -1349,6 +1365,16 @@
             flavor2="0">
       </item>
       <item path="userInterfaces/examples/Example_FullSimulationOfComplexModel.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Example_Process.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Example_Process.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -1369,26 +1395,6 @@
             flavor2="0">
       </item>
       <item path="userInterfaces/examples/Example_SeizeDelayReleaseMany.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_SistemaOperacional02.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_SistemaOperacional02.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_SistemaOperacional03.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_SistemaOperacional03.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2136,15 +2142,16 @@
       </item>
       <item path="plugins/components/PickUp.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/components/QueueableItemRequest.cpp"
+      <item path="plugins/components/Process.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/Process.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/components/QueueableItem.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="plugins/components/QueueableItemRequest.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
+      <item path="plugins/components/QueueableItem.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="plugins/components/Record.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -2166,15 +2173,12 @@
       </item>
       <item path="plugins/components/Search.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/components/SeizableItemRequest.cpp"
+      <item path="plugins/components/SeizableItem.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="plugins/components/SeizableItemRequest.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
+      <item path="plugins/components/SeizableItem.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="plugins/components/Seize.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -2317,22 +2321,32 @@
             tool="1"
             flavor2="0">
       </item>
-      <item path="userInterfaces/examples/Example_CreateDelayDispose.cpp"
+      <item path="userInterfaces/examples/Example_Delay.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="userInterfaces/examples/Example_CreateDelayDispose.h"
+      <item path="userInterfaces/examples/Example_Delay.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="userInterfaces/examples/Example_CreateDelayDispose2.cpp"
+      <item path="userInterfaces/examples/Example_Delay2.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="userInterfaces/examples/Example_CreteDelayDispose2.h"
+      <item path="userInterfaces/examples/Example_Delay2.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Example_Dummy.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Example_Dummy.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2343,6 +2357,16 @@
             flavor2="0">
       </item>
       <item path="userInterfaces/examples/Example_FullSimulationOfComplexModel.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Example_Process.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Example_Process.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2363,26 +2387,6 @@
             flavor2="0">
       </item>
       <item path="userInterfaces/examples/Example_SeizeDelayReleaseMany.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_SistemaOperacional02.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_SistemaOperacional02.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_SistemaOperacional03.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_SistemaOperacional03.h"
             ex="false"
             tool="3"
             flavor2="0">

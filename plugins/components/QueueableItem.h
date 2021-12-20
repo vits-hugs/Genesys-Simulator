@@ -5,21 +5,21 @@
  */
 
 /* 
- * File:   QueueableItemRequest.h
+ * File:   QueueableItem.h
  * Author: rlcancian
  *
  * Created on 23 de abril de 2021, 15:09
  */
 
-#ifndef QUEUEABLEITEMREQUEST_H
-#define QUEUEABLEITEMREQUEST_H
+#ifndef QUEUEABLEITEM_H
+#define QUEUEABLEITEM_H
 
 #include "../elements/Queue.h"
 #include "../elements/Set.h"
 #include "../../kernel/simulator/ElementManager.h"
 
-// \todo should inhere from a common base to SeizeableItemRequest
-class QueueableItemRequest {
+// \todo should inhere from a common base to SeizeableItem
+class QueueableItem {
 public:
 
 	enum class QueueableType : int {
@@ -27,7 +27,7 @@ public:
 	};
 
 public:
-	QueueableItemRequest(ModelElement* queueOrSet, QueueableItemRequest::QueueableType queueableType = QueueableItemRequest::QueueableType::QUEUE, std::string index = "0");
+	QueueableItem(ModelElement* queueOrSet, QueueableItem::QueueableType queueableType = QueueableItem::QueueableType::QUEUE, std::string index = "0");
 public: 
 	//virtual bool _loadInstance(std::map<std::string, std::string>* fields, unsigned int parentIndex);
 	//virtual std::map<std::string, std::string>* _saveInstance(unsigned int parentIndex);
@@ -53,7 +53,7 @@ private:
 
 	const struct DEFAULT_VALUES {
 		const std::string quantityExpression = "1";
-		const QueueableItemRequest::QueueableType queueableType = QueueableItemRequest::QueueableType::QUEUE;
+		const QueueableItem::QueueableType queueableType = QueueableItem::QueueableType::QUEUE;
 		const std::string saveAttribute = "";
 		const std::string index = "0";
 	} DEFAULT;
@@ -68,5 +68,5 @@ private:
 };
 
 
-#endif /* QUEUEABLEITEMREQUEST_H */
+#endif /* QUEUEABLEITEM_H */
 
