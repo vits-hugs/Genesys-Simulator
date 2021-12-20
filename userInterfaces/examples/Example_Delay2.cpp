@@ -69,7 +69,7 @@ int Example_Delay2::main(int argc, char** argv) {
 	create1->getNextComponents()->insert(delay1);
 	delay1->getNextComponents()->insert(dispose1);
 	// save the model into a text file
-	model->save("./models/Model_CreateDelayDispose2.txt");
+	model->save("./models/Example_CreateDelayDispose2.txt");
 	// execute the simulation
 	sim->start();
 

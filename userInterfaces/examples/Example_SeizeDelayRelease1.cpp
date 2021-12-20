@@ -88,11 +88,11 @@ int Example_SeizeDelayRelease1::main(int argc, char** argv) {
 	delay1->getNextComponents()->insert(release1);
 	release1->getNextComponents()->insert(dispose1);
 	// save the model into a text file
-        model->save("./models/Model_SeizeDelayRelease1.txt");
+        model->save("./models/Example_SeizeDelayRelease1.txt");
         // execute the simulation
         sim->start();
     } else {
-        model->load("./models/Model_SeizeDelayRelease1.txt");
+        model->load("./models/Example_SeizeDelayRelease1.txt");
         model->show();
         model->getSimulation()->start();
     }

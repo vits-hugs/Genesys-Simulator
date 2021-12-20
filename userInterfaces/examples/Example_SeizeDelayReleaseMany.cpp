@@ -41,7 +41,7 @@ int Example_SeizeDelayReleaseMany::main(int argc, char** argv) {
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L8_detailed);
 	Model* m = genesys->getModels()->newModel();
-	//m->load("./models/Model_SeizeDelayReleaseMany.txt");
+	//m->load("./models/Example_SeizeDelayReleaseMany.txt");
 	//genesys->getModels()->current()->getSimulation()->start();
 	//return 0;
 
@@ -78,7 +78,7 @@ int Example_SeizeDelayReleaseMany::main(int argc, char** argv) {
 	ModelSimulation* sim = m->getSimulation();
 	sim->setReplicationLength(30);
 	sim->setNumberOfReplications(3);
-	m->save("./models/Model_SeizeDelayReleaseMany.txt");
+	m->save("./models/Example_SeizeDelayReleaseMany.txt");
 	genesys->getModels()->current()->getSimulation()->start();
 	return 0;
 };

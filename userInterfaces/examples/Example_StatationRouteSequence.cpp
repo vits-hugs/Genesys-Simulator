@@ -35,7 +35,7 @@ int Example_StatationRouteSequence::main(int argc, char** argv) {
 	this->insertFakePluginsByHand(genesys);
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L6_arrival);
-	//genesys->getModels()->loadModel("./models/Model_StatationRouteSequence.txt");
+	//genesys->getModels()->loadModel("./models/Example_StatationRouteSequence.txt");
 	//genesys->getModels()->current()->getSimulation()->start();
 	//return;
 	Model* m = genesys->getModels()->newModel();
@@ -101,7 +101,7 @@ int Example_StatationRouteSequence::main(int argc, char** argv) {
 	sim->setShowReportsAfterReplication(false);
 	sim->setShowReportsAfterSimulation(false);
 
-	m->save("./models/Model_StatationRouteSequence.txt");
+	m->save("./models/Example_StatationRouteSequence.txt");
 
 	do {
 		sim->start();

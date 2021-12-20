@@ -17,11 +17,18 @@
 #include "kernel/util/Util.h"
 #include "userInterfaces/terminal/GenesysTerminalApp.h"
 #include "userInterfaces/gui/qt/GenesysQtGUI.h"
-#include "userInterfaces/examples/Example_SeizeDelayRelease1.h"
+//
 #include "userInterfaces/examples/book/Book_Cap02_Example01.h"
+//
+#include "userInterfaces/examples/Example_Dummy.h"
+#include "userInterfaces/examples/Example_Delay.h"
+#include "userInterfaces/examples/Example_Delay2.h"
+#include "userInterfaces/examples/Example_Process.h"
+
 #include "userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.h"
-#include "userInterfaces/examples/book/Book_Cap02_Example01.h"
+#include "userInterfaces/examples/Example_SeizeDelayRelease1.h"
 //#include "userInterfaces/examples/Example_SistemaOperacional03.h"
+
 #include "tools/IntegratorDefaultImpl1.h"
 #include "tools/HypothesisTesterDefaultImpl1.h"
 #include "tools/HypothesisTester_if.h"
@@ -37,8 +44,8 @@ struct Traits {
 template <> struct Traits<GenesysApplication_if> {
     static const Util::TraceLevel traceLevel = Util::TraceLevel::L6_arrival;
     //typedef Example_AnElectronicAssemblyAndTestSystem Application;
-    typedef Book_Cap02_Example01 Application;
     //typedef Book_Cap02_Example01 Application;
+    typedef Example_Process Application;
 };
 
 template <> struct Traits<Integrator_if> {

@@ -11,8 +11,8 @@
  * Created on 3 de Setembro de 2019, 18:59
  */
 
-#ifndef SECONDEXAMPLEOFSIMULATION_H
-#define SECONDEXAMPLEOFSIMULATION_H
+#ifndef EXAMPLEDELAY2_H
+#define EXAMPLEDELAY2_H
 
 #include "../BaseConsoleGenesysApplication.h"
 
@@ -23,5 +23,5 @@ public:
 	virtual int main(int argc, char** argv);
 };
 
-#endif /* SECONDEXAMPLEOFSIMULATION_H */
+#endif /* EXAMPLEDELAY2_H */
 
