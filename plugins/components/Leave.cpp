@@ -43,7 +43,7 @@ void Leave::_execute(Entity* entity) {
     if (_reportStatistics)
         _numberIn->incCountValue();
     _station->leave(entity);
-    _parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection(), 0.0);
+    _parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection());
 }
 
 bool Leave::_loadInstance(std::map<std::string, std::string>* fields) {

@@ -81,7 +81,7 @@ protected:
     virtual bool _check(std::string* errorMessage);
     virtual void _createInternalElements();
 private:
-    Counter* _numberIn = nullptr; // children element
+    Counter* _numberOut = nullptr; // children element
     double _lastArrival = -1.0;
 };
 

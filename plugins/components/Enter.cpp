@@ -45,7 +45,7 @@ void Enter::_execute(Entity* entity) {
 	if (_reportStatistics)
 		_numberIn->incCountValue();
 	_station->enter(entity);
-	_parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection(), 0.0);
+	_parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection());
 }
 
 bool Enter::_loadInstance(std::map<std::string, std::string>* fields) {

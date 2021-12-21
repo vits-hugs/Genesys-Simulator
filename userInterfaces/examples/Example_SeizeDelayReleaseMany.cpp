@@ -39,20 +39,21 @@ int Example_SeizeDelayReleaseMany::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	this->insertFakePluginsByHand(genesys);
 	this->setDefaultTraceHandlers(genesys->getTracer());
-	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L8_detailed);
+	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
 	Model* m = genesys->getModels()->newModel();
 	//m->load("./models/Example_SeizeDelayReleaseMany.txt");
 	//genesys->getModels()->current()->getSimulation()->start();
 	//return 0;
 
-	EntityType* customer = new EntityType(m);
+	EntityType* customer = new EntityType(m, "Customer");
 	Create* create1 = new Create(m);
 	create1->setEntityType(customer);
-	create1->setTimeBetweenCreationsExpression("unif(1,2)");
+	create1->setTimeBetweenCreationsExpression("1");
 	Resource* machine1 = new Resource(m);
 	Resource* machine2 = new Resource(m);
 	Resource* machine3 = new Resource(m);
 	Resource* machine4 = new Resource(m);
+	Resource* machine5 = new Resource(m);
 	Queue* queueSeize1 = new Queue(m);
 	queueSeize1->setOrderRule(Queue::OrderRule::FIFO);
 	Seize* seize1 = new Seize(m);
@@ -60,14 +61,16 @@ int Example_SeizeDelayReleaseMany::main(int argc, char** argv) {
 	seize1->getSeizeRequests()->insert(new SeizableItem(machine2));
 	seize1->getSeizeRequests()->insert(new SeizableItem(machine3));
 	seize1->getSeizeRequests()->insert(new SeizableItem(machine4));
+	seize1->getSeizeRequests()->insert(new SeizableItem(machine5));
 	seize1->setQueue(queueSeize1);
 	Delay* delay1 = new Delay(m);
-	delay1->setDelayExpression("unif(1,2)");
+	delay1->setDelayExpression("unif(0.8,1.2)");
 	Release* release1 = new Release(m);
 	release1->getReleaseRequests()->insert(new SeizableItem(machine1));
 	release1->getReleaseRequests()->insert(new SeizableItem(machine2));
 	release1->getReleaseRequests()->insert(new SeizableItem(machine3));
 	release1->getReleaseRequests()->insert(new SeizableItem(machine4));
+	release1->getReleaseRequests()->insert(new SeizableItem(machine5));
 	Dispose* dispose1 = new Dispose(m);
 	// connect model components to create a "workflow"
 	create1->getNextComponents()->insert(seize1);
@@ -76,9 +79,14 @@ int Example_SeizeDelayReleaseMany::main(int argc, char** argv) {
 	release1->getNextComponents()->insert(dispose1);
 	// save the model into a text file
 	ModelSimulation* sim = m->getSimulation();
-	sim->setReplicationLength(30);
+	sim->setReplicationLength(10);
 	sim->setNumberOfReplications(3);
 	m->save("./models/Example_SeizeDelayReleaseMany.txt");
-	genesys->getModels()->current()->getSimulation()->start();
+	//sim->start();
+
+	do {
+		sim->step();
+		std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
+	} while (sim->isPaused());
 	return 0;
 };

@@ -103,7 +103,7 @@ void MarkovChain::_execute(Entity* entity) {
 		}
 		_parentModel->getTracer()->trace("Current state=" + std::to_string(_currentState->value()));
 	}
-	_parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection(), 0.0);
+	_parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection());
 }
 
 bool MarkovChain::_loadInstance(std::map<std::string, std::string>* fields) {

@@ -61,7 +61,7 @@ void Assign::_execute(Entity* entity) {
         _parentModel->getTracer()->trace("Let \"" + let->getDestination() + "\" = " + strTruncIfInt(std::to_string(value)) + "  // " + let->getExpression());
 	}
 
-	this->_parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection(), 0.0);
+	this->_parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection());
 }
 
 void Assign::_initBetweenReplications() {

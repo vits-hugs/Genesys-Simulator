@@ -41,7 +41,7 @@ int Example_Process::main(int argc, char** argv) {
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
 	Model* model = genesys->getModels()->newModel();
 	Create *create = new Create(model);
-	create->setEntityType(new EntityType(model, "client"));
+	create->setEntityType(new EntityType(model, "Client"));
 	create->setTimeBetweenCreationsExpression("1");
 	Process* process = new Process(model);
 	process->getSeizeRequests()->insert(new SeizableItem(new Resource(model)));

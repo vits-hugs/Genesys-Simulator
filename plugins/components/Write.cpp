@@ -78,7 +78,7 @@ void Write::_execute(Entity* entity) {
 		}
 	}
 
-	this->_parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection(), 0.0);
+	this->_parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection());
 }
 
 void Write::_initBetweenReplications() {

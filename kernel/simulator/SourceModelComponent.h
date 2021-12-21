@@ -37,8 +37,9 @@
 		Util::TimeUnit getTimeUnit() const;
 		void setTimeBetweenCreationsExpression(std::string _timeBetweenCreations);
 		std::string getTimeBetweenCreationsExpression() const;
-		void setMaxCreations(std::string _maxCreationsExpression);
-		std::string getMaxCreations() const;
+	void setMaxCreations(unsigned long _maxCreations);
+	void setMaxCreations(std::string _maxCreationsExpression);
+	std::string getMaxCreations() const;
 		unsigned int getEntitiesCreated() const;
 		void setEntitiesCreated(unsigned int _entitiesCreated);
 		void setEntitiesPerCreation(unsigned int _entitiesPerCreation);

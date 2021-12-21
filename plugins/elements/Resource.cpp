@@ -61,6 +61,7 @@ void Resource::release(unsigned int quantity, double tnow) {
 	if (_reportStatistics) {
 		_numReleases->incCountValue(quantity);
 		_cstatTimeSeized->getStatistics()->getCollector()->addValue(timeSeized);
+		_totalTimeSeized->incCountValue(timeSeized);
 	}
 	//
 	_lastTimeSeized = timeSeized;
@@ -190,9 +191,11 @@ bool Resource::_check(std::string* errorMessage) {
 void Resource::_createInternalElements() {
 	if (_reportStatistics && _cstatTimeSeized == nullptr) {
 		_cstatTimeSeized = new StatisticsCollector(_parentModel, getName() + "." + "TimeSeized", this);
+		_totalTimeSeized = new Counter(_parentModel, getName() + "." + "TotalTimeSeized", this);
 		_numSeizes = new Counter(_parentModel, getName() + "." + "Seizes", this);
 		_numReleases = new Counter(_parentModel, getName() + "." + "Releases", this);
 		_childrenElements->insert({"TimeSeized", _cstatTimeSeized});
+		_childrenElements->insert({"TotalTimeSeized", _totalTimeSeized});
 		_childrenElements->insert({"Seizes", _numSeizes});
 		_childrenElements->insert({"Releases", _numReleases});
 	} else if (!_reportStatistics && _cstatTimeSeized != nullptr) {

@@ -158,7 +158,8 @@ protected:
     //virtual void _createInternalElements(); 
 private:
 	void _handlerForResourceEvent(Resource* resource); ///< This method is indirectally invocked (notified) by resource when it's released, since it was added as ResourceEventHandler
-    Queue* _getQueue() const;
+	Resource* _getResourceFromSeizableItem(SeizableItem* seizable, Entity* entity);
+	Queue* _getQueue() const;
 private:
 
     const struct DEFAULT_VALUES {

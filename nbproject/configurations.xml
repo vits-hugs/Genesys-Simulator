@@ -22,8 +22,8 @@
         <itemPath>userInterfaces/examples/Example_FullSimulationOfComplexModel.h</itemPath>
         <itemPath>userInterfaces/examples/Example_Process.cpp</itemPath>
         <itemPath>userInterfaces/examples/Example_Process.h</itemPath>
-        <itemPath>userInterfaces/examples/Example_SeizeDelayRelease1.cpp</itemPath>
-        <itemPath>userInterfaces/examples/Example_SeizeDelayRelease1.h</itemPath>
+        <itemPath>userInterfaces/examples/Example_SeizeDelayRelease.cpp</itemPath>
+        <itemPath>userInterfaces/examples/Example_SeizeDelayRelease.h</itemPath>
         <itemPath>userInterfaces/examples/Example_SeizeDelayReleaseMany.cpp</itemPath>
         <itemPath>userInterfaces/examples/Example_SeizeDelayReleaseMany.h</itemPath>
         <itemPath>userInterfaces/examples/Example_StatationRouteSequence.cpp</itemPath>
@@ -1379,12 +1379,12 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="userInterfaces/examples/Example_SeizeDelayRelease1.cpp"
+      <item path="userInterfaces/examples/Example_SeizeDelayRelease.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="userInterfaces/examples/Example_SeizeDelayRelease1.h"
+      <item path="userInterfaces/examples/Example_SeizeDelayRelease.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2371,12 +2371,12 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="userInterfaces/examples/Example_SeizeDelayRelease1.cpp"
+      <item path="userInterfaces/examples/Example_SeizeDelayRelease.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="userInterfaces/examples/Example_SeizeDelayRelease1.h"
+      <item path="userInterfaces/examples/Example_SeizeDelayRelease.h"
             ex="false"
             tool="3"
             flavor2="0">

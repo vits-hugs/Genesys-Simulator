@@ -118,6 +118,10 @@ void SourceModelComponent::setMaxCreations(std::string _maxCreationsExpression) 
 	this->_maxCreationsExpression = _maxCreationsExpression;
 }
 
+void SourceModelComponent::setMaxCreations(unsigned long _maxCreations) {
+	this->_maxCreationsExpression = std::to_string(_maxCreations);
+}
+
 std::string SourceModelComponent::getMaxCreations() const {
 	return _maxCreationsExpression;
 }

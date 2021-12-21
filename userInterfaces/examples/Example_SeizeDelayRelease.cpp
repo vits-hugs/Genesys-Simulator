@@ -11,7 +11,7 @@
  * Created on 24 de Setembro de 2019, 16:43
  */
 
-#include "Example_SeizeDelayRelease1.h"
+#include "Example_SeizeDelayRelease.h"
 
 // you have to included need libs
 
@@ -28,14 +28,14 @@
 // Model elements
 #include "../../kernel/simulator/EntityType.h"
 
-Example_SeizeDelayRelease1::Example_SeizeDelayRelease1() {
+Example_SeizeDelayRelease::Example_SeizeDelayRelease() {
 }
 
 /**
  * This is the main function of the application. 
  * It instanciates the simulator, builds a simulation model and then simulate that model.
  */
-int Example_SeizeDelayRelease1::main(int argc, char** argv) {
+int Example_SeizeDelayRelease::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	// Handle traces and simulation events to output them
 	// insert plugins
@@ -67,8 +67,6 @@ int Example_SeizeDelayRelease1::main(int argc, char** argv) {
 	queueSeize1->setOrderRule(Queue::OrderRule::FIFO);
 	//
 	Seize* seize1 = new Seize(model);
-	//seize1->setResource(machine1);
-	//seize1->setQuantity("1");
 	seize1->getSeizeRequests()->insert(new SeizableItem(machine1, "1"));
 	seize1->setQueue(queueSeize1);
 	//
@@ -77,8 +75,6 @@ int Example_SeizeDelayRelease1::main(int argc, char** argv) {
 	delay1->setDelayTimeUnit(Util::TimeUnit::second);
 	//
 	Release* release1 = new Release(model);
-	//release1->setResource(machine1);
-	//release1->setQuantity("1");
 	release1->getReleaseRequests()->insert(new SeizableItem(machine1, "1"));
 	//
 	Dispose* dispose1 = new Dispose(model);
@@ -88,11 +84,11 @@ int Example_SeizeDelayRelease1::main(int argc, char** argv) {
 	delay1->getNextComponents()->insert(release1);
 	release1->getNextComponents()->insert(dispose1);
 	// save the model into a text file
-        model->save("./models/Example_SeizeDelayRelease1.txt");
+        model->save("./models/Example_SeizeDelayRelease.txt");
         // execute the simulation
         sim->start();
     } else {
-        model->load("./models/Example_SeizeDelayRelease1.txt");
+        model->load("./models/Example_SeizeDelayRelease.txt");
         model->show();
         model->getSimulation()->start();
     }

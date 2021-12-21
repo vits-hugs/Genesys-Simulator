@@ -11,16 +11,16 @@
  * Created on 24 de Setembro de 2019, 16:43
  */
 
-#ifndef THIRDEXAMPLEOFSIMULTION_H
-#define THIRDEXAMPLEOFSIMULTION_H
+#ifndef EXAMPLESEIZEDELAYRELEASE_H
+#define EXAMPLESEIZEDELAYRELEASE_H
 
 #include "../BaseConsoleGenesysApplication.h"
 
-class Example_SeizeDelayRelease1 : public BaseConsoleGenesysApplication {
+class Example_SeizeDelayRelease : public BaseConsoleGenesysApplication {
 public:
-	Example_SeizeDelayRelease1();
+	Example_SeizeDelayRelease();
 public:
 	virtual int main(int argc, char** argv);
 };
-#endif /* THIRDEXAMPLEOFSIMULTION_H */
+#endif /* EXAMPLESEIZEDELAYRELEASE_H */
 

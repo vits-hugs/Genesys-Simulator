@@ -34,7 +34,7 @@ ModelComponent* Signal::LoadInstance(Model* model, std::map<std::string, std::st
 
 void Signal::_execute(Entity* entity) {
 	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
-	this->_parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection(), 0.0);
+	this->_parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection());
 }
 
 bool Signal::_loadInstance(std::map<std::string, std::string>* fields) {

@@ -41,7 +41,7 @@ void CollectorDatafileDefaultImpl1::addValue(double value) {
         } else {
             file.open(_filename, std::ofstream::out | std::ofstream::trunc);
         }
-        file.write(reinterpret_cast<char*> (&value), sizeof (valueType));
+        file.write(reinterpret_cast<char*> (&value), sizeof (double));
         file.close();
     } catch (const std::exception& e) {
         throw "ERROR - can't open the file ";
@@ -60,15 +60,15 @@ unsigned long CollectorDatafileDefaultImpl1::numElements() {
 
 double CollectorDatafileDefaultImpl1::getValue(unsigned int num) {
     std::ifstream file;
-    valueType value;
+    double value;
     if (num > _numElements) {
         throw "ERROR - num greater than numElements";
     }
     try {
         file.open(_filename, std::ifstream::binary | std::ifstream::in);
-        file.seekg(sizeof (valueType) * num);
+        file.seekg(sizeof (double) * num);
         //valueType d;
-        file.read(reinterpret_cast<char*> (&value), sizeof (valueType));
+        file.read(reinterpret_cast<char*> (&value), sizeof (double));
         file.close();
     } catch (const std::exception& e) {
         throw "ERROR - can't open the file or get the line ";

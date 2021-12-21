@@ -1,10 +1,10 @@
 0   SimulatorInfo "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=210420 
 0   ModelInfo  "Model 1" 
 0   ModelSimulation "fixed experiment name in ModelSimulation" replicationLength=10.000000 
-2   EntityType "client" 
+2   EntityType "Client" 
 7   Resource   "Resource_1" 
 8   Queue      "Queue_1" 
-1   Create     "Create_1" EntityType="client" timeBetweenCreations="1" nextId=3 
+1   Create     "Create_1" EntityType="Client" timeBetweenCreations="1" nextId=3 
 3   Process    "Process_1" nextId=9 
 4   Seize      "Process_1.Seize" queueId=8 queueable="Queue_1" seizable0="Resource_1" nextId=5 
 5   Delay      "Process_1.Delay" delayExpression="unif(0.8,1.2)" nextId=6 

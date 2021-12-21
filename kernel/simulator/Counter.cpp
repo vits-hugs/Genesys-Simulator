@@ -27,23 +27,20 @@ Counter::Counter(Model* model, std::string name, ModelElement* parent) : ModelEl
 	_parentModel->getResponses()->insert(resp);
 }
 
-
-
 std::string Counter::show() {
 	return ModelElement::show() +
 			", count=" + std::to_string(this->_count);
 }
 
-void
-Counter::clear() {
-	_count = 0;
+void Counter::clear() {
+	_count = 0.0;
 }
 
-void Counter::incCountValue(int value) {
+void Counter::incCountValue(double value) {
 	_count += value;
 }
 
-unsigned long Counter::getCountValue() const {
+double Counter::getCountValue() const {
 	return _count;
 }
 
@@ -74,10 +71,12 @@ bool Counter::_loadInstance(std::map<std::string, std::string>* fields) {
 std::map<std::string, std::string>* Counter::_saveInstance() {
 	return ModelElement::_saveInstance();
 }
-//std::list<std::map<std::string,std::string>*>* _saveInstance(std::string type){}
 
 bool Counter::_check(std::string* errorMessage) {
-    *errorMessage += "";
+	*errorMessage += "";
 	return true;
 }
 
+void Counter::_initBetweenReplications() {
+	_count = 0.0;
+}

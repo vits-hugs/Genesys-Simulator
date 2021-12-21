@@ -126,7 +126,7 @@ void LSODE::_execute(Entity* entity) {
 		}
 		_parentModel->getTracer()->trace(message);
 	}
-	_parentModel->sendEntityToComponent(entity, getNextComponents()->getFrontConnection(), 0.0);
+	_parentModel->sendEntityToComponent(entity, getNextComponents()->getFrontConnection());
 }
 
 bool LSODE::_loadInstance(std::map<std::string, std::string>* fields) {

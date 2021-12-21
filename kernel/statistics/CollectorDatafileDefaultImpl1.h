@@ -18,8 +18,6 @@
 
 #include "CollectorDatafile_if.h"
 
-typedef double valueType;
-
 class CollectorDatafileDefaultImpl1 : public CollectorDatafile_if {
 public:
     CollectorDatafileDefaultImpl1();

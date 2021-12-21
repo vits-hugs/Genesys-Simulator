@@ -72,7 +72,7 @@ void Record::_execute(Entity* entity) {
         file.close();
     }
     _parentModel->getTracer()->traceSimulation(_parentModel->getSimulation()->getSimulatedTime(), entity, this, "Recording value " + std::to_string(value));
-    _parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection(), 0.0);
+    _parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection());
 
 }
 

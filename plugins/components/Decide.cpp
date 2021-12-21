@@ -36,7 +36,7 @@ void Decide::_execute(Entity* entity) {
             if (_reportStatistics) {
                 _numberOuts->getAtRank(i)->incCountValue();
             }
-            _parentModel->sendEntityToComponent(entity, this->getNextComponents()->getConnectionAtRank(i), 0.0);
+            _parentModel->sendEntityToComponent(entity, this->getNextComponents()->getConnectionAtRank(i));
             return;
         }
         i++;
@@ -45,7 +45,7 @@ void Decide::_execute(Entity* entity) {
     if (_reportStatistics) {
         _numberOuts->getAtRank(i)->incCountValue();
     }
-    _parentModel->sendEntityToComponent(entity, this->getNextComponents()->getConnectionAtRank(i), 0.0);
+    _parentModel->sendEntityToComponent(entity, this->getNextComponents()->getConnectionAtRank(i));
 }
 
 void Decide::_initBetweenReplications() {

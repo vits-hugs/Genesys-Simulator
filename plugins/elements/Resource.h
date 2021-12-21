@@ -155,6 +155,7 @@ private: //1::n
 	//std::list<Failure*>* _failures;
 private: // inner children elements
 	StatisticsCollector* _cstatTimeSeized = nullptr;
+	Counter* _totalTimeSeized;
 	Counter* _numSeizes;
 	Counter* _numReleases;
 };

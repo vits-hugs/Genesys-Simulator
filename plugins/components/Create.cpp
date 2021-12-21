@@ -19,8 +19,8 @@
 #include "Assign.h"
 
 Create::Create(Model* model, std::string name) : SourceModelComponent(model, Util::TypeOf<Create>(), name) {
-    //_numberIn = new Counter(_parentModel, getName() + "." + "Count_number_in", this);
-    // \todo Check if element has already been inserted and this is not needed: _parentModel->elements()->insert(_numberIn);
+    //_numberOut = new Counter(_parentModel, getName() + "." + "Count_number_in", this);
+    // \todo Check if element has already been inserted and this is not needed: _parentModel->elements()->insert(_numberOut);
     _connections->setMinInputConnections(0);
     _connections->setMaxInputConnections(0);
     GetterMember getter = DefineGetterMember<SourceModelComponent>(this, &Create::getEntitiesPerCreation);
@@ -61,8 +61,8 @@ void Create::_execute(Entity* entity) {
     }
     }
     if (_reportStatistics)
-        _numberIn->incCountValue();
-    _parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection(), 0.0);
+        _numberOut->incCountValue();
+    _parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection());
 }
 
 PluginInformation* Create::GetPluginInformation() {
@@ -103,14 +103,14 @@ bool Create::_check(std::string* errorMessage) {
 }
 
 void Create::_createInternalElements() {
-    if (_reportStatistics && _numberIn == nullptr) {
-        _numberIn = new Counter(_parentModel, getName() + "." + "CountNumberIn", this);
-        _childrenElements->insert({"CountNumberIn", _numberIn});
-        // \todo _childrenElements->insert("Count_number_in", _numberIn);
-    } else if (!_reportStatistics && _numberIn != nullptr) {
+    if (_reportStatistics && _numberOut == nullptr) {
+        _numberOut = new Counter(_parentModel, getName() + "." + "CountNumberOut", this);
+        _childrenElements->insert({"CountNumberOut", _numberOut});
+        // \todo _childrenElements->insert("Count_number_in", _numberOut);
+    } else if (!_reportStatistics && _numberOut != nullptr) {
         this->_removeChildrenElements();
         // \todo _childrenElements->remove("Count_number_in");
-        //_numberIn->~Counter();
-        _numberIn = nullptr;
+        //_numberOut->~Counter();
+        _numberOut = nullptr;
     }
 }
