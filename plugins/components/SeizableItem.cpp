@@ -16,7 +16,15 @@
 #include "../../kernel/simulator/Model.h"
 #include <cassert>
 
-SeizableItem::SeizableItem(ModelElement* resourceOrSet, std::string quantityExpression, SeizableItem::SeizableType resourceType, SeizableItem::SelectionRule selectionRule, std::string saveAttribute, std::string index) {
+SeizableItem::SeizableItem(ModelElement* resourceOrSet, std::string quantityExpression, SeizableItem::SelectionRule selectionRule, std::string saveAttribute, std::string index) {
+	SeizableItem::SeizableType resourceType;
+	if (dynamic_cast<Resource*>(resourceOrSet) != nullptr) {
+		resourceType = SeizableItem::SeizableType::RESOURCE; 
+	} else if (dynamic_cast<Set*>(resourceOrSet) != nullptr) {
+		resourceType = SeizableItem::SeizableType::SET; 
+	} else {
+		assert(false);
+	}
     _seizableType = resourceType;
     _resourceOrSet = resourceOrSet;
     _quantityExpression = quantityExpression;
@@ -24,6 +32,17 @@ SeizableItem::SeizableItem(ModelElement* resourceOrSet, std::string quantityExpr
     _saveAttribute = saveAttribute;
     _index = index;
 }
+/*
+SeizableItem::SeizableItem(ModelElement* resourceOrSet, SeizableItem::SeizableType resourceType, std::string quantityExpression, SeizableItem::SelectionRule selectionRule, std::string saveAttribute, std::string index) {
+	// TODO: It could infer _seizableType from resourceOrSet and avoid resourceType parameter
+    _seizableType = resourceType;
+    _resourceOrSet = resourceOrSet;
+    _quantityExpression = quantityExpression;
+    _selectionRule = selectionRule;
+    _saveAttribute = saveAttribute;
+    _index = index;
+}
+*/
 
 bool SeizableItem::loadInstance(std::map<std::string, std::string>* fields) {
     bool res = true;

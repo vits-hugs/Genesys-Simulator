@@ -323,7 +323,7 @@ void ModelSimulation::_initReplication() {
 			creationTime = source->getFirstCreation();
 			numToCreate = source->getEntitiesPerCreation();
 			for (unsigned int i = 1; i <= numToCreate; i++) {
-				newEntity = new Entity(_model, source->getEntityType()->getName() + "_%");
+				newEntity = new Entity(_model, source->getEntityType()->getName() + "_%", false);
 				newEntity->setEntityType(source->getEntityType());
 				newEvent = new Event(creationTime, newEntity, (*it));
 				_model->getFutureEvents()->insert(newEvent);

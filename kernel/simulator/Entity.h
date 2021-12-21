@@ -75,7 +75,7 @@ and stored in the report database for this entity type.
  */
 class Entity : public ModelElement {
 public:
-	Entity(Model* model, std::string name = "");
+	Entity(Model* model, std::string name = "", bool insertIntoModel = true);
 	virtual ~Entity() = default;
 public:
 	virtual std::string show();

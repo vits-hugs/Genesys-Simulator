@@ -84,8 +84,16 @@ std::map<std::string, std::string>* Set::_saveInstance() {
 
 bool Set::_check(std::string* errorMessage) {
 	bool resultAll = true;
-    // resultAll |= ...
-    *errorMessage += "";
+	if (_elementSet->size() > 0) {
+		std::string typeOfFirstElement = _elementSet->front()->getClassname();
+		if (_setOfType == "") {
+			_setOfType = typeOfFirstElement;
+		} else if (_setOfType != typeOfFirstElement) {
+			resultAll = false;
+			*errorMessage += "Set is of type \"" + _setOfType + "\" and first element is of type \"" + typeOfFirstElement + "\"";
+		}
+	}
+	*errorMessage += "";
 	return resultAll;
 }
 

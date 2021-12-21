@@ -61,11 +61,11 @@ bool ModelPersistenceDefaultImpl1::save(std::string filename) {
 		for (std::list<std::string>::iterator itTypenames = elementTypenames->begin(); itTypenames != elementTypenames->end(); itTypenames++) {
 			if ((*itTypenames) != Util::TypeOf<StatisticsCollector>() && (*itTypenames) != UtilTypeOfCounter) { // STATISTICSCOLLECTR and COUNTERs do NOT need to be saved
 				List<ModelElement*>* infras = _model->getElements()->getElementList((*itTypenames));
-				_model->getTracer()->trace(Util::TraceLevel::L8_detailed, "Writing elements of type \"" + (*itTypenames) + "\":");
+				_model->getTracer()->trace(Util::TraceLevel::L9_mostDetailed, "Writing elements of type \"" + (*itTypenames) + "\":");
 				Util::IncIndent();
 				{
 					for (std::list<ModelElement*>::iterator it = infras->list()->begin(); it != infras->list()->end(); it++) {
-						_model->getTracer()->trace(Util::TraceLevel::L8_detailed, "Writing " + (*itTypenames) + " \"" + (*it)->getName() + "\"");
+						_model->getTracer()->trace(Util::TraceLevel::L9_mostDetailed, "Writing " + (*itTypenames) + " \"" + (*it)->getName() + "\"");
 						fields = (*it)->SaveInstance((*it));
 						Util::IncIndent();
 						modelElementsToSave->merge(*_adjustFieldsToSave(fields));
@@ -76,7 +76,7 @@ bool ModelPersistenceDefaultImpl1::save(std::string filename) {
 			}
 		}
 		// save components
-		_model->getTracer()->trace(Util::TraceLevel::L8_detailed, "Writing components\":");
+		_model->getTracer()->trace(Util::TraceLevel::L9_mostDetailed, "Writing components\":");
 		//List<ModelComponent*>* components = this->_model->getComponents();
 		modelComponentsToSave = new std::list<std::string>();
 		Util::IncIndent();
@@ -90,15 +90,15 @@ bool ModelPersistenceDefaultImpl1::save(std::string filename) {
 		}
 		Util::DecIndent();
 		// SAVE FILE
-		_model->getTracer()->trace(Util::TraceLevel::L8_detailed, "Saving file");
+		_model->getTracer()->trace(Util::TraceLevel::L7_internal, "Saving file");
 		Util::IncIndent();
 		{
 			// open file
 			std::ofstream savefile;
 			savefile.open(filename, std::ofstream::out);
 			//savefile << "# Genesys simulation model " << std::endl;
-            ////time_t now = time(0);
-            ////char* dt = ctime(&now);
+			////time_t now = time(0);
+			////char* dt = ctime(&now);
 			//savefile << "# Last saved on " << dt;
 			//savefile << "# simulator infos" << std::endl;
 			_saveContent(simulatorInfosToSave, &savefile);

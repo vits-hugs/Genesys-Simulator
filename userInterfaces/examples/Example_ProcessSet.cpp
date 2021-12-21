@@ -11,7 +11,7 @@
  * Created on 3 de Setembro de 2019, 18:34
  */
 
-#include "Example_Process.h"
+#include "Example_ProcessSet.h"
 
 // you have to included need libs
 
@@ -26,34 +26,41 @@
 // Model elements
 #include "../../kernel/simulator/EntityType.h"
 
-Example_Process::Example_Process() {
+Example_ProcessSet::Example_ProcessSet() {
 }
 
 /**
  * This is the main function of the application. 
  * It instanciates the simulator, builds a simulation model and then simulate that model.
  */
-int Example_Process::main(int argc, char** argv) {
+int Example_ProcessSet::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	this->insertFakePluginsByHand(genesys);
 	this->setDefaultTraceHandlers(genesys->getTracer());
-	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
+	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L8_detailed);
 	Model* model = genesys->getModels()->newModel();
 	Create *create = new Create(model);
 	create->setEntityType(new EntityType(model, "Client"));
 	create->setTimeBetweenCreationsExpression("1");
+	Set* set = new Set(model);
+	set->setSetOfType("Resource");
+	set->getElementSet()->insert(new Resource(model));
+	set->getElementSet()->insert(new Resource(model));
+	set->getElementSet()->insert(new Resource(model));
+	set->getElementSet()->insert(new Resource(model));
+	set->getElementSet()->insert(new Resource(model));
 	Process* process = new Process(model);
-	process->getSeizeRequests()->insert(new SeizableItem(new Resource(model)));
+	process->getSeizeRequests()->insert(new SeizableItem(set)); //, SeizableItem::SeizableType::SET));
 	process->setQueueableItem(new QueueableItem(new Queue(model)));
 	process->setDelayExpression("unif(0.8,1.2)");
 	Dispose* dispose = new Dispose(model);
 	create->getNextComponents()->insert(process);
 	process->getNextComponents()->insert(dispose);
 	model->getSimulation()->setReplicationLength(10);
-	model->save("./models/Example_Process.txt");
+	model->save("./models/Example_ProcessSet.txt");
 	do {
 		model->getSimulation()->step();
-//		std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
+		//		std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
 	} while (model->getSimulation()->isPaused());
 	genesys->~Simulator();
 	return 0;

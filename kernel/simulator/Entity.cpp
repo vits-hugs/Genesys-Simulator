@@ -19,7 +19,7 @@
 
 //using namespace GenesysKernel;
 
-Entity::Entity(Model* model, std::string name) : ModelElement(model, Util::TypeOf<Entity>(), name) {
+Entity::Entity(Model* model, std::string name, bool insertIntoModel) : ModelElement(model, Util::TypeOf<Entity>(), name, insertIntoModel) {
 	_entityNumber = Util::GetLastIdOfType(Util::TypeOf<Entity>());
 	unsigned int numAttributes = _parentModel->getElements()->getNumberOfElements(Util::TypeOf<Attribute>());
 	for (unsigned i = 0; i < numAttributes; i++) {
@@ -135,8 +135,7 @@ void Entity::setAttributeValue(std::string index, std::string attributeName, dou
 		} else { // not found
 			map->insert({index, value}); // (map->end(), std::pair<std::string, double>(index, value));
 		}
-	}
-	else
+	} else
 		_parentModel->getTracer()->trace(Util::TraceLevel::L3_errorRecover, "Attribute \"" + attributeName + "\" not found");
 
 }

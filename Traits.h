@@ -24,6 +24,8 @@
 #include "userInterfaces/examples/Example_Delay.h"
 #include "userInterfaces/examples/Example_Delay2.h"
 #include "userInterfaces/examples/Example_Process.h"
+#include "userInterfaces/examples/Example_ProcessSet.h"
+#include "userInterfaces/examples/Example_SeizeDelayRelease.h"
 #include "userInterfaces/examples/Example_SeizeDelayReleaseMany.h"
 
 #include "userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.h"
@@ -48,9 +50,9 @@ template <> struct Traits<GenesysApplication_if> {
 	//typedef Example_Delay Application;
 	//typedef Example_Delay2 Application;
 	//typedef Example_Process Application;
-	//typedef Example_ProcessSet Application;
+	typedef Example_ProcessSet Application;
 	//typedef Example_SeizeDelayRelease Application;
-	typedef Example_SeizeDelayReleaseMany Application;
+	//typedef Example_SeizeDelayReleaseMany Application;
 
 	//// user interfaces
 	//typedef GenesysTerminalApp Application;
