@@ -81,6 +81,7 @@ and stored in the report database for this resource.
 class Resource : public ModelElement {
 public:
 	typedef std::function<void(Resource*) > ResourceEventHandler;
+	typedef std::pair<std::pair<ResourceEventHandler, ModelComponent*>, unsigned int> SortedResourceEventHandler;
 
 	template<typename Class>
 	static ResourceEventHandler SetResourceEventHandler(void (Class::*function)(Resource*), Class * object) {
@@ -94,7 +95,7 @@ public:
 public:
 	//Resource(Model* model);
 	Resource(Model* model, std::string name = "");
-	virtual ~Resource();
+	virtual ~Resource() = default;
 public:
 	virtual std::string show();
 public:
@@ -117,14 +118,14 @@ public: // g&s
 public: // gets
 	unsigned int getNumberBusy() const;
 public:
-	void addReleaseResourceEventHandler(ResourceEventHandler eventHandler);
+	void addReleaseResourceEventHandler(ResourceEventHandler eventHandler, ModelComponent* component, unsigned int priority);
 	double getLastTimeSeized() const;
 protected:
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance();
 	virtual bool _check(std::string* errorMessage);
 	virtual void _createInternalElements();
-	virtual void _initBetweenReplications(); 
+	virtual void _initBetweenReplications();
 private:
 	void _notifyReleaseEventHandlers(); ///< Notify observer classes that some of the resource capacity has been released. It is useful for allocation components (such as Seize) to know when an entity waiting into a queue can try to seize the resource again
 	//private:
@@ -149,7 +150,7 @@ private: // not gets nor sets
 	//unsigned int _seizes = 0;
 	//double _whenSeized; // same as last? check
 private: //1::n
-	List<ResourceEventHandler>* _resourceEventHandlers = new List<ResourceEventHandler>();
+	List<SortedResourceEventHandler*>* _resourceEventHandlers = new List<SortedResourceEventHandler*>();
 	//aFailures:	TStringList;
 	//std::list<Failure*>* _failures;
 private: // inner children elements

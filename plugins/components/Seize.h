@@ -157,7 +157,7 @@ protected:
     virtual bool _check(std::string* errorMessage);
     //virtual void _createInternalElements(); 
 private:
-    void _handlerForResourceEvent(Resource* resource);
+	void _handlerForResourceEvent(Resource* resource); ///< This method is indirectally invocked (notified) by resource when it's released, since it was added as ResourceEventHandler
     Queue* _getQueue() const;
 private:
 

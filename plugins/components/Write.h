@@ -29,9 +29,9 @@ public:
 		const bool isExpression = false;
 		const bool newline = false;
 	} DEFAULT;
-	std::string text;
-	bool isExpression;
-	bool newline;
+	std::string text = DEFAULT.text;
+	bool isExpression = DEFAULT.isExpression;
+	bool newline = DEFAULT.newline;
 };
 
 /*!

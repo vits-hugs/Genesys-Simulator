@@ -304,7 +304,7 @@ void Model::removeEntity(Entity* entity) {//, bool collectStatistics) {
     this->_eventManager->NotifyEntityRemoveHandlers(new SimulationEvent(this->_simulation->getCurrentReplicationNumber(), this->_simulation->getCurrentEvent()));
     std::string entId = std::to_string(entity->entityNumber());
 	this->getElements()->remove(Util::TypeOf<Entity>(), entity);
-	getTracer()->trace("Entity " + entId + " was removed from the system");
+	getTracer()->trace(/*"Entity " + entId +*/entity->getName()+ " was removed from the system");
 }
 
 List<Event*>* Model::getFutureEvents() const {

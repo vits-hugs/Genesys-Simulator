@@ -86,6 +86,7 @@ void ModelSimulation::start() {
     }
     _isRunning = true;
     _isPaused = false;
+	bool replicationEnded;
     do {
         if (!_replicationIsInitiaded) {
             Util::SetIndent(1);
@@ -95,8 +96,9 @@ void ModelSimulation::start() {
         }
         do { // this is the main simulation loop
             _stepSimulation();
-        } while (!_isReplicationEndCondition() && !_pauseRequested);
-        if (!_pauseRequested) {
+			replicationEnded = _isReplicationEndCondition();
+        } while (!replicationEnded && !_pauseRequested);
+        if (replicationEnded) {
             Util::SetIndent(1); // force
             _replicationEnded();
             _currentReplicationNumber++;
@@ -109,7 +111,7 @@ void ModelSimulation::start() {
         }
     } while (_currentReplicationNumber <= _numberOfReplications && !_pauseRequested);
     // all replications done (or paused during execution)
-    if (!_pauseRequested) { // done
+    if (replicationEnded) { // done !_pauseRequested) { // done
         _simulationEnded();
     } else { // paused
         _model->getTracer()->trace("Replication paused", Util::TraceLevel::L9_mostDetailed);
@@ -118,6 +120,7 @@ void ModelSimulation::start() {
         _isPaused = true;
     }
     _isRunning = false;
+	_pauseRequested = false;
 }
 
 void ModelSimulation::_simulationEnded() {
@@ -318,7 +321,7 @@ void ModelSimulation::_initReplication() {
             creationTime = source->getFirstCreation();
             numToCreate = source->getEntitiesPerCreation();
             for (unsigned int i = 1; i <= numToCreate; i++) {
-                newEntity = new Entity(_model);
+                newEntity = new Entity(_model, source->getEntityType()->getName()+"_%");
                 newEntity->setEntityType(source->getEntityType());
                 newEvent = new Event(creationTime, newEntity, (*it));
                 _model->getFutureEvents()->insert(newEvent);

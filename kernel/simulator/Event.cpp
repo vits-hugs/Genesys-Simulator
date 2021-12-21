@@ -31,7 +31,7 @@ Event::Event(double time, Entity* entity, Connection* connection) {
 
 std::string Event::show() {
     std::string message = "time=" + std::to_string(_time) + //Util::StrTimeUnit(???)+
-            ",entity=" + std::to_string(_entity->entityNumber()) +
+            ",entity=" + _entity->getName() + //std::to_string(_entity->entityNumber()) +
             ",component=\"" + _component->getName() + "\""; //+std::to_string(_component->getId())+"}";
     if (this->_componentInputNumber > 0) {
         message += ",input=" + std::to_string(this->_componentInputNumber);

@@ -25,7 +25,7 @@ ModelComponent::~ModelComponent() {
 }
 
 void ModelComponent::Execute(Entity* entity, ModelComponent* component, unsigned int inputNumber) {
-	std::string msg = /*"Entity " +*/ entity->getName()/*std::to_string(entity->entityNumber())*/ + " has arrived at component \"" + component->getName()+"\"";
+	std::string msg = /*"Entity " +std::to_string(entity->entityNumber())*/ entity->getName() + " has arrived at component \"" + component->getName()+"\"";
 	if (component->getDescription() != "")
 		msg += ": " + component->getDescription();
 	// \todo: How can I know the number of inputs?

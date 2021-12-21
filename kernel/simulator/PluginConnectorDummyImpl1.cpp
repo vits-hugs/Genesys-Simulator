@@ -20,6 +20,7 @@
 #include "../../plugins/components/Dispose.h"
 #include "../../plugins/components/Seize.h"
 #include "../../plugins/components/Release.h"
+#include "../../plugins/components/Process.h"
 #include "../../plugins/components/Assign.h"
 #include "../../plugins/components/Record.h"
 #include "../../plugins/components/Decide.h"
@@ -92,14 +93,8 @@ Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilen
     //    GetInfo = &Attribute::GetPluginInformation;
     if (fn == "assign.so")
         GetInfo = &Assign::GetPluginInformation;
-        //else if (fn == "counter.so")
-        //    GetInfo = &Counter::GetPluginInformation;
     else if (fn == "entitygroup.so")
         GetInfo = &EntityGroup::GetPluginInformation;
-        //else if (fn == "entitytype.so")
-        //    GetInfo = &EntityType::GetPluginInformation;
-        //else if (fn == "formula.so")
-        //    GetInfo = &Formula::GetPluginInformation;
         //	else if (fn == "ode.so")
         //		GetInfo = &OLD_ODEelement::GetPluginInformation;
     else if (fn == "queue.so")
@@ -108,8 +103,6 @@ Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilen
         GetInfo = &Resource::GetPluginInformation;
     else if (fn == "set.so")
         GetInfo = &Set::GetPluginInformation;
-        //else if (fn == "statisticscollector.so")
-        //    GetInfo = &StatisticsCollector::GetPluginInformation;
     else if (fn == "station.so")
         GetInfo = &Station::GetPluginInformation;
     else if (fn == "variable.so")
@@ -125,8 +118,8 @@ Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilen
         GetInfo = &Delay::GetPluginInformation;
     else if (fn == "dispose.so")
         GetInfo = &Dispose::GetPluginInformation;
-        //else if (fn == "dummy.so")
-        //    GetInfo = &Dummy::GetPluginInformation;
+        else if (fn == "dummy.so")
+            GetInfo = &Dummy::GetPluginInformation;
     else if (fn == "record.so")
         GetInfo = &Record::GetPluginInformation;
     else if (fn == "release.so")
@@ -135,6 +128,8 @@ Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilen
         GetInfo = &Seize::GetPluginInformation;
     else if (fn == "route.so")
         GetInfo = &Route::GetPluginInformation;
+    else if (fn == "process.so")
+        GetInfo = &Process::GetPluginInformation;
     else if (fn == "enter.so")
         GetInfo = &Enter::GetPluginInformation;
     else if (fn == "leave.so")

@@ -79,7 +79,7 @@ private:
 		std::string setOfType = Util::TypeOf<EntityType>();
 	} DEFAULT;
 	List<ModelElement*>* _elementSet = new List<ModelElement*>();
-	std::string _setOfType;
+	std::string _setOfType = DEFAULT.setOfType;
 };
 
 #endif /* SET_H */

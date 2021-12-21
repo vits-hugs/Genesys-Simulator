@@ -23,9 +23,11 @@ ModelElement::ModelElement(Model* model, std::string thistypename, std::string n
 	_id = Util::GenerateNewId(); //GenerateNewIdOfType(thistypename);
 	_typename = thistypename;
 	_parentModel = model;
-    _reportStatistics = TraitsKernel<ModelElement>::reportStatistics; // \todo: shoould be a parameter before insertIntoModel
+	_reportStatistics = TraitsKernel<ModelElement>::reportStatistics; // \todo: shoould be a parameter before insertIntoModel
 	if (name == "")
 		_name = thistypename + "_" + std::to_string(Util::GenerateNewIdOfType(thistypename));
+	else if (name.substr(name.length() - 1, 1) == "%")
+		_name = name.substr(0, name.length() - 1) + std::to_string(Util::GenerateNewIdOfType(thistypename));
 	else
 		_name = name;
 	_hasChanged = false;
@@ -89,7 +91,7 @@ bool ModelElement::_loadInstance(std::map<std::string, std::string>* fields) {
 	it != fields->end() ? this->_name = (*it).second : this->_name = "";
 	//it != fields->end() ? this->_name = (*it).second : res = false;
 	it = fields->find("reportStatistics");
-    it != fields->end() ? this->_reportStatistics = std::stoi((*it).second) : this->_reportStatistics = TraitsKernel<ModelElement>::reportStatistics;
+	it != fields->end() ? this->_reportStatistics = std::stoi((*it).second) : this->_reportStatistics = TraitsKernel<ModelElement>::reportStatistics;
 	return res;
 }
 
@@ -98,13 +100,13 @@ std::map<std::string, std::string>* ModelElement::_saveInstance() {
 	SaveField(fields, "typename", _typename);
 	SaveField(fields, "id", this->_id);
 	SaveField(fields, "name", _name);
-    SaveField(fields, "reportStatistics", _reportStatistics, TraitsKernel<ModelElement>::reportStatistics);
+	SaveField(fields, "reportStatistics", _reportStatistics, TraitsKernel<ModelElement>::reportStatistics);
 	return fields;
 }
 
 bool ModelElement::_check(std::string* errorMessage) {
-    *errorMessage += "";
-    return true; // if there is no ovveride, return true
+	*errorMessage += "";
+	return true; // if there is no ovveride, return true
 }
 
 ParserChangesInformation* ModelElement::_getParserChangesInformation() {

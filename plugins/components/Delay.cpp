@@ -77,11 +77,12 @@ void Delay::_execute(Entity* entity) {
 		if (entity->getEntityType()->isReportStatistics())
 			entity->getEntityType()->addGetStatisticsCollector(entity->getEntityTypeName() + ".WaitTime")->getStatistics()->getCollector()->addValue(waitTime);
 	}
-	entity->setAttributeValue("Entity.TotalWaitTime", entity->getAttributeValue("Entity.TotalWaitTime") + waitTime);
+	double totalWaitTime = entity->getAttributeValue("Entity.TotalWaitTime");
+	entity->setAttributeValue("Entity.TotalWaitTime", totalWaitTime + waitTime);
 	double delayEndTime = _parentModel->getSimulation()->getSimulatedTime() + waitTime;
 	Event* newEvent = new Event(delayEndTime, entity, this->getNextComponents()->getFrontConnection());
 	_parentModel->getFutureEvents()->insert(newEvent);
-	_parentModel->getTracer()->trace("End of delay of entity " + std::to_string(entity->entityNumber()) + " scheduled to time " + std::to_string(delayEndTime) + Util::StrTimeUnitShort(stu) + " (wait time " + std::to_string(waitTime) + Util::StrTimeUnitShort(stu) + ") // " + _delayExpression);
+	_parentModel->getTracer()->trace("End of delay of "/*entity " + std::to_string(entity->entityNumber())*/ + entity->getName() + " scheduled to time " + std::to_string(delayEndTime) + Util::StrTimeUnitShort(stu) + " (wait time " + std::to_string(waitTime) + Util::StrTimeUnitShort(stu) + ") // " + _delayExpression);
 }
 
 bool Delay::_loadInstance(std::map<std::string, std::string>* fields) {

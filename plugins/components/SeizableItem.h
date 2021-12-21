@@ -72,14 +72,14 @@ private:
         const std::string index = "0";
     } DEFAULT;
 
-    SeizableType _seizableType;
-    ModelElement* _resourceOrSet;
+	SeizableType _seizableType = DEFAULT.seizableType;
+	SelectionRule _selectionRule = DEFAULT.selectionRule;
+	std::string _saveAttribute = DEFAULT.saveAttribute;
+	std::string _index = DEFAULT.index;
+	ModelElement* _resourceOrSet;
     std::string _seizableName;
     std::string _quantityExpression;
-    SelectionRule _selectionRule;
-    std::string _saveAttribute;
-    std::string _index;
-    unsigned int _lastMemberSeized = 0;
+	unsigned int _lastMemberSeized = 0;
 private:
     //ComponentManager* _componentManager;
     ElementManager* _elementManager;

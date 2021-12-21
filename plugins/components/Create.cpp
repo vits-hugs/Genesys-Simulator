@@ -52,11 +52,11 @@ void Create::_execute(Entity* entity) {
     for (unsigned int i = 0; i<this->_entitiesPerCreation; i++) {
         if (_entitiesCreatedSoFar < _maxCreations) {
             _entitiesCreatedSoFar++;
-            Entity* newEntity = new Entity(_parentModel);
+            Entity* newEntity = new Entity(_parentModel, entity->getEntityType()->getName()+"_%");
             newEntity->setEntityType(entity->getEntityType());
             Event* newEvent = new Event(newArrivalTime, newEntity, this);
             _parentModel->getFutureEvents()->insert(newEvent);
-            _parentModel->getTracer()->trace("Arrival of entity " + std::to_string(newEntity->entityNumber()) + " schedule for time " + std::to_string(newArrivalTime) + Util::StrTimeUnitShort(_parentModel->getSimulation()->getReplicationBaseTimeUnit()));
+            _parentModel->getTracer()->trace("Arrival of "/*entity " + std::to_string(newEntity->entityNumber())*/+newEntity->getName() + " schedule for time " + std::to_string(newArrivalTime) + Util::StrTimeUnitShort(_parentModel->getSimulation()->getReplicationBaseTimeUnit()));
         }
     }
     }

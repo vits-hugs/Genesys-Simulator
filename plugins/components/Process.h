@@ -62,7 +62,8 @@ private: // attributes 1:1
     Seize* seize;
     Delay* delay;
     Release* release;
-    Connection* _nextConnection;
+    ModelComponent* _nextComponent;
+    unsigned int _nextInput;
 private: // attributes 1:n
 };
 

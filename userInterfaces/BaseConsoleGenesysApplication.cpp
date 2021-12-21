@@ -91,11 +91,9 @@ void BaseConsoleGenesysApplication::insertFakePluginsByHand(Simulator* simulator
 	simulator->getPlugins()->insert("separate.so");
 	simulator->getPlugins()->insert("assign.so");
 	simulator->getPlugins()->insert("record.so");
+	simulator->getPlugins()->insert("process.so");
 	simulator->getPlugins()->insert("submodel.so");
-    //simulator->getPlugins()->insert("entitytype.so");
 	simulator->getPlugins()->insert("entitygroup.so");
-    //simulator->getPlugins()->insert("attribute.so");
-    //simulator->getPlugins()->insert("counter.so");
 	simulator->getPlugins()->insert("queue.so");
 	simulator->getPlugins()->insert("set.so");
 	simulator->getPlugins()->insert("resource.so");
@@ -120,7 +118,6 @@ void BaseConsoleGenesysApplication::insertFakePluginsByHand(Simulator* simulator
 	simulator->getPlugins()->insert("expression.so");
 	simulator->getPlugins()->insert("failure.so");
 	simulator->getPlugins()->insert("file.so");
-    //simulator->getPlugins()->insert("statisticscollector.so");
 	simulator->getPlugins()->insert("storage.so");
 	// arena transfer station
 	simulator->getPlugins()->insert("enter.so");

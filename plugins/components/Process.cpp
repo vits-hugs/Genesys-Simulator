@@ -110,9 +110,9 @@ void Process::_createInternalElements() {
     release->getNextComponents()->list()->clear();
     if (getNextComponents()->size() > 0 && getNextComponents()->front() != seize) {
         // chance connections so Process is connected to Seize, and Release to the one Process was connected to
-        _nextConnection = getNextComponents()->getFrontConnection();//->first;
-        //_nextComponentInput = getNextComponents()->getFrontConnection()->second;
-        release->getNextComponents()->insert(_nextConnection);//_nextComponent, _nextComponentInput);
+        _nextComponent = getNextComponents()->getFrontConnection()->first;
+        _nextInput = getNextComponents()->getFrontConnection()->second;
+        release->getNextComponents()->insert(_nextComponent, _nextInput);
         getNextComponents()->getFrontConnection()->first = seize;
         getNextComponents()->getFrontConnection()->second = 0;
     }
