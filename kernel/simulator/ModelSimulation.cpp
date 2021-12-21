@@ -81,7 +81,7 @@ void ModelSimulation::start() {
 		_initSimulation();
 	}
 	if (_isPaused) { // continue after a pause
-		_model->getTracer()->trace("Replication resumed", Util::TraceLevel::L9_mostDetailed);
+		_model->getTracer()->trace("Replication resumed", Util::TraceLevel::L3_errorRecover);
 		_model->getOnEvents()->NotifySimulationResumeHandlers(new SimulationEvent(0, nullptr));
 	}
 	_isRunning = true;
@@ -116,7 +116,7 @@ void ModelSimulation::start() {
 	if (!_pauseRequested) { // done
 		_simulationEnded();
 	} else { // paused
-		_model->getTracer()->trace("Replication paused", Util::TraceLevel::L9_mostDetailed);
+		_model->getTracer()->trace("Replication paused", Util::TraceLevel::L3_errorRecover);
 		_model->getOnEvents()->NotifySimulationPausedHandlers(new SimulationEvent(_currentReplicationNumber, nullptr));
 		_pauseRequested = false;
 		_isPaused = true;

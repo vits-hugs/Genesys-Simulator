@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-#include "Example_FullSimulationOfComplexModel.h"
+#include "FullSimulationOfComplexModel.h"
 
 // GEnSyS Simulator
 #include "../../kernel/simulator/Simulator.h"

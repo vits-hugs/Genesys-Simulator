@@ -18,25 +18,6 @@
             <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/statistics/CollectorDatafileDefaultImpl1.cpp</file>
             <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/plugins/elements/Variable.cpp</file>
         </group>
-        <group name="GenESyS">
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/simulator/PluginConnectorDummyImpl1.h</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/plugins/components/Seize.h</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/simulator/PluginConnectorDummyImpl1.cpp</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/Traits.h</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/plugins/components/LSODE.h</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.cpp</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/plugins/components/Create.h</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/simulator/Plugin.cpp</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/plugins/components/QueueableItem.cpp</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/simulator/Entity.cpp</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.h</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/plugins/components/Release.cpp</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/simulator/SourceModelComponent.h</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/plugins/components/LSODE.cpp</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/simulator/Plugin.h</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/plugins/components/Create.cpp</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/util/Exact.h</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/plugins/components/Release.h</file>
-        </group>
+        <group name="GenESyS"/>
     </open-files>
 </project-private>

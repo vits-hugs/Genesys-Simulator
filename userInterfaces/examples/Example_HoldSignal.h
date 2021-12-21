@@ -5,23 +5,23 @@
  */
 
 /* 
- * File:   FifthExampleOfSimulation.h
+ * File:   FirstExampleOfSimulation.h
  * Author: rlcancian
  *
- * Created on 12 de março de 2021, 15:39
+ * Created on 3 de Setembro de 2019, 18:34
  */
 
-#ifndef FIFTHEXAMPLEOFSIMULATION_H
-#define FIFTHEXAMPLEOFSIMULATION_H
+#ifndef EXAMPLEHOLDSIGNAL_H
+#define EXAMPLEHOLDSIGNAL_H
 
 #include "../BaseConsoleGenesysApplication.h"
 
-class Example_StatationRouteSequence : public BaseConsoleGenesysApplication {
+class Example_HoldSignal : public BaseConsoleGenesysApplication {
 public:
-	Example_StatationRouteSequence();
+	Example_HoldSignal();
 public:
 	virtual int main(int argc, char** argv);
 };
 
-#endif /* FIFTHEXAMPLEOFSIMULATION_H */
+#endif /* EXAMPLEHOLDSIGNAL_H */
 

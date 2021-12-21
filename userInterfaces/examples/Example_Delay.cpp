@@ -41,10 +41,6 @@ int Example_Delay::main(int argc, char** argv) {
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L6_arrival);
 	Model* model = genesys->getModels()->newModel();
-	//model->load("./models/Example_CreateDelayDispose.txt");
-	//model->getSimulation()->start();
-	//return 0;
-	//
 	// build the simulation model
 	// if no ModelInfo is provided, then the model will be simulated once (one replication) and the replication length will be 3600 seconds (simulated time)
 	model->getSimulation()->setReplicationLength(60);
@@ -63,7 +59,7 @@ int Example_Delay::main(int argc, char** argv) {
 	create1->getNextComponents()->insert(delay1);
 	delay1->getNextComponents()->insert(dispose1);
 	// save the model into a text file
-	model->save("./models/Example_CreateDelayDispose.txt");
+	model->save("./models/Example_Delay.txt");
 	// execute the simulation util completed and show the report
 	model->getSimulation()->start();
 	genesys->~Simulator();

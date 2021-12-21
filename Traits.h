@@ -15,21 +15,24 @@
 #define TRAITS_H
 
 #include "kernel/util/Util.h"
+// USER INTERFACES
 #include "userInterfaces/terminal/GenesysTerminalApp.h"
 #include "userInterfaces/gui/qt/GenesysQtGUI.h"
-//
+// BOOK
 #include "userInterfaces/examples/book/Book_Cap02_Example01.h"
-//
+// SMARTS
 #include "userInterfaces/examples/Example_Dummy.h"
 #include "userInterfaces/examples/Example_Delay.h"
-#include "userInterfaces/examples/Example_Delay2.h"
+#include "userInterfaces/examples/Example_ModelInfoModelSimulation.h"
 #include "userInterfaces/examples/Example_Process.h"
 #include "userInterfaces/examples/Example_ProcessSet.h"
 #include "userInterfaces/examples/Example_SeizeDelayRelease.h"
 #include "userInterfaces/examples/Example_SeizeDelayReleaseMany.h"
-
-#include "userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.h"
-#include "userInterfaces/examples/Example_SeizeDelayRelease.h"
+#include "userInterfaces/examples/Example_RouteStation.h"
+#include "userInterfaces/examples/Example_Sequence.h"
+#include "userInterfaces/examples/Example_HoldSignal.h"
+// TEACHING
+#include "userInterfaces/examples/AnElectronicAssemblyAndTestSystem.h"
 //#include "userInterfaces/examples/Example_SistemaOperacional03.h"
 
 #include "tools/IntegratorDefaultImpl1.h"
@@ -46,15 +49,18 @@ struct Traits {
 
 template <> struct Traits<GenesysApplication_if> {
     static const Util::TraceLevel traceLevel = Util::TraceLevel::L6_arrival;
-	//// examples sprted
+	//// SMART EXAMPLES SORTED
 	//typedef Example_Delay Application;
-	//typedef Example_Delay2 Application;
+	//typedef Example_ModelInfoModelSimulation Application;
 	//typedef Example_Process Application;
-	typedef Example_ProcessSet Application;
+	//typedef Example_ProcessSet Application;
 	//typedef Example_SeizeDelayRelease Application;
 	//typedef Example_SeizeDelayReleaseMany Application;
+	//typedef Example_RouteStation Application;
+	//typedef Example_Sequence Application;
+	typedef Example_HoldSignal Application;
 
-	//// user interfaces
+	//// USER INTERFACES
 	//typedef GenesysTerminalApp Application;
 	//typedef GenesysQtGUI Application;
 

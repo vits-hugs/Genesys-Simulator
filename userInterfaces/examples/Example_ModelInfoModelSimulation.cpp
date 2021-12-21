@@ -11,7 +11,7 @@
  * Created on 3 de Setembro de 2019, 18:59
  */
 
-#include "Example_Delay2.h"
+#include "Example_ModelInfoModelSimulation.h"
 // you have to included need libs
 
 // GEnSyS Simulator
@@ -25,54 +25,58 @@
 // Model elements
 #include "../../kernel/simulator/EntityType.h"
 
-Example_Delay2::Example_Delay2() {
+Example_ModelInfoModelSimulation::Example_ModelInfoModelSimulation() {
 }
+
 /**
  * This is the main function of the application. 
  * It instanciates the simulator, builds a simulation model and then simulate that model.
  */
-int Example_Delay2::main(int argc, char** argv) {
+int Example_ModelInfoModelSimulation::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	// set the trace level of simulation to "blockArrival" level, which is an intermediate level of tracing
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L6_arrival);
-	// Handle traces and simulation events to output them
 	this->setDefaultTraceHandlers(genesys->getTracer());
-	// insert "fake plugins" since plugins based on dynamic loaded library are not implemented yet
 	this->insertFakePluginsByHand(genesys);
 	Model* model = genesys->getModels()->newModel();
-	// build the simulation model
 	// set general info about the model
 	ModelInfo* infos = model->getInfos();
 	infos->setAnalystName("Your name");
 	infos->setProjectTitle("The title of the project");
 	infos->setDescription("This simulation model tests one of the most basic models possible.");
-
-	ModelSimulation* sim = model->getSimulation();
-	sim->setReplicationLength(30);
-	sim->setReplicationLengthTimeUnit(Util::TimeUnit::minute); // each replication will last 30 minutes (simulated time)
-	sim->setNumberOfReplications(3); // replicates the simulation 3 times
-	// create a (Source)ModelElement of type EntityType, used by a ModelComponent that follows
-	EntityType* entityType1 = new EntityType(model, "Type_of_Representative_Entity");
-	// create a ModelComponent of type Create, used to insert entities into the model
+	infos->setVersion("1.0");
+	//
 	Create* create1 = new Create(model);
-	create1->setEntityType(entityType1);
-	create1->setTimeBetweenCreationsExpression("Expo(2)");
+	create1->setEntityType(new EntityType(model));
 	create1->setTimeUnit(Util::TimeUnit::minute);
-	create1->setEntitiesPerCreation(1);
-	// create a ModelComponent of type Delay, used to represent a time delay
 	Delay* delay1 = new Delay(model);
 	delay1->setDelayExpression("NORM(1,0.2)");
 	delay1->setDelayTimeUnit(Util::TimeUnit::minute);
-	// create a (Sink)ModelComponent of type Dispose, used to remove entities from the model
 	Dispose* dispose1 = new Dispose(model);
-	// connect model components to create a "workflow"
 	create1->getNextComponents()->insert(delay1);
 	delay1->getNextComponents()->insert(dispose1);
-	// save the model into a text file
-	model->save("./models/Example_CreateDelayDispose2.txt");
-	// execute the simulation
-	sim->start();
-
+	// set model simulation
+	ModelSimulation* sim = model->getSimulation();
+	sim->setReplicationLength(15);
+	sim->setReplicationLengthTimeUnit(Util::TimeUnit::minute); // each replication will last 15 minutes (simulated time)
+	sim->setNumberOfReplications(2); // replicates the simulation 2 times
+	sim->setReplicationReportBaseTimeUnit(Util::TimeUnit::minute);
+	sim->setWarmUpPeriod(1);
+	sim->setWarmUpPeriodTimeUnit(Util::TimeUnit::minute);
+	sim->setPauseOnReplication(true);
+	sim->setPauseOnEvent(false);
+	sim->setShowReportsAfterReplication(false);
+	sim->setShowReportsAfterSimulation(true);
+	sim->setStepByStep(true);
+	sim ->setTerminatingCondition("");
+	sim->getBreakpointsOnComponent()->insert(delay1);
+	sim->getBreakpointsOnTime()->insert(6.5);
+	sim->getBreakpointsOnTime()->insert(14.0);
+	//
+	model->save("./models/Example_ModelInfoModelSimulation.txt");
+	do {
+		sim->start();
+		std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
+	} while (sim->isPaused());
 	return 0;
 };
 

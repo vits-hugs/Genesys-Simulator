@@ -1,0 +1,7 @@
+0   SimulatorInfo "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=210420 
+0   ModelInfo  "Model 1" analystName="Your name" description="This simulation model tests one of the most basic models possible." projectTitle="The title of the project" 
+0   ModelSimulation "fixed experiment name in ModelSimulation" numberOfReplications=2 replicationBaseTimeUnit=6 replicationLength=15.000000 replicationLengthTimeUnit=6 warmUpTime=1.000000 warmUpTimeTimeUnit=6 
+2   EntityType "EntityType_1" 
+1   Create     "Create_1" EntityType="EntityType_1" timeBetweenCreationsTimeUnit=6 nextId=3 
+3   Delay      "Delay_1" delayExpression="NORM(1,0.2)" delayExpressionTimeUnit=6 nextId=4 
+4   Dispose    "Dispose_1" nextSize=0 

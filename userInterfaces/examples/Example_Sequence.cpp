@@ -11,7 +11,7 @@
  * Created on 12 de março de 2021, 15:39
  */
 
-#include "Example_StatationRouteSequence.h"
+#include "Example_Sequence.h"
 
 #include "../../kernel/simulator/Simulator.h"
 
@@ -27,10 +27,10 @@
 #include "../../plugins/elements/Station.h"
 #include "../../kernel/simulator/EntityType.h"
 
-Example_StatationRouteSequence::Example_StatationRouteSequence() {
+Example_Sequence::Example_Sequence() {
 }
 
-int Example_StatationRouteSequence::main(int argc, char** argv) {
+int Example_Sequence::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	this->insertFakePluginsByHand(genesys);
 	this->setDefaultTraceHandlers(genesys->getTracer());
@@ -101,7 +101,7 @@ int Example_StatationRouteSequence::main(int argc, char** argv) {
 	sim->setShowReportsAfterReplication(false);
 	sim->setShowReportsAfterSimulation(false);
 
-	m->save("./models/Example_StatationRouteSequence.txt");
+	m->save("./models/Example_Sequence.txt");
 
 	do {
 		sim->start();

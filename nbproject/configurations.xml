@@ -4,33 +4,39 @@
     <logicalFolder name="userInterfaces"
                    displayName="applications"
                    projectFiles="true">
-      <logicalFolder name="f2" displayName="book" projectFiles="true">
-        <itemPath>userInterfaces/examples/book/Book_Cap02_Example01.cpp</itemPath>
-        <itemPath>userInterfaces/examples/book/Book_Cap02_Example01.h</itemPath>
-      </logicalFolder>
       <logicalFolder name="f1" displayName="examples" projectFiles="true">
+        <logicalFolder name="f2" displayName="book" projectFiles="true">
+          <itemPath>userInterfaces/examples/book/Book_Cap02_Example01.cpp</itemPath>
+          <itemPath>userInterfaces/examples/book/Book_Cap02_Example01.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f3" displayName="smarts" projectFiles="true">
+        </logicalFolder>
+        <logicalFolder name="f4" displayName="teaching" projectFiles="true">
+        </logicalFolder>
         <itemPath>userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.cpp</itemPath>
         <itemPath>userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.h</itemPath>
         <itemPath>userInterfaces/examples/Example_AssignWrite3Seizes.cpp</itemPath>
+        <itemPath>userInterfaces/examples/Example_AssignWrite3Seizes.h</itemPath>
         <itemPath>userInterfaces/examples/Example_Delay.cpp</itemPath>
         <itemPath>userInterfaces/examples/Example_Delay.h</itemPath>
-        <itemPath>userInterfaces/examples/Example_Delay2.cpp</itemPath>
-        <itemPath>userInterfaces/examples/Example_Delay2.h</itemPath>
         <itemPath>userInterfaces/examples/Example_Dummy.cpp</itemPath>
         <itemPath>userInterfaces/examples/Example_Dummy.h</itemPath>
         <itemPath>userInterfaces/examples/Example_FullSimulationOfComplexModel.cpp</itemPath>
         <itemPath>userInterfaces/examples/Example_FullSimulationOfComplexModel.h</itemPath>
+        <itemPath>userInterfaces/examples/Example_ModelInfoModelSimulation.cpp</itemPath>
+        <itemPath>userInterfaces/examples/Example_ModelInfoModelSimulation.h</itemPath>
         <itemPath>userInterfaces/examples/Example_Process.cpp</itemPath>
         <itemPath>userInterfaces/examples/Example_Process.h</itemPath>
         <itemPath>userInterfaces/examples/Example_ProcessSet.cpp</itemPath>
         <itemPath>userInterfaces/examples/Example_ProcessSet.h</itemPath>
+        <itemPath>userInterfaces/examples/Example_RouteStation.cpp</itemPath>
+        <itemPath>userInterfaces/examples/Example_RouteStation.h</itemPath>
         <itemPath>userInterfaces/examples/Example_SeizeDelayRelease.cpp</itemPath>
         <itemPath>userInterfaces/examples/Example_SeizeDelayRelease.h</itemPath>
         <itemPath>userInterfaces/examples/Example_SeizeDelayReleaseMany.cpp</itemPath>
         <itemPath>userInterfaces/examples/Example_SeizeDelayReleaseMany.h</itemPath>
         <itemPath>userInterfaces/examples/Example_StatationRouteSequence.cpp</itemPath>
         <itemPath>userInterfaces/examples/Example_StatationRouteSequence.h</itemPath>
-        <itemPath>userInterfaces/examples/Examplel_AssignWrite3Seizes.h</itemPath>
       </logicalFolder>
       <logicalFolder name="gui" displayName="gui" projectFiles="true">
         <logicalFolder name="qt" displayName="qt" projectFiles="true">
@@ -57,10 +63,6 @@
           <itemPath>userInterfaces/gui/qt/mapkernelandui.cpp</itemPath>
           <itemPath>userInterfaces/gui/qt/mapkernelandui.h</itemPath>
         </logicalFolder>
-      </logicalFolder>
-      <logicalFolder name="f3" displayName="smarts" projectFiles="true">
-      </logicalFolder>
-      <logicalFolder name="f4" displayName="teaching" projectFiles="true">
       </logicalFolder>
       <logicalFolder name="terminal" displayName="terminal" projectFiles="true">
         <itemPath>userInterfaces/terminal/GenesysShell_if.h</itemPath>
@@ -388,6 +390,12 @@
         <packType>Debian</packType>
         <verbose>false</verbose>
         <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
           <packFileListElem type="File"
                             to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
                             from="${OUTPUT_PATH}"
@@ -1331,22 +1339,17 @@
             tool="1"
             flavor2="0">
       </item>
+      <item path="userInterfaces/examples/Example_AssignWrite3Seizes.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="userInterfaces/examples/Example_Delay.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
       <item path="userInterfaces/examples/Example_Delay.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_Delay2.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_Delay2.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -1371,6 +1374,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="userInterfaces/examples/Example_ModelInfoModelSimulation.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Example_ModelInfoModelSimulation.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="userInterfaces/examples/Example_Process.cpp"
             ex="false"
             tool="1"
@@ -1387,6 +1400,16 @@
             flavor2="0">
       </item>
       <item path="userInterfaces/examples/Example_ProcessSet.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Example_RouteStation.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Example_RouteStation.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -1417,11 +1440,6 @@
             flavor2="0">
       </item>
       <item path="userInterfaces/examples/Example_StatationRouteSequence.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Examplel_AssignWrite3Seizes.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2333,22 +2351,17 @@
             tool="1"
             flavor2="0">
       </item>
+      <item path="userInterfaces/examples/Example_AssignWrite3Seizes.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="userInterfaces/examples/Example_Delay.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
       <item path="userInterfaces/examples/Example_Delay.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_Delay2.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_Delay2.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2373,6 +2386,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="userInterfaces/examples/Example_ModelInfoModelSimulation.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Example_ModelInfoModelSimulation.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="userInterfaces/examples/Example_Process.cpp"
             ex="false"
             tool="1"
@@ -2389,6 +2412,16 @@
             flavor2="0">
       </item>
       <item path="userInterfaces/examples/Example_ProcessSet.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Example_RouteStation.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/Example_RouteStation.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2419,11 +2452,6 @@
             flavor2="0">
       </item>
       <item path="userInterfaces/examples/Example_StatationRouteSequence.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Examplel_AssignWrite3Seizes.h"
             ex="false"
             tool="3"
             flavor2="0">

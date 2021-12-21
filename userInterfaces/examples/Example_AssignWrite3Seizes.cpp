@@ -11,7 +11,7 @@
  * Created on 24 de Setembro de 2019, 20:56
  */
 
-#include "Examplel_AssignWrite3Seizes.h"
+#include "Example_AssignWrite3Seizes.h"
 
 // GEnSyS Simulator
 #include "../../kernel/simulator/Simulator.h"

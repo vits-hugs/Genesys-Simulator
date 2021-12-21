@@ -5,23 +5,23 @@
  */
 
 /* 
- * File:   SecondExampleOfSimulation.h
- * Author: rlcancian
+ * File:   buildSimpleModel1.h
+ * Author: rafael.luiz.cancian
  *
- * Created on 3 de Setembro de 2019, 18:59
+ * Created on 2 de Outubro de 2018, 19:18
  */
 
-#ifndef EXAMPLEDELAY2_H
-#define EXAMPLEDELAY2_H
+#ifndef COMPLEXMODEL01_H
+#define COMPLEXMODEL01_H
 
 #include "../BaseConsoleGenesysApplication.h"
 
-class Example_Delay2 : public BaseConsoleGenesysApplication {
+class FullSimulationOfComplexModel : public BaseConsoleGenesysApplication {
 public:
-	Example_Delay2();
+	FullSimulationOfComplexModel();
 public:
 	virtual int main(int argc, char** argv);
 };
 
-#endif /* EXAMPLEDELAY2_H */
+#endif /* COMPLEXMODEL01_H */
 
