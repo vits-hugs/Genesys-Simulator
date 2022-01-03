@@ -334,6 +334,11 @@
       <itemPath>tools/ProbabilityDistribution.cpp</itemPath>
       <itemPath>tools/ProbabilityDistribution.h</itemPath>
     </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Arquivos Importantes"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+    </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Arquivos de Teste"
                    projectFiles="false"
@@ -350,12 +355,7 @@
                      kind="TEST">
       </logicalFolder>
     </logicalFolder>
-    <logicalFolder name="ExternalFiles"
-                   displayName="Arquivos Importantes"
-                   projectFiles="false"
-                   kind="IMPORTANT_FILES_FOLDER">
-      <itemPath>Makefile</itemPath>
-    </logicalFolder>
+    <itemPath>Makefile</itemPath>
     <itemPath>Traits.h</itemPath>
     <itemPath>main.cpp</itemPath>
   </logicalFolder>
@@ -567,6 +567,8 @@
           <packInfoListElem name="Description" value="..." mandatory="false"/>
         </packInfoList>
       </packaging>
+      <item path="Makefile" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Traits.h" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles/f1">
@@ -1589,6 +1591,8 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="Makefile" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Traits.h" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles/f1">
