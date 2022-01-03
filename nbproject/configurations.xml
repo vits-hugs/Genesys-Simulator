@@ -10,33 +10,35 @@
           <itemPath>userInterfaces/examples/book/Book_Cap02_Example01.h</itemPath>
         </logicalFolder>
         <logicalFolder name="f3" displayName="smarts" projectFiles="true">
+          <itemPath>userInterfaces/examples/Example_AssignWrite3Seizes.cpp</itemPath>
+          <itemPath>userInterfaces/examples/Example_AssignWrite3Seizes.h</itemPath>
+          <itemPath>userInterfaces/examples/Example_Delay.cpp</itemPath>
+          <itemPath>userInterfaces/examples/Example_Delay.h</itemPath>
+          <itemPath>userInterfaces/examples/Example_Dummy.cpp</itemPath>
+          <itemPath>userInterfaces/examples/Example_Dummy.h</itemPath>
+          <itemPath>userInterfaces/examples/Example_HoldSignal.cpp</itemPath>
+          <itemPath>userInterfaces/examples/Example_HoldSignal.h</itemPath>
+          <itemPath>userInterfaces/examples/Example_ModelInfoModelSimulation.cpp</itemPath>
+          <itemPath>userInterfaces/examples/Example_ModelInfoModelSimulation.h</itemPath>
+          <itemPath>userInterfaces/examples/Example_Process.cpp</itemPath>
+          <itemPath>userInterfaces/examples/Example_Process.h</itemPath>
+          <itemPath>userInterfaces/examples/Example_ProcessSet.cpp</itemPath>
+          <itemPath>userInterfaces/examples/Example_ProcessSet.h</itemPath>
+          <itemPath>userInterfaces/examples/Example_RouteStation.cpp</itemPath>
+          <itemPath>userInterfaces/examples/Example_RouteStation.h</itemPath>
+          <itemPath>userInterfaces/examples/Example_SeizeDelayRelease.cpp</itemPath>
+          <itemPath>userInterfaces/examples/Example_SeizeDelayRelease.h</itemPath>
+          <itemPath>userInterfaces/examples/Example_SeizeDelayReleaseMany.cpp</itemPath>
+          <itemPath>userInterfaces/examples/Example_SeizeDelayReleaseMany.h</itemPath>
+          <itemPath>userInterfaces/examples/Example_Sequence.cpp</itemPath>
+          <itemPath>userInterfaces/examples/Example_Sequence.h</itemPath>
         </logicalFolder>
         <logicalFolder name="f4" displayName="teaching" projectFiles="true">
+          <itemPath>userInterfaces/examples/AnElectronicAssemblyAndTestSystem.cpp</itemPath>
+          <itemPath>userInterfaces/examples/AnElectronicAssemblyAndTestSystem.h</itemPath>
+          <itemPath>userInterfaces/examples/FullSimulationOfComplexModel.cpp</itemPath>
+          <itemPath>userInterfaces/examples/FullSimulationOfComplexModel.h</itemPath>
         </logicalFolder>
-        <itemPath>userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.cpp</itemPath>
-        <itemPath>userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.h</itemPath>
-        <itemPath>userInterfaces/examples/Example_AssignWrite3Seizes.cpp</itemPath>
-        <itemPath>userInterfaces/examples/Example_AssignWrite3Seizes.h</itemPath>
-        <itemPath>userInterfaces/examples/Example_Delay.cpp</itemPath>
-        <itemPath>userInterfaces/examples/Example_Delay.h</itemPath>
-        <itemPath>userInterfaces/examples/Example_Dummy.cpp</itemPath>
-        <itemPath>userInterfaces/examples/Example_Dummy.h</itemPath>
-        <itemPath>userInterfaces/examples/Example_FullSimulationOfComplexModel.cpp</itemPath>
-        <itemPath>userInterfaces/examples/Example_FullSimulationOfComplexModel.h</itemPath>
-        <itemPath>userInterfaces/examples/Example_ModelInfoModelSimulation.cpp</itemPath>
-        <itemPath>userInterfaces/examples/Example_ModelInfoModelSimulation.h</itemPath>
-        <itemPath>userInterfaces/examples/Example_Process.cpp</itemPath>
-        <itemPath>userInterfaces/examples/Example_Process.h</itemPath>
-        <itemPath>userInterfaces/examples/Example_ProcessSet.cpp</itemPath>
-        <itemPath>userInterfaces/examples/Example_ProcessSet.h</itemPath>
-        <itemPath>userInterfaces/examples/Example_RouteStation.cpp</itemPath>
-        <itemPath>userInterfaces/examples/Example_RouteStation.h</itemPath>
-        <itemPath>userInterfaces/examples/Example_SeizeDelayRelease.cpp</itemPath>
-        <itemPath>userInterfaces/examples/Example_SeizeDelayRelease.h</itemPath>
-        <itemPath>userInterfaces/examples/Example_SeizeDelayReleaseMany.cpp</itemPath>
-        <itemPath>userInterfaces/examples/Example_SeizeDelayReleaseMany.h</itemPath>
-        <itemPath>userInterfaces/examples/Example_StatationRouteSequence.cpp</itemPath>
-        <itemPath>userInterfaces/examples/Example_StatationRouteSequence.h</itemPath>
       </logicalFolder>
       <logicalFolder name="gui" displayName="gui" projectFiles="true">
         <logicalFolder name="qt" displayName="qt" projectFiles="true">
@@ -72,16 +74,6 @@
       <itemPath>userInterfaces/BaseConsoleGenesysApplication.cpp</itemPath>
       <itemPath>userInterfaces/BaseConsoleGenesysApplication.h</itemPath>
       <itemPath>userInterfaces/GenesysApplication_if.h</itemPath>
-    </logicalFolder>
-    <logicalFolder name="HeaderFiles"
-                   displayName="Arquivos de Cabeçalho"
-                   projectFiles="true">
-      <itemPath>Traits.h</itemPath>
-    </logicalFolder>
-    <logicalFolder name="SourceFiles"
-                   displayName="Arquivos de Código-Fonte"
-                   projectFiles="true">
-      <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Arquivos de Recurso"
@@ -364,6 +356,8 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <itemPath>Traits.h</itemPath>
+    <itemPath>main.cpp</itemPath>
   </logicalFolder>
   <sourceFolderFilter>^(nbproject|build|test|tests|documentation|models)$</sourceFolderFilter>
   <sourceRootList>
@@ -390,6 +384,12 @@
         <packType>Debian</packType>
         <verbose>false</verbose>
         <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
           <packFileListElem type="File"
                             to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
                             from="${OUTPUT_PATH}"
@@ -1324,12 +1324,12 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.cpp"
+      <item path="userInterfaces/examples/AnElectronicAssemblyAndTestSystem.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.h"
+      <item path="userInterfaces/examples/AnElectronicAssemblyAndTestSystem.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -1364,12 +1364,12 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="userInterfaces/examples/Example_FullSimulationOfComplexModel.cpp"
+      <item path="userInterfaces/examples/Example_HoldSignal.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="userInterfaces/examples/Example_FullSimulationOfComplexModel.h"
+      <item path="userInterfaces/examples/Example_HoldSignal.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -1434,12 +1434,22 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="userInterfaces/examples/Example_StatationRouteSequence.cpp"
+      <item path="userInterfaces/examples/Example_Sequence.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="userInterfaces/examples/Example_StatationRouteSequence.h"
+      <item path="userInterfaces/examples/Example_Sequence.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/FullSimulationOfComplexModel.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/FullSimulationOfComplexModel.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2336,12 +2346,12 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.cpp"
+      <item path="userInterfaces/examples/AnElectronicAssemblyAndTestSystem.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="userInterfaces/examples/Example_AnElectronicAssemblyAndTestSystem.h"
+      <item path="userInterfaces/examples/AnElectronicAssemblyAndTestSystem.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2376,12 +2386,12 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="userInterfaces/examples/Example_FullSimulationOfComplexModel.cpp"
+      <item path="userInterfaces/examples/Example_HoldSignal.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="userInterfaces/examples/Example_FullSimulationOfComplexModel.h"
+      <item path="userInterfaces/examples/Example_HoldSignal.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2446,12 +2456,22 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="userInterfaces/examples/Example_StatationRouteSequence.cpp"
+      <item path="userInterfaces/examples/Example_Sequence.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="userInterfaces/examples/Example_StatationRouteSequence.h"
+      <item path="userInterfaces/examples/Example_Sequence.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/FullSimulationOfComplexModel.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="userInterfaces/examples/FullSimulationOfComplexModel.h"
             ex="false"
             tool="3"
             flavor2="0">
