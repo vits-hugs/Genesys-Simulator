@@ -45,9 +45,6 @@ int Smart_AssignWriteSeizes::main(int argc, char** argv) {
 	this->insertFakePluginsByHand(genesys);
 
 	Model* model = genesys->getModels()->newModel();
-	this->setDefaultEventHandlers(model->getOnEvents());
-
-	// build the simulation model
 	ModelSimulation* sim = model->getSimulation();
 	sim->setNumberOfReplications(5);
 	sim->setReplicationLength(100);
@@ -64,6 +61,7 @@ int Smart_AssignWriteSeizes::main(int argc, char** argv) {
 	Variable* var1 = new Variable(model, "varNextIndex");
 	Write* write1 = new Write(model);
 	write1->setWriteToType(Write::WriteToType::SCREEN);
+	write1->writeElements()->insert(new WritelnText(""));
 	write1->writeElements()->insert(new WriteText("Atributo index: "));
 	write1->writeElements()->insert(new WritelnExpression("index"));
 	write1->writeElements()->insert(new WriteText("Variável nextIndex: "));

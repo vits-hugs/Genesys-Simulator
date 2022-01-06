@@ -78,10 +78,13 @@ int Smart_RouteStation::main(int argc, char** argv) {
 	//
 	model->getSimulation()->setReplicationLength(20);
 	model->save("./models/Smart_RouteStation.txt");
+	/*
 	do {
 		model->getSimulation()->step();
 		std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
 	} while (model->getSimulation()->isPaused());
+	 */
+	model->getSimulation()->start();
 	return 0;
 };
 

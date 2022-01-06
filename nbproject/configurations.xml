@@ -2397,7 +2397,7 @@
                    projectFiles="true">
       <itemPath>userInterfaces/gui/qt/guiresources.qrc</itemPath>
     </logicalFolder>
-    <logicalFolder name="f2" displayName="examples" projectFiles="true" kind="ROOT">
+    <logicalFolder name="f2" displayName="examples" projectFiles="true">
       <logicalFolder name="f2" displayName="book" projectFiles="true">
         <itemPath>examples/book/Book_Cap02_Example01.cpp</itemPath>
         <itemPath>examples/book/Book_Cap02_Example01.h</itemPath>
@@ -2745,6 +2745,12 @@
         <packType>Debian</packType>
         <verbose>false</verbose>
         <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
           <packFileListElem type="File"
                             to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
                             from="${OUTPUT_PATH}"

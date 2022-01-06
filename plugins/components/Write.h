@@ -37,7 +37,7 @@ public:
 class WritelnText : public WriteText {
 public:
 	WritelnText(std::string text = "") : WriteText(text) {
-		const bool newline = true;
+		this->newline = true;
 	}
 
 	const struct DEFAULT_VALUES {
