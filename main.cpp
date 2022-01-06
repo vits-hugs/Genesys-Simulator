@@ -20,8 +20,9 @@
 #include <sys/stat.h>
 #include <thread>
 
-/*
+/*!
  * This is the MAIN application of GenESyS. It just calls the Application specificied on the configuration/traits file.
+ * This file should NOT be changed. Configure the application to be executed using Traits<GenesysApplication_if>
  */
 int main(int argc, char** argv) {
 	// do not change it. Set you own application in Traits file => Traits<GenesysApplication_if>::Application

@@ -36,8 +36,8 @@ void StatisticsCollector::_addSimulationResponses() {
 }
 
 void StatisticsCollector::_initStaticsAndCollector() {
-    Collector_if* collector = new TraitsKernel<ModelComponent>::StatisticsCollector_CollectorImplementation();
-    _statistics = new StatisticsClass(collector); //TraitsKernel<ModelComponent>::StatisticsCollector_StatisticsImplementation(collector);
+	Collector_if* collector = new TraitsKernel<ModelComponent>::StatisticsCollector_CollectorImplementation();
+	_statistics = new StatisticsClass(collector); //TraitsKernel<ModelComponent>::StatisticsCollector_StatisticsImplementation(collector);
 }
 
 std::string StatisticsCollector::show() {
@@ -98,7 +98,7 @@ std::map<std::string, std::string>* StatisticsCollector::_saveInstance() {
 }
 
 bool StatisticsCollector::_check(std::string* errorMessage) {
-    // \TODO: To implement!
-    *errorMessage += "";
-    return true;
+	// \TODO: To implement!
+	*errorMessage += "";
+	return true;
 }

@@ -20,7 +20,7 @@
 #include "../../kernel/TraitsKernel.h"
 
 MarkovChain::MarkovChain(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<MarkovChain>(), name) {
-    _sampler = new TraitsKernel<Sampler_if>::Implementation();
+	_sampler = new TraitsKernel<Sampler_if>::Implementation();
 }
 
 std::string MarkovChain::show() {
@@ -126,8 +126,8 @@ std::map<std::string, std::string>* MarkovChain::_saveInstance() {
 
 bool MarkovChain::_check(std::string* errorMessage) {
 	bool resultAll = true;
-    // \todo: not implemented yet
-    *errorMessage += "";
+	// \todo: not implemented yet
+	*errorMessage += "";
 	return resultAll;
 }
 

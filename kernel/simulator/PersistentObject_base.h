@@ -19,7 +19,6 @@
 
 class PersistentObject_base {
 public:
-
 	PersistentObject_base() {
 	}
 	virtual ~PersistentObject_base() = default;

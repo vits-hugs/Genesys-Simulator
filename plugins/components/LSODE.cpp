@@ -70,7 +70,7 @@ bool LSODE::_doStep() {
 	double k1[numEqs], k2[numEqs], k3[numEqs], k4[numEqs], valVar[numEqs];
 	time = _timeVariable->value();
 	initTime = time;
-    tnow = _parentModel->getSimulation()->getSimulatedTime();
+	tnow = _parentModel->getSimulation()->getSimulatedTime();
 	bool res = time + _step <= tnow + 1e-15; // \todo: numerical error treatment by just adding 1e-15
 	if (res) {
 		halfStep = _step * 0.5;
@@ -148,8 +148,8 @@ std::map<std::string, std::string>* LSODE::_saveInstance() {
 
 bool LSODE::_check(std::string* errorMessage) {
 	bool resultAll = true;
-    // \todo: not implemented yet
-    *errorMessage += "";
+	// \todo: not implemented yet
+	*errorMessage += "";
 	return resultAll;
 }
 

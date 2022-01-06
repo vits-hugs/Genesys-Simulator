@@ -56,14 +56,14 @@ std::map<std::string, std::string>* PickStation::_saveInstance() {
 
 bool PickStation::_check(std::string* errorMessage) {
 	bool resultAll = true;
-    // \todo: not implemented yet
-    *errorMessage += "";
+	// \todo: not implemented yet
+	*errorMessage += "";
 	return resultAll;
 }
 
 PluginInformation* PickStation::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<PickStation>(), &PickStation::LoadInstance);
-    info->insertDynamicLibFileDependence("station.so");
+	info->insertDynamicLibFileDependence("station.so");
 	return info;
 }
 

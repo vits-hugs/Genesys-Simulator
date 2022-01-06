@@ -21,22 +21,22 @@ Book_Cap02_Example01::Book_Cap02_Example01() {
 }
 
 int Book_Cap02_Example01::main(int argc, char** argv) {
-    Simulator* genesys = new Simulator();
-    this->insertFakePluginsByHand(genesys);
-    this->setDefaultTraceHandlers(genesys->getTracer());
-    Model* model = genesys->getModels()->newModel();
-    EntityType* entityType1 = new EntityType(model, "EntityType1");
-    Create* create1 = new Create(model);
-    create1->setEntityType(entityType1);
-    create1->setTimeBetweenCreationsExpression("NORM(5,2)"); 
-    Delay* delay1 = new Delay(model);
-    delay1->setDelayExpression("unif(3,7)");
-    Dispose* dispose1 = new Dispose(model);
-    create1->getNextComponents()->insert(delay1);
-    delay1->getNextComponents()->insert(dispose1);
-    model->getSimulation()->setReplicationLength(30);
-    model->getSimulation()->setNumberOfReplications(100);
-    model->getSimulation()->start();
-    return 0;
+	Simulator* genesys = new Simulator();
+	this->insertFakePluginsByHand(genesys);
+	this->setDefaultTraceHandlers(genesys->getTracer());
+	Model* model = genesys->getModels()->newModel();
+	EntityType* entityType1 = new EntityType(model, "EntityType1");
+	Create* create1 = new Create(model);
+	create1->setEntityType(entityType1);
+	create1->setTimeBetweenCreationsExpression("NORM(5,2)");
+	Delay* delay1 = new Delay(model);
+	delay1->setDelayExpression("unif(3,7)");
+	Dispose* dispose1 = new Dispose(model);
+	create1->getNextComponents()->insert(delay1);
+	delay1->getNextComponents()->insert(dispose1);
+	model->getSimulation()->setReplicationLength(30);
+	model->getSimulation()->setNumberOfReplications(100);
+	model->getSimulation()->start();
+	return 0;
 }
 

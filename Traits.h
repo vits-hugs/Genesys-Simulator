@@ -35,7 +35,7 @@
 #include "userInterfaces/examples/AnElectronicAssemblyAndTestSystem.h"
 //#include "userInterfaces/examples/Example_SistemaOperacional03.h"
 
-#include "tools/IntegratorDefaultImpl1.h"
+#include "tools/SolverDefaultImpl1.h"
 #include "tools/HypothesisTesterDefaultImpl1.h"
 #include "tools/HypothesisTester_if.h"
 
@@ -48,7 +48,7 @@ struct Traits {
  */
 
 template <> struct Traits<GenesysApplication_if> {
-    static const Util::TraceLevel traceLevel = Util::TraceLevel::L6_arrival;
+	static const Util::TraceLevel traceLevel = Util::TraceLevel::L6_arrival;
 	//// SMART EXAMPLES SORTED
 	//typedef Example_Delay Application;
 	//typedef Example_ModelInfoModelSimulation Application;
@@ -66,15 +66,15 @@ template <> struct Traits<GenesysApplication_if> {
 
 };
 
-template <> struct Traits<Integrator_if> {
-    typedef IntegratorDefaultImpl1 Implementation;
-    static constexpr double Precision = 1e-5;
-    static constexpr unsigned int MaxSteps = 1e2;
+template <> struct Traits<Solver_if> {
+	typedef SolverDefaultImpl1 Implementation;
+	static constexpr double Precision = 1e-5;
+	static constexpr unsigned int MaxSteps = 1e2;
 };
 
 template <> struct Traits<HypothesisTester_if> {
-    typedef HypothesisTesterDefaultImpl1 Implementation;
-    static constexpr unsigned int ConfidenceLevel = 95;
+	typedef HypothesisTesterDefaultImpl1 Implementation;
+	static constexpr unsigned int ConfidenceLevel = 95;
 };
 #endif /* TRAITS_H */
 

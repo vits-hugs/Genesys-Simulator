@@ -25,7 +25,6 @@
 #include "../../kernel/simulator/Attribute.h"
 #include "../../plugins/elements/Variable.h"
 
-
 FullSimulationOfComplexModel::FullSimulationOfComplexModel() {
 
 }
@@ -45,7 +44,7 @@ int FullSimulationOfComplexModel::main(int argc, char** argv) {
 	this->setDefaultTraceHandlers(tm);
 	// get easy access to classes used to insert components and elements into a model
 	ComponentManager* components = model->getComponents();
-    //
+	//
 	// build the simulation model
 	//
 	ModelInfo* infos = model->getInfos();
@@ -68,8 +67,8 @@ int FullSimulationOfComplexModel::main(int argc, char** argv) {
 	create1->setEntitiesPerCreation(1);
 	components->insert(create1);
 
-    new Attribute(model, "Attribute_1");
-    new Variable(model, "Variable_1");
+	new Attribute(model, "Attribute_1");
+	new Variable(model, "Variable_1");
 
 	Assign* assign1 = new Assign(model);
 	Assign::Assignment* attrib2Assignment = new Assign::Assignment("Variable_1", "Variable_1 + 1");

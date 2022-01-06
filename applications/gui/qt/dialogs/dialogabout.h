@@ -5,20 +5,19 @@
 #include <QString>
 
 namespace Ui {
-class DialogAbout;
+	class DialogAbout;
 }
 
-class DialogAbout : public QDialog
-{
-    Q_OBJECT
+class DialogAbout : public QDialog {
+	Q_OBJECT
 
 public:
-    explicit DialogAbout(QWidget *parent = 0);
-    ~DialogAbout();
+	explicit DialogAbout(QWidget *parent = 0);
+	~DialogAbout();
 public:
-    void setLabelVersion(QString version);
+	void setLabelVersion(QString version);
 private:
-    Ui::DialogAbout *ui;
+	Ui::DialogAbout *ui;
 };
 
 #endif // DIALOGABOUT_H

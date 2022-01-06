@@ -19,6 +19,7 @@
 #include "../../kernel/simulator/ParserChangesInformation.h"
 #include "../../kernel/simulator/PluginInformation.h"
 #include "../../kernel/simulator/EntityType.h"
+
 /*!
  Set module
 DESCRIPTION
@@ -74,6 +75,7 @@ protected: // could be overriden by derived classes
 	virtual ParserChangesInformation* _getParserChangesInformation();
 private:
 	//ElementManager* _elems;
+
 	const struct DEFAULT_VALUES {
 		unsigned int membersSize = 0;
 		std::string setOfType = Util::TypeOf<EntityType>();

@@ -18,12 +18,12 @@
 
 class WriteElement {
 public:
-
 	WriteElement(std::string text = "", bool isExpression = false, bool newline = false) {
 		this->text = text;
 		this->isExpression = isExpression;
 		this->newline = newline;
 	}
+
 	const struct DEFAULT_VALUES {
 		const std::string text = "";
 		const bool isExpression = false;

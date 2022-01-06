@@ -63,7 +63,7 @@ public:
 
 public: // Sampler   
 	void setSampler(Sampler_if* _sampler);
-    Sampler_if* sampler() const;
+	Sampler_if* sampler() const;
 
 private:
 	/*GenesysKernel::*/Model* _model;

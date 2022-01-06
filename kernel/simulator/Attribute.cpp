@@ -48,6 +48,6 @@ std::map<std::string, std::string>* Attribute::_saveInstance() {
 }
 
 bool Attribute::_check(std::string* errorMessage) {
-    *errorMessage += "";
+	*errorMessage += "";
 	return true;
 }

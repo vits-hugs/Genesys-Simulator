@@ -16,7 +16,7 @@
 
 #include "../BaseConsoleGenesysApplication.h"
 
-class Example_SistemaOperacional02 :public BaseConsoleGenesysApplication  {
+class Example_SistemaOperacional02 : public BaseConsoleGenesysApplication {
 public:
 	Example_SistemaOperacional02();
 public:

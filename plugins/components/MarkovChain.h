@@ -17,6 +17,7 @@
 #include "../../kernel/simulator/ModelComponent.h"
 #include "../elements/Variable.h"
 #include "../../kernel/statistics/Sampler_if.h"
+
 class MarkovChain : public ModelComponent {
 public: // constructors
 	MarkovChain(Model* model, std::string name = "");

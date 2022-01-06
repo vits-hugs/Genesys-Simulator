@@ -16,42 +16,42 @@
 //using namespace GenesysKernel;
 
 Event::Event(double time, Entity* entity, ModelComponent* component, unsigned int componentInputNumber) {
-    _time = time;
-    _entity = entity;
-    _component = component;
-    _componentInputNumber = componentInputNumber;
+	_time = time;
+	_entity = entity;
+	_component = component;
+	_componentInputNumber = componentInputNumber;
 }
 
 Event::Event(double time, Entity* entity, Connection* connection) {
-    _time = time;
-    _entity = entity;
-    _component = connection->first;
-    _componentInputNumber = connection->second;
+	_time = time;
+	_entity = entity;
+	_component = connection->first;
+	_componentInputNumber = connection->second;
 }
 
 std::string Event::show() {
-    std::string message = "time=" + std::to_string(_time) + //Util::StrTimeUnit(???)+
-            ",entity=" + _entity->getName() + //std::to_string(_entity->entityNumber()) +
-            ",component=\"" + _component->getName() + "\""; //+std::to_string(_component->getId())+"}";
-    if (this->_componentInputNumber > 0) {
-        message += ",input=" + std::to_string(this->_componentInputNumber);
-    }
-    return message;
+	std::string message = "time=" + std::to_string(_time) + //Util::StrTimeUnit(???)+
+			",entity=" + _entity->getName() + //std::to_string(_entity->entityNumber()) +
+			",component=\"" + _component->getName() + "\""; //+std::to_string(_component->getId())+"}";
+	if (this->_componentInputNumber > 0) {
+		message += ",input=" + std::to_string(this->_componentInputNumber);
+	}
+	return message;
 }
 
 unsigned int Event::getComponentInputNumber() const {
-    return _componentInputNumber;
+	return _componentInputNumber;
 }
 
 double Event::getTime() const {
-    return _time;
+	return _time;
 }
 
 ModelComponent* Event::getComponent() const {
-    return _component;
+	return _component;
 }
 
 Entity* Event::getEntity() const {
-    return _entity;
+	return _entity;
 }
 

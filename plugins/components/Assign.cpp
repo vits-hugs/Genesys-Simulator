@@ -36,7 +36,7 @@ List<Assign::Assignment*>* Assign::getAssignments() const {
 
 PluginInformation* Assign::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Assign>(), &Assign::LoadInstance);
-    //info->insertDynamicLibFileDependence("attribute.so");
+	//info->insertDynamicLibFileDependence("attribute.so");
 	info->insertDynamicLibFileDependence("variable.so");
 	return info;
 }
@@ -58,7 +58,7 @@ void Assign::_execute(Entity* entity) {
 		let = (*it);
 		double value = _parentModel->parseExpression(let->getExpression());
 		_parentModel->parseExpression(let->getDestination() + "=" + std::to_string(value));
-        _parentModel->getTracer()->trace("Let \"" + let->getDestination() + "\" = " + strTruncIfInt(std::to_string(value)) + "  // " + let->getExpression());
+		_parentModel->getTracer()->trace("Let \"" + let->getDestination() + "\" = " + strTruncIfInt(std::to_string(value)) + "  // " + let->getExpression());
 	}
 
 	this->_parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection());

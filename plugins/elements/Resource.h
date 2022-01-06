@@ -82,7 +82,6 @@ class Resource : public ModelElement {
 public:
 	typedef std::function<void(Resource*) > ResourceEventHandler;
 	typedef std::pair<std::pair<ResourceEventHandler, ModelComponent*>, unsigned int> SortedResourceEventHandler;
-
 	template<typename Class>
 	static ResourceEventHandler SetResourceEventHandler(void (Class::*function)(Resource*), Class * object) {
 		return std::bind(function, object, std::placeholders::_1);

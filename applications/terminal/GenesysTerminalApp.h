@@ -19,18 +19,19 @@
 #include "../../kernel/util/List.h"
 
 class GenesysTerminalApp : public BaseConsoleGenesysApplication {
+
 	class ShellCommand {
 	public:
-		ShellCommand(std::string longname, std::string parameters, std::string descrition, unsigned short numParameters=0) {
+		ShellCommand(std::string longname, std::string parameters, std::string descrition, unsigned short numParameters = 0) {
 			this->descrition = descrition;
 			this->longname = longname;
 			this->parameters = parameters;
-            this->numParameters = numParameters;
+			this->numParameters = numParameters;
 		}
 		std::string longname;
 		std::string parameters;
 		std::string descrition;
-        unsigned short numParameters;
+		unsigned short numParameters;
 	};
 public:
 	GenesysTerminalApp();
@@ -43,8 +44,8 @@ private:
 	void tryExecuteCommand(std::string inputText, std::string longPrefix, std::string separator);
 private:
 	Simulator* _simulator = new Simulator();
-    std::string _prompt = "$Genesys> ";
-    std::string _parameter;
+	std::string _prompt = "$Genesys> ";
+	std::string _parameter;
 };
 
 #endif /* GENESYSTERMINALAPP_H */

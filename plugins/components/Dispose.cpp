@@ -31,8 +31,8 @@ void Dispose::_execute(Entity* entity) {
 			double timeInSystem = _parentModel->getSimulation()->getSimulatedTime() - entity->getAttributeValue("Entity.ArrivalTime");
 			entity->getEntityType()->addGetStatisticsCollector(entity->getEntityTypeName() + "." + "TotalTimeInSystem")->getStatistics()->getCollector()->addValue(timeInSystem);
 		}
-    }
-    _parentModel->removeEntity(entity); //, _reportStatistics);
+	}
+	_parentModel->removeEntity(entity); //, _reportStatistics);
 }
 
 bool Dispose::_loadInstance(std::map<std::string, std::string>* fields) {
@@ -50,7 +50,7 @@ std::map<std::string, std::string>* Dispose::_saveInstance() {
 }
 
 bool Dispose::_check(std::string* errorMessage) {
-    *errorMessage += "";
+	*errorMessage += "";
 	return true;
 }
 

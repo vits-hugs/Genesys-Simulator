@@ -162,19 +162,19 @@ unsigned short PluginInformation::getMinimumInputs() const {
 }
 
 void PluginInformation::setDescriptionHelp(std::string _descriptionHelp) {
-    this->_descriptionHelp = _descriptionHelp;
+	this->_descriptionHelp = _descriptionHelp;
 }
 
 std::string PluginInformation::getDescriptionHelp() const {
-    return _descriptionHelp;
+	return _descriptionHelp;
 }
 
 void PluginInformation::setFields(std::map<std::string, std::string>* _fields) {
-    this->_fields = _fields;
+	this->_fields = _fields;
 }
 
 std::map<std::string, std::string>* PluginInformation::getFields() const {
-    return _fields;
+	return _fields;
 }
 
 

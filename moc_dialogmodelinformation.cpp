@@ -1,10 +1,10 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'dialogmodelinformation.h'
-**
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.15.2)
-**
-** WARNING! All changes made in this file will be lost!
-*****************************************************************************/
+ ** Meta object code from reading C++ file 'dialogmodelinformation.h'
+ **
+ ** Created by: The Qt Meta Object Compiler version 67 (Qt 5.15.2)
+ **
+ ** WARNING! All changes made in this file will be lost!
+ *****************************************************************************/
 
 #include <memory>
 #include "userInterfaces/gui/qt/dialogs/dialogmodelinformation.h"
@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_DialogModelInformation_t {
-    QByteArrayData data[1];
-    char stringdata0[23];
+	QByteArrayData data[1];
+	char stringdata0[23];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -31,65 +31,62 @@ struct qt_meta_stringdata_DialogModelInformation_t {
         - idx * sizeof(QByteArrayData)) \
     )
 static const qt_meta_stringdata_DialogModelInformation_t qt_meta_stringdata_DialogModelInformation = {
-    {
-QT_MOC_LITERAL(0, 0, 22) // "DialogModelInformation"
+	{
+		QT_MOC_LITERAL(0, 0, 22) // "DialogModelInformation"
 
-    },
-    "DialogModelInformation"
+	},
+	"DialogModelInformation"
 };
 #undef QT_MOC_LITERAL
 
 static const uint qt_meta_data_DialogModelInformation[] = {
 
- // content:
-       8,       // revision
-       0,       // classname
-       0,    0, // classinfo
-       0,    0, // methods
-       0,    0, // properties
-       0,    0, // enums/sets
-       0,    0, // constructors
-       0,       // flags
-       0,       // signalCount
+	// content:
+	8, // revision
+	0, // classname
+	0, 0, // classinfo
+	0, 0, // methods
+	0, 0, // properties
+	0, 0, // enums/sets
+	0, 0, // constructors
+	0, // flags
+	0, // signalCount
 
-       0        // eod
+	0 // eod
 };
 
-void DialogModelInformation::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
-{
-    Q_UNUSED(_o);
-    Q_UNUSED(_id);
-    Q_UNUSED(_c);
-    Q_UNUSED(_a);
+void DialogModelInformation::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a) {
+	Q_UNUSED(_o);
+	Q_UNUSED(_id);
+	Q_UNUSED(_c);
+	Q_UNUSED(_a);
 }
 
-QT_INIT_METAOBJECT const QMetaObject DialogModelInformation::staticMetaObject = { {
-    QMetaObject::SuperData::link<QDialog::staticMetaObject>(),
-    qt_meta_stringdata_DialogModelInformation.data,
-    qt_meta_data_DialogModelInformation,
-    qt_static_metacall,
-    nullptr,
-    nullptr
-} };
+QT_INIT_METAOBJECT const QMetaObject DialogModelInformation::staticMetaObject = {
+	{
+		QMetaObject::SuperData::link<QDialog::staticMetaObject>(),
+		qt_meta_stringdata_DialogModelInformation.data,
+		qt_meta_data_DialogModelInformation,
+		qt_static_metacall,
+		nullptr,
+		nullptr
+	}
+};
 
-
-const QMetaObject *DialogModelInformation::metaObject() const
-{
-    return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
+const QMetaObject *DialogModelInformation::metaObject() const {
+	return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *DialogModelInformation::qt_metacast(const char *_clname)
-{
-    if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_DialogModelInformation.stringdata0))
-        return static_cast<void*>(this);
-    return QDialog::qt_metacast(_clname);
+void *DialogModelInformation::qt_metacast(const char *_clname) {
+	if (!_clname) return nullptr;
+	if (!strcmp(_clname, qt_meta_stringdata_DialogModelInformation.stringdata0))
+		return static_cast<void*> (this);
+	return QDialog::qt_metacast(_clname);
 }
 
-int DialogModelInformation::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
-{
-    _id = QDialog::qt_metacall(_c, _id, _a);
-    return _id;
+int DialogModelInformation::qt_metacall(QMetaObject::Call _c, int _id, void **_a) {
+	_id = QDialog::qt_metacall(_c, _id, _a);
+	return _id;
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

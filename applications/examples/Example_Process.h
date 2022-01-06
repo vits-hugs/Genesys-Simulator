@@ -18,7 +18,7 @@
 
 class Example_Process : public BaseConsoleGenesysApplication {
 public:
-    Example_Process();
+	Example_Process();
 public:
 	virtual int main(int argc, char** argv);
 };

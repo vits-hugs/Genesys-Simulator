@@ -89,8 +89,8 @@ bool EntityGroup::_check(std::string* errorMessage) {
 	std::string newNeededAttributeName = "Entity.Group";
 	if (_parentModel->getElements()->getElement(Util::TypeOf<Attribute>(), newNeededAttributeName) == nullptr) {
 		new Attribute(_parentModel, newNeededAttributeName);
-    }
-    *errorMessage += "";
+	}
+	*errorMessage += "";
 	return true;
 }
 

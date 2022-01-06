@@ -41,9 +41,9 @@ Model::Model(Simulator* simulator) {
 	_simulation = new ModelSimulation(this);
 	// 1:1 associations (Traits)
 	//Sampler_if* sampler = new Traits<Sampler_if>::Implementation();
-    _parser = new TraitsKernel<Parser_if>::Implementation(this, new TraitsKernel<Sampler_if>::Implementation());
-    _modelChecker = new TraitsKernel<ModelChecker_if>::Implementation(this);
-    _modelPersistence = new TraitsKernel<ModelPersistence_if>::Implementation(this);
+	_parser = new TraitsKernel<Parser_if>::Implementation(this, new TraitsKernel<Sampler_if>::Implementation());
+	_modelChecker = new TraitsKernel<ModelChecker_if>::Implementation(this);
+	_modelPersistence = new TraitsKernel<ModelPersistence_if>::Implementation(this);
 	// 1:n associations
 	_futureEvents = new List<Event*>(); /// The future events list must be chronologicaly sorted
 	//_events->setSortFunc(&EventCompare); // It works too
@@ -75,9 +75,9 @@ void Model::sendEntityToComponent(Entity* entity, Connection* connection, double
 void Model::sendEntityToComponent(Entity* entity, ModelComponent* component, double timeDelay, unsigned int componentInputNumber) {
 	this->getOnEvents()->NotifyEntityMoveHandlers(new SimulationEvent(_simulation->getCurrentReplicationNumber(), new Event(_simulation->getSimulatedTime(), entity, component, componentInputNumber))); //\todo: Event should include information about "from component" and timeDelay, but it doesn't
 	//// if (timeDelay > 0) {
-		// schedule to send it
-		Event* newEvent = new Event(this->getSimulation()->getSimulatedTime() + timeDelay, entity, component, componentInputNumber);
-		this->getFutureEvents()->insert(newEvent);
+	// schedule to send it
+	Event* newEvent = new Event(this->getSimulation()->getSimulatedTime() + timeDelay, entity, component, componentInputNumber);
+	this->getFutureEvents()->insert(newEvent);
 	//// } else {
 	//// 	// send it now
 	//// 	/*  \todo: -: supposed not to be a queue associated to a component */
@@ -118,15 +118,15 @@ double Model::parseExpression(const std::string expression) {
 
 bool Model::checkExpression(const std::string expression, const std::string expressionName, std::string* errorMessage) {
 	bool result;
-    getTracer()->trace("Checking expression \"" + expression + "\"", Util::TraceLevel::L8_detailed);
+	getTracer()->trace("Checking expression \"" + expression + "\"", Util::TraceLevel::L8_detailed);
 	try {
 		parseExpression(expression, &result, errorMessage);
 	} catch (...) {
 		result = false;
 	}
 	if (!result) {
-        std::string msg = "Expression \"" + expression + "\" for '" + expressionName + "' is incorrect. ";
-        this->_traceManager->trace(msg, Util::TraceLevel::L3_errorRecover);
+		std::string msg = "Expression \"" + expression + "\" for '" + expressionName + "' is incorrect. ";
+		this->_traceManager->trace(msg, Util::TraceLevel::L3_errorRecover);
 		errorMessage->append(msg);
 	}
 	return result;
@@ -240,7 +240,7 @@ void Model::_createModelInternalElements() {
 	Util::IncIndent();
 
 	for (ModelComponent* component : *_componentManager) {
-        getTracer()->trace(Util::TraceLevel::L8_detailed, "Internals for " + component->getClassname() + " \"" + component->getName() + "\"");
+		getTracer()->trace(Util::TraceLevel::L8_detailed, "Internals for " + component->getClassname() + " \"" + component->getName() + "\"");
 		Util::IncIndent();
 		ModelComponent::CreateInternalElements(component);
 		Util::DecIndent();
@@ -261,7 +261,7 @@ void Model::_createModelInternalElements() {
 		//	tracer()->trace(Util::TraceLevel::L7_internal, "Creating internal elements");
 		//}
 		for (std::list<ModelElement*>::iterator itel = modelElements->begin(); itel != modelElements->end(); itel++) {
-            getTracer()->trace(Util::TraceLevel::L8_detailed, "Internals for " + (*itel)->getClassname() + " \"" + (*itel)->getName() + "\""); // (" + std::to_string(pos) + "/" + std::to_string(originalSize) + ")");
+			getTracer()->trace(Util::TraceLevel::L8_detailed, "Internals for " + (*itel)->getClassname() + " \"" + (*itel)->getName() + "\""); // (" + std::to_string(pos) + "/" + std::to_string(originalSize) + ")");
 			Util::IncIndent();
 			ModelElement::CreateInternalElements((*itel));
 			Util::DecIndent();
@@ -301,10 +301,10 @@ bool Model::check() {
 //}
 
 void Model::removeEntity(Entity* entity) {//, bool collectStatistics) {
-    this->_eventManager->NotifyEntityRemoveHandlers(new SimulationEvent(this->_simulation->getCurrentReplicationNumber(), this->_simulation->getCurrentEvent()));
-    std::string entId = std::to_string(entity->entityNumber());
+	this->_eventManager->NotifyEntityRemoveHandlers(new SimulationEvent(this->_simulation->getCurrentReplicationNumber(), this->_simulation->getCurrentEvent()));
+	std::string entId = std::to_string(entity->entityNumber());
 	this->getElements()->remove(Util::TypeOf<Entity>(), entity);
-	getTracer()->trace(/*"Entity " + entId +*/entity->getName()+ " was removed from the system");
+	getTracer()->trace(/*"Entity " + entId +*/entity->getName() + " was removed from the system");
 }
 
 List<Event*>* Model::getFutureEvents() const {

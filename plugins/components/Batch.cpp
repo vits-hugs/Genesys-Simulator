@@ -33,8 +33,8 @@ ModelComponent* Batch::LoadInstance(Model* model, std::map<std::string, std::str
 }
 
 void Batch::_execute(Entity* entity) {
-    _parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
-    this->_parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection());
+	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
+	this->_parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection());
 }
 
 bool Batch::_loadInstance(std::map<std::string, std::string>* fields) {
@@ -56,15 +56,15 @@ std::map<std::string, std::string>* Batch::_saveInstance() {
 
 bool Batch::_check(std::string* errorMessage) {
 	bool resultAll = true;
-    *errorMessage += "";
-    // \todo: not implemented yet
-    return resultAll;
+	*errorMessage += "";
+	// \todo: not implemented yet
+	return resultAll;
 }
 
 PluginInformation* Batch::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Batch>(), &Batch::LoadInstance);
-    info->insertDynamicLibFileDependence("entitygroup.so");
-    return info;
+	info->insertDynamicLibFileDependence("entitygroup.so");
+	return info;
 }
 
 

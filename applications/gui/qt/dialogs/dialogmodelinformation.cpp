@@ -2,13 +2,11 @@
 #include "ui_dialogmodelinformation.h"
 
 DialogModelInformation::DialogModelInformation(QWidget *parent) :
-	QDialog(parent),
-	ui(new Ui::DialogModelInformation)
-{
+QDialog(parent),
+ui(new Ui::DialogModelInformation) {
 	ui->setupUi(this);
 }
 
-DialogModelInformation::~DialogModelInformation()
-{
+DialogModelInformation::~DialogModelInformation() {
 	delete ui;
 }

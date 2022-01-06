@@ -131,7 +131,8 @@ void Resource::addReleaseResourceEventHandler(ResourceEventHandler eventHandler,
 		}
 	}
 	SortedResourceEventHandler* sortedEventHandler = new SortedResourceEventHandler({
-		{eventHandler, component}, priority});
+		{eventHandler, component}, priority
+	});
 	_resourceEventHandlers->insert(sortedEventHandler);
 }
 

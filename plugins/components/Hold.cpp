@@ -55,13 +55,13 @@ std::map<std::string, std::string>* Hold::_saveInstance() {
 
 bool Hold::_check(std::string* errorMessage) {
 	bool resultAll = true;
-    // \todo: not implemented yet
-    *errorMessage += "";
+	// \todo: not implemented yet
+	*errorMessage += "";
 	return resultAll;
 }
 
 PluginInformation* Hold::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Hold>(), &Hold::LoadInstance);
-    return info;
+	return info;
 }
 

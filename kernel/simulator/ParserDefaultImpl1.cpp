@@ -15,33 +15,33 @@
 
 //namespace GenesysKernel {
 
-	ParserDefaultImpl1::ParserDefaultImpl1(Model* model) {
-		_model = model;
-	}
+ParserDefaultImpl1::ParserDefaultImpl1(Model* model) {
+	_model = model;
+}
 
-	double ParserDefaultImpl1::parse(const std::string expression) { // may throw exception
-		double result = std::atof(expression.c_str()); // change by a real parser
+double ParserDefaultImpl1::parse(const std::string expression) { // may throw exception
+	double result = std::atof(expression.c_str()); // change by a real parser
+	return result;
+}
+
+std::string* ParserDefaultImpl1::getErrorMessage() {
+	std::string* errorMsg = new std::string();
+	return errorMsg; /* @ \todo: */
+}
+
+double ParserDefaultImpl1::parse(const std::string expression, bool* success, std::string* errorMessage) {
+	try {
+		double result = this->parse(expression);
+		std::string temp(""); /* \todo: CHECK SCOPE OF VARIABLE */
+		errorMessage = &temp;
+		*success = true;
 		return result;
+	} catch (...) {
+		std::string temp("Error parsing...");
+		errorMessage = &temp;
+		*success = false;
+		return 0.0;
 	}
-
-	std::string* ParserDefaultImpl1::getErrorMessage() {
-		std::string* errorMsg = new std::string();
-		return errorMsg; /* @ \todo: */
-	}
-
-	double ParserDefaultImpl1::parse(const std::string expression, bool* success, std::string* errorMessage) {
-		try {
-			double result = this->parse(expression);
-			std::string temp(""); /* \todo: CHECK SCOPE OF VARIABLE */
-			errorMessage = &temp;
-			*success = true;
-			return result;
-		} catch (...) {
-			std::string temp("Error parsing...");
-			errorMessage = &temp;
-			*success = false;
-			return 0.0;
-		}
 }
 //namespace\\}
 

@@ -32,7 +32,6 @@
 #include "../../plugins/components/Enter.h"
 #include "../../plugins/components/Route.h"
 
-
 Example_SistemaOperacional02::Example_SistemaOperacional02() {
 }
 

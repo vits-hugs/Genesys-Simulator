@@ -76,7 +76,7 @@ protected: // could be overriden by derived classes
 	virtual ParserChangesInformation* _getParserChangesInformation();
 	virtual void _initBetweenReplications();
 	/*! This method is necessary only for those components that instantiate internal elements that must exist before simulation starts and even before model checking. That's the case of components that have internal StatisticsCollectors, since others components may refer to them as expressions (as in "TVAG(ThisCSTAT)") and therefore the element must exist before checking such expression */
-	virtual void _createInternalElements();   
+	virtual void _createInternalElements();
 private:
 	void _build(Model* model, std::string thistypename, bool insertIntoModel);
 private: // name is now private. So changes in name must be throught setName, wich gives oportunity to rename childrenElements, SimulationControls and SimulationResponses

@@ -17,6 +17,7 @@
 #include "../../kernel/simulator/ModelComponent.h"
 #include "../elements/Station.h"
 #include "../../kernel/simulator/Counter.h"
+
 /*!
 Enter module
 DESCRIPTION

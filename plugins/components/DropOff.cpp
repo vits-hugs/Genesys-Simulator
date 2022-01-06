@@ -32,7 +32,7 @@ ModelComponent* DropOff::LoadInstance(Model* model, std::map<std::string, std::s
 }
 
 void DropOff::_execute(Entity* entity) {
-    _parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
+	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
 	this->_parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection());
 }
 
@@ -55,8 +55,8 @@ std::map<std::string, std::string>* DropOff::_saveInstance() {
 
 bool DropOff::_check(std::string* errorMessage) {
 	bool resultAll = true;
-    // \todo: not implemented yet
-    *errorMessage += "";
+	// \todo: not implemented yet
+	*errorMessage += "";
 	return resultAll;
 }
 

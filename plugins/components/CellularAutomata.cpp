@@ -32,8 +32,8 @@ ModelComponent* CelularAutomata::LoadInstance(Model* model, std::map<std::string
 }
 
 void CelularAutomata::_execute(Entity* entity) {
-    _parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
-    this->_parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection());
+	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
+	this->_parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection());
 }
 
 bool CelularAutomata::_loadInstance(std::map<std::string, std::string>* fields) {
@@ -55,14 +55,14 @@ std::map<std::string, std::string>* CelularAutomata::_saveInstance() {
 
 bool CelularAutomata::_check(std::string* errorMessage) {
 	bool resultAll = true;
-    *errorMessage += "";
-    // \todo: not implemented yet
-    return resultAll;
+	*errorMessage += "";
+	// \todo: not implemented yet
+	return resultAll;
 }
 
 PluginInformation* CelularAutomata::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<CelularAutomata>(), &CelularAutomata::LoadInstance);
-    info->insertDynamicLibFileDependence("entitygroup.so");
-    return info;
+	info->insertDynamicLibFileDependence("entitygroup.so");
+	return info;
 }
 

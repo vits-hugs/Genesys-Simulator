@@ -57,8 +57,8 @@ std::map<std::string, std::string>* Storage::_saveInstance() {
 
 bool Storage::_check(std::string* errorMessage) {
 	bool resultAll = true;
-    // resultAll |= ...
-    *errorMessage += "";
+	// resultAll |= ...
+	*errorMessage += "";
 	return resultAll;
 }
 

@@ -20,20 +20,18 @@
 /*!
  */
 typedef std::function<void(double) > CollectorAddValueHandler;
-
 template<typename Class>
 CollectorAddValueHandler setCollectorAddValueHandler(void (Class::*function)(double), Class * object) {
 	return std::bind(function, object, std::placeholders::_1);
 }
 
 typedef std::function<void() > CollectorClearHandler;
-
 template<typename Class>
 CollectorClearHandler setCollectorClearHandler(void (Class::*function)(), Class * object) {
 	return std::bind(function, object);
 }
 
-/**
+/*!
  * Interface for collecting values of a single stochastic variable.  Values collected can be used as base for statistical analysis. 
  */
 class Collector_if {

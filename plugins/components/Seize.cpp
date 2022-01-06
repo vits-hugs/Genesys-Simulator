@@ -127,7 +127,7 @@ void Seize::_handlerForResourceEvent(Resource* resource) { //TODO Resource is us
 		if (canSeizeAll) {
 			queue->removeElement(first);
 			//_parentModel->getTracer()->traceSimulation(tnow, first->getEntity(), this, "Waiting entity " + first->getEntity()->getName() + " removed from queue and will try to seize the resources");// now seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\"");
-			_parentModel->getTracer()->trace("Waiting entity " + first->getEntity()->getName() + " removed from queue and will try to seize the resources");// now seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\"");
+			_parentModel->getTracer()->trace("Waiting entity " + first->getEntity()->getName() + " removed from queue and will try to seize the resources"); // now seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\"");
 			_parentModel->sendEntityToComponent(first->getEntity(), this); // move waiting entity from queue to this component
 		}
 		/*

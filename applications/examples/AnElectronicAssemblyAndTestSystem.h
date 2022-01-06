@@ -17,9 +17,9 @@
 
 class AnElectronicAssemblyAndTestSystem : public BaseConsoleGenesysApplication {
 public:
-    AnElectronicAssemblyAndTestSystem();
+	AnElectronicAssemblyAndTestSystem();
 public:
-    virtual int main(int argc, char** argv);
+	virtual int main(int argc, char** argv);
 
 };
 

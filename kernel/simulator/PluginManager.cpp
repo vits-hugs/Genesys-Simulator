@@ -23,20 +23,20 @@
 
 PluginManager::PluginManager(Simulator* simulator) {
 	_simulator = simulator;
-    this->_pluginConnector = new TraitsKernel<PluginConnector_if>::Implementation();
-    this->_insertDefaultKernelElements();
+	this->_pluginConnector = new TraitsKernel<PluginConnector_if>::Implementation();
+	this->_insertDefaultKernelElements();
 }
 
 void PluginManager::_insertDefaultKernelElements() {
-    StaticGetPluginInformation GetInfo;
-    GetInfo = &EntityType::GetPluginInformation;
-    _plugins->insert(new Plugin(GetInfo));
-    GetInfo = &Attribute::GetPluginInformation;
-    _plugins->insert(new Plugin(GetInfo));
-    GetInfo = &Counter::GetPluginInformation;
-    _plugins->insert(new Plugin(GetInfo));
-    GetInfo = &StatisticsCollector::GetPluginInformation;
-    _plugins->insert(new Plugin(GetInfo));
+	StaticGetPluginInformation GetInfo;
+	GetInfo = &EntityType::GetPluginInformation;
+	_plugins->insert(new Plugin(GetInfo));
+	GetInfo = &Attribute::GetPluginInformation;
+	_plugins->insert(new Plugin(GetInfo));
+	GetInfo = &Counter::GetPluginInformation;
+	_plugins->insert(new Plugin(GetInfo));
+	GetInfo = &StatisticsCollector::GetPluginInformation;
+	_plugins->insert(new Plugin(GetInfo));
 }
 
 //bool PluginManager::check(Plugin* plugin){

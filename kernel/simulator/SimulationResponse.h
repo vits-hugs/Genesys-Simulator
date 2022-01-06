@@ -33,7 +33,7 @@ public:
 	std::string getName() const;
 	void setName(std::string name);
 	std::string getType() const;
-    std::string getParent() const;
+	std::string getParent() const;
 protected:
 	std::string _type;
 	std::string _parent;

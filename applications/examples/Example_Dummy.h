@@ -18,7 +18,7 @@
 
 class Example_Dummy : public BaseConsoleGenesysApplication {
 public:
-    Example_Dummy();
+	Example_Dummy();
 public:
 	virtual int main(int argc, char** argv);
 };

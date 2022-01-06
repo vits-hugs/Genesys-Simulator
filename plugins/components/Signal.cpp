@@ -56,8 +56,8 @@ std::map<std::string, std::string>* Signal::_saveInstance() {
 
 bool Signal::_check(std::string* errorMessage) {
 	bool resultAll = true;
-    // \todo: not implemented yet
-    *errorMessage += "";
+	// \todo: not implemented yet
+	*errorMessage += "";
 	return resultAll;
 }
 

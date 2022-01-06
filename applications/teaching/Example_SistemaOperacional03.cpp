@@ -38,12 +38,12 @@ Example_SistemaOperacional03::Example_SistemaOperacional03() {
 
 int Example_SistemaOperacional03::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-    this->insertFakePluginsByHand(genesys);
-    this->setDefaultTraceHandlers(genesys->getTracer());
-    Model* model = genesys->getModels()->newModel();
-    //
+	this->insertFakePluginsByHand(genesys);
+	this->setDefaultTraceHandlers(genesys->getTracer());
+	Model* model = genesys->getModels()->newModel();
+	//
 	// CREATE Processo é criado no computador
-    EntityType* et = new EntityType(model, "processo");
+	EntityType* et = new EntityType(model, "processo");
 	Create* createProc = new Create(model);
 	createProc->setDescription("Processo é criado no computador");
 	createProc->setEntityType(et);
@@ -54,8 +54,8 @@ int Example_SistemaOperacional03::main(int argc, char** argv) {
 	Assign* assignProc = new Assign(model);
 	assignProc->setDescription("Define informacoes do processo");
 	assignProc->getAssignments()->insert(new Assign::Assignment("memoriaOcupada", "TRUNC(UNIF(2,32))"));
-    assignProc->getAssignments()->insert(new Assign::Assignment("tempoExecucao", "NORM(6,2) * memoriaOcupada/5"));
-    assignProc->getAssignments()->insert(new Assign::Assignment("processoSO", "UNIF(0,1) < 0.1"));
+	assignProc->getAssignments()->insert(new Assign::Assignment("tempoExecucao", "NORM(6,2) * memoriaOcupada/5"));
+	assignProc->getAssignments()->insert(new Assign::Assignment("processoSO", "UNIF(0,1) < 0.1"));
 	// atributos (não precisa guardar objetos se não for usar)
 	new Attribute(model, "memoriaOcupada");
 	new Attribute(model, "tempoExecucao");
@@ -78,8 +78,8 @@ int Example_SistemaOperacional03::main(int argc, char** argv) {
 	Decide* decideNucleo = new Decide(model);
 	decideNucleo->setDescription("Define nucleo execucao do processo");
 	decideNucleo->getConditions()->insert("processoSO == 1");
-    decideNucleo->getConditions()->insert("NQ(filaNucleo1) <= NQ(filaNucleo2) and NQ(filaNucleo1) <= NQ(filaNucleo3)");
-    decideNucleo->getConditions()->insert("NQ(filaNucleo2) <= NQ(filaNucleo1) and NQ(filaNucleo2) <= NQ(filaNucleo3)");
+	decideNucleo->getConditions()->insert("NQ(filaNucleo1) <= NQ(filaNucleo2) and NQ(filaNucleo1) <= NQ(filaNucleo3)");
+	decideNucleo->getConditions()->insert("NQ(filaNucleo2) <= NQ(filaNucleo1) and NQ(filaNucleo2) <= NQ(filaNucleo3)");
 
 	seizeMem->getNextComponents()->insert(decideNucleo);
 	//
@@ -100,10 +100,10 @@ int Example_SistemaOperacional03::main(int argc, char** argv) {
 	Assign* assignDefNucleo3 = new Assign(model);
 	assignDefNucleo3->getAssignments()->insert(new Assign::Assignment("nucleoExecucao", "3"));
 
-    decideNucleo->getNextComponents()->insert(assignDefNucleo0);
-    decideNucleo->getNextComponents()->insert(assignDefNucleo1);
-    decideNucleo->getNextComponents()->insert(assignDefNucleo2);
-    decideNucleo->getNextComponents()->insert(assignDefNucleo3);
+	decideNucleo->getNextComponents()->insert(assignDefNucleo0);
+	decideNucleo->getNextComponents()->insert(assignDefNucleo1);
+	decideNucleo->getNextComponents()->insert(assignDefNucleo2);
+	decideNucleo->getNextComponents()->insert(assignDefNucleo3);
 	//
 	// ROUTE Processo é enviado para execução na CPU
 	Station* stationExecucao = new Station(model, "Estacao_de_Execucao");
@@ -129,8 +129,8 @@ int Example_SistemaOperacional03::main(int argc, char** argv) {
 	setNucleos->getElementSet()->insert(new Resource(model, "nucleo0"));
 	setNucleos->getElementSet()->insert(new Resource(model, "nucleo1"));
 	setNucleos->getElementSet()->insert(new Resource(model, "nucleo2"));
-    setNucleos->getElementSet()->insert(new Resource(model, "nucleo3"));
-    //std::cout << setNucleos->getElementSet()->show() << std::endl;
+	setNucleos->getElementSet()->insert(new Resource(model, "nucleo3"));
+	//std::cout << setNucleos->getElementSet()->show() << std::endl;
 	//     SET QUEUES
 	Set* setFilas = new Set(model, "Set_Filas");
 	setFilas->setSetOfType(Util::TypeOf<Queue>());
@@ -138,7 +138,7 @@ int Example_SistemaOperacional03::main(int argc, char** argv) {
 	setFilas->getElementSet()->insert(new Queue(model, "filaNucleo1"));
 	setFilas->getElementSet()->insert(new Queue(model, "filaNucleo2"));
 	setFilas->getElementSet()->insert(new Queue(model, "filaNucleo3"));
-    std::cout << setFilas->getElementSet()->show() << std::endl;
+	std::cout << setFilas->getElementSet()->show() << std::endl;
 	// SEIZE
 	Seize* seizeNucleo = new Seize(model);
 	seizeNucleo->setDescription("Processo aloca Núcleo de Execução");
@@ -150,14 +150,14 @@ int Example_SistemaOperacional03::main(int argc, char** argv) {
 	// DECIDE Define tempo de execução da fatia de tempo atual
 	Decide* decideFatiaTempo = new Decide(model);
 	decideFatiaTempo->setDescription("Define tempo de execução da fatia de tempo atual");
-    decideFatiaTempo->getConditions()->insert("tempoExecucao >= 2");
+	decideFatiaTempo->getConditions()->insert("tempoExecucao >= 2");
 
 	seizeNucleo->getNextComponents()->insert(decideFatiaTempo);
 	//
 	// ASSIGN Define execucao por um quantum de tempo
 	Assign* assignExecFatia = new Assign(model);
 	assignExecFatia->setDescription("Define execucao por um quantum de tempo");
-    assignExecFatia->getAssignments()->insert(new Assign::Assignment("fatiaTempo", "2"));
+	assignExecFatia->getAssignments()->insert(new Assign::Assignment("fatiaTempo", "2"));
 	assignExecFatia->getAssignments()->insert(new Assign::Assignment("tempoExecucao", "tempoExecucao-fatiaTempo"));
 	new Attribute(model, "fatiaTempo");
 
@@ -229,26 +229,26 @@ int Example_SistemaOperacional03::main(int argc, char** argv) {
 	//
 	// AJUSTA EXPERIMENTO (MODEL SIMULATION)
 	ModelSimulation* sim = model->getSimulation();
-    sim->setReplicationLength(2);
+	sim->setReplicationLength(2);
 	sim->setReplicationLengthTimeUnit(Util::TimeUnit::second);
 	sim->setReplicationReportBaseTimeUnit(Util::TimeUnit::milisecond);
-    sim->setNumberOfReplications(200);
-    sim->setWarmUpPeriod(0.02);
+	sim->setNumberOfReplications(200);
+	sim->setWarmUpPeriod(0.02);
 	sim->setWarmUpPeriodTimeUnit(Util::TimeUnit::second);
-    sim->setShowReportsAfterReplication(true);
-    sim->setShowReportsAfterSimulation(true);
-    //sim->getBreakpointsOnComponent()->insert(routeExecucao1);
-    //sim->getBreakpointsOnComponent()->insert(assignDefNucleo0);
-    //sim->getBreakpointsOnComponent()->insert(assignDefNucleo1);
-    //sim->getBreakpointsOnComponent()->insert(assignDefNucleo2);
-    //sim->getBreakpointsOnComponent()->insert(assignDefNucleo3);
-    model->save("./models/SistemaOperacional03.txt");
-    genesys->getTracer()->setTraceLevel(Util::TraceLevel::L2_results); // :L9_mostDetailed);
+	sim->setShowReportsAfterReplication(true);
+	sim->setShowReportsAfterSimulation(true);
+	//sim->getBreakpointsOnComponent()->insert(routeExecucao1);
+	//sim->getBreakpointsOnComponent()->insert(assignDefNucleo0);
+	//sim->getBreakpointsOnComponent()->insert(assignDefNucleo1);
+	//sim->getBreakpointsOnComponent()->insert(assignDefNucleo2);
+	//sim->getBreakpointsOnComponent()->insert(assignDefNucleo3);
+	model->save("./models/SistemaOperacional03.txt");
+	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L2_results); // :L9_mostDetailed);
 	do {
-        sim->start(); //step();
+		sim->start(); //step();
 		if (sim->isPaused()) {
-            std::cout << "Press ENTER to continue...";
-            std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
+			std::cout << "Press ENTER to continue...";
+			std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
 		}
 	} while (sim->isPaused());
 	return 0;

@@ -71,9 +71,9 @@
         <itemPath>userInterfaces/terminal/GenesysTerminalApp.cpp</itemPath>
         <itemPath>userInterfaces/terminal/GenesysTerminalApp.h</itemPath>
       </logicalFolder>
-      <itemPath>userInterfaces/BaseConsoleGenesysApplication.cpp</itemPath>
-      <itemPath>userInterfaces/BaseConsoleGenesysApplication.h</itemPath>
-      <itemPath>userInterfaces/GenesysApplication_if.h</itemPath>
+      <itemPath>applications/BaseConsoleGenesysApplication.cpp</itemPath>
+      <itemPath>applications/BaseConsoleGenesysApplication.h</itemPath>
+      <itemPath>applications/GenesysApplication_if.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Arquivos de Recurso"
@@ -328,11 +328,11 @@
       <itemPath>tools/HypothesisTesterDefaultImpl1.cpp</itemPath>
       <itemPath>tools/HypothesisTesterDefaultImpl1.h</itemPath>
       <itemPath>tools/HypothesisTester_if.h</itemPath>
-      <itemPath>tools/IntegratorDefaultImpl1.cpp</itemPath>
-      <itemPath>tools/IntegratorDefaultImpl1.h</itemPath>
-      <itemPath>tools/Integrator_if.h</itemPath>
       <itemPath>tools/ProbabilityDistribution.cpp</itemPath>
       <itemPath>tools/ProbabilityDistribution.h</itemPath>
+      <itemPath>tools/SolverDefaultImpl1.cpp</itemPath>
+      <itemPath>tools/SolverDefaultImpl1.h</itemPath>
+      <itemPath>tools/solver_if.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Arquivos Importantes"
@@ -558,6 +558,12 @@
                             perm="755"
                             owner="root"
                             group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
         </packFileList>
         <packInfoList>
           <packInfoListElem name="Package" value="20192022GenESyS" mandatory="true"/>
@@ -570,6 +576,21 @@
       <item path="Makefile" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Traits.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="applications/BaseConsoleGenesysApplication.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/BaseConsoleGenesysApplication.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/GenesysApplication_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <folder path="TestFiles/f1">
         <linkerTool>
@@ -1301,30 +1322,15 @@
       </item>
       <item path="tools/HypothesisTester_if.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="tools/IntegratorDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="tools/IntegratorDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="tools/Integrator_if.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="tools/ProbabilityDistribution.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tools/ProbabilityDistribution.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="userInterfaces/BaseConsoleGenesysApplication.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
+      <item path="tools/SolverDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="userInterfaces/BaseConsoleGenesysApplication.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
+      <item path="tools/SolverDefaultImpl1.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="userInterfaces/GenesysApplication_if.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
+      <item path="tools/solver_if.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="userInterfaces/examples/AnElectronicAssemblyAndTestSystem.cpp"
             ex="false"
@@ -1595,6 +1601,21 @@
       </item>
       <item path="Traits.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="applications/BaseConsoleGenesysApplication.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/BaseConsoleGenesysApplication.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/GenesysApplication_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <folder path="TestFiles/f1">
         <linkerTool>
           <output>${TESTDIR}/TestFiles/f1</output>
@@ -2325,30 +2346,15 @@
       </item>
       <item path="tools/HypothesisTester_if.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="tools/IntegratorDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="tools/IntegratorDefaultImpl1.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="tools/Integrator_if.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="tools/ProbabilityDistribution.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tools/ProbabilityDistribution.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="userInterfaces/BaseConsoleGenesysApplication.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
+      <item path="tools/SolverDefaultImpl1.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="userInterfaces/BaseConsoleGenesysApplication.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
+      <item path="tools/SolverDefaultImpl1.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="userInterfaces/GenesysApplication_if.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
+      <item path="tools/solver_if.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="userInterfaces/examples/AnElectronicAssemblyAndTestSystem.cpp"
             ex="false"

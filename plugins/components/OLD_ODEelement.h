@@ -20,7 +20,6 @@
 
 class ODEfunction {
 public:
-
 	ODEfunction(std::string expression, double initialPoint, double initialValue) {
 		this->expression = expression;
 		this->initialPoint = initialPoint;

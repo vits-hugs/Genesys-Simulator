@@ -55,8 +55,8 @@ std::map<std::string, std::string>* Search::_saveInstance() {
 
 bool Search::_check(std::string* errorMessage) {
 	bool resultAll = true;
-    // \todo: not implemented yet
-    *errorMessage += "";
+	// \todo: not implemented yet
+	*errorMessage += "";
 	return resultAll;
 }
 

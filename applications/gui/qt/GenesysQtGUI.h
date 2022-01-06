@@ -18,9 +18,10 @@
 #define GENESYSQTGUI_H
 
 #include "../../GenesysApplication_if.h"
-class GenesysQtGUI: public GenesysApplication_if {
+
+class GenesysQtGUI : public GenesysApplication_if {
 public:
-    GenesysQtGUI();
+	GenesysQtGUI();
 public:
 	virtual int main(int argc, char** argv);
 private:

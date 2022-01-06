@@ -50,7 +50,7 @@ private:
 	std::string _modelFilename;
 	std::list<std::string>* _selectedControls = new std::list<std::string>(); /*!< a subset of SimulationControls available in the model (chosen by user)*/
 	std::list<std::string>* _selectedResponses = new std::list<std::string>(); /*!< a subset of SimulationResponses available in the model (chosen by user) */
-    std::list<std::pair<std::string, double>*>* _controlValues = reinterpret_cast<std::list<std::pair<std::string, double> *> *>(new std::list<std::pair<std::string, double>>());
+	std::list<std::pair<std::string, double>*>* _controlValues = reinterpret_cast<std::list<std::pair<std::string, double> *> *> (new std::list<std::pair<std::string, double>>());
 	std::list<std::pair<std::string, double>*>* _responseValues{}; /*!< stored values of the results returned by simulation <name of response, value returned>*/
 };
 

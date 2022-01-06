@@ -102,7 +102,7 @@ void Route::_execute(Entity* entity) {
 		double routeEndTime = _parentModel->getSimulation()->getSimulatedTime() + routeTime;
 		Event* newEvent = new Event(routeEndTime, entity, destinyStation->getEnterIntoStationComponent());
 		_parentModel->getFutureEvents()->insert(newEvent);
-		_parentModel->getTracer()->trace("End of route of "/*entity " + std::to_string(entity->entityNumber())*/+entity->getName() + " to the component \"" + destinyStation->getEnterIntoStationComponent()->getName() + "\" was scheduled to time " + std::to_string(routeEndTime));
+		_parentModel->getTracer()->trace("End of route of "/*entity " + std::to_string(entity->entityNumber())*/ + entity->getName() + " to the component \"" + destinyStation->getEnterIntoStationComponent()->getName() + "\" was scheduled to time " + std::to_string(routeEndTime));
 	} else {
 		// send without delay
 		_parentModel->sendEntityToComponent(entity, destinyStation->getEnterIntoStationComponent(), 0.0);
@@ -174,7 +174,7 @@ bool Route::_check(std::string* errorMessage) {
 
 PluginInformation* Route::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Route>(), &Route::LoadInstance);
-    info->setSendTransfer(true);
+	info->setSendTransfer(true);
 	info->insertDynamicLibFileDependence("station.so");
 	return info;
 }

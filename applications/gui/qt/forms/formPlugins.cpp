@@ -14,7 +14,7 @@
 #include "formPlugins.h"
 
 formPlugins::formPlugins() {
-    widget.setupUi(this);
+	widget.setupUi(this);
 }
 
 formPlugins::~formPlugins() {

@@ -64,11 +64,11 @@ bool Sequence::_check(std::string* errorMessage) {
 	for (unsigned int i = 0; i < neededNames.size(); i++) {
 		neededName = neededNames[i];
 		if (_parentModel->getElements()->getElement(Util::TypeOf<Attribute>(), neededName) == nullptr) {
-            new Attribute(_parentModel, neededName);
+			new Attribute(_parentModel, neededName);
 			//_parentModel->insert(attr1);
 		}
-    }
-    *errorMessage += "";
+	}
+	*errorMessage += "";
 	return true;
 }
 
@@ -124,7 +124,7 @@ bool SequenceStep::_loadInstance(std::map<std::string, std::string>* fields) {
 }
 
 std::map<std::string, std::string>* SequenceStep::_saveInstance() {
-    //\TODO
+	//\TODO
 }
 
 std::list<SequenceStep::Assignment*>* SequenceStep::getAssignments() const {

@@ -35,7 +35,7 @@
 
 template <typename T>
 struct TraitsKernel {
-    static const Util::TraceLevel traceLevel = Util::TraceLevel::L2_results;
+	static const Util::TraceLevel traceLevel = Util::TraceLevel::L2_results;
 };
 
 /*
@@ -43,16 +43,15 @@ struct TraitsKernel {
  */
 
 template <> struct TraitsKernel<SimulationReporter_if> {
-    typedef SimulationReporterDefaultImpl1 Implementation;
-    typedef Counter CounterImplementation;
-    static const Util::TraceLevel traceLevel = Util::TraceLevel::L2_results;
+	typedef SimulationReporterDefaultImpl1 Implementation;
+	typedef Counter CounterImplementation;
+	static const Util::TraceLevel traceLevel = Util::TraceLevel::L2_results;
 };
 
 template <> struct TraitsKernel<PluginConnector_if> {
-    typedef PluginConnectorDummyImpl1 Implementation;
-    static const Util::TraceLevel traceLevel = Util::TraceLevel::L4_warning;
+	typedef PluginConnectorDummyImpl1 Implementation;
+	static const Util::TraceLevel traceLevel = Util::TraceLevel::L4_warning;
 };
-
 
 template <> struct TraitsKernel<Parser_if> {
 	typedef ParserDefaultImpl2 Implementation;
@@ -63,7 +62,7 @@ template <> struct TraitsKernel<Parser_if> {
  */
 
 template <> struct TraitsKernel<Model> {
-    static const Util::TraceLevel traceLevel = Util::TraceLevel::L5_event;
+	static const Util::TraceLevel traceLevel = Util::TraceLevel::L5_event;
 };
 
 template <> struct TraitsKernel<ModelComponent> {
@@ -79,39 +78,38 @@ template <> struct TraitsKernel<ModelElement> {
 };
 
 template <> struct TraitsKernel<ModelChecker_if> {
-    typedef ModelCheckerDefaultImpl1 Implementation;
-    static const Util::TraceLevel traceLevel = Util::TraceLevel::L2_results;
+	typedef ModelCheckerDefaultImpl1 Implementation;
+	static const Util::TraceLevel traceLevel = Util::TraceLevel::L2_results;
 };
 
-
 template <> struct TraitsKernel<ModelPersistence_if> {
-    typedef ModelPersistenceDefaultImpl1 Implementation;
-    static const Util::TraceLevel traceLevel = Util::TraceLevel::L2_results;
+	typedef ModelPersistenceDefaultImpl1 Implementation;
+	static const Util::TraceLevel traceLevel = Util::TraceLevel::L2_results;
 };
 
 /*
  *  Statistics
  */
 template <> struct TraitsKernel<Statistics_if> {
-    typedef StatisticsDefaultImpl1 Implementation;
+	typedef StatisticsDefaultImpl1 Implementation;
 	typedef CollectorDefaultImpl1 CollectorImplementation;
 	typedef double DataType; // TODO: not used yet. Change all classes that collect statistics to this type (so classes that deal with erros and bit limits can be assigned to it
-    static constexpr double SignificanceLevel = 0.05;
+	static constexpr double SignificanceLevel = 0.05;
 };
+
 template <> struct TraitsKernel<StatisticsDatafile_if> {
-    typedef StatisticsDatafileDefaultImpl1 Implementation;
-    typedef CollectorDatafileDefaultImpl1 CollectorImplementation;
-    static constexpr double SignificanceLevel = 0.05;
+	typedef StatisticsDatafileDefaultImpl1 Implementation;
+	typedef CollectorDatafileDefaultImpl1 CollectorImplementation;
+	static constexpr double SignificanceLevel = 0.05;
 };
 
 template <> struct TraitsKernel<Sampler_if> {
-    typedef SamplerDefaultImpl1 Implementation;
-    typedef SamplerDefaultImpl1::DefaultImpl1RNG_Parameters Parameters;
+	typedef SamplerDefaultImpl1 Implementation;
+	typedef SamplerDefaultImpl1::DefaultImpl1RNG_Parameters Parameters;
 };
 
-
 template <> struct TraitsKernel<Collector_if> {
-    typedef CollectorDatafileDefaultImpl1 Implementation;
+	typedef CollectorDatafileDefaultImpl1 Implementation;
 	typedef double DataType; // TODO: not used yet. Change all classes that collect statistics to this type (so classes that deal with erros and bit limits can be assigned to it
 };
 //namespace\\}

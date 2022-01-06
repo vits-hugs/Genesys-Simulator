@@ -56,8 +56,8 @@ std::map<std::string, std::string>* Match::_saveInstance() {
 
 bool Match::_check(std::string* errorMessage) {
 	bool resultAll = true;
-    // \todo: not implemented yet
-    *errorMessage += "";
+	// \todo: not implemented yet
+	*errorMessage += "";
 	return resultAll;
 }
 

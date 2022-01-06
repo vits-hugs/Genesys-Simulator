@@ -20,27 +20,27 @@
 
 //namespace GenesysKernel {
 
-	/*!
-	 * Class that implements SimulationReporter_if interface and is responsible for building and showing replication and simulation reports
-	 */
-	class SimulationReporterDefaultImpl1 : public SimulationReporter_if {
-	public:
-		SimulationReporterDefaultImpl1(ModelSimulation* simulation, Model* model, List<ModelElement*>* statsCountersSimulation);
-		virtual ~SimulationReporterDefaultImpl1() = default;
-	public:
-		virtual void showReplicationStatistics();
-		virtual void showSimulationStatistics(); 
-		virtual void showSimulationResponses();
-		virtual void showSimulationControls();
-	private:
-		ModelSimulation* _simulation;
-		Model* _model;
-	private:
-		List<ModelElement*>* _statsCountersSimulation;
-	private:
-		const unsigned short _w = 12;
-		const unsigned short _nameW = 40;
-	};
+/*!
+ * Class that implements SimulationReporter_if interface and is responsible for building and showing replication and simulation reports
+ */
+class SimulationReporterDefaultImpl1 : public SimulationReporter_if {
+public:
+	SimulationReporterDefaultImpl1(ModelSimulation* simulation, Model* model, List<ModelElement*>* statsCountersSimulation);
+	virtual ~SimulationReporterDefaultImpl1() = default;
+public:
+	virtual void showReplicationStatistics();
+	virtual void showSimulationStatistics();
+	virtual void showSimulationResponses();
+	virtual void showSimulationControls();
+private:
+	ModelSimulation* _simulation;
+	Model* _model;
+private:
+	List<ModelElement*>* _statsCountersSimulation;
+private:
+	const unsigned short _w = 12;
+	const unsigned short _nameW = 40;
+};
 //namespace\\}
 #endif /* SIMULATIONREPORTERDEFAULTIMPL1_H */
 

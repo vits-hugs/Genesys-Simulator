@@ -24,26 +24,21 @@ public:
 
 	class Assignment {
 	public:
-
 		Assignment(std::string destination, std::string expression) {
 			this->_destination = destination;
 			this->_expression = expression;
 			// an assignment is always in the form:
 			// (destinationType) destination = expression
 		};
-
 		void setDestination(std::string _destination) {
 			this->_destination = _destination;
 		}
-
 		std::string getDestination() const {
 			return _destination;
 		}
-
 		void setExpression(std::string _expression) {
 			this->_expression = _expression;
 		}
-
 		std::string getExpression() const {
 			return _expression;
 		}

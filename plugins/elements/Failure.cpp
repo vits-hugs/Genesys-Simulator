@@ -57,8 +57,8 @@ std::map<std::string, std::string>* Failure::_saveInstance() {
 
 bool Failure::_check(std::string* errorMessage) {
 	bool resultAll = true;
-    // resultAll |= ...
-    *errorMessage += "";
+	// resultAll |= ...
+	*errorMessage += "";
 	return resultAll;
 }
 

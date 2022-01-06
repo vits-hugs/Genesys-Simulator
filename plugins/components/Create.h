@@ -66,23 +66,23 @@ not apply when Type is Schedule.
  */
 class Create : public SourceModelComponent {
 public:
-    Create(Model* model, std::string name = "");
-    virtual ~Create() = default;
+	Create(Model* model, std::string name = "");
+	virtual ~Create() = default;
 public:
-    virtual std::string show();
+	virtual std::string show();
 public:
-    static PluginInformation* GetPluginInformation();
-    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static PluginInformation* GetPluginInformation();
+	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 protected:
-    virtual void _execute(Entity* entity);
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual void _initBetweenReplications();
-    virtual std::map<std::string, std::string>* _saveInstance();
-    virtual bool _check(std::string* errorMessage);
-    virtual void _createInternalElements();
+	virtual void _execute(Entity* entity);
+	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+	virtual void _initBetweenReplications();
+	virtual std::map<std::string, std::string>* _saveInstance();
+	virtual bool _check(std::string* errorMessage);
+	virtual void _createInternalElements();
 private:
-    Counter* _numberOut = nullptr; // children element
-    double _lastArrival = -1.0;
+	Counter* _numberOut = nullptr; // children element
+	double _lastArrival = -1.0;
 };
 
 #endif /* CREATE_H */

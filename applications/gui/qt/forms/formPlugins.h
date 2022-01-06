@@ -17,12 +17,12 @@
 #include "ui_formPlugins.h"
 
 class formPlugins : public QDialog {
-    Q_OBJECT
+	Q_OBJECT
 public:
-    formPlugins();
-    virtual ~formPlugins();
+	formPlugins();
+	virtual ~formPlugins();
 private:
-    Ui::formPlugins widget;
+	Ui::formPlugins widget;
 };
 
 #endif /* _FORMPLUGINS_H */

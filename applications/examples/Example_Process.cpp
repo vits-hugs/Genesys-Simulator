@@ -53,7 +53,7 @@ int Example_Process::main(int argc, char** argv) {
 	model->save("./models/Example_Process.txt");
 	do {
 		model->getSimulation()->step();
-//		std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
+		//		std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
 	} while (model->getSimulation()->isPaused());
 	genesys->~Simulator();
 	return 0;

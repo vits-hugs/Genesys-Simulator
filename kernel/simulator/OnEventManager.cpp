@@ -36,15 +36,15 @@ void OnEventManager::addOnProcessEventHandler(simulationEventHandler EventHandle
 }
 
 void OnEventManager::addOnEntityCreateHandler(simulationEventHandler EventHandler) {
-    _addOnHandler(_onEntityCreateHandlers, EventHandler);
+	_addOnHandler(_onEntityCreateHandlers, EventHandler);
 }
 
 void OnEventManager::addOnEntityMoveHandler(simulationEventHandler EventHandler) {
-    _addOnHandler(_onEntityMoveHandlers, EventHandler);
+	_addOnHandler(_onEntityMoveHandlers, EventHandler);
 }
 
 void OnEventManager::addOnEntityRemoveHandler(simulationEventHandler EventHandler) {
-    _addOnHandler(_onEntityRemoveHandlers, EventHandler);
+	_addOnHandler(_onEntityRemoveHandlers, EventHandler);
 }
 
 void OnEventManager::addOnReplicationEndHandler(simulationEventHandler EventHandler) {
@@ -56,11 +56,11 @@ void OnEventManager::addOnSimulationStartHandler(simulationEventHandler EventHan
 }
 
 void OnEventManager::addOnSimulationPausedHandler(simulationEventHandler EventHandler) {
-    _addOnHandler(_onSimulationPausedHandlers, EventHandler);
+	_addOnHandler(_onSimulationPausedHandlers, EventHandler);
 }
 
 void OnEventManager::addOnSimulationResumeHandler(simulationEventHandler EventHandler) {
-    _addOnHandler(_onSimulationResumeHandlers, EventHandler);
+	_addOnHandler(_onSimulationResumeHandlers, EventHandler);
 }
 
 void OnEventManager::addOnSimulationEndHandler(simulationEventHandler EventHandler) {
@@ -97,15 +97,15 @@ void OnEventManager::NotifyReplicationEndHandlers(SimulationEvent* se) {
 }
 
 void OnEventManager::NotifyEntityCreateHandlers(SimulationEvent* se) {
-    this->_NotifyHandlers(this->_onEntityCreateHandlers, se);
+	this->_NotifyHandlers(this->_onEntityCreateHandlers, se);
 }
 
 void OnEventManager::NotifyEntityMoveHandlers(SimulationEvent* se) {
-    this->_NotifyHandlers(this->_onEntityMoveHandlers, se);
+	this->_NotifyHandlers(this->_onEntityMoveHandlers, se);
 }
 
 void OnEventManager::NotifyEntityRemoveHandlers(SimulationEvent* se) {
-    this->_NotifyHandlers(this->_onEntityRemoveHandlers, se);
+	this->_NotifyHandlers(this->_onEntityRemoveHandlers, se);
 }
 
 void OnEventManager::NotifyProcessEventHandlers(SimulationEvent* se) {
@@ -118,11 +118,11 @@ void OnEventManager::NotifySimulationStartHandlers(SimulationEvent* se) {
 }
 
 void OnEventManager::NotifySimulationPausedHandlers(SimulationEvent* se) {
-    this->_NotifyHandlers(this->_onSimulationPausedHandlers, se);
+	this->_NotifyHandlers(this->_onSimulationPausedHandlers, se);
 }
 
 void OnEventManager::NotifySimulationResumeHandlers(SimulationEvent* se) {
-    this->_NotifyHandlers(this->_onSimulationResumeHandlers, se);
+	this->_NotifyHandlers(this->_onSimulationResumeHandlers, se);
 }
 
 void OnEventManager::NotifySimulationEndHandlers(SimulationEvent* se) {
