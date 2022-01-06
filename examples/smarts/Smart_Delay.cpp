@@ -56,8 +56,8 @@ int Smart_Delay::main(int argc, char** argv) {
 	// create a (Sink)ModelComponent of type Dispose, used to remove entities from the model
 	Dispose* dispose1 = new Dispose(model); // insert the component into the model
 	// connect model components to create a "workflow" -- should always start from a SourceModelComponent and end at a SinkModelComponent (it will be checked)
-	create1->getNextComponents()->insert(delay1);
-	delay1->getNextComponents()->insert(dispose1);
+	create1->getConnections()->insert(delay1);
+	delay1->getConnections()->insert(dispose1);
 	// save the model into a text file
 	model->save("./models/Smart_Delay.txt");
 	// execute the simulation util completed and show the report

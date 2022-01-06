@@ -34,7 +34,7 @@ ModelComponent* Separate::LoadInstance(Model* model, std::map<std::string, std::
 
 void Separate::_execute(Entity* entity) {
 	//Entity* cloned = new Entity(entity);
-	this->_parentModel->sendEntityToComponent(entity, getNextComponents()->getFrontConnection());
+	this->_parentModel->sendEntityToComponent(entity, getConnections()->getFrontConnection());
 	//this->_parentModel->sendEntityToComponent(cloned, nextComponents()->getConnectionAtRank(1), 0.0);
 }
 

@@ -52,8 +52,8 @@ int Smart_ModelInfoModelSimulation::main(int argc, char** argv) {
 	delay1->setDelayExpression("NORM(1,0.2)");
 	delay1->setDelayTimeUnit(Util::TimeUnit::minute);
 	Dispose* dispose1 = new Dispose(model);
-	create1->getNextComponents()->insert(delay1);
-	delay1->getNextComponents()->insert(dispose1);
+	create1->getConnections()->insert(delay1);
+	delay1->getConnections()->insert(dispose1);
 	// set model simulation
 	ModelSimulation* sim = model->getSimulation();
 	sim->setReplicationLength(15);

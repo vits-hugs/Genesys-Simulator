@@ -83,15 +83,15 @@ int Smart_Sequence::main(int argc, char** argv) {
 	Assign* a1 = new Assign(m);
 	a1->getAssignments()->insert(new Assign::Assignment("Entity.Sequence", std::to_string(seq->getId())));
 
-	c1->getNextComponents()->insert(a1);
-	a1->getNextComponents()->insert(r0);
-	e1->getNextComponents()->insert(d1);
-	d1->getNextComponents()->insert(l1);
-	l1->getNextComponents()->insert(r1);
-	e2->getNextComponents()->insert(d2);
-	d2->getNextComponents()->insert(l2);
-	l2->getNextComponents()->insert(r2);
-	e3->getNextComponents()->insert(dp1);
+	c1->getConnections()->insert(a1);
+	a1->getConnections()->insert(r0);
+	e1->getConnections()->insert(d1);
+	d1->getConnections()->insert(l1);
+	l1->getConnections()->insert(r1);
+	e2->getConnections()->insert(d2);
+	d2->getConnections()->insert(l2);
+	l2->getConnections()->insert(r2);
+	e3->getConnections()->insert(dp1);
 
 	ModelSimulation* sim = m->getSimulation();
 	sim->getBreakpointsOnComponent()->insert(a1);

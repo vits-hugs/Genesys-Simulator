@@ -47,33 +47,39 @@
 // "%code requires" blocks.
 #line 9 "bisonparser.yy"
 
-#include <string>
-#include <cmath>
-#include "obj_t.h"
-#include "../../util/Util.h"
-#include "../Attribute.h"
-/****begin_Includes_plugins****/
-/**begin_Includes:Variable**/
-#include "../../../plugins/elements/Variable.h"
-/**end_Includes:Variable**/
-/**begin_Includes:Queue**/
-#include "../../../plugins/elements/Queue.h"
-/**end_Includes:Queue**/
-/**begin_Includes:Formula**/
-#include "../../../plugins/elements/Formula.h"
-/**end_Includes:Formula**/
-/**begin_Includes:Resource**/
-#include "../../../plugins/elements/Resource.h"
-/**end_Includes:Resource**/
-/**begin_Includes:Set**/
-#include "../../../plugins/elements/Set.h"
-/**end_Includes:Set**/
-/****end_Includes_plugins****/
+	#include <string>
+	#include <cmath>
+	#include "obj_t.h"
+	#include "../../util/Util.h"
+	#include "../Attribute.h"
 
-class genesyspp_driver;
+	/****begin_Includes_plugins****/
 
+		/**begin_Includes:Variable**/
+		#include "../../../plugins/elements/Variable.h"
+		/**end_Includes:Variable**/
 
-#line 77 "../GenesysParser.h"
+		/**begin_Includes:Queue**/
+		#include "../../../plugins/elements/Queue.h"
+		/**end_Includes:Queue**/
+
+		/**begin_Includes:Formula**/
+		#include "../../../plugins/elements/Formula.h"
+		/**end_Includes:Formula**/
+
+		/**begin_Includes:Resource**/
+		#include "../../../plugins/elements/Resource.h"
+		/**end_Includes:Resource**/
+
+		/**begin_Includes:Set**/
+		#include "../../../plugins/elements/Set.h"
+		/**end_Includes:Set**/
+
+	/****end_Includes_plugins****/
+
+	class genesyspp_driver;
+
+#line 83 "../GenesysParser.h"
 
 # include <cassert>
 # include <cstdlib> // std::abort
@@ -207,7 +213,7 @@ class genesyspp_driver;
 #endif
 
 namespace yy {
-#line 211 "../GenesysParser.h"
+#line 217 "../GenesysParser.h"
 
 
 
@@ -3231,7 +3237,7 @@ switch (yykind)
   }
 
 } // yy
-#line 3235 "../GenesysParser.h"
+#line 3241 "../GenesysParser.h"
 
 
 

@@ -79,10 +79,10 @@ int Smart_SeizeDelayRelease::main(int argc, char** argv) {
 		//
 		Dispose* dispose1 = new Dispose(model);
 		// connect model components to create a "workflow"
-		create1->getNextComponents()->insert(seize1);
-		seize1->getNextComponents()->insert(delay1);
-		delay1->getNextComponents()->insert(release1);
-		release1->getNextComponents()->insert(dispose1);
+		create1->getConnections()->insert(seize1);
+		seize1->getConnections()->insert(delay1);
+		delay1->getConnections()->insert(release1);
+		release1->getConnections()->insert(dispose1);
 		// save the model into a text file
 		model->save("./models/Smart_SeizeDelayRelease.txt");
 		// execute the simulation

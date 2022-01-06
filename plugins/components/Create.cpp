@@ -63,7 +63,7 @@ void Create::_execute(Entity* entity) {
 	}
 	if (_reportStatistics)
 		_numberOut->incCountValue();
-	_parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection());
+	_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
 PluginInformation* Create::GetPluginInformation() {

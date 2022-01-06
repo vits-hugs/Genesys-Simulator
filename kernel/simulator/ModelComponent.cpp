@@ -91,7 +91,7 @@ bool ModelComponent::Check(ModelComponent* component) {
 	return res;
 }
 
-ConnectionManager* ModelComponent::getNextComponents() const {
+ConnectionManager* ModelComponent::getConnections() const {
 	return _connections; // \todo How to know if it changes?
 }
 

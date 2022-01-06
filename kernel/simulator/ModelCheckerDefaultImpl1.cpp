@@ -49,17 +49,17 @@ void ModelCheckerDefaultImpl1::_recursiveConnectedTo(PluginManager* pluginManage
 	_model->getTracer()->trace(Util::TraceLevel::L8_detailed, "Connected to component \"" + comp->getName() + "\"");
 	Plugin* plugin = pluginManager->find(comp->getClassname());
 	assert(plugin != nullptr);
-	if (plugin->getPluginInfo()->isSink() || (plugin->getPluginInfo()->isSendTransfer() && comp->getNextComponents()->size() == 0)) {//(dynamic_cast<SinkModelComponent*> (comp) != nullptr) {
+	if (plugin->getPluginInfo()->isSink() || (plugin->getPluginInfo()->isSendTransfer() && comp->getConnections()->size() == 0)) {//(dynamic_cast<SinkModelComponent*> (comp) != nullptr) {
 		// it is a sink OR it can send entities throught a transfer and has no nextConnections
 		*drenoFound = true;
 	} else { // it is not a sink
-		if (comp->getNextComponents()->size() == 0) {
+		if (comp->getConnections()->size() == 0) {
 			unconnected->insert(comp);
 			_model->getTracer()->trace(Util::TraceLevel::L1_errorFatal, "Component \"" + comp->getName() + "\" is unconnected (not a sink with no next componentes connected to)");
 			*drenoFound = false;
 		} else {
 			ModelComponent* nextComp;
-			for (std::list<Connection*>::iterator it = comp->getNextComponents()->list()->begin(); it != comp->getNextComponents()->list()->end(); it++) {
+			for (std::list<Connection*>::iterator it = comp->getConnections()->list()->begin(); it != comp->getConnections()->list()->end(); it++) {
 				nextComp = (*it)->first;
 				if (visited->find(nextComp) == visited->list()->end()) { // not visited yet
 					*drenoFound = false;

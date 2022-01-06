@@ -101,20 +101,20 @@ void Process::_createInternalElements() {
 		seize = new Seize(_parentModel, getName() + ".Seize");
 		delay = new Delay(_parentModel, getName() + ".Delay");
 		release = new Release(_parentModel, getName() + ".Release");
-		seize->getNextComponents()->insert(delay);
-		delay->getNextComponents()->insert(release);
+		seize->getConnections()->insert(delay);
+		delay->getConnections()->insert(release);
 		_childrenElements->insert({"Seize", seize});
 		_childrenElements->insert({"Delay", delay});
 		_childrenElements->insert({"Release", release});
 	}
-	release->getNextComponents()->list()->clear();
-	if (getNextComponents()->size() > 0 && getNextComponents()->front() != seize) {
+	release->getConnections()->list()->clear();
+	if (getConnections()->size() > 0 && getConnections()->front() != seize) {
 		// chance connections so Process is connected to Seize, and Release to the one Process was connected to
-		_nextComponent = getNextComponents()->getFrontConnection()->first;
-		_nextInput = getNextComponents()->getFrontConnection()->second;
-		release->getNextComponents()->insert(_nextComponent, _nextInput);
-		getNextComponents()->getFrontConnection()->first = seize;
-		getNextComponents()->getFrontConnection()->second = 0;
+		_nextComponent = getConnections()->getFrontConnection()->first;
+		_nextInput = getConnections()->getFrontConnection()->second;
+		release->getConnections()->insert(_nextComponent, _nextInput);
+		getConnections()->getFrontConnection()->first = seize;
+		getConnections()->getFrontConnection()->second = 0;
 	}
 }
 

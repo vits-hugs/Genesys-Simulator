@@ -2415,6 +2415,8 @@
         <itemPath>examples/smarts/Smart_ModelInfoModelSimulation.h</itemPath>
         <itemPath>examples/smarts/Smart_Parser.cpp</itemPath>
         <itemPath>examples/smarts/Smart_Parser.h</itemPath>
+        <itemPath>examples/smarts/Smart_ParserModelFunctions.cpp</itemPath>
+        <itemPath>examples/smarts/Smart_ParserModelFunctions.h</itemPath>
         <itemPath>examples/smarts/Smart_Process.cpp</itemPath>
         <itemPath>examples/smarts/Smart_Process.h</itemPath>
         <itemPath>examples/smarts/Smart_ProcessSet.cpp</itemPath>
@@ -14531,6 +14533,16 @@
       <item path="examples/smarts/Smart_Parser.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="examples/smarts/Smart_Parser.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_ParserModelFunctions.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_ParserModelFunctions.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="examples/smarts/Smart_Process.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -27001,6 +27013,16 @@
       <item path="examples/smarts/Smart_Parser.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="examples/smarts/Smart_Parser.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_ParserModelFunctions.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_ParserModelFunctions.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="examples/smarts/Smart_Process.cpp" ex="false" tool="1" flavor2="0">
       </item>

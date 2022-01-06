@@ -69,12 +69,12 @@ int Smart_RouteStation::main(int argc, char** argv) {
 	enter3->setStation(station3);
 	Dispose* dispose1 = new Dispose(model);
 	//
-	create1->getNextComponents()->insert(route1);
-	enter1->getNextComponents()->insert(delay1);
-	delay1->getNextComponents()->insert(route2);
-	enter2->getNextComponents()->insert(delay2);
-	delay2->getNextComponents()->insert(route3);
-	enter3->getNextComponents()->insert(dispose1);
+	create1->getConnections()->insert(route1);
+	enter1->getConnections()->insert(delay1);
+	delay1->getConnections()->insert(route2);
+	enter2->getConnections()->insert(delay2);
+	delay2->getConnections()->insert(route3);
+	enter3->getConnections()->insert(dispose1);
 	//
 	model->getSimulation()->setReplicationLength(20);
 	model->save("./models/Smart_RouteStation.txt");

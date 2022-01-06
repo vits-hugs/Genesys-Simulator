@@ -104,14 +104,14 @@ int FullSimulationOfComplexModel::main(int argc, char** argv) {
 	Dispose* dispose1 = new Dispose(model);
 
 	// connect model components to create a "workflow" -- should always start from a SourceModelComponent and end at a SinkModelComponent (it will be checked)
-	create1->getNextComponents()->insert(assign1);
-	assign1->getNextComponents()->insert(decide1);
-	decide1->getNextComponents()->insert(seize1);
-	decide1->getNextComponents()->insert(dispose1);
-	seize1->getNextComponents()->insert(delay1);
-	delay1->getNextComponents()->insert(release1);
-	release1->getNextComponents()->insert(record1);
-	record1->getNextComponents()->insert(dispose1);
+	create1->getConnections()->insert(assign1);
+	assign1->getConnections()->insert(decide1);
+	decide1->getConnections()->insert(seize1);
+	decide1->getConnections()->insert(dispose1);
+	seize1->getConnections()->insert(delay1);
+	delay1->getConnections()->insert(release1);
+	release1->getConnections()->insert(record1);
+	record1->getConnections()->insert(dispose1);
 	// then save the model into a text file
 	model->save("./models/AssignWrite3Seizes.txt");
 	// execute the simulation

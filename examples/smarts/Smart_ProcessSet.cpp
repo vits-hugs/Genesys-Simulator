@@ -54,8 +54,8 @@ int Smart_ProcessSet::main(int argc, char** argv) {
 	process->setQueueableItem(new QueueableItem(new Queue(model)));
 	process->setDelayExpression("unif(0.8,1.2)");
 	Dispose* dispose = new Dispose(model);
-	create->getNextComponents()->insert(process);
-	process->getNextComponents()->insert(dispose);
+	create->getConnections()->insert(process);
+	process->getConnections()->insert(dispose);
 	model->getSimulation()->setReplicationLength(10);
 	model->save("./models/Smart_ProcessSet.txt");
 	do {

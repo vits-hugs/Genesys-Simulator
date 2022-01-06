@@ -319,7 +319,7 @@ bool ModelPersistenceDefaultImpl1::load(std::string filename) {
 					for (std::list<ModelComponent*>::iterator itcomp = cm->begin(); itcomp != cm->end(); itcomp++) {// connect the components
 						if ((*itcomp)->getId() == nextId) { // connect the components
 							nextComponent = (*itcomp);
-							thisComponent->getNextComponents()->insert(nextComponent, nextInputNumber);
+							thisComponent->getConnections()->insert(nextComponent, nextInputNumber);
 							_model->getTracer()->trace(Util::TraceLevel::L8_detailed, thisComponent->getName() + "<" + std::to_string(i) + ">" + " --> " + nextComponent->getName() + "<" + std::to_string(nextInputNumber) + ">");
 							break;
 						}

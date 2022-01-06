@@ -34,7 +34,7 @@ ModelComponent* Match::LoadInstance(Model* model, std::map<std::string, std::str
 
 void Match::_execute(Entity* entity) {
 	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
-	this->_parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection());
+	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
 bool Match::_loadInstance(std::map<std::string, std::string>* fields) {

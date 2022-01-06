@@ -61,7 +61,7 @@ int OperatingSystem03::main(int argc, char** argv) {
 	new Attribute(model, "tempoExecucao");
 	new Attribute(model, "processoSO");
 
-	createProc->getNextComponents()->insert(assignProc);
+	createProc->getConnections()->insert(assignProc);
 	//
 	// SEIZE memoria
 	Resource* memoria = new Resource(model, "memoria");
@@ -72,7 +72,7 @@ int OperatingSystem03::main(int argc, char** argv) {
 	seizeMem->setQueue(queueMem);
 	seizeMem->getSeizeRequests()->insert(new SeizableItem(memoria, "memoriaOcupada"));
 
-	assignProc->getNextComponents()->insert(seizeMem);
+	assignProc->getConnections()->insert(seizeMem);
 	//
 	// DECIDE Define nucleo execucao do processo
 	Decide* decideNucleo = new Decide(model);
@@ -81,7 +81,7 @@ int OperatingSystem03::main(int argc, char** argv) {
 	decideNucleo->getConditions()->insert("NQ(filaNucleo1) <= NQ(filaNucleo2) and NQ(filaNucleo1) <= NQ(filaNucleo3)");
 	decideNucleo->getConditions()->insert("NQ(filaNucleo2) <= NQ(filaNucleo1) and NQ(filaNucleo2) <= NQ(filaNucleo3)");
 
-	seizeMem->getNextComponents()->insert(decideNucleo);
+	seizeMem->getConnections()->insert(decideNucleo);
 	//
 	// ASSIGN Nucleo 0
 	Assign* assignDefNucleo0 = new Assign(model);
@@ -100,10 +100,10 @@ int OperatingSystem03::main(int argc, char** argv) {
 	Assign* assignDefNucleo3 = new Assign(model);
 	assignDefNucleo3->getAssignments()->insert(new Assign::Assignment("nucleoExecucao", "3"));
 
-	decideNucleo->getNextComponents()->insert(assignDefNucleo0);
-	decideNucleo->getNextComponents()->insert(assignDefNucleo1);
-	decideNucleo->getNextComponents()->insert(assignDefNucleo2);
-	decideNucleo->getNextComponents()->insert(assignDefNucleo3);
+	decideNucleo->getConnections()->insert(assignDefNucleo0);
+	decideNucleo->getConnections()->insert(assignDefNucleo1);
+	decideNucleo->getConnections()->insert(assignDefNucleo2);
+	decideNucleo->getConnections()->insert(assignDefNucleo3);
 	//
 	// ROUTE Processo é enviado para execução na CPU
 	Station* stationExecucao = new Station(model, "Estacao_de_Execucao");
@@ -111,10 +111,10 @@ int OperatingSystem03::main(int argc, char** argv) {
 	routeExecucao1->setDescription("Processo é enviado para execução na CPU");
 	routeExecucao1->setStation(stationExecucao);
 
-	assignDefNucleo0->getNextComponents()->insert(routeExecucao1);
-	assignDefNucleo1->getNextComponents()->insert(routeExecucao1);
-	assignDefNucleo2->getNextComponents()->insert(routeExecucao1);
-	assignDefNucleo3->getNextComponents()->insert(routeExecucao1);
+	assignDefNucleo0->getConnections()->insert(routeExecucao1);
+	assignDefNucleo1->getConnections()->insert(routeExecucao1);
+	assignDefNucleo2->getConnections()->insert(routeExecucao1);
+	assignDefNucleo3->getConnections()->insert(routeExecucao1);
 
 	//
 	// ENTER Processo chega para ser executado
@@ -145,14 +145,14 @@ int OperatingSystem03::main(int argc, char** argv) {
 	seizeNucleo->setQueueableItem(new QueueableItem(setFilas, QueueableItem::QueueableType::SET, "nucleoExecucao"));
 	seizeNucleo->getSeizeRequests()->insert(new SeizableItem(setNucleos, "1", SeizableItem::SelectionRule::SPECIFICMEMBER, "", "nucleoExecucao"));
 
-	enterStationExecucao->getNextComponents()->insert(seizeNucleo);
+	enterStationExecucao->getConnections()->insert(seizeNucleo);
 	//
 	// DECIDE Define tempo de execução da fatia de tempo atual
 	Decide* decideFatiaTempo = new Decide(model);
 	decideFatiaTempo->setDescription("Define tempo de execução da fatia de tempo atual");
 	decideFatiaTempo->getConditions()->insert("tempoExecucao >= 2");
 
-	seizeNucleo->getNextComponents()->insert(decideFatiaTempo);
+	seizeNucleo->getConnections()->insert(decideFatiaTempo);
 	//
 	// ASSIGN Define execucao por um quantum de tempo
 	Assign* assignExecFatia = new Assign(model);
@@ -161,7 +161,7 @@ int OperatingSystem03::main(int argc, char** argv) {
 	assignExecFatia->getAssignments()->insert(new Assign::Assignment("tempoExecucao", "tempoExecucao-fatiaTempo"));
 	new Attribute(model, "fatiaTempo");
 
-	decideFatiaTempo->getNextComponents()->insert(assignExecFatia);
+	decideFatiaTempo->getConnections()->insert(assignExecFatia);
 	//
 	// ASSIGN Executa até o final
 	Assign* assignExecAteFinal = new Assign(model);
@@ -169,7 +169,7 @@ int OperatingSystem03::main(int argc, char** argv) {
 	assignExecAteFinal->getAssignments()->insert(new Assign::Assignment("fatiaTempo", "tempoExecucao"));
 	assignExecAteFinal->getAssignments()->insert(new Assign::Assignment("tempoExecucao", "tempoExecucao - fatiaTempo"));
 
-	decideFatiaTempo->getNextComponents()->insert(assignExecAteFinal);
+	decideFatiaTempo->getConnections()->insert(assignExecAteFinal);
 	//
 	// DELAY Processo executa no nucleo de execucao
 	Delay* delayProcExecNucleo = new Delay(model);
@@ -177,36 +177,36 @@ int OperatingSystem03::main(int argc, char** argv) {
 	delayProcExecNucleo->setDelayExpression("fatiaTempo");
 	delayProcExecNucleo->setDelayTimeUnit(Util::TimeUnit::milisecond);
 
-	assignExecFatia->getNextComponents()->insert(delayProcExecNucleo);
-	assignExecAteFinal->getNextComponents()->insert(delayProcExecNucleo);
+	assignExecFatia->getConnections()->insert(delayProcExecNucleo);
+	assignExecAteFinal->getConnections()->insert(delayProcExecNucleo);
 	//
 	// RELEASE Processo libera nucleo execucao
 	Release* releaseNucleo = new Release(model);
 	releaseNucleo->setDescription("Processo libera nucleo execucao");
 	releaseNucleo->getReleaseRequests()->insert(new SeizableItem(setNucleos, "1", SeizableItem::SelectionRule::SPECIFICMEMBER, "", "nucleoExecucao"));
 
-	delayProcExecNucleo->getNextComponents()->insert(releaseNucleo);
+	delayProcExecNucleo->getConnections()->insert(releaseNucleo);
 	//
 	// DECIDE Se processo ainda precisa executar então vai para estação de execução
 	Decide* decideAindaExec = new Decide(model);
 	decideAindaExec->setDescription("Se processo ainda precisa executar então vai para estação de execução");
 	decideAindaExec->getConditions()->insert("tempoExecucao > 0");
 
-	releaseNucleo->getNextComponents()->insert(decideAindaExec);
+	releaseNucleo->getConnections()->insert(decideAindaExec);
 	//
 	// ROUTE Processo é enviado de volta para execução
 	Route* routeExecucao2 = new Route(model);
 	routeExecucao2->setDescription("Processo é enviado de volta para execução");
 	routeExecucao2->setStation(stationExecucao);
 
-	decideAindaExec->getNextComponents()->insert(routeExecucao2);
+	decideAindaExec->getConnections()->insert(routeExecucao2);
 	// ROUTE Processo é enviado para liberar memória
 	Station* stationLiberaMem = new Station(model, "Estacao_de_liberacao_de_memoria");
 	Route* routeLiberaMem = new Route(model);
 	routeLiberaMem->setDescription("Processo é enviado para liberar memória");
 	routeLiberaMem->setStation(stationLiberaMem);
 
-	decideAindaExec->getNextComponents()->insert(routeLiberaMem);
+	decideAindaExec->getConnections()->insert(routeLiberaMem);
 	//
 	// ENTER Processo chega para liberar memória
 	Enter* enterStationLibera = new Enter(model);
@@ -218,13 +218,13 @@ int OperatingSystem03::main(int argc, char** argv) {
 	releaseMem->setDescription("Processo libera memória");
 	releaseMem->getReleaseRequests()->insert(new SeizableItem(memoria, "memoriaOcupada"));
 
-	enterStationLibera->getNextComponents()->insert(releaseMem);
+	enterStationLibera->getConnections()->insert(releaseMem);
 	//
 	// DISPOSE Processo é encerrado
 	Dispose* disp1 = new Dispose(model);
 	disp1->setDescription("Processo é encerrado");
 
-	releaseMem->getNextComponents()->insert(disp1);
+	releaseMem->getConnections()->insert(disp1);
 
 	//
 	// AJUSTA EXPERIMENTO (MODEL SIMULATION)

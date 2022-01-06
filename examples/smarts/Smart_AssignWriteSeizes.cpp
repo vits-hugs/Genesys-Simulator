@@ -137,21 +137,21 @@ int Smart_AssignWriteSeizes::main(int argc, char** argv) {
 	release3->getReleaseRequests()->insert(new SeizableItem(machine3));
 	Dispose* dispose1 = new Dispose(model);
 	//
-	create1->getNextComponents()->insert(assign1);
-	assign1->getNextComponents()->insert(write1);
-	write1->getNextComponents()->insert(decide1);
-	decide1->getNextComponents()->insert(seize1);
-	decide1->getNextComponents()->insert(seize2);
-	decide1->getNextComponents()->insert(seize3);
-	seize1->getNextComponents()->insert(delay1);
-	delay1->getNextComponents()->insert(release1);
-	release1->getNextComponents()->insert(dispose1);
-	seize2->getNextComponents()->insert(delay2);
-	delay2->getNextComponents()->insert(release2);
-	release2->getNextComponents()->insert(dispose1);
-	seize3->getNextComponents()->insert(delay3);
-	delay3->getNextComponents()->insert(release3);
-	release3->getNextComponents()->insert(dispose1);
+	create1->getConnections()->insert(assign1);
+	assign1->getConnections()->insert(write1);
+	write1->getConnections()->insert(decide1);
+	decide1->getConnections()->insert(seize1);
+	decide1->getConnections()->insert(seize2);
+	decide1->getConnections()->insert(seize3);
+	seize1->getConnections()->insert(delay1);
+	delay1->getConnections()->insert(release1);
+	release1->getConnections()->insert(dispose1);
+	seize2->getConnections()->insert(delay2);
+	delay2->getConnections()->insert(release2);
+	release2->getConnections()->insert(dispose1);
+	seize3->getConnections()->insert(delay3);
+	delay3->getConnections()->insert(release3);
+	release3->getConnections()->insert(dispose1);
 	//
 	model->save("./models/Smart_StatationRouteSequence.txt");
 	sim->start();

@@ -223,7 +223,7 @@ void Seize::_execute(Entity* entity) {
 			_parentModel->getTracer()->traceSimulation(_parentModel->getSimulation()->getSimulatedTime(), entity, this, entity->getName() + " seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\" (capacity:" + std::to_string(resource->getCapacity()) + ", numberbusy:" + std::to_string(resource->getNumberBusy()) + ")");
 		}
 	}
-	_parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection());
+	_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
 void Seize::_initBetweenReplications() {
