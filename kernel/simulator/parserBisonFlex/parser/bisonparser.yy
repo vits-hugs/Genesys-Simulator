@@ -44,7 +44,7 @@ class genesyspp_driver;
   // Initialize the initial location.
   //@$.begin.filename = @$.end.filename = &driver.getFile();
 };
-%define parse.trace //for debugging
+ //for debugging
 %define parse.error verbose //error level to show
 %code
 {
@@ -64,6 +64,8 @@ class genesyspp_driver;
 // logic operators
 %token <obj_t> oAND
 %token <obj_t> oOR
+%token <obj_t> oNAND
+%token <obj_t> oXOR
 %token <obj_t> oNOT
 // trigonometric functions
 %token <obj_t> fSIN
@@ -168,6 +170,7 @@ class genesyspp_driver;
 %type <obj_t> input
 %type <obj_t> expression
 %type <obj_t> aritmetica
+%type <obj_t> logica
 %type <obj_t> relacional
 %type <obj_t> comando
 %type <obj_t> comandoIF
@@ -219,6 +222,7 @@ expression:
     | comando                          {$$.valor = $1.valor;}
     | atribuicao                       {$$.valor = $1.valor;}
 	| aritmetica                       {$$.valor = $1.valor;}
+    | logica                           {$$.valor = $1.valor;}
     | relacional                       {$$.valor = $1.valor;}
     | "(" expression ")"               {$$.valor = $2.valor;}
     | atributo                         {$$.valor = $1.valor;}
@@ -246,10 +250,16 @@ aritmetica:
     | MINUS expression %prec NEG     { $$.valor = -$2.valor;}
     ;
 
+logica:
+      expression oAND expression    { $$.valor = (int) $1.valor && (int) $3.valor;}
+    | expression oOR  expression    { $$.valor = (int) $1.valor || (int) $3.valor;}
+    | expression oNAND expression   { $$.valor = ~((int) $1.valor && (int) $3.valor);}
+    | expression oXOR  expression   { $$.valor = (~(int) $1.valor && (int) $3.valor) || ((int) $1.valor && ~(int) $3.valor);}
+    | oNOT expression               { $$.valor = ~(int) $2.valor;}
+	;
+
 relacional:
-      expression oAND expression         { $$.valor = (int) $1.valor && (int) $3.valor;}
-    | expression oOR  expression         { $$.valor = (int) $1.valor || (int) $3.valor;}
-    | expression LESS  expression        { $$.valor = $1.valor < $3.valor ? 1 : 0;}
+      expression LESS  expression        { $$.valor = $1.valor < $3.valor ? 1 : 0;}
     | expression GREATER expression      { $$.valor = $1.valor > $3.valor ? 1 : 0;}
     | expression oLE  expression         { $$.valor = $1.valor <= $3.valor ? 1 : 0;}
     | expression oGE  expression         { $$.valor = $1.valor >= $3.valor ? 1 : 0;}
@@ -263,8 +273,8 @@ comando:
     ;
 
 comandoIF:
-      cIF "(" expression ")" expression cELSE expression   { $$.valor = $3.valor != 0 ? $5.valor : $7.valor; }
-    | cIF "(" expression ")" expression                   { $$.valor = $3.valor != 0 ? $5.valor : 0;}
+      cIF expression expression cELSE expression   { $$.valor = $2.valor != 0 ? $3.valor : $5.valor; }
+    | cIF expression expression                   { $$.valor = $2.valor != 0 ? $3.valor : 0;}
     ;
 
 // \todo: check for function/need, for now will let cout (these should be commands for program, not expression
@@ -319,7 +329,7 @@ probFunction:
     | fERLA  "(" expression "," expression ")"  { $$.valor = driver.sampler()->sampleErlang($3.valor,$5.valor);}
     | fTRIA  "(" expression "," expression "," expression ")"   { $$.valor = driver.sampler()->sampleTriangular($3.valor,$5.valor,$7.valor);}
     | fBETA  "(" expression "," expression "," expression "," expression ")"  { $$.valor = driver.sampler()->sampleBeta($3.valor,$5.valor,$7.valor,$9.valor);}
-    | fDISC  "(" listaparm ")"
+    | fDISC  "(" listaparm ")"                  { $$.valor = driver.sampler()->sampleDiscrete(0,0); /*@TODO: NOT IMPLEMENTED YET*/ }
     ;
 
 
@@ -330,8 +340,8 @@ userFunction:
 
 //Probably returns parameters for something, check if continues on the parser, for now does nothing
 listaparm: 
-      listaparm "," expression "," expression
-    | expression "," expression
+      listaparm "," expression "," expression    {/*@TODO: NOT IMPLEMENTED YET*/}
+    | expression "," expression                  {/*@TODO: NOT IMPLEMENTED YET*/}
     ;
 
 //If illegal token, verifies if throws exception or set error message

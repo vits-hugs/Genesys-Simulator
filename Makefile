@@ -17,7 +17,7 @@ CXX           = g++
 DEFINES       = -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -g -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -Inbproject -I. -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
+INCPATH       = -Inbproject -I. -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
 QMAKE         = /usr/lib/qt5/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -53,12 +53,19 @@ OBJECTS_DIR   = build/Debug/GNU-Linux/
 ####### Files
 
 SOURCES       = applications/BaseConsoleGenesysApplication.cpp \
+		applications/gui/qt/GenesysQtGUI.cpp \
+		applications/gui/qt/dialogs/dialogabout.cpp \
+		applications/gui/qt/dialogs/dialogmodelinformation.cpp \
+		applications/gui/qt/forms/formPlugins.cpp \
+		applications/gui/qt/mainWindow/mainwindow.cpp \
+		applications/gui/qt/mapkernelandui.cpp \
 		examples/book/Book_Cap02_Example01.cpp \
 		examples/smarts/Smart_AssignWriteSeizes.cpp \
 		examples/smarts/Smart_Delay.cpp \
 		examples/smarts/Smart_Dummy.cpp \
 		examples/smarts/Smart_HoldSignal.cpp \
 		examples/smarts/Smart_ModelInfoModelSimulation.cpp \
+		examples/smarts/Smart_Parser.cpp \
 		examples/smarts/Smart_Process.cpp \
 		examples/smarts/Smart_ProcessSet.cpp \
 		examples/smarts/Smart_RouteStation.cpp \
@@ -171,14 +178,25 @@ SOURCES       = applications/BaseConsoleGenesysApplication.cpp \
 		tests/testProbabilityDistribution.cpp \
 		tools/HypothesisTesterDefaultImpl1.cpp \
 		tools/ProbabilityDistribution.cpp \
-		tools/SolverDefaultImpl1.cpp 
+		tools/SolverDefaultImpl1.cpp qrc_guiresources.cpp \
+		moc_dialogabout.cpp \
+		moc_dialogmodelinformation.cpp \
+		moc_formPlugins.cpp \
+		moc_mainwindow.cpp
 OBJECTS       = build/Debug/GNU-Linux/BaseConsoleGenesysApplication.o \
+		build/Debug/GNU-Linux/GenesysQtGUI.o \
+		build/Debug/GNU-Linux/dialogabout.o \
+		build/Debug/GNU-Linux/dialogmodelinformation.o \
+		build/Debug/GNU-Linux/formPlugins.o \
+		build/Debug/GNU-Linux/mainwindow.o \
+		build/Debug/GNU-Linux/mapkernelandui.o \
 		build/Debug/GNU-Linux/Book_Cap02_Example01.o \
 		build/Debug/GNU-Linux/Smart_AssignWriteSeizes.o \
 		build/Debug/GNU-Linux/Smart_Delay.o \
 		build/Debug/GNU-Linux/Smart_Dummy.o \
 		build/Debug/GNU-Linux/Smart_HoldSignal.o \
 		build/Debug/GNU-Linux/Smart_ModelInfoModelSimulation.o \
+		build/Debug/GNU-Linux/Smart_Parser.o \
 		build/Debug/GNU-Linux/Smart_Process.o \
 		build/Debug/GNU-Linux/Smart_ProcessSet.o \
 		build/Debug/GNU-Linux/Smart_RouteStation.o \
@@ -291,7 +309,12 @@ OBJECTS       = build/Debug/GNU-Linux/BaseConsoleGenesysApplication.o \
 		build/Debug/GNU-Linux/testProbabilityDistribution.o \
 		build/Debug/GNU-Linux/HypothesisTesterDefaultImpl1.o \
 		build/Debug/GNU-Linux/ProbabilityDistribution.o \
-		build/Debug/GNU-Linux/SolverDefaultImpl1.o
+		build/Debug/GNU-Linux/SolverDefaultImpl1.o \
+		build/Debug/GNU-Linux/qrc_guiresources.o \
+		build/Debug/GNU-Linux/moc_dialogabout.o \
+		build/Debug/GNU-Linux/moc_dialogmodelinformation.o \
+		build/Debug/GNU-Linux/moc_formPlugins.o \
+		build/Debug/GNU-Linux/moc_mainwindow.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -382,12 +405,23 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		nbproject/nbproject/qt-Debug.pro Traits.h \
 		applications/BaseConsoleGenesysApplication.h \
 		applications/GenesysApplication_if.h \
+		applications/gui/qt/GenesysQtGUI.h \
+		applications/gui/qt/dialogs/dialogabout.h \
+		applications/gui/qt/dialogs/dialogmodelinformation.h \
+		applications/gui/qt/dialogs/ui_dialogabout.h \
+		applications/gui/qt/dialogs/ui_dialogmodelinformation.h \
+		applications/gui/qt/forms/formPlugins.h \
+		applications/gui/qt/forms/ui_formPlugins.h \
+		applications/gui/qt/mainWindow/mainwindow.h \
+		applications/gui/qt/mainWindow/ui_mainwindow.h \
+		applications/gui/qt/mapkernelandui.h \
 		examples/book/Book_Cap02_Example01.h \
 		examples/smarts/Smart_AssignWriteSeizes.h \
 		examples/smarts/Smart_Delay.h \
 		examples/smarts/Smart_Dummy.h \
 		examples/smarts/Smart_HoldSignal.h \
 		examples/smarts/Smart_ModelInfoModelSimulation.h \
+		examples/smarts/Smart_Parser.h \
 		examples/smarts/Smart_Process.h \
 		examples/smarts/Smart_ProcessSet.h \
 		examples/smarts/Smart_RouteStation.h \
@@ -518,12 +552,19 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		tools/ProbabilityDistribution.h \
 		tools/SolverDefaultImpl1.h \
 		tools/solver_if.h applications/BaseConsoleGenesysApplication.cpp \
+		applications/gui/qt/GenesysQtGUI.cpp \
+		applications/gui/qt/dialogs/dialogabout.cpp \
+		applications/gui/qt/dialogs/dialogmodelinformation.cpp \
+		applications/gui/qt/forms/formPlugins.cpp \
+		applications/gui/qt/mainWindow/mainwindow.cpp \
+		applications/gui/qt/mapkernelandui.cpp \
 		examples/book/Book_Cap02_Example01.cpp \
 		examples/smarts/Smart_AssignWriteSeizes.cpp \
 		examples/smarts/Smart_Delay.cpp \
 		examples/smarts/Smart_Dummy.cpp \
 		examples/smarts/Smart_HoldSignal.cpp \
 		examples/smarts/Smart_ModelInfoModelSimulation.cpp \
+		examples/smarts/Smart_Parser.cpp \
 		examples/smarts/Smart_Process.cpp \
 		examples/smarts/Smart_ProcessSet.cpp \
 		examples/smarts/Smart_RouteStation.cpp \
@@ -645,7 +686,7 @@ TARGET        = dist/Debug/GNU-Linux/2019_2022_GenESyS
 first: all
 ####### Build rules
 
-dist/Debug/GNU-Linux/2019_2022_GenESyS:  $(OBJECTS)  
+dist/Debug/GNU-Linux/2019_2022_GenESyS: ui_dialogabout.h ui_dialogmodelinformation.h ui_formPlugins.h ui_mainwindow.h $(OBJECTS)  
 	@test -d dist/Debug/GNU-Linux/ || mkdir -p dist/Debug/GNU-Linux/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -736,7 +777,8 @@ Makefile: nbproject/qt-Debug.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
-		nbproject/qt-Debug.pro
+		nbproject/qt-Debug.pro \
+		applications/gui/qt/guiresources.qrc
 	$(QMAKE) -o Makefile nbproject/qt-Debug.pro
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf:
@@ -826,6 +868,7 @@ Makefile: nbproject/qt-Debug.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf:
 nbproject/qt-Debug.pro:
+applications/gui/qt/guiresources.qrc:
 qmake: FORCE
 	@$(QMAKE) -o Makefile nbproject/qt-Debug.pro
 
@@ -840,9 +883,11 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
+	$(COPY_FILE) --parents applications/gui/qt/guiresources.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents Traits.h applications/BaseConsoleGenesysApplication.h applications/GenesysApplication_if.h examples/book/Book_Cap02_Example01.h examples/smarts/Smart_AssignWriteSeizes.h examples/smarts/Smart_Delay.h examples/smarts/Smart_Dummy.h examples/smarts/Smart_HoldSignal.h examples/smarts/Smart_ModelInfoModelSimulation.h examples/smarts/Smart_Process.h examples/smarts/Smart_ProcessSet.h examples/smarts/Smart_RouteStation.h examples/smarts/Smart_SeizeDelayRelease.h examples/smarts/Smart_SeizeDelayReleaseMany.h examples/smarts/Smart_Sequence.h examples/teaching/AnElectronicAssemblyAndTestSystem.h examples/teaching/FullSimulationOfComplexModel.h examples/teaching/OperatingSystem02.h examples/teaching/OperatingSystem03.h kernel/TraitsKernel.h kernel/simulator/Attribute.h kernel/simulator/ComponentManager.h kernel/simulator/ConnectionManager.h kernel/simulator/Counter.h kernel/simulator/DefineGetterSetter.h kernel/simulator/ElementManager.h kernel/simulator/ElementManager_if.h kernel/simulator/Entity.h kernel/simulator/EntityType.h kernel/simulator/Event.h kernel/simulator/ExperimentManager.h kernel/simulator/ExperimentManagerDefaultImpl1.h kernel/simulator/ExperimetManager_if.h kernel/simulator/LicenceManager.h kernel/simulator/Model.h kernel/simulator/ModelCheckerDefaultImpl1.h kernel/simulator/ModelChecker_if.h kernel/simulator/ModelComponent.h kernel/simulator/ModelElement.h kernel/simulator/ModelInfo.h kernel/simulator/ModelManager.h kernel/simulator/ModelPersistenceDefaultImpl1.h kernel/simulator/ModelPersistence_if.h kernel/simulator/ModelSimulation.h kernel/simulator/OnEventManager.h kernel/simulator/ParserChangesInformation.h kernel/simulator/ParserDefaultImpl1.h kernel/simulator/ParserDefaultImpl2.h kernel/simulator/ParserManager.h kernel/simulator/Parser_if.h kernel/simulator/PersistentObject_base.h kernel/simulator/Plugin.h kernel/simulator/PluginConnectorDummyImpl1.h kernel/simulator/PluginConnector_if.h kernel/simulator/PluginInformation.h kernel/simulator/PluginManager.h kernel/simulator/ScenarioExperiment_if.h kernel/simulator/SimulationControl.h kernel/simulator/SimulationExperiment.h kernel/simulator/SimulationReporterDefaultImpl1.h kernel/simulator/SimulationReporter_if.h kernel/simulator/SimulationResponse.h kernel/simulator/SimulationScenario.h kernel/simulator/Simulator.h kernel/simulator/SinkModelComponent.h kernel/simulator/SourceModelComponent.h kernel/simulator/StatisticsCollector.h kernel/simulator/TraceManager.h kernel/simulator/parserBisonFlex/Genesys++-driver.h kernel/simulator/parserBisonFlex/GenesysParser.h kernel/simulator/parserBisonFlex/obj_t.h kernel/statistics/CollectorDatafileDefaultImpl1.h kernel/statistics/CollectorDatafile_if.h kernel/statistics/CollectorDefaultImpl1.h kernel/statistics/Collector_if.h kernel/statistics/SamplerDefaultImpl1.h kernel/statistics/Sampler_if.h kernel/statistics/SorttFile.h kernel/statistics/StatisticsDataFileDefaultImpl.h kernel/statistics/StatisticsDataFile_if.h kernel/statistics/StatisticsDefaultImpl1.h kernel/statistics/Statistics_if.h kernel/util/Exact.h kernel/util/List.h kernel/util/Util.h plugins/components/Access.h plugins/components/Assign.h plugins/components/Batch.h plugins/components/CellularAutomata.h plugins/components/Create.h plugins/components/Decide.h plugins/components/Delay.h plugins/components/Dispose.h plugins/components/DropOff.h plugins/components/Dummy.h plugins/components/Enter.h plugins/components/Exit.h plugins/components/Hold.h plugins/components/LSODE.h plugins/components/Leave.h plugins/components/MarkovChain.h plugins/components/Match.h plugins/components/OLD_ODEelement.h plugins/components/PickStation.h plugins/components/PickUp.h plugins/components/Process.h plugins/components/QueueableItem.h plugins/components/Record.h plugins/components/Release.h plugins/components/Remove.h plugins/components/Route.h plugins/components/Search.h plugins/components/SeizableItem.h plugins/components/Seize.h plugins/components/Separate.h plugins/components/Signal.h plugins/components/Start.h plugins/components/Stop.h plugins/components/Store.h plugins/components/Submodel.h plugins/components/Unstore.h plugins/components/Write.h plugins/elements/EntityGroup.h plugins/elements/Failure.h plugins/elements/File.h plugins/elements/Formula.h plugins/elements/Queue.h plugins/elements/Resource.h plugins/elements/Schedule.h plugins/elements/Sequence.h plugins/elements/Set.h plugins/elements/Station.h plugins/elements/Storage.h plugins/elements/Variable.h tools/HypothesisTesterDefaultImpl1.h tools/HypothesisTester_if.h tools/ProbabilityDistribution.h tools/SolverDefaultImpl1.h tools/solver_if.h $(DISTDIR)/
-	$(COPY_FILE) --parents applications/BaseConsoleGenesysApplication.cpp examples/book/Book_Cap02_Example01.cpp examples/smarts/Smart_AssignWriteSeizes.cpp examples/smarts/Smart_Delay.cpp examples/smarts/Smart_Dummy.cpp examples/smarts/Smart_HoldSignal.cpp examples/smarts/Smart_ModelInfoModelSimulation.cpp examples/smarts/Smart_Process.cpp examples/smarts/Smart_ProcessSet.cpp examples/smarts/Smart_RouteStation.cpp examples/smarts/Smart_SeizeDelayRelease.cpp examples/smarts/Smart_SeizeDelayReleaseMany.cpp examples/smarts/Smart_Sequence.cpp examples/teaching/AnElectronicAssemblyAndTestSystem.cpp examples/teaching/FullSimulationOfComplexModel.cpp examples/teaching/OperatingSystem02.cpp examples/teaching/OperatingSystem03.cpp kernel/simulator/Attribute.cpp kernel/simulator/ComponentManager.cpp kernel/simulator/ConnectionManager.cpp kernel/simulator/Counter.cpp kernel/simulator/ElementManager.cpp kernel/simulator/Entity.cpp kernel/simulator/EntityType.cpp kernel/simulator/Event.cpp kernel/simulator/ExperimentManager.cpp kernel/simulator/ExperimentManagerDefaultImpl1.cpp kernel/simulator/LicenceManager.cpp kernel/simulator/Model.cpp kernel/simulator/ModelCheckerDefaultImpl1.cpp kernel/simulator/ModelComponent.cpp kernel/simulator/ModelElement.cpp kernel/simulator/ModelInfo.cpp kernel/simulator/ModelManager.cpp kernel/simulator/ModelPersistenceDefaultImpl1.cpp kernel/simulator/ModelSimulation.cpp kernel/simulator/OnEventManager.cpp kernel/simulator/ParserChangesInformation.cpp kernel/simulator/ParserDefaultImpl1.cpp kernel/simulator/ParserDefaultImpl2.cpp kernel/simulator/ParserManager.cpp kernel/simulator/Plugin.cpp kernel/simulator/PluginConnectorDummyImpl1.cpp kernel/simulator/PluginInformation.cpp kernel/simulator/PluginManager.cpp kernel/simulator/SimulationControl.cpp kernel/simulator/SimulationExperiment.cpp kernel/simulator/SimulationReporterDefaultImpl1.cpp kernel/simulator/SimulationResponse.cpp kernel/simulator/SimulationScenario.cpp kernel/simulator/Simulator.cpp kernel/simulator/SinkModelComponent.cpp kernel/simulator/SourceModelComponent.cpp kernel/simulator/StatisticsCollector.cpp kernel/simulator/TraceManager.cpp kernel/simulator/parserBisonFlex/Genesys++-driver.cpp kernel/simulator/parserBisonFlex/Genesys++-scanner.cpp kernel/simulator/parserBisonFlex/GenesysParser.cpp kernel/simulator/parserBisonFlex/obj_t.cpp kernel/statistics/CollectorDatafileDefaultImpl1.cpp kernel/statistics/CollectorDefaultImpl1.cpp kernel/statistics/SamplerDefaultImpl1.cpp kernel/statistics/SorttFile.cpp kernel/statistics/StatisticsDataFileDefaultImpl.cpp kernel/statistics/StatisticsDefaultImpl1.cpp kernel/util/Util.cpp main.cpp plugins/components/Access.cpp plugins/components/Assign.cpp plugins/components/Batch.cpp plugins/components/CellularAutomata.cpp plugins/components/Create.cpp plugins/components/Decide.cpp plugins/components/Delay.cpp plugins/components/Dispose.cpp plugins/components/DropOff.cpp plugins/components/Dummy.cpp plugins/components/Enter.cpp plugins/components/Exit.cpp plugins/components/Hold.cpp plugins/components/LSODE.cpp plugins/components/Leave.cpp plugins/components/MarkovChain.cpp plugins/components/Match.cpp plugins/components/OLD_ODEelement.cpp plugins/components/PickStation.cpp plugins/components/PickUp.cpp plugins/components/Process.cpp plugins/components/QueueableItem.cpp plugins/components/Record.cpp plugins/components/Release.cpp plugins/components/Remove.cpp plugins/components/Route.cpp plugins/components/Search.cpp plugins/components/SeizableItem.cpp plugins/components/Seize.cpp plugins/components/Separate.cpp plugins/components/Signal.cpp plugins/components/Start.cpp plugins/components/Stop.cpp plugins/components/Store.cpp plugins/components/Submodel.cpp plugins/components/Unstore.cpp plugins/components/Write.cpp plugins/elements/EntityGroup.cpp plugins/elements/Failure.cpp plugins/elements/File.cpp plugins/elements/Formula.cpp plugins/elements/Queue.cpp plugins/elements/Resource.cpp plugins/elements/Schedule.cpp plugins/elements/Sequence.cpp plugins/elements/Set.cpp plugins/elements/Station.cpp plugins/elements/Storage.cpp plugins/elements/Variable.cpp tests/testProbabilityDistribution.cpp tools/HypothesisTesterDefaultImpl1.cpp tools/ProbabilityDistribution.cpp tools/SolverDefaultImpl1.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents Traits.h applications/BaseConsoleGenesysApplication.h applications/GenesysApplication_if.h applications/gui/qt/GenesysQtGUI.h applications/gui/qt/dialogs/dialogabout.h applications/gui/qt/dialogs/dialogmodelinformation.h applications/gui/qt/dialogs/ui_dialogabout.h applications/gui/qt/dialogs/ui_dialogmodelinformation.h applications/gui/qt/forms/formPlugins.h applications/gui/qt/forms/ui_formPlugins.h applications/gui/qt/mainWindow/mainwindow.h applications/gui/qt/mainWindow/ui_mainwindow.h applications/gui/qt/mapkernelandui.h examples/book/Book_Cap02_Example01.h examples/smarts/Smart_AssignWriteSeizes.h examples/smarts/Smart_Delay.h examples/smarts/Smart_Dummy.h examples/smarts/Smart_HoldSignal.h examples/smarts/Smart_ModelInfoModelSimulation.h examples/smarts/Smart_Parser.h examples/smarts/Smart_Process.h examples/smarts/Smart_ProcessSet.h examples/smarts/Smart_RouteStation.h examples/smarts/Smart_SeizeDelayRelease.h examples/smarts/Smart_SeizeDelayReleaseMany.h examples/smarts/Smart_Sequence.h examples/teaching/AnElectronicAssemblyAndTestSystem.h examples/teaching/FullSimulationOfComplexModel.h examples/teaching/OperatingSystem02.h examples/teaching/OperatingSystem03.h kernel/TraitsKernel.h kernel/simulator/Attribute.h kernel/simulator/ComponentManager.h kernel/simulator/ConnectionManager.h kernel/simulator/Counter.h kernel/simulator/DefineGetterSetter.h kernel/simulator/ElementManager.h kernel/simulator/ElementManager_if.h kernel/simulator/Entity.h kernel/simulator/EntityType.h kernel/simulator/Event.h kernel/simulator/ExperimentManager.h kernel/simulator/ExperimentManagerDefaultImpl1.h kernel/simulator/ExperimetManager_if.h kernel/simulator/LicenceManager.h kernel/simulator/Model.h kernel/simulator/ModelCheckerDefaultImpl1.h kernel/simulator/ModelChecker_if.h kernel/simulator/ModelComponent.h kernel/simulator/ModelElement.h kernel/simulator/ModelInfo.h kernel/simulator/ModelManager.h kernel/simulator/ModelPersistenceDefaultImpl1.h kernel/simulator/ModelPersistence_if.h kernel/simulator/ModelSimulation.h kernel/simulator/OnEventManager.h kernel/simulator/ParserChangesInformation.h kernel/simulator/ParserDefaultImpl1.h kernel/simulator/ParserDefaultImpl2.h kernel/simulator/ParserManager.h kernel/simulator/Parser_if.h kernel/simulator/PersistentObject_base.h kernel/simulator/Plugin.h kernel/simulator/PluginConnectorDummyImpl1.h kernel/simulator/PluginConnector_if.h kernel/simulator/PluginInformation.h kernel/simulator/PluginManager.h kernel/simulator/ScenarioExperiment_if.h kernel/simulator/SimulationControl.h kernel/simulator/SimulationExperiment.h kernel/simulator/SimulationReporterDefaultImpl1.h kernel/simulator/SimulationReporter_if.h kernel/simulator/SimulationResponse.h kernel/simulator/SimulationScenario.h kernel/simulator/Simulator.h kernel/simulator/SinkModelComponent.h kernel/simulator/SourceModelComponent.h kernel/simulator/StatisticsCollector.h kernel/simulator/TraceManager.h kernel/simulator/parserBisonFlex/Genesys++-driver.h kernel/simulator/parserBisonFlex/GenesysParser.h kernel/simulator/parserBisonFlex/obj_t.h kernel/statistics/CollectorDatafileDefaultImpl1.h kernel/statistics/CollectorDatafile_if.h kernel/statistics/CollectorDefaultImpl1.h kernel/statistics/Collector_if.h kernel/statistics/SamplerDefaultImpl1.h kernel/statistics/Sampler_if.h kernel/statistics/SorttFile.h kernel/statistics/StatisticsDataFileDefaultImpl.h kernel/statistics/StatisticsDataFile_if.h kernel/statistics/StatisticsDefaultImpl1.h kernel/statistics/Statistics_if.h kernel/util/Exact.h kernel/util/List.h kernel/util/Util.h plugins/components/Access.h plugins/components/Assign.h plugins/components/Batch.h plugins/components/CellularAutomata.h plugins/components/Create.h plugins/components/Decide.h plugins/components/Delay.h plugins/components/Dispose.h plugins/components/DropOff.h plugins/components/Dummy.h plugins/components/Enter.h plugins/components/Exit.h plugins/components/Hold.h plugins/components/LSODE.h plugins/components/Leave.h plugins/components/MarkovChain.h plugins/components/Match.h plugins/components/OLD_ODEelement.h plugins/components/PickStation.h plugins/components/PickUp.h plugins/components/Process.h plugins/components/QueueableItem.h plugins/components/Record.h plugins/components/Release.h plugins/components/Remove.h plugins/components/Route.h plugins/components/Search.h plugins/components/SeizableItem.h plugins/components/Seize.h plugins/components/Separate.h plugins/components/Signal.h plugins/components/Start.h plugins/components/Stop.h plugins/components/Store.h plugins/components/Submodel.h plugins/components/Unstore.h plugins/components/Write.h plugins/elements/EntityGroup.h plugins/elements/Failure.h plugins/elements/File.h plugins/elements/Formula.h plugins/elements/Queue.h plugins/elements/Resource.h plugins/elements/Schedule.h plugins/elements/Sequence.h plugins/elements/Set.h plugins/elements/Station.h plugins/elements/Storage.h plugins/elements/Variable.h tools/HypothesisTesterDefaultImpl1.h tools/HypothesisTester_if.h tools/ProbabilityDistribution.h tools/SolverDefaultImpl1.h tools/solver_if.h $(DISTDIR)/
+	$(COPY_FILE) --parents applications/BaseConsoleGenesysApplication.cpp applications/gui/qt/GenesysQtGUI.cpp applications/gui/qt/dialogs/dialogabout.cpp applications/gui/qt/dialogs/dialogmodelinformation.cpp applications/gui/qt/forms/formPlugins.cpp applications/gui/qt/mainWindow/mainwindow.cpp applications/gui/qt/mapkernelandui.cpp examples/book/Book_Cap02_Example01.cpp examples/smarts/Smart_AssignWriteSeizes.cpp examples/smarts/Smart_Delay.cpp examples/smarts/Smart_Dummy.cpp examples/smarts/Smart_HoldSignal.cpp examples/smarts/Smart_ModelInfoModelSimulation.cpp examples/smarts/Smart_Parser.cpp examples/smarts/Smart_Process.cpp examples/smarts/Smart_ProcessSet.cpp examples/smarts/Smart_RouteStation.cpp examples/smarts/Smart_SeizeDelayRelease.cpp examples/smarts/Smart_SeizeDelayReleaseMany.cpp examples/smarts/Smart_Sequence.cpp examples/teaching/AnElectronicAssemblyAndTestSystem.cpp examples/teaching/FullSimulationOfComplexModel.cpp examples/teaching/OperatingSystem02.cpp examples/teaching/OperatingSystem03.cpp kernel/simulator/Attribute.cpp kernel/simulator/ComponentManager.cpp kernel/simulator/ConnectionManager.cpp kernel/simulator/Counter.cpp kernel/simulator/ElementManager.cpp kernel/simulator/Entity.cpp kernel/simulator/EntityType.cpp kernel/simulator/Event.cpp kernel/simulator/ExperimentManager.cpp kernel/simulator/ExperimentManagerDefaultImpl1.cpp kernel/simulator/LicenceManager.cpp kernel/simulator/Model.cpp kernel/simulator/ModelCheckerDefaultImpl1.cpp kernel/simulator/ModelComponent.cpp kernel/simulator/ModelElement.cpp kernel/simulator/ModelInfo.cpp kernel/simulator/ModelManager.cpp kernel/simulator/ModelPersistenceDefaultImpl1.cpp kernel/simulator/ModelSimulation.cpp kernel/simulator/OnEventManager.cpp kernel/simulator/ParserChangesInformation.cpp kernel/simulator/ParserDefaultImpl1.cpp kernel/simulator/ParserDefaultImpl2.cpp kernel/simulator/ParserManager.cpp kernel/simulator/Plugin.cpp kernel/simulator/PluginConnectorDummyImpl1.cpp kernel/simulator/PluginInformation.cpp kernel/simulator/PluginManager.cpp kernel/simulator/SimulationControl.cpp kernel/simulator/SimulationExperiment.cpp kernel/simulator/SimulationReporterDefaultImpl1.cpp kernel/simulator/SimulationResponse.cpp kernel/simulator/SimulationScenario.cpp kernel/simulator/Simulator.cpp kernel/simulator/SinkModelComponent.cpp kernel/simulator/SourceModelComponent.cpp kernel/simulator/StatisticsCollector.cpp kernel/simulator/TraceManager.cpp kernel/simulator/parserBisonFlex/Genesys++-driver.cpp kernel/simulator/parserBisonFlex/Genesys++-scanner.cpp kernel/simulator/parserBisonFlex/GenesysParser.cpp kernel/simulator/parserBisonFlex/obj_t.cpp kernel/statistics/CollectorDatafileDefaultImpl1.cpp kernel/statistics/CollectorDefaultImpl1.cpp kernel/statistics/SamplerDefaultImpl1.cpp kernel/statistics/SorttFile.cpp kernel/statistics/StatisticsDataFileDefaultImpl.cpp kernel/statistics/StatisticsDefaultImpl1.cpp kernel/util/Util.cpp main.cpp plugins/components/Access.cpp plugins/components/Assign.cpp plugins/components/Batch.cpp plugins/components/CellularAutomata.cpp plugins/components/Create.cpp plugins/components/Decide.cpp plugins/components/Delay.cpp plugins/components/Dispose.cpp plugins/components/DropOff.cpp plugins/components/Dummy.cpp plugins/components/Enter.cpp plugins/components/Exit.cpp plugins/components/Hold.cpp plugins/components/LSODE.cpp plugins/components/Leave.cpp plugins/components/MarkovChain.cpp plugins/components/Match.cpp plugins/components/OLD_ODEelement.cpp plugins/components/PickStation.cpp plugins/components/PickUp.cpp plugins/components/Process.cpp plugins/components/QueueableItem.cpp plugins/components/Record.cpp plugins/components/Release.cpp plugins/components/Remove.cpp plugins/components/Route.cpp plugins/components/Search.cpp plugins/components/SeizableItem.cpp plugins/components/Seize.cpp plugins/components/Separate.cpp plugins/components/Signal.cpp plugins/components/Start.cpp plugins/components/Stop.cpp plugins/components/Store.cpp plugins/components/Submodel.cpp plugins/components/Unstore.cpp plugins/components/Write.cpp plugins/elements/EntityGroup.cpp plugins/elements/Failure.cpp plugins/elements/File.cpp plugins/elements/Formula.cpp plugins/elements/Queue.cpp plugins/elements/Resource.cpp plugins/elements/Schedule.cpp plugins/elements/Sequence.cpp plugins/elements/Set.cpp plugins/elements/Station.cpp plugins/elements/Storage.cpp plugins/elements/Variable.cpp tests/testProbabilityDistribution.cpp tools/HypothesisTesterDefaultImpl1.cpp tools/ProbabilityDistribution.cpp tools/SolverDefaultImpl1.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents applications/gui/qt/dialogs/dialogabout.ui applications/gui/qt/dialogs/dialogmodelinformation.ui applications/gui/qt/forms/formPlugins.ui applications/gui/qt/mainWindow/mainwindow.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -866,29 +911,434 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_guiresources.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) qrc_guiresources.cpp
+qrc_guiresources.cpp: applications/gui/qt/guiresources.qrc \
+		/usr/lib/qt5/bin/rcc \
+		applications/gui/qt/resources/software_genesys.gif \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Anchor.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Erase.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Yes.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Liner.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/New.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Info.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Tune.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Turn\ off.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Bee.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Euro.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Dollar.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Script.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Hourglass.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Left-right.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Play.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Bookmark.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Blue\ tag.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Danger.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Yellow\ bookmark.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Up-down.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Undo.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Heart.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Red\ mark.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Upload.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Refresh.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/People.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Copy.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Lightning.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Radiation.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Retort.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Filter.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Alarm\ clock.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Component.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Earth.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Redo.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Help\ book.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Percent.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Smile.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Calculator.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Print.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Blue\ bookmark.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Raise.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Home.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Alarm.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/About.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Download.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Good\ mark.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Update.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Alien.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Repair.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Back.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/OK.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Folder.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Exit.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Calendar.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Go.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Pause.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/CD.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Downloads\ folder.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Black\ bookmark.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Female\ symbol.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Trash.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Modify.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Blue\ pin.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Male\ symbol.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/E-mail.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Green\ bookmark.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Next.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Notes.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Paste.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Volume.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Silence.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Text.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Taxi.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Error.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/3d\ bar\ chart.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Go\ forward.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Car\ key.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Cut.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Go\ back.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Move.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Save.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Search.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Alert.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Text\ preview.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Warning.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Add.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Up.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Apply.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Table.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Trackback.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Hint.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Delete.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Person.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Linux.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Bottom.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Red\ tag.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Mail.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Bad\ mark.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Gift.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Display.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Globe.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/List.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Report.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Compass.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Green\ tag.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Wallet.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Close.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Down.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Terminate.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Play-music.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/LoadInv.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Sum.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/How-to.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Address\ book.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Letter.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Previous\ record.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Stopwatch.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Delivery.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Door.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Picture.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Wrench.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Favourites.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Male.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/No.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Phone\ number.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Forward.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Sound.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Boss.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Shield.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Black\ tag.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Last\ recor.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Find.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Pinion.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Hard\ disk.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Pie\ chart.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Flash\ drive.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Red\ pin.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Fast-forward.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Mobile-phone.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Fall.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Eye.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Coin.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/In-yang.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Mute.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Shopping\ cart.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/User\ group.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Green\ pin.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Yellow\ tag.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Clock.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Create.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/No-entry.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Toolbox.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Help\ book\ 3d.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/First\ record.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Help.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Load.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Next\ track.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Last.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Stop.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Schedule.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Sync.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Computer.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Music.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Record.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Top.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Black\ pin.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Phone.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Bomb.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Key.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Abort.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/History.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Network\ connection.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Thumbs\ down.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Unlock.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Disaster.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Sad.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Dial.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Expand.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Red\ bookmark.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Movie.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Remove.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Previous.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Film.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Problem.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Accounting.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Message.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Bubble.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Playback.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Target.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Clipboard.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Yellow\ pin.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/First.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Company.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Low\ rating.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/View.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Magic\ wand.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Red\ star.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Eject.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Comment.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Application.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Free\ bsd.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Iphone.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Medium\ rating.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Thumbs\ up.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Blog.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Brush.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Female.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Twitter.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Stop\ sign.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Lock.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Stock\ graph.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Blue\ key.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Question.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Zoom.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Buy.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Diagram.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Hungup.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Forbidden.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Flag.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/New\ document.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Briefcase.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Rewind.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Database.png \
+		applications/gui/qt/resources/icons/pack3/png/24x24/Equipment.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/8.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/76.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/38.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/82.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/44.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/50.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/12.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/59.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/65.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/27.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/3.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/71.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/33.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/86.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/48.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/92.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/54.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/16.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/60.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/22.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/69.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/7.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/75.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/37.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/81.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/43.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/96.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/11.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/58.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/64.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/26.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/2.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/70.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/32.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/79.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/85.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/47.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/91.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/53.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/15.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/21.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/68.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/6.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/74.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/36.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/42a.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/80.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/42.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/89.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/95.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/57.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/10.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/19.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/63.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/25.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/1.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/31.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/78.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/84.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/46.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/90.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/52.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/14.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/20.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/67.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/29.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/5.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/73.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/35.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/41.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/88.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/94.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/56.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/18.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/62.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/30.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/9.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/77.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/39.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/83.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/45.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/51.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/13.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/66.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/28.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/4.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/72.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/34.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/40.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/87.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/49.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/93.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/55.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/17.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/61.png \
+		applications/gui/qt/resources/icons/pack2/png/24x24/23.png
+	/usr/lib/qt5/bin/rcc -name guiresources applications/gui/qt/guiresources.qrc -o qrc_guiresources.cpp
+
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -Wall -Wextra -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all:
+compiler_moc_header_make_all: moc_dialogabout.cpp moc_dialogmodelinformation.cpp moc_formPlugins.cpp moc_mainwindow.cpp
 compiler_moc_header_clean:
+	-$(DEL_FILE) moc_dialogabout.cpp moc_dialogmodelinformation.cpp moc_formPlugins.cpp moc_mainwindow.cpp
+moc_dialogabout.cpp: applications/gui/qt/dialogs/dialogabout.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/nbproject -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include applications/gui/qt/dialogs/dialogabout.h -o moc_dialogabout.cpp
+
+moc_dialogmodelinformation.cpp: applications/gui/qt/dialogs/dialogmodelinformation.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/nbproject -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include applications/gui/qt/dialogs/dialogmodelinformation.h -o moc_dialogmodelinformation.cpp
+
+moc_formPlugins.cpp: applications/gui/qt/forms/formPlugins.h \
+		applications/gui/qt/forms/ui_formPlugins.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/nbproject -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include applications/gui/qt/forms/formPlugins.h -o moc_formPlugins.cpp
+
+moc_mainwindow.cpp: applications/gui/qt/mainWindow/mainwindow.h \
+		applications/gui/qt/mapkernelandui.h \
+		kernel/simulator/Model.h \
+		kernel/util/List.h \
+		kernel/util/Util.h \
+		kernel/simulator/ModelElement.h \
+		kernel/simulator/ParserChangesInformation.h \
+		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/Plugin.h \
+		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Entity.h \
+		kernel/simulator/EntityType.h \
+		kernel/simulator/StatisticsCollector.h \
+		kernel/statistics/Statistics_if.h \
+		kernel/statistics/Collector_if.h \
+		kernel/simulator/ElementManager.h \
+		kernel/simulator/ConnectionManager.h \
+		kernel/simulator/Event.h \
+		kernel/simulator/ModelChecker_if.h \
+		kernel/simulator/Parser_if.h \
+		kernel/statistics/Sampler_if.h \
+		kernel/simulator/ModelPersistence_if.h \
+		kernel/simulator/ComponentManager.h \
+		kernel/simulator/TraceManager.h \
+		kernel/simulator/OnEventManager.h \
+		kernel/simulator/ModelInfo.h \
+		kernel/simulator/ModelSimulation.h \
+		kernel/simulator/SimulationReporter_if.h \
+		kernel/simulator/SimulationResponse.h \
+		kernel/simulator/DefineGetterSetter.h \
+		kernel/simulator/SimulationControl.h \
+		kernel/simulator/Simulator.h \
+		kernel/simulator/LicenceManager.h \
+		kernel/simulator/PluginManager.h \
+		kernel/simulator/PluginConnector_if.h \
+		kernel/simulator/ModelManager.h \
+		kernel/simulator/ParserManager.h \
+		kernel/simulator/ExperimentManager.h \
+		kernel/simulator/SimulationExperiment.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/nbproject -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include applications/gui/qt/mainWindow/mainwindow.h -o moc_mainwindow.cpp
+
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all:
+compiler_uic_make_all: ui_dialogabout.h ui_dialogmodelinformation.h ui_formPlugins.h ui_mainwindow.h
 compiler_uic_clean:
+	-$(DEL_FILE) ui_dialogabout.h ui_dialogmodelinformation.h ui_formPlugins.h ui_mainwindow.h
+ui_dialogabout.h: applications/gui/qt/dialogs/dialogabout.ui \
+		/usr/lib/qt5/bin/uic
+	/usr/lib/qt5/bin/uic applications/gui/qt/dialogs/dialogabout.ui -o ui_dialogabout.h
+
+ui_dialogmodelinformation.h: applications/gui/qt/dialogs/dialogmodelinformation.ui \
+		/usr/lib/qt5/bin/uic
+	/usr/lib/qt5/bin/uic applications/gui/qt/dialogs/dialogmodelinformation.ui -o ui_dialogmodelinformation.h
+
+ui_formPlugins.h: applications/gui/qt/forms/formPlugins.ui \
+		/usr/lib/qt5/bin/uic
+	/usr/lib/qt5/bin/uic applications/gui/qt/forms/formPlugins.ui -o ui_formPlugins.h
+
+ui_mainwindow.h: applications/gui/qt/mainWindow/mainwindow.ui \
+		/usr/lib/qt5/bin/uic
+	/usr/lib/qt5/bin/uic applications/gui/qt/mainWindow/mainwindow.ui -o ui_mainwindow.h
+
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
 compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
 
@@ -934,52 +1384,19 @@ build/Debug/GNU-Linux/BaseConsoleGenesysApplication.o: applications/BaseConsoleG
 		kernel/simulator/SimulationExperiment.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/BaseConsoleGenesysApplication.o applications/BaseConsoleGenesysApplication.cpp
 
-build/Debug/GNU-Linux/Book_Cap02_Example01.o: examples/book/Book_Cap02_Example01.cpp examples/book/Book_Cap02_Example01.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Book_Cap02_Example01.o examples/book/Book_Cap02_Example01.cpp
-
-build/Debug/GNU-Linux/Smart_AssignWriteSeizes.o: examples/smarts/Smart_AssignWriteSeizes.cpp examples/smarts/Smart_AssignWriteSeizes.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Smart_AssignWriteSeizes.o examples/smarts/Smart_AssignWriteSeizes.cpp
-
-build/Debug/GNU-Linux/Smart_Delay.o: examples/smarts/Smart_Delay.cpp examples/smarts/Smart_Delay.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Smart_Delay.o examples/smarts/Smart_Delay.cpp
-
-build/Debug/GNU-Linux/Smart_Dummy.o: examples/smarts/Smart_Dummy.cpp examples/smarts/Smart_Dummy.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Smart_Dummy.o examples/smarts/Smart_Dummy.cpp
-
-build/Debug/GNU-Linux/Smart_HoldSignal.o: examples/smarts/Smart_HoldSignal.cpp examples/smarts/Smart_HoldSignal.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Smart_HoldSignal.o examples/smarts/Smart_HoldSignal.cpp
-
-build/Debug/GNU-Linux/Smart_ModelInfoModelSimulation.o: examples/smarts/Smart_ModelInfoModelSimulation.cpp examples/smarts/Smart_ModelInfoModelSimulation.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Smart_ModelInfoModelSimulation.o examples/smarts/Smart_ModelInfoModelSimulation.cpp
-
-build/Debug/GNU-Linux/Smart_Process.o: examples/smarts/Smart_Process.cpp examples/smarts/Smart_Process.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Smart_Process.o examples/smarts/Smart_Process.cpp
-
-build/Debug/GNU-Linux/Smart_ProcessSet.o: examples/smarts/Smart_ProcessSet.cpp examples/smarts/Smart_ProcessSet.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Smart_ProcessSet.o examples/smarts/Smart_ProcessSet.cpp
-
-build/Debug/GNU-Linux/Smart_RouteStation.o: examples/smarts/Smart_RouteStation.cpp examples/smarts/Smart_RouteStation.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Smart_RouteStation.o examples/smarts/Smart_RouteStation.cpp
-
-build/Debug/GNU-Linux/Smart_SeizeDelayRelease.o: examples/smarts/Smart_SeizeDelayRelease.cpp examples/smarts/Smart_SeizeDelayRelease.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Smart_SeizeDelayRelease.o examples/smarts/Smart_SeizeDelayRelease.cpp
-
-build/Debug/GNU-Linux/Smart_SeizeDelayReleaseMany.o: examples/smarts/Smart_SeizeDelayReleaseMany.cpp examples/smarts/Smart_SeizeDelayReleaseMany.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Smart_SeizeDelayReleaseMany.o examples/smarts/Smart_SeizeDelayReleaseMany.cpp
-
-build/Debug/GNU-Linux/Smart_Sequence.o: examples/smarts/Smart_Sequence.cpp examples/smarts/Smart_Sequence.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Smart_Sequence.o examples/smarts/Smart_Sequence.cpp
-
-build/Debug/GNU-Linux/AnElectronicAssemblyAndTestSystem.o: examples/teaching/AnElectronicAssemblyAndTestSystem.cpp examples/teaching/AnElectronicAssemblyAndTestSystem.h \
-		plugins/components/Decide.h \
-		kernel/simulator/ModelComponent.h \
-		kernel/simulator/Plugin.h \
-		kernel/util/Util.h \
-		kernel/simulator/PluginInformation.h \
+build/Debug/GNU-Linux/GenesysQtGUI.o: applications/gui/qt/GenesysQtGUI.cpp applications/gui/qt/GenesysQtGUI.h \
+		applications/GenesysApplication_if.h \
+		applications/gui/qt/mainWindow/mainwindow.h \
+		applications/gui/qt/mapkernelandui.h \
+		kernel/simulator/Model.h \
 		kernel/util/List.h \
+		kernel/util/Util.h \
 		kernel/simulator/ModelElement.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/Plugin.h \
+		kernel/simulator/PluginInformation.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -987,16 +1404,1078 @@ build/Debug/GNU-Linux/AnElectronicAssemblyAndTestSystem.o: examples/teaching/AnE
 		kernel/statistics/Collector_if.h \
 		kernel/simulator/ElementManager.h \
 		kernel/simulator/ConnectionManager.h \
-		kernel/simulator/Counter.h
+		kernel/simulator/Event.h \
+		kernel/simulator/ModelChecker_if.h \
+		kernel/simulator/Parser_if.h \
+		kernel/statistics/Sampler_if.h \
+		kernel/simulator/ModelPersistence_if.h \
+		kernel/simulator/ComponentManager.h \
+		kernel/simulator/TraceManager.h \
+		kernel/simulator/OnEventManager.h \
+		kernel/simulator/ModelInfo.h \
+		kernel/simulator/ModelSimulation.h \
+		kernel/simulator/SimulationReporter_if.h \
+		kernel/simulator/SimulationResponse.h \
+		kernel/simulator/DefineGetterSetter.h \
+		kernel/simulator/SimulationControl.h \
+		kernel/simulator/Simulator.h \
+		kernel/simulator/LicenceManager.h \
+		kernel/simulator/PluginManager.h \
+		kernel/simulator/PluginConnector_if.h \
+		kernel/simulator/ModelManager.h \
+		kernel/simulator/ParserManager.h \
+		kernel/simulator/ExperimentManager.h \
+		kernel/simulator/SimulationExperiment.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/GenesysQtGUI.o applications/gui/qt/GenesysQtGUI.cpp
+
+build/Debug/GNU-Linux/dialogabout.o: applications/gui/qt/dialogs/dialogabout.cpp applications/gui/qt/dialogs/dialogabout.h \
+		applications/gui/qt/dialogs/ui_dialogabout.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/dialogabout.o applications/gui/qt/dialogs/dialogabout.cpp
+
+build/Debug/GNU-Linux/dialogmodelinformation.o: applications/gui/qt/dialogs/dialogmodelinformation.cpp applications/gui/qt/dialogs/dialogmodelinformation.h \
+		applications/gui/qt/dialogs/ui_dialogmodelinformation.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/dialogmodelinformation.o applications/gui/qt/dialogs/dialogmodelinformation.cpp
+
+build/Debug/GNU-Linux/formPlugins.o: applications/gui/qt/forms/formPlugins.cpp applications/gui/qt/forms/formPlugins.h \
+		applications/gui/qt/forms/ui_formPlugins.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/formPlugins.o applications/gui/qt/forms/formPlugins.cpp
+
+build/Debug/GNU-Linux/mainwindow.o: applications/gui/qt/mainWindow/mainwindow.cpp applications/gui/qt/mainWindow/mainwindow.h \
+		applications/gui/qt/mapkernelandui.h \
+		kernel/simulator/Model.h \
+		kernel/util/List.h \
+		kernel/util/Util.h \
+		kernel/simulator/ModelElement.h \
+		kernel/simulator/ParserChangesInformation.h \
+		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/Plugin.h \
+		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Entity.h \
+		kernel/simulator/EntityType.h \
+		kernel/simulator/StatisticsCollector.h \
+		kernel/statistics/Statistics_if.h \
+		kernel/statistics/Collector_if.h \
+		kernel/simulator/ElementManager.h \
+		kernel/simulator/ConnectionManager.h \
+		kernel/simulator/Event.h \
+		kernel/simulator/ModelChecker_if.h \
+		kernel/simulator/Parser_if.h \
+		kernel/statistics/Sampler_if.h \
+		kernel/simulator/ModelPersistence_if.h \
+		kernel/simulator/ComponentManager.h \
+		kernel/simulator/TraceManager.h \
+		kernel/simulator/OnEventManager.h \
+		kernel/simulator/ModelInfo.h \
+		kernel/simulator/ModelSimulation.h \
+		kernel/simulator/SimulationReporter_if.h \
+		kernel/simulator/SimulationResponse.h \
+		kernel/simulator/DefineGetterSetter.h \
+		kernel/simulator/SimulationControl.h \
+		kernel/simulator/Simulator.h \
+		kernel/simulator/LicenceManager.h \
+		kernel/simulator/PluginManager.h \
+		kernel/simulator/PluginConnector_if.h \
+		kernel/simulator/ModelManager.h \
+		kernel/simulator/ParserManager.h \
+		kernel/simulator/ExperimentManager.h \
+		kernel/simulator/SimulationExperiment.h \
+		applications/gui/qt/mainWindow/ui_mainwindow.h \
+		applications/gui/qt/dialogs/dialogabout.h \
+		applications/gui/qt/dialogs/dialogmodelinformation.h \
+		Traits.h \
+		applications/terminal/GenesysTerminalApp.h \
+		applications/BaseConsoleGenesysApplication.h \
+		applications/GenesysApplication_if.h \
+		applications/gui/qt/GenesysQtGUI.h \
+		examples/book/Book_Cap02_Example01.h \
+		examples/smarts/Smart_AssignWriteSeizes.h \
+		examples/smarts/Smart_Delay.h \
+		examples/smarts/Smart_Dummy.h \
+		examples/smarts/Smart_HoldSignal.h \
+		examples/smarts/Smart_ModelInfoModelSimulation.h \
+		examples/smarts/Smart_Parser.h \
+		examples/smarts/Smart_Process.h \
+		examples/smarts/Smart_ProcessSet.h \
+		examples/smarts/Smart_RouteStation.h \
+		examples/smarts/Smart_SeizeDelayRelease.h \
+		examples/smarts/Smart_SeizeDelayReleaseMany.h \
+		examples/smarts/Smart_Sequence.h \
+		examples/teaching/AnElectronicAssemblyAndTestSystem.h \
+		examples/teaching/OperatingSystem02.h \
+		examples/teaching/OperatingSystem03.h \
+		tools/SolverDefaultImpl1.h \
+		tools/solver_if.h \
+		tools/HypothesisTesterDefaultImpl1.h \
+		tools/HypothesisTester_if.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/mainwindow.o applications/gui/qt/mainWindow/mainwindow.cpp
+
+build/Debug/GNU-Linux/mapkernelandui.o: applications/gui/qt/mapkernelandui.cpp applications/gui/qt/mapkernelandui.h \
+		kernel/simulator/Model.h \
+		kernel/util/List.h \
+		kernel/util/Util.h \
+		kernel/simulator/ModelElement.h \
+		kernel/simulator/ParserChangesInformation.h \
+		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/Plugin.h \
+		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Entity.h \
+		kernel/simulator/EntityType.h \
+		kernel/simulator/StatisticsCollector.h \
+		kernel/statistics/Statistics_if.h \
+		kernel/statistics/Collector_if.h \
+		kernel/simulator/ElementManager.h \
+		kernel/simulator/ConnectionManager.h \
+		kernel/simulator/Event.h \
+		kernel/simulator/ModelChecker_if.h \
+		kernel/simulator/Parser_if.h \
+		kernel/statistics/Sampler_if.h \
+		kernel/simulator/ModelPersistence_if.h \
+		kernel/simulator/ComponentManager.h \
+		kernel/simulator/TraceManager.h \
+		kernel/simulator/OnEventManager.h \
+		kernel/simulator/ModelInfo.h \
+		kernel/simulator/ModelSimulation.h \
+		kernel/simulator/SimulationReporter_if.h \
+		kernel/simulator/SimulationResponse.h \
+		kernel/simulator/DefineGetterSetter.h \
+		kernel/simulator/SimulationControl.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/mapkernelandui.o applications/gui/qt/mapkernelandui.cpp
+
+build/Debug/GNU-Linux/Book_Cap02_Example01.o: examples/book/Book_Cap02_Example01.cpp examples/book/Book_Cap02_Example01.h \
+		applications/BaseConsoleGenesysApplication.h \
+		applications/GenesysApplication_if.h \
+		kernel/simulator/TraceManager.h \
+		kernel/util/List.h \
+		kernel/util/Util.h \
+		kernel/simulator/ModelElement.h \
+		kernel/simulator/ParserChangesInformation.h \
+		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/OnEventManager.h \
+		kernel/simulator/Event.h \
+		kernel/simulator/Entity.h \
+		kernel/simulator/EntityType.h \
+		kernel/simulator/StatisticsCollector.h \
+		kernel/statistics/Statistics_if.h \
+		kernel/statistics/Collector_if.h \
+		kernel/simulator/ElementManager.h \
+		kernel/simulator/Plugin.h \
+		kernel/simulator/PluginInformation.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/ConnectionManager.h \
+		kernel/simulator/Simulator.h \
+		kernel/simulator/Model.h \
+		kernel/simulator/ModelChecker_if.h \
+		kernel/simulator/Parser_if.h \
+		kernel/statistics/Sampler_if.h \
+		kernel/simulator/ModelPersistence_if.h \
+		kernel/simulator/ComponentManager.h \
+		kernel/simulator/ModelInfo.h \
+		kernel/simulator/ModelSimulation.h \
+		kernel/simulator/SimulationReporter_if.h \
+		kernel/simulator/SimulationResponse.h \
+		kernel/simulator/DefineGetterSetter.h \
+		kernel/simulator/SimulationControl.h \
+		kernel/simulator/LicenceManager.h \
+		kernel/simulator/PluginManager.h \
+		kernel/simulator/PluginConnector_if.h \
+		kernel/simulator/ModelManager.h \
+		kernel/simulator/ParserManager.h \
+		kernel/simulator/ExperimentManager.h \
+		kernel/simulator/SimulationExperiment.h \
+		plugins/components/Create.h \
+		kernel/simulator/SourceModelComponent.h \
+		kernel/simulator/Counter.h \
+		plugins/components/Delay.h \
+		plugins/components/Dispose.h \
+		kernel/simulator/SinkModelComponent.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Book_Cap02_Example01.o examples/book/Book_Cap02_Example01.cpp
+
+build/Debug/GNU-Linux/Smart_AssignWriteSeizes.o: examples/smarts/Smart_AssignWriteSeizes.cpp examples/smarts/Smart_AssignWriteSeizes.h \
+		applications/BaseConsoleGenesysApplication.h \
+		applications/GenesysApplication_if.h \
+		kernel/simulator/TraceManager.h \
+		kernel/util/List.h \
+		kernel/util/Util.h \
+		kernel/simulator/ModelElement.h \
+		kernel/simulator/ParserChangesInformation.h \
+		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/OnEventManager.h \
+		kernel/simulator/Event.h \
+		kernel/simulator/Entity.h \
+		kernel/simulator/EntityType.h \
+		kernel/simulator/StatisticsCollector.h \
+		kernel/statistics/Statistics_if.h \
+		kernel/statistics/Collector_if.h \
+		kernel/simulator/ElementManager.h \
+		kernel/simulator/Plugin.h \
+		kernel/simulator/PluginInformation.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/ConnectionManager.h \
+		kernel/simulator/Simulator.h \
+		kernel/simulator/Model.h \
+		kernel/simulator/ModelChecker_if.h \
+		kernel/simulator/Parser_if.h \
+		kernel/statistics/Sampler_if.h \
+		kernel/simulator/ModelPersistence_if.h \
+		kernel/simulator/ComponentManager.h \
+		kernel/simulator/ModelInfo.h \
+		kernel/simulator/ModelSimulation.h \
+		kernel/simulator/SimulationReporter_if.h \
+		kernel/simulator/SimulationResponse.h \
+		kernel/simulator/DefineGetterSetter.h \
+		kernel/simulator/SimulationControl.h \
+		kernel/simulator/LicenceManager.h \
+		kernel/simulator/PluginManager.h \
+		kernel/simulator/PluginConnector_if.h \
+		kernel/simulator/ModelManager.h \
+		kernel/simulator/ParserManager.h \
+		kernel/simulator/ExperimentManager.h \
+		kernel/simulator/SimulationExperiment.h \
+		plugins/components/Create.h \
+		kernel/simulator/SourceModelComponent.h \
+		kernel/simulator/Counter.h \
+		plugins/components/Delay.h \
+		plugins/components/Dispose.h \
+		kernel/simulator/SinkModelComponent.h \
+		plugins/components/Seize.h \
+		plugins/elements/Resource.h \
+		plugins/elements/Queue.h \
+		plugins/components/SeizableItem.h \
+		plugins/elements/Set.h \
+		plugins/components/QueueableItem.h \
+		plugins/components/Release.h \
+		plugins/components/Assign.h \
+		plugins/components/Record.h \
+		plugins/components/Decide.h \
+		plugins/components/Write.h \
+		kernel/simulator/Attribute.h \
+		plugins/elements/Variable.h \
+		plugins/elements/EntityGroup.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Smart_AssignWriteSeizes.o examples/smarts/Smart_AssignWriteSeizes.cpp
+
+build/Debug/GNU-Linux/Smart_Delay.o: examples/smarts/Smart_Delay.cpp examples/smarts/Smart_Delay.h \
+		applications/BaseConsoleGenesysApplication.h \
+		applications/GenesysApplication_if.h \
+		kernel/simulator/TraceManager.h \
+		kernel/util/List.h \
+		kernel/util/Util.h \
+		kernel/simulator/ModelElement.h \
+		kernel/simulator/ParserChangesInformation.h \
+		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/OnEventManager.h \
+		kernel/simulator/Event.h \
+		kernel/simulator/Entity.h \
+		kernel/simulator/EntityType.h \
+		kernel/simulator/StatisticsCollector.h \
+		kernel/statistics/Statistics_if.h \
+		kernel/statistics/Collector_if.h \
+		kernel/simulator/ElementManager.h \
+		kernel/simulator/Plugin.h \
+		kernel/simulator/PluginInformation.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/ConnectionManager.h \
+		kernel/simulator/Simulator.h \
+		kernel/simulator/Model.h \
+		kernel/simulator/ModelChecker_if.h \
+		kernel/simulator/Parser_if.h \
+		kernel/statistics/Sampler_if.h \
+		kernel/simulator/ModelPersistence_if.h \
+		kernel/simulator/ComponentManager.h \
+		kernel/simulator/ModelInfo.h \
+		kernel/simulator/ModelSimulation.h \
+		kernel/simulator/SimulationReporter_if.h \
+		kernel/simulator/SimulationResponse.h \
+		kernel/simulator/DefineGetterSetter.h \
+		kernel/simulator/SimulationControl.h \
+		kernel/simulator/LicenceManager.h \
+		kernel/simulator/PluginManager.h \
+		kernel/simulator/PluginConnector_if.h \
+		kernel/simulator/ModelManager.h \
+		kernel/simulator/ParserManager.h \
+		kernel/simulator/ExperimentManager.h \
+		kernel/simulator/SimulationExperiment.h \
+		plugins/components/Create.h \
+		kernel/simulator/SourceModelComponent.h \
+		kernel/simulator/Counter.h \
+		plugins/components/Delay.h \
+		plugins/components/Dispose.h \
+		kernel/simulator/SinkModelComponent.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Smart_Delay.o examples/smarts/Smart_Delay.cpp
+
+build/Debug/GNU-Linux/Smart_Dummy.o: examples/smarts/Smart_Dummy.cpp examples/smarts/Smart_Dummy.h \
+		applications/BaseConsoleGenesysApplication.h \
+		applications/GenesysApplication_if.h \
+		kernel/simulator/TraceManager.h \
+		kernel/util/List.h \
+		kernel/util/Util.h \
+		kernel/simulator/ModelElement.h \
+		kernel/simulator/ParserChangesInformation.h \
+		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/OnEventManager.h \
+		kernel/simulator/Event.h \
+		kernel/simulator/Entity.h \
+		kernel/simulator/EntityType.h \
+		kernel/simulator/StatisticsCollector.h \
+		kernel/statistics/Statistics_if.h \
+		kernel/statistics/Collector_if.h \
+		kernel/simulator/ElementManager.h \
+		kernel/simulator/Plugin.h \
+		kernel/simulator/PluginInformation.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/ConnectionManager.h \
+		kernel/simulator/Simulator.h \
+		kernel/simulator/Model.h \
+		kernel/simulator/ModelChecker_if.h \
+		kernel/simulator/Parser_if.h \
+		kernel/statistics/Sampler_if.h \
+		kernel/simulator/ModelPersistence_if.h \
+		kernel/simulator/ComponentManager.h \
+		kernel/simulator/ModelInfo.h \
+		kernel/simulator/ModelSimulation.h \
+		kernel/simulator/SimulationReporter_if.h \
+		kernel/simulator/SimulationResponse.h \
+		kernel/simulator/DefineGetterSetter.h \
+		kernel/simulator/SimulationControl.h \
+		kernel/simulator/LicenceManager.h \
+		kernel/simulator/PluginManager.h \
+		kernel/simulator/PluginConnector_if.h \
+		kernel/simulator/ModelManager.h \
+		kernel/simulator/ParserManager.h \
+		kernel/simulator/ExperimentManager.h \
+		kernel/simulator/SimulationExperiment.h \
+		plugins/components/Create.h \
+		kernel/simulator/SourceModelComponent.h \
+		kernel/simulator/Counter.h \
+		plugins/components/Delay.h \
+		plugins/components/Dispose.h \
+		kernel/simulator/SinkModelComponent.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Smart_Dummy.o examples/smarts/Smart_Dummy.cpp
+
+build/Debug/GNU-Linux/Smart_HoldSignal.o: examples/smarts/Smart_HoldSignal.cpp examples/smarts/Smart_HoldSignal.h \
+		applications/BaseConsoleGenesysApplication.h \
+		applications/GenesysApplication_if.h \
+		kernel/simulator/TraceManager.h \
+		kernel/util/List.h \
+		kernel/util/Util.h \
+		kernel/simulator/ModelElement.h \
+		kernel/simulator/ParserChangesInformation.h \
+		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/OnEventManager.h \
+		kernel/simulator/Event.h \
+		kernel/simulator/Entity.h \
+		kernel/simulator/EntityType.h \
+		kernel/simulator/StatisticsCollector.h \
+		kernel/statistics/Statistics_if.h \
+		kernel/statistics/Collector_if.h \
+		kernel/simulator/ElementManager.h \
+		kernel/simulator/Plugin.h \
+		kernel/simulator/PluginInformation.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/ConnectionManager.h \
+		kernel/simulator/Simulator.h \
+		kernel/simulator/Model.h \
+		kernel/simulator/ModelChecker_if.h \
+		kernel/simulator/Parser_if.h \
+		kernel/statistics/Sampler_if.h \
+		kernel/simulator/ModelPersistence_if.h \
+		kernel/simulator/ComponentManager.h \
+		kernel/simulator/ModelInfo.h \
+		kernel/simulator/ModelSimulation.h \
+		kernel/simulator/SimulationReporter_if.h \
+		kernel/simulator/SimulationResponse.h \
+		kernel/simulator/DefineGetterSetter.h \
+		kernel/simulator/SimulationControl.h \
+		kernel/simulator/LicenceManager.h \
+		kernel/simulator/PluginManager.h \
+		kernel/simulator/PluginConnector_if.h \
+		kernel/simulator/ModelManager.h \
+		kernel/simulator/ParserManager.h \
+		kernel/simulator/ExperimentManager.h \
+		kernel/simulator/SimulationExperiment.h \
+		plugins/components/Create.h \
+		kernel/simulator/SourceModelComponent.h \
+		kernel/simulator/Counter.h \
+		plugins/components/Hold.h \
+		plugins/components/Signal.h \
+		plugins/components/Dispose.h \
+		kernel/simulator/SinkModelComponent.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Smart_HoldSignal.o examples/smarts/Smart_HoldSignal.cpp
+
+build/Debug/GNU-Linux/Smart_ModelInfoModelSimulation.o: examples/smarts/Smart_ModelInfoModelSimulation.cpp examples/smarts/Smart_ModelInfoModelSimulation.h \
+		applications/BaseConsoleGenesysApplication.h \
+		applications/GenesysApplication_if.h \
+		kernel/simulator/TraceManager.h \
+		kernel/util/List.h \
+		kernel/util/Util.h \
+		kernel/simulator/ModelElement.h \
+		kernel/simulator/ParserChangesInformation.h \
+		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/OnEventManager.h \
+		kernel/simulator/Event.h \
+		kernel/simulator/Entity.h \
+		kernel/simulator/EntityType.h \
+		kernel/simulator/StatisticsCollector.h \
+		kernel/statistics/Statistics_if.h \
+		kernel/statistics/Collector_if.h \
+		kernel/simulator/ElementManager.h \
+		kernel/simulator/Plugin.h \
+		kernel/simulator/PluginInformation.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/ConnectionManager.h \
+		kernel/simulator/Simulator.h \
+		kernel/simulator/Model.h \
+		kernel/simulator/ModelChecker_if.h \
+		kernel/simulator/Parser_if.h \
+		kernel/statistics/Sampler_if.h \
+		kernel/simulator/ModelPersistence_if.h \
+		kernel/simulator/ComponentManager.h \
+		kernel/simulator/ModelInfo.h \
+		kernel/simulator/ModelSimulation.h \
+		kernel/simulator/SimulationReporter_if.h \
+		kernel/simulator/SimulationResponse.h \
+		kernel/simulator/DefineGetterSetter.h \
+		kernel/simulator/SimulationControl.h \
+		kernel/simulator/LicenceManager.h \
+		kernel/simulator/PluginManager.h \
+		kernel/simulator/PluginConnector_if.h \
+		kernel/simulator/ModelManager.h \
+		kernel/simulator/ParserManager.h \
+		kernel/simulator/ExperimentManager.h \
+		kernel/simulator/SimulationExperiment.h \
+		plugins/components/Create.h \
+		kernel/simulator/SourceModelComponent.h \
+		kernel/simulator/Counter.h \
+		plugins/components/Delay.h \
+		plugins/components/Dispose.h \
+		kernel/simulator/SinkModelComponent.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Smart_ModelInfoModelSimulation.o examples/smarts/Smart_ModelInfoModelSimulation.cpp
+
+build/Debug/GNU-Linux/Smart_Parser.o: examples/smarts/Smart_Parser.cpp examples/smarts/Smart_Parser.h \
+		applications/BaseConsoleGenesysApplication.h \
+		applications/GenesysApplication_if.h \
+		kernel/simulator/TraceManager.h \
+		kernel/util/List.h \
+		kernel/util/Util.h \
+		kernel/simulator/ModelElement.h \
+		kernel/simulator/ParserChangesInformation.h \
+		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/OnEventManager.h \
+		kernel/simulator/Event.h \
+		kernel/simulator/Entity.h \
+		kernel/simulator/EntityType.h \
+		kernel/simulator/StatisticsCollector.h \
+		kernel/statistics/Statistics_if.h \
+		kernel/statistics/Collector_if.h \
+		kernel/simulator/ElementManager.h \
+		kernel/simulator/Plugin.h \
+		kernel/simulator/PluginInformation.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/ConnectionManager.h \
+		kernel/simulator/Simulator.h \
+		kernel/simulator/Model.h \
+		kernel/simulator/ModelChecker_if.h \
+		kernel/simulator/Parser_if.h \
+		kernel/statistics/Sampler_if.h \
+		kernel/simulator/ModelPersistence_if.h \
+		kernel/simulator/ComponentManager.h \
+		kernel/simulator/ModelInfo.h \
+		kernel/simulator/ModelSimulation.h \
+		kernel/simulator/SimulationReporter_if.h \
+		kernel/simulator/SimulationResponse.h \
+		kernel/simulator/DefineGetterSetter.h \
+		kernel/simulator/SimulationControl.h \
+		kernel/simulator/LicenceManager.h \
+		kernel/simulator/PluginManager.h \
+		kernel/simulator/PluginConnector_if.h \
+		kernel/simulator/ModelManager.h \
+		kernel/simulator/ParserManager.h \
+		kernel/simulator/ExperimentManager.h \
+		kernel/simulator/SimulationExperiment.h \
+		plugins/components/Create.h \
+		kernel/simulator/SourceModelComponent.h \
+		kernel/simulator/Counter.h \
+		plugins/components/Dispose.h \
+		kernel/simulator/SinkModelComponent.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Smart_Parser.o examples/smarts/Smart_Parser.cpp
+
+build/Debug/GNU-Linux/Smart_Process.o: examples/smarts/Smart_Process.cpp examples/smarts/Smart_Process.h \
+		applications/BaseConsoleGenesysApplication.h \
+		applications/GenesysApplication_if.h \
+		kernel/simulator/TraceManager.h \
+		kernel/util/List.h \
+		kernel/util/Util.h \
+		kernel/simulator/ModelElement.h \
+		kernel/simulator/ParserChangesInformation.h \
+		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/OnEventManager.h \
+		kernel/simulator/Event.h \
+		kernel/simulator/Entity.h \
+		kernel/simulator/EntityType.h \
+		kernel/simulator/StatisticsCollector.h \
+		kernel/statistics/Statistics_if.h \
+		kernel/statistics/Collector_if.h \
+		kernel/simulator/ElementManager.h \
+		kernel/simulator/Plugin.h \
+		kernel/simulator/PluginInformation.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/ConnectionManager.h \
+		kernel/simulator/Simulator.h \
+		kernel/simulator/Model.h \
+		kernel/simulator/ModelChecker_if.h \
+		kernel/simulator/Parser_if.h \
+		kernel/statistics/Sampler_if.h \
+		kernel/simulator/ModelPersistence_if.h \
+		kernel/simulator/ComponentManager.h \
+		kernel/simulator/ModelInfo.h \
+		kernel/simulator/ModelSimulation.h \
+		kernel/simulator/SimulationReporter_if.h \
+		kernel/simulator/SimulationResponse.h \
+		kernel/simulator/DefineGetterSetter.h \
+		kernel/simulator/SimulationControl.h \
+		kernel/simulator/LicenceManager.h \
+		kernel/simulator/PluginManager.h \
+		kernel/simulator/PluginConnector_if.h \
+		kernel/simulator/ModelManager.h \
+		kernel/simulator/ParserManager.h \
+		kernel/simulator/ExperimentManager.h \
+		kernel/simulator/SimulationExperiment.h \
+		plugins/components/Create.h \
+		kernel/simulator/SourceModelComponent.h \
+		kernel/simulator/Counter.h \
+		plugins/components/Process.h \
+		plugins/components/Seize.h \
+		plugins/elements/Resource.h \
+		plugins/elements/Queue.h \
+		plugins/components/SeizableItem.h \
+		plugins/elements/Set.h \
+		plugins/components/QueueableItem.h \
+		plugins/components/Delay.h \
+		plugins/components/Release.h \
+		plugins/components/Dispose.h \
+		kernel/simulator/SinkModelComponent.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Smart_Process.o examples/smarts/Smart_Process.cpp
+
+build/Debug/GNU-Linux/Smart_ProcessSet.o: examples/smarts/Smart_ProcessSet.cpp examples/smarts/Smart_ProcessSet.h \
+		applications/BaseConsoleGenesysApplication.h \
+		applications/GenesysApplication_if.h \
+		kernel/simulator/TraceManager.h \
+		kernel/util/List.h \
+		kernel/util/Util.h \
+		kernel/simulator/ModelElement.h \
+		kernel/simulator/ParserChangesInformation.h \
+		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/OnEventManager.h \
+		kernel/simulator/Event.h \
+		kernel/simulator/Entity.h \
+		kernel/simulator/EntityType.h \
+		kernel/simulator/StatisticsCollector.h \
+		kernel/statistics/Statistics_if.h \
+		kernel/statistics/Collector_if.h \
+		kernel/simulator/ElementManager.h \
+		kernel/simulator/Plugin.h \
+		kernel/simulator/PluginInformation.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/ConnectionManager.h \
+		kernel/simulator/Simulator.h \
+		kernel/simulator/Model.h \
+		kernel/simulator/ModelChecker_if.h \
+		kernel/simulator/Parser_if.h \
+		kernel/statistics/Sampler_if.h \
+		kernel/simulator/ModelPersistence_if.h \
+		kernel/simulator/ComponentManager.h \
+		kernel/simulator/ModelInfo.h \
+		kernel/simulator/ModelSimulation.h \
+		kernel/simulator/SimulationReporter_if.h \
+		kernel/simulator/SimulationResponse.h \
+		kernel/simulator/DefineGetterSetter.h \
+		kernel/simulator/SimulationControl.h \
+		kernel/simulator/LicenceManager.h \
+		kernel/simulator/PluginManager.h \
+		kernel/simulator/PluginConnector_if.h \
+		kernel/simulator/ModelManager.h \
+		kernel/simulator/ParserManager.h \
+		kernel/simulator/ExperimentManager.h \
+		kernel/simulator/SimulationExperiment.h \
+		plugins/components/Create.h \
+		kernel/simulator/SourceModelComponent.h \
+		kernel/simulator/Counter.h \
+		plugins/components/Process.h \
+		plugins/components/Seize.h \
+		plugins/elements/Resource.h \
+		plugins/elements/Queue.h \
+		plugins/components/SeizableItem.h \
+		plugins/elements/Set.h \
+		plugins/components/QueueableItem.h \
+		plugins/components/Delay.h \
+		plugins/components/Release.h \
+		plugins/components/Dispose.h \
+		kernel/simulator/SinkModelComponent.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Smart_ProcessSet.o examples/smarts/Smart_ProcessSet.cpp
+
+build/Debug/GNU-Linux/Smart_RouteStation.o: examples/smarts/Smart_RouteStation.cpp examples/smarts/Smart_RouteStation.h \
+		applications/BaseConsoleGenesysApplication.h \
+		applications/GenesysApplication_if.h \
+		kernel/simulator/TraceManager.h \
+		kernel/util/List.h \
+		kernel/util/Util.h \
+		kernel/simulator/ModelElement.h \
+		kernel/simulator/ParserChangesInformation.h \
+		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/OnEventManager.h \
+		kernel/simulator/Event.h \
+		kernel/simulator/Entity.h \
+		kernel/simulator/EntityType.h \
+		kernel/simulator/StatisticsCollector.h \
+		kernel/statistics/Statistics_if.h \
+		kernel/statistics/Collector_if.h \
+		kernel/simulator/ElementManager.h \
+		kernel/simulator/Plugin.h \
+		kernel/simulator/PluginInformation.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/ConnectionManager.h \
+		kernel/simulator/Simulator.h \
+		kernel/simulator/Model.h \
+		kernel/simulator/ModelChecker_if.h \
+		kernel/simulator/Parser_if.h \
+		kernel/statistics/Sampler_if.h \
+		kernel/simulator/ModelPersistence_if.h \
+		kernel/simulator/ComponentManager.h \
+		kernel/simulator/ModelInfo.h \
+		kernel/simulator/ModelSimulation.h \
+		kernel/simulator/SimulationReporter_if.h \
+		kernel/simulator/SimulationResponse.h \
+		kernel/simulator/DefineGetterSetter.h \
+		kernel/simulator/SimulationControl.h \
+		kernel/simulator/LicenceManager.h \
+		kernel/simulator/PluginManager.h \
+		kernel/simulator/PluginConnector_if.h \
+		kernel/simulator/ModelManager.h \
+		kernel/simulator/ParserManager.h \
+		kernel/simulator/ExperimentManager.h \
+		kernel/simulator/SimulationExperiment.h \
+		plugins/components/Create.h \
+		kernel/simulator/SourceModelComponent.h \
+		kernel/simulator/Counter.h \
+		plugins/components/Route.h \
+		plugins/elements/Station.h \
+		plugins/components/Enter.h \
+		plugins/components/Delay.h \
+		plugins/components/Dispose.h \
+		kernel/simulator/SinkModelComponent.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Smart_RouteStation.o examples/smarts/Smart_RouteStation.cpp
+
+build/Debug/GNU-Linux/Smart_SeizeDelayRelease.o: examples/smarts/Smart_SeizeDelayRelease.cpp examples/smarts/Smart_SeizeDelayRelease.h \
+		applications/BaseConsoleGenesysApplication.h \
+		applications/GenesysApplication_if.h \
+		kernel/simulator/TraceManager.h \
+		kernel/util/List.h \
+		kernel/util/Util.h \
+		kernel/simulator/ModelElement.h \
+		kernel/simulator/ParserChangesInformation.h \
+		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/OnEventManager.h \
+		kernel/simulator/Event.h \
+		kernel/simulator/Entity.h \
+		kernel/simulator/EntityType.h \
+		kernel/simulator/StatisticsCollector.h \
+		kernel/statistics/Statistics_if.h \
+		kernel/statistics/Collector_if.h \
+		kernel/simulator/ElementManager.h \
+		kernel/simulator/Plugin.h \
+		kernel/simulator/PluginInformation.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/ConnectionManager.h \
+		kernel/simulator/Simulator.h \
+		kernel/simulator/Model.h \
+		kernel/simulator/ModelChecker_if.h \
+		kernel/simulator/Parser_if.h \
+		kernel/statistics/Sampler_if.h \
+		kernel/simulator/ModelPersistence_if.h \
+		kernel/simulator/ComponentManager.h \
+		kernel/simulator/ModelInfo.h \
+		kernel/simulator/ModelSimulation.h \
+		kernel/simulator/SimulationReporter_if.h \
+		kernel/simulator/SimulationResponse.h \
+		kernel/simulator/DefineGetterSetter.h \
+		kernel/simulator/SimulationControl.h \
+		kernel/simulator/LicenceManager.h \
+		kernel/simulator/PluginManager.h \
+		kernel/simulator/PluginConnector_if.h \
+		kernel/simulator/ModelManager.h \
+		kernel/simulator/ParserManager.h \
+		kernel/simulator/ExperimentManager.h \
+		kernel/simulator/SimulationExperiment.h \
+		plugins/components/Create.h \
+		kernel/simulator/SourceModelComponent.h \
+		kernel/simulator/Counter.h \
+		plugins/components/Seize.h \
+		plugins/elements/Resource.h \
+		plugins/elements/Queue.h \
+		plugins/components/SeizableItem.h \
+		plugins/elements/Set.h \
+		plugins/components/QueueableItem.h \
+		plugins/components/Delay.h \
+		plugins/components/Release.h \
+		plugins/components/Dispose.h \
+		kernel/simulator/SinkModelComponent.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Smart_SeizeDelayRelease.o examples/smarts/Smart_SeizeDelayRelease.cpp
+
+build/Debug/GNU-Linux/Smart_SeizeDelayReleaseMany.o: examples/smarts/Smart_SeizeDelayReleaseMany.cpp examples/smarts/Smart_SeizeDelayReleaseMany.h \
+		applications/BaseConsoleGenesysApplication.h \
+		applications/GenesysApplication_if.h \
+		kernel/simulator/TraceManager.h \
+		kernel/util/List.h \
+		kernel/util/Util.h \
+		kernel/simulator/ModelElement.h \
+		kernel/simulator/ParserChangesInformation.h \
+		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/OnEventManager.h \
+		kernel/simulator/Event.h \
+		kernel/simulator/Entity.h \
+		kernel/simulator/EntityType.h \
+		kernel/simulator/StatisticsCollector.h \
+		kernel/statistics/Statistics_if.h \
+		kernel/statistics/Collector_if.h \
+		kernel/simulator/ElementManager.h \
+		kernel/simulator/Plugin.h \
+		kernel/simulator/PluginInformation.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/ConnectionManager.h \
+		kernel/simulator/Simulator.h \
+		kernel/simulator/Model.h \
+		kernel/simulator/ModelChecker_if.h \
+		kernel/simulator/Parser_if.h \
+		kernel/statistics/Sampler_if.h \
+		kernel/simulator/ModelPersistence_if.h \
+		kernel/simulator/ComponentManager.h \
+		kernel/simulator/ModelInfo.h \
+		kernel/simulator/ModelSimulation.h \
+		kernel/simulator/SimulationReporter_if.h \
+		kernel/simulator/SimulationResponse.h \
+		kernel/simulator/DefineGetterSetter.h \
+		kernel/simulator/SimulationControl.h \
+		kernel/simulator/LicenceManager.h \
+		kernel/simulator/PluginManager.h \
+		kernel/simulator/PluginConnector_if.h \
+		kernel/simulator/ModelManager.h \
+		kernel/simulator/ParserManager.h \
+		kernel/simulator/ExperimentManager.h \
+		kernel/simulator/SimulationExperiment.h \
+		plugins/components/Create.h \
+		kernel/simulator/SourceModelComponent.h \
+		kernel/simulator/Counter.h \
+		plugins/components/Seize.h \
+		plugins/elements/Resource.h \
+		plugins/elements/Queue.h \
+		plugins/components/SeizableItem.h \
+		plugins/elements/Set.h \
+		plugins/components/QueueableItem.h \
+		plugins/components/Delay.h \
+		plugins/components/Release.h \
+		plugins/components/Dispose.h \
+		kernel/simulator/SinkModelComponent.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Smart_SeizeDelayReleaseMany.o examples/smarts/Smart_SeizeDelayReleaseMany.cpp
+
+build/Debug/GNU-Linux/Smart_Sequence.o: examples/smarts/Smart_Sequence.cpp examples/smarts/Smart_Sequence.h \
+		applications/BaseConsoleGenesysApplication.h \
+		applications/GenesysApplication_if.h \
+		kernel/simulator/TraceManager.h \
+		kernel/util/List.h \
+		kernel/util/Util.h \
+		kernel/simulator/ModelElement.h \
+		kernel/simulator/ParserChangesInformation.h \
+		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/OnEventManager.h \
+		kernel/simulator/Event.h \
+		kernel/simulator/Entity.h \
+		kernel/simulator/EntityType.h \
+		kernel/simulator/StatisticsCollector.h \
+		kernel/statistics/Statistics_if.h \
+		kernel/statistics/Collector_if.h \
+		kernel/simulator/ElementManager.h \
+		kernel/simulator/Plugin.h \
+		kernel/simulator/PluginInformation.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/ConnectionManager.h \
+		kernel/simulator/Simulator.h \
+		kernel/simulator/Model.h \
+		kernel/simulator/ModelChecker_if.h \
+		kernel/simulator/Parser_if.h \
+		kernel/statistics/Sampler_if.h \
+		kernel/simulator/ModelPersistence_if.h \
+		kernel/simulator/ComponentManager.h \
+		kernel/simulator/ModelInfo.h \
+		kernel/simulator/ModelSimulation.h \
+		kernel/simulator/SimulationReporter_if.h \
+		kernel/simulator/SimulationResponse.h \
+		kernel/simulator/DefineGetterSetter.h \
+		kernel/simulator/SimulationControl.h \
+		kernel/simulator/LicenceManager.h \
+		kernel/simulator/PluginManager.h \
+		kernel/simulator/PluginConnector_if.h \
+		kernel/simulator/ModelManager.h \
+		kernel/simulator/ParserManager.h \
+		kernel/simulator/ExperimentManager.h \
+		kernel/simulator/SimulationExperiment.h \
+		plugins/components/Create.h \
+		kernel/simulator/SourceModelComponent.h \
+		kernel/simulator/Counter.h \
+		plugins/components/Route.h \
+		plugins/elements/Station.h \
+		plugins/components/Enter.h \
+		plugins/components/Leave.h \
+		plugins/components/Dispose.h \
+		kernel/simulator/SinkModelComponent.h \
+		plugins/components/Delay.h \
+		plugins/components/Assign.h \
+		plugins/elements/Sequence.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Smart_Sequence.o examples/smarts/Smart_Sequence.cpp
+
+build/Debug/GNU-Linux/AnElectronicAssemblyAndTestSystem.o: examples/teaching/AnElectronicAssemblyAndTestSystem.cpp examples/teaching/AnElectronicAssemblyAndTestSystem.h \
+		applications/BaseConsoleGenesysApplication.h \
+		applications/GenesysApplication_if.h \
+		kernel/simulator/TraceManager.h \
+		kernel/util/List.h \
+		kernel/util/Util.h \
+		kernel/simulator/ModelElement.h \
+		kernel/simulator/ParserChangesInformation.h \
+		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/OnEventManager.h \
+		kernel/simulator/Event.h \
+		kernel/simulator/Entity.h \
+		kernel/simulator/EntityType.h \
+		kernel/simulator/StatisticsCollector.h \
+		kernel/statistics/Statistics_if.h \
+		kernel/statistics/Collector_if.h \
+		kernel/simulator/ElementManager.h \
+		kernel/simulator/Plugin.h \
+		kernel/simulator/PluginInformation.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/ConnectionManager.h \
+		kernel/simulator/Simulator.h \
+		kernel/simulator/Model.h \
+		kernel/simulator/ModelChecker_if.h \
+		kernel/simulator/Parser_if.h \
+		kernel/statistics/Sampler_if.h \
+		kernel/simulator/ModelPersistence_if.h \
+		kernel/simulator/ComponentManager.h \
+		kernel/simulator/ModelInfo.h \
+		kernel/simulator/ModelSimulation.h \
+		kernel/simulator/SimulationReporter_if.h \
+		kernel/simulator/SimulationResponse.h \
+		kernel/simulator/DefineGetterSetter.h \
+		kernel/simulator/SimulationControl.h \
+		kernel/simulator/LicenceManager.h \
+		kernel/simulator/PluginManager.h \
+		kernel/simulator/PluginConnector_if.h \
+		kernel/simulator/ModelManager.h \
+		kernel/simulator/ParserManager.h \
+		kernel/simulator/ExperimentManager.h \
+		kernel/simulator/SimulationExperiment.h \
+		plugins/components/Create.h \
+		kernel/simulator/SourceModelComponent.h \
+		kernel/simulator/Counter.h \
+		plugins/components/Delay.h \
+		plugins/components/Dispose.h \
+		kernel/simulator/SinkModelComponent.h \
+		plugins/components/Assign.h \
+		plugins/components/Record.h \
+		plugins/components/Seize.h \
+		plugins/elements/Resource.h \
+		plugins/elements/Queue.h \
+		plugins/components/SeizableItem.h \
+		plugins/elements/Set.h \
+		plugins/components/QueueableItem.h \
+		plugins/components/Release.h \
+		plugins/components/Decide.h \
+		kernel/simulator/Attribute.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/AnElectronicAssemblyAndTestSystem.o examples/teaching/AnElectronicAssemblyAndTestSystem.cpp
 
-build/Debug/GNU-Linux/FullSimulationOfComplexModel.o: examples/teaching/FullSimulationOfComplexModel.cpp examples/teaching/FullSimulationOfComplexModel.h
+build/Debug/GNU-Linux/FullSimulationOfComplexModel.o: examples/teaching/FullSimulationOfComplexModel.cpp examples/teaching/FullSimulationOfComplexModel.h \
+		applications/BaseConsoleGenesysApplication.h \
+		applications/GenesysApplication_if.h \
+		kernel/simulator/TraceManager.h \
+		kernel/util/List.h \
+		kernel/util/Util.h \
+		kernel/simulator/ModelElement.h \
+		kernel/simulator/ParserChangesInformation.h \
+		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/OnEventManager.h \
+		kernel/simulator/Event.h \
+		kernel/simulator/Entity.h \
+		kernel/simulator/EntityType.h \
+		kernel/simulator/StatisticsCollector.h \
+		kernel/statistics/Statistics_if.h \
+		kernel/statistics/Collector_if.h \
+		kernel/simulator/ElementManager.h \
+		kernel/simulator/Plugin.h \
+		kernel/simulator/PluginInformation.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/ConnectionManager.h \
+		kernel/simulator/Simulator.h \
+		kernel/simulator/Model.h \
+		kernel/simulator/ModelChecker_if.h \
+		kernel/simulator/Parser_if.h \
+		kernel/statistics/Sampler_if.h \
+		kernel/simulator/ModelPersistence_if.h \
+		kernel/simulator/ComponentManager.h \
+		kernel/simulator/ModelInfo.h \
+		kernel/simulator/ModelSimulation.h \
+		kernel/simulator/SimulationReporter_if.h \
+		kernel/simulator/SimulationResponse.h \
+		kernel/simulator/DefineGetterSetter.h \
+		kernel/simulator/SimulationControl.h \
+		kernel/simulator/LicenceManager.h \
+		kernel/simulator/PluginManager.h \
+		kernel/simulator/PluginConnector_if.h \
+		kernel/simulator/ModelManager.h \
+		kernel/simulator/ParserManager.h \
+		kernel/simulator/ExperimentManager.h \
+		kernel/simulator/SimulationExperiment.h \
+		plugins/components/Create.h \
+		kernel/simulator/SourceModelComponent.h \
+		kernel/simulator/Counter.h \
+		plugins/components/Delay.h \
+		plugins/components/Dispose.h \
+		kernel/simulator/SinkModelComponent.h \
+		plugins/components/Seize.h \
+		plugins/elements/Resource.h \
+		plugins/elements/Queue.h \
+		plugins/components/SeizableItem.h \
+		plugins/elements/Set.h \
+		plugins/components/QueueableItem.h \
+		plugins/components/Release.h \
+		plugins/components/Assign.h \
+		plugins/components/Record.h \
+		plugins/components/Decide.h \
+		kernel/simulator/Attribute.h \
+		plugins/elements/Variable.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/FullSimulationOfComplexModel.o examples/teaching/FullSimulationOfComplexModel.cpp
 
-build/Debug/GNU-Linux/OperatingSystem02.o: examples/teaching/OperatingSystem02.cpp examples/teaching/OperatingSystem02.h
+build/Debug/GNU-Linux/OperatingSystem02.o: examples/teaching/OperatingSystem02.cpp examples/teaching/OperatingSystem02.h \
+		applications/BaseConsoleGenesysApplication.h \
+		applications/GenesysApplication_if.h \
+		kernel/simulator/TraceManager.h \
+		kernel/util/List.h \
+		kernel/util/Util.h \
+		kernel/simulator/ModelElement.h \
+		kernel/simulator/ParserChangesInformation.h \
+		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/OnEventManager.h \
+		kernel/simulator/Event.h \
+		kernel/simulator/Entity.h \
+		kernel/simulator/EntityType.h \
+		kernel/simulator/StatisticsCollector.h \
+		kernel/statistics/Statistics_if.h \
+		kernel/statistics/Collector_if.h \
+		kernel/simulator/ElementManager.h \
+		kernel/simulator/Plugin.h \
+		kernel/simulator/PluginInformation.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/ConnectionManager.h \
+		kernel/simulator/Simulator.h \
+		kernel/simulator/Model.h \
+		kernel/simulator/ModelChecker_if.h \
+		kernel/simulator/Parser_if.h \
+		kernel/statistics/Sampler_if.h \
+		kernel/simulator/ModelPersistence_if.h \
+		kernel/simulator/ComponentManager.h \
+		kernel/simulator/ModelInfo.h \
+		kernel/simulator/ModelSimulation.h \
+		kernel/simulator/SimulationReporter_if.h \
+		kernel/simulator/SimulationResponse.h \
+		kernel/simulator/DefineGetterSetter.h \
+		kernel/simulator/SimulationControl.h \
+		kernel/simulator/LicenceManager.h \
+		kernel/simulator/PluginManager.h \
+		kernel/simulator/PluginConnector_if.h \
+		kernel/simulator/ModelManager.h \
+		kernel/simulator/ParserManager.h \
+		kernel/simulator/ExperimentManager.h \
+		kernel/simulator/SimulationExperiment.h \
+		kernel/simulator/Attribute.h \
+		plugins/elements/Queue.h \
+		plugins/elements/Resource.h \
+		kernel/simulator/Counter.h \
+		plugins/elements/Station.h \
+		plugins/components/Create.h \
+		kernel/simulator/SourceModelComponent.h \
+		plugins/components/Seize.h \
+		plugins/components/SeizableItem.h \
+		plugins/elements/Set.h \
+		plugins/components/QueueableItem.h \
+		plugins/components/Delay.h \
+		plugins/components/Release.h \
+		plugins/components/Dispose.h \
+		kernel/simulator/SinkModelComponent.h \
+		plugins/components/Assign.h \
+		plugins/components/Decide.h \
+		plugins/components/Enter.h \
+		plugins/components/Route.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/OperatingSystem02.o examples/teaching/OperatingSystem02.cpp
 
-build/Debug/GNU-Linux/OperatingSystem03.o: examples/teaching/OperatingSystem03.cpp examples/teaching/OperatingSystem03.h
+build/Debug/GNU-Linux/OperatingSystem03.o: examples/teaching/OperatingSystem03.cpp examples/teaching/OperatingSystem03.h \
+		applications/BaseConsoleGenesysApplication.h \
+		applications/GenesysApplication_if.h \
+		kernel/simulator/TraceManager.h \
+		kernel/util/List.h \
+		kernel/util/Util.h \
+		kernel/simulator/ModelElement.h \
+		kernel/simulator/ParserChangesInformation.h \
+		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/OnEventManager.h \
+		kernel/simulator/Event.h \
+		kernel/simulator/Entity.h \
+		kernel/simulator/EntityType.h \
+		kernel/simulator/StatisticsCollector.h \
+		kernel/statistics/Statistics_if.h \
+		kernel/statistics/Collector_if.h \
+		kernel/simulator/ElementManager.h \
+		kernel/simulator/Plugin.h \
+		kernel/simulator/PluginInformation.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/ConnectionManager.h \
+		kernel/simulator/Simulator.h \
+		kernel/simulator/Model.h \
+		kernel/simulator/ModelChecker_if.h \
+		kernel/simulator/Parser_if.h \
+		kernel/statistics/Sampler_if.h \
+		kernel/simulator/ModelPersistence_if.h \
+		kernel/simulator/ComponentManager.h \
+		kernel/simulator/ModelInfo.h \
+		kernel/simulator/ModelSimulation.h \
+		kernel/simulator/SimulationReporter_if.h \
+		kernel/simulator/SimulationResponse.h \
+		kernel/simulator/DefineGetterSetter.h \
+		kernel/simulator/SimulationControl.h \
+		kernel/simulator/LicenceManager.h \
+		kernel/simulator/PluginManager.h \
+		kernel/simulator/PluginConnector_if.h \
+		kernel/simulator/ModelManager.h \
+		kernel/simulator/ParserManager.h \
+		kernel/simulator/ExperimentManager.h \
+		kernel/simulator/SimulationExperiment.h \
+		kernel/simulator/Attribute.h \
+		plugins/elements/Queue.h \
+		plugins/elements/Resource.h \
+		kernel/simulator/Counter.h \
+		plugins/elements/Station.h \
+		plugins/components/Create.h \
+		kernel/simulator/SourceModelComponent.h \
+		plugins/components/Seize.h \
+		plugins/components/SeizableItem.h \
+		plugins/elements/Set.h \
+		plugins/components/QueueableItem.h \
+		plugins/components/Delay.h \
+		plugins/components/Release.h \
+		plugins/components/Dispose.h \
+		kernel/simulator/SinkModelComponent.h \
+		plugins/components/Assign.h \
+		plugins/components/Decide.h \
+		plugins/components/Enter.h \
+		plugins/components/Route.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/OperatingSystem03.o examples/teaching/OperatingSystem03.cpp
 
 build/Debug/GNU-Linux/Attribute.o: kernel/simulator/Attribute.cpp kernel/simulator/Attribute.h \
@@ -2586,6 +4065,22 @@ build/Debug/GNU-Linux/main.o: main.cpp Traits.h \
 		kernel/simulator/ExperimentManager.h \
 		kernel/simulator/SimulationExperiment.h \
 		applications/gui/qt/GenesysQtGUI.h \
+		examples/book/Book_Cap02_Example01.h \
+		examples/smarts/Smart_AssignWriteSeizes.h \
+		examples/smarts/Smart_Delay.h \
+		examples/smarts/Smart_Dummy.h \
+		examples/smarts/Smart_HoldSignal.h \
+		examples/smarts/Smart_ModelInfoModelSimulation.h \
+		examples/smarts/Smart_Parser.h \
+		examples/smarts/Smart_Process.h \
+		examples/smarts/Smart_ProcessSet.h \
+		examples/smarts/Smart_RouteStation.h \
+		examples/smarts/Smart_SeizeDelayRelease.h \
+		examples/smarts/Smart_SeizeDelayReleaseMany.h \
+		examples/smarts/Smart_Sequence.h \
+		examples/teaching/AnElectronicAssemblyAndTestSystem.h \
+		examples/teaching/OperatingSystem02.h \
+		examples/teaching/OperatingSystem03.h \
 		tools/SolverDefaultImpl1.h \
 		tools/solver_if.h \
 		tools/HypothesisTesterDefaultImpl1.h \
@@ -4242,6 +5737,22 @@ build/Debug/GNU-Linux/testProbabilityDistribution.o: tests/testProbabilityDistri
 		kernel/simulator/ExperimentManager.h \
 		kernel/simulator/SimulationExperiment.h \
 		applications/gui/qt/GenesysQtGUI.h \
+		examples/book/Book_Cap02_Example01.h \
+		examples/smarts/Smart_AssignWriteSeizes.h \
+		examples/smarts/Smart_Delay.h \
+		examples/smarts/Smart_Dummy.h \
+		examples/smarts/Smart_HoldSignal.h \
+		examples/smarts/Smart_ModelInfoModelSimulation.h \
+		examples/smarts/Smart_Parser.h \
+		examples/smarts/Smart_Process.h \
+		examples/smarts/Smart_ProcessSet.h \
+		examples/smarts/Smart_RouteStation.h \
+		examples/smarts/Smart_SeizeDelayRelease.h \
+		examples/smarts/Smart_SeizeDelayReleaseMany.h \
+		examples/smarts/Smart_Sequence.h \
+		examples/teaching/AnElectronicAssemblyAndTestSystem.h \
+		examples/teaching/OperatingSystem02.h \
+		examples/teaching/OperatingSystem03.h \
 		tools/HypothesisTesterDefaultImpl1.h \
 		tools/HypothesisTester_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/testProbabilityDistribution.o tests/testProbabilityDistribution.cpp
@@ -4354,6 +5865,22 @@ build/Debug/GNU-Linux/ProbabilityDistribution.o: tools/ProbabilityDistribution.c
 		kernel/simulator/ExperimentManager.h \
 		kernel/simulator/SimulationExperiment.h \
 		applications/gui/qt/GenesysQtGUI.h \
+		examples/book/Book_Cap02_Example01.h \
+		examples/smarts/Smart_AssignWriteSeizes.h \
+		examples/smarts/Smart_Delay.h \
+		examples/smarts/Smart_Dummy.h \
+		examples/smarts/Smart_HoldSignal.h \
+		examples/smarts/Smart_ModelInfoModelSimulation.h \
+		examples/smarts/Smart_Parser.h \
+		examples/smarts/Smart_Process.h \
+		examples/smarts/Smart_ProcessSet.h \
+		examples/smarts/Smart_RouteStation.h \
+		examples/smarts/Smart_SeizeDelayRelease.h \
+		examples/smarts/Smart_SeizeDelayReleaseMany.h \
+		examples/smarts/Smart_Sequence.h \
+		examples/teaching/AnElectronicAssemblyAndTestSystem.h \
+		examples/teaching/OperatingSystem02.h \
+		examples/teaching/OperatingSystem03.h \
 		tools/SolverDefaultImpl1.h \
 		tools/HypothesisTesterDefaultImpl1.h \
 		tools/HypothesisTester_if.h
@@ -4362,6 +5889,21 @@ build/Debug/GNU-Linux/ProbabilityDistribution.o: tools/ProbabilityDistribution.c
 build/Debug/GNU-Linux/SolverDefaultImpl1.o: tools/SolverDefaultImpl1.cpp tools/SolverDefaultImpl1.h \
 		tools/solver_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/SolverDefaultImpl1.o tools/SolverDefaultImpl1.cpp
+
+build/Debug/GNU-Linux/qrc_guiresources.o: qrc_guiresources.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/qrc_guiresources.o qrc_guiresources.cpp
+
+build/Debug/GNU-Linux/moc_dialogabout.o: moc_dialogabout.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/moc_dialogabout.o moc_dialogabout.cpp
+
+build/Debug/GNU-Linux/moc_dialogmodelinformation.o: moc_dialogmodelinformation.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/moc_dialogmodelinformation.o moc_dialogmodelinformation.cpp
+
+build/Debug/GNU-Linux/moc_formPlugins.o: moc_formPlugins.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/moc_formPlugins.o moc_formPlugins.cpp
+
+build/Debug/GNU-Linux/moc_mainwindow.o: moc_mainwindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/moc_mainwindow.o moc_mainwindow.cpp
 
 ####### Install
 

@@ -101,6 +101,7 @@ L      [A-Za-z0-9_.]+
 [+] {return yy::genesyspp_parser::make_PLUS(loc);}
 [-] {return yy::genesyspp_parser::make_MINUS(loc);}
 [*] {return yy::genesyspp_parser::make_STAR(loc);}
+[\^] {return yy::genesyspp_parser::make_POWER(loc);}
 [/] {return yy::genesyspp_parser::make_SLASH(loc);}
 [=] {return yy::genesyspp_parser::make_ASSIGN(loc);}
 [,] {return yy::genesyspp_parser::make_COMMA(loc);}
@@ -121,6 +122,8 @@ L      [A-Za-z0-9_.]+
 %{// logic funcions %}
 [aA][nN][dD]    {return yy::genesyspp_parser::make_oAND(obj_t(0, std::string(yytext)), loc);}
 [oO][rR]        {return yy::genesyspp_parser::make_oOR(obj_t(0, std::string(yytext)), loc);}
+[nN][aA][nN][dD]    {return yy::genesyspp_parser::make_oNAND(obj_t(0, std::string(yytext)), loc);}
+[xX][oO][rR]        {return yy::genesyspp_parser::make_oXOR(obj_t(0, std::string(yytext)), loc);}
 [nN][oO][tT]    {return yy::genesyspp_parser::make_oNOT(obj_t(0, std::string(yytext)), loc);}
 
 %{// trigonometric functions %}

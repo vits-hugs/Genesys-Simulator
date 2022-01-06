@@ -82,7 +82,7 @@ double SamplerDefaultImpl1::sampleNormal(double mean, double stddev) {
 
 double SamplerDefaultImpl1::sampleLogNormal(double mean, double stddev) {
 	double meanNorm, DispNorm;
-	assert(!((mean <= 0.0) || (stddev <= 0.0)));
+	//assert(!((mean <= 0.0) || (stddev <= 0.0)));
 	DispNorm = log((stddev * stddev) / (mean * mean) + 1.0);
 	meanNorm = log(mean) - 0.5 * DispNorm;
 	return exp(sampleNormal(meanNorm, sqrt(DispNorm)));

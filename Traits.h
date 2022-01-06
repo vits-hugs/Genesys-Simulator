@@ -29,6 +29,7 @@
 #include "examples/smarts/Smart_Dummy.h"
 #include "examples/smarts/Smart_HoldSignal.h"
 #include "examples/smarts/Smart_ModelInfoModelSimulation.h"
+#include "examples/smarts/Smart_Parser.h"
 #include "examples/smarts/Smart_Process.h"
 #include "examples/smarts/Smart_ProcessSet.h"
 #include "examples/smarts/Smart_RouteStation.h"
@@ -49,24 +50,26 @@ template <typename T>
 struct Traits {
 };
 
-/*
- *  Genesys Application
+/*!
+ *  Configure the Genesys Application to be compiled and executed
  */
-
 template <> struct Traits<GenesysApplication_if> {
 	static const Util::TraceLevel traceLevel = Util::TraceLevel::L6_arrival;
+
 	//// SMART SMART_S SORTED
 	//typedef Smart_AssignWriteSeizes Application;
-	typedef Smart_Delay Application;
+	//typedef Smart_Delay Application;
 	//typedef Smart_Dummy Application;
 	//typedef Smart_HoldSignal Application;
 	//typedef Smart_ModelInfoModelSimulation Application;
+	typedef Smart_Parser Application;
 	//typedef Smart_Process Application;
 	//typedef Smart_ProcessSet Application;
 	//typedef Smart_RouteStation Application;
 	//typedef Smart_SeizeDelayRelease Application;
 	//typedef Smart_SeizeDelayReleaseMany Application;
 	//typedef Smart_Sequence Application;
+
 	//// TEACHING
 	//typedef AnElectronicAssemblyAndTestSystem Application;
 	//typedef OperatingSystem02 Application;
@@ -78,12 +81,18 @@ template <> struct Traits<GenesysApplication_if> {
 
 };
 
+/*!
+ *  Configure the Solver to be used
+ */
 template <> struct Traits<Solver_if> {
 	typedef SolverDefaultImpl1 Implementation;
 	static constexpr double Precision = 1e-5;
 	static constexpr unsigned int MaxSteps = 1e2;
 };
 
+/*!
+ *  Configure the Hypothesis Tester to be used
+ */
 template <> struct Traits<HypothesisTester_if> {
 	typedef HypothesisTesterDefaultImpl1 Implementation;
 	static constexpr unsigned int ConfidenceLevel = 95;
