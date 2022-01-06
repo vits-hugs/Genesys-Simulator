@@ -4,42 +4,6 @@
     <logicalFolder name="userInterfaces"
                    displayName="applications"
                    projectFiles="true">
-      <logicalFolder name="f1" displayName="examples" projectFiles="true">
-        <logicalFolder name="f2" displayName="book" projectFiles="true">
-          <itemPath>userInterfaces/examples/book/Book_Cap02_Example01.cpp</itemPath>
-          <itemPath>userInterfaces/examples/book/Book_Cap02_Example01.h</itemPath>
-        </logicalFolder>
-        <logicalFolder name="f3" displayName="smarts" projectFiles="true">
-          <itemPath>userInterfaces/examples/Example_AssignWrite3Seizes.cpp</itemPath>
-          <itemPath>userInterfaces/examples/Example_AssignWrite3Seizes.h</itemPath>
-          <itemPath>userInterfaces/examples/Example_Delay.cpp</itemPath>
-          <itemPath>userInterfaces/examples/Example_Delay.h</itemPath>
-          <itemPath>userInterfaces/examples/Example_Dummy.cpp</itemPath>
-          <itemPath>userInterfaces/examples/Example_Dummy.h</itemPath>
-          <itemPath>userInterfaces/examples/Example_HoldSignal.cpp</itemPath>
-          <itemPath>userInterfaces/examples/Example_HoldSignal.h</itemPath>
-          <itemPath>userInterfaces/examples/Example_ModelInfoModelSimulation.cpp</itemPath>
-          <itemPath>userInterfaces/examples/Example_ModelInfoModelSimulation.h</itemPath>
-          <itemPath>userInterfaces/examples/Example_Process.cpp</itemPath>
-          <itemPath>userInterfaces/examples/Example_Process.h</itemPath>
-          <itemPath>userInterfaces/examples/Example_ProcessSet.cpp</itemPath>
-          <itemPath>userInterfaces/examples/Example_ProcessSet.h</itemPath>
-          <itemPath>userInterfaces/examples/Example_RouteStation.cpp</itemPath>
-          <itemPath>userInterfaces/examples/Example_RouteStation.h</itemPath>
-          <itemPath>userInterfaces/examples/Example_SeizeDelayRelease.cpp</itemPath>
-          <itemPath>userInterfaces/examples/Example_SeizeDelayRelease.h</itemPath>
-          <itemPath>userInterfaces/examples/Example_SeizeDelayReleaseMany.cpp</itemPath>
-          <itemPath>userInterfaces/examples/Example_SeizeDelayReleaseMany.h</itemPath>
-          <itemPath>userInterfaces/examples/Example_Sequence.cpp</itemPath>
-          <itemPath>userInterfaces/examples/Example_Sequence.h</itemPath>
-        </logicalFolder>
-        <logicalFolder name="f4" displayName="teaching" projectFiles="true">
-          <itemPath>userInterfaces/examples/AnElectronicAssemblyAndTestSystem.cpp</itemPath>
-          <itemPath>userInterfaces/examples/AnElectronicAssemblyAndTestSystem.h</itemPath>
-          <itemPath>userInterfaces/examples/FullSimulationOfComplexModel.cpp</itemPath>
-          <itemPath>userInterfaces/examples/FullSimulationOfComplexModel.h</itemPath>
-        </logicalFolder>
-      </logicalFolder>
       <logicalFolder name="gui" displayName="gui" projectFiles="true">
         <logicalFolder name="qt" displayName="qt" projectFiles="true">
           <logicalFolder name="f1" displayName="dialogs" projectFiles="true">
@@ -79,6 +43,46 @@
                    displayName="Arquivos de Recurso"
                    projectFiles="true">
       <itemPath>userInterfaces/gui/qt/guiresources.qrc</itemPath>
+    </logicalFolder>
+    <logicalFolder name="f2" displayName="examples" projectFiles="true" kind="ROOT">
+      <logicalFolder name="f2" displayName="book" projectFiles="true">
+        <itemPath>examples/book/Book_Cap02_Example01.cpp</itemPath>
+        <itemPath>examples/book/Book_Cap02_Example01.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f3" displayName="smarts" projectFiles="true">
+        <itemPath>examples/smarts/Smart_AssignWriteSeizes.cpp</itemPath>
+        <itemPath>examples/smarts/Smart_AssignWriteSeizes.h</itemPath>
+        <itemPath>examples/smarts/Smart_Delay.cpp</itemPath>
+        <itemPath>examples/smarts/Smart_Delay.h</itemPath>
+        <itemPath>examples/smarts/Smart_Dummy.cpp</itemPath>
+        <itemPath>examples/smarts/Smart_Dummy.h</itemPath>
+        <itemPath>examples/smarts/Smart_HoldSignal.cpp</itemPath>
+        <itemPath>examples/smarts/Smart_HoldSignal.h</itemPath>
+        <itemPath>examples/smarts/Smart_ModelInfoModelSimulation.cpp</itemPath>
+        <itemPath>examples/smarts/Smart_ModelInfoModelSimulation.h</itemPath>
+        <itemPath>examples/smarts/Smart_Process.cpp</itemPath>
+        <itemPath>examples/smarts/Smart_Process.h</itemPath>
+        <itemPath>examples/smarts/Smart_ProcessSet.cpp</itemPath>
+        <itemPath>examples/smarts/Smart_ProcessSet.h</itemPath>
+        <itemPath>examples/smarts/Smart_RouteStation.cpp</itemPath>
+        <itemPath>examples/smarts/Smart_RouteStation.h</itemPath>
+        <itemPath>examples/smarts/Smart_SeizeDelayRelease.cpp</itemPath>
+        <itemPath>examples/smarts/Smart_SeizeDelayRelease.h</itemPath>
+        <itemPath>examples/smarts/Smart_SeizeDelayReleaseMany.cpp</itemPath>
+        <itemPath>examples/smarts/Smart_SeizeDelayReleaseMany.h</itemPath>
+        <itemPath>examples/smarts/Smart_Sequence.cpp</itemPath>
+        <itemPath>examples/smarts/Smart_Sequence.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f4" displayName="teaching" projectFiles="true">
+        <itemPath>examples/teaching/AnElectronicAssemblyAndTestSystem.cpp</itemPath>
+        <itemPath>examples/teaching/AnElectronicAssemblyAndTestSystem.h</itemPath>
+        <itemPath>examples/teaching/FullSimulationOfComplexModel.cpp</itemPath>
+        <itemPath>examples/teaching/FullSimulationOfComplexModel.h</itemPath>
+        <itemPath>examples/teaching/OperatingSystem02.cpp</itemPath>
+        <itemPath>examples/teaching/OperatingSystem02.h</itemPath>
+        <itemPath>examples/teaching/OperatingSystem03.cpp</itemPath>
+        <itemPath>examples/teaching/OperatingSystem03.h</itemPath>
+      </logicalFolder>
     </logicalFolder>
     <logicalFolder name="kernel" displayName="kernel" projectFiles="true">
       <logicalFolder name="simulator" displayName="simulator" projectFiles="true">
@@ -592,6 +596,136 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="examples/book/Book_Cap02_Example01.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="examples/book/Book_Cap02_Example01.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_AssignWriteSeizes.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_AssignWriteSeizes.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_Delay.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_Delay.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_Dummy.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_Dummy.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_HoldSignal.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_HoldSignal.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_ModelInfoModelSimulation.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_ModelInfoModelSimulation.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_Process.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_Process.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_ProcessSet.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_ProcessSet.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_RouteStation.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_RouteStation.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_SeizeDelayRelease.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_SeizeDelayRelease.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_SeizeDelayReleaseMany.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_SeizeDelayReleaseMany.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_Sequence.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_Sequence.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="examples/teaching/AnElectronicAssemblyAndTestSystem.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="examples/teaching/AnElectronicAssemblyAndTestSystem.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="examples/teaching/FullSimulationOfComplexModel.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="examples/teaching/FullSimulationOfComplexModel.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="examples/teaching/OperatingSystem02.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="examples/teaching/OperatingSystem02.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="examples/teaching/OperatingSystem03.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="examples/teaching/OperatingSystem03.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <folder path="TestFiles/f1">
         <linkerTool>
           <output>${TESTDIR}/TestFiles/f1</output>
@@ -1331,146 +1465,6 @@
       <item path="tools/SolverDefaultImpl1.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tools/solver_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/AnElectronicAssemblyAndTestSystem.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/AnElectronicAssemblyAndTestSystem.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_AssignWrite3Seizes.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_AssignWrite3Seizes.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_Delay.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_Delay.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_Dummy.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_Dummy.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_HoldSignal.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_HoldSignal.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_ModelInfoModelSimulation.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_ModelInfoModelSimulation.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_Process.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_Process.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_ProcessSet.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_ProcessSet.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_RouteStation.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_RouteStation.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_SeizeDelayRelease.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_SeizeDelayRelease.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_SeizeDelayReleaseMany.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_SeizeDelayReleaseMany.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_Sequence.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_Sequence.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/FullSimulationOfComplexModel.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/FullSimulationOfComplexModel.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/book/Book_Cap02_Example01.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/book/Book_Cap02_Example01.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
       </item>
       <item path="userInterfaces/gui/qt/GenesysQtGUI.cpp"
             ex="false"
@@ -1616,6 +1610,136 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="examples/book/Book_Cap02_Example01.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="examples/book/Book_Cap02_Example01.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_AssignWriteSeizes.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_AssignWriteSeizes.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_Delay.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_Delay.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_Dummy.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_Dummy.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_HoldSignal.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_HoldSignal.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_ModelInfoModelSimulation.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_ModelInfoModelSimulation.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_Process.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_Process.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_ProcessSet.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_ProcessSet.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_RouteStation.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_RouteStation.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_SeizeDelayRelease.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_SeizeDelayRelease.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_SeizeDelayReleaseMany.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_SeizeDelayReleaseMany.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_Sequence.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_Sequence.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="examples/teaching/AnElectronicAssemblyAndTestSystem.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="examples/teaching/AnElectronicAssemblyAndTestSystem.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="examples/teaching/FullSimulationOfComplexModel.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="examples/teaching/FullSimulationOfComplexModel.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="examples/teaching/OperatingSystem02.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="examples/teaching/OperatingSystem02.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="examples/teaching/OperatingSystem03.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="examples/teaching/OperatingSystem03.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <folder path="TestFiles/f1">
         <linkerTool>
           <output>${TESTDIR}/TestFiles/f1</output>
@@ -2355,146 +2479,6 @@
       <item path="tools/SolverDefaultImpl1.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tools/solver_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/AnElectronicAssemblyAndTestSystem.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/AnElectronicAssemblyAndTestSystem.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_AssignWrite3Seizes.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_AssignWrite3Seizes.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_Delay.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_Delay.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_Dummy.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_Dummy.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_HoldSignal.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_HoldSignal.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_ModelInfoModelSimulation.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_ModelInfoModelSimulation.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_Process.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_Process.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_ProcessSet.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_ProcessSet.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_RouteStation.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_RouteStation.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_SeizeDelayRelease.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_SeizeDelayRelease.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_SeizeDelayReleaseMany.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_SeizeDelayReleaseMany.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_Sequence.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/Example_Sequence.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/FullSimulationOfComplexModel.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/FullSimulationOfComplexModel.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/book/Book_Cap02_Example01.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="userInterfaces/examples/book/Book_Cap02_Example01.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
       </item>
       <item path="userInterfaces/gui/qt/GenesysQtGUI.cpp"
             ex="false"

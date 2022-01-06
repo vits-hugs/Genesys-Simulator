@@ -16,25 +16,31 @@
 
 #include "kernel/util/Util.h"
 // USER INTERFACES
-#include "userInterfaces/terminal/GenesysTerminalApp.h"
-#include "userInterfaces/gui/qt/GenesysQtGUI.h"
-// BOOK
-#include "userInterfaces/examples/book/Book_Cap02_Example01.h"
-// SMARTS
-#include "userInterfaces/examples/Example_Dummy.h"
-#include "userInterfaces/examples/Example_Delay.h"
-#include "userInterfaces/examples/Example_ModelInfoModelSimulation.h"
-#include "userInterfaces/examples/Example_Process.h"
-#include "userInterfaces/examples/Example_ProcessSet.h"
-#include "userInterfaces/examples/Example_SeizeDelayRelease.h"
-#include "userInterfaces/examples/Example_SeizeDelayReleaseMany.h"
-#include "userInterfaces/examples/Example_RouteStation.h"
-#include "userInterfaces/examples/Example_Sequence.h"
-#include "userInterfaces/examples/Example_HoldSignal.h"
-// TEACHING
-#include "userInterfaces/examples/AnElectronicAssemblyAndTestSystem.h"
-//#include "userInterfaces/examples/Example_SistemaOperacional03.h"
-
+#include "applications/terminal/GenesysTerminalApp.h"
+#include "applications/gui/qt/GenesysQtGUI.h"
+//
+// EXAMPLES
+//
+// book
+#include "examples/book/Book_Cap02_Example01.h"
+// smarts
+#include "examples/smarts/Smart_AssignWriteSeizes.h"
+#include "examples/smarts/Smart_Delay.h"
+#include "examples/smarts/Smart_Dummy.h"
+#include "examples/smarts/Smart_HoldSignal.h"
+#include "examples/smarts/Smart_ModelInfoModelSimulation.h"
+#include "examples/smarts/Smart_Process.h"
+#include "examples/smarts/Smart_ProcessSet.h"
+#include "examples/smarts/Smart_RouteStation.h"
+#include "examples/smarts/Smart_SeizeDelayRelease.h"
+#include "examples/smarts/Smart_SeizeDelayReleaseMany.h"
+#include "examples/smarts/Smart_Sequence.h"
+// teachng
+#include "examples/teaching/AnElectronicAssemblyAndTestSystem.h"
+#include "examples/teaching/OperatingSystem02.h"
+#include "examples/teaching/OperatingSystem03.h"
+//
+// TOOLS
 #include "tools/SolverDefaultImpl1.h"
 #include "tools/HypothesisTesterDefaultImpl1.h"
 #include "tools/HypothesisTester_if.h"
@@ -49,18 +55,24 @@ struct Traits {
 
 template <> struct Traits<GenesysApplication_if> {
 	static const Util::TraceLevel traceLevel = Util::TraceLevel::L6_arrival;
-	//// SMART EXAMPLES SORTED
-	//typedef Example_Delay Application;
-	//typedef Example_ModelInfoModelSimulation Application;
-	//typedef Example_Process Application;
-	//typedef Example_ProcessSet Application;
-	//typedef Example_SeizeDelayRelease Application;
-	//typedef Example_SeizeDelayReleaseMany Application;
-	//typedef Example_RouteStation Application;
-	//typedef Example_Sequence Application;
-	typedef Example_HoldSignal Application;
+	//// SMART SMART_S SORTED
+	//typedef Smart_AssignWriteSeizes Application;
+	typedef Smart_Delay Application;
+	//typedef Smart_Dummy Application;
+	//typedef Smart_HoldSignal Application;
+	//typedef Smart_ModelInfoModelSimulation Application;
+	//typedef Smart_Process Application;
+	//typedef Smart_ProcessSet Application;
+	//typedef Smart_RouteStation Application;
+	//typedef Smart_SeizeDelayRelease Application;
+	//typedef Smart_SeizeDelayReleaseMany Application;
+	//typedef Smart_Sequence Application;
+	//// TEACHING
+	//typedef AnElectronicAssemblyAndTestSystem Application;
+	//typedef OperatingSystem02 Application;
+	//typedef OperatingSystem03 Application;
 
-	//// USER INTERFACES
+	//// APPLICATIONS
 	//typedef GenesysTerminalApp Application;
 	//typedef GenesysQtGUI Application;
 

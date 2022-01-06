@@ -29,10 +29,10 @@ public:
 	virtual double integrate(double min, double max, double (*f)(double, double, double), double p2, double p3) = 0;
 	virtual double integrate(double min, double max, double (*f)(double, double, double, double), double p2, double p3, double p4) = 0;
 	virtual double integrate(double min, double max, double (*f)(double, double, double, double, double), double p2, double p3, double p4, double p5) = 0;
-	virtual double derivate(double min, double max, double (*f)(double, double), double p2) = 0;
-	virtual double derivate(double min, double max, double (*f)(double, double, double), double p2, double p3) = 0;
-	virtual double derivate(double min, double max, double (*f)(double, double, double, double), double p2, double p3, double p4) = 0;
-	virtual double derivate(double min, double max, double (*f)(double, double, double, double, double), double p2, double p3, double p4, double p5) = 0;
+	virtual double derivate(double initPoint, double initValue, double (*f)(double, double), double p2) = 0;
+	virtual double derivate(double initPoint, double initValue, double (*f)(double, double, double), double p2, double p3) = 0;
+	virtual double derivate(double initPoint, double initValue, double (*f)(double, double, double, double), double p2, double p3, double p4) = 0;
+	virtual double derivate(double initPoint, double initValue, double (*f)(double, double, double, double, double), double p2, double p3, double p4, double p5) = 0;
 };
 
 #endif /* SOLVER_IF_H */

@@ -28,13 +28,16 @@ public:
 	virtual double integrate(double min, double max, double (*f)(double, double, double), double p2, double p3);
 	virtual double integrate(double min, double max, double (*f)(double, double, double, double), double p2, double p3, double p4);
 	virtual double integrate(double min, double max, double (*f)(double, double, double, double, double), double p2, double p3, double p4, double p5);
-	virtual double derivate(double min, double max, double (*f)(double, double), double p2);
-	virtual double derivate(double min, double max, double (*f)(double, double, double), double p2, double p3);
-	virtual double derivate(double min, double max, double (*f)(double, double, double, double), double p2, double p3, double p4);
-	virtual double derivate(double min, double max, double (*f)(double, double, double, double, double), double p2, double p3, double p4, double p5);
+	virtual double derivate(double initPoint, double initValue, double (*f)(double, double), double p2);
+	virtual double derivate(double initPoint, double initValue, double (*f)(double, double, double), double p2, double p3);
+	virtual double derivate(double initPoint, double initValue, double (*f)(double, double, double, double), double p2, double p3, double p4);
+	virtual double derivate(double initPoint, double initValue, double (*f)(double, double, double, double, double), double p2, double p3, double p4, double p5);
 private:
 	double _precision;
-	unsigned int _steps;
+	unsigned int _numSteps;
+	double _stepSize;
+	//Variable* _variables;
+	//Variable* _timeVariable;
 };
 
 #endif /* SOLVERDEFAULTIMPL1_IF_H */
