@@ -40,7 +40,7 @@ Smart_AssignWriteSeizes::Smart_AssignWriteSeizes() {
 
 int Smart_AssignWriteSeizes::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L7_internal); //modelResult); //componentArrival);
+	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L2_results); //modelResult); //componentArrival);
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	this->insertFakePluginsByHand(genesys);
 
@@ -64,32 +64,32 @@ int Smart_AssignWriteSeizes::main(int argc, char** argv) {
 	Variable* var1 = new Variable(model, "varNextIndex");
 	Write* write1 = new Write(model);
 	write1->setWriteToType(Write::WriteToType::SCREEN);
-	write1->writeElements()->insert(new WriteElement("Atributo index: "));
-	write1->writeElements()->insert(new WriteElement("index", true, true));
-	write1->writeElements()->insert(new WriteElement("Variável nextIndex: "));
-	write1->writeElements()->insert(new WriteElement("varNextIndex", true, true));
-	write1->writeElements()->insert(new WriteElement("Quantidade ocupada das máquinas: "));
-	write1->writeElements()->insert(new WriteElement("NR( Machine_1 )", true));
-	write1->writeElements()->insert(new WriteElement(", "));
-	write1->writeElements()->insert(new WriteElement("NR(Machine_2)", true));
-	write1->writeElements()->insert(new WriteElement(", "));
-	write1->writeElements()->insert(new WriteElement("NR(Machine_3)", true, true));
-	write1->writeElements()->insert(new WriteElement("Estado das máquinas: "));
-	write1->writeElements()->insert(new WriteElement("STATE(Machine_1)", true));
-	write1->writeElements()->insert(new WriteElement(", "));
-	write1->writeElements()->insert(new WriteElement("STATE(Machine_2)", true));
-	write1->writeElements()->insert(new WriteElement(", "));
-	write1->writeElements()->insert(new WriteElement("STATE(Machine_3)", true, true));
-	write1->writeElements()->insert(new WriteElement("Quantidade de máquinas ocupadas no Set: "));
-	write1->writeElements()->insert(new WriteElement("SETSUM(Machine_Set)", true, true));
-	write1->writeElements()->insert(new WriteElement("Quantidade de entidades na fila 3: "));
-	write1->writeElements()->insert(new WriteElement("NQ(Queue_Seize_3)", true, true));
-	write1->writeElements()->insert(new WriteElement("Somatório do atributo 'index' das entidades na fila 3: "));
-	write1->writeElements()->insert(new WriteElement("SAQUE(Queue_Seize_3,index)", true, true));
-	write1->writeElements()->insert(new WriteElement("Valor do atributo 'index' da 2ª entidade na fila 3: "));
-	write1->writeElements()->insert(new WriteElement("AQUE(Queue_Seize_3,2,index)", true, true));
-	write1->writeElements()->insert(new WriteElement("Tempo médio das entidades na fila 3: "));
-	write1->writeElements()->insert(new WriteElement("TAVG(Queue_Seize_3.TimeInQueue)", true, true));
+	write1->writeElements()->insert(new WriteText("Atributo index: "));
+	write1->writeElements()->insert(new WritelnExpression("index"));
+	write1->writeElements()->insert(new WriteText("Variável nextIndex: "));
+	write1->writeElements()->insert(new WritelnExpression("varNextIndex"));
+	write1->writeElements()->insert(new WriteText("Quantidade ocupada das máquinas: "));
+	write1->writeElements()->insert(new WriteExpression("NR( Machine_1 )"));
+	write1->writeElements()->insert(new WriteText(", "));
+	write1->writeElements()->insert(new WriteExpression("NR(Machine_2)"));
+	write1->writeElements()->insert(new WriteText(", "));
+	write1->writeElements()->insert(new WritelnExpression("NR(Machine_3)"));
+	write1->writeElements()->insert(new WriteText("Estado das máquinas: "));
+	write1->writeElements()->insert(new WriteExpression("STATE(Machine_1)"));
+	write1->writeElements()->insert(new WriteText(", "));
+	write1->writeElements()->insert(new WriteExpression("STATE(Machine_2)"));
+	write1->writeElements()->insert(new WriteText(", "));
+	write1->writeElements()->insert(new WritelnExpression("STATE(Machine_3)"));
+	write1->writeElements()->insert(new WriteText("Quantidade de máquinas ocupadas no Set: "));
+	write1->writeElements()->insert(new WritelnExpression("SETSUM(Machine_Set)"));
+	write1->writeElements()->insert(new WriteText("Quantidade de entidades na fila 3: "));
+	write1->writeElements()->insert(new WritelnExpression("NQ(Queue_Seize_3)"));
+	write1->writeElements()->insert(new WriteText("Somatório do atributo 'index' das entidades na fila 3: "));
+	write1->writeElements()->insert(new WritelnExpression("SAQUE(Queue_Seize_3,index)"));
+	write1->writeElements()->insert(new WriteText("Valor do atributo 'index' da 2ª entidade na fila 3: "));
+	write1->writeElements()->insert(new WritelnExpression("AQUE(Queue_Seize_3,2,index)"));
+	write1->writeElements()->insert(new WriteText("Tempo médio das entidades na fila 3: "));
+	write1->writeElements()->insert(new WritelnExpression("TAVG(Queue_Seize_3.TimeInQueue)"));
 	//
 	Resource* machine1 = new Resource(model, "Machine_1");
 	machine1->setCapacity(1);

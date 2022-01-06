@@ -16,12 +16,12 @@
 
 #include "../../kernel/simulator/ModelComponent.h"
 
-class WriteElement {
+class WriteText {
 public:
-	WriteElement(std::string text = "", bool isExpression = false, bool newline = false) {
+	WriteText(std::string text = "") {
 		this->text = text;
-		this->isExpression = isExpression;
-		this->newline = newline;
+		this->isExpression = false;
+		this->newline = false;
 	}
 
 	const struct DEFAULT_VALUES {
@@ -32,6 +32,46 @@ public:
 	std::string text = DEFAULT.text;
 	bool isExpression = DEFAULT.isExpression;
 	bool newline = DEFAULT.newline;
+};
+
+class WritelnText : public WriteText {
+public:
+	WritelnText(std::string text = "") : WriteText(text) {
+		const bool newline = true;
+	}
+
+	const struct DEFAULT_VALUES {
+		const std::string text = "";
+		const bool isExpression = false;
+		const bool newline = true;
+	} DEFAULT;
+};
+
+class WriteExpression : public WriteText {
+public:
+	WriteExpression(std::string text = "") : WriteText(text) {
+		this->isExpression = true;
+	}
+
+	const struct DEFAULT_VALUES {
+		const std::string text = "";
+		const bool isExpression = true;
+		const bool newline = false;
+	} DEFAULT;
+};
+
+class WritelnExpression : public WriteExpression {
+public:
+	WritelnExpression(std::string text = "") : WriteExpression(text) {
+		this->isExpression = true;
+		this->newline = true;
+	}
+
+	const struct DEFAULT_VALUES {
+		const std::string text = "";
+		const bool isExpression = true;
+		const bool newline = true;
+	} DEFAULT;
 };
 
 /*!
@@ -55,7 +95,7 @@ public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 public:
-	List<WriteElement*>* writeElements() const;
+	List<WriteText*>* writeElements() const;
 	void setFilename(std::string _filename);
 	std::string filename() const;
 	void setWriteToType(WriteToType _writeToType);
@@ -78,7 +118,7 @@ private: // attributes 1:1
 	WriteToType _writeToType = DEFAULT.writeToType;
 	std::string _filename = DEFAULT.filename;
 private: // attributes 1:n
-	List<WriteElement*>* _writeElements = new List<WriteElement*>();
+	List<WriteText*>* _writeElements = new List<WriteText*>();
 };
 
 

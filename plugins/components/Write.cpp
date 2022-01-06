@@ -33,7 +33,7 @@ ModelComponent* Write::LoadInstance(Model* model, std::map<std::string, std::str
 	return newComponent;
 }
 
-List<WriteElement*>* Write::writeElements() const {
+List<WriteText*>* Write::writeElements() const {
 	return _writeElements;
 }
 
@@ -54,11 +54,12 @@ Write::WriteToType Write::writeToType() const {
 }
 
 void Write::_execute(Entity* entity) {
-	WriteElement* msgElem;
-	std::list<WriteElement*>* msgs = this->_writeElements->list();
+	std::ofstream savefile;
+	if (this->_writeToType == Write::WriteToType::FILE) {
+		savefile.open(_filename, std::ofstream::app);
+	}
 	std::string message = "";
-	for (std::list<WriteElement*>::iterator it = msgs->begin(); it != msgs->end(); it++) {
-		msgElem = (*it);
+	for (WriteText* msgElem : *_writeElements->list()) {
 		if (msgElem->isExpression) {
 			message += std::to_string(_parentModel->parseExpression(msgElem->text));
 		} else {
@@ -69,15 +70,14 @@ void Write::_execute(Entity* entity) {
 				_parentModel->getTracer()->trace(Util::TraceLevel::L2_results, message);
 			} else if (this->_writeToType == Write::WriteToType::FILE) {
 				// open file
-				std::ofstream savefile;
-				savefile.open(_filename, std::ofstream::app);
 				savefile << message << std::endl;
-				savefile.close();
 			}
 			message = "";
 		}
 	}
-
+	if (this->_writeToType == Write::WriteToType::FILE) {
+		savefile.close();
+	}
 	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
@@ -101,7 +101,19 @@ bool Write::_loadInstance(std::map<std::string, std::string>* fields) {
 			std::string text = (*fields->find(text)).second;
 			bool isExpression = static_cast<bool> (std::stoi((*fields->find("isExpression")).second));
 			bool newline = static_cast<bool> (std::stoi((*fields->find("newline")).second));
-			this->_writeElements->insert(new WriteElement(text, isExpression, newline));
+			if (isExpression) {
+				if (newline) {
+					this->_writeElements->insert(new WritelnExpression(text));
+				} else {
+					this->_writeElements->insert(new WriteExpression(text));
+				}
+			} else {
+				if (newline) {
+					this->_writeElements->insert(new WritelnText(text));
+				} else {
+					this->_writeElements->insert(new WriteText(text));
+				}
+			}
 		}
 	}
 	return res;
@@ -112,8 +124,8 @@ std::map<std::string, std::string>* Write::_saveInstance() {
 	SaveField(fields, "writeToType", static_cast<int> (_writeToType));
 	SaveField(fields, "writesSize", _writeElements->size(), 0u);
 	unsigned short i = 0;
-	WriteElement* writeElem;
-	for (std::list<WriteElement*>::iterator it = _writeElements->list()->begin(); it != _writeElements->list()->end(); it++, i++) {
+	WriteText* writeElem;
+	for (std::list<WriteText*>::iterator it = _writeElements->list()->begin(); it != _writeElements->list()->end(); it++, i++) {
 		writeElem = (*it);
 		SaveField(fields, "isExpression" + std::to_string(i), writeElem->isExpression, writeElem->DEFAULT.isExpression);
 		SaveField(fields, "newline" + std::to_string(i), writeElem->newline, writeElem->DEFAULT.newline);
@@ -125,10 +137,10 @@ std::map<std::string, std::string>* Write::_saveInstance() {
 
 bool Write::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	WriteElement* msgElem;
+	WriteText* msgElem;
 	unsigned short i = 0;
-	std::list<WriteElement*>* msgs = this->_writeElements->list();
-	for (std::list<WriteElement*>::iterator it = msgs->begin(); it != msgs->end(); it++) {
+	std::list<WriteText*>* msgs = this->_writeElements->list();
+	for (std::list<WriteText*>::iterator it = msgs->begin(); it != msgs->end(); it++) {
 		msgElem = (*it);
 		i++;
 		if (msgElem->isExpression) {
