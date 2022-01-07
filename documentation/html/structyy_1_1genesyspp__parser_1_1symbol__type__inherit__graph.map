@@ -1,0 +1,5 @@
+<map id="yy::genesyspp_parser::symbol_type" name="yy::genesyspp_parser::symbol_type">
+<area shape="rect" id="node1" title="&quot;External&quot; symbols: returned by the scanner." alt="" coords="24,520,187,641"/>
+<area shape="rect" id="node2" href="$structyy_1_1genesyspp__parser_1_1basic__symbol.html" title=" " alt="" coords="5,233,205,472"/>
+<area shape="rect" id="node3" href="$structyy_1_1genesyspp__parser_1_1by__kind.html" title="Type access provider for token (enum) based symbols." alt="" coords="24,5,187,185"/>
+</map>

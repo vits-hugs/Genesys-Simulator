@@ -1,0 +1,5 @@
+<map id="ModelSimulation::start" name="ModelSimulation::start">
+<area shape="rect" id="node1" title="Starts a sequential execution of a simulation, ie, a set of replications of this model." alt="" coords="5,31,176,57"/>
+<area shape="rect" id="node2" href="$class_model.html#a01c9bc6de757ca0662267e3c92a6973a" title="Checks the integrity and consistency of the model, possibly corrects some inconsistencies,..." alt="" coords="224,5,332,32"/>
+<area shape="rect" id="node3" href="$class_model.html#a077de04d17d7351a5e16066f93a064d4" title="Provides access to the class that performs the trace of simulation and replications." alt="" coords="380,31,488,57"/>
+</map>

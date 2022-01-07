@@ -1,0 +1,6 @@
+<map id="TraceEvent" name="TraceEvent">
+<area shape="rect" id="node1" title=" " alt="" coords="206,5,341,127"/>
+<area shape="rect" id="node2" href="$class_trace_error_event.html" title=" " alt="" coords="5,189,155,281"/>
+<area shape="rect" id="node3" href="$class_trace_simulation_event.html" title=" " alt="" coords="179,175,367,296"/>
+<area shape="rect" id="node4" href="$class_trace_simulation_process.html" title=" " alt="" coords="391,197,593,274"/>
+</map>
