@@ -14,65 +14,8 @@
 #ifndef WRITE_H
 #define WRITE_H
 
+#include <list>
 #include "../../kernel/simulator/ModelComponent.h"
-
-class WriteText {
-public:
-	WriteText(std::string text = "") {
-		this->text = text;
-		this->isExpression = false;
-		this->newline = false;
-	}
-
-	const struct DEFAULT_VALUES {
-		const std::string text = "";
-		const bool isExpression = false;
-		const bool newline = false;
-	} DEFAULT;
-	std::string text = DEFAULT.text;
-	bool isExpression = DEFAULT.isExpression;
-	bool newline = DEFAULT.newline;
-};
-
-class WritelnText : public WriteText {
-public:
-	WritelnText(std::string text = "") : WriteText(text) {
-		this->newline = true;
-	}
-
-	const struct DEFAULT_VALUES {
-		const std::string text = "";
-		const bool isExpression = false;
-		const bool newline = true;
-	} DEFAULT;
-};
-
-class WriteExpression : public WriteText {
-public:
-	WriteExpression(std::string text = "") : WriteText(text) {
-		this->isExpression = true;
-	}
-
-	const struct DEFAULT_VALUES {
-		const std::string text = "";
-		const bool isExpression = true;
-		const bool newline = false;
-	} DEFAULT;
-};
-
-class WritelnExpression : public WriteExpression {
-public:
-	WritelnExpression(std::string text = "") : WriteExpression(text) {
-		this->isExpression = true;
-		this->newline = true;
-	}
-
-	const struct DEFAULT_VALUES {
-		const std::string text = "";
-		const bool isExpression = true;
-		const bool newline = true;
-	} DEFAULT;
-};
 
 /*!
  This component ...
@@ -95,7 +38,7 @@ public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 public:
-	List<WriteText*>* writeElements() const;
+	void insertText(std::list<std::string> texts);
 	void setFilename(std::string _filename);
 	std::string filename() const;
 	void setWriteToType(WriteToType _writeToType);
@@ -108,9 +51,7 @@ protected: // virtual
 	virtual std::map<std::string, std::string>* _saveInstance();
 	virtual bool _check(std::string* errorMessage);
 private: // methods
-	//std::string _buildText();
 private: // attributes 1:1
-
 	const struct DEFAULT_VALUES {
 		WriteToType writeToType = Write::WriteToType::SCREEN;
 		std::string filename = "";
@@ -118,7 +59,7 @@ private: // attributes 1:1
 	WriteToType _writeToType = DEFAULT.writeToType;
 	std::string _filename = DEFAULT.filename;
 private: // attributes 1:n
-	List<WriteText*>* _writeElements = new List<WriteText*>();
+	List<std::string>* _writeElements = new List<std::string>();
 };
 
 

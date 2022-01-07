@@ -309,6 +309,9 @@ function:
 kernelFunction:
       fTNOW      { $$.valor = driver.getModel()->getSimulation()->getSimulatedTime();}
     | fTFIN      { $$.valor = driver.getModel()->getSimulation()->getReplicationLength();}
+    | fMAXREP    { $$.valor = driver.getModel()->getSimulation()->getNumberOfReplications();}
+    | fNUMREP    { $$.valor = driver.getModel()->getSimulation()->getCurrentReplicationNumber();}
+    | fIDENT     { $$.valor = driver.getModel()->getSimulation()->getCurrentEntity()->getId();}
     | CSTAT		 { $$.valor = 0; }
     | fTAVG  "(" CSTAT ")"     {
                     StatisticsCollector* cstat = ((StatisticsCollector*)(driver.getModel()->getElements()->getElement(Util::TypeOf<StatisticsCollector>(), $3.id)));
@@ -520,7 +523,7 @@ pluginFunction  :
 /**begin_FunctionProdution:Resource**/
     | fMR        "(" RESOURCE ")"	{ $$.valor = ((Resource*)driver.getModel()->getElements()->getElement(Util::TypeOf<Resource>(), $3.id))->getCapacity();}
     | fNR        "(" RESOURCE ")"        { $$.valor = ((Resource*)driver.getModel()->getElements()->getElement(Util::TypeOf<Resource>(), $3.id))->getNumberBusy();}
-    | fRESSEIZES "(" RESOURCE ")"        { /*For now does nothing because needs get Seizes, check with teacher*/}
+    | fRESSEIZES "(" RESOURCE ")"        { /*\TODO: For now does nothing because needs get Seizes, check with teacher*/}
     | fSTATE     "(" RESOURCE ")"        {  $$.valor = static_cast<int>(((Resource*)driver.getModel()->getElements()->getElement(Util::TypeOf<Resource>(), $3.id))->getResourceState()); }
     | fIRF       "(" RESOURCE ")"        { $$.valor = ((Resource*)driver.getModel()->getElements()->getElement(Util::TypeOf<Resource>(), $3.id))->getResourceState() == Resource::ResourceState::FAILED ? 1 : 0; }
     | fSETSUM    "(" SET ")"  {

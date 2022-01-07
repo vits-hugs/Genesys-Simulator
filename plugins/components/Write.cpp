@@ -33,23 +33,37 @@ ModelComponent* Write::LoadInstance(Model* model, std::map<std::string, std::str
 	return newComponent;
 }
 
-List<WriteText*>* Write::writeElements() const {
-	return _writeElements;
+//List<WriteText*>* Write::getWrites() const {
+//	return _writeElements;
+//}
+
+void Write::insertText(std::list<std::string> texts) {
+	for (std::string text : texts) {
+		_writeElements->list()->push_back(text);
+	}
+
+	if (texts.size() > 0 && texts.back().substr(texts.back().length() - 1, 1) != "\n") {
+		_writeElements->list()->push_back("\n");
+	}
 }
 
 void Write::setFilename(std::string _filename) {
+
 	this->_filename = _filename;
 }
 
 std::string Write::filename() const {
+
 	return _filename;
 }
 
 void Write::setWriteToType(WriteToType _writeToType) {
+
 	this->_writeToType = _writeToType;
 }
 
 Write::WriteToType Write::writeToType() const {
+
 	return _writeToType;
 }
 
@@ -59,23 +73,36 @@ void Write::_execute(Entity* entity) {
 		savefile.open(_filename, std::ofstream::app);
 	}
 	std::string message = "";
-	for (WriteText* msgElem : *_writeElements->list()) {
-		if (msgElem->isExpression) {
-			message += std::to_string(_parentModel->parseExpression(msgElem->text));
+	bool lastWasShown = true;
+	for (std::string msgElem : *_writeElements->list()) {
+		if (msgElem.substr(0, 1) == "@") { // to start with '@' is the signal that the following text is an expression to the parser 
+			message += std::to_string(_parentModel->parseExpression(msgElem.substr(1, msgElem.length() - 1)));
 		} else {
-			message += msgElem->text;
+			message += msgElem;
 		}
-		if (msgElem->newline) {
-			if (this->_writeToType == Write::WriteToType::SCREEN) { //\todo: Write To FILE not implemented
-				_parentModel->getTracer()->trace(Util::TraceLevel::L2_results, message);
-			} else if (this->_writeToType == Write::WriteToType::FILE) {
-				// open file
-				savefile << message << std::endl;
+		lastWasShown = msgElem.substr(msgElem.length() - 1, 1) == "\n";
+		if (lastWasShown) {
+			message = message.substr(0, message.length() - 1);
+			if (message != "") {
+				if (this->_writeToType == Write::WriteToType::SCREEN) { //\todo: Write To FILE not implemented
+					_parentModel->getTracer()->trace(Util::TraceLevel::L2_results, message);
+				} else if (this->_writeToType == Write::WriteToType::FILE) {
+					savefile << message << std::endl;
+				}
+				message = "";
 			}
-			message = "";
 		}
 	}
+	if (!lastWasShown) {
+		if (this->_writeToType == Write::WriteToType::SCREEN) { //\todo: Write To FILE not implemented
+			_parentModel->getTracer()->trace(Util::TraceLevel::L2_results, message);
+		} else if (this->_writeToType == Write::WriteToType::FILE) {
+			savefile << message << std::endl;
+		}
+	}
+
 	if (this->_writeToType == Write::WriteToType::FILE) {
+
 		savefile.close();
 	}
 	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
@@ -98,7 +125,9 @@ bool Write::_loadInstance(std::map<std::string, std::string>* fields) {
 		this->_writeToType = static_cast<WriteToType> (std::stoi((*fields->find("writeToType")).second));
 		unsigned short writesSize = std::stoi((*fields->find("writesSize")).second);
 		for (unsigned short i = 0; i < writesSize; i++) {
+
 			std::string text = (*fields->find(text)).second;
+			/*
 			bool isExpression = static_cast<bool> (std::stoi((*fields->find("isExpression")).second));
 			bool newline = static_cast<bool> (std::stoi((*fields->find("newline")).second));
 			if (isExpression) {
@@ -114,6 +143,7 @@ bool Write::_loadInstance(std::map<std::string, std::string>* fields) {
 					this->_writeElements->insert(new WriteText(text));
 				}
 			}
+			 */
 		}
 	}
 	return res;
@@ -124,6 +154,7 @@ std::map<std::string, std::string>* Write::_saveInstance() {
 	SaveField(fields, "writeToType", static_cast<int> (_writeToType));
 	SaveField(fields, "writesSize", _writeElements->size(), 0u);
 	unsigned short i = 0;
+	/*
 	WriteText* writeElem;
 	for (std::list<WriteText*>::iterator it = _writeElements->list()->begin(); it != _writeElements->list()->end(); it++, i++) {
 		writeElem = (*it);
@@ -131,12 +162,15 @@ std::map<std::string, std::string>* Write::_saveInstance() {
 		SaveField(fields, "newline" + std::to_string(i), writeElem->newline, writeElem->DEFAULT.newline);
 		SaveField(fields, "text" + std::to_string(i), writeElem->text, writeElem->DEFAULT.text);
 	}
+	 */
 	//this->_writeElements
+
 	return fields;
 }
 
 bool Write::_check(std::string* errorMessage) {
 	bool resultAll = true;
+	/*
 	WriteText* msgElem;
 	unsigned short i = 0;
 	std::list<WriteText*>* msgs = this->_writeElements->list();
@@ -147,6 +181,7 @@ bool Write::_check(std::string* errorMessage) {
 			resultAll &= _parentModel->checkExpression(msgElem->text, "writeExpression" + std::to_string(i), errorMessage);
 		}
 	}
+	 */
 	// when cheking the model (before simulating it), remove the file if exists
 	std::remove(_filename.c_str());
 

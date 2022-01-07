@@ -5410,7 +5410,7 @@ YY_RULE_SETUP
 case 21:
 YY_RULE_SETUP
 #line 113 "lexerparser.ll"
-{return yy::genesyspp_parser::make_NUMD(obj_t(1, std::string(yytext)), loc);}
+{return yy::genesyspp_parser::make_NUMD(obj_t(1, std::string(yytext)), loc); /* @todo: should it be -1? */} 
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
@@ -5760,6 +5760,13 @@ YY_RULE_SETUP
             return yy::genesyspp_parser::make_ATRIB(obj_t(0, Util::TypeOf<Attribute>(), element->getId()),loc);
         }
 
+
+        //check CSTAT
+        element = driver.getModel()->getElements()->getElement(Util::TypeOf<StatisticsCollector>(), std::string(yytext));
+        if (element != nullptr) { 
+            return yy::genesyspp_parser::make_CSTAT(obj_t(0, Util::TypeOf<StatisticsCollector>(), element->getId()),loc);
+        }
+
 /****begin_LexicalLiterals_plugins****/
 
 /**begin_LexicalLiterals:Variable**/
@@ -5810,12 +5817,6 @@ YY_RULE_SETUP
 
 /****end_LexicalLiterals_plugins****/
 
-        //check CSTAT
-        element = driver.getModel()->getElements()->getElement(Util::TypeOf<StatisticsCollector>(), std::string(yytext));
-        if (element != nullptr) { 
-            return yy::genesyspp_parser::make_CSTAT(obj_t(0, Util::TypeOf<StatisticsCollector>(), element->getId()),loc);
-        }
-
 	// If no one before has identified this literal, then it is an ILLEGAL (not found, unknown) literal 
         //Case not found retturns a illegal token
         return yy::genesyspp_parser::make_ILLEGAL(obj_t(0, std::string("Illegal")), loc);
@@ -5823,19 +5824,19 @@ YY_RULE_SETUP
 	YY_BREAK
 case 86:
 YY_RULE_SETUP
-#line 285 "lexerparser.ll"
+#line 286 "lexerparser.ll"
 {return yy::genesyspp_parser::make_ILLEGAL(obj_t(1, std::string("Illegal")), loc);}
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
-#line 287 "lexerparser.ll"
+#line 288 "lexerparser.ll"
 {return yy::genesyspp_parser::make_END(loc);}
 	YY_BREAK
 case 87:
 YY_RULE_SETUP
-#line 290 "lexerparser.ll"
+#line 291 "lexerparser.ll"
 ECHO;
 	YY_BREAK
-#line 5839 "../Genesys++-scanner.cpp"
+#line 5840 "../Genesys++-scanner.cpp"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -6796,7 +6797,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 290 "lexerparser.ll"
+#line 291 "lexerparser.ll"
 
 
 void

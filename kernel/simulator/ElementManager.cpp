@@ -45,7 +45,7 @@ void ElementManager::remove(ModelElement* anElement) {
 	List<ModelElement*>* listElements = getElementList(elementTypename);
 	listElements->remove(anElement);
 	_hasChanged = true;
-	_parentModel->getTracer()->trace(Util::TraceLevel::L2_results, "Element successfully removed.");
+	_parentModel->getTracer()->trace(Util::TraceLevel::L8_detailed, "Element successfully removed.");
 
 }
 
