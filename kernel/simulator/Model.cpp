@@ -73,7 +73,9 @@ void Model::sendEntityToComponent(Entity* entity, Connection* connection, double
 }
 
 void Model::sendEntityToComponent(Entity* entity, ModelComponent* component, double timeDelay, unsigned int componentInputNumber) {
-	this->getOnEvents()->NotifyEntityMoveHandlers(new SimulationEvent(_simulation->getCurrentReplicationNumber(), new Event(_simulation->getSimulatedTime(), entity, component, componentInputNumber))); //\todo: Event should include information about "from component" and timeDelay, but it doesn't
+	SimulationEvent* se = _simulation->_createSimulationEvent();
+	se->setDestinationComponent(component);
+	this->getOnEvents()->NotifyEntityMoveHandlers(se); // it's my friend  //\todo: Event should include information about "from component" and timeDelay, but it doesn't
 	//// if (timeDelay > 0) {
 	// schedule to send it
 	Event* newEvent = new Event(this->getSimulation()->getSimulatedTime() + timeDelay, entity, component, componentInputNumber);
@@ -300,11 +302,21 @@ bool Model::check() {
 //    return this->_modelChecker->verifySymbol(componentName, expressionName, expression, expressionResult, mandatory);
 //}
 
+Entity* Model::createEntity(std::string name, bool insertIntoModel) {
+	// Entity is my FRIEND, therefore Model can access it
+	Entity* newEntity = new Entity(this, name, true);
+	SimulationEvent *se = _simulation->_createSimulationEvent(); // it's my friend
+	se->setEntityCreated(newEntity);
+	getOnEvents()->NotifyEntityCreateHandlers(se);
+	return newEntity;
+}
+
 void Model::removeEntity(Entity* entity) {//, bool collectStatistics) {
-	this->_eventManager->NotifyEntityRemoveHandlers(new SimulationEvent(this->_simulation->getCurrentReplicationNumber(), this->_simulation->getCurrentEvent()));
+	this->_eventManager->NotifyEntityRemoveHandlers(_simulation->_createSimulationEvent()); // it's my friend
 	std::string entId = std::to_string(entity->entityNumber());
 	this->getElements()->remove(Util::TypeOf<Entity>(), entity);
 	getTracer()->trace(/*"Entity " + entId +*/entity->getName() + " was removed from the system");
+	entity->~Entity();
 }
 
 List<Event*>* Model::getFutureEvents() const {

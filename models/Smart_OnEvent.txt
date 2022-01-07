@@ -1,0 +1,7 @@
+0   SimulatorInfo "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=210420 
+0   ModelInfo  "Model 1" 
+0   ModelSimulation "fixed experiment name in ModelSimulation" 
+2   EntityType "EntityType_1" 
+1   Create     "Create_1" EntityType="EntityType_1" nextId=3 
+3   Delay      "Delay_1" nextId=4 
+4   Dispose    "Dispose_1" nextSize=0 

@@ -35,11 +35,17 @@ protected:
 	virtual void traceReportHandler(TraceEvent e);
 	virtual void traceSimulationHandler(TraceSimulationEvent e);
 	// default Event Handlers
+	virtual void onBreakpointHandler(SimulationEvent* re);
+	virtual void onEntityCreateHandler(SimulationEvent* re);
+	virtual void onEntityMoveHandler(SimulationEvent* re);
 	virtual void onSimulationStartHandler(SimulationEvent* re);
+	virtual void onReplicationStepHandler(SimulationEvent* re);
 	virtual void onReplicationStartHandler(SimulationEvent* re);
 	virtual void onProcessEventHandler(SimulationEvent* re);
 	virtual void onReplicationEndHandler(SimulationEvent* re);
 	virtual void onSimulationEndHandler(SimulationEvent* re);
+	virtual void onSimulationPausedHandler(SimulationEvent* re);
+	virtual void onSimulationResumeHandler(SimulationEvent* re);
 	virtual void onEntityRemoveHandler(SimulationEvent* re);
 private:
 

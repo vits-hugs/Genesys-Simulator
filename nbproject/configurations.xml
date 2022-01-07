@@ -2413,6 +2413,8 @@
         <itemPath>examples/smarts/Smart_HoldSignal.h</itemPath>
         <itemPath>examples/smarts/Smart_ModelInfoModelSimulation.cpp</itemPath>
         <itemPath>examples/smarts/Smart_ModelInfoModelSimulation.h</itemPath>
+        <itemPath>examples/smarts/Smart_OnEvent.cpp</itemPath>
+        <itemPath>examples/smarts/Smart_OnEvent.h</itemPath>
         <itemPath>examples/smarts/Smart_Parser.cpp</itemPath>
         <itemPath>examples/smarts/Smart_Parser.h</itemPath>
         <itemPath>examples/smarts/Smart_ParserModelFunctions.cpp</itemPath>
@@ -2745,6 +2747,12 @@
         <packType>Debian</packType>
         <verbose>false</verbose>
         <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
           <packFileListElem type="File"
                             to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
                             from="${OUTPUT_PATH}"
@@ -14535,6 +14543,10 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_OnEvent.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_OnEvent.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="examples/smarts/Smart_Parser.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -27015,6 +27027,10 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_OnEvent.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_OnEvent.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="examples/smarts/Smart_Parser.cpp" ex="false" tool="1" flavor2="0">
       </item>

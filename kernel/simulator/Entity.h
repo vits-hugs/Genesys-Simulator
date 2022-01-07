@@ -74,9 +74,11 @@ Report Statistics Specifies whether or not statistics will be collected automati
 and stored in the report database for this entity type.
  */
 class Entity : public ModelElement {
-public:
+private: // no one can create or destry entities directlly. This can be done one throught friend class Model
 	Entity(Model* model, std::string name = "", bool insertIntoModel = true);
 	virtual ~Entity() = default;
+	// friend Entity* Model::createEntity(std::string name, bool insertIntoModel); // It would be better, but Model is not known at this point of compilaton
+	friend class Model;
 public:
 	virtual std::string show();
 

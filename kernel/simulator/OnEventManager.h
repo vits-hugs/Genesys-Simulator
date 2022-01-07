@@ -29,20 +29,104 @@
  */
 class SimulationEvent {
 public:
-	SimulationEvent(unsigned int replicationNumber, Event* event) {
-		_replicationNumber = replicationNumber;
-		_event = event;
+	void setSimulatedTime(double simulatedTime) {
+		this->simulatedTime = simulatedTime;
 	}
-public:
-	unsigned int getReplicationNumber() const {
-		return _replicationNumber;
+	double getSimulatedTime() const {
+		return simulatedTime;
 	}
-	Event* getEventProcessed() const {
-		return _event;
+	void setStopRequested(bool stopRequested) {
+		this->stopRequested = stopRequested;
 	}
+	bool isStopRequested() const {
+		return stopRequested;
+	}
+	void setPauseRequested(bool pauseRequested) {
+		this->pauseRequested = pauseRequested;
+	}
+	bool isPauseRequested() const {
+		return pauseRequested;
+	}
+	void setPaused(bool Paused) {
+		_isPaused = Paused;
+	}
+	bool isPaused() const {
+		return _isPaused;
+	}
+	void setRunning(bool Running) {
+		_isRunning = Running;
+	}
+	bool isRunning() const {
+		return _isRunning;
+	}
+	void setCustomObject(void* customObject) {
+		this->customObject = customObject;
+	}
+	void* getCustomObject() const {
+		return customObject;
+	}
+	void setCurrentReplicationNumber(unsigned int currentReplicationNumber) {
+		this->currentReplicationNumber = currentReplicationNumber;
+	}
+	unsigned int getCurrentReplicationNumber() const {
+		return currentReplicationNumber;
+	}
+	void setCurrentEvent(Event* currentEvent) {
+		this->currentEvent = currentEvent;
+	}
+	Event* getCurrentEvent() const {
+		return currentEvent;
+	}
+	void setCurrentInputNumber(unsigned int currentInputNumber) {
+		this->currentInputNumber = currentInputNumber;
+	}
+	unsigned int getCurrentInputNumber() const {
+		return currentInputNumber;
+	}
+	void setCurrentComponent(ModelComponent* currentComponent) {
+		this->currentComponent = currentComponent;
+	}
+	ModelComponent* getCurrentComponent() const {
+		return currentComponent;
+	}
+	void setCurrentEntity(Entity* currentEntity) {
+		this->currentEntity = currentEntity;
+	}
+	Entity* getCurrentEntity() const {
+		return currentEntity;
+	}
+	void setEntityCreated(Entity* entityCreated) {
+		this->entityCreated = entityCreated;
+	}
+	Entity* getEntityCreated() const {
+		return entityCreated;
+	}
+
+    void setDestinationComponent(ModelComponent* destinationComponent) {
+    	this->destinationComponent = destinationComponent;
+    }
+
+    ModelComponent* getDestinationComponent() const {
+    	return destinationComponent;
+    }
 private:
-	unsigned int _replicationNumber;
-	Event* _event;
+	SimulationEvent() {
+	}
+	friend class ModelSimulation;
+private:
+	Entity* currentEntity = nullptr;
+	Entity* entityCreated = nullptr;
+	Event* currentEvent = nullptr;
+	ModelComponent* currentComponent = nullptr;
+	ModelComponent* destinationComponent = nullptr;
+	void* customObject = nullptr;
+	unsigned int currentInputNumber = 0;
+	unsigned int currentReplicationNumber = 0;
+	double simulatedTime = 0.0;
+	bool _isRunning = false;
+	bool _isPaused = false;
+	bool pauseRequested = false;
+	bool stopRequested = false;
 };
 
 typedef void (*simulationEventHandler)(SimulationEvent*);
@@ -70,8 +154,20 @@ public: // event listeners (handlers)
 	void addOnSimulationResumeHandler(simulationEventHandler EventHandler);
 	void addOnSimulationEndHandler(simulationEventHandler EventHandler);
 	void addOnBreakpointHandler(simulationEventHandler EventHandler);
+public: // event listeners (method handlers)
 	// for handlers that are class members (methods)
+	template<typename Class> void addOnReplicationStartHandler(Class * object, void (Class::*function)(SimulationEvent*));
+	template<typename Class> void addOnReplicationStepHandler(Class * object, void (Class::*function)(SimulationEvent*));
+	template<typename Class> void addOnReplicationEndHandler(Class * object, void (Class::*function)(SimulationEvent*));
 	template<typename Class> void addOnProcessEventHandler(Class * object, void (Class::*function)(SimulationEvent*));
+	template<typename Class> void addOnEntityCreateHandler(Class * object, void (Class::*function)(SimulationEvent*));
+	template<typename Class> void addOnEntityMoveHandler(Class * object, void (Class::*function)(SimulationEvent*));
+	template<typename Class> void addOnEntityRemoveHandler(Class * object, void (Class::*function)(SimulationEvent*));
+	template<typename Class> void addOnSimulationStartHandler(Class * object, void (Class::*function)(SimulationEvent*));
+	template<typename Class> void addOnSimulationPausedHandler(Class * object, void (Class::*function)(SimulationEvent*));
+	template<typename Class> void addOnSimulationResumeHandler(Class * object, void (Class::*function)(SimulationEvent*));
+	template<typename Class> void addOnSimulationEndHandler(Class * object, void (Class::*function)(SimulationEvent*));
+	template<typename Class> void addOnBreakpointHandler(Class * object, void (Class::*function)(SimulationEvent*));
 public:
 	void NotifyReplicationStartHandlers(SimulationEvent* se);
 	void NotifyReplicationStepHandlers(SimulationEvent* se);
@@ -102,21 +198,80 @@ private: // events listener
 	List<simulationEventHandler>* _onSimulationResumeHandlers = new List<simulationEventHandler>();
 	List<simulationEventHandler>* _onSimulationEndHandlers = new List<simulationEventHandler>();
 	List<simulationEventHandler>* _onBreakpointHandlers = new List<simulationEventHandler>();
-	// for handlers that are class members (methods)
+private: // events listener for handlers that are class members (methods)
+	List<simulationEventHandlerMethod>* _onReplicationStartHandlerMethods = new List<simulationEventHandlerMethod>();
+	List<simulationEventHandlerMethod>* _onReplicationStepHandlerMethods = new List<simulationEventHandlerMethod>();
+	List<simulationEventHandlerMethod>* _onReplicationEndHandlerMethods = new List<simulationEventHandlerMethod>();
 	List<simulationEventHandlerMethod>* _onProcessEventHandlerMethods = new List<simulationEventHandlerMethod>();
+	List<simulationEventHandlerMethod>* _onEntityCreateHandlerMethods = new List<simulationEventHandlerMethod>();
+	List<simulationEventHandlerMethod>* _onEntityMoveHandlerMethods = new List<simulationEventHandlerMethod>();
+	List<simulationEventHandlerMethod>* _onEntityRemoveHandlerMethods = new List<simulationEventHandlerMethod>();
+	List<simulationEventHandlerMethod>* _onSimulationStartHandlerMethods = new List<simulationEventHandlerMethod>();
+	List<simulationEventHandlerMethod>* _onSimulationPausedHandlerMethods = new List<simulationEventHandlerMethod>();
+	List<simulationEventHandlerMethod>* _onSimulationResumeHandlerMethods = new List<simulationEventHandlerMethod>();
+	List<simulationEventHandlerMethod>* _onSimulationEndHandlerMethods = new List<simulationEventHandlerMethod>();
+	List<simulationEventHandlerMethod>* _onBreakpointHandlerMethods = new List<simulationEventHandlerMethod>();
 };
 
+//
 // implementation for template methods
+//
+// 	// \todo: (!!) Complicated: if handlerMethod already insert, should not insert it again. Problem to solve <...> for function
+//if (_onProcessEventHandlerMethods->find(handlerMethod) == _onProcessEventHandlerMethods->list()->end())
+// trying unique to solve the issue
+//this->_onProcessEventHandlerMethods->list()->unique(); // does not work
+//  \todo: probabily to override == operator for type simulationEventHandlerMethod
+// ...
+template<typename Class> void OnEventManager::addOnReplicationStartHandler(Class * object, void (Class::*function)(SimulationEvent*)) {
+	simulationEventHandlerMethod handlerMethod = std::bind(function, object, std::placeholders::_1);
+	this->_onReplicationStartHandlerMethods->insert(handlerMethod);
+}
+template<typename Class> void OnEventManager::addOnReplicationStepHandler(Class * object, void (Class::*function)(SimulationEvent*)) {
+	simulationEventHandlerMethod handlerMethod = std::bind(function, object, std::placeholders::_1);
+	this->_onReplicationStepHandlerMethods->insert(handlerMethod);
+}
+template<typename Class> void OnEventManager::addOnReplicationEndHandler(Class * object, void (Class::*function)(SimulationEvent*)) {
+	simulationEventHandlerMethod handlerMethod = std::bind(function, object, std::placeholders::_1);
+	this->_onReplicationEndHandlerMethods->insert(handlerMethod);
+}
 template<typename Class> void OnEventManager::addOnProcessEventHandler(Class * object, void (Class::*function)(SimulationEvent*)) {
 	simulationEventHandlerMethod handlerMethod = std::bind(function, object, std::placeholders::_1);
-	// \todo: Complicated: if handlerMethod already insert, should not insert it again. Problem to solve <...> for function
-	//if (_onProcessEventHandlerMethods->find(handlerMethod) == _onProcessEventHandlerMethods->list()->end())
 	this->_onProcessEventHandlerMethods->insert(handlerMethod);
-	// trying unique to solve the issue
-	//this->_onProcessEventHandlerMethods->list()->unique(); // does not work
-	//  \todo: probabily to override == operator for type simulationEventHandlerMethod
-	// ...
 }
+template<typename Class> void OnEventManager::addOnEntityCreateHandler(Class * object, void (Class::*function)(SimulationEvent*)) {
+	simulationEventHandlerMethod handlerMethod = std::bind(function, object, std::placeholders::_1);
+	this->_onEntityCreateHandlerMethods->insert(handlerMethod);
+}
+template<typename Class> void OnEventManager::addOnEntityMoveHandler(Class * object, void (Class::*function)(SimulationEvent*)) {
+	simulationEventHandlerMethod handlerMethod = std::bind(function, object, std::placeholders::_1);
+	this->_onEntityMoveHandlerMethods->insert(handlerMethod);
+}
+template<typename Class> void OnEventManager::addOnEntityRemoveHandler(Class * object, void (Class::*function)(SimulationEvent*)) {
+	simulationEventHandlerMethod handlerMethod = std::bind(function, object, std::placeholders::_1);
+	this->_onEntityRemoveHandlerMethods->insert(handlerMethod);
+}
+template<typename Class> void OnEventManager::addOnSimulationStartHandler(Class * object, void (Class::*function)(SimulationEvent*)) {
+	simulationEventHandlerMethod handlerMethod = std::bind(function, object, std::placeholders::_1);
+	this->_onSimulationStartHandlerMethods->insert(handlerMethod);
+}
+template<typename Class> void OnEventManager::addOnSimulationPausedHandler(Class * object, void (Class::*function)(SimulationEvent*)) {
+	simulationEventHandlerMethod handlerMethod = std::bind(function, object, std::placeholders::_1);
+	this->_onSimulationPausedHandlerMethods->insert(handlerMethod);
+}
+template<typename Class> void OnEventManager::addOnSimulationResumeHandler(Class * object, void (Class::*function)(SimulationEvent*)) {
+	simulationEventHandlerMethod handlerMethod = std::bind(function, object, std::placeholders::_1);
+	this->_onSimulationResumeHandlerMethods->insert(handlerMethod);
+}
+template<typename Class> void OnEventManager::addOnSimulationEndHandler(Class * object, void (Class::*function)(SimulationEvent*)) {
+	simulationEventHandlerMethod handlerMethod = std::bind(function, object, std::placeholders::_1);
+	this->_onSimulationEndHandlerMethods->insert(handlerMethod);
+}
+template<typename Class> void OnEventManager::addOnBreakpointHandler(Class * object, void (Class::*function)(SimulationEvent*)) {
+	simulationEventHandlerMethod handlerMethod = std::bind(function, object, std::placeholders::_1);
+	this->_onBreakpointHandlerMethods->insert(handlerMethod);
+}
+
+
 //namespace\\}
 #endif /* ONEVENTMANAGER_H */
 

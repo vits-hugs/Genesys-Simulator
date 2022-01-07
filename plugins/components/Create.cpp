@@ -53,7 +53,7 @@ void Create::_execute(Entity* entity) {
 		for (unsigned int i = 0; i<this->_entitiesPerCreation; i++) {
 			if (_entitiesCreatedSoFar < _maxCreations) {
 				_entitiesCreatedSoFar++;
-				Entity* newEntity = new Entity(_parentModel, entity->getEntityType()->getName() + "_%", false);
+				Entity* newEntity = _parentModel->createEntity(entity->getEntityType()->getName() + "_%", false);
 				newEntity->setEntityType(entity->getEntityType());
 				Event* newEvent = new Event(newArrivalTime, newEntity, this);
 				_parentModel->getFutureEvents()->insert(newEvent);

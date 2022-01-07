@@ -29,7 +29,9 @@
 #include "examples/smarts/Smart_Dummy.h"
 #include "examples/smarts/Smart_HoldSignal.h"
 #include "examples/smarts/Smart_ModelInfoModelSimulation.h"
+#include "examples/smarts/Smart_OnEvent.h"
 #include "examples/smarts/Smart_Parser.h"
+#include "examples/smarts/Smart_ParserModelFunctions.h"
 #include "examples/smarts/Smart_Process.h"
 #include "examples/smarts/Smart_ProcessSet.h"
 #include "examples/smarts/Smart_RouteStation.h"
@@ -62,7 +64,9 @@ template <> struct Traits<GenesysApplication_if> {
 	//typedef Smart_Dummy Application;
 	//typedef Smart_HoldSignal Application;
 	//typedef Smart_ModelInfoModelSimulation Application;
-	typedef Smart_Parser Application;
+	typedef Smart_OnEvent Application;
+	//typedef Smart_Parser Application;
+	//typedef Smart_ParserModelFunctions Application;
 	//typedef Smart_Process Application;
 	//typedef Smart_ProcessSet Application;
 	//typedef Smart_RouteStation Application;
