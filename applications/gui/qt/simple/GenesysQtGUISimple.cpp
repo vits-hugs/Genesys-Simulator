@@ -11,16 +11,16 @@
  * Created on 20 de maio de 2021, 14:37
  */
 
-#include "GenesysQtGUI.h"
+#include "GenesysQtGUISimple.h"
 #include <QApplication>
-#include "mainWindow/mainwindow.h"
+#include "simpleMainWindow.h"
 
-GenesysQtGUI::GenesysQtGUI() {
+GenesysQtGUISimple::GenesysQtGUISimple() {
 }
 
-int GenesysQtGUI::main(int argc, char** argv) {
+int GenesysQtGUISimple::main(int argc, char** argv) {
 	QApplication app(argc, argv);
-	MainWindow w;
+	simpleMainWindow w;
 	w.show();
 	return app.exec();
 }

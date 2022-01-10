@@ -14,19 +14,19 @@
 // no ubuntu, instalar libqt5webkit5-dev
 // sudo apt-get install libqt5webkit5-dev
 
-#ifndef GENESYSQTGUI_H
-#define GENESYSQTGUI_H
+#ifndef GENESYSQTGUISIMPLE_H
+#define GENESYSQTGUISIMPLE_H
 
-#include "../../GenesysApplication_if.h"
+#include "../../../GenesysApplication_if.h"
 
-class GenesysQtGUI : public GenesysApplication_if {
+class GenesysQtGUISimple : public GenesysApplication_if {
 public:
-	GenesysQtGUI();
+	GenesysQtGUISimple();
 public:
 	virtual int main(int argc, char** argv);
 private:
 
 };
 
-#endif /* GENESYSQTGUI_H */
+#endif /* GENESYSQTGUISIMPLE_H */
 

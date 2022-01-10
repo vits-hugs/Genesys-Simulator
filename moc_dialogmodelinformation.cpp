@@ -7,7 +7,7 @@
 *****************************************************************************/
 
 #include <memory>
-#include "applications/gui/qt/dialogs/dialogmodelinformation.h"
+#include "applications/gui/qt/full/dialogs/dialogmodelinformation.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)

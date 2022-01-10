@@ -2,8 +2,8 @@
 #define MAPKERNELANDUI_H
 
 #include <map>
-#include "../../../kernel/simulator/Model.h"
-#include "../../../kernel/simulator/ModelElement.h"
+#include "../../../../kernel/simulator/Model.h"
+#include "../../../../kernel/simulator/ModelElement.h"
 #include <QObject>
 
 class MapKernelAndUI {

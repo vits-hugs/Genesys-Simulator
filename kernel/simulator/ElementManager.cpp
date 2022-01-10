@@ -18,16 +18,16 @@
 
 ElementManager::ElementManager(Model* model) {
 	_parentModel = model;
-	/* \todo: -- Sort methods for elements should be a decorator */
-	_elements = new std::map<std::string, List<ModelElement*>*>(); /// Elements are organized as a map from a string (key), the type of an element, and a list of elements of that type
+	/// Elements are organized as a map from a string (key), the type of an element, and a list of elements of that type
+	_elements = new std::map<std::string, List<ModelElement*>*>();
 }
 
-bool ElementManager::insert(ModelElement* anElement) {
+bool ElementManager::insert(ModelElement * anElement) {
 	std::string elementTypename = anElement->getClassname();
 	return insert(elementTypename, anElement);
 }
 
-bool ElementManager::insert(std::string elementTypename, ModelElement* anElement) {
+bool ElementManager::insert(std::string elementTypename, ModelElement * anElement) {
 	List<ModelElement*>* listElements = getElementList(elementTypename);
 	if (listElements->find(anElement) == listElements->list()->end()) { //not found
 		listElements->insert(anElement);
@@ -40,7 +40,7 @@ bool ElementManager::insert(std::string elementTypename, ModelElement* anElement
 	return false;
 }
 
-void ElementManager::remove(ModelElement* anElement) {
+void ElementManager::remove(ModelElement * anElement) {
 	std::string elementTypename = anElement->getClassname();
 	List<ModelElement*>* listElements = getElementList(elementTypename);
 	listElements->remove(anElement);
@@ -49,13 +49,13 @@ void ElementManager::remove(ModelElement* anElement) {
 
 }
 
-void ElementManager::remove(std::string elementTypename, ModelElement* anElement) {
+void ElementManager::remove(std::string elementTypename, ModelElement * anElement) {
 	List<ModelElement*>* listElements = getElementList(elementTypename);
 	_hasChanged = true;
 	listElements->remove(anElement);
 }
 
-bool ElementManager::check(std::string elementTypename, std::string elementName, std::string expressionName, bool mandatory, std::string* errorMessage) {
+bool ElementManager::check(std::string elementTypename, std::string elementName, std::string expressionName, bool mandatory, std::string * errorMessage) {
 	if (elementName == "" && !mandatory) {
 		return true;
 	}
@@ -67,7 +67,7 @@ bool ElementManager::check(std::string elementTypename, std::string elementName,
 	return result;
 }
 
-bool ElementManager::check(std::string elementTypename, ModelElement* anElement, std::string expressionName, std::string* errorMessage) {
+bool ElementManager::check(std::string elementTypename, ModelElement* anElement, std::string expressionName, std::string * errorMessage) {
 	bool result = anElement != nullptr;
 	if (!result) {
 		std::string msg = elementTypename + " for '" + expressionName + "' is null.";
@@ -119,7 +119,7 @@ void ElementManager::show() {
 	Util::DecIndent();
 }
 
-Model* ElementManager::getParentModel() const {
+Model * ElementManager::getParentModel() const {
 	return _parentModel;
 }
 
@@ -157,7 +157,7 @@ List<ModelElement*>* ElementManager::getElementList(std::string elementTypename)
 	return infras;
 }
 
-ModelElement* ElementManager::getElement(std::string elementTypename, Util::identification id) {
+ModelElement * ElementManager::getElement(std::string elementTypename, Util::identification id) {
 	List<ModelElement*>* list = getElementList(elementTypename);
 	for (std::list<ModelElement*>::iterator it = list->list()->begin(); it != list->list()->end(); it++) {
 		if ((*it)->getId() == id) { // found
@@ -188,7 +188,7 @@ std::list<std::string>* ElementManager::getElementClassnames() const {
 	return keys;
 }
 
-ModelElement* ElementManager::getElement(std::string elementTypename, std::string name) {
+ModelElement * ElementManager::getElement(std::string elementTypename, std::string name) {
 	List<ModelElement*>* list = getElementList(elementTypename);
 	for (std::list<ModelElement*>::iterator it = list->list()->begin(); it != list->list()->end(); it++) {
 		if ((*it)->getName() == name) { // found

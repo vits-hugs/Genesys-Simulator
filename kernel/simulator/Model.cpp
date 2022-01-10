@@ -75,18 +75,10 @@ void Model::sendEntityToComponent(Entity* entity, Connection* connection, double
 void Model::sendEntityToComponent(Entity* entity, ModelComponent* component, double timeDelay, unsigned int componentInputNumber) {
 	SimulationEvent* se = _simulation->_createSimulationEvent();
 	se->setDestinationComponent(component);
-	this->getOnEvents()->NotifyEntityMoveHandlers(se); // it's my friend  //\todo: Event should include information about "from component" and timeDelay, but it doesn't
-	//// if (timeDelay > 0) {
-	// schedule to send it
+	se->setEntityMoveTimeDelay(timeDelay);
+	this->getOnEvents()->NotifyEntityMoveHandlers(se); // it's my friend 
 	Event* newEvent = new Event(this->getSimulation()->getSimulatedTime() + timeDelay, entity, component, componentInputNumber);
 	this->getFutureEvents()->insert(newEvent);
-	//// } else {
-	//// 	// send it now
-	//// 	/*  \todo: -: supposed not to be a queue associated to a component */
-	//// 	Util::DecIndent();
-	//// 	ModelComponent::Execute(entity, component, componentInputNumber);
-	//// 	Util::IncIndent();
-	//// }
 }
 
 bool Model::save(std::string filename) {

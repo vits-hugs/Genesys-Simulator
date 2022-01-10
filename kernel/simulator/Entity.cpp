@@ -102,8 +102,7 @@ double Entity::getAttributeValue(std::string index, std::string attributeName) {
 		}
 	}
 	_parentModel->getTracer()->trace(Util::TraceLevel::L3_errorRecover, "Attribute \"" + attributeName + "\" not found");
-
-	return 0.0; /* \todo: !! Never should happen. check how to report */
+	return 0.0;
 }
 
 double Entity::getAttributeValue(Util::identification attributeID) {

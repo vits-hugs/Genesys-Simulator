@@ -22,8 +22,6 @@
 GenesysTerminalApp::GenesysTerminalApp() {
 }
 
-// AUX METHODS --------------------------------------------------------------------------------------------------
-
 void GenesysTerminalApp::Trace(std::string message) {
 	std::cout << message << std::endl;
 }
@@ -31,21 +29,21 @@ void GenesysTerminalApp::Trace(std::string message) {
 void GenesysTerminalApp::run(List<std::string>* commandlineArgs) {
 	Trace("Genesys Shell is running. Type your command. For help, type the command \"help\".");
 	//this->insertFakePluginsByHand(_simulator);
-	std::string inputText; //,longPrefix, separator;
+	std::string inputText; //, shortPrefix, longPrefix, separator; //,longPrefix, separator;
 	while (true) {
 		if (!commandlineArgs->empty()) {
 			inputText = commandlineArgs->front();
 			commandlineArgs->pop_front();
-			tryExecuteCommand(inputText, "--", "=");
+			tryExecuteCommand(inputText, "-", "--", "=");
 		} else {
 			std::cout << _prompt << " ";
 			std::getline(std::cin, inputText);
-			tryExecuteCommand(inputText, "", " ");
+			tryExecuteCommand(inputText, "", "", " ");
 		}
 	}
 }
 
-void GenesysTerminalApp::tryExecuteCommand(std::string inputText, std::string longPrefix, std::string separator) {
+void GenesysTerminalApp::tryExecuteCommand(std::string inputText, std::string shortPrefix, std::string longPrefix, std::string separator) {
 	std::regex regex{R"([\s]+)"}; // split on space R"([\s]+)"
 	std::sregex_token_iterator it{inputText.begin(), inputText.end(), regex, -1};
 	std::vector<std::string> fields{it,{}};
@@ -61,40 +59,10 @@ void GenesysTerminalApp::tryExecuteCommand(std::string inputText, std::string lo
 	std::transform(typedCommandStr.begin(), typedCommandStr.end(), typedCommandStr.begin(), ::tolower);
 	if (typedCommandStr.substr(0, 1) != "#") {
 		found = true;
-		if (typedCommandStr == "help") {
-			std::string message = "";
-			message += "command \tparameter \tdescription\n";
-			message += "help    \t          \tShow this list\n";
-			message += "exit    \t          \tQuit the terminal (same as exit)\n";
-			message += "quit    \t          \tQuit the terminal (same as quit)\n";
-			Trace(message);
-		} else if (typedCommandStr == "exit" || typedCommandStr == "quit") {
-			this->~GenesysTerminalApp();
-		} else if (typedCommandStr == "") {
-		} else if (typedCommandStr == "") {
-		} else if (typedCommandStr == "") {
-		} else if (typedCommandStr == "") {
-		} else if (typedCommandStr == "") {
-		} else if (typedCommandStr == "") {
-		} else if (typedCommandStr == "") {
-		} else if (typedCommandStr == "") {
-		} else if (typedCommandStr == "") {
-		} else if (typedCommandStr == "") {
-		} else if (typedCommandStr == "") {
-		} else if (typedCommandStr == "") {
-		} else if (typedCommandStr == "") {
-		} else if (typedCommandStr == "") {
-		} else if (typedCommandStr == "") {
-		} else if (typedCommandStr == "") {
-		} else if (typedCommandStr == "") {
-		} else if (typedCommandStr == "") {
-		} else if (typedCommandStr == "") {
-		} else {
-			found = false;
-		}
-		if (!found) {
-			Trace("Command \"" + typedCommandStr + "\" not found. Type \"h\" or \"help\" for help.");
-		}
+
+		//if (!found) {
+		//	Trace("Command \"" + typedCommandStr + "\" not found. Type \"h\" or \"help\" for help.");
+		//}
 	}
 
 }

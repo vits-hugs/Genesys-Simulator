@@ -109,6 +109,14 @@ public:
     ModelComponent* getDestinationComponent() const {
     	return destinationComponent;
     }
+
+    void setEntityMoveTimeDelay(double entityMoveTimeDelay) {
+    	this->entityMoveTimeDelay = entityMoveTimeDelay;
+    }
+
+    double getEntityMoveTimeDelay() const {
+    	return entityMoveTimeDelay;
+    }
 private:
 	SimulationEvent() {
 	}
@@ -123,6 +131,7 @@ private:
 	unsigned int currentInputNumber = 0;
 	unsigned int currentReplicationNumber = 0;
 	double simulatedTime = 0.0;
+	double entityMoveTimeDelay = 0.0;
 	bool _isRunning = false;
 	bool _isPaused = false;
 	bool pauseRequested = false;

@@ -5,13 +5,14 @@
  */
 
 /*
- * File:   List.h
+ * File:   TManager.h
  * Author: rafael.luiz.cancian
  *
  * Created on 21 de Junho de 2018, 12:55
  */
 
-#pragma once
+#ifndef LISTOBSERVABLE_H
+#define LISTOBSERVABLE_H
 
 #include <string>
 #include <list>
@@ -24,76 +25,50 @@
 
 //class Simulator;
 
+#include "List.h"
+
 /*!
- * List corresponds to an extended version of the list that must guarantee the consistency of the elements that make up the simulation model.
+ * ListObservable corresponds to an extended version of the List that allows other classes to be notified when the list has changed.
  */
 template <typename T>
-class List {
+class ListObservable : public List {
 public:
 	using CompFunct = std::function<bool(const T, const T) >;
 public:
-	List();
-	virtual ~List() = default;
+	ListObservable();
+	virtual ~ListObservable() = default;
 public: // direct access to list
-	unsigned int size();
-	bool empty();
 	void clear();
 	void pop_front();
-	template<class Compare>
-	void sort(Compare comp);
-	std::list<T>* list() const;
-public: // new methods
-	T create();
-	template<typename U>
-	T create(U arg);
-	std::string show();
-	typename std::list<T>::iterator find(T element);
-	//int rankOf(T element); ///< returns the position (1st position=0) of the element if found, or negative value if not found
 public: // improved (easier) methods
 	void insert(T element);
 	void remove(T element);
 	void setAtRank(unsigned int rank, T element);
-	T getAtRank(unsigned int rank);
-	T next();
-	T front();
-	T last();
-	T previous();
-	T current(); // get current element on the list (the last used)
-	void setSortFunc(CompFunct _sortFunc);
-	//public: // \TODO: Shoul in a specialized class classed ObservableList
-	//	void addObserverHandler();
-protected:
-	//std::map<Util::identitifcation, T>* _map;
-	std::list<T>* _list;
-	CompFunct _sortFunc{[](const T, const T) {
-			return false;
-		}}; //! Default function: insert at the end of the list.
-	typename std::list<T>::iterator _it;
 };
 template <typename T>
-List<T>::List() {
+ListObservable<T>::ListObservable() {
 	//_map = new std::map<Util::identitifcation, T>();
 	_list = new std::list<T>();
 	_it = _list->begin();
 }
 template <typename T>
-std::list<T>* List<T>::list() const {
+std::list<T>* ListObservable<T>::list() const {
 	return _list;
 }
 template <typename T>
-unsigned int List<T>::size() {
+unsigned int ListObservable<T>::size() {
 	return _list->size();
 }
 
 //template <typename T>
-//List<T>::List(const List& orig) {
+//ListObservable<T>::ListObservable(const ListObservable& orig) {
 //}
 
 //template <typename T>
-//List<T>::~List() {
+//ListObservable<T>::~ListObservable() {
 //}
 template <typename T>
-std::string List<T>::show() {
+std::string ListObservable<T>::show() {
 	int i = 0;
 	std::string text = "{";
 	for (typename std::list<T>::iterator it = _list->begin(); it != _list->end(); it++, i++) {
@@ -103,15 +78,15 @@ std::string List<T>::show() {
 	return text;
 }
 template <typename T>
-void List<T>::insert(T element) {
+void ListObservable<T>::insert(T element) {
 	_list->insert(std::upper_bound(_list->begin(), _list->end(), element, _sortFunc), element);
 }
 template <typename T>
-bool List<T>::empty() {
+bool ListObservable<T>::empty() {
 	return _list->empty();
 }
 template <typename T>
-void List<T>::pop_front() {
+void ListObservable<T>::pop_front() {
 	typename std::list<T>::iterator itTemp = _list->begin();
 	_list->pop_front();
 	if (_it == itTemp) { /*  \todo: +: check this */
@@ -119,22 +94,22 @@ void List<T>::pop_front() {
 	}
 }
 template <typename T>
-void List<T>::remove(T element) {
+void ListObservable<T>::remove(T element) {
 	_list->remove(element);
 	if ((*_it) == element) { /*  \todo: +: check this */
 		_it = _list->begin(); // if it points to the removed element, then changes to begin
 	}
 }
 template <typename T>
-T List<T>::create() {
+T ListObservable<T>::create() {
 	return new T();
 }
 template <typename T>
-void List<T>::clear() {
+void ListObservable<T>::clear() {
 	_list->clear();
 }
 template <typename T>
-T List<T>::getAtRank(unsigned int rank) {
+T ListObservable<T>::getAtRank(unsigned int rank) {
 	unsigned int thisRank = 0;
 	for (typename std::list<T>::iterator it = _list->begin(); it != _list->end(); it++) {
 		if (rank == thisRank) {
@@ -146,7 +121,7 @@ T List<T>::getAtRank(unsigned int rank) {
 	return 0; /* \todo: Invalid return depends on T. If T is pointer, nullptr works fine. If T is double, it does not. I just let (*it), buut it is not nice*/
 }
 template <typename T>
-void List<T>::setAtRank(unsigned int rank, T element) {
+void ListObservable<T>::setAtRank(unsigned int rank, T element) {
 	if (rank == _list->size()) {
 		_list->insert(_list->end(), element);
 	} else {
@@ -162,7 +137,7 @@ void List<T>::setAtRank(unsigned int rank, T element) {
 	}
 }
 template <typename T>
-T List<T>::next() {
+T ListObservable<T>::next() {
 	_it++;
 	if (_it != _list->end())
 		return (*_it);
@@ -171,7 +146,7 @@ T List<T>::next() {
 
 }
 template <typename T>
-typename std::list<T>::iterator List<T>::find(T element) {
+typename std::list<T>::iterator ListObservable<T>::find(T element) {
 	for (typename std::list<T>::iterator it = _list->begin(); it != _list->end(); it++) {
 		if ((*it) == element) {
 			return it;
@@ -182,7 +157,7 @@ typename std::list<T>::iterator List<T>::find(T element) {
 }
 /*
 template <typename T>
-int List<T>::rankOf(T element) {
+int ListObservable<T>::rankOf(T element) {
 	int rank = 0;
 	for (typename std::list<T>::iterator it = _list->begin(); it != _list->end(); it++) {
 	if ((*it) == element) {
@@ -195,7 +170,7 @@ int List<T>::rankOf(T element) {
  */
 
 template <typename T>
-T List<T>::front() {
+T ListObservable<T>::front() {
 	_it = _list->begin();
 	//if (_it != _list->end())
 	return (*_it);
@@ -203,7 +178,7 @@ T List<T>::front() {
 	//return dynamic_cast<T>(nullptr);
 }
 template <typename T>
-T List<T>::last() {
+T ListObservable<T>::last() {
 	_it = _list->end();
 	_it--;
 	//if (_it != _list->end()) // \todo: CHECK!!!
@@ -211,27 +186,29 @@ T List<T>::last() {
 	//else return nullptr;
 }
 template <typename T>
-T List<T>::previous() {
+T ListObservable<T>::previous() {
 	_it--; // \todo: CHECK!!!
 	return (*_it);
 }
 template <typename T>
-T List<T>::current() {
+T ListObservable<T>::current() {
 	/* \todo: To implement (i thing it's just to check). Must actualize _it on other methods when other elements are accessed */
 	return (*_it);
 }
 template <typename T>
-void List<T>::setSortFunc(CompFunct _sortFunc) {
+void ListObservable<T>::setSortFunc(CompFunct _sortFunc) {
 	this->_sortFunc = _sortFunc;
 }
 template <typename T>
 template<typename U>
-T List<T>::create(U arg) {
+T ListObservable<T>::create(U arg) {
 	return T(arg);
 }
 template <typename T>
 template<class Compare>
-void List<T>::sort(Compare comp) {
+void ListObservable<T>::sort(Compare comp) {
 	_list->sort(comp);
 }
+
+#endif /* LISTOBSERVABLE_H */
 
