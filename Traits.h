@@ -17,8 +17,8 @@
 #include "kernel/util/Util.h"
 // USER INTERFACES
 #include "applications/terminal/GenesysTerminalApp.h"
-#include "applications/gui/qt/full/GenesysQtGUIFull.h"
-#include "applications/gui/qt/simple/GenesysQtGUISimple.h"
+//#include "applications/gui/qt/full/GenesysQtGUIFull.h"
+//#include "applications/gui/qt/simple/GenesysQtGUISimple.h"
 //
 // EXAMPLES
 //
@@ -81,9 +81,9 @@ template <> struct Traits<GenesysApplication_if> {
 	//typedef OperatingSystem03 Application;
 
 	//// APPLICATIONS
-	//typedef GenesysTerminalApp Application;
+	typedef GenesysTerminalApp Application;
 	//typedef GenesysQtGUIFull Application;
-	typedef GenesysQtGUISimple Application;
+	//typedef GenesysQtGUISimple Application;
 };
 
 /*!

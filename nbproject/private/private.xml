@@ -126,12 +126,10 @@
             <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/plugins/elements/Variable.cpp</file>
         </group>
         <group name="GenESyS">
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/simulator/StatisticsCollector.h</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/util/List.h</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/simulator/OnEventManager.h</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/simulator/ElementManager.cpp</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/simulator/StatisticsCollector.cpp</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/examples/teaching/OperatingSystem03.cpp</file>
+            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/applications/gui/qt/simple/simpleMainWindow.cpp</file>
+            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/applications/gui/qt/simple/simpleMainWindow.h</file>
+            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/applications/gui/qt/simple/GenesysQtGUISimple.h</file>
+            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/applications/gui/qt/simple/GenesysQtGUISimple.cpp</file>
         </group>
     </open-files>
 </project-private>
