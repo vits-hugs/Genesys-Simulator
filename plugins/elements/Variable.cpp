@@ -33,11 +33,11 @@ PluginInformation* Variable::GetPluginInformation() {
 	return info;
 }
 
-double Variable::value() {
-	return value("");
+double Variable::getValue() {
+	return getValue("");
 }
 
-double Variable::value(std::string index) {
+double Variable::getValue(std::string index) {
 	std::map<std::string, double>::iterator it = _values->find(index);
 	if (it == _values->end()) {
 		return 0.0; // index does not exist. Assuming sparse matrix, it's zero.
@@ -60,15 +60,15 @@ void Variable::setValue(std::string index, double value) {
 	}
 }
 
-double Variable::initialValue() {
-	return initialValue("");
+double Variable::getInitialValue() {
+	return getInitialValue("");
 }
 
 void Variable::setInitialValue(double value) {
 	setInitialValue("", value);
 }
 
-double Variable::initialValue(std::string index) {
+double Variable::getInitialValue(std::string index) {
 	std::map<std::string, double>::iterator it = _initialValues->find(index);
 	if (it == _initialValues->end()) {
 		return 0.0; // index does not exist. Assuming sparse matrix, it's zero.
@@ -87,7 +87,7 @@ void Variable::setInitialValue(std::string index, double value) {
 	}
 }
 
-List<unsigned int>* Variable::dimensionSizes() const {
+List<unsigned int>* Variable::getDimensionSizes() const {
 	return _dimensionSizes;
 }
 
@@ -104,11 +104,15 @@ ModelElement* Variable::LoadInstance(Model* model, std::map<std::string, std::st
 bool Variable::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelElement::_loadInstance(fields);
 	if (res) {
-		///////////this->_numCols=std::stoi(LoadField(fields, "numCols"))).second);
-		///////////this->_numRows=std::stoi(LoadField(fields, "numRows"))).second);
-		unsigned int nv = LoadField(fields, "numValues", 0);
 		std::string pos;
 		double value;
+		unsigned int nv;
+		nv = LoadField(fields, "numDimensions", 0);
+		for (unsigned int i = 0; i < nv; i++) {
+			value = LoadField(fields, "dimension" + std::to_string(i), 0);
+			this->_dimensionSizes->insert(value);
+		}
+		nv = LoadField(fields, "numValues", 0);
 		for (unsigned int i = 0; i < nv; i++) {
 			pos = LoadField(fields, "pos" + std::to_string(i), 0);
 			value = LoadField(fields, "value" + std::to_string(i), 0);
@@ -120,12 +124,14 @@ bool Variable::_loadInstance(std::map<std::string, std::string>* fields) {
 
 std::map<std::string, std::string>* Variable::_saveInstance() {
 	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(); //Util::TypeOf<Variable>());
-	///////////SaveField(fields, "numCols" , std::to_string(this->_numCols));
-	///////////SaveField(fields, "numRows" , std::to_string(this->_numRows));
-	SaveField(fields, "numValues", _initialValues->size(), 0);
 	unsigned int i = 0;
-	for (std::map<std::string, double>::iterator it = this->_initialValues->begin(); it != _initialValues->end(); it++, i++) {
-		SaveField(fields, "pos" + std::to_string(i), (*it).first, 0);
+	SaveField(fields, "numDimensions", _dimensionSizes->list()->size(), 0);
+	for (unsigned int dimension : *_dimensionSizes->list()) {
+		SaveField(fields, "dimension" + std::to_string(i), dimension, (unsigned int) 1);
+	}
+	SaveField(fields, "numValues", _initialValues->size(), 0);
+	for (std::map<std::string, double>::iterator it = _initialValues->begin(); it != _initialValues->end(); it++, i++) {
+		SaveField(fields, "pos" + std::to_string(i), (*it).first, "0");
 		SaveField(fields, "value" + std::to_string(i), (*it).second, 0.0);
 	}
 	return fields;

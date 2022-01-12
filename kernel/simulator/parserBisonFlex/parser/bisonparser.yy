@@ -425,16 +425,16 @@ atributo:
 /****begin_ExpressionProdution_plugins****/
 
 	/**begin_ExpressionProdution:Variable**/
-	variavel    : VARI  {$$.valor = ((Variable*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), $1.id)))->value();} 
+	variavel    : VARI  {$$.valor = ((Variable*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), $1.id)))->getValue();} 
 				| VARI LBRACKET expression RBRACKET	    { 
 					std::string index = std::to_string(static_cast<unsigned int>($3.valor));
-					$$.valor = ((Variable*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), $1.id)))->value(index); }
+					$$.valor = ((Variable*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), $1.id)))->getValue(index); }
 				| VARI LBRACKET expression "," expression RBRACKET	    { 
 					std::string index = std::to_string(static_cast<unsigned int>($3.valor))+","+std::to_string(static_cast<unsigned int>($5.valor)); 
-					$$.valor = ((Variable*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), $1.id)))->value(index);}
+					$$.valor = ((Variable*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), $1.id)))->getValue(index);}
 				| VARI LBRACKET expression "," expression "," expression RBRACKET    { 
 					std::string index = std::to_string(static_cast<unsigned int>($3.valor))+","+std::to_string(static_cast<unsigned int>($5.valor))+","+std::to_string(static_cast<unsigned int>($7.valor));
-					$$.valor = ((Variable*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), $1.id)))->value(index);}
+					$$.valor = ((Variable*)(driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), $1.id)))->getValue(index);}
 				;
 	/**end_ExpressionProdution:Variable**/
 

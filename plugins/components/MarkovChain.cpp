@@ -75,33 +75,33 @@ void MarkovChain::_execute(Entity* entity) {
 	double rnd, sum, value;
 	if (!_initilized) {
 		// define the initial state based on initial probabilities
-		size = _initialDistribution->dimensionSizes()->front();
+		size = _initialDistribution->getDimensionSizes()->front();
 		rnd = _sampler->random(); //parentSimulator()->tools()->sampler()->random();
 		double sum = 0.0;
 		for (unsigned int i = 0; i < size; i++) {
-			value = _initialDistribution->value(std::to_string(i));
+			value = _initialDistribution->getValue(std::to_string(i));
 			sum += value;
 			if (sum > rnd) {
 				_currentState->setValue(i); // _currentState =  i;
 				break;
 			}
 		}
-		_parentModel->getTracer()->trace("Initial current state=" + std::to_string(_currentState->value()));
+		_parentModel->getTracer()->trace("Initial current state=" + std::to_string(_currentState->getValue()));
 		_initilized = true;
 	} else {
-		size = _transitionProbMatrix->dimensionSizes()->front();
+		size = _transitionProbMatrix->getDimensionSizes()->front();
 		rnd = _sampler->random(); //parentSimulator()->tools()->sampler()->random();
 		sum = 0.0;
 		for (unsigned int i = 0; i < size; i++) {
-			std::string index = std::to_string(static_cast<unsigned int> (_currentState->value())) + "," + std::to_string(i);
-			value = _transitionProbMatrix->value(index);
+			std::string index = std::to_string(static_cast<unsigned int> (_currentState->getValue())) + "," + std::to_string(i);
+			value = _transitionProbMatrix->getValue(index);
 			sum += value;
 			if (sum > rnd) {
 				_currentState->setValue(i);
 				break;
 			}
 		}
-		_parentModel->getTracer()->trace("Current state=" + std::to_string(_currentState->value()));
+		_parentModel->getTracer()->trace("Current state=" + std::to_string(_currentState->getValue()));
 	}
 	_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }

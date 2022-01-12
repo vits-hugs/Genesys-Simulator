@@ -1,0 +1,9 @@
+0   SimulatorInfo "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=210420 
+0   ModelInfo  "Model 1" 
+0   ModelSimulation "fixed experiment name in ModelSimulation" 
+2   EntityType "EntityType_1" 
+3   Variable   "x" dimension0=2 numDimensions=1 numValues=2 pos1="1" value0=1.000000 
+4   Variable   "t" 
+1   Create     "Create_1" EntityType="EntityType_1" nextId=5 
+5   LSODE      "LSODE_1" nextId=6 
+6   Dispose    "Dispose_1" nextSize=0 

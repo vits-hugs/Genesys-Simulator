@@ -18,7 +18,7 @@
 // USER INTERFACES
 #include "applications/terminal/GenesysTerminalApp.h"
 //#include "applications/gui/qt/full/GenesysQtGUIFull.h"
-//#include "applications/gui/qt/simple/GenesysQtGUISimple.h"
+#include "applications/gui/qt/SimpleQtGUI.h"
 //
 // EXAMPLES
 //
@@ -30,6 +30,7 @@
 #include "examples/smarts/Smart_Dummy.h"
 #include "examples/smarts/Smart_HoldSignal.h"
 #include "examples/smarts/Smart_ModelInfoModelSimulation.h"
+#include "examples/smarts/Smart_ODE.h"
 #include "examples/smarts/Smart_OnEvent.h"
 #include "examples/smarts/Smart_Parser.h"
 #include "examples/smarts/Smart_ParserModelFunctions.h"
@@ -65,6 +66,7 @@ template <> struct Traits<GenesysApplication_if> {
 	//typedef Smart_Dummy Application;
 	//typedef Smart_HoldSignal Application;
 	//typedef Smart_ModelInfoModelSimulation Application;
+	typedef Smart_ODE Application;
 	//typedef Smart_OnEvent Application;
 	//typedef Smart_Parser Application;
 	//typedef Smart_ParserModelFunctions Application;
@@ -81,9 +83,9 @@ template <> struct Traits<GenesysApplication_if> {
 	//typedef OperatingSystem03 Application;
 
 	//// APPLICATIONS
-	typedef GenesysTerminalApp Application;
+	//typedef GenesysTerminalApp Application;
 	//typedef GenesysQtGUIFull Application;
-	//typedef GenesysQtGUISimple Application;
+	//typedef SimpleQtGUI Application;
 };
 
 /*!

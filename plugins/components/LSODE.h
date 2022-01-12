@@ -31,14 +31,13 @@ public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 public: // g&s
-	void setDiffEquations(Formula* formula);
-	Formula* getDiffEquations() const;
 	void setTimeVariable(Variable* _timeVariable);
 	Variable* getTimeVariable() const;
 	void setStep(double _step);
 	double getStep() const;
-	void setVariables(Variable* _variables);
-	Variable* getVariables() const;
+	void setVariable(Variable* _variables);
+	Variable* getVariable() const;
+	List<std::string>* getDiffEquations() const;
 protected: // virtual
 	virtual void _execute(Entity* entity);
 	virtual void _initBetweenReplications();
@@ -49,8 +48,9 @@ protected: // virtual
 private: // methods
 	bool _doStep();
 private: // attributes 1:1
-	Formula* _diffEquations;
-	Variable* _variables;
+	//const struct DEFAULT_VALUES {} DEFAULT;
+	List<std::string>* _diffEquations = new List<std::string>();
+	Variable* _variable;
 	Variable* _timeVariable;
 	double _step;
 private: // attributes 1:n

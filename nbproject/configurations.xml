@@ -6,6 +6,8 @@
                    projectFiles="true">
       <logicalFolder name="gui" displayName="gui" projectFiles="true">
         <logicalFolder name="qt" displayName="qt" projectFiles="true">
+          <itemPath>applications/gui/qt/SimpleQtGUI.cpp</itemPath>
+          <itemPath>applications/gui/qt/SimpleQtGUI.h</itemPath>
         </logicalFolder>
       </logicalFolder>
       <logicalFolder name="terminal" displayName="terminal" projectFiles="true">
@@ -38,6 +40,8 @@
         <itemPath>examples/smarts/Smart_HoldSignal.h</itemPath>
         <itemPath>examples/smarts/Smart_ModelInfoModelSimulation.cpp</itemPath>
         <itemPath>examples/smarts/Smart_ModelInfoModelSimulation.h</itemPath>
+        <itemPath>examples/smarts/Smart_ODE.cpp</itemPath>
+        <itemPath>examples/smarts/Smart_ODE.h</itemPath>
         <itemPath>examples/smarts/Smart_OnEvent.cpp</itemPath>
         <itemPath>examples/smarts/Smart_OnEvent.h</itemPath>
         <itemPath>examples/smarts/Smart_Parser.cpp</itemPath>
@@ -594,6 +598,12 @@
                             perm="755"
                             owner="root"
                             group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
         </packFileList>
         <packInfoList>
           <packInfoListElem name="Package" value="20192022GenESyS" mandatory="true"/>
@@ -621,6 +631,13 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleQtGUI.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleQtGUI.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="applications/terminal/GenesysShell_if.h"
             ex="false"
@@ -681,6 +698,10 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_ODE.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_ODE.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="examples/smarts/Smart_OnEvent.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1574,6 +1595,13 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="applications/gui/qt/SimpleQtGUI.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleQtGUI.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="applications/terminal/GenesysShell_if.h"
             ex="false"
             tool="3"
@@ -1633,6 +1661,10 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_ODE.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_ODE.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="examples/smarts/Smart_OnEvent.cpp" ex="false" tool="1" flavor2="0">
       </item>
