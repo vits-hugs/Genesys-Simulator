@@ -11,6 +11,7 @@
  * Created on 22 de Outubro de 2019, 22:28
  */
 
+#include <fstream>
 #include "LSODE.h"
 #include "../../kernel/simulator/Model.h"
 
@@ -57,6 +58,14 @@ Variable* LSODE::getVariable() const {
 
 List<std::string>* LSODE::getDiffEquations() const {
 	return _diffEquations;
+}
+
+void LSODE::setFilename(std::string filename) {
+	this->_filename = filename;
+}
+
+std::string LSODE::getFilename() const {
+	return _filename;
 }
 
 bool LSODE::_doStep() {
@@ -116,12 +125,27 @@ bool LSODE::_doStep() {
 }
 
 void LSODE::_execute(Entity* entity) {
+	// open file
+	std::ofstream savefile;
+	if (_filename != "") {
+		savefile.open(_filename, std::ofstream::app);
+	}
 	while (_doStep()) {// execute solve ODE step by step until reach TNOW
 		std::string message = "time=" + std::to_string(_timeVariable->getValue());
 		for (unsigned int i = 0; i < _variable->getDimensionSizes()->front(); i++) {
-			message += " ,y[" + std::to_string(i) + "]=" + std::to_string(_variable->getValue(std::to_string(i)));
+			message += " ," + _variable->getName() + "[" + std::to_string(i) + "]=" + std::to_string(_variable->getValue(std::to_string(i)));
 		}
-		_parentModel->getTracer()->trace(message, Util::TraceLevel::L2_results);
+		_parentModel->getTracer()->trace(message, Util::TraceLevel::L8_detailed);
+		if (_filename != "") {
+			message = std::to_string(_timeVariable->getValue());
+			for (unsigned int i = 0; i < _variable->getDimensionSizes()->front(); i++) {
+				message += "\t" + std::to_string(_variable->getValue(std::to_string(i)));
+			}
+			savefile << message << std::endl;
+		}
+	}
+	if (_filename != "") {
+		savefile.close();
 	}
 	_parentModel->sendEntityToComponent(entity, getConnections()->getFrontConnection());
 }
@@ -147,8 +171,33 @@ std::map<std::string, std::string>* LSODE::_saveInstance() {
 
 bool LSODE::_check(std::string* errorMessage) {
 	bool resultAll = true;
+	std::ofstream savefile;
 	// \todo: not implemented yet
 	*errorMessage += "";
+	if (resultAll) {
+		if (_filename != "") {
+			try {
+				savefile.open(_filename, std::ofstream::out);
+				std::string message = _timeVariable->getName();
+				for (unsigned int i = 0; i < _variable->getDimensionSizes()->front(); i++) {
+					message += "\t" + _variable->getName() + "[" + std::to_string(i) + "]";
+				}
+				savefile << message << std::endl;
+				// TODO: It should save the initial values only AFTER variables are initialized. For now, initial values may be wrong
+				message = std::to_string(_timeVariable->getValue());
+				for (unsigned int i = 0; i < _variable->getDimensionSizes()->front(); i++) {
+					message += "\t" + std::to_string(_variable->getValue(std::to_string(i)));
+				}
+				savefile << message << std::endl;
+
+				savefile.close();
+			} catch (const std::exception& e) {
+				resultAll = false;
+				*errorMessage += "Error creating file";
+			}
+		}
+
+	}
 
 	return resultAll;
 }

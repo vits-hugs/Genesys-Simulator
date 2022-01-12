@@ -123,7 +123,7 @@ bool ModelPersistenceDefaultImpl1::save(std::string filename) {
 
 void ModelPersistenceDefaultImpl1::_saveContent(std::list<std::string>* content, std::ofstream* file) {
 	for (std::list<std::string>::iterator it = content->begin(); it != content->end(); it++) {
-		*file << (*it) << std::endl; // << std::endl;
+		*file << (*it) << std::endl;
 	}
 }
 

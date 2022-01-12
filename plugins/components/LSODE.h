@@ -38,6 +38,8 @@ public: // g&s
 	void setVariable(Variable* _variables);
 	Variable* getVariable() const;
 	List<std::string>* getDiffEquations() const;
+	void setFilename(std::string filename);
+	std::string getFilename() const;
 protected: // virtual
 	virtual void _execute(Entity* entity);
 	virtual void _initBetweenReplications();
@@ -48,10 +50,14 @@ protected: // virtual
 private: // methods
 	bool _doStep();
 private: // attributes 1:1
-	//const struct DEFAULT_VALUES {} DEFAULT;
+
+	const struct DEFAULT_VALUES {
+		std::string filename = "";
+	} DEFAULT;
 	List<std::string>* _diffEquations = new List<std::string>();
 	Variable* _variable;
 	Variable* _timeVariable;
+	std::string _filename = DEFAULT.filename;
 	double _step;
 private: // attributes 1:n
 };

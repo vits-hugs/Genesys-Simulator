@@ -32,8 +32,8 @@ int Smart_ODE::main(int argc, char** argv) {
 	create1->setTimeBetweenCreationsExpression("0.5");
 	Variable* varx = new Variable(model, "x");
 	varx->getDimensionSizes()->insert(2);
-	varx->setInitialValue("0", 1.0);
-	varx->setInitialValue("1", 0.0);
+	varx->setInitialValue("0", 1.0); //x[0] = 1.0
+	varx->setInitialValue("1", 0.0); //x[1] = 0.0
 	Variable* vart = new Variable(model, "t");
 	LSODE* ode1 = new LSODE(model);
 	ode1->setVariable(varx);
@@ -41,7 +41,7 @@ int Smart_ODE::main(int argc, char** argv) {
 	ode1->getDiffEquations()->insert("x[1]");
 	ode1->getDiffEquations()->insert("x[0] + exp(t)");
 	ode1->setStep(0.1);
-	//ode1->se
+	ode1->setFilename("./models/Smart_ODE.outputdatafile");
 	Dispose* dispose1 = new Dispose(model);
 	create1->getConnections()->insert(ode1);
 	ode1->getConnections()->insert(dispose1);
