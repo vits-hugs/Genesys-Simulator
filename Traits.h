@@ -40,6 +40,7 @@
 #include "examples/smarts/Smart_SeizeDelayRelease.h"
 #include "examples/smarts/Smart_SeizeDelayReleaseMany.h"
 #include "examples/smarts/Smart_Sequence.h"
+#include "examples/smarts/Smart_CppForG.h"
 // teachng
 #include "examples/teaching/AnElectronicAssemblyAndTestSystem.h"
 #include "examples/teaching/OperatingSystem02.h"
@@ -66,7 +67,7 @@ template <> struct Traits<GenesysApplication_if> {
 	//typedef Smart_Dummy Application;
 	//typedef Smart_HoldSignal Application;
 	//typedef Smart_ModelInfoModelSimulation Application;
-	typedef Smart_ODE Application;
+	//typedef Smart_ODE Application;
 	//typedef Smart_OnEvent Application;
 	//typedef Smart_Parser Application;
 	//typedef Smart_ParserModelFunctions Application;
@@ -76,6 +77,7 @@ template <> struct Traits<GenesysApplication_if> {
 	//typedef Smart_SeizeDelayRelease Application;
 	//typedef Smart_SeizeDelayReleaseMany Application;
 	//typedef Smart_Sequence Application;
+	typedef Smart_CppForG Application;
 
 	//// TEACHING
 	//typedef AnElectronicAssemblyAndTestSystem Application;

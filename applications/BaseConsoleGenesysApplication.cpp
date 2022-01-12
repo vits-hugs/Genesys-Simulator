@@ -112,6 +112,19 @@ void BaseConsoleGenesysApplication::setDefaultTraceHandlers(TraceManager* tm) {
 }
 
 void BaseConsoleGenesysApplication::insertFakePluginsByHand(Simulator* simulator) {
+	// TRYING SOME NEW ORGANIZATION (BASED ON ARENA 16..20)
+
+	// DISCRETE
+
+	// CONTINUOS
+
+	// DATA DEFINITION
+
+
+	//-----------------------------------------------------
+
+	// OLD ORGANIZATION 
+
 	// model components
 	// arena basic process
 	simulator->getPlugins()->insert("create.so");
@@ -179,5 +192,5 @@ void BaseConsoleGenesysApplication::insertFakePluginsByHand(Simulator* simulator
 	simulator->getPlugins()->insert("biochemical.so");
 	simulator->getPlugins()->insert("markovchain.so");
 	simulator->getPlugins()->insert("cellularautomata.so");
-	simulator->getPlugins()->insert("cppforgenesys.so");
+	simulator->getPlugins()->insert("cppforg.so");
 }

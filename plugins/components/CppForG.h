@@ -1,33 +1,34 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/cppFiles/class.h to edit this template
  */
 
 /* 
- * File:   Dummy.h
- * Author: rafael.luiz.cancian
+ * File:   CppForG.h
+ * Author: rlcancian
  *
- * Created on 22 de Maio de 2019, 18:41
+ * Created on 11 de janeiro de 2022, 22:37
  */
 
-#ifndef DUMMYCOMPONENT_H
-#define DUMMYCOMPONENT_H
+#pragma once
 
 #include "../../kernel/simulator/ModelComponent.h"
+#include "../elements/CppCode.h"
 
 /*!
  This component ...
  */
-class DummyComponent : public ModelComponent {
+class CppForG : public ModelComponent {
 public: // constructors
-	DummyComponent(Model* model, std::string name = "");
-	virtual ~DummyComponent() = default;
+	CppForG(Model* model, std::string name = "");
+	virtual ~CppForG() = default;
 public: // virtual
 	virtual std::string show();
 public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	void setSourceCode(std::string _sourceCode);
+	std::string getSourceCode() const;
 protected: // virtual
 	virtual void _execute(Entity* entity);
 	virtual void _initBetweenReplications();
@@ -37,8 +38,8 @@ protected: // virtual
 	virtual void _createInternalElements();
 private: // methods
 private: // attributes 1:1
+	// children
+	CppCode* _cppcode = nullptr;
 private: // attributes 1:n
 };
-
-#endif /* DUMMYCOMPONENT_H */
 

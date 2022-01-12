@@ -22,6 +22,7 @@
 
 #include "ParserChangesInformation.h"
 #include "PersistentObject_base.h"
+#include "PluginInformation.h"
 
 //namespace GenesysKernel {
 class Model;
@@ -57,6 +58,7 @@ public: // static
 	static void CreateInternalElements(ModelElement* element);
 	/* This class methood is responsible for invoking the protected method _initBetweenReplication(), which clears all statistics, attributes, counters and other stuff before starting a new repliction */
 	static void InitBetweenReplications(ModelElement* element);
+	//static PluginInformation* GetPluginInformation();
 public:
 	virtual std::string show();
 	/*! Returns a list of keys (names) of internal ModelElements, cuch as Counters, StatisticsCollectors and others. ChildrenElements are ModelElements used by this ModelElement thar are needed before model checking */

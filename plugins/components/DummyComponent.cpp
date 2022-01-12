@@ -60,6 +60,9 @@ bool DummyComponent::_check(std::string* errorMessage) {
 	return resultAll;
 }
 
+void DummyComponent::_createInternalElements() {
+}
+
 PluginInformation* DummyComponent::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<DummyComponent>(), &DummyComponent::LoadInstance);
 	// ...

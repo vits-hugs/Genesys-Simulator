@@ -32,6 +32,8 @@
       <logicalFolder name="f3" displayName="smarts" projectFiles="true">
         <itemPath>examples/smarts/Smart_AssignWriteSeizes.cpp</itemPath>
         <itemPath>examples/smarts/Smart_AssignWriteSeizes.h</itemPath>
+        <itemPath>examples/smarts/Smart_CppForG.cpp</itemPath>
+        <itemPath>examples/smarts/Smart_CppForG.h</itemPath>
         <itemPath>examples/smarts/Smart_Delay.cpp</itemPath>
         <itemPath>examples/smarts/Smart_Delay.h</itemPath>
         <itemPath>examples/smarts/Smart_Dummy.cpp</itemPath>
@@ -218,6 +220,8 @@
         <itemPath>plugins/components/Batch.h</itemPath>
         <itemPath>plugins/components/CellularAutomata.cpp</itemPath>
         <itemPath>plugins/components/CellularAutomata.h</itemPath>
+        <itemPath>plugins/components/CppForG.cpp</itemPath>
+        <itemPath>plugins/components/CppForG.h</itemPath>
         <itemPath>plugins/components/Create.cpp</itemPath>
         <itemPath>plugins/components/Create.h</itemPath>
         <itemPath>plugins/components/Decide.cpp</itemPath>
@@ -284,8 +288,6 @@
         <itemPath>plugins/components/Unstore.h</itemPath>
         <itemPath>plugins/components/Write.cpp</itemPath>
         <itemPath>plugins/components/Write.h</itemPath>
-      </logicalFolder>
-      <logicalFolder name="f2" displayName="data definitions" projectFiles="true">
       </logicalFolder>
       <logicalFolder name="elements" displayName="elements" projectFiles="true">
         <itemPath>plugins/elements/CppCode.cpp</itemPath>
@@ -608,6 +610,12 @@
                             perm="755"
                             owner="root"
                             group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
         </packFileList>
         <packInfoList>
           <packInfoListElem name="Package" value="20192022GenESyS" mandatory="true"/>
@@ -677,6 +685,10 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_CppForG.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_CppForG.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="examples/smarts/Smart_Delay.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1330,6 +1342,10 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="plugins/components/CppForG.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/CppForG.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="plugins/components/Create.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1655,6 +1671,10 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="examples/smarts/Smart_CppForG.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_CppForG.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="examples/smarts/Smart_Delay.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="examples/smarts/Smart_Delay.h" ex="false" tool="3" flavor2="0">
@@ -2307,6 +2327,10 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="plugins/components/CppForG.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/components/CppForG.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="plugins/components/Create.cpp" ex="false" tool="1" flavor2="0">
       </item>

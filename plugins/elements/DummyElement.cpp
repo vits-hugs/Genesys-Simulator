@@ -17,35 +17,60 @@ DummyElement::DummyElement(Model* model, std::string name) : ModelElement(model,
 
 // static 
 
-ModelElement* DummyElement::LoadInstance(Model* model, std::map<std::string, std::string>* fields, bool insertIntoModel) {
+ModelElement* DummyElement::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
+	DummyElement* newElement = new DummyElement(model);
+	try {
+		newElement->_loadInstance(fields);
+	} catch (const std::exception& e) {
+
+	}
+	return newElement;
 }
 
-std::map<std::string, std::string>* DummyElement::SaveInstance(ModelElement* element) {
-}
-
-bool DummyElement::Check(ModelElement* element, std::string* errorMessage) {
-}
-
-void DummyElement::CreateInternalElements(ModelElement* element) {
-}
-
-void DummyElement::InitBetweenReplications(ModelElement* element) {
+PluginInformation* DummyElement::GetPluginInformation() {
+	PluginInformation* info = new PluginInformation(Util::TypeOf<DummyElement>(), &DummyElement::LoadInstance);
+	//info->setDescriptionHelp("");
+	//info->setObservation("");
+	//info->setMinimumOutputs();
+	//info->setDynamicLibFilenameDependencies();
+	//info->setFields();
+	// ...
+	return info;
 }
 
 //
 
 std::string DummyElement::show() {
+	return ModelElement::show();
 }
+
 // must be overriden by derived classes
 
 bool DummyElement::_loadInstance(std::map<std::string, std::string>* fields) {
+	bool res = ModelElement::_loadInstance(fields);
+	if (res) {
+		try {
+			//this->_attributeName = LoadField(fields, "attributeName", DEFAULT.attributeName);
+			//this->_orderRule = static_cast<OrderRule> (LoadField(fields, "orderRule", static_cast<int> (DEFAULT.orderRule)));
+		} catch (...) {
+		}
+	}
+	return res;
 }
 
 std::map<std::string, std::string>* DummyElement::_saveInstance() {
+	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(); //Util::TypeOf<Queue>());
+	//SaveField(fields, "orderRule", static_cast<int> (this->_orderRule), static_cast<int> (DEFAULT.orderRule));
+	//SaveField(fields, "attributeName", this->_attributeName, DEFAULT.attributeName);
+	return fields;
 }
+
 // could be overriden by derived classes
 
 bool DummyElement::_check(std::string* errorMessage) {
+	bool resultAll = true;
+	//resultAll &= _parentModel->getElements()->check(Util::TypeOf<Station>(), _station, "Station", errorMessage);
+	return resultAll;
 }
 
 ParserChangesInformation* DummyElement::_getParserChangesInformation() {
@@ -55,4 +80,12 @@ void DummyElement::_initBetweenReplications() {
 }
 
 void DummyElement::_createInternalElements() {
+	if (_reportStatistics) {
+		//if (_cstatNumberInQueue == nullptr) {
+		//	_cstatNumberInQueue = new StatisticsCollector(_parentModel, getName() + "." + "NumberInQueue", this); /* \todo: ++ WHY THIS INSERT "DISPOSE" AND "10ENTITYTYPE" STATCOLL ?? */
+		//	_childrenElements->insert({"NumberInQueue", _cstatNumberInQueue});
+		//}
+	} else { //if (_cstatNumberInQueue != nullptr) {
+		//_removeChildrenElements();
+	}
 }

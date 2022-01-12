@@ -49,6 +49,7 @@
 #include "../../plugins/components/Exit.h"
 #include "../../plugins/components/LSODE.h"
 #include "../../plugins/components/MarkovChain.h"
+#include "../../plugins/components/CppForG.h"
 
 
 // Model elements
@@ -63,6 +64,7 @@
 #include "../../plugins/elements/Set.h"
 #include "../../plugins/elements/Storage.h"
 #include "../../plugins/elements/Sequence.h"
+#include "../../plugins/elements/CppCode.h"
 //#include "../../plugins/elements/Expression.h"
 //#include "../../plugins/elements/Conveyor.h"
 //#include "../../plugins/elements/Segment.h"
@@ -164,6 +166,8 @@ Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilen
 		GetInfo = &Signal::GetPluginInformation;
 	else if (fn == "store.so")
 		GetInfo = &Store::GetPluginInformation;
+	else if (fn == "cppforg.so")
+		GetInfo = &CppForG::GetPluginInformation;
 	else if (fn == "unstore.so")
 		GetInfo = &Unstore::GetPluginInformation;
 		//else if (fn == "expression.so")
@@ -186,6 +190,8 @@ Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilen
 		GetInfo = &Start::GetPluginInformation;
 	else if (fn == "stop.so")
 		GetInfo = &Stop::GetPluginInformation;
+	else if (fn == "cppcode.so")
+		GetInfo = &CppCode::GetPluginInformation;
 	//else if (fn == "conveyour.so")
 	//    GetInfo = &Conveyour::GetPluginInformation;
 	//else if (fn == "segment.so")

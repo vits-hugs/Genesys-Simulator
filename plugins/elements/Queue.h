@@ -100,7 +100,7 @@ public:
 	virtual ~Queue();
 public:
 	virtual std::string show();
-public:
+public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelElement* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 public:

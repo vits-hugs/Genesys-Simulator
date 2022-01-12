@@ -41,7 +41,7 @@ int Smart_ODE::main(int argc, char** argv) {
 	ode1->getDiffEquations()->insert("x[1]");
 	ode1->getDiffEquations()->insert("x[0] + exp(t)");
 	ode1->setStep(0.1);
-	ode1->setFilename("./models/Smart_ODE.outputdatafile");
+	ode1->setFilename("./temp/Smart_ODE.outputdatafile.txt");
 	Dispose* dispose1 = new Dispose(model);
 	create1->getConnections()->insert(ode1);
 	ode1->getConnections()->insert(dispose1);

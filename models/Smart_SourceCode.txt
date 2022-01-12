@@ -1,0 +1,8 @@
+0   SimulatorInfo "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220111 
+0   ModelInfo  "Model 1" 
+0   ModelSimulation "ModelSimulation" replicationLength=10.000000 showReportsAfterReplicaton=0 showReportsAfterSimulation=0 traceLevel=9 
+2   EntityType "EntityType_1" 
+4   CppCode    "CppForG_1.CppCode" 
+1   Create     "Create_1" EntityType="EntityType_1" nextId=3 
+3   CppForG    "CppForG_1" nextId=5 
+5   Dispose    "Dispose_1" nextSize=0 

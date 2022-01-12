@@ -20,11 +20,8 @@ public:
 	DummyElement(Model* model, std::string name = "");
 	virtual ~DummyElement() = default;
 public: // static
-	static ModelElement* LoadInstance(Model* model, std::map<std::string, std::string>* fields, bool insertIntoModel); // \todo: return ModelComponent* ?
-	static std::map<std::string, std::string>* SaveInstance(ModelElement* element);
-	static bool Check(ModelElement* element, std::string* errorMessage);
-	static void CreateInternalElements(ModelElement* element);
-	static void InitBetweenReplications(ModelElement* element);
+	static ModelElement* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static PluginInformation* GetPluginInformation();
 public:
 	virtual std::string show();
 protected: // must be overriden by derived classes
