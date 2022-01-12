@@ -25,10 +25,11 @@ int Smart_ODE::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	this->insertFakePluginsByHand(genesys);
 	this->setDefaultTraceHandlers(genesys->getTracer());
-	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
+	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L5_event);
 	Model* model = genesys->getModels()->newModel();
 	Create* create1 = new Create(model);
 	create1->setEntityType(new EntityType(model));
+	create1->setTimeBetweenCreationsExpression("0.5");
 	Variable* varx = new Variable(model, "x");
 	varx->getDimensionSizes()->insert(2);
 	varx->setInitialValue("0", 1.0);
@@ -45,6 +46,8 @@ int Smart_ODE::main(int argc, char** argv) {
 	create1->getConnections()->insert(ode1);
 	ode1->getConnections()->insert(dispose1);
 	model->getSimulation()->setReplicationLength(2.0);
+	model->getSimulation()->setShowReportsAfterReplication(false);
+	model->getSimulation()->setShowReportsAfterSimulation(false);
 	model->save("./models/Smart_ODE.txt");
 	model->getSimulation()->start();
 	genesys->~Simulator();

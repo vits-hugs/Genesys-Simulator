@@ -68,7 +68,8 @@ bool LSODE::_doStep() {
 	initTime = time;
 	std::string expression;
 	tnow = _parentModel->getSimulation()->getSimulatedTime();
-	bool res = time + _step <= tnow + 1e-15; // \todo: numerical error treatment by just adding 1e-15
+	// \todo: numerical error treatment by just adding 1e-15
+	bool res = time + _step <= tnow + 1e-15;
 	if (res) {
 		halfStep = _step * 0.5;
 		for (i = 0; i < numEqs; i++) {//(std::list<std::string>::iterator it = eqs->begin(); it != eqs->end(); it++) {
@@ -120,7 +121,7 @@ void LSODE::_execute(Entity* entity) {
 		for (unsigned int i = 0; i < _variable->getDimensionSizes()->front(); i++) {
 			message += " ,y[" + std::to_string(i) + "]=" + std::to_string(_variable->getValue(std::to_string(i)));
 		}
-		_parentModel->getTracer()->trace(message);
+		_parentModel->getTracer()->trace(message, Util::TraceLevel::L2_results);
 	}
 	_parentModel->sendEntityToComponent(entity, getConnections()->getFrontConnection());
 }
