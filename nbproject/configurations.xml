@@ -228,8 +228,8 @@
         <itemPath>plugins/components/Dispose.h</itemPath>
         <itemPath>plugins/components/DropOff.cpp</itemPath>
         <itemPath>plugins/components/DropOff.h</itemPath>
-        <itemPath>plugins/components/Dummy.cpp</itemPath>
-        <itemPath>plugins/components/Dummy.h</itemPath>
+        <itemPath>plugins/components/DummyComponent.cpp</itemPath>
+        <itemPath>plugins/components/DummyComponent.h</itemPath>
         <itemPath>plugins/components/Enter.cpp</itemPath>
         <itemPath>plugins/components/Enter.h</itemPath>
         <itemPath>plugins/components/Exit.cpp</itemPath>
@@ -288,6 +288,10 @@
       <logicalFolder name="f2" displayName="data definitions" projectFiles="true">
       </logicalFolder>
       <logicalFolder name="elements" displayName="elements" projectFiles="true">
+        <itemPath>plugins/elements/CppCode.cpp</itemPath>
+        <itemPath>plugins/elements/CppCode.h</itemPath>
+        <itemPath>plugins/elements/DummyElement.cpp</itemPath>
+        <itemPath>plugins/elements/DummyElement.h</itemPath>
         <itemPath>plugins/elements/EntityGroup.cpp</itemPath>
         <itemPath>plugins/elements/EntityGroup.h</itemPath>
         <itemPath>plugins/elements/Failure.cpp</itemPath>
@@ -1347,9 +1351,15 @@
       </item>
       <item path="plugins/components/DropOff.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/components/Dummy.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/components/DummyComponent.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
-      <item path="plugins/components/Dummy.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/components/DummyComponent.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="plugins/components/Enter.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1470,6 +1480,14 @@
       <item path="plugins/components/Write.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="plugins/components/Write.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/elements/CppCode.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/CppCode.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/elements/DummyElement.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/DummyElement.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="plugins/elements/EntityGroup.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -2310,9 +2328,15 @@
       </item>
       <item path="plugins/components/DropOff.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/components/Dummy.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/components/DummyComponent.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
-      <item path="plugins/components/Dummy.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/components/DummyComponent.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="plugins/components/Enter.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -2433,6 +2457,14 @@
       <item path="plugins/components/Write.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="plugins/components/Write.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/elements/CppCode.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/CppCode.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="plugins/elements/DummyElement.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/DummyElement.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="plugins/elements/EntityGroup.cpp" ex="false" tool="1" flavor2="0">
       </item>

@@ -24,7 +24,7 @@
 #include "../../plugins/components/Assign.h"
 #include "../../plugins/components/Record.h"
 #include "../../plugins/components/Decide.h"
-#include "../../plugins/components/Dummy.h"
+#include "../../plugins/components/DummyComponent.h"
 #include "../../plugins/components/Route.h"
 #include "../../plugins/components/Enter.h"
 #include "../../plugins/components/Leave.h"
@@ -119,7 +119,7 @@ Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilen
 	else if (fn == "dispose.so")
 		GetInfo = &Dispose::GetPluginInformation;
 	else if (fn == "dummy.so")
-		GetInfo = &Dummy::GetPluginInformation;
+		GetInfo = &DummyComponent::GetPluginInformation;
 	else if (fn == "record.so")
 		GetInfo = &Record::GetPluginInformation;
 	else if (fn == "release.so")

@@ -11,18 +11,18 @@
  * Created on 22 de Maio de 2019, 18:41
  */
 
-#include "Dummy.h"
+#include "DummyComponent.h"
 #include "../../kernel/simulator/Model.h"
 
-Dummy::Dummy(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Dummy>(), name) {
+DummyComponent::DummyComponent(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<DummyComponent>(), name) {
 }
 
-std::string Dummy::show() {
+std::string DummyComponent::show() {
 	return ModelComponent::show() + "";
 }
 
-ModelComponent* Dummy::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
-	Dummy* newComponent = new Dummy(model);
+ModelComponent* DummyComponent::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
+	DummyComponent* newComponent = new DummyComponent(model);
 	try {
 		newComponent->_loadInstance(fields);
 	} catch (const std::exception& e) {
@@ -31,12 +31,12 @@ ModelComponent* Dummy::LoadInstance(Model* model, std::map<std::string, std::str
 	return newComponent;
 }
 
-void Dummy::_execute(Entity* entity) {
+void DummyComponent::_execute(Entity* entity) {
 	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
 	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
-bool Dummy::_loadInstance(std::map<std::string, std::string>* fields) {
+bool DummyComponent::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
 		// \todo: not implemented yet
@@ -44,24 +44,24 @@ bool Dummy::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-void Dummy::_initBetweenReplications() {
+void DummyComponent::_initBetweenReplications() {
 }
 
-std::map<std::string, std::string>* Dummy::_saveInstance() {
+std::map<std::string, std::string>* DummyComponent::_saveInstance() {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
 	// \todo: not implemented yet
 	return fields;
 }
 
-bool Dummy::_check(std::string* errorMessage) {
+bool DummyComponent::_check(std::string* errorMessage) {
 	bool resultAll = true;
 	// \todo: not implemented yet
 	*errorMessage += "";
 	return resultAll;
 }
 
-PluginInformation* Dummy::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Dummy>(), &Dummy::LoadInstance);
+PluginInformation* DummyComponent::GetPluginInformation() {
+	PluginInformation* info = new PluginInformation(Util::TypeOf<DummyComponent>(), &DummyComponent::LoadInstance);
 	// ...
 	return info;
 }

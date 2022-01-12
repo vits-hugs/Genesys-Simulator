@@ -11,18 +11,18 @@
  * Created on 22 de Maio de 2019, 18:41
  */
 
-#ifndef DUMMY_H
-#define DUMMY_H
+#ifndef DUMMYCOMPONENT_H
+#define DUMMYCOMPONENT_H
 
 #include "../../kernel/simulator/ModelComponent.h"
 
 /*!
  This component ...
  */
-class Dummy : public ModelComponent {
+class DummyComponent : public ModelComponent {
 public: // constructors
-	Dummy(Model* model, std::string name = "");
-	virtual ~Dummy() = default;
+	DummyComponent(Model* model, std::string name = "");
+	virtual ~DummyComponent() = default;
 public: // virtual
 	virtual std::string show();
 public: // static
@@ -39,5 +39,5 @@ private: // attributes 1:1
 private: // attributes 1:n
 };
 
-#endif /* DUMMY_H */
+#endif /* DUMMYCOMPONENT_H */
 
