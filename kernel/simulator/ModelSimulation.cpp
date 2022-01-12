@@ -647,6 +647,10 @@ void ModelSimulation::loadInstance(std::map<std::string, std::string>* fields) {
 	this->_terminatingCondition = LoadField(fields, "terminatingCondition", DEFAULT.terminatingCondition);
 	this->_warmUpPeriod = LoadField(fields, "warmUpTime", DEFAULT.warmUpPeriod);
 	this->_warmUpPeriodTimeUnit = LoadField(fields, "warmUpTimeTimeUnit", DEFAULT.warmUpPeriodTimeUnit);
+	this->_showReportsAfterReplication = LoadField(fields, "showReportsAfterReplication", DEFAULT.showReportsAfterReplication);
+	this->_showReportsAfterSimulation = LoadField(fields, "showReportsAfterSimulation", DEFAULT.showReportsAfterSimulation);
+	this->_showSimulationControlsInReport = LoadField(fields, "showSimulationControlsInReport", DEFAULT.showSimulationControlsInReport);
+	this->_showSimulationResposesInReport = LoadField(fields, "showSimulationResposesInReport", DEFAULT.showSimulationResposesInReport);
 	_hasChanged = false;
 }
 
@@ -655,7 +659,7 @@ void ModelSimulation::loadInstance(std::map<std::string, std::string>* fields) {
 std::map<std::string, std::string>* ModelSimulation::saveInstance() {
 	std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();
 	SaveField(fields, "typename", "ModelSimulation");
-	SaveField(fields, "name", "fixed experiment name in ModelSimulation"); //getName());
+	SaveField(fields, "name", "ModelSimulation"); //getName());
 	SaveField(fields, "numberOfReplications", _numberOfReplications, DEFAULT.numberOfReplications);
 	SaveField(fields, "replicationLength", _replicationLength, DEFAULT.replicationLength);
 	SaveField(fields, "replicationLengthTimeUnit", _replicationLengthTimeUnit, DEFAULT.replicationLengthTimeUnit);
@@ -663,6 +667,10 @@ std::map<std::string, std::string>* ModelSimulation::saveInstance() {
 	SaveField(fields, "terminatingCondition", _terminatingCondition, DEFAULT.terminatingCondition);
 	SaveField(fields, "warmUpTime", _warmUpPeriod, DEFAULT.warmUpPeriod);
 	SaveField(fields, "warmUpTimeTimeUnit", _warmUpPeriodTimeUnit, DEFAULT.warmUpPeriodTimeUnit);
+	SaveField(fields, "showReportsAfterReplicaton", _showReportsAfterReplication, DEFAULT.showReportsAfterReplication);
+	SaveField(fields, "showReportsAfterSimulation", _showReportsAfterSimulation, DEFAULT.showReportsAfterSimulation);
+	SaveField(fields, "showSimulationControlsInReport", _showSimulationControlsInReport, DEFAULT.showSimulationControlsInReport);
+	SaveField(fields, "showSimulationResposesInReport", _showSimulationResposesInReport, DEFAULT.showSimulationResposesInReport);
 	_hasChanged = false;
 	return fields;
 }

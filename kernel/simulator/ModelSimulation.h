@@ -147,9 +147,9 @@ private:
 		double warmUpPeriod = replicationLength * 0.10; // 0.0;
 		Util::TimeUnit warmUpPeriodTimeUnit = Util::TimeUnit::second;
 		std::string terminatingCondition = "";
-		bool showReportsAfterSimulation = true;
 		bool initializeStatisticsBetweenReplications = true;
 		bool initializeSystem = true;
+		bool showReportsAfterSimulation = true;
 		bool showReportsAfterReplication = true;
 		bool showSimulationControlsInReport = false;
 		bool showSimulationResposesInReport = false;
