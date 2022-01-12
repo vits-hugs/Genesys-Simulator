@@ -77,7 +77,7 @@ template <> struct Traits<GenesysApplication_if> {
 	//typedef Smart_SeizeDelayRelease Application;
 	//typedef Smart_SeizeDelayReleaseMany Application;
 	//typedef Smart_Sequence Application;
-	typedef Smart_CppForG Application;
+	//typedef Smart_CppForG Application;
 
 	//// TEACHING
 	//typedef AnElectronicAssemblyAndTestSystem Application;
@@ -87,7 +87,7 @@ template <> struct Traits<GenesysApplication_if> {
 	//// APPLICATIONS
 	//typedef GenesysTerminalApp Application;
 	//typedef GenesysQtGUIFull Application;
-	//typedef SimpleQtGUI Application;
+	typedef SimpleQtGUI Application;
 };
 
 /*!

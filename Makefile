@@ -17,7 +17,7 @@ CXX           = g++
 DEFINES       = -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -g -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -Inbproject -I. -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
+INCPATH       = -Inbproject -I. -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
 QMAKE         = /usr/lib/qt5/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -53,6 +53,7 @@ OBJECTS_DIR   = build/Debug/GNU-Linux/
 ####### Files
 
 SOURCES       = applications/BaseConsoleGenesysApplication.cpp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.cpp \
 		applications/gui/qt/SimpleQtGUI.cpp \
 		applications/terminal/GenesysTerminalApp.cpp \
 		examples/book/Book_Cap02_Example01.cpp \
@@ -181,8 +182,10 @@ SOURCES       = applications/BaseConsoleGenesysApplication.cpp \
 		tests/testProbabilityDistribution.cpp \
 		tools/HypothesisTesterDefaultImpl1.cpp \
 		tools/ProbabilityDistribution.cpp \
-		tools/SolverDefaultImpl1.cpp 
+		tools/SolverDefaultImpl1.cpp qrc_simpleGUI_resources.cpp \
+		moc_mainwindow.cpp
 OBJECTS       = build/Debug/GNU-Linux/BaseConsoleGenesysApplication.o \
+		build/Debug/GNU-Linux/mainwindow.o \
 		build/Debug/GNU-Linux/SimpleQtGUI.o \
 		build/Debug/GNU-Linux/GenesysTerminalApp.o \
 		build/Debug/GNU-Linux/Book_Cap02_Example01.o \
@@ -311,7 +314,9 @@ OBJECTS       = build/Debug/GNU-Linux/BaseConsoleGenesysApplication.o \
 		build/Debug/GNU-Linux/testProbabilityDistribution.o \
 		build/Debug/GNU-Linux/HypothesisTesterDefaultImpl1.o \
 		build/Debug/GNU-Linux/ProbabilityDistribution.o \
-		build/Debug/GNU-Linux/SolverDefaultImpl1.o
+		build/Debug/GNU-Linux/SolverDefaultImpl1.o \
+		build/Debug/GNU-Linux/qrc_simpleGUI_resources.o \
+		build/Debug/GNU-Linux/moc_mainwindow.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -402,6 +407,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		nbproject/nbproject/qt-Debug.pro Traits.h \
 		applications/BaseConsoleGenesysApplication.h \
 		applications/GenesysApplication_if.h \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.h \
 		applications/gui/qt/SimpleQtGUI.h \
 		applications/terminal/GenesysShell_if.h \
 		applications/terminal/GenesysTerminalApp.h \
@@ -549,6 +555,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		tools/ProbabilityDistribution.h \
 		tools/SolverDefaultImpl1.h \
 		tools/solver_if.h applications/BaseConsoleGenesysApplication.cpp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.cpp \
 		applications/gui/qt/SimpleQtGUI.cpp \
 		applications/terminal/GenesysTerminalApp.cpp \
 		examples/book/Book_Cap02_Example01.cpp \
@@ -686,7 +693,7 @@ TARGET        = dist/Debug/GNU-Linux/2019_2022_GenESyS
 first: all
 ####### Build rules
 
-dist/Debug/GNU-Linux/2019_2022_GenESyS:  $(OBJECTS)  
+dist/Debug/GNU-Linux/2019_2022_GenESyS: ui_mainwindow.h $(OBJECTS)  
 	@test -d dist/Debug/GNU-Linux/ || mkdir -p dist/Debug/GNU-Linux/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -777,7 +784,8 @@ Makefile: nbproject/qt-Debug.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
-		nbproject/qt-Debug.pro
+		nbproject/qt-Debug.pro \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/simpleGUI_resources.qrc
 	$(QMAKE) -o Makefile nbproject/qt-Debug.pro
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf:
@@ -867,6 +875,7 @@ Makefile: nbproject/qt-Debug.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf:
 nbproject/qt-Debug.pro:
+applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/simpleGUI_resources.qrc:
 qmake: FORCE
 	@$(QMAKE) -o Makefile nbproject/qt-Debug.pro
 
@@ -881,9 +890,11 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
+	$(COPY_FILE) --parents applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/simpleGUI_resources.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents Traits.h applications/BaseConsoleGenesysApplication.h applications/GenesysApplication_if.h applications/gui/qt/SimpleQtGUI.h applications/terminal/GenesysShell_if.h applications/terminal/GenesysTerminalApp.h examples/book/Book_Cap02_Example01.h examples/smarts/Smart_AssignWriteSeizes.h examples/smarts/Smart_CppForG.h examples/smarts/Smart_Delay.h examples/smarts/Smart_Dummy.h examples/smarts/Smart_HoldSignal.h examples/smarts/Smart_ModelInfoModelSimulation.h examples/smarts/Smart_ODE.h examples/smarts/Smart_OnEvent.h examples/smarts/Smart_Parser.h examples/smarts/Smart_ParserModelFunctions.h examples/smarts/Smart_Process.h examples/smarts/Smart_ProcessSet.h examples/smarts/Smart_RouteStation.h examples/smarts/Smart_SeizeDelayRelease.h examples/smarts/Smart_SeizeDelayReleaseMany.h examples/smarts/Smart_Sequence.h examples/teaching/AnElectronicAssemblyAndTestSystem.h examples/teaching/FullSimulationOfComplexModel.h examples/teaching/OperatingSystem02.h examples/teaching/OperatingSystem03.h kernel/TraitsKernel.h kernel/simulator/Attribute.h kernel/simulator/ComponentManager.h kernel/simulator/ConnectionManager.h kernel/simulator/Counter.h kernel/simulator/DefineGetterSetter.h kernel/simulator/ElementManager.h kernel/simulator/ElementManager_if.h kernel/simulator/Entity.h kernel/simulator/EntityType.h kernel/simulator/Event.h kernel/simulator/ExperimentManager.h kernel/simulator/ExperimentManagerDefaultImpl1.h kernel/simulator/ExperimetManager_if.h kernel/simulator/LicenceManager.h kernel/simulator/Model.h kernel/simulator/ModelCheckerDefaultImpl1.h kernel/simulator/ModelChecker_if.h kernel/simulator/ModelComponent.h kernel/simulator/ModelElement.h kernel/simulator/ModelInfo.h kernel/simulator/ModelManager.h kernel/simulator/ModelPersistenceDefaultImpl1.h kernel/simulator/ModelPersistence_if.h kernel/simulator/ModelSimulation.h kernel/simulator/OnEventManager.h kernel/simulator/ParserChangesInformation.h kernel/simulator/ParserDefaultImpl1.h kernel/simulator/ParserDefaultImpl2.h kernel/simulator/ParserManager.h kernel/simulator/Parser_if.h kernel/simulator/PersistentObject_base.h kernel/simulator/Plugin.h kernel/simulator/PluginConnectorDummyImpl1.h kernel/simulator/PluginConnector_if.h kernel/simulator/PluginInformation.h kernel/simulator/PluginManager.h kernel/simulator/ScenarioExperiment_if.h kernel/simulator/SimulationControl.h kernel/simulator/SimulationExperiment.h kernel/simulator/SimulationReporterDefaultImpl1.h kernel/simulator/SimulationReporter_if.h kernel/simulator/SimulationResponse.h kernel/simulator/SimulationScenario.h kernel/simulator/Simulator.h kernel/simulator/SinkModelComponent.h kernel/simulator/SourceModelComponent.h kernel/simulator/StatisticsCollector.h kernel/simulator/TraceManager.h kernel/simulator/parserBisonFlex/Genesys++-driver.h kernel/simulator/parserBisonFlex/GenesysParser.h kernel/simulator/parserBisonFlex/obj_t.h kernel/statistics/CollectorDatafileDefaultImpl1.h kernel/statistics/CollectorDatafile_if.h kernel/statistics/CollectorDefaultImpl1.h kernel/statistics/Collector_if.h kernel/statistics/SamplerDefaultImpl1.h kernel/statistics/Sampler_if.h kernel/statistics/SorttFile.h kernel/statistics/StatisticsDataFileDefaultImpl.h kernel/statistics/StatisticsDataFile_if.h kernel/statistics/StatisticsDefaultImpl1.h kernel/statistics/Statistics_if.h kernel/util/Exact.h kernel/util/List.h kernel/util/Util.h plugins/components/Access.h plugins/components/Assign.h plugins/components/Batch.h plugins/components/CellularAutomata.h plugins/components/CppForG.h plugins/components/Create.h plugins/components/Decide.h plugins/components/Delay.h plugins/components/Dispose.h plugins/components/DropOff.h plugins/components/DummyComponent.h plugins/components/Enter.h plugins/components/Exit.h plugins/components/Hold.h plugins/components/LSODE.h plugins/components/Leave.h plugins/components/MarkovChain.h plugins/components/Match.h plugins/components/OLD_ODEelement.h plugins/components/PickStation.h plugins/components/PickUp.h plugins/components/Process.h plugins/components/QueueableItem.h plugins/components/Record.h plugins/components/Release.h plugins/components/Remove.h plugins/components/Route.h plugins/components/Search.h plugins/components/SeizableItem.h plugins/components/Seize.h plugins/components/Separate.h plugins/components/Signal.h plugins/components/Start.h plugins/components/Stop.h plugins/components/Store.h plugins/components/Submodel.h plugins/components/Unstore.h plugins/components/Write.h plugins/elements/CppCode.h plugins/elements/DummyElement.h plugins/elements/EntityGroup.h plugins/elements/Failure.h plugins/elements/File.h plugins/elements/Formula.h plugins/elements/Queue.h plugins/elements/Resource.h plugins/elements/Schedule.h plugins/elements/Sequence.h plugins/elements/Set.h plugins/elements/Station.h plugins/elements/Storage.h plugins/elements/Variable.h tools/HypothesisTesterDefaultImpl1.h tools/HypothesisTester_if.h tools/ProbabilityDistribution.h tools/SolverDefaultImpl1.h tools/solver_if.h $(DISTDIR)/
-	$(COPY_FILE) --parents applications/BaseConsoleGenesysApplication.cpp applications/gui/qt/SimpleQtGUI.cpp applications/terminal/GenesysTerminalApp.cpp examples/book/Book_Cap02_Example01.cpp examples/smarts/Smart_AssignWriteSeizes.cpp examples/smarts/Smart_CppForG.cpp examples/smarts/Smart_Delay.cpp examples/smarts/Smart_Dummy.cpp examples/smarts/Smart_HoldSignal.cpp examples/smarts/Smart_ModelInfoModelSimulation.cpp examples/smarts/Smart_ODE.cpp examples/smarts/Smart_OnEvent.cpp examples/smarts/Smart_Parser.cpp examples/smarts/Smart_ParserModelFunctions.cpp examples/smarts/Smart_Process.cpp examples/smarts/Smart_ProcessSet.cpp examples/smarts/Smart_RouteStation.cpp examples/smarts/Smart_SeizeDelayRelease.cpp examples/smarts/Smart_SeizeDelayReleaseMany.cpp examples/smarts/Smart_Sequence.cpp examples/teaching/AnElectronicAssemblyAndTestSystem.cpp examples/teaching/FullSimulationOfComplexModel.cpp examples/teaching/OperatingSystem02.cpp examples/teaching/OperatingSystem03.cpp kernel/simulator/Attribute.cpp kernel/simulator/ComponentManager.cpp kernel/simulator/ConnectionManager.cpp kernel/simulator/Counter.cpp kernel/simulator/ElementManager.cpp kernel/simulator/Entity.cpp kernel/simulator/EntityType.cpp kernel/simulator/Event.cpp kernel/simulator/ExperimentManager.cpp kernel/simulator/ExperimentManagerDefaultImpl1.cpp kernel/simulator/LicenceManager.cpp kernel/simulator/Model.cpp kernel/simulator/ModelCheckerDefaultImpl1.cpp kernel/simulator/ModelComponent.cpp kernel/simulator/ModelElement.cpp kernel/simulator/ModelInfo.cpp kernel/simulator/ModelManager.cpp kernel/simulator/ModelPersistenceDefaultImpl1.cpp kernel/simulator/ModelSimulation.cpp kernel/simulator/OnEventManager.cpp kernel/simulator/ParserChangesInformation.cpp kernel/simulator/ParserDefaultImpl1.cpp kernel/simulator/ParserDefaultImpl2.cpp kernel/simulator/ParserManager.cpp kernel/simulator/Plugin.cpp kernel/simulator/PluginConnectorDummyImpl1.cpp kernel/simulator/PluginInformation.cpp kernel/simulator/PluginManager.cpp kernel/simulator/SimulationControl.cpp kernel/simulator/SimulationExperiment.cpp kernel/simulator/SimulationReporterDefaultImpl1.cpp kernel/simulator/SimulationResponse.cpp kernel/simulator/SimulationScenario.cpp kernel/simulator/Simulator.cpp kernel/simulator/SinkModelComponent.cpp kernel/simulator/SourceModelComponent.cpp kernel/simulator/StatisticsCollector.cpp kernel/simulator/TraceManager.cpp kernel/simulator/parserBisonFlex/Genesys++-driver.cpp kernel/simulator/parserBisonFlex/Genesys++-scanner.cpp kernel/simulator/parserBisonFlex/GenesysParser.cpp kernel/simulator/parserBisonFlex/obj_t.cpp kernel/statistics/CollectorDatafileDefaultImpl1.cpp kernel/statistics/CollectorDefaultImpl1.cpp kernel/statistics/SamplerDefaultImpl1.cpp kernel/statistics/SorttFile.cpp kernel/statistics/StatisticsDataFileDefaultImpl.cpp kernel/statistics/StatisticsDefaultImpl1.cpp kernel/util/Util.cpp main.cpp plugins/components/Access.cpp plugins/components/Assign.cpp plugins/components/Batch.cpp plugins/components/CellularAutomata.cpp plugins/components/CppForG.cpp plugins/components/Create.cpp plugins/components/Decide.cpp plugins/components/Delay.cpp plugins/components/Dispose.cpp plugins/components/DropOff.cpp plugins/components/DummyComponent.cpp plugins/components/Enter.cpp plugins/components/Exit.cpp plugins/components/Hold.cpp plugins/components/LSODE.cpp plugins/components/Leave.cpp plugins/components/MarkovChain.cpp plugins/components/Match.cpp plugins/components/OLD_ODEelement.cpp plugins/components/PickStation.cpp plugins/components/PickUp.cpp plugins/components/Process.cpp plugins/components/QueueableItem.cpp plugins/components/Record.cpp plugins/components/Release.cpp plugins/components/Remove.cpp plugins/components/Route.cpp plugins/components/Search.cpp plugins/components/SeizableItem.cpp plugins/components/Seize.cpp plugins/components/Separate.cpp plugins/components/Signal.cpp plugins/components/Start.cpp plugins/components/Stop.cpp plugins/components/Store.cpp plugins/components/Submodel.cpp plugins/components/Unstore.cpp plugins/components/Write.cpp plugins/elements/CppCode.cpp plugins/elements/DummyElement.cpp plugins/elements/EntityGroup.cpp plugins/elements/Failure.cpp plugins/elements/File.cpp plugins/elements/Formula.cpp plugins/elements/Queue.cpp plugins/elements/Resource.cpp plugins/elements/Schedule.cpp plugins/elements/Sequence.cpp plugins/elements/Set.cpp plugins/elements/Station.cpp plugins/elements/Storage.cpp plugins/elements/Variable.cpp tests/testProbabilityDistribution.cpp tools/HypothesisTesterDefaultImpl1.cpp tools/ProbabilityDistribution.cpp tools/SolverDefaultImpl1.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents Traits.h applications/BaseConsoleGenesysApplication.h applications/GenesysApplication_if.h applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.h applications/gui/qt/SimpleQtGUI.h applications/terminal/GenesysShell_if.h applications/terminal/GenesysTerminalApp.h examples/book/Book_Cap02_Example01.h examples/smarts/Smart_AssignWriteSeizes.h examples/smarts/Smart_CppForG.h examples/smarts/Smart_Delay.h examples/smarts/Smart_Dummy.h examples/smarts/Smart_HoldSignal.h examples/smarts/Smart_ModelInfoModelSimulation.h examples/smarts/Smart_ODE.h examples/smarts/Smart_OnEvent.h examples/smarts/Smart_Parser.h examples/smarts/Smart_ParserModelFunctions.h examples/smarts/Smart_Process.h examples/smarts/Smart_ProcessSet.h examples/smarts/Smart_RouteStation.h examples/smarts/Smart_SeizeDelayRelease.h examples/smarts/Smart_SeizeDelayReleaseMany.h examples/smarts/Smart_Sequence.h examples/teaching/AnElectronicAssemblyAndTestSystem.h examples/teaching/FullSimulationOfComplexModel.h examples/teaching/OperatingSystem02.h examples/teaching/OperatingSystem03.h kernel/TraitsKernel.h kernel/simulator/Attribute.h kernel/simulator/ComponentManager.h kernel/simulator/ConnectionManager.h kernel/simulator/Counter.h kernel/simulator/DefineGetterSetter.h kernel/simulator/ElementManager.h kernel/simulator/ElementManager_if.h kernel/simulator/Entity.h kernel/simulator/EntityType.h kernel/simulator/Event.h kernel/simulator/ExperimentManager.h kernel/simulator/ExperimentManagerDefaultImpl1.h kernel/simulator/ExperimetManager_if.h kernel/simulator/LicenceManager.h kernel/simulator/Model.h kernel/simulator/ModelCheckerDefaultImpl1.h kernel/simulator/ModelChecker_if.h kernel/simulator/ModelComponent.h kernel/simulator/ModelElement.h kernel/simulator/ModelInfo.h kernel/simulator/ModelManager.h kernel/simulator/ModelPersistenceDefaultImpl1.h kernel/simulator/ModelPersistence_if.h kernel/simulator/ModelSimulation.h kernel/simulator/OnEventManager.h kernel/simulator/ParserChangesInformation.h kernel/simulator/ParserDefaultImpl1.h kernel/simulator/ParserDefaultImpl2.h kernel/simulator/ParserManager.h kernel/simulator/Parser_if.h kernel/simulator/PersistentObject_base.h kernel/simulator/Plugin.h kernel/simulator/PluginConnectorDummyImpl1.h kernel/simulator/PluginConnector_if.h kernel/simulator/PluginInformation.h kernel/simulator/PluginManager.h kernel/simulator/ScenarioExperiment_if.h kernel/simulator/SimulationControl.h kernel/simulator/SimulationExperiment.h kernel/simulator/SimulationReporterDefaultImpl1.h kernel/simulator/SimulationReporter_if.h kernel/simulator/SimulationResponse.h kernel/simulator/SimulationScenario.h kernel/simulator/Simulator.h kernel/simulator/SinkModelComponent.h kernel/simulator/SourceModelComponent.h kernel/simulator/StatisticsCollector.h kernel/simulator/TraceManager.h kernel/simulator/parserBisonFlex/Genesys++-driver.h kernel/simulator/parserBisonFlex/GenesysParser.h kernel/simulator/parserBisonFlex/obj_t.h kernel/statistics/CollectorDatafileDefaultImpl1.h kernel/statistics/CollectorDatafile_if.h kernel/statistics/CollectorDefaultImpl1.h kernel/statistics/Collector_if.h kernel/statistics/SamplerDefaultImpl1.h kernel/statistics/Sampler_if.h kernel/statistics/SorttFile.h kernel/statistics/StatisticsDataFileDefaultImpl.h kernel/statistics/StatisticsDataFile_if.h kernel/statistics/StatisticsDefaultImpl1.h kernel/statistics/Statistics_if.h kernel/util/Exact.h kernel/util/List.h kernel/util/Util.h plugins/components/Access.h plugins/components/Assign.h plugins/components/Batch.h plugins/components/CellularAutomata.h plugins/components/CppForG.h plugins/components/Create.h plugins/components/Decide.h plugins/components/Delay.h plugins/components/Dispose.h plugins/components/DropOff.h plugins/components/DummyComponent.h plugins/components/Enter.h plugins/components/Exit.h plugins/components/Hold.h plugins/components/LSODE.h plugins/components/Leave.h plugins/components/MarkovChain.h plugins/components/Match.h plugins/components/OLD_ODEelement.h plugins/components/PickStation.h plugins/components/PickUp.h plugins/components/Process.h plugins/components/QueueableItem.h plugins/components/Record.h plugins/components/Release.h plugins/components/Remove.h plugins/components/Route.h plugins/components/Search.h plugins/components/SeizableItem.h plugins/components/Seize.h plugins/components/Separate.h plugins/components/Signal.h plugins/components/Start.h plugins/components/Stop.h plugins/components/Store.h plugins/components/Submodel.h plugins/components/Unstore.h plugins/components/Write.h plugins/elements/CppCode.h plugins/elements/DummyElement.h plugins/elements/EntityGroup.h plugins/elements/Failure.h plugins/elements/File.h plugins/elements/Formula.h plugins/elements/Queue.h plugins/elements/Resource.h plugins/elements/Schedule.h plugins/elements/Sequence.h plugins/elements/Set.h plugins/elements/Station.h plugins/elements/Storage.h plugins/elements/Variable.h tools/HypothesisTesterDefaultImpl1.h tools/HypothesisTester_if.h tools/ProbabilityDistribution.h tools/SolverDefaultImpl1.h tools/solver_if.h $(DISTDIR)/
+	$(COPY_FILE) --parents applications/BaseConsoleGenesysApplication.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.cpp applications/gui/qt/SimpleQtGUI.cpp applications/terminal/GenesysTerminalApp.cpp examples/book/Book_Cap02_Example01.cpp examples/smarts/Smart_AssignWriteSeizes.cpp examples/smarts/Smart_CppForG.cpp examples/smarts/Smart_Delay.cpp examples/smarts/Smart_Dummy.cpp examples/smarts/Smart_HoldSignal.cpp examples/smarts/Smart_ModelInfoModelSimulation.cpp examples/smarts/Smart_ODE.cpp examples/smarts/Smart_OnEvent.cpp examples/smarts/Smart_Parser.cpp examples/smarts/Smart_ParserModelFunctions.cpp examples/smarts/Smart_Process.cpp examples/smarts/Smart_ProcessSet.cpp examples/smarts/Smart_RouteStation.cpp examples/smarts/Smart_SeizeDelayRelease.cpp examples/smarts/Smart_SeizeDelayReleaseMany.cpp examples/smarts/Smart_Sequence.cpp examples/teaching/AnElectronicAssemblyAndTestSystem.cpp examples/teaching/FullSimulationOfComplexModel.cpp examples/teaching/OperatingSystem02.cpp examples/teaching/OperatingSystem03.cpp kernel/simulator/Attribute.cpp kernel/simulator/ComponentManager.cpp kernel/simulator/ConnectionManager.cpp kernel/simulator/Counter.cpp kernel/simulator/ElementManager.cpp kernel/simulator/Entity.cpp kernel/simulator/EntityType.cpp kernel/simulator/Event.cpp kernel/simulator/ExperimentManager.cpp kernel/simulator/ExperimentManagerDefaultImpl1.cpp kernel/simulator/LicenceManager.cpp kernel/simulator/Model.cpp kernel/simulator/ModelCheckerDefaultImpl1.cpp kernel/simulator/ModelComponent.cpp kernel/simulator/ModelElement.cpp kernel/simulator/ModelInfo.cpp kernel/simulator/ModelManager.cpp kernel/simulator/ModelPersistenceDefaultImpl1.cpp kernel/simulator/ModelSimulation.cpp kernel/simulator/OnEventManager.cpp kernel/simulator/ParserChangesInformation.cpp kernel/simulator/ParserDefaultImpl1.cpp kernel/simulator/ParserDefaultImpl2.cpp kernel/simulator/ParserManager.cpp kernel/simulator/Plugin.cpp kernel/simulator/PluginConnectorDummyImpl1.cpp kernel/simulator/PluginInformation.cpp kernel/simulator/PluginManager.cpp kernel/simulator/SimulationControl.cpp kernel/simulator/SimulationExperiment.cpp kernel/simulator/SimulationReporterDefaultImpl1.cpp kernel/simulator/SimulationResponse.cpp kernel/simulator/SimulationScenario.cpp kernel/simulator/Simulator.cpp kernel/simulator/SinkModelComponent.cpp kernel/simulator/SourceModelComponent.cpp kernel/simulator/StatisticsCollector.cpp kernel/simulator/TraceManager.cpp kernel/simulator/parserBisonFlex/Genesys++-driver.cpp kernel/simulator/parserBisonFlex/Genesys++-scanner.cpp kernel/simulator/parserBisonFlex/GenesysParser.cpp kernel/simulator/parserBisonFlex/obj_t.cpp kernel/statistics/CollectorDatafileDefaultImpl1.cpp kernel/statistics/CollectorDefaultImpl1.cpp kernel/statistics/SamplerDefaultImpl1.cpp kernel/statistics/SorttFile.cpp kernel/statistics/StatisticsDataFileDefaultImpl.cpp kernel/statistics/StatisticsDefaultImpl1.cpp kernel/util/Util.cpp main.cpp plugins/components/Access.cpp plugins/components/Assign.cpp plugins/components/Batch.cpp plugins/components/CellularAutomata.cpp plugins/components/CppForG.cpp plugins/components/Create.cpp plugins/components/Decide.cpp plugins/components/Delay.cpp plugins/components/Dispose.cpp plugins/components/DropOff.cpp plugins/components/DummyComponent.cpp plugins/components/Enter.cpp plugins/components/Exit.cpp plugins/components/Hold.cpp plugins/components/LSODE.cpp plugins/components/Leave.cpp plugins/components/MarkovChain.cpp plugins/components/Match.cpp plugins/components/OLD_ODEelement.cpp plugins/components/PickStation.cpp plugins/components/PickUp.cpp plugins/components/Process.cpp plugins/components/QueueableItem.cpp plugins/components/Record.cpp plugins/components/Release.cpp plugins/components/Remove.cpp plugins/components/Route.cpp plugins/components/Search.cpp plugins/components/SeizableItem.cpp plugins/components/Seize.cpp plugins/components/Separate.cpp plugins/components/Signal.cpp plugins/components/Start.cpp plugins/components/Stop.cpp plugins/components/Store.cpp plugins/components/Submodel.cpp plugins/components/Unstore.cpp plugins/components/Write.cpp plugins/elements/CppCode.cpp plugins/elements/DummyElement.cpp plugins/elements/EntityGroup.cpp plugins/elements/Failure.cpp plugins/elements/File.cpp plugins/elements/Formula.cpp plugins/elements/Queue.cpp plugins/elements/Resource.cpp plugins/elements/Schedule.cpp plugins/elements/Sequence.cpp plugins/elements/Set.cpp plugins/elements/Station.cpp plugins/elements/Storage.cpp plugins/elements/Variable.cpp tests/testProbabilityDistribution.cpp tools/HypothesisTesterDefaultImpl1.cpp tools/ProbabilityDistribution.cpp tools/SolverDefaultImpl1.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -907,29 +918,761 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_simpleGUI_resources.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) qrc_simpleGUI_resources.cpp
+qrc_simpleGUI_resources.cpp: applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/simpleGUI_resources.qrc \
+		/usr/lib/qt5/bin/rcc \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/rounded.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/fontcolor.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/cloud.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/resize.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/redo.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/oval_end.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/rectangle.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/merge.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/aligncenter.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/toback.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/straight.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/cube_green.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/linecolor.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/group.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/zoomout.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/block_start.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/fillcolor.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/rule.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/diamond_start.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/terminate.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/center.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/earth.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/connector.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/select.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/gear.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/fork.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/inclusive.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/italic.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/preview.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/server.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/open.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/image.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/alignright.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/top.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/delete.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/link.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/copy.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/swimlane.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/hexagon.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/print.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/save.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/event.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/bell.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/plain.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/hline.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/vertical.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/wrench.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/cylinder.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/event_end.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/alignbottom.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/font.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/up.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/open_start.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/house.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/preferences.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/event_intermediate.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/classic_start.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/zoomin.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/printer.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/message_end.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/cut.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/bottom.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/entity.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/rhombus.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/down.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/message.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/ungroup.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/outline.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/tree.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/message_intermediate.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/vertical.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/zoomactual.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/oval_start.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/fit.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/expand.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/pan.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/house.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/right.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/connect.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/error.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/collapse.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/new.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/triangle.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/multiple.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/zoom.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/arrow.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/entity.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/actor.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/diagram.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/block_end.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/bold.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/middle.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/box.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/undo.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/alignleft.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/alignmiddle.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/aligntop.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/dude3.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/cancel_intermediate.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/classic_end.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/cancel_end.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/ellipse.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/open_end.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/left.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/doubleellipse.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/package.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/pagesetup.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/saveas.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/straight.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/paste.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/connect.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/maximize.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/arrow.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/minimize.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/workplace.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/tofront.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/timer.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/iconsMxGraph/diamond_end.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/console.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/help.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/small_add.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/control_term.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/tools-blue.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/folder.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/play.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/user-blue.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/delete.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/puzzle-green.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/user-green.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/loading.gif \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/puzzle-blue.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/small_folder.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/control_pause.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/stat.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/tools-orange.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/add.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/list.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/folder_add.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/disk.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/text.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/convergence.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/xml.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/gear-gray.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/control_start.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/appl.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/logo2.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/control_stop.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack4/xmltag.png \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/raise.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/hard\ disk.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/alarm.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/pie\ chart.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/upload.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/about.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/play.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/go\ forward.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/people.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/alien.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/retort.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/filter.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/bookmark.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/text\ preview.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/blue\ tag.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/undo.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/pause.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/eye.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/black\ bookmark.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/trash.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/up.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/copy.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/red\ mark.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/history.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/green\ pin.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/notes.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/green\ bookmark.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/paste.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/redo.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/yellow\ bookmark.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/error.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/problem.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/update.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/message.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/repair.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/alert.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/folder.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/downloads\ folder.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/home.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/apply.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/flash\ drive.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/company.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/table.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/top.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/black\ pin.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/back.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/modify.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/play-music.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/download.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/e-mail.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/comment.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/In-yang.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/exit.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/linux.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/key.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/twitter.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/calendar.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/sad.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/volume.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/diagram.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/address\ book.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/globe.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/search.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/blue\ bookmark.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/next.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/favourites.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/blue\ pin.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/last\ recor.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/phone\ number.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/text.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/close.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/taxi.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/move.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/no.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/clipboard.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/save.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/delete.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/person.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/bottom.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/thumbs\ up.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/fast-forward.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/female\ symbol.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/stop\ sign.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/mobile-phone.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/hint.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/report.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/buy.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/forbidden.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/user\ group.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/mail.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/sound.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/thumbs\ down.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/yellow\ tag.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/briefcase.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/up-down.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/gift.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/wallet.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/bad\ mark.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/equipment.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/refresh.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/list.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/first\ record.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/help\ book\ 3d.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/new.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/next\ track.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/yes.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/how-to.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/letter.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/bee.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/down.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/hourglass.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/Iphone.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/percent.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/wrench.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/shield.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/clock.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/application.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/door.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/pinion.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/stock\ graph.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/delivery.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/male.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/lightning.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/radiation.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/red\ bookmark.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/help1.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/boss.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/accounting.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/find.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/component.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/previous\ record.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/help\ book.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/music.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/yellow\ pin.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/phone.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/low\ rating.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/magic\ wand.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/abort.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/silence.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/create.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/fall.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/go\ back.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/car\ key.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/coin.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/mute.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/good\ mark.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/movie.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/warning.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/loadinv.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/help.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/new\ document.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/no-entry.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/record.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/load.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/last.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/red\ tag.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/first.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/stop.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/alarm\ clock.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/eject.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/unlock.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/display.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/sync.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/expand.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/shopping\ cart.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/brush.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/remove.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/cut.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/schedule.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/computer.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/bomb.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/compass.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/left-right.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/OK.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/dial.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/add.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/bubble.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/network\ connection.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/disaster.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/target.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/film.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/CD.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/erase.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/trackback.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/liner.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/previous.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/female.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/picture.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/male\ symbol.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/forward.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/playback.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/view.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/3d\ bar\ chart.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/hungup.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/rewind.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/calculator.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/green\ tag.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/blog.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/red\ star.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/free\ bsd.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/red\ pin.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/terminate.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/heart.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/lock.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/zoom.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/anchor.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/flag.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/sum.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/blue\ key.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/question.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/stopwatch.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/dollar.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/earth.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/script.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/go.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/info.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/database.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/tune.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/smile.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/medium\ rating.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/black\ tag.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/turn\ off.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/danger.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/toolbox.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/euro.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/print.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/34.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/40.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/87.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/49.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/93.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/55.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/17.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/61.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/23.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/8.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/76.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/38.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/82.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/44.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/50.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/12.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/59.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/65.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/27.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/3.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/71.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/33.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/86.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/48.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/92.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/54.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/16.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/60.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/22.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/69.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/7.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/75.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/37.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/81.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/43.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/96.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/11.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/58.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/64.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/26.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/2.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/70.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/32.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/79.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/85.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/47.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/91.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/53.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/15.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/21.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/68.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/6.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/74.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/36.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/42a.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/80.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/42.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/89.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/95.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/10.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/57.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/19.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/63.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/25.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/1.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/31.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/78.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/84.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/46.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/90.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/52.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/14.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/20.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/67.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/29.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/5.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/73.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/35.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/41.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/88.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/94.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/56.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/18.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/62.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/24.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/9.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/30.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/77.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/39.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/83.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/45.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/51.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/13.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/66.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/28.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/4.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/72.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/206.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/179.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/59.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/188.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/68.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/197.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/77.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/86.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/95.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/3.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/159.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/39.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/168.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/204.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/48.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/177.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/57.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/186.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/66.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/195.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/75.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/84.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/139.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/93.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/19.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/148.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/1.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/28.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/157.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/37.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/166.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/202.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/46.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/175.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/55.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/184.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/64.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/193.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/119.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/73.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/128.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/82.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/137.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/91.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/17.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/146.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/26.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/155.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/35.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/164.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/200.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/44.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/173.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/53.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/182.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/108.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/62.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/191.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/117.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/71.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/126.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/80.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/135.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/15.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/144.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/24.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/153.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/33.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/162.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/42.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/171.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/51.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/180.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/106.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/60.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/115.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/124.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/133.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/13.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/142.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/22.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/151.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/31.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/160.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/40.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/104.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/113.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/122.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/131.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/11.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/140.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/8.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/20.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/102.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/111.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/120.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/89.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/98.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/6.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/42a.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/100.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/189.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/69.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/198.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/78.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/87.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/96.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/4.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/169.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/205.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/49.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/178.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/58.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/187.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/67.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/196.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/76.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/85.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/94.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/149.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/2.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/29.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/158.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/38.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/167.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/203.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/47.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/176.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/56.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/185.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/65.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/194.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/74.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/129.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/83.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/138.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/92.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/18.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/147.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/27.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/156.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/36.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/165.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/201.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/45.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/174.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/54.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/183.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/109.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/63.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/192.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/118.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/72.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/127.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/81.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/136.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/90.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/16.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/145.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/25.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/154.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/34.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/163.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/43.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/172.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/52.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/181.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/107.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/61.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/190.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/116.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/70.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/125.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/134.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/14.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/143.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/23.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/152.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/32.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/161.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/41.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/170.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/50.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/105.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/114.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/123.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/132.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/12.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/141.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/21.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/9.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/150.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/30.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/103.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/112.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/121.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/130.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/10.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/99.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/7.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/101.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/110.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/199.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/79.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/88.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/97.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack1/ico/5.ico
+	/usr/lib/qt5/bin/rcc -name simpleGUI_resources applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/simpleGUI_resources.qrc -o qrc_simpleGUI_resources.cpp
+
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -Wall -Wextra -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all:
+compiler_moc_header_make_all: moc_mainwindow.cpp
 compiler_moc_header_clean:
+	-$(DEL_FILE) moc_mainwindow.cpp
+moc_mainwindow.cpp: applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.h \
+		kernel/simulator/Simulator.h \
+		kernel/simulator/Model.h \
+		kernel/util/List.h \
+		kernel/util/Util.h \
+		kernel/simulator/ModelElement.h \
+		kernel/simulator/ParserChangesInformation.h \
+		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/PluginInformation.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/Plugin.h \
+		kernel/simulator/Entity.h \
+		kernel/simulator/EntityType.h \
+		kernel/simulator/StatisticsCollector.h \
+		kernel/statistics/Statistics_if.h \
+		kernel/statistics/Collector_if.h \
+		kernel/simulator/ElementManager.h \
+		kernel/simulator/ConnectionManager.h \
+		kernel/simulator/Event.h \
+		kernel/simulator/ModelChecker_if.h \
+		kernel/simulator/Parser_if.h \
+		kernel/statistics/Sampler_if.h \
+		kernel/simulator/ModelPersistence_if.h \
+		kernel/simulator/ComponentManager.h \
+		kernel/simulator/TraceManager.h \
+		kernel/simulator/OnEventManager.h \
+		kernel/simulator/ModelInfo.h \
+		kernel/simulator/ModelSimulation.h \
+		kernel/simulator/SimulationReporter_if.h \
+		kernel/simulator/SimulationResponse.h \
+		kernel/simulator/DefineGetterSetter.h \
+		kernel/simulator/SimulationControl.h \
+		kernel/simulator/LicenceManager.h \
+		kernel/simulator/PluginManager.h \
+		kernel/simulator/PluginConnector_if.h \
+		kernel/simulator/ModelManager.h \
+		kernel/simulator/ParserManager.h \
+		kernel/simulator/ExperimentManager.h \
+		kernel/simulator/SimulationExperiment.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/nbproject -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.h -o moc_mainwindow.cpp
+
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all:
+compiler_uic_make_all: ui_mainwindow.h
 compiler_uic_clean:
+	-$(DEL_FILE) ui_mainwindow.h
+ui_mainwindow.h: applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.ui \
+		/usr/lib/qt5/bin/uic
+	/usr/lib/qt5/bin/uic applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.ui -o ui_mainwindow.h
+
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
 compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
 
@@ -974,6 +1717,48 @@ build/Debug/GNU-Linux/BaseConsoleGenesysApplication.o: applications/BaseConsoleG
 		kernel/simulator/ExperimentManager.h \
 		kernel/simulator/SimulationExperiment.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/BaseConsoleGenesysApplication.o applications/BaseConsoleGenesysApplication.cpp
+
+build/Debug/GNU-Linux/mainwindow.o: applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.h \
+		kernel/simulator/Simulator.h \
+		kernel/simulator/Model.h \
+		kernel/util/List.h \
+		kernel/util/Util.h \
+		kernel/simulator/ModelElement.h \
+		kernel/simulator/ParserChangesInformation.h \
+		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/PluginInformation.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/Plugin.h \
+		kernel/simulator/Entity.h \
+		kernel/simulator/EntityType.h \
+		kernel/simulator/StatisticsCollector.h \
+		kernel/statistics/Statistics_if.h \
+		kernel/statistics/Collector_if.h \
+		kernel/simulator/ElementManager.h \
+		kernel/simulator/ConnectionManager.h \
+		kernel/simulator/Event.h \
+		kernel/simulator/ModelChecker_if.h \
+		kernel/simulator/Parser_if.h \
+		kernel/statistics/Sampler_if.h \
+		kernel/simulator/ModelPersistence_if.h \
+		kernel/simulator/ComponentManager.h \
+		kernel/simulator/TraceManager.h \
+		kernel/simulator/OnEventManager.h \
+		kernel/simulator/ModelInfo.h \
+		kernel/simulator/ModelSimulation.h \
+		kernel/simulator/SimulationReporter_if.h \
+		kernel/simulator/SimulationResponse.h \
+		kernel/simulator/DefineGetterSetter.h \
+		kernel/simulator/SimulationControl.h \
+		kernel/simulator/LicenceManager.h \
+		kernel/simulator/PluginManager.h \
+		kernel/simulator/PluginConnector_if.h \
+		kernel/simulator/ModelManager.h \
+		kernel/simulator/ParserManager.h \
+		kernel/simulator/ExperimentManager.h \
+		kernel/simulator/SimulationExperiment.h \
+		ui_mainwindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/mainwindow.o applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.cpp
 
 build/Debug/GNU-Linux/SimpleQtGUI.o: applications/gui/qt/SimpleQtGUI.cpp applications/gui/qt/SimpleQtGUI.h \
 		applications/BaseConsoleGenesysApplication.h \
@@ -5661,6 +6446,12 @@ build/Debug/GNU-Linux/ProbabilityDistribution.o: tools/ProbabilityDistribution.c
 build/Debug/GNU-Linux/SolverDefaultImpl1.o: tools/SolverDefaultImpl1.cpp tools/SolverDefaultImpl1.h \
 		tools/solver_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/SolverDefaultImpl1.o tools/SolverDefaultImpl1.cpp
+
+build/Debug/GNU-Linux/qrc_simpleGUI_resources.o: qrc_simpleGUI_resources.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/qrc_simpleGUI_resources.o qrc_simpleGUI_resources.cpp
+
+build/Debug/GNU-Linux/moc_mainwindow.o: moc_mainwindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/moc_mainwindow.o moc_mainwindow.cpp
 
 ####### Install
 
