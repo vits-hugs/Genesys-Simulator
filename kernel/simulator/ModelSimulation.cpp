@@ -651,6 +651,9 @@ void ModelSimulation::loadInstance(std::map<std::string, std::string>* fields) {
 	this->_showReportsAfterSimulation = LoadField(fields, "showReportsAfterSimulation", DEFAULT.showReportsAfterSimulation);
 	this->_showSimulationControlsInReport = LoadField(fields, "showSimulationControlsInReport", DEFAULT.showSimulationControlsInReport);
 	this->_showSimulationResposesInReport = LoadField(fields, "showSimulationResposesInReport", DEFAULT.showSimulationResposesInReport);
+	// not a field of ModelSimulation, but I'll load it here
+	Util::TraceLevel traceLevel = static_cast<Util::TraceLevel> (LoadField(fields, "traceLevel", static_cast<int> (TraitsKernel<Model>::traceLevel)));
+	this->_model->getTracer()->setTraceLevel(traceLevel);
 	_hasChanged = false;
 }
 
@@ -671,6 +674,8 @@ std::map<std::string, std::string>* ModelSimulation::saveInstance() {
 	SaveField(fields, "showReportsAfterSimulation", _showReportsAfterSimulation, DEFAULT.showReportsAfterSimulation);
 	SaveField(fields, "showSimulationControlsInReport", _showSimulationControlsInReport, DEFAULT.showSimulationControlsInReport);
 	SaveField(fields, "showSimulationResposesInReport", _showSimulationResposesInReport, DEFAULT.showSimulationResposesInReport);
+	// not a field of ModelSimulation, but I'll save it here
+	SaveField(fields, "traceLevel", static_cast<int> (_model->getTracer()->getTraceLevel()), static_cast<int> (TraitsKernel<Model>::traceLevel));
 	_hasChanged = false;
 	return fields;
 }
