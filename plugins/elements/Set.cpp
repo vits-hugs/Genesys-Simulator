@@ -72,11 +72,11 @@ bool Set::_loadInstance(std::map<std::string, std::string>* fields) {
 
 std::map<std::string, std::string>* Set::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues); //Util::TypeOf<Set>());
-	SaveField(fields, "type", _setOfType, DEFAULT.setOfType);
-	SaveField(fields, "membersSize", _elementSet->size(), DEFAULT.membersSize);
+	SaveField(fields, "type", _setOfType, DEFAULT.setOfType, saveDefaultValues);
+	SaveField(fields, "membersSize", _elementSet->size(), DEFAULT.membersSize, saveDefaultValues);
 	unsigned int i = 0;
 	for (ModelElement* element : *_elementSet->list()) {
-		SaveField(fields, "member" + std::to_string(i), element->getName());
+		SaveField(fields, "member" + std::to_string(i), element->getName(), saveDefaultValues);
 		i++;
 	}
 	return fields;

@@ -133,9 +133,9 @@ std::map<std::string, std::string>* Route::_saveInstance(bool saveDefaultValues)
 	if (_routeDestinationType == DestinationType::Station) {
 		SaveField(fields, "station", (this->_station->getName()));
 	}
-	SaveField(fields, "routeTimeExpression", _routeTimeExpression, DEFAULT.routeTimeExpression);
-	SaveField(fields, "routeTimeTimeUnit", _routeTimeTimeUnit, DEFAULT.routeTimeTimeUnit);
-	SaveField(fields, "destinationType", static_cast<int> (_routeDestinationType), static_cast<int> (DEFAULT.routeDestinationType));
+	SaveField(fields, "routeTimeExpression", _routeTimeExpression, DEFAULT.routeTimeExpression, saveDefaultValues);
+	SaveField(fields, "routeTimeTimeUnit", _routeTimeTimeUnit, DEFAULT.routeTimeTimeUnit, saveDefaultValues);
+	SaveField(fields, "destinationType", static_cast<int> (_routeDestinationType), static_cast<int> (DEFAULT.routeDestinationType), saveDefaultValues);
 	return fields;
 }
 

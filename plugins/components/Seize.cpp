@@ -261,17 +261,17 @@ bool Seize::_loadInstance(std::map<std::string, std::string>* fields) {
 
 std::map<std::string, std::string>* Seize::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues); //Util::TypeOf<Seize>());
-	SaveField(fields, "allocationType", _allocationType, DEFAULT.allocationType);
-	SaveField(fields, "priority=", _priority, DEFAULT.priority);
-	SaveField(fields, "saveAttribute=", _saveAttribute, DEFAULT.saveAttribute);
+	SaveField(fields, "allocationType", _allocationType, DEFAULT.allocationType, saveDefaultValues);
+	SaveField(fields, "priority=", _priority, DEFAULT.priority, saveDefaultValues);
+	SaveField(fields, "saveAttribute=", _saveAttribute, DEFAULT.saveAttribute, saveDefaultValues);
 	//SaveField(fields, "queueId", _queue->getId());
 	//SaveField(fields, "queue", _queue->getName());
 	std::map<std::string, std::string>* queueablefields = _queueableItem->saveInstance();
 	fields->insert(queueablefields->begin(), queueablefields->end());
-	SaveField(fields, "resquestSize", _seizeRequests->size(), DEFAULT.seizeRequestSize);
+	SaveField(fields, "resquestSize", _seizeRequests->size(), DEFAULT.seizeRequestSize, saveDefaultValues);
 	unsigned short i = 0;
 	for (SeizableItem* request : *_seizeRequests->list()) {
-		std::map<std::string, std::string>* seizablefields = request->saveInstance(i);
+		std::map<std::string, std::string>* seizablefields = request->saveInstance(i, saveDefaultValues);
 		fields->insert(seizablefields->begin(), seizablefields->end());
 		i++;
 	}

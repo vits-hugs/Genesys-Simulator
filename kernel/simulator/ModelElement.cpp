@@ -104,7 +104,7 @@ std::map<std::string, std::string>* ModelElement::_saveInstance(bool saveDefault
 	SaveField(fields, "typename", _typename);
 	SaveField(fields, "id", this->_id);
 	SaveField(fields, "name", _name);
-	SaveField(fields, "reportStatistics", _reportStatistics, TraitsKernel<ModelElement>::reportStatistics, _getSaveDefaultsOption());
+	SaveField(fields, "reportStatistics", _reportStatistics, TraitsKernel<ModelElement>::reportStatistics, saveDefaultValues);
 	return fields;
 }
 

@@ -47,11 +47,11 @@ void SourceModelComponent::_initBetweenReplications() {
 
 std::map<std::string, std::string>* SourceModelComponent::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
-	SaveField(fields, "entitiesPerCreation", _entitiesPerCreation, DEFAULT.entitiesPerCreation);
-	SaveField(fields, "firstCreation", _firstCreation, DEFAULT.firstCreation);
-	SaveField(fields, "timeBetweenCreations", _timeBetweenCreationsExpression, DEFAULT.timeBetweenCreationsExpression);
-	SaveField(fields, "timeBetweenCreationsTimeUnit", _timeBetweenCreationsTimeUnit, DEFAULT.timeBetweenCreationsTimeUnit);
-	SaveField(fields, "maxCreations", _maxCreationsExpression, DEFAULT.maxCreationsExpression);
+	SaveField(fields, "entitiesPerCreation", _entitiesPerCreation, DEFAULT.entitiesPerCreation, saveDefaultValues);
+	SaveField(fields, "firstCreation", _firstCreation, DEFAULT.firstCreation, saveDefaultValues);
+	SaveField(fields, "timeBetweenCreations", _timeBetweenCreationsExpression, DEFAULT.timeBetweenCreationsExpression, saveDefaultValues);
+	SaveField(fields, "timeBetweenCreationsTimeUnit", _timeBetweenCreationsTimeUnit, DEFAULT.timeBetweenCreationsTimeUnit, saveDefaultValues);
+	SaveField(fields, "maxCreations", _maxCreationsExpression, DEFAULT.maxCreationsExpression, saveDefaultValues);
 	SaveField(fields, "EntityType", _entityType->getName());
 	return fields;
 }

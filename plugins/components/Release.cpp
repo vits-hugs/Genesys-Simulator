@@ -119,12 +119,11 @@ bool Release::_loadInstance(std::map<std::string, std::string>* fields) {
 
 std::map<std::string, std::string>* Release::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues); //Util::TypeOf<Release>());
-	bool saveDefaults = this->_getSaveDefaultsOption();
-	SaveField(fields, "priority", _priority, DEFAULT.priority, saveDefaults);
-	SaveField(fields, "resquestSize", _releaseRequests->size(), DEFAULT.releaseRequestSize, saveDefaults);
+	SaveField(fields, "priority", _priority, DEFAULT.priority, saveDefaultValues);
+	SaveField(fields, "resquestSize", _releaseRequests->size(), DEFAULT.releaseRequestSize, saveDefaultValues);
 	unsigned short i = 0;
 	for (SeizableItem* request : *_releaseRequests->list()) {
-		std::map<std::string, std::string>* seizablefields = request->saveInstance(i, saveDefaults);
+		std::map<std::string, std::string>* seizablefields = request->saveInstance(i, saveDefaultValues);
 		fields->insert(seizablefields->begin(), seizablefields->end());
 		i++;
 	}

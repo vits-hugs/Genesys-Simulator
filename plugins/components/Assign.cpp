@@ -84,12 +84,12 @@ bool Assign::_loadInstance(std::map<std::string, std::string>* fields) {
 std::map<std::string, std::string>* Assign::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues); //Util::TypeOf<Assign>());
 	Assignment* let;
-	SaveField(fields, "assignments", _assignments->size(), DEFAULT.assignmentsSize);
+	SaveField(fields, "assignments", _assignments->size(), DEFAULT.assignmentsSize, saveDefaultValues);
 	unsigned short i = 0;
 	for (std::list<Assignment*>::iterator it = _assignments->list()->begin(); it != _assignments->list()->end(); it++, i++) {
 		let = (*it);
-		SaveField(fields, "destination" + std::to_string(i), let->getDestination(), "");
-		SaveField(fields, "expression" + std::to_string(i), let->getExpression(), "");
+		SaveField(fields, "destination" + std::to_string(i), let->getDestination(), "", saveDefaultValues);
+		SaveField(fields, "expression" + std::to_string(i), let->getExpression(), "", saveDefaultValues);
 	}
 	return fields;
 }

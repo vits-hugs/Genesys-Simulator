@@ -125,14 +125,14 @@ bool Variable::_loadInstance(std::map<std::string, std::string>* fields) {
 std::map<std::string, std::string>* Variable::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues); //Util::TypeOf<Variable>());
 	unsigned int i = 0;
-	SaveField(fields, "numDimensions", _dimensionSizes->list()->size(), 0);
+	SaveField(fields, "numDimensions", _dimensionSizes->list()->size(), 0u, saveDefaultValues);
 	for (unsigned int dimension : *_dimensionSizes->list()) {
-		SaveField(fields, "dimension" + std::to_string(i), dimension, (unsigned int) 1);
+		SaveField(fields, "dimension" + std::to_string(i), dimension, 1u, saveDefaultValues);
 	}
 	SaveField(fields, "numValues", _initialValues->size(), 0);
 	for (std::map<std::string, double>::iterator it = _initialValues->begin(); it != _initialValues->end(); it++, i++) {
-		SaveField(fields, "pos" + std::to_string(i), (*it).first, "0");
-		SaveField(fields, "value" + std::to_string(i), (*it).second, 0.0);
+		SaveField(fields, "pos" + std::to_string(i), (*it).first, "0", saveDefaultValues);
+		SaveField(fields, "value" + std::to_string(i), (*it).second, 0.0, saveDefaultValues);
 	}
 	return fields;
 }

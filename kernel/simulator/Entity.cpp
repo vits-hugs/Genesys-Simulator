@@ -163,7 +163,6 @@ bool Entity::_loadInstance(std::map<std::string, std::string>* fields) {
 }
 
 std::map<std::string, std::string>* Entity::_saveInstance(bool saveDefaultValues) {
-
 	return new std::map<std::string, std::string>();
 }
 
