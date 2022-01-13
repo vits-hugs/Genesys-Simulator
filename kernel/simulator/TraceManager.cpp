@@ -65,7 +65,6 @@ void TraceManager::trace(std::string text, Util::TraceLevel level) {
 		for (std::list<traceListenerMethod>::iterator it = this->_traceHandlersMethod->list()->begin(); it != _traceHandlersMethod->list()->end(); it++) {
 			(*it)(e);
 		}
-
 	}
 }
 
@@ -82,6 +81,25 @@ void TraceManager::traceError(std::string text, std::exception e) {
 	}
 	for (std::list<traceErrorListenerMethod>::iterator it = this->_traceErrorHandlersMethod->list()->begin(); it != _traceErrorHandlersMethod->list()->end(); it++) {
 		(*it)(exceptEvent);
+	}
+}
+
+void TraceManager::traceSimulation(Util::TraceLevel level, std::string text) {
+	trace(text, level);
+}
+
+void TraceManager::traceSimulation(std::string text, Util::TraceLevel level) {
+	if (_traceConditionPassed(level)) {
+		text = Util::Indent() + text;
+		//text = "L" + std::to_string(static_cast<int> (level)) + "    " + Util::Indent() + text;
+		TraceSimulationEvent e = TraceSimulationEvent(level, 0.0, nullptr, nullptr, text);
+		/*  \todo:--: somewhere in future it should be interesting to use "auto" and c++17 at least */
+		for (std::list<traceSimulationListener>::iterator it = this->_traceSimulationHandlers->list()->begin(); it != _traceSimulationHandlers->list()->end(); it++) {
+			(*it)(e);
+		}
+		for (std::list<traceSimulationListenerMethod>::iterator it = this->_traceSimulationHandlersMethod->list()->begin(); it != _traceSimulationHandlersMethod->list()->end(); it++) {
+			(*it)(e);
+		}
 	}
 }
 

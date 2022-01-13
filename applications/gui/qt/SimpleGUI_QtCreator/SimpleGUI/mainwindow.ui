@@ -14,7 +14,7 @@
    <string>GenESyS - Generic and Expansible System Simulator</string>
   </property>
   <property name="windowIcon">
-   <iconset>
+   <iconset resource="simpleGUI_resources.qrc">
     <normaloff>:/icons2/resources/icons/pack2/ico/6.ico</normaloff>:/icons2/resources/icons/pack2/ico/6.ico</iconset>
   </property>
   <property name="dockNestingEnabled">
@@ -100,9 +100,11 @@
     </property>
     <addaction name="actionNew"/>
     <addaction name="separator"/>
-    <addaction name="actionLoad"/>
+    <addaction name="actionOpen"/>
     <addaction name="actionSave"/>
     <addaction name="actionClose"/>
+    <addaction name="separator"/>
+    <addaction name="actionCheck"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -135,9 +137,10 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionNew"/>
-   <addaction name="actionLoad"/>
+   <addaction name="actionOpen"/>
    <addaction name="actionSave"/>
    <addaction name="actionClose"/>
+   <addaction name="actionCheck"/>
    <addaction name="actionExit"/>
    <addaction name="actionStart"/>
    <addaction name="actionStep"/>
@@ -155,7 +158,7 @@
    <property name="minimumSize">
     <size>
      <width>100</width>
-     <height>109</height>
+     <height>100</height>
     </size>
    </property>
    <property name="baseSize">
@@ -183,6 +186,11 @@
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
       <widget class="QTextEdit" name="textEdit_Console">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
        <property name="textInteractionFlags">
         <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
        </property>
@@ -211,7 +219,7 @@
     </size>
    </property>
    <property name="windowIcon">
-    <iconset>
+    <iconset resource="simpleGUI_resources.qrc">
      <normaloff>:/icons3/resources/icons/pack3/ico/component.ico</normaloff>:/icons3/resources/icons/pack3/ico/component.ico</iconset>
    </property>
    <property name="features">
@@ -236,20 +244,20 @@
   </widget>
   <action name="actionNew">
    <property name="icon">
-    <iconset>
+    <iconset resource="simpleGUI_resources.qrc">
      <normaloff>:/icons3/resources/icons/pack3/ico/new document.ico</normaloff>:/icons3/resources/icons/pack3/ico/new document.ico</iconset>
    </property>
    <property name="text">
     <string>New</string>
    </property>
   </action>
-  <action name="actionLoad">
+  <action name="actionOpen">
    <property name="icon">
-    <iconset>
+    <iconset resource="simpleGUI_resources.qrc">
      <normaloff>:/icons3/resources/icons/pack3/ico/upload.ico</normaloff>:/icons3/resources/icons/pack3/ico/upload.ico</iconset>
    </property>
    <property name="text">
-    <string>Load</string>
+    <string>Open</string>
    </property>
   </action>
   <action name="actionSave">
@@ -257,7 +265,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="simpleGUI_resources.qrc">
      <normaloff>:/icons3/resources/icons/pack3/ico/download.ico</normaloff>:/icons3/resources/icons/pack3/ico/download.ico</iconset>
    </property>
    <property name="text">
@@ -266,7 +274,7 @@
   </action>
   <action name="actionExit">
    <property name="icon">
-    <iconset>
+    <iconset resource="simpleGUI_resources.qrc">
      <normaloff>:/icons3/resources/icons/pack3/ico/exit.ico</normaloff>:/icons3/resources/icons/pack3/ico/exit.ico</iconset>
    </property>
    <property name="text">
@@ -278,7 +286,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="simpleGUI_resources.qrc">
      <normaloff>:/icons3/resources/icons/pack3/ico/play.ico</normaloff>:/icons3/resources/icons/pack3/ico/play.ico</iconset>
    </property>
    <property name="text">
@@ -290,7 +298,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="simpleGUI_resources.qrc">
      <normaloff>:/icons3/resources/icons/pack3/ico/next track.ico</normaloff>:/icons3/resources/icons/pack3/ico/next track.ico</iconset>
    </property>
    <property name="text">
@@ -302,7 +310,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="simpleGUI_resources.qrc">
      <normaloff>:/icons3/resources/icons/pack3/ico/stop.ico</normaloff>:/icons3/resources/icons/pack3/ico/stop.ico</iconset>
    </property>
    <property name="text">
@@ -314,7 +322,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="simpleGUI_resources.qrc">
      <normaloff>:/icons3/resources/icons/pack3/ico/pause.ico</normaloff>:/icons3/resources/icons/pack3/ico/pause.ico</iconset>
    </property>
    <property name="text">
@@ -326,7 +334,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="simpleGUI_resources.qrc">
      <normaloff>:/icons3/resources/icons/pack3/ico/fast-forward.ico</normaloff>:/icons3/resources/icons/pack3/ico/fast-forward.ico</iconset>
    </property>
    <property name="text">
@@ -338,11 +346,23 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="simpleGUI_resources.qrc">
      <normaloff>:/icons3/resources/icons/pack3/ico/close.ico</normaloff>:/icons3/resources/icons/pack3/ico/close.ico</iconset>
    </property>
    <property name="text">
     <string>Close</string>
+   </property>
+  </action>
+  <action name="actionCheck">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="simpleGUI_resources.qrc">
+     <normaloff>:/icons3/resources/icons/pack3/ico/yes.ico</normaloff>:/icons3/resources/icons/pack3/ico/yes.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Check</string>
    </property>
   </action>
  </widget>
@@ -352,7 +372,9 @@
   <tabstop>textEdit_Reports</tabstop>
   <tabstop>tabWidgetModel</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="simpleGUI_resources.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>actionExit</sender>

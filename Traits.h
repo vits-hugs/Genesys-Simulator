@@ -63,7 +63,7 @@ template <> struct Traits<GenesysApplication_if> {
 
 	//// SMART SMART_S SORTED
 	//typedef Smart_AssignWriteSeizes Application;
-	//typedef Smart_Delay Application;
+	typedef Smart_Delay Application;
 	//typedef Smart_Dummy Application;
 	//typedef Smart_HoldSignal Application;
 	//typedef Smart_ModelInfoModelSimulation Application;
@@ -71,7 +71,7 @@ template <> struct Traits<GenesysApplication_if> {
 	//typedef Smart_OnEvent Application;
 	//typedef Smart_Parser Application;
 	//typedef Smart_ParserModelFunctions Application;
-	typedef Smart_Process Application;
+	//typedef Smart_Process Application;
 	//typedef Smart_ProcessSet Application;
 	//typedef Smart_RouteStation Application;
 	//typedef Smart_SeizeDelayRelease Application;

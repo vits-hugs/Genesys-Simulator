@@ -10,12 +10,15 @@ MainWindow::MainWindow(QWidget *parent)
 : QMainWindow(parent)
 , ui(new Ui::MainWindow) {
 	ui->setupUi(this);
+    ui->dockWidgetContentsConsole->setMaximumHeight(150);
+    ui->dockWidgetContentsPlugin->setMaximumWidth(150);
 	simulator = new Simulator();
 	simulator->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
-	simulator->getTracer()->addTraceHandler<MainWindow>(this, &MainWindow::_simulatorTraceHandler);
-	_insertFakePlugins();
-	//connect(ui->horizontalSlider, SIGNAL(valueChanged(int)),
-	//        ui->progressBar, SLOT(setValue(int)));
+    simulator->getTracer()->addTraceHandler<MainWindow>(this, &MainWindow::_simulatorTraceHandler);
+    simulator->getTracer()->addTraceErrorHandler<MainWindow>(this, &MainWindow::_simulatorTraceErrorHandler);
+    simulator->getTracer()->addTraceReportHandler<MainWindow>(this, &MainWindow::_simulatorTraceReportsHandler);
+    simulator->getTracer()->addTraceSimulationHandler<MainWindow>(this, &MainWindow::_simulatorTraceSimulationHandler);
+    _insertFakePlugins();
 }
 
 MainWindow::~MainWindow() {
@@ -36,8 +39,9 @@ void MainWindow::_actualizeWidgets() {
         paused = simulator->getModels()->current()->getSimulation()->isPaused();
     }
     ui->actionSave->setEnabled(opened);
-	ui->actionClose->setEnabled(opened);
-	ui->menuSimulation->setEnabled(opened);
+    ui->actionClose->setEnabled(opened);
+    ui->actionCheck->setEnabled(opened);
+    ui->menuSimulation->setEnabled(opened);
     ui->actionStart->setEnabled(opened);
     ui->actionStep->setEnabled(opened);
     ui->actionStop->setEnabled(opened && (running || paused));
@@ -45,27 +49,72 @@ void MainWindow::_actualizeWidgets() {
     ui->actionResume->setEnabled(opened && paused);
 	ui->tabWidgetModel->setEnabled(opened);
     if (!opened) {
-        ui->textEdit_Model->clear();
-        ui->textEdit_Simulation->clear();
-        ui->textEdit_Reports->clear();
+        _clearModelEditors();
     }
 }
 
-//-----------------
-// Simulator based
-//-----------------
+void MainWindow::_insertCommandInConsole(std::string text) {
+    ui->textEdit_Console->setTextColor(QColor::fromRgb(0, 255, 0));
+    ui->textEdit_Console->append("\n$genesys> "+QString::fromStdString(text));
+}
+
+void MainWindow::_clearModelEditors() {
+    ui->textEdit_Model->clear();
+    ui->textEdit_Simulation->clear();
+    ui->textEdit_Reports->clear();
+}
+
+//-------------------------
+// Simulator Trace Handlers
+//-------------------------
 
 void MainWindow::_simulatorTraceHandler(TraceEvent e) {
 	if (e.getTracelevel() == Util::TraceLevel::L1_errorFatal)
 		ui->textEdit_Console->setTextColor(QColor::fromRgb(255, 0, 0));
-	else if (e.getTracelevel() == Util::TraceLevel::L3_errorRecover)
-		ui->textEdit_Console->setTextColor(QColor::fromRgb(128, 0, 0));
-	else {
-		unsigned short grayVal = 5 * (static_cast<unsigned int> (e.getTracelevel()));
+    else if (e.getTracelevel() == Util::TraceLevel::L2_results)
+        ui->textEdit_Console->setTextColor(QColor::fromRgb(0, 0, 255));
+    else if (e.getTracelevel() == Util::TraceLevel::L3_errorRecover)
+        ui->textEdit_Console->setTextColor(QColor::fromRgb(223, 0, 0));
+    else if (e.getTracelevel() == Util::TraceLevel::L4_warning)
+        ui->textEdit_Console->setTextColor(QColor::fromRgb(128, 0, 0));
+    else {
+        unsigned short grayVal = 45 * (static_cast<unsigned int> (e.getTracelevel())-5);
 		ui->textEdit_Console->setTextColor(QColor::fromRgb(grayVal, grayVal, grayVal));
 	}
 	ui->textEdit_Console->append(QString::fromStdString(e.getText()));
 }
+
+void MainWindow::_simulatorTraceErrorHandler(TraceErrorEvent e){
+    ui->textEdit_Console->setTextColor(QColor::fromRgb(255, 0, 0));
+    ui->textEdit_Console->append(QString::fromStdString(e.getText()));
+}
+
+void MainWindow::_simulatorTraceSimulationHandler(TraceSimulationEvent e){
+    unsigned short grayVal = 20 * (static_cast<unsigned int> (e.getTracelevel()));
+    ui->textEdit_Console->setTextColor(QColor::fromRgb(grayVal, grayVal, grayVal));
+    ui->textEdit_Simulation->append(QString::fromStdString(e.getText()));
+}
+
+void MainWindow::_simulatorTraceReportsHandler(TraceEvent e){
+    ui->textEdit_Reports->append(QString::fromStdString(e.getText()));
+}
+
+void MainWindow::_onSimulationPausedHandler(SimulationEvent* re){
+    _actualizeWidgets();
+}
+void MainWindow::_onSimulationEndHandler(SimulationEvent* re){
+    _actualizeWidgets();
+    ui->tabWidgetModel->setCurrentIndex(2);
+}
+
+void MainWindow::_setOnEventHandlers() {
+    simulator->getModels()->current()->getOnEvents()->addOnSimulationEndHandler(this, &MainWindow::_onSimulationPausedHandler);
+    simulator->getModels()->current()->getOnEvents()->addOnSimulationPausedHandler(this, &MainWindow::_onSimulationEndHandler);
+}
+
+//-------------------------
+// Simulator Fake Plugins
+//-------------------------
 
 void MainWindow::_insertPluginUI(Plugin* plugin) {
 	if (plugin != nullptr) {
@@ -193,6 +242,12 @@ void MainWindow::_insertFakePlugins() {
 	_insertPluginUI(pm->insert("cppforg.so"));
 }
 
+
+//-------------------------
+// PRIVATE SLOTS
+//-------------------------
+
+
 void MainWindow::on_actionNew_triggered() {
     Model* m;
     if ((m = simulator->getModels()->current()) != nullptr) {
@@ -201,7 +256,7 @@ void MainWindow::on_actionNew_triggered() {
             return;
         }
     }
-    ui->textEdit_Console->append("\n> model_new");
+    _insertCommandInConsole("model_new");
     if (m != nullptr) {
         simulator->getModels()->remove(m);
     }
@@ -227,29 +282,22 @@ void MainWindow::on_actionNew_triggered() {
         } else {
             ui->textEdit_Console->append(QString("Error reading template model file"));
         }
+        _setOnEventHandlers();
       } else {
         ui->textEdit_Console->append(QString("Error saving template model file"));
 	}
     _actualizeWidgets();
 }
 
-void MainWindow::on_actionLoad_triggered()
-{
-    QFileDialog fd;
-    fd.exec();
-    //fd.getOpenFileName()
-    QMessageBox::information(this, "Load Model", "Model successfully loaded");
-
-}
-
 void MainWindow::on_actionSave_triggered()
 {
     QString fileName = QFileDialog::getSaveFileName(this,
             tr("Save Model"), "",
-            tr("Model (*.txt);;All Files (*)"));
+            tr("Model (*.gen);;All Files (*)"));
     if (fileName.isEmpty())
         return;
     else {
+        _insertCommandInConsole("model_save");
         QFile file(fileName);
         if (!file.open(QIODevice::WriteOnly)) {
             QMessageBox::information(this, tr("Unable to open file"),
@@ -265,8 +313,7 @@ void MainWindow::on_actionSave_triggered()
 
 void MainWindow::on_actionClose_triggered()
 {
-    ui->textEdit_Console->moveCursor(QTextCursor::End);
-    ui->textEdit_Console->append("> model_close");
+    _insertCommandInConsole("model_close");
     simulator->getModels()->remove(simulator->getModels()->current());
     _actualizeWidgets();
     QMessageBox::information(this, "Close Model", "Model successfully closed");
@@ -282,5 +329,70 @@ void MainWindow::on_actionExit_triggered()
 
 void MainWindow::on_actionStop_triggered()
 {
+    _insertCommandInConsole("stop");
+    simulator->getModels()->current()->getSimulation()->stop();
+    _actualizeWidgets();
+}
 
+void MainWindow::on_actionStart_triggered()
+{
+    _insertCommandInConsole("start");
+    ui->textEdit_Simulation->clear();
+    ui->textEdit_Reports->clear();
+    simulator->getModels()->current()->getSimulation()->start();
+    _actualizeWidgets();
+    ui->tabWidgetModel->setCurrentIndex(1);
+}
+
+void MainWindow::on_actionStep_triggered()
+{
+    _insertCommandInConsole("step");
+    simulator->getModels()->current()->getSimulation()->step();
+    _actualizeWidgets();
+    ui->tabWidgetModel->setCurrentIndex(1);
+}
+
+void MainWindow::on_actionPause_triggered()
+{
+    _insertCommandInConsole("pause");
+    simulator->getModels()->current()->getSimulation()->pause();
+    _actualizeWidgets();
+}
+
+void MainWindow::on_actionResume_triggered()
+{
+    _insertCommandInConsole("start");
+    simulator->getModels()->current()->getSimulation()->start();
+    _actualizeWidgets();
+    ui->tabWidgetModel->setCurrentIndex(1);
+}
+
+void MainWindow::on_actionOpen_triggered()
+{
+    QString fileName = QFileDialog::getOpenFileName(
+            this, "Open Model", "./",
+            tr("All files (*.*);;Genesys model (*.gen)" ));
+    if (fileName=="") {
+        return;
+    }
+    _insertCommandInConsole("model_open");
+    bool result = simulator->getModels()->loadModel(fileName.toStdString());
+    if (result) {
+        _clearModelEditors();
+        std::string line;
+        std::ifstream file(fileName.toStdString());
+        if (file.is_open()) {
+            while (std::getline(file, line)) {
+                ui->textEdit_Model->append(QString::fromStdString(line));
+            }
+            file.close();
+        } else {
+            ui->textEdit_Console->append(QString("Error reading model file"));
+        }
+        _setOnEventHandlers();
+        QMessageBox::information(this, "Open Model", "Model successfully oppened");
+    } else {
+        QMessageBox::warning(this, "Open Model", "Error while opening model");
+    }
+    _actualizeWidgets();
 }

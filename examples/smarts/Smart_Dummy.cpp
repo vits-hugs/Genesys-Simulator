@@ -40,13 +40,12 @@ int Smart_Dummy::main(int argc, char** argv) {
 	// Handle traces and simulation events to output them
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L6_arrival);
+
+	genesys->getModels()->loadModel("./models/Smart_ProcessComplete.gen");
+	genesys->getModels()->current()->getSimulation()->start();
+	return 0;
+
 	Model* model = genesys->getModels()->newModel();
-	//model->load("./models/Smart_CreateDelayDispose.gen");
-	//model->getSimulation()->start();
-	//return 0;
-	//
-	// build the simulation model
-	// if no ModelInfo is provided, then the model will be simulated once (one replication) and the replication length will be 3600 seconds (simulated time)
 	model->getSimulation()->setReplicationLength(60);
 	// create a (Source)ModelElement of type EntityType, used by a ModelComponent that follows
 	EntityType* entityType1 = new EntityType(model, "Type_of_Representative_Entity");

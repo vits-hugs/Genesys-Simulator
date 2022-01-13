@@ -88,14 +88,6 @@ void Process::_execute(Entity* entity) {
 	this->_parentModel->sendEntityToComponent(entity, seize, 0.0);
 }
 
-bool Process::_loadInstance(std::map<std::string, std::string>* fields) {
-	bool res = ModelComponent::_loadInstance(fields);
-	if (res) {
-		// \todo: not implemented yet
-	}
-	return res;
-}
-
 void Process::_createInternalElements() {
 	if (seize == nullptr) {
 		seize = new Seize(_parentModel, getName() + ".Seize");
@@ -116,6 +108,14 @@ void Process::_createInternalElements() {
 		getConnections()->getFrontConnection()->first = seize;
 		getConnections()->getFrontConnection()->second = 0;
 	}
+}
+
+bool Process::_loadInstance(std::map<std::string, std::string>* fields) {
+	bool res = ModelComponent::_loadInstance(fields);
+	if (res) {
+		// \todo: not implemented yet
+	}
+	return res;
 }
 
 std::map<std::string, std::string>* Process::_saveInstance(bool saveDefaultValues) {

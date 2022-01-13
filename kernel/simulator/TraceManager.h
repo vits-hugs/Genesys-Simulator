@@ -93,11 +93,13 @@ typedef void (*traceListener)(TraceEvent);
 typedef void (*traceErrorListener)(TraceErrorEvent);
 typedef void (*traceSimulationListener)(TraceSimulationEvent);
 typedef void (*traceSimulationProcessListener)(TraceSimulationProcess);
+//\TODO: Trace REPORTS???
 // for handlers that are class members (methods)
 typedef std::function<void(TraceEvent) > traceListenerMethod;
 typedef std::function<void(TraceErrorEvent) > traceErrorListenerMethod;
 typedef std::function<void(TraceSimulationEvent) > traceSimulationListenerMethod;
 typedef std::function<void(TraceSimulationProcess) > traceSimulationProcessListenerMethod;
+//\TODO: Trace REPORTS???
 
 /*!
  * The TraceManager is used to trace back model simulation information and track/debug the simulation.
@@ -123,11 +125,13 @@ public: // traces (invoke trace handlers)
 	void traceError(std::exception e, std::string text);
 	void traceReport(Util::TraceLevel level, std::string text);
 	void traceSimulation(Util::TraceLevel level, double time, Entity* entity, ModelComponent* component, std::string text);
+	void traceSimulation(Util::TraceLevel level, std::string text);
 public: // traces (invoke trace handlers) SINCE 20191025 NEW TRACES JUST INVERTED THE PARAMETERS, MAKING TRACELEVEL OPTIONAL
 	void trace(std::string text, Util::TraceLevel level = Util::TraceLevel::L8_detailed);
 	void traceError(std::string text, std::exception e);
 	void traceReport(std::string text, Util::TraceLevel level = Util::TraceLevel::L2_results);
 	void traceSimulation(double time, Entity* entity, ModelComponent* component, std::string text, Util::TraceLevel level = Util::TraceLevel::L8_detailed);
+	void traceSimulation(std::string text, Util::TraceLevel level = Util::TraceLevel::L8_detailed);
 public:
 	List<std::string>* errorMessages() const;
 	void setTraceLevel(Util::TraceLevel _traceLevel);

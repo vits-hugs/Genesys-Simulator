@@ -33,7 +33,7 @@ ModelComponent* Batch::LoadInstance(Model* model, std::map<std::string, std::str
 }
 
 void Batch::_execute(Entity* entity) {
-	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
+	_parentModel->getTracer()->traceSimulation("I'm just a dummy model and I'll just send the entity forward");
 	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 

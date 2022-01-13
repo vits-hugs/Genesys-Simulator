@@ -20,8 +20,6 @@ public:
 private slots:
     void on_actionNew_triggered();
 
-    void on_actionLoad_triggered();
-
     void on_actionSave_triggered();
 
     void on_actionClose_triggered();
@@ -30,13 +28,33 @@ private slots:
 
     void on_actionStop_triggered();
 
+    void on_actionStart_triggered();
+
+    void on_actionStep_triggered();
+
+    void on_actionPause_triggered();
+
+    void on_actionResume_triggered();
+
+    void on_actionOpen_triggered();
+
 private: // VIEW
 
-private: // simulator based
+private: // trace handlers
     void _simulatorTraceHandler(TraceEvent e);
+    void _simulatorTraceErrorHandler(TraceErrorEvent e);
+    void _simulatorTraceSimulationHandler(TraceSimulationEvent e);
+    void _simulatorTraceReportsHandler(TraceEvent e);
+private: // event handlers
+    void _onSimulationPausedHandler(SimulationEvent* re);
+    void _onSimulationEndHandler(SimulationEvent* re);
+private:
+    void _setOnEventHandlers();
     void _insertPluginUI(Plugin* plugin);
     void _insertFakePlugins();
     void _actualizeWidgets();
+    void _insertCommandInConsole(std::string text);
+    void _clearModelEditors();
 private:
     Ui::MainWindow *ui;
     Simulator* simulator;

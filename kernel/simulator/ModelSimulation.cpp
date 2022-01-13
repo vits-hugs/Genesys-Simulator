@@ -65,7 +65,7 @@ void ModelSimulation::_traceReplicationEnded() {
 	} else causeTerminated = "unknown";
 	std::chrono::duration<double> duration = std::chrono::system_clock::now() - this->_startRealSimulationTimeReplication;
 	std::string message = "Replication " + std::to_string(_currentReplicationNumber) + " of " + std::to_string(_numberOfReplications) + " has finished with last event at time " + std::to_string(_simulatedTime) + " " + Util::StrTimeUnitLong(_replicationBaseTimeUnit) + " because " + causeTerminated + "; Elapsed time " + std::to_string(duration.count()) + " seconds.";
-	_model->getTracer()->trace(Util::TraceLevel::L2_results, message);
+	_model->getTracer()->traceSimulation(Util::TraceLevel::L2_results, message);
 }
 
 SimulationEvent* ModelSimulation::_createSimulationEvent(void* thiscustomObject) {
@@ -264,7 +264,7 @@ void ModelSimulation::_initSimulation() {
 	_startRealSimulationTimeSimulation = std::chrono::system_clock::now();
 	_showSimulationHeader();
 	_model->getTracer()->trace(Util::TraceLevel::L5_event, "");
-	_model->getTracer()->trace(Util::TraceLevel::L5_event, "Simulation of model \"" + _info->getName() + "\" is starting.");
+	_model->getTracer()->traceSimulation(Util::TraceLevel::L5_event, "Simulation of model \"" + _info->getName() + "\" is starting.");
 	// defines the time scale factor to adjust replicatonLength to replicationBaseTime
 	_replicationTimeScaleFactorToBase = Util::TimeUnitConvert(this->_replicationLengthTimeUnit, this->_replicationBaseTimeUnit);
 	// copy all CStats and Counters (used in a replication) to CStats and counters for the whole simulation
@@ -303,14 +303,14 @@ void ModelSimulation::_initSimulation() {
 void ModelSimulation::_initReplication() {
 	_startRealSimulationTimeReplication = std::chrono::system_clock::now();
 	TraceManager* tm = _model->getTracer();
-	tm->trace(Util::TraceLevel::L5_event, "");
-	tm->trace(Util::TraceLevel::L2_results, "Replication " + std::to_string(_currentReplicationNumber) + " of " + std::to_string(_numberOfReplications) + " is starting.");
+	tm->traceSimulation(Util::TraceLevel::L5_event, "");
+	tm->traceSimulation(Util::TraceLevel::L2_results, "Replication " + std::to_string(_currentReplicationNumber) + " of " + std::to_string(_numberOfReplications) + " is starting.");
 	_model->getFutureEvents()->clear();
 	_model->getElements()->getElementList("Entity")->clear();
 	_simulatedTime = 0.0;
 	// init all components between replications
 	Util::IncIndent();
-	tm->trace(Util::TraceLevel::L8_detailed, "Initing Replication");
+	tm->traceSimulation(Util::TraceLevel::L8_detailed, "Initing Replication");
 	for (std::list<ModelComponent*>::iterator it = _model->getComponents()->begin(); it != _model->getComponents()->end(); it++) {
 		ModelComponent::InitBetweenReplications((*it));
 	}
@@ -371,7 +371,7 @@ void ModelSimulation::_checkWarmUpTime(Event* nextEvent) {
 	double warmupTime = Util::TimeUnitConvert(_warmUpPeriodTimeUnit, _replicationBaseTimeUnit);
 	warmupTime *= _warmUpPeriod;
 	if (warmupTime > 0.0 && _model->getSimulation()->getSimulatedTime() <= warmupTime && nextEvent->getTime() > warmupTime) {// warmuTime. Time to initStats
-		_model->getTracer()->trace(Util::TraceLevel::L7_internal, "Warmup time reached. Statistics are being reseted.");
+		_model->getTracer()->traceSimulation(Util::TraceLevel::L7_internal, "Warmup time reached. Statistics are being reseted.");
 		_initStatistics();
 	}
 }
@@ -438,9 +438,9 @@ bool ModelSimulation::_checkBreakpointAt(Event* event) {
 
 void ModelSimulation::_processEvent(Event* event) {
 	//	_model->getTracer()->traceSimulation(Util::TraceLevel::75_event, event->time(), event->entity(), event->component(), "");
-	_model->getTracer()->trace(Util::TraceLevel::L5_event, "Event {" + event->show() + "}");
+	_model->getTracer()->traceSimulation(Util::TraceLevel::L5_event, "Event {" + event->show() + "}");
 	Util::IncIndent();
-	_model->getTracer()->trace(Util::TraceLevel::L8_detailed, "Entity " + event->getEntity()->show());
+	_model->getTracer()->traceSimulation(Util::TraceLevel::L8_detailed, "Entity " + event->getEntity()->show());
 	this->_currentEvent = event;
 	// next three lines could be removed since currentEvet is now available
 	this->_currentEntity = event->getEntity();
