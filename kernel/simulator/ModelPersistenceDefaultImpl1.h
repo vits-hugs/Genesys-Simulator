@@ -23,9 +23,12 @@ class ModelPersistenceDefaultImpl1 : public ModelPersistence_if {
 public:
 	ModelPersistenceDefaultImpl1(Model* model);
 	virtual ~ModelPersistenceDefaultImpl1() = default;
-public:
+public: // interface
 	virtual bool save(std::string filename);
 	virtual bool load(std::string filename);
+	virtual bool getOption(ModelPersistence_if::Options option);
+	virtual void setOption(ModelPersistence_if::Options option, bool value);
+public:
 	virtual bool hasChanged();
 private:
 	void _saveContent(std::list<std::string>* content, std::ofstream* file);
@@ -41,6 +44,7 @@ private:
 	Model* _model = nullptr;
 	bool _hasChanged = false;
 	bool _saveDefaultValues = true;
+	unsigned int _options = 0;
 	std::string _fieldseparator = " "; // fields are separated by space
 	std::string _fieldseparatorReplacement = "\\_"; // in cases where spaces are in data to be saved, they are replaced by this pattern, so there will not be separators inside data (replacement is \_)
 };

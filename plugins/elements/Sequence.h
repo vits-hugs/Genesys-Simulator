@@ -56,7 +56,7 @@ public: // virtual
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields, unsigned int parentIndex);
 	virtual std::map<std::string, std::string>* _saveInstance(unsigned int parentIndex);
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues=false);
+	virtual std::map<std::string, std::string>* _saveInstance();
 
 public:
 
@@ -113,7 +113,7 @@ public: // static
 public:
 protected:
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues=false);
+	virtual std::map<std::string, std::string>* _saveInstance();
 	virtual bool _check(std::string* errorMessage);
 private:
 	List<SequenceStep*>* _steps = new List<SequenceStep*>();

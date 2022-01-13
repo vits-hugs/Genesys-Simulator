@@ -339,6 +339,18 @@ bool ModelPersistenceDefaultImpl1::load(std::string filename) {
 	return res;
 }
 
+bool ModelPersistenceDefaultImpl1::getOption(ModelPersistence_if::Options option) {
+	return (_options & static_cast<int> (option)) > 0;
+}
+
+void ModelPersistenceDefaultImpl1::setOption(ModelPersistence_if::Options option, bool value) {
+	if (value) {
+		_options |= static_cast<int> (option);
+	} else {
+		_options &= ~(static_cast<int> (option));
+	}
+}
+
 std::string ModelPersistenceDefaultImpl1::_convertLineseparatorReplacementBacktoLineseparator(std::string str) {
 	size_t index = str.find(_fieldseparatorReplacement, 0);
 	while (index != std::string::npos) {

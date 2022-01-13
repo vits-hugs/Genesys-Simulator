@@ -115,7 +115,7 @@ bool ModelComponent::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-std::map<std::string, std::string>* ModelComponent::_saveInstance(bool saveDefaultValues) {
+std::map<std::string, std::string>* ModelComponent::_saveInstance() {
 	std::map<std::string, std::string>* fields = ModelElement::_saveInstance();
 	SaveField(fields, "caption", _description, DEFAULT.description);
 	if (true) {//(_connections->size() != 1) { // save nextSize only if it is != 1

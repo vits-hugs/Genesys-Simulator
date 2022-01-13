@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>932</width>
-    <height>624</height>
+    <width>877</width>
+    <height>606</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -99,7 +99,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>932</width>
+     <width>877</width>
      <height>24</height>
     </rect>
    </property>
@@ -143,6 +143,16 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionNew"/>
+   <addaction name="actionLoad"/>
+   <addaction name="actionSave"/>
+   <addaction name="actionClose"/>
+   <addaction name="actionExit"/>
+   <addaction name="actionStart"/>
+   <addaction name="actionStep"/>
+   <addaction name="actionStop"/>
+   <addaction name="actionPause"/>
+   <addaction name="actionResume"/>
   </widget>
   <widget class="QDockWidget" name="dockWidgetConsole">
    <property name="sizePolicy">
@@ -155,6 +165,12 @@
     <size>
      <width>100</width>
      <height>109</height>
+    </size>
+   </property>
+   <property name="baseSize">
+    <size>
+     <width>100</width>
+     <height>100</height>
     </size>
    </property>
    <property name="autoFillBackground">
@@ -195,6 +211,12 @@
     <size>
      <width>100</width>
      <height>109</height>
+    </size>
+   </property>
+   <property name="baseSize">
+    <size>
+     <width>100</width>
+     <height>100</height>
     </size>
    </property>
    <property name="windowIcon">
@@ -261,6 +283,9 @@
    </property>
   </action>
   <action name="actionStart">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="simpleGUI_resources.qrc">
      <normaloff>:/icons3/resources/icons/pack3/ico/play.ico</normaloff>:/icons3/resources/icons/pack3/ico/play.ico</iconset>
@@ -270,6 +295,9 @@
    </property>
   </action>
   <action name="actionStep">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="simpleGUI_resources.qrc">
      <normaloff>:/icons3/resources/icons/pack3/ico/next track.ico</normaloff>:/icons3/resources/icons/pack3/ico/next track.ico</iconset>
@@ -279,6 +307,9 @@
    </property>
   </action>
   <action name="actionStop">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="simpleGUI_resources.qrc">
      <normaloff>:/icons3/resources/icons/pack3/ico/stop.ico</normaloff>:/icons3/resources/icons/pack3/ico/stop.ico</iconset>
@@ -288,6 +319,9 @@
    </property>
   </action>
   <action name="actionPause">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="simpleGUI_resources.qrc">
      <normaloff>:/icons3/resources/icons/pack3/ico/pause.ico</normaloff>:/icons3/resources/icons/pack3/ico/pause.ico</iconset>
@@ -297,6 +331,9 @@
    </property>
   </action>
   <action name="actionResume">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="simpleGUI_resources.qrc">
      <normaloff>:/icons3/resources/icons/pack3/ico/fast-forward.ico</normaloff>:/icons3/resources/icons/pack3/ico/fast-forward.ico</iconset>

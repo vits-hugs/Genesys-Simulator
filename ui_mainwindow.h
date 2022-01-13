@@ -71,7 +71,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(932, 624);
+        MainWindow->resize(877, 606);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/icons2/resources/icons/pack2/ico/6.ico"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
@@ -99,26 +99,31 @@ public:
         actionExit->setIcon(icon4);
         actionStart = new QAction(MainWindow);
         actionStart->setObjectName(QString::fromUtf8("actionStart"));
+        actionStart->setEnabled(false);
         QIcon icon5;
         icon5.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/play.ico"), QSize(), QIcon::Normal, QIcon::Off);
         actionStart->setIcon(icon5);
         actionStep = new QAction(MainWindow);
         actionStep->setObjectName(QString::fromUtf8("actionStep"));
+        actionStep->setEnabled(false);
         QIcon icon6;
         icon6.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/next track.ico"), QSize(), QIcon::Normal, QIcon::Off);
         actionStep->setIcon(icon6);
         actionStop = new QAction(MainWindow);
         actionStop->setObjectName(QString::fromUtf8("actionStop"));
+        actionStop->setEnabled(false);
         QIcon icon7;
         icon7.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/stop.ico"), QSize(), QIcon::Normal, QIcon::Off);
         actionStop->setIcon(icon7);
         actionPause = new QAction(MainWindow);
         actionPause->setObjectName(QString::fromUtf8("actionPause"));
+        actionPause->setEnabled(false);
         QIcon icon8;
         icon8.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/pause.ico"), QSize(), QIcon::Normal, QIcon::Off);
         actionPause->setIcon(icon8);
         actionResume = new QAction(MainWindow);
         actionResume->setObjectName(QString::fromUtf8("actionResume"));
+        actionResume->setEnabled(false);
         QIcon icon9;
         icon9.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/fast-forward.ico"), QSize(), QIcon::Normal, QIcon::Off);
         actionResume->setIcon(icon9);
@@ -179,7 +184,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 932, 24));
+        menubar->setGeometry(QRect(0, 0, 877, 24));
         menuModel = new QMenu(menubar);
         menuModel->setObjectName(QString::fromUtf8("menuModel"));
         menuSimulation = new QMenu(menubar);
@@ -200,6 +205,7 @@ public:
         sizePolicy.setHeightForWidth(dockWidgetConsole->sizePolicy().hasHeightForWidth());
         dockWidgetConsole->setSizePolicy(sizePolicy);
         dockWidgetConsole->setMinimumSize(QSize(100, 109));
+        dockWidgetConsole->setBaseSize(QSize(100, 100));
         dockWidgetConsole->setAutoFillBackground(false);
         dockWidgetConsole->setFeatures(QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable);
         dockWidgetConsole->setAllowedAreas(Qt::BottomDockWidgetArea|Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea);
@@ -220,6 +226,7 @@ public:
         sizePolicy.setHeightForWidth(dockWidgetPlugins->sizePolicy().hasHeightForWidth());
         dockWidgetPlugins->setSizePolicy(sizePolicy);
         dockWidgetPlugins->setMinimumSize(QSize(100, 109));
+        dockWidgetPlugins->setBaseSize(QSize(100, 100));
         QIcon icon11;
         icon11.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/component.ico"), QSize(), QIcon::Normal, QIcon::Off);
         dockWidgetPlugins->setWindowIcon(icon11);
@@ -255,6 +262,16 @@ public:
         menuSimulation->addSeparator();
         menuSimulation->addAction(actionPause);
         menuSimulation->addAction(actionResume);
+        toolBar->addAction(actionNew);
+        toolBar->addAction(actionLoad);
+        toolBar->addAction(actionSave);
+        toolBar->addAction(actionClose);
+        toolBar->addAction(actionExit);
+        toolBar->addAction(actionStart);
+        toolBar->addAction(actionStep);
+        toolBar->addAction(actionStop);
+        toolBar->addAction(actionPause);
+        toolBar->addAction(actionResume);
 
         retranslateUi(MainWindow);
         QObject::connect(actionExit, SIGNAL(triggered()), MainWindow, SLOT(close()));

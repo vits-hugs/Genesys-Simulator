@@ -82,6 +82,10 @@ void ModelElement::_removeChildElement(std::string key) {
 	Util::DecIndent();
 }
 
+bool ModelElement::_getSaveDefaultsOption() {
+	return _parentModel->getPersistence()->getOption(ModelPersistence_if::Options::SAVEDEFAULTS);
+}
+
 bool ModelElement::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = true;
 	std::map<std::string, std::string>::iterator it;
@@ -95,12 +99,12 @@ bool ModelElement::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-std::map<std::string, std::string>* ModelElement::_saveInstance(bool saveDefaultValues) {
+std::map<std::string, std::string>* ModelElement::_saveInstance() {
 	std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();
 	SaveField(fields, "typename", _typename);
 	SaveField(fields, "id", this->_id);
 	SaveField(fields, "name", _name);
-	SaveField(fields, "reportStatistics", _reportStatistics, TraitsKernel<ModelElement>::reportStatistics, saveDefaultValues);
+	SaveField(fields, "reportStatistics", _reportStatistics, TraitsKernel<ModelElement>::reportStatistics, _getSaveDefaultsOption());
 	return fields;
 }
 

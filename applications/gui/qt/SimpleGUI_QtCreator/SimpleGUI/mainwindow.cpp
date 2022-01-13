@@ -28,10 +28,21 @@ MainWindow::~MainWindow() {
 //-----------------
 
 void MainWindow::_actualizeWidgets() {
-	bool opened = simulator->getModels()->current() != nullptr;
-	ui->actionSave->setEnabled(opened);
+    bool opened = simulator->getModels()->current() != nullptr;
+    bool running = false;
+    bool paused = false;
+    if (opened) {
+        running = simulator->getModels()->current()->getSimulation()->isRunning();
+        paused = simulator->getModels()->current()->getSimulation()->isPaused();
+    }
+    ui->actionSave->setEnabled(opened);
 	ui->actionClose->setEnabled(opened);
 	ui->menuSimulation->setEnabled(opened);
+    ui->actionStart->setEnabled(opened);
+    ui->actionStep->setEnabled(opened);
+    ui->actionStop->setEnabled(opened && (running || paused));
+    ui->actionPause->setEnabled(opened && running);
+    ui->actionResume->setEnabled(opened && paused);
 	ui->tabWidgetModel->setEnabled(opened);
     if (!opened) {
         ui->textEditModel->clear();

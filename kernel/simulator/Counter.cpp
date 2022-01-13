@@ -68,7 +68,7 @@ bool Counter::_loadInstance(std::map<std::string, std::string>* fields) {
 	return ModelElement::_loadInstance(fields);
 }
 
-std::map<std::string, std::string>* Counter::_saveInstance(bool saveDefaultValues) {
+std::map<std::string, std::string>* Counter::_saveInstance() {
 	return ModelElement::_saveInstance();
 }
 

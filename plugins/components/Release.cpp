@@ -103,7 +103,7 @@ void Release::_initBetweenReplications() {
 bool Release::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
-		this->_priority = std::stoi(LoadField(fields, "priority", "0"));
+		this->_priority = LoadField(fields, "priority", DEFAULT.priority);
 		unsigned short numRequests = LoadField(fields, "resquestSize", DEFAULT.releaseRequestSize);
 		for (unsigned short i = 0; i < numRequests; i++) {
 			SeizableItem* Item = new SeizableItem(nullptr);
@@ -117,13 +117,14 @@ bool Release::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-std::map<std::string, std::string>* Release::_saveInstance(bool saveDefaultValues) {
+std::map<std::string, std::string>* Release::_saveInstance() {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(); //Util::TypeOf<Release>());
-	if (_priority != 0) SaveField(fields, "priority", std::to_string(this->_priority));
-	SaveField(fields, "resquestSize", _releaseRequests->size(), DEFAULT.releaseRequestSize);
+	bool saveDefaults = this->_getSaveDefaultsOption();
+	SaveField(fields, "priority", _priority, DEFAULT.priority, saveDefaults);
+	SaveField(fields, "resquestSize", _releaseRequests->size(), DEFAULT.releaseRequestSize, saveDefaults);
 	unsigned short i = 0;
 	for (SeizableItem* request : *_releaseRequests->list()) {
-		std::map<std::string, std::string>* seizablefields = request->saveInstance(i);
+		std::map<std::string, std::string>* seizablefields = request->saveInstance(i, saveDefaults);
 		fields->insert(seizablefields->begin(), seizablefields->end());
 		i++;
 	}

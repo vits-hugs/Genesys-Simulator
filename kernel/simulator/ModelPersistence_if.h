@@ -21,12 +21,17 @@
  */
 class ModelPersistence_if {
 public:
+
+	enum class Options : int {
+		SAVEDEFAULTS = 1, RANDOM = 2
+	};
+
 	// \todo: not a good interface for sure. The Bridge pattern should be a lot better
 	virtual bool save(std::string filename) = 0;
 	virtual bool load(std::string filename) = 0;
 	virtual bool hasChanged() = 0;
-private:
-
+	virtual bool getOption(ModelPersistence_if::Options option) = 0;
+	virtual void setOption(ModelPersistence_if::Options option, bool value) = 0;
 };
 
 #endif /* MODELPERSISTENCE_IF_H */

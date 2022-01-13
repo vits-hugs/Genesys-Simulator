@@ -36,9 +36,9 @@ public:
 
 public:
 	bool loadInstance(std::map<std::string, std::string>* fields, unsigned int parentIndex);
-	std::map<std::string, std::string>* saveInstance(unsigned int parentIndex);
+	std::map<std::string, std::string>* saveInstance(unsigned int parentIndex, bool saveDefault);
 	bool loadInstance(std::map<std::string, std::string>* fields);
-	std::map<std::string, std::string>* saveInstance();
+	std::map<std::string, std::string>* saveInstance(bool saveDefaults);
 public:
 	std::string show();
 	void setIndex(std::string index);

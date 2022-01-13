@@ -118,7 +118,7 @@ void MarkovChain::_initBetweenReplications() {
 	this->_initilized = false;
 }
 
-std::map<std::string, std::string>* MarkovChain::_saveInstance(bool saveDefaultValues) {
+std::map<std::string, std::string>* MarkovChain::_saveInstance() {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
 	// \todo: not implemented yet
 	return fields;

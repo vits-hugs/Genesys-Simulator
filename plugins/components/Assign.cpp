@@ -81,7 +81,7 @@ bool Assign::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-std::map<std::string, std::string>* Assign::_saveInstance(bool saveDefaultValues) {
+std::map<std::string, std::string>* Assign::_saveInstance() {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(); //Util::TypeOf<Assign>());
 	Assignment* let;
 	SaveField(fields, "assignments", _assignments->size(), DEFAULT.assignmentsSize);

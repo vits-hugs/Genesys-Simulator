@@ -79,7 +79,8 @@ public: // only gets
 	List<SimulationResponse*>* getResponses() const; ///< Returns a list of exits or simulation results that can be read externally. They usually correspond to statistics resulting from the simulation that must be read for an experiment design.
 public: // gets and sets	
 	void setTracer(TraceManager* _traceManager);
-	TraceManager* getTracer() const; ///< Provides access to the class that performs the trace of simulation and replications.
+	TraceManager* getTracer() const;
+    ModelPersistence_if* getPersistence() const; ///< Provides access to the class that performs the trace of simulation and replications.
 	/*
 	 * PRIVATE
 	 */
@@ -103,6 +104,8 @@ private: // read only public access (gets)
 	ComponentManager* _componentManager;
 	ModelInfo* _modelInfo;
 	ModelSimulation* _simulation;
+	ModelPersistence_if* _modelPersistence;
+
 	// 1:n
 	//List<ModelComponent*>* _components;
 	List<Event*>* _futureEvents; ///< This is the calendar of future events, chronologically sorted, from where events are taken to be processed. This is one of the most important structures in Event driven simulation system
@@ -112,7 +115,6 @@ private: // read only public access (gets)
 
 private: // no public access (no gets / sets)	
 	ModelChecker_if* _modelChecker;
-	ModelPersistence_if* _modelPersistence;
 	Parser_if* _parser;
 };
 //namespace\\}

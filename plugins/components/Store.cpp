@@ -47,7 +47,7 @@ bool Store::_loadInstance(std::map<std::string, std::string>* fields) {
 void Store::_initBetweenReplications() {
 }
 
-std::map<std::string, std::string>* Store::_saveInstance(bool saveDefaultValues) {
+std::map<std::string, std::string>* Store::_saveInstance() {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
 	// \todo: not implemented yet
 	return fields;

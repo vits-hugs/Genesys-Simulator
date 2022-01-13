@@ -48,7 +48,7 @@ bool Submodel::_loadInstance(std::map<std::string, std::string>* fields) {
 void Submodel::_initBetweenReplications() {
 }
 
-std::map<std::string, std::string>* Submodel::_saveInstance(bool saveDefaultValues) {
+std::map<std::string, std::string>* Submodel::_saveInstance() {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
 	// \todo: not implemented yet
 	return fields;

@@ -50,7 +50,7 @@ public: // static
 protected: // pure virtual methods
 	virtual void _execute(Entity* entity) = 0;
 protected: // virtual methods
-	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues=false);
+	virtual std::map<std::string, std::string>* _saveInstance();
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual void _createInternalElements(); ///< This method is necessary only for those components that instantiate internal elements that must exist before simulation starts and even before model checking. That's the case of components that have internal StatisticsCollectors, since others components may refer to them as expressions (as in "TVAG(ThisCSTAT)") and therefore the element must exist when checking such expression
 protected:

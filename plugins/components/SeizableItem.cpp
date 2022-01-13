@@ -92,28 +92,28 @@ bool SeizableItem::loadInstance(std::map<std::string, std::string>* fields, unsi
 	return res;
 }
 
-std::map<std::string, std::string>* SeizableItem::saveInstance(unsigned int parentIndex) {
+std::map<std::string, std::string>* SeizableItem::saveInstance(unsigned int parentIndex, bool saveDefaults) {
 	std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();
 	std::string num = std::to_string(parentIndex);
-	SaveField(fields, "seizableType" + num, static_cast<int> (_seizableType), static_cast<int> (DEFAULT.seizableType));
+	SaveField(fields, "seizableType" + num, static_cast<int> (_seizableType), static_cast<int> (DEFAULT.seizableType), saveDefaults);
 	//SaveField(fields, "resourceId" + num, _resourceOrSet->getId());
-	SaveField(fields, "seizable" + num, _resourceOrSet->getName(), "");
-	SaveField(fields, "quantityExpression" + num, _quantityExpression, DEFAULT.quantityExpression);
-	SaveField(fields, "selectionRule" + num, static_cast<int> (_selectionRule), static_cast<int> (DEFAULT.selectionRule));
-	SaveField(fields, "saveAttribute" + num, _saveAttribute, DEFAULT.saveAttribute);
-	SaveField(fields, "index" + num, _index, DEFAULT.index);
+	SaveField(fields, "seizable" + num, _resourceOrSet->getName(), "", saveDefaults);
+	SaveField(fields, "quantityExpression" + num, _quantityExpression, DEFAULT.quantityExpression, saveDefaults);
+	SaveField(fields, "selectionRule" + num, static_cast<int> (_selectionRule), static_cast<int> (DEFAULT.selectionRule), saveDefaults);
+	SaveField(fields, "saveAttribute" + num, _saveAttribute, DEFAULT.saveAttribute, saveDefaults);
+	SaveField(fields, "index" + num, _index, DEFAULT.index, saveDefaults);
 	return fields;
 }
 
-std::map<std::string, std::string>* SeizableItem::saveInstance() {
+std::map<std::string, std::string>* SeizableItem::saveInstance(bool saveDefaults) {
 	std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();
-	SaveField(fields, "seizableType", static_cast<int> (_seizableType), static_cast<int> (DEFAULT.seizableType));
+	SaveField(fields, "seizableType", static_cast<int> (_seizableType), static_cast<int> (DEFAULT.seizableType), saveDefaults);
 	SaveField(fields, "resourceId", _resourceOrSet->getId());
-	SaveField(fields, "seizable", _resourceOrSet->getName(), "");
-	SaveField(fields, "quantityExpression", _quantityExpression, DEFAULT.quantityExpression);
-	SaveField(fields, "selectionRule", static_cast<int> (_selectionRule), static_cast<int> (DEFAULT.selectionRule));
-	SaveField(fields, "saveAttribute", _saveAttribute, DEFAULT.saveAttribute);
-	SaveField(fields, "index", _index, DEFAULT.index);
+	SaveField(fields, "seizable", _resourceOrSet->getName(), "", saveDefaults);
+	SaveField(fields, "quantityExpression", _quantityExpression, DEFAULT.quantityExpression, saveDefaults);
+	SaveField(fields, "selectionRule", static_cast<int> (_selectionRule), static_cast<int> (DEFAULT.selectionRule), saveDefaults);
+	SaveField(fields, "saveAttribute", _saveAttribute, DEFAULT.saveAttribute, saveDefaults);
+	SaveField(fields, "index", _index, DEFAULT.index, saveDefaults);
 	return fields;
 }
 

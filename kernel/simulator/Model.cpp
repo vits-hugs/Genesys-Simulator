@@ -323,6 +323,10 @@ TraceManager * Model::getTracer() const {
 	return _traceManager;
 }
 
+ModelPersistence_if* Model::getPersistence() const {
+	return _modelPersistence;
+}
+
 bool Model::hasChanged() const {
 	bool changed = _hasChanged;
 	changed &= this->_componentManager->hasChanged();

@@ -47,7 +47,7 @@ bool DummyComponent::_loadInstance(std::map<std::string, std::string>* fields) {
 void DummyComponent::_initBetweenReplications() {
 }
 
-std::map<std::string, std::string>* DummyComponent::_saveInstance(bool saveDefaultValues) {
+std::map<std::string, std::string>* DummyComponent::_saveInstance() {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
 	// \todo: not implemented yet
 	return fields;

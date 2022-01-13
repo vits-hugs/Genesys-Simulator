@@ -70,7 +70,7 @@ bool Set::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-std::map<std::string, std::string>* Set::_saveInstance(bool saveDefaultValues) {
+std::map<std::string, std::string>* Set::_saveInstance() {
 	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(); //Util::TypeOf<Set>());
 	SaveField(fields, "type", _setOfType, DEFAULT.setOfType);
 	SaveField(fields, "membersSize", _elementSet->size(), DEFAULT.membersSize);

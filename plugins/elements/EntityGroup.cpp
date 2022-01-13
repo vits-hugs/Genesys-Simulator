@@ -80,7 +80,7 @@ bool EntityGroup::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-std::map<std::string, std::string>* EntityGroup::_saveInstance(bool saveDefaultValues) {
+std::map<std::string, std::string>* EntityGroup::_saveInstance() {
 	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(); //Util::TypeOf<Group>());
 	return fields;
 }

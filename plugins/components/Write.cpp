@@ -149,7 +149,7 @@ bool Write::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-std::map<std::string, std::string>* Write::_saveInstance(bool saveDefaultValues) {
+std::map<std::string, std::string>* Write::_saveInstance() {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
 	SaveField(fields, "writeToType", static_cast<int> (_writeToType));
 	SaveField(fields, "writesSize", _writeElements->size(), 0u);

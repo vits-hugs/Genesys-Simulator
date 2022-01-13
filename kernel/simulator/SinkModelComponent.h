@@ -30,7 +30,7 @@ public:
 protected:
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual void _initBetweenReplications();
-	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues=false);
+	virtual std::map<std::string, std::string>* _saveInstance();
 	virtual bool _check(std::string* errorMessage);
 private:
 };
