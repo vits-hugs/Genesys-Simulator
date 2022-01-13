@@ -76,7 +76,7 @@ std::map<std::string, std::string>* Set::_saveInstance(bool saveDefaultValues) {
 	SaveField(fields, "membersSize", _elementSet->size(), DEFAULT.membersSize, saveDefaultValues);
 	unsigned int i = 0;
 	for (ModelElement* element : *_elementSet->list()) {
-		SaveField(fields, "member" + std::to_string(i), element->getName(), saveDefaultValues);
+		SaveField(fields, "member" + std::to_string(i), element->getName());
 		i++;
 	}
 	return fields;

@@ -151,7 +151,7 @@ bool Write::_loadInstance(std::map<std::string, std::string>* fields) {
 
 std::map<std::string, std::string>* Write::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
-	SaveField(fields, "writeToType", static_cast<int> (_writeToType), DEFAULT.writeToType, saveDefaultValues);
+	SaveField(fields, "writeToType", static_cast<int> (_writeToType), static_cast<int> (DEFAULT.writeToType), saveDefaultValues);
 	SaveField(fields, "writesSize", _writeElements->size(), 0u, saveDefaultValues);
 	unsigned short i = 0;
 	/*
