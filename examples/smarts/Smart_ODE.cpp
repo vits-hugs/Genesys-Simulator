@@ -41,14 +41,14 @@ int Smart_ODE::main(int argc, char** argv) {
 	ode1->getDiffEquations()->insert("x[1]");
 	ode1->getDiffEquations()->insert("x[0] + exp(t)");
 	ode1->setStep(0.1);
-	ode1->setFilename("./temp/Smart_ODE.outputdatafile.txt");
+	ode1->setFilename("./temp/Smart_ODE.outputdatafile.gen");
 	Dispose* dispose1 = new Dispose(model);
 	create1->getConnections()->insert(ode1);
 	ode1->getConnections()->insert(dispose1);
 	model->getSimulation()->setReplicationLength(2.0);
 	model->getSimulation()->setShowReportsAfterReplication(false);
 	model->getSimulation()->setShowReportsAfterSimulation(false);
-	model->save("./models/Smart_ODE.txt");
+	model->save("./models/Smart_ODE.gen");
 	model->getSimulation()->start();
 	genesys->~Simulator();
 	return 0;

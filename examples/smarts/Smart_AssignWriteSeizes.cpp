@@ -155,7 +155,7 @@ int Smart_AssignWriteSeizes::main(int argc, char** argv) {
 	delay3->getConnections()->insert(release3);
 	release3->getConnections()->insert(dispose1);
 	//
-	model->save("./models/Smart_StatationRouteSequence.txt");
+	model->save("./models/Smart_StatationRouteSequence.gen");
 	sim->start();
 	return 0;
 }

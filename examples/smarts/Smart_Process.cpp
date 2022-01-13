@@ -50,7 +50,7 @@ int Smart_Process::main(int argc, char** argv) {
 	create->getConnections()->insert(process);
 	process->getConnections()->insert(dispose);
 	model->getSimulation()->setReplicationLength(10);
-	model->save("./models/Smart_Process.txt");
+	model->save("./models/Smart_Process.gen");
 	do {
 		model->getSimulation()->step();
 		//		std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');

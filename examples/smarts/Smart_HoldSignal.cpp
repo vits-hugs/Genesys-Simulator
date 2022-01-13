@@ -43,7 +43,7 @@ int Smart_HoldSignal::main(int argc, char** argv) {
 
 	//
 	model->getSimulation()->setReplicationLength(20);
-	model->save("./models/Smart_HoldSignal.txt");
+	model->save("./models/Smart_HoldSignal.gen");
 	do {
 		model->getSimulation()->step();
 		std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');

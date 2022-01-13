@@ -183,7 +183,7 @@ int OperatingSystem02::main(int argc, char** argv) {
 	// AJUSTA NÍVEL DE TRACE
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L2_results);
 	// SALVA MODELO
-	model->save("./models/SistemaOperacional02.txt");
+	model->save("./models/SistemaOperacional02.gen");
 	// EXECUTA CADA REPLICAÇÃO, RECOMEÇANDO APÓS CADA PAUSA
 	do {
 		sim->start();

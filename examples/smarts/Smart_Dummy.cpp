@@ -41,7 +41,7 @@ int Smart_Dummy::main(int argc, char** argv) {
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L6_arrival);
 	Model* model = genesys->getModels()->newModel();
-	//model->load("./models/Smart_CreateDelayDispose.txt");
+	//model->load("./models/Smart_CreateDelayDispose.gen");
 	//model->getSimulation()->start();
 	//return 0;
 	//
@@ -63,7 +63,7 @@ int Smart_Dummy::main(int argc, char** argv) {
 	create1->getConnections()->insert(delay1);
 	delay1->getConnections()->insert(dispose1);
 	// save the model into a text file
-	model->save("./models/Smart_CreateDelayDispose.txt");
+	model->save("./models/Smart_CreateDelayDispose.gen");
 	// execute the simulation util completed and show the report
 	model->getSimulation()->start();
 	genesys->~Simulator();

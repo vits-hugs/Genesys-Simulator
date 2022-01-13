@@ -45,9 +45,9 @@ void MainWindow::_actualizeWidgets() {
     ui->actionResume->setEnabled(opened && paused);
 	ui->tabWidgetModel->setEnabled(opened);
     if (!opened) {
-        ui->textEditModel->clear();
-        ui->textEditSimulation->clear();
-        ui->textEditReports->clear();
+        ui->textEdit_Model->clear();
+        ui->textEdit_Simulation->clear();
+        ui->textEdit_Reports->clear();
     }
 }
 
@@ -194,25 +194,33 @@ void MainWindow::_insertFakePlugins() {
 }
 
 void MainWindow::on_actionNew_triggered() {
+    Model* m;
+    if ((m = simulator->getModels()->current()) != nullptr) {
+        QMessageBox::StandardButton reply = QMessageBox::question(this, "New Model", "There is a model oppened already. Do you want to remove it and to create new model?", QMessageBox::Yes | QMessageBox::No);
+        if (reply == QMessageBox::No) {
+            return;
+        }
+    }
     ui->textEdit_Console->append("\n> model_new");
-	Model* m;
-	if ((m = simulator->getModels()->current()) != nullptr) {
-		simulator->getModels()->remove(m);
-	}
-	m = simulator->getModels()->newModel();
-	ui->textEditModel->clear();
-	ui->textEditSimulation->clear();
-	ui->textEditReports->clear();
+    if (m != nullptr) {
+        simulator->getModels()->remove(m);
+    }
+    m = simulator->getModels()->newModel();
+    ui->textEdit_Model->clear();
+    ui->textEdit_Simulation->clear();
+    ui->textEdit_Reports->clear();
     ui->textEdit_Console->moveCursor(QTextCursor::End);
+    // create a basic initial template for the model
     std::string tempFilename = "./temp.tmp";
+    m->getPersistence()->setOption(ModelPersistence_if::Options::SAVEDEFAULTS, true);
 	bool res = m->save(tempFilename);
-	if (res) {
+    m->getPersistence()->setOption(ModelPersistence_if::Options::SAVEDEFAULTS, false);
+    if (res) { // read the file saved and copy its contents to the model text editor
         std::string line;
         std::ifstream file(tempFilename);
         if (file.is_open()) {
             while (std::getline(file, line)) {
-                ui->textEdit_Console->append(QString::fromStdString(line));
-                ui->textEdit_Console->moveCursor(QTextCursor::End);
+                ui->textEdit_Model->append(QString::fromStdString(line));
             }
             file.close();
             QMessageBox::information(this, "New Model", "Model successfully created");
@@ -222,7 +230,7 @@ void MainWindow::on_actionNew_triggered() {
       } else {
         ui->textEdit_Console->append(QString("Error saving template model file"));
 	}
-	_actualizeWidgets();
+    _actualizeWidgets();
 }
 
 void MainWindow::on_actionLoad_triggered()
@@ -250,7 +258,7 @@ void MainWindow::on_actionSave_triggered()
         }
         QDataStream out(&file);
         out.setVersion(QDataStream::Qt_5_12);
-        out << ui->textEditModel->toPlainText();
+        out << ui->textEdit_Model->toPlainText();
         QMessageBox::information(this, "Save Model", "Model successfully saved");
     }
 }
@@ -266,9 +274,9 @@ void MainWindow::on_actionClose_triggered()
 
 void MainWindow::on_actionExit_triggered()
 {
-    int res = QMessageBox::question(this, "Exit", "Do you want to exit GenESyS?", QMessageBox::Yes|QMessageBox::No);
+    QMessageBox::StandardButton res = QMessageBox::question(this, "Exit GenESyS", "Do you want to exit GenESyS?", QMessageBox::Yes|QMessageBox::No);
     if (res == QMessageBox::Yes) {
-        QApplication::closeAllWindows();
+        QApplication::quit();
     }
 }
 

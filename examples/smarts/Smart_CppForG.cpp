@@ -38,7 +38,7 @@ int Smart_CppForG::main(int argc, char** argv) {
 	s->setReplicationLength(10);
 	s->setShowReportsAfterReplication(false);
 	s->setShowReportsAfterSimulation(false);
-	m->save("./models/Smart_SourceCode.txt");
+	m->save("./models/Smart_SourceCode.gen");
 	s->start();
 }
 

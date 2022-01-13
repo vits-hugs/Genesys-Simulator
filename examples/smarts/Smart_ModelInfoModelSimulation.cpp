@@ -72,7 +72,7 @@ int Smart_ModelInfoModelSimulation::main(int argc, char** argv) {
 	sim->getBreakpointsOnTime()->insert(6.5);
 	sim->getBreakpointsOnTime()->insert(14.0);
 	//
-	model->save("./models/Smart_ModelInfoModelSimulation.txt");
+	model->save("./models/Smart_ModelInfoModelSimulation.gen");
 	do {
 		sim->start();
 		std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');

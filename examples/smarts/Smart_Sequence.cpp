@@ -35,7 +35,7 @@ int Smart_Sequence::main(int argc, char** argv) {
 	this->insertFakePluginsByHand(genesys);
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L6_arrival);
-	//genesys->getModels()->loadModel("./models/Smart_StatationRouteSequence.txt");
+	//genesys->getModels()->loadModel("./models/Smart_StatationRouteSequence.gen");
 	//genesys->getModels()->current()->getSimulation()->start();
 	//return;
 	Model* m = genesys->getModels()->newModel();
@@ -101,7 +101,7 @@ int Smart_Sequence::main(int argc, char** argv) {
 	sim->setShowReportsAfterReplication(false);
 	sim->setShowReportsAfterSimulation(false);
 
-	m->save("./models/Smart_Sequence.txt");
+	m->save("./models/Smart_Sequence.gen");
 
 	do {
 		sim->start();

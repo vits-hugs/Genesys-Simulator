@@ -242,7 +242,7 @@ int OperatingSystem03::main(int argc, char** argv) {
 	//sim->getBreakpointsOnComponent()->insert(assignDefNucleo1);
 	//sim->getBreakpointsOnComponent()->insert(assignDefNucleo2);
 	//sim->getBreakpointsOnComponent()->insert(assignDefNucleo3);
-	model->save("./models/SistemaOperacional03.txt");
+	model->save("./models/SistemaOperacional03.gen");
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L2_results); // :L9_mostDetailed);
 	do {
 		sim->start(); //step();

@@ -41,7 +41,7 @@ int Smart_SeizeDelayReleaseMany::main(int argc, char** argv) {
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
 	Model* m = genesys->getModels()->newModel();
-	//m->load("./models/Smart_SeizeDelayReleaseMany.txt");
+	//m->load("./models/Smart_SeizeDelayReleaseMany.gen");
 	//genesys->getModels()->current()->getSimulation()->start();
 	//return 0;
 
@@ -81,7 +81,7 @@ int Smart_SeizeDelayReleaseMany::main(int argc, char** argv) {
 	ModelSimulation* sim = m->getSimulation();
 	sim->setReplicationLength(10);
 	sim->setNumberOfReplications(3);
-	m->save("./models/Smart_SeizeDelayReleaseMany.txt");
+	m->save("./models/Smart_SeizeDelayReleaseMany.gen");
 	//sim->start();
 
 	do {

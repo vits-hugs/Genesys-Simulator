@@ -99,7 +99,7 @@ int FullSimulationOfComplexModel::main(int argc, char** argv) {
 	Record* record1 = new Record(model);
 	record1->setExpressionName("Tempo total no sistema");
 	record1->setExpression("TNOW - Entity.ArrivalTime");
-	record1->setFilename("./temp/TotalTimeInSystem.txt");
+	record1->setFilename("./temp/TotalTimeInSystem.gen");
 
 	Dispose* dispose1 = new Dispose(model);
 
@@ -113,7 +113,7 @@ int FullSimulationOfComplexModel::main(int argc, char** argv) {
 	release1->getConnections()->insert(record1);
 	record1->getConnections()->insert(dispose1);
 	// then save the model into a text file
-	model->save("./models/AssignWrite3Seizes.txt");
+	model->save("./models/AssignWrite3Seizes.gen");
 	// execute the simulation
 	model->getSimulation()->start();
 

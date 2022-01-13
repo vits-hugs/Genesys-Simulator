@@ -14,7 +14,7 @@
    <string>GenESyS - Generic and Expansible System Simulator</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="simpleGUI_resources.qrc">
+   <iconset>
     <normaloff>:/icons2/resources/icons/pack2/ico/6.ico</normaloff>:/icons2/resources/icons/pack2/ico/6.ico</iconset>
   </property>
   <property name="dockNestingEnabled">
@@ -36,18 +36,9 @@
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
-         <widget class="QTextEdit" name="textEditModel">
-          <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Sunken</enum>
-          </property>
+         <widget class="QTextEdit" name="textEdit_Model">
           <property name="lineWidth">
-           <number>1</number>
-          </property>
-          <property name="midLineWidth">
-           <number>1</number>
+           <number>3</number>
           </property>
           <property name="verticalScrollBarPolicy">
            <enum>Qt::ScrollBarAlwaysOn</enum>
@@ -55,8 +46,8 @@
           <property name="horizontalScrollBarPolicy">
            <enum>Qt::ScrollBarAlwaysOn</enum>
           </property>
-          <property name="documentTitle">
-           <string>Model</string>
+          <property name="textInteractionFlags">
+           <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
           </property>
          </widget>
         </item>
@@ -68,7 +59,7 @@
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <widget class="QTextEdit" name="textEditSimulation">
+         <widget class="QTextEdit" name="textEdit_Simulation">
           <property name="textInteractionFlags">
            <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
           </property>
@@ -82,7 +73,7 @@
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout_4">
         <item>
-         <widget class="QTextEdit" name="textEditReports">
+         <widget class="QTextEdit" name="textEdit_Reports">
           <property name="textInteractionFlags">
            <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
           </property>
@@ -220,7 +211,7 @@
     </size>
    </property>
    <property name="windowIcon">
-    <iconset resource="simpleGUI_resources.qrc">
+    <iconset>
      <normaloff>:/icons3/resources/icons/pack3/ico/component.ico</normaloff>:/icons3/resources/icons/pack3/ico/component.ico</iconset>
    </property>
    <property name="features">
@@ -245,7 +236,7 @@
   </widget>
   <action name="actionNew">
    <property name="icon">
-    <iconset resource="simpleGUI_resources.qrc">
+    <iconset>
      <normaloff>:/icons3/resources/icons/pack3/ico/new document.ico</normaloff>:/icons3/resources/icons/pack3/ico/new document.ico</iconset>
    </property>
    <property name="text">
@@ -254,7 +245,7 @@
   </action>
   <action name="actionLoad">
    <property name="icon">
-    <iconset resource="simpleGUI_resources.qrc">
+    <iconset>
      <normaloff>:/icons3/resources/icons/pack3/ico/upload.ico</normaloff>:/icons3/resources/icons/pack3/ico/upload.ico</iconset>
    </property>
    <property name="text">
@@ -266,7 +257,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="simpleGUI_resources.qrc">
+    <iconset>
      <normaloff>:/icons3/resources/icons/pack3/ico/download.ico</normaloff>:/icons3/resources/icons/pack3/ico/download.ico</iconset>
    </property>
    <property name="text">
@@ -275,7 +266,7 @@
   </action>
   <action name="actionExit">
    <property name="icon">
-    <iconset resource="simpleGUI_resources.qrc">
+    <iconset>
      <normaloff>:/icons3/resources/icons/pack3/ico/exit.ico</normaloff>:/icons3/resources/icons/pack3/ico/exit.ico</iconset>
    </property>
    <property name="text">
@@ -287,7 +278,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="simpleGUI_resources.qrc">
+    <iconset>
      <normaloff>:/icons3/resources/icons/pack3/ico/play.ico</normaloff>:/icons3/resources/icons/pack3/ico/play.ico</iconset>
    </property>
    <property name="text">
@@ -299,7 +290,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="simpleGUI_resources.qrc">
+    <iconset>
      <normaloff>:/icons3/resources/icons/pack3/ico/next track.ico</normaloff>:/icons3/resources/icons/pack3/ico/next track.ico</iconset>
    </property>
    <property name="text">
@@ -311,7 +302,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="simpleGUI_resources.qrc">
+    <iconset>
      <normaloff>:/icons3/resources/icons/pack3/ico/stop.ico</normaloff>:/icons3/resources/icons/pack3/ico/stop.ico</iconset>
    </property>
    <property name="text">
@@ -323,7 +314,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="simpleGUI_resources.qrc">
+    <iconset>
      <normaloff>:/icons3/resources/icons/pack3/ico/pause.ico</normaloff>:/icons3/resources/icons/pack3/ico/pause.ico</iconset>
    </property>
    <property name="text">
@@ -335,7 +326,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="simpleGUI_resources.qrc">
+    <iconset>
      <normaloff>:/icons3/resources/icons/pack3/ico/fast-forward.ico</normaloff>:/icons3/resources/icons/pack3/ico/fast-forward.ico</iconset>
    </property>
    <property name="text">
@@ -347,7 +338,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="simpleGUI_resources.qrc">
+    <iconset>
      <normaloff>:/icons3/resources/icons/pack3/ico/close.ico</normaloff>:/icons3/resources/icons/pack3/ico/close.ico</iconset>
    </property>
    <property name="text">
@@ -356,14 +347,12 @@
   </action>
  </widget>
  <tabstops>
-  <tabstop>textEditModel</tabstop>
-  <tabstop>textEditSimulation</tabstop>
-  <tabstop>textEditReports</tabstop>
+  <tabstop>textEdit_Model</tabstop>
+  <tabstop>textEdit_Simulation</tabstop>
+  <tabstop>textEdit_Reports</tabstop>
   <tabstop>tabWidgetModel</tabstop>
  </tabstops>
- <resources>
-  <include location="simpleGUI_resources.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>actionExit</sender>

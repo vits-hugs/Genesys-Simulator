@@ -84,11 +84,11 @@ int Smart_SeizeDelayRelease::main(int argc, char** argv) {
 		delay1->getConnections()->insert(release1);
 		release1->getConnections()->insert(dispose1);
 		// save the model into a text file
-		model->save("./models/Smart_SeizeDelayRelease.txt");
+		model->save("./models/Smart_SeizeDelayRelease.gen");
 		// execute the simulation
 		sim->start();
 	} else {
-		model->load("./models/Smart_SeizeDelayRelease.txt");
+		model->load("./models/Smart_SeizeDelayRelease.gen");
 		model->show();
 		model->getSimulation()->start();
 	}

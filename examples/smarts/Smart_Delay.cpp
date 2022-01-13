@@ -59,7 +59,7 @@ int Smart_Delay::main(int argc, char** argv) {
 	create1->getConnections()->insert(delay1);
 	delay1->getConnections()->insert(dispose1);
 	// save the model into a text file
-	model->save("./models/Smart_Delay.txt");
+	model->save("./models/Smart_Delay.gen");
 	// execute the simulation util completed and show the report
 	model->getSimulation()->start();
 	genesys->~Simulator();

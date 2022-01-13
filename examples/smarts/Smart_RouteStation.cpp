@@ -77,7 +77,7 @@ int Smart_RouteStation::main(int argc, char** argv) {
 	enter3->getConnections()->insert(dispose1);
 	//
 	model->getSimulation()->setReplicationLength(20);
-	model->save("./models/Smart_RouteStation.txt");
+	model->save("./models/Smart_RouteStation.gen");
 	/*
 	do {
 		model->getSimulation()->step();

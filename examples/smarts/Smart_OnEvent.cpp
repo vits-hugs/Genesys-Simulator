@@ -107,7 +107,7 @@ int Smart_OnEvent::main(int argc, char** argv) {
 	Dispose* dispose1 = new Dispose(model);
 	create1->getConnections()->insert(delay1);
 	delay1->getConnections()->insert(dispose1);
-	model->save("./models/Smart_OnEvent.txt");
+	model->save("./models/Smart_OnEvent.gen");
 	do {
 		model->getSimulation()->step();
 		std::cout << "Press ENTER to continue...";

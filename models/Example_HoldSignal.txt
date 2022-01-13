@@ -1,3 +1,0 @@
-0   SimulatorInfo "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=210420 
-0   ModelInfo  "Model 1" 
-0   ModelSimulation "fixed experiment name in ModelSimulation" replicationLength=20.000000 
