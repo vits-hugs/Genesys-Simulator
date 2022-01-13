@@ -53,6 +53,18 @@ void MainWindow::_actualizeWidgets() {
     }
 }
 
+void MainWindow::_actualizeModelTextHasChanged(bool hasChanged){
+    if (_textModelHasChanged != hasChanged) {
+        QString text = "Model";
+        if (hasChanged) {
+            text +="*";
+        }
+        ui->tabWidgetModel->setTabText(0,text);
+    }
+    _textModelHasChanged = hasChanged;
+
+}
+
 void MainWindow::_insertCommandInConsole(std::string text) {
     ui->textEdit_Console->setTextColor(QColor::fromRgb(0, 255, 0));
     ui->textEdit_Console->append("\n$genesys> "+QString::fromStdString(text));
@@ -90,8 +102,8 @@ void MainWindow::_simulatorTraceErrorHandler(TraceErrorEvent e){
 }
 
 void MainWindow::_simulatorTraceSimulationHandler(TraceSimulationEvent e){
-    unsigned short grayVal = 20 * (static_cast<unsigned int> (e.getTracelevel()));
-    ui->textEdit_Console->setTextColor(QColor::fromRgb(grayVal, grayVal, grayVal));
+    unsigned short grayVal = 45 * (static_cast<unsigned int> (e.getTracelevel())-5);
+    ui->textEdit_Simulation->setTextColor(QColor::fromRgb(grayVal, grayVal, grayVal));
     ui->textEdit_Simulation->append(QString::fromStdString(e.getText()));
 }
 
@@ -108,8 +120,8 @@ void MainWindow::_onSimulationEndHandler(SimulationEvent* re){
 }
 
 void MainWindow::_setOnEventHandlers() {
-    simulator->getModels()->current()->getOnEvents()->addOnSimulationEndHandler(this, &MainWindow::_onSimulationPausedHandler);
-    simulator->getModels()->current()->getOnEvents()->addOnSimulationPausedHandler(this, &MainWindow::_onSimulationEndHandler);
+    simulator->getModels()->current()->getOnEvents()->addOnSimulationEndHandler(this, &MainWindow::_onSimulationEndHandler);
+    simulator->getModels()->current()->getOnEvents()->addOnSimulationPausedHandler(this, &MainWindow::_onSimulationPausedHandler);
 }
 
 //-------------------------
@@ -282,6 +294,7 @@ void MainWindow::on_actionNew_triggered() {
         } else {
             ui->textEdit_Console->append(QString("Error reading template model file"));
         }
+        _actualizeModelTextHasChanged(true);
         _setOnEventHandlers();
       } else {
         ui->textEdit_Console->append(QString("Error saving template model file"));
@@ -293,22 +306,29 @@ void MainWindow::on_actionSave_triggered()
 {
     QString fileName = QFileDialog::getSaveFileName(this,
             tr("Save Model"), "",
-            tr("Model (*.gen);;All Files (*)"));
+            tr("Genesys Model (*.gen);;All Files (*)"));
     if (fileName.isEmpty())
         return;
     else {
         _insertCommandInConsole("model_save");
         QFile file(fileName);
         if (!file.open(QIODevice::WriteOnly)) {
-            QMessageBox::information(this, tr("Unable to open file"),
+            QMessageBox::information(this, tr("Unable to access file to save"),
             file.errorString());
             return;
         }
-        QDataStream out(&file);
-        out.setVersion(QDataStream::Qt_5_12);
-        out << ui->textEdit_Model->toPlainText();
+        std::ofstream savefile;
+        savefile.open(fileName.toStdString(), std::ofstream::out);
+        QString data = ui->textEdit_Model->toPlainText();
+        QStringList strList = data.split(QRegExp("[\n]"),QString::SkipEmptyParts);
+        for (unsigned int i=0; i<strList.size(); i++){
+        savefile << strList.at(i).toStdString() << std::endl;
+        }
+        savefile.close();
         QMessageBox::information(this, "Save Model", "Model successfully saved");
+        _actualizeModelTextHasChanged(false);
     }
+    _actualizeWidgets();
 }
 
 void MainWindow::on_actionClose_triggered()
@@ -389,10 +409,18 @@ void MainWindow::on_actionOpen_triggered()
         } else {
             ui->textEdit_Console->append(QString("Error reading model file"));
         }
+        ui->textEdit_Console->append("\n");
         _setOnEventHandlers();
+        _actualizeModelTextHasChanged(false);
+        _actualizeWidgets();
         QMessageBox::information(this, "Open Model", "Model successfully oppened");
     } else {
         QMessageBox::warning(this, "Open Model", "Error while opening model");
     }
     _actualizeWidgets();
+}
+
+void MainWindow::on_textEdit_Model_textChanged()
+{
+    this->_actualizeModelTextHasChanged(true);
 }

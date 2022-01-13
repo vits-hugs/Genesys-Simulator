@@ -38,6 +38,8 @@ private slots:
 
     void on_actionOpen_triggered();
 
+    void on_textEdit_Model_textChanged();
+
 private: // VIEW
 
 private: // trace handlers
@@ -53,10 +55,12 @@ private:
     void _insertPluginUI(Plugin* plugin);
     void _insertFakePlugins();
     void _actualizeWidgets();
+    void _actualizeModelTextHasChanged(bool hasChanged);
     void _insertCommandInConsole(std::string text);
     void _clearModelEditors();
 private:
     Ui::MainWindow *ui;
     Simulator* simulator;
+    bool _textModelHasChanged;
 };
 #endif // MAINWINDOW_H

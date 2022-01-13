@@ -31,7 +31,7 @@ void ModelComponent::Execute(Entity* entity, ModelComponent* component, unsigned
 	// \todo: How can I know the number of inputs?
 	if (inputNumber > 0)
 		msg += " by input " + std::to_string(inputNumber);
-	component->_parentModel->getTracer()->trace(Util::TraceLevel::L6_arrival, msg);
+	component->_parentModel->getTracer()->traceSimulation(Util::TraceLevel::L6_arrival, msg);
 	Util::IncIndent();
 	try {
 		component->_execute(entity);

@@ -151,7 +151,7 @@ void ModelSimulation::_simulationEnded() {
 	_currentComponent = nullptr;
 	//
 	std::chrono::duration<double> duration = std::chrono::system_clock::now() - this->_startRealSimulationTimeSimulation;
-	_model->getTracer()->trace(Util::TraceLevel::L2_results, "Simulation of model \"" + _info->getName() + "\" has finished. Elapsed time " + std::to_string(duration.count()) + " seconds.");
+	_model->getTracer()->traceSimulation(Util::TraceLevel::L5_event, "Simulation of model \"" + _info->getName() + "\" has finished. Elapsed time " + std::to_string(duration.count()) + " seconds.");
 	_model->getOnEvents()->NotifySimulationEndHandlers(_createSimulationEvent());
 }
 

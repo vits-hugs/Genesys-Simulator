@@ -85,7 +85,7 @@ void TraceManager::traceError(std::string text, std::exception e) {
 }
 
 void TraceManager::traceSimulation(Util::TraceLevel level, std::string text) {
-	trace(text, level);
+	traceSimulation(text, level);
 }
 
 void TraceManager::traceSimulation(std::string text, Util::TraceLevel level) {
