@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>GenESyS - Generic and Expasible System Smulator</string>
+   <string>GenESyS - Generic and Expansible System Simulator</string>
   </property>
   <property name="windowIcon">
    <iconset resource="simpleGUI_resources.qrc">
@@ -28,7 +28,7 @@
        <bool>false</bool>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tabModel">
        <attribute name="title">
@@ -108,6 +108,7 @@
      <string>Model</string>
     </property>
     <addaction name="actionNew"/>
+    <addaction name="separator"/>
     <addaction name="actionLoad"/>
     <addaction name="actionSave"/>
     <addaction name="actionClose"/>
@@ -174,7 +175,7 @@
    <widget class="QWidget" name="dockWidgetContentsConsole">
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QTextEdit" name="textEditConsole">
+      <widget class="QTextEdit" name="textEdit_Console">
        <property name="textInteractionFlags">
         <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
        </property>
@@ -215,13 +216,7 @@
    <widget class="QWidget" name="dockWidgetContentsPlugin">
     <layout class="QHBoxLayout" name="horizontalLayout_5">
      <item>
-      <widget class="QTreeWidget" name="treeWidgetPlugin">
-       <column>
-        <property name="text">
-         <string notr="true">1</string>
-        </property>
-       </column>
-      </widget>
+      <widget class="QListWidget" name="listWidget_Plugins"/>
      </item>
     </layout>
    </widget>
@@ -332,5 +327,22 @@
  <resources>
   <include location="simpleGUI_resources.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>actionExit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>465</x>
+     <y>311</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

@@ -13,7 +13,7 @@
 
 #include "Decide.h"
 #include "../../kernel/simulator/Model.h"
-#include "kernel/simulator/Counter.h"
+#include "../../kernel/simulator/Counter.h"
 
 Decide::Decide(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Decide>(), name) {
 }

@@ -17,8 +17,26 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-private:
+private slots:
+    void on_actionNew_triggered();
+
+    void on_actionLoad_triggered();
+
+    void on_actionSave_triggered();
+
+    void on_actionClose_triggered();
+
+    void on_actionExit_triggered();
+
+    void on_actionStop_triggered();
+
+private: // VIEW
+
+private: // simulator based
     void _simulatorTraceHandler(TraceEvent e);
+    void _insertPluginUI(Plugin* plugin);
+    void _insertFakePlugins();
+    void _actualizeWidgets();
 private:
     Ui::MainWindow *ui;
     Simulator* simulator;

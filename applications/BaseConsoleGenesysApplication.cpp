@@ -112,6 +112,7 @@ void BaseConsoleGenesysApplication::setDefaultTraceHandlers(TraceManager* tm) {
 }
 
 void BaseConsoleGenesysApplication::insertFakePluginsByHand(Simulator* simulator) {
+	PluginManager* pm = simulator->getPlugins();
 	// TRYING SOME NEW ORGANIZATION (BASED ON ARENA 16..20)
 
 	// DISCRETE
@@ -127,70 +128,70 @@ void BaseConsoleGenesysApplication::insertFakePluginsByHand(Simulator* simulator
 
 	// model components
 	// arena basic process
-	simulator->getPlugins()->insert("create.so");
-	simulator->getPlugins()->insert("dispose.so");
-	simulator->getPlugins()->insert("decide.so");
-	simulator->getPlugins()->insert("batch.so");
-	simulator->getPlugins()->insert("separate.so");
-	simulator->getPlugins()->insert("assign.so");
-	simulator->getPlugins()->insert("record.so");
-	simulator->getPlugins()->insert("process.so");
-	simulator->getPlugins()->insert("submodel.so");
-	simulator->getPlugins()->insert("entitygroup.so");
-	simulator->getPlugins()->insert("queue.so");
-	simulator->getPlugins()->insert("set.so");
-	simulator->getPlugins()->insert("resource.so");
-	simulator->getPlugins()->insert("variable.so");
-	simulator->getPlugins()->insert("schedule.so");
-	simulator->getPlugins()->insert("entitygroup.so");
+	pm->insert("create.so");
+	pm->insert("dispose.so");
+	pm->insert("decide.so");
+	pm->insert("batch.so");
+	pm->insert("separate.so");
+	pm->insert("assign.so");
+	pm->insert("record.so");
+	pm->insert("process.so");
+	pm->insert("submodel.so");
+	pm->insert("entitygroup.so");
+	pm->insert("queue.so");
+	pm->insert("set.so");
+	pm->insert("resource.so");
+	pm->insert("variable.so");
+	pm->insert("schedule.so");
+	pm->insert("entitygroup.so");
 	// arena advanced process
-	simulator->getPlugins()->insert("delay.so");
-	simulator->getPlugins()->insert("dropoff.so");
-	simulator->getPlugins()->insert("hold.so");
-	simulator->getPlugins()->insert("match.so");
-	simulator->getPlugins()->insert("pickup.so");
-	simulator->getPlugins()->insert("read.so");
-	simulator->getPlugins()->insert("write.so");
-	simulator->getPlugins()->insert("release.so");
-	simulator->getPlugins()->insert("remove.so");
-	simulator->getPlugins()->insert("seize.so");
-	simulator->getPlugins()->insert("search.so");
-	simulator->getPlugins()->insert("signal.so");
-	simulator->getPlugins()->insert("store.so");
-	simulator->getPlugins()->insert("unstore.so");
-	simulator->getPlugins()->insert("expression.so");
-	simulator->getPlugins()->insert("failure.so");
-	simulator->getPlugins()->insert("file.so");
-	simulator->getPlugins()->insert("storage.so");
+	pm->insert("delay.so");
+	pm->insert("dropoff.so");
+	pm->insert("hold.so");
+	pm->insert("match.so");
+	pm->insert("pickup.so");
+	pm->insert("read.so");
+	pm->insert("write.so");
+	pm->insert("release.so");
+	pm->insert("remove.so");
+	pm->insert("seize.so");
+	pm->insert("search.so");
+	pm->insert("signal.so");
+	pm->insert("store.so");
+	pm->insert("unstore.so");
+	pm->insert("expression.so");
+	pm->insert("failure.so");
+	pm->insert("file.so");
+	pm->insert("storage.so");
 	// arena transfer station
-	simulator->getPlugins()->insert("enter.so");
-	simulator->getPlugins()->insert("leave.so");
-	simulator->getPlugins()->insert("pickstation.so");
-	simulator->getPlugins()->insert("route.so");
-	simulator->getPlugins()->insert("sequence.so");
-	simulator->getPlugins()->insert("station.so");
+	pm->insert("enter.so");
+	pm->insert("leave.so");
+	pm->insert("pickstation.so");
+	pm->insert("route.so");
+	pm->insert("sequence.so");
+	pm->insert("station.so");
 	// arena transfer conveyour
-	simulator->getPlugins()->insert("access.so");
-	simulator->getPlugins()->insert("exit.so");
-	simulator->getPlugins()->insert("start.so");
-	simulator->getPlugins()->insert("stop.so");
-	simulator->getPlugins()->insert("conveyour.so");
-	simulator->getPlugins()->insert("segment.so");
+	pm->insert("access.so");
+	pm->insert("exit.so");
+	pm->insert("start.so");
+	pm->insert("stop.so");
+	pm->insert("conveyour.so");
+	pm->insert("segment.so");
 	// arena transfer transport
-	simulator->getPlugins()->insert("alocate.so");
-	simulator->getPlugins()->insert("free.so");
-	simulator->getPlugins()->insert("halt.so");
-	simulator->getPlugins()->insert("move.so");
-	simulator->getPlugins()->insert("request.so");
-	simulator->getPlugins()->insert("transporter.so");
-	simulator->getPlugins()->insert("distance.so");
-	simulator->getPlugins()->insert("network.so");
-	simulator->getPlugins()->insert("networklink.so");
+	pm->insert("alocate.so");
+	pm->insert("free.so");
+	pm->insert("halt.so");
+	pm->insert("move.so");
+	pm->insert("request.so");
+	pm->insert("transporter.so");
+	pm->insert("distance.so");
+	pm->insert("network.so");
+	pm->insert("networklink.so");
 	// others
-	simulator->getPlugins()->insert("dummy.so");
-	simulator->getPlugins()->insert("lsode.so");
-	simulator->getPlugins()->insert("biochemical.so");
-	simulator->getPlugins()->insert("markovchain.so");
-	simulator->getPlugins()->insert("cellularautomata.so");
-	simulator->getPlugins()->insert("cppforg.so");
+	pm->insert("dummy.so");
+	pm->insert("lsode.so");
+	pm->insert("biochemical.so");
+	pm->insert("markovchain.so");
+	pm->insert("cellularautomata.so");
+	pm->insert("cppforg.so");
 }

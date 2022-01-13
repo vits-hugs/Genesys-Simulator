@@ -15,7 +15,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDockWidget>
 #include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
@@ -23,7 +23,6 @@
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolBar>
-#include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -62,11 +61,11 @@ public:
     QDockWidget *dockWidgetConsole;
     QWidget *dockWidgetContentsConsole;
     QVBoxLayout *verticalLayout;
-    QTextEdit *textEditConsole;
+    QTextEdit *textEdit_Console;
     QDockWidget *dockWidgetPlugins;
     QWidget *dockWidgetContentsPlugin;
     QHBoxLayout *horizontalLayout_5;
-    QTreeWidget *treeWidgetPlugin;
+    QListWidget *listWidget_Plugins;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -208,11 +207,11 @@ public:
         dockWidgetContentsConsole->setObjectName(QString::fromUtf8("dockWidgetContentsConsole"));
         verticalLayout = new QVBoxLayout(dockWidgetContentsConsole);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        textEditConsole = new QTextEdit(dockWidgetContentsConsole);
-        textEditConsole->setObjectName(QString::fromUtf8("textEditConsole"));
-        textEditConsole->setTextInteractionFlags(Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
+        textEdit_Console = new QTextEdit(dockWidgetContentsConsole);
+        textEdit_Console->setObjectName(QString::fromUtf8("textEdit_Console"));
+        textEdit_Console->setTextInteractionFlags(Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
-        verticalLayout->addWidget(textEditConsole);
+        verticalLayout->addWidget(textEdit_Console);
 
         dockWidgetConsole->setWidget(dockWidgetContentsConsole);
         MainWindow->addDockWidget(Qt::BottomDockWidgetArea, dockWidgetConsole);
@@ -230,13 +229,10 @@ public:
         dockWidgetContentsPlugin->setObjectName(QString::fromUtf8("dockWidgetContentsPlugin"));
         horizontalLayout_5 = new QHBoxLayout(dockWidgetContentsPlugin);
         horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
-        treeWidgetPlugin = new QTreeWidget(dockWidgetContentsPlugin);
-        QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();
-        __qtreewidgetitem->setText(0, QString::fromUtf8("1"));
-        treeWidgetPlugin->setHeaderItem(__qtreewidgetitem);
-        treeWidgetPlugin->setObjectName(QString::fromUtf8("treeWidgetPlugin"));
+        listWidget_Plugins = new QListWidget(dockWidgetContentsPlugin);
+        listWidget_Plugins->setObjectName(QString::fromUtf8("listWidget_Plugins"));
 
-        horizontalLayout_5->addWidget(treeWidgetPlugin);
+        horizontalLayout_5->addWidget(listWidget_Plugins);
 
         dockWidgetPlugins->setWidget(dockWidgetContentsPlugin);
         MainWindow->addDockWidget(Qt::LeftDockWidgetArea, dockWidgetPlugins);
@@ -247,6 +243,7 @@ public:
         menubar->addAction(menuModel->menuAction());
         menubar->addAction(menuSimulation->menuAction());
         menuModel->addAction(actionNew);
+        menuModel->addSeparator();
         menuModel->addAction(actionLoad);
         menuModel->addAction(actionSave);
         menuModel->addAction(actionClose);
@@ -260,8 +257,9 @@ public:
         menuSimulation->addAction(actionResume);
 
         retranslateUi(MainWindow);
+        QObject::connect(actionExit, SIGNAL(triggered()), MainWindow, SLOT(close()));
 
-        tabWidgetModel->setCurrentIndex(2);
+        tabWidgetModel->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -269,7 +267,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "GenESyS - Generic and Expasible System Smulator", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "GenESyS - Generic and Expansible System Simulator", nullptr));
         actionNew->setText(QCoreApplication::translate("MainWindow", "New", nullptr));
         actionLoad->setText(QCoreApplication::translate("MainWindow", "Load", nullptr));
         actionSave->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
