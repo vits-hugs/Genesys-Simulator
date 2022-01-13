@@ -40,6 +40,7 @@ private:
 private:
 	Model* _model = nullptr;
 	bool _hasChanged = false;
+	bool _saveDefaultValues = true;
 	std::string _fieldseparator = " "; // fields are separated by space
 	std::string _fieldseparatorReplacement = "\\_"; // in cases where spaces are in data to be saved, they are replaced by this pattern, so there will not be separators inside data (replacement is \_)
 };

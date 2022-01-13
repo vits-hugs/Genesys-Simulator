@@ -71,7 +71,7 @@ bool OLD_ODEelement::_loadInstance(std::map<std::string, std::string>* fields) {
 	return ModelElement::_loadInstance(fields);
 }
 
-std::map<std::string, std::string>* OLD_ODEelement::_saveInstance() {
+std::map<std::string, std::string>* OLD_ODEelement::_saveInstance(bool saveDefaultValues) {
 	return ModelElement::_saveInstance();
 }
 

@@ -97,7 +97,7 @@ bool Delay::_loadInstance(std::map<std::string, std::string>* fields) {
 void Delay::_initBetweenReplications() {
 }
 
-std::map<std::string, std::string>* Delay::_saveInstance() {
+std::map<std::string, std::string>* Delay::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(); //Util::TypeOf<Delay>());
 	SaveField(fields, "delayExpression", this->_delayExpression, DEFAULT.delayExpression);
 	SaveField(fields, "delayExpressionTimeUnit", _delayTimeUnit, DEFAULT.delayTimeUnit);

@@ -49,7 +49,7 @@ public:
 protected:
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual void _initBetweenReplications();
-	virtual std::map<std::string, std::string>* _saveInstance();
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues=false);
 	virtual bool _check(std::string* errorMessage);
 protected: // get & set
 	EntityType* _entityType;

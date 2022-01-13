@@ -93,7 +93,7 @@ void Create::_initBetweenReplications() {
 	SourceModelComponent::_initBetweenReplications();
 }
 
-std::map<std::string, std::string>* Create::_saveInstance() {
+std::map<std::string, std::string>* Create::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = SourceModelComponent::_saveInstance();
 	return fields;
 }

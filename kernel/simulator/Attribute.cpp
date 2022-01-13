@@ -42,7 +42,7 @@ ModelElement* Attribute::LoadInstance(Model* model, std::map<std::string, std::s
 	return newElement;
 }
 
-std::map<std::string, std::string>* Attribute::_saveInstance() {
+std::map<std::string, std::string>* Attribute::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(); //Util::TypeOf<Attribute>());
 	return fields;
 }

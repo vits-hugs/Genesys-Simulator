@@ -95,7 +95,7 @@ bool ModelElement::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-std::map<std::string, std::string>* ModelElement::_saveInstance() {
+std::map<std::string, std::string>* ModelElement::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();
 	SaveField(fields, "typename", _typename);
 	SaveField(fields, "id", this->_id);

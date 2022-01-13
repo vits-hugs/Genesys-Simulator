@@ -123,7 +123,7 @@ bool EntityType::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-std::map<std::string, std::string>* EntityType::_saveInstance() {
+std::map<std::string, std::string>* EntityType::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(); //Util::TypeOf<EntityType>());
 	SaveField(fields, "initialNVACost", _initialNVACost, DEFAULT.initialCost);
 	SaveField(fields, "initialOtherCost", _initialOtherCost, DEFAULT.initialCost);

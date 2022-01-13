@@ -118,7 +118,7 @@ void Process::_createInternalElements() {
 	}
 }
 
-std::map<std::string, std::string>* Process::_saveInstance() {
+std::map<std::string, std::string>* Process::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
 	// \todo: not implemented yet
 	return fields;

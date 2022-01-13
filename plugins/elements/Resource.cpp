@@ -174,7 +174,7 @@ bool Resource::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-std::map<std::string, std::string>* Resource::_saveInstance() {
+std::map<std::string, std::string>* Resource::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(); //Util::TypeOf<Resource>());
 	SaveField(fields, "capacity", _capacity, DEFAULT.capacity);
 	SaveField(fields, "costBusyHour", _costBusyHour, DEFAULT.cost);

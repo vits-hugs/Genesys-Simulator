@@ -48,7 +48,7 @@ bool Storage::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-std::map<std::string, std::string>* Storage::_saveInstance() {
+std::map<std::string, std::string>* Storage::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(); //Util::TypeOf<Storage>());
 	//SaveField(fields, "orderRule", std::to_string(static_cast<int> (this->_orderRule)));
 	//SaveField(fields, "attributeName", "\""+this->_attributeName+"\"");

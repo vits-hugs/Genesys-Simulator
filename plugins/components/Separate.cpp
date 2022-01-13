@@ -49,7 +49,7 @@ bool Separate::_loadInstance(std::map<std::string, std::string>* fields) {
 void Separate::_initBetweenReplications() {
 }
 
-std::map<std::string, std::string>* Separate::_saveInstance() {
+std::map<std::string, std::string>* Separate::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
 	// \todo: not implemented yet
 	return fields;

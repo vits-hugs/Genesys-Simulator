@@ -119,7 +119,7 @@ bool Queue::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-std::map<std::string, std::string>* Queue::_saveInstance() {
+std::map<std::string, std::string>* Queue::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(); //Util::TypeOf<Queue>());
 	SaveField(fields, "orderRule", static_cast<int> (this->_orderRule), static_cast<int> (DEFAULT.orderRule));
 	SaveField(fields, "attributeName", this->_attributeName, DEFAULT.attributeName);

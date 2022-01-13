@@ -62,7 +62,7 @@ void Enter::_initBetweenReplications() {
 	_numberIn->clear();
 }
 
-std::map<std::string, std::string>* Enter::_saveInstance() {
+std::map<std::string, std::string>* Enter::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
 	SaveField(fields, "station", _station->getName(), "");
 	return fields;

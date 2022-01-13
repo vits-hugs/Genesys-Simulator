@@ -99,7 +99,7 @@ public:
 	Util::identification entityNumber() const;
 protected:
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance();
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues=false);
 	virtual bool _check(std::string* errorMessage);
 private:
 	Util::identification _entityNumber;
