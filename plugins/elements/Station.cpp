@@ -97,8 +97,8 @@ bool Station::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-std::map<std::string, std::string>* Station::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(); //Util::TypeOf<Station>());
+std::map<std::string, std::string>* Station::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues); //Util::TypeOf<Station>());
 	return fields;
 }
 

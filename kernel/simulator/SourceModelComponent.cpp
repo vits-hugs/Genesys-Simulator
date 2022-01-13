@@ -45,8 +45,8 @@ void SourceModelComponent::_initBetweenReplications() {
 	this->_entitiesCreatedSoFar = 0;
 }
 
-std::map<std::string, std::string>* SourceModelComponent::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
+std::map<std::string, std::string>* SourceModelComponent::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
 	SaveField(fields, "entitiesPerCreation", _entitiesPerCreation, DEFAULT.entitiesPerCreation);
 	SaveField(fields, "firstCreation", _firstCreation, DEFAULT.firstCreation);
 	SaveField(fields, "timeBetweenCreations", _timeBetweenCreationsExpression, DEFAULT.timeBetweenCreationsExpression);

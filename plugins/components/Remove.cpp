@@ -47,8 +47,8 @@ bool Remove::_loadInstance(std::map<std::string, std::string>* fields) {
 void Remove::_initBetweenReplications() {
 }
 
-std::map<std::string, std::string>* Remove::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
+std::map<std::string, std::string>* Remove::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
 	// \todo: not implemented yet
 	return fields;
 }

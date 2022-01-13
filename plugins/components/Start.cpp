@@ -48,8 +48,8 @@ bool Start::_loadInstance(std::map<std::string, std::string>* fields) {
 void Start::_initBetweenReplications() {
 }
 
-std::map<std::string, std::string>* Start::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
+std::map<std::string, std::string>* Start::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
 	// \todo: not implemented yet
 	return fields;
 }

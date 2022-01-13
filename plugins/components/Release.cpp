@@ -117,8 +117,8 @@ bool Release::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-std::map<std::string, std::string>* Release::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(); //Util::TypeOf<Release>());
+std::map<std::string, std::string>* Release::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues); //Util::TypeOf<Release>());
 	bool saveDefaults = this->_getSaveDefaultsOption();
 	SaveField(fields, "priority", _priority, DEFAULT.priority, saveDefaults);
 	SaveField(fields, "resquestSize", _releaseRequests->size(), DEFAULT.releaseRequestSize, saveDefaults);

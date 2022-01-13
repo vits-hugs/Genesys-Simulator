@@ -43,8 +43,8 @@ void Dispose::_initBetweenReplications() {
 	SinkModelComponent::_initBetweenReplications();
 }
 
-std::map<std::string, std::string>* Dispose::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
+std::map<std::string, std::string>* Dispose::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
 	return fields;
 
 }

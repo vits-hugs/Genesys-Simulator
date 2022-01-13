@@ -87,7 +87,7 @@ public: // only gets
 	List<ModelComponent*>* getBreakpointsOnComponent() const;
 public:
 	void loadInstance(std::map<std::string, std::string>* fields);
-	std::map<std::string, std::string>* saveInstance();
+	std::map<std::string, std::string>* saveInstance(bool saveDefaults);
 	Event* getCurrentEvent() const;
 	void setShowSimulationResposesInReport(bool _showSimulationResposesInReport);
 	bool isShowSimulationResposesInReport() const;

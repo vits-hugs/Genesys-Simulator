@@ -54,7 +54,7 @@ std::map<std::string, std::string>* ModelComponent::SaveInstance(ModelComponent*
 	component->_parentModel->getTracer()->trace(Util::TraceLevel::L9_mostDetailed, "Writing component \"" + component->getName() + "\""); //std::to_string(component->_id));
 	std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();
 	try {
-		fields = component->_saveInstance();
+		fields = component->_saveInstance(component->_getSaveDefaultsOption());
 	} catch (const std::exception& e) {
 		component->_parentModel->getTracer()->traceError(e, "Error executing component " + component->show());
 	}
@@ -115,8 +115,8 @@ bool ModelComponent::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-std::map<std::string, std::string>* ModelComponent::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelElement::_saveInstance();
+std::map<std::string, std::string>* ModelComponent::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues);
 	SaveField(fields, "caption", _description, DEFAULT.description);
 	if (true) {//(_connections->size() != 1) { // save nextSize only if it is != 1
 		SaveField(fields, "nextSize", _connections->size(), DEFAULT.nextSize);

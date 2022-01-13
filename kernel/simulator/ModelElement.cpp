@@ -99,7 +99,7 @@ bool ModelElement::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-std::map<std::string, std::string>* ModelElement::_saveInstance() {
+std::map<std::string, std::string>* ModelElement::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();
 	SaveField(fields, "typename", _typename);
 	SaveField(fields, "id", this->_id);
@@ -123,7 +123,7 @@ void ModelElement::_initBetweenReplications() {
 
 /*
 std::list<std::map<std::string,std::string>*>* ModelElement::_saveInstance(std::string type) {
-	std::list<std::map<std::string,std::string>*>* fields = ModelElement::_saveInstance();
+	std::list<std::map<std::string,std::string>*>* fields = ModelElement::_saveInstance(saveDefaultValues);
 	fields->push_back(type);
 	return fields;
 }
@@ -223,7 +223,7 @@ ModelElement* ModelElement::LoadInstance(Model* model, std::map<std::string, std
 std::map<std::string, std::string>* ModelElement::SaveInstance(ModelElement* element) {
 	std::map<std::string, std::string>* fields; // = new std::list<std::string>();
 	try {
-		fields = element->_saveInstance();
+		fields = element->_saveInstance(element->_getSaveDefaultsOption());
 	} catch (const std::exception& e) {
 		//element->_model->getTrace()->traceError(e, "Error saving anElement " + element->show());
 	}

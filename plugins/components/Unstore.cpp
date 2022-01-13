@@ -47,8 +47,8 @@ bool Unstore::_loadInstance(std::map<std::string, std::string>* fields) {
 void Unstore::_initBetweenReplications() {
 }
 
-std::map<std::string, std::string>* Unstore::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
+std::map<std::string, std::string>* Unstore::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
 	// \todo: not implemented yet
 	return fields;
 }

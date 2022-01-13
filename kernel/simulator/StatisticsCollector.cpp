@@ -85,8 +85,8 @@ bool StatisticsCollector::_loadInstance(std::map<std::string, std::string>* fiel
 	return res;
 }
 
-std::map<std::string, std::string>* StatisticsCollector::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(); //Util::TypeOf<StatisticsCollector>());
+std::map<std::string, std::string>* StatisticsCollector::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues); //Util::TypeOf<StatisticsCollector>());
 	std::string parentId = "", parentTypename = "";
 	if (this->_parent != nullptr) {
 		parentId = std::to_string(_parent->getId());

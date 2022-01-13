@@ -48,8 +48,8 @@ bool PickUp::_loadInstance(std::map<std::string, std::string>* fields) {
 void PickUp::_initBetweenReplications() {
 }
 
-std::map<std::string, std::string>* PickUp::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
+std::map<std::string, std::string>* PickUp::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
 	// \todo: not implemented yet
 	return fields;
 }

@@ -93,8 +93,8 @@ bool Formula::_loadInstance(std::map<std::string, std::string>* fields) {
 	return ModelElement::_loadInstance(fields);
 }
 
-std::map<std::string, std::string>* Formula::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelElement::_saveInstance();
+std::map<std::string, std::string>* Formula::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues);
 	//SaveField(fields, "...", std::to_string(this->_...));
 	return fields;
 }

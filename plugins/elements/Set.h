@@ -69,7 +69,7 @@ public:
 
 protected: // must be overriden by derived classes
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance();
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 protected: // could be overriden by derived classes
 	virtual bool _check(std::string* errorMessage);
 	virtual ParserChangesInformation* _getParserChangesInformation();

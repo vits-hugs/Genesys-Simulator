@@ -659,21 +659,21 @@ void ModelSimulation::loadInstance(std::map<std::string, std::string>* fields) {
 
 // \todo:!: implement check method (to check things like terminating condition)
 
-std::map<std::string, std::string>* ModelSimulation::saveInstance() {
+std::map<std::string, std::string>* ModelSimulation::saveInstance(bool saveDefaults) {
 	std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();
 	SaveField(fields, "typename", "ModelSimulation");
 	SaveField(fields, "name", "ModelSimulation"); //getName());
-	SaveField(fields, "numberOfReplications", _numberOfReplications, DEFAULT.numberOfReplications);
-	SaveField(fields, "replicationLength", _replicationLength, DEFAULT.replicationLength);
-	SaveField(fields, "replicationLengthTimeUnit", _replicationLengthTimeUnit, DEFAULT.replicationLengthTimeUnit);
-	SaveField(fields, "replicationBaseTimeUnit", _replicationBaseTimeUnit, DEFAULT.replicationBeseTimeUnit);
-	SaveField(fields, "terminatingCondition", _terminatingCondition, DEFAULT.terminatingCondition);
-	SaveField(fields, "warmUpTime", _warmUpPeriod, DEFAULT.warmUpPeriod);
-	SaveField(fields, "warmUpTimeTimeUnit", _warmUpPeriodTimeUnit, DEFAULT.warmUpPeriodTimeUnit);
-	SaveField(fields, "showReportsAfterReplicaton", _showReportsAfterReplication, DEFAULT.showReportsAfterReplication);
-	SaveField(fields, "showReportsAfterSimulation", _showReportsAfterSimulation, DEFAULT.showReportsAfterSimulation);
-	SaveField(fields, "showSimulationControlsInReport", _showSimulationControlsInReport, DEFAULT.showSimulationControlsInReport);
-	SaveField(fields, "showSimulationResposesInReport", _showSimulationResposesInReport, DEFAULT.showSimulationResposesInReport);
+	SaveField(fields, "numberOfReplications", _numberOfReplications, DEFAULT.numberOfReplications, saveDefaults);
+	SaveField(fields, "replicationLength", _replicationLength, DEFAULT.replicationLength, saveDefaults);
+	SaveField(fields, "replicationLengthTimeUnit", _replicationLengthTimeUnit, DEFAULT.replicationLengthTimeUnit, saveDefaults);
+	SaveField(fields, "replicationBaseTimeUnit", _replicationBaseTimeUnit, DEFAULT.replicationBeseTimeUnit, saveDefaults);
+	SaveField(fields, "terminatingCondition", _terminatingCondition, DEFAULT.terminatingCondition, saveDefaults);
+	SaveField(fields, "warmUpTime", _warmUpPeriod, DEFAULT.warmUpPeriod, saveDefaults);
+	SaveField(fields, "warmUpTimeTimeUnit", _warmUpPeriodTimeUnit, DEFAULT.warmUpPeriodTimeUnit, saveDefaults);
+	SaveField(fields, "showReportsAfterReplicaton", _showReportsAfterReplication, DEFAULT.showReportsAfterReplication, saveDefaults);
+	SaveField(fields, "showReportsAfterSimulation", _showReportsAfterSimulation, DEFAULT.showReportsAfterSimulation, saveDefaults);
+	SaveField(fields, "showSimulationControlsInReport", _showSimulationControlsInReport, DEFAULT.showSimulationControlsInReport, saveDefaults);
+	SaveField(fields, "showSimulationResposesInReport", _showSimulationResposesInReport, DEFAULT.showSimulationResposesInReport, saveDefaults);
 	// not a field of ModelSimulation, but I'll save it here
 	SaveField(fields, "traceLevel", static_cast<int> (_model->getTracer()->getTraceLevel()), static_cast<int> (TraitsKernel<Model>::traceLevel));
 	_hasChanged = false;

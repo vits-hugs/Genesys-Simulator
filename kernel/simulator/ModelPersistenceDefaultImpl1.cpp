@@ -41,6 +41,9 @@ std::map<std::string, std::string>* ModelPersistenceDefaultImpl1::_getSimulatorI
 bool ModelPersistenceDefaultImpl1::save(std::string filename) {
 	_model->getTracer()->trace(Util::TraceLevel::L7_internal, "Saving file \"" + filename + "\"");
 	Util::IncIndent();
+	// get options
+	bool saveDefaults = (_options && static_cast<int> (Options::SAVEDEFAULTS)) > 0;
+	//
 	std::list<std::string> *simulatorInfosToSave, *simulationInfosToSave, *modelInfosToSave, *modelElementsToSave, *modelComponentsToSave;
 	{
 		//bool res = true;
@@ -52,7 +55,7 @@ bool ModelPersistenceDefaultImpl1::save(std::string filename) {
 		modelInfosToSave = _adjustFieldsToSave(fields);
 		// save model own infos
 		// \todo save modelSimulation fields (breakpoints)
-		fields = _model->getSimulation()->saveInstance();
+		fields = _model->getSimulation()->saveInstance(saveDefaults);
 		simulationInfosToSave = _adjustFieldsToSave(fields);
 		// save infras
 		modelElementsToSave = new std::list<std::string>();

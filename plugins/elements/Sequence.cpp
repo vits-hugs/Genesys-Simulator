@@ -52,8 +52,8 @@ bool Sequence::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-std::map<std::string, std::string>* Sequence::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(); //Util::TypeOf<Sequence>());
+std::map<std::string, std::string>* Sequence::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues); //Util::TypeOf<Sequence>());
 	return fields;
 }
 
@@ -123,7 +123,7 @@ bool SequenceStep::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-std::map<std::string, std::string>* SequenceStep::_saveInstance() {
+std::map<std::string, std::string>* SequenceStep::_saveInstance(bool saveDefaultValues) {
 	//\TODO
 }
 

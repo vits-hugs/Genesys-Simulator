@@ -122,8 +122,8 @@ bool Variable::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-std::map<std::string, std::string>* Variable::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(); //Util::TypeOf<Variable>());
+std::map<std::string, std::string>* Variable::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues); //Util::TypeOf<Variable>());
 	unsigned int i = 0;
 	SaveField(fields, "numDimensions", _dimensionSizes->list()->size(), 0);
 	for (unsigned int dimension : *_dimensionSizes->list()) {

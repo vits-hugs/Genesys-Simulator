@@ -55,7 +55,7 @@ protected: // virtual
 	virtual void _execute(Entity* entity);
 	virtual void _initBetweenReplications();
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance();
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
 private: // methods
 private: // attributes 1:1

@@ -47,8 +47,8 @@ bool Search::_loadInstance(std::map<std::string, std::string>* fields) {
 void Search::_initBetweenReplications() {
 }
 
-std::map<std::string, std::string>* Search::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
+std::map<std::string, std::string>* Search::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
 	// \todo: not implemented yet
 	return fields;
 }

@@ -48,8 +48,8 @@ bool Batch::_loadInstance(std::map<std::string, std::string>* fields) {
 void Batch::_initBetweenReplications() {
 }
 
-std::map<std::string, std::string>* Batch::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
+std::map<std::string, std::string>* Batch::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
 	// \todo: not implemented yet
 	return fields;
 }

@@ -76,8 +76,8 @@ void Record::_execute(Entity* entity) {
 
 }
 
-std::map<std::string, std::string>* Record::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(); //Util::TypeOf<Record>());
+std::map<std::string, std::string>* Record::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues); //Util::TypeOf<Record>());
 	SaveField(fields, "expression0", this->_expression, "");
 	SaveField(fields, "expressionName0", this->_expressionName, "");
 	SaveField(fields, "fileName0", this->_filename, "");

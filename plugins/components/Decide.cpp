@@ -67,8 +67,8 @@ bool Decide::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-std::map<std::string, std::string>* Decide::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(); //Util::TypeOf<Decide>());
+std::map<std::string, std::string>* Decide::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues); //Util::TypeOf<Decide>());
 	SaveField(fields, "conditions", _conditions->size(), 0u);
 	unsigned short i = 0;
 	for (std::list<std::string>::iterator it = _conditions->list()->begin(); it != _conditions->list()->end(); it++, i++) {

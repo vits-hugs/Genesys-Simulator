@@ -61,8 +61,8 @@ bool CppCode::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-std::map<std::string, std::string>* CppCode::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelElement::_saveInstance();
+std::map<std::string, std::string>* CppCode::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues);
 	// \todo: not implemented yet
 	return fields;
 }

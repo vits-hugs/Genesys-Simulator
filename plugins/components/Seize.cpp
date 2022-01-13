@@ -259,8 +259,8 @@ bool Seize::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-std::map<std::string, std::string>* Seize::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(); //Util::TypeOf<Seize>());
+std::map<std::string, std::string>* Seize::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues); //Util::TypeOf<Seize>());
 	SaveField(fields, "allocationType", _allocationType, DEFAULT.allocationType);
 	SaveField(fields, "priority=", _priority, DEFAULT.priority);
 	SaveField(fields, "saveAttribute=", _saveAttribute, DEFAULT.saveAttribute);

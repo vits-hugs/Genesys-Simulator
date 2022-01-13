@@ -48,8 +48,8 @@ bool Match::_loadInstance(std::map<std::string, std::string>* fields) {
 void Match::_initBetweenReplications() {
 }
 
-std::map<std::string, std::string>* Match::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
+std::map<std::string, std::string>* Match::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
 	// \todo: not implemented yet
 	return fields;
 }

@@ -123,13 +123,14 @@ bool EntityType::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-std::map<std::string, std::string>* EntityType::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(); //Util::TypeOf<EntityType>());
-	SaveField(fields, "initialNVACost", _initialNVACost, DEFAULT.initialCost);
-	SaveField(fields, "initialOtherCost", _initialOtherCost, DEFAULT.initialCost);
-	SaveField(fields, "initialVACost", _initialVACost, DEFAULT.initialCost);
-	SaveField(fields, "initialWaitingCost", _initialWaitingCost, DEFAULT.initialCost);
-	SaveField(fields, "initialPicture", _initialPicture, DEFAULT.initialPicture);
+std::map<std::string, std::string>* EntityType::_saveInstance(bool saveDefaultValues) {
+	bool saveDefaults = _getSaveDefaultsOption();
+	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues); //Util::TypeOf<EntityType>());
+	SaveField(fields, "initialNVACost", _initialNVACost, DEFAULT.initialCost, saveDefaults);
+	SaveField(fields, "initialOtherCost", _initialOtherCost, DEFAULT.initialCost, saveDefaults);
+	SaveField(fields, "initialVACost", _initialVACost, DEFAULT.initialCost, saveDefaults);
+	SaveField(fields, "initialWaitingCost", _initialWaitingCost, DEFAULT.initialCost, saveDefaults);
+	SaveField(fields, "initialPicture", _initialPicture, DEFAULT.initialPicture, saveDefaults);
 	return fields;
 }
 
