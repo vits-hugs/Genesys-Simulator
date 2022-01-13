@@ -266,23 +266,26 @@ static inline Util::TimeUnit LoadField(std::map<std::string, std::string>* field
 }
 
 // \todo Implement it using templates (check impact on calling syntax)
-static inline void SaveField(std::map<std::string, std::string>* fields, std::string fieldName, std::string fieldValue, const std::string fieldDefaultValue = "", const bool saveIfEqualsDefault = false) {
-	if (saveIfEqualsDefault || (fieldValue != fieldDefaultValue))
+static inline void SaveField(std::map<std::string, std::string>* fields, std::string fieldName, std::string fieldValue, const std::string fieldDefaultValue, const bool saveDefaultValue = false) {
+	if (saveDefaultValue || (fieldValue != fieldDefaultValue))
 		fields->emplace(fieldName, "\"" + fieldValue + "\"");
 }
-static inline void SaveField(std::map<std::string, std::string>* fields, std::string fieldName, double fieldValue, const double fieldDefaultValue) {
-	if (fieldValue != fieldDefaultValue)
+static inline void SaveField(std::map<std::string, std::string>* fields, std::string fieldName, std::string fieldValue) {
+	fields->emplace(fieldName, "\"" + fieldValue + "\"");
+}
+static inline void SaveField(std::map<std::string, std::string>* fields, std::string fieldName, double fieldValue, const double fieldDefaultValue, const bool saveDefaultValue = false) {
+	if (saveDefaultValue || (fieldValue != fieldDefaultValue))
 		fields->emplace(fieldName, std::to_string(fieldValue));
 }
-static inline void SaveField(std::map<std::string, std::string>* fields, std::string fieldName, unsigned int fieldValue, const unsigned int fieldDefaultValue) {
-	if (fieldValue != fieldDefaultValue)
+static inline void SaveField(std::map<std::string, std::string>* fields, std::string fieldName, unsigned int fieldValue, const unsigned int fieldDefaultValue, const bool saveDefaultValue = false) {
+	if (saveDefaultValue || (fieldValue != fieldDefaultValue))
 		fields->emplace(fieldName, std::to_string(fieldValue));
 }
 static inline void SaveField(std::map<std::string, std::string>* fields, std::string fieldName, unsigned int fieldValue) {
 	fields->emplace(fieldName, std::to_string(fieldValue));
 }
-static inline void SaveField(std::map<std::string, std::string>* fields, std::string fieldName, int fieldValue, const int fieldDefaultValue) {
-	if (fieldValue != fieldDefaultValue)
+static inline void SaveField(std::map<std::string, std::string>* fields, std::string fieldName, int fieldValue, const int fieldDefaultValue, const bool saveDefaultValue = false) {
+	if (saveDefaultValue || (fieldValue != fieldDefaultValue))
 		fields->emplace(fieldName, std::to_string(fieldValue));
 }
 static inline void SaveField(std::map<std::string, std::string>* fields, std::string fieldName, Util::TimeUnit fieldValue, const Util::TimeUnit fieldDefaultValue, const bool saveDefaultValue = false) {
