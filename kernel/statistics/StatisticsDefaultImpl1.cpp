@@ -22,7 +22,7 @@
 
 StatisticsDefaultImpl1::StatisticsDefaultImpl1() {
 	//_collector = new TraitsKernel<Statistics_if>::CollectorImplementation();
-	_collector = new TraitsKernel<ModelComponent>::StatisticsCollector_CollectorImplementation();
+	_collector = new TraitsKernel<Model>::StatisticsCollector_CollectorImplementation();
 	_collector->setAddValueHandler(setCollectorAddValueHandler(&StatisticsDefaultImpl1::collectorAddHandler, this));
 	_collector->setClearHandler(setCollectorClearHandler(&StatisticsDefaultImpl1::collectorClearHandler, this));
 	//_collector->setAddValueHandler(std::bind(&StatisticsDefaultImpl1::collectorAddHandler, this, std::placeholders::_1));

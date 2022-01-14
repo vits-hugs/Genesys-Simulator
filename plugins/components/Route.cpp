@@ -130,8 +130,12 @@ void Route::_initBetweenReplications() {
 
 std::map<std::string, std::string>* Route::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
+	std::string text = "";
+	if (_station != nullptr) {
+		text = _station->getName();
+	}
 	if (_routeDestinationType == DestinationType::Station) {
-		SaveField(fields, "station", (this->_station->getName()));
+		SaveField(fields, "station", text);
 	}
 	SaveField(fields, "routeTimeExpression", _routeTimeExpression, DEFAULT.routeTimeExpression, saveDefaultValues);
 	SaveField(fields, "routeTimeTimeUnit", _routeTimeTimeUnit, DEFAULT.routeTimeTimeUnit, saveDefaultValues);

@@ -266,8 +266,10 @@ std::map<std::string, std::string>* Seize::_saveInstance(bool saveDefaultValues)
 	SaveField(fields, "saveAttribute=", _saveAttribute, DEFAULT.saveAttribute, saveDefaultValues);
 	//SaveField(fields, "queueId", _queue->getId());
 	//SaveField(fields, "queue", _queue->getName());
-	std::map<std::string, std::string>* queueablefields = _queueableItem->saveInstance();
-	fields->insert(queueablefields->begin(), queueablefields->end());
+	if (_queueableItem != nullptr) {
+		std::map<std::string, std::string>* queueablefields = _queueableItem->saveInstance(saveDefaultValues);
+		fields->insert(queueablefields->begin(), queueablefields->end());
+	}
 	SaveField(fields, "resquestSize", _seizeRequests->size(), DEFAULT.seizeRequestSize, saveDefaultValues);
 	unsigned short i = 0;
 	for (SeizableItem* request : *_seizeRequests->list()) {

@@ -62,12 +62,13 @@ template <> struct TraitsKernel<Parser_if> {
  */
 
 template <> struct TraitsKernel<Model> {
+	typedef StatisticsDefaultImpl1 StatisticsCollector_StatisticsImplementation;
+	typedef CollectorDefaultImpl1 StatisticsCollector_CollectorImplementation;
 	static const Util::TraceLevel traceLevel = Util::TraceLevel::L5_event;
 };
 
 template <> struct TraitsKernel<ModelComponent> {
-	typedef StatisticsDefaultImpl1 StatisticsCollector_StatisticsImplementation;
-	typedef CollectorDefaultImpl1 StatisticsCollector_CollectorImplementation;
+	static constexpr bool automaticallyCreateRequiredModelElements = true; //\TODO: Need to be supported by every component
 	static constexpr bool reportStatistics = true;
 	static const Util::TraceLevel traceLevel = Util::TraceLevel::L2_results;
 };

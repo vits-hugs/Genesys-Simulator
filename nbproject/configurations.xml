@@ -2408,6 +2408,8 @@
         <itemPath>examples/smarts/Smart_Parser.h</itemPath>
         <itemPath>examples/smarts/Smart_ParserModelFunctions.cpp</itemPath>
         <itemPath>examples/smarts/Smart_ParserModelFunctions.h</itemPath>
+        <itemPath>examples/smarts/Smart_Plugin.cpp</itemPath>
+        <itemPath>examples/smarts/Smart_Plugin.h</itemPath>
         <itemPath>examples/smarts/Smart_Process.cpp</itemPath>
         <itemPath>examples/smarts/Smart_Process.h</itemPath>
         <itemPath>examples/smarts/Smart_ProcessSet.cpp</itemPath>
@@ -2715,7 +2717,7 @@
     <itemPath>Traits.h</itemPath>
     <itemPath>main.cpp</itemPath>
   </logicalFolder>
-  <sourceFolderFilter>^(nbproject|build|test|tests|documentation|models)$</sourceFolderFilter>
+  <sourceFolderFilter>^(nbproject|build|test|tests|documentation|models|temp)$</sourceFolderFilter>
   <sourceRootList>
     <Elem>.</Elem>
   </sourceRootList>
@@ -2740,6 +2742,12 @@
         <packType>Debian</packType>
         <verbose>false</verbose>
         <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
           <packFileListElem type="File"
                             to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
                             from="${OUTPUT_PATH}"
@@ -14550,6 +14558,10 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_Plugin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_Plugin.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="examples/smarts/Smart_Process.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -26985,6 +26997,10 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_Plugin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_Plugin.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="examples/smarts/Smart_Process.cpp" ex="false" tool="1" flavor2="0">
       </item>

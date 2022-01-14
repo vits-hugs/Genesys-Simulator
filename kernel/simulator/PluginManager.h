@@ -26,6 +26,10 @@ public:
 	PluginManager(Simulator* simulator);
 	virtual ~PluginManager() = default;
 public:
+	std::string show();
+public:
+	bool completePluginsFieldsAndTemplates();
+public:
 	bool check(const std::string dynamicLibraryFilename);
 	Plugin* insert(const std::string dynamicLibraryFilename);
 	bool remove(const std::string dynamicLibraryFilename);
@@ -35,6 +39,8 @@ public:
 	Plugin* front();
 	Plugin* next();
 	Plugin* last();
+	unsigned int size();
+	Plugin* getAtRank(unsigned int rank);
 private:
 	bool _insert(Plugin* plugin);
 	void _insertDefaultKernelElements();

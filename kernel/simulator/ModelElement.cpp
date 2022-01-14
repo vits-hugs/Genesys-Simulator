@@ -151,14 +151,14 @@ Util::identification ModelElement::getId() const {
 }
 
 void ModelElement::setName(std::string name) {
-	// rename every "stuff" related to this element (controls, responses and childrenElements
+	// rename every "stuff" related to this element (controls, responses and childrenElements)
 	if (name != _name) {
 		std::string stuffName;
 		unsigned int pos;
 		for (std::pair<std::string, ModelElement*> child : *_childrenElements) {
 			stuffName = child.second->getName();
 			pos = stuffName.find(getName(), 0);
-			if (pos != std::string::npos) {
+			if (pos < stuffName.length()) {// != std::string::npos) {
 				stuffName = stuffName.replace(pos, pos + getName().length(), name);
 				child.second->setName(stuffName);
 			}
@@ -167,7 +167,7 @@ void ModelElement::setName(std::string name) {
 		for (SimulationControl* control : *_parentModel->getControls()->list()) {
 			stuffName = control->getName();
 			pos = stuffName.find(getName(), 0);
-			if (pos != std::string::npos) {
+			if (pos < stuffName.length()) { // != std::string::npos) {
 				stuffName = stuffName.replace(pos, pos + getName().length(), name);
 				control->setName(stuffName);
 			}
@@ -176,7 +176,7 @@ void ModelElement::setName(std::string name) {
 		for (SimulationResponse* response : *_parentModel->getResponses()->list()) {
 			stuffName = response->getName();
 			pos = stuffName.find(getName(), 0);
-			if (pos != std::string::npos) {
+			if (pos < stuffName.length()) {// != std::string::npos) {
 				stuffName = stuffName.replace(pos, pos + getName().length(), name);
 				response->setName(stuffName);
 			}

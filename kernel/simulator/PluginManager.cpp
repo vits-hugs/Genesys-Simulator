@@ -27,6 +27,16 @@ PluginManager::PluginManager(Simulator* simulator) {
 	this->_insertDefaultKernelElements();
 }
 
+std::string PluginManager::show() {
+	std::string message = "Plugins=[";
+	for (Plugin* plugin : *_plugins->list()) {
+		message += +"{" + plugin->show() + "}, ";
+	}
+	message = message.substr(0, message.length() - 2);
+	message += "]";
+	return message;
+}
+
 void PluginManager::_insertDefaultKernelElements() {
 	StaticGetPluginInformation GetInfo;
 	GetInfo = &EntityType::GetPluginInformation;
@@ -39,11 +49,15 @@ void PluginManager::_insertDefaultKernelElements() {
 	_plugins->insert(new Plugin(GetInfo));
 }
 
+bool PluginManager::completePluginsFieldsAndTemplates() {
+	_simulator->_completePluginsFieldsAndTemplate();
+}
+
 //bool PluginManager::check(Plugin* plugin){
 //    return true;
 //}
 
-bool PluginManager::_insert(Plugin* plugin) {
+bool PluginManager::_insert(Plugin * plugin) {
 	PluginInformation *plugInfo = plugin->getPluginInfo();
 	if (plugin->isIsValidPlugin() && plugInfo != nullptr) {
 		std::string msg = "Inserting ";
@@ -103,7 +117,7 @@ bool PluginManager::check(std::string dynamicLibraryFilename) {
 	return (plugin != nullptr);
 }
 
-Plugin* PluginManager::insert(std::string dynamicLibraryFilename) {
+Plugin * PluginManager::insert(std::string dynamicLibraryFilename) {
 	Plugin* plugin;
 	try {
 		plugin = _pluginConnector->connect(dynamicLibraryFilename);
@@ -125,7 +139,7 @@ bool PluginManager::remove(std::string dynamicLibraryFilename) {
 	return remove(pi);
 }
 
-bool PluginManager::remove(Plugin* plugin) {
+bool PluginManager::remove(Plugin * plugin) {
 	if (plugin != nullptr) {
 		_plugins->remove(plugin);
 		try {
@@ -140,7 +154,7 @@ bool PluginManager::remove(Plugin* plugin) {
 	return false;
 }
 
-Plugin* PluginManager::find(std::string pluginTypeName) {
+Plugin * PluginManager::find(std::string pluginTypeName) {
 	for (std::list<Plugin*>::iterator it = this->_plugins->list()->begin(); it != _plugins->list()->end(); it++) {
 		if ((*it)->getPluginInfo()->getPluginTypename() == pluginTypeName) {
 
@@ -150,16 +164,23 @@ Plugin* PluginManager::find(std::string pluginTypeName) {
 	return nullptr;
 }
 
-Plugin* PluginManager::front() {
-
+Plugin * PluginManager::front() {
 	return this->_plugins->front();
 }
 
-Plugin* PluginManager::next() {
-
+Plugin * PluginManager::next() {
 	return _plugins->next();
 }
 
-Plugin* PluginManager::last() {
+Plugin * PluginManager::last() {
 	return this->_plugins->last();
 }
+
+unsigned int PluginManager::size() {
+	return _plugins->size();
+}
+
+Plugin * PluginManager::getAtRank(unsigned int rank) {
+	return _plugins->getAtRank(rank);
+}
+

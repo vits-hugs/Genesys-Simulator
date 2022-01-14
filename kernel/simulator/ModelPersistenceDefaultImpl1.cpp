@@ -354,6 +354,15 @@ void ModelPersistenceDefaultImpl1::setOption(ModelPersistence_if::Options option
 	}
 }
 
+std::string ModelPersistenceDefaultImpl1::getFormatedField(std::map<std::string, std::string>* fields) {
+	std::list<std::string>* formatedList = this->_adjustFieldsToSave(fields);
+	std::string txt = "";
+	for (std::string formated : *formatedList) {
+		txt += formated + " ";
+	}
+	return txt.substr(0, txt.length() - 1);
+}
+
 std::string ModelPersistenceDefaultImpl1::_convertLineseparatorReplacementBacktoLineseparator(std::string str) {
 	size_t index = str.find(_fieldseparatorReplacement, 0);
 	while (index != std::string::npos) {

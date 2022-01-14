@@ -74,6 +74,8 @@ public:
 	std::string getDescriptionHelp() const;
 	void setFields(std::map<std::string, std::string>* _fiewlds);
 	std::map<std::string, std::string>* getFields() const;
+    void setLanguageTemplate(std::string _languageTemplate);
+    std::string getLanguageTemplate() const;
 public:
 private:
 	std::string _author = "prof. Dr. Ing. Rafael Luiz Cancian";
@@ -81,6 +83,7 @@ private:
 	std::string _version = "0.9.1";
 	std::string _observation = "First implementation not fully completed nor tested. Use with caution.";
 	std::string _descriptionHelp = "";
+	std::string _languageTemplate = "";
 	bool _isSource = false;
 	bool _isSink = false;
 	bool _receiveTransfer = false; /*!< If true, an entity can arrive to this component without a phisical connection. In terms of model connection check, it is just like a Source component, since it does not need to have a predecessor */

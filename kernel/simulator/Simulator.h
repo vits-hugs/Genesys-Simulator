@@ -48,6 +48,8 @@ public: // only get
 	ParserManager* getParser() const;
 	ExperimentManager* getExperimenter() const;
 private:
+	bool _completePluginsFieldsAndTemplate();
+	friend class PluginManager; //\TODO: should be only member function PluginManager::completePluginsFieldsAndTemplate()
 private: // attributes 1:1 objects
 	LicenceManager* _licenceManager;
 	PluginManager* _pluginManager;

@@ -31,6 +31,60 @@ Plugin::Plugin(StaticGetPluginInformation getInformation) {
 	}
 }
 
+std::string Plugin::show() {
+
+	std::string message = "";
+	if (_pluginInfo->isSource()) {
+		message += "Source ";
+	}
+	if (_pluginInfo->isSink()) {
+		message += "Sink ";
+	}
+	if (_pluginInfo->isSendTransfer()) {
+		message += "SendTransfer ";
+	}
+	if (_pluginInfo->isReceiveTransfer()) {
+		message += "ReceiveTransfer ";
+	}
+	if (_pluginInfo->isGenerateReport()) {
+		message += "GenerateReport ";
+	}
+	if (_pluginInfo->isComponent()) {
+		message += "Component ";
+	} else {
+		message += "Element ";
+	}
+	message += "\"" + _pluginInfo->getPluginTypename() + "\" ";
+	if (_pluginInfo->getDynamicLibFilenameDependencies()->size() > 0) {
+		message += "depends on=[";
+		for (std::string depends : *_pluginInfo->getDynamicLibFilenameDependencies()) {
+			message += depends + ",";
+		}
+		message = message.substr(0, message.length() - 2);
+		message += "] ";
+	}
+	if (_pluginInfo->getDescriptionHelp() != "") {
+		message += "description help=\"" + _pluginInfo->getDescriptionHelp() + "\" ";
+	}
+	//if (_pluginInfo->getObservation() != "") {
+	//	message += "observation=\"" + _pluginInfo->getObservation() + "\" ";
+	//}
+
+	if (_pluginInfo->getFields()->size() > 0) {
+		message += "fields=[";
+		for (std::pair<std::string, std::string> field : *_pluginInfo->getFields()) {
+			message += field.first + ", ";
+		}
+		message = message.substr(0, message.length() - 2);
+		message += "] ";
+	}
+	if (_pluginInfo->getLanguageTemplate() != "") {
+		message += "template=<" + _pluginInfo->getLanguageTemplate() + "nextId0=0 > ";
+	}
+	message = message.substr(0, message.length() - 1);
+	return message;
+}
+
 PluginInformation* Plugin::getPluginInfo() const {
 	return _pluginInfo;
 }

@@ -33,7 +33,7 @@ public:
 	//virtual bool _loadInstance(std::map<std::string, std::string>* fields, unsigned int parentIndex);
 	//virtual std::map<std::string, std::string>* _saveInstance(unsigned int parentIndex);
 	bool loadInstance(std::map<std::string, std::string>* fields);
-	std::map<std::string, std::string>* saveInstance();
+	std::map<std::string, std::string>* saveInstance(bool saveDefaultValues);
 public:
 	std::string show();
 	void setIndex(std::string index);

@@ -52,12 +52,12 @@ bool QueueableItem::loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-std::map<std::string, std::string>* QueueableItem::saveInstance() {
+std::map<std::string, std::string>* QueueableItem::saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();
-	SaveField(fields, "queueableType", static_cast<int> (_queueableType), static_cast<int> (DEFAULT.queueableType));
-	SaveField(fields, "queueId", _queueOrSet->getId());
-	SaveField(fields, "queueable", _queueOrSet->getName(), "");
-	SaveField(fields, "index", _index, DEFAULT.index);
+	SaveField(fields, "queueableType", static_cast<int> (_queueableType), static_cast<int> (DEFAULT.queueableType), saveDefaultValues);
+	SaveField(fields, "queueId", _queueOrSet->getId()); //\TODO: Check it. Probability it is not necessary
+	SaveField(fields, "queueable", _queueOrSet->getName());
+	SaveField(fields, "index", _index, DEFAULT.index, saveDefaultValues);
 	return fields;
 }
 

@@ -28,6 +28,7 @@ public: // interface
 	virtual bool load(std::string filename);
 	virtual bool getOption(ModelPersistence_if::Options option);
 	virtual void setOption(ModelPersistence_if::Options option, bool value);
+	virtual std::string getFormatedField(std::map<std::string, std::string>* fields);
 public:
 	virtual bool hasChanged();
 private:
@@ -35,6 +36,7 @@ private:
 	bool _loadFields(std::string line);
 	void _loadSimulatorInfoFields(std::map<std::string, std::string>* fields);
 	std::list<std::string>* _adjustFieldsToSave(std::map<std::string, std::string>* fields);
+	friend class Simulator; // \todo
 	std::string _convertLineseparatorToLineseparatorReplacement(std::string str);
 	std::string _convertLineseparatorReplacementBacktoLineseparator(std::string str);
 	std::map<std::string, std::string>* _getSimulatorInfoFieldsToSave();

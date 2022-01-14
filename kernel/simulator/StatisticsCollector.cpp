@@ -17,7 +17,7 @@
 //using namespace GenesysKernel;
 
 
-typedef TraitsKernel<ModelComponent>::StatisticsCollector_StatisticsImplementation StatisticsClass;
+typedef TraitsKernel<Model>::StatisticsCollector_StatisticsImplementation StatisticsClass;
 
 StatisticsCollector::StatisticsCollector(Model* model, std::string name, ModelElement* parent, bool insertIntoModel) : ModelElement(model, Util::TypeOf<StatisticsCollector>(), name, insertIntoModel) {
 	_parent = parent;
@@ -36,7 +36,7 @@ void StatisticsCollector::_addSimulationResponses() {
 }
 
 void StatisticsCollector::_initStaticsAndCollector() {
-	Collector_if* collector = new TraitsKernel<ModelComponent>::StatisticsCollector_CollectorImplementation();
+	Collector_if* collector = new TraitsKernel<Model>::StatisticsCollector_CollectorImplementation();
 	_statistics = new StatisticsClass(collector); //TraitsKernel<ModelComponent>::StatisticsCollector_StatisticsImplementation(collector);
 }
 

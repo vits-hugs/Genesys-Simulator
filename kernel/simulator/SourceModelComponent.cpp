@@ -36,7 +36,11 @@ bool SourceModelComponent::_loadInstance(std::map<std::string, std::string>* fie
 		this->_timeBetweenCreationsTimeUnit = LoadField(fields, "timeBetweenCreationsTimeUnit", DEFAULT.timeBetweenCreationsTimeUnit);
 		this->_maxCreationsExpression = LoadField(fields, "maxCreations", DEFAULT.maxCreationsExpression);
 		std::string entityTypename = LoadField(fields, "EntityType");
-		this->_entityType = dynamic_cast<EntityType*> (_parentModel->getElements()->getElement(Util::TypeOf<EntityType>(), entityTypename));
+		if (entityTypename != "") {
+			this->_entityType = dynamic_cast<EntityType*> (_parentModel->getElements()->getElement(Util::TypeOf<EntityType>(), entityTypename));
+		} else {
+			this->_entityType = nullptr;
+		}
 	}
 	return res;
 }
@@ -52,7 +56,11 @@ std::map<std::string, std::string>* SourceModelComponent::_saveInstance(bool sav
 	SaveField(fields, "timeBetweenCreations", _timeBetweenCreationsExpression, DEFAULT.timeBetweenCreationsExpression, saveDefaultValues);
 	SaveField(fields, "timeBetweenCreationsTimeUnit", _timeBetweenCreationsTimeUnit, DEFAULT.timeBetweenCreationsTimeUnit, saveDefaultValues);
 	SaveField(fields, "maxCreations", _maxCreationsExpression, DEFAULT.maxCreationsExpression, saveDefaultValues);
-	SaveField(fields, "EntityType", _entityType->getName());
+	if (_entityType != nullptr) {
+		SaveField(fields, "EntityType", _entityType->getName());
+	} else {
+		SaveField(fields, "EntityType", "");
+	}
 	return fields;
 }
 

@@ -194,4 +194,6 @@ void BaseConsoleGenesysApplication::insertFakePluginsByHand(Simulator* simulator
 	pm->insert("markovchain.so");
 	pm->insert("cellularautomata.so");
 	pm->insert("cppforg.so");
+	// now complete the information
+	simulator->getPlugins()->completePluginsFieldsAndTemplates();
 }

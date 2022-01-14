@@ -33,6 +33,8 @@ public:
 	Plugin(StaticGetPluginInformation getInformation); // temporary. Just while compiled together
 	virtual ~Plugin() = default;
 public:
+	std::string show();
+public:
 	bool isIsValidPlugin() const;
 	PluginInformation* getPluginInfo() const;
 public:

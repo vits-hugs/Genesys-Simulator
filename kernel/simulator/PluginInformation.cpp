@@ -177,4 +177,12 @@ std::map<std::string, std::string>* PluginInformation::getFields() const {
 	return _fields;
 }
 
+void PluginInformation::setLanguageTemplate(std::string _languageTemplate) {
+	this->_languageTemplate = _languageTemplate;
+}
+
+std::string PluginInformation::getLanguageTemplate() const {
+	return _languageTemplate;
+}
+
 

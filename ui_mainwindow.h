@@ -147,12 +147,19 @@ public:
         tabWidgetModel = new QTabWidget(centralwidget);
         tabWidgetModel->setObjectName(QString::fromUtf8("tabWidgetModel"));
         tabWidgetModel->setEnabled(false);
+        QFont font;
+        font.setPointSize(12);
+        tabWidgetModel->setFont(font);
         tabModel = new QWidget();
         tabModel->setObjectName(QString::fromUtf8("tabModel"));
         horizontalLayout = new QHBoxLayout(tabModel);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         textEdit_Model = new QTextEdit(tabModel);
         textEdit_Model->setObjectName(QString::fromUtf8("textEdit_Model"));
+        QFont font1;
+        font1.setFamily(QString::fromUtf8("Courier"));
+        font1.setPointSize(12);
+        textEdit_Model->setFont(font1);
         textEdit_Model->setLineWidth(3);
         textEdit_Model->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
         textEdit_Model->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
@@ -167,6 +174,9 @@ public:
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
         textEdit_Simulation = new QTextEdit(tabSimulation);
         textEdit_Simulation->setObjectName(QString::fromUtf8("textEdit_Simulation"));
+        QFont font2;
+        font2.setPointSize(10);
+        textEdit_Simulation->setFont(font2);
         textEdit_Simulation->setTextInteractionFlags(Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
         horizontalLayout_3->addWidget(textEdit_Simulation);
@@ -178,6 +188,10 @@ public:
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
         textEdit_Reports = new QTextEdit(tabReport);
         textEdit_Reports->setObjectName(QString::fromUtf8("textEdit_Reports"));
+        QFont font3;
+        font3.setFamily(QString::fromUtf8("Courier 10 Pitch"));
+        font3.setPointSize(10);
+        textEdit_Reports->setFont(font3);
         textEdit_Reports->setTextInteractionFlags(Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
         horizontalLayout_4->addWidget(textEdit_Reports);
@@ -220,9 +234,7 @@ public:
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         textEdit_Console = new QTextEdit(dockWidgetContentsConsole);
         textEdit_Console->setObjectName(QString::fromUtf8("textEdit_Console"));
-        QFont font;
-        font.setPointSize(10);
-        textEdit_Console->setFont(font);
+        textEdit_Console->setFont(font2);
         textEdit_Console->setTextInteractionFlags(Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
         verticalLayout->addWidget(textEdit_Console);
@@ -246,6 +258,7 @@ public:
         horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
         listWidget_Plugins = new QListWidget(dockWidgetContentsPlugin);
         listWidget_Plugins->setObjectName(QString::fromUtf8("listWidget_Plugins"));
+        listWidget_Plugins->setFont(font2);
 
         horizontalLayout_5->addWidget(listWidget_Plugins);
 
