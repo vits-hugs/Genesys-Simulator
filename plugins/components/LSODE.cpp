@@ -77,7 +77,7 @@ bool LSODE::_doStep() {
 	initTime = time;
 	std::string expression;
 	tnow = _parentModel->getSimulation()->getSimulatedTime();
-	// \todo: numerical error treatment by just adding 1e-15
+	// @TODO: numerical error treatment by just adding 1e-15
 	bool res = time + _step <= tnow + 1e-15;
 	if (res) {
 		halfStep = _step * 0.5;
@@ -153,7 +153,7 @@ void LSODE::_execute(Entity* entity) {
 bool LSODE::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
-		// \todo: not implemented yet
+		// @TODO: not implemented yet
 	}
 
 	return res;
@@ -164,7 +164,7 @@ void LSODE::_initBetweenReplications() {
 
 std::map<std::string, std::string>* LSODE::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
-	// \todo: not implemented yet
+	// @TODO: not implemented yet
 
 	return fields;
 }
@@ -172,7 +172,7 @@ std::map<std::string, std::string>* LSODE::_saveInstance(bool saveDefaultValues)
 bool LSODE::_check(std::string* errorMessage) {
 	bool resultAll = true;
 	std::ofstream savefile;
-	// \todo: not implemented yet
+	// @TODO: not implemented yet
 	*errorMessage += "";
 	if (resultAll) {
 		if (_filename != "") {

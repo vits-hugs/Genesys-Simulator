@@ -28,7 +28,7 @@ void ModelComponent::Execute(Entity* entity, ModelComponent* component, unsigned
 	std::string msg = /*"Entity " +std::to_string(entity->entityNumber())*/ entity->getName() + " has arrived at component \"" + component->getName() + "\"";
 	if (component->getDescription() != "")
 		msg += ": " + component->getDescription();
-	// \todo: How can I know the number of inputs?
+	// @TODO: How can I know the number of inputs?
 	if (inputNumber > 0)
 		msg += " by input " + std::to_string(inputNumber);
 	component->_parentModel->getTracer()->traceSimulation(Util::TraceLevel::L6_arrival, msg);
@@ -92,7 +92,7 @@ bool ModelComponent::Check(ModelComponent* component) {
 }
 
 ConnectionManager* ModelComponent::getConnections() const {
-	return _connections; // \todo How to know if it changes?
+	return _connections; // @TODO How to know if it changes?
 }
 
 std::string ModelComponent::show() {

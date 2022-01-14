@@ -23,7 +23,7 @@ ModelElement::ModelElement(Model* model, std::string thistypename, std::string n
 	_id = Util::GenerateNewId(); //GenerateNewIdOfType(thistypename);
 	_typename = thistypename;
 	_parentModel = model;
-	_reportStatistics = TraitsKernel<ModelElement>::reportStatistics; // \todo: shoould be a parameter before insertIntoModel
+	_reportStatistics = TraitsKernel<ModelElement>::reportStatistics; // @TODO: shoould be a parameter before insertIntoModel
 	if (name == "")
 		_name = thistypename + "_" + std::to_string(Util::GenerateNewIdOfType(thistypename));
 	else if (name.substr(name.length() - 1, 1) == "%")

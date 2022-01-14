@@ -104,9 +104,12 @@ void Decide::_createInternalElements() {
 
 PluginInformation* Decide::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Decide>(), &Decide::LoadInstance);
-	//Decide* comp = new Decide(nullptr);
-	//info->setFields(comp->_saveInstance());
-	//comp->~Decide();
+	std::string help = "This module allows for decision-making processes in the system.";
+	help += " It includes options to make decisions based on one or more conditions(for example, if entity type is Gold Card) or based on one or more probabilities(for example, 75 %, true; 25 %, false).";
+	help += " Conditions can be based on attribute values(for example, Priority), variable values(for example, Number Denied), the entity type, or an expression(for example, NQ(ProcessA.Queue)).";
+	help += " Multiple exit points are shown for each condition or probability and a single Else exit.";
+	help += " TYPICAL USES: (1) Dispatching a faulty part for rework; (2) Branching accepted vs. rejected checks; (3) Sending priority customers to a dedicated process.";
+	info->setDescriptionHelp(help);
 	return info;
 }
 

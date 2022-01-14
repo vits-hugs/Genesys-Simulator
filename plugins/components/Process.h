@@ -59,10 +59,10 @@ protected: // virtual
 	virtual void _createInternalElements();
 private: // methods
 private: // attributes 1:1
-	Seize* seize;
-	Delay* delay;
-	Release* release;
-	ModelComponent* _nextComponent;
+	Seize* seize = nullptr;
+	Delay* delay = nullptr;
+	Release* release = nullptr;
+	ModelComponent* _nextComponent = nullptr;
 	unsigned int _nextInput;
 private: // attributes 1:n
 };

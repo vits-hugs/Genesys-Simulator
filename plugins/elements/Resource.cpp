@@ -45,7 +45,7 @@ void Resource::seize(unsigned int quantity, double tnow) {
 		_numSeizes->incCountValue(quantity);
 	_lastTimeSeized = tnow;
 	_resourceState = Resource::ResourceState::BUSY;
-	// \todo implement costs
+	// @TODO implement costs
 }
 
 void Resource::release(unsigned int quantity, double tnow) {

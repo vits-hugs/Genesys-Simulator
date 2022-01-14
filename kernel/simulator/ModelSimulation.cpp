@@ -166,7 +166,7 @@ void ModelSimulation::_replicationEnded() {
 }
 
 void ModelSimulation::_actualizeSimulationStatistics() {
-	//\todo: should not be only CSTAT and COUNTER, but any element that generateReportInformation
+	//@TODO: should not be only CSTAT and COUNTER, but any element that generateReportInformation
 	const std::string UtilTypeOfStatisticsCollector = Util::TypeOf<StatisticsCollector>();
 	const std::string UtilTypeOfCounter = Util::TypeOf<Counter>();
 
@@ -268,7 +268,7 @@ void ModelSimulation::_initSimulation() {
 	// defines the time scale factor to adjust replicatonLength to replicationBaseTime
 	_replicationTimeScaleFactorToBase = Util::TimeUnitConvert(this->_replicationLengthTimeUnit, this->_replicationBaseTimeUnit);
 	// copy all CStats and Counters (used in a replication) to CStats and counters for the whole simulation
-	// \todo: Should not be CStats and Counters, but any element that generates report importation
+	// @TODO: Should not be CStats and Counters, but any element that generates report importation
 	this->_statsCountersSimulation->clear();
 	StatisticsCollector* cstat;
 	List<ModelElement*>* cstats = _model->getElements()->getElementList(Util::TypeOf<StatisticsCollector>());
@@ -280,7 +280,7 @@ void ModelSimulation::_initSimulation() {
 		this->_statsCountersSimulation->insert(newCStatSimul);
 	}
 	// copy all Counters (used in a replication) to Counters for the whole simulation
-	// \todo: Counters in replication should be converted into CStats in simulation. Each value counted in a replication should be added in a CStat for Stats.
+	// @TODO: Counters in replication should be converted into CStats in simulation. Each value counted in a replication should be added in a CStat for Stats.
 	Counter* counter;
 	List<ModelElement*>* counters = _model->getElements()->getElementList(Util::TypeOf<Counter>());
 	for (std::list<ModelElement*>::iterator it = counters->list()->begin(); it != counters->list()->end(); it++) {
@@ -294,7 +294,7 @@ void ModelSimulation::_initSimulation() {
 		StatisticsCollector* newCStatSimul = new StatisticsCollector(_model, _cte_stCountSimulNamePrefix + counter->getName(), counter->getParent(), false);
 		this->_statsCountersSimulation->insert(newCStatSimul);
 	}
-	_simulationIsInitiated = true; // \todo Check the uses of _simulationIsInitiated and when it should be set to false
+	_simulationIsInitiated = true; // @TODO Check the uses of _simulationIsInitiated and when it should be set to false
 	_replicationIsInitiaded = false;
 	_currentReplicationNumber = 1;
 	_model->getOnEvents()->NotifySimulationStartHandlers(_createSimulationEvent());
@@ -349,7 +349,7 @@ void ModelSimulation::_initReplication() {
 	if (this->_initializeStatisticsBetweenReplications) {
 		_initStatistics();
 	}
-	this->_replicationIsInitiaded = true; // \todo Check the uses of _replicationIsInitiaded and when it should be set to false
+	this->_replicationIsInitiaded = true; // @TODO Check the uses of _replicationIsInitiaded and when it should be set to false
 }
 
 void ModelSimulation::_initStatistics() {
@@ -657,7 +657,7 @@ void ModelSimulation::loadInstance(std::map<std::string, std::string>* fields) {
 	_hasChanged = false;
 }
 
-// \todo:!: implement check method (to check things like terminating condition)
+// @TODO:!: implement check method (to check things like terminating condition)
 
 std::map<std::string, std::string>* ModelSimulation::saveInstance(bool saveDefaults) {
 	std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();

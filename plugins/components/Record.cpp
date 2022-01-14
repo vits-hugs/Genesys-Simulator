@@ -65,7 +65,7 @@ void Record::_execute(Entity* entity) {
 	double value = _parentModel->parseExpression(_expression);
 	_cstatExpression->getStatistics()->getCollector()->addValue(value);
 	if (_filename != "") {
-		// \todo: open and close for every data is not a good idea. Should open when replication starts and close when it finishes.
+		// @TODO: open and close for every data is not a good idea. Should open when replication starts and close when it finishes.
 		std::ofstream file;
 		file.open(_filename, std::ofstream::out | std::ofstream::app);
 		file << value << std::endl;

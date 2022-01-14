@@ -46,7 +46,7 @@ std::string StatisticsCollector::show() {
 		try {
 			parentStr = _parent->getName();
 		} catch (...) { // if parent changed or deleted, can cause seg fault
-			parentStr = "<<INCONSISTENT>>"; /* \todo: ++*/
+			parentStr = "<<INCONSISTENT>>"; /* @TODO: ++*/
 		}
 	}
 	return ModelElement::show() +
@@ -65,6 +65,8 @@ Statistics_if* StatisticsCollector::getStatistics() const {
 PluginInformation* StatisticsCollector::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<StatisticsCollector>(), &StatisticsCollector::LoadInstance);
 	info->setGenerateReport(true);
+	info->setDescriptionHelp("The StatisticsCollector is the ModelElement responsible for collecting data from the model (using the Collector) and simultaneouly keeping statistics updated (using the Statistics)");
+
 	return info;
 }
 
@@ -98,7 +100,7 @@ std::map<std::string, std::string>* StatisticsCollector::_saveInstance(bool save
 }
 
 bool StatisticsCollector::_check(std::string* errorMessage) {
-	// \TODO: To implement!
+	// @TODO: To implement!
 	*errorMessage += "";
 	return true;
 }

@@ -36,7 +36,7 @@ private:
 	bool _loadFields(std::string line);
 	void _loadSimulatorInfoFields(std::map<std::string, std::string>* fields);
 	std::list<std::string>* _adjustFieldsToSave(std::map<std::string, std::string>* fields);
-	friend class Simulator; // \todo
+	friend class Simulator; // @TODO
 	std::string _convertLineseparatorToLineseparatorReplacement(std::string str);
 	std::string _convertLineseparatorReplacementBacktoLineseparator(std::string str);
 	std::map<std::string, std::string>* _getSimulatorInfoFieldsToSave();

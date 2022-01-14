@@ -24,7 +24,7 @@ class ModelComponent;
 class Model;
 class ElementManager;
 
-// \todo: the following 2 types were diffferent but now on they are the same and should be merged
+// @TODO: the following 2 types were diffferent but now on they are the same and should be merged
 typedef ModelComponent* (*StaticLoaderComponentInstance)(Model*, std::map<std::string, std::string>*);
 typedef ModelElement* (*StaticLoaderElementInstance)(Model*, std::map<std::string, std::string>*);
 class PluginInformation;

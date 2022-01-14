@@ -40,7 +40,7 @@ void SimulationReporterDefaultImpl1::showSimulationControls() {
 void SimulationReporterDefaultImpl1::showReplicationStatistics() {
 	_model->getTracer()->traceReport("");
 	_model->getTracer()->traceReport("Begin of Report for replication " + std::to_string(_simulation->getCurrentReplicationNumber()) + " of " + std::to_string(_model->getSimulation()->getNumberOfReplications()));
-	/* \todo: StatisticsCollector and Counter should NOT be special classes. It should iterate classes looking for classes that can generate reports.
+	/* @TODO: StatisticsCollector and Counter should NOT be special classes. It should iterate classes looking for classes that can generate reports.
 	 StatisticsCollector and Counter should ovveride an inherited attribute from ModelElement to specify they generate report information
 	 look for _generateReportInformation = true;  using bool generateReportInformation() const;
 	 */

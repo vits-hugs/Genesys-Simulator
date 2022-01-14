@@ -80,7 +80,7 @@ private:
 
 /*!
  * Events related to simulation "process" (usually process analyser), associated to entire replication or simulation events (begin/end/pause of replication/simulation)
- * \todo: CLASS NOT FULLY IMPLEMENTED (to be implemented for process analyser)
+ * @TODO: CLASS NOT FULLY IMPLEMENTED (to be implemented for process analyser)
  */
 class TraceSimulationProcess : public TraceEvent {
 public:
@@ -93,13 +93,13 @@ typedef void (*traceListener)(TraceEvent);
 typedef void (*traceErrorListener)(TraceErrorEvent);
 typedef void (*traceSimulationListener)(TraceSimulationEvent);
 typedef void (*traceSimulationProcessListener)(TraceSimulationProcess);
-//\TODO: Trace REPORTS???
+//@TODO: Trace REPORTS???
 // for handlers that are class members (methods)
 typedef std::function<void(TraceEvent) > traceListenerMethod;
 typedef std::function<void(TraceErrorEvent) > traceErrorListenerMethod;
 typedef std::function<void(TraceSimulationEvent) > traceSimulationListenerMethod;
 typedef std::function<void(TraceSimulationProcess) > traceSimulationProcessListenerMethod;
-//\TODO: Trace REPORTS???
+//@TODO: Trace REPORTS???
 
 /*!
  * The TraceManager is used to trace back model simulation information and track/debug the simulation.
@@ -159,7 +159,7 @@ private:
 	double _lastTimeTraceSimulation = -1.0;
 	Util::identification _lastEntityTraceSimulation = 0;
 	Util::identification _lastModuleTraceSimulation = 0;
-	List<std::string>* _errorMessages; /* \todo: 18/08/24 this is a new one. several methods should use it */
+	List<std::string>* _errorMessages; /* @TODO: 18/08/24 this is a new one. several methods should use it */
 
 };
 

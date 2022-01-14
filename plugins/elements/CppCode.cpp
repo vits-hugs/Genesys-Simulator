@@ -29,7 +29,7 @@ ModelElement* CppCode::LoadInstance(Model* model, std::map<std::string, std::str
 
 PluginInformation* CppCode::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<CppCode>(), &CppCode::LoadInstance);
-	//info->setDescriptionHelp("");
+	info->setDescriptionHelp("//@TODO");
 	//info->setObservation("");
 	//info->setMinimumOutputs();
 	//info->setDynamicLibFilenameDependencies();
@@ -56,14 +56,14 @@ std::string CppCode::getCode() const {
 bool CppCode::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelElement::_loadInstance(fields);
 	if (res) {
-		// \todo: not implemented yet
+		// @TODO: not implemented yet
 	}
 	return res;
 }
 
 std::map<std::string, std::string>* CppCode::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues);
-	// \todo: not implemented yet
+	// @TODO: not implemented yet
 	return fields;
 }
 

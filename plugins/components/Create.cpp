@@ -20,13 +20,13 @@
 
 Create::Create(Model* model, std::string name) : SourceModelComponent(model, Util::TypeOf<Create>(), name) {
 	//_numberOut = new Counter(_parentModel, getName() + "." + "Count_number_in", this);
-	// \todo Check if element has already been inserted and this is not needed: _parentModel->elements()->insert(_numberOut);
+	// @TODO Check if element has already been inserted and this is not needed: _parentModel->elements()->insert(_numberOut);
 	_connections->setMinInputConnections(0);
 	_connections->setMaxInputConnections(0);
 	GetterMember getter = DefineGetterMember<SourceModelComponent>(this, &Create::getEntitiesPerCreation);
 	SetterMember setter = DefineSetterMember<SourceModelComponent>(this, &Create::setEntitiesPerCreation);
 	model->getControls()->insert(new SimulationControl(Util::TypeOf<Create>(), getName() + ".EntitiesPerCreation", getter, setter));
-	/* \todo:
+	/* @TODO:
 	model->getControls()->insert(new SimulationControl(Util::TypeOf<Create>(), "Time Between Creations",
 			DefineGetterMember<SourceModelComponent>(this, &Create::getTimeBetweenCreationsExpression),
 			DefineSetterMember<SourceModelComponent>(this, &Create::setTimeBetweenCreationsExpression))
@@ -69,6 +69,14 @@ void Create::_execute(Entity* entity) {
 PluginInformation* Create::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Create>(), &Create::LoadInstance);
 	info->setSource(true);
+	std::string text = "This module is intended as the starting point for entities in a simulation model.";
+	text += "	Entities are created using a schedule or based on a time between arrivals. Entities then leave the module to begin processing through the system.";
+	text += "	The entity type is specified in this module.";
+	text += "	Animation showing the number of entities created is displayed when the module is placed.";
+	text += "	TYPICAL USES: (1) The start of a part’s production in a manufacturing line;";
+	text += "	(2) A document’s arrival (for example, order, check, application) into a business process;";
+	text += "	(3)A customer’s arrival at a service process (for example, retail store, restaurant, information desk)";
+	info->setDescriptionHelp(text);
 	//info->insertDynamicLibFileDependence("attribute.so");
 	//info->insertDynamicLibFileDependence("entitytype.so");
 	//info->insertDynamicLibFileDependence("statisticscollector.so");
@@ -107,10 +115,10 @@ void Create::_createInternalElements() {
 	if (_reportStatistics && _numberOut == nullptr) {
 		_numberOut = new Counter(_parentModel, getName() + "." + "CountNumberOut", this);
 		_childrenElements->insert({"CountNumberOut", _numberOut});
-		// \todo _childrenElements->insert("Count_number_in", _numberOut);
+		// @TODO _childrenElements->insert("Count_number_in", _numberOut);
 	} else if (!_reportStatistics && _numberOut != nullptr) {
 		this->_removeChildrenElements();
-		// \todo _childrenElements->remove("Count_number_in");
+		// @TODO _childrenElements->remove("Count_number_in");
 		//_numberOut->~Counter();
 		_numberOut = nullptr;
 	}

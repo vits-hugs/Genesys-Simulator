@@ -28,6 +28,7 @@ bool Attribute::_loadInstance(std::map<std::string, std::string>* fields) {
 
 PluginInformation* Attribute::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Attribute>(), &Attribute::LoadInstance);
+	info->setDescriptionHelp("//@TODO");
 	return info;
 
 }

@@ -62,18 +62,18 @@ void Release::_execute(Entity* entity) {
 			SeizableItem::SelectionRule rule = seizable->getSelectionRule();
 			Set* set = seizable->getSet();
 			unsigned int index = 0;
-			switch (rule) { // \todo: Rules for release are DIFFERENT (least and first member seized)
+			switch (rule) { // @TODO: Rules for release are DIFFERENT (least and first member seized)
 				case SeizableItem::SelectionRule::CYCLICAL:
 					index = (seizable->getLastMemberSeized() + 1) % _releaseRequests->list()->size();
 					break;
 				case SeizableItem::SelectionRule::LARGESTREMAININGCAPACITY:
-					// \todo
+					// @TODO
 					break;
 				case SeizableItem::SelectionRule::RANDOM:
 					index = trunc(rand() * _releaseRequests->list()->size());
 					break;
 				case SeizableItem::SelectionRule::SMALLESTNUMBERBUSY:
-					// \todo
+					// @TODO
 					break;
 				case SeizableItem::SelectionRule::SPECIFICMEMBER:
 					index = _parentModel->parseExpression(seizable->getIndex());
@@ -140,7 +140,7 @@ bool Release::_check(std::string* errorMessage) {
 		} else if (seizable->getSeizableType() == SeizableItem::SeizableType::SET) {
 			resultAll &= _parentModel->getElements()->check(Util::TypeOf<Set>(), seizable->getSet(), "Set", errorMessage);
 		}
-		// \todo: Should be checking saveAttribute, index, etc
+		// @TODO: Should be checking saveAttribute, index, etc
 	}
 	return resultAll;
 }
@@ -161,6 +161,14 @@ bool Release::_check(std::string* errorMessage) {
 PluginInformation* Release::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Release>(), &Release::LoadInstance);
 	info->insertDynamicLibFileDependence("resource.so");
+	std::string help = "The Release module is used to release units of a resource that an entity previously has seized.";
+	help += " This module may be used to release individual resources or may be used to release resources within a set.";
+	help += " For each resource to be released, the name and quantity to release are specified.";
+	help += " When the entity enters the Release module, it gives up control of the specified resource(s).";
+	help += " Any entities waiting in queues for those resources will gain control of the resources immediately.";
+	help += " TYPICAL USES: (1) Finishing a customer order (release the operator); (2) Completing a tax return (release the accountant);";
+	help += " (3) Leaving the hospital (release the doctor, nurse, hospital room)";
+	info->setDescriptionHelp(help);
 	return info;
 }
 

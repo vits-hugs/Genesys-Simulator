@@ -40,7 +40,7 @@ bool ModelCheckerDefaultImpl1::checkAll() {
 }
 
 //bool ModelCheckerDefaultImpl1::checkAndAddInternalLiterals() {
-//    /*  \todo: +-: not implemented yet */
+//    /*  @TODO: +-: not implemented yet */
 //    return true;
 //}
 
@@ -78,7 +78,7 @@ void ModelCheckerDefaultImpl1::_recursiveConnectedTo(PluginManager* pluginManage
 }
 
 bool ModelCheckerDefaultImpl1::checkConnected() {
-	/*  \todo: +-: not implemented yet */
+	/*  @TODO: +-: not implemented yet */
 	_model->getTracer()->trace(Util::TraceLevel::L7_internal, "Checking connected");
 	bool resultAll = true;
 	PluginManager* pluginManager = this->_model->getParentSimulator()->getPlugins();
@@ -170,7 +170,7 @@ bool ModelCheckerDefaultImpl1::checkSymbols() {
 }
 
 bool ModelCheckerDefaultImpl1::checkActivationCode() {
-	/*  \todo: +-: not implemented yet */
+	/*  @TODO: +-: not implemented yet */
 	_model->getTracer()->trace(Util::TraceLevel::L7_internal, "Checking activation code");
 	Util::IncIndent();
 	{

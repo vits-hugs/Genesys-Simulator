@@ -48,7 +48,7 @@ unsigned int ExperimentManager::size() {
 }
 
 bool ExperimentManager::saveSimulationExperiment(std::string filename) {
-	// \todo: implement
+	// @TODO: implement
 	if (_currentSimulationExperiment != nullptr) {
 		filename = ""; // just to avoid not using it
 		//return _currentSimulationExperiment->save(filename);
@@ -58,7 +58,7 @@ bool ExperimentManager::saveSimulationExperiment(std::string filename) {
 
 bool ExperimentManager::loadSimulationExperiment(std::string filename) {
 	SimulationExperiment* experiment = new SimulationExperiment(); //_simulator);
-	// \todo: not implemented yet!
+	// @TODO: not implemented yet!
 	filename = ""; // jut to avoid not using it
 	bool res = false; // = experiment->load(filename);
 	if (res) {

@@ -84,7 +84,7 @@ void Write::_execute(Entity* entity) {
 		if (lastWasShown) {
 			message = message.substr(0, message.length() - 1);
 			if (message != "") {
-				if (this->_writeToType == Write::WriteToType::SCREEN) { //\todo: Write To FILE not implemented
+				if (this->_writeToType == Write::WriteToType::SCREEN) { //@TODO: Write To FILE not implemented
 					_parentModel->getTracer()->traceSimulation(Util::TraceLevel::L2_results, message);
 				} else if (this->_writeToType == Write::WriteToType::FILE) {
 					savefile << message << std::endl;
@@ -94,7 +94,7 @@ void Write::_execute(Entity* entity) {
 		}
 	}
 	if (!lastWasShown) {
-		if (this->_writeToType == Write::WriteToType::SCREEN) { //\todo: Write To FILE not implemented
+		if (this->_writeToType == Write::WriteToType::SCREEN) { //@TODO: Write To FILE not implemented
 			_parentModel->getTracer()->traceSimulation(Util::TraceLevel::L2_results, message);
 		} else if (this->_writeToType == Write::WriteToType::FILE) {
 			savefile << message << std::endl;

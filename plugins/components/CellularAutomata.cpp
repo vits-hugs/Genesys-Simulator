@@ -39,7 +39,7 @@ void CelularAutomata::_execute(Entity* entity) {
 bool CelularAutomata::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
-		// \todo: not implemented yet
+		// @TODO: not implemented yet
 	}
 	return res;
 }
@@ -49,20 +49,21 @@ void CelularAutomata::_initBetweenReplications() {
 
 std::map<std::string, std::string>* CelularAutomata::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
-	// \todo: not implemented yet
+	// @TODO: not implemented yet
 	return fields;
 }
 
 bool CelularAutomata::_check(std::string* errorMessage) {
 	bool resultAll = true;
 	*errorMessage += "";
-	// \todo: not implemented yet
+	// @TODO: not implemented yet
 	return resultAll;
 }
 
 PluginInformation* CelularAutomata::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<CelularAutomata>(), &CelularAutomata::LoadInstance);
 	info->insertDynamicLibFileDependence("entitygroup.so");
+	info->setDescriptionHelp("//@TODO");
 	return info;
 }
 

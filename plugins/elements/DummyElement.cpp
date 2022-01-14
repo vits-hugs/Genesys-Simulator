@@ -29,6 +29,7 @@ ModelElement* DummyElement::LoadInstance(Model* model, std::map<std::string, std
 
 PluginInformation* DummyElement::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<DummyElement>(), &DummyElement::LoadInstance);
+	info->setDescriptionHelp("//@TODO");
 	//info->setDescriptionHelp("");
 	//info->setObservation("");
 	//info->setMinimumOutputs();
@@ -82,7 +83,7 @@ void DummyElement::_initBetweenReplications() {
 void DummyElement::_createInternalElements() {
 	if (_reportStatistics) {
 		//if (_cstatNumberInQueue == nullptr) {
-		//	_cstatNumberInQueue = new StatisticsCollector(_parentModel, getName() + "." + "NumberInQueue", this); /* \todo: ++ WHY THIS INSERT "DISPOSE" AND "10ENTITYTYPE" STATCOLL ?? */
+		//	_cstatNumberInQueue = new StatisticsCollector(_parentModel, getName() + "." + "NumberInQueue", this); /* @TODO: ++ WHY THIS INSERT "DISPOSE" AND "10ENTITYTYPE" STATCOLL ?? */
 		//	_childrenElements->insert({"NumberInQueue", _cstatNumberInQueue});
 		//}
 	} else { //if (_cstatNumberInQueue != nullptr) {

@@ -82,6 +82,7 @@ PluginInformation* Enter::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Enter>(), &Enter::LoadInstance);
 	info->setReceiveTransfer(true);
 	info->insertDynamicLibFileDependence("station.so");
+	info->setDescriptionHelp("//@TODO");
 	return info;
 }
 

@@ -144,7 +144,7 @@ private:
 private: // only gets
 	unsigned int _numberBusy = 0;
 	//unsigned int _numberOut = 0;
-	double _lastTimeSeized = 0.0; // \todo: It won't work for resources with capacity>1, when not all capacity is seized and them some more are seized. Seized time of first units will be lost. I don't have a solution so far
+	double _lastTimeSeized = 0.0; // @TODO: It won't work for resources with capacity>1, when not all capacity is seized and them some more are seized. Seized time of first units will be lost. I don't have a solution so far
 private: // not gets nor sets
 	//unsigned int _seizes = 0;
 	//double _whenSeized; // same as last? check

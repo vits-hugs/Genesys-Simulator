@@ -49,7 +49,7 @@ public:
 
 	//private:
 public:
-	// \todo: Should be removed and replaced by GetElement(elementType, rank)
+	// @TODO: Should be removed and replaced by GetElement(elementType, rank)
 	List<ModelElement*>* getElementList(std::string elementTypename) const;
 public:
 	void show();

@@ -1720,7 +1720,7 @@ namespace yy {
 
   case 105: // pluginFunction: fRESSEIZES "(" RESOURCE ")"
 #line 526 "bisonparser.yy"
-                                         { /*\TODO: For now does nothing because needs get Seizes, check with teacher*/}
+                                         { /*@TODO: For now does nothing because needs get Seizes, check with teacher*/}
 #line 1725 "../GenesysParser.cpp"
     break;
 

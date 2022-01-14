@@ -77,9 +77,9 @@ PluginConnectorDummyImpl1::PluginConnectorDummyImpl1() {
 }
 
 Plugin* PluginConnectorDummyImpl1::check(const std::string dynamicLibraryFilename) {
-	// \todo: not implemented yet!
+	// @TODO: not implemented yet!
 	//dynamicLibraryFilename = ""; // just to use it
-	return nullptr; /**@ \todo:To implement */
+	return nullptr; /**@ @TODO:To implement */
 }
 
 Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilename) {
@@ -206,13 +206,13 @@ Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilen
 }
 
 bool PluginConnectorDummyImpl1::disconnect(const std::string dynamicLibraryFilename) {
-	// \TODO: To implement!
+	// @TODO: To implement!
 	//dynamicLibraryFilename = ""; // just to use ut
 	return true;
 }
 
 bool PluginConnectorDummyImpl1::disconnect(Plugin* plugin) {
-	// \TODO: To implement!
+	// @TODO: To implement!
 	return true;
 }
 

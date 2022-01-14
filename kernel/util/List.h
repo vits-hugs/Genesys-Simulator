@@ -60,7 +60,7 @@ public: // improved (easier) methods
 	T previous();
 	T current(); // get current element on the list (the last used)
 	void setSortFunc(CompFunct _sortFunc);
-	//public: // \TODO: Shoul in a specialized class classed ObservableList
+	//public: // @TODO: Shoul in a specialized class classed ObservableList
 	//	void addObserverHandler();
 protected:
 	//std::map<Util::identitifcation, T>* _map;
@@ -114,14 +114,14 @@ template <typename T>
 void List<T>::pop_front() {
 	typename std::list<T>::iterator itTemp = _list->begin();
 	_list->pop_front();
-	if (_it == itTemp) { /*  \todo: +: check this */
+	if (_it == itTemp) { /*  @TODO: +: check this */
 		_it = _list->begin(); // if it points to the removed element, then changes to begin
 	}
 }
 template <typename T>
 void List<T>::remove(T element) {
 	_list->remove(element);
-	if ((*_it) == element) { /*  \todo: +: check this */
+	if ((*_it) == element) { /*  @TODO: +: check this */
 		_it = _list->begin(); // if it points to the removed element, then changes to begin
 	}
 }
@@ -143,7 +143,7 @@ T List<T>::getAtRank(unsigned int rank) {
 			thisRank++;
 		}
 	}
-	return 0; /* \todo: Invalid return depends on T. If T is pointer, nullptr works fine. If T is double, it does not. I just let (*it), buut it is not nice*/
+	return 0; /* @TODO: Invalid return depends on T. If T is pointer, nullptr works fine. If T is double, it does not. I just let (*it), buut it is not nice*/
 }
 template <typename T>
 void List<T>::setAtRank(unsigned int rank, T element) {
@@ -177,7 +177,7 @@ typename std::list<T>::iterator List<T>::find(T element) {
 			return it;
 		}
 	}
-	return _list->end(); /*  \todo:+-: check nullptr or invalid iterator when not found */
+	return _list->end(); /*  @TODO:+-: check nullptr or invalid iterator when not found */
 	//return nullptr;
 }
 /*
@@ -206,18 +206,18 @@ template <typename T>
 T List<T>::last() {
 	_it = _list->end();
 	_it--;
-	//if (_it != _list->end()) // \todo: CHECK!!!
+	//if (_it != _list->end()) // @TODO: CHECK!!!
 	return (*_it);
 	//else return nullptr;
 }
 template <typename T>
 T List<T>::previous() {
-	_it--; // \todo: CHECK!!!
+	_it--; // @TODO: CHECK!!!
 	return (*_it);
 }
 template <typename T>
 T List<T>::current() {
-	/* \todo: To implement (i thing it's just to check). Must actualize _it on other methods when other elements are accessed */
+	/* @TODO: To implement (i thing it's just to check). Must actualize _it on other methods when other elements are accessed */
 	return (*_it);
 }
 template <typename T>

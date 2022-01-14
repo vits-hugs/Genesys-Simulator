@@ -51,7 +51,7 @@ void ConnectionManager::insert(Connection* connection) {
 }
 
 void ConnectionManager::insertAtRank(unsigned int rank, Connection* connection) {
-	_nextConnections->setAtRank(rank, connection); // \TODO: it does not work if there is less then rank connections. Model designer responsability?
+	_nextConnections->setAtRank(rank, connection); // @TODO: it does not work if there is less then rank connections. Model designer responsability?
 	_currentOutputConnections++;
 }
 

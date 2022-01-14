@@ -86,7 +86,7 @@ bool SequenceStep::_loadInstance(std::map<std::string, std::string>* fields, uns
 	std::string destination, expression;
 	try {
 		std::string stationName = LoadField(fields, "station" + num, "");
-		// \todo _station =
+		// @TODO _station =
 		unsigned int assignmentsSize = LoadField(fields, "assignmentSize" + num, DEFAULT.assignmentsSize);
 		for (unsigned short i = 0; i < assignmentsSize; i++) {
 			destination = LoadField(fields, "destination" + num + "_" + std::to_string(i));
@@ -124,7 +124,7 @@ bool SequenceStep::_loadInstance(std::map<std::string, std::string>* fields) {
 }
 
 std::map<std::string, std::string>* SequenceStep::_saveInstance(bool saveDefaultValues) {
-	//\TODO
+	//@TODO
 }
 
 std::list<SequenceStep::Assignment*>* SequenceStep::getAssignments() const {

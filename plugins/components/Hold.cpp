@@ -39,7 +39,7 @@ void Hold::_execute(Entity* entity) {
 bool Hold::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
-		// \todo: not implemented yet
+		// @TODO: not implemented yet
 	}
 	return res;
 }
@@ -49,13 +49,13 @@ void Hold::_initBetweenReplications() {
 
 std::map<std::string, std::string>* Hold::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
-	// \todo: not implemented yet
+	// @TODO: not implemented yet
 	return fields;
 }
 
 bool Hold::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	// \todo: not implemented yet
+	// @TODO: not implemented yet
 	*errorMessage += "";
 	return resultAll;
 }

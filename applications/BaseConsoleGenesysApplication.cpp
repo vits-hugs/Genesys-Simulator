@@ -115,7 +115,13 @@ void BaseConsoleGenesysApplication::insertFakePluginsByHand(Simulator* simulator
 	PluginManager* pm = simulator->getPlugins();
 	// TRYING SOME NEW ORGANIZATION (BASED ON ARENA 16..20)
 
-	// DISCRETE
+	// DISCRETE PROCESSING
+
+	// GROUPING
+
+	//INPUT/OUTPUT
+
+	// MATERIAL HANDLING
 
 	// CONTINUOS
 

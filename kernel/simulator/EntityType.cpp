@@ -90,7 +90,7 @@ StatisticsCollector* EntityType::addGetStatisticsCollector(std::string name) {
 	}
 	// not found. Create it, insert it into the list of cstats, into the model element manager, and then return it
 	StatisticsCollector* cstat = new StatisticsCollector(_parentModel, name, this);
-	_statisticsCollectors->insert(cstat); // \todo _statisticsCollectors list is probabily redundant to _childrenElements and unnecessary
+	_statisticsCollectors->insert(cstat); // @TODO _statisticsCollectors list is probabily redundant to _childrenElements and unnecessary
 	_childrenElements->insert({name, cstat});
 	//_parentModel->insert(cstat); // unnecessary
 	return cstat;
@@ -98,6 +98,7 @@ StatisticsCollector* EntityType::addGetStatisticsCollector(std::string name) {
 
 PluginInformation* EntityType::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<EntityType>(), &EntityType::LoadInstance);
+	info->setDescriptionHelp("//@TODO");
 	return info;
 }
 

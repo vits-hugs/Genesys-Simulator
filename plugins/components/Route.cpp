@@ -180,6 +180,14 @@ PluginInformation* Route::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Route>(), &Route::LoadInstance);
 	info->setSendTransfer(true);
 	info->insertDynamicLibFileDependence("station.so");
+	std::string help = "The Route module transfers an entity to a specified station or the next station in the station visitation sequence defined for the entity.";
+	help += " A delay time to transfer to the next station may be defined.";
+	help += " When an entity enters the Route module, its Station attribute (Entity.Station) is set to the destination station.";
+	help += " The entity is then sent to the destination station, using the route time specified.";
+	help += " If the station destination is entered as By Sequence, the next station is determined by the entity’s sequence and step within the set (defined by special-purpose attributes Entity.Sequence and Entity.Jobstep, respectively).";
+	help += " TYPICAL USES: (1) Send a part to its next processing station based on its routing slip;";
+	help += " (2) Send an account balance call to an account agent; (3) Send restaurant customers to a specific table";
+	info->setDescriptionHelp(help);
 	return info;
 }
 

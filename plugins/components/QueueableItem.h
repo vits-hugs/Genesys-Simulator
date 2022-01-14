@@ -18,7 +18,7 @@
 #include "../elements/Set.h"
 #include "../../kernel/simulator/ElementManager.h"
 
-// \todo should inhere from a common base to SeizeableItem
+// @TODO should inhere from a common base to SeizeableItem
 
 class QueueableItem {
 public:

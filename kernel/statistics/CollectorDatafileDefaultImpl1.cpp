@@ -30,7 +30,7 @@ void CollectorDatafileDefaultImpl1::clear() {
 		throw "ERROR - can't open the file ";
 	}
 	_numElements = 0;
-	_lastValaue = NULL; //\TODO: Change it to NaN or other default/null value
+	_lastValaue = NULL; //@TODO: Change it to NaN or other default/null value
 }
 
 void CollectorDatafileDefaultImpl1::addValue(double value) {
@@ -77,7 +77,7 @@ double CollectorDatafileDefaultImpl1::getValue(unsigned int num) {
 }
 
 double CollectorDatafileDefaultImpl1::getNextValue() {
-	return 0.0; // \todo:
+	return 0.0; // @TODO:
 }
 
 void CollectorDatafileDefaultImpl1::seekFirstValue() {
@@ -92,9 +92,9 @@ void CollectorDatafileDefaultImpl1::setDataFilename(std::string filename) {
 }
 
 void CollectorDatafileDefaultImpl1::setAddValueHandler(CollectorAddValueHandler addValueHandler) {
-	// \todo: just to use it
+	// @TODO: just to use it
 }
 
 void CollectorDatafileDefaultImpl1::setClearHandler(CollectorClearHandler clearHandler) {
-	// \todo: just to use it
+	// @TODO: just to use it
 }

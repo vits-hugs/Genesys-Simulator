@@ -133,11 +133,17 @@ void Delay::_createInternalElements() {
 		}
 	} else {
 		_removeChildrenElements();
-		// \todo remove StatisticsCollector needed in EntityType
+		// @TODO remove StatisticsCollector needed in EntityType
 	}
 }
 
 PluginInformation* Delay::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Delay>(), &Delay::LoadInstance);
+	std::string text = "The Delay module delays an entity by a specified amount of time.";
+	text += " When an entity arrives at a Delay module, the time delay expression is evaluated and the entity remains in the module for the resulting time.";
+	text += " The time is then allocated to the entity’s value-added, non-value added, transfer, wait, or other time.";
+	text += " Associated costs are calculated and allocated as well.";
+	text += " TYPICAL USES: (1) Processing a check at a bank; (2) Performing a setup on a machine; (3) Transferring a document to another department";
+	info->setDescriptionHelp(text);
 	return info;
 }

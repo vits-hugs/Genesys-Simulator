@@ -136,7 +136,6 @@ void MainWindow::_insertPluginUI(Plugin* plugin) {
 			if (plugin->getPluginInfo()->isComponent()) {
 				plugtextAdds += ",Component";
 				//item->setBackgroundColor(Qt::white);
-				//item->set
 				item->setIcon(QIcon(":/resources/icons/pack3/ico/component.ico"));
 			} else {
 				plugtextAdds += ",Element";
@@ -160,7 +159,7 @@ void MainWindow::_insertPluginUI(Plugin* plugin) {
 				plugtextAdds += ",SendTransfer";
 				item->setIcon(QIcon(":/resources/icons/pack3/ico/loadInv.ico"));
 			}
-			plugtextAdds += "\n" + plugin->getPluginInfo()->getObservation(); //getDescriptionHelp();
+            plugtextAdds += "\n" + plugin->getPluginInfo()->getDescriptionHelp();
 			plugtextAdds = plugtextAdds.erase(0, 1);
 			item->setToolTip(QString::fromStdString(plugtextAdds));
 			item->setStatusTip(QString::fromStdString(plugtextAdds));

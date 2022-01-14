@@ -102,7 +102,7 @@ double SamplerDefaultImpl1::sampleTriangular(double min, double mode, double max
 }
 
 double SamplerDefaultImpl1::sampleDiscrete(double acumProb, double value, ...) {
-	// \todo: to implement
+	// @TODO: to implement
 	return 0.0;
 }
 

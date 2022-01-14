@@ -54,7 +54,7 @@ bool ModelPersistenceDefaultImpl1::save(std::string filename) {
 		fields = _model->getInfos()->saveInstance();
 		modelInfosToSave = _adjustFieldsToSave(fields);
 		// save model own infos
-		// \todo save modelSimulation fields (breakpoints)
+		// @TODO save modelSimulation fields (breakpoints)
 		fields = _model->getSimulation()->saveInstance(saveDefaults);
 		simulationInfosToSave = _adjustFieldsToSave(fields);
 		// save infras
@@ -121,7 +121,7 @@ bool ModelPersistenceDefaultImpl1::save(std::string filename) {
 	}
 	Util::DecIndent();
 	this->_hasChanged = false;
-	return true; // \todo: check if save really saved successfully
+	return true; // @TODO: check if save really saved successfully
 }
 
 void ModelPersistenceDefaultImpl1::_saveContent(std::list<std::string>* content, std::ofstream* file) {
@@ -131,7 +131,7 @@ void ModelPersistenceDefaultImpl1::_saveContent(std::list<std::string>* content,
 }
 
 bool ModelPersistenceDefaultImpl1::_loadFields(std::string line) {
-	//std::regex regex{R"([=]+)"}; // split on space R"([\s]+)" \todo: HOW SEPARATOR WITH MORE THAN ONE CHAR
+	//std::regex regex{R"([=]+)"}; // split on space R"([\s]+)" @TODO: HOW SEPARATOR WITH MORE THAN ONE CHAR
 	_model->getTracer()->trace(Util::TraceLevel::L9_mostDetailed, line);
 	bool res = true;
 	// replaces every "quoted" string by {stringX}
@@ -154,7 +154,7 @@ bool ModelPersistenceDefaultImpl1::_loadFields(std::string line) {
 	//for (std::list<std::string>::iterator it = strings->begin(); it != strings->end(); it++, i++) {
 	//	std::cout << "{string" << std::to_string(i) << "}=" << (*it) << std::endl;
 	//}
-	std::regex regex{R"([\s]+)"}; // split on " " \todo Should be _lineseparator
+	std::regex regex{R"([\s]+)"}; // split on " " @TODO Should be _lineseparator
 	std::sregex_token_iterator tit{line.begin(), line.end(), regex, -1};
 	std::list<std::string> lstfields{tit,{}};
 	// for each field, separate key and value and form a map
@@ -168,7 +168,7 @@ bool ModelPersistenceDefaultImpl1::_loadFields(std::string line) {
 			tit = {(*it).begin(), (*it).end(), regex, -1};
 			veckeyval = {tit,{}};
 			veckeyval[0] = trim((veckeyval[0]));
-			if (veckeyval[0] != "") { // it should always be, rigth? \todo case for assert?
+			if (veckeyval[0] != "") { // it should always be, rigth? @TODO case for assert?
 				if (veckeyval.size() > 1) {
 					veckeyval[1] = trim((veckeyval[1]));
 					if (veckeyval[1].substr(0, 1) == "\"" && veckeyval[1].substr(veckeyval[1].length() - 1, 1) == "\"") { // remove ""
@@ -219,7 +219,7 @@ bool ModelPersistenceDefaultImpl1::_loadFields(std::string line) {
 				// this should be a ModelComponent or ModelElement.
 				ModelElement* newUselessElement = ModelElement::LoadInstance(_model, fields, false);
 				if (newUselessElement != nullptr) {
-					// \todo how free newUselessElement without invoking destructor?
+					// @TODO how free newUselessElement without invoking destructor?
 					////newUselessElement->~ModelElement(false);
 					Plugin* plugin = this->_model->getParentSimulator()->getPlugins()->find(thistypename);
 					if (plugin != nullptr) {

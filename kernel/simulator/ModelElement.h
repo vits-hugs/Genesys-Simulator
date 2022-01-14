@@ -49,7 +49,7 @@ public: // get & set
 	void setReportStatistics(bool reportStatistics);
 public: // static
 	/*! This class method receives a map of fields readed from a file (or somewhere else) creates an instace of the ModelElements and inokes the protected method _loadInstance() of that instance, whch fills the field values. The instance can be automatticaly inserted into the simulation model if required*/
-	static ModelElement* LoadInstance(Model* model, std::map<std::string, std::string>* fields, bool insertIntoModel); // \todo: return ModelComponent* ?
+	static ModelElement* LoadInstance(Model* model, std::map<std::string, std::string>* fields, bool insertIntoModel); // @TODO: return ModelComponent* ?
 	/*! This class method takes an instance of a ModelElement, invokes the protected method _saveInstance() of that instance and retorns a map of filds (name=value) that can be saved on a file (or somewhere else)*/
 	static std::map<std::string, std::string>* SaveInstance(ModelElement* element);
 	/*! This class method takes an instance of a ModelElement and invokes the private method_check() method of that instance, which checks itself */

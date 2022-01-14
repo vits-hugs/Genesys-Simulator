@@ -106,7 +106,7 @@ double Model::parseExpression(const std::string expression) {
 	try {
 		return _parser->parse(expression);
 	} catch (...) {
-		return 0.0; // \todo: HOW SAY THERE WAS AN ERROR?
+		return 0.0; // @TODO: HOW SAY THERE WAS AN ERROR?
 	}
 }
 
@@ -190,7 +190,7 @@ void Model::_showElements() const {
 }
 
 void Model::_showConnections() const {
-	// \todo
+	// @TODO
 }
 
 void Model::_showComponents() const {
@@ -224,9 +224,9 @@ void Model::clear() {
 	this->_componentManager->clear();
 	this->_elementManager->clear();
 	this->_futureEvents->clear();
-	//this->_simulation->clear();  // \todo clear method
-	//this->_modelInfo->clear(); // \todo clear method
-	//Util::ResetAllIds(); // \todo: To implement
+	//this->_simulation->clear();  // @TODO clear method
+	//this->_modelInfo->clear(); // @TODO clear method
+	//Util::ResetAllIds(); // @TODO: To implement
 }
 
 void Model::_createModelInternalElements() {
@@ -248,7 +248,7 @@ void Model::_createModelInternalElements() {
 		//try {
 		modelElements = getElements()->getElementList((*itty))->list();
 		//} catch (const std::exception& e) {
-		// \todo Is there a better solution to iterate over a changing sorted list??
+		// @TODO Is there a better solution to iterate over a changing sorted list??
 		// ops. Sorted list has changed and iteration fails. Starts iterating again
 		//	itty = elements()->elementClassnames()->begin();
 		//	modelElements = elements()->elementList((*itty))->list();

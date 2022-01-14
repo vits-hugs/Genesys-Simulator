@@ -89,7 +89,7 @@ private:
 	std::string _filename = "";
 private:
 	// not a child element
-	StatisticsCollector* _cstatExpression; /* \todo: Cretae an internal class to agregate ExpressionStatisticsColelctor, and change Record to got a list of it, so Record cn record a set of expressions into a set of files */
+	StatisticsCollector* _cstatExpression; /* @TODO: Cretae an internal class to agregate ExpressionStatisticsColelctor, and change Record to got a list of it, so Record cn record a set of expressions into a set of files */
 };
 
 #endif /* RECORD_H */

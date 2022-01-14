@@ -178,13 +178,13 @@ Resource* Seize::_getResourceFromSeizableItem(SeizableItem* seizable, Entity* en
 				index = (seizable->getLastMemberSeized() + 1) % _seizeRequests->list()->size();
 				break;
 			case SeizableItem::SelectionRule::LARGESTREMAININGCAPACITY:
-				// \todo
+				// @TODO
 				break;
 			case SeizableItem::SelectionRule::RANDOM:
 				index = std::trunc(rand() * _seizeRequests->list()->size()); // TODO: RANDOM IS REALLY A PROBLEM!! NOW IT MAY CAUSE AN ERROR (DEQUEUE AN ENTITY BECAUSE IT CAN SEIZE ALL REQUESTS, BUT ANOTHER RANDOM REQUEST MY BE SELECTED AFTER, IT IT MAY BE BUSY
 				break;
 			case SeizableItem::SelectionRule::SMALLESTNUMBERBUSY:
-				// \todo
+				// @TODO
 				break;
 			case SeizableItem::SelectionRule::SPECIFICMEMBER:
 				index = _parentModel->parseExpression(seizable->getIndex());
@@ -296,9 +296,9 @@ bool Seize::_check(std::string* errorMessage) {
 			}
 		}
 
-		// \todo: Should be checking saveAttribute, index, etc
+		// @TODO: Should be checking saveAttribute, index, etc
 	}
-	// \todo Check QueueableItem
+	// @TODO Check QueueableItem
 	if (_queueableItem->getQueueableType() == QueueableItem::QueueableType::QUEUE) {
 		resultAll &= _parentModel->getElements()->check(Util::TypeOf<Queue>(), _queueableItem->getQueue(), "Queueable Queue", errorMessage);
 	} else if (_queueableItem->getQueueableType() == QueueableItem::QueueableType::SET) {
@@ -316,6 +316,14 @@ PluginInformation* Seize::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Seize>(), &Seize::LoadInstance);
 	info->insertDynamicLibFileDependence("queue.so");
 	info->insertDynamicLibFileDependence("resource.so");
+	std::string help = "The Seize module allocates units of one or more resources to an entity.";
+	help += " The Seize module may be used to seize units of a resource, a member of a resource set, or a resource as defined by an alternative method, such as an attribute or expression.";
+	help += " When an entity enters this module, it waits in a queue (if specified) until all specified resources are available simultaneously.";
+	help += " Allocation type for resource usage is also specified.";
+	help += " An animated queue is displayed above the module when the module is placed.";
+    help += " TYPICAL USES: (1) Beginning a customer order (seize the operator); (2) Starting a tax return (seize the accountant);";
+	help += " (3) Being admitted to hospital (seize the hospital room, nurse, doctor)";
+	info->setDescriptionHelp(help);
 	return info;
 }
 

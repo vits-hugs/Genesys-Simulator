@@ -93,7 +93,7 @@ private:
 	void _createModelInternalElements();
 private:
 	bool _hasChanged = false;
-	bool _isChecked = false; // \todo: Not implemented yet. First, _hasChanged should be trustful
+	bool _isChecked = false; // @TODO: Not implemented yet. First, _hasChanged should be trustful
 private: // read only public access (gets)
 	Util::identification _id;
 	Simulator* _parentSimulator; /*! The parente of the model */

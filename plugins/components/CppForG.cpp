@@ -47,7 +47,7 @@ void CppForG::_execute(Entity* entity) {
 bool CppForG::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
-		// \todo: not implemented yet
+		// @TODO: not implemented yet
 	}
 	return res;
 }
@@ -57,7 +57,7 @@ void CppForG::_initBetweenReplications() {
 
 std::map<std::string, std::string>* CppForG::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
-	// \todo: not implemented yet
+	// @TODO: not implemented yet
 	return fields;
 }
 
@@ -92,6 +92,7 @@ void CppForG::_createInternalElements() {
 PluginInformation* CppForG::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<CppForG>(), &CppForG::LoadInstance);
 	info->insertDynamicLibFileDependence("cppcode.so");
+	info->setDescriptionHelp("//@TODO");
 	return info;
 }
 

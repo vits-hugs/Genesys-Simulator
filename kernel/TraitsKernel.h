@@ -68,7 +68,7 @@ template <> struct TraitsKernel<Model> {
 };
 
 template <> struct TraitsKernel<ModelComponent> {
-	static constexpr bool automaticallyCreateRequiredModelElements = true; //\TODO: Need to be supported by every component
+	static constexpr bool automaticallyCreateRequiredModelElements = true; //@TODO: Need to be supported by every component
 	static constexpr bool reportStatistics = true;
 	static const Util::TraceLevel traceLevel = Util::TraceLevel::L2_results;
 };

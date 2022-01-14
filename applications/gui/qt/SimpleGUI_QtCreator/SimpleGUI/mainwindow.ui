@@ -180,7 +180,7 @@
    <property name="minimumSize">
     <size>
      <width>100</width>
-     <height>100</height>
+     <height>109</height>
     </size>
    </property>
    <property name="baseSize">
@@ -248,7 +248,7 @@
     <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
    </property>
    <property name="allowedAreas">
-    <set>Qt::BottomDockWidgetArea|Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
+    <set>Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
    </property>
    <property name="windowTitle">
     <string>Plugins</string>

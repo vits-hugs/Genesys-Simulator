@@ -16,9 +16,9 @@
 //using namespace GenesysKernel;
 
 PluginInformation::PluginInformation(std::string pluginTypename, StaticLoaderComponentInstance componentloader) {
-	this->_componentloader = componentloader; //// \todo:
-	this->_elementloader = nullptr; /// \todo:
-	this->_isComponent = true; //// \todo:
+	this->_componentloader = componentloader; //// @TODO:
+	this->_elementloader = nullptr; /// @TODO:
+	this->_isComponent = true; //// @TODO:
 	this->_pluginTypename = pluginTypename;
 }
 

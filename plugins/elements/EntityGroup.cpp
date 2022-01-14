@@ -57,6 +57,7 @@ Entity* EntityGroup::first() {
 
 PluginInformation* EntityGroup::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<EntityGroup>(), &EntityGroup::LoadInstance);
+	info->setDescriptionHelp("//@TODO");
 	return info;
 }
 

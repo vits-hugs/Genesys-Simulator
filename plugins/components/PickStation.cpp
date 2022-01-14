@@ -40,7 +40,7 @@ void PickStation::_execute(Entity* entity) {
 bool PickStation::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
-		// \todo: not implemented yet
+		// @TODO: not implemented yet
 	}
 	return res;
 }
@@ -50,13 +50,13 @@ void PickStation::_initBetweenReplications() {
 
 std::map<std::string, std::string>* PickStation::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
-	// \todo: not implemented yet
+	// @TODO: not implemented yet
 	return fields;
 }
 
 bool PickStation::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	// \todo: not implemented yet
+	// @TODO: not implemented yet
 	*errorMessage += "";
 	return resultAll;
 }
@@ -64,6 +64,15 @@ bool PickStation::_check(std::string* errorMessage) {
 PluginInformation* PickStation::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<PickStation>(), &PickStation::LoadInstance);
 	info->insertDynamicLibFileDependence("station.so");
+	std::string text = "The PickStation module allows an entity to select a station from the multiple stations specified.";
+	text += " This module picks among the group of stations based on the selection logic defined with the module.";
+	text += " The entity may then route, transport, convey, or connect to the station specified.";
+	text += " If the method chosen is connect, the selected station is assigned to an entity attribute.";
+	text += " The station selection process is based on the minimum or maximum value of a variety of system variables and expressions.";
+	text += " TYPICAL USES: (1) A part sent to a processing station based on machine’s availability at each station;";
+	text += " (2) A loan application sent to a set of loan officers based on the number sent to each officer;";
+	text += " (3) A customer selecting among cashier lines based on the least number waiting in each line";
+	info->setDescriptionHelp(text);
 	return info;
 }
 

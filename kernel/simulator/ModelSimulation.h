@@ -113,14 +113,14 @@ private:
 	void _traceReplicationEnded(); ///<
 private:
 	SimulationEvent* _createSimulationEvent(void* thiscustomObject = nullptr); ///<
-	//friend Entity* Model::createEntity(std::string name, bool insertIntoModel); //\TODO: make it work (only friend functions, not the entire class)
+	//friend Entity* Model::createEntity(std::string name, bool insertIntoModel); //@TODO: make it work (only friend functions, not the entire class)
 	//friend void Model::removeEntity(Entity* entity);
 	//friend void Model::sendEntityToComponent(Entity* entity, ModelComponent* component, double timeDelay, unsigned int componentInputNumber);
 	friend class Model;
 private:
 	double _simulatedTime = 0.0;
-	// \todo: list of double double _breakOnTimes;
-	// \todo: list of modules _breakOnModules;
+	// @TODO: list of double double _breakOnTimes;
+	// @TODO: list of modules _breakOnModules;
 	bool _stepByStep = false;
 	bool _pauseOnReplication = false;
 	bool _pauseOnEvent = false;

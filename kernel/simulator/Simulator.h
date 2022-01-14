@@ -49,7 +49,7 @@ public: // only get
 	ExperimentManager* getExperimenter() const;
 private:
 	bool _completePluginsFieldsAndTemplate();
-	friend class PluginManager; //\TODO: should be only member function PluginManager::completePluginsFieldsAndTemplate()
+	friend class PluginManager; //@TODO: should be only member function PluginManager::completePluginsFieldsAndTemplate()
 private: // attributes 1:1 objects
 	LicenceManager* _licenceManager;
 	PluginManager* _pluginManager;

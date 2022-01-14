@@ -1,17 +1,17 @@
-0   SimulatorInfo "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=210420 
-0   ModelInfo  "Model 1" 
-0   ModelSimulation "fixed experiment name in ModelSimulation" replicationLength=20.000000 
-11  Station    "Station_3" 
-2   EntityType "EntityType_1" 
-3   Station    "Station_1" 
-7   Station    "Station_2" 
-1   Create     "Create_1" EntityType="EntityType_1" timeBetweenCreations="4.0" nextId=4 
-10  Delay      "Delay_2" nextId=12 
-12  Route      "Route_3" routeTimeExpression="0.3" station="Station_3" nextSize=0 
-13  Enter      "Enter_3" station="Station_3" nextId=14 
-14  Dispose    "Dispose_1" nextSize=0 
-4   Route      "Route_1" routeTimeExpression="0.1" station="Station_1" nextSize=0 
-5   Enter      "Enter_1" station="Station_1" nextId=6 
-6   Delay      "Delay_1" nextId=8 
-8   Route      "Route_2" routeTimeExpression="0.2" station="Station_2" nextSize=0 
-9   Enter      "Enter_2" station="Station_2" nextId=10 
+0   SimulatorInfo "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220111 
+0   ModelInfo  "Model 2" analystName="" description="" projectTitle="" version="1.0" 
+0   ModelSimulation "ModelSimulation" replicationLength=20.000000 traceLevel=9 
+54  EntityType "EntityType_2" 
+55  Station    "Station_2" 
+59  Station    "Station_3" 
+63  Station    "Station_4" 
+53  Create     "Create_2" EntityType="EntityType_2" timeBetweenCreations="4.0" nextId=56 
+56  Route      "Route_2" routeTimeExpression="0.1" station="Station_2" nextSize=0 
+57  Enter      "Enter_2" station="Station_2" nextId=58 
+58  Delay      "Delay_2" nextId=60 
+60  Route      "Route_3" routeTimeExpression="0.2" station="Station_3" nextSize=0 
+61  Enter      "Enter_3" station="Station_3" nextId=62 
+62  Delay      "Delay_3" nextId=64 
+64  Route      "Route_4" routeTimeExpression="0.3" station="Station_4" nextSize=0 
+65  Enter      "Enter_4" station="Station_4" nextId=66 
+66  Dispose    "Dispose_2" nextSize=0 

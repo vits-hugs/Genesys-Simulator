@@ -189,7 +189,7 @@ private:
 	static std::map<std::string, std::string> _S_TypeOf;
 
 public: // indentation and string
-	static unsigned int _S_indentation; // \todo: IT IS PRIVATE. ITS HERE JUST TO INCLUDE IT AS A WATCH
+	static unsigned int _S_indentation; // @TODO: IT IS PRIVATE. ITS HERE JUST TO INCLUDE IT AS A WATCH
 	static void SetIndent(const unsigned short indent);
 	static void IncIndent();
 	static void DecIndent();
@@ -248,7 +248,7 @@ private:
 };
 
 
-// \todo Implement it using templates (check impact on calling syntax)
+// @TODO Implement it using templates (check impact on calling syntax)
 static inline std::string LoadField(std::map<std::string, std::string>* fields, std::string fieldName, std::string defaultValue = "") {
 	return fields->find(fieldName) != fields->end() ? ((*(fields->find(fieldName))).second) : defaultValue;
 }
@@ -265,7 +265,7 @@ static inline Util::TimeUnit LoadField(std::map<std::string, std::string>* field
 	return static_cast<Util::TimeUnit> (std::stoi(fields->find(fieldName) != fields->end() ? ((*(fields->find(fieldName))).second) : std::to_string(static_cast<int> (defaultValue))));
 }
 
-// \todo Implement it using templates (check impact on calling syntax)
+// @TODO Implement it using templates (check impact on calling syntax)
 static inline void SaveField(std::map<std::string, std::string>* fields, std::string fieldName, std::string fieldValue, const std::string fieldDefaultValue, const bool saveDefaultValue = false) {
 	if (saveDefaultValue || (fieldValue != fieldDefaultValue))
 		fields->emplace(fieldName, "\"" + fieldValue + "\"");

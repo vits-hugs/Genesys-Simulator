@@ -51,6 +51,7 @@ ModelElement* Counter::getParent() const {
 PluginInformation* Counter::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Counter>(), &Counter::LoadInstance);
 	info->setGenerateReport(true);
+	info->setDescriptionHelp("The Counter element is used to count events, and its internal count value is added by a configurable amount, usually incremented by one.");
 	return info;
 }
 

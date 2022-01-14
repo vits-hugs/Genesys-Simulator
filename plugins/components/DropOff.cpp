@@ -39,7 +39,7 @@ void DropOff::_execute(Entity* entity) {
 bool DropOff::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
-		// \todo: not implemented yet
+		// @TODO: not implemented yet
 	}
 	return res;
 }
@@ -49,20 +49,20 @@ void DropOff::_initBetweenReplications() {
 
 std::map<std::string, std::string>* DropOff::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
-	// \todo: not implemented yet
+	// @TODO: not implemented yet
 	return fields;
 }
 
 bool DropOff::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	// \todo: not implemented yet
+	// @TODO: not implemented yet
 	*errorMessage += "";
 	return resultAll;
 }
 
 PluginInformation* DropOff::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<DropOff>(), &DropOff::LoadInstance);
-	// ...
+	info->setDescriptionHelp("//@TODO");
 	return info;
 }
 

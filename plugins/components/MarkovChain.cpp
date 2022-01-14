@@ -109,7 +109,7 @@ void MarkovChain::_execute(Entity* entity) {
 bool MarkovChain::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
-		// \todo: not implemented yet
+		// @TODO: not implemented yet
 	}
 	return res;
 }
@@ -120,13 +120,13 @@ void MarkovChain::_initBetweenReplications() {
 
 std::map<std::string, std::string>* MarkovChain::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
-	// \todo: not implemented yet
+	// @TODO: not implemented yet
 	return fields;
 }
 
 bool MarkovChain::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	// \todo: not implemented yet
+	// @TODO: not implemented yet
 	*errorMessage += "";
 	return resultAll;
 }
