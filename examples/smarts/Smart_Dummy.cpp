@@ -39,12 +39,6 @@ int Smart_Dummy::main(int argc, char** argv) {
 	this->insertFakePluginsByHand(genesys);
 	// Handle traces and simulation events to output them
 	this->setDefaultTraceHandlers(genesys->getTracer());
-	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L6_arrival);
-
-	genesys->getModels()->loadModel("./models/Smart_ProcessComplete.gen");
-	genesys->getModels()->current()->getSimulation()->start();
-	return 0;
-
 	Model* model = genesys->getModels()->newModel();
 	model->getSimulation()->setReplicationLength(60);
 	// create a (Source)ModelElement of type EntityType, used by a ModelComponent that follows
@@ -62,7 +56,7 @@ int Smart_Dummy::main(int argc, char** argv) {
 	create1->getConnections()->insert(delay1);
 	delay1->getConnections()->insert(dispose1);
 	// save the model into a text file
-	model->save("./models/Smart_CreateDelayDispose.gen");
+	model->save("./models/Smart_Dummy.gen");
 	// execute the simulation util completed and show the report
 	model->getSimulation()->start();
 	genesys->~Simulator();
