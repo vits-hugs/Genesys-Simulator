@@ -110,10 +110,11 @@ void ModelSimulation::start() {
 			_initReplication();
 			Util::IncIndent();
 		}
-		do { // this is the main simulation loop
+		replicationEnded = _isReplicationEndCondition();
+		while (!replicationEnded && !_pauseRequested) { // this is the main simulation loop
 			_stepSimulation();
 			replicationEnded = _isReplicationEndCondition();
-		} while (!replicationEnded && !_pauseRequested);
+		};
 		if (replicationEnded) {
 			Util::SetIndent(1); // force
 			_replicationEnded();
@@ -253,7 +254,9 @@ void ModelSimulation::_showSimulationHeader() {
 		responses += (*it)->getName() + "(" + (*it)->getType() + "), ";
 	}
 	responses = responses.substr(0, responses.length() - 2);
-	tm->traceReport("> Simulation responses: " + responses);
+	if (TraitsKernel<SimulationReporter_if>::showSimulationResponses) {
+		tm->traceReport("> Simulation responses: " + responses);
+	}
 	tm->traceReport("");
 }
 
@@ -303,7 +306,7 @@ void ModelSimulation::_initSimulation() {
 void ModelSimulation::_initReplication() {
 	_startRealSimulationTimeReplication = std::chrono::system_clock::now();
 	TraceManager* tm = _model->getTracer();
-	tm->traceSimulation(Util::TraceLevel::L5_event, "");
+	tm->traceSimulation(Util::TraceLevel::L5_event, ""); //@TODO L5 and L2??
 	tm->traceSimulation(Util::TraceLevel::L2_results, "Replication " + std::to_string(_currentReplicationNumber) + " of " + std::to_string(_numberOfReplications) + " is starting.");
 	_model->getFutureEvents()->clear();
 	_model->getElements()->getElementList("Entity")->clear();

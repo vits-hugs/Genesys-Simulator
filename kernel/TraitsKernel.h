@@ -22,6 +22,7 @@
 #include "simulator/ModelCheckerDefaultImpl1.h"
 #include "simulator/PluginConnectorDummyImpl1.h"
 #include "simulator/ParserDefaultImpl2.h"
+#include "simulator/SimulationReporter_if.h"
 
 #include "statistics/CollectorDatafileDefaultImpl1.h"
 #include "statistics/CollectorDefaultImpl1.h"
@@ -45,6 +46,7 @@ struct TraitsKernel {
 template <> struct TraitsKernel<SimulationReporter_if> {
 	typedef SimulationReporterDefaultImpl1 Implementation;
 	typedef Counter CounterImplementation;
+	static constexpr bool showSimulationResponses = false;
 	static const Util::TraceLevel traceLevel = Util::TraceLevel::L2_results;
 };
 

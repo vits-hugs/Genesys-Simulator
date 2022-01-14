@@ -38,11 +38,7 @@ int Smart_HoldSignal::main(int argc, char** argv) {
 	this->insertFakePluginsByHand(genesys);
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
-	//
 	Model* model = genesys->getModels()->newModel();
-
-	//
-	model->getSimulation()->setReplicationLength(20);
 	model->save("./models/Smart_HoldSignal.gen");
 	do {
 		model->getSimulation()->step();

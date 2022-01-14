@@ -65,8 +65,8 @@ template <> struct Traits<GenesysApplication_if> {
 	//// SMART SMART_S SORTED
 	//typedef Smart_AssignWriteSeizes Application;
 	//typedef Smart_Delay Applicatodatafilion;
-	typedef Smart_Dummy Application;
-	////	typedef Smart_HoldSignal Application;
+	//typedef Smart_Dummy Application;
+	//typedef Smart_HoldSignal Application;
 	//typedef Smart_ModelInfoModelSimulation Application;
 	//typedef Smart_ODE Application;
 	//typedef Smart_OnEvent Application;
@@ -76,20 +76,20 @@ template <> struct Traits<GenesysApplication_if> {
 	//typedef Smart_Process Application;
 	//typedef Smart_ProcessSet Application;
 	//typedef Smart_RouteStation Application;
-	////	typedef Smart_SeizeDelayRelease Application;
+	//typedef Smart_SeizeDelayRelease Application;
 	//typedef Smart_SeizeDelayReleaseMany Application;
 	//typedef Smart_Sequence Application;
 	//typedef Smart_CppForG Application;
 
 	//// TEACHING
 	//typedef AnElectronicAssemblyAndTestSystem Application;
-	////	typedef OperatingSystem02 Application;
+	//typedef OperatingSystem02 Application;
 	////	typedef OperatingSystem03 Application;
 
 	//// APPLICATIONS
 	//typedef GenesysTerminalApp Application;
 	//typedef GenesysQtGUIFull Application;
-	//typedef SimpleQtGUI Application;
+	typedef SimpleQtGUI Application;
 };
 
 /*!
