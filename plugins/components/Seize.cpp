@@ -25,7 +25,7 @@ std::string Seize::show() {
 			"priority=" + std::to_string(_priority) +
 			"seizeRequests={";
 	unsigned short i = 0;
-	for (SeizableItemRequest* item : *_seizeRequests->list()) {
+	for (SeizableItem* item : *_seizeRequests->list()) {
 		txt += "request" + std::to_string(i++) + "=[" + item->show() + "],";
 	}
 	txt = txt.substr(0, txt.length() - 1) + "}";
@@ -50,12 +50,12 @@ unsigned int Seize::getAllocationType() const {
 
 /*
 void Seize::setQueueName(std::string queueName) throw () {
-	Queue* queue = dynamic_cast<Queue*> (_parentModel->getElements()->getElement(Util::TypeOf<Queue>(), queueName));
-	if (queue != nullptr) {
-		_queue = queue;
-	} else {
-		throw std::invalid_argument("Queue does not exist");
-	}
+		Queue* queue = dynamic_cast<Queue*> (_parentModel->getElements()->getElement(Util::TypeOf<Queue>(), queueName));
+		if (queue != nullptr) {
+				_queue = queue;
+		} else {
+				throw std::invalid_argument("Queue does not exist");
+		}
 }
 
 //void Seize::setResourceName(std::string resourceName) throw () {
@@ -72,11 +72,12 @@ void Seize::setQueueName(std::string queueName) throw () {
 //}
 
 std::string Seize::getQueueName() const {
-	return _queue->getName();
+		return _queue->getName();
 }
 
 //void Seize::setResource(Resource* resource) {
 //	this->_resource = resource;
+ * TODO: move the handler to the list of SeizableItens
 //	_resource->addReleaseResourceEventHandler(Resource::SetResourceEventHandler<Seize>(&Seize:://_handlerForResourceEvent, this));
 //}
 
@@ -85,20 +86,20 @@ std::string Seize::getQueueName() const {
 //}
 
 void Seize::setQueue(Queue* queue) {
-	this->_queue = queue;
+		this->_queue = queue;
 }
 
 Queue* Seize::getQueue() const {
-	return _queue;
+		return _queue;
 }
  */
 
 void Seize::setQueue(Queue* queue) {
-	setQueueableItem(new QueueableItemRequest(queue));
+	setQueueableItem(new QueueableItem(queue));
 }
 
 Queue* Seize::_getQueue() const {
-	if (_queueableItem->getQueueableType() == QueueableItemRequest::QueueableType::QUEUE) {
+	if (_queueableItem->getQueueableType() == QueueableItem::QueueableType::QUEUE) {
 		return _queueableItem->getQueue();
 	} else {
 		//assume it is a SET
@@ -107,78 +108,111 @@ Queue* Seize::_getQueue() const {
 	}
 }
 
-void Seize::_handlerForResourceEvent(Resource* resource) {
+void Seize::_handlerForResourceEvent(Resource* resource) { //TODO Resource is useless now
 	Queue* queue = _getQueue();
 	Waiting* first = queue->first();
 	if (first != nullptr) { // there are entities waiting in the queue
-		// find quantity requested for such resource
-		for (SeizableItemRequest* request : *_seizeRequests->list()) {
-			if (request->getResource() == resource) {
-				unsigned int quantity = _parentModel->parseExpression(request->getQuantityExpression());
-				if ((resource->getCapacity() - resource->getNumberBusy()) >= quantity) { //enought quantity to seize
-					double tnow = _parentModel->getSimulation()->getSimulatedTime();
-					resource->seize(quantity, tnow);
-					_parentModel->getFutureEvents()->insert(new Event(tnow, first->getEntity(), this->getNextComponents()->getFrontConnection()));
-					queue->removeElement(first);
-					_parentModel->getTracer()->traceSimulation(tnow, first->getEntity(), this, "Waiting entity " + std::to_string(first->getEntity()->entityNumber()) + " now seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\"");
-				}
+		// check if all Seize requests can be seized by the entity in the queue
+		bool canSeizeAll = true;
+		unsigned int quantityRequested, quantityAvailable;
+		for (SeizableItem* seizable : *_seizeRequests->list()) {
+			Resource* resource = _getResourceFromSeizableItem(seizable, first->getEntity());
+			quantityRequested = _parentModel->parseExpression(seizable->getQuantityExpression());
+			quantityAvailable = resource->getCapacity() - resource->getNumberBusy();
+			if (quantityAvailable < quantityRequested) {
+				canSeizeAll = false;
+				break;
 			}
 		}
+		if (canSeizeAll) {
+			queue->removeElement(first);
+			//_parentModel->getTracer()->traceSimulation(tnow, first->getEntity(), this, "Waiting entity " + first->getEntity()->getName() + " removed from queue and will try to seize the resources");// now seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\"");
+			_parentModel->getTracer()->trace("Waiting entity " + first->getEntity()->getName() + " removed from queue and will try to seize the resources"); // now seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\"");
+			_parentModel->sendEntityToComponent(first->getEntity(), this); // move waiting entity from queue to this component
+		}
+		/*
+		if (request->getResource() == resource) { 
+			unsigned int quantity = _parentModel->parseExpression(request->getQuantityExpression());
+			if ((resource->getCapacity() - resource->getNumberBusy()) >= quantity) { //enought quantity to seize
+				double tnow = _parentModel->getSimulation()->getSimulatedTime();
+				resource->seize(quantity, tnow);
+				_parentModel->getFutureEvents()->insert(new Event(tnow, first->getEntity(), this->getNextComponents()->getFrontConnection()));
+				queue->removeElement(first);
+				_parentModel->getTracer()->traceSimulation(tnow, first->getEntity(), this, "Waiting entity " + first->getEntity()->getName() + " removed from queue and now seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\"");
+			}
+		} 
+		 */
 	}
 }
 
-List<SeizableItemRequest*>* Seize::getSeizeRequests() const {
+List<SeizableItem*>* Seize::getSeizeRequests() const {
 	return _seizeRequests;
 }
 
-void Seize::setQueueableItem(QueueableItemRequest* _queueableItem) {
+void Seize::setQueueableItem(QueueableItem* _queueableItem) {
 	this->_queueableItem = _queueableItem;
 }
 
-QueueableItemRequest* Seize::getQueueableItem() const {
+QueueableItem* Seize::getQueueableItem() const {
 	return _queueableItem;
 }
 
-void Seize::_execute(Entity* entity) {
-	for (SeizableItemRequest* seizable : *_seizeRequests->list()) {
-		Resource* resource;
-		if (seizable->getSeizableType() == SeizableItemRequest::SeizableType::RESOURCE) {
-			resource = seizable->getResource();
-		} else { // assume SET
-			SeizableItemRequest::SelectionRule rule = seizable->getSelectionRule();
-			Set* set = seizable->getSet();
-			unsigned int index = 0;
-			switch (rule) {
-				case SeizableItemRequest::SelectionRule::CYCLICAL:
-					index = (seizable->getLastMemberSeized() + 1) % _seizeRequests->list()->size();
-					break;
-				case SeizableItemRequest::SelectionRule::LARGESTREMAININGCAPACITY:
-					// \todo
-					break;
-				case SeizableItemRequest::SelectionRule::RANDOM:
-					index = std::trunc(rand() * _seizeRequests->list()->size());
-					break;
-				case SeizableItemRequest::SelectionRule::SMALLESTNUMBERBUSY:
-					// \todo
-					break;
-				case SeizableItemRequest::SelectionRule::SPECIFICMEMBER:
-					index = _parentModel->parseExpression(seizable->getIndex());
-					break;
-			}
-			_parentModel->getTracer()->trace("Member of set " + set->getName() + " chosen index " + std::to_string(index), Util::TraceLevel::L8_detailed);
-			resource = static_cast<Resource*> (set->getElementSet()->getAtRank(index));
-			assert(resource != nullptr);
+void Seize::setSaveAttribute(std::string _saveAttribute) {
+	this->_saveAttribute = _saveAttribute;
+}
+
+std::string Seize::getSaveAttribute() const {
+	return _saveAttribute;
+}
+
+Resource* Seize::_getResourceFromSeizableItem(SeizableItem* seizable, Entity* entity) {
+	Resource* resource;
+	if (seizable->getSeizableType() == SeizableItem::SeizableType::RESOURCE) {
+		resource = seizable->getResource();
+	} else { // assume SET
+		SeizableItem::SelectionRule rule = seizable->getSelectionRule();
+		Set* set = seizable->getSet();
+		unsigned int index = 0;
+		switch (rule) {
+			case SeizableItem::SelectionRule::CYCLICAL:
+				index = (seizable->getLastMemberSeized() + 1) % _seizeRequests->list()->size();
+				break;
+			case SeizableItem::SelectionRule::LARGESTREMAININGCAPACITY:
+				// @TODO
+				break;
+			case SeizableItem::SelectionRule::RANDOM:
+				index = std::trunc(rand() * _seizeRequests->list()->size()); // TODO: RANDOM IS REALLY A PROBLEM!! NOW IT MAY CAUSE AN ERROR (DEQUEUE AN ENTITY BECAUSE IT CAN SEIZE ALL REQUESTS, BUT ANOTHER RANDOM REQUEST MY BE SELECTED AFTER, IT IT MAY BE BUSY
+				break;
+			case SeizableItem::SelectionRule::SMALLESTNUMBERBUSY:
+				// @TODO
+				break;
+			case SeizableItem::SelectionRule::SPECIFICMEMBER:
+				index = _parentModel->parseExpression(seizable->getIndex());
+				break;
 		}
+		if (_saveAttribute != "") {
+			entity->setAttributeValue(_saveAttribute, index);
+		}
+		_parentModel->getTracer()->trace("Member of set " + set->getName() + " chosen index " + std::to_string(index), Util::TraceLevel::L8_detailed);
+		resource = static_cast<Resource*> (set->getElementSet()->getAtRank(index));
+		assert(resource != nullptr);
+	}
+	return resource;
+}
+
+void Seize::_execute(Entity* entity) {
+	for (SeizableItem* seizable : *_seizeRequests->list()) {
+		Resource* resource = _getResourceFromSeizableItem(seizable, entity);
 		unsigned int quantity = _parentModel->parseExpression(seizable->getQuantityExpression());
 		if (resource->getCapacity() - resource->getNumberBusy() < quantity) { // not enought free quantity to allocate. Entity goes to the queue
 			WaitingResource* waitingRec = new WaitingResource(entity, _parentModel->getSimulation()->getSimulatedTime(), quantity, this);
 			Queue* queue;
-			if (_queueableItem->getQueueableType() == QueueableItemRequest::QueueableType::QUEUE) {
+			if (_queueableItem->getQueueableType() == QueueableItem::QueueableType::QUEUE) {
 				queue = _queueableItem->getQueue();
 			} else { // assume SET
 				Set* set = _queueableItem->getSet();
 				unsigned int index = _parentModel->parseExpression(_queueableItem->getIndex());
-				_parentModel->getTracer()->trace("Member of set " + set->getName() + " chosen index " + std::to_string(index), Util::TraceLevel::L8_detailed);
+				_parentModel->getTracer()->traceSimulation("Member of set " + set->getName() + " chosen index " + std::to_string(index), Util::TraceLevel::L8_detailed);
 				queue = static_cast<Queue*> (set->getElementSet()->getAtRank(index));
 			}
 			queue->insertElement(waitingRec); // ->list()->insert(waitingRec);
@@ -186,15 +220,15 @@ void Seize::_execute(Entity* entity) {
 			return;
 		} else { // alocate the resource
 			resource->seize(quantity, _parentModel->getSimulation()->getSimulatedTime());
-			_parentModel->getTracer()->traceSimulation(_parentModel->getSimulation()->getSimulatedTime(), entity, this, "Entity seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\" (capacity:" + std::to_string(resource->getCapacity()) + ", numberbusy:" + std::to_string(resource->getNumberBusy()) + ")");
+			_parentModel->getTracer()->traceSimulation(_parentModel->getSimulation()->getSimulatedTime(), entity, this, entity->getName() + " seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\" (capacity:" + std::to_string(resource->getCapacity()) + ", numberbusy:" + std::to_string(resource->getNumberBusy()) + ")");
 		}
 	}
-	_parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection(), 0.0);
+	_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
 void Seize::_initBetweenReplications() {
 	//ModelElement::InitBetweenReplications(_queueableItem->getQueueable());
-	//for (std::list<SeizableItemRequest*>::iterator it = _seizeRequests->list()->begin(); it != _seizeRequests->list()->end(); it++) {
+	//for (std::list<SeizableItem*>::iterator it = _seizeRequests->list()->begin(); it != _seizeRequests->list()->end(); it++) {
 	//	(*it)->setLastMemberSeized(0);
 	//	ModelElement::InitBetweenReplications((*it)->getSeizable());
 	//}
@@ -205,37 +239,41 @@ bool Seize::_loadInstance(std::map<std::string, std::string>* fields) {
 	if (res) {
 		this->_allocationType = LoadField(fields, "allocationType", DEFAULT.allocationType);
 		this->_priority = LoadField(fields, "priority", DEFAULT.priority);
+		this->_saveAttribute = LoadField(fields, "saveAttribute", DEFAULT.saveAttribute);
 		//std::string queueName = LoadField(fields, "queue", "");
 		//Queue* queue = dynamic_cast<Queue*> (_parentModel->getElements()->getElement(Util::TypeOf<Queue>(), queueName));
 		//this->_queue = queue;
 		//QueueableItem
-        //QueueableItemRequest*
-        _queueableItem = new QueueableItemRequest(nullptr);
-        _queueableItem->setElementManager(_parentModel->getElements());
-        _queueableItem->loadInstance(fields);
-        unsigned short numRequests = LoadField(fields, "resquestSize", DEFAULT.seizeRequestSize);
+		//QueueableItem*
+		_queueableItem = new QueueableItem(nullptr);
+		_queueableItem->setElementManager(_parentModel->getElements());
+		_queueableItem->loadInstance(fields);
+		unsigned short numRequests = LoadField(fields, "resquestSize", DEFAULT.seizeRequestSize);
 		for (unsigned short i = 0; i < numRequests; i++) {
-			SeizableItemRequest* itemRequest = new SeizableItemRequest(nullptr);
-            itemRequest->setElementManager(_parentModel->getElements());
-            itemRequest->loadInstance(fields, i);
+			SeizableItem* Item = new SeizableItem(nullptr);
+			Item->setElementManager(_parentModel->getElements());
+			Item->loadInstance(fields, i);
 		}
 
 	}
 	return res;
 }
 
-std::map<std::string, std::string>* Seize::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(); //Util::TypeOf<Seize>());
-	SaveField(fields, "allocationType", _allocationType, DEFAULT.allocationType);
-	SaveField(fields, "priority=", _priority, DEFAULT.priority);
+std::map<std::string, std::string>* Seize::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues); //Util::TypeOf<Seize>());
+	SaveField(fields, "allocationType", _allocationType, DEFAULT.allocationType, saveDefaultValues);
+	SaveField(fields, "priority=", _priority, DEFAULT.priority, saveDefaultValues);
+	SaveField(fields, "saveAttribute=", _saveAttribute, DEFAULT.saveAttribute, saveDefaultValues);
 	//SaveField(fields, "queueId", _queue->getId());
 	//SaveField(fields, "queue", _queue->getName());
-	std::map<std::string, std::string>* queueablefields = _queueableItem->saveInstance();
-	fields->insert(queueablefields->begin(), queueablefields->end());
-	SaveField(fields, "resquestSize", _seizeRequests->size(), DEFAULT.seizeRequestSize);
+	if (_queueableItem != nullptr) {
+		std::map<std::string, std::string>* queueablefields = _queueableItem->saveInstance(saveDefaultValues);
+		fields->insert(queueablefields->begin(), queueablefields->end());
+	}
+	SaveField(fields, "resquestSize", _seizeRequests->size(), DEFAULT.seizeRequestSize, saveDefaultValues);
 	unsigned short i = 0;
-	for (SeizableItemRequest* request : *_seizeRequests->list()) {
-		std::map<std::string, std::string>* seizablefields = request->saveInstance(i);
+	for (SeizableItem* request : *_seizeRequests->list()) {
+		std::map<std::string, std::string>* seizablefields = request->saveInstance(i, saveDefaultValues);
 		fields->insert(seizablefields->begin(), seizablefields->end());
 		i++;
 	}
@@ -244,20 +282,31 @@ std::map<std::string, std::string>* Seize::_saveInstance() {
 
 bool Seize::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	for (SeizableItemRequest* seizable : *_seizeRequests->list()) {
+	for (SeizableItem* seizable : *_seizeRequests->list()) {
 		resultAll &= _parentModel->checkExpression(seizable->getQuantityExpression(), "quantity", errorMessage);
-		if (seizable->getSeizableType() == SeizableItemRequest::SeizableType::RESOURCE) {
+		if (seizable->getSeizableType() == SeizableItem::SeizableType::RESOURCE) {
 			resultAll &= _parentModel->getElements()->check(Util::TypeOf<Resource>(), seizable->getResource(), "Resource", errorMessage);
-		} else if (seizable->getSeizableType() == SeizableItemRequest::SeizableType::SET) {
+			seizable->getResource()->addReleaseResourceEventHandler(Resource::SetResourceEventHandler<Seize>(&Seize::_handlerForResourceEvent, this), this, _priority);
+		} else if (seizable->getSeizableType() == SeizableItem::SeizableType::SET) {
 			resultAll &= _parentModel->getElements()->check(Util::TypeOf<Set>(), seizable->getSet(), "Set", errorMessage);
+			Resource* rec;
+			for (ModelElement* elem : *seizable->getSet()->getElementSet()->list()) {
+				rec = static_cast<Resource*> (elem);
+				rec->addReleaseResourceEventHandler(Resource::SetResourceEventHandler<Seize>(&Seize::_handlerForResourceEvent, this), this, _priority);
+			}
 		}
-		// \todo: Should be checking saveAttribute, index, etc
+
+		// @TODO: Should be checking saveAttribute, index, etc
 	}
-	// \todo Check QueueableItem
-	if (_queueableItem->getQueueableType() == QueueableItemRequest::QueueableType::QUEUE) {
-        resultAll &= _parentModel->getElements()->check(Util::TypeOf<Queue>(), _queueableItem->getQueue(), "Queueable Queue", errorMessage);
-	} else if (_queueableItem->getQueueableType() == QueueableItemRequest::QueueableType::SET) {
-        resultAll &= _parentModel->getElements()->check(Util::TypeOf<Set>(), _queueableItem->getSet(), "Queueable Set", errorMessage);
+	// @TODO Check QueueableItem
+	if (_queueableItem->getQueueableType() == QueueableItem::QueueableType::QUEUE) {
+		resultAll &= _parentModel->getElements()->check(Util::TypeOf<Queue>(), _queueableItem->getQueue(), "Queueable Queue", errorMessage);
+	} else if (_queueableItem->getQueueableType() == QueueableItem::QueueableType::SET) {
+		resultAll &= _parentModel->getElements()->check(Util::TypeOf<Set>(), _queueableItem->getSet(), "Queueable Set", errorMessage);
+	}
+
+	if (_saveAttribute != "") { // check if saveAttribute is an attribute
+		resultAll &= _parentModel->getElements()->check(Util::TypeOf<Attribute>(), _saveAttribute, "Save Attribute", true, errorMessage);
 	}
 	//resultAll &= _parentModel->getElements()->check(Util::TypeOf<Attribute>(), _saveAttribute, "SaveAttribute", false, errorMessage);
 	return resultAll;
@@ -267,6 +316,14 @@ PluginInformation* Seize::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Seize>(), &Seize::LoadInstance);
 	info->insertDynamicLibFileDependence("queue.so");
 	info->insertDynamicLibFileDependence("resource.so");
+	std::string help = "The Seize module allocates units of one or more resources to an entity.";
+	help += " The Seize module may be used to seize units of a resource, a member of a resource set, or a resource as defined by an alternative method, such as an attribute or expression.";
+	help += " When an entity enters this module, it waits in a queue (if specified) until all specified resources are available simultaneously.";
+	help += " Allocation type for resource usage is also specified.";
+	help += " An animated queue is displayed above the module when the module is placed.";
+    help += " TYPICAL USES: (1) Beginning a customer order (seize the operator); (2) Starting a tax return (seize the accountant);";
+	help += " (3) Being admitted to hospital (seize the hospital room, nurse, doctor)";
+	info->setDescriptionHelp(help);
 	return info;
 }
 

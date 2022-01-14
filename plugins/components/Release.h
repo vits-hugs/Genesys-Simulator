@@ -17,9 +17,9 @@
 #include <string>
 
 #include "../../kernel/simulator/ModelComponent.h"
-#include "../elements//Resource.h"
 #include "../../kernel/simulator/Plugin.h"
-#include "SeizableItemRequest.h"
+#include "SeizableItem.h"
+#include "../elements/Resource.h"
 
 /*!
 Release module
@@ -74,13 +74,13 @@ public: // get & set
 	void setPriority(unsigned short _priority);
 	unsigned short priority() const;
 public: // gets
-	List<SeizableItemRequest*>* getReleaseRequests() const;
+	List<SeizableItem*>* getReleaseRequests() const;
 
 protected:
 	virtual void _execute(Entity* entity);
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual void _initBetweenReplications();
-	virtual std::map<std::string, std::string>* _saveInstance();
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
 private:
 
@@ -89,7 +89,7 @@ private:
 		unsigned int releaseRequestSize = 1;
 	} DEFAULT;
 	unsigned short _priority = DEFAULT.priority;
-	List<SeizableItemRequest*>* _releaseRequests = new List<SeizableItemRequest*>();
+	List<SeizableItem*>* _releaseRequests = new List<SeizableItem*>();
 };
 
 #endif /* RELEASE_H */

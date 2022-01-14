@@ -1,0 +1,12 @@
+0   SimulatorInfo "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220111 
+0   ModelInfo  "Model 1" analystName="" description="" projectTitle="" version="1.0" 
+0   ModelSimulation "ModelSimulation" numberOfReplications=1 replicationBaseTimeUnit=5 replicationLength=10.000000 replicationLengthTimeUnit=5 showReportsAfterReplicaton=1 showReportsAfterSimulation=1 showSimulationControlsInReport=0 showSimulationResposesInReport=0 terminatingCondition="" traceLevel=9 warmUpTime=360.000000 warmUpTimeTimeUnit=5 
+2   EntityType "Client" reportStatistics=1 
+7   Resource   "Resource_1" reportStatistics=1 
+8   Queue      "Queue_1" reportStatistics=1 
+1   Create     "Create_1" EntityType="Client" reportStatistics=1 timeBetweenCreations="1" nextId=3 
+3   Process    "Process_1" reportStatistics=1 nextId=9 
+4   Seize      "Process_1.Seize" queueId=8 queueable="Queue_1" reportStatistics=1 resourceId=7 seizable="Resource_1" nextId=5 
+5   Delay      "Process_1.Delay" delayExpression="unif(0.8,1.2)" reportStatistics=1 nextId=6 
+6   Release    "Process_1.Release" priority=0 reportStatistics=1 resquestSize=0 nextSize=0 
+9   Dispose    "Dispose_1" reportStatistics=1 nextSize=0 

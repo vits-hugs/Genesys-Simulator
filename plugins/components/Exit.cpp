@@ -34,13 +34,13 @@ ModelComponent* Exit::LoadInstance(Model* model, std::map<std::string, std::stri
 
 void Exit::_execute(Entity* entity) {
 	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
-	this->_parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection(), 0.0);
+	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
 bool Exit::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
-		// \todo: not implemented yet
+		// @TODO: not implemented yet
 	}
 	return res;
 }
@@ -48,16 +48,16 @@ bool Exit::_loadInstance(std::map<std::string, std::string>* fields) {
 void Exit::_initBetweenReplications() {
 }
 
-std::map<std::string, std::string>* Exit::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
-	// \todo: not implemented yet
+std::map<std::string, std::string>* Exit::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
+	// @TODO: not implemented yet
 	return fields;
 }
 
 bool Exit::_check(std::string* errorMessage) {
 	bool resultAll = true;
-    // \todo: not implemented yet
-    *errorMessage += "";
+	// @TODO: not implemented yet
+	*errorMessage += "";
 	return resultAll;
 }
 

@@ -24,14 +24,14 @@ public:
 
 public: // gets and sets
 private:
-    std::string _includes = "";
-    std::string _tokens = "";
-    std::string _typeObjs = "";
-    std::string _expressions;
-    std::string _expressionProductions = "";
-    std::string _assignments = "";
-    std::string efunctionProdutions = "";
-    
+	std::string _includes = "";
+	std::string _tokens = "";
+	std::string _typeObjs = "";
+	std::string _expressions;
+	std::string _expressionProductions = "";
+	std::string _assignments = "";
+	std::string efunctionProdutions = "";
+
 };
 
 #endif /* PARSERCHANGESINFORMATION_H */

@@ -57,6 +57,7 @@ Entity* EntityGroup::first() {
 
 PluginInformation* EntityGroup::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<EntityGroup>(), &EntityGroup::LoadInstance);
+	info->setDescriptionHelp("//@TODO");
 	return info;
 }
 
@@ -80,8 +81,8 @@ bool EntityGroup::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-std::map<std::string, std::string>* EntityGroup::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(); //Util::TypeOf<Group>());
+std::map<std::string, std::string>* EntityGroup::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues); //Util::TypeOf<Group>());
 	return fields;
 }
 
@@ -89,8 +90,8 @@ bool EntityGroup::_check(std::string* errorMessage) {
 	std::string newNeededAttributeName = "Entity.Group";
 	if (_parentModel->getElements()->getElement(Util::TypeOf<Attribute>(), newNeededAttributeName) == nullptr) {
 		new Attribute(_parentModel, newNeededAttributeName);
-    }
-    *errorMessage += "";
+	}
+	*errorMessage += "";
 	return true;
 }
 

@@ -1,0 +1,5 @@
+<map id="Station" name="Station">
+<area shape="rect" id="node1" title=" " alt="" coords="5,740,253,1008"/>
+<area shape="rect" id="node2" href="$class_model_element.html" title=" " alt="" coords="6,175,253,692"/>
+<area shape="rect" id="node3" href="$class_persistent_object__base.html" title=" " alt="" coords="28,5,231,127"/>
+</map>

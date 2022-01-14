@@ -38,6 +38,8 @@ public:
 	void setClearHandler(CollectorClearHandler clearHandler);
 private:
 	std::string _filename;
+	double _lastValaue;
+	unsigned int _numElements;
 };
 
 #endif /* COLLECTORDATAFILEDEFAULTIMPL1_H */

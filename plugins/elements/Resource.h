@@ -20,7 +20,7 @@
 #include "../../kernel/simulator/Counter.h"
 #include "../../kernel/simulator/Plugin.h"
 
-class SeizableItemRequest;
+class SeizableItem;
 
 /*!
 Resource module
@@ -81,7 +81,7 @@ and stored in the report database for this resource.
 class Resource : public ModelElement {
 public:
 	typedef std::function<void(Resource*) > ResourceEventHandler;
-
+	typedef std::pair<std::pair<ResourceEventHandler, ModelComponent*>, unsigned int> SortedResourceEventHandler;
 	template<typename Class>
 	static ResourceEventHandler SetResourceEventHandler(void (Class::*function)(Resource*), Class * object) {
 		return std::bind(function, object, std::placeholders::_1);
@@ -94,7 +94,7 @@ public:
 public:
 	//Resource(Model* model);
 	Resource(Model* model, std::string name = "");
-	virtual ~Resource();
+	virtual ~Resource() = default;
 public:
 	virtual std::string show();
 public:
@@ -117,14 +117,14 @@ public: // g&s
 public: // gets
 	unsigned int getNumberBusy() const;
 public:
-	void addReleaseResourceEventHandler(ResourceEventHandler eventHandler);
+	void addReleaseResourceEventHandler(ResourceEventHandler eventHandler, ModelComponent* component, unsigned int priority);
 	double getLastTimeSeized() const;
 protected:
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance();
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
 	virtual void _createInternalElements();
-	virtual void _initBetweenReplications(); 
+	virtual void _initBetweenReplications();
 private:
 	void _notifyReleaseEventHandlers(); ///< Notify observer classes that some of the resource capacity has been released. It is useful for allocation components (such as Seize) to know when an entity waiting into a queue can try to seize the resource again
 	//private:
@@ -144,16 +144,17 @@ private:
 private: // only gets
 	unsigned int _numberBusy = 0;
 	//unsigned int _numberOut = 0;
-	double _lastTimeSeized = 0.0; // \todo: It won't work for resources with capacity>1, when not all capacity is seized and them some more are seized. Seized time of first units will be lost. I don't have a solution so far
+	double _lastTimeSeized = 0.0; // @TODO: It won't work for resources with capacity>1, when not all capacity is seized and them some more are seized. Seized time of first units will be lost. I don't have a solution so far
 private: // not gets nor sets
 	//unsigned int _seizes = 0;
 	//double _whenSeized; // same as last? check
 private: //1::n
-	List<ResourceEventHandler>* _resourceEventHandlers = new List<ResourceEventHandler>();
+	List<SortedResourceEventHandler*>* _resourceEventHandlers = new List<SortedResourceEventHandler*>();
 	//aFailures:	TStringList;
 	//std::list<Failure*>* _failures;
 private: // inner children elements
 	StatisticsCollector* _cstatTimeSeized = nullptr;
+	Counter* _totalTimeSeized;
 	Counter* _numSeizes;
 	Counter* _numReleases;
 };

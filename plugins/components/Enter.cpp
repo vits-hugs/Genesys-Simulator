@@ -45,7 +45,7 @@ void Enter::_execute(Entity* entity) {
 	if (_reportStatistics)
 		_numberIn->incCountValue();
 	_station->enter(entity);
-	_parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection(), 0.0);
+	_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
 bool Enter::_loadInstance(std::map<std::string, std::string>* fields) {
@@ -62,9 +62,13 @@ void Enter::_initBetweenReplications() {
 	_numberIn->clear();
 }
 
-std::map<std::string, std::string>* Enter::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
-	SaveField(fields, "station", _station->getName(), "");
+std::map<std::string, std::string>* Enter::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
+	std::string text = "";
+	if (_station != nullptr) {
+		text = _station->getName();
+	}
+	SaveField(fields, "station", text, "", saveDefaultValues);
 	return fields;
 }
 
@@ -78,6 +82,7 @@ PluginInformation* Enter::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Enter>(), &Enter::LoadInstance);
 	info->setReceiveTransfer(true);
 	info->insertDynamicLibFileDependence("station.so");
+	info->setDescriptionHelp("//@TODO");
 	return info;
 }
 

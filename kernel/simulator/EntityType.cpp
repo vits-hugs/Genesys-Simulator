@@ -90,7 +90,7 @@ StatisticsCollector* EntityType::addGetStatisticsCollector(std::string name) {
 	}
 	// not found. Create it, insert it into the list of cstats, into the model element manager, and then return it
 	StatisticsCollector* cstat = new StatisticsCollector(_parentModel, name, this);
-	_statisticsCollectors->insert(cstat); // \todo _statisticsCollectors list is probabily redundant to _childrenElements and unnecessary
+	_statisticsCollectors->insert(cstat); // @TODO _statisticsCollectors list is probabily redundant to _childrenElements and unnecessary
 	_childrenElements->insert({name, cstat});
 	//_parentModel->insert(cstat); // unnecessary
 	return cstat;
@@ -98,6 +98,7 @@ StatisticsCollector* EntityType::addGetStatisticsCollector(std::string name) {
 
 PluginInformation* EntityType::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<EntityType>(), &EntityType::LoadInstance);
+	info->setDescriptionHelp("//@TODO");
 	return info;
 }
 
@@ -123,18 +124,19 @@ bool EntityType::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-std::map<std::string, std::string>* EntityType::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(); //Util::TypeOf<EntityType>());
-	SaveField(fields, "initialNVACost", _initialNVACost, DEFAULT.initialCost);
-	SaveField(fields, "initialOtherCost", _initialOtherCost, DEFAULT.initialCost);
-	SaveField(fields, "initialVACost", _initialVACost, DEFAULT.initialCost);
-	SaveField(fields, "initialWaitingCost", _initialWaitingCost, DEFAULT.initialCost);
-	SaveField(fields, "initialPicture", _initialPicture, DEFAULT.initialPicture);
+std::map<std::string, std::string>* EntityType::_saveInstance(bool saveDefaultValues) {
+	bool saveDefaults = _getSaveDefaultsOption();
+	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues); //Util::TypeOf<EntityType>());
+	SaveField(fields, "initialNVACost", _initialNVACost, DEFAULT.initialCost, saveDefaults);
+	SaveField(fields, "initialOtherCost", _initialOtherCost, DEFAULT.initialCost, saveDefaults);
+	SaveField(fields, "initialVACost", _initialVACost, DEFAULT.initialCost, saveDefaults);
+	SaveField(fields, "initialWaitingCost", _initialWaitingCost, DEFAULT.initialCost, saveDefaults);
+	SaveField(fields, "initialPicture", _initialPicture, DEFAULT.initialPicture, saveDefaults);
 	return fields;
 }
 
 bool EntityType::_check(std::string* errorMessage) {
-    *errorMessage += "";
+	*errorMessage += "";
 	return true;
 }
 

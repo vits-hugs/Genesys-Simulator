@@ -14,25 +14,8 @@
 #ifndef WRITE_H
 #define WRITE_H
 
+#include <list>
 #include "../../kernel/simulator/ModelComponent.h"
-
-class WriteElement {
-public:
-
-	WriteElement(std::string text = "", bool isExpression = false, bool newline = false) {
-		this->text = text;
-		this->isExpression = isExpression;
-		this->newline = newline;
-	}
-	const struct DEFAULT_VALUES {
-		const std::string text = "";
-		const bool isExpression = false;
-		const bool newline = false;
-	} DEFAULT;
-	std::string text;
-	bool isExpression;
-	bool newline;
-};
 
 /*!
  This component ...
@@ -55,7 +38,7 @@ public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 public:
-	List<WriteElement*>* writeElements() const;
+	void insertText(std::list<std::string> texts);
 	void setFilename(std::string _filename);
 	std::string filename() const;
 	void setWriteToType(WriteToType _writeToType);
@@ -65,12 +48,10 @@ protected: // virtual
 	virtual void _execute(Entity* entity);
 	virtual void _initBetweenReplications();
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance();
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
 private: // methods
-	//std::string _buildText();
 private: // attributes 1:1
-
 	const struct DEFAULT_VALUES {
 		WriteToType writeToType = Write::WriteToType::SCREEN;
 		std::string filename = "";
@@ -78,7 +59,7 @@ private: // attributes 1:1
 	WriteToType _writeToType = DEFAULT.writeToType;
 	std::string _filename = DEFAULT.filename;
 private: // attributes 1:n
-	List<WriteElement*>* _writeElements = new List<WriteElement*>();
+	List<std::string>* _writeElements = new List<std::string>();
 };
 
 

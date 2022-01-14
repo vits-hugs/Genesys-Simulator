@@ -25,13 +25,13 @@ ModelComponent::~ModelComponent() {
 }
 
 void ModelComponent::Execute(Entity* entity, ModelComponent* component, unsigned int inputNumber) {
-	std::string msg = "Entity " + std::to_string(entity->entityNumber()) + " has arrived at component " + component->getName();
+	std::string msg = /*"Entity " +std::to_string(entity->entityNumber())*/ entity->getName() + " has arrived at component \"" + component->getName() + "\"";
 	if (component->getDescription() != "")
 		msg += ": " + component->getDescription();
-	// \todo: How can I know the number of inputs?
+	// @TODO: How can I know the number of inputs?
 	if (inputNumber > 0)
 		msg += " by input " + std::to_string(inputNumber);
-	component->_parentModel->getTracer()->trace(Util::TraceLevel::L6_arrival, msg);
+	component->_parentModel->getTracer()->traceSimulation(Util::TraceLevel::L6_arrival, msg);
 	Util::IncIndent();
 	try {
 		component->_execute(entity);
@@ -51,10 +51,10 @@ void ModelComponent::CreateInternalElements(ModelComponent* component) {
 }
 
 std::map<std::string, std::string>* ModelComponent::SaveInstance(ModelComponent* component) {
-	component->_parentModel->getTracer()->trace(Util::TraceLevel::L8_detailed, "Writing component \"" + component->getName() + "\""); //std::to_string(component->_id));
+	component->_parentModel->getTracer()->trace(Util::TraceLevel::L9_mostDetailed, "Writing component \"" + component->getName() + "\""); //std::to_string(component->_id));
 	std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();
 	try {
-		fields = component->_saveInstance();
+		fields = component->_saveInstance(component->_getSaveDefaultsOption());
 	} catch (const std::exception& e) {
 		component->_parentModel->getTracer()->traceError(e, "Error executing component " + component->show());
 	}
@@ -91,8 +91,8 @@ bool ModelComponent::Check(ModelComponent* component) {
 	return res;
 }
 
-ConnectionManager* ModelComponent::getNextComponents() const {
-	return _connections; // \todo How to know if it changes?
+ConnectionManager* ModelComponent::getConnections() const {
+	return _connections; // @TODO How to know if it changes?
 }
 
 std::string ModelComponent::show() {
@@ -115,21 +115,21 @@ bool ModelComponent::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-std::map<std::string, std::string>* ModelComponent::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelElement::_saveInstance();
-	SaveField(fields, "caption", _description, DEFAULT.description);
+std::map<std::string, std::string>* ModelComponent::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues);
+	SaveField(fields, "caption", _description, DEFAULT.description, saveDefaultValues);
 	if (true) {//(_connections->size() != 1) { // save nextSize only if it is != 1
-		SaveField(fields, "nextSize", _connections->size(), DEFAULT.nextSize);
+		SaveField(fields, "nextSize", _connections->size(), DEFAULT.nextSize, saveDefaultValues);
 	}
 	unsigned short i = 0;
 	for (Connection* connection : *_connections->list()) {
 		if (_connections->list()->size() == 1) {
-			SaveField(fields, "nextId", connection->first->_id, 0);
+			SaveField(fields, "nextId", connection->first->_id, 0, saveDefaultValues);
 		} else {
-			SaveField(fields, "nextId" + std::to_string(i), connection->first->_id, 0);
+			SaveField(fields, "nextId" + std::to_string(i), connection->first->_id, 0, saveDefaultValues);
 		}
 		if (connection->second != 0) {//((*it)->second != 0) { // save nextInputNumber only if it is != 0
-			SaveField(fields, "nextInputNumber" + std::to_string(i), connection->second, DEFAULT.nextInputNumber);
+			SaveField(fields, "nextInputNumber" + std::to_string(i), connection->second, DEFAULT.nextInputNumber, saveDefaultValues);
 		}
 		i++;
 	}

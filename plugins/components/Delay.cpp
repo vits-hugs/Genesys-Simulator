@@ -77,11 +77,12 @@ void Delay::_execute(Entity* entity) {
 		if (entity->getEntityType()->isReportStatistics())
 			entity->getEntityType()->addGetStatisticsCollector(entity->getEntityTypeName() + ".WaitTime")->getStatistics()->getCollector()->addValue(waitTime);
 	}
-	entity->setAttributeValue("Entity.TotalWaitTime", entity->getAttributeValue("Entity.TotalWaitTime") + waitTime);
+	double totalWaitTime = entity->getAttributeValue("Entity.TotalWaitTime");
+	entity->setAttributeValue("Entity.TotalWaitTime", totalWaitTime + waitTime);
 	double delayEndTime = _parentModel->getSimulation()->getSimulatedTime() + waitTime;
-	Event* newEvent = new Event(delayEndTime, entity, this->getNextComponents()->getFrontConnection());
+	Event* newEvent = new Event(delayEndTime, entity, this->getConnections()->getFrontConnection());
 	_parentModel->getFutureEvents()->insert(newEvent);
-	_parentModel->getTracer()->trace("End of delay of entity " + std::to_string(entity->entityNumber()) + " scheduled to time " + std::to_string(delayEndTime) + Util::StrTimeUnitShort(stu) + " (wait time " + std::to_string(waitTime) + Util::StrTimeUnitShort(stu) + ") // " + _delayExpression);
+	_parentModel->getTracer()->traceSimulation("End of delay of "/*entity " + std::to_string(entity->entityNumber())*/ + entity->getName() + " scheduled to time " + std::to_string(delayEndTime) + Util::StrTimeUnitShort(stu) + " (wait time " + std::to_string(waitTime) + Util::StrTimeUnitShort(stu) + ") // " + _delayExpression);
 }
 
 bool Delay::_loadInstance(std::map<std::string, std::string>* fields) {
@@ -96,10 +97,10 @@ bool Delay::_loadInstance(std::map<std::string, std::string>* fields) {
 void Delay::_initBetweenReplications() {
 }
 
-std::map<std::string, std::string>* Delay::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(); //Util::TypeOf<Delay>());
-	SaveField(fields, "delayExpression", this->_delayExpression, DEFAULT.delayExpression);
-	SaveField(fields, "delayExpressionTimeUnit", _delayTimeUnit, DEFAULT.delayTimeUnit);
+std::map<std::string, std::string>* Delay::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues); //Util::TypeOf<Delay>());
+	SaveField(fields, "delayExpression", this->_delayExpression, DEFAULT.delayExpression, saveDefaultValues);
+	SaveField(fields, "delayExpressionTimeUnit", _delayTimeUnit, DEFAULT.delayTimeUnit, saveDefaultValues);
 	return fields;
 }
 
@@ -132,11 +133,17 @@ void Delay::_createInternalElements() {
 		}
 	} else {
 		_removeChildrenElements();
-		// \todo remove StatisticsCollector needed in EntityType
+		// @TODO remove StatisticsCollector needed in EntityType
 	}
 }
 
 PluginInformation* Delay::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Delay>(), &Delay::LoadInstance);
+	std::string text = "The Delay module delays an entity by a specified amount of time.";
+	text += " When an entity arrives at a Delay module, the time delay expression is evaluated and the entity remains in the module for the resulting time.";
+	text += " The time is then allocated to the entity’s value-added, non-value added, transfer, wait, or other time.";
+	text += " Associated costs are calculated and allocated as well.";
+	text += " TYPICAL USES: (1) Processing a check at a bank; (2) Performing a setup on a machine; (3) Transferring a document to another department";
+	info->setDescriptionHelp(text);
 	return info;
 }

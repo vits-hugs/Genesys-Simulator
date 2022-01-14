@@ -21,8 +21,8 @@
 //using namespace GenesysKernel;
 
 StatisticsDefaultImpl1::StatisticsDefaultImpl1() {
-    //_collector = new TraitsKernel<Statistics_if>::CollectorImplementation();
-    _collector = new TraitsKernel<ModelComponent>::StatisticsCollector_CollectorImplementation();
+	//_collector = new TraitsKernel<Statistics_if>::CollectorImplementation();
+	_collector = new TraitsKernel<Model>::StatisticsCollector_CollectorImplementation();
 	_collector->setAddValueHandler(setCollectorAddValueHandler(&StatisticsDefaultImpl1::collectorAddHandler, this));
 	_collector->setClearHandler(setCollectorClearHandler(&StatisticsDefaultImpl1::collectorClearHandler, this));
 	//_collector->setAddValueHandler(std::bind(&StatisticsDefaultImpl1::collectorAddHandler, this, std::placeholders::_1));
@@ -115,7 +115,7 @@ double StatisticsDefaultImpl1::halfWidthConfidenceInterval() {
 
 void StatisticsDefaultImpl1::setConfidenceLevel(double confidencelevel) {
 	_confidenceLevel = confidencelevel;
-    //Integrator_if* integrator = new TraitsKernel<Integrator_if>::Implementation();
+	//Integrator_if* integrator = new TraitsKernel<Integrator_if>::Implementation();
 	_criticalTn_1 = 1.96; //integrator->integrate()
 
 }

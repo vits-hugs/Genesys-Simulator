@@ -83,3 +83,34 @@ LicenceManager* Simulator::getLicenceManager() const {
 	return _licenceManager;
 }
 
+bool Simulator::_completePluginsFieldsAndTemplate() {
+	Model* tempModel = new Model(this);
+	tempModel->getPersistence()->setOption(ModelPersistence_if::Options::SAVEDEFAULTS, true);
+	Plugin* plugin;
+	PluginInformation* info;
+	std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();
+	ModelElement* elem;
+	ModelComponent* comp;
+	std::string text;
+	for (unsigned int i = 0; i < _pluginManager->size(); i++) {
+		plugin = _pluginManager->getAtRank(i);
+		info = plugin->getPluginInfo();
+		if (info->getFields()->size() == 0) {
+			fields->clear();
+			if (info->isComponent()) {
+				comp = dynamic_cast<ModelComponent*> (plugin->loadNew(tempModel, fields));
+				comp->setName("name");
+				fields = comp->SaveInstance(comp);
+			} else {
+				elem = plugin->loadNew(tempModel, fields);
+				elem->setName("name");
+				fields = elem->SaveInstance(elem);
+			}
+			for (std::pair<std::string, std::string> field : *fields) {
+				info->getFields()->insert({field.first, ""});
+			}
+			std::string templateLanguage = tempModel->getPersistence()->getFormatedField(fields);
+			info->setLanguageTemplate(templateLanguage);
+		}
+	}
+}

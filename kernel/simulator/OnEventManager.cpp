@@ -36,15 +36,15 @@ void OnEventManager::addOnProcessEventHandler(simulationEventHandler EventHandle
 }
 
 void OnEventManager::addOnEntityCreateHandler(simulationEventHandler EventHandler) {
-    _addOnHandler(_onEntityCreateHandlers, EventHandler);
+	_addOnHandler(_onEntityCreateHandlers, EventHandler);
 }
 
 void OnEventManager::addOnEntityMoveHandler(simulationEventHandler EventHandler) {
-    _addOnHandler(_onEntityMoveHandlers, EventHandler);
+	_addOnHandler(_onEntityMoveHandlers, EventHandler);
 }
 
 void OnEventManager::addOnEntityRemoveHandler(simulationEventHandler EventHandler) {
-    _addOnHandler(_onEntityRemoveHandlers, EventHandler);
+	_addOnHandler(_onEntityRemoveHandlers, EventHandler);
 }
 
 void OnEventManager::addOnReplicationEndHandler(simulationEventHandler EventHandler) {
@@ -56,11 +56,11 @@ void OnEventManager::addOnSimulationStartHandler(simulationEventHandler EventHan
 }
 
 void OnEventManager::addOnSimulationPausedHandler(simulationEventHandler EventHandler) {
-    _addOnHandler(_onSimulationPausedHandlers, EventHandler);
+	_addOnHandler(_onSimulationPausedHandlers, EventHandler);
 }
 
 void OnEventManager::addOnSimulationResumeHandler(simulationEventHandler EventHandler) {
-    _addOnHandler(_onSimulationResumeHandlers, EventHandler);
+	_addOnHandler(_onSimulationResumeHandlers, EventHandler);
 }
 
 void OnEventManager::addOnSimulationEndHandler(simulationEventHandler EventHandler) {
@@ -85,27 +85,32 @@ void OnEventManager::_NotifyHandlerMethods(List<simulationEventHandlerMethod>* l
 
 void OnEventManager::NotifyReplicationStartHandlers(SimulationEvent* se) {
 	this->_NotifyHandlers(this->_onReplicationStartHandlers, se);
-
+	this->_NotifyHandlerMethods(this->_onReplicationStartHandlerMethods, se);
 }
 
 void OnEventManager::NotifyReplicationStepHandlers(SimulationEvent* se) {
 	this->_NotifyHandlers(this->_onReplicationStepHandlers, se);
+	this->_NotifyHandlerMethods(this->_onReplicationStepHandlerMethods, se);
 }
 
 void OnEventManager::NotifyReplicationEndHandlers(SimulationEvent* se) {
 	this->_NotifyHandlers(this->_onReplicationEndHandlers, se);
+	this->_NotifyHandlerMethods(this->_onReplicationEndHandlerMethods, se);
 }
 
 void OnEventManager::NotifyEntityCreateHandlers(SimulationEvent* se) {
-    this->_NotifyHandlers(this->_onEntityCreateHandlers, se);
+	this->_NotifyHandlers(this->_onEntityCreateHandlers, se);
+	this->_NotifyHandlerMethods(this->_onEntityCreateHandlerMethods, se);
 }
 
 void OnEventManager::NotifyEntityMoveHandlers(SimulationEvent* se) {
-    this->_NotifyHandlers(this->_onEntityMoveHandlers, se);
+	this->_NotifyHandlers(this->_onEntityMoveHandlers, se);
+	this->_NotifyHandlerMethods(this->_onEntityMoveHandlerMethods, se);
 }
 
 void OnEventManager::NotifyEntityRemoveHandlers(SimulationEvent* se) {
-    this->_NotifyHandlers(this->_onEntityRemoveHandlers, se);
+	this->_NotifyHandlers(this->_onEntityRemoveHandlers, se);
+	this->_NotifyHandlerMethods(this->_onEntityRemoveHandlerMethods, se);
 }
 
 void OnEventManager::NotifyProcessEventHandlers(SimulationEvent* se) {
@@ -115,20 +120,25 @@ void OnEventManager::NotifyProcessEventHandlers(SimulationEvent* se) {
 
 void OnEventManager::NotifySimulationStartHandlers(SimulationEvent* se) {
 	this->_NotifyHandlers(this->_onSimulationStartHandlers, se);
+	this->_NotifyHandlerMethods(this->_onSimulationStartHandlerMethods, se);
 }
 
 void OnEventManager::NotifySimulationPausedHandlers(SimulationEvent* se) {
-    this->_NotifyHandlers(this->_onSimulationPausedHandlers, se);
+	this->_NotifyHandlers(this->_onSimulationPausedHandlers, se);
+	this->_NotifyHandlerMethods(this->_onSimulationPausedHandlerMethods, se);
 }
 
 void OnEventManager::NotifySimulationResumeHandlers(SimulationEvent* se) {
-    this->_NotifyHandlers(this->_onSimulationResumeHandlers, se);
+	this->_NotifyHandlers(this->_onSimulationResumeHandlers, se);
+	this->_NotifyHandlerMethods(this->_onSimulationResumeHandlerMethods, se);
 }
 
 void OnEventManager::NotifySimulationEndHandlers(SimulationEvent* se) {
 	this->_NotifyHandlers(this->_onSimulationEndHandlers, se);
+	this->_NotifyHandlerMethods(this->_onSimulationEndHandlerMethods, se);
 }
 
 void OnEventManager::NotifyBreakpointHandlers(SimulationEvent* se) {
 	this->_NotifyHandlers(this->_onBreakpointHandlers, se);
+	this->_NotifyHandlerMethods(this->_onBreakpointHandlerMethods, se);
 }

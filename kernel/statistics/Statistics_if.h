@@ -17,7 +17,7 @@
 #include <string>
 #include "Collector_if.h"
 
-/**
+/*!
  * Interface for statisct synthesis of a stochastic variable collected by a Collector_if. The statistics generated may be updated based only on the previous statistics and the single newest added value or they may be updated based on a datafile, depending on the Collector implementation.
  */
 class Statistics_if {

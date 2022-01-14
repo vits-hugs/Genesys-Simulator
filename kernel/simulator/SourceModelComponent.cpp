@@ -36,7 +36,11 @@ bool SourceModelComponent::_loadInstance(std::map<std::string, std::string>* fie
 		this->_timeBetweenCreationsTimeUnit = LoadField(fields, "timeBetweenCreationsTimeUnit", DEFAULT.timeBetweenCreationsTimeUnit);
 		this->_maxCreationsExpression = LoadField(fields, "maxCreations", DEFAULT.maxCreationsExpression);
 		std::string entityTypename = LoadField(fields, "EntityType");
-		this->_entityType = dynamic_cast<EntityType*> (_parentModel->getElements()->getElement(Util::TypeOf<EntityType>(), entityTypename));
+		if (entityTypename != "") {
+			this->_entityType = dynamic_cast<EntityType*> (_parentModel->getElements()->getElement(Util::TypeOf<EntityType>(), entityTypename));
+		} else {
+			this->_entityType = nullptr;
+		}
 	}
 	return res;
 }
@@ -45,14 +49,18 @@ void SourceModelComponent::_initBetweenReplications() {
 	this->_entitiesCreatedSoFar = 0;
 }
 
-std::map<std::string, std::string>* SourceModelComponent::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
-	SaveField(fields, "entitiesPerCreation", _entitiesPerCreation, DEFAULT.entitiesPerCreation);
-	SaveField(fields, "firstCreation", _firstCreation, DEFAULT.firstCreation);
-	SaveField(fields, "timeBetweenCreations", _timeBetweenCreationsExpression, DEFAULT.timeBetweenCreationsExpression);
-	SaveField(fields, "timeBetweenCreationsTimeUnit", _timeBetweenCreationsTimeUnit, DEFAULT.timeBetweenCreationsTimeUnit);
-	SaveField(fields, "maxCreations", _maxCreationsExpression, DEFAULT.maxCreationsExpression);
-	SaveField(fields, "EntityType", _entityType->getName());
+std::map<std::string, std::string>* SourceModelComponent::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
+	SaveField(fields, "entitiesPerCreation", _entitiesPerCreation, DEFAULT.entitiesPerCreation, saveDefaultValues);
+	SaveField(fields, "firstCreation", _firstCreation, DEFAULT.firstCreation, saveDefaultValues);
+	SaveField(fields, "timeBetweenCreations", _timeBetweenCreationsExpression, DEFAULT.timeBetweenCreationsExpression, saveDefaultValues);
+	SaveField(fields, "timeBetweenCreationsTimeUnit", _timeBetweenCreationsTimeUnit, DEFAULT.timeBetweenCreationsTimeUnit, saveDefaultValues);
+	SaveField(fields, "maxCreations", _maxCreationsExpression, DEFAULT.maxCreationsExpression, saveDefaultValues);
+	if (_entityType != nullptr) {
+		SaveField(fields, "EntityType", _entityType->getName());
+	} else {
+		SaveField(fields, "EntityType", "");
+	}
 	return fields;
 }
 
@@ -65,7 +73,7 @@ bool SourceModelComponent::_check(std::string* errorMessage) {
 		neededName = neededNames[i];
 		if (elements->getElement(Util::TypeOf<Attribute>(), neededName) == nullptr) {
 			Attribute* attr1 = new Attribute(_parentModel, neededName);
-            elements->insert(attr1);
+			elements->insert(attr1);
 		}
 	}
 	bool resultAll = true;
@@ -116,6 +124,10 @@ std::string SourceModelComponent::getTimeBetweenCreationsExpression() const {
 
 void SourceModelComponent::setMaxCreations(std::string _maxCreationsExpression) {
 	this->_maxCreationsExpression = _maxCreationsExpression;
+}
+
+void SourceModelComponent::setMaxCreations(unsigned long _maxCreations) {
+	this->_maxCreationsExpression = std::to_string(_maxCreations);
 }
 
 std::string SourceModelComponent::getMaxCreations() const {

@@ -41,6 +41,9 @@ std::map<std::string, std::string>* ModelPersistenceDefaultImpl1::_getSimulatorI
 bool ModelPersistenceDefaultImpl1::save(std::string filename) {
 	_model->getTracer()->trace(Util::TraceLevel::L7_internal, "Saving file \"" + filename + "\"");
 	Util::IncIndent();
+	// get options
+	bool saveDefaults = (_options && static_cast<int> (Options::SAVEDEFAULTS)) > 0;
+	//
 	std::list<std::string> *simulatorInfosToSave, *simulationInfosToSave, *modelInfosToSave, *modelElementsToSave, *modelComponentsToSave;
 	{
 		//bool res = true;
@@ -51,8 +54,8 @@ bool ModelPersistenceDefaultImpl1::save(std::string filename) {
 		fields = _model->getInfos()->saveInstance();
 		modelInfosToSave = _adjustFieldsToSave(fields);
 		// save model own infos
-		// \todo save modelSimulation fields (breakpoints)
-		fields = _model->getSimulation()->saveInstance();
+		// @TODO save modelSimulation fields (breakpoints)
+		fields = _model->getSimulation()->saveInstance(saveDefaults);
 		simulationInfosToSave = _adjustFieldsToSave(fields);
 		// save infras
 		modelElementsToSave = new std::list<std::string>();
@@ -61,11 +64,11 @@ bool ModelPersistenceDefaultImpl1::save(std::string filename) {
 		for (std::list<std::string>::iterator itTypenames = elementTypenames->begin(); itTypenames != elementTypenames->end(); itTypenames++) {
 			if ((*itTypenames) != Util::TypeOf<StatisticsCollector>() && (*itTypenames) != UtilTypeOfCounter) { // STATISTICSCOLLECTR and COUNTERs do NOT need to be saved
 				List<ModelElement*>* infras = _model->getElements()->getElementList((*itTypenames));
-				_model->getTracer()->trace(Util::TraceLevel::L8_detailed, "Writing elements of type \"" + (*itTypenames) + "\":");
+				_model->getTracer()->trace(Util::TraceLevel::L9_mostDetailed, "Writing elements of type \"" + (*itTypenames) + "\":");
 				Util::IncIndent();
 				{
 					for (std::list<ModelElement*>::iterator it = infras->list()->begin(); it != infras->list()->end(); it++) {
-						_model->getTracer()->trace(Util::TraceLevel::L8_detailed, "Writing " + (*itTypenames) + " \"" + (*it)->getName() + "\"");
+						_model->getTracer()->trace(Util::TraceLevel::L9_mostDetailed, "Writing " + (*itTypenames) + " \"" + (*it)->getName() + "\"");
 						fields = (*it)->SaveInstance((*it));
 						Util::IncIndent();
 						modelElementsToSave->merge(*_adjustFieldsToSave(fields));
@@ -76,7 +79,7 @@ bool ModelPersistenceDefaultImpl1::save(std::string filename) {
 			}
 		}
 		// save components
-		_model->getTracer()->trace(Util::TraceLevel::L8_detailed, "Writing components\":");
+		_model->getTracer()->trace(Util::TraceLevel::L9_mostDetailed, "Writing components\":");
 		//List<ModelComponent*>* components = this->_model->getComponents();
 		modelComponentsToSave = new std::list<std::string>();
 		Util::IncIndent();
@@ -90,15 +93,15 @@ bool ModelPersistenceDefaultImpl1::save(std::string filename) {
 		}
 		Util::DecIndent();
 		// SAVE FILE
-		_model->getTracer()->trace(Util::TraceLevel::L8_detailed, "Saving file");
+		_model->getTracer()->trace(Util::TraceLevel::L7_internal, "Saving file");
 		Util::IncIndent();
 		{
 			// open file
 			std::ofstream savefile;
 			savefile.open(filename, std::ofstream::out);
 			//savefile << "# Genesys simulation model " << std::endl;
-            ////time_t now = time(0);
-            ////char* dt = ctime(&now);
+			////time_t now = time(0);
+			////char* dt = ctime(&now);
 			//savefile << "# Last saved on " << dt;
 			//savefile << "# simulator infos" << std::endl;
 			_saveContent(simulatorInfosToSave, &savefile);
@@ -118,17 +121,17 @@ bool ModelPersistenceDefaultImpl1::save(std::string filename) {
 	}
 	Util::DecIndent();
 	this->_hasChanged = false;
-	return true; // \todo: check if save really saved successfully
+	return true; // @TODO: check if save really saved successfully
 }
 
 void ModelPersistenceDefaultImpl1::_saveContent(std::list<std::string>* content, std::ofstream* file) {
 	for (std::list<std::string>::iterator it = content->begin(); it != content->end(); it++) {
-		*file << (*it) << std::endl; // << std::endl;
+		*file << (*it) << std::endl;
 	}
 }
 
 bool ModelPersistenceDefaultImpl1::_loadFields(std::string line) {
-	//std::regex regex{R"([=]+)"}; // split on space R"([\s]+)" \todo: HOW SEPARATOR WITH MORE THAN ONE CHAR
+	//std::regex regex{R"([=]+)"}; // split on space R"([\s]+)" @TODO: HOW SEPARATOR WITH MORE THAN ONE CHAR
 	_model->getTracer()->trace(Util::TraceLevel::L9_mostDetailed, line);
 	bool res = true;
 	// replaces every "quoted" string by {stringX}
@@ -151,7 +154,7 @@ bool ModelPersistenceDefaultImpl1::_loadFields(std::string line) {
 	//for (std::list<std::string>::iterator it = strings->begin(); it != strings->end(); it++, i++) {
 	//	std::cout << "{string" << std::to_string(i) << "}=" << (*it) << std::endl;
 	//}
-	std::regex regex{R"([\s]+)"}; // split on " " \todo Should be _lineseparator
+	std::regex regex{R"([\s]+)"}; // split on " " @TODO Should be _lineseparator
 	std::sregex_token_iterator tit{line.begin(), line.end(), regex, -1};
 	std::list<std::string> lstfields{tit,{}};
 	// for each field, separate key and value and form a map
@@ -165,7 +168,7 @@ bool ModelPersistenceDefaultImpl1::_loadFields(std::string line) {
 			tit = {(*it).begin(), (*it).end(), regex, -1};
 			veckeyval = {tit,{}};
 			veckeyval[0] = trim((veckeyval[0]));
-			if (veckeyval[0] != "") { // it should always be, rigth? \todo case for assert?
+			if (veckeyval[0] != "") { // it should always be, rigth? @TODO case for assert?
 				if (veckeyval.size() > 1) {
 					veckeyval[1] = trim((veckeyval[1]));
 					if (veckeyval[1].substr(0, 1) == "\"" && veckeyval[1].substr(veckeyval[1].length() - 1, 1) == "\"") { // remove ""
@@ -216,7 +219,7 @@ bool ModelPersistenceDefaultImpl1::_loadFields(std::string line) {
 				// this should be a ModelComponent or ModelElement.
 				ModelElement* newUselessElement = ModelElement::LoadInstance(_model, fields, false);
 				if (newUselessElement != nullptr) {
-					// \todo how free newUselessElement without invoking destructor?
+					// @TODO how free newUselessElement without invoking destructor?
 					////newUselessElement->~ModelElement(false);
 					Plugin* plugin = this->_model->getParentSimulator()->getPlugins()->find(thistypename);
 					if (plugin != nullptr) {
@@ -319,7 +322,7 @@ bool ModelPersistenceDefaultImpl1::load(std::string filename) {
 					for (std::list<ModelComponent*>::iterator itcomp = cm->begin(); itcomp != cm->end(); itcomp++) {// connect the components
 						if ((*itcomp)->getId() == nextId) { // connect the components
 							nextComponent = (*itcomp);
-							thisComponent->getNextComponents()->insert(nextComponent, nextInputNumber);
+							thisComponent->getConnections()->insert(nextComponent, nextInputNumber);
 							_model->getTracer()->trace(Util::TraceLevel::L8_detailed, thisComponent->getName() + "<" + std::to_string(i) + ">" + " --> " + nextComponent->getName() + "<" + std::to_string(nextInputNumber) + ">");
 							break;
 						}
@@ -337,6 +340,27 @@ bool ModelPersistenceDefaultImpl1::load(std::string filename) {
 		_hasChanged = false;
 	}
 	return res;
+}
+
+bool ModelPersistenceDefaultImpl1::getOption(ModelPersistence_if::Options option) {
+	return (_options & static_cast<int> (option)) > 0;
+}
+
+void ModelPersistenceDefaultImpl1::setOption(ModelPersistence_if::Options option, bool value) {
+	if (value) {
+		_options |= static_cast<int> (option);
+	} else {
+		_options &= ~(static_cast<int> (option));
+	}
+}
+
+std::string ModelPersistenceDefaultImpl1::getFormatedField(std::map<std::string, std::string>* fields) {
+	std::list<std::string>* formatedList = this->_adjustFieldsToSave(fields);
+	std::string txt = "";
+	for (std::string formated : *formatedList) {
+		txt += formated + " ";
+	}
+	return txt.substr(0, txt.length() - 1);
 }
 
 std::string ModelPersistenceDefaultImpl1::_convertLineseparatorReplacementBacktoLineseparator(std::string str) {

@@ -24,8 +24,7 @@
 
 class Waiting {
 public:
-
-	Waiting(Entity* entity, double timeStartedWaiting, ModelComponent* component, unsigned int componentOutputNumber=0) {
+	Waiting(Entity* entity, double timeStartedWaiting, ModelComponent* component, unsigned int componentOutputNumber = 0) {
 		_entity = entity;
 		_component = component;
 		_timeStartedWaiting = timeStartedWaiting;
@@ -34,7 +33,6 @@ public:
 
 	virtual ~Waiting() = default;
 public:
-
 	virtual std::string show() {
 		return //ModelElement::show()+
 		",entity=" + std::to_string(_entity->getId()) +
@@ -42,22 +40,18 @@ public:
 				",timeStatedWaiting=" + std::to_string(_timeStartedWaiting);
 	}
 public:
-
 	double getTimeStartedWaiting() const {
 		return _timeStartedWaiting;
 	}
-
 	ModelComponent* getComponent() const {
 		return _component;
 	}
-
 	Entity* getEntity() const {
 		return _entity;
 	}
-
-    unsigned int getComponentOutputNumber() const {
-    	return _componentOutputNumber;
-    }
+	unsigned int getComponentOutputNumber() const {
+		return _componentOutputNumber;
+	}
 private:
 	Entity* _entity;
 	ModelComponent* _component;
@@ -106,7 +100,7 @@ public:
 	virtual ~Queue();
 public:
 	virtual std::string show();
-public:
+public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelElement* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 public:
@@ -126,7 +120,7 @@ public:
 	void initBetweenReplications();
 protected:
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance();
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
 	virtual void _createInternalElements();
 	virtual ParserChangesInformation* _getParserChangesInformation();

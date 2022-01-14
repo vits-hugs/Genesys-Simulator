@@ -24,26 +24,21 @@ public:
 
 	class Assignment {
 	public:
-
 		Assignment(std::string destination, std::string expression) {
 			this->_destination = destination;
 			this->_expression = expression;
 			// an assignment is always in the form:
 			// (destinationType) destination = expression
 		};
-
 		void setDestination(std::string _destination) {
 			this->_destination = _destination;
 		}
-
 		std::string getDestination() const {
 			return _destination;
 		}
-
 		void setExpression(std::string _expression) {
 			this->_expression = _expression;
 		}
-
 		std::string getExpression() const {
 			return _expression;
 		}
@@ -61,7 +56,7 @@ public: // virtual
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields, unsigned int parentIndex);
 	virtual std::map<std::string, std::string>* _saveInstance(unsigned int parentIndex);
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance();
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 
 public:
 
@@ -118,7 +113,7 @@ public: // static
 public:
 protected:
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance();
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
 private:
 	List<SequenceStep*>* _steps = new List<SequenceStep*>();

@@ -31,8 +31,8 @@ void Dispose::_execute(Entity* entity) {
 			double timeInSystem = _parentModel->getSimulation()->getSimulatedTime() - entity->getAttributeValue("Entity.ArrivalTime");
 			entity->getEntityType()->addGetStatisticsCollector(entity->getEntityTypeName() + "." + "TotalTimeInSystem")->getStatistics()->getCollector()->addValue(timeInSystem);
 		}
-    }
-    _parentModel->removeEntity(entity); //, _reportStatistics);
+	}
+	_parentModel->removeEntity(entity); //, _reportStatistics);
 }
 
 bool Dispose::_loadInstance(std::map<std::string, std::string>* fields) {
@@ -43,14 +43,14 @@ void Dispose::_initBetweenReplications() {
 	SinkModelComponent::_initBetweenReplications();
 }
 
-std::map<std::string, std::string>* Dispose::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
+std::map<std::string, std::string>* Dispose::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
 	return fields;
 
 }
 
 bool Dispose::_check(std::string* errorMessage) {
-    *errorMessage += "";
+	*errorMessage += "";
 	return true;
 }
 
@@ -68,7 +68,7 @@ void Dispose::_createInternalElements() {
 	} else if (!_reportStatistics && _numberOut != nullptr) {
 		//_numberOut->~Counter();
 		//_numberOut = nullptr;
-		// \todo: delete the CSTATS?
+		// @TODO: delete the CSTATS?
 		_removeChildrenElements();
 	}
 }
@@ -76,6 +76,11 @@ void Dispose::_createInternalElements() {
 PluginInformation* Dispose::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Dispose>(), &Dispose::LoadInstance);
 	info->setSink(true);
+	std::string text = "This module is intended as the ending point for entities in a simulation model.";
+	text += " Entity statistics may be recorded before the entity is disposed.";
+	text += " Animation showing the number of entities disposed is displayed when the module is placed.";
+	text += " TYPICAL USES: (1) Parts leaving the modeled facility; (2) The termination of a business process; (3) Customers departing from the store";
+	info->setDescriptionHelp(text);
 	return info;
 }
 

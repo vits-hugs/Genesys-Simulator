@@ -26,50 +26,51 @@
 /*!
  * 
  */
-	class EntityType : public ModelElement {
-	public:
+class EntityType : public ModelElement {
+public:
 	EntityType(Model* model, std::string name = "");
-		virtual ~EntityType();
-	public:
-		virtual std::string show();
-	public:
-		static PluginInformation* GetPluginInformation();
-		static ModelElement* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-	public: //get & set
-		void setInitialWaitingCost(double _initialWaitingCost);
-		double initialWaitingCost() const;
-		void setInitialOtherCost(double _initialOtherCost);
-		double initialOtherCost() const;
-		void setInitialNVACost(double _initialNVACost);
-		double initialNVACost() const;
-		void setInitialVACost(double _initialVACost);
-		double initialVACost() const;
-		void setInitialPicture(std::string _initialPicture);
-		std::string initialPicture() const;
-	public: //get
-		StatisticsCollector* addGetStatisticsCollector(std::string name);
+	virtual ~EntityType();
+public:
+	virtual std::string show();
+public:
+	static PluginInformation* GetPluginInformation();
+	static ModelElement* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+public: //get & set
+	void setInitialWaitingCost(double _initialWaitingCost);
+	double initialWaitingCost() const;
+	void setInitialOtherCost(double _initialOtherCost);
+	double initialOtherCost() const;
+	void setInitialNVACost(double _initialNVACost);
+	double initialNVACost() const;
+	void setInitialVACost(double _initialVACost);
+	double initialVACost() const;
+	void setInitialPicture(std::string _initialPicture);
+	std::string initialPicture() const;
+public: //get
+	StatisticsCollector* addGetStatisticsCollector(std::string name);
 
-	protected: // must be overriden by derived classes
-		virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-		virtual std::map<std::string, std::string>* _saveInstance();
-		virtual bool _check(std::string* errorMessage);
-		virtual void _initBetweenReplications();
-		virtual void _createInternalElements();
-	private:
-		void _initCostsAndStatistics();
-	private:
-		const struct DEFAULT_VALUES {
-			std::string initialPicture = "report";
-			double initialCost = 0.0;
-		} DEFAULT;
-		std::string _initialPicture = DEFAULT.initialPicture;
-		double _initialVACost = DEFAULT.initialCost;
-		double _initialNVACost = DEFAULT.initialCost;
-		double _initialOtherCost = DEFAULT.initialCost;
-		double _initialWaitingCost = DEFAULT.initialCost;
-	private: //1:n
-		List<StatisticsCollector*>* _statisticsCollectors = new List<StatisticsCollector*>();
-	};
+protected: // must be overriden by derived classes
+	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+	virtual bool _check(std::string* errorMessage);
+	virtual void _initBetweenReplications();
+	virtual void _createInternalElements();
+private:
+	void _initCostsAndStatistics();
+private:
+
+	const struct DEFAULT_VALUES {
+		std::string initialPicture = "report";
+		double initialCost = 0.0;
+	} DEFAULT;
+	std::string _initialPicture = DEFAULT.initialPicture;
+	double _initialVACost = DEFAULT.initialCost;
+	double _initialNVACost = DEFAULT.initialCost;
+	double _initialOtherCost = DEFAULT.initialCost;
+	double _initialWaitingCost = DEFAULT.initialCost;
+private: //1:n
+	List<StatisticsCollector*>* _statisticsCollectors = new List<StatisticsCollector*>();
+};
 //namespace\\}
 #endif /* ENTITYTYPE_H */
 

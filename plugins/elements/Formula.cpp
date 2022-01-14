@@ -22,7 +22,7 @@ Formula::Formula(Model* model, std::string name) : ModelElement(model, Util::Typ
 
 std::string Formula::show() {
 	std::string expressions = "";
-    //unsigned int i = 0;
+	//unsigned int i = 0;
 	// for (std::list<std::string>::iterator it = _formulaExpressions->list()->begin(); it != _formulaExpressions->list()->end(); it++) {
 	//expressions += "expression[" + std::to_string(i++) + "]=\"" + (*it) + "\"; ";
 	//}
@@ -45,7 +45,7 @@ void Formula::setExpression(std::string index, std::string formulaExpression) {
 std::string Formula::expression(std::string index) {
 	std::map<std::string, std::string>::iterator it = _formulaExpressions->find(index);
 	if (it == _formulaExpressions->end()) {
-		return ""; // index does not exist. No formula expressions returned. \todo: Should it be traced?.
+		return ""; // index does not exist. No formula expressions returned. @TODO: Should it be traced?.
 	} else {
 		return it->second;
 	}
@@ -93,17 +93,17 @@ bool Formula::_loadInstance(std::map<std::string, std::string>* fields) {
 	return ModelElement::_loadInstance(fields);
 }
 
-std::map<std::string, std::string>* Formula::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelElement::_saveInstance();
+std::map<std::string, std::string>* Formula::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues);
 	//SaveField(fields, "...", std::to_string(this->_...));
 	return fields;
 }
 
 bool Formula::_check(std::string* errorMessage) {
-    bool res, resAll = true;
+	bool res, resAll = true;
 	//unsigned int i = 0;
 	for (std::map<std::string, std::string>::iterator it = _formulaExpressions->begin(); it != _formulaExpressions->end(); it++) {
-        res = _parentModel->checkExpression((*it).second, "formula expression[" + (*it).first + "]", errorMessage); 
+		res = _parentModel->checkExpression((*it).second, "formula expression[" + (*it).first + "]", errorMessage);
 		if (!res) {
 			_parentModel->getTracer()->trace(Util::TraceLevel::L1_errorFatal, "Error parsing expression \"" + (*it).second + "\"");
 		}

@@ -39,14 +39,19 @@ Connection* ConnectionManager::getConnectionAtRank(unsigned int rank) {
 }
 
 void ConnectionManager::insert(ModelComponent* component, unsigned int inputNumber) {
-    Connection* connection = new Connection(component, inputNumber);
-    unsigned int rank = _nextConnections->size();
-    _nextConnections->setAtRank(rank, connection);
-    _currentOutputConnections++;
+	Connection* connection = new Connection(component, inputNumber);
+	insert(connection);
+}
+
+void ConnectionManager::insert(Connection* connection) {
+	unsigned int rank = _nextConnections->size();
+	_nextConnections->setAtRank(rank, connection);
+	_currentOutputConnections++;
+
 }
 
 void ConnectionManager::insertAtRank(unsigned int rank, Connection* connection) {
-	_nextConnections->setAtRank(rank, connection); // \TODO: it does not work if there is less then rank connections. Model designer responsability?
+	_nextConnections->setAtRank(rank, connection); // @TODO: it does not work if there is less then rank connections. Model designer responsability?
 	_currentOutputConnections++;
 }
 

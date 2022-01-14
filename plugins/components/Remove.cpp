@@ -33,13 +33,13 @@ ModelComponent* Remove::LoadInstance(Model* model, std::map<std::string, std::st
 
 void Remove::_execute(Entity* entity) {
 	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
-	this->_parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection(), 0.0);
+	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
 bool Remove::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
-		// \todo: not implemented yet
+		// @TODO: not implemented yet
 	}
 	return res;
 }
@@ -47,16 +47,16 @@ bool Remove::_loadInstance(std::map<std::string, std::string>* fields) {
 void Remove::_initBetweenReplications() {
 }
 
-std::map<std::string, std::string>* Remove::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
-	// \todo: not implemented yet
+std::map<std::string, std::string>* Remove::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
+	// @TODO: not implemented yet
 	return fields;
 }
 
 bool Remove::_check(std::string* errorMessage) {
 	bool resultAll = true;
-    // \todo: not implemented yet
-    *errorMessage += "";
+	// @TODO: not implemented yet
+	*errorMessage += "";
 	return resultAll;
 }
 

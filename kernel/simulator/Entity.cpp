@@ -19,8 +19,7 @@
 
 //using namespace GenesysKernel;
 
-Entity::Entity(Model* model) : ModelElement(model, Util::TypeOf<Entity>()) {
-	//_elements = elements;
+Entity::Entity(Model* model, std::string name, bool insertIntoModel) : ModelElement(model, Util::TypeOf<Entity>(), name, insertIntoModel) {
 	_entityNumber = Util::GetLastIdOfType(Util::TypeOf<Entity>());
 	unsigned int numAttributes = _parentModel->getElements()->getNumberOfElements(Util::TypeOf<Attribute>());
 	for (unsigned i = 0; i < numAttributes; i++) {
@@ -34,19 +33,23 @@ void Entity::setEntityTypeName(std::string entityTypeName) throw () {
 	if (entitytype != nullptr) {
 		this->_entityType = entitytype;
 	} else {
+
 		throw std::invalid_argument("EntityType does not exist");
 	}
 }
 
 std::string Entity::getEntityTypeName() const {
+
 	return this->_entityType->getName();
 }
 
 void Entity::setEntityType(EntityType* entityType) {
+
 	_entityType = entityType;
 }
 
 EntityType* Entity::getEntityType() const {
+
 	return _entityType;
 }
 
@@ -64,24 +67,26 @@ std::string Entity::show() {
 		if (map->size() == 0) { // scalar
 			message += "NaN;"; //std::to_string(map->begin()->second) + ";";
 		} else if (map->size() == 1) { // scalar
-            message += strTruncIfInt(std::to_string(map->begin()->second)) + ", ";
+			message += strTruncIfInt(std::to_string(map->begin()->second)) + ", ";
 		} else {
 			// array or matrix
 			message += "[";
 			for (std::pair<std::string, double> valIt : *map) {
-                message += valIt.first + "=>" + strTruncIfInt(std::to_string(valIt.second)) + ", ";
-                }
-            message = message.substr(0, message.length() - 2);
+				message += valIt.first + "=>" + strTruncIfInt(std::to_string(valIt.second)) + ", ";
+			}
+			message = message.substr(0, message.length() - 2);
 			message += "];";
 		}
 		_attributeValues->next();
 	}
 	message = message.substr(0, message.length() - 1);
 	message += "]";
+
 	return message;
 }
 
 double Entity::getAttributeValue(std::string attributeName) {
+
 	return getAttributeValue("", attributeName);
 }
 
@@ -97,10 +102,11 @@ double Entity::getAttributeValue(std::string index, std::string attributeName) {
 		}
 	}
 	_parentModel->getTracer()->trace(Util::TraceLevel::L3_errorRecover, "Attribute \"" + attributeName + "\" not found");
-	return 0.0; /* \todo: !! Never should happen. check how to report */
+	return 0.0;
 }
 
 double Entity::getAttributeValue(Util::identification attributeID) {
+
 	return getAttributeValue("", attributeID);
 }
 
@@ -108,6 +114,7 @@ double Entity::getAttributeValue(std::string index, Util::identification attribu
 	//assert(this->_parentModel != nullptr);
 	ModelElement* element = _parentModel->getElements()->getElement(Util::TypeOf<Attribute>(), attributeID);
 	if (element != nullptr) {
+
 		return getAttributeValue(index, element->getName());
 	}
 	return 0.0; // attribute not found
@@ -133,29 +140,33 @@ void Entity::setAttributeValue(std::string index, std::string attributeName, dou
 }
 
 void Entity::setAttributeValue(Util::identification attributeID, double value) {
+
 	setAttributeValue("", attributeID, value);
 }
 
 void Entity::setAttributeValue(std::string index, Util::identification attributeID, double value) {
+
 	std::string attrname = _parentModel->getElements()->getElement(Util::TypeOf<Attribute>(), attributeID)->getName();
 	setAttributeValue(index, attrname, value);
 }
 
 Util::identification Entity::entityNumber() const {
+
 	return _entityNumber;
 }
 
 bool Entity::_loadInstance(std::map<std::string, std::string>* fields) {
-    // never loads an entity 
-    fields = nullptr; // just to use the parameter and avoid warning for not using it
-    return fields;
+	// never loads an entity 
+	fields = nullptr; // just to use the parameter and avoid warning for not using it
+
+	return fields;
 }
 
-std::map<std::string, std::string>* Entity::_saveInstance() {
+std::map<std::string, std::string>* Entity::_saveInstance(bool saveDefaultValues) {
 	return new std::map<std::string, std::string>();
 }
 
 bool Entity::_check(std::string* errorMessage) {
-    *errorMessage += "";
+	*errorMessage += "";
 	return true;
 }

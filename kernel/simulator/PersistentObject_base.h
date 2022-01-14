@@ -19,13 +19,12 @@
 
 class PersistentObject_base {
 public:
-
 	PersistentObject_base() {
 	}
 	virtual ~PersistentObject_base() = default;
 protected: // must be overriden by derived classes
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields) = 0;
-	virtual std::map<std::string, std::string>* _saveInstance() = 0;
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues) = 0;
 };
 
 #endif /* PERSISTENTOBJECT_BASE_H */

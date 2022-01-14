@@ -28,15 +28,19 @@ ModelCheckerDefaultImpl1::ModelCheckerDefaultImpl1(Model* model) {
 bool ModelCheckerDefaultImpl1::checkAll() {
 	bool res = true;
 	res &= checkSymbols();
-	//res &= checkAndAddInternalLiterals();
-	//res &= checkActivationCode();
-	res &= checkLimits();
-	res &= checkConnected();
+	//if (res)
+	//   res &= checkAndAddInternalLiterals();
+	//if (res)
+	//   res &= checkActivationCode();
+	if (res)
+		res &= checkLimits();
+	if (res)
+		res &= checkConnected();
 	return res;
 }
 
 //bool ModelCheckerDefaultImpl1::checkAndAddInternalLiterals() {
-//    /*  \todo: +-: not implemented yet */
+//    /*  @TODO: +-: not implemented yet */
 //    return true;
 //}
 
@@ -45,17 +49,17 @@ void ModelCheckerDefaultImpl1::_recursiveConnectedTo(PluginManager* pluginManage
 	_model->getTracer()->trace(Util::TraceLevel::L8_detailed, "Connected to component \"" + comp->getName() + "\"");
 	Plugin* plugin = pluginManager->find(comp->getClassname());
 	assert(plugin != nullptr);
-	if (plugin->getPluginInfo()->isSink() || (plugin->getPluginInfo()->isSendTransfer() && comp->getNextComponents()->size() == 0)) {//(dynamic_cast<SinkModelComponent*> (comp) != nullptr) {
+	if (plugin->getPluginInfo()->isSink() || (plugin->getPluginInfo()->isSendTransfer() && comp->getConnections()->size() == 0)) {//(dynamic_cast<SinkModelComponent*> (comp) != nullptr) {
 		// it is a sink OR it can send entities throught a transfer and has no nextConnections
 		*drenoFound = true;
 	} else { // it is not a sink
-		if (comp->getNextComponents()->size() == 0) {
+		if (comp->getConnections()->size() == 0) {
 			unconnected->insert(comp);
 			_model->getTracer()->trace(Util::TraceLevel::L1_errorFatal, "Component \"" + comp->getName() + "\" is unconnected (not a sink with no next componentes connected to)");
 			*drenoFound = false;
 		} else {
 			ModelComponent* nextComp;
-			for (std::list<Connection*>::iterator it = comp->getNextComponents()->list()->begin(); it != comp->getNextComponents()->list()->end(); it++) {
+			for (std::list<Connection*>::iterator it = comp->getConnections()->list()->begin(); it != comp->getConnections()->list()->end(); it++) {
 				nextComp = (*it)->first;
 				if (visited->find(nextComp) == visited->list()->end()) { // not visited yet
 					*drenoFound = false;
@@ -74,7 +78,7 @@ void ModelCheckerDefaultImpl1::_recursiveConnectedTo(PluginManager* pluginManage
 }
 
 bool ModelCheckerDefaultImpl1::checkConnected() {
-	/*  \todo: +-: not implemented yet */
+	/*  @TODO: +-: not implemented yet */
 	_model->getTracer()->trace(Util::TraceLevel::L7_internal, "Checking connected");
 	bool resultAll = true;
 	PluginManager* pluginManager = this->_model->getParentSimulator()->getPlugins();
@@ -125,38 +129,40 @@ bool ModelCheckerDefaultImpl1::checkSymbols() {
 		Util::DecIndent();
 
 		// check elements
-		_model->getTracer()->trace(Util::TraceLevel::L8_detailed, "Elements:");
-		Util::IncIndent();
-		{
-			std::string elementType;
-			bool result;
-			ModelElement* element;
-			std::string* errorMessage = new std::string();
-			std::list<std::string>* elementTypes = _model->getElements()->getElementClassnames();
-			for (std::list<std::string>::iterator typeIt = elementTypes->begin(); typeIt != elementTypes->end(); typeIt++) {
-				elementType = (*typeIt);
-				List<ModelElement*>* elements = _model->getElements()->getElementList(elementType);
-				for (std::list<ModelElement*>::iterator it = elements->list()->begin(); it != elements->list()->end(); it++) {
-					element = (*it);
-					// copyed from modelCOmponent. It is not inside the ModelElement::Check because ModelElement has no access to Model to call Tracer
-					_model->getTracer()->trace(Util::TraceLevel::L8_detailed, "Checking " + element->getClassname() + ": \"" + element->getName() + "\" (id " + std::to_string(element->getId()) + ")"); //std::to_string(component->_id));
-					Util::IncIndent();
-					{
-						try {
-							result = element->Check((*it), errorMessage);
-							res &= result;
-							if (!result) {
-								_model->getTracer()->trace(Util::TraceLevel::L1_errorFatal, "Error: Checking has failed with message '" + *errorMessage + "'");
+		if (res) {
+			_model->getTracer()->trace(Util::TraceLevel::L8_detailed, "Elements:");
+			Util::IncIndent();
+			{
+				std::string elementType;
+				bool result;
+				ModelElement* element;
+				std::string* errorMessage = new std::string();
+				std::list<std::string>* elementTypes = _model->getElements()->getElementClassnames();
+				for (std::list<std::string>::iterator typeIt = elementTypes->begin(); typeIt != elementTypes->end(); typeIt++) {
+					elementType = (*typeIt);
+					List<ModelElement*>* elements = _model->getElements()->getElementList(elementType);
+					for (std::list<ModelElement*>::iterator it = elements->list()->begin(); it != elements->list()->end(); it++) {
+						element = (*it);
+						// copyed from modelCOmponent. It is not inside the ModelElement::Check because ModelElement has no access to Model to call Tracer
+						_model->getTracer()->trace(Util::TraceLevel::L8_detailed, "Checking " + element->getClassname() + ": \"" + element->getName() + "\" (id " + std::to_string(element->getId()) + ")"); //std::to_string(component->_id));
+						Util::IncIndent();
+						{
+							try {
+								result = element->Check((*it), errorMessage);
+								res &= result;
+								if (!result) {
+									_model->getTracer()->trace(Util::TraceLevel::L1_errorFatal, "Error: Checking has failed with message '" + *errorMessage + "'");
+								}
+							} catch (const std::exception& e) {
+								_model->getTracer()->traceError(e, "Error verifying component " + element->show());
 							}
-						} catch (const std::exception& e) {
-							_model->getTracer()->traceError(e, "Error verifying component " + element->show());
 						}
+						Util::DecIndent();
 					}
-					Util::DecIndent();
 				}
 			}
+			Util::DecIndent();
 		}
-		Util::DecIndent();
 	}
 	Util::DecIndent();
 
@@ -164,7 +170,7 @@ bool ModelCheckerDefaultImpl1::checkSymbols() {
 }
 
 bool ModelCheckerDefaultImpl1::checkActivationCode() {
-	/*  \todo: +-: not implemented yet */
+	/*  @TODO: +-: not implemented yet */
 	_model->getTracer()->trace(Util::TraceLevel::L7_internal, "Checking activation code");
 	Util::IncIndent();
 	{

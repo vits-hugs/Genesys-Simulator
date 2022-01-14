@@ -101,6 +101,7 @@ L      [A-Za-z0-9_.]+
 [+] {return yy::genesyspp_parser::make_PLUS(loc);}
 [-] {return yy::genesyspp_parser::make_MINUS(loc);}
 [*] {return yy::genesyspp_parser::make_STAR(loc);}
+[\^] {return yy::genesyspp_parser::make_POWER(loc);}
 [/] {return yy::genesyspp_parser::make_SLASH(loc);}
 [=] {return yy::genesyspp_parser::make_ASSIGN(loc);}
 [,] {return yy::genesyspp_parser::make_COMMA(loc);}
@@ -108,7 +109,7 @@ L      [A-Za-z0-9_.]+
 [\]] {return yy::genesyspp_parser::make_RBRACKET(loc);}
 
 %{// boolean values %}
-[tT][rR][uU][eE]      {return yy::genesyspp_parser::make_NUMD(obj_t(1, std::string(yytext)), loc);}
+[tT][rR][uU][eE]      {return yy::genesyspp_parser::make_NUMD(obj_t(1, std::string(yytext)), loc); /* @todo: should it be -1? */} 
 [fF][aA][lL][sS][eE]  {return yy::genesyspp_parser::make_NUMD(obj_t(0, std::string(yytext)), loc);}
 
 %{// algorithmic functions %}
@@ -121,6 +122,8 @@ L      [A-Za-z0-9_.]+
 %{// logic funcions %}
 [aA][nN][dD]    {return yy::genesyspp_parser::make_oAND(obj_t(0, std::string(yytext)), loc);}
 [oO][rR]        {return yy::genesyspp_parser::make_oOR(obj_t(0, std::string(yytext)), loc);}
+[nN][aA][nN][dD]    {return yy::genesyspp_parser::make_oNAND(obj_t(0, std::string(yytext)), loc);}
+[xX][oO][rR]        {return yy::genesyspp_parser::make_oXOR(obj_t(0, std::string(yytext)), loc);}
 [nN][oO][tT]    {return yy::genesyspp_parser::make_oNOT(obj_t(0, std::string(yytext)), loc);}
 
 %{// trigonometric functions %}
@@ -217,6 +220,13 @@ T
             return yy::genesyspp_parser::make_ATRIB(obj_t(0, Util::TypeOf<Attribute>(), element->getId()),loc);
         }
 
+
+        //check CSTAT
+        element = driver.getModel()->getElements()->getElement(Util::TypeOf<StatisticsCollector>(), std::string(yytext));
+        if (element != nullptr) { 
+            return yy::genesyspp_parser::make_CSTAT(obj_t(0, Util::TypeOf<StatisticsCollector>(), element->getId()),loc);
+        }
+
 /****begin_LexicalLiterals_plugins****/
 
 /**begin_LexicalLiterals:Variable**/
@@ -266,12 +276,6 @@ T
 /**end_LexicalLiterals:Set**/
 
 /****end_LexicalLiterals_plugins****/
-
-        //check CSTAT
-        element = driver.getModel()->getElements()->getElement(Util::TypeOf<StatisticsCollector>(), std::string(yytext));
-        if (element != nullptr) { 
-            return yy::genesyspp_parser::make_CSTAT(obj_t(0, Util::TypeOf<StatisticsCollector>(), element->getId()),loc);
-        }
 
 	// If no one before has identified this literal, then it is an ILLEGAL (not found, unknown) literal 
         //Case not found retturns a illegal token

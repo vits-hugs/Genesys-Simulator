@@ -33,7 +33,6 @@
 
 //namespace GenesysKernel {
 // trim from start (in place)
-
 static inline std::string map2str(std::map<std::string, std::string>* mapss) {
 	std::string res = "";
 	for (std::map<std::string, std::string>::iterator it = mapss->begin(); it != mapss->end(); it++) {
@@ -42,27 +41,26 @@ static inline std::string map2str(std::map<std::string, std::string>* mapss) {
 	res = res.substr(0, res.length() - 1);
 	return res;
 }
-
 /*
 static inline void ltrim(std::string &s) {
-	s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](int ch) {
-		return !std::isspace(ch);
-	}));
+		s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](int ch) {
+				return !std::isspace(ch);
+		}));
 }
 
 // trim from end (in place)
 
 static inline void rtrim(std::string &s) {
-	s.erase(std::find_if(s.rbegin(), s.rend(), [](int ch) {
-		return !std::isspace(ch);
-	}).base(), s.end());
+		s.erase(std::find_if(s.rbegin(), s.rend(), [](int ch) {
+				return !std::isspace(ch);
+		}).base(), s.end());
 }
 
 // trim from both ends (in place)
 
 static inline void trim(std::string &s) {
-	ltrim(s);
-	rtrim(s);
+		ltrim(s);
+		rtrim(s);
 }
  */
 
@@ -72,7 +70,6 @@ static inline std::string strTruncIfInt(std::string strValue) {
 	else
 		return strValue;
 }
-
 static inline std::string trim(std::string str) {
 	const char* typeOfWhitespaces = " \t\n\r\f\v";
 	str.erase(str.find_last_not_of(typeOfWhitespaces) + 1);
@@ -80,14 +77,12 @@ static inline std::string trim(std::string str) {
 	return str;
 }
 // trim all spaces within the string (in place) -- used to transform general names into valid literals
-
 static inline void trimwithin(std::string &str) {
 	//ltrim(s);
 	//rtrim(s);
 	//s.erase(std::remove_if(s.begin(), s.end(), std::isspace), s.end());
 	str.erase(remove(str.begin(), str.end(), ' '), str.end());
 }
-
 static inline std::string getFileName(const std::string& s) {
 	char sep = '/';
 	size_t i = s.rfind(sep, s.length());
@@ -96,7 +91,6 @@ static inline std::string getFileName(const std::string& s) {
 	}
 	return s;
 }
-
 static inline std::string getPath(const std::string& s) {
 	char sep = '/';
 	return s.substr(0, s.find_last_of(sep));
@@ -104,32 +98,32 @@ static inline std::string getPath(const std::string& s) {
 
 /*
 static std::string getRunningPath() {
-	char result[ PATH_MAX ];
-	ssize_t count = readlink("/proc/self/exe", result, PATH_MAX);
-	std::string fullfilename = std::string(result, (count > 0) ? count : 0);
-	return getPath(fullfilename);
+		char result[ PATH_MAX ];
+		ssize_t count = readlink("/proc/self/exe", result, PATH_MAX);
+		std::string fullfilename = std::string(result, (count > 0) ? count : 0);
+		return getPath(fullfilename);
 }
 
 static std::vector<std::string> listFiles(std::string dir, std::string fileFilter = "", mode_t attribFilter = S_IFREG & S_IFDIR) {
-	std::vector<std::string> files;
-	DIR *dp;
-	struct dirent *dirp;
-	struct stat statbuffer;
-	if ((dp = opendir(dir.c_str())) == NULL) {
-		//cout << "Error(" << errno << ") opening " << dir << endl;
-		//return errno;
-	}
-	int status;
-	while ((dirp = readdir(dp)) != NULL) {
-		status = stat(dirp->d_name, &statbuffer);
-		if (status & attribFilter) { // https://pubs.opengroup.org/onlinepubs/7908799/xsh/sysstat.h.html
-			if (fileFilter == "" || std::string(dirp->d_name).find(fileFilter) != std::string::npos) {
-				files.push_back(std::string(dirp->d_name));
-			}
+		std::vector<std::string> files;
+		DIR *dp;
+		struct dirent *dirp;
+		struct stat statbuffer;
+		if ((dp = opendir(dir.c_str())) == NULL) {
+				//cout << "Error(" << errno << ") opening " << dir << endl;
+				//return errno;
 		}
-	}
-	closedir(dp);
-	return files;
+		int status;
+		while ((dirp = readdir(dp)) != NULL) {
+				status = stat(dirp->d_name, &statbuffer);
+				if (status & attribFilter) { // https://pubs.opengroup.org/onlinepubs/7908799/xsh/sysstat.h.html
+						if (fileFilter == "" || std::string(dirp->d_name).find(fileFilter) != std::string::npos) {
+								files.push_back(std::string(dirp->d_name));
+						}
+				}
+		}
+		closedir(dp);
+		return files;
 }
  */
 class Util {
@@ -154,7 +148,7 @@ public:
 		L0_noTraces = 0,
 		L1_errorFatal = 1,
 		L2_results = 2,
-		L3_errorRecover = 3,
+		L3_errorRecover = 3, // or progress
 		L4_warning = 4,
 		L5_event = 5,
 		L6_arrival = 6,
@@ -163,30 +157,30 @@ public:
 		L9_mostDetailed = 9
 		/*				,
 		
-				simulatorResult = 10,
-				toolResult = 11,
-				modelResult = 12,
-				componentResult = 13,
-				elementResult = 14,
+						simulatorResult = 10,
+						toolResult = 11,
+						modelResult = 12,
+						componentResult = 13,
+						elementResult = 14,
 
-				modelSimulationEvent = 15,
+						modelSimulationEvent = 15,
 
-				componentArrival = 20,
-				simulatorInternal = 21,
-				toolInternal = 22,
-				modelSimulationInternal = 23,
-				modelInternal = 24,
-				componentInternal = 25,
-				elementInternal = 26,
+						componentArrival = 20,
+						simulatorInternal = 21,
+						toolInternal = 22,
+						modelSimulationInternal = 23,
+						modelInternal = 24,
+						componentInternal = 25,
+						elementInternal = 26,
 
-				simulatorDetailed = 30,
-				toolDetailed = 31,
-				modelSimulationDetailed = 32,
-				modelDetailed = 33,
-				componentDetailed = 34,
-				elementDetailed = 35,
+						simulatorDetailed = 30,
+						toolDetailed = 31,
+						modelSimulationDetailed = 32,
+						modelDetailed = 33,
+						componentDetailed = 34,
+						elementDetailed = 35,
 
-				everythingMostDetailed = 99
+						everythingMostDetailed = 99
 		 */
 	};
 private:
@@ -195,7 +189,7 @@ private:
 	static std::map<std::string, std::string> _S_TypeOf;
 
 public: // indentation and string
-	static unsigned int _S_indentation; // \todo: IT IS PRIVATE. ITS HERE JUST TO INCLUDE IT AS A WATCH
+	static unsigned int _S_indentation; // @TODO: IT IS PRIVATE. ITS HERE JUST TO INCLUDE IT AS A WATCH
 	static void SetIndent(const unsigned short indent);
 	static void IncIndent();
 	static void DecIndent();
@@ -214,7 +208,6 @@ public: // simulation support
 	static double TimeUnitConvert(Util::TimeUnit timeUnit1, Util::TimeUnit timeUnit2);
 
 public: // template implementations
-
 	/*!
 	 * Return the name of the class used as T.
 	 */
@@ -232,7 +225,6 @@ public: // template implementations
 			return newname;
 		}
 	}
-
 	/*!
 	 * Every component or element has a unique ID for its class, but not unique for other classes. IDs are generated sequentially for each class.
 	 */
@@ -256,54 +248,46 @@ private:
 };
 
 
-// \todo Implement it using templates (check impact on calling syntax)
-
+// @TODO Implement it using templates (check impact on calling syntax)
 static inline std::string LoadField(std::map<std::string, std::string>* fields, std::string fieldName, std::string defaultValue = "") {
 	return fields->find(fieldName) != fields->end() ? ((*(fields->find(fieldName))).second) : defaultValue;
 }
-
 static inline double LoadField(std::map<std::string, std::string>* fields, std::string fieldName, double defaultValue) {
 	return std::stod(fields->find(fieldName) != fields->end() ? ((*(fields->find(fieldName))).second) : std::to_string(defaultValue));
 }
-
 static inline unsigned int LoadField(std::map<std::string, std::string>* fields, std::string fieldName, unsigned int defaultValue) {
 	return std::stoi(fields->find(fieldName) != fields->end() ? ((*(fields->find(fieldName))).second) : std::to_string(defaultValue));
 }
-
 static inline int LoadField(std::map<std::string, std::string>* fields, std::string fieldName, int defaultValue) {
 	return std::stoi(fields->find(fieldName) != fields->end() ? ((*(fields->find(fieldName))).second) : std::to_string(defaultValue));
 }
-
 static inline Util::TimeUnit LoadField(std::map<std::string, std::string>* fields, std::string fieldName, Util::TimeUnit defaultValue) {
 	return static_cast<Util::TimeUnit> (std::stoi(fields->find(fieldName) != fields->end() ? ((*(fields->find(fieldName))).second) : std::to_string(static_cast<int> (defaultValue))));
 }
 
-// \todo Implement it using templates (check impact on calling syntax)
-
-static inline void SaveField(std::map<std::string, std::string>* fields, std::string fieldName, std::string fieldValue, const std::string fieldDefaultValue = "", const bool saveIfEqualsDefault = false) {
-	if (saveIfEqualsDefault || (fieldValue != fieldDefaultValue))
+// @TODO Implement it using templates (check impact on calling syntax)
+static inline void SaveField(std::map<std::string, std::string>* fields, std::string fieldName, std::string fieldValue, const std::string fieldDefaultValue, const bool saveDefaultValue = false) {
+	if (saveDefaultValue || (fieldValue != fieldDefaultValue))
 		fields->emplace(fieldName, "\"" + fieldValue + "\"");
 }
-
-static inline void SaveField(std::map<std::string, std::string>* fields, std::string fieldName, double fieldValue, const double fieldDefaultValue) {
-	if (fieldValue != fieldDefaultValue)
+static inline void SaveField(std::map<std::string, std::string>* fields, std::string fieldName, std::string fieldValue) {
+	fields->emplace(fieldName, "\"" + fieldValue + "\"");
+}
+static inline void SaveField(std::map<std::string, std::string>* fields, std::string fieldName, double fieldValue, const double fieldDefaultValue, const bool saveDefaultValue = false) {
+	if (saveDefaultValue || (fieldValue != fieldDefaultValue))
 		fields->emplace(fieldName, std::to_string(fieldValue));
 }
-
-static inline void SaveField(std::map<std::string, std::string>* fields, std::string fieldName, unsigned int fieldValue, const unsigned int fieldDefaultValue) {
-	if (fieldValue != fieldDefaultValue)
+static inline void SaveField(std::map<std::string, std::string>* fields, std::string fieldName, unsigned int fieldValue, const unsigned int fieldDefaultValue, const bool saveDefaultValue = false) {
+	if (saveDefaultValue || (fieldValue != fieldDefaultValue))
 		fields->emplace(fieldName, std::to_string(fieldValue));
 }
-
 static inline void SaveField(std::map<std::string, std::string>* fields, std::string fieldName, unsigned int fieldValue) {
 	fields->emplace(fieldName, std::to_string(fieldValue));
 }
-
-static inline void SaveField(std::map<std::string, std::string>* fields, std::string fieldName, int fieldValue, const int fieldDefaultValue) {
-	if (fieldValue != fieldDefaultValue)
+static inline void SaveField(std::map<std::string, std::string>* fields, std::string fieldName, int fieldValue, const int fieldDefaultValue, const bool saveDefaultValue = false) {
+	if (saveDefaultValue || (fieldValue != fieldDefaultValue))
 		fields->emplace(fieldName, std::to_string(fieldValue));
 }
-
 static inline void SaveField(std::map<std::string, std::string>* fields, std::string fieldName, Util::TimeUnit fieldValue, const Util::TimeUnit fieldDefaultValue, const bool saveDefaultValue = false) {
 	if (saveDefaultValue || (fieldValue != fieldDefaultValue))
 		fields->emplace(fieldName, std::to_string(static_cast<int> (fieldValue)));

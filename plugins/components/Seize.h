@@ -20,33 +20,29 @@
 #include "../elements/Resource.h"
 #include "../elements/Queue.h"
 #include "../../kernel/simulator/Plugin.h"
-#include "SeizableItemRequest.h"
-#include "../elements/QueueableItemRequest.h"
+#include "SeizableItem.h"
+#include "QueueableItem.h"
 
 class WaitingResource : public Waiting {
 public:
+	WaitingResource(Entity* entity, double timeStartedWaiting, unsigned int quantity, ModelComponent* component) : Waiting(entity, timeStartedWaiting, component) {
+		_quantity = quantity;
+	}
+	WaitingResource(const WaitingResource& orig) : Waiting(orig) {
+	}
 
-    WaitingResource(Entity* entity, double timeStartedWaiting, unsigned int quantity, ModelComponent* component) : Waiting(entity, timeStartedWaiting, component) {
-        _quantity = quantity;
-    }
-
-    WaitingResource(const WaitingResource& orig) : Waiting(orig) {
-    }
-
-    virtual ~WaitingResource() = default;
+	virtual ~WaitingResource() = default;
 public:
-
-    virtual std::string show() {
-        return Waiting::show() +
-                ",quantity=" + std::to_string(this->_quantity);
-    }
+	virtual std::string show() {
+		return Waiting::show() +
+				",quantity=" + std::to_string(this->_quantity);
+	}
 public:
-
-    unsigned int getQuantity() const {
-        return _quantity;
-    }
+	unsigned int getQuantity() const {
+		return _quantity;
+	}
 private:
-    unsigned int _quantity;
+	unsigned int _quantity;
 };
 
 /*!
@@ -125,51 +121,56 @@ which queue is to be used.
  */
 class Seize : public ModelComponent {
 public:
-    Seize(Model* model, std::string name = "");
-    virtual ~Seize() = default;
+	Seize(Model* model, std::string name = "");
+	virtual ~Seize() = default;
 public:
-    virtual std::string show();
+	virtual std::string show();
 public:
-    static PluginInformation* GetPluginInformation();
-    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static PluginInformation* GetPluginInformation();
+	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 public: // get & set
-    void setPriority(unsigned short _priority);
-    unsigned short getPriority() const;
-    void setAllocationType(unsigned int _allocationType);
-    unsigned int getAllocationType() const;
-    // indirect access to Queue* and Resource*
-    //void setResourceName(std::string _resourceName) throw ();
-    //std::string getResourceName() const;
-    //void setQueueName(std::string queueName) throw ();
-    //std::string getQueueName() const;
+	void setPriority(unsigned short _priority);
+	unsigned short getPriority() const;
+	void setAllocationType(unsigned int _allocationType);
+	unsigned int getAllocationType() const;
+	// indirect access to Queue* and Resource*
+	//void setResourceName(std::string _resourceName) throw ();
+	//std::string getResourceName() const;
+	//void setQueueName(std::string queueName) throw ();
+	//std::string getQueueName() const;
 	void setQueue(Queue* queue); ///< Deprected
-    //Queue* getQueue() const;
-    List<SeizableItemRequest*>* getSeizeRequests() const;
-    void setQueueableItem(QueueableItemRequest* _queueableItem);
-    QueueableItemRequest* getQueueableItem() const;
+	//Queue* getQueue() const;
+	List<SeizableItem*>* getSeizeRequests() const;
+	void setQueueableItem(QueueableItem* _queueableItem);
+	QueueableItem* getQueueableItem() const;
+	void setSaveAttribute(std::string _saveAttribute);
+	std::string getSaveAttribute() const;
 protected:
-    virtual void _execute(Entity* entity);
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual void _initBetweenReplications();
-    virtual std::map<std::string, std::string>* _saveInstance();
-    virtual bool _check(std::string* errorMessage);
-    //virtual void _createInternalElements(); 
+	virtual void _execute(Entity* entity);
+	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+	virtual void _initBetweenReplications();
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+	virtual bool _check(std::string* errorMessage);
+	//virtual void _createInternalElements();
 private:
-    void _handlerForResourceEvent(Resource* resource);
-    Queue* _getQueue() const;
+	void _handlerForResourceEvent(Resource* resource); ///< This method is indirectally invocked (notified) by resource when it's released, since it was added as ResourceEventHandler
+	Resource* _getResourceFromSeizableItem(SeizableItem* seizable, Entity* entity);
+	Queue* _getQueue() const;
 private:
 
-    const struct DEFAULT_VALUES {
-        unsigned int allocationType = 0; // uint ? enum?
-        unsigned short priority = 0;
-        unsigned int seizeRequestSize = 1;
-    } DEFAULT;
-    unsigned int _allocationType = DEFAULT.allocationType; // uint ? enum?
-    unsigned short _priority = DEFAULT.priority;
-    QueueableItemRequest* _queueableItem; //Queue* _queue; // usually has a queue, but not always (it could be a hold or a set) 
-    List<SeizableItemRequest*>* _seizeRequests = new List<SeizableItemRequest*>();
+	const struct DEFAULT_VALUES {
+		unsigned int allocationType = 0; // uint ? enum?
+		unsigned short priority = 0;
+		unsigned int seizeRequestSize = 1;
+		std::string saveAttribute = "";
+	} DEFAULT;
+	unsigned int _allocationType = DEFAULT.allocationType; // uint ? enum?
+	unsigned short _priority = DEFAULT.priority;
+	std::string _saveAttribute = "";
+	QueueableItem* _queueableItem; //Queue* _queue; // usually has a queue, but not always (it could be a hold or a set)
+	List<SeizableItem*>* _seizeRequests = new List<SeizableItem*>();
 private: // not gets or sets
-    //	unsigned int _lastMemberSeized = 0; //  now _seizeRequest is a list and it was moved to SeizableItemRequest
+	//	unsigned int _lastMemberSeized = 0; //  now _seizeRequest is a list and it was moved to SeizableItem
 };
 
 #endif /* SEIZE_H */

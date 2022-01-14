@@ -70,10 +70,10 @@ bool Set::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-std::map<std::string, std::string>* Set::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(); //Util::TypeOf<Set>());
-	SaveField(fields, "type", _setOfType, DEFAULT.setOfType);
-	SaveField(fields, "membersSize", _elementSet->size(), DEFAULT.membersSize);
+std::map<std::string, std::string>* Set::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues); //Util::TypeOf<Set>());
+	SaveField(fields, "type", _setOfType, DEFAULT.setOfType, saveDefaultValues);
+	SaveField(fields, "membersSize", _elementSet->size(), DEFAULT.membersSize, saveDefaultValues);
 	unsigned int i = 0;
 	for (ModelElement* element : *_elementSet->list()) {
 		SaveField(fields, "member" + std::to_string(i), element->getName());
@@ -84,8 +84,16 @@ std::map<std::string, std::string>* Set::_saveInstance() {
 
 bool Set::_check(std::string* errorMessage) {
 	bool resultAll = true;
-    // resultAll |= ...
-    *errorMessage += "";
+	if (_elementSet->size() > 0) {
+		std::string typeOfFirstElement = _elementSet->front()->getClassname();
+		if (_setOfType == "") {
+			_setOfType = typeOfFirstElement;
+		} else if (_setOfType != typeOfFirstElement) {
+			resultAll = false;
+			*errorMessage += "Set is of type \"" + _setOfType + "\" and first element is of type \"" + typeOfFirstElement + "\"";
+		}
+	}
+	*errorMessage += "";
 	return resultAll;
 }
 

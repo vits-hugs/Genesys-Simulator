@@ -28,6 +28,7 @@ bool Attribute::_loadInstance(std::map<std::string, std::string>* fields) {
 
 PluginInformation* Attribute::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Attribute>(), &Attribute::LoadInstance);
+	info->setDescriptionHelp("//@TODO");
 	return info;
 
 }
@@ -42,12 +43,13 @@ ModelElement* Attribute::LoadInstance(Model* model, std::map<std::string, std::s
 	return newElement;
 }
 
-std::map<std::string, std::string>* Attribute::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(); //Util::TypeOf<Attribute>());
+std::map<std::string, std::string>* Attribute::_saveInstance(bool saveDefaultValues) {
+	bool saveDefaults = this->_getSaveDefaultsOption();
+	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues); //Util::TypeOf<Attribute>());
 	return fields;
 }
 
 bool Attribute::_check(std::string* errorMessage) {
-    *errorMessage += "";
+	*errorMessage += "";
 	return true;
 }

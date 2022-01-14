@@ -19,8 +19,11 @@
 #include "Entity.h"
 #include "ModelInfo.h"
 #include "SimulationReporter_if.h"
+#include "OnEventManager.h"
 //#include "Counter.h"
 //namespace GenesysKernel {
+
+//#include "Model.h" // for friend functions
 class Model;
 
 /*!
@@ -35,9 +38,9 @@ public:
 	std::string show();
 public: // simulation control
 	void start(); ///< Starts a sequential execution of a simulation, ie, a set of replications of this model.
-	void pause();
+	void pause(); ///<
 	void step(); ///< Executes the processing of a single event, the next one in the future events list.
-	void stop();
+	void stop(); ///<
 public: // old modelInfos
 	void setNumberOfReplications(unsigned int _numberOfReplications);
 	unsigned int getNumberOfReplications() const;
@@ -84,7 +87,7 @@ public: // only gets
 	List<ModelComponent*>* getBreakpointsOnComponent() const;
 public:
 	void loadInstance(std::map<std::string, std::string>* fields);
-	std::map<std::string, std::string>* saveInstance();
+	std::map<std::string, std::string>* saveInstance(bool saveDefaults);
 	Event* getCurrentEvent() const;
 	void setShowSimulationResposesInReport(bool _showSimulationResposesInReport);
 	bool isShowSimulationResposesInReport() const;
@@ -94,24 +97,30 @@ public:
 	 * PRIVATE
 	 */
 private: // simulation control
-	void _initSimulation();
+	void _initSimulation(); ///<
 	void _initReplication(); ///< Clear the event list, restarts simulated time, initialize event list and statistics, request components to reinitialize
-	void _initStatistics();
-	void _checkWarmUpTime(Event* nextEvent);
-	void _stepSimulation();
-	void _replicationEnded();
-	void _simulationEnded();
-	void _processEvent(Event* event);
+	void _initStatistics(); ///<
+	void _checkWarmUpTime(Event* nextEvent); ///<
+	void _stepSimulation(); ///<
+	void _replicationEnded(); ///<
+	void _simulationEnded(); ///<
+	void _processEvent(Event* event); ///<
 private:
-	bool _checkBreakpointAt(Event* event);
-	bool _isReplicationEndCondition();
-	void _actualizeSimulationStatistics();
-	void _showSimulationHeader();
-	void _traceReplicationEnded();
+	bool _checkBreakpointAt(Event* event); ///<
+	bool _isReplicationEndCondition(); ///<
+	void _actualizeSimulationStatistics(); ///<
+	void _showSimulationHeader(); ///<
+	void _traceReplicationEnded(); ///<
+private:
+	SimulationEvent* _createSimulationEvent(void* thiscustomObject = nullptr); ///<
+	//friend Entity* Model::createEntity(std::string name, bool insertIntoModel); //@TODO: make it work (only friend functions, not the entire class)
+	//friend void Model::removeEntity(Entity* entity);
+	//friend void Model::sendEntityToComponent(Entity* entity, ModelComponent* component, double timeDelay, unsigned int componentInputNumber);
+	friend class Model;
 private:
 	double _simulatedTime = 0.0;
-	// \todo: list of double double _breakOnTimes;
-	// \todo: list of modules _breakOnModules;
+	// @TODO: list of double double _breakOnTimes;
+	// @TODO: list of modules _breakOnModules;
 	bool _stepByStep = false;
 	bool _pauseOnReplication = false;
 	bool _pauseOnEvent = false;
@@ -138,9 +147,9 @@ private:
 		double warmUpPeriod = replicationLength * 0.10; // 0.0;
 		Util::TimeUnit warmUpPeriodTimeUnit = Util::TimeUnit::second;
 		std::string terminatingCondition = "";
-		bool showReportsAfterSimulation = true;
 		bool initializeStatisticsBetweenReplications = true;
 		bool initializeSystem = true;
+		bool showReportsAfterSimulation = true;
 		bool showReportsAfterReplication = true;
 		bool showSimulationControlsInReport = false;
 		bool showSimulationResposesInReport = false;
@@ -153,9 +162,9 @@ private:
 	Util::TimeUnit _warmUpPeriodTimeUnit = DEFAULT.warmUpPeriodTimeUnit;
 	std::string _terminatingCondition = DEFAULT.terminatingCondition;
 	bool _hasChanged = false;
-	double _replicationTimeScaleFactorToBase; // a scale that converts ReplicationLenghtTimeUnit to ReplicationBaseTimeUnit. Future events are in "times" of unit ReplicationBaseTimeUnit 
-	std::chrono::system_clock::time_point _startTimeSimulation;
-	std::chrono::system_clock::time_point _startTimeReplication;
+	double _replicationTimeScaleFactorToBase; // a scale that converts ReplicationLenghtTimeUnit to ReplicationBaseTimeUnit. Future events are in "times" of unit ReplicationBaseTimeUnit
+	std::chrono::system_clock::time_point _startRealSimulationTimeSimulation;
+	std::chrono::system_clock::time_point _startRealSimulationTimeReplication;
 private:
 	// currenEntity, currentComponent and currentInputNumber could be taken throught currentEvent only
 	Entity* _currentEntity = nullptr;
@@ -163,11 +172,8 @@ private:
 	unsigned int _currentInputNumber = 0;
 	Event* _currentEvent = nullptr;
 	unsigned int _currentReplicationNumber;
-	//std::chrono::steady_clock::time_point _replicationStartTime;
-	//std::chrono::steady_clock::time_point _replicationEndTime;
 private:
 	const std::string _cte_stCountSimulNamePrefix = ""; //Simul.";
-	//std::list<ModelElement*>* _countersSimulation = new std::list<ModelElement*>();
 private:
 	Model* _model;
 	ModelInfo* _info;

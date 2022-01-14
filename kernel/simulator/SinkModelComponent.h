@@ -18,22 +18,22 @@
 
 //namespace GenesysKernel {
 
-	/*!
-	 * This class is the basis for any component representing the end of a process flow, such as a Dispose. 
-	 * It can remove entities from the system and collect statistics.
-	 */
-	class SinkModelComponent : public ModelComponent {
-	public:
-		SinkModelComponent(Model* model, std::string componentTypename, std::string name = "");
-		virtual ~SinkModelComponent() = default;
-	public:
-	protected:
-		virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-		virtual void _initBetweenReplications();
-		virtual std::map<std::string, std::string>* _saveInstance();
-		virtual bool _check(std::string* errorMessage);
-	private:
-	};
+/*!
+ * This class is the basis for any component representing the end of a process flow, such as a Dispose.
+ * It can remove entities from the system and collect statistics.
+ */
+class SinkModelComponent : public ModelComponent {
+public:
+	SinkModelComponent(Model* model, std::string componentTypename, std::string name = "");
+	virtual ~SinkModelComponent() = default;
+public:
+protected:
+	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+	virtual void _initBetweenReplications();
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+	virtual bool _check(std::string* errorMessage);
+private:
+};
 //namespace\\}
 #endif /* SINKMODELCOMPONENT_H */
 

@@ -20,7 +20,7 @@
 #include "../../kernel/TraitsKernel.h"
 
 MarkovChain::MarkovChain(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<MarkovChain>(), name) {
-    _sampler = new TraitsKernel<Sampler_if>::Implementation();
+	_sampler = new TraitsKernel<Sampler_if>::Implementation();
 }
 
 std::string MarkovChain::show() {
@@ -75,41 +75,41 @@ void MarkovChain::_execute(Entity* entity) {
 	double rnd, sum, value;
 	if (!_initilized) {
 		// define the initial state based on initial probabilities
-		size = _initialDistribution->dimensionSizes()->front();
+		size = _initialDistribution->getDimensionSizes()->front();
 		rnd = _sampler->random(); //parentSimulator()->tools()->sampler()->random();
 		double sum = 0.0;
 		for (unsigned int i = 0; i < size; i++) {
-			value = _initialDistribution->value(std::to_string(i));
+			value = _initialDistribution->getValue(std::to_string(i));
 			sum += value;
 			if (sum > rnd) {
 				_currentState->setValue(i); // _currentState =  i;
 				break;
 			}
 		}
-		_parentModel->getTracer()->trace("Initial current state=" + std::to_string(_currentState->value()));
+		_parentModel->getTracer()->traceSimulation("Initial current state=" + std::to_string(_currentState->getValue()));
 		_initilized = true;
 	} else {
-		size = _transitionProbMatrix->dimensionSizes()->front();
+		size = _transitionProbMatrix->getDimensionSizes()->front();
 		rnd = _sampler->random(); //parentSimulator()->tools()->sampler()->random();
 		sum = 0.0;
 		for (unsigned int i = 0; i < size; i++) {
-			std::string index = std::to_string(static_cast<unsigned int> (_currentState->value())) + "," + std::to_string(i);
-			value = _transitionProbMatrix->value(index);
+			std::string index = std::to_string(static_cast<unsigned int> (_currentState->getValue())) + "," + std::to_string(i);
+			value = _transitionProbMatrix->getValue(index);
 			sum += value;
 			if (sum > rnd) {
 				_currentState->setValue(i);
 				break;
 			}
 		}
-		_parentModel->getTracer()->trace("Current state=" + std::to_string(_currentState->value()));
+		_parentModel->getTracer()->trace("Current state=" + std::to_string(_currentState->getValue()));
 	}
-	_parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection(), 0.0);
+	_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
 bool MarkovChain::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
-		// \todo: not implemented yet
+		// @TODO: not implemented yet
 	}
 	return res;
 }
@@ -118,16 +118,16 @@ void MarkovChain::_initBetweenReplications() {
 	this->_initilized = false;
 }
 
-std::map<std::string, std::string>* MarkovChain::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
-	// \todo: not implemented yet
+std::map<std::string, std::string>* MarkovChain::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
+	// @TODO: not implemented yet
 	return fields;
 }
 
 bool MarkovChain::_check(std::string* errorMessage) {
 	bool resultAll = true;
-    // \todo: not implemented yet
-    *errorMessage += "";
+	// @TODO: not implemented yet
+	*errorMessage += "";
 	return resultAll;
 }
 

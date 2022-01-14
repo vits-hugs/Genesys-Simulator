@@ -1,4 +1,4 @@
-// A Bison parser, made by GNU Bison 3.7.5.
+// A Bison parser, made by GNU Bison 3.7.6.
 
 // Skeleton interface for Bison LALR(1) parsers in C++
 
@@ -15,7 +15,7 @@
 // GNU General Public License for more details.
 
 // You should have received a copy of the GNU General Public License
-// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 // As a special exception, you may create a larger work that contains
 // part or all of the Bison parser skeleton and distribute that work
@@ -47,33 +47,39 @@
 // "%code requires" blocks.
 #line 9 "bisonparser.yy"
 
-#include <string>
-#include <cmath>
-#include "obj_t.h"
-#include "../../util/Util.h"
-#include "../Attribute.h"
-/****begin_Includes_plugins****/
-/**begin_Includes:Variable**/
-#include "../../../plugins/elements/Variable.h"
-/**end_Includes:Variable**/
-/**begin_Includes:Queue**/
-#include "../../../plugins/elements/Queue.h"
-/**end_Includes:Queue**/
-/**begin_Includes:Formula**/
-#include "../../../plugins/elements/Formula.h"
-/**end_Includes:Formula**/
-/**begin_Includes:Resource**/
-#include "../../../plugins/elements/Resource.h"
-/**end_Includes:Resource**/
-/**begin_Includes:Set**/
-#include "../../../plugins/elements/Set.h"
-/**end_Includes:Set**/
-/****end_Includes_plugins****/
+	#include <string>
+	#include <cmath>
+	#include "obj_t.h"
+	#include "../../util/Util.h"
+	#include "../Attribute.h"
 
-class genesyspp_driver;
+	/****begin_Includes_plugins****/
 
+		/**begin_Includes:Variable**/
+		#include "../../../plugins/elements/Variable.h"
+		/**end_Includes:Variable**/
 
-#line 77 "../GenesysParser.h"
+		/**begin_Includes:Queue**/
+		#include "../../../plugins/elements/Queue.h"
+		/**end_Includes:Queue**/
+
+		/**begin_Includes:Formula**/
+		#include "../../../plugins/elements/Formula.h"
+		/**end_Includes:Formula**/
+
+		/**begin_Includes:Resource**/
+		#include "../../../plugins/elements/Resource.h"
+		/**end_Includes:Resource**/
+
+		/**begin_Includes:Set**/
+		#include "../../../plugins/elements/Set.h"
+		/**end_Includes:Set**/
+
+	/****end_Includes_plugins****/
+
+	class genesyspp_driver;
+
+#line 83 "../GenesysParser.h"
 
 # include <cassert>
 # include <cstdlib> // std::abort
@@ -207,7 +213,7 @@ class genesyspp_driver;
 #endif
 
 namespace yy {
-#line 211 "../GenesysParser.h"
+#line 217 "../GenesysParser.h"
 
 
 
@@ -430,6 +436,8 @@ namespace yy {
       // oNE
       // oAND
       // oOR
+      // oNAND
+      // oXOR
       // oNOT
       // fSIN
       // fCOS
@@ -494,6 +502,7 @@ namespace yy {
       // expression
       // numero
       // aritmetica
+      // logica
       // relacional
       // comando
       // comandoIF
@@ -571,80 +580,82 @@ namespace yy {
     oNE = 264,                     // oNE
     oAND = 265,                    // oAND
     oOR = 266,                     // oOR
-    oNOT = 267,                    // oNOT
-    fSIN = 268,                    // fSIN
-    fCOS = 269,                    // fCOS
-    fROUND = 270,                  // fROUND
-    fMOD = 271,                    // fMOD
-    fTRUNC = 272,                  // fTRUNC
-    fFRAC = 273,                   // fFRAC
-    fEXP = 274,                    // fEXP
-    fSQRT = 275,                   // fSQRT
-    fLOG = 276,                    // fLOG
-    fLN = 277,                     // fLN
-    fVAL = 278,                    // fVAL
-    fEVAL = 279,                   // fEVAL
-    fLENG = 280,                   // fLENG
-    fRND1 = 281,                   // fRND1
-    fEXPO = 282,                   // fEXPO
-    fNORM = 283,                   // fNORM
-    fUNIF = 284,                   // fUNIF
-    fWEIB = 285,                   // fWEIB
-    fLOGN = 286,                   // fLOGN
-    fGAMM = 287,                   // fGAMM
-    fERLA = 288,                   // fERLA
-    fTRIA = 289,                   // fTRIA
-    fBETA = 290,                   // fBETA
-    fDISC = 291,                   // fDISC
-    fTNOW = 292,                   // fTNOW
-    fTFIN = 293,                   // fTFIN
-    fMAXREP = 294,                 // fMAXREP
-    fNUMREP = 295,                 // fNUMREP
-    fIDENT = 296,                  // fIDENT
-    cIF = 297,                     // cIF
-    cELSE = 298,                   // cELSE
-    cFOR = 299,                    // cFOR
-    cTO = 300,                     // cTO
-    cDO = 301,                     // cDO
-    ATRIB = 302,                   // ATRIB
-    CSTAT = 303,                   // CSTAT
-    fTAVG = 304,                   // fTAVG
-    ILLEGAL = 305,                 // ILLEGAL
-    RESOURCE = 306,                // RESOURCE
-    fNR = 307,                     // fNR
-    fMR = 308,                     // fMR
-    fIRF = 309,                    // fIRF
-    fRESSEIZES = 310,              // fRESSEIZES
-    fSTATE = 311,                  // fSTATE
-    fSETSUM = 312,                 // fSETSUM
-    fRESUTIL = 313,                // fRESUTIL
-    QUEUE = 314,                   // QUEUE
-    fNQ = 315,                     // fNQ
-    fFIRSTINQ = 316,               // fFIRSTINQ
-    fLASTINQ = 317,                // fLASTINQ
-    fSAQUE = 318,                  // fSAQUE
-    fAQUE = 319,                   // fAQUE
-    fENTATRANK = 320,              // fENTATRANK
-    SET = 321,                     // SET
-    fNUMSET = 322,                 // fNUMSET
-    VARI = 323,                    // VARI
-    FORM = 324,                    // FORM
-    fNUMGR = 325,                  // fNUMGR
-    fATRGR = 326,                  // fATRGR
-    LPAREN = 327,                  // "("
-    RPAREN = 328,                  // ")"
-    LBRACKET = 329,                // "["
-    RBRACKET = 330,                // "]"
-    PLUS = 331,                    // "+"
-    MINUS = 332,                   // "-"
-    STAR = 333,                    // "*"
-    POWER = 334,                   // "^"
-    SLASH = 335,                   // "/"
-    LESS = 336,                    // "<"
-    GREATER = 337,                 // ">"
-    ASSIGN = 338,                  // "="
-    COMMA = 339,                   // ","
-    NEG = 340                      // NEG
+    oNAND = 267,                   // oNAND
+    oXOR = 268,                    // oXOR
+    oNOT = 269,                    // oNOT
+    fSIN = 270,                    // fSIN
+    fCOS = 271,                    // fCOS
+    fROUND = 272,                  // fROUND
+    fMOD = 273,                    // fMOD
+    fTRUNC = 274,                  // fTRUNC
+    fFRAC = 275,                   // fFRAC
+    fEXP = 276,                    // fEXP
+    fSQRT = 277,                   // fSQRT
+    fLOG = 278,                    // fLOG
+    fLN = 279,                     // fLN
+    fVAL = 280,                    // fVAL
+    fEVAL = 281,                   // fEVAL
+    fLENG = 282,                   // fLENG
+    fRND1 = 283,                   // fRND1
+    fEXPO = 284,                   // fEXPO
+    fNORM = 285,                   // fNORM
+    fUNIF = 286,                   // fUNIF
+    fWEIB = 287,                   // fWEIB
+    fLOGN = 288,                   // fLOGN
+    fGAMM = 289,                   // fGAMM
+    fERLA = 290,                   // fERLA
+    fTRIA = 291,                   // fTRIA
+    fBETA = 292,                   // fBETA
+    fDISC = 293,                   // fDISC
+    fTNOW = 294,                   // fTNOW
+    fTFIN = 295,                   // fTFIN
+    fMAXREP = 296,                 // fMAXREP
+    fNUMREP = 297,                 // fNUMREP
+    fIDENT = 298,                  // fIDENT
+    cIF = 299,                     // cIF
+    cELSE = 300,                   // cELSE
+    cFOR = 301,                    // cFOR
+    cTO = 302,                     // cTO
+    cDO = 303,                     // cDO
+    ATRIB = 304,                   // ATRIB
+    CSTAT = 305,                   // CSTAT
+    fTAVG = 306,                   // fTAVG
+    ILLEGAL = 307,                 // ILLEGAL
+    RESOURCE = 308,                // RESOURCE
+    fNR = 309,                     // fNR
+    fMR = 310,                     // fMR
+    fIRF = 311,                    // fIRF
+    fRESSEIZES = 312,              // fRESSEIZES
+    fSTATE = 313,                  // fSTATE
+    fSETSUM = 314,                 // fSETSUM
+    fRESUTIL = 315,                // fRESUTIL
+    QUEUE = 316,                   // QUEUE
+    fNQ = 317,                     // fNQ
+    fFIRSTINQ = 318,               // fFIRSTINQ
+    fLASTINQ = 319,                // fLASTINQ
+    fSAQUE = 320,                  // fSAQUE
+    fAQUE = 321,                   // fAQUE
+    fENTATRANK = 322,              // fENTATRANK
+    SET = 323,                     // SET
+    fNUMSET = 324,                 // fNUMSET
+    VARI = 325,                    // VARI
+    FORM = 326,                    // FORM
+    fNUMGR = 327,                  // fNUMGR
+    fATRGR = 328,                  // fATRGR
+    LPAREN = 329,                  // "("
+    RPAREN = 330,                  // ")"
+    LBRACKET = 331,                // "["
+    RBRACKET = 332,                // "]"
+    PLUS = 333,                    // "+"
+    MINUS = 334,                   // "-"
+    STAR = 335,                    // "*"
+    POWER = 336,                   // "^"
+    SLASH = 337,                   // "/"
+    LESS = 338,                    // "<"
+    GREATER = 339,                 // ">"
+    ASSIGN = 340,                  // "="
+    COMMA = 341,                   // ","
+    NEG = 342                      // NEG
       };
       /// Backward compatibility alias (Bison 3.6).
       typedef token_kind_type yytokentype;
@@ -661,7 +672,7 @@ namespace yy {
     {
       enum symbol_kind_type
       {
-        YYNTOKENS = 88, ///< Number of tokens.
+        YYNTOKENS = 90, ///< Number of tokens.
         S_YYEMPTY = -2,
         S_YYEOF = 0,                             // "end of file"
         S_YYerror = 1,                           // error
@@ -675,103 +686,106 @@ namespace yy {
         S_oNE = 9,                               // oNE
         S_oAND = 10,                             // oAND
         S_oOR = 11,                              // oOR
-        S_oNOT = 12,                             // oNOT
-        S_fSIN = 13,                             // fSIN
-        S_fCOS = 14,                             // fCOS
-        S_fROUND = 15,                           // fROUND
-        S_fMOD = 16,                             // fMOD
-        S_fTRUNC = 17,                           // fTRUNC
-        S_fFRAC = 18,                            // fFRAC
-        S_fEXP = 19,                             // fEXP
-        S_fSQRT = 20,                            // fSQRT
-        S_fLOG = 21,                             // fLOG
-        S_fLN = 22,                              // fLN
-        S_fVAL = 23,                             // fVAL
-        S_fEVAL = 24,                            // fEVAL
-        S_fLENG = 25,                            // fLENG
-        S_fRND1 = 26,                            // fRND1
-        S_fEXPO = 27,                            // fEXPO
-        S_fNORM = 28,                            // fNORM
-        S_fUNIF = 29,                            // fUNIF
-        S_fWEIB = 30,                            // fWEIB
-        S_fLOGN = 31,                            // fLOGN
-        S_fGAMM = 32,                            // fGAMM
-        S_fERLA = 33,                            // fERLA
-        S_fTRIA = 34,                            // fTRIA
-        S_fBETA = 35,                            // fBETA
-        S_fDISC = 36,                            // fDISC
-        S_fTNOW = 37,                            // fTNOW
-        S_fTFIN = 38,                            // fTFIN
-        S_fMAXREP = 39,                          // fMAXREP
-        S_fNUMREP = 40,                          // fNUMREP
-        S_fIDENT = 41,                           // fIDENT
-        S_cIF = 42,                              // cIF
-        S_cELSE = 43,                            // cELSE
-        S_cFOR = 44,                             // cFOR
-        S_cTO = 45,                              // cTO
-        S_cDO = 46,                              // cDO
-        S_ATRIB = 47,                            // ATRIB
-        S_CSTAT = 48,                            // CSTAT
-        S_fTAVG = 49,                            // fTAVG
-        S_ILLEGAL = 50,                          // ILLEGAL
-        S_RESOURCE = 51,                         // RESOURCE
-        S_fNR = 52,                              // fNR
-        S_fMR = 53,                              // fMR
-        S_fIRF = 54,                             // fIRF
-        S_fRESSEIZES = 55,                       // fRESSEIZES
-        S_fSTATE = 56,                           // fSTATE
-        S_fSETSUM = 57,                          // fSETSUM
-        S_fRESUTIL = 58,                         // fRESUTIL
-        S_QUEUE = 59,                            // QUEUE
-        S_fNQ = 60,                              // fNQ
-        S_fFIRSTINQ = 61,                        // fFIRSTINQ
-        S_fLASTINQ = 62,                         // fLASTINQ
-        S_fSAQUE = 63,                           // fSAQUE
-        S_fAQUE = 64,                            // fAQUE
-        S_fENTATRANK = 65,                       // fENTATRANK
-        S_SET = 66,                              // SET
-        S_fNUMSET = 67,                          // fNUMSET
-        S_VARI = 68,                             // VARI
-        S_FORM = 69,                             // FORM
-        S_fNUMGR = 70,                           // fNUMGR
-        S_fATRGR = 71,                           // fATRGR
-        S_LPAREN = 72,                           // "("
-        S_RPAREN = 73,                           // ")"
-        S_LBRACKET = 74,                         // "["
-        S_RBRACKET = 75,                         // "]"
-        S_PLUS = 76,                             // "+"
-        S_MINUS = 77,                            // "-"
-        S_STAR = 78,                             // "*"
-        S_POWER = 79,                            // "^"
-        S_SLASH = 80,                            // "/"
-        S_LESS = 81,                             // "<"
-        S_GREATER = 82,                          // ">"
-        S_ASSIGN = 83,                           // "="
-        S_COMMA = 84,                            // ","
-        S_NEG = 85,                              // NEG
-        S_86_n_ = 86,                            // '\n'
-        S_87_USER_ = 87,                         // "USER"
-        S_YYACCEPT = 88,                         // $accept
-        S_input = 89,                            // input
-        S_expression = 90,                       // expression
-        S_numero = 91,                           // numero
-        S_aritmetica = 92,                       // aritmetica
-        S_relacional = 93,                       // relacional
-        S_comando = 94,                          // comando
-        S_comandoIF = 95,                        // comandoIF
-        S_comandoFOR = 96,                       // comandoFOR
-        S_function = 97,                         // function
-        S_kernelFunction = 98,                   // kernelFunction
-        S_trigonFunction = 99,                   // trigonFunction
-        S_mathFunction = 100,                    // mathFunction
-        S_probFunction = 101,                    // probFunction
-        S_userFunction = 102,                    // userFunction
-        S_listaparm = 103,                       // listaparm
-        S_atributo = 104,                        // atributo
-        S_variavel = 105,                        // variavel
-        S_formula = 106,                         // formula
-        S_atribuicao = 107,                      // atribuicao
-        S_pluginFunction = 108                   // pluginFunction
+        S_oNAND = 12,                            // oNAND
+        S_oXOR = 13,                             // oXOR
+        S_oNOT = 14,                             // oNOT
+        S_fSIN = 15,                             // fSIN
+        S_fCOS = 16,                             // fCOS
+        S_fROUND = 17,                           // fROUND
+        S_fMOD = 18,                             // fMOD
+        S_fTRUNC = 19,                           // fTRUNC
+        S_fFRAC = 20,                            // fFRAC
+        S_fEXP = 21,                             // fEXP
+        S_fSQRT = 22,                            // fSQRT
+        S_fLOG = 23,                             // fLOG
+        S_fLN = 24,                              // fLN
+        S_fVAL = 25,                             // fVAL
+        S_fEVAL = 26,                            // fEVAL
+        S_fLENG = 27,                            // fLENG
+        S_fRND1 = 28,                            // fRND1
+        S_fEXPO = 29,                            // fEXPO
+        S_fNORM = 30,                            // fNORM
+        S_fUNIF = 31,                            // fUNIF
+        S_fWEIB = 32,                            // fWEIB
+        S_fLOGN = 33,                            // fLOGN
+        S_fGAMM = 34,                            // fGAMM
+        S_fERLA = 35,                            // fERLA
+        S_fTRIA = 36,                            // fTRIA
+        S_fBETA = 37,                            // fBETA
+        S_fDISC = 38,                            // fDISC
+        S_fTNOW = 39,                            // fTNOW
+        S_fTFIN = 40,                            // fTFIN
+        S_fMAXREP = 41,                          // fMAXREP
+        S_fNUMREP = 42,                          // fNUMREP
+        S_fIDENT = 43,                           // fIDENT
+        S_cIF = 44,                              // cIF
+        S_cELSE = 45,                            // cELSE
+        S_cFOR = 46,                             // cFOR
+        S_cTO = 47,                              // cTO
+        S_cDO = 48,                              // cDO
+        S_ATRIB = 49,                            // ATRIB
+        S_CSTAT = 50,                            // CSTAT
+        S_fTAVG = 51,                            // fTAVG
+        S_ILLEGAL = 52,                          // ILLEGAL
+        S_RESOURCE = 53,                         // RESOURCE
+        S_fNR = 54,                              // fNR
+        S_fMR = 55,                              // fMR
+        S_fIRF = 56,                             // fIRF
+        S_fRESSEIZES = 57,                       // fRESSEIZES
+        S_fSTATE = 58,                           // fSTATE
+        S_fSETSUM = 59,                          // fSETSUM
+        S_fRESUTIL = 60,                         // fRESUTIL
+        S_QUEUE = 61,                            // QUEUE
+        S_fNQ = 62,                              // fNQ
+        S_fFIRSTINQ = 63,                        // fFIRSTINQ
+        S_fLASTINQ = 64,                         // fLASTINQ
+        S_fSAQUE = 65,                           // fSAQUE
+        S_fAQUE = 66,                            // fAQUE
+        S_fENTATRANK = 67,                       // fENTATRANK
+        S_SET = 68,                              // SET
+        S_fNUMSET = 69,                          // fNUMSET
+        S_VARI = 70,                             // VARI
+        S_FORM = 71,                             // FORM
+        S_fNUMGR = 72,                           // fNUMGR
+        S_fATRGR = 73,                           // fATRGR
+        S_LPAREN = 74,                           // "("
+        S_RPAREN = 75,                           // ")"
+        S_LBRACKET = 76,                         // "["
+        S_RBRACKET = 77,                         // "]"
+        S_PLUS = 78,                             // "+"
+        S_MINUS = 79,                            // "-"
+        S_STAR = 80,                             // "*"
+        S_POWER = 81,                            // "^"
+        S_SLASH = 82,                            // "/"
+        S_LESS = 83,                             // "<"
+        S_GREATER = 84,                          // ">"
+        S_ASSIGN = 85,                           // "="
+        S_COMMA = 86,                            // ","
+        S_NEG = 87,                              // NEG
+        S_88_n_ = 88,                            // '\n'
+        S_89_USER_ = 89,                         // "USER"
+        S_YYACCEPT = 90,                         // $accept
+        S_input = 91,                            // input
+        S_expression = 92,                       // expression
+        S_numero = 93,                           // numero
+        S_aritmetica = 94,                       // aritmetica
+        S_logica = 95,                           // logica
+        S_relacional = 96,                       // relacional
+        S_comando = 97,                          // comando
+        S_comandoIF = 98,                        // comandoIF
+        S_comandoFOR = 99,                       // comandoFOR
+        S_function = 100,                        // function
+        S_kernelFunction = 101,                  // kernelFunction
+        S_trigonFunction = 102,                  // trigonFunction
+        S_mathFunction = 103,                    // mathFunction
+        S_probFunction = 104,                    // probFunction
+        S_userFunction = 105,                    // userFunction
+        S_listaparm = 106,                       // listaparm
+        S_atributo = 107,                        // atributo
+        S_variavel = 108,                        // variavel
+        S_formula = 109,                         // formula
+        S_atribuicao = 110,                      // atribuicao
+        S_pluginFunction = 111                   // pluginFunction
       };
     };
 
@@ -817,6 +831,8 @@ namespace yy {
       case symbol_kind::S_oNE: // oNE
       case symbol_kind::S_oAND: // oAND
       case symbol_kind::S_oOR: // oOR
+      case symbol_kind::S_oNAND: // oNAND
+      case symbol_kind::S_oXOR: // oXOR
       case symbol_kind::S_oNOT: // oNOT
       case symbol_kind::S_fSIN: // fSIN
       case symbol_kind::S_fCOS: // fCOS
@@ -881,6 +897,7 @@ namespace yy {
       case symbol_kind::S_expression: // expression
       case symbol_kind::S_numero: // numero
       case symbol_kind::S_aritmetica: // aritmetica
+      case symbol_kind::S_logica: // logica
       case symbol_kind::S_relacional: // relacional
       case symbol_kind::S_comando: // comando
       case symbol_kind::S_comandoIF: // comandoIF
@@ -968,6 +985,8 @@ switch (yykind)
       case symbol_kind::S_oNE: // oNE
       case symbol_kind::S_oAND: // oAND
       case symbol_kind::S_oOR: // oOR
+      case symbol_kind::S_oNAND: // oNAND
+      case symbol_kind::S_oXOR: // oXOR
       case symbol_kind::S_oNOT: // oNOT
       case symbol_kind::S_fSIN: // fSIN
       case symbol_kind::S_fCOS: // fCOS
@@ -1032,6 +1051,7 @@ switch (yykind)
       case symbol_kind::S_expression: // expression
       case symbol_kind::S_numero: // numero
       case symbol_kind::S_aritmetica: // aritmetica
+      case symbol_kind::S_logica: // logica
       case symbol_kind::S_relacional: // relacional
       case symbol_kind::S_comando: // comando
       case symbol_kind::S_comandoIF: // comandoIF
@@ -1149,7 +1169,7 @@ switch (yykind)
                    || (token::YYerror <= tok && tok <= token::YYUNDEF)
                    || (token::LPAREN <= tok && tok <= token::NEG)
                    || tok == 10
-                   || tok == 341);
+                   || tok == 343);
       }
 #if 201103L <= YY_CPLUSPLUS
       symbol_type (int tok, obj_t v, location_type l)
@@ -1387,6 +1407,36 @@ switch (yykind)
       make_oOR (const obj_t& v, const location_type& l)
       {
         return symbol_type (token::oOR, v, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_oNAND (obj_t v, location_type l)
+      {
+        return symbol_type (token::oNAND, std::move (v), std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_oNAND (const obj_t& v, const location_type& l)
+      {
+        return symbol_type (token::oNAND, v, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_oXOR (obj_t v, location_type l)
+      {
+        return symbol_type (token::oXOR, std::move (v), std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_oXOR (const obj_t& v, const location_type& l)
+      {
+        return symbol_type (token::oXOR, v, l);
       }
 #endif
 #if 201103L <= YY_CPLUSPLUS
@@ -2829,9 +2879,9 @@ switch (yykind)
     /// Constants.
     enum
     {
-      yylast_ = 1611,     ///< Last index in yytable_.
-      yynnts_ = 21,  ///< Number of nonterminal symbols.
-      yyfinal_ = 116 ///< Termination state number.
+      yylast_ = 1779,     ///< Last index in yytable_.
+      yynnts_ = 22,  ///< Number of nonterminal symbols.
+      yyfinal_ = 122 ///< Termination state number.
     };
 
 
@@ -2851,7 +2901,7 @@ switch (yykind)
     translate_table[] =
     {
        0,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-      86,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+      88,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -2884,10 +2934,10 @@ switch (yykind)
       55,    56,    57,    58,    59,    60,    61,    62,    63,    64,
       65,    66,    67,    68,    69,    70,    71,    72,    73,    74,
       75,    76,    77,    78,    79,    80,    81,    82,    83,    84,
-      85,    87
+      85,    86,    87,    89
     };
     // Last valid token kind.
-    const int code_max = 341;
+    const int code_max = 343;
 
     if (t <= 0)
       return symbol_kind::S_YYEOF;
@@ -2915,6 +2965,8 @@ switch (yykind)
       case symbol_kind::S_oNE: // oNE
       case symbol_kind::S_oAND: // oAND
       case symbol_kind::S_oOR: // oOR
+      case symbol_kind::S_oNAND: // oNAND
+      case symbol_kind::S_oXOR: // oXOR
       case symbol_kind::S_oNOT: // oNOT
       case symbol_kind::S_fSIN: // fSIN
       case symbol_kind::S_fCOS: // fCOS
@@ -2979,6 +3031,7 @@ switch (yykind)
       case symbol_kind::S_expression: // expression
       case symbol_kind::S_numero: // numero
       case symbol_kind::S_aritmetica: // aritmetica
+      case symbol_kind::S_logica: // logica
       case symbol_kind::S_relacional: // relacional
       case symbol_kind::S_comando: // comando
       case symbol_kind::S_comandoIF: // comandoIF
@@ -3036,6 +3089,8 @@ switch (yykind)
       case symbol_kind::S_oNE: // oNE
       case symbol_kind::S_oAND: // oAND
       case symbol_kind::S_oOR: // oOR
+      case symbol_kind::S_oNAND: // oNAND
+      case symbol_kind::S_oXOR: // oXOR
       case symbol_kind::S_oNOT: // oNOT
       case symbol_kind::S_fSIN: // fSIN
       case symbol_kind::S_fCOS: // fCOS
@@ -3100,6 +3155,7 @@ switch (yykind)
       case symbol_kind::S_expression: // expression
       case symbol_kind::S_numero: // numero
       case symbol_kind::S_aritmetica: // aritmetica
+      case symbol_kind::S_logica: // logica
       case symbol_kind::S_relacional: // relacional
       case symbol_kind::S_comando: // comando
       case symbol_kind::S_comandoIF: // comandoIF
@@ -3181,7 +3237,7 @@ switch (yykind)
   }
 
 } // yy
-#line 3185 "../GenesysParser.h"
+#line 3241 "../GenesysParser.h"
 
 
 

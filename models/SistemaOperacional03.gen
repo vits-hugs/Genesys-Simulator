@@ -1,0 +1,45 @@
+0   SimulatorInfo "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220111 
+0   ModelInfo  "Model 2" analystName="" description="" projectTitle="" version="1.0" 
+0   ModelSimulation "ModelSimulation" numberOfReplications=200 replicationBaseTimeUnit=4 replicationLength=2.000000 warmUpTime=0.020000 
+53  EntityType "processo" 
+56  Attribute  "memoriaOcupada" 
+57  Attribute  "tempoExecucao" 
+58  Attribute  "processoSO" 
+59  Resource   "memoria" capacity=256 
+60  Queue      "Fila_Alocacao_Memoria" 
+64  Attribute  "nucleoExecucao" 
+68  Station    "Estacao_de_Execucao" 
+71  Set        "Set_Nucleos" member0="nucleo0" member1="nucleo1" member2="nucleo2" member3="nucleo3" membersSize=4 type="Resource" 
+72  Resource   "nucleo0" 
+73  Resource   "nucleo1" 
+74  Resource   "nucleo2" 
+75  Resource   "nucleo3" 
+76  Set        "Set_Filas" member0="filaNucleo0" member1="filaNucleo1" member2="filaNucleo2" member3="filaNucleo3" membersSize=4 type="Queue" 
+77  Queue      "filaNucleo0" 
+78  Queue      "filaNucleo1" 
+79  Queue      "filaNucleo2" 
+80  Queue      "filaNucleo3" 
+84  Attribute  "fatiaTempo" 
+90  Station    "Estacao_de_liberacao_de_memoria" 
+54  Create     "Create_2" EntityType="processo" caption="Processo é criado no computador" timeBetweenCreations="expo(4)" timeBetweenCreationsTimeUnit=4 nextId=55 
+55  Assign     "Assign_2" assignments=3 caption="Define informacoes do processo" destination0="memoriaOcupada" destination1="tempoExecucao" destination2="processoSO" expression0="TRUNC(UNIF(2,32))" expression1="NORM(6,2) * memoriaOcupada/5" expression2="UNIF(0,1) < 0.1" nextId=61 
+61  Seize      "Seize_2" caption="Processo aloca memória" quantityExpression0="memoriaOcupada" queueId=60 queueable="Fila_Alocacao_Memoria" seizable0="memoria" nextId=62 
+62  Decide     "Decide_2" caption="Define nucleo execucao do processo" condition0="processoSO == 1" condition1="NQ(filaNucleo1) <= NQ(filaNucleo2) and NQ(filaNucleo1) <= NQ(filaNucleo3)" condition2="NQ(filaNucleo2) <= NQ(filaNucleo1) and NQ(filaNucleo2) <= NQ(filaNucleo3)" conditions=3 nextSize=4 nextId0=63 nextId1=65 nextId2=66 nextId3=67 
+63  Assign     "Assign_3" destination0="nucleoExecucao" expression0="0" nextId=69 
+65  Assign     "Assign_4" destination0="nucleoExecucao" expression0="1" nextId=69 
+66  Assign     "Assign_5" destination0="nucleoExecucao" expression0="2" nextId=69 
+67  Assign     "Assign_6" destination0="nucleoExecucao" expression0="3" nextId=69 
+69  Route      "Route_2" caption="Processo é enviado para execução na CPU" station="Estacao_de_Execucao" nextSize=0 
+70  Enter      "Enter_2" caption="Processo chega para ser executado" station="Estacao_de_Execucao" nextId=81 
+81  Seize      "Seize_3" caption="Processo aloca Núcleo de Execução" index="nucleoExecucao" index0="nucleoExecucao" queueId=76 queueable="Set_Filas" queueableType=2 seizable0="Set_Nucleos" seizableType0=2 selectionRule0=3 nextId=82 
+82  Decide     "Decide_3" caption="Define tempo de execução da fatia de tempo atual" condition0="tempoExecucao >= 2" conditions=1 nextSize=2 nextId0=83 nextId1=85 
+83  Assign     "Assign_7" assignments=2 caption="Define execucao por um quantum de tempo" destination0="fatiaTempo" destination1="tempoExecucao" expression0="2" expression1="tempoExecucao-fatiaTempo" nextId=86 
+85  Assign     "Assign_8" assignments=2 caption="Executa até o final" destination0="fatiaTempo" destination1="tempoExecucao" expression0="tempoExecucao" expression1="tempoExecucao - fatiaTempo" nextId=86 
+86  Delay      "Delay_2" caption="Processo executa no nucleo de execucao" delayExpression="fatiaTempo" delayExpressionTimeUnit=4 nextId=87 
+87  Release    "Release_2" caption="Processo libera nucleo execucao" index0="nucleoExecucao" seizable0="Set_Nucleos" seizableType0=2 selectionRule0=3 nextId=88 
+88  Decide     "Decide_4" caption="Se processo ainda precisa executar então vai para estação de execução" condition0="tempoExecucao > 0" conditions=1 nextSize=2 nextId0=89 nextId1=91 
+89  Route      "Route_3" caption="Processo é enviado de volta para execução" station="Estacao_de_Execucao" nextSize=0 
+91  Route      "Route_4" caption="Processo é enviado para liberar memória" station="Estacao_de_liberacao_de_memoria" nextSize=0 
+92  Enter      "Enter_3" caption="Processo chega para liberar memória" station="Estacao_de_liberacao_de_memoria" nextId=93 
+93  Release    "Release_3" caption="Processo libera memória" quantityExpression0="memoriaOcupada" seizable0="memoria" nextId=94 
+94  Dispose    "Dispose_2" caption="Processo é encerrado" nextSize=0 

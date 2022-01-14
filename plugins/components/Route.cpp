@@ -102,7 +102,7 @@ void Route::_execute(Entity* entity) {
 		double routeEndTime = _parentModel->getSimulation()->getSimulatedTime() + routeTime;
 		Event* newEvent = new Event(routeEndTime, entity, destinyStation->getEnterIntoStationComponent());
 		_parentModel->getFutureEvents()->insert(newEvent);
-		_parentModel->getTracer()->trace("End of route of entity " + std::to_string(entity->entityNumber()) + " to the component \"" + destinyStation->getEnterIntoStationComponent()->getName() + "\" was scheduled to time " + std::to_string(routeEndTime));
+		_parentModel->getTracer()->traceSimulation("End of route of "/*entity " + std::to_string(entity->entityNumber())*/ + entity->getName() + " to the component \"" + destinyStation->getEnterIntoStationComponent()->getName() + "\" was scheduled to time " + std::to_string(routeEndTime));
 	} else {
 		// send without delay
 		_parentModel->sendEntityToComponent(entity, destinyStation->getEnterIntoStationComponent(), 0.0);
@@ -128,14 +128,18 @@ void Route::_initBetweenReplications() {
 	_numberIn->clear();
 }
 
-std::map<std::string, std::string>* Route::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
-	if (_routeDestinationType == DestinationType::Station) {
-		SaveField(fields, "station", (this->_station->getName()));
+std::map<std::string, std::string>* Route::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
+	std::string text = "";
+	if (_station != nullptr) {
+		text = _station->getName();
 	}
-	SaveField(fields, "routeTimeExpression", _routeTimeExpression, DEFAULT.routeTimeExpression);
-	SaveField(fields, "routeTimeTimeUnit", _routeTimeTimeUnit, DEFAULT.routeTimeTimeUnit);
-	SaveField(fields, "destinationType", static_cast<int> (_routeDestinationType), static_cast<int> (DEFAULT.routeDestinationType));
+	if (_routeDestinationType == DestinationType::Station) {
+		SaveField(fields, "station", text);
+	}
+	SaveField(fields, "routeTimeExpression", _routeTimeExpression, DEFAULT.routeTimeExpression, saveDefaultValues);
+	SaveField(fields, "routeTimeTimeUnit", _routeTimeTimeUnit, DEFAULT.routeTimeTimeUnit, saveDefaultValues);
+	SaveField(fields, "destinationType", static_cast<int> (_routeDestinationType), static_cast<int> (DEFAULT.routeDestinationType), saveDefaultValues);
 	return fields;
 }
 
@@ -174,8 +178,16 @@ bool Route::_check(std::string* errorMessage) {
 
 PluginInformation* Route::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Route>(), &Route::LoadInstance);
-    info->setSendTransfer(true);
+	info->setSendTransfer(true);
 	info->insertDynamicLibFileDependence("station.so");
+	std::string help = "The Route module transfers an entity to a specified station or the next station in the station visitation sequence defined for the entity.";
+	help += " A delay time to transfer to the next station may be defined.";
+	help += " When an entity enters the Route module, its Station attribute (Entity.Station) is set to the destination station.";
+	help += " The entity is then sent to the destination station, using the route time specified.";
+	help += " If the station destination is entered as By Sequence, the next station is determined by the entity’s sequence and step within the set (defined by special-purpose attributes Entity.Sequence and Entity.Jobstep, respectively).";
+	help += " TYPICAL USES: (1) Send a part to its next processing station based on its routing slip;";
+	help += " (2) Send an account balance call to an account agent; (3) Send restaurant customers to a specific table";
+	info->setDescriptionHelp(help);
 	return info;
 }
 

@@ -17,7 +17,7 @@
 //using namespace GenesysKernel;
 
 
-typedef TraitsKernel<ModelComponent>::StatisticsCollector_StatisticsImplementation StatisticsClass;
+typedef TraitsKernel<Model>::StatisticsCollector_StatisticsImplementation StatisticsClass;
 
 StatisticsCollector::StatisticsCollector(Model* model, std::string name, ModelElement* parent, bool insertIntoModel) : ModelElement(model, Util::TypeOf<StatisticsCollector>(), name, insertIntoModel) {
 	_parent = parent;
@@ -36,8 +36,8 @@ void StatisticsCollector::_addSimulationResponses() {
 }
 
 void StatisticsCollector::_initStaticsAndCollector() {
-    Collector_if* collector = new TraitsKernel<ModelComponent>::StatisticsCollector_CollectorImplementation();
-    _statistics = new StatisticsClass(collector); //TraitsKernel<ModelComponent>::StatisticsCollector_StatisticsImplementation(collector);
+	Collector_if* collector = new TraitsKernel<Model>::StatisticsCollector_CollectorImplementation();
+	_statistics = new StatisticsClass(collector); //TraitsKernel<ModelComponent>::StatisticsCollector_StatisticsImplementation(collector);
 }
 
 std::string StatisticsCollector::show() {
@@ -46,7 +46,7 @@ std::string StatisticsCollector::show() {
 		try {
 			parentStr = _parent->getName();
 		} catch (...) { // if parent changed or deleted, can cause seg fault
-			parentStr = "<<INCONSISTENT>>"; /* \todo: ++*/
+			parentStr = "<<INCONSISTENT>>"; /* @TODO: ++*/
 		}
 	}
 	return ModelElement::show() +
@@ -65,6 +65,8 @@ Statistics_if* StatisticsCollector::getStatistics() const {
 PluginInformation* StatisticsCollector::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<StatisticsCollector>(), &StatisticsCollector::LoadInstance);
 	info->setGenerateReport(true);
+	info->setDescriptionHelp("The StatisticsCollector is the ModelElement responsible for collecting data from the model (using the Collector) and simultaneouly keeping statistics updated (using the Statistics)");
+
 	return info;
 }
 
@@ -85,8 +87,8 @@ bool StatisticsCollector::_loadInstance(std::map<std::string, std::string>* fiel
 	return res;
 }
 
-std::map<std::string, std::string>* StatisticsCollector::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(); //Util::TypeOf<StatisticsCollector>());
+std::map<std::string, std::string>* StatisticsCollector::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues); //Util::TypeOf<StatisticsCollector>());
 	std::string parentId = "", parentTypename = "";
 	if (this->_parent != nullptr) {
 		parentId = std::to_string(_parent->getId());
@@ -98,7 +100,7 @@ std::map<std::string, std::string>* StatisticsCollector::_saveInstance() {
 }
 
 bool StatisticsCollector::_check(std::string* errorMessage) {
-    // \TODO: To implement!
-    *errorMessage += "";
-    return true;
+	// @TODO: To implement!
+	*errorMessage += "";
+	return true;
 }

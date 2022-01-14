@@ -97,23 +97,24 @@ public: //static
 	static PluginInformation* GetPluginInformation();
 	static ModelElement* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 public:
-	double value();
+	double getValue();
 	void setValue(double value);
-	double value(std::string index);
+	double getValue(std::string index);
 	void setValue(std::string index, double value);
-	double initialValue();
+	double getInitialValue();
 	void setInitialValue(double value);
-	double initialValue(std::string index);
+	double getInitialValue(std::string index);
 	void setInitialValue(std::string index, double value);
-	List<unsigned int>* dimensionSizes() const;
+	List<unsigned int>* getDimensionSizes() const;
 
 protected:
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance();
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
 	virtual void _initBetweenReplications();
 
 private:
+	//const struct DEFAULT_VALUES {	} DEFAULT;
 	List<unsigned int>* _dimensionSizes = new List<unsigned int>();
 	std::map<std::string, double>* _values = new std::map<std::string, double>();
 	std::map<std::string, double>* _initialValues = new std::map<std::string, double>();

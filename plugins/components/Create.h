@@ -77,11 +77,12 @@ protected:
 	virtual void _execute(Entity* entity);
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual void _initBetweenReplications();
-	virtual std::map<std::string, std::string>* _saveInstance();
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
 	virtual void _createInternalElements();
-private: // children elements
-	Counter* _numberOut = nullptr;
+private:
+	Counter* _numberOut = nullptr; // children element
+	double _lastArrival = -1.0;
 };
 
 #endif /* CREATE_H */

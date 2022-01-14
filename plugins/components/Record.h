@@ -66,7 +66,7 @@ public:
 public:
 	void setFilename(std::string filename);
 	std::string getFilename() const;
-	void setExpression(std::string expression);
+	void setExpression(const std::string expression);
 	std::string getExpression() const;
 	void setExpressionName(std::string expressionName);
 	std::string getExpressionName() const;
@@ -80,15 +80,16 @@ protected:
 	virtual void _execute(Entity* entity);
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual void _initBetweenReplications();
-	virtual std::map<std::string, std::string>* _saveInstance();
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
+	virtual void _createInternalElements();
 private:
 	std::string _expression = "";
 	std::string _expressionName = "";
 	std::string _filename = "";
-private: 
+private:
 	// not a child element
-	StatisticsCollector* _cstatExpression; /* \todo: Cretae an internal class to agregate ExpressionStatisticsColelctor, and change Record to got a list of it, so Record cn record a set of expressions into a set of files */
+	StatisticsCollector* _cstatExpression; /* @TODO: Cretae an internal class to agregate ExpressionStatisticsColelctor, and change Record to got a list of it, so Record cn record a set of expressions into a set of files */
 };
 
 #endif /* RECORD_H */

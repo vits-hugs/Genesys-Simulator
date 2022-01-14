@@ -31,27 +31,33 @@ public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 public: // g&s
-	void setDiffEquations(Formula* formula);
-	Formula* getDiffEquations() const;
 	void setTimeVariable(Variable* _timeVariable);
 	Variable* getTimeVariable() const;
 	void setStep(double _step);
 	double getStep() const;
-	void setVariables(Variable* _variables);
-	Variable* getVariables() const;
+	void setVariable(Variable* _variables);
+	Variable* getVariable() const;
+	List<std::string>* getDiffEquations() const;
+	void setFilename(std::string filename);
+	std::string getFilename() const;
 protected: // virtual
 	virtual void _execute(Entity* entity);
 	virtual void _initBetweenReplications();
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance();
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
 	//virtual void _createInternalElements();
 private: // methods
 	bool _doStep();
 private: // attributes 1:1
-	Formula* _diffEquations;
-	Variable* _variables;
+
+	const struct DEFAULT_VALUES {
+		std::string filename = "";
+	} DEFAULT;
+	List<std::string>* _diffEquations = new List<std::string>();
+	Variable* _variable;
 	Variable* _timeVariable;
+	std::string _filename = DEFAULT.filename;
 	double _step;
 private: // attributes 1:n
 };

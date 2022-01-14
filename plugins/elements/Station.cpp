@@ -60,7 +60,7 @@ void Station::leave(Entity* entity) {
 		_cstatNumberInStation->getStatistics()->getCollector()->addValue(_numberInStation);
 		_cstatTimeInStation->getStatistics()->getCollector()->addValue(timeInStation);
 		if (entity->getEntityType()->isReportStatistics())
-			entity->getEntityType()->addGetStatisticsCollector(entity->getEntityTypeName() + ".TimeInStations")->getStatistics()->getCollector()->addValue(timeInStation); // \todo: should check if entitytype reports (?)
+			entity->getEntityType()->addGetStatisticsCollector(entity->getEntityTypeName() + ".TimeInStations")->getStatistics()->getCollector()->addValue(timeInStation); // @TODO: should check if entitytype reports (?)
 	}
 }
 
@@ -74,6 +74,13 @@ ModelComponent* Station::getEnterIntoStationComponent() const {
 
 PluginInformation* Station::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Station>(), &Station::LoadInstance);
+	std::string help = "The Station module defines a station (or a set of stations) corresponding to a physical or logical location where processing occurs.";
+	help += " If the Station module defines a station set, it is effectively defining multiple processing locations.";
+	help += " The station (or each station within the defined set) has a matching Activity Area that is used to report all times and costs accrued by the entities in this station.";
+	help += " This Activity Area’s name is the same as the station.";
+	help += " If a parent Activity Area is defined, then it also accrues any times and costs by the entities in this station.";
+	help += " TYPICAL USES: (1) Defining a lathe area; (2) Defining a set of toll booths; (3) Defining a food preparation area";
+	info->setDescriptionHelp(help);
 	return info;
 }
 
@@ -97,8 +104,8 @@ bool Station::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-std::map<std::string, std::string>* Station::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(); //Util::TypeOf<Station>());
+std::map<std::string, std::string>* Station::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues); //Util::TypeOf<Station>());
 	return fields;
 }
 
@@ -112,8 +119,8 @@ bool Station::_check(std::string* errorMessage) {
 		if (_parentModel->getElements()->getElement(Util::TypeOf<Attribute>(), neededName) == nullptr) {
 			new Attribute(_parentModel, neededName);
 		}
-    }
-    *errorMessage += "";
+	}
+	*errorMessage += "";
 	return true;
 }
 

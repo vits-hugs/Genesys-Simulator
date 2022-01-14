@@ -14,10 +14,13 @@
 #ifndef STATISTICSDATAFILE_IF_H
 #define STATISTICSDATAFILE_IF_H
 
-#include "Collector_if.h"
+#include "CollectorDatafile_if.h"
 #include "Statistics_if.h"
 
 class StatisticsDatafile_if : public Statistics_if {
+	//public:
+	//    virtual CollectorDatafile_if* getCollector() = 0;
+	//    virtual void setCollector(Collector_if* collector) = 0;
 public:
 	virtual double mode() = 0;
 	virtual double mediane() = 0;

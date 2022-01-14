@@ -33,14 +33,14 @@ ModelComponent* Batch::LoadInstance(Model* model, std::map<std::string, std::str
 }
 
 void Batch::_execute(Entity* entity) {
-    _parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
-    this->_parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection(), 0.0);
+	_parentModel->getTracer()->traceSimulation("I'm just a dummy model and I'll just send the entity forward");
+	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
 bool Batch::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
-		// \todo: not implemented yet
+		// @TODO: not implemented yet
 	}
 	return res;
 }
@@ -48,23 +48,33 @@ bool Batch::_loadInstance(std::map<std::string, std::string>* fields) {
 void Batch::_initBetweenReplications() {
 }
 
-std::map<std::string, std::string>* Batch::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
-	// \todo: not implemented yet
+std::map<std::string, std::string>* Batch::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
+	// @TODO: not implemented yet
 	return fields;
 }
 
 bool Batch::_check(std::string* errorMessage) {
 	bool resultAll = true;
-    *errorMessage += "";
-    // \todo: not implemented yet
-    return resultAll;
+	*errorMessage += "";
+	// @TODO: not implemented yet
+	return resultAll;
 }
 
 PluginInformation* Batch::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Batch>(), &Batch::LoadInstance);
-    info->insertDynamicLibFileDependence("entitygroup.so");
-    return info;
+	info->insertDynamicLibFileDependence("entitygroup.so");
+	std::string help = "This module is intended as the grouping mechanism within the simulation model.";
+	help += " Batches can be permanently or temporarily grouped.";
+	help += " Temporary batches must later be split using the Separate module.";
+	help += " Batches may be made with any specified number of entering entities or may be matched together based on an attribute.";
+	help += " Entities arriving at the Batch module are placed in a queue until the required number of entities has accumulated.";
+	help += " Once accumulated, a new representative entity is created.";
+	help += " Animation showing the number of entities waiting to be batched, as well as an animated queue for waiting entities, is displayed when the module is placed.";
+	help += " TYPICAL USES: (1) Collect a defined number of parts before starting processing; (2) Reassemble previously separated copies of a form;";
+	help += " (3) Bring together a patient and his record before commencing an appointment";
+	info->setDescriptionHelp(help);
+	return info;
 }
 
 

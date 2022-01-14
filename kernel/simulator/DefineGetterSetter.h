@@ -27,29 +27,24 @@ typedef std::function<double() > GetterMemberBool; //!< Pointer to a getter func
 typedef std::function<void(double) > SetterMemberBool; //!< Pointer to a setter function that sets a bool. Used to set values to Simulationresponse
 
 // double
-
 template<typename Class>
 GetterMember DefineGetterMember(Class * object, double (Class::*function)()) {
 	return std::bind(function, object);
 }
-
 template<typename Class>
 GetterMember DefineGetterMember(Class * object, double (Class::*function)() const) {
 	return std::bind(function, object);
 }
-
 template<typename Class>
 SetterMember DefineSetterMember(Class * object, void (Class::*function)(double)) {
 	return std::bind(function, object, std::placeholders::_1);
 }
 
 // unsigned int
-
 template<typename Class>
 GetterMember DefineGetterMember(Class * object, unsigned int (Class::*function)() const) {
 	return std::bind(function, object);
 }
-
 template<typename Class>
 SetterMember DefineSetterMember(Class * object, void (Class::*function)(unsigned int)) {
 	return std::bind(function, object, std::placeholders::_1);
@@ -57,46 +52,38 @@ SetterMember DefineSetterMember(Class * object, void (Class::*function)(unsigned
 
 
 // unsigned long
-
 template<typename Class>
 GetterMember DefineGetterMember(Class * object, unsigned long (Class::*function)() const) {
 	return std::bind(function, object);
 }
-
 template<typename Class>
 SetterMember DefineSetterMember(Class * object, void (Class::*function)(unsigned long)) {
 	return std::bind(function, object, std::placeholders::_1);
 }
 
 // bool
-
 template<typename Class>
 GetterMember DefineGetterMember(Class * object, bool (Class::*function)() const) {
 	return std::bind(function, object);
 }
-
 template<typename Class>
 SetterMember DefineSetterMember(Class * object, void (Class::*function)(bool)) {
 	return std::bind(function, object, std::placeholders::_1);
 }
 
 //std::string
-
 template<typename Class>
 GetterMember DefineGetterMember(Class * object, std::string(Class::*function)() const) {
 	return std::bind(function, object);
 }
-
 template<typename Class>
 SetterMember DefineSetterMember(Class * object, void (Class::*function)(std::string) const) {
 	return std::bind(function, object, std::placeholders::_1);
 }
-
 template<typename Class>
 GetterMemberString DefineGetterMember(Class * object, std::string(Class::*function)() const) {
 	return std::bind(function, object);
 }
-
 template<typename Class>
 SetterMemberString DefineSetterMember(Class * object, void (Class::*function)(std::string) const) {
 	return std::bind(function, object, std::placeholders::_1);
@@ -104,12 +91,10 @@ SetterMemberString DefineSetterMember(Class * object, void (Class::*function)(st
 
 
 // Util::TimeUnit
-
 template<typename Class>
 GetterMember DefineGetterMember(Class * object, /*GenesysKernel::*/Util::TimeUnit(Class::*function)() const) {
 	return std::bind(function, object);
 }
-
 template<typename Class>
 SetterMember DefineSetterMember(Class * object, void (Class::*function)(/*GenesysKernel::*/Util::TimeUnit)) {
 	return std::bind(function, object, std::placeholders::_1);

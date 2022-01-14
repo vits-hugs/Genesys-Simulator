@@ -19,6 +19,7 @@
 #include "../../kernel/simulator/ParserChangesInformation.h"
 #include "../../kernel/simulator/PluginInformation.h"
 #include "../../kernel/simulator/EntityType.h"
+
 /*!
  Set module
 DESCRIPTION
@@ -68,18 +69,19 @@ public:
 
 protected: // must be overriden by derived classes
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance();
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 protected: // could be overriden by derived classes
 	virtual bool _check(std::string* errorMessage);
 	virtual ParserChangesInformation* _getParserChangesInformation();
 private:
 	//ElementManager* _elems;
+
 	const struct DEFAULT_VALUES {
 		unsigned int membersSize = 0;
 		std::string setOfType = Util::TypeOf<EntityType>();
 	} DEFAULT;
 	List<ModelElement*>* _elementSet = new List<ModelElement*>();
-	std::string _setOfType;
+	std::string _setOfType = DEFAULT.setOfType;
 };
 
 #endif /* SET_H */

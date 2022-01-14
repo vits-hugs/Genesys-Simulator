@@ -33,14 +33,14 @@ ModelComponent* Access::LoadInstance(Model* model, std::map<std::string, std::st
 }
 
 void Access::_execute(Entity* entity) {
-    _parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
-    this->_parentModel->sendEntityToComponent(entity, this->getNextComponents()->getFrontConnection(), 0.0);
+	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
+	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
 bool Access::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
-		// \todo: not implemented yet
+		// @TODO: not implemented yet
 	}
 	return res;
 }
@@ -48,21 +48,22 @@ bool Access::_loadInstance(std::map<std::string, std::string>* fields) {
 void Access::_initBetweenReplications() {
 }
 
-std::map<std::string, std::string>* Access::_saveInstance() {
-	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance();
-	// \todo: not implemented yet
+std::map<std::string, std::string>* Access::_saveInstance(bool saveDefaultValues) {
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
+	// @TODO: not implemented yet
 	return fields;
 }
 
 bool Access::_check(std::string* errorMessage) {
 	bool resultAll = true;
-    // \todo: not implemented yet
-    *errorMessage += "";
-    return resultAll;
+	// @TODO: not implemented yet
+	*errorMessage += "";
+	return resultAll;
 }
 
 PluginInformation* Access::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Access>(), &Access::LoadInstance);
+	info->setDescriptionHelp("//@TODO");
 	// ...
 	return info;
 }

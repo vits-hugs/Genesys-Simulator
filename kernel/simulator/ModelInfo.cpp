@@ -81,7 +81,7 @@ void ModelInfo::loadInstance(std::map<std::string, std::string>* fields) {
 	_hasChanged = false;
 }
 
-// \todo:!: implement check method (to check things like terminating condition)
+// @TODO:!: implement check method (to check things like terminating condition)
 
 std::map<std::string, std::string>* ModelInfo::saveInstance() {
 	std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();
@@ -90,7 +90,7 @@ std::map<std::string, std::string>* ModelInfo::saveInstance() {
 	SaveField(fields, "description", _description);
 	SaveField(fields, "name", this->getName());
 	SaveField(fields, "projectTitle", _projectTitle);
-	SaveField(fields, "version", _version, "1.0");
+	SaveField(fields, "version", _version); // , "1.0");
 	_hasChanged = false;
 	return fields;
 }

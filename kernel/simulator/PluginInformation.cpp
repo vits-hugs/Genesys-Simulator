@@ -16,9 +16,9 @@
 //using namespace GenesysKernel;
 
 PluginInformation::PluginInformation(std::string pluginTypename, StaticLoaderComponentInstance componentloader) {
-	this->_componentloader = componentloader; //// \todo:
-	this->_elementloader = nullptr; /// \todo:
-	this->_isComponent = true; //// \todo:
+	this->_componentloader = componentloader; //// @TODO:
+	this->_elementloader = nullptr; /// @TODO:
+	this->_isComponent = true; //// @TODO:
 	this->_pluginTypename = pluginTypename;
 }
 
@@ -162,19 +162,27 @@ unsigned short PluginInformation::getMinimumInputs() const {
 }
 
 void PluginInformation::setDescriptionHelp(std::string _descriptionHelp) {
-    this->_descriptionHelp = _descriptionHelp;
+	this->_descriptionHelp = _descriptionHelp;
 }
 
 std::string PluginInformation::getDescriptionHelp() const {
-    return _descriptionHelp;
+	return _descriptionHelp;
 }
 
 void PluginInformation::setFields(std::map<std::string, std::string>* _fields) {
-    this->_fields = _fields;
+	this->_fields = _fields;
 }
 
 std::map<std::string, std::string>* PluginInformation::getFields() const {
-    return _fields;
+	return _fields;
+}
+
+void PluginInformation::setLanguageTemplate(std::string _languageTemplate) {
+	this->_languageTemplate = _languageTemplate;
+}
+
+std::string PluginInformation::getLanguageTemplate() const {
+	return _languageTemplate;
 }
 
 

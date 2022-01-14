@@ -28,11 +28,11 @@ ModelElement* Schedule::LoadInstance(Model* model, std::map<std::string, std::st
 bool Schedule::_loadInstance(std::map<std::string, std::string>* fields) {
 }
 
-std::map<std::string, std::string>* Schedule::_saveInstance() {
+std::map<std::string, std::string>* Schedule::_saveInstance(bool saveDefaultValues) {
 }
 
 bool Schedule::_check(std::string* errorMessage) {
-    *errorMessage += "";
-    return true;
+	*errorMessage += "";
+	return true;
 }
 

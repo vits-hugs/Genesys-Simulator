@@ -23,9 +23,11 @@ ModelElement::ModelElement(Model* model, std::string thistypename, std::string n
 	_id = Util::GenerateNewId(); //GenerateNewIdOfType(thistypename);
 	_typename = thistypename;
 	_parentModel = model;
-    _reportStatistics = TraitsKernel<ModelElement>::reportStatistics; // \todo: shoould be a parameter before insertIntoModel
+	_reportStatistics = TraitsKernel<ModelElement>::reportStatistics; // @TODO: shoould be a parameter before insertIntoModel
 	if (name == "")
 		_name = thistypename + "_" + std::to_string(Util::GenerateNewIdOfType(thistypename));
+	else if (name.substr(name.length() - 1, 1) == "%")
+		_name = name.substr(0, name.length() - 1) + std::to_string(Util::GenerateNewIdOfType(thistypename));
 	else
 		_name = name;
 	_hasChanged = false;
@@ -80,6 +82,10 @@ void ModelElement::_removeChildElement(std::string key) {
 	Util::DecIndent();
 }
 
+bool ModelElement::_getSaveDefaultsOption() {
+	return _parentModel->getPersistence()->getOption(ModelPersistence_if::Options::SAVEDEFAULTS);
+}
+
 bool ModelElement::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = true;
 	std::map<std::string, std::string>::iterator it;
@@ -89,22 +95,22 @@ bool ModelElement::_loadInstance(std::map<std::string, std::string>* fields) {
 	it != fields->end() ? this->_name = (*it).second : this->_name = "";
 	//it != fields->end() ? this->_name = (*it).second : res = false;
 	it = fields->find("reportStatistics");
-    it != fields->end() ? this->_reportStatistics = std::stoi((*it).second) : this->_reportStatistics = TraitsKernel<ModelElement>::reportStatistics;
+	it != fields->end() ? this->_reportStatistics = std::stoi((*it).second) : this->_reportStatistics = TraitsKernel<ModelElement>::reportStatistics;
 	return res;
 }
 
-std::map<std::string, std::string>* ModelElement::_saveInstance() {
+std::map<std::string, std::string>* ModelElement::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();
 	SaveField(fields, "typename", _typename);
 	SaveField(fields, "id", this->_id);
 	SaveField(fields, "name", _name);
-    SaveField(fields, "reportStatistics", _reportStatistics, TraitsKernel<ModelElement>::reportStatistics);
+	SaveField(fields, "reportStatistics", _reportStatistics, TraitsKernel<ModelElement>::reportStatistics, saveDefaultValues);
 	return fields;
 }
 
 bool ModelElement::_check(std::string* errorMessage) {
-    *errorMessage += "";
-    return true; // if there is no ovveride, return true
+	*errorMessage += "";
+	return true; // if there is no ovveride, return true
 }
 
 ParserChangesInformation* ModelElement::_getParserChangesInformation() {
@@ -117,7 +123,7 @@ void ModelElement::_initBetweenReplications() {
 
 /*
 std::list<std::map<std::string,std::string>*>* ModelElement::_saveInstance(std::string type) {
-	std::list<std::map<std::string,std::string>*>* fields = ModelElement::_saveInstance();
+	std::list<std::map<std::string,std::string>*>* fields = ModelElement::_saveInstance(saveDefaultValues);
 	fields->push_back(type);
 	return fields;
 }
@@ -145,14 +151,14 @@ Util::identification ModelElement::getId() const {
 }
 
 void ModelElement::setName(std::string name) {
-	// rename every "stuff" related to this element (controls, responses and childrenElements
+	// rename every "stuff" related to this element (controls, responses and childrenElements)
 	if (name != _name) {
 		std::string stuffName;
 		unsigned int pos;
 		for (std::pair<std::string, ModelElement*> child : *_childrenElements) {
 			stuffName = child.second->getName();
 			pos = stuffName.find(getName(), 0);
-			if (pos != std::string::npos) {
+			if (pos < stuffName.length()) {// != std::string::npos) {
 				stuffName = stuffName.replace(pos, pos + getName().length(), name);
 				child.second->setName(stuffName);
 			}
@@ -161,7 +167,7 @@ void ModelElement::setName(std::string name) {
 		for (SimulationControl* control : *_parentModel->getControls()->list()) {
 			stuffName = control->getName();
 			pos = stuffName.find(getName(), 0);
-			if (pos != std::string::npos) {
+			if (pos < stuffName.length()) { // != std::string::npos) {
 				stuffName = stuffName.replace(pos, pos + getName().length(), name);
 				control->setName(stuffName);
 			}
@@ -170,7 +176,7 @@ void ModelElement::setName(std::string name) {
 		for (SimulationResponse* response : *_parentModel->getResponses()->list()) {
 			stuffName = response->getName();
 			pos = stuffName.find(getName(), 0);
-			if (pos != std::string::npos) {
+			if (pos < stuffName.length()) {// != std::string::npos) {
 				stuffName = stuffName.replace(pos, pos + getName().length(), name);
 				response->setName(stuffName);
 			}
@@ -217,7 +223,7 @@ ModelElement* ModelElement::LoadInstance(Model* model, std::map<std::string, std
 std::map<std::string, std::string>* ModelElement::SaveInstance(ModelElement* element) {
 	std::map<std::string, std::string>* fields; // = new std::list<std::string>();
 	try {
-		fields = element->_saveInstance();
+		fields = element->_saveInstance(element->_getSaveDefaultsOption());
 	} catch (const std::exception& e) {
 		//element->_model->getTrace()->traceError(e, "Error saving anElement " + element->show());
 	}

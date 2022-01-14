@@ -1,0 +1,38 @@
+var class_resource =
+[
+    [ "ResourceEventHandler", "class_resource.html#a3a8c56cef21f639c17ccf95b8b6782e6", null ],
+    [ "SortedResourceEventHandler", "class_resource.html#ac2557cba4c276688240e96a63a9ff99e", null ],
+    [ "ResourceState", "class_resource.html#af2224610b59962683d3cafbdac10621a", [
+      [ "IDLE", "class_resource.html#af2224610b59962683d3cafbdac10621aaa5daf7f2ebbba4975d61dab1c40188c7", null ],
+      [ "BUSY", "class_resource.html#af2224610b59962683d3cafbdac10621aa802706a9238e2928077f97736854bad4", null ],
+      [ "FAILED", "class_resource.html#af2224610b59962683d3cafbdac10621aab9e14d9b2886bcff408b85aefa780419", null ],
+      [ "INACTIVE", "class_resource.html#af2224610b59962683d3cafbdac10621aa6b273343c454f9c53dcfc9c4ccf171d2", null ],
+      [ "OTHER", "class_resource.html#af2224610b59962683d3cafbdac10621aa03570470bad94692ce93e32700d2e1cb", null ]
+    ] ],
+    [ "Resource", "class_resource.html#a858037c6c2ba89954526e82014a1de56", null ],
+    [ "~Resource", "class_resource.html#a8c2e5de50dc887e6a15ef1b344fef1ae", null ],
+    [ "_check", "class_resource.html#a028904f4659bcea635a5034f51212ca6", null ],
+    [ "_createInternalElements", "class_resource.html#a6db8262edc1e0d299a91f2b05f163465", null ],
+    [ "_initBetweenReplications", "class_resource.html#a040386f791c873eff82f763d22e30f17", null ],
+    [ "_loadInstance", "class_resource.html#a88c9e578a9937a937a4aa22d2146a141", null ],
+    [ "_saveInstance", "class_resource.html#a0aaa59a4e715186c282d35fa6713bda0", null ],
+    [ "addReleaseResourceEventHandler", "class_resource.html#ac113b918f035eabfd0358a854fa20cfa", null ],
+    [ "getCapacity", "class_resource.html#a0a4edb1888de4798241bc1b3c9dbb647", null ],
+    [ "getCostBusyHour", "class_resource.html#a08e4d0a506f1e7ff3b03d823d95d6f32", null ],
+    [ "getCostIdleHour", "class_resource.html#a9cc66c592c35384af7117edd69ef053b", null ],
+    [ "getCostPerUse", "class_resource.html#a511a5f32a95ca6b8421c209291328b72", null ],
+    [ "getLastTimeSeized", "class_resource.html#a7da14b95b137cd36aac381779a429a1d", null ],
+    [ "getNumberBusy", "class_resource.html#af7bcf87b1555ec89a83ca555efd37e89", null ],
+    [ "GetPluginInformation", "class_resource.html#a93a298773e526edbcea44d06127913fa", null ],
+    [ "getResourceState", "class_resource.html#ada8cd166b82378f1eb30fb0e191164bd", null ],
+    [ "LoadInstance", "class_resource.html#aa5da89921b763b13894e3edd321f85d8", null ],
+    [ "release", "class_resource.html#ad5da4dca5dd48a4818827e6273c20c2d", null ],
+    [ "seize", "class_resource.html#a4c9cc891367f2af07511d8897255d625", null ],
+    [ "setCapacity", "class_resource.html#aa8530e4507ab493de34feb4fef7d4d03", null ],
+    [ "setCostBusyHour", "class_resource.html#a28c348f8562fcf63e174229e9001f55c", null ],
+    [ "setCostIdleHour", "class_resource.html#aee4482e9f914b0b4e83cdb4ada50e45e", null ],
+    [ "setCostPerUse", "class_resource.html#adedf8ae8388efb1a194441613647b669", null ],
+    [ "SetResourceEventHandler", "class_resource.html#a1fba964737a4d0bfa505989a5b0c045f", null ],
+    [ "setResourceState", "class_resource.html#aba60047e3a2400f2aec478b1cfa3647e", null ],
+    [ "show", "class_resource.html#a593cf83404dc90706943b4e60213fd01", null ]
+];
