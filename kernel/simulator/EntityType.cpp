@@ -21,13 +21,14 @@ EntityType::EntityType(Model* model, std::string name) : ModelElement(model, Uti
 }
 
 void EntityType::_initBetweenReplications() {
+	ModelElement::_initBetweenReplications();
 	_initialWaitingCost = 0.0;
 	_initialVACost = 0.0;
 	_initialNVACost = 0.0;
 	_initialOtherCost = 0.0;
-	for (StatisticsCollector* cstat : *_statisticsCollectors->list()) {
-		cstat->getStatistics()->getCollector()->clear();
-	}
+	//for (StatisticsCollector* cstat : *_statisticsCollectors->list()) {
+	//	cstat->getStatistics()->getCollector()->clear();
+	//}
 }
 
 EntityType::~EntityType() {

@@ -38,7 +38,7 @@ public:
 	void setClearHandler(CollectorClearHandler clearHandler);
 private:
 	std::string _filename;
-	double _lastValaue;
+	double _lastValue;
 	unsigned int _numElements;
 };
 

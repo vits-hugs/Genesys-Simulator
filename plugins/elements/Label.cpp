@@ -88,7 +88,9 @@ bool Label::_loadInstance(std::map<std::string, std::string>* fields) {
 std::map<std::string, std::string>* Label::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues); //Util::TypeOf<Queue>());
 	SaveField(fields, "label", this->_label, "", saveDefaultValues);
-	SaveField(fields, "enteringLabelComponent", this->_enteringLabelComponent->getName(), "", saveDefaultValues);
+	if (_enteringLabelComponent != nullptr) {
+		SaveField(fields, "enteringLabelComponent", _enteringLabelComponent->getName(), "", saveDefaultValues);
+	}
 	return fields;
 }
 

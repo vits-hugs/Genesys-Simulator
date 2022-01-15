@@ -55,7 +55,7 @@ public: // model control
 	bool insert(ModelElement* elemOrComp); ///< Insert a new ModelElement or ModelComponent into the model (since 20191015). It's a generic access to ComponentManager->insert() or ModelElemento->insert()
 	void remove(ModelElement* elemOrComp); ///< Remove a new ModelElement or ModelComponent into the model (since 20191015). It's a generic access to ComponentManager->remove() or ModelElemento->remove()
 	//bool verifySymbol(std::string componentName, std::string expressionName, std::string expression, std::string expressionResult, bool mandatory); ///< Verifies if a symbol defined in a component (ModelComponent) or element is syntactically valid and addresses existing components or elements. It's used only by and directed by the component that defines the symbol.
-	Entity* createEntity(std::string name, bool insertIntoModel);
+	Entity* createEntity(std::string name, bool insertIntoModel = true);
 	void removeEntity(Entity* entity); //, bool collectStatistics);
 	void sendEntityToComponent(Entity* entity, Connection* connection, double timeDelay = 0.0); ///< Used by components (ModelComponent) to send entities to another specific component, usually the next one connected to it, or used by the model itself, when processing an event (Event).
 	void sendEntityToComponent(Entity* entity, ModelComponent* component, double timeDelay = 0.0, unsigned int componentInputNumber = 0); ///< Used by components (ModelComponent) to send entities to another specific component, usually the next one connected to it, or used by the model itself, when processing an event (Event).

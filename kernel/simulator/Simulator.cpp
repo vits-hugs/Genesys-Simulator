@@ -119,5 +119,6 @@ bool Simulator::_completePluginsFieldsAndTemplate() {
 			result = false;
 		}
 	}
+	Util::ResetAllIds();
 	return result;
 }

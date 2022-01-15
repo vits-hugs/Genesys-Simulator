@@ -142,6 +142,10 @@ void Util::ResetIdOfType(std::string objtype) {
 	(*it).second = 0;
 }
 
+void Util::ResetAllIds() {
+	_S_lastIdOfType = std::map<std::string, Util::identification>();
+}
+
 double Util::TimeUnitConvert(Util::TimeUnit timeUnit1, Util::TimeUnit timeUnit2) {
 	double scaleValues[] = {1.0, 1000.0, 1000.0, 1000.0, 1000.0, 1000.0, 60.0, 60.0, 24.0, 7.0};
 	// picosecond = 1, nanosecond = 2, microsecond = 3, milisecond = 4, second = 5, minute = 6, hour = 7, day = 8, week = 9

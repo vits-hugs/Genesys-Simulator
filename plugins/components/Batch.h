@@ -16,6 +16,7 @@
 
 #include "../../kernel/simulator/ModelComponent.h"
 #include "../../plugins/elements/Queue.h"
+#include "../../plugins/elements/EntityGroup.h"
 /*!
 Batch module
 DESCRIPTION
@@ -61,8 +62,8 @@ public:
 		Any = 0, ByAttribute = 1
 	};
 
-	enum class Representative : int {
-		FirstEntity = 0, LastEntity = 1, SumAttributes = 2, MultiplyAttributes = 3
+	enum class GroupedAttribs : int {
+		FirstEntity = 0, LastEntity = 1, SumAttributes = 2
 	};
 public: // constructors
 	Batch(Model* model, std::string name = "");
@@ -72,6 +73,16 @@ public: // virtual
 public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+    void setGroupedEntityType(EntityType* _groupedEntityType);
+    EntityType* getGroupedEntityType() const;
+    void setAttributeName(std::string _attributeName);
+    std::string getAttributeName() const;
+    void setBatchSize(std::string _batchSize);
+    std::string getBatchSize() const;
+    void setRule(Batch::Rule _rule);
+    Batch::Rule getRule() const;
+    void setGroupedAttributes(Batch::GroupedAttribs _groupedAttributes);
+    Batch::GroupedAttribs getGroupedAttributes() const;
 protected: // virtual should
 	//virtual void _initBetweenReplications();
 	virtual void _createInternalElements();
@@ -86,15 +97,18 @@ private: // attributes 1:1
 	const struct DEFAULT_VALUES {
 		Batch::BatchType batchType = Batch::BatchType::Temporary;
 		Batch::Rule rule = Batch::Rule::Any;
+		Batch::GroupedAttribs groupedAttributes = Batch::GroupedAttribs::FirstEntity;
 		std::string batchSize = "2";
 		std::string attributeName = "";
 	} DEFAULT;
 	Batch::BatchType _batchType = DEFAULT.batchType;
 	Batch::Rule _rule = DEFAULT.rule;
+	Batch::GroupedAttribs _groupedAttributes = DEFAULT.groupedAttributes;
 	std::string _batchSize = DEFAULT.batchSize;
 	std::string _attributeName = DEFAULT.attributeName;
 private: // attributes 1:1
 	EntityType* _groupedEntityType = nullptr;
+	EntityGroup* _unusedGroupOnlyToExistAtCompileTime = nullptr;
 	Queue* _queue = nullptr;
 private: // attributes 1:n
 };

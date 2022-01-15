@@ -14,6 +14,7 @@
 #include "Separate.h"
 
 #include "../../kernel/simulator/Model.h"
+#include "plugins/elements/EntityGroup.h"
 
 Separate::Separate(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Separate>(), name) {
 }
@@ -33,9 +34,24 @@ ModelComponent* Separate::LoadInstance(Model* model, std::map<std::string, std::
 }
 
 void Separate::_execute(Entity* entity) {
-	//Entity* cloned = _parentModel->createEntity(entity, false);  // false? check
-	this->_parentModel->sendEntityToComponent(entity, getConnections()->getFrontConnection());
-	//this->_parentModel->sendEntityToComponent(cloned, nextComponents()->getConnectionAtRank(1), 0.0);
+	unsigned int groupId = entity->getAttributeValue("Entity.Group");
+	if (groupId == 0) {
+		_parentModel->getTracer()->traceSimulation("Entity is not grouped. Nothing to do");
+		this->_parentModel->sendEntityToComponent(entity, getConnections()->getFrontConnection());
+	} else {
+		EntityGroup* eg = dynamic_cast<EntityGroup*> (_parentModel->getElements()->getElement(Util::TypeOf<EntityGroup>(), groupId));
+		if (eg == nullptr) {
+			_parentModel->getTracer()->traceSimulation(Util::TraceLevel::L3_errorRecover, "Error: Could not find EntityGroup Id=" + std::to_string(groupId));
+		} else {
+			Entity* e;
+			while ((e = eg->first()) != nullptr) {
+				eg->removeElement(e);
+				_parentModel->sendEntityToComponent(e, _connections->getFrontConnection());
+			}
+			_parentModel->getElements()-> remove(Util::TypeOf<EntityGroup>(), eg);
+			_parentModel->removeEntity(entity);
+		}
+	}
 }
 
 bool Separate::_loadInstance(std::map<std::string, std::string>* fields) {

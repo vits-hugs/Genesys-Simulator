@@ -16,6 +16,8 @@
 #include "../../kernel/simulator/Attribute.h"
 
 EntityGroup::EntityGroup(Model* model, std::string name) : ModelElement(model, Util::TypeOf<EntityGroup>(), name) {
+	// it is invoked in the constructor since EntityGroups are creted runtime by Components such as Batch
+	this->_createInternalElements();
 }
 
 EntityGroup::~EntityGroup() {

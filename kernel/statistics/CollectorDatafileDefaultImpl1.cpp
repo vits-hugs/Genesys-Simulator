@@ -30,7 +30,7 @@ void CollectorDatafileDefaultImpl1::clear() {
 		throw "ERROR - can't open the file ";
 	}
 	_numElements = 0;
-	_lastValaue = NULL; //@TODO: Change it to NaN or other default/null value
+	_lastValue = NULL; //@TODO: Change it to NaN or other default/null value
 }
 
 void CollectorDatafileDefaultImpl1::addValue(double value) {
@@ -47,11 +47,11 @@ void CollectorDatafileDefaultImpl1::addValue(double value) {
 		throw "ERROR - can't open the file ";
 	}
 	_numElements++;
-	_lastValaue = value;
+	_lastValue = value;
 }
 
 double CollectorDatafileDefaultImpl1::getLastValue() {
-	return _lastValaue;
+	return _lastValue;
 }
 
 unsigned long CollectorDatafileDefaultImpl1::numElements() {
