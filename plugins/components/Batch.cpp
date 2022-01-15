@@ -59,7 +59,7 @@ void Batch::_initBetweenReplications() {
 void Batch::_createInternalElements() {
 	if (_queue == nullptr) {
 		_queue = new Queue(_parentModel, this->getName() + ".Queue");
-		_internalElements->insert({"EntityQueue"}, _queue);
+		_internalElements->insert({"EntityQueue", _queue});
 	}
 }
 
@@ -73,6 +73,7 @@ bool Batch::_check(std::string* errorMessage) {
 PluginInformation* Batch::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Batch>(), &Batch::LoadInstance);
 	info->insertDynamicLibFileDependence("entitygroup.so");
+	info->insertDynamicLibFileDependence("queue.so");
 	std::string help = "This module is intended as the grouping mechanism within the simulation model.";
 	help += " Batches can be permanently or temporarily grouped.";
 	help += " Temporary batches must later be split using the Separate module.";

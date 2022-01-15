@@ -13,6 +13,7 @@
 #ifndef LABEL_H
 #define LABEL_H
 #include "../../kernel/simulator/ModelElement.h"
+#include "../../kernel/simulator/Entity.h"
 
 class Label : public ModelElement {
 public:

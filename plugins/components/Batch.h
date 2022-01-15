@@ -15,7 +15,7 @@
 #define BATCH_H
 
 #include "../../kernel/simulator/ModelComponent.h"
-
+#include "../../plugins/elements/Queue.h"
 /*!
 Batch module
 DESCRIPTION
@@ -84,12 +84,12 @@ private: // methods
 private: // attributes 1:1
 
 	const struct DEFAULT_VALUES {
-		Batch::BatchType* batchType = Batch::BatchType::Temporary;
+		Batch::BatchType batchType = Batch::BatchType::Temporary;
 		Batch::Rule rule = Batch::Rule::Any;
-		std::string batchSize = 2;
+		std::string batchSize = "2";
 		std::string attributeName = "";
 	} DEFAULT;
-	Batch::BatchType* _batchType = DEFAULT.batchType;
+	Batch::BatchType _batchType = DEFAULT.batchType;
 	Batch::Rule _rule = DEFAULT.rule;
 	std::string _batchSize = DEFAULT.batchSize;
 	std::string _attributeName = DEFAULT.attributeName;
