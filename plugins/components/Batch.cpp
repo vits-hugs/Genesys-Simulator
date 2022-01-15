@@ -12,10 +12,14 @@
  */
 
 #include "Batch.h"
-
+#include <cassert>
 #include "../../kernel/simulator/Model.h"
+#include "../../kernel/simulator/Attribute.h"
+#include "plugins/elements/EntityGroup.h"
 
 Batch::Batch(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Batch>(), name) {
+	// At least one EntityGroup must exist during "Check" model so attributes needed are created
+	_unusedGroupOnlyToExistAtCompileTime = new EntityGroup(model, "UnusedGroupOnlyToExistAtCompileTime");
 }
 
 std::string Batch::show() {
@@ -32,11 +36,135 @@ ModelComponent* Batch::LoadInstance(Model* model, std::map<std::string, std::str
 	return newComponent;
 }
 
+void Batch::setGroupedEntityType(EntityType* _groupedEntityType) {
+	this->_groupedEntityType = _groupedEntityType;
+}
+
+EntityType* Batch::getGroupedEntityType() const {
+	return _groupedEntityType;
+}
+
+void Batch::setAttributeName(std::string _attributeName) {
+	this->_attributeName = _attributeName;
+}
+
+std::string Batch::getAttributeName() const {
+	return _attributeName;
+}
+
+void Batch::setBatchSize(std::string _batchSize) {
+	this->_batchSize = _batchSize;
+}
+
+std::string Batch::getBatchSize() const {
+	return _batchSize;
+}
+
+void Batch::setRule(Batch::Rule _rule) {
+	this->_rule = _rule;
+}
+
+Batch::Rule Batch::getRule() const {
+	return _rule;
+}
+
+void Batch::setGroupedAttributes(Batch::GroupedAttribs _groupedAttributes) {
+	this->_groupedAttributes = _groupedAttributes;
+}
+
+Batch::GroupedAttribs Batch::getGroupedAttributes() const {
+	return _groupedAttributes;
+}
+
 void Batch::_execute(Entity* entity) {
-	//_parentModel->getTracer()->traceSimulation("I'm just a dummy model and I'll just send the entity forward");
+	double tnow = _parentModel->getSimulation()->getSimulatedTime();
+	_queue->insertElement(new Waiting(entity, tnow, this, 0));
+	unsigned int batchSize = _parentModel->parseExpression(_batchSize);
+	std::list<Waiting*>* entitiesToGroup = nullptr;
+	// check if batch size is complete
+	if (_rule == Batch::Rule::Any) {
+		if (_queue->size() == batchSize) {
+			entitiesToGroup = new std::list<Waiting*>();
+			for (unsigned int i = 0; i < _queue->size(); i++) {
+				entitiesToGroup->insert(entitiesToGroup->end(), _queue->getAtRank(i));
+			}
+			_parentModel->getTracer()->traceSimulation("Queue has " + std::to_string(_queue->size()) + " elements and a group with " + std::to_string(batchSize) + " elements will be created");
 
-
-	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
+		} else {
+			_parentModel->getTracer()->traceSimulation("Queue has " + std::to_string(_queue->size()) + " elements, not enought to form a group with " + std::to_string(batchSize));
+		}
+	} else { // rule IS Batch::Rule::ByAttribute
+		std::map<double, unsigned int>* countByValue = new std::map<double, unsigned int>();
+		double value, testValue;
+		Waiting* we;
+		std::map<double, unsigned int>::iterator it;
+		for (unsigned int i = 0; i < _queue->size(); i++) {
+			value = _queue->getAtRank(i)->getEntity()->getAttributeValue(_attributeName);
+			while ((it = countByValue->find(value)) == countByValue->end()) {// first time this value shows up
+				countByValue->insert({value, 0u});
+			}
+			(*it).second = (*it).second + 1;
+			if ((*it).second == batchSize) {
+				entitiesToGroup = new std::list<Waiting*>();
+				value = (*it).first;
+				for (unsigned int j = 0; j < _queue->size(); j++) {
+					we = _queue->getAtRank(j);
+					testValue = we->getEntity()->getAttributeValue(_attributeName);
+					if (testValue == value) {
+						entitiesToGroup->insert(entitiesToGroup->end(), we);
+					}
+				}
+				_parentModel->getTracer()->traceSimulation("Found " + std::to_string(entitiesToGroup->size()) + " elements in queue with the same value (" + std::to_string(value) + ") for attribute \"" + _attributeName + "\", and a group will be created");
+				exit; //breake? //next?
+			}
+		}
+	}
+	if (entitiesToGroup != nullptr) { // there are enought entities to group in
+		//_parentModel->getTracer()->traceSimulation("Queue has " + std::to_string(_queue->size()) + " elements, not enought to form a group");
+		assert(entitiesToGroup->size() == batchSize);
+		// creates a new entity that represents the group
+		Entity* representativeEnt = _parentModel->createEntity(_groupedEntityType->getName() + "_Group", true);
+		representativeEnt->setEntityType(_groupedEntityType);
+		EntityGroup* entityGroup;
+		if (_batchType == Batch::BatchType::Temporary) {
+			entityGroup = new EntityGroup(_parentModel, getName() + ".Group");
+			representativeEnt->setAttributeValue("Entity.Group", entityGroup->getId());
+		}
+		// remove all entities from the queue while storing attributes depending on representative
+		Entity* ent;
+		std::string text = "";
+		unsigned int i = 0;
+		bool accumAttribs;
+		for (Waiting* waiting : *entitiesToGroup) {
+			ent = waiting->getEntity();
+			text += ent->getName() + ", ";
+			_queue->removeElement(waiting);
+			accumAttribs = (i == 0 && _groupedAttributes == Batch::GroupedAttribs::FirstEntity)
+					|| (i == (entitiesToGroup->size() - 1) && _groupedAttributes == Batch::GroupedAttribs::LastEntity)
+					|| (_groupedAttributes == Batch::GroupedAttribs::SumAttributes);
+			if (accumAttribs) {
+				std::string attribName;
+				double value;
+				for (ModelElement* attrib : *_parentModel->getElements()->getElementList(Util::TypeOf<Attribute>())->list()) {
+					attribName = attrib->getName();
+					value = representativeEnt->getAttributeValue(attribName);
+					value += ent->getAttributeValue(attribName);
+					representativeEnt->setAttributeValue(attribName, value);
+				} // TODO: check what happens with totalTime, WaitTime, TransferTime, etc?????
+			}
+			if (_batchType == Batch::BatchType::Temporary) {
+				entityGroup->insertElement(ent);
+			} else {
+				_parentModel->removeEntity(ent);
+			}
+			i++;
+		}
+		text = text.substr(0, text.length() - 2);
+		_parentModel->getTracer()->traceSimulation("Grouped entities: " + text);
+		this->_parentModel->sendEntityToComponent(representativeEnt, this->getConnections()->getFrontConnection());
+	} else {
+		_parentModel->getTracer()->traceSimulation("Entity \"" + entity->getName() + "\" is waiting in the queue " + _queue->getName());
+	}
 }
 
 bool Batch::_loadInstance(std::map<std::string, std::string>* fields) {
@@ -44,12 +172,14 @@ bool Batch::_loadInstance(std::map<std::string, std::string>* fields) {
 	if (res) {
 		// @TODO: not implemented yet
 	}
+
 	return res;
 }
 
 std::map<std::string, std::string>* Batch::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
 	// @TODO: not implemented yet
+
 	return fields;
 }
 
@@ -57,19 +187,21 @@ std::map<std::string, std::string>* Batch::_saveInstance(bool saveDefaultValues)
 
 void Batch::_createInternalElements() {
 	if (_queue == nullptr) {
+
 		_queue = new Queue(_parentModel, this->getName() + ".Queue");
 		_internalElements->insert({"EntityQueue", _queue});
 	}
 }
 
-bool Batch::_check(std::string* errorMessage) {
+bool Batch::_check(std::string * errorMessage) {
 	bool resultAll = true;
 	*errorMessage += "";
 	// @TODO: not implemented yet
+	// groupedEntityType, ...
 	return resultAll;
 }
 
-PluginInformation* Batch::GetPluginInformation() {
+PluginInformation * Batch::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Batch>(), &Batch::LoadInstance);
 	info->insertDynamicLibFileDependence("entitygroup.so");
 	info->insertDynamicLibFileDependence("queue.so");

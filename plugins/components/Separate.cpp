@@ -46,6 +46,7 @@ void Separate::_execute(Entity* entity) {
 			Entity* e;
 			while ((e = eg->first()) != nullptr) {
 				eg->removeElement(e);
+				_parentModel->getTracer()->traceSimulation("Entity " + e ->getName() + " was separated out of the group");
 				_parentModel->sendEntityToComponent(e, _connections->getFrontConnection());
 			}
 			_parentModel->getElements()-> remove(Util::TypeOf<EntityGroup>(), eg);

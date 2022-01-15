@@ -197,11 +197,11 @@ std::string ModelElement::getClassname() const {
 }
 
 void ModelElement::InitBetweenReplications(ModelElement* element) {
-	element->_parentModel->getTracer()->trace("Initing element \"" + element->getName() + "\"", Util::TraceLevel::L8_detailed); //std::to_string(component->_id));
+	element->_parentModel->getTracer()->trace("Initing " + element->getClassname() + " \"" + element->getName() + "\"", Util::TraceLevel::L8_detailed); //std::to_string(component->_id));
 	try {
 		element->_initBetweenReplications();
 	} catch (const std::exception& e) {
-		element->_parentModel->getTracer()->traceError(e, "Error initing component " + element->show());
+		element->_parentModel->getTracer()->traceError(e, "Error initing element " + element->show());
 	};
 }
 
