@@ -176,6 +176,7 @@ void BaseConsoleGenesysApplication::insertFakePluginsByHand(Simulator* simulator
 	pm->insert("route.so");
 	pm->insert("sequence.so");
 	pm->insert("station.so");
+	pm->insert("label.so");
 	// arena transfer conveyour
 	pm->insert("access.so");
 	pm->insert("exit.so");

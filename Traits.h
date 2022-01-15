@@ -26,6 +26,7 @@
 #include "examples/book/Book_Cap02_Example01.h"
 // smarts
 #include "examples/smarts/Smart_AssignWriteSeizes.h"
+#include "examples/smarts/Smart_BatchSeparate.h"
 #include "examples/smarts/Smart_Delay.h"
 #include "examples/smarts/Smart_Dummy.h"
 #include "examples/smarts/Smart_HoldSignal.h"
@@ -64,6 +65,7 @@ template <> struct Traits<GenesysApplication_if> {
 
 	//// SMART SMART_S SORTED
 	//typedef Smart_AssignWriteSeizes Application;
+	typedef Smart_BatchSeparate Application;
 	//typedef Smart_Delay Applicatodatafilion;
 	//typedef Smart_Dummy Application;
 	//typedef Smart_HoldSignal Application;
@@ -89,7 +91,7 @@ template <> struct Traits<GenesysApplication_if> {
 	//// APPLICATIONS
 	//typedef GenesysTerminalApp Application;
 	//typedef GenesysQtGUIFull Application;
-	typedef SimpleQtGUI Application;
+	//typedef SimpleQtGUI Application;
 };
 
 /*!

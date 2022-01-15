@@ -107,6 +107,8 @@ Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilen
 		GetInfo = &Set::GetPluginInformation;
 	else if (fn == "station.so")
 		GetInfo = &Station::GetPluginInformation;
+	else if (fn == "label.so")
+		GetInfo = &Label::GetPluginInformation;
 	else if (fn == "variable.so")
 		GetInfo = &Variable::GetPluginInformation;
 		// model components
