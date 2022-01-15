@@ -27,9 +27,9 @@ matched together based on an attribute. Entities arriving at the Batch module ar
 placed in a queue until the required number of entities has accumulated. Once
 accumulated, a new representative entity is created.
 TYPICAL USES
- Collect a number of parts before starting processing
- Reassemble previously separated copies of a form
- Bring together a patient and his record before commencing an appointment
+* Collect a number of parts before starting processing
+* Reassemble previously separated copies of a form
+* Bring together a patient and his record before commencing an appointment
 PROMPTS
 Prompt Description
 Name Unique module identifier displayed on the module shape.
@@ -51,6 +51,19 @@ Representative Entity The entity type for the representative entity.
 
  */
 class Batch : public ModelComponent {
+public:
+
+	enum class BatchType : int {
+		Temporary = 0, Permanent = 1
+	};
+
+	enum class Rule : int {
+		Any = 0, ByAttribute = 1
+	};
+
+	enum class Representative : int {
+		FirstEntity = 0, LastEntity = 1, SumAttributes = 2, MultiplyAttributes = 3
+	};
 public: // constructors
 	Batch(Model* model, std::string name = "");
 	virtual ~Batch() = default;
@@ -59,14 +72,30 @@ public: // virtual
 public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-protected: // virtual
-	virtual void _execute(Entity* entity);
+protected: // virtual should
 	virtual void _initBetweenReplications();
+	virtual void _createInternalElements();
+	virtual bool _check(std::string* errorMessage);
+protected: // virtual must
+	virtual void _execute(Entity* entity);
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-	virtual bool _check(std::string* errorMessage);
 private: // methods
 private: // attributes 1:1
+
+	const struct DEFAULT_VALUES {
+		Batch::BatchType* batchType = Batch::BatchType::Temporary;
+		Batch::Rule rule = Batch::Rule::Any;
+		std::string batchSize = 2;
+		std::string attributeName = "";
+	} DEFAULT;
+	Batch::BatchType* _batchType = DEFAULT.batchType;
+	Batch::Rule _rule = DEFAULT.rule;
+	std::string _batchSize = DEFAULT.batchSize;
+	std::string _attributeName = DEFAULT.attributeName;
+private: // attributes 1:1
+	EntityType* _groupedEntityType = nullptr;
+	Queue* _queue = nullptr;
 private: // attributes 1:n
 };
 

@@ -93,10 +93,10 @@ void Decide::_createInternalElements() {
 		for (unsigned int i = 0; i<this->_connections->size(); i++) {
 			Counter* counter = new Counter(_parentModel, getName() + "." + "CountNumberOut" + std::to_string(i), this);
 			_numberOuts->insert(counter);
-			_childrenElements->insert({"CountNumberOut" + std::to_string(i), counter});
+			_internalElements->insert({"CountNumberOut" + std::to_string(i), counter});
 		}
 	} else if (!_reportStatistics && _numberOuts != nullptr) {
-		this->_removeChildrenElements();
+		this->_removeInternalElements();
 		_numberOuts = nullptr;
 	}
 

@@ -30,7 +30,7 @@ transporter, or conveyor). When the transfer device has been obtained, the entit
 experience a loading delay. Finally, the entity is transferred from this module to a
 destination module or station.
 TYPICAL USES
- The end of a part’s production in a series of parallel processes where the part
+* The end of a part’s production in a series of parallel processes where the part
 needs a forklift to be transferred to shipping
 PROMPTS
 Prompt Description

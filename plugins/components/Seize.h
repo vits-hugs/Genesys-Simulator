@@ -56,9 +56,9 @@ When an entity enters this module, it waits in a queue (if specified) until all 
 resources are available simultaneously. Allocation type for resource usage is also
 specified.
 TYPICAL USES
- Beginning a customer order (seize the operator)
- Starting a tax return (seize the accountant)
- Being admitted to hospital (seize the hospital room, nurse, doctor)
+* Beginning a customer order (seize the operator)
+* Starting a tax return (seize the accountant)
+* Being admitted to hospital (seize the hospital room, nurse, doctor)
 PROMPTS
 Prompt Description
 Name Unique module identifier displayed on the module shape.

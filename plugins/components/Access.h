@@ -26,8 +26,8 @@ When an entity arrives at an Access module, it will wait until the appropriate n
 of contiguous cells on the conveyor are empty and aligned with the entity’s station
 location.
 TYPICAL USES
- Parts accessing a conveyor to be sent to a paint booth
- Glass accessing a conveyor to be transferred to a cutting station
+* Parts accessing a conveyor to be sent to a paint booth
+* Glass accessing a conveyor to be transferred to a cutting station
 PROMPTS
 Prompt Description
 Name Unique name of the module that will be displayed in the

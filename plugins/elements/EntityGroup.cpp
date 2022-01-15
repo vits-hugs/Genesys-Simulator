@@ -99,11 +99,11 @@ void EntityGroup::_createInternalElements() {
 	if (_reportStatistics) {
 		if (_cstatNumberInGroup == nullptr) {
 			_cstatNumberInGroup = new StatisticsCollector(_parentModel, "NumberInGroup", this);
-			_childrenElements->insert({"NumberInGroup", _cstatNumberInGroup});
+			_internalElements->insert({"NumberInGroup", _cstatNumberInGroup});
 		}
 	} else
 		if (_cstatNumberInGroup != nullptr) {
-		_removeChildrenElements();
+		_removeInternalElements();
 	}
 }
 

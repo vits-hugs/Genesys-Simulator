@@ -24,8 +24,8 @@ and sends them to another module, as specified by a graphical connection. Group
 user-defined attribute value and internal attributes may be given to the dropped-off
 entities based on a specified rule.
 TYPICAL USES
- Loading shelves with product
- Separating a form for use in various departments
+* Loading shelves with product
+* Separating a form for use in various departments
 PROMPTS
 Prompt Description
 Name Unique module identifier displayed on the module shape.

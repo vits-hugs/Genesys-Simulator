@@ -195,10 +195,10 @@ void Route::_createInternalElements() {
 	if (_reportStatistics) {
 		if (_numberIn == nullptr) {
 			_numberIn = new Counter(_parentModel, getName() + "." + "CountNumberIn", this);
-			_childrenElements->insert({"CountNumberIn", _numberIn});
+			_internalElements->insert({"CountNumberIn", _numberIn});
 		}
 	} else
 		if (_numberIn != nullptr) {
-		_removeChildrenElements();
+		_removeInternalElements();
 	}
 }

@@ -85,7 +85,7 @@ bool CppForG::_check(std::string* errorMessage) {
 void CppForG::_createInternalElements() {
 	if (_cppcode == nullptr) {
 		_cppcode = new CppCode(_parentModel, getName() + ".CppCode");
-		_childrenElements->insert({"CppCode", _cppcode});
+		_internalElements->insert({"CppCode", _cppcode});
 	}
 }
 

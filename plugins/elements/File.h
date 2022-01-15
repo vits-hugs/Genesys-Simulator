@@ -27,9 +27,9 @@ Use the File module to access external files for the ReadWrite module, Variable
 module, and Expression module. The File module identifies the system file name and
 defines the access type and operational characteristics of the file.
 TYPICAL USES
- File containing predefined airline flight data
- File specifying customer order times and relevant information
- File to write user model configuration data from menu input
+* File containing predefined airline flight data
+* File specifying customer order times and relevant information
+* File to write user model configuration data from menu input
 PROMPTS 
 Prompt Description
 Name The name of the file whose characteristics are being defined.

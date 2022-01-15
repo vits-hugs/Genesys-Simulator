@@ -28,7 +28,7 @@ by any module that references the storage so that this module is seldom needed. 
 only time this module is needed is when a storage is defined as a member of a storage
 set or specified using an attribute or expression.
 TYPICAL USES
- Defining an animate storage for a set of storages
+* Defining an animate storage for a set of storages
 PROMPTS
 Prompt Description
 Name The name of the storage set being defined. This name must be

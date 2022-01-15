@@ -26,9 +26,9 @@ module, entity statistics (such as time or costing), general observations, and i
 statistics (from some time stamp to the current simulation time). A count type of
 statistic is available as well. Tally and Counter sets can also be specified.
 TYPICAL USES
- Collect the number of jobs completed each hour
- Count how many orders have been late being fulfilled
- Record the time spent by priority customers in the main check-out line
+* Collect the number of jobs completed each hour
+* Count how many orders have been late being fulfilled
+* Record the time spent by priority customers in the main check-out line
 PROMPTS
 Prompt Description
 Name Unique module identifier displayed on the module shape.

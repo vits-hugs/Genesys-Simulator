@@ -58,7 +58,7 @@ void Dispose::_createInternalElements() {
 	if (_reportStatistics && _numberOut == nullptr) {
 		// creates the counter (and then the CStats)
 		_numberOut = new Counter(_parentModel, getName() + "." + "CountNumberIn", this);
-		_childrenElements->insert({"CountNumberIn", _numberOut});
+		_internalElements->insert({"CountNumberIn", _numberOut});
 		// include StatisticsCollector needed for each EntityType
 		std::list<ModelElement*>* enttypes = _parentModel->getElements()->getElementList(Util::TypeOf<EntityType>())->list();
 		for (ModelElement* element : *enttypes) {
@@ -69,7 +69,7 @@ void Dispose::_createInternalElements() {
 		//_numberOut->~Counter();
 		//_numberOut = nullptr;
 		// @TODO: delete the CSTATS?
-		_removeChildrenElements();
+		_removeInternalElements();
 	}
 }
 

@@ -135,12 +135,12 @@ void Queue::_createInternalElements() {
 		if (_cstatNumberInQueue == nullptr) {
 			_cstatNumberInQueue = new StatisticsCollector(_parentModel, getName() + "." + "NumberInQueue", this); /* @TODO: ++ WHY THIS INSERT "DISPOSE" AND "10ENTITYTYPE" STATCOLL ?? */
 			_cstatTimeInQueue = new StatisticsCollector(_parentModel, getName() + "." + "TimeInQueue", this);
-			_childrenElements->insert({"NumberInQueue", _cstatNumberInQueue});
-			_childrenElements->insert({"TimeInQueue", _cstatTimeInQueue});
+			_internalElements->insert({"NumberInQueue", _cstatNumberInQueue});
+			_internalElements->insert({"TimeInQueue", _cstatTimeInQueue});
 		}
 	} else if (_cstatNumberInQueue != nullptr) {
 		// @TODO: remove
-		_removeChildrenElements();
+		_removeInternalElements();
 		//_childrenElements->remove(_cstatNumberInQueue);
 		//_childrenElements->remove(_cstatTimeInQueue);
 		//_cstatNumberInQueue->~StatisticsCollector();

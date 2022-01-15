@@ -24,8 +24,8 @@ conveyor may have been deactivated from either the Stop module or by initially
 being set to inactive at the start of the simulation. The velocity of the conveyor may
 be changed permanently when the conveyor is started.
 TYPICAL USES
- Start a bottling conveyor after scheduled maintenance
- Start a baggage claim conveyor when bags have arrived
+* Start a bottling conveyor after scheduled maintenance
+* Start a baggage claim conveyor when bags have arrived
 PROMPTS
 Prompt Description
 Name Unique name of the module that will be displayed in the

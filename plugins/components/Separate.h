@@ -30,9 +30,9 @@ added to the batch.
 When duplicating entities, the specified number of copies is made and sent from the
 module. The original incoming entity also leaves the module.
 TYPICAL USES
- Send individual entities to represent boxes removed from a container
- Send an order both to fulfillment and billing for parallel processing
- Separate a previously batched set of documents
+* Send individual entities to represent boxes removed from a container
+* Send an order both to fulfillment and billing for parallel processing
+* Separate a previously batched set of documents
 PROMPTS
 Prompt Description
 Name Unique module identifier displayed on the module shape.

@@ -29,9 +29,9 @@ internal queue) until the condition(s) becomes true. When the entity is in an in
 hold, the Remove module is used elsewhere in the model to allow the entity to
 continue processing.
 TYPICAL USES
- Waiting for a traffic light to turn green
- Holding a part for authorization
- Checking the status of a machine or operator to continue a process
+* Waiting for a traffic light to turn green
+* Holding a part for authorization
+* Checking the status of a machine or operator to continue a process
 PROMPTS
 Prompt Description
 Name Unique module identifier displayed on the module shape.

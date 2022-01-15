@@ -114,10 +114,10 @@ bool Create::_check(std::string* errorMessage) {
 void Create::_createInternalElements() {
 	if (_reportStatistics && _numberOut == nullptr) {
 		_numberOut = new Counter(_parentModel, getName() + "." + "CountNumberOut", this);
-		_childrenElements->insert({"CountNumberOut", _numberOut});
+		_internalElements->insert({"CountNumberOut", _numberOut});
 		// @TODO _childrenElements->insert("Count_number_in", _numberOut);
 	} else if (!_reportStatistics && _numberOut != nullptr) {
-		this->_removeChildrenElements();
+		this->_removeInternalElements();
 		// @TODO _childrenElements->remove("Count_number_in");
 		//_numberOut->~Counter();
 		_numberOut = nullptr;

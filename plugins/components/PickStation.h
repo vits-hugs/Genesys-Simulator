@@ -27,10 +27,10 @@ selected station is assigned to an entity attribute. The station selection proce
 based on the minimum or maximum value of a variety of system variables and
 expressions.
 TYPICAL USES
- A part sent to a processing station based on machine’s availability at each station
- A loan application sent to a set of loan officers based on the number sent to each
+* A part sent to a processing station based on machine’s availability at each station
+* A loan application sent to a set of loan officers based on the number sent to each
 officer
- A customer selecting among cashier lines based on the least number waiting in
+* A customer selecting among cashier lines based on the least number waiting in
 each line
 PROMPTS
 Prompt Description

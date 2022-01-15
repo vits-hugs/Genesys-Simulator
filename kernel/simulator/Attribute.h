@@ -45,9 +45,9 @@ assigned are assumed to have the last entered value.
  Using the two-dimensional (2-D) spreadsheet interface. In the module
 spreadsheet, click on the Initial Values cell.
 TYPICAL USES
- Due date of an order (entity)
- Priority of an order (entity)
- Color of a part (entity)
+* Due date of an order (entity)
+* Priority of an order (entity)
+* Color of a part (entity)
  PROMPTS
  Prompt Description
 Name The unique name of the attribute being defined.

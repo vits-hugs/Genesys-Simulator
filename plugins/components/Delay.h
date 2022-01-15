@@ -27,9 +27,9 @@ the entity remains in the module for the resulting time period. The time is then
 allocated to the entity’s value-added, non-value added, transfer, wait, or other time.
 Associated costs are calculated and allocated as well.
 TYPICAL USES
- Processing a check at a bank
- Performing a setup on a machine
- Transferring a document to another department
+* Processing a check at a bank
+* Performing a setup on a machine
+* Transferring a document to another department
 PROMPTS
 Prompt Description
 Name Unique module identifier displayed on the module shape.

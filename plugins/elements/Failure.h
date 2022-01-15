@@ -28,9 +28,9 @@ entire resource (regardless of its capacity) is failed. Failures are designed to
 with single-capacity resources or with multiple-capacity resources whose individual
 resource units all fail at the same time.
 TYPICAL USES
- Breakdown information for a machine
- Cash register tape refill every “x” customers
- Random computer shutdowns or restarts
+* Breakdown information for a machine
+* Cash register tape refill every “x” customers
+* Random computer shutdowns or restarts
 PROMPTS
 Recordset Name of the recordset in the specified file from which to read
 values. This field is available only if you specify a File Name

@@ -67,8 +67,8 @@ The default ranking rule for all queues is First In, First Out unless otherwise 
 in this module. There is an additional field that allows the queue to be defined as
 shared.
 TYPICAL USES
- Stack of work waiting for a resource at a Process module
- Holding area for documents waiting to be collated at a Batch module
+* Stack of work waiting for a resource at a Process module
+* Holding area for documents waiting to be collated at a Batch module
 Prompt Description
 Name The name of the queue whose characteristics are being defined.
 This name must be unique.

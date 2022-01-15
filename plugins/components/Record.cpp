@@ -107,9 +107,9 @@ void Record::_createInternalElements() {
 	if (_reportStatistics && _cstatExpression == nullptr) {
 		_cstatExpression = new StatisticsCollector(_parentModel, getName() + "." + _expressionName, this);
 		//_parentModel->getElements()->insert(_cstatExpression);
-		_childrenElements->insert({_expressionName, _cstatExpression});
+		_internalElements->insert({_expressionName, _cstatExpression});
 	} else if (!_reportStatistics && _cstatExpression != nullptr) {
-		this->_removeChildrenElements();
+		this->_removeInternalElements();
 		_cstatExpression = nullptr;
 	}
 }

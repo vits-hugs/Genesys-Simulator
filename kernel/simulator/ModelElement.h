@@ -66,9 +66,9 @@ public:
 	ModelElement* getChildElement(std::string key) const;
 	bool hasChanged() const;
 protected:
-	void _setChildElement(std::string key, ModelElement* child);
-	void _removeChildrenElements();
-	void _removeChildElement(std::string key);
+	void _setInternalElement(std::string key, ModelElement* child);
+	void _removeInternalElements();
+	void _removeInternalElement(std::string key);
 	bool _getSaveDefaultsOption();
 protected: // must be overriden by derived classes
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
@@ -91,7 +91,7 @@ protected:
 	bool _hasChanged;
 	Model* _parentModel;
 protected:
-	std::map<std::string, ModelElement*>* _childrenElements = new std::map<std::string, ModelElement*>();
+	std::map<std::string, ModelElement*>* _internalElements = new std::map<std::string, ModelElement*>();
 };
 //namespace\\}
 

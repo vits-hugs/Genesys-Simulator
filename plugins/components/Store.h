@@ -27,9 +27,9 @@ Storages are useful for displaying entity animation while an entity undergoes
 processing in other modules. Additionally, statistics may be kept on the number of
 entities in storage.
 TYPICAL USES
- Animating a part through a number of delay operations (load, setup, process,
+* Animating a part through a number of delay operations (load, setup, process,
 unload)
- Tracking the number of customers within a grocery store (place in storage upon
+* Tracking the number of customers within a grocery store (place in storage upon
 entry)
 PROMPTS
 Prompt Description

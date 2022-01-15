@@ -122,7 +122,7 @@ bool Delay::_check(std::string* errorMessage) {
 void Delay::_createInternalElements() {
 	if (_reportStatistics && _cstatWaitTime == nullptr) {
 		_cstatWaitTime = new StatisticsCollector(_parentModel, getName() + "." + "WaitTime", this);
-		_childrenElements->insert({"WaitTime", _cstatWaitTime});
+		_internalElements->insert({"WaitTime", _cstatWaitTime});
 		// include StatisticsCollector needed in EntityType 
 		ElementManager* elements = _parentModel->getElements();
 		std::list<ModelElement*>* enttypes = elements->getElementList(Util::TypeOf<EntityType>())->list();
@@ -132,7 +132,7 @@ void Delay::_createInternalElements() {
 				enttype->addGetStatisticsCollector(enttype->getName() + ".WaitTime"); // force create this CStat before simulation starts
 		}
 	} else {
-		_removeChildrenElements();
+		_removeInternalElements();
 		// @TODO remove StatisticsCollector needed in EntityType
 	}
 }

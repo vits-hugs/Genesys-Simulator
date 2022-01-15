@@ -30,8 +30,8 @@ information and resource availability. Resources may have a fixed capacity that 
 not vary over the simulation run or may operate based on a schedule. Resource
 failures and states can also be specified in this module.
 TYPICAL USES
- Equipment (machinery, cash register, phone line)
- People (clerical, order processing, sales clerks, operators)
+* Equipment (machinery, cash register, phone line)
+* People (clerical, order processing, sales clerks, operators)
 PROMPTS
 Prompt Description
 Name The name of the resource whose characteristics are being
@@ -71,9 +71,9 @@ Initial State Initial state of a resource. If specified, the name must be define
 within the repeat group of state names. This field is shown only
 when a StateSet Name is defined.
 Failures Lists all failures that will be associated with the resource.
- Failure Name–Name of the failure associated with the
+* Failure Name–Name of the failure associated with the
 resource.
- Failure Rule–Behavior that should occur when a failure is to
+* Failure Rule–Behavior that should occur when a failure is to
 occur for a busy resource unit.
 Report Statistics Specifies whether or not statistics will be collected automatically
 and stored in the report database for this resource.

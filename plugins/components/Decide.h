@@ -34,9 +34,9 @@ single “else” exit. The number of entities that exit from each type (true/fa
 displayed for
 2-way by Chance or by Condition modules only.
 TYPICAL USES
- Dispatching a faulty part for rework
- Branching accepted vs. rejected checks
- Sending priority customers to a dedicated process
+* Dispatching a faulty part for rework
+* Branching accepted vs. rejected checks
+* Sending priority customers to a dedicated process
 Prompt Description
 Name Unique module identifier displayed on the module shape.
 Type Indicates whether the decision is based on a condition (if X>Y)

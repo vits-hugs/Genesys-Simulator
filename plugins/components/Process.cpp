@@ -95,9 +95,9 @@ void Process::_createInternalElements() {
 		release = new Release(_parentModel, getName() + ".Release");
 		seize->getConnections()->insert(delay);
 		delay->getConnections()->insert(release);
-		_childrenElements->insert({"Seize", seize});
-		_childrenElements->insert({"Delay", delay});
-		_childrenElements->insert({"Release", release});
+		_internalElements->insert({"Seize", seize});
+		_internalElements->insert({"Delay", delay});
+		_internalElements->insert({"Release", release});
 	}
 	release->getConnections()->list()->clear();
 	if (getConnections()->size() > 0 && getConnections()->front() != seize) {

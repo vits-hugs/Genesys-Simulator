@@ -30,9 +30,9 @@ remain in their respective queues until a match exists.
 Once a match exists, one entity from each queue is released to be matched. The
 matched entities are then synchronized to depart from the module.
 TYPICAL USES
- Assembling a part
- Gathering various products for a customer order
- Synchronizing a customer exit with a filled order
+* Assembling a part
+* Gathering various products for a customer order
+* Synchronizing a customer exit with a filled order
 Prompt Description
 Name Unique module identifier displayed on the module shape.
 Number to Match Number of matching entities that must reside in different queues

@@ -94,8 +94,8 @@ It is automatically updated whenever Entity.Sequence or Entity.JobStep changes, 
 whenever the entity enters a station.
 Jobstep names must be globally unique.
 TYPICAL USES
- Define a routing path for part processing
- Define a sequence of steps patients must take upon arrival at an emergency room
+* Define a routing path for part processing
+* Define a sequence of steps patients must take upon arrival at an emergency room
  */
 class Sequence : public ModelElement {
 public:

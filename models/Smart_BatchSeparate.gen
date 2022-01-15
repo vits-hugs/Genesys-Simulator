@@ -1,0 +1,8 @@
+0   SimulatorInfo "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220111 
+0   ModelInfo  "Model 2" analystName="" description="" projectTitle="" version="1.0" 
+0   ModelSimulation "ModelSimulation" replicationLength=10.000000 
+54  EntityType "EntityType_2" 
+53  Create     "Create_2" EntityType="EntityType_2" nextId=55 
+55  Batch      "Batch_2" nextId=56 
+56  Separate   "Separate_2" nextId=57 
+57  Dispose    "Dispose_2" nextSize=0 

@@ -2377,11 +2377,6 @@
       <itemPath>applications/BaseConsoleGenesysApplication.h</itemPath>
       <itemPath>applications/GenesysApplication_if.h</itemPath>
     </logicalFolder>
-    <logicalFolder name="ResourceFiles"
-                   displayName="Arquivos de Recurso"
-                   projectFiles="true">
-      <itemPath>userInterfaces/gui/qt/guiresources.qrc</itemPath>
-    </logicalFolder>
     <logicalFolder name="f2" displayName="examples" projectFiles="true">
       <logicalFolder name="f2" displayName="book" projectFiles="true">
         <itemPath>examples/book/Book_Cap02_Example01.cpp</itemPath>
@@ -2390,6 +2385,8 @@
       <logicalFolder name="f3" displayName="smarts" projectFiles="true">
         <itemPath>examples/smarts/Smart_AssignWriteSeizes.cpp</itemPath>
         <itemPath>examples/smarts/Smart_AssignWriteSeizes.h</itemPath>
+        <itemPath>examples/smarts/Smart_BatchSeparate.cpp</itemPath>
+        <itemPath>examples/smarts/Smart_BatchSeparate.h</itemPath>
         <itemPath>examples/smarts/Smart_CppForG.cpp</itemPath>
         <itemPath>examples/smarts/Smart_CppForG.h</itemPath>
         <itemPath>examples/smarts/Smart_Delay.cpp</itemPath>
@@ -2662,6 +2659,8 @@
         <itemPath>plugins/elements/File.h</itemPath>
         <itemPath>plugins/elements/Formula.cpp</itemPath>
         <itemPath>plugins/elements/Formula.h</itemPath>
+        <itemPath>plugins/elements/Label.cpp</itemPath>
+        <itemPath>plugins/elements/Label.h</itemPath>
         <itemPath>plugins/elements/Queue.cpp</itemPath>
         <itemPath>plugins/elements/Queue.h</itemPath>
         <itemPath>plugins/elements/Resource.cpp</itemPath>
@@ -2713,12 +2712,33 @@
                      kind="TEST">
       </logicalFolder>
     </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Arquivos Importantes"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Arquivos de Teste"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+      <logicalFolder name="f1"
+                     displayName="testProbabilityDistribution"
+                     projectFiles="true"
+                     kind="TEST">
+      </logicalFolder>
+      <logicalFolder name="f2"
+                     displayName="testProbabilityDistribution"
+                     projectFiles="true"
+                     kind="TEST">
+      </logicalFolder>
+    </logicalFolder>
     <itemPath>Makefile</itemPath>
     <itemPath>Traits.h</itemPath>
     <itemPath>main.cpp</itemPath>
   </logicalFolder>
   <sourceFolderFilter>^(nbproject|build|test|tests|documentation|models|temp)$</sourceFolderFilter>
   <sourceRootList>
+    <Elem>.</Elem>
     <Elem>.</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
@@ -2730,7 +2750,8 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <qt>
-        <version>211201</version>
+        <destdir>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/build/Debug/GNU-Linux</destdir>
+        <version>220115</version>
         <modules>core gui widgets</modules>
       </qt>
       <compileType>
@@ -2742,6 +2763,24 @@
         <packType>Debian</packType>
         <verbose>false</verbose>
         <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
           <packFileListElem type="File"
                             to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
                             from="${OUTPUT_PATH}"
@@ -14514,6 +14553,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="examples/smarts/Smart_BatchSeparate.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_BatchSeparate.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="examples/smarts/Smart_CppForG.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="examples/smarts/Smart_CppForG.h" ex="false" tool="3" flavor2="0">
@@ -15353,6 +15402,10 @@
       </item>
       <item path="plugins/elements/Formula.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="plugins/elements/Label.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/Label.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="plugins/elements/Queue.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="plugins/elements/Queue.h" ex="false" tool="3" flavor2="0">
@@ -15411,11 +15464,6 @@
       <item path="tools/SolverDefaultImpl1.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tools/solver_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/guiresources.qrc"
-            ex="false"
-            tool="3"
-            flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="4">
@@ -26953,6 +27001,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="examples/smarts/Smart_BatchSeparate.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="examples/smarts/Smart_BatchSeparate.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="examples/smarts/Smart_CppForG.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="examples/smarts/Smart_CppForG.h" ex="false" tool="3" flavor2="0">
@@ -27792,6 +27850,10 @@
       </item>
       <item path="plugins/elements/Formula.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="plugins/elements/Label.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/elements/Label.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="plugins/elements/Queue.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="plugins/elements/Queue.h" ex="false" tool="3" flavor2="0">
@@ -27850,11 +27912,6 @@
       <item path="tools/SolverDefaultImpl1.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tools/solver_if.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="userInterfaces/gui/qt/guiresources.qrc"
-            ex="false"
-            tool="3"
-            flavor2="0">
       </item>
     </conf>
   </confs>

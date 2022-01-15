@@ -30,9 +30,9 @@ This data module defines the various entity types and their initial picture valu
 simulation. Initial costing information and holding costs are also defined for the
 entity.
 TYPICAL USES
- Items being produced or assembled (parts, pallets)
- Documents (forms, e-mails, faxes, reports)
- People moving through a process (customers, callers)
+* Items being produced or assembled (parts, pallets)
+* Documents (forms, e-mails, faxes, reports)
+* People moving through a process (customers, callers)
 PROMPTS
 Prompt Description
 Name The unique name of the attribute being defined.

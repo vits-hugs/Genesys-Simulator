@@ -26,8 +26,8 @@ is sent. At this time, entities at Hold modules that are waiting for the same si
 removed from their queues. The entity sending the signal continues processing until it
 encounters a delay, enters a queue, or is disposed.
 TYPICAL USES
- Analyzing traffic patterns at an intersection (signal when the light turns green)
- Signaling an operator to complete an order that was waiting for a component part
+* Analyzing traffic patterns at an intersection (signal when the light turns green)
+* Signaling an operator to complete an order that was waiting for a component part
 PROMPTS
 Prompt Description
 Name Unique module identifier displayed on the module shape.

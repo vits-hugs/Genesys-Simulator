@@ -23,9 +23,9 @@ The Exit module releases the entity’s cells on the specified conveyor. If anot
 is waiting in queue for the conveyor at the same station when the cells are released, it
 will then access the conveyor.
 TYPICAL USES
- Cases exit a conveyor for packing
- Bad parts are removed from the conveyor and disposed
- Passengers remove luggage from the baggage claim conveyor
+* Cases exit a conveyor for packing
+* Bad parts are removed from the conveyor and disposed
+* Passengers remove luggage from the baggage claim conveyor
 PROMPTS
 Prompt Description
 Name Unique name of the module that will be displayed in the

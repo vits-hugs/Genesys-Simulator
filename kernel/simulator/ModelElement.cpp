@@ -48,34 +48,34 @@ bool ModelElement::hasChanged() const {
 
 ModelElement::~ModelElement() {
 	_parentModel->getTracer()->trace(Util::TraceLevel::L9_mostDetailed, "Removing Element \"" + this->_name + "\" from the model");
-	_removeChildrenElements();
+	_removeInternalElements();
 	_parentModel->getElements()->remove(this);
 }
 
-void ModelElement::_removeChildrenElements() {
+void ModelElement::_removeInternalElements() {
 	Util::IncIndent();
 	{
-		for (std::map<std::string, ModelElement*>::iterator it = _childrenElements->begin(); it != _childrenElements->end(); it++) {
+		for (std::map<std::string, ModelElement*>::iterator it = _internalElements->begin(); it != _internalElements->end(); it++) {
 			this->_parentModel->getElements()->remove((*it).second);
 			(*it).second->~ModelElement();
 		}
-		_childrenElements->clear();
+		_internalElements->clear();
 	}
 	Util::DecIndent();
 
 }
 
-void ModelElement::_removeChildElement(std::string key) {
+void ModelElement::_removeInternalElement(std::string key) {
 	Util::IncIndent();
 	{
 		//for (std::map<std::string, ModelElement*>::iterator it = _childrenElements->begin(); it != _childrenElements->end(); it++) {
-		std::map<std::string, ModelElement*>::iterator it = _childrenElements->begin();
-		while (it != _childrenElements->end()) {
+		std::map<std::string, ModelElement*>::iterator it = _internalElements->begin();
+		while (it != _internalElements->end()) {
 			if ((*it).first == key) {
 				this->_parentModel->getElements()->remove((*it).second);
 				(*it).second->~ModelElement();
-				_childrenElements->erase(it);
-				it = _childrenElements->begin();
+				_internalElements->erase(it);
+				it = _internalElements->begin();
 			}
 		}
 	}
@@ -131,9 +131,9 @@ std::list<std::map<std::string,std::string>*>* ModelElement::_saveInstance(std::
 
 std::string ModelElement::show() {
 	std::string children = "";
-	if (_childrenElements->size() > 0) {
+	if (_internalElements->size() > 0) {
 		children = ", children=[";
-		for (std::map<std::string, ModelElement*>::iterator it = _childrenElements->begin(); it != _childrenElements->end(); it++) {
+		for (std::map<std::string, ModelElement*>::iterator it = _internalElements->begin(); it != _internalElements->end(); it++) {
 			children += (*it).second->getName() + ",";
 		}
 		children = children.substr(0, children.length() - 1) + "]";
@@ -155,7 +155,7 @@ void ModelElement::setName(std::string name) {
 	if (name != _name) {
 		std::string stuffName;
 		unsigned int pos;
-		for (std::pair<std::string, ModelElement*> child : *_childrenElements) {
+		for (std::pair<std::string, ModelElement*> child : *_internalElements) {
 			stuffName = child.second->getName();
 			pos = stuffName.find(getName(), 0);
 			if (pos < stuffName.length()) {// != std::string::npos) {

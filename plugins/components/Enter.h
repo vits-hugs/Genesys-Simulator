@@ -30,9 +30,9 @@ is used to report all times and costs accrued by the entities in this station. T
 Activity Area’s name is the same as the station. If a parent Activity Area is defined,
 then it also accrues any times and costs by the entities in this station.
 TYPICAL USES
- The start of a part’s production in a series of parallel processes where the part’s
+* The start of a part’s production in a series of parallel processes where the part’s
 forklift needs to be released
- The start of a document’s processing after the document has been created where
+* The start of a document’s processing after the document has been created where
 the mail clerk resource needs to be released
 PROMPTS
 Prompt Description

@@ -30,10 +30,10 @@ panels). Counter and Tally sets can be used in the Record module. Queue sets can
 used with the Seize, Hold, Access, Request, Leave, and Allocate modules of the
 Advanced Process and Advanced Transfer panels.
 TYPICAL USES
- Machines that can perform the same operations in a manufacturing facility
- Supervisors, check-out clerks in a store
- Shipping clerks, receptionists in an office
- Set of pictures corresponding to a set of entity types
+* Machines that can perform the same operations in a manufacturing facility
+* Supervisors, check-out clerks in a store
+* Shipping clerks, receptionists in an office
+* Set of pictures corresponding to a set of entity types
 PROMPTS
 Prompt Description
 Name The unique name of the set being defined.

@@ -30,9 +30,9 @@ is used to report all times and costs accrued by the entities in this station. T
 Activity Area’s name is the same as the station. If a parent Activity Area is defined,
 then it also accrues any times and costs by the entities in this station.
 TYPICAL USES
- Defining a lathe area
- Defining a set of toll booths
- Defining a food preparation area
+* Defining a lathe area
+* Defining a set of toll booths
+* Defining a food preparation area
 PROMPTS
 Prompt Description
 Name Unique name of the module that will be displayed in the

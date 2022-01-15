@@ -23,8 +23,8 @@ The Unstore module removes an entity from storage. When an entity arrives at the
 Unstore module, the storage specified is decreased and the entity immediately moves
 to the next module in the model.
 TYPICAL USES
- Removing the entity from an animation location when processing is complete
- Tracking the number of customers within a grocery store (unstore upon exit)
+* Removing the entity from an animation location when processing is complete
+* Tracking the number of customers within a grocery store (unstore upon exit)
 PROMPTS
 Prompt Description
 Name Unique module identifier displayed on the module shape.

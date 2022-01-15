@@ -24,9 +24,9 @@ DESCRIPTION
 This module is intended as the ending point for entities in a simulation model. Entity
 statistics may be recorded before the entity is disposed of.
 TYPICAL USES
- Parts leaving the modeled facility
- The termination of a business process
- Customers departing from the store
+* Parts leaving the modeled facility
+* The termination of a business process
+* Customers departing from the store
 Prompt Description
 Name Unique module identifier displayed on the module shape.
 Record Entity Statistics Determines whether or not the incoming entity’s statistics will be

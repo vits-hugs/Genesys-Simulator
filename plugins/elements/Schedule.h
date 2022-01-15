@@ -24,10 +24,10 @@ operating schedule for a resource or with the Create module to define an arrival
 schedule. Additionally, a schedule may be used and referenced to factor time delays
 based on the simulation time.
 TYPICAL USES
- Work schedule for staff, including breaks
- Breakdown patterns for equipment
- Volume of customers arriving at a store
- Learning-curve factors for new workers
+* Work schedule for staff, including breaks
+* Breakdown patterns for equipment
+* Volume of customers arriving at a store
+* Learning-curve factors for new workers
 PROMPTS
 File Read Time Specifies when to read the values from the file into the variable.
 If you select PreCheck, the values for the variable are read while

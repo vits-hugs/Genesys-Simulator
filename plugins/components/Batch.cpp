@@ -33,7 +33,9 @@ ModelComponent* Batch::LoadInstance(Model* model, std::map<std::string, std::str
 }
 
 void Batch::_execute(Entity* entity) {
-	_parentModel->getTracer()->traceSimulation("I'm just a dummy model and I'll just send the entity forward");
+	//_parentModel->getTracer()->traceSimulation("I'm just a dummy model and I'll just send the entity forward");
+
+
 	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
@@ -45,13 +47,20 @@ bool Batch::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-void Batch::_initBetweenReplications() {
-}
-
 std::map<std::string, std::string>* Batch::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
 	// @TODO: not implemented yet
 	return fields;
+}
+
+void Batch::_initBetweenReplications() {
+}
+
+void Batch::_createInternalElements() {
+	if (_queue == nullptr) {
+		_queue = new Queue(_parentModel, this->getName() + ".Queue");
+		_internalElements->insert({"EntityQueue"}, _queue);
+	}
 }
 
 bool Batch::_check(std::string* errorMessage) {

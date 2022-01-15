@@ -34,9 +34,9 @@ decreased and the condition is rechecked. This process repeats until the search
 condition is satisfied or the ending value is reached. If the condition is not met or
 there are no entities in the queue or group, J is set equal to 0.
 TYPICAL USES
- Looking for a particular order number in a queue
- Searching a group for a certain part type
- Determining which process to enter based on availability of resources (search an
+* Looking for a particular order number in a queue
+* Searching a group for a certain part type
+* Determining which process to enter based on availability of resources (search an
 expression)
  Prompt Description
 Name Unique module identifier displayed on the module shape.

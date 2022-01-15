@@ -129,8 +129,8 @@ void Station::_createInternalElements() {
 		if (_cstatNumberInStation == nullptr) {
 			_cstatNumberInStation = new StatisticsCollector(_parentModel, getName() + "." + "NumberInStation", this);
 			_cstatTimeInStation = new StatisticsCollector(_parentModel, getName() + "." + "TimeInStation", this);
-			_childrenElements->insert({"NumberInStation", _cstatNumberInStation});
-			_childrenElements->insert({"TimeInStation", _cstatTimeInStation});
+			_internalElements->insert({"NumberInStation", _cstatNumberInStation});
+			_internalElements->insert({"TimeInStation", _cstatTimeInStation});
 			//
 			// include StatisticsCollector needed in EntityType
 			std::list<ModelElement*>* enttypes = _parentModel->getElements()->getElementList(Util::TypeOf<EntityType>())->list();
@@ -142,6 +142,6 @@ void Station::_createInternalElements() {
 		}
 	} else
 		if (_cstatNumberInStation != nullptr) {
-		_removeChildrenElements();
+		_removeInternalElements();
 	}
 }
