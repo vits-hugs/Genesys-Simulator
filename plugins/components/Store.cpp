@@ -44,8 +44,7 @@ bool Store::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-void Store::_initBetweenReplications() {
-}
+//void Store::_initBetweenReplications() {}
 
 std::map<std::string, std::string>* Store::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);

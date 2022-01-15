@@ -74,8 +74,7 @@ void Assign::_execute(Entity* entity) {
 	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
-void Assign::_initBetweenReplications() {
-}
+//void Assign::_initBetweenReplications() {}
 
 bool Assign::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);

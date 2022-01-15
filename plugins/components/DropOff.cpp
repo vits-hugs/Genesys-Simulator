@@ -44,8 +44,7 @@ bool DropOff::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-void DropOff::_initBetweenReplications() {
-}
+//void DropOff::_initBetweenReplications() {}
 
 std::map<std::string, std::string>* DropOff::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);

@@ -94,8 +94,7 @@ bool Record::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-void Record::_initBetweenReplications() {
-}
+//void Record::_initBetweenReplications() {}
 
 bool Record::_check(std::string* errorMessage) {
 	// when cheking the model (before simulating it), remove the file if exists

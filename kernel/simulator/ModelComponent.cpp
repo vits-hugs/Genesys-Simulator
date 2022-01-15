@@ -136,6 +136,4 @@ std::map<std::string, std::string>* ModelComponent::_saveInstance(bool saveDefau
 	return fields;
 }
 
-void ModelComponent::_createInternalElements() {
-
-}
+//void ModelComponent::_createInternalElements() {}

@@ -46,8 +46,7 @@ bool Separate::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-void Separate::_initBetweenReplications() {
-}
+//void Separate::_initBetweenReplications() {}
 
 std::map<std::string, std::string>* Separate::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);

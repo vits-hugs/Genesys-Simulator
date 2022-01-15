@@ -124,7 +124,10 @@ bool SequenceStep::_loadInstance(std::map<std::string, std::string>* fields) {
 }
 
 std::map<std::string, std::string>* SequenceStep::_saveInstance(bool saveDefaultValues) {
-	//@TODO
+	std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();
+	//SaveField(fields, "orderRule", std::to_string(static_cast<int> (this->_orderRule)));
+	//SaveField(fields, "attributeName", "\""+this->_attributeName+"\"");
+	return fields;
 }
 
 std::list<SequenceStep::Assignment*>* SequenceStep::getAssignments() const {

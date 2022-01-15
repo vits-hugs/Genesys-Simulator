@@ -83,7 +83,7 @@ public:
 	virtual std::string show();
 
 public: // g & s
-	void setEntityTypeName(std::string entityTypeName) throw (); //*!< indirect access to EntityType
+	void setEntityTypeName(std::string entityTypeName); //*!< indirect access to EntityType
 	std::string getEntityTypeName() const;
 	void setEntityType(EntityType* entityType); //*!< direct access to EntityType
 	EntityType* getEntityType() const;

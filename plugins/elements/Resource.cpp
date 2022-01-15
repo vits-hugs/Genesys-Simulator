@@ -69,12 +69,9 @@ void Resource::release(unsigned int quantity, double tnow) {
 }
 
 void Resource::_initBetweenReplications() {
+	ModelElement::_initBetweenReplications();
 	this->_lastTimeSeized = 0.0;
 	this->_numberBusy = 0;
-	if (_reportStatistics) {
-		this->_numSeizes->clear();
-		this->_numReleases->clear();
-	}
 }
 
 void Resource::setResourceState(ResourceState _resourceState) {

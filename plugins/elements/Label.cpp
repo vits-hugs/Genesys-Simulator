@@ -30,7 +30,11 @@ ModelElement* Label::LoadInstance(Model* model, std::map<std::string, std::strin
 
 PluginInformation* Label::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Label>(), &Label::LoadInstance);
-	info->setDescriptionHelp("//@TODO");
+	std::string help = "Label element module represents a name to where entities can be sent to.";
+	help += "Any receiving transfer module such as 'Enter' can be assigned to a label.";
+	help += "Any other sending transfer module such as 'Route' can send an entity to a label, which corresponds to send it to the receiving module";
+	help += "TIPICAL USES include sending an entity to somewhere else without a direct connection.";
+	info->setDescriptionHelp(help);
 	//info->setDescriptionHelp("");
 	//info->setObservation("");
 	//info->setMinimumOutputs();
@@ -59,7 +63,8 @@ ModelComponent* Label::getEnteringLabelComponent() const {
 }
 
 void Label::sendEntityToLabelComponent(Entity* entity, double timeDelay) {
-	_parentModel->sendEntityToComponent(entity, _enteringLabelComponent->getConnections()->getFrontConnection(), timeDelay);
+	//_parentModel->sendEntityToComponent(entity, _enteringLabelComponent->getConnections()->getFrontConnection(), timeDelay);
+	_parentModel->sendEntityToComponent(entity, _enteringLabelComponent, timeDelay);
 }
 
 // must be overriden by derived classes
@@ -68,8 +73,12 @@ bool Label::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelElement::_loadInstance(fields);
 	if (res) {
 		try {
-			//this->_attributeName = LoadField(fields, "attributeName", DEFAULT.attributeName);
-			//this->_orderRule = static_cast<OrderRule> (LoadField(fields, "orderRule", static_cast<int> (DEFAULT.orderRule)));
+			this->_label = LoadField(fields, "label", "");
+			std::string componentName = LoadField(fields, "enteringLabelComponent", "");
+			ModelComponent* comp = _parentModel->getComponents()->find(componentName);
+			if (comp != nullptr) {
+				this->_enteringLabelComponent = comp;
+			}
 		} catch (...) {
 		}
 	}
@@ -78,8 +87,8 @@ bool Label::_loadInstance(std::map<std::string, std::string>* fields) {
 
 std::map<std::string, std::string>* Label::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues); //Util::TypeOf<Queue>());
-	//SaveField(fields, "orderRule", static_cast<int> (this->_orderRule), static_cast<int> (DEFAULT.orderRule));
-	//SaveField(fields, "attributeName", this->_attributeName, DEFAULT.attributeName);
+	SaveField(fields, "label", this->_label, "", saveDefaultValues);
+	SaveField(fields, "enteringLabelComponent", this->_enteringLabelComponent->getName(), "", saveDefaultValues);
 	return fields;
 }
 
@@ -87,23 +96,15 @@ std::map<std::string, std::string>* Label::_saveInstance(bool saveDefaultValues)
 
 bool Label::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	//resultAll &= _parentModel->getElements()->check(Util::TypeOf<Station>(), _station, "Station", errorMessage);
+	resultAll &= (_enteringLabelComponent != nullptr);
+	if (!resultAll) {
+		*errorMessage += "Entering Label Component was not defined";
+	}
 	return resultAll;
 }
 
-ParserChangesInformation* Label::_getParserChangesInformation() {
-}
+//ParserChangesInformation* Label::_getParserChangesInformation() {}
 
-void Label::_initBetweenReplications() {
-}
+//void Label::_initBetweenReplications() {}
 
-void Label::_createInternalElements() {
-	if (_reportStatistics) {
-		//if (_cstatNumberInQueue == nullptr) {
-		//	_cstatNumberInQueue = new StatisticsCollector(_parentModel, getName() + "." + "NumberInQueue", this); /* @TODO: ++ WHY THIS INSERT "DISPOSE" AND "10ENTITYTYPE" STATCOLL ?? */
-		//	_childrenElements->insert({"NumberInQueue", _cstatNumberInQueue});
-		//}
-	} else { //if (_cstatNumberInQueue != nullptr) {
-		//_removeChildrenElements();
-	}
-}
+//void Label::_createInternalElements() {}

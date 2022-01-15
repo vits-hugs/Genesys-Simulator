@@ -124,9 +124,7 @@ bool Route::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-void Route::_initBetweenReplications() {
-	_numberIn->clear();
-}
+//void Route::_initBetweenReplications() {}
 
 std::map<std::string, std::string>* Route::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);

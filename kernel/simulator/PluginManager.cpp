@@ -50,7 +50,7 @@ void PluginManager::_insertDefaultKernelElements() {
 }
 
 bool PluginManager::completePluginsFieldsAndTemplates() {
-	_simulator->_completePluginsFieldsAndTemplate();
+	return _simulator->_completePluginsFieldsAndTemplate();
 }
 
 //bool PluginManager::check(Plugin* plugin){

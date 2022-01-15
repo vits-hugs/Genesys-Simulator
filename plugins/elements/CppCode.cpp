@@ -75,8 +75,7 @@ bool CppCode::_check(std::string* errorMessage) {
 
 //ParserChangesInformation* CppCode::_getParserChangesInformation() {}
 
-void CppCode::_initBetweenReplications() {
-}
+//void CppCode::_initBetweenReplications() {}
 
 void CppCode::_createInternalElements() {
 }

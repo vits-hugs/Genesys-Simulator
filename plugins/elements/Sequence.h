@@ -19,7 +19,7 @@
 #include "../../kernel/simulator/PluginInformation.h"
 #include "Station.h"
 
-class SequenceStep : PersistentObject_base {
+class SequenceStep : public PersistentObject_base {
 public:
 
 	class Assignment {

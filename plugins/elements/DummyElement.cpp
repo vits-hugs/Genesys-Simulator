@@ -68,25 +68,23 @@ std::map<std::string, std::string>* DummyElement::_saveInstance(bool saveDefault
 
 // could be overriden by derived classes
 
-bool DummyElement::_check(std::string* errorMessage) {
-	bool resultAll = true;
-	//resultAll &= _parentModel->getElements()->check(Util::TypeOf<Station>(), _station, "Station", errorMessage);
-	return resultAll;
-}
+//bool DummyElement::_check(std::string* errorMessage) {
+//	bool resultAll = true;
+//	//resultAll &= _parentModel->getElements()->check(Util::TypeOf<Station>(), _station, "Station", errorMessage);
+//	return resultAll;
+//}
 
-ParserChangesInformation* DummyElement::_getParserChangesInformation() {
-}
+//ParserChangesInformation* DummyElement::_getParserChangesInformation() {}
 
-void DummyElement::_initBetweenReplications() {
-}
+//void DummyElement::_initBetweenReplications() {}
 
-void DummyElement::_createInternalElements() {
-	if (_reportStatistics) {
-		//if (_cstatNumberInQueue == nullptr) {
-		//	_cstatNumberInQueue = new StatisticsCollector(_parentModel, getName() + "." + "NumberInQueue", this); /* @TODO: ++ WHY THIS INSERT "DISPOSE" AND "10ENTITYTYPE" STATCOLL ?? */
-		//	_childrenElements->insert({"NumberInQueue", _cstatNumberInQueue});
-		//}
-	} else { //if (_cstatNumberInQueue != nullptr) {
-		//_removeChildrenElements();
-	}
-}
+//void DummyElement::_createInternalElements() {
+//if (_reportStatistics) {
+//if (_cstatNumberInQueue == nullptr) {
+//	_cstatNumberInQueue = new StatisticsCollector(_parentModel, getName() + "." + "NumberInQueue", this); /* @TODO: ++ WHY THIS INSERT "DISPOSE" AND "10ENTITYTYPE" STATCOLL ?? */
+//	_childrenElements->insert({"NumberInQueue", _cstatNumberInQueue});
+//}
+//} else { //if (_cstatNumberInQueue != nullptr) {
+//_removeChildrenElements();
+//}
+//}

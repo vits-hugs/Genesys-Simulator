@@ -118,7 +118,9 @@ ParserChangesInformation* ModelElement::_getParserChangesInformation() {
 }
 
 void ModelElement::_initBetweenReplications() {
-
+	for (std::pair<std::string, ModelElement*> pair : *_internalElements) {
+		pair.second->_initBetweenReplications();
+	}
 }
 
 /*

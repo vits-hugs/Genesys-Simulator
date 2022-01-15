@@ -44,8 +44,7 @@ bool Hold::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-void Hold::_initBetweenReplications() {
-}
+//void Hold::_initBetweenReplications() {}
 
 std::map<std::string, std::string>* Hold::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);

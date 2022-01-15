@@ -38,4 +38,5 @@ int Smart_BatchSeparate::main(int argc, char** argv) {
 	sim->setReplicationLength(10);
 	m->save("./models/Smart_BatchSeparate.gen");
 	sim->start();
+	return 0;
 }

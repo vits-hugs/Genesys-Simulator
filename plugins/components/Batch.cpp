@@ -53,8 +53,7 @@ std::map<std::string, std::string>* Batch::_saveInstance(bool saveDefaultValues)
 	return fields;
 }
 
-void Batch::_initBetweenReplications() {
-}
+//void Batch::_initBetweenReplications() {}
 
 void Batch::_createInternalElements() {
 	if (_queue == nullptr) {

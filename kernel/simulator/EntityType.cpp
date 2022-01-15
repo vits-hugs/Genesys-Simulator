@@ -141,7 +141,7 @@ bool EntityType::_check(std::string* errorMessage) {
 }
 
 void EntityType::_createInternalElements() {
-	if (_reportStatistics) {
+	if (_reportStatistics) { //@TODO: Fix inserting to _internalElements
 	} else {
 		while (_statisticsCollectors->size() > 0) {
 			_parentModel->getElements()->remove(_statisticsCollectors->front());

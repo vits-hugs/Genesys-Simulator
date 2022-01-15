@@ -73,7 +73,7 @@ public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 protected: // virtual should
-	virtual void _initBetweenReplications();
+	//virtual void _initBetweenReplications();
 	virtual void _createInternalElements();
 	virtual bool _check(std::string* errorMessage);
 protected: // virtual must

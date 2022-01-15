@@ -159,8 +159,7 @@ bool LSODE::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-void LSODE::_initBetweenReplications() {
-}
+//void LSODE::_initBetweenReplications() {}
 
 std::map<std::string, std::string>* LSODE::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);

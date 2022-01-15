@@ -40,5 +40,6 @@ int Smart_CppForG::main(int argc, char** argv) {
 	s->setShowReportsAfterSimulation(false);
 	m->save("./models/Smart_SourceCode.gen");
 	s->start();
+	return 0;
 }
 

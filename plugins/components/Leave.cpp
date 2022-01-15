@@ -56,9 +56,7 @@ bool Leave::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-void Leave::_initBetweenReplications() {
-	_numberIn->clear();
-}
+//void Leave::_initBetweenReplications() {}
 
 std::map<std::string, std::string>* Leave::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);

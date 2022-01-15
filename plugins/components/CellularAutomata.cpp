@@ -44,8 +44,7 @@ bool CelularAutomata::_loadInstance(std::map<std::string, std::string>* fields) 
 	return res;
 }
 
-void CelularAutomata::_initBetweenReplications() {
-}
+//void CelularAutomata::_initBetweenReplications() {}
 
 std::map<std::string, std::string>* CelularAutomata::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);

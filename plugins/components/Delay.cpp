@@ -94,8 +94,7 @@ bool Delay::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-void Delay::_initBetweenReplications() {
-}
+//void Delay::_initBetweenReplications() {}
 
 std::map<std::string, std::string>* Delay::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues); //Util::TypeOf<Delay>());

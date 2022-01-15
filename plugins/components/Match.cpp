@@ -45,8 +45,7 @@ bool Match::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-void Match::_initBetweenReplications() {
-}
+//void Match::_initBetweenReplications() {}
 
 std::map<std::string, std::string>* Match::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);

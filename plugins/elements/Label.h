@@ -33,9 +33,9 @@ protected: // must be overriden by derived classes
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 protected: // could be overriden by derived classes
 	virtual bool _check(std::string* errorMessage);
-	virtual ParserChangesInformation* _getParserChangesInformation();
-	virtual void _initBetweenReplications();
-	virtual void _createInternalElements();
+	//virtual ParserChangesInformation* _getParserChangesInformation();
+	//virtual void _initBetweenReplications();
+	//virtual void _createInternalElements();
 private:
 	std::string _label;
 	ModelComponent* _enteringLabelComponent = nullptr;

@@ -48,13 +48,13 @@ void Decide::_execute(Entity* entity) {
 	_parentModel->sendEntityToComponent(entity, this->getConnections()->getConnectionAtRank(i));
 }
 
-void Decide::_initBetweenReplications() {
-	if (_numberOuts != nullptr) {
-		for (Counter* counter : *_numberOuts->list()) {
-			counter->clear();
-		}
-	}
-}
+//void Decide::_initBetweenReplications() { // inherited method takes care of it
+//	if (_numberOuts != nullptr) {
+//		for (Counter* counter : *_numberOuts->list()) {
+//			counter->clear();
+//		}
+//	}
+//}
 
 bool Decide::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
