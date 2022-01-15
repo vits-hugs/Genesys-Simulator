@@ -82,7 +82,7 @@ std::map<std::string, std::string>* DummyElement::_saveInstance(bool saveDefault
 //if (_reportStatistics) {
 //if (_cstatNumberInQueue == nullptr) {
 //	_cstatNumberInQueue = new StatisticsCollector(_parentModel, getName() + "." + "NumberInQueue", this); /* @TODO: ++ WHY THIS INSERT "DISPOSE" AND "10ENTITYTYPE" STATCOLL ?? */
-//	_childrenElements->insert({"NumberInQueue", _cstatNumberInQueue});
+//	_internelElements->insert({"NumberInQueue", _cstatNumberInQueue});
 //}
 //} else { //if (_cstatNumberInQueue != nullptr) {
 //_removeChildrenElements();

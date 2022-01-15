@@ -115,10 +115,10 @@ void Create::_createInternalElements() {
 	if (_reportStatistics && _numberOut == nullptr) {
 		_numberOut = new Counter(_parentModel, getName() + "." + "CountNumberOut", this);
 		_internalElements->insert({"CountNumberOut", _numberOut});
-		// @TODO _childrenElements->insert("Count_number_in", _numberOut);
+		// @TODO _internelElements->insert("Count_number_in", _numberOut);
 	} else if (!_reportStatistics && _numberOut != nullptr) {
 		this->_removeInternalElements();
-		// @TODO _childrenElements->remove("Count_number_in");
+		// @TODO _internelElements->remove("Count_number_in");
 		//_numberOut->~Counter();
 		_numberOut = nullptr;
 	}

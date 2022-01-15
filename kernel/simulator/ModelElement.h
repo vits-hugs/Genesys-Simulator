@@ -54,7 +54,7 @@ public: // static
 	static std::map<std::string, std::string>* SaveInstance(ModelElement* element);
 	/*! This class method takes an instance of a ModelElement and invokes the private method_check() method of that instance, which checks itself */
 	static bool Check(ModelElement* element, std::string* errorMessage);
-	/*! This class method is responsible for invoking the protected method _check() of the instance element, which creates any internal ModelElement (such as childrenElements) or even other external needed ModelElements, such as attributes or variables */
+	/*! This class method is responsible for invoking the protected method _check() of the instance element, which creates any internal ModelElement (such as internelElements) or even other external needed ModelElements, such as attributes or variables */
 	static void CreateInternalElements(ModelElement* element);
 	/* This class methood is responsible for invoking the protected method _initBetweenReplication(), which clears all statistics, attributes, counters and other stuff before starting a new repliction */
 	static void InitBetweenReplications(ModelElement* element);
@@ -62,8 +62,8 @@ public: // static
 public:
 	virtual std::string show();
 	/*! Returns a list of keys (names) of internal ModelElements, cuch as Counters, StatisticsCollectors and others. ChildrenElements are ModelElements used by this ModelElement thar are needed before model checking */
-	std::list<std::string>* getChildrenElementKeys() const;
-	ModelElement* getChildElement(std::string key) const;
+	std::list<std::string>* getInternalElementsKeys() const;
+	ModelElement* getInternalElement(std::string key) const;
 	bool hasChanged() const;
 protected:
 	void _setInternalElement(std::string key, ModelElement* child);
@@ -82,7 +82,7 @@ protected: // could be overriden by derived classes
 	virtual void _createInternalElements();
 private:
 	void _build(Model* model, std::string thistypename, bool insertIntoModel);
-private: // name is now private. So changes in name must be throught setName, wich gives oportunity to rename childrenElements, SimulationControls and SimulationResponses
+private: // name is now private. So changes in name must be throught setName, wich gives oportunity to rename internelElements, SimulationControls and SimulationResponses
 	std::string _name;
 protected:
 	Util::identification _id;

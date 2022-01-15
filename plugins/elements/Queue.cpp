@@ -141,8 +141,8 @@ void Queue::_createInternalElements() {
 	} else if (_cstatNumberInQueue != nullptr) {
 		// @TODO: remove
 		_removeInternalElements();
-		//_childrenElements->remove(_cstatNumberInQueue);
-		//_childrenElements->remove(_cstatTimeInQueue);
+		//_internelElements->remove(_cstatNumberInQueue);
+		//_internelElements->remove(_cstatTimeInQueue);
 		//_cstatNumberInQueue->~StatisticsCollector();
 		//_cstatTimeInQueue->~StatisticsCollector();
 	}

@@ -68,7 +68,7 @@ void ModelElement::_removeInternalElements() {
 void ModelElement::_removeInternalElement(std::string key) {
 	Util::IncIndent();
 	{
-		//for (std::map<std::string, ModelElement*>::iterator it = _childrenElements->begin(); it != _childrenElements->end(); it++) {
+		//for (std::map<std::string, ModelElement*>::iterator it = _internelElements->begin(); it != _internelElements->end(); it++) {
 		std::map<std::string, ModelElement*>::iterator it = _internalElements->begin();
 		while (it != _internalElements->end()) {
 			if ((*it).first == key) {
@@ -132,18 +132,18 @@ std::list<std::map<std::string,std::string>*>* ModelElement::_saveInstance(std::
  */
 
 std::string ModelElement::show() {
-	std::string children = "";
+	std::string internel = "";
 	if (_internalElements->size() > 0) {
-		children = ", children=[";
+		internel = ", internel=[";
 		for (std::map<std::string, ModelElement*>::iterator it = _internalElements->begin(); it != _internalElements->end(); it++) {
-			children += (*it).second->getName() + ",";
+			internel += (*it).second->getName() + ",";
 		}
-		children = children.substr(0, children.length() - 1) + "]";
+		internel = internel.substr(0, internel.length() - 1) + "]";
 	}
-	return "id=" + std::to_string(_id) + ",name=\"" + _name + "\"" + children;
+	return "id=" + std::to_string(_id) + ",name=\"" + _name + "\"" + internel;
 }
 
-std::list<std::string>* ModelElement::getChildrenElementKeys() const {
+std::list<std::string>* ModelElement::getInternalElementsKeys() const {
 	std::list<std::string>* result = new std::list<std::string>();
 	return result;
 }
@@ -153,7 +153,7 @@ Util::identification ModelElement::getId() const {
 }
 
 void ModelElement::setName(std::string name) {
-	// rename every "stuff" related to this element (controls, responses and childrenElements)
+	// rename every "stuff" related to this element (controls, responses and internelElements)
 	if (name != _name) {
 		std::string stuffName;
 		unsigned int pos;

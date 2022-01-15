@@ -93,7 +93,7 @@ private:
 	Route::DestinationType _routeDestinationType = DEFAULT.routeDestinationType;
 private: // association
 	Station* _station;
-private: // children elements
+private: // internel elements
 	Counter* _numberIn = nullptr;
 };
 

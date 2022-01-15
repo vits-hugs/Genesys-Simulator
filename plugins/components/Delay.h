@@ -70,7 +70,7 @@ private:
 	} DEFAULT;
 	std::string _delayExpression = DEFAULT.delayExpression;
 	Util::TimeUnit _delayTimeUnit = DEFAULT.delayTimeUnit;
-private: // inner children elements
+private: // inner internel elements
 	StatisticsCollector* _cstatWaitTime = nullptr;
 };
 

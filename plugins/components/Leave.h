@@ -113,7 +113,7 @@ protected:
 	virtual void _createInternalElements();
 private: // association
 	Station* _station;
-private: // children elements
+private: // internel elements
 	Counter* _numberIn = nullptr;
 };
 

@@ -137,7 +137,7 @@ private: //1::1
 	} DEFAULT;
 	OrderRule _orderRule = DEFAULT.orderRule;
 	std::string _attributeName = DEFAULT.attributeName;
-private: // inner children elements
+private: // inner internel elements
 	StatisticsCollector* _cstatNumberInQueue = nullptr;
 	StatisticsCollector* _cstatTimeInQueue;
 };

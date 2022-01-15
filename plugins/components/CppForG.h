@@ -39,7 +39,7 @@ protected: // virtual
 	virtual void _createInternalElements();
 private: // methods
 private: // attributes 1:1
-	// children
+	// internel
 	CppCode* _cppcode = nullptr;
 private: // attributes 1:n
 };

@@ -152,7 +152,7 @@ private: //1::n
 	List<SortedResourceEventHandler*>* _resourceEventHandlers = new List<SortedResourceEventHandler*>();
 	//aFailures:	TStringList;
 	//std::list<Failure*>* _failures;
-private: // inner children elements
+private: // inner internel elements
 	StatisticsCollector* _cstatTimeSeized = nullptr;
 	Counter* _totalTimeSeized;
 	Counter* _numSeizes;

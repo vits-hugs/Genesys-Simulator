@@ -51,7 +51,7 @@ protected:
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
 	virtual void _createInternalElements();
-private: // children elements
+private: // internel elements
 	Counter* _numberOut = nullptr;
 };
 
