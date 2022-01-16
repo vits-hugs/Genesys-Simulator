@@ -203,6 +203,7 @@ bool LSODE::_check(std::string* errorMessage) {
 
 PluginInformation* LSODE::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<LSODE>(), &LSODE::LoadInstance);
+	info->setCategory("Physical");
 	// ...
 	return info;
 }

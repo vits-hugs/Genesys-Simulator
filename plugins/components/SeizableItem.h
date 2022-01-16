@@ -14,8 +14,8 @@
 #ifndef SEIZABLEITEM_H
 #define SEIZABLEITEM_H
 
-#include "../elements/Resource.h"
-#include "../elements/Set.h"
+#include "../data/Resource.h"
+#include "../data/Set.h"
 #include "../../kernel/simulator/ModelDataManager.h"
 
 // @TODO should inhere from a common base to QueueableItem

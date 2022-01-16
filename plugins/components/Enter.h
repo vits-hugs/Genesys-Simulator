@@ -15,7 +15,7 @@
 #define ENTER_H
 
 #include "../../kernel/simulator/ModelComponent.h"
-#include "../elements/Station.h"
+#include "../data/Station.h"
 #include "../../kernel/simulator/Counter.h"
 
 /*!

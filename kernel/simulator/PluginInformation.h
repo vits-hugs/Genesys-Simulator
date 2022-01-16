@@ -75,12 +75,15 @@ public:
 	void setFields(std::map<std::string, std::string>* _fiewlds);
 	std::map<std::string, std::string>* getFields() const;
     void setLanguageTemplate(std::string _languageTemplate);
-    std::string getLanguageTemplate() const;
+	std::string getLanguageTemplate() const;
+	void setCategory(std::string _category);
+	std::string getCategory() const;
 public:
 private:
 	std::string _author = "prof. Dr. Ing. Rafael Luiz Cancian";
 	std::string _date = "01/08/2018";
 	std::string _version = "0.9.1";
+	std::string _category = "Discrete Processing";
 	std::string _observation = "First implementation not fully completed nor tested. Use with caution.";
 	std::string _descriptionHelp = "";
 	std::string _languageTemplate = "";

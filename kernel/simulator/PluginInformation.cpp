@@ -185,4 +185,12 @@ std::string PluginInformation::getLanguageTemplate() const {
 	return _languageTemplate;
 }
 
+void PluginInformation::setCategory(std::string _category) {
+	this->_category = _category;
+}
+
+std::string PluginInformation::getCategory() const {
+	return _category;
+}
+
 

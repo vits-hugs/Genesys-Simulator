@@ -13,7 +13,6 @@
 
 #include "Simulator.h"
 #include "LicenceManager.h"
-#include "plugins/components/Access.h"
 //#include "ToolManager.h"
 
 extern "C" GenesysSimulator CreateSimulator2() {

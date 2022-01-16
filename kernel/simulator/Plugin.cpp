@@ -33,7 +33,7 @@ Plugin::Plugin(StaticGetPluginInformation getInformation) {
 
 std::string Plugin::show() {
 
-	std::string message = "";
+	std::string message = "<" + _pluginInfo->getCategory() + "> ";
 	if (_pluginInfo->isSource()) {
 		message += "Source ";
 	}

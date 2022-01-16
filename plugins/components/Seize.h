@@ -17,8 +17,8 @@
 #include <string>
 #include "../../kernel/simulator/ModelComponent.h"
 #include "../../kernel/simulator/Model.h"
-#include "../elements/Resource.h"
-#include "../elements/Queue.h"
+#include "../data/Resource.h"
+#include "../data/Queue.h"
 #include "../../kernel/simulator/Plugin.h"
 #include "SeizableItem.h"
 #include "QueueableItem.h"

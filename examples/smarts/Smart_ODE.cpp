@@ -16,7 +16,7 @@
 #include "../../plugins/components/Create.h"
 #include "../../plugins/components/LSODE.h"
 #include "../../plugins/components/Dispose.h"
-#include "../../plugins/elements/Variable.h"
+#include "../../plugins/data/Variable.h"
 
 Smart_ODE::Smart_ODE() {
 }

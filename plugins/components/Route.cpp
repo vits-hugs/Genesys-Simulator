@@ -16,7 +16,7 @@
 #include "../../kernel/simulator/Model.h"
 #include "../../kernel/simulator/Attribute.h"
 #include "../../kernel/simulator/Simulator.h"
-#include "../elements/Sequence.h"
+#include "../data/Sequence.h"
 
 Route::Route(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Route>(), name) {
 }
@@ -177,6 +177,7 @@ bool Route::_check(std::string* errorMessage) {
 PluginInformation* Route::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Route>(), &Route::LoadInstance);
 	info->setSendTransfer(true);
+	info->setCategory("Material Handling");
 	info->insertDynamicLibFileDependence("station.so");
 	std::string help = "The Route module transfers an entity to a specified station or the next station in the station visitation sequence defined for the entity.";
 	help += " A delay time to transfer to the next station may be defined.";

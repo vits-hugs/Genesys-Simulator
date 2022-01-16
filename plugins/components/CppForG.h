@@ -13,7 +13,7 @@
 #pragma once
 
 #include "../../kernel/simulator/ModelComponent.h"
-#include "../elements/CppCode.h"
+#include "../data/CppCode.h"
 
 /*!
  This component ...

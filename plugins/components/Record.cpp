@@ -115,6 +115,7 @@ void Record::_createInternalData() {
 
 PluginInformation* Record::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Record>(), &Record::LoadInstance);
+	info->setCategory("Input Output");
 	return info;
 }
 

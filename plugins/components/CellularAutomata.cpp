@@ -61,7 +61,7 @@ bool CelularAutomata::_check(std::string* errorMessage) {
 
 PluginInformation* CelularAutomata::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<CelularAutomata>(), &CelularAutomata::LoadInstance);
-	info->insertDynamicLibFileDependence("entitygroup.so");
+	info->setCategory("Logic");
 	info->setDescriptionHelp("//@TODO");
 	return info;
 }

@@ -62,6 +62,7 @@ bool Match::_check(std::string* errorMessage) {
 
 PluginInformation* Match::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Match>(), &Match::LoadInstance);
+	info->setCategory("Decision");
 	// ...
 	return info;
 }

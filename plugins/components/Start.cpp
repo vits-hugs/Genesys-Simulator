@@ -62,6 +62,7 @@ bool Start::_check(std::string* errorMessage) {
 
 PluginInformation* Start::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Start>(), &Start::LoadInstance);
+	info->setCategory("Material Handling");
 	// ...
 	return info;
 }

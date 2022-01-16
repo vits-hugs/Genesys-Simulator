@@ -15,7 +15,7 @@
 #include <cassert>
 #include "../../kernel/simulator/Model.h"
 #include "../../kernel/simulator/Attribute.h"
-#include "plugins/elements/EntityGroup.h"
+#include "../../plugins/data/EntityGroup.h"
 
 Batch::Batch(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Batch>(), name) {
 }
@@ -214,6 +214,7 @@ PluginInformation * Batch::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Batch>(), &Batch::LoadInstance);
 	info->insertDynamicLibFileDependence("entitygroup.so");
 	info->insertDynamicLibFileDependence("queue.so");
+	info->setCategory("Grouping");
 	std::string help = "This module is intended as the grouping mechanism within the simulation model.";
 	help += " Batches can be permanently or temporarily grouped.";
 	help += " Temporary batches must later be split using the Separate module.";

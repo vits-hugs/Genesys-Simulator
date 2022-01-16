@@ -15,8 +15,8 @@
 #define LSODE_H
 
 #include "../../kernel/simulator/ModelComponent.h"
-#include "../elements/Formula.h"
-#include "../elements/Variable.h"
+#include "../data/Formula.h"
+#include "../data/Variable.h"
 
 /*!
  This component ...

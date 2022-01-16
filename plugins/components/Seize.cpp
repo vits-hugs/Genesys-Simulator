@@ -12,7 +12,7 @@
  */
 
 #include "Seize.h"
-#include "../elements/Resource.h"
+#include "../data/Resource.h"
 #include "../../kernel/simulator/Attribute.h"
 #include <assert.h>
 #include <cmath>

@@ -15,19 +15,19 @@
 # include "../StatisticsCollector.h"
 /**begin_Includes_plugins**/
 /**begin_Includes:Variable**/
-#include "../../../plugins/elements/Variable.h"
+#include "../../../plugins/data/Variable.h"
 /**end_Includes:Variable**/
 /**begin_Includes:Queue**/
-#include "../../../plugins/elements/Queue.h"
+#include "../../../plugins/data/Queue.h"
 /**end_Includes:Queue**/
 /**begin_Includes:Formula**/
-#include "../../../plugins/elements/Formula.h"
+#include "../../../plugins/data/Formula.h"
 /**end_Includes:Formula**/
 /**begin_Includes:Resource**/
-#include "../../../plugins/elements/Resource.h"
+#include "../../../plugins/data/Resource.h"
 /**end_Includes:Resource**/
 /**begin_Includes:Set**/
-#include "../../../plugins/elements/Set.h"
+#include "../../../plugins/data/Set.h"
 /**end_Includes:Set**/
 /**end_Includes_plugins**/
 

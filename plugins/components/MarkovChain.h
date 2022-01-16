@@ -15,7 +15,7 @@
 #define MARKOVCHAIN_H
 
 #include "../../kernel/simulator/ModelComponent.h"
-#include "../elements/Variable.h"
+#include "../data/Variable.h"
 #include "../../kernel/statistics/Sampler_if.h"
 
 class MarkovChain : public ModelComponent {

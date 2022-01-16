@@ -18,9 +18,9 @@
 #include "../../kernel/simulator/Attribute.h"
 #include "../../kernel/simulator/EntityType.h"
 
-#include "../../plugins/elements/Queue.h"
-#include "../../plugins/elements/Resource.h"
-#include "../../plugins/elements/Station.h"
+#include "../../plugins/data/Queue.h"
+#include "../../plugins/data/Resource.h"
+#include "../../plugins/data/Station.h"
 
 #include "../../plugins/components/Create.h"
 #include "../../plugins/components/Seize.h"
