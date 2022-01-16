@@ -47,7 +47,7 @@ void Separate::_execute(Entity* entity) {
 			unsigned int idGroupKey = entity->getId();
 			while ((e = entityGroup->getGroup(idGroupKey)->front()) != nullptr) {
 				entityGroup->removeElement(idGroupKey, e);
-				_parentModel->getTracer()->traceSimulation(this, Util::TraceLevel::L7_internal, "Entity " + e ->getName() + " was separated out of the group " + std::to_string(idGroupKey));
+				_parentModel->getTracer()->traceSimulation(this, Util::TraceLevel::L7_internal, "Entity " + e ->getName() + " was separated out of the group " + std::to_string(entityGroupId) + " key=" + std::to_string(idGroupKey));
 				_parentModel->sendEntityToComponent(e, _connections->getFrontConnection());
 			}
 			_parentModel->removeEntity(entity);

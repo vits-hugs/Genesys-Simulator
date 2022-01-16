@@ -65,7 +65,7 @@ template <> struct Traits<GenesysApplication_if> {
 
 	//// SMART SMART_S SORTED
 	//typedef Smart_AssignWriteSeizes Application;
-	typedef Smart_BatchSeparate Application;
+	//typedef Smart_BatchSeparate Application;
 	//typedef Smart_Delay Applicatodatafilion;
 	//typedef Smart_Dummy Application;
 	//typedef Smart_HoldSignal Application;
@@ -91,7 +91,7 @@ template <> struct Traits<GenesysApplication_if> {
 	//// APPLICATIONS
 	//typedef GenesysTerminalApp Application;
 	//typedef GenesysQtGUIFull Application;
-	//typedef SimpleQtGUI Application;
+	typedef SimpleQtGUI Application;
 };
 
 /*!
