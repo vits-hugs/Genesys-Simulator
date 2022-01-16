@@ -30,9 +30,9 @@ remain in their respective queues until a match exists.
 Once a match exists, one entity from each queue is released to be matched. The
 matched entities are then synchronized to depart from the module.
 TYPICAL USES
- Assembling a part
- Gathering various products for a customer order
- Synchronizing a customer exit with a filled order
+* Assembling a part
+* Gathering various products for a customer order
+* Synchronizing a customer exit with a filled order
 Prompt Description
 Name Unique module identifier displayed on the module shape.
 Number to Match Number of matching entities that must reside in different queues
@@ -53,11 +53,11 @@ public: // virtual
 public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-protected: // virtual
 	virtual void _execute(Entity* entity);
-	virtual void _initBetweenReplications();
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+protected: // virtual
+	//virtual void _initBetweenReplications();
 	virtual bool _check(std::string* errorMessage);
 private: // methods
 private: // attributes 1:1

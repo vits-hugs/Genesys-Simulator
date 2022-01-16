@@ -31,7 +31,7 @@ void Decide::_execute(Entity* entity) {
 	unsigned short i = 0;
 	for (std::list<std::string>::iterator it = _conditions->list()->begin(); it != _conditions->list()->end(); it++) {
 		value = _parentModel->parseExpression((*it));
-		_parentModel->getTracer()->traceSimulation(_parentModel->getSimulation()->getSimulatedTime(), entity, this, std::to_string(i + 1) + "th condition evaluated to " + strTruncIfInt(std::to_string(value)) + "  // " + (*it));
+		_parentModel->getTracer()->traceSimulation(this, _parentModel->getSimulation()->getSimulatedTime(), entity, this, std::to_string(i + 1) + "th condition evaluated to " + strTruncIfInt(std::to_string(value)) + "  // " + (*it));
 		if (value) {
 			if (_reportStatistics) {
 				_numberOuts->getAtRank(i)->incCountValue();
@@ -41,20 +41,20 @@ void Decide::_execute(Entity* entity) {
 		}
 		i++;
 	}
-	_parentModel->getTracer()->traceSimulation(_parentModel->getSimulation()->getSimulatedTime(), entity, this, "No condition has been evaluated true");
+	_parentModel->getTracer()->traceSimulation(this, _parentModel->getSimulation()->getSimulatedTime(), entity, this, "No condition has been evaluated true");
 	if (_reportStatistics) {
 		_numberOuts->getAtRank(i)->incCountValue();
 	}
 	_parentModel->sendEntityToComponent(entity, this->getConnections()->getConnectionAtRank(i));
 }
 
-void Decide::_initBetweenReplications() {
-	if (_numberOuts != nullptr) {
-		for (Counter* counter : *_numberOuts->list()) {
-			counter->clear();
-		}
-	}
-}
+//void Decide::_initBetweenReplications() { // inherited method takes care of it
+//	if (_numberOuts != nullptr) {
+//		for (Counter* counter : *_numberOuts->list()) {
+//			counter->clear();
+//		}
+//	}
+//}
 
 bool Decide::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
@@ -87,16 +87,16 @@ bool Decide::_check(std::string* errorMessage) {
 	return allResult;
 }
 
-void Decide::_createInternalElements() {
+void Decide::_createInternalData() {
 	if (_reportStatistics && _numberOuts == nullptr) {
 		_numberOuts = new List<Counter*>();
 		for (unsigned int i = 0; i<this->_connections->size(); i++) {
 			Counter* counter = new Counter(_parentModel, getName() + "." + "CountNumberOut" + std::to_string(i), this);
 			_numberOuts->insert(counter);
-			_childrenElements->insert({"CountNumberOut" + std::to_string(i), counter});
+			_internalData->insert({"CountNumberOut" + std::to_string(i), counter});
 		}
 	} else if (!_reportStatistics && _numberOuts != nullptr) {
-		this->_removeChildrenElements();
+		this->_removeInternalDatas();
 		_numberOuts = nullptr;
 	}
 

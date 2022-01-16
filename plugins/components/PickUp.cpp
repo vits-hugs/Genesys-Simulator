@@ -45,8 +45,7 @@ bool PickUp::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-void PickUp::_initBetweenReplications() {
-}
+//void PickUp::_initBetweenReplications() {}
 
 std::map<std::string, std::string>* PickUp::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);

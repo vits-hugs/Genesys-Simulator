@@ -17,8 +17,8 @@
 #include <string>
 #include <list>
 #include "../util/List.h"
-#include "ModelElement.h"
-#include "ElementManager.h"
+#include "ModelData.h"
+#include "ModelDataManager.h"
 #include "Plugin.h"
 
 //namespace GenesysKernel {
@@ -45,9 +45,9 @@ assigned are assumed to have the last entered value.
  Using the two-dimensional (2-D) spreadsheet interface. In the module
 spreadsheet, click on the Initial Values cell.
 TYPICAL USES
- Due date of an order (entity)
- Priority of an order (entity)
- Color of a part (entity)
+* Due date of an order (entity)
+* Priority of an order (entity)
+* Color of a part (entity)
  PROMPTS
  Prompt Description
 Name The unique name of the attribute being defined.
@@ -60,7 +60,7 @@ new values to the attribute by using the Assign module.
 Initial Value Entity attribute value when entity is created and enters the
 system.
  */
-class Attribute : public ModelElement {
+class Attribute : public ModelData {
 public:
 	Attribute(Model* model, std::string name = "");
 	virtual ~Attribute() = default;
@@ -68,7 +68,7 @@ public:
 	virtual std::string show();
 public:
 	static PluginInformation* GetPluginInformation();
-	static ModelElement* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 protected:
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);

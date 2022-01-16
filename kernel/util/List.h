@@ -20,7 +20,7 @@
 #include <functional>
 #include <algorithm>
 #include "Util.h"
-#include "../simulator/ModelElement.h"
+#include "../simulator/ModelData.h"
 
 //class Simulator;
 
@@ -47,18 +47,18 @@ public: // new methods
 	template<typename U>
 	T create(U arg);
 	std::string show();
-	typename std::list<T>::iterator find(T element);
-	//int rankOf(T element); ///< returns the position (1st position=0) of the element if found, or negative value if not found
+	typename std::list<T>::iterator find(T modeldatum);
+	//int rankOf(T modeldatum); ///< returns the position (1st position=0) of the modeldatum if found, or negative value if not found
 public: // improved (easier) methods
-	void insert(T element);
-	void remove(T element);
-	void setAtRank(unsigned int rank, T element);
+	void insert(T modeldatum);
+	void remove(T modeldatum);
+	void setAtRank(unsigned int rank, T modeldatum);
 	T getAtRank(unsigned int rank);
 	T next();
 	T front();
 	T last();
 	T previous();
-	T current(); // get current element on the list (the last used)
+	T current(); // get current modeldatum on the list (the last used)
 	void setSortFunc(CompFunct _sortFunc);
 	//public: // @TODO: Shoul in a specialized class classed ObservableList
 	//	void addObserverHandler();
@@ -103,8 +103,8 @@ std::string List<T>::show() {
 	return text;
 }
 template <typename T>
-void List<T>::insert(T element) {
-	_list->insert(std::upper_bound(_list->begin(), _list->end(), element, _sortFunc), element);
+void List<T>::insert(T modeldatum) {
+	_list->insert(std::upper_bound(_list->begin(), _list->end(), modeldatum, _sortFunc), modeldatum);
 }
 template <typename T>
 bool List<T>::empty() {
@@ -115,14 +115,14 @@ void List<T>::pop_front() {
 	typename std::list<T>::iterator itTemp = _list->begin();
 	_list->pop_front();
 	if (_it == itTemp) { /*  @TODO: +: check this */
-		_it = _list->begin(); // if it points to the removed element, then changes to begin
+		_it = _list->begin(); // if it points to the removed modeldatum, then changes to begin
 	}
 }
 template <typename T>
-void List<T>::remove(T element) {
-	_list->remove(element);
-	if ((*_it) == element) { /*  @TODO: +: check this */
-		_it = _list->begin(); // if it points to the removed element, then changes to begin
+void List<T>::remove(T modeldatum) {
+	_list->remove(modeldatum);
+	if ((*_it) == modeldatum) { /*  @TODO: +: check this */
+		_it = _list->begin(); // if it points to the removed modeldatum, then changes to begin
 	}
 }
 template <typename T>
@@ -146,14 +146,14 @@ T List<T>::getAtRank(unsigned int rank) {
 	return 0; /* @TODO: Invalid return depends on T. If T is pointer, nullptr works fine. If T is double, it does not. I just let (*it), buut it is not nice*/
 }
 template <typename T>
-void List<T>::setAtRank(unsigned int rank, T element) {
+void List<T>::setAtRank(unsigned int rank, T modeldatum) {
 	if (rank == _list->size()) {
-		_list->insert(_list->end(), element);
+		_list->insert(_list->end(), modeldatum);
 	} else {
 		unsigned int thisRank = 0;
 		for (typename std::list<T>::iterator it = _list->begin(); it != _list->end(); it++) {
 			if (rank == thisRank) {
-				*it = element;
+				*it = modeldatum;
 				return;
 			} else {
 				thisRank++;
@@ -171,9 +171,9 @@ T List<T>::next() {
 
 }
 template <typename T>
-typename std::list<T>::iterator List<T>::find(T element) {
+typename std::list<T>::iterator List<T>::find(T modeldatum) {
 	for (typename std::list<T>::iterator it = _list->begin(); it != _list->end(); it++) {
-		if ((*it) == element) {
+		if ((*it) == modeldatum) {
 			return it;
 		}
 	}
@@ -182,10 +182,10 @@ typename std::list<T>::iterator List<T>::find(T element) {
 }
 /*
 template <typename T>
-int List<T>::rankOf(T element) {
+int List<T>::rankOf(T modeldatum) {
 	int rank = 0;
 	for (typename std::list<T>::iterator it = _list->begin(); it != _list->end(); it++) {
-	if ((*it) == element) {
+	if ((*it) == modeldatum) {
 		return rank;
 	} else
 		rank++;

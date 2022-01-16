@@ -31,14 +31,15 @@ public: // static
 	std::string getSourceCode() const;
 protected: // virtual
 	virtual void _execute(Entity* entity);
-	virtual void _initBetweenReplications();
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+protected: // virtual
+	//virtual void _initBetweenReplications();
 	virtual bool _check(std::string* errorMessage);
-	virtual void _createInternalElements();
+	virtual void _createInternalData();
 private: // methods
 private: // attributes 1:1
-	// children
+	// internel
 	CppCode* _cppcode = nullptr;
 private: // attributes 1:n
 };

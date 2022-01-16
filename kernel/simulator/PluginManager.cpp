@@ -50,7 +50,7 @@ void PluginManager::_insertDefaultKernelElements() {
 }
 
 bool PluginManager::completePluginsFieldsAndTemplates() {
-	_simulator->_completePluginsFieldsAndTemplate();
+	return _simulator->_completePluginsFieldsAndTemplate();
 }
 
 //bool PluginManager::check(Plugin* plugin){
@@ -64,7 +64,7 @@ bool PluginManager::_insert(Plugin * plugin) {
 		if (plugInfo->isComponent())
 			msg += "component";
 		else
-			msg += "element";
+			msg += "modeldatum";
 		msg += " plugin \"" + plugin->getPluginInfo()->getPluginTypename() + "\"";
 		_simulator->getTracer()->trace(Util::TraceLevel::L8_detailed, msg);
 		// insert all dependencies before to insert this plugin

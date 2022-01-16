@@ -15,7 +15,7 @@
 //#include "../../kernel/simulator/Model.h"
 
 Process::Process(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Process>(), name) {
-	_createInternalElements(); // its's called by the constructor because internal components can be accessed by process' public methods, so they must exist ever since
+	_createInternalData(); // its's called by the constructor because internal components can be accessed by process' public methods, so they must exist ever since
 }
 
 std::string Process::show() {
@@ -88,16 +88,16 @@ void Process::_execute(Entity* entity) {
 	this->_parentModel->sendEntityToComponent(entity, seize, 0.0);
 }
 
-void Process::_createInternalElements() {
+void Process::_createInternalData() {
 	if (seize == nullptr) {
 		seize = new Seize(_parentModel, getName() + ".Seize");
 		delay = new Delay(_parentModel, getName() + ".Delay");
 		release = new Release(_parentModel, getName() + ".Release");
 		seize->getConnections()->insert(delay);
 		delay->getConnections()->insert(release);
-		_childrenElements->insert({"Seize", seize});
-		_childrenElements->insert({"Delay", delay});
-		_childrenElements->insert({"Release", release});
+		_internalData->insert({"Seize", seize});
+		_internalData->insert({"Delay", delay});
+		_internalData->insert({"Release", release});
 	}
 	release->getConnections()->list()->clear();
 	if (getConnections()->size() > 0 && getConnections()->front() != seize) {

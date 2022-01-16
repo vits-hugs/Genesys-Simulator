@@ -32,7 +32,7 @@ ModelComponent* CelularAutomata::LoadInstance(Model* model, std::map<std::string
 }
 
 void CelularAutomata::_execute(Entity* entity) {
-	_parentModel->getTracer()->traceSimulation("I'm just a dummy model and I'll just send the entity forward");
+	_parentModel->getTracer()->traceSimulation(this, "I'm just a dummy model and I'll just send the entity forward");
 	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
@@ -44,8 +44,7 @@ bool CelularAutomata::_loadInstance(std::map<std::string, std::string>* fields) 
 	return res;
 }
 
-void CelularAutomata::_initBetweenReplications() {
-}
+//void CelularAutomata::_initBetweenReplications() {}
 
 std::map<std::string, std::string>* CelularAutomata::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);

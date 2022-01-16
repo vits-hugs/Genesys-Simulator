@@ -19,7 +19,7 @@
 
 #include "../util/Util.h"
 #include "../util/List.h"
-#include "ModelElement.h"
+#include "ModelData.h"
 #include "EntityType.h"
 //namespace GenesysKernel {
 
@@ -30,9 +30,9 @@ This data module defines the various entity types and their initial picture valu
 simulation. Initial costing information and holding costs are also defined for the
 entity.
 TYPICAL USES
- Items being produced or assembled (parts, pallets)
- Documents (forms, e-mails, faxes, reports)
- People moving through a process (customers, callers)
+* Items being produced or assembled (parts, pallets)
+* Documents (forms, e-mails, faxes, reports)
+* People moving through a process (customers, callers)
 PROMPTS
 Prompt Description
 Name The unique name of the attribute being defined.
@@ -73,7 +73,7 @@ entity is spending time in another activity.
 Report Statistics Specifies whether or not statistics will be collected automatically
 and stored in the report database for this entity type.
  */
-class Entity : public ModelElement {
+class Entity : public ModelData {
 private: // no one can create or destry entities directlly. This can be done one throught friend class Model
 	Entity(Model* model, std::string name = "", bool insertIntoModel = true);
 	virtual ~Entity() = default;
@@ -83,7 +83,7 @@ public:
 	virtual std::string show();
 
 public: // g & s
-	void setEntityTypeName(std::string entityTypeName) throw (); //*!< indirect access to EntityType
+	void setEntityTypeName(std::string entityTypeName); //*!< indirect access to EntityType
 	std::string getEntityTypeName() const;
 	void setEntityType(EntityType* entityType); //*!< direct access to EntityType
 	EntityType* getEntityType() const;

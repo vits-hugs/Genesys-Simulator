@@ -67,7 +67,7 @@ unsigned int LicenceManager::getModelComponentsLimit() {
 	return this->_components;
 }
 
-unsigned int LicenceManager::getModelElementsLimit() {
+unsigned int LicenceManager::getModelDatasLimit() {
 	return this->_elements;
 }
 

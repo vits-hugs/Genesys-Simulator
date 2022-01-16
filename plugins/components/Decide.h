@@ -34,9 +34,9 @@ single “else” exit. The number of entities that exit from each type (true/fa
 displayed for
 2-way by Chance or by Condition modules only.
 TYPICAL USES
- Dispatching a faulty part for rework
- Branching accepted vs. rejected checks
- Sending priority customers to a dedicated process
+* Dispatching a faulty part for rework
+* Branching accepted vs. rejected checks
+* Sending priority customers to a dedicated process
 Prompt Description
 Name Unique module identifier displayed on the module shape.
 Type Indicates whether the decision is based on a condition (if X>Y)
@@ -86,10 +86,11 @@ public:
 protected:
 	virtual void _execute(Entity* entity);
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual void _initBetweenReplications();
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+protected:
+	//virtual void _initBetweenReplications();
 	virtual bool _check(std::string* errorMessage);
-	virtual void _createInternalElements();
+	virtual void _createInternalData();
 private:
 	List<std::string>* _conditions = new List<std::string>();
 	List<Counter*>* _numberOuts = nullptr;

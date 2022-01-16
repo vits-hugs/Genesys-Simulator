@@ -16,7 +16,7 @@
 #include "../../kernel/simulator/Model.h"
 #include "../../kernel/simulator/Attribute.h"
 
-Station::Station(Model* model, std::string name) : ModelElement(model, Util::TypeOf<Station>(), name) {
+Station::Station(Model* model, std::string name) : ModelData(model, Util::TypeOf<Station>(), name) {
 }
 
 Station::~Station() {
@@ -25,7 +25,7 @@ Station::~Station() {
 }
 
 std::string Station::show() {
-	std::string msg = ModelElement::show() + ",enterIntoStationComponent=";
+	std::string msg = ModelData::show() + ",enterIntoStationComponent=";
 	if (_enterIntoStationComponent == nullptr)
 		msg += "NULL";
 	else
@@ -84,7 +84,7 @@ PluginInformation* Station::GetPluginInformation() {
 	return info;
 }
 
-ModelElement* Station::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
+ModelData* Station::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
 	Station* newElement = new Station(model);
 	try {
 		newElement->_loadInstance(fields);
@@ -95,7 +95,7 @@ ModelElement* Station::LoadInstance(Model* model, std::map<std::string, std::str
 }
 
 bool Station::_loadInstance(std::map<std::string, std::string>* fields) {
-	bool res = ModelElement::_loadInstance(fields);
+	bool res = ModelData::_loadInstance(fields);
 	if (res) {
 		try {
 		} catch (...) {
@@ -105,7 +105,7 @@ bool Station::_loadInstance(std::map<std::string, std::string>* fields) {
 }
 
 std::map<std::string, std::string>* Station::_saveInstance(bool saveDefaultValues) {
-	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues); //Util::TypeOf<Station>());
+	std::map<std::string, std::string>* fields = ModelData::_saveInstance(saveDefaultValues); //Util::TypeOf<Station>());
 	return fields;
 }
 
@@ -116,7 +116,7 @@ bool Station::_check(std::string* errorMessage) {
 	std::string neededName;
 	for (unsigned int i = 0; i < neededNames.size(); i++) {
 		neededName = neededNames[i];
-		if (_parentModel->getElements()->getElement(Util::TypeOf<Attribute>(), neededName) == nullptr) {
+		if (_parentModel->getData()->getData(Util::TypeOf<Attribute>(), neededName) == nullptr) {
 			new Attribute(_parentModel, neededName);
 		}
 	}
@@ -124,24 +124,24 @@ bool Station::_check(std::string* errorMessage) {
 	return true;
 }
 
-void Station::_createInternalElements() {
+void Station::_createInternalData() {
 	if (_reportStatistics) {
 		if (_cstatNumberInStation == nullptr) {
 			_cstatNumberInStation = new StatisticsCollector(_parentModel, getName() + "." + "NumberInStation", this);
 			_cstatTimeInStation = new StatisticsCollector(_parentModel, getName() + "." + "TimeInStation", this);
-			_childrenElements->insert({"NumberInStation", _cstatNumberInStation});
-			_childrenElements->insert({"TimeInStation", _cstatTimeInStation});
+			_internalData->insert({"NumberInStation", _cstatNumberInStation});
+			_internalData->insert({"TimeInStation", _cstatTimeInStation});
 			//
 			// include StatisticsCollector needed in EntityType
-			std::list<ModelElement*>* enttypes = _parentModel->getElements()->getElementList(Util::TypeOf<EntityType>())->list();
-			for (ModelElement* element : *enttypes) {
-				if (element->isReportStatistics())
-					static_cast<EntityType*> (element)->addGetStatisticsCollector(element->getName() + ".TimeInStations"); // force create this CStat before simulation starts
+			std::list<ModelData*>* enttypes = _parentModel->getData()->getElementList(Util::TypeOf<EntityType>())->list();
+			for (ModelData* modeldatum : *enttypes) {
+				if (modeldatum->isReportStatistics())
+					static_cast<EntityType*> (modeldatum)->addGetStatisticsCollector(modeldatum->getName() + ".TimeInStations"); // force create this CStat before simulation starts
 			}
 
 		}
 	} else
 		if (_cstatNumberInStation != nullptr) {
-		_removeChildrenElements();
+		_removeInternalDatas();
 	}
 }

@@ -56,9 +56,9 @@ When an entity enters this module, it waits in a queue (if specified) until all 
 resources are available simultaneously. Allocation type for resource usage is also
 specified.
 TYPICAL USES
- Beginning a customer order (seize the operator)
- Starting a tax return (seize the accountant)
- Being admitted to hospital (seize the hospital room, nurse, doctor)
+* Beginning a customer order (seize the operator)
+* Starting a tax return (seize the accountant)
+* Being admitted to hospital (seize the hospital room, nurse, doctor)
 PROMPTS
 Prompt Description
 Name Unique module identifier displayed on the module shape.
@@ -151,7 +151,7 @@ protected:
 	virtual void _initBetweenReplications();
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
-	//virtual void _createInternalElements();
+	//virtual void _createInternalData();
 private:
 	void _handlerForResourceEvent(Resource* resource); ///< This method is indirectally invocked (notified) by resource when it's released, since it was added as ResourceEventHandler
 	Resource* _getResourceFromSeizableItem(SeizableItem* seizable, Entity* entity);

@@ -14,7 +14,7 @@
 #include "Variable.h"
 #include "../../kernel/simulator/Plugin.h"
 
-Variable::Variable(Model* model, std::string name) : ModelElement(model, Util::TypeOf<Variable>(), name) {
+Variable::Variable(Model* model, std::string name) : ModelData(model, Util::TypeOf<Variable>(), name) {
 	setName(name);
 }
 
@@ -25,7 +25,7 @@ std::string Variable::show() {
 	}
 	text = text.substr(0, text.length() - 2);
 	text += "}";
-	return ModelElement::show();
+	return ModelData::show();
 }
 
 PluginInformation* Variable::GetPluginInformation() {
@@ -91,7 +91,7 @@ List<unsigned int>* Variable::getDimensionSizes() const {
 	return _dimensionSizes;
 }
 
-ModelElement* Variable::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
+ModelData* Variable::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
 	Variable* newElement = new Variable(model);
 	try {
 		newElement->_loadInstance(fields);
@@ -102,7 +102,7 @@ ModelElement* Variable::LoadInstance(Model* model, std::map<std::string, std::st
 }
 
 bool Variable::_loadInstance(std::map<std::string, std::string>* fields) {
-	bool res = ModelElement::_loadInstance(fields);
+	bool res = ModelData::_loadInstance(fields);
 	if (res) {
 		std::string pos;
 		double value;
@@ -123,7 +123,7 @@ bool Variable::_loadInstance(std::map<std::string, std::string>* fields) {
 }
 
 std::map<std::string, std::string>* Variable::_saveInstance(bool saveDefaultValues) {
-	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues); //Util::TypeOf<Variable>());
+	std::map<std::string, std::string>* fields = ModelData::_saveInstance(saveDefaultValues); //Util::TypeOf<Variable>());
 	unsigned int i = 0;
 	SaveField(fields, "numDimensions", _dimensionSizes->list()->size(), 0u, saveDefaultValues);
 	for (unsigned int dimension : *_dimensionSizes->list()) {

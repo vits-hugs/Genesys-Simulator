@@ -77,7 +77,7 @@ void Route::_execute(Entity* entity) {
 	if (_routeDestinationType == Route::DestinationType::BySequence) {
 		unsigned int sequenceId = static_cast<unsigned int> (entity->getAttributeValue("Entity.Sequence"));
 		unsigned int step = static_cast<unsigned int> (entity->getAttributeValue("Entity.SequenceStep"));
-		Sequence* sequence = static_cast<Sequence*> (_parentModel->getElements()->getElement(Util::TypeOf<Sequence>(), sequenceId));
+		Sequence* sequence = static_cast<Sequence*> (_parentModel->getData()->getData(Util::TypeOf<Sequence>(), sequenceId));
 		SequenceStep* seqStep = sequence->getSteps()->getAtRank(step);
 		if (seqStep == nullptr) {
 			step = 0;
@@ -102,7 +102,7 @@ void Route::_execute(Entity* entity) {
 		double routeEndTime = _parentModel->getSimulation()->getSimulatedTime() + routeTime;
 		Event* newEvent = new Event(routeEndTime, entity, destinyStation->getEnterIntoStationComponent());
 		_parentModel->getFutureEvents()->insert(newEvent);
-		_parentModel->getTracer()->traceSimulation("End of route of "/*entity " + std::to_string(entity->entityNumber())*/ + entity->getName() + " to the component \"" + destinyStation->getEnterIntoStationComponent()->getName() + "\" was scheduled to time " + std::to_string(routeEndTime));
+		_parentModel->getTracer()->traceSimulation(this, "End of route of "/*entity " + std::to_string(entity->entityNumber())*/ + entity->getName() + " to the component \"" + destinyStation->getEnterIntoStationComponent()->getName() + "\" was scheduled to time " + std::to_string(routeEndTime));
 	} else {
 		// send without delay
 		_parentModel->sendEntityToComponent(entity, destinyStation->getEnterIntoStationComponent(), 0.0);
@@ -117,16 +117,14 @@ bool Route::_loadInstance(std::map<std::string, std::string>* fields) {
 		this->_routeDestinationType = static_cast<Route::DestinationType> (LoadField(fields, "destinationType", static_cast<int> (DEFAULT.routeDestinationType)));
 		if (_routeDestinationType == DestinationType::Station) {
 			std::string stationName = LoadField(fields, "station", "");
-			Station* station = dynamic_cast<Station*> (_parentModel->getElements()->getElement(Util::TypeOf<Station>(), stationName));
+			Station* station = dynamic_cast<Station*> (_parentModel->getData()->getData(Util::TypeOf<Station>(), stationName));
 			this->_station = station;
 		}
 	}
 	return res;
 }
 
-void Route::_initBetweenReplications() {
-	_numberIn->clear();
-}
+//void Route::_initBetweenReplications() {}
 
 std::map<std::string, std::string>* Route::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
@@ -145,26 +143,26 @@ std::map<std::string, std::string>* Route::_saveInstance(bool saveDefaultValues)
 
 bool Route::_check(std::string* errorMessage) {
 	//include attributes needed
-	ElementManager* elements = _parentModel->getElements();
+	ModelDataManager* elements = _parentModel->getData();
 	std::vector<std::string> neededNames = {"Entity.TotalTransferTime", "Entity.Station"};
 	std::string neededName;
 	for (unsigned int i = 0; i < neededNames.size(); i++) {
 		neededName = neededNames[i];
-		if (elements->getElement(Util::TypeOf<Attribute>(), neededName) == nullptr) {
+		if (elements->getData(Util::TypeOf<Attribute>(), neededName) == nullptr) {
 			Attribute* attr1 = new Attribute(_parentModel, neededName);
 			elements->insert(attr1);
 		}
 	}
 	// include StatisticsCollector needed in EntityType
-	std::list<ModelElement*>* enttypes = elements->getElementList(Util::TypeOf<EntityType>())->list();
-	for (ModelElement* element : *enttypes) {
-		if (element->isReportStatistics())
-			static_cast<EntityType*> (element)->addGetStatisticsCollector(element->getName() + ".TransferTime"); // force create this CStat before simulation starts
+	std::list<ModelData*>* enttypes = elements->getElementList(Util::TypeOf<EntityType>())->list();
+	for (ModelData* modeldatum : *enttypes) {
+		if (modeldatum->isReportStatistics())
+			static_cast<EntityType*> (modeldatum)->addGetStatisticsCollector(modeldatum->getName() + ".TransferTime"); // force create this CStat before simulation starts
 	}
 	bool resultAll = true;
 	resultAll &= _parentModel->checkExpression(_routeTimeExpression, "Route time expression", errorMessage);
 	if (this->_routeDestinationType == Route::DestinationType::Station) {
-		resultAll &= _parentModel->getElements()->check(Util::TypeOf<Station>(), _station, "Station", errorMessage);
+		resultAll &= _parentModel->getData()->check(Util::TypeOf<Station>(), _station, "Station", errorMessage);
 		if (resultAll) {
 			resultAll &= _station->getEnterIntoStationComponent() != nullptr;
 			if (!resultAll) {
@@ -191,14 +189,14 @@ PluginInformation* Route::GetPluginInformation() {
 	return info;
 }
 
-void Route::_createInternalElements() {
+void Route::_createInternalData() {
 	if (_reportStatistics) {
 		if (_numberIn == nullptr) {
 			_numberIn = new Counter(_parentModel, getName() + "." + "CountNumberIn", this);
-			_childrenElements->insert({"CountNumberIn", _numberIn});
+			_internalData->insert({"CountNumberIn", _numberIn});
 		}
 	} else
 		if (_numberIn != nullptr) {
-		_removeChildrenElements();
+		_removeInternalDatas();
 	}
 }

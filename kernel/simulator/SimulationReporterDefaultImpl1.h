@@ -25,7 +25,7 @@
  */
 class SimulationReporterDefaultImpl1 : public SimulationReporter_if {
 public:
-	SimulationReporterDefaultImpl1(ModelSimulation* simulation, Model* model, List<ModelElement*>* statsCountersSimulation);
+	SimulationReporterDefaultImpl1(ModelSimulation* simulation, Model* model, List<ModelData*>* statsCountersSimulation);
 	virtual ~SimulationReporterDefaultImpl1() = default;
 public:
 	virtual void showReplicationStatistics();
@@ -36,7 +36,7 @@ private:
 	ModelSimulation* _simulation;
 	Model* _model;
 private:
-	List<ModelElement*>* _statsCountersSimulation;
+	List<ModelData*>* _statsCountersSimulation;
 private:
 	const unsigned short _w = 12;
 	const unsigned short _nameW = 40;

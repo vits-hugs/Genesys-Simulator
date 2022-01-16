@@ -21,7 +21,7 @@ Record::Record(Model* model, std::string name) : ModelComponent(model, Util::Typ
 }
 
 Record::~Record() {
-	_parentModel->getElements()->remove(Util::TypeOf<StatisticsCollector>(), _cstatExpression);
+	_parentModel->getData()->remove(Util::TypeOf<StatisticsCollector>(), _cstatExpression);
 }
 
 std::string Record::show() {
@@ -71,7 +71,7 @@ void Record::_execute(Entity* entity) {
 		file << value << std::endl;
 		file.close();
 	}
-	_parentModel->getTracer()->traceSimulation(_parentModel->getSimulation()->getSimulatedTime(), entity, this, "Recording value " + std::to_string(value));
+	_parentModel->getTracer()->traceSimulation(this, _parentModel->getSimulation()->getSimulatedTime(), entity, this, "Recording value " + std::to_string(value));
 	_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 
 }
@@ -94,8 +94,7 @@ bool Record::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-void Record::_initBetweenReplications() {
-}
+//void Record::_initBetweenReplications() {}
 
 bool Record::_check(std::string* errorMessage) {
 	// when cheking the model (before simulating it), remove the file if exists
@@ -103,13 +102,13 @@ bool Record::_check(std::string* errorMessage) {
 	return _parentModel->checkExpression(_expression, "expression", errorMessage);
 }
 
-void Record::_createInternalElements() {
+void Record::_createInternalData() {
 	if (_reportStatistics && _cstatExpression == nullptr) {
 		_cstatExpression = new StatisticsCollector(_parentModel, getName() + "." + _expressionName, this);
-		//_parentModel->getElements()->insert(_cstatExpression);
-		_childrenElements->insert({_expressionName, _cstatExpression});
+		//_parentModel->getData()->insert(_cstatExpression);
+		_internalData->insert({_expressionName, _cstatExpression});
 	} else if (!_reportStatistics && _cstatExpression != nullptr) {
-		this->_removeChildrenElements();
+		this->_removeInternalDatas();
 		_cstatExpression = nullptr;
 	}
 }

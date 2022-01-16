@@ -33,7 +33,7 @@ public:
 	bool insertActivationCode();
 	void removeActivationCode();
 	unsigned int getModelComponentsLimit();
-	unsigned int getModelElementsLimit();
+	unsigned int getModelDatasLimit();
 	unsigned int getEntityLimit();
 	unsigned int getHostsLimit();
 	unsigned int getThreadsLimit();

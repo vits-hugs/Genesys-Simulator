@@ -13,25 +13,25 @@
 #ifndef DUMMYELEMENT_H
 #define DUMMYELEMENT_H
 
-#include "../../kernel/simulator/ModelElement.h"
+#include "../../kernel/simulator/ModelData.h"
 
-class DummyElement : public ModelElement {
+class DummyElement : public ModelData {
 public:
 	DummyElement(Model* model, std::string name = "");
 	virtual ~DummyElement() = default;
 public: // static
-	static ModelElement* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 	static PluginInformation* GetPluginInformation();
 public:
 	virtual std::string show();
 protected: // must be overriden by derived classes
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-protected: // could be overriden by derived classes
-	virtual bool _check(std::string* errorMessage);
-	virtual ParserChangesInformation* _getParserChangesInformation();
-	virtual void _initBetweenReplications();
-	virtual void _createInternalElements();
+protected: // could be overriden by derived classes.
+	//virtual bool _check(std::string* errorMessage);
+	//virtual ParserChangesInformation* _getParserChangesInformation();
+	//virtual void _initBetweenReplications();
+	//virtual void _createInternalData();
 private:
 };
 

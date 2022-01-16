@@ -120,26 +120,31 @@ public: // add trace handlers
 	template<typename Class> void addTraceErrorHandler(Class * object, void (Class::*function)(TraceErrorEvent));
 	template<typename Class> void addTraceReportHandler(Class * object, void (Class::*function)(TraceEvent));
 	template<typename Class> void addTraceSimulationHandler(Class * object, void (Class::*function)(TraceSimulationEvent));
+public: // add ModelData (or subclasses) allowed (or restrcted) to traceSimulation
+	void addTraceSimulationExceptionRuleModelData(void* thisobject);
 public: // traces (invoke trace handlers) 
 	void trace(Util::TraceLevel level, std::string text);
 	void traceError(std::exception e, std::string text);
 	void traceReport(Util::TraceLevel level, std::string text);
-	void traceSimulation(Util::TraceLevel level, double time, Entity* entity, ModelComponent* component, std::string text);
-	void traceSimulation(Util::TraceLevel level, std::string text);
+	void traceSimulation(void* thisobject, Util::TraceLevel level, double time, Entity* entity, ModelComponent* component, std::string text);
+	void traceSimulation(void* thisobject, Util::TraceLevel level, std::string text);
 public: // traces (invoke trace handlers) SINCE 20191025 NEW TRACES JUST INVERTED THE PARAMETERS, MAKING TRACELEVEL OPTIONAL
 	void trace(std::string text, Util::TraceLevel level = Util::TraceLevel::L8_detailed);
 	void traceError(std::string text, std::exception e);
 	void traceReport(std::string text, Util::TraceLevel level = Util::TraceLevel::L2_results);
-	void traceSimulation(double time, Entity* entity, ModelComponent* component, std::string text, Util::TraceLevel level = Util::TraceLevel::L8_detailed);
-	void traceSimulation(std::string text, Util::TraceLevel level = Util::TraceLevel::L8_detailed);
+	void traceSimulation(void* thisobject, double time, Entity* entity, ModelComponent* component, std::string text, Util::TraceLevel level = Util::TraceLevel::L8_detailed);
+	void traceSimulation(void* thisobject, std::string text, Util::TraceLevel level = Util::TraceLevel::L8_detailed);
 public:
 	List<std::string>* errorMessages() const;
 	void setTraceLevel(Util::TraceLevel _traceLevel);
 	Util::TraceLevel getTraceLevel() const;
 	Simulator* getParentSimulator() const;
+	void setTraceSimulationRuleAllAllowed(bool _traceSimulationRuleAllAllowed);
+	bool isTraceSimulationRuleAllAllowed() const;
 private:
 	//void _addHandler(List<traceListener>* list, )
 	bool _traceConditionPassed(Util::TraceLevel level);
+	bool _traceSimulationConditionPassed(Util::TraceLevel level, void* thisobject);
 private: // trace listener
 	// for handlers that are simple functions
 	List<traceListener>* _traceHandlers = new List<traceListener>();
@@ -152,13 +157,15 @@ private: // trace listener
 	List<traceListenerMethod>* _traceReportHandlersMethod = new List<traceListenerMethod>();
 	List<traceSimulationListenerMethod>* _traceSimulationHandlersMethod = new List<traceSimulationListenerMethod>();
 private:
-	//Model* _model;
+	List<void*>* _traceSimulationExceptionRule = new List<void*>();
+private:
 	Simulator* _simulator;
 private:
 	Util::TraceLevel _traceLevel; // = Util::TraceLevel::L9_mostDetailed;
 	double _lastTimeTraceSimulation = -1.0;
 	Util::identification _lastEntityTraceSimulation = 0;
 	Util::identification _lastModuleTraceSimulation = 0;
+	bool _traceSimulationRuleAllAllowed = true;
 	List<std::string>* _errorMessages; /* @TODO: 18/08/24 this is a new one. several methods should use it */
 
 };

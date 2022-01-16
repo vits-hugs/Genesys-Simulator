@@ -16,7 +16,7 @@
 
 #include "../elements/Resource.h"
 #include "../elements/Set.h"
-#include "../../kernel/simulator/ElementManager.h"
+#include "../../kernel/simulator/ModelDataManager.h"
 
 // @TODO should inhere from a common base to QueueableItem
 
@@ -32,7 +32,7 @@ public:
 	};
 
 public:
-	SeizableItem(ModelElement* resourceOrSet, std::string quantityExpression = "1", SeizableItem::SelectionRule selectionRule = SeizableItem::SelectionRule::LARGESTREMAININGCAPACITY, std::string saveAttribute = "", std::string index = "0");
+	SeizableItem(ModelData* resourceOrSet, std::string quantityExpression = "1", SeizableItem::SelectionRule selectionRule = SeizableItem::SelectionRule::LARGESTREMAININGCAPACITY, std::string saveAttribute = "", std::string index = "0");
 
 public:
 	bool loadInstance(std::map<std::string, std::string>* fields, unsigned int parentIndex);
@@ -58,8 +58,8 @@ public:
 	SeizableType getSeizableType() const;
 	void setLastMemberSeized(unsigned int lastMemberSeized);
 	unsigned int getLastMemberSeized() const;
-	ModelElement* getSeizable() const;
-	void setElementManager(ElementManager* _elementManager);
+	ModelData* getSeizable() const;
+	void setElementManager(ModelDataManager* _elementManager);
 	//void setComponentManager(ComponentManager* _componentManager);
 
 private:
@@ -76,13 +76,13 @@ private:
 	SelectionRule _selectionRule = DEFAULT.selectionRule;
 	std::string _saveAttribute = DEFAULT.saveAttribute;
 	std::string _index = DEFAULT.index;
-	ModelElement* _resourceOrSet;
+	ModelData* _resourceOrSet;
 	std::string _seizableName;
 	std::string _quantityExpression;
 	unsigned int _lastMemberSeized = 0;
 private:
 	//ComponentManager* _componentManager;
-	ElementManager* _elementManager;
+	ModelDataManager* _elementManager;
 };
 
 #endif /* SEIZABLEITEM_H */

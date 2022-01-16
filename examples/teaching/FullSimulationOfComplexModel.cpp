@@ -8,7 +8,7 @@
 
 // GEnSyS Simulator
 #include "../../kernel/simulator/Simulator.h"
-#include "../../kernel/simulator/ElementManager.h"
+#include "../../kernel/simulator/ModelDataManager.h"
 
 // Model Components
 #include "../../plugins/components/Create.h"

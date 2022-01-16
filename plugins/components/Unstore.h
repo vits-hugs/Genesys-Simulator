@@ -23,8 +23,8 @@ The Unstore module removes an entity from storage. When an entity arrives at the
 Unstore module, the storage specified is decreased and the entity immediately moves
 to the next module in the model.
 TYPICAL USES
- Removing the entity from an animation location when processing is complete
- Tracking the number of customers within a grocery store (unstore upon exit)
+* Removing the entity from an animation location when processing is complete
+* Tracking the number of customers within a grocery store (unstore upon exit)
 PROMPTS
 Prompt Description
 Name Unique module identifier displayed on the module shape.
@@ -53,9 +53,10 @@ public: // static
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 protected: // virtual
 	virtual void _execute(Entity* entity);
-	virtual void _initBetweenReplications();
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+protected: // virtual
+	//virtual void _initBetweenReplications();
 	virtual bool _check(std::string* errorMessage);
 private: // methods
 private: // attributes 1:1

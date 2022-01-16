@@ -15,7 +15,8 @@
 #define BATCH_H
 
 #include "../../kernel/simulator/ModelComponent.h"
-
+#include "../../plugins/elements/Queue.h"
+#include "../../plugins/elements/EntityGroup.h"
 /*!
 Batch module
 DESCRIPTION
@@ -27,9 +28,9 @@ matched together based on an attribute. Entities arriving at the Batch module ar
 placed in a queue until the required number of entities has accumulated. Once
 accumulated, a new representative entity is created.
 TYPICAL USES
- Collect a number of parts before starting processing
- Reassemble previously separated copies of a form
- Bring together a patient and his record before commencing an appointment
+* Collect a number of parts before starting processing
+* Reassemble previously separated copies of a form
+* Bring together a patient and his record before commencing an appointment
 PROMPTS
 Prompt Description
 Name Unique module identifier displayed on the module shape.
@@ -51,6 +52,19 @@ Representative Entity The entity type for the representative entity.
 
  */
 class Batch : public ModelComponent {
+public:
+
+	enum class BatchType : int {
+		Temporary = 0, Permanent = 1
+	};
+
+	enum class Rule : int {
+		Any = 0, ByAttribute = 1
+	};
+
+	enum class GroupedAttribs : int {
+		FirstEntity = 0, LastEntity = 1, SumAttributes = 2
+	};
 public: // constructors
 	Batch(Model* model, std::string name = "");
 	virtual ~Batch() = default;
@@ -59,14 +73,43 @@ public: // virtual
 public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-protected: // virtual
+    void setGroupedEntityType(EntityType* _groupedEntityType);
+    EntityType* getGroupedEntityType() const;
+    void setAttributeName(std::string _attributeName);
+    std::string getAttributeName() const;
+    void setBatchSize(std::string _batchSize);
+    std::string getBatchSize() const;
+    void setRule(Batch::Rule _rule);
+    Batch::Rule getRule() const;
+    void setGroupedAttributes(Batch::GroupedAttribs _groupedAttributes);
+	Batch::GroupedAttribs getGroupedAttributes() const;
+protected: // virtual should
+	//virtual void _initBetweenReplications();
+	virtual void _createInternalData();
+	virtual bool _check(std::string* errorMessage);
+protected: // virtual must
 	virtual void _execute(Entity* entity);
-	virtual void _initBetweenReplications();
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-	virtual bool _check(std::string* errorMessage);
 private: // methods
 private: // attributes 1:1
+
+	const struct DEFAULT_VALUES {
+		Batch::BatchType batchType = Batch::BatchType::Temporary;
+		Batch::Rule rule = Batch::Rule::Any;
+		Batch::GroupedAttribs groupedAttributes = Batch::GroupedAttribs::FirstEntity;
+		std::string batchSize = "2";
+		std::string attributeName = "";
+	} DEFAULT;
+	Batch::BatchType _batchType = DEFAULT.batchType;
+	Batch::Rule _rule = DEFAULT.rule;
+	Batch::GroupedAttribs _groupedAttributes = DEFAULT.groupedAttributes;
+	std::string _batchSize = DEFAULT.batchSize;
+	std::string _attributeName = DEFAULT.attributeName;
+private: // attributes 1:1
+	EntityType* _groupedEntityType = nullptr;
+	EntityGroup* _entityGroup = nullptr;
+	Queue* _queue = nullptr;
 private: // attributes 1:n
 };
 

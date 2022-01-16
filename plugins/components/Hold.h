@@ -29,9 +29,9 @@ internal queue) until the condition(s) becomes true. When the entity is in an in
 hold, the Remove module is used elsewhere in the model to allow the entity to
 continue processing.
 TYPICAL USES
- Waiting for a traffic light to turn green
- Holding a part for authorization
- Checking the status of a machine or operator to continue a process
+* Waiting for a traffic light to turn green
+* Holding a part for authorization
+* Checking the status of a machine or operator to continue a process
 PROMPTS
 Prompt Description
 Name Unique module identifier displayed on the module shape.
@@ -83,9 +83,10 @@ public: // static
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 protected: // virtual
 	virtual void _execute(Entity* entity);
-	virtual void _initBetweenReplications();
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+protected: // virtual
+	//virtual void _initBetweenReplications();
 	virtual bool _check(std::string* errorMessage);
 private: // methods
 private: // attributes 1:1

@@ -24,8 +24,8 @@ and sends them to another module, as specified by a graphical connection. Group
 user-defined attribute value and internal attributes may be given to the dropped-off
 entities based on a specified rule.
 TYPICAL USES
- Loading shelves with product
- Separating a form for use in various departments
+* Loading shelves with product
+* Separating a form for use in various departments
 PROMPTS
 Prompt Description
 Name Unique module identifier displayed on the module shape.
@@ -49,8 +49,9 @@ public: // static
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 protected: // virtual
 	virtual void _execute(Entity* entity);
-	virtual void _initBetweenReplications();
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+protected: // virtual
+	//virtual void _initBetweenReplications();
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
 private: // methods

@@ -44,8 +44,7 @@ bool Unstore::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-void Unstore::_initBetweenReplications() {
-}
+//void Unstore::_initBetweenReplications() {}
 
 std::map<std::string, std::string>* Unstore::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);

@@ -135,26 +135,26 @@ bool ModelCheckerDefaultImpl1::checkSymbols() {
 			{
 				std::string elementType;
 				bool result;
-				ModelElement* element;
+				ModelData* modeldatum;
 				std::string* errorMessage = new std::string();
-				std::list<std::string>* elementTypes = _model->getElements()->getElementClassnames();
+				std::list<std::string>* elementTypes = _model->getData()->getElementClassnames();
 				for (std::list<std::string>::iterator typeIt = elementTypes->begin(); typeIt != elementTypes->end(); typeIt++) {
 					elementType = (*typeIt);
-					List<ModelElement*>* elements = _model->getElements()->getElementList(elementType);
-					for (std::list<ModelElement*>::iterator it = elements->list()->begin(); it != elements->list()->end(); it++) {
-						element = (*it);
-						// copyed from modelCOmponent. It is not inside the ModelElement::Check because ModelElement has no access to Model to call Tracer
-						_model->getTracer()->trace(Util::TraceLevel::L8_detailed, "Checking " + element->getClassname() + ": \"" + element->getName() + "\" (id " + std::to_string(element->getId()) + ")"); //std::to_string(component->_id));
+					List<ModelData*>* elements = _model->getData()->getElementList(elementType);
+					for (std::list<ModelData*>::iterator it = elements->list()->begin(); it != elements->list()->end(); it++) {
+						modeldatum = (*it);
+						// copyed from modelCOmponent. It is not inside the ModelData::Check because ModelData has no access to Model to call Tracer
+						_model->getTracer()->trace(Util::TraceLevel::L8_detailed, "Checking " + modeldatum->getClassname() + ": \"" + modeldatum->getName() + "\" (id " + std::to_string(modeldatum->getId()) + ")"); //std::to_string(component->_id));
 						Util::IncIndent();
 						{
 							try {
-								result = element->Check((*it), errorMessage);
+								result = modeldatum->Check((*it), errorMessage);
 								res &= result;
 								if (!result) {
 									_model->getTracer()->trace(Util::TraceLevel::L1_errorFatal, "Error: Checking has failed with message '" + *errorMessage + "'");
 								}
 							} catch (const std::exception& e) {
-								_model->getTracer()->traceError(e, "Error verifying component " + element->show());
+								_model->getTracer()->traceError(e, "Error verifying component " + modeldatum->show());
 							}
 						}
 						Util::DecIndent();
@@ -196,12 +196,12 @@ bool ModelCheckerDefaultImpl1::checkLimits() {
 			text = "Model has " + std::to_string(_model->getComponents()->getNumberOfComponents()) + " components, exceding the limit of " + std::to_string(licence->getModelComponentsLimit()) + " components imposed by the current activation code";
 			//_model->getTraceManager()->trace(Util::TraceLevel::errors, text);
 		} else {
-			value = _model->getElements()->getNumberOfElements();
-			limit = licence->getModelElementsLimit();
+			value = _model->getData()->getNumberOfElements();
+			limit = licence->getModelDatasLimit();
 			res &= value <= limit;
 			_model->getTracer()->trace("Model has " + std::to_string(value) + "/" + std::to_string(limit) + " elements");
 			if (!res) {
-				text = "Model has " + std::to_string(_model->getElements()->getNumberOfElements()) + " elements, exceding the limit of " + std::to_string(licence->getModelElementsLimit()) + " elements imposed by the current activation code";
+				text = "Model has " + std::to_string(_model->getData()->getNumberOfElements()) + " elements, exceding the limit of " + std::to_string(licence->getModelDatasLimit()) + " elements imposed by the current activation code";
 				//_model->getTraceManager()->trace(Util::TraceLevel::errors, text);
 			}
 		}

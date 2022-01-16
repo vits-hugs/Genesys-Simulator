@@ -20,7 +20,7 @@
 #include "Plugin.h"
 #include "../util/List.h"
 #include "Entity.h"
-#include "ModelElement.h"
+#include "ModelData.h"
 #include "ConnectionManager.h"
 //namespace GenesysKernel {
 
@@ -30,7 +30,7 @@ class Model;
  * A component of the model is a block that represents a specific behavior to be simulated. The behavior is triggered when an entity arrives at the component, which corresponds to the occurrence of an event. A simulation model corresponds to a set of interconnected components to form the process by which the entity is submitted.
  * @param model The model this component belongs to
  */
-class ModelComponent : public ModelElement {
+class ModelComponent : public ModelData {
 public:
 	ModelComponent(Model* model, std::string componentTypename, std::string name = "");
 	virtual ~ModelComponent();
@@ -41,7 +41,7 @@ public:
 public: // static
 	static void Execute(Entity* entity, ModelComponent* component, unsigned int inputNumber); ///< This method triggers the simulation of the behavior of the component. It is invoked when an event (corresponding to this component) is taken from the list of future events or when an entity arrives at this component by connection.
 	//static void InitBetweenReplications(ModelComponent* component);
-	static void CreateInternalElements(ModelComponent* component);
+	static void CreateInternalData(ModelComponent* component);
 	static bool Check(ModelComponent* component);
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 	static std::map<std::string, std::string>* SaveInstance(ModelComponent* component);
@@ -52,7 +52,7 @@ protected: // pure virtual methods
 protected: // virtual methods
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual void _createInternalElements(); ///< This method is necessary only for those components that instantiate internal elements that must exist before simulation starts and even before model checking. That's the case of components that have internal StatisticsCollectors, since others components may refer to them as expressions (as in "TVAG(ThisCSTAT)") and therefore the element must exist when checking such expression
+	//virtual void _createInternalData(); ///< This method is necessary only for those components that instantiate internal elements that must exist before simulation starts and even before model checking. That's the case of components that have internal StatisticsCollectors, since others components may refer to them as expressions (as in "TVAG(ThisCSTAT)") and therefore the modeldatum must exist when checking such expression
 protected:
 
 	const struct DEFAULT_VALUES {

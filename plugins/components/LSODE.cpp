@@ -135,7 +135,7 @@ void LSODE::_execute(Entity* entity) {
 		for (unsigned int i = 0; i < _variable->getDimensionSizes()->front(); i++) {
 			message += " ," + _variable->getName() + "[" + std::to_string(i) + "]=" + std::to_string(_variable->getValue(std::to_string(i)));
 		}
-		_parentModel->getTracer()->traceSimulation(message, Util::TraceLevel::L8_detailed);
+		_parentModel->getTracer()->traceSimulation(this, message, Util::TraceLevel::L8_detailed);
 		if (_filename != "") {
 			message = std::to_string(_timeVariable->getValue());
 			for (unsigned int i = 0; i < _variable->getDimensionSizes()->front(); i++) {
@@ -159,8 +159,7 @@ bool LSODE::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-void LSODE::_initBetweenReplications() {
-}
+//void LSODE::_initBetweenReplications() {}
 
 std::map<std::string, std::string>* LSODE::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);

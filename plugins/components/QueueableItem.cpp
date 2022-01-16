@@ -12,11 +12,11 @@
  */
 
 #include "QueueableItem.h"
-#include "../../kernel/simulator/ModelElement.h"
+#include "../../kernel/simulator/ModelData.h"
 #include "../../kernel/simulator/Model.h"
 #include <cassert>
 
-QueueableItem::QueueableItem(ModelElement* queueOrSet, QueueableItem::QueueableType queueableType, std::string index) {
+QueueableItem::QueueableItem(ModelData* queueOrSet, QueueableItem::QueueableType queueableType, std::string index) {
 	_queueableType = queueableType;
 	_queueOrSet = queueOrSet;
 	_index = index;
@@ -38,11 +38,11 @@ bool QueueableItem::loadInstance(std::map<std::string, std::string>* fields) {
 		_index = LoadField(fields, "index", DEFAULT.index);
 		if (_elementManager != nullptr) {
 			if (_queueableType == QueueableItem::QueueableType::QUEUE) {
-				_queueOrSet = _elementManager->getElement(Util::TypeOf<Queue>(), _queueableName);
+				_queueOrSet = _elementManager->getData(Util::TypeOf<Queue>(), _queueableName);
 			} else if (_queueableType == QueueableItem::QueueableType::SET) {
-				_queueOrSet = _elementManager->getElement(Util::TypeOf<Queue>(), _queueableName);
+				_queueOrSet = _elementManager->getData(Util::TypeOf<Queue>(), _queueableName);
 				//            } else if (_queueableType == QueueableItem::QueueableType::HOLD) {
-				//                _queueOrSet = _elementManager->getElement(Util::TypeOf<Hold>(), _queueableName);
+				//                _queueOrSet = _elementManager->getData(Util::TypeOf<Hold>(), _queueableName);
 			}
 			assert(_queueOrSet != nullptr);
 		}
@@ -129,11 +129,11 @@ QueueableItem::QueueableType QueueableItem::getQueueableType() const {
 	return _queueableType;
 }
 
-ModelElement* QueueableItem::getQueueable() const {
+ModelData* QueueableItem::getQueueable() const {
 	return _queueOrSet;
 }
 
-void QueueableItem::setElementManager(ElementManager* _elementManager) {
+void QueueableItem::setElementManager(ModelDataManager* _elementManager) {
 	this->_elementManager = _elementManager;
 }
 

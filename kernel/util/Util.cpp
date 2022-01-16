@@ -58,7 +58,7 @@ void Util::SepKeyVal(std::string str, std::string *key, std::string *value) {
 std::string Util::Indent() {
 	std::string spaces = "";
 	for (unsigned int i = 0; i < Util::_S_indentation; i++) {
-		spaces += "|  ";
+		spaces += "  ";
 	}
 	return spaces;
 }
@@ -140,6 +140,10 @@ void Util::ResetIdOfType(std::string objtype) {
 		it = Util::_S_lastIdOfType.find(objtype);
 	}
 	(*it).second = 0;
+}
+
+void Util::ResetAllIds() {
+	_S_lastIdOfType = std::map<std::string, Util::identification>();
 }
 
 double Util::TimeUnitConvert(Util::TimeUnit timeUnit1, Util::TimeUnit timeUnit2) {

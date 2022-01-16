@@ -45,8 +45,7 @@ bool Submodel::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-void Submodel::_initBetweenReplications() {
-}
+//void Submodel::_initBetweenReplications() {}
 
 std::map<std::string, std::string>* Submodel::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);

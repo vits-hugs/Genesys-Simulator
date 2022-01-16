@@ -13,12 +13,12 @@
 
 #include "File.h"
 
-File::File(Model* model, std::string name) : ModelElement(model, Util::TypeOf<File>(), name) {
+File::File(Model* model, std::string name) : ModelData(model, Util::TypeOf<File>(), name) {
 	//_elems = elems;
 }
 
 std::string File::show() {
-	return ModelElement::show() +
+	return ModelData::show() +
 			"";
 }
 
@@ -27,7 +27,7 @@ PluginInformation* File::GetPluginInformation() {
 	return info;
 }
 
-ModelElement* File::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
+ModelData* File::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
 	File* newElement = new File(model);
 	try {
 		newElement->_loadInstance(fields);
@@ -38,7 +38,7 @@ ModelElement* File::LoadInstance(Model* model, std::map<std::string, std::string
 }
 
 bool File::_loadInstance(std::map<std::string, std::string>* fields) {
-	bool res = ModelElement::_loadInstance(fields);
+	bool res = ModelData::_loadInstance(fields);
 	if (res) {
 		try {
 			//this->_attributeName = (*fields->find("attributeName")).second;
@@ -50,7 +50,7 @@ bool File::_loadInstance(std::map<std::string, std::string>* fields) {
 }
 
 std::map<std::string, std::string>* File::_saveInstance(bool saveDefaultValues) {
-	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues); //Util::TypeOf<File>());
+	std::map<std::string, std::string>* fields = ModelData::_saveInstance(saveDefaultValues); //Util::TypeOf<File>());
 	//SaveField(fields, "orderRule", std::to_string(static_cast<int> (this->_orderRule)));
 	//SaveField(fields, "attributeName", "\""+this->_attributeName+"\"");
 	return fields;

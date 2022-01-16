@@ -14,8 +14,8 @@
 #ifndef OLD_ODEELEMENT_H
 #define OLD_ODEELEMENT_H
 
-#include "../../kernel/simulator/ModelElement.h"
-#include "../../kernel/simulator/ElementManager.h"
+#include "../../kernel/simulator/ModelData.h"
+#include "../../kernel/simulator/ModelDataManager.h"
 #include "../../kernel/simulator/Plugin.h"
 
 class ODEfunction {
@@ -30,7 +30,7 @@ public:
 	double initialValue;
 };
 
-class OLD_ODEelement : public ModelElement {
+class OLD_ODEelement : public ModelData {
 public:
 	OLD_ODEelement(Model* model, std::string name = "");
 	virtual ~OLD_ODEelement() = default;
@@ -38,7 +38,7 @@ public:
 	virtual std::string show();
 public:
 	static PluginInformation* GetPluginInformation();
-	static ModelElement* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 public:
 	double solve();
 	void setStepH(double _h);

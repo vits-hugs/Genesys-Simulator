@@ -15,8 +15,8 @@
 #define FAILURE_H
 
 
-#include "../../kernel/simulator/ModelElement.h"
-#include "../../kernel/simulator/ElementManager.h"
+#include "../../kernel/simulator/ModelData.h"
+#include "../../kernel/simulator/ModelDataManager.h"
 //#include "ParserChangesInformation.h"
 #include "../../kernel/simulator/PluginInformation.h"
 
@@ -28,9 +28,9 @@ entire resource (regardless of its capacity) is failed. Failures are designed to
 with single-capacity resources or with multiple-capacity resources whose individual
 resource units all fail at the same time.
 TYPICAL USES
- Breakdown information for a machine
- Cash register tape refill every “x” customers
- Random computer shutdowns or restarts
+* Breakdown information for a machine
+* Cash register tape refill every “x” customers
+* Random computer shutdowns or restarts
 PROMPTS
 Recordset Name of the recordset in the specified file from which to read
 values. This field is available only if you specify a File Name
@@ -64,12 +64,12 @@ define a failure to be based only on the state Busy, and therefore,
 the time between downtimes would be based on the amount of
 time that a resource is busy, not simulated clock time.
  */
-class Failure : public ModelElement {
+class Failure : public ModelData {
 public:
 	Failure(Model* model, std::string name = "");
 	virtual ~Failure() = default;
 public: // static
-	static ModelElement* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 	static PluginInformation* GetPluginInformation();
 public:
 	virtual std::string show();

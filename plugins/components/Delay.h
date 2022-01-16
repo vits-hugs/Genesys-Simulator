@@ -27,9 +27,9 @@ the entity remains in the module for the resulting time period. The time is then
 allocated to the entity’s value-added, non-value added, transfer, wait, or other time.
 Associated costs are calculated and allocated as well.
 TYPICAL USES
- Processing a check at a bank
- Performing a setup on a machine
- Transferring a document to another department
+* Processing a check at a bank
+* Performing a setup on a machine
+* Transferring a document to another department
 PROMPTS
 Prompt Description
 Name Unique module identifier displayed on the module shape.
@@ -56,11 +56,12 @@ public:
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 protected:
 	virtual void _execute(Entity* entity);
-	virtual void _initBetweenReplications();
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+protected:
+	//virtual void _initBetweenReplications();
 	virtual bool _check(std::string* errorMessage);
-	virtual void _createInternalElements();
+	virtual void _createInternalData();
 private:
 
 	const struct DEFAULT_VALUES {
@@ -69,7 +70,7 @@ private:
 	} DEFAULT;
 	std::string _delayExpression = DEFAULT.delayExpression;
 	Util::TimeUnit _delayTimeUnit = DEFAULT.delayTimeUnit;
-private: // inner children elements
+private: // inner internel elements
 	StatisticsCollector* _cstatWaitTime = nullptr;
 };
 

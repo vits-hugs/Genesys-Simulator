@@ -14,9 +14,9 @@
 #ifndef RESOURCE_H
 #define RESOURCE_H
 
-#include "../../kernel/simulator/ModelElement.h"
+#include "../../kernel/simulator/ModelData.h"
 #include "../../kernel/simulator/StatisticsCollector.h"
-#include "../../kernel/simulator/ElementManager.h"
+#include "../../kernel/simulator/ModelDataManager.h"
 #include "../../kernel/simulator/Counter.h"
 #include "../../kernel/simulator/Plugin.h"
 
@@ -30,8 +30,8 @@ information and resource availability. Resources may have a fixed capacity that 
 not vary over the simulation run or may operate based on a schedule. Resource
 failures and states can also be specified in this module.
 TYPICAL USES
- Equipment (machinery, cash register, phone line)
- People (clerical, order processing, sales clerks, operators)
+* Equipment (machinery, cash register, phone line)
+* People (clerical, order processing, sales clerks, operators)
 PROMPTS
 Prompt Description
 Name The name of the resource whose characteristics are being
@@ -71,14 +71,14 @@ Initial State Initial state of a resource. If specified, the name must be define
 within the repeat group of state names. This field is shown only
 when a StateSet Name is defined.
 Failures Lists all failures that will be associated with the resource.
- Failure Name–Name of the failure associated with the
+* Failure Name–Name of the failure associated with the
 resource.
- Failure Rule–Behavior that should occur when a failure is to
+* Failure Rule–Behavior that should occur when a failure is to
 occur for a busy resource unit.
 Report Statistics Specifies whether or not statistics will be collected automatically
 and stored in the report database for this resource.
  */
-class Resource : public ModelElement {
+class Resource : public ModelData {
 public:
 	typedef std::function<void(Resource*) > ResourceEventHandler;
 	typedef std::pair<std::pair<ResourceEventHandler, ModelComponent*>, unsigned int> SortedResourceEventHandler;
@@ -99,7 +99,7 @@ public:
 	virtual std::string show();
 public:
 	static PluginInformation* GetPluginInformation();
-	static ModelElement* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 public:
 	void seize(unsigned int quantity, double tnow);
 	void release(unsigned int quantity, double tnow);
@@ -123,7 +123,7 @@ protected:
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
-	virtual void _createInternalElements();
+	virtual void _createInternalData();
 	virtual void _initBetweenReplications();
 private:
 	void _notifyReleaseEventHandlers(); ///< Notify observer classes that some of the resource capacity has been released. It is useful for allocation components (such as Seize) to know when an entity waiting into a queue can try to seize the resource again
@@ -152,7 +152,7 @@ private: //1::n
 	List<SortedResourceEventHandler*>* _resourceEventHandlers = new List<SortedResourceEventHandler*>();
 	//aFailures:	TStringList;
 	//std::list<Failure*>* _failures;
-private: // inner children elements
+private: // inner internel elements
 	StatisticsCollector* _cstatTimeSeized = nullptr;
 	Counter* _totalTimeSeized;
 	Counter* _numSeizes;

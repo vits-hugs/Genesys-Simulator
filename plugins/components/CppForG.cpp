@@ -14,7 +14,7 @@
 #include "../../kernel/simulator/Model.h"
 
 CppForG::CppForG(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<CppForG>(), name) {
-	_createInternalElements();
+	_createInternalData();
 }
 
 std::string CppForG::show() {
@@ -52,8 +52,7 @@ bool CppForG::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-void CppForG::_initBetweenReplications() {
-}
+//void CppForG::_initBetweenReplications() {}
 
 std::map<std::string, std::string>* CppForG::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
@@ -82,10 +81,10 @@ bool CppForG::_check(std::string* errorMessage) {
 	return resultAll;
 }
 
-void CppForG::_createInternalElements() {
+void CppForG::_createInternalData() {
 	if (_cppcode == nullptr) {
 		_cppcode = new CppCode(_parentModel, getName() + ".CppCode");
-		_childrenElements->insert({"CppCode", _cppcode});
+		_internalData->insert({"CppCode", _cppcode});
 	}
 }
 

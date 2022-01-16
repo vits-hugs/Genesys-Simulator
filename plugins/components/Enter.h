@@ -30,9 +30,9 @@ is used to report all times and costs accrued by the entities in this station. T
 Activity Area’s name is the same as the station. If a parent Activity Area is defined,
 then it also accrues any times and costs by the entities in this station.
 TYPICAL USES
- The start of a part’s production in a series of parallel processes where the part’s
+* The start of a part’s production in a series of parallel processes where the part’s
 forklift needs to be released
- The start of a document’s processing after the document has been created where
+* The start of a document’s processing after the document has been created where
 the mail clerk resource needs to be released
 PROMPTS
 Prompt Description
@@ -110,14 +110,15 @@ public:
 	Station* getStation() const;
 protected:
 	virtual void _execute(Entity* entity);
-	virtual void _initBetweenReplications();
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+protected:
+	//virtual void _initBetweenReplications();
 	virtual bool _check(std::string* errorMessage);
-	virtual void _createInternalElements();
+	virtual void _createInternalData();
 private: // association
 	Station* _station;
-private: // children elements
+private: // internel elements
 	Counter* _numberIn = nullptr;
 };
 

@@ -17,7 +17,7 @@
 
 //using namespace GenesysKernel;
 
-Counter::Counter(Model* model, std::string name, ModelElement* parent) : ModelElement(model, Util::TypeOf<Counter>(), name) {
+Counter::Counter(Model* model, std::string name, ModelData* parent) : ModelData(model, Util::TypeOf<Counter>(), name) {
 	_parent = parent;
 	GetterMember getterMember = DefineGetterMember<Counter>(this, &Counter::getCountValue);
 	std::string parentName = "";
@@ -28,7 +28,7 @@ Counter::Counter(Model* model, std::string name, ModelElement* parent) : ModelEl
 }
 
 std::string Counter::show() {
-	return ModelElement::show() +
+	return ModelData::show() +
 			", count=" + std::to_string(this->_count);
 }
 
@@ -44,18 +44,18 @@ double Counter::getCountValue() const {
 	return _count;
 }
 
-ModelElement* Counter::getParent() const {
+ModelData* Counter::getParent() const {
 	return _parent;
 }
 
 PluginInformation* Counter::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Counter>(), &Counter::LoadInstance);
 	info->setGenerateReport(true);
-	info->setDescriptionHelp("The Counter element is used to count events, and its internal count value is added by a configurable amount, usually incremented by one.");
+	info->setDescriptionHelp("The Counter modeldatum is used to count events, and its internal count value is added by a configurable amount, usually incremented by one.");
 	return info;
 }
 
-ModelElement* Counter::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
+ModelData* Counter::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
 	Counter* newElement = new Counter(model);
 	try {
 		newElement->_loadInstance(fields);
@@ -66,11 +66,11 @@ ModelElement* Counter::LoadInstance(Model* model, std::map<std::string, std::str
 }
 
 bool Counter::_loadInstance(std::map<std::string, std::string>* fields) {
-	return ModelElement::_loadInstance(fields);
+	return ModelData::_loadInstance(fields);
 }
 
 std::map<std::string, std::string>* Counter::_saveInstance(bool saveDefaultValues) {
-	return ModelElement::_saveInstance(saveDefaultValues);
+	return ModelData::_saveInstance(saveDefaultValues);
 }
 
 bool Counter::_check(std::string* errorMessage) {

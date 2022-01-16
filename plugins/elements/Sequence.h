@@ -14,12 +14,12 @@
 #ifndef SEQUENCE_H
 #define SEQUENCE_H
 
-#include "../../kernel/simulator/ModelElement.h"
-#include "../../kernel/simulator/ElementManager.h"
+#include "../../kernel/simulator/ModelData.h"
+#include "../../kernel/simulator/ModelDataManager.h"
 #include "../../kernel/simulator/PluginInformation.h"
 #include "Station.h"
 
-class SequenceStep : PersistentObject_base {
+class SequenceStep : public PersistentObject_base {
 public:
 
 	class Assignment {
@@ -94,10 +94,10 @@ It is automatically updated whenever Entity.Sequence or Entity.JobStep changes, 
 whenever the entity enters a station.
 Jobstep names must be globally unique.
 TYPICAL USES
- Define a routing path for part processing
- Define a sequence of steps patients must take upon arrival at an emergency room
+* Define a routing path for part processing
+* Define a sequence of steps patients must take upon arrival at an emergency room
  */
-class Sequence : public ModelElement {
+class Sequence : public ModelData {
 public:
 
 
@@ -108,7 +108,7 @@ public:
 	virtual std::string show();
 public: // static 
 	static PluginInformation* GetPluginInformation();
-	static ModelElement* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 	List<SequenceStep*>* getSteps() const;
 public:
 protected:

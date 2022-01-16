@@ -26,8 +26,7 @@ bool SinkModelComponent::_loadInstance(std::map<std::string, std::string>* field
 	return res;
 }
 
-void SinkModelComponent::_initBetweenReplications() {
-}
+//void SinkModelComponent::_initBetweenReplications() {}
 
 std::map<std::string, std::string>* SinkModelComponent::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);

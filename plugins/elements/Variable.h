@@ -14,8 +14,8 @@
 #ifndef VARIABLE_H
 #define VARIABLE_H
 
-#include "../../kernel/simulator/ModelElement.h"
-#include "../../kernel/simulator/ElementManager.h"
+#include "../../kernel/simulator/ModelData.h"
+#include "../../kernel/simulator/ModelDataManager.h"
 #include "../../kernel/simulator/Plugin.h"
 
 /*!
@@ -30,20 +30,20 @@ are read at different times, depending on the options you specify, including the
 Read Time, the Clear Option, and the replication parameters you specify in the Run
 Setup dialog box. For more information, see the online Help.
 There are three methods for manually editing the Initial Values of a Variable module:
- Using the standard spreadsheet interface. In the module spreadsheet, right-click
+* Using the standard spreadsheet interface. In the module spreadsheet, right-click
 on the Initial Values cell and select the Edit via spreadsheet menu item. The
 values for two-dimensional arrays should be entered one column at a time. Array
 elements not explicitly assigned are assumed to have the last entered value.
- Using the module dialog box. In the module spreadsheet, right-click on any cell
+* Using the module dialog box. In the module spreadsheet, right-click on any cell
 and select the Edit via dialog menu item. The values for two-dimensional arrays
 should be entered one column at a time. Array elements not explicitly assigned
 are assumed to have the last entered value.
- Using the two-dimensional (2-D) spreadsheet interface. In the module
+* Using the two-dimensional (2-D) spreadsheet interface. In the module
 spreadsheet, click on the Initial Values cell.
 TYPICAL USES
- Number of documents processed per hour
- Serial number to assign to parts for unique identification
- Space available in a facility
+* Number of documents processed per hour
+* Serial number to assign to parts for unique identification
+* Space available in a facility
 PROMPTS
 Prompt Description
 Name The unique name of the variable being defined.
@@ -87,7 +87,7 @@ new values to the variable at different stages of the model by
 using the Assign module.
 Initial Value Variable value at the start of the simulation. 
  */
-class Variable : public ModelElement {
+class Variable : public ModelData {
 public:
 	Variable(Model* model, std::string name = "");
 	virtual ~Variable() = default;
@@ -95,7 +95,7 @@ public:
 	virtual std::string show();
 public: //static
 	static PluginInformation* GetPluginInformation();
-	static ModelElement* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 public:
 	double getValue();
 	void setValue(double value);

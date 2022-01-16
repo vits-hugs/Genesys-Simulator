@@ -79,13 +79,13 @@ void Release::_execute(Entity* entity) {
 					index = _parentModel->parseExpression(seizable->getIndex());
 					break;
 			}
-			_parentModel->getTracer()->traceSimulation("Member of set " + set->getName() + " chosen index " + std::to_string(index), Util::TraceLevel::L8_detailed);
+			_parentModel->getTracer()->traceSimulation(this, "Member of set " + set->getName() + " chosen index " + std::to_string(index), Util::TraceLevel::L8_detailed);
 			resource = static_cast<Resource*> (set->getElementSet()->getAtRank(index));
 			assert(resource != nullptr);
 		}
 		unsigned int quantity = _parentModel->parseExpression(seizable->getQuantityExpression());
 		assert(resource->getNumberBusy() >= quantity); // 202104 ops. maybe not anymore
-		_parentModel->getTracer()->traceSimulation(_parentModel->getSimulation()->getSimulatedTime(), entity, this, entity->getName() + " releases " + std::to_string(quantity) + " units of resource \"" + resource->getName() + "\" seized on time " + std::to_string(resource->getLastTimeSeized()));
+		_parentModel->getTracer()->traceSimulation(this, _parentModel->getSimulation()->getSimulatedTime(), entity, this, entity->getName() + " releases " + std::to_string(quantity) + " units of resource \"" + resource->getName() + "\" seized on time " + std::to_string(resource->getLastTimeSeized()));
 		resource->release(quantity, _parentModel->getSimulation()->getSimulatedTime()); //{releases and sets the 'LastTimeSeized'property}
 	}
 	_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
@@ -107,9 +107,9 @@ bool Release::_loadInstance(std::map<std::string, std::string>* fields) {
 		unsigned short numRequests = LoadField(fields, "resquestSize", DEFAULT.releaseRequestSize);
 		for (unsigned short i = 0; i < numRequests; i++) {
 			SeizableItem* Item = new SeizableItem(nullptr);
-			Item->setElementManager(_parentModel->getElements());
+			Item->setElementManager(_parentModel->getData());
 			Item->loadInstance(fields, i);
-			//Resource* resource = static_cast<Resource*> (_parentModel->getElements()->getElement(Util::TypeOf<Resource>(), Item->getResourceName()));
+			//Resource* resource = static_cast<Resource*> (_parentModel->getData()->getData(Util::TypeOf<Resource>(), Item->getResourceName()));
 			//Item->setResource(resource);
 			//this->_releaseRequests->insert(Item);
 		}
@@ -136,9 +136,9 @@ bool Release::_check(std::string* errorMessage) {
 	for (SeizableItem* seizable : * _releaseRequests->list()) {
 		resultAll &= _parentModel->checkExpression(seizable->getQuantityExpression(), "quantity", errorMessage);
 		if (seizable->getSeizableType() == SeizableItem::SeizableType::RESOURCE) {
-			resultAll &= _parentModel->getElements()->check(Util::TypeOf<Resource>(), seizable->getResource(), "Resource", errorMessage);
+			resultAll &= _parentModel->getData()->check(Util::TypeOf<Resource>(), seizable->getResource(), "Resource", errorMessage);
 		} else if (seizable->getSeizableType() == SeizableItem::SeizableType::SET) {
-			resultAll &= _parentModel->getElements()->check(Util::TypeOf<Set>(), seizable->getSet(), "Set", errorMessage);
+			resultAll &= _parentModel->getData()->check(Util::TypeOf<Set>(), seizable->getSet(), "Set", errorMessage);
 		}
 		// @TODO: Should be checking saveAttribute, index, etc
 	}
@@ -146,7 +146,7 @@ bool Release::_check(std::string* errorMessage) {
 }
 
 //void Release::setResourceName(std::string resourceName) throw () {
-//	ModelElement* resource = _parentModel->elements()->element(Util::TypeOf<Resource>(), resourceName);
+//	ModelData* resource = _parentModel->elements()->modeldatum(Util::TypeOf<Resource>(), resourceName);
 //	if (resource != nullptr) {
 //		this->_resource = dynamic_cast<Resource*> (resource);
 //	} else {

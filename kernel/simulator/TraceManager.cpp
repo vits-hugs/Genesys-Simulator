@@ -33,6 +33,14 @@ Simulator* TraceManager::getParentSimulator() const {
 	return _simulator;
 }
 
+void TraceManager::setTraceSimulationRuleAllAllowed(bool _traceSimulationRuleAllAllowed) {
+	this->_traceSimulationRuleAllAllowed = _traceSimulationRuleAllAllowed;
+}
+
+bool TraceManager::isTraceSimulationRuleAllAllowed() const {
+	return _traceSimulationRuleAllAllowed;
+}
+
 void TraceManager::addTraceHandler(traceListener traceListener) {
 	this->_traceHandlers->insert(traceListener);
 }
@@ -47,6 +55,12 @@ void TraceManager::addTraceErrorHandler(traceErrorListener traceErrorListener) {
 
 void TraceManager::addTraceReportHandler(traceListener traceReportListener) {
 	this->_traceReportHandlers->insert(traceReportListener);
+}
+
+void TraceManager::addTraceSimulationExceptionRuleModelData(void* thisobject) {
+	if (_traceSimulationExceptionRule->find(thisobject) == _traceSimulationExceptionRule->list()->end()) {
+		_traceSimulationExceptionRule->insert(thisobject);
+	}
 }
 
 void TraceManager::trace(Util::TraceLevel level, std::string text) {
@@ -84,12 +98,12 @@ void TraceManager::traceError(std::string text, std::exception e) {
 	}
 }
 
-void TraceManager::traceSimulation(Util::TraceLevel level, std::string text) {
-	traceSimulation(text, level);
+void TraceManager::traceSimulation(void* thisobject, Util::TraceLevel level, std::string text) {
+	traceSimulation(thisobject, text, level);
 }
 
-void TraceManager::traceSimulation(std::string text, Util::TraceLevel level) {
-	if (_traceConditionPassed(level)) {
+void TraceManager::traceSimulation(void* thisobject, std::string text, Util::TraceLevel level) {
+	if (_traceSimulationConditionPassed(level, thisobject)) {
 		text = Util::Indent() + text;
 		//text = "L" + std::to_string(static_cast<int> (level)) + "    " + Util::Indent() + text;
 		TraceSimulationEvent e = TraceSimulationEvent(level, 0.0, nullptr, nullptr, text);
@@ -103,12 +117,12 @@ void TraceManager::traceSimulation(std::string text, Util::TraceLevel level) {
 	}
 }
 
-void TraceManager::traceSimulation(Util::TraceLevel level, double time, Entity* entity, ModelComponent* component, std::string text) {
-	traceSimulation(time, entity, component, text, level);
+void TraceManager::traceSimulation(void* thisobject, Util::TraceLevel level, double time, Entity* entity, ModelComponent* component, std::string text) {
+	traceSimulation(thisobject, time, entity, component, text, level);
 }
 
-void TraceManager::traceSimulation(double time, Entity* entity, ModelComponent* component, std::string text, Util::TraceLevel level) {
-	if (_traceConditionPassed(level)) {
+void TraceManager::traceSimulation(void* thisobject, double time, Entity* entity, ModelComponent* component, std::string text, Util::TraceLevel level) {
+	if (_traceSimulationConditionPassed(level, thisobject)) {
 		text = Util::Indent() + text;
 		TraceSimulationEvent e = TraceSimulationEvent(level, time, entity, component, text);
 		for (std::list<traceSimulationListener>::iterator it = this->_traceSimulationHandlers->list()->begin(); it != _traceSimulationHandlers->list()->end(); it++) {
@@ -143,4 +157,14 @@ List<std::string>* TraceManager::errorMessages() const {
 
 bool TraceManager::_traceConditionPassed(Util::TraceLevel level) {
 	return /*this->_debugged &&*/ static_cast<int> (this->_traceLevel) >= static_cast<int> (level);
+}
+
+bool TraceManager::_traceSimulationConditionPassed(Util::TraceLevel level, void* thisobject) {
+	bool result = _traceConditionPassed(level);
+	bool isException = false;
+	if (result) {
+		isException = (_traceSimulationExceptionRule->find(thisobject) != _traceSimulationExceptionRule->list()->end());
+	}
+	result &= (_traceSimulationRuleAllAllowed && !isException) || (!_traceSimulationRuleAllAllowed && isException); // xor
+	return result;
 }

@@ -42,11 +42,12 @@ public: // g&s
 	std::string getFilename() const;
 protected: // virtual
 	virtual void _execute(Entity* entity);
-	virtual void _initBetweenReplications();
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+protected: // virtual
+	//virtual void _initBetweenReplications();
 	virtual bool _check(std::string* errorMessage);
-	//virtual void _createInternalElements();
+	//virtual void _createInternalData();
 private: // methods
 	bool _doStep();
 private: // attributes 1:1

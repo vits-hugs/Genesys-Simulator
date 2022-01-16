@@ -44,8 +44,7 @@ bool DummyComponent::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-void DummyComponent::_initBetweenReplications() {
-}
+//void DummyComponent::_initBetweenReplications() {}
 
 std::map<std::string, std::string>* DummyComponent::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
@@ -53,15 +52,14 @@ std::map<std::string, std::string>* DummyComponent::_saveInstance(bool saveDefau
 	return fields;
 }
 
-bool DummyComponent::_check(std::string* errorMessage) {
-	bool resultAll = true;
-	// @TODO: not implemented yet
-	*errorMessage += "";
-	return resultAll;
-}
+//bool DummyComponent::_check(std::string* errorMessage) {
+//	bool resultAll = true;
+//	// @TODO: not implemented yet
+//	*errorMessage += "";
+//	return resultAll;
+//}
 
-void DummyComponent::_createInternalElements() {
-}
+//void DummyComponent::_createInternalData() {}
 
 PluginInformation* DummyComponent::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<DummyComponent>(), &DummyComponent::LoadInstance);

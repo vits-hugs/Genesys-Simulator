@@ -26,9 +26,9 @@ module, entity statistics (such as time or costing), general observations, and i
 statistics (from some time stamp to the current simulation time). A count type of
 statistic is available as well. Tally and Counter sets can also be specified.
 TYPICAL USES
- Collect the number of jobs completed each hour
- Count how many orders have been late being fulfilled
- Record the time spent by priority customers in the main check-out line
+* Collect the number of jobs completed each hour
+* Count how many orders have been late being fulfilled
+* Record the time spent by priority customers in the main check-out line
 PROMPTS
 Prompt Description
 Name Unique module identifier displayed on the module shape.
@@ -79,16 +79,17 @@ public:
 protected:
 	virtual void _execute(Entity* entity);
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual void _initBetweenReplications();
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+protected:
+	//virtual void _initBetweenReplications();
 	virtual bool _check(std::string* errorMessage);
-	virtual void _createInternalElements();
+	virtual void _createInternalData();
 private:
 	std::string _expression = "";
 	std::string _expressionName = "";
 	std::string _filename = "";
 private:
-	// not a child element
+	// not a child modeldatum
 	StatisticsCollector* _cstatExpression; /* @TODO: Cretae an internal class to agregate ExpressionStatisticsColelctor, and change Record to got a list of it, so Record cn record a set of expressions into a set of files */
 };
 

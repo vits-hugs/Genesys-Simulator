@@ -198,11 +198,12 @@ public: // indentation and string
 	static std::string SetW(std::string text, unsigned short width);
 	static std::string StrTimeUnitShort(Util::TimeUnit timeUnit);
 	static std::string StrTimeUnitLong(Util::TimeUnit timeUnit);
-public: // identitification
+public: // identitification //@TODO: CHECK ALL, since some should be private and available to FRIEND classes in the kernel
 	static Util::identification GenerateNewId();
 	static Util::identification GenerateNewIdOfType(std::string objtype);
 	static Util::identification GetLastIdOfType(std::string objtype);
 	static void ResetIdOfType(std::string objtype);
+	static void ResetAllIds();
 
 public: // simulation support
 	static double TimeUnitConvert(Util::TimeUnit timeUnit1, Util::TimeUnit timeUnit2);
@@ -226,7 +227,7 @@ public: // template implementations
 		}
 	}
 	/*!
-	 * Every component or element has a unique ID for its class, but not unique for other classes. IDs are generated sequentially for each class.
+	 * Every component or modeldatum has a unique ID for its class, but not unique for other classes. IDs are generated sequentially for each class.
 	 */
 	template<class T> static Util::identification GenerateNewIdOfType() {
 		std::string objtype = Util::TypeOf<T>();

@@ -44,8 +44,7 @@ bool Remove::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-void Remove::_initBetweenReplications() {
-}
+//void Remove::_initBetweenReplications() {}
 
 std::map<std::string, std::string>* Remove::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);

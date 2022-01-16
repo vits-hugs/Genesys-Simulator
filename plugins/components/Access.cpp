@@ -45,8 +45,7 @@ bool Access::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-void Access::_initBetweenReplications() {
-}
+//void Access::_initBetweenReplications() {}
 
 std::map<std::string, std::string>* Access::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);

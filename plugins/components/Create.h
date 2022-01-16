@@ -30,10 +30,10 @@ Entities are created using a schedule or based on a time between arrivals. Entit
 then leave the module to begin processing through the system. The entity type is
 specified in this module.
 TYPICAL USES
- The start of a part’s production in a manufacturing line
- A document’s arrival (for example, order, check, application) into a business
+* The start of a part’s production in a manufacturing line
+* A document’s arrival (for example, order, check, application) into a business
 process
- A customer’s arrival at a service process (for example, retail store, restaurant,
+* A customer’s arrival at a service process (for example, retail store, restaurant,
 information desk)
 PROMPTS
 Prompt Description
@@ -79,9 +79,9 @@ protected:
 	virtual void _initBetweenReplications();
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
-	virtual void _createInternalElements();
+	virtual void _createInternalData();
 private:
-	Counter* _numberOut = nullptr; // children element
+	Counter* _numberOut = nullptr; // internel modeldatum
 	double _lastArrival = -1.0;
 };
 

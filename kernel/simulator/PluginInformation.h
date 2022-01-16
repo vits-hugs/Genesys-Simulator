@@ -19,14 +19,14 @@
 #include <string>
 
 //namespace GenesysKernel {
-class ModelElement;
+class ModelData;
 class ModelComponent;
 class Model;
-class ElementManager;
+class ModelDataManager;
 
 // @TODO: the following 2 types were diffferent but now on they are the same and should be merged
 typedef ModelComponent* (*StaticLoaderComponentInstance)(Model*, std::map<std::string, std::string>*);
-typedef ModelElement* (*StaticLoaderElementInstance)(Model*, std::map<std::string, std::string>*);
+typedef ModelData* (*StaticLoaderElementInstance)(Model*, std::map<std::string, std::string>*);
 class PluginInformation;
 typedef PluginInformation* (*StaticGetPluginInformation)();
 

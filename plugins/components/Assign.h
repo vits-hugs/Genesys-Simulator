@@ -25,9 +25,9 @@ This module is used for assigning new values to variables, entity attributes, en
 types, entity pictures, or other system variables. Multiple assignments can be made
 with a single Assign module.
 TYPICAL USES
- Accumulate the number of subassemblies added to a part
- Change an entity’s type to represent the customer copy of a multi-page form
- Establish a customer’s priority
+* Accumulate the number of subassemblies added to a part
+* Change an entity’s type to represent the customer copy of a multi-page form
+* Establish a customer’s priority
 PROMPTS
  Prompt Description
 Name Unique module identifier displayed on the module shape.
@@ -99,8 +99,9 @@ public:
 protected:
 	virtual void _execute(Entity* entity);
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual void _initBetweenReplications();
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+protected:
+	//virtual void _initBetweenReplications();
 	virtual bool _check(std::string* errorMessage);
 private:
 private:

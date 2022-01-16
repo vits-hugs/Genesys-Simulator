@@ -44,8 +44,7 @@ bool Search::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-void Search::_initBetweenReplications() {
-}
+//void Search::_initBetweenReplications() {}
 
 std::map<std::string, std::string>* Search::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);

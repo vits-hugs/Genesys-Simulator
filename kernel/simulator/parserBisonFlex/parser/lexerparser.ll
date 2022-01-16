@@ -10,7 +10,7 @@
 # include "obj_t.h"
 # include "../../util/Util.h"
 # include "../../util/List.h"
-# include "../ModelElement.h"
+# include "../ModelData.h"
 # include "../Attribute.h"
 # include "../StatisticsCollector.h"
 /**begin_Includes_plugins**/
@@ -209,12 +209,12 @@ L      [A-Za-z0-9_.]+
 T
 
 {L}   {
-        ModelElement* element; 
+        ModelData* element; 
 
 		//std::cout << "Verificando o que é o Literal \""+std::string(yytext)+"\"\n";
 		//std::cout << driver.getModel()->getInfos()->getName() << std::endl;
         // check if it is an ATTRIBUTE (and return the attribute ID (and not the value!)
-		element = driver.getModel()->getElements()->getElement(Util::TypeOf<Attribute>(), std::string(yytext));
+		element = driver.getModel()->getData()->getData(Util::TypeOf<Attribute>(), std::string(yytext));
         if (element != nullptr) {
 			//std::cout << "Found attribute" << std::string(yytext) << std::endl;
             return yy::genesyspp_parser::make_ATRIB(obj_t(0, Util::TypeOf<Attribute>(), element->getId()),loc);
@@ -222,7 +222,7 @@ T
 
 
         //check CSTAT
-        element = driver.getModel()->getElements()->getElement(Util::TypeOf<StatisticsCollector>(), std::string(yytext));
+        element = driver.getModel()->getData()->getData(Util::TypeOf<StatisticsCollector>(), std::string(yytext));
         if (element != nullptr) { 
             return yy::genesyspp_parser::make_CSTAT(obj_t(0, Util::TypeOf<StatisticsCollector>(), element->getId()),loc);
         }
@@ -231,7 +231,7 @@ T
 
 /**begin_LexicalLiterals:Variable**/
         // check VARIABLE
-        element = driver.getModel()->getElements()->getElement(Util::TypeOf<Variable>(), std::string(yytext));
+        element = driver.getModel()->getData()->getData(Util::TypeOf<Variable>(), std::string(yytext));
         if (element != nullptr) { // it is a variable
             Variable* var = static_cast<Variable*>(element);
             //double variableID = var->getId();// ->getValue(); // var->getId()
@@ -242,7 +242,7 @@ T
 
 /**begin_LexicalLiterals:Formula**/
         // check FORMULA
-        element = driver.getModel()->getElements()->getElement(Util::TypeOf<Formula>(), std::string(yytext));
+        element = driver.getModel()->getData()->getData(Util::TypeOf<Formula>(), std::string(yytext));
         if (element != nullptr) { // it is a FORMULA
             Formula* form = static_cast<Formula*>(element);
             //double formulaValue = form->getValue(); // return only formula ID
@@ -253,7 +253,7 @@ T
 
 /**begin_LexicalLiterals:Queue**/
         // check QUEUE
-        element = driver.getModel()->getElements()->getElement(Util::TypeOf<Queue>(), std::string(yytext));
+        element = driver.getModel()->getData()->getData(Util::TypeOf<Queue>(), std::string(yytext));
         if (element != nullptr) { 
             return yy::genesyspp_parser::make_QUEUE(obj_t(0, Util::TypeOf<Queue>(), element->getId()),loc);
         }
@@ -261,7 +261,7 @@ T
 
 /**begin_LexicalLiterals:Resource**/
         // check RESOURCE
-        element = driver.getModel()->getElements()->getElement(Util::TypeOf<Resource>(), std::string(yytext));
+        element = driver.getModel()->getData()->getData(Util::TypeOf<Resource>(), std::string(yytext));
         if (element != nullptr) { 
             return yy::genesyspp_parser::make_RESOURCE(obj_t(0, Util::TypeOf<Resource>(), element->getId()),loc);
         }
@@ -269,7 +269,7 @@ T
 
 /**begin_LexicalLiterals:Set**/
         //check SET
-        element = driver.getModel()->getElements()->getElement(Util::TypeOf<Set>(), std::string(yytext));
+        element = driver.getModel()->getData()->getData(Util::TypeOf<Set>(), std::string(yytext));
         if (element != nullptr) { 
             return yy::genesyspp_parser::make_SET(obj_t(0, Util::TypeOf<Set>(), element->getId()),loc);
         }

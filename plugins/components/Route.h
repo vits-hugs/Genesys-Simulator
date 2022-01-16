@@ -31,9 +31,9 @@ If the station destination is entered as By Sequence, the next station is determ
 the entity’s sequence and step within the set (defined by special-purpose attributes
 Entity.Sequence and Entity.Jobstep, respectively).
 TYPICAL USES
- Send a part to its next processing station based on its routing slip
- Send an account balance call to an account agent
- Send restaurant customers to a specific table
+* Send a part to its next processing station based on its routing slip
+* Send an account balance call to an account agent
+* Send restaurant customers to a specific table
 PROMPTS
 Prompt Description
 Name Unique name of the module that will be displayed in the
@@ -73,14 +73,14 @@ public:
 	Util::TimeUnit getRouteTimeTimeUnit() const;
 	void setRouteDestinationType(DestinationType _routeDestinationType);
 	Route::DestinationType getRouteDestinationType() const;
-public:
 protected:
 	virtual void _execute(Entity* entity);
-	virtual void _initBetweenReplications();
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+protected:
+	//virtual void _initBetweenReplications();
 	virtual bool _check(std::string* errorMessage);
-	virtual void _createInternalElements();
+	virtual void _createInternalData();
 private:
 
 	const struct DEFAULT_VALUES {
@@ -93,7 +93,7 @@ private:
 	Route::DestinationType _routeDestinationType = DEFAULT.routeDestinationType;
 private: // association
 	Station* _station;
-private: // children elements
+private: // internel elements
 	Counter* _numberIn = nullptr;
 };
 

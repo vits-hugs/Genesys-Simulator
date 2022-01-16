@@ -59,15 +59,15 @@ bool ModelPersistenceDefaultImpl1::save(std::string filename) {
 		simulationInfosToSave = _adjustFieldsToSave(fields);
 		// save infras
 		modelElementsToSave = new std::list<std::string>();
-		std::list<std::string>* elementTypenames = _model->getElements()->getElementClassnames();
+		std::list<std::string>* elementTypenames = _model->getData()->getElementClassnames();
 		const std::string UtilTypeOfCounter = Util::TypeOf<Counter>();
 		for (std::list<std::string>::iterator itTypenames = elementTypenames->begin(); itTypenames != elementTypenames->end(); itTypenames++) {
 			if ((*itTypenames) != Util::TypeOf<StatisticsCollector>() && (*itTypenames) != UtilTypeOfCounter) { // STATISTICSCOLLECTR and COUNTERs do NOT need to be saved
-				List<ModelElement*>* infras = _model->getElements()->getElementList((*itTypenames));
+				List<ModelData*>* infras = _model->getData()->getElementList((*itTypenames));
 				_model->getTracer()->trace(Util::TraceLevel::L9_mostDetailed, "Writing elements of type \"" + (*itTypenames) + "\":");
 				Util::IncIndent();
 				{
-					for (std::list<ModelElement*>::iterator it = infras->list()->begin(); it != infras->list()->end(); it++) {
+					for (std::list<ModelData*>::iterator it = infras->list()->begin(); it != infras->list()->end(); it++) {
 						_model->getTracer()->trace(Util::TraceLevel::L9_mostDetailed, "Writing " + (*itTypenames) + " \"" + (*it)->getName() + "\"");
 						fields = (*it)->SaveInstance((*it));
 						Util::IncIndent();
@@ -216,11 +216,11 @@ bool ModelPersistenceDefaultImpl1::_loadFields(std::string line) {
 			} else if (thistypename == "ModelSimulation") {
 				_model->getSimulation()->loadInstance(fields);
 			} else {
-				// this should be a ModelComponent or ModelElement.
-				ModelElement* newUselessElement = ModelElement::LoadInstance(_model, fields, false);
+				// this should be a ModelComponent or ModelData.
+				ModelData* newUselessElement = ModelData::LoadInstance(_model, fields, false);
 				if (newUselessElement != nullptr) {
 					// @TODO how free newUselessElement without invoking destructor?
-					////newUselessElement->~ModelElement(false);
+					////newUselessElement->~ModelData(false);
 					Plugin* plugin = this->_model->getParentSimulator()->getPlugins()->find(thistypename);
 					if (plugin != nullptr) {
 						res = plugin->loadAndInsertNew(_model, fields);
@@ -277,7 +277,7 @@ bool ModelPersistenceDefaultImpl1::load(std::string filename) {
 		}
 	}
 	// check if something was loaded
-	res &= (_model->getComponents()->getNumberOfComponents() > 0) & (_model->getElements()->getNumberOfElements() > 0);
+	res &= (_model->getComponents()->getNumberOfComponents() > 0) & (_model->getData()->getNumberOfElements() > 0);
 	if (res) {
 		//
 		// CONNECT LOADED COMPONENTS (must wait for all components to be loaded so they can be connected)
@@ -333,7 +333,7 @@ bool ModelPersistenceDefaultImpl1::load(std::string filename) {
 			}
 		}
 		Util::DecIndent();
-		_model->getTracer()->trace(Util::TraceLevel::L7_internal, "File successfully loaded with " + std::to_string(_model->getComponents()->getNumberOfComponents()) + " components and " + std::to_string(_model->getElements()->getNumberOfElements()) + " elements");
+		_model->getTracer()->trace(Util::TraceLevel::L7_internal, "File successfully loaded with " + std::to_string(_model->getComponents()->getNumberOfComponents()) + " components and " + std::to_string(_model->getData()->getNumberOfElements()) + " elements");
 	}
 	Util::DecIndent();
 	if (res) {

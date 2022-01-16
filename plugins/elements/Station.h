@@ -14,8 +14,8 @@
 #ifndef STATION_H
 #define STATION_H
 
-#include "../../kernel/simulator/ModelElement.h"
-#include "../../kernel/simulator/ElementManager.h"
+#include "../../kernel/simulator/ModelData.h"
+#include "../../kernel/simulator/ModelDataManager.h"
 #include "../../kernel/simulator/Plugin.h"
 #include "../../kernel/simulator/Entity.h"
 
@@ -30,9 +30,9 @@ is used to report all times and costs accrued by the entities in this station. T
 Activity Area’s name is the same as the station. If a parent Activity Area is defined,
 then it also accrues any times and costs by the entities in this station.
 TYPICAL USES
- Defining a lathe area
- Defining a set of toll booths
- Defining a food preparation area
+* Defining a lathe area
+* Defining a set of toll booths
+* Defining a food preparation area
 PROMPTS
 Prompt Description
 Name Unique name of the module that will be displayed in the
@@ -61,7 +61,7 @@ Report Statistics Specifies whether or not statistics will automatically be coll
 and stored in the report database for this station set member and
 its corresponding activity area. 
  */
-class Station : public ModelElement {
+class Station : public ModelData {
 public:
 	Station(Model* model, std::string name = "");
 	virtual ~Station();
@@ -69,7 +69,7 @@ public:
 	virtual std::string show();
 public: // static 
 	static PluginInformation* GetPluginInformation();
-	static ModelElement* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 public:
 	void initBetweenReplications();
 	void enter(Entity* entity);
@@ -80,7 +80,7 @@ protected:
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
-	virtual void _createInternalElements();
+	virtual void _createInternalData();
 private:
 	unsigned int _numberInStation = 0;
 	ModelComponent* _enterIntoStationComponent;
