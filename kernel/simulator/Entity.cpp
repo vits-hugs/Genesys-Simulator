@@ -28,15 +28,11 @@ Entity::Entity(Model* model, std::string name, bool insertIntoModel) : ModelElem
 	}
 }
 
-void Entity::setEntityTypeName(std::string entityTypeName) {//throw () {
+void Entity::setEntityTypeName(std::string entityTypeName) {
 	EntityType* entitytype = dynamic_cast<EntityType*> (_parentModel->getElements()->getElement(Util::TypeOf<EntityType>(), entityTypeName));
 	if (entitytype != nullptr) {
 		this->_entityType = entitytype;
 	}
-	//  else {
-	//	//@TODO Should it really throw an exception?? Don't think so anymore...
-	//	throw std::invalid_argument("EntityType does not exist");
-	//}
 }
 
 std::string Entity::getEntityTypeName() const {

@@ -25,45 +25,44 @@ EntityGroup::~EntityGroup() {
 }
 
 std::string EntityGroup::show() {
-	return ModelElement::show() +
-			",entities=" + this->_list->show();
+	return ModelElement::show(); // +
+	// TODO: Sow every group in the map",entities=" + this->_list->show();
 }
 
-void EntityGroup::insertElement(Entity* element) {
-	_list->insert(element);
-	this->_cstatNumberInGroup->getStatistics()->getCollector()->addValue(_list->size());
+void EntityGroup::insertElement(unsigned int idKey, Entity* element) {
+	std::map<unsigned int, List<Entity*>*>::iterator it = _groupMap->find(idKey);
+	while (it == _groupMap->end()) {
+		_groupMap->insert({idKey, new List<Entity*>()});
+		it = _groupMap->find(idKey);
+	}
+	(*it).second->insert(element);
+	_cstatNumberInGroup->getStatistics()->getCollector()->addValue((*it).second->size());
 }
 
-void EntityGroup::removeElement(Entity* element) {
-	//double tnow = this->_elements->getParentModel()->simulation()->getSimulatedTime();
-	_list->remove(element);
-	this->_cstatNumberInGroup->getStatistics()->getCollector()->addValue(_list->size());
+void EntityGroup::removeElement(unsigned int idKey, Entity * element) {
+	std::map<unsigned int, List<Entity*>*>::iterator it = _groupMap->find(idKey);
+	if (it != _groupMap->end()) {
+		(*it).second->remove(element);
+		_cstatNumberInGroup->getStatistics()->getCollector()->addValue((*it).second->size());
+	}
 }
 
-void EntityGroup::initBetweenReplications() {
-	this->_list->clear();
-	this->_cstatNumberInGroup->getStatistics()->getCollector()->clear();
+List<Entity*>* EntityGroup::getGroup(unsigned int idKey) {
+	std::map<unsigned int, List<Entity*>*>::iterator it = _groupMap->find(idKey);
+	if (it == _groupMap->end()) {
+		return new List<Entity*>(); // not found
+	} else {
+		return (*it).second;
+	}
 }
 
-unsigned int EntityGroup::size() {
-	return _list->size();
-}
-
-Entity* EntityGroup::first() {
-	return _list->front();
-}
-
-//List<Waiting*>* Group::getList() const {
-//	return _list;
-//}
-
-PluginInformation* EntityGroup::GetPluginInformation() {
+PluginInformation * EntityGroup::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<EntityGroup>(), &EntityGroup::LoadInstance);
 	info->setDescriptionHelp("//@TODO");
 	return info;
 }
 
-ModelElement* EntityGroup::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
+ModelElement * EntityGroup::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
 	EntityGroup* newElement = new EntityGroup(model);
 	try {
 		newElement->_loadInstance(fields);
@@ -88,7 +87,7 @@ std::map<std::string, std::string>* EntityGroup::_saveInstance(bool saveDefaultV
 	return fields;
 }
 
-bool EntityGroup::_check(std::string* errorMessage) {
+bool EntityGroup::_check(std::string * errorMessage) {
 	std::string newNeededAttributeName = "Entity.Group";
 	if (_parentModel->getElements()->getElement(Util::TypeOf<Attribute>(), newNeededAttributeName) == nullptr) {
 		new Attribute(_parentModel, newNeededAttributeName);

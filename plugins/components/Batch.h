@@ -82,7 +82,7 @@ public: // static
     void setRule(Batch::Rule _rule);
     Batch::Rule getRule() const;
     void setGroupedAttributes(Batch::GroupedAttribs _groupedAttributes);
-    Batch::GroupedAttribs getGroupedAttributes() const;
+	Batch::GroupedAttribs getGroupedAttributes() const;
 protected: // virtual should
 	//virtual void _initBetweenReplications();
 	virtual void _createInternalElements();
@@ -108,7 +108,7 @@ private: // attributes 1:1
 	std::string _attributeName = DEFAULT.attributeName;
 private: // attributes 1:1
 	EntityType* _groupedEntityType = nullptr;
-	EntityGroup* _unusedGroupOnlyToExistAtCompileTime = nullptr;
+	EntityGroup* _entityGroup = nullptr;
 	Queue* _queue = nullptr;
 private: // attributes 1:n
 };
