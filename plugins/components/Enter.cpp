@@ -79,6 +79,7 @@ bool Enter::_check(std::string* errorMessage) {
 PluginInformation* Enter::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Enter>(), &Enter::LoadInstance);
 	info->setReceiveTransfer(true);
+	info->setCategory("Material Handling");
 	info->insertDynamicLibFileDependence("station.so");
 	info->setDescriptionHelp("//@TODO");
 	return info;

@@ -62,6 +62,7 @@ bool Submodel::_check(std::string* errorMessage) {
 
 PluginInformation* Submodel::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Submodel>(), &Submodel::LoadInstance);
+	info->setCategory("Logic");
 	// ...
 	return info;
 }

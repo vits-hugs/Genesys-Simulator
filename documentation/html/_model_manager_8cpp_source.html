@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="software_genesys.gif"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ReGenESyS - REborned GENeric and Expansible SYstem Simulator
-   &#160;<span id="projectnumber">v22.01 (jude)</span>
+   &#160;<span id="projectnumber">v22.01 (wealljudes)</span>
    </div>
    <div id="projectbrief">Genesys is a result of teaching and research activities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics and simulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesys development he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of that tool, including its graphical interface. Genesys allowed the inclusion of new simulation components through dynamic link libraries and also the parallel execution of simulation models in a distributed environment. The development of Genesys continued until 2007, when the professor stopped teaching systems simulation classes. Ten years later the professor starts again to teach systems simulation classes and to carry out scientific research in the area. So in 2018 Genesys is reborn as ReGenesys, with new language and programming techniques, and even more ambitious goals.</div>
   </td>
@@ -125,7 +125,7 @@ $(document).ready(function(){initNavTree('_model_manager_8cpp_source.html',''); 
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keywordtype">void</span> ModelManager::insert(<a class="code" href="class_model.html">Model</a>* model) {</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    _models-&gt;insert(model);</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    this-&gt;_currentModel = model;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    _simulator-&gt;<a class="code" href="class_model.html#a7d8576f92173d8e21076c6d1e7e1350e">getTracer</a>()-&gt;trace(Util::TraceLevel::L2_results, <span class="stringliteral">&quot;Model successfully inserted&quot;</span>);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    _simulator-&gt;getTracer()-&gt;trace(Util::TraceLevel::L2_results, <span class="stringliteral">&quot;Model successfully inserted&quot;</span>);</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;}</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">void</span> ModelManager::remove(<a class="code" href="class_model.html">Model</a>* model) {</div>
@@ -196,7 +196,6 @@ $(document).ready(function(){initNavTree('_model_manager_8cpp_source.html',''); 
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordflow">return</span> _models-&gt;next();</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;}</div>
 <div class="ttc" id="aclass_model_html"><div class="ttname"><a href="class_model.html">Model</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_8h_source.html#l00044">Model.h:44</a></div></div>
-<div class="ttc" id="aclass_model_html_a7d8576f92173d8e21076c6d1e7e1350e"><div class="ttname"><a href="class_model.html#a7d8576f92173d8e21076c6d1e7e1350e">Model::getTracer</a></div><div class="ttdeci">TraceManager * getTracer() const</div><div class="ttdoc">Provides access to the class that performs the trace of simulation and replications.</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00330">Model.cpp:330</a></div></div>
 <div class="ttc" id="aclass_simulator_html"><div class="ttname"><a href="class_simulator.html">Simulator</a></div><div class="ttdef"><b>Definition:</b> <a href="_simulator_8h_source.html#l00035">Simulator.h:35</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

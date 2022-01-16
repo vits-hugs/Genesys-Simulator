@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="software_genesys.gif"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ReGenESyS - REborned GENeric and Expansible SYstem Simulator
-   &#160;<span id="projectnumber">v22.01 (jude)</span>
+   &#160;<span id="projectnumber">v22.01 (wealljudes)</span>
    </div>
    <div id="projectbrief">Genesys is a result of teaching and research activities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics and simulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesys development he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of that tool, including its graphical interface. Genesys allowed the inclusion of new simulation components through dynamic link libraries and also the parallel execution of simulation models in a distributed environment. The development of Genesys continued until 2007, when the professor stopped teaching systems simulation classes. Ten years later the professor starts again to teach systems simulation classes and to carry out scientific research in the area. So in 2018 Genesys is reborn as ReGenesys, with new language and programming techniques, and even more ambitious goals.</div>
   </td>
@@ -98,9 +98,9 @@ $(document).ready(function(){initNavTree('class_counter.html',''); initResizable
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:adbe6d5abb9c662d712e1478eb7ec11b0"><td class="memItemLeft" align="right" valign="top"><a id="adbe6d5abb9c662d712e1478eb7ec11b0"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Counter</b> (<a class="el" href="class_model.html">Model</a> *model, std::string name=&quot;&quot;, <a class="el" href="class_model_element.html">ModelElement</a> *parent=nullptr)</td></tr>
-<tr class="separator:adbe6d5abb9c662d712e1478eb7ec11b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace83539663503724ce54974b743db89a"><td class="memItemLeft" align="right" valign="top"><a id="ace83539663503724ce54974b743db89a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Counter</b> (<a class="el" href="class_model.html">Model</a> *model, std::string name=&quot;&quot;, <a class="el" href="class_model_data.html">ModelData</a> *parent=nullptr)</td></tr>
+<tr class="separator:ace83539663503724ce54974b743db89a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe88a48008847299510810b0c4631a9a"><td class="memItemLeft" align="right" valign="top"><a id="abe88a48008847299510810b0c4631a9a"></a>
 virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><b>show</b> ()</td></tr>
 <tr class="separator:abe88a48008847299510810b0c4631a9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -113,112 +113,115 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>incCountValue</b> (do
 <tr class="memitem:a35d901228b03f28d08afb2e4f62c9528"><td class="memItemLeft" align="right" valign="top"><a id="a35d901228b03f28d08afb2e4f62c9528"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>getCountValue</b> () const</td></tr>
 <tr class="separator:a35d901228b03f28d08afb2e4f62c9528"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acda0f4a6598e35a241c250635bba89c6"><td class="memItemLeft" align="right" valign="top"><a id="acda0f4a6598e35a241c250635bba89c6"></a>
-<a class="el" href="class_model_element.html">ModelElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getParent</b> () const</td></tr>
-<tr class="separator:acda0f4a6598e35a241c250635bba89c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_class_model_element"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_model_element')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_model_element.html">ModelElement</a></td></tr>
-<tr class="memitem:a4a12d3ef6f6793bf8270891452567221 inherit pub_methods_class_model_element"><td class="memItemLeft" align="right" valign="top"><a id="a4a12d3ef6f6793bf8270891452567221"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ModelElement</b> (<a class="el" href="class_model.html">Model</a> *model, std::string elementTypename, std::string name=&quot;&quot;, bool insertIntoModel=true)</td></tr>
-<tr class="separator:a4a12d3ef6f6793bf8270891452567221 inherit pub_methods_class_model_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a680e7a8a0d954d9ca9be3c5c98c42fec inherit pub_methods_class_model_element"><td class="memItemLeft" align="right" valign="top"><a id="a680e7a8a0d954d9ca9be3c5c98c42fec"></a>
+<tr class="memitem:a6dad2f5232e6f0f7046a12de85361aa5"><td class="memItemLeft" align="right" valign="top"><a id="a6dad2f5232e6f0f7046a12de85361aa5"></a>
+<a class="el" href="class_model_data.html">ModelData</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getParent</b> () const</td></tr>
+<tr class="separator:a6dad2f5232e6f0f7046a12de85361aa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_model_data"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_model_data')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_model_data.html">ModelData</a></td></tr>
+<tr class="memitem:a437b9c5cb0c39b5765ffb1619fed61b0 inherit pub_methods_class_model_data"><td class="memItemLeft" align="right" valign="top"><a id="a437b9c5cb0c39b5765ffb1619fed61b0"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ModelData</b> (<a class="el" href="class_model.html">Model</a> *model, std::string elementTypename, std::string name=&quot;&quot;, bool insertIntoModel=true)</td></tr>
+<tr class="separator:a437b9c5cb0c39b5765ffb1619fed61b0 inherit pub_methods_class_model_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc46fd5259cbf94ceb02a9414bc64cda inherit pub_methods_class_model_data"><td class="memItemLeft" align="right" valign="top"><a id="acc46fd5259cbf94ceb02a9414bc64cda"></a>
 Util::identification&#160;</td><td class="memItemRight" valign="bottom"><b>getId</b> () const</td></tr>
-<tr class="separator:a680e7a8a0d954d9ca9be3c5c98c42fec inherit pub_methods_class_model_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1c47478f3fb4ca1f9a9d73b3917dc94 inherit pub_methods_class_model_element"><td class="memItemLeft" align="right" valign="top"><a id="af1c47478f3fb4ca1f9a9d73b3917dc94"></a>
+<tr class="separator:acc46fd5259cbf94ceb02a9414bc64cda inherit pub_methods_class_model_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7543be41eb663a02920464f4cee34c4 inherit pub_methods_class_model_data"><td class="memItemLeft" align="right" valign="top"><a id="ab7543be41eb663a02920464f4cee34c4"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setName</b> (std::string name)</td></tr>
-<tr class="separator:af1c47478f3fb4ca1f9a9d73b3917dc94 inherit pub_methods_class_model_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1ff6783cf9ebda631230c6df4ff9b5a inherit pub_methods_class_model_element"><td class="memItemLeft" align="right" valign="top"><a id="aa1ff6783cf9ebda631230c6df4ff9b5a"></a>
+<tr class="separator:ab7543be41eb663a02920464f4cee34c4 inherit pub_methods_class_model_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83e358934996d2afaf048b7c31552a12 inherit pub_methods_class_model_data"><td class="memItemLeft" align="right" valign="top"><a id="a83e358934996d2afaf048b7c31552a12"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getName</b> () const</td></tr>
-<tr class="separator:aa1ff6783cf9ebda631230c6df4ff9b5a inherit pub_methods_class_model_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc8075bc72b3a00711b772978740741b inherit pub_methods_class_model_element"><td class="memItemLeft" align="right" valign="top"><a id="adc8075bc72b3a00711b772978740741b"></a>
+<tr class="separator:a83e358934996d2afaf048b7c31552a12 inherit pub_methods_class_model_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c28661b5d39e7b45a6534ce541b7977 inherit pub_methods_class_model_data"><td class="memItemLeft" align="right" valign="top"><a id="a5c28661b5d39e7b45a6534ce541b7977"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getClassname</b> () const</td></tr>
-<tr class="separator:adc8075bc72b3a00711b772978740741b inherit pub_methods_class_model_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb3008aed5e7692d3930a9f89f9eb748 inherit pub_methods_class_model_element"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_element.html#adb3008aed5e7692d3930a9f89f9eb748">isReportStatistics</a> () const</td></tr>
-<tr class="separator:adb3008aed5e7692d3930a9f89f9eb748 inherit pub_methods_class_model_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a182b0f12f1ae4da9bb23c1aa9ff01eb2 inherit pub_methods_class_model_element"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_element.html#a182b0f12f1ae4da9bb23c1aa9ff01eb2">setReportStatistics</a> (bool reportStatistics)</td></tr>
-<tr class="separator:a182b0f12f1ae4da9bb23c1aa9ff01eb2 inherit pub_methods_class_model_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27cd10ea834adf05aa3f0613264483e1 inherit pub_methods_class_model_element"><td class="memItemLeft" align="right" valign="top">std::list&lt; std::string &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_element.html#a27cd10ea834adf05aa3f0613264483e1">getChildrenElementKeys</a> () const</td></tr>
-<tr class="separator:a27cd10ea834adf05aa3f0613264483e1 inherit pub_methods_class_model_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5b594e56e4049694caea12965722491 inherit pub_methods_class_model_element"><td class="memItemLeft" align="right" valign="top"><a id="ac5b594e56e4049694caea12965722491"></a>
-<a class="el" href="class_model_element.html">ModelElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getChildElement</b> (std::string key) const</td></tr>
-<tr class="separator:ac5b594e56e4049694caea12965722491 inherit pub_methods_class_model_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a164e76bd4e8b0fbcaf5388f7e448dd71 inherit pub_methods_class_model_element"><td class="memItemLeft" align="right" valign="top"><a id="a164e76bd4e8b0fbcaf5388f7e448dd71"></a>
+<tr class="separator:a5c28661b5d39e7b45a6534ce541b7977 inherit pub_methods_class_model_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a057329a0270a9b236efb97b1c1bc5413 inherit pub_methods_class_model_data"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_data.html#a057329a0270a9b236efb97b1c1bc5413">isReportStatistics</a> () const</td></tr>
+<tr class="separator:a057329a0270a9b236efb97b1c1bc5413 inherit pub_methods_class_model_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64547d9f030a2c0f26503e90fd4b1710 inherit pub_methods_class_model_data"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_data.html#a64547d9f030a2c0f26503e90fd4b1710">setReportStatistics</a> (bool reportStatistics)</td></tr>
+<tr class="separator:a64547d9f030a2c0f26503e90fd4b1710 inherit pub_methods_class_model_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ec5215e46287a3b9c491bc0c6c7d568 inherit pub_methods_class_model_data"><td class="memItemLeft" align="right" valign="top">std::list&lt; std::string &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_data.html#a3ec5215e46287a3b9c491bc0c6c7d568">getInternalDatasKeys</a> () const</td></tr>
+<tr class="separator:a3ec5215e46287a3b9c491bc0c6c7d568 inherit pub_methods_class_model_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53af8b38bd06777e7e86cc70d489cc4e inherit pub_methods_class_model_data"><td class="memItemLeft" align="right" valign="top"><a id="a53af8b38bd06777e7e86cc70d489cc4e"></a>
+<a class="el" href="class_model_data.html">ModelData</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getInternalData</b> (std::string key) const</td></tr>
+<tr class="separator:a53af8b38bd06777e7e86cc70d489cc4e inherit pub_methods_class_model_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a033e6b2c0b8ce9b8136d5f2f0cbc1025 inherit pub_methods_class_model_data"><td class="memItemLeft" align="right" valign="top"><a id="a033e6b2c0b8ce9b8136d5f2f0cbc1025"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasChanged</b> () const</td></tr>
-<tr class="separator:a164e76bd4e8b0fbcaf5388f7e448dd71 inherit pub_methods_class_model_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a033e6b2c0b8ce9b8136d5f2f0cbc1025 inherit pub_methods_class_model_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:af7556d27cfb077c2018c17a32ff77870"><td class="memItemLeft" align="right" valign="top"><a id="af7556d27cfb077c2018c17a32ff77870"></a>
 static PluginInformation *&#160;</td><td class="memItemRight" valign="bottom"><b>GetPluginInformation</b> ()</td></tr>
 <tr class="separator:af7556d27cfb077c2018c17a32ff77870"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11a1ea6d330b0ad040e3735799a5e594"><td class="memItemLeft" align="right" valign="top"><a id="a11a1ea6d330b0ad040e3735799a5e594"></a>
-static <a class="el" href="class_model_element.html">ModelElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>LoadInstance</b> (<a class="el" href="class_model.html">Model</a> *model, std::map&lt; std::string, std::string &gt; *fields)</td></tr>
-<tr class="separator:a11a1ea6d330b0ad040e3735799a5e594"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_static_methods_class_model_element"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_class_model_element')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="class_model_element.html">ModelElement</a></td></tr>
-<tr class="memitem:a31b6f0e3b2ab2bb2d6606db88d1d2962 inherit pub_static_methods_class_model_element"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_model_element.html">ModelElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_element.html#a31b6f0e3b2ab2bb2d6606db88d1d2962">LoadInstance</a> (<a class="el" href="class_model.html">Model</a> *model, std::map&lt; std::string, std::string &gt; *fields, bool insertIntoModel)</td></tr>
-<tr class="separator:a31b6f0e3b2ab2bb2d6606db88d1d2962 inherit pub_static_methods_class_model_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3194ca697fb393342c2771cd6b0b15c0 inherit pub_static_methods_class_model_element"><td class="memItemLeft" align="right" valign="top">static std::map&lt; std::string, std::string &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_element.html#a3194ca697fb393342c2771cd6b0b15c0">SaveInstance</a> (<a class="el" href="class_model_element.html">ModelElement</a> *element)</td></tr>
-<tr class="separator:a3194ca697fb393342c2771cd6b0b15c0 inherit pub_static_methods_class_model_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9dc832d8e4622206015e1569f357fa1f inherit pub_static_methods_class_model_element"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_element.html#a9dc832d8e4622206015e1569f357fa1f">Check</a> (<a class="el" href="class_model_element.html">ModelElement</a> *element, std::string *errorMessage)</td></tr>
-<tr class="separator:a9dc832d8e4622206015e1569f357fa1f inherit pub_static_methods_class_model_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b90e02482d60ec4d8782c66cdc0a223 inherit pub_static_methods_class_model_element"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_element.html#a0b90e02482d60ec4d8782c66cdc0a223">CreateInternalElements</a> (<a class="el" href="class_model_element.html">ModelElement</a> *element)</td></tr>
-<tr class="separator:a0b90e02482d60ec4d8782c66cdc0a223 inherit pub_static_methods_class_model_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a056fc9adf943b0b87689e1d500f7c7e8 inherit pub_static_methods_class_model_element"><td class="memItemLeft" align="right" valign="top"><a id="a056fc9adf943b0b87689e1d500f7c7e8"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>InitBetweenReplications</b> (<a class="el" href="class_model_element.html">ModelElement</a> *element)</td></tr>
-<tr class="separator:a056fc9adf943b0b87689e1d500f7c7e8 inherit pub_static_methods_class_model_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cb2be1d94270bbc3e9f78395c562233"><td class="memItemLeft" align="right" valign="top"><a id="a8cb2be1d94270bbc3e9f78395c562233"></a>
+static <a class="el" href="class_model_data.html">ModelData</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>LoadInstance</b> (<a class="el" href="class_model.html">Model</a> *model, std::map&lt; std::string, std::string &gt; *fields)</td></tr>
+<tr class="separator:a8cb2be1d94270bbc3e9f78395c562233"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_methods_class_model_data"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_class_model_data')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="class_model_data.html">ModelData</a></td></tr>
+<tr class="memitem:a5e2ab4c80464e0ecaa4d86101ae2bf37 inherit pub_static_methods_class_model_data"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_model_data.html">ModelData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_data.html#a5e2ab4c80464e0ecaa4d86101ae2bf37">LoadInstance</a> (<a class="el" href="class_model.html">Model</a> *model, std::map&lt; std::string, std::string &gt; *fields, bool insertIntoModel)</td></tr>
+<tr class="separator:a5e2ab4c80464e0ecaa4d86101ae2bf37 inherit pub_static_methods_class_model_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2cc1721bcb0ab323b33ad6abc9777d0 inherit pub_static_methods_class_model_data"><td class="memItemLeft" align="right" valign="top">static std::map&lt; std::string, std::string &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_data.html#ae2cc1721bcb0ab323b33ad6abc9777d0">SaveInstance</a> (<a class="el" href="class_model_data.html">ModelData</a> *modeldatum)</td></tr>
+<tr class="separator:ae2cc1721bcb0ab323b33ad6abc9777d0 inherit pub_static_methods_class_model_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a39e5d9fc60d3cc8aea21cebe2662b6 inherit pub_static_methods_class_model_data"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_data.html#a4a39e5d9fc60d3cc8aea21cebe2662b6">Check</a> (<a class="el" href="class_model_data.html">ModelData</a> *modeldatum, std::string *errorMessage)</td></tr>
+<tr class="separator:a4a39e5d9fc60d3cc8aea21cebe2662b6 inherit pub_static_methods_class_model_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe3e2c539c1957579f13073dbfec174c inherit pub_static_methods_class_model_data"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_data.html#abe3e2c539c1957579f13073dbfec174c">CreateInternalData</a> (<a class="el" href="class_model_data.html">ModelData</a> *modeldatum)</td></tr>
+<tr class="separator:abe3e2c539c1957579f13073dbfec174c inherit pub_static_methods_class_model_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9818a356954ee2c7b60e94cb73f7c3c inherit pub_static_methods_class_model_data"><td class="memItemLeft" align="right" valign="top"><a id="aa9818a356954ee2c7b60e94cb73f7c3c"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>InitBetweenReplications</b> (<a class="el" href="class_model_data.html">ModelData</a> *modeldatum)</td></tr>
+<tr class="separator:aa9818a356954ee2c7b60e94cb73f7c3c inherit pub_static_methods_class_model_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a735fda89d7c9bf944eaae80fc314a654"><td class="memItemLeft" align="right" valign="top"><a id="a735fda89d7c9bf944eaae80fc314a654"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>_loadInstance</b> (std::map&lt; std::string, std::string &gt; *fields)</td></tr>
 <tr class="separator:a735fda89d7c9bf944eaae80fc314a654"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f0c0c844a481b3bcb094d702dd5955a"><td class="memItemLeft" align="right" valign="top"><a id="a2f0c0c844a481b3bcb094d702dd5955a"></a>
-virtual std::map&lt; std::string, std::string &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>_saveInstance</b> ()</td></tr>
-<tr class="separator:a2f0c0c844a481b3bcb094d702dd5955a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc1edde24cf04d3d7712187b26cb3a2b"><td class="memItemLeft" align="right" valign="top"><a id="acc1edde24cf04d3d7712187b26cb3a2b"></a>
+virtual std::map&lt; std::string, std::string &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>_saveInstance</b> (bool saveDefaultValues)</td></tr>
+<tr class="separator:acc1edde24cf04d3d7712187b26cb3a2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41aa5092fafe15c534206289ae6f6c7a"><td class="memItemLeft" align="right" valign="top"><a id="a41aa5092fafe15c534206289ae6f6c7a"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>_check</b> (std::string *errorMessage)</td></tr>
 <tr class="separator:a41aa5092fafe15c534206289ae6f6c7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a42ee4b4dcc5ab472c91c119ca9426215"><td class="memItemLeft" align="right" valign="top"><a id="a42ee4b4dcc5ab472c91c119ca9426215"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>_initBetweenReplications</b> ()</td></tr>
 <tr class="separator:a42ee4b4dcc5ab472c91c119ca9426215"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_methods_class_model_element"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_model_element')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_model_element.html">ModelElement</a></td></tr>
-<tr class="memitem:a3cea440e34ab5ad918c379dad500339b inherit pro_methods_class_model_element"><td class="memItemLeft" align="right" valign="top"><a id="a3cea440e34ab5ad918c379dad500339b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>_setChildElement</b> (std::string key, <a class="el" href="class_model_element.html">ModelElement</a> *child)</td></tr>
-<tr class="separator:a3cea440e34ab5ad918c379dad500339b inherit pro_methods_class_model_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2aaa53ab81f1af77fd252471100663db inherit pro_methods_class_model_element"><td class="memItemLeft" align="right" valign="top"><a id="a2aaa53ab81f1af77fd252471100663db"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>_removeChildrenElements</b> ()</td></tr>
-<tr class="separator:a2aaa53ab81f1af77fd252471100663db inherit pro_methods_class_model_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af220e9a43c429fb8e750f6ae5cd58550 inherit pro_methods_class_model_element"><td class="memItemLeft" align="right" valign="top"><a id="af220e9a43c429fb8e750f6ae5cd58550"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>_removeChildElement</b> (std::string key)</td></tr>
-<tr class="separator:af220e9a43c429fb8e750f6ae5cd58550 inherit pro_methods_class_model_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9625a640e5d33dbe6b8f379d65c136da inherit pro_methods_class_model_element"><td class="memItemLeft" align="right" valign="top">virtual ParserChangesInformation *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_element.html#a9625a640e5d33dbe6b8f379d65c136da">_getParserChangesInformation</a> ()</td></tr>
-<tr class="separator:a9625a640e5d33dbe6b8f379d65c136da inherit pro_methods_class_model_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab836c5b5bb0091c92f0d14582327ce6e inherit pro_methods_class_model_element"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_element.html#ab836c5b5bb0091c92f0d14582327ce6e">_createInternalElements</a> ()</td></tr>
-<tr class="separator:ab836c5b5bb0091c92f0d14582327ce6e inherit pro_methods_class_model_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_class_model_data"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_model_data')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_model_data.html">ModelData</a></td></tr>
+<tr class="memitem:a47019940ec8bc9d2d84c43e394d01a08 inherit pro_methods_class_model_data"><td class="memItemLeft" align="right" valign="top"><a id="a47019940ec8bc9d2d84c43e394d01a08"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>_setInternalData</b> (std::string key, <a class="el" href="class_model_data.html">ModelData</a> *child)</td></tr>
+<tr class="separator:a47019940ec8bc9d2d84c43e394d01a08 inherit pro_methods_class_model_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c64e81ae99afb4bfef745a3167e3d33 inherit pro_methods_class_model_data"><td class="memItemLeft" align="right" valign="top"><a id="a4c64e81ae99afb4bfef745a3167e3d33"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>_removeInternalDatas</b> ()</td></tr>
+<tr class="separator:a4c64e81ae99afb4bfef745a3167e3d33 inherit pro_methods_class_model_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b85bb8a7152223a118fb41841abd0b4 inherit pro_methods_class_model_data"><td class="memItemLeft" align="right" valign="top"><a id="a8b85bb8a7152223a118fb41841abd0b4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>_removeInternalData</b> (std::string key)</td></tr>
+<tr class="separator:a8b85bb8a7152223a118fb41841abd0b4 inherit pro_methods_class_model_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d8e74ef2ae7bd0780821402f333d32a inherit pro_methods_class_model_data"><td class="memItemLeft" align="right" valign="top"><a id="a9d8e74ef2ae7bd0780821402f333d32a"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_getSaveDefaultsOption</b> ()</td></tr>
+<tr class="separator:a9d8e74ef2ae7bd0780821402f333d32a inherit pro_methods_class_model_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ee040a5758846e27de644a01741ec1a inherit pro_methods_class_model_data"><td class="memItemLeft" align="right" valign="top">virtual ParserChangesInformation *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_data.html#a6ee040a5758846e27de644a01741ec1a">_getParserChangesInformation</a> ()</td></tr>
+<tr class="separator:a6ee040a5758846e27de644a01741ec1a inherit pro_methods_class_model_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac768057b3f7969027eaff514071c3de4 inherit pro_methods_class_model_data"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_data.html#ac768057b3f7969027eaff514071c3de4">_createInternalData</a> ()</td></tr>
+<tr class="separator:ac768057b3f7969027eaff514071c3de4 inherit pro_methods_class_model_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pro_attribs_class_model_element"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_model_element')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_model_element.html">ModelElement</a></td></tr>
-<tr class="memitem:a229bc8e50abe67b0182aca60513debb3 inherit pro_attribs_class_model_element"><td class="memItemLeft" align="right" valign="top"><a id="a229bc8e50abe67b0182aca60513debb3"></a>
+<tr class="inherit_header pro_attribs_class_model_data"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_model_data')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_model_data.html">ModelData</a></td></tr>
+<tr class="memitem:a2cdafa9390b35cfe60ca8adfb114a389 inherit pro_attribs_class_model_data"><td class="memItemLeft" align="right" valign="top"><a id="a2cdafa9390b35cfe60ca8adfb114a389"></a>
 Util::identification&#160;</td><td class="memItemRight" valign="bottom"><b>_id</b></td></tr>
-<tr class="separator:a229bc8e50abe67b0182aca60513debb3 inherit pro_attribs_class_model_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c4a58886b4ca51831ad096d0b994e0b inherit pro_attribs_class_model_element"><td class="memItemLeft" align="right" valign="top"><a id="a6c4a58886b4ca51831ad096d0b994e0b"></a>
+<tr class="separator:a2cdafa9390b35cfe60ca8adfb114a389 inherit pro_attribs_class_model_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00fed3859fafe07ee884ce0e3d7f0585 inherit pro_attribs_class_model_data"><td class="memItemLeft" align="right" valign="top"><a id="a00fed3859fafe07ee884ce0e3d7f0585"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>_typename</b></td></tr>
-<tr class="separator:a6c4a58886b4ca51831ad096d0b994e0b inherit pro_attribs_class_model_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e370e9ccb2794c0a04633249e147ac5 inherit pro_attribs_class_model_element"><td class="memItemLeft" align="right" valign="top"><a id="a3e370e9ccb2794c0a04633249e147ac5"></a>
+<tr class="separator:a00fed3859fafe07ee884ce0e3d7f0585 inherit pro_attribs_class_model_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a811a16a42997a234e73298aa2f5bdd01 inherit pro_attribs_class_model_data"><td class="memItemLeft" align="right" valign="top"><a id="a811a16a42997a234e73298aa2f5bdd01"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>_reportStatistics</b></td></tr>
-<tr class="separator:a3e370e9ccb2794c0a04633249e147ac5 inherit pro_attribs_class_model_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a438e8f37141f8e1e330e2c361b57e0a1 inherit pro_attribs_class_model_element"><td class="memItemLeft" align="right" valign="top"><a id="a438e8f37141f8e1e330e2c361b57e0a1"></a>
+<tr class="separator:a811a16a42997a234e73298aa2f5bdd01 inherit pro_attribs_class_model_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3d3e76d8de3a49ef1047a32a64da5f6 inherit pro_attribs_class_model_data"><td class="memItemLeft" align="right" valign="top"><a id="af3d3e76d8de3a49ef1047a32a64da5f6"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>_hasChanged</b></td></tr>
-<tr class="separator:a438e8f37141f8e1e330e2c361b57e0a1 inherit pro_attribs_class_model_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e46159724bc24d7d2642e1afdc1b2c3 inherit pro_attribs_class_model_element"><td class="memItemLeft" align="right" valign="top"><a id="a1e46159724bc24d7d2642e1afdc1b2c3"></a>
+<tr class="separator:af3d3e76d8de3a49ef1047a32a64da5f6 inherit pro_attribs_class_model_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c40a60ba4bc26351f2466d4f26fc0d0 inherit pro_attribs_class_model_data"><td class="memItemLeft" align="right" valign="top"><a id="a4c40a60ba4bc26351f2466d4f26fc0d0"></a>
 <a class="el" href="class_model.html">Model</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_parentModel</b></td></tr>
-<tr class="separator:a1e46159724bc24d7d2642e1afdc1b2c3 inherit pro_attribs_class_model_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa750ae458ace63748def6b771b452793 inherit pro_attribs_class_model_element"><td class="memItemLeft" align="right" valign="top"><a id="aa750ae458ace63748def6b771b452793"></a>
-std::map&lt; std::string, <a class="el" href="class_model_element.html">ModelElement</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>_childrenElements</b> = new std::map&lt;std::string, <a class="el" href="class_model_element.html">ModelElement</a>*&gt;()</td></tr>
-<tr class="separator:aa750ae458ace63748def6b771b452793 inherit pro_attribs_class_model_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a4c40a60ba4bc26351f2466d4f26fc0d0 inherit pro_attribs_class_model_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36985faaaaec6994e2ba6efdb6070ee6 inherit pro_attribs_class_model_data"><td class="memItemLeft" align="right" valign="top"><a id="a36985faaaaec6994e2ba6efdb6070ee6"></a>
+std::map&lt; std::string, <a class="el" href="class_model_data.html">ModelData</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>_internalData</b> = new std::map&lt;std::string, <a class="el" href="class_model_data.html">ModelData</a>*&gt;()</td></tr>
+<tr class="separator:a36985faaaaec6994e2ba6efdb6070ee6 inherit pro_attribs_class_model_data"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The <a class="el" href="class_counter.html">Counter</a> element is used to count events, and its internal count value is added by a configurable amount, usually incremented by one. </p>
+<div class="textblock"><p>The <a class="el" href="class_counter.html">Counter</a> modeldatum is used to count events, and its internal count value is added by a configurable amount, usually incremented by one. </p>
 
 <p class="definition">Definition at line <a class="el" href="_counter_8h_source.html#l00025">25</a> of file <a class="el" href="_counter_8h_source.html">Counter.h</a>.</p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>

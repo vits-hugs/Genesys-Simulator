@@ -1,8 +1,0 @@
-<map id="SecondExampleOfSimulation::main" name="SecondExampleOfSimulation::main">
-<area shape="rect" id="node1" title=" " alt="" coords="5,57,216,98"/>
-<area shape="rect" id="node2" href="$class_model.html#a01c9bc6de757ca0662267e3c92a6973a" title="Checks the integrity and consistency of the model, possibly corrects some inconsistencies,..." alt="" coords="568,90,676,116"/>
-<area shape="rect" id="node4" href="$class_model_component.html#aa4ec7613ed742bbab9a9b6d07ac0dc23" title="Returns a list of components directly connected to the output. Usually the components have a single o..." alt="" coords="264,39,520,66"/>
-<area shape="rect" id="node5" href="$class_model.html#a5e731fa6d07c7e6f18352e38eb4ed8fa" title="Provides access to the class that manages the model simulation." alt="" coords="323,90,461,116"/>
-<area shape="rect" id="node6" href="$class_model_simulation.html#a7c9dcb206388ce068f3add6dda1d6117" title="Starts a sequential execution of a simulation, ie, a set of replications of this model." alt="" coords="307,140,477,167"/>
-<area shape="rect" id="node3" href="$class_model.html#a077de04d17d7351a5e16066f93a064d4" title="Provides access to the class that performs the trace of simulation and replications." alt="" coords="724,115,832,142"/>
-</map>

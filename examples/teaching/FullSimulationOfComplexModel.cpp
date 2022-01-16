@@ -23,7 +23,7 @@
 // Model elements
 #include "../../kernel/simulator/EntityType.h"
 #include "../../kernel/simulator/Attribute.h"
-#include "../../plugins/elements/Variable.h"
+#include "../../plugins/data/Variable.h"
 
 FullSimulationOfComplexModel::FullSimulationOfComplexModel() {
 

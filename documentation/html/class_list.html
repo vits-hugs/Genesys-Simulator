@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="software_genesys.gif"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ReGenESyS - REborned GENeric and Expansible SYstem Simulator
-   &#160;<span id="projectnumber">v22.01 (jude)</span>
+   &#160;<span id="projectnumber">v22.01 (wealljudes)</span>
    </div>
    <div id="projectbrief">Genesys is a result of teaching and research activities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics and simulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesys development he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of that tool, including its graphical interface. Genesys allowed the inclusion of new simulation components through dynamic link libraries and also the parallel execution of simulation models in a distributed environment. The development of Genesys continued until 2007, when the professor stopped teaching systems simulation classes. Ten years later the professor starts again to teach systems simulation classes and to carry out scientific research in the area. So in 2018 Genesys is reborn as ReGenesys, with new language and programming techniques, and even more ambitious goals.</div>
   </td>
@@ -87,6 +87,7 @@ $(document).ready(function(){initNavTree('class_list.html',''); initResizable();
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_list-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">List&lt; T &gt; Class Template Reference</div>  </div>
@@ -132,18 +133,18 @@ template&lt;typename U &gt; </td></tr>
 <tr class="memitem:a8f30a708a550bcca33f64dc6fea8affa"><td class="memItemLeft" align="right" valign="top"><a id="a8f30a708a550bcca33f64dc6fea8affa"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>show</b> ()</td></tr>
 <tr class="separator:a8f30a708a550bcca33f64dc6fea8affa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f50d3342e016ec57876798ad4e8bf31"><td class="memItemLeft" align="right" valign="top"><a id="a2f50d3342e016ec57876798ad4e8bf31"></a>
-std::list&lt; T &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><b>find</b> (T element)</td></tr>
-<tr class="separator:a2f50d3342e016ec57876798ad4e8bf31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a518d00fd77740525522949d4316e8826"><td class="memItemLeft" align="right" valign="top"><a id="a518d00fd77740525522949d4316e8826"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>insert</b> (T element)</td></tr>
-<tr class="separator:a518d00fd77740525522949d4316e8826"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ac08f7f3dad900b99e9a73e76d2beee"><td class="memItemLeft" align="right" valign="top"><a id="a0ac08f7f3dad900b99e9a73e76d2beee"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>remove</b> (T element)</td></tr>
-<tr class="separator:a0ac08f7f3dad900b99e9a73e76d2beee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af7370c56bb6396b7ed26ab20a81eff6d"><td class="memItemLeft" align="right" valign="top"><a id="af7370c56bb6396b7ed26ab20a81eff6d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setAtRank</b> (unsigned int rank, T element)</td></tr>
-<tr class="separator:af7370c56bb6396b7ed26ab20a81eff6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f1d46aa42eec5a86fe8003a66d8161b"><td class="memItemLeft" align="right" valign="top"><a id="a3f1d46aa42eec5a86fe8003a66d8161b"></a>
+std::list&lt; T &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><b>find</b> (T modeldatum)</td></tr>
+<tr class="separator:a3f1d46aa42eec5a86fe8003a66d8161b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfd13f8465701049feacb9d873b744ec"><td class="memItemLeft" align="right" valign="top"><a id="adfd13f8465701049feacb9d873b744ec"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>insert</b> (T modeldatum)</td></tr>
+<tr class="separator:adfd13f8465701049feacb9d873b744ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba7710b52998e4d2c183818daada60fb"><td class="memItemLeft" align="right" valign="top"><a id="aba7710b52998e4d2c183818daada60fb"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>remove</b> (T modeldatum)</td></tr>
+<tr class="separator:aba7710b52998e4d2c183818daada60fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3910b7d8061f93332502d2abc8263151"><td class="memItemLeft" align="right" valign="top"><a id="a3910b7d8061f93332502d2abc8263151"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setAtRank</b> (unsigned int rank, T modeldatum)</td></tr>
+<tr class="separator:a3910b7d8061f93332502d2abc8263151"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8cb47b18ef3c8e1496ed0e668c07c188"><td class="memItemLeft" align="right" valign="top"><a id="a8cb47b18ef3c8e1496ed0e668c07c188"></a>
 T&#160;</td><td class="memItemRight" valign="bottom"><b>getAtRank</b> (unsigned int rank)</td></tr>
 <tr class="separator:a8cb47b18ef3c8e1496ed0e668c07c188"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -165,6 +166,18 @@ T&#160;</td><td class="memItemRight" valign="bottom"><b>current</b> ()</td></tr>
 <tr class="memitem:a31a37746c0d960f2f2bb4071b2735c5e"><td class="memItemLeft" align="right" valign="top"><a id="a31a37746c0d960f2f2bb4071b2735c5e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setSortFunc</b> (CompFunct _sortFunc)</td></tr>
 <tr class="separator:a31a37746c0d960f2f2bb4071b2735c5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a36f933626947f44aad4f98f101119de4"><td class="memItemLeft" align="right" valign="top"><a id="a36f933626947f44aad4f98f101119de4"></a>
+std::list&lt; T &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>_list</b></td></tr>
+<tr class="separator:a36f933626947f44aad4f98f101119de4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72d4fe466db9e670308cc739bcb00a6d"><td class="memItemLeft" align="right" valign="top">CompFunct&#160;</td><td class="memItemRight" valign="bottom"><b>_sortFunc</b></td></tr>
+<tr class="separator:a72d4fe466db9e670308cc739bcb00a6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bc4474a75ba5662e6cdde9cb54dd986"><td class="memItemLeft" align="right" valign="top"><a id="a5bc4474a75ba5662e6cdde9cb54dd986"></a>
+std::list&lt; T &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_list.html#a5bc4474a75ba5662e6cdde9cb54dd986">_it</a></td></tr>
+<tr class="memdesc:a5bc4474a75ba5662e6cdde9cb54dd986"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default function: insert at the end of the list. <br /></td></tr>
+<tr class="separator:a5bc4474a75ba5662e6cdde9cb54dd986"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename T&gt;<br />
@@ -172,8 +185,38 @@ class List&lt; T &gt;</h3>
 
 <p><a class="el" href="class_list.html">List</a> corresponds to an extended version of the list that must guarantee the consistency of the elements that make up the simulation model. </p>
 
-<p class="definition">Definition at line <a class="el" href="_list_8h_source.html#l00032">32</a> of file <a class="el" href="_list_8h_source.html">List.h</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<p class="definition">Definition at line <a class="el" href="_list_8h_source.html#l00031">31</a> of file <a class="el" href="_list_8h_source.html">List.h</a>.</p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="a72d4fe466db9e670308cc739bcb00a6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72d4fe466db9e670308cc739bcb00a6d">&#9670;&nbsp;</a></span>_sortFunc</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CompFunct <a class="el" href="class_list.html">List</a>&lt; T &gt;::_sortFunc</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">{[](<span class="keyword">const</span> T, <span class="keyword">const</span> T) {</div>
+<div class="line">            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line">        }}</div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="_list_8h_source.html#l00068">68</a> of file <a class="el" href="_list_8h_source.html">List.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/util/<a class="el" href="_list_8h_source.html">List.h</a></li>
 </ul>
 </div><!-- contents -->

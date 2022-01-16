@@ -14,9 +14,9 @@
 #include "Assign.h"
 #include <string>
 #include "../../kernel/simulator/Model.h"
-#include "../elements/Variable.h"
+#include "../data/Variable.h"
 #include "../../kernel/simulator/Attribute.h"
-#include "../elements/Resource.h"
+#include "../data/Resource.h"
 
 Assign::Assign(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Assign>(), name) {
 }
@@ -38,6 +38,7 @@ PluginInformation* Assign::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Assign>(), &Assign::LoadInstance);
 	//info->insertDynamicLibFileDependence("attribute.so");
 	info->insertDynamicLibFileDependence("variable.so");
+	info->setCategory("Discrete Processing");
 	std::string text = "";
 	text += "This module is used for assigning new values to variables, entity attributes, entity types, entity pictures, or other system variables.";
 	text += " Multiple assignments can be made with a single Assign module.";

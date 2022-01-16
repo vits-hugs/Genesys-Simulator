@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ReGenESyS - REborned GENeric and Expansible SYstem Simulator: /home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/plugins/elements/Sequence.h Source File</title>
+<title>ReGenESyS - REborned GENeric and Expansible SYstem Simulator: /home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/plugins/data/Sequence.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="software_genesys.gif"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ReGenESyS - REborned GENeric and Expansible SYstem Simulator
-   &#160;<span id="projectnumber">v22.01 (jude)</span>
+   &#160;<span id="projectnumber">v22.01 (wealljudes)</span>
    </div>
    <div id="projectbrief">Genesys is a result of teaching and research activities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics and simulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesys development he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of that tool, including its graphical interface. Genesys allowed the inclusion of new simulation components through dynamic link libraries and also the parallel execution of simulation models in a distributed environment. The development of Genesys continued until 2007, when the professor stopped teaching systems simulation classes. Ten years later the professor starts again to teach systems simulation classes and to carry out scientific research in the area. So in 2018 Genesys is reborn as ReGenesys, with new language and programming techniques, and even more ambitious goals.</div>
   </td>
@@ -104,12 +104,12 @@ $(document).ready(function(){initNavTree('_sequence_8h_source.html',''); initRes
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#ifndef SEQUENCE_H</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#define SEQUENCE_H</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;../../kernel/simulator/ModelElement.h&quot;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;../../kernel/simulator/ElementManager.h&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;../../kernel/simulator/ModelData.h&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;../../kernel/simulator/ModelDataManager.h&quot;</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;../../kernel/simulator/PluginInformation.h&quot;</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;Station.h&quot;</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">class </span>SequenceStep : PersistentObject_base {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">class </span>SequenceStep : <span class="keyword">public</span> PersistentObject_base {</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">class </span>Assignment {</div>
@@ -146,7 +146,7 @@ $(document).ready(function(){initNavTree('_sequence_8h_source.html',''); initRes
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> _loadInstance(std::map&lt;std::string, std::string&gt;* fields, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> parentIndex);</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">virtual</span> std::map&lt;std::string, std::string&gt;* _saveInstance(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> parentIndex);</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> _loadInstance(std::map&lt;std::string, std::string&gt;* fields);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">virtual</span> std::map&lt;std::string, std::string&gt;* _saveInstance();</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">virtual</span> std::map&lt;std::string, std::string&gt;* _saveInstance(<span class="keywordtype">bool</span> saveDefaultValues);</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
@@ -162,7 +162,7 @@ $(document).ready(function(){initNavTree('_sequence_8h_source.html',''); initRes
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    std::list&lt;Assignment*&gt;* _assignments;</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;};</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="class_sequence.html">  100</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_sequence.html">Sequence</a> : <span class="keyword">public</span> <a class="code" href="class_model_element.html">ModelElement</a> {</div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="class_sequence.html">  100</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_sequence.html">Sequence</a> : <span class="keyword">public</span> <a class="code" href="class_model_data.html">ModelData</a> {</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
@@ -173,12 +173,12 @@ $(document).ready(function(){initNavTree('_sequence_8h_source.html',''); initRes
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keyword">virtual</span> std::string show();</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="keyword">public</span>: <span class="comment">// static </span></div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keyword">static</span> PluginInformation* GetPluginInformation();</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_model_element.html">ModelElement</a>* LoadInstance(<a class="code" href="class_model.html">Model</a>* model, std::map&lt;std::string, std::string&gt;* fields);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_model_data.html">ModelData</a>* LoadInstance(<a class="code" href="class_model.html">Model</a>* model, std::map&lt;std::string, std::string&gt;* fields);</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <a class="code" href="class_list.html">List&lt;SequenceStep*&gt;</a>* getSteps() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="keyword">protected</span>:</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> _loadInstance(std::map&lt;std::string, std::string&gt;* fields);</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keyword">virtual</span> std::map&lt;std::string, std::string&gt;* _saveInstance();</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keyword">virtual</span> std::map&lt;std::string, std::string&gt;* _saveInstance(<span class="keywordtype">bool</span> saveDefaultValues);</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> _check(std::string* errorMessage);</div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <a class="code" href="class_list.html">List&lt;SequenceStep*&gt;</a>* _steps = <span class="keyword">new</span> <a class="code" href="class_list.html">List&lt;SequenceStep*&gt;</a>();</div>
@@ -187,7 +187,7 @@ $(document).ready(function(){initNavTree('_sequence_8h_source.html',''); initRes
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* SEQUENCE_H */</span><span class="preprocessor"></span></div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
 <div class="ttc" id="aclass_list_html"><div class="ttname"><a href="class_list.html">List&lt; SequenceStep * &gt;</a></div></div>
-<div class="ttc" id="aclass_model_element_html"><div class="ttname"><a href="class_model_element.html">ModelElement</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_element_8h_source.html#l00033">ModelElement.h:33</a></div></div>
+<div class="ttc" id="aclass_model_data_html"><div class="ttname"><a href="class_model_data.html">ModelData</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_data_8h_source.html#l00034">ModelData.h:34</a></div></div>
 <div class="ttc" id="aclass_model_html"><div class="ttname"><a href="class_model.html">Model</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_8h_source.html#l00044">Model.h:44</a></div></div>
 <div class="ttc" id="aclass_sequence_html"><div class="ttname"><a href="class_sequence.html">Sequence</a></div><div class="ttdef"><b>Definition:</b> <a href="_sequence_8h_source.html#l00100">Sequence.h:100</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
@@ -195,7 +195,7 @@ $(document).ready(function(){initNavTree('_sequence_8h_source.html',''); initRes
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_38c8d24aef3972a7f87b834274e76e31.html">plugins</a></li><li class="navelem"><a class="el" href="dir_c3cb8aa0592346fccb3341a910e12526.html">elements</a></li><li class="navelem"><b>Sequence.h</b></li>
+    <li class="navelem"><a class="el" href="dir_38c8d24aef3972a7f87b834274e76e31.html">plugins</a></li><li class="navelem"><a class="el" href="dir_b492c1823eca937985d7e119a139699f.html">data</a></li><li class="navelem"><b>Sequence.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

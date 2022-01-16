@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ReGenESyS - REborned GENeric and Expansible SYstem Simulator: /home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/plugins/elements/Failure.cpp Source File</title>
+<title>ReGenESyS - REborned GENeric and Expansible SYstem Simulator: /home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/plugins/data/Failure.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="software_genesys.gif"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ReGenESyS - REborned GENeric and Expansible SYstem Simulator
-   &#160;<span id="projectnumber">v22.01 (jude)</span>
+   &#160;<span id="projectnumber">v22.01 (wealljudes)</span>
    </div>
    <div id="projectbrief">Genesys is a result of teaching and research activities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics and simulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesys development he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of that tool, including its graphical interface. Genesys allowed the inclusion of new simulation components through dynamic link libraries and also the parallel execution of simulation models in a distributed environment. The development of Genesys continued until 2007, when the professor stopped teaching systems simulation classes. Ten years later the professor starts again to teach systems simulation classes and to carry out scientific research in the area. So in 2018 Genesys is reborn as ReGenesys, with new language and programming techniques, and even more ambitious goals.</div>
   </td>
@@ -103,11 +103,11 @@ $(document).ready(function(){initNavTree('_failure_8cpp_source.html',''); initRe
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;Failure.h&quot;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;Failure::Failure(<a class="code" href="class_model.html">Model</a>* model, std::string name) : <a class="code" href="class_model_element.html">ModelElement</a>(model, Util::TypeOf&lt;<a class="code" href="class_failure.html">Failure</a>&gt;(), name) {</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;Failure::Failure(<a class="code" href="class_model.html">Model</a>* model, std::string name) : <a class="code" href="class_model_data.html">ModelData</a>(model, Util::TypeOf&lt;<a class="code" href="class_failure.html">Failure</a>&gt;(), name) {</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;}</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;std::string Failure::show() {</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordflow">return</span> ModelElement::show() +</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordflow">return</span> ModelData::show() +</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <span class="stringliteral">&quot;&quot;</span>;</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;}</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
@@ -116,7 +116,7 @@ $(document).ready(function(){initNavTree('_failure_8cpp_source.html',''); initRe
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordflow">return</span> info;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<a class="code" href="class_model_element.html">ModelElement</a>* Failure::LoadInstance(<a class="code" href="class_model.html">Model</a>* model, std::map&lt;std::string, std::string&gt;* fields) {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<a class="code" href="class_model_data.html">ModelData</a>* Failure::LoadInstance(<a class="code" href="class_model.html">Model</a>* model, std::map&lt;std::string, std::string&gt;* fields) {</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="class_failure.html">Failure</a>* newElement = <span class="keyword">new</span> <a class="code" href="class_failure.html">Failure</a>(model);</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordflow">try</span> {</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        newElement-&gt;_loadInstance(fields);</div>
@@ -127,7 +127,7 @@ $(document).ready(function(){initNavTree('_failure_8cpp_source.html',''); initRe
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">bool</span> Failure::_loadInstance(std::map&lt;std::string, std::string&gt;* fields) {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">bool</span> res = ModelElement::_loadInstance(fields);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">bool</span> res = ModelData::_loadInstance(fields);</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordflow">if</span> (res) {</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">try</span> {</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <span class="comment">//this-&gt;_attributeName = (*fields-&gt;find(&quot;attributeName&quot;)).second;</span></div>
@@ -138,8 +138,8 @@ $(document).ready(function(){initNavTree('_failure_8cpp_source.html',''); initRe
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordflow">return</span> res;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;}</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;std::map&lt;std::string, std::string&gt;* Failure::_saveInstance() {</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    std::map&lt;std::string, std::string&gt;* fields = ModelElement::_saveInstance(); <span class="comment">//Util::TypeOf&lt;Failure&gt;());</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;std::map&lt;std::string, std::string&gt;* Failure::_saveInstance(<span class="keywordtype">bool</span> saveDefaultValues) {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    std::map&lt;std::string, std::string&gt;* fields = ModelData::_saveInstance(saveDefaultValues); <span class="comment">//Util::TypeOf&lt;Failure&gt;());</span></div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">//SaveField(fields, &quot;orderRule&quot;, std::to_string(static_cast&lt;int&gt; (this-&gt;_orderRule)));</span></div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment">//SaveField(fields, &quot;attributeName&quot;, &quot;\&quot;&quot;+this-&gt;_attributeName+&quot;\&quot;&quot;);</span></div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordflow">return</span> fields;</div>
@@ -160,14 +160,14 @@ $(document).ready(function(){initNavTree('_failure_8cpp_source.html',''); initRe
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}</div>
 <div class="ttc" id="aclass_failure_html"><div class="ttname"><a href="class_failure.html">Failure</a></div><div class="ttdef"><b>Definition:</b> <a href="_failure_8h_source.html#l00067">Failure.h:67</a></div></div>
 <div class="ttc" id="aclass_failure_html_a5f147309c0f31ec122e212a79e96119e"><div class="ttname"><a href="class_failure.html#a5f147309c0f31ec122e212a79e96119e">Failure::_getParserChangesInformation</a></div><div class="ttdeci">virtual ParserChangesInformation * _getParserChangesInformation()</div><div class="ttdef"><b>Definition:</b> <a href="_failure_8cpp_source.html#l00065">Failure.cpp:65</a></div></div>
-<div class="ttc" id="aclass_model_element_html"><div class="ttname"><a href="class_model_element.html">ModelElement</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_element_8h_source.html#l00033">ModelElement.h:33</a></div></div>
+<div class="ttc" id="aclass_model_data_html"><div class="ttname"><a href="class_model_data.html">ModelData</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_data_8h_source.html#l00034">ModelData.h:34</a></div></div>
 <div class="ttc" id="aclass_model_html"><div class="ttname"><a href="class_model.html">Model</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_8h_source.html#l00044">Model.h:44</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_38c8d24aef3972a7f87b834274e76e31.html">plugins</a></li><li class="navelem"><a class="el" href="dir_c3cb8aa0592346fccb3341a910e12526.html">elements</a></li><li class="navelem"><b>Failure.cpp</b></li>
+    <li class="navelem"><a class="el" href="dir_38c8d24aef3972a7f87b834274e76e31.html">plugins</a></li><li class="navelem"><a class="el" href="dir_b492c1823eca937985d7e119a139699f.html">data</a></li><li class="navelem"><b>Failure.cpp</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

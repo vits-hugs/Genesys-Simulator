@@ -61,6 +61,7 @@ bool Remove::_check(std::string* errorMessage) {
 
 PluginInformation* Remove::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Remove>(), &Remove::LoadInstance);
+	info->setCategory("Decisions");
 	// ...
 	return info;
 }

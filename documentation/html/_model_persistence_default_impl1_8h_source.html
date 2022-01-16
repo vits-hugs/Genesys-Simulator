@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="software_genesys.gif"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ReGenESyS - REborned GENeric and Expansible SYstem Simulator
-   &#160;<span id="projectnumber">v22.01 (jude)</span>
+   &#160;<span id="projectnumber">v22.01 (wealljudes)</span>
    </div>
    <div id="projectbrief">Genesys is a result of teaching and research activities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics and simulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesys development he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of that tool, including its graphical interface. Genesys allowed the inclusion of new simulation components through dynamic link libraries and also the parallel execution of simulation models in a distributed environment. The development of Genesys continued until 2007, when the professor stopped teaching systems simulation classes. Ten years later the professor starts again to teach systems simulation classes and to carry out scientific research in the area. So in 2018 Genesys is reborn as ReGenesys, with new language and programming techniques, and even more ambitious goals.</div>
   </td>
@@ -113,31 +113,39 @@ $(document).ready(function(){initNavTree('_model_persistence_default_impl1_8h_so
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    ModelPersistenceDefaultImpl1(<a class="code" href="class_model.html">Model</a>* model);</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">virtual</span> ~ModelPersistenceDefaultImpl1() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">public</span>: <span class="comment">// interface</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> save(std::string filename);</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> load(std::string filename);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> hasChanged();</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> _saveContent(std::list&lt;std::string&gt;* content, std::ofstream* file);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">bool</span> _loadFields(std::string line);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> _loadSimulatorInfoFields(std::map&lt;std::string, std::string&gt;* fields);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    std::list&lt;std::string&gt;* _adjustFieldsToSave(std::map&lt;std::string, std::string&gt;* fields);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    std::string _convertLineseparatorToLineseparatorReplacement(std::string str);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    std::string _convertLineseparatorReplacementBacktoLineseparator(std::string str);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    std::map&lt;std::string, std::string&gt;* _getSimulatorInfoFieldsToSave();</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    std::list&lt;std::map&lt;std::string, std::string&gt;*&gt;* _componentFields = <span class="keyword">new</span> std::list&lt;std::map&lt;std::string, std::string&gt;*&gt;();</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="class_model.html">Model</a>* _model = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">bool</span> _hasChanged = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    std::string _fieldseparator = <span class="stringliteral">&quot; &quot;</span>; <span class="comment">// fields are separated by space</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    std::string _fieldseparatorReplacement = <span class="stringliteral">&quot;\\_&quot;</span>; <span class="comment">// in cases where spaces are in data to be saved, they are replaced by this pattern, so there will not be separators inside data (replacement is \_)</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;};</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">//namespace\\}</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* MODELPERSISTENCEDEFAULTIMPL1_H */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> getOption(ModelPersistence_if::Options option);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setOption(ModelPersistence_if::Options option, <span class="keywordtype">bool</span> value);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">virtual</span> std::string getFormatedField(std::map&lt;std::string, std::string&gt;* fields);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> hasChanged();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">void</span> _saveContent(std::list&lt;std::string&gt;* content, std::ofstream* file);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">bool</span> _loadFields(std::string line);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">void</span> _loadSimulatorInfoFields(std::map&lt;std::string, std::string&gt;* fields);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    std::list&lt;std::string&gt;* _adjustFieldsToSave(std::map&lt;std::string, std::string&gt;* fields);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="class_simulator.html">Simulator</a>; <span class="comment">// @TODO</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    std::string _convertLineseparatorToLineseparatorReplacement(std::string str);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    std::string _convertLineseparatorReplacementBacktoLineseparator(std::string str);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    std::map&lt;std::string, std::string&gt;* _getSimulatorInfoFieldsToSave();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    std::list&lt;std::map&lt;std::string, std::string&gt;*&gt;* _componentFields = <span class="keyword">new</span> std::list&lt;std::map&lt;std::string, std::string&gt;*&gt;();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="class_model.html">Model</a>* _model = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">bool</span> _hasChanged = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">bool</span> _saveDefaultValues = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> _options = 0;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    std::string _fieldseparator = <span class="stringliteral">&quot; &quot;</span>; <span class="comment">// fields are separated by space</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    std::string _fieldseparatorReplacement = <span class="stringliteral">&quot;\\_&quot;</span>; <span class="comment">// in cases where spaces are in data to be saved, they are replaced by this pattern, so there will not be separators inside data (replacement is \_)</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;};</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">//namespace\\}</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* MODELPERSISTENCEDEFAULTIMPL1_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
 <div class="ttc" id="aclass_model_html"><div class="ttname"><a href="class_model.html">Model</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_8h_source.html#l00044">Model.h:44</a></div></div>
-<div class="ttc" id="aclass_model_persistence__if_html"><div class="ttname"><a href="class_model_persistence__if.html">ModelPersistence_if</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_persistence__if_8h_source.html#l00022">ModelPersistence_if.h:22</a></div></div>
+<div class="ttc" id="aclass_model_persistence__if_html"><div class="ttname"><a href="class_model_persistence__if.html">ModelPersistence_if</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_persistence__if_8h_source.html#l00023">ModelPersistence_if.h:23</a></div></div>
+<div class="ttc" id="aclass_simulator_html"><div class="ttname"><a href="class_simulator.html">Simulator</a></div><div class="ttdef"><b>Definition:</b> <a href="_simulator_8h_source.html#l00035">Simulator.h:35</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

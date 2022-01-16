@@ -5,7 +5,7 @@ var class_licence_manager =
     [ "getEntityLimit", "class_licence_manager.html#a18ff74e74131ba0ac8bbe178153b94f8", null ],
     [ "getHostsLimit", "class_licence_manager.html#ac426d71149dc429313017a907f940e5b", null ],
     [ "getModelComponentsLimit", "class_licence_manager.html#a2cb32f433b24d630abd5e4e794e3dd6c", null ],
-    [ "getModelElementsLimit", "class_licence_manager.html#a2e03a88aeec0dee2fcbfa69ef4208644", null ],
+    [ "getModelDatasLimit", "class_licence_manager.html#ac2c167ffa4838e7cfb75726373c07b46", null ],
     [ "getThreadsLimit", "class_licence_manager.html#a59e861511c3b145885beacc2e5791629", null ],
     [ "insertActivationCode", "class_licence_manager.html#a543e0fd04aaa2e94ade98946d8314501", null ],
     [ "lookforActivationCode", "class_licence_manager.html#aacf090f63e2be3183a3682e24b19c03b", null ],

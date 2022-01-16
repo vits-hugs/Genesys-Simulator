@@ -1,6 +1,0 @@
-<map id="ModelCheckerDefaultImpl1::checkLimits" name="ModelCheckerDefaultImpl1::checkLimits">
-<area shape="rect" id="node1" title=" " alt="" coords="5,49,204,90"/>
-<area shape="rect" id="node2" href="$class_model.html#a470dc705723c0ff2a5b85213ef17bf1f" title="The future events list chronologically sorted; Events are scheduled by components when processing oth..." alt="" coords="252,5,403,32"/>
-<area shape="rect" id="node3" href="$class_model.html#a7edbaabaee9e7dc9693f9323b44bf5c0" title="Provides access to the class that manages the most basic elements of the simulation model (such as qu..." alt="" coords="262,56,393,83"/>
-<area shape="rect" id="node4" href="$class_model.html#a077de04d17d7351a5e16066f93a064d4" title="Provides access to the class that performs the trace of simulation and replications." alt="" coords="273,107,381,133"/>
-</map>

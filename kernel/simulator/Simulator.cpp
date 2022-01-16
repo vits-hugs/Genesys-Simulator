@@ -13,7 +13,6 @@
 
 #include "Simulator.h"
 #include "LicenceManager.h"
-#include "plugins/components/Access.h"
 //#include "ToolManager.h"
 
 extern "C" GenesysSimulator CreateSimulator2() {
@@ -102,19 +101,25 @@ bool Simulator::_completePluginsFieldsAndTemplate() {
 			info = plugin->getPluginInfo();
 			if (info->getFields()->size() == 0) {
 				fields->clear();
-				if (info->isComponent()) {
-					comp = dynamic_cast<ModelComponent*> (plugin->loadNew(tempModel, fields));
-					comp->setName("name");
-					fields = comp->SaveInstance(comp);
-				} else {
-					datum = plugin->loadNew(tempModel, fields);
-					datum->setName("name");
-					fields = datum->SaveInstance(datum);
+				try {
+					if (info->isComponent()) {
+						comp = dynamic_cast<ModelComponent*> (plugin->loadNew(tempModel, fields));
+						comp->setName("name");
+						fields = comp->SaveInstance(comp);
+					} else {
+						datum = plugin->loadNew(tempModel, fields);
+						datum->setName("name");
+						fields = datum->SaveInstance(datum);
+					}
+				} catch (...) {
+					//@TODO
+					std::cout << "ERROR completing plugin " << info->getPluginTypename() << std::endl;
 				}
 				for (std::pair<std::string, std::string> field : *fields) {
 					info->getFields()->insert({field.first, ""});
 				}
 				std::string templateLanguage = tempModel->getPersistence()->getFormatedField(fields);
+				//std::cout << std::endl << info->getPluginTypename() << ": " << templateLanguage << std::endl;
 				info->setLanguageTemplate(templateLanguage);
 			}
 		} catch (...) {

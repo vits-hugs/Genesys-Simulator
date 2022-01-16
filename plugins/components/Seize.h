@@ -17,8 +17,8 @@
 #include <string>
 #include "../../kernel/simulator/ModelComponent.h"
 #include "../../kernel/simulator/Model.h"
-#include "../elements/Resource.h"
-#include "../elements/Queue.h"
+#include "../data/Resource.h"
+#include "../data/Queue.h"
 #include "../../kernel/simulator/Plugin.h"
 #include "SeizableItem.h"
 #include "QueueableItem.h"
@@ -166,8 +166,8 @@ private:
 	} DEFAULT;
 	unsigned int _allocationType = DEFAULT.allocationType; // uint ? enum?
 	unsigned short _priority = DEFAULT.priority;
-	std::string _saveAttribute = "";
-	QueueableItem* _queueableItem; //Queue* _queue; // usually has a queue, but not always (it could be a hold or a set)
+	std::string _saveAttribute = DEFAULT.saveAttribute;
+	QueueableItem* _queueableItem = nullptr; //Queue* _queue; // usually has a queue, but not always (it could be a hold or a set)
 	List<SeizableItem*>* _seizeRequests = new List<SeizableItem*>();
 private: // not gets or sets
 	//	unsigned int _lastMemberSeized = 0; //  now _seizeRequest is a list and it was moved to SeizableItem

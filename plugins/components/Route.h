@@ -15,7 +15,7 @@
 #define ROUTE_H
 
 #include "../../kernel/simulator/ModelComponent.h"
-#include "../elements/Station.h"
+#include "../data/Station.h"
 #include "../../kernel/simulator/Counter.h"
 
 /*!
@@ -92,7 +92,7 @@ private:
 	Util::TimeUnit _routeTimeTimeUnit = DEFAULT.routeTimeTimeUnit;
 	Route::DestinationType _routeDestinationType = DEFAULT.routeDestinationType;
 private: // association
-	Station* _station;
+	Station* _station = nullptr;
 private: // internel elements
 	Counter* _numberIn = nullptr;
 };

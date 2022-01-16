@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="software_genesys.gif"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ReGenESyS - REborned GENeric and Expansible SYstem Simulator
-   &#160;<span id="projectnumber">v22.01 (jude)</span>
+   &#160;<span id="projectnumber">v22.01 (wealljudes)</span>
    </div>
    <div id="projectbrief">Genesys is a result of teaching and research activities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics and simulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesys development he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of that tool, including its graphical interface. Genesys allowed the inclusion of new simulation components through dynamic link libraries and also the parallel execution of simulation models in a distributed environment. The development of Genesys continued until 2007, when the professor stopped teaching systems simulation classes. Ten years later the professor starts again to teach systems simulation classes and to carry out scientific research in the area. So in 2018 Genesys is reborn as ReGenesys, with new language and programming techniques, and even more ambitious goals.</div>
   </td>
@@ -121,10 +121,10 @@ $(document).ready(function(){initNavTree('_dispose_8h_source.html',''); initResi
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> _execute(<a class="code" href="class_entity.html">Entity</a>* entity);</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> _loadInstance(std::map&lt;std::string, std::string&gt;* fields);</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> _initBetweenReplications();</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">virtual</span> std::map&lt;std::string, std::string&gt;* _saveInstance();</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">virtual</span> std::map&lt;std::string, std::string&gt;* _saveInstance(<span class="keywordtype">bool</span> saveDefaultValues);</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> _check(std::string* errorMessage);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_dispose.html#a13f6aee0b41e92d406a7a008331421d5">_createInternalElements</a>();</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">private</span>: <span class="comment">// children elements</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_dispose.html#a0192bbd24bc77349929d22fec647d008">_createInternalData</a>();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">private</span>: <span class="comment">// internel elements</span></div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="class_counter.html">Counter</a>* _numberOut = <span class="keyword">nullptr</span>;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;};</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
@@ -132,7 +132,7 @@ $(document).ready(function(){initNavTree('_dispose_8h_source.html',''); initResi
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
 <div class="ttc" id="aclass_counter_html"><div class="ttname"><a href="class_counter.html">Counter</a></div><div class="ttdef"><b>Definition:</b> <a href="_counter_8h_source.html#l00025">Counter.h:25</a></div></div>
 <div class="ttc" id="aclass_dispose_html"><div class="ttname"><a href="class_dispose.html">Dispose</a></div><div class="ttdef"><b>Definition:</b> <a href="_dispose_8h_source.html#l00038">Dispose.h:38</a></div></div>
-<div class="ttc" id="aclass_dispose_html_a13f6aee0b41e92d406a7a008331421d5"><div class="ttname"><a href="class_dispose.html#a13f6aee0b41e92d406a7a008331421d5">Dispose::_createInternalElements</a></div><div class="ttdeci">virtual void _createInternalElements()</div><div class="ttdoc">This method is necessary only for those components that instantiate internal elements that must exist...</div><div class="ttdef"><b>Definition:</b> <a href="_dispose_8cpp_source.html#l00057">Dispose.cpp:57</a></div></div>
+<div class="ttc" id="aclass_dispose_html_a0192bbd24bc77349929d22fec647d008"><div class="ttname"><a href="class_dispose.html#a0192bbd24bc77349929d22fec647d008">Dispose::_createInternalData</a></div><div class="ttdeci">virtual void _createInternalData()</div><div class="ttdef"><b>Definition:</b> <a href="_dispose_8cpp_source.html#l00057">Dispose.cpp:57</a></div></div>
 <div class="ttc" id="aclass_entity_html"><div class="ttname"><a href="class_entity.html">Entity</a></div><div class="ttdef"><b>Definition:</b> <a href="_entity_8h_source.html#l00076">Entity.h:76</a></div></div>
 <div class="ttc" id="aclass_model_component_html"><div class="ttname"><a href="class_model_component.html">ModelComponent</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_component_8h_source.html#l00033">ModelComponent.h:33</a></div></div>
 <div class="ttc" id="aclass_model_html"><div class="ttname"><a href="class_model.html">Model</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_8h_source.html#l00044">Model.h:44</a></div></div>

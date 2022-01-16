@@ -6,5 +6,6 @@ var class_plugin =
     [ "getPluginInfo", "class_plugin.html#a2d7788585c8ed13af0bc3b7f63817fcf", null ],
     [ "isIsValidPlugin", "class_plugin.html#abcc441e6799bf4207743d8880f72975b", null ],
     [ "loadAndInsertNew", "class_plugin.html#ad1fcccbd6dfbc3bb1c695fb74030556f", null ],
-    [ "loadNew", "class_plugin.html#aaf29501413c739f2eb631b571085eb0f", null ]
+    [ "loadNew", "class_plugin.html#a48561b98e130051eb13253bf434101f9", null ],
+    [ "show", "class_plugin.html#a7374316f4ae244acda969bdf34a61bce", null ]
 ];

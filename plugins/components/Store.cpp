@@ -61,6 +61,7 @@ bool Store::_check(std::string* errorMessage) {
 
 PluginInformation* Store::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Store>(), &Store::LoadInstance);
+	info->setCategory("Material Handling");
 	// ...
 	return info;
 }

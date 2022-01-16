@@ -1,0 +1,3 @@
+0   SimulatorInfo "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220111 
+0   ModelInfo  "Model 1" analystName="" description="" projectTitle="" version="1.0" 
+0   ModelSimulation "ModelSimulation" numberOfReplications=1 replicationBaseTimeUnit=5 replicationLength=3600.000000 replicationLengthTimeUnit=5 showReportsAfterReplicaton=1 showReportsAfterSimulation=1 showSimulationControlsInReport=0 showSimulationResposesInReport=0 terminatingCondition="" traceLevel=9 warmUpTime=360.000000 warmUpTimeTimeUnit=5 

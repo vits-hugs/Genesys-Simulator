@@ -19,7 +19,7 @@
 #include "../../kernel/simulator/ModelComponent.h"
 #include "../../kernel/simulator/Plugin.h"
 #include "SeizableItem.h"
-#include "../elements/Resource.h"
+#include "../data/Resource.h"
 
 /*!
 Release module

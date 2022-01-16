@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="software_genesys.gif"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ReGenESyS - REborned GENeric and Expansible SYstem Simulator
-   &#160;<span id="projectnumber">v22.01 (jude)</span>
+   &#160;<span id="projectnumber">v22.01 (wealljudes)</span>
    </div>
    <div id="projectbrief">Genesys is a result of teaching and research activities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics and simulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesys development he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of that tool, including its graphical interface. Genesys allowed the inclusion of new simulation components through dynamic link libraries and also the parallel execution of simulation models in a distributed environment. The development of Genesys continued until 2007, when the professor stopped teaching systems simulation classes. Ten years later the professor starts again to teach systems simulation classes and to carry out scientific research in the area. So in 2018 Genesys is reborn as ReGenesys, with new language and programming techniques, and even more ambitious goals.</div>
   </td>
@@ -98,7 +98,7 @@ $(document).ready(function(){initNavTree('_full_simulation_of_complex_model_8cpp
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// GEnSyS Simulator</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;../../kernel/simulator/Simulator.h&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;../../kernel/simulator/ElementManager.h&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;../../kernel/simulator/ModelDataManager.h&quot;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">// Model Components</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;../../plugins/components/Create.h&quot;</span></div>
@@ -113,7 +113,7 @@ $(document).ready(function(){initNavTree('_full_simulation_of_complex_model_8cpp
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">// Model elements</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;../../kernel/simulator/EntityType.h&quot;</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;../../kernel/simulator/Attribute.h&quot;</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;../../plugins/elements/Variable.h&quot;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;../../plugins/data/Variable.h&quot;</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;FullSimulationOfComplexModel::FullSimulationOfComplexModel() {</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
@@ -126,7 +126,7 @@ $(document).ready(function(){initNavTree('_full_simulation_of_complex_model_8cpp
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="comment">// creates an empty model</span></div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="class_model.html">Model</a>* model = genesys-&gt;getModels()-&gt;newModel();</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="comment">// Handle traces and simulation events to output them</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="class_trace_manager.html">TraceManager</a>* tm = model-&gt;<a class="code" href="class_model.html#a7d8576f92173d8e21076c6d1e7e1350e">getTracer</a>();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="class_trace_manager.html">TraceManager</a>* tm = model-&gt;getTracer();</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    this-&gt;setDefaultTraceHandlers(tm);</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">// get easy access to classes used to insert components and elements into a model</span></div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="class_component_manager.html">ComponentManager</a>* components = model-&gt;getComponents();</div>
@@ -185,7 +185,7 @@ $(document).ready(function(){initNavTree('_full_simulation_of_complex_model_8cpp
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <a class="code" href="class_record.html">Record</a>* record1 = <span class="keyword">new</span> <a class="code" href="class_record.html">Record</a>(model);</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    record1-&gt;setExpressionName(<span class="stringliteral">&quot;Tempo total no sistema&quot;</span>);</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    record1-&gt;setExpression(<span class="stringliteral">&quot;TNOW - Entity.ArrivalTime&quot;</span>);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    record1-&gt;setFilename(<span class="stringliteral">&quot;./temp/TotalTimeInSystem.txt&quot;</span>);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    record1-&gt;setFilename(<span class="stringliteral">&quot;./temp/TotalTimeInSystem.gen&quot;</span>);</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <a class="code" href="class_dispose.html">Dispose</a>* dispose1 = <span class="keyword">new</span> <a class="code" href="class_dispose.html">Dispose</a>(model);</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
@@ -199,7 +199,7 @@ $(document).ready(function(){initNavTree('_full_simulation_of_complex_model_8cpp
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    release1-&gt;<a class="code" href="class_model_component.html#a06a599a7ef8f709d7dbaea1c30caa3cd">getConnections</a>()-&gt;insert(record1);</div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    record1-&gt;<a class="code" href="class_model_component.html#a06a599a7ef8f709d7dbaea1c30caa3cd">getConnections</a>()-&gt;insert(dispose1);</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="comment">// then save the model into a text file</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    model-&gt;save(<span class="stringliteral">&quot;./models/AssignWrite3Seizes.txt&quot;</span>);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    model-&gt;save(<span class="stringliteral">&quot;./models/AssignWrite3Seizes.gen&quot;</span>);</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="comment">// execute the simulation</span></div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    model-&gt;<a class="code" href="class_model.html#a91b3f67aa8bf44c2632a773c567830a2">getSimulation</a>()-&gt;<a class="code" href="class_model_simulation.html#a7c9dcb206388ce068f3add6dda1d6117">start</a>();</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
@@ -215,8 +215,7 @@ $(document).ready(function(){initNavTree('_full_simulation_of_complex_model_8cpp
 <div class="ttc" id="aclass_dispose_html"><div class="ttname"><a href="class_dispose.html">Dispose</a></div><div class="ttdef"><b>Definition:</b> <a href="_dispose_8h_source.html#l00038">Dispose.h:38</a></div></div>
 <div class="ttc" id="aclass_model_component_html_a06a599a7ef8f709d7dbaea1c30caa3cd"><div class="ttname"><a href="class_model_component.html#a06a599a7ef8f709d7dbaea1c30caa3cd">ModelComponent::getConnections</a></div><div class="ttdeci">ConnectionManager * getConnections() const</div><div class="ttdoc">Returns a list of components directly connected to the output. Usually the components have a single o...</div><div class="ttdef"><b>Definition:</b> <a href="_model_component_8cpp_source.html#l00094">ModelComponent.cpp:94</a></div></div>
 <div class="ttc" id="aclass_model_html"><div class="ttname"><a href="class_model.html">Model</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_8h_source.html#l00044">Model.h:44</a></div></div>
-<div class="ttc" id="aclass_model_html_a7d8576f92173d8e21076c6d1e7e1350e"><div class="ttname"><a href="class_model.html#a7d8576f92173d8e21076c6d1e7e1350e">Model::getTracer</a></div><div class="ttdeci">TraceManager * getTracer() const</div><div class="ttdoc">Provides access to the class that performs the trace of simulation and replications.</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00330">Model.cpp:330</a></div></div>
-<div class="ttc" id="aclass_model_html_a91b3f67aa8bf44c2632a773c567830a2"><div class="ttname"><a href="class_model.html#a91b3f67aa8bf44c2632a773c567830a2">Model::getSimulation</a></div><div class="ttdeci">ModelSimulation * getSimulation() const</div><div class="ttdoc">Provides access to the class that manages the model simulation.</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00371">Model.cpp:371</a></div></div>
+<div class="ttc" id="aclass_model_html_a91b3f67aa8bf44c2632a773c567830a2"><div class="ttname"><a href="class_model.html#a91b3f67aa8bf44c2632a773c567830a2">Model::getSimulation</a></div><div class="ttdeci">ModelSimulation * getSimulation() const</div><div class="ttdoc">Provides access to the class that manages the model simulation.</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00377">Model.cpp:377</a></div></div>
 <div class="ttc" id="aclass_model_info_html"><div class="ttname"><a href="class_model_info.html">ModelInfo</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_info_8h_source.html#l00025">ModelInfo.h:25</a></div></div>
 <div class="ttc" id="aclass_model_simulation_html"><div class="ttname"><a href="class_model_simulation.html">ModelSimulation</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_simulation_8h_source.html#l00033">ModelSimulation.h:33</a></div></div>
 <div class="ttc" id="aclass_model_simulation_html_a7c9dcb206388ce068f3add6dda1d6117"><div class="ttname"><a href="class_model_simulation.html#a7c9dcb206388ce068f3add6dda1d6117">ModelSimulation::start</a></div><div class="ttdeci">void start()</div><div class="ttdoc">Starts a sequential execution of a simulation, ie, a set of replications of this model.</div><div class="ttdef"><b>Definition:</b> <a href="_model_simulation_8cpp_source.html#l00090">ModelSimulation.cpp:90</a></div></div>
@@ -227,7 +226,7 @@ $(document).ready(function(){initNavTree('_full_simulation_of_complex_model_8cpp
 <div class="ttc" id="aclass_seize_html"><div class="ttname"><a href="class_seize.html">Seize</a></div><div class="ttdef"><b>Definition:</b> <a href="_seize_8h_source.html#l00122">Seize.h:122</a></div></div>
 <div class="ttc" id="aclass_seize_html_a474f5050620ea1733f9cdc9eda5f3d47"><div class="ttname"><a href="class_seize.html#a474f5050620ea1733f9cdc9eda5f3d47">Seize::setQueue</a></div><div class="ttdeci">void setQueue(Queue *queue)</div><div class="ttdoc">Deprected.</div><div class="ttdef"><b>Definition:</b> <a href="_seize_8cpp_source.html#l00097">Seize.cpp:97</a></div></div>
 <div class="ttc" id="aclass_simulator_html"><div class="ttname"><a href="class_simulator.html">Simulator</a></div><div class="ttdef"><b>Definition:</b> <a href="_simulator_8h_source.html#l00035">Simulator.h:35</a></div></div>
-<div class="ttc" id="aclass_trace_manager_html"><div class="ttname"><a href="class_trace_manager.html">TraceManager</a></div><div class="ttdef"><b>Definition:</b> <a href="_trace_manager_8h_source.html#l00106">TraceManager.h:106</a></div></div>
+<div class="ttc" id="aclass_trace_manager_html"><div class="ttname"><a href="class_trace_manager.html">TraceManager</a></div><div class="ttdef"><b>Definition:</b> <a href="_trace_manager_8h_source.html#l00108">TraceManager.h:108</a></div></div>
 <div class="ttc" id="aclass_variable_html"><div class="ttname"><a href="class_variable.html">Variable</a></div><div class="ttdef"><b>Definition:</b> <a href="_variable_8h_source.html#l00090">Variable.h:90</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

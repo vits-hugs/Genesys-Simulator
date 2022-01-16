@@ -10,13 +10,13 @@ var class_write =
     [ "_execute", "class_write.html#a5992ea1bca51e7577746a0baad734ee8", null ],
     [ "_initBetweenReplications", "class_write.html#aa347b5bf2a09e45dd60bfa387e81c223", null ],
     [ "_loadInstance", "class_write.html#a1a0959fdb2558c1bab2f93388169cadf", null ],
-    [ "_saveInstance", "class_write.html#a24f0204e84654f9ad41c4c9c529e0194", null ],
+    [ "_saveInstance", "class_write.html#a7725b484ad62a791a2dbdbd3214605e5", null ],
     [ "filename", "class_write.html#aea8e5f3bd327729f31c937c2e0491272", null ],
     [ "GetPluginInformation", "class_write.html#ae72be2e9bc4228ac4f0d331d2f27f7e3", null ],
+    [ "insertText", "class_write.html#abaa1b8d9874076c61224d724e3826bfb", null ],
     [ "LoadInstance", "class_write.html#ae4339279f174558c7213da948aef93bf", null ],
     [ "setFilename", "class_write.html#abeeed56c6ac341e29d3dbd1bcaaba10e", null ],
     [ "setWriteToType", "class_write.html#a05c4f20d74f6c29fe76e2390aef4abbc", null ],
     [ "show", "class_write.html#a66d8add3af18fbb386a7902568f089d2", null ],
-    [ "writeElements", "class_write.html#a99687f5f3defbf176a097fdbdf606413", null ],
     [ "writeToType", "class_write.html#a2acacd49cf7e5b81d03bb5dab3fd5f27", null ]
 ];

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ReGenESyS - REborned GENeric and Expansible SYstem Simulator: /home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/plugins/elements/Set.cpp Source File</title>
+<title>ReGenESyS - REborned GENeric and Expansible SYstem Simulator: /home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/plugins/data/Set.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="software_genesys.gif"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ReGenESyS - REborned GENeric and Expansible SYstem Simulator
-   &#160;<span id="projectnumber">v22.01 (jude)</span>
+   &#160;<span id="projectnumber">v22.01 (wealljudes)</span>
    </div>
    <div id="projectbrief">Genesys is a result of teaching and research activities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics and simulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesys development he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of that tool, including its graphical interface. Genesys allowed the inclusion of new simulation components through dynamic link libraries and also the parallel execution of simulation models in a distributed environment. The development of Genesys continued until 2007, when the professor stopped teaching systems simulation classes. Ten years later the professor starts again to teach systems simulation classes and to carry out scientific research in the area. So in 2018 Genesys is reborn as ReGenesys, with new language and programming techniques, and even more ambitious goals.</div>
   </td>
@@ -104,11 +104,11 @@ $(document).ready(function(){initNavTree('_set_8cpp_source.html',''); initResiza
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;Set.h&quot;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;../../kernel/simulator/Model.h&quot;</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;Set::Set(<a class="code" href="class_model.html">Model</a>* model, std::string name) : <a class="code" href="class_model_element.html">ModelElement</a>(model, Util::TypeOf&lt;<a class="code" href="class_set.html">Set</a>&gt;(), name) {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;Set::Set(<a class="code" href="class_model.html">Model</a>* model, std::string name) : <a class="code" href="class_model_data.html">ModelData</a>(model, Util::TypeOf&lt;<a class="code" href="class_set.html">Set</a>&gt;(), name) {</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;}</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;std::string Set::show() {</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordflow">return</span> ModelElement::show() +</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordflow">return</span> ModelData::show() +</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <span class="stringliteral">&quot;&quot;</span>;</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;}</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
@@ -120,7 +120,7 @@ $(document).ready(function(){initNavTree('_set_8cpp_source.html',''); initResiza
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">return</span> _setOfType;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;}</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<a class="code" href="class_list.html">List&lt;ModelElement*&gt;</a>* Set::getElementSet()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<a class="code" href="class_list.html">List&lt;ModelData*&gt;</a>* Set::getElementSet()<span class="keyword"> const </span>{</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordflow">return</span> _elementSet;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
@@ -129,7 +129,7 @@ $(document).ready(function(){initNavTree('_set_8cpp_source.html',''); initResiza
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordflow">return</span> info;</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;}</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<a class="code" href="class_model_element.html">ModelElement</a>* Set::LoadInstance(<a class="code" href="class_model.html">Model</a>* model, std::map&lt;std::string, std::string&gt;* fields) {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<a class="code" href="class_model_data.html">ModelData</a>* Set::LoadInstance(<a class="code" href="class_model.html">Model</a>* model, std::map&lt;std::string, std::string&gt;* fields) {</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="class_set.html">Set</a>* newElement = <span class="keyword">new</span> <a class="code" href="class_set.html">Set</a>(model);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordflow">try</span> {</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        newElement-&gt;_loadInstance(fields);</div>
@@ -140,16 +140,16 @@ $(document).ready(function(){initNavTree('_set_8cpp_source.html',''); initResiza
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;}</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keywordtype">bool</span> Set::_loadInstance(std::map&lt;std::string, std::string&gt;* fields) {</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">bool</span> res = ModelElement::_loadInstance(fields);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">bool</span> res = ModelData::_loadInstance(fields);</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordflow">if</span> (res) {</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">try</span> {</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            _setOfType = LoadField(fields, <span class="stringliteral">&quot;type&quot;</span>, DEFAULT.setOfType);</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> memberSize = LoadField(fields, <span class="stringliteral">&quot;memberSize&quot;</span>, DEFAULT.membersSize);</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; memberSize; i++) {</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                std::string memberName = LoadField(fields, <span class="stringliteral">&quot;member&quot;</span> + std::to_string(i));</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                <a class="code" href="class_model_element.html">ModelElement</a>* member = _parentModel-&gt;<a class="code" href="class_model.html#a231e63a5fde15bf1ce8446b23d06f0e7">getElements</a>()-&gt;getElement(_setOfType, memberName);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                <a class="code" href="class_model_data.html">ModelData</a>* member = _parentModel-&gt;<a class="code" href="class_model.html#a7ebcb346cd227a70a96f9f81d7ab2779">getData</a>()-&gt;getData(_setOfType, memberName);</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                <span class="keywordflow">if</span> (member == <span class="keyword">nullptr</span>) { <span class="comment">// not found. That&#39;s a problem. Resource not loaded yet (or mismatch name</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                    _parentModel-&gt;<a class="code" href="class_model.html#a7d8576f92173d8e21076c6d1e7e1350e">getTracer</a>()-&gt;trace(<span class="stringliteral">&quot;ERROR: Could not found &quot;</span> + _setOfType + <span class="stringliteral">&quot; set member named \&quot;&quot;</span> + memberName + <span class="stringliteral">&quot;\&quot;&quot;</span>, Util::TraceLevel::L1_errorFatal);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                    _parentModel-&gt;getTracer()-&gt;trace(<span class="stringliteral">&quot;ERROR: Could not found &quot;</span> + _setOfType + <span class="stringliteral">&quot; set member named \&quot;&quot;</span> + memberName + <span class="stringliteral">&quot;\&quot;&quot;</span>, Util::TraceLevel::L1_errorFatal);</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                } <span class="keywordflow">else</span> {<span class="comment">//found</span></div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                    _elementSet-&gt;insert(member);</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                }</div>
@@ -160,13 +160,13 @@ $(document).ready(function(){initNavTree('_set_8cpp_source.html',''); initResiza
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordflow">return</span> res;</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;std::map&lt;std::string, std::string&gt;* Set::_saveInstance() {</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    std::map&lt;std::string, std::string&gt;* fields = ModelElement::_saveInstance(); <span class="comment">//Util::TypeOf&lt;Set&gt;());</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    SaveField(fields, <span class="stringliteral">&quot;type&quot;</span>, _setOfType, DEFAULT.setOfType);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    SaveField(fields, <span class="stringliteral">&quot;membersSize&quot;</span>, _elementSet-&gt;size(), DEFAULT.membersSize);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;std::map&lt;std::string, std::string&gt;* Set::_saveInstance(<span class="keywordtype">bool</span> saveDefaultValues) {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    std::map&lt;std::string, std::string&gt;* fields = ModelData::_saveInstance(saveDefaultValues); <span class="comment">//Util::TypeOf&lt;Set&gt;());</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    SaveField(fields, <span class="stringliteral">&quot;type&quot;</span>, _setOfType, DEFAULT.setOfType, saveDefaultValues);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    SaveField(fields, <span class="stringliteral">&quot;membersSize&quot;</span>, _elementSet-&gt;size(), DEFAULT.membersSize, saveDefaultValues);</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">for</span> (<a class="code" href="class_model_element.html">ModelElement</a>* element : *_elementSet-&gt;list()) {</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        SaveField(fields, <span class="stringliteral">&quot;member&quot;</span> + std::to_string(i), element-&gt;getName());</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">for</span> (<a class="code" href="class_model_data.html">ModelData</a>* modeldatum : *_elementSet-&gt;list()) {</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        SaveField(fields, <span class="stringliteral">&quot;member&quot;</span> + std::to_string(i), modeldatum-&gt;getName());</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        i++;</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordflow">return</span> fields;</div>
@@ -180,7 +180,7 @@ $(document).ready(function(){initNavTree('_set_8cpp_source.html',''); initResiza
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            _setOfType = typeOfFirstElement;</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (_setOfType != typeOfFirstElement) {</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            resultAll = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            *errorMessage += <span class="stringliteral">&quot;Set is of type \&quot;&quot;</span> + _setOfType + <span class="stringliteral">&quot;\&quot; and first element is of type \&quot;&quot;</span> + typeOfFirstElement + <span class="stringliteral">&quot;\&quot;&quot;</span>;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            *errorMessage += <span class="stringliteral">&quot;Set is of type \&quot;&quot;</span> + _setOfType + <span class="stringliteral">&quot;\&quot; and first modeldatum is of type \&quot;&quot;</span> + typeOfFirstElement + <span class="stringliteral">&quot;\&quot;&quot;</span>;</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        }</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    }</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    *errorMessage += <span class="stringliteral">&quot;&quot;</span>;</div>
@@ -194,11 +194,10 @@ $(document).ready(function(){initNavTree('_set_8cpp_source.html',''); initResiza
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordflow">return</span> changes;</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;}</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
-<div class="ttc" id="aclass_list_html"><div class="ttname"><a href="class_list.html">List&lt; ModelElement * &gt;</a></div></div>
-<div class="ttc" id="aclass_model_element_html"><div class="ttname"><a href="class_model_element.html">ModelElement</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_element_8h_source.html#l00033">ModelElement.h:33</a></div></div>
+<div class="ttc" id="aclass_list_html"><div class="ttname"><a href="class_list.html">List&lt; ModelData * &gt;</a></div></div>
+<div class="ttc" id="aclass_model_data_html"><div class="ttname"><a href="class_model_data.html">ModelData</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_data_8h_source.html#l00034">ModelData.h:34</a></div></div>
 <div class="ttc" id="aclass_model_html"><div class="ttname"><a href="class_model.html">Model</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_8h_source.html#l00044">Model.h:44</a></div></div>
-<div class="ttc" id="aclass_model_html_a231e63a5fde15bf1ce8446b23d06f0e7"><div class="ttname"><a href="class_model.html#a231e63a5fde15bf1ce8446b23d06f0e7">Model::getElements</a></div><div class="ttdeci">ElementManager * getElements() const</div><div class="ttdoc">Provides access to the class that manages the most basic elements of the simulation model (such as qu...</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00359">Model.cpp:359</a></div></div>
-<div class="ttc" id="aclass_model_html_a7d8576f92173d8e21076c6d1e7e1350e"><div class="ttname"><a href="class_model.html#a7d8576f92173d8e21076c6d1e7e1350e">Model::getTracer</a></div><div class="ttdeci">TraceManager * getTracer() const</div><div class="ttdoc">Provides access to the class that performs the trace of simulation and replications.</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00330">Model.cpp:330</a></div></div>
+<div class="ttc" id="aclass_model_html_a7ebcb346cd227a70a96f9f81d7ab2779"><div class="ttname"><a href="class_model.html#a7ebcb346cd227a70a96f9f81d7ab2779">Model::getData</a></div><div class="ttdeci">ModelDataManager * getData() const</div><div class="ttdoc">Provides access to the class that manages the most basic elements of the simulation model (such as qu...</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00365">Model.cpp:365</a></div></div>
 <div class="ttc" id="aclass_set_html"><div class="ttname"><a href="class_set.html">Set</a></div><div class="ttdef"><b>Definition:</b> <a href="_set_8h_source.html#l00056">Set.h:56</a></div></div>
 <div class="ttc" id="aclass_set_html_a0591e9cb223eba4b7c5fa63d0900d10a"><div class="ttname"><a href="class_set.html#a0591e9cb223eba4b7c5fa63d0900d10a">Set::_getParserChangesInformation</a></div><div class="ttdeci">virtual ParserChangesInformation * _getParserChangesInformation()</div><div class="ttdef"><b>Definition:</b> <a href="_set_8cpp_source.html#l00100">Set.cpp:100</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
@@ -206,7 +205,7 @@ $(document).ready(function(){initNavTree('_set_8cpp_source.html',''); initResiza
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_38c8d24aef3972a7f87b834274e76e31.html">plugins</a></li><li class="navelem"><a class="el" href="dir_c3cb8aa0592346fccb3341a910e12526.html">elements</a></li><li class="navelem"><b>Set.cpp</b></li>
+    <li class="navelem"><a class="el" href="dir_38c8d24aef3972a7f87b834274e76e31.html">plugins</a></li><li class="navelem"><a class="el" href="dir_b492c1823eca937985d7e119a139699f.html">data</a></li><li class="navelem"><b>Set.cpp</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

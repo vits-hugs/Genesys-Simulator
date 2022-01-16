@@ -10,6 +10,11 @@
                          displayName="SimpleGUI_QtCreator"
                          projectFiles="true">
             <logicalFolder name="SimpleGUI" displayName="SimpleGUI" projectFiles="true">
+              <logicalFolder name="build-SimpleGUI-Desktop-Debug"
+                             displayName="build-SimpleGUI-Desktop-Debug"
+                             projectFiles="true">
+                <itemPath>applications/gui/qt/SimpleGUI_QtCreator/build-SimpleGUI-Desktop-Debug/Makefile</itemPath>
+              </logicalFolder>
               <logicalFolder name="resources" displayName="resources" projectFiles="true">
                 <logicalFolder name="icons" displayName="icons" projectFiles="true">
                   <logicalFolder name="Entity" displayName="Entity" projectFiles="true">
@@ -2358,6 +2363,7 @@
                 </logicalFolder>
                 <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/software_genesys.gif</itemPath>
               </logicalFolder>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/SimpleGUI.pro</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.cpp</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.h</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.ui</itemPath>
@@ -2645,39 +2651,37 @@
         <itemPath>plugins/components/Write.cpp</itemPath>
         <itemPath>plugins/components/Write.h</itemPath>
       </logicalFolder>
-      <logicalFolder name="elements" displayName="elements" projectFiles="true">
-        <itemPath>plugins/elements/CppCode.cpp</itemPath>
-        <itemPath>plugins/elements/CppCode.h</itemPath>
-        <itemPath>plugins/elements/DummyElement.cpp</itemPath>
-        <itemPath>plugins/elements/DummyElement.h</itemPath>
-        <itemPath>plugins/elements/EntityGroup.cpp</itemPath>
-        <itemPath>plugins/elements/EntityGroup.h</itemPath>
-        <itemPath>plugins/elements/Failure.cpp</itemPath>
-        <itemPath>plugins/elements/Failure.h</itemPath>
-        <itemPath>plugins/elements/File.cpp</itemPath>
-        <itemPath>plugins/elements/File.h</itemPath>
-        <itemPath>plugins/elements/Formula.cpp</itemPath>
-        <itemPath>plugins/elements/Formula.h</itemPath>
-        <itemPath>plugins/elements/Label.cpp</itemPath>
-        <itemPath>plugins/elements/Label.h</itemPath>
-        <itemPath>plugins/elements/Queue.cpp</itemPath>
-        <itemPath>plugins/elements/Queue.h</itemPath>
-        <itemPath>plugins/elements/Resource.cpp</itemPath>
-        <itemPath>plugins/elements/Resource.h</itemPath>
-        <itemPath>plugins/elements/Schedule.cpp</itemPath>
-        <itemPath>plugins/elements/Schedule.h</itemPath>
-        <itemPath>plugins/elements/Sequence.cpp</itemPath>
-        <itemPath>plugins/elements/Sequence.h</itemPath>
-        <itemPath>plugins/elements/Set.cpp</itemPath>
-        <itemPath>plugins/elements/Set.h</itemPath>
-        <itemPath>plugins/elements/Station.cpp</itemPath>
-        <itemPath>plugins/elements/Station.h</itemPath>
-        <itemPath>plugins/elements/Storage.cpp</itemPath>
-        <itemPath>plugins/elements/Storage.h</itemPath>
-        <itemPath>plugins/elements/Variable.cpp</itemPath>
-        <itemPath>plugins/elements/Variable.h</itemPath>
-      </logicalFolder>
-      <logicalFolder name="f1" displayName="old arena templates" projectFiles="true">
+      <logicalFolder name="data" displayName="data" projectFiles="true">
+        <itemPath>plugins/data/CppCode.cpp</itemPath>
+        <itemPath>plugins/data/CppCode.h</itemPath>
+        <itemPath>plugins/data/DummyElement.cpp</itemPath>
+        <itemPath>plugins/data/DummyElement.h</itemPath>
+        <itemPath>plugins/data/EntityGroup.cpp</itemPath>
+        <itemPath>plugins/data/EntityGroup.h</itemPath>
+        <itemPath>plugins/data/Failure.cpp</itemPath>
+        <itemPath>plugins/data/Failure.h</itemPath>
+        <itemPath>plugins/data/File.cpp</itemPath>
+        <itemPath>plugins/data/File.h</itemPath>
+        <itemPath>plugins/data/Formula.cpp</itemPath>
+        <itemPath>plugins/data/Formula.h</itemPath>
+        <itemPath>plugins/data/Label.cpp</itemPath>
+        <itemPath>plugins/data/Label.h</itemPath>
+        <itemPath>plugins/data/Queue.cpp</itemPath>
+        <itemPath>plugins/data/Queue.h</itemPath>
+        <itemPath>plugins/data/Resource.cpp</itemPath>
+        <itemPath>plugins/data/Resource.h</itemPath>
+        <itemPath>plugins/data/Schedule.cpp</itemPath>
+        <itemPath>plugins/data/Schedule.h</itemPath>
+        <itemPath>plugins/data/Sequence.cpp</itemPath>
+        <itemPath>plugins/data/Sequence.h</itemPath>
+        <itemPath>plugins/data/Set.cpp</itemPath>
+        <itemPath>plugins/data/Set.h</itemPath>
+        <itemPath>plugins/data/Station.cpp</itemPath>
+        <itemPath>plugins/data/Station.h</itemPath>
+        <itemPath>plugins/data/Storage.cpp</itemPath>
+        <itemPath>plugins/data/Storage.h</itemPath>
+        <itemPath>plugins/data/Variable.cpp</itemPath>
+        <itemPath>plugins/data/Variable.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="f1" displayName="tools" projectFiles="true">
@@ -3056,6 +3060,12 @@
                             perm="755"
                             owner="root"
                             group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
         </packFileList>
         <packInfoList>
           <packInfoListElem name="Package" value="20192022GenESyS" mandatory="true"/>
@@ -3080,6 +3090,11 @@
             flavor2="0">
       </item>
       <item path="applications/GenesysApplication_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/SimpleGUI.pro"
             ex="false"
             tool="3"
             flavor2="0">
@@ -14534,6 +14549,11 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/build-SimpleGUI-Desktop-Debug/Makefile"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="applications/gui/qt/SimpleQtGUI.cpp"
             ex="false"
             tool="1"
@@ -15399,65 +15419,65 @@
       </item>
       <item path="plugins/components/Write.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/CppCode.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/CppCode.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/CppCode.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/CppCode.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/DummyElement.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/DummyElement.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/DummyElement.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/DummyElement.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/EntityGroup.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/EntityGroup.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/EntityGroup.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/EntityGroup.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/Failure.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/Failure.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/Failure.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/Failure.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/File.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/File.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/File.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/File.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/Formula.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/Formula.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/Formula.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/Formula.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/Label.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/Label.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/Label.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/Label.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/Queue.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/Queue.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/Queue.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/Queue.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/Resource.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/Resource.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/Resource.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/Resource.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/Schedule.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/Schedule.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/Schedule.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/Schedule.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/Sequence.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/Sequence.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/Sequence.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/Sequence.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/Set.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/Set.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/Set.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/Set.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/Station.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/Station.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/Station.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/Station.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/Storage.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/Storage.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/Storage.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/Storage.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/Variable.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/Variable.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/Variable.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/Variable.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/testProbabilityDistribution.cpp"
             ex="false"
@@ -15530,6 +15550,11 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/SimpleGUI.pro"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.cpp"
             ex="false"
             tool="1"
@@ -26980,6 +27005,11 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/build-SimpleGUI-Desktop-Debug/Makefile"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="applications/gui/qt/SimpleQtGUI.cpp"
             ex="false"
             tool="1"
@@ -27845,65 +27875,65 @@
       </item>
       <item path="plugins/components/Write.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/CppCode.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/CppCode.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/CppCode.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/CppCode.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/DummyElement.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/DummyElement.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/DummyElement.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/DummyElement.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/EntityGroup.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/EntityGroup.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/EntityGroup.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/EntityGroup.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/Failure.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/Failure.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/Failure.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/Failure.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/File.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/File.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/File.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/File.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/Formula.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/Formula.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/Formula.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/Formula.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/Label.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/Label.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/Label.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/Label.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/Queue.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/Queue.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/Queue.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/Queue.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/Resource.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/Resource.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/Resource.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/Resource.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/Schedule.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/Schedule.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/Schedule.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/Schedule.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/Sequence.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/Sequence.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/Sequence.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/Sequence.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/Set.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/Set.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/Set.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/Set.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/Station.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/Station.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/Station.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/Station.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/Storage.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/Storage.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/Storage.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/Storage.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="plugins/elements/Variable.cpp" ex="false" tool="1" flavor2="0">
+      <item path="plugins/data/Variable.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="plugins/elements/Variable.h" ex="false" tool="3" flavor2="0">
+      <item path="plugins/data/Variable.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/testProbabilityDistribution.cpp"
             ex="false"

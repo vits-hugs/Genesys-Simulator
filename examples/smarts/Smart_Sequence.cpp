@@ -23,8 +23,8 @@
 #include "../../plugins/components/Delay.h"
 #include "../../plugins/components/Assign.h"
 
-#include "../../plugins/elements/Sequence.h"
-#include "../../plugins/elements/Station.h"
+#include "../../plugins/data/Sequence.h"
+#include "../../plugins/data/Station.h"
 #include "../../kernel/simulator/EntityType.h"
 
 Smart_Sequence::Smart_Sequence() {

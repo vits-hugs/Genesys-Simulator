@@ -14,7 +14,7 @@
 #include "MarkovChain.h"
 
 #include "../../kernel/simulator/Model.h"
-#include "../elements/Variable.h"
+#include "../data/Variable.h"
 //#include "ProbDistribDefaultImpl1.h"
 #include "../../kernel/simulator/Simulator.h"
 #include "../../kernel/TraitsKernel.h"
@@ -133,6 +133,7 @@ bool MarkovChain::_check(std::string* errorMessage) {
 
 PluginInformation* MarkovChain::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<MarkovChain>(), &MarkovChain::LoadInstance);
+	info->setCategory("Logic");
 	// ...
 	return info;
 }

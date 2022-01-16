@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="software_genesys.gif"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ReGenESyS - REborned GENeric and Expansible SYstem Simulator
-   &#160;<span id="projectnumber">v22.01 (jude)</span>
+   &#160;<span id="projectnumber">v22.01 (wealljudes)</span>
    </div>
    <div id="projectbrief">Genesys is a result of teaching and research activities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics and simulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesys development he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of that tool, including its graphical interface. Genesys allowed the inclusion of new simulation components through dynamic link libraries and also the parallel execution of simulation models in a distributed environment. The development of Genesys continued until 2007, when the professor stopped teaching systems simulation classes. Ten years later the professor starts again to teach systems simulation classes and to carry out scientific research in the area. So in 2018 Genesys is reborn as ReGenesys, with new language and programming techniques, and even more ambitious goals.</div>
   </td>
@@ -127,6 +127,9 @@ template&lt;typename Class &gt; </td></tr>
 template&lt;typename Class &gt; </td></tr>
 <tr class="memitem:a73deb8f25afa3b82d6b7a7fc0567cfd9"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>addTraceSimulationHandler</b> (Class *object, void(Class::*function)(TraceSimulationEvent))</td></tr>
 <tr class="separator:a73deb8f25afa3b82d6b7a7fc0567cfd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6bd50fde430802428c4363177227a98"><td class="memItemLeft" align="right" valign="top"><a id="ae6bd50fde430802428c4363177227a98"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>addTraceSimulationExceptionRuleModelData</b> (void *thisobject)</td></tr>
+<tr class="separator:ae6bd50fde430802428c4363177227a98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc4a47286335b4807dbf357a66d63936"><td class="memItemLeft" align="right" valign="top"><a id="abc4a47286335b4807dbf357a66d63936"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>trace</b> (Util::TraceLevel level, std::string text)</td></tr>
 <tr class="separator:abc4a47286335b4807dbf357a66d63936"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -136,9 +139,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>traceError</b> (std::
 <tr class="memitem:ad54a8e82619b36e12cb75f650237d850"><td class="memItemLeft" align="right" valign="top"><a id="ad54a8e82619b36e12cb75f650237d850"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>traceReport</b> (Util::TraceLevel level, std::string text)</td></tr>
 <tr class="separator:ad54a8e82619b36e12cb75f650237d850"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b036d91e7e86907d81298eeb71ce72e"><td class="memItemLeft" align="right" valign="top"><a id="a4b036d91e7e86907d81298eeb71ce72e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>traceSimulation</b> (Util::TraceLevel level, double time, <a class="el" href="class_entity.html">Entity</a> *entity, <a class="el" href="class_model_component.html">ModelComponent</a> *component, std::string text)</td></tr>
-<tr class="separator:a4b036d91e7e86907d81298eeb71ce72e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20e608cb2f34912d2d02c0bc4a8b8144"><td class="memItemLeft" align="right" valign="top"><a id="a20e608cb2f34912d2d02c0bc4a8b8144"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>traceSimulation</b> (void *thisobject, Util::TraceLevel level, double time, <a class="el" href="class_entity.html">Entity</a> *entity, <a class="el" href="class_model_component.html">ModelComponent</a> *component, std::string text)</td></tr>
+<tr class="separator:a20e608cb2f34912d2d02c0bc4a8b8144"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a603cc9074703ff41794e7acb976b1346"><td class="memItemLeft" align="right" valign="top"><a id="a603cc9074703ff41794e7acb976b1346"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>traceSimulation</b> (void *thisobject, Util::TraceLevel level, std::string text)</td></tr>
+<tr class="separator:a603cc9074703ff41794e7acb976b1346"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9ba5af4d8f2a03fefc1c06f5fab09e8"><td class="memItemLeft" align="right" valign="top"><a id="ae9ba5af4d8f2a03fefc1c06f5fab09e8"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>trace</b> (std::string text, Util::TraceLevel level=Util::TraceLevel::L8_detailed)</td></tr>
 <tr class="separator:ae9ba5af4d8f2a03fefc1c06f5fab09e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -148,9 +154,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>traceError</b> (std::
 <tr class="memitem:a011225fdf68227e3bd9f4696005a69a5"><td class="memItemLeft" align="right" valign="top"><a id="a011225fdf68227e3bd9f4696005a69a5"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>traceReport</b> (std::string text, Util::TraceLevel level=Util::TraceLevel::L2_results)</td></tr>
 <tr class="separator:a011225fdf68227e3bd9f4696005a69a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a177a535ea7e767569f96bf7422ee29a7"><td class="memItemLeft" align="right" valign="top"><a id="a177a535ea7e767569f96bf7422ee29a7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>traceSimulation</b> (double time, <a class="el" href="class_entity.html">Entity</a> *entity, <a class="el" href="class_model_component.html">ModelComponent</a> *component, std::string text, Util::TraceLevel level=Util::TraceLevel::L8_detailed)</td></tr>
-<tr class="separator:a177a535ea7e767569f96bf7422ee29a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afed2cc9debe443999d3411fbce797030"><td class="memItemLeft" align="right" valign="top"><a id="afed2cc9debe443999d3411fbce797030"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>traceSimulation</b> (void *thisobject, double time, <a class="el" href="class_entity.html">Entity</a> *entity, <a class="el" href="class_model_component.html">ModelComponent</a> *component, std::string text, Util::TraceLevel level=Util::TraceLevel::L8_detailed)</td></tr>
+<tr class="separator:afed2cc9debe443999d3411fbce797030"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfdce4e96b550235f8033d4009c972e3"><td class="memItemLeft" align="right" valign="top"><a id="adfdce4e96b550235f8033d4009c972e3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>traceSimulation</b> (void *thisobject, std::string text, Util::TraceLevel level=Util::TraceLevel::L8_detailed)</td></tr>
+<tr class="separator:adfdce4e96b550235f8033d4009c972e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4484d2a5ca01d60f5a0facea38f3d546"><td class="memItemLeft" align="right" valign="top"><a id="a4484d2a5ca01d60f5a0facea38f3d546"></a>
 <a class="el" href="class_list.html">List</a>&lt; std::string &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>errorMessages</b> () const</td></tr>
 <tr class="separator:a4484d2a5ca01d60f5a0facea38f3d546"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -163,11 +172,17 @@ Util::TraceLevel&#160;</td><td class="memItemRight" valign="bottom"><b>getTraceL
 <tr class="memitem:a106e341499f8f01cf5a588eae964c6ae"><td class="memItemLeft" align="right" valign="top"><a id="a106e341499f8f01cf5a588eae964c6ae"></a>
 <a class="el" href="class_simulator.html">Simulator</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getParentSimulator</b> () const</td></tr>
 <tr class="separator:a106e341499f8f01cf5a588eae964c6ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea5db5e7a8fc7d67b1c8ee04d4039cab"><td class="memItemLeft" align="right" valign="top"><a id="aea5db5e7a8fc7d67b1c8ee04d4039cab"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setTraceSimulationRuleAllAllowed</b> (bool _traceSimulationRuleAllAllowed)</td></tr>
+<tr class="separator:aea5db5e7a8fc7d67b1c8ee04d4039cab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc4cf65fae9b3b85379061d514df632e"><td class="memItemLeft" align="right" valign="top"><a id="abc4cf65fae9b3b85379061d514df632e"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isTraceSimulationRuleAllAllowed</b> () const</td></tr>
+<tr class="separator:abc4cf65fae9b3b85379061d514df632e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="class_trace_manager.html">TraceManager</a> is used to trace back model simulation information and track/debug the simulation. It works as the model simulation output (cout) and allows external methods to hook up such output as listeners. </p>
 
-<p class="definition">Definition at line <a class="el" href="_trace_manager_8h_source.html#l00106">106</a> of file <a class="el" href="_trace_manager_8h_source.html">TraceManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_trace_manager_8h_source.html#l00108">108</a> of file <a class="el" href="_trace_manager_8h_source.html">TraceManager.h</a>.</p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/simulator/<a class="el" href="_trace_manager_8h_source.html">TraceManager.h</a></li>
 <li>/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/simulator/<a class="el" href="_trace_manager_8cpp_source.html">TraceManager.cpp</a></li>

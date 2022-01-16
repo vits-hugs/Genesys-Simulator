@@ -103,7 +103,7 @@ private: // read only public access (gets)
 	// 1:1 (associted classes)
 	TraceManager* _traceManager;
 	OnEventManager* _eventManager;
-	ModelDataManager* _elementManager;
+	ModelDataManager* _modeldataManager;
 	ComponentManager* _componentManager;
 	ModelInfo* _modelInfo;
 	ModelSimulation* _simulation;

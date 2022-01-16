@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="software_genesys.gif"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ReGenESyS - REborned GENeric and Expansible SYstem Simulator
-   &#160;<span id="projectnumber">v22.01 (jude)</span>
+   &#160;<span id="projectnumber">v22.01 (wealljudes)</span>
    </div>
    <div id="projectbrief">Genesys is a result of teaching and research activities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics and simulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesys development he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of that tool, including its graphical interface. Genesys allowed the inclusion of new simulation components through dynamic link libraries and also the parallel execution of simulation models in a distributed environment. The development of Genesys continued until 2007, when the professor stopped teaching systems simulation classes. Ten years later the professor starts again to teach systems simulation classes and to carry out scientific research in the area. So in 2018 Genesys is reborn as ReGenesys, with new language and programming techniques, and even more ambitious goals.</div>
   </td>
@@ -123,144 +123,175 @@ $(document).ready(function(){initNavTree('_write_8cpp_source.html',''); initResi
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordflow">return</span> newComponent;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;}</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<a class="code" href="class_list.html">List&lt;WriteText*&gt;</a>* Write::writeElements()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordflow">return</span> _writeElements;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;}</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">//List&lt;WriteText*&gt;* Write::getWrites() const {</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">//  return _writeElements;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">//}</span></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keywordtype">void</span> Write::setFilename(std::string _filename) {</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    this-&gt;_filename = _filename;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;}</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;std::string Write::filename()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordflow">return</span> _filename;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keywordtype">void</span> Write::setWriteToType(WriteToType _writeToType) {</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    this-&gt;_writeToType = _writeToType;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;}</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keywordtype">void</span> Write::insertText(std::list&lt;std::string&gt; texts) {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordflow">for</span> (std::string text : texts) {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        _writeElements-&gt;list()-&gt;push_back(text);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordflow">if</span> (texts.size() &gt; 0 &amp;&amp; texts.back().substr(texts.back().length() - 1, 1) != <span class="stringliteral">&quot;\n&quot;</span>) {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        _writeElements-&gt;list()-&gt;push_back(<span class="stringliteral">&quot;\n&quot;</span>);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    }</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">void</span> Write::setFilename(std::string _filename) {</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;Write::WriteToType Write::writeToType()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">return</span> _writeToType;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keywordtype">void</span> Write::_execute(<a class="code" href="class_entity.html">Entity</a>* entity) {</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    std::ofstream savefile;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordflow">if</span> (this-&gt;_writeToType == Write::WriteToType::FILE) {</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        savefile.open(_filename, std::ofstream::app);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    }</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    std::string message = <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordflow">for</span> (WriteText* msgElem : *_writeElements-&gt;list()) {</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordflow">if</span> (msgElem-&gt;isExpression) {</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            message += std::to_string(_parentModel-&gt;<a class="code" href="class_model.html#a5ea283e339b50c0b77040bf908e25af3">parseExpression</a>(msgElem-&gt;text));</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            message += msgElem-&gt;text;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        }</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">if</span> (msgElem-&gt;newline) {</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="keywordflow">if</span> (this-&gt;_writeToType == Write::WriteToType::SCREEN) { <span class="comment">//\todo: Write To FILE not implemented</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                _parentModel-&gt;<a class="code" href="class_model.html#a7d8576f92173d8e21076c6d1e7e1350e">getTracer</a>()-&gt;trace(Util::TraceLevel::L2_results, message);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (this-&gt;_writeToType == Write::WriteToType::FILE) {</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                <span class="comment">// open file</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                savefile &lt;&lt; message &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            }</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            message = <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">if</span> (this-&gt;_writeToType == Write::WriteToType::FILE) {</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        savefile.close();</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    }</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    this-&gt;_parentModel-&gt;<a class="code" href="class_model.html#a9b68e140fb30477b0e2b223c2d930450">sendEntityToComponent</a>(entity, this-&gt;<a class="code" href="class_model_component.html#a06a599a7ef8f709d7dbaea1c30caa3cd">getConnections</a>()-&gt;getFrontConnection());</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keywordtype">void</span> Write::_initBetweenReplications() {</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        std::ofstream savefile;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        savefile.open(_filename, std::ofstream::app);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        savefile &lt;&lt; <span class="stringliteral">&quot;# Replication number &quot;</span> &lt;&lt; _parentModel-&gt;<a class="code" href="class_model.html#a91b3f67aa8bf44c2632a773c567830a2">getSimulation</a>()-&gt;getCurrentReplicationNumber() &lt;&lt; <span class="stringliteral">&quot;/&quot;</span> &lt;&lt; _parentModel-&gt;<a class="code" href="class_model.html#a91b3f67aa8bf44c2632a773c567830a2">getSimulation</a>()-&gt;getNumberOfReplications() &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        savefile.close();</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    } <span class="keywordflow">catch</span> (...) {</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    }</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;}</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keywordtype">bool</span> Write::_loadInstance(std::map&lt;std::string, std::string&gt;* fields) {</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordtype">bool</span> res = ModelComponent::_loadInstance(fields);</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordflow">if</span> (res) {</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        this-&gt;_writeToType = <span class="keyword">static_cast&lt;</span>WriteToType<span class="keyword">&gt;</span> (std::stoi((*fields-&gt;find(<span class="stringliteral">&quot;writeToType&quot;</span>)).second));</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> writesSize = std::stoi((*fields-&gt;find(<span class="stringliteral">&quot;writesSize&quot;</span>)).second);</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> i = 0; i &lt; writesSize; i++) {</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            std::string text = (*fields-&gt;find(text)).second;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            <span class="keywordtype">bool</span> isExpression = <span class="keyword">static_cast&lt;</span><span class="keywordtype">bool</span><span class="keyword">&gt;</span> (std::stoi((*fields-&gt;find(<span class="stringliteral">&quot;isExpression&quot;</span>)).second));</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            <span class="keywordtype">bool</span> newline = <span class="keyword">static_cast&lt;</span><span class="keywordtype">bool</span><span class="keyword">&gt;</span> (std::stoi((*fields-&gt;find(<span class="stringliteral">&quot;newline&quot;</span>)).second));</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            <span class="keywordflow">if</span> (isExpression) {</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                <span class="keywordflow">if</span> (newline) {</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                    this-&gt;_writeElements-&gt;insert(<span class="keyword">new</span> WritelnExpression(text));</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                    this-&gt;_writeElements-&gt;insert(<span class="keyword">new</span> WriteExpression(text));</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                }</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                <span class="keywordflow">if</span> (newline) {</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                    this-&gt;_writeElements-&gt;insert(<span class="keyword">new</span> WritelnText(text));</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                    this-&gt;_writeElements-&gt;insert(<span class="keyword">new</span> WriteText(text));</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                }</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            }</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        }</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    }</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keywordflow">return</span> res;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;}</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;std::map&lt;std::string, std::string&gt;* Write::_saveInstance() {</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    std::map&lt;std::string, std::string&gt;* fields = ModelComponent::_saveInstance();</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    SaveField(fields, <span class="stringliteral">&quot;writeToType&quot;</span>, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span> (_writeToType));</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    SaveField(fields, <span class="stringliteral">&quot;writesSize&quot;</span>, _writeElements-&gt;size(), 0u);</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> i = 0;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    WriteText* writeElem;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordflow">for</span> (std::list&lt;WriteText*&gt;::iterator it = _writeElements-&gt;list()-&gt;begin(); it != _writeElements-&gt;list()-&gt;end(); it++, i++) {</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        writeElem = (*it);</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        SaveField(fields, <span class="stringliteral">&quot;isExpression&quot;</span> + std::to_string(i), writeElem-&gt;isExpression, writeElem-&gt;DEFAULT.isExpression);</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        SaveField(fields, <span class="stringliteral">&quot;newline&quot;</span> + std::to_string(i), writeElem-&gt;newline, writeElem-&gt;DEFAULT.newline);</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        SaveField(fields, <span class="stringliteral">&quot;text&quot;</span> + std::to_string(i), writeElem-&gt;text, writeElem-&gt;DEFAULT.text);</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    }</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <span class="comment">//this-&gt;_writeElements</span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="keywordflow">return</span> fields;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;}</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="keywordtype">bool</span> Write::_check(std::string* errorMessage) {</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="keywordtype">bool</span> resultAll = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    WriteText* msgElem;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> i = 0;</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    std::list&lt;WriteText*&gt;* msgs = this-&gt;_writeElements-&gt;list();</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="keywordflow">for</span> (std::list&lt;WriteText*&gt;::iterator it = msgs-&gt;begin(); it != msgs-&gt;end(); it++) {</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        msgElem = (*it);</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        i++;</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        <span class="keywordflow">if</span> (msgElem-&gt;isExpression) {</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            resultAll &amp;= _parentModel-&gt;<a class="code" href="class_model.html#a4ea188cd39bfd3171e8d00f883b008af">checkExpression</a>(msgElem-&gt;text, <span class="stringliteral">&quot;writeExpression&quot;</span> + std::to_string(i), errorMessage);</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        }</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    }</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="comment">// when cheking the model (before simulating it), remove the file if exists</span></div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    std::remove(_filename.c_str());</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="keywordflow">return</span> resultAll;</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;}</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;PluginInformation* Write::GetPluginInformation() {</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    PluginInformation* info = <span class="keyword">new</span> PluginInformation(Util::TypeOf&lt;Write&gt;(), &amp;Write::LoadInstance);</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <span class="comment">// ...</span></div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="keywordflow">return</span> info;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;}</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160; </div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    this-&gt;_filename = _filename;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;}</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;std::string Write::filename()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordflow">return</span> _filename;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keywordtype">void</span> Write::setWriteToType(WriteToType _writeToType) {</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    this-&gt;_writeToType = _writeToType;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;Write::WriteToType Write::writeToType()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordflow">return</span> _writeToType;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;}</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keywordtype">void</span> Write::_execute(<a class="code" href="class_entity.html">Entity</a>* entity) {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    std::ofstream savefile;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordflow">if</span> (this-&gt;_writeToType == Write::WriteToType::FILE) {</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        savefile.open(_filename, std::ofstream::app);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    }</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    std::string message = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">bool</span> lastWasShown = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordflow">for</span> (std::string msgElem : *_writeElements-&gt;list()) {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">if</span> (msgElem.substr(0, 1) == <span class="stringliteral">&quot;@&quot;</span>) { <span class="comment">// to start with &#39;@&#39; is the signal that the following text is an expression to the parser </span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            message += std::to_string(_parentModel-&gt;<a class="code" href="class_model.html#a5ea283e339b50c0b77040bf908e25af3">parseExpression</a>(msgElem.substr(1, msgElem.length() - 1)));</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            message += msgElem;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        lastWasShown = msgElem.substr(msgElem.length() - 1, 1) == <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordflow">if</span> (lastWasShown) {</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            message = message.substr(0, message.length() - 1);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            <span class="keywordflow">if</span> (message != <span class="stringliteral">&quot;&quot;</span>) {</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                <span class="keywordflow">if</span> (this-&gt;_writeToType == Write::WriteToType::SCREEN) { <span class="comment">//@TODO: Write To FILE not implemented</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                    _parentModel-&gt;getTracer()-&gt;traceSimulation(<span class="keyword">this</span>, Util::TraceLevel::L2_results, message);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (this-&gt;_writeToType == Write::WriteToType::FILE) {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                    savefile &lt;&lt; message &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                message = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            }</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        }</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    }</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordflow">if</span> (!lastWasShown) {</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="keywordflow">if</span> (this-&gt;_writeToType == Write::WriteToType::SCREEN) { <span class="comment">//@TODO: Write To FILE not implemented</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            _parentModel-&gt;getTracer()-&gt;traceSimulation(<span class="keyword">this</span>, Util::TraceLevel::L2_results, message);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (this-&gt;_writeToType == Write::WriteToType::FILE) {</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            savefile &lt;&lt; message &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        }</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    }</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordflow">if</span> (this-&gt;_writeToType == Write::WriteToType::FILE) {</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        savefile.close();</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    }</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    this-&gt;_parentModel-&gt;<a class="code" href="class_model.html#a9b68e140fb30477b0e2b223c2d930450">sendEntityToComponent</a>(entity, this-&gt;<a class="code" href="class_model_component.html#a06a599a7ef8f709d7dbaea1c30caa3cd">getConnections</a>()-&gt;getFrontConnection());</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;}</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="keywordtype">void</span> Write::_initBetweenReplications() {</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        std::ofstream savefile;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        savefile.open(_filename, std::ofstream::app);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        savefile &lt;&lt; <span class="stringliteral">&quot;# Replication number &quot;</span> &lt;&lt; _parentModel-&gt;<a class="code" href="class_model.html#a91b3f67aa8bf44c2632a773c567830a2">getSimulation</a>()-&gt;getCurrentReplicationNumber() &lt;&lt; <span class="stringliteral">&quot;/&quot;</span> &lt;&lt; _parentModel-&gt;<a class="code" href="class_model.html#a91b3f67aa8bf44c2632a773c567830a2">getSimulation</a>()-&gt;getNumberOfReplications() &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        savefile.close();</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    } <span class="keywordflow">catch</span> (...) {</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    }</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;}</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="keywordtype">bool</span> Write::_loadInstance(std::map&lt;std::string, std::string&gt;* fields) {</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordtype">bool</span> res = ModelComponent::_loadInstance(fields);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordflow">if</span> (res) {</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        this-&gt;_writeToType = <span class="keyword">static_cast&lt;</span>WriteToType<span class="keyword">&gt;</span> (std::stoi((*fields-&gt;find(<span class="stringliteral">&quot;writeToType&quot;</span>)).second));</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> writesSize = std::stoi((*fields-&gt;find(<span class="stringliteral">&quot;writesSize&quot;</span>)).second);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> i = 0; i &lt; writesSize; i++) {</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            std::string text = (*fields-&gt;find(text)).second;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            <span class="comment">/*</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment">            bool isExpression = static_cast&lt;bool&gt; (std::stoi((*fields-&gt;find(&quot;isExpression&quot;)).second));</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment">            bool newline = static_cast&lt;bool&gt; (std::stoi((*fields-&gt;find(&quot;newline&quot;)).second));</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment">            if (isExpression) {</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="comment">                if (newline) {</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="comment">                    this-&gt;_writeElements-&gt;insert(new WritelnExpression(text));</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="comment">                } else {</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="comment">                    this-&gt;_writeElements-&gt;insert(new WriteExpression(text));</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="comment">                }</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="comment">            } else {</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="comment">                if (newline) {</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="comment">                    this-&gt;_writeElements-&gt;insert(new WritelnText(text));</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="comment">                } else {</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="comment">                    this-&gt;_writeElements-&gt;insert(new WriteText(text));</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="comment">                }</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="comment">            }</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="comment">             */</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        }</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    }</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="keywordflow">return</span> res;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;}</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;std::map&lt;std::string, std::string&gt;* Write::_saveInstance(<span class="keywordtype">bool</span> saveDefaultValues) {</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    std::map&lt;std::string, std::string&gt;* fields = ModelComponent::_saveInstance(saveDefaultValues);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    SaveField(fields, <span class="stringliteral">&quot;writeToType&quot;</span>, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span> (_writeToType), <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span> (DEFAULT.writeToType), saveDefaultValues);</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    SaveField(fields, <span class="stringliteral">&quot;writesSize&quot;</span>, _writeElements-&gt;size(), 0u, saveDefaultValues);</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> i = 0;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="comment">    WriteText* writeElem;</span></div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="comment">    for (std::list&lt;WriteText*&gt;::iterator it = _writeElements-&gt;list()-&gt;begin(); it != _writeElements-&gt;list()-&gt;end(); it++, i++) {</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="comment">        writeElem = (*it);</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="comment">        SaveField(fields, &quot;isExpression&quot; + std::to_string(i), writeElem-&gt;isExpression, writeElem-&gt;DEFAULT.isExpression);</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="comment">        SaveField(fields, &quot;newline&quot; + std::to_string(i), writeElem-&gt;newline, writeElem-&gt;DEFAULT.newline);</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="comment">        SaveField(fields, &quot;text&quot; + std::to_string(i), writeElem-&gt;text, writeElem-&gt;DEFAULT.text);</span></div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="comment">    }</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <span class="comment">//this-&gt;_writeElements</span></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    <span class="keywordflow">return</span> fields;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;}</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="keywordtype">bool</span> Write::_check(std::string* errorMessage) {</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <span class="keywordtype">bool</span> resultAll = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="comment">    WriteText* msgElem;</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="comment">    unsigned short i = 0;</span></div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="comment">    std::list&lt;WriteText*&gt;* msgs = this-&gt;_writeElements-&gt;list();</span></div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="comment">    for (std::list&lt;WriteText*&gt;::iterator it = msgs-&gt;begin(); it != msgs-&gt;end(); it++) {</span></div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="comment">        msgElem = (*it);</span></div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="comment">        i++;</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="comment">        if (msgElem-&gt;isExpression) {</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="comment">            resultAll &amp;= _parentModel-&gt;checkExpression(msgElem-&gt;text, &quot;writeExpression&quot; + std::to_string(i), errorMessage);</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="comment">        }</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="comment">    }</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    <span class="comment">// when cheking the model (before simulating it), remove the file if exists</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    std::remove(_filename.c_str());</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160; </div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    <span class="keywordflow">return</span> resultAll;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;}</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160; </div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;PluginInformation* Write::GetPluginInformation() {</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    PluginInformation* info = <span class="keyword">new</span> PluginInformation(Util::TypeOf&lt;Write&gt;(), &amp;Write::LoadInstance);</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    info-&gt;setCategory(<span class="stringliteral">&quot;Input Output&quot;</span>);</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    <span class="comment">// ...</span></div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <span class="keywordflow">return</span> info;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;}</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160; </div>
 <div class="ttc" id="aclass_entity_html"><div class="ttname"><a href="class_entity.html">Entity</a></div><div class="ttdef"><b>Definition:</b> <a href="_entity_8h_source.html#l00076">Entity.h:76</a></div></div>
-<div class="ttc" id="aclass_list_html"><div class="ttname"><a href="class_list.html">List&lt; WriteText * &gt;</a></div></div>
 <div class="ttc" id="aclass_model_component_html"><div class="ttname"><a href="class_model_component.html">ModelComponent</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_component_8h_source.html#l00033">ModelComponent.h:33</a></div></div>
 <div class="ttc" id="aclass_model_component_html_a06a599a7ef8f709d7dbaea1c30caa3cd"><div class="ttname"><a href="class_model_component.html#a06a599a7ef8f709d7dbaea1c30caa3cd">ModelComponent::getConnections</a></div><div class="ttdeci">ConnectionManager * getConnections() const</div><div class="ttdoc">Returns a list of components directly connected to the output. Usually the components have a single o...</div><div class="ttdef"><b>Definition:</b> <a href="_model_component_8cpp_source.html#l00094">ModelComponent.cpp:94</a></div></div>
 <div class="ttc" id="aclass_model_html"><div class="ttname"><a href="class_model.html">Model</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_8h_source.html#l00044">Model.h:44</a></div></div>
-<div class="ttc" id="aclass_model_html_a4ea188cd39bfd3171e8d00f883b008af"><div class="ttname"><a href="class_model.html#a4ea188cd39bfd3171e8d00f883b008af">Model::checkExpression</a></div><div class="ttdeci">bool checkExpression(const std::string expression, const std::string expressionName, std::string *errorMessage)</div><div class="ttdoc">This is invoked by ModelComponents and ModelElements in their private method _check() to verify if an...</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00121">Model.cpp:121</a></div></div>
-<div class="ttc" id="aclass_model_html_a5ea283e339b50c0b77040bf908e25af3"><div class="ttname"><a href="class_model.html#a5ea283e339b50c0b77040bf908e25af3">Model::parseExpression</a></div><div class="ttdeci">double parseExpression(const std::string expression)</div><div class="ttdoc">Invokes the parser to evaluate tyhe expression. Result is always a double, even if expression has syn...</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00113">Model.cpp:113</a></div></div>
-<div class="ttc" id="aclass_model_html_a7d8576f92173d8e21076c6d1e7e1350e"><div class="ttname"><a href="class_model.html#a7d8576f92173d8e21076c6d1e7e1350e">Model::getTracer</a></div><div class="ttdeci">TraceManager * getTracer() const</div><div class="ttdoc">Provides access to the class that performs the trace of simulation and replications.</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00330">Model.cpp:330</a></div></div>
-<div class="ttc" id="aclass_model_html_a91b3f67aa8bf44c2632a773c567830a2"><div class="ttname"><a href="class_model.html#a91b3f67aa8bf44c2632a773c567830a2">Model::getSimulation</a></div><div class="ttdeci">ModelSimulation * getSimulation() const</div><div class="ttdoc">Provides access to the class that manages the model simulation.</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00371">Model.cpp:371</a></div></div>
-<div class="ttc" id="aclass_model_html_a9b68e140fb30477b0e2b223c2d930450"><div class="ttname"><a href="class_model.html#a9b68e140fb30477b0e2b223c2d930450">Model::sendEntityToComponent</a></div><div class="ttdeci">void sendEntityToComponent(Entity *entity, Connection *connection, double timeDelay=0.0)</div><div class="ttdoc">Used by components (ModelComponent) to send entities to another specific component,...</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00071">Model.cpp:71</a></div></div>
-<div class="ttc" id="aclass_write_html"><div class="ttname"><a href="class_write.html">Write</a></div><div class="ttdef"><b>Definition:</b> <a href="_write_8h_source.html#l00080">Write.h:80</a></div></div>
+<div class="ttc" id="aclass_model_html_a5ea283e339b50c0b77040bf908e25af3"><div class="ttname"><a href="class_model.html#a5ea283e339b50c0b77040bf908e25af3">Model::parseExpression</a></div><div class="ttdeci">double parseExpression(const std::string expression)</div><div class="ttdoc">Invokes the parser to evaluate tyhe expression. Result is always a double, even if expression has syn...</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00106">Model.cpp:106</a></div></div>
+<div class="ttc" id="aclass_model_html_a91b3f67aa8bf44c2632a773c567830a2"><div class="ttname"><a href="class_model.html#a91b3f67aa8bf44c2632a773c567830a2">Model::getSimulation</a></div><div class="ttdeci">ModelSimulation * getSimulation() const</div><div class="ttdoc">Provides access to the class that manages the model simulation.</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00377">Model.cpp:377</a></div></div>
+<div class="ttc" id="aclass_model_html_a9b68e140fb30477b0e2b223c2d930450"><div class="ttname"><a href="class_model.html#a9b68e140fb30477b0e2b223c2d930450">Model::sendEntityToComponent</a></div><div class="ttdeci">void sendEntityToComponent(Entity *entity, Connection *connection, double timeDelay=0.0)</div><div class="ttdoc">Used by components (ModelComponent) to send entities to another specific component,...</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00072">Model.cpp:72</a></div></div>
+<div class="ttc" id="aclass_write_html"><div class="ttname"><a href="class_write.html">Write</a></div><div class="ttdef"><b>Definition:</b> <a href="_write_8h_source.html#l00023">Write.h:23</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

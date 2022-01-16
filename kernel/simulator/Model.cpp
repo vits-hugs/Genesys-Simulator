@@ -36,7 +36,7 @@ Model::Model(Simulator* simulator) {
 	_traceManager = simulator->getTracer(); // every model starts with the same tracer, unless a specific one is set
 	_modelInfo = new ModelInfo();
 	_eventManager = new OnEventManager(); // should be on .h (all that does not depends on THIS)
-	_elementManager = new ModelDataManager(this);
+	_modeldataManager = new ModelDataManager(this);
 	_componentManager = new ComponentManager(this);
 	_simulation = new ModelSimulation(this);
 	// 1:1 associations (Traits)
@@ -223,7 +223,7 @@ void Model::_showSimulationResponses() const {
 
 void Model::clear() {
 	this->_componentManager->clear();
-	this->_elementManager->clear();
+	this->_modeldataManager->clear();
 	this->_futureEvents->clear();
 	//this->_simulation->clear();  // @TODO clear method
 	//this->_modelInfo->clear(); // @TODO clear method
@@ -340,7 +340,7 @@ bool Model::isAutomaticallyCreatesModelDatas() const {
 bool Model::hasChanged() const {
 	bool changed = _hasChanged;
 	changed &= this->_componentManager->hasChanged();
-	changed &= this->_elementManager->hasChanged();
+	changed &= this->_modeldataManager->hasChanged();
 	changed &= this->_modelInfo->hasChanged();
 	changed &= this->_modelPersistence->hasChanged();
 	return changed;
@@ -363,7 +363,7 @@ OnEventManager * Model::getOnEvents() const {
 }
 
 ModelDataManager * Model::getData() const {
-	return _elementManager;
+	return _modeldataManager;
 }
 
 ModelInfo * Model::getInfos() const {

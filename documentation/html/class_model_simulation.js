@@ -32,7 +32,7 @@ var class_model_simulation =
     [ "isStepByStep", "class_model_simulation.html#aec4619a126d974af6ef359f8a1abb6b8", null ],
     [ "loadInstance", "class_model_simulation.html#aa21409c5fcb8134424a9deefa0875628", null ],
     [ "pause", "class_model_simulation.html#aef8b9962e69e0ef5ffcdb31dda45a7e0", null ],
-    [ "saveInstance", "class_model_simulation.html#a84861b6dc9c192d5c1299bdcf5db374f", null ],
+    [ "saveInstance", "class_model_simulation.html#a6faf450fc4de6212798991d159fa7112", null ],
     [ "setInitializeStatistics", "class_model_simulation.html#a990e022cf5d9a07a1467282e7999dafb", null ],
     [ "setInitializeSystem", "class_model_simulation.html#a6aff149fae4ec9be0d98772e263e9508", null ],
     [ "setNumberOfReplications", "class_model_simulation.html#a8b824f50d4b1f4630ef48e2ac53f32ba", null ],

@@ -62,6 +62,7 @@ bool Stop::_check(std::string* errorMessage) {
 
 PluginInformation* Stop::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Stop>(), &Stop::LoadInstance);
+	info->setCategory("Material Handling");
 	// ...
 	return info;
 }

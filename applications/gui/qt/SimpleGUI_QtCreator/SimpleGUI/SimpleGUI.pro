@@ -13,7 +13,7 @@ SOURCES += \
     ../../../../../kernel/simulator/ComponentManager.cpp \
     ../../../../../kernel/simulator/ConnectionManager.cpp \
     ../../../../../kernel/simulator/Counter.cpp \
-    ../../../../../kernel/simulator/ElementManager.cpp \
+    ../../../../../kernel/simulator/ModelDatamanager.cpp \
     ../../../../../kernel/simulator/Entity.cpp \
     ../../../../../kernel/simulator/EntityType.cpp \
     ../../../../../kernel/simulator/Event.cpp \
@@ -23,7 +23,7 @@ SOURCES += \
     ../../../../../kernel/simulator/Model.cpp \
     ../../../../../kernel/simulator/ModelCheckerDefaultImpl1.cpp \
     ../../../../../kernel/simulator/ModelComponent.cpp \
-    ../../../../../kernel/simulator/ModelElement.cpp \
+    ../../../../../kernel/simulator/ModelData.cpp \
     ../../../../../kernel/simulator/ModelInfo.cpp \
     ../../../../../kernel/simulator/ModelManager.cpp \
     ../../../../../kernel/simulator/ModelPersistenceDefaultImpl1.cpp \
@@ -97,20 +97,21 @@ SOURCES += \
     ../../../../../plugins/components/Submodel.cpp \
     ../../../../../plugins/components/Unstore.cpp \
     ../../../../../plugins/components/Write.cpp \
-    ../../../../../plugins/elements/CppCode.cpp \
-    ../../../../../plugins/elements/DummyElement.cpp \
-    ../../../../../plugins/elements/EntityGroup.cpp \
-    ../../../../../plugins/elements/Failure.cpp \
-    ../../../../../plugins/elements/File.cpp \
-    ../../../../../plugins/elements/Formula.cpp \
-    ../../../../../plugins/elements/Queue.cpp \
-    ../../../../../plugins/elements/Resource.cpp \
-    ../../../../../plugins/elements/Schedule.cpp \
-    ../../../../../plugins/elements/Sequence.cpp \
-    ../../../../../plugins/elements/Set.cpp \
-    ../../../../../plugins/elements/Station.cpp \
-    ../../../../../plugins/elements/Storage.cpp \
-    ../../../../../plugins/elements/Variable.cpp \
+    ../../../../../plugins/data/CppCode.cpp \
+    ../../../../../plugins/data/DummyElement.cpp \
+    ../../../../../plugins/data/EntityGroup.cpp \
+    ../../../../../plugins/data/Failure.cpp \
+    ../../../../../plugins/data/File.cpp \
+    ../../../../../plugins/data/Formula.cpp \
+    ../../../../../plugins/data/Label.cpp \
+    ../../../../../plugins/data/Queue.cpp \
+    ../../../../../plugins/data/Resource.cpp \
+    ../../../../../plugins/data/Schedule.cpp \
+    ../../../../../plugins/data/Sequence.cpp \
+    ../../../../../plugins/data/Set.cpp \
+    ../../../../../plugins/data/Station.cpp \
+    ../../../../../plugins/data/Storage.cpp \
+    ../../../../../plugins/data/Variable.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -122,8 +123,7 @@ HEADERS += \
     ../../../../../kernel/simulator/ConnectionManager.h \
     ../../../../../kernel/simulator/Counter.h \
     ../../../../../kernel/simulator/DefineGetterSetter.h \
-    ../../../../../kernel/simulator/ElementManager.h \
-    ../../../../../kernel/simulator/ElementManager_if.h \
+    ../../../../../kernel/simulator/ModelDatamanager.h \
     ../../../../../kernel/simulator/Entity.h \
     ../../../../../kernel/simulator/EntityType.h \
     ../../../../../kernel/simulator/Event.h \
@@ -135,7 +135,7 @@ HEADERS += \
     ../../../../../kernel/simulator/ModelCheckerDefaultImpl1.h \
     ../../../../../kernel/simulator/ModelChecker_if.h \
     ../../../../../kernel/simulator/ModelComponent.h \
-    ../../../../../kernel/simulator/ModelElement.h \
+    ../../../../../kernel/simulator/ModelData.h \
     ../../../../../kernel/simulator/ModelInfo.h \
     ../../../../../kernel/simulator/ModelManager.h \
     ../../../../../kernel/simulator/ModelPersistenceDefaultImpl1.h \
@@ -225,20 +225,21 @@ HEADERS += \
     ../../../../../plugins/components/Submodel.h \
     ../../../../../plugins/components/Unstore.h \
     ../../../../../plugins/components/Write.h \
-    ../../../../../plugins/elements/CppCode.h \
-    ../../../../../plugins/elements/DummyElement.h \
-    ../../../../../plugins/elements/EntityGroup.h \
-    ../../../../../plugins/elements/Failure.h \
-    ../../../../../plugins/elements/File.h \
-    ../../../../../plugins/elements/Formula.h \
-    ../../../../../plugins/elements/Queue.h \
-    ../../../../../plugins/elements/Resource.h \
-    ../../../../../plugins/elements/Schedule.h \
-    ../../../../../plugins/elements/Sequence.h \
-    ../../../../../plugins/elements/Set.h \
-    ../../../../../plugins/elements/Station.h \
-    ../../../../../plugins/elements/Storage.h \
-    ../../../../../plugins/elements/Variable.h \
+    ../../../../../plugins/data/CppCode.h \
+    ../../../../../plugins/data/DummyElement.h \
+    ../../../../../plugins/data/EntityGroup.h \
+    ../../../../../plugins/data/Failure.h \
+    ../../../../../plugins/data/File.h \
+    ../../../../../plugins/data/Formula.h \
+    ../../../../../plugins/data/Label.h \
+    ../../../../../plugins/data/Queue.h \
+    ../../../../../plugins/data/Resource.h \
+    ../../../../../plugins/data/Schedule.h \
+    ../../../../../plugins/data/Sequence.h \
+    ../../../../../plugins/data/Set.h \
+    ../../../../../plugins/data/Station.h \
+    ../../../../../plugins/data/Storage.h \
+    ../../../../../plugins/data/Variable.h \
     mainwindow.h
 
 FORMS += \

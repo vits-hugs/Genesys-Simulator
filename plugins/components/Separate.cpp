@@ -14,7 +14,7 @@
 #include "Separate.h"
 
 #include "../../kernel/simulator/Model.h"
-#include "plugins/elements/EntityGroup.h"
+#include "../../plugins/data/EntityGroup.h"
 
 Separate::Separate(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Separate>(), name) {
 }
@@ -80,6 +80,7 @@ bool Separate::_check(std::string* errorMessage) {
 
 PluginInformation* Separate::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Separate>(), &Separate::LoadInstance);
+	info->setCategory("Grouping");
 	// ...
 	return info;
 }

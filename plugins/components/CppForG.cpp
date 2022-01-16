@@ -90,6 +90,7 @@ void CppForG::_createInternalData() {
 
 PluginInformation* CppForG::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<CppForG>(), &CppForG::LoadInstance);
+	info->setCategory("Logic");
 	info->insertDynamicLibFileDependence("cppcode.so");
 	info->setDescriptionHelp("//@TODO");
 	return info;

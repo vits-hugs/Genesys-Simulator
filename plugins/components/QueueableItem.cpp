@@ -36,13 +36,13 @@ bool QueueableItem::loadInstance(std::map<std::string, std::string>* fields) {
 		_queueableType = static_cast<QueueableItem::QueueableType> (LoadField(fields, "queueableType", static_cast<int> (DEFAULT.queueableType)));
 		_queueableName = LoadField(fields, "queueable", "");
 		_index = LoadField(fields, "index", DEFAULT.index);
-		if (_elementManager != nullptr) {
+		if (_modeldataManager != nullptr) {
 			if (_queueableType == QueueableItem::QueueableType::QUEUE) {
-				_queueOrSet = _elementManager->getData(Util::TypeOf<Queue>(), _queueableName);
+				_queueOrSet = _modeldataManager->getData(Util::TypeOf<Queue>(), _queueableName);
 			} else if (_queueableType == QueueableItem::QueueableType::SET) {
-				_queueOrSet = _elementManager->getData(Util::TypeOf<Queue>(), _queueableName);
+				_queueOrSet = _modeldataManager->getData(Util::TypeOf<Queue>(), _queueableName);
 				//            } else if (_queueableType == QueueableItem::QueueableType::HOLD) {
-				//                _queueOrSet = _elementManager->getData(Util::TypeOf<Hold>(), _queueableName);
+				//                _queueOrSet = _modeldataManager->getData(Util::TypeOf<Hold>(), _queueableName);
 			}
 			assert(_queueOrSet != nullptr);
 		}
@@ -133,8 +133,8 @@ ModelData* QueueableItem::getQueueable() const {
 	return _queueOrSet;
 }
 
-void QueueableItem::setElementManager(ModelDataManager* _elementManager) {
-	this->_elementManager = _elementManager;
+void QueueableItem::setElementManager(ModelDataManager* _modeldataManager) {
+	this->_modeldataManager = _modeldataManager;
 }
 
 //void QueueableItem::setComponentManager(ComponentManager* componentManager) {

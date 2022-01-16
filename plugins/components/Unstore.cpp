@@ -61,6 +61,7 @@ bool Unstore::_check(std::string* errorMessage) {
 
 PluginInformation* Unstore::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Unstore>(), &Unstore::LoadInstance);
+	info->setCategory("Material Handling");
 	// ...
 	return info;
 }

@@ -1,6 +1,0 @@
-<map id="Start" name="Start">
-<area shape="rect" id="node1" title=" " alt="" coords="23,1100,235,1309"/>
-<area shape="rect" id="node2" href="$class_model_component.html" title=" " alt="" coords="25,740,232,1052"/>
-<area shape="rect" id="node3" href="$class_model_element.html" title=" " alt="" coords="5,175,252,692"/>
-<area shape="rect" id="node4" href="$class_persistent_object__base.html" title=" " alt="" coords="27,5,230,127"/>
-</map>

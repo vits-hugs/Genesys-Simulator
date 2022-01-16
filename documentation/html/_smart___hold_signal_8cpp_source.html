@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="software_genesys.gif"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ReGenESyS - REborned GENeric and Expansible SYstem Simulator
-   &#160;<span id="projectnumber">v22.01 (jude)</span>
+   &#160;<span id="projectnumber">v22.01 (wealljudes)</span>
    </div>
    <div id="projectbrief">Genesys is a result of teaching and research activities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics and simulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesys development he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of that tool, including its graphical interface. Genesys allowed the inclusion of new simulation components through dynamic link libraries and also the parallel execution of simulation models in a distributed environment. The development of Genesys continued until 2007, when the professor stopped teaching systems simulation classes. Ten years later the professor starts again to teach systems simulation classes and to carry out scientific research in the area. So in 2018 Genesys is reborn as ReGenesys, with new language and programming techniques, and even more ambitious goals.</div>
   </td>
@@ -124,22 +124,18 @@ $(document).ready(function(){initNavTree('_smart___hold_signal_8cpp_source.html'
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    this-&gt;insertFakePluginsByHand(genesys);</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    this-&gt;setDefaultTraceHandlers(genesys-&gt;getTracer());</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    genesys-&gt;getTracer()-&gt;setTraceLevel(Util::TraceLevel::L9_mostDetailed);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">//</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="class_model.html">Model</a>* model = genesys-&gt;getModels()-&gt;newModel();</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="comment">//</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    model-&gt;<a class="code" href="class_model.html#a91b3f67aa8bf44c2632a773c567830a2">getSimulation</a>()-&gt;setReplicationLength(20);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    model-&gt;save(<span class="stringliteral">&quot;./models/Smart_HoldSignal.txt&quot;</span>);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">do</span> {</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        model-&gt;<a class="code" href="class_model.html#a91b3f67aa8bf44c2632a773c567830a2">getSimulation</a>()-&gt;<a class="code" href="class_model_simulation.html#a267d6e19d31aa4fcfe937ff700a36401">step</a>();</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        std::cin.ignore(std::numeric_limits &lt;std::streamsize&gt; ::max(), <span class="charliteral">&#39;\n&#39;</span>);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    } <span class="keywordflow">while</span> (model-&gt;<a class="code" href="class_model.html#a91b3f67aa8bf44c2632a773c567830a2">getSimulation</a>()-&gt;isPaused());</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;};</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="class_model.html">Model</a>* model = genesys-&gt;getModels()-&gt;newModel();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    model-&gt;save(<span class="stringliteral">&quot;./models/Smart_HoldSignal.gen&quot;</span>);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordflow">do</span> {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        model-&gt;<a class="code" href="class_model.html#a91b3f67aa8bf44c2632a773c567830a2">getSimulation</a>()-&gt;<a class="code" href="class_model_simulation.html#a267d6e19d31aa4fcfe937ff700a36401">step</a>();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        std::cin.ignore(std::numeric_limits &lt;std::streamsize&gt; ::max(), <span class="charliteral">&#39;\n&#39;</span>);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    } <span class="keywordflow">while</span> (model-&gt;<a class="code" href="class_model.html#a91b3f67aa8bf44c2632a773c567830a2">getSimulation</a>()-&gt;isPaused());</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;};</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
 <div class="ttc" id="aclass_model_html"><div class="ttname"><a href="class_model.html">Model</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_8h_source.html#l00044">Model.h:44</a></div></div>
-<div class="ttc" id="aclass_model_html_a91b3f67aa8bf44c2632a773c567830a2"><div class="ttname"><a href="class_model.html#a91b3f67aa8bf44c2632a773c567830a2">Model::getSimulation</a></div><div class="ttdeci">ModelSimulation * getSimulation() const</div><div class="ttdoc">Provides access to the class that manages the model simulation.</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00371">Model.cpp:371</a></div></div>
-<div class="ttc" id="aclass_model_simulation_html_a267d6e19d31aa4fcfe937ff700a36401"><div class="ttname"><a href="class_model_simulation.html#a267d6e19d31aa4fcfe937ff700a36401">ModelSimulation::step</a></div><div class="ttdeci">void step()</div><div class="ttdoc">Executes the processing of a single event, the next one in the future events list.</div><div class="ttdef"><b>Definition:</b> <a href="_model_simulation_8cpp_source.html#l00470">ModelSimulation.cpp:470</a></div></div>
+<div class="ttc" id="aclass_model_html_a91b3f67aa8bf44c2632a773c567830a2"><div class="ttname"><a href="class_model.html#a91b3f67aa8bf44c2632a773c567830a2">Model::getSimulation</a></div><div class="ttdeci">ModelSimulation * getSimulation() const</div><div class="ttdoc">Provides access to the class that manages the model simulation.</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00377">Model.cpp:377</a></div></div>
+<div class="ttc" id="aclass_model_simulation_html_a267d6e19d31aa4fcfe937ff700a36401"><div class="ttname"><a href="class_model_simulation.html#a267d6e19d31aa4fcfe937ff700a36401">ModelSimulation::step</a></div><div class="ttdeci">void step()</div><div class="ttdoc">Executes the processing of a single event, the next one in the future events list.</div><div class="ttdef"><b>Definition:</b> <a href="_model_simulation_8cpp_source.html#l00473">ModelSimulation.cpp:473</a></div></div>
 <div class="ttc" id="aclass_simulator_html"><div class="ttname"><a href="class_simulator.html">Simulator</a></div><div class="ttdef"><b>Definition:</b> <a href="_simulator_8h_source.html#l00035">Simulator.h:35</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

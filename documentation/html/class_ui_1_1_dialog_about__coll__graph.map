@@ -1,9 +1,0 @@
-<map id="Ui::DialogAbout" name="Ui::DialogAbout">
-<area shape="rect" id="node1" title=" " alt="" coords="341,345,465,423"/>
-<area shape="rect" id="node2" href="$class_ui___dialog_about.html" title=" " alt="" coords="337,204,469,296"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,5,100,83"/>
-<area shape="rect" id="node4" title=" " alt="" coords="185,5,264,83"/>
-<area shape="rect" id="node5" title=" " alt="" coords="307,5,460,83"/>
-<area shape="rect" id="node6" title=" " alt="" coords="484,5,605,83"/>
-<area shape="rect" id="node7" title=" " alt="" coords="634,5,757,83"/>
-</map>
