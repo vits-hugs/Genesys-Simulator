@@ -300,7 +300,7 @@ Entity* Model::createEntity(std::string name, bool insertIntoModel) {
 	Entity* newEntity = new Entity(this, name, true);
 	SimulationEvent *se = _simulation->_createSimulationEvent(); // it's my friend
 	se->setEntityCreated(newEntity);
-	//getTracer()->traceSimulation(/*"Entity " + entId +*/entity->getName() + " was created");
+	//getTracer()->traceSimulation(this, /*"Entity " + entId +*/entity->getName() + " was created");
 	getOnEvents()->NotifyEntityCreateHandlers(se);
 	return newEntity;
 }
@@ -309,7 +309,7 @@ void Model::removeEntity(Entity* entity) {//, bool collectStatistics) {
 	this->_eventManager->NotifyEntityRemoveHandlers(_simulation->_createSimulationEvent()); // it's my friend
 	std::string entId = std::to_string(entity->entityNumber());
 	this->getData()->remove(Util::TypeOf<Entity>(), entity);
-	getTracer()->traceSimulation(/*"Entity " + entId +*/entity->getName() + " was removed from the system");
+	getTracer()->traceSimulation(this, /*"Entity " + entId +*/entity->getName() + " was removed from the system");
 	entity->~Entity();
 }
 

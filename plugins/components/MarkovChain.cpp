@@ -86,7 +86,7 @@ void MarkovChain::_execute(Entity* entity) {
 				break;
 			}
 		}
-		_parentModel->getTracer()->traceSimulation("Initial current state=" + std::to_string(_currentState->getValue()));
+		_parentModel->getTracer()->traceSimulation(this, "Initial current state=" + std::to_string(_currentState->getValue()));
 		_initilized = true;
 	} else {
 		size = _transitionProbMatrix->getDimensionSizes()->front();

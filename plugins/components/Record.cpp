@@ -71,7 +71,7 @@ void Record::_execute(Entity* entity) {
 		file << value << std::endl;
 		file.close();
 	}
-	_parentModel->getTracer()->traceSimulation(_parentModel->getSimulation()->getSimulatedTime(), entity, this, "Recording value " + std::to_string(value));
+	_parentModel->getTracer()->traceSimulation(this, _parentModel->getSimulation()->getSimulatedTime(), entity, this, "Recording value " + std::to_string(value));
 	_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 
 }

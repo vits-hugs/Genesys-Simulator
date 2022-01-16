@@ -29,15 +29,22 @@ bool ModelDataManager::insert(ModelData * anElement) {
 
 bool ModelDataManager::insert(std::string elementTypename, ModelData * anElement) {
 	List<ModelData*>* listElements = getElementList(elementTypename);
+	std::string text = "";
+	bool result = false;
 	if (listElements->find(anElement) == listElements->list()->end()) { //not found
 		listElements->insert(anElement);
 		_hasChanged = true;
-		this->_parentModel->getTracer()->trace(Util::TraceLevel::L8_detailed, anElement->getClassname() + " \"" + anElement->getName() + "\"" + " successfully inserted.");
-		return true;
-	} else {
-		this->_parentModel->getTracer()->trace(Util::TraceLevel::L8_detailed, anElement->getClassname() + " \"" + anElement->getName() + "\" already exists."); //could not be inserted.");
+		text = anElement->getClassname() + " \"" + anElement->getName() + "\"" + " successfully inserted.";
+		result = true;
+		//	} else {
+		//		text = anElement->getClassname() + " \"" + anElement->getName() + "\" already exists.";
 	}
-	return false;
+	if (_parentModel->getSimulation()->isRunning()) {
+		_parentModel->getTracer()->traceSimulation(this, Util::TraceLevel::L8_detailed, text);
+	} else {
+		_parentModel->getTracer()->trace(Util::TraceLevel::L8_detailed, text);
+	}
+	return result;
 }
 
 void ModelDataManager::remove(ModelData * anElement) {

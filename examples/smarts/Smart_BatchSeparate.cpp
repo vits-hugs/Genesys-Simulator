@@ -52,7 +52,13 @@ int Smart_BatchSeparate::main(int argc, char** argv) {
 	se->getConnections()->insert(di);
 	ModelSimulation* sim = m->getSimulation();
 	sim->setReplicationLength(100);
-	m->getTracer()->setTraceLevel(Util::TraceLevel::L7_internal);
+	sim->setShowReportsAfterReplication(false);
+	sim->setShowReportsAfterSimulation(false);
+	m->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
+	m->getTracer()->setTraceSimulationRuleAllAllowed(false);
+	m->getTracer()->addTraceSimulationExceptionRuleModelData(ba);
+	m->getTracer()->addTraceSimulationExceptionRuleModelData(se);
+	//m->getTracer()->addTraceSimulationExceptionRuleModelData(sim);
 	m->save("./models/Smart_BatchSeparate.gen");
 	sim->start();
 	return 0;

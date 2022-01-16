@@ -126,7 +126,7 @@ void Seize::_handlerForResourceEvent(Resource* resource) { //TODO Resource is us
 		}
 		if (canSeizeAll) {
 			queue->removeElement(first);
-			//_parentModel->getTracer()->traceSimulation(tnow, first->getEntity(), this, "Waiting entity " + first->getEntity()->getName() + " removed from queue and will try to seize the resources");// now seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\"");
+			//_parentModel->getTracer()->traceSimulation(this, tnow, first->getEntity(), this, "Waiting entity " + first->getEntity()->getName() + " removed from queue and will try to seize the resources");// now seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\"");
 			_parentModel->getTracer()->trace("Waiting entity " + first->getEntity()->getName() + " removed from queue and will try to seize the resources"); // now seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\"");
 			_parentModel->sendEntityToComponent(first->getEntity(), this); // move waiting entity from queue to this component
 		}
@@ -138,7 +138,7 @@ void Seize::_handlerForResourceEvent(Resource* resource) { //TODO Resource is us
 				resource->seize(quantity, tnow);
 				_parentModel->getFutureEvents()->insert(new Event(tnow, first->getEntity(), this->getNextComponents()->getFrontConnection()));
 				queue->removeElement(first);
-				_parentModel->getTracer()->traceSimulation(tnow, first->getEntity(), this, "Waiting entity " + first->getEntity()->getName() + " removed from queue and now seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\"");
+				_parentModel->getTracer()->traceSimulation(this, tnow, first->getEntity(), this, "Waiting entity " + first->getEntity()->getName() + " removed from queue and now seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\"");
 			}
 		} 
 		 */
@@ -212,15 +212,15 @@ void Seize::_execute(Entity* entity) {
 			} else { // assume SET
 				Set* set = _queueableItem->getSet();
 				unsigned int index = _parentModel->parseExpression(_queueableItem->getIndex());
-				_parentModel->getTracer()->traceSimulation("Member of set " + set->getName() + " chosen index " + std::to_string(index), Util::TraceLevel::L8_detailed);
+				_parentModel->getTracer()->traceSimulation(this, "Member of set " + set->getName() + " chosen index " + std::to_string(index), Util::TraceLevel::L8_detailed);
 				queue = static_cast<Queue*> (set->getElementSet()->getAtRank(index));
 			}
 			queue->insertElement(waitingRec); // ->list()->insert(waitingRec);
-			_parentModel->getTracer()->traceSimulation(_parentModel->getSimulation()->getSimulatedTime(), entity, this, "Entity starts to wait for resource in queue \"" + queue->getName() + "\" with " + std::to_string(queue->size()) + " elements");
+			_parentModel->getTracer()->traceSimulation(this, _parentModel->getSimulation()->getSimulatedTime(), entity, this, "Entity starts to wait for resource in queue \"" + queue->getName() + "\" with " + std::to_string(queue->size()) + " elements");
 			return;
 		} else { // alocate the resource
 			resource->seize(quantity, _parentModel->getSimulation()->getSimulatedTime());
-			_parentModel->getTracer()->traceSimulation(_parentModel->getSimulation()->getSimulatedTime(), entity, this, entity->getName() + " seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\" (capacity:" + std::to_string(resource->getCapacity()) + ", numberbusy:" + std::to_string(resource->getNumberBusy()) + ")");
+			_parentModel->getTracer()->traceSimulation(this, _parentModel->getSimulation()->getSimulatedTime(), entity, this, entity->getName() + " seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\" (capacity:" + std::to_string(resource->getCapacity()) + ", numberbusy:" + std::to_string(resource->getNumberBusy()) + ")");
 		}
 	}
 	_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());

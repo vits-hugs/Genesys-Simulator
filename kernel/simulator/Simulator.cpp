@@ -85,6 +85,8 @@ LicenceManager* Simulator::getLicenceManager() const {
 }
 
 bool Simulator::_completePluginsFieldsAndTemplate() {
+	Util::TraceLevel savedTraceLevel = _traceManager->getTraceLevel();
+	_traceManager->setTraceLevel(Util::TraceLevel::L0_noTraces); // this crap stuff should not been shown
 	Model* tempModel = new Model(this);
 	tempModel->getPersistence()->setOption(ModelPersistence_if::Options::SAVEDEFAULTS, true);
 	Plugin* plugin;
@@ -120,5 +122,6 @@ bool Simulator::_completePluginsFieldsAndTemplate() {
 		}
 	}
 	Util::ResetAllIds();
+	_traceManager->setTraceLevel(savedTraceLevel);
 	return result;
 }

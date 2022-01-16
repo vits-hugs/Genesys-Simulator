@@ -34,23 +34,22 @@ ModelComponent* Separate::LoadInstance(Model* model, std::map<std::string, std::
 }
 
 void Separate::_execute(Entity* entity) {
-	unsigned int groupId = entity->getAttributeValue("Entity.Group"); //This attribute refers to the Batch internal modeldatum EntityGroup (which may contain several groups --map--
-	if (groupId == 0) {
-		_parentModel->getTracer()->traceSimulation(Util::TraceLevel::L7_internal, "Entity is not grouped. Nothing to do");
+	unsigned int entityGroupId = entity->getAttributeValue("Entity.Group"); //This attribute refers to the Batch internal modeldatum EntityGroup (which may contain several groups --map--
+	if (entityGroupId == 0) {
+		_parentModel->getTracer()->traceSimulation(this, Util::TraceLevel::L7_internal, "Entity is not grouped. Nothing to do");
 		this->_parentModel->sendEntityToComponent(entity, getConnections()->getFrontConnection());
 	} else {
-		EntityGroup* eg = dynamic_cast<EntityGroup*> (_parentModel->getData()->getData(Util::TypeOf<EntityGroup>(), groupId));
-		if (eg == nullptr) {
-			_parentModel->getTracer()->traceSimulation(Util::TraceLevel::L3_errorRecover, "Error: Could not find EntityGroup Id=" + std::to_string(groupId));
+		EntityGroup* entityGroup = dynamic_cast<EntityGroup*> (_parentModel->getData()->getData(Util::TypeOf<EntityGroup>(), entityGroupId));
+		if (entityGroup == nullptr) {
+			_parentModel->getTracer()->traceSimulation(this, Util::TraceLevel::L3_errorRecover, "Error: Could not find EntityGroup Id=" + std::to_string(entityGroupId));
 		} else {
 			Entity* e;
 			unsigned int idGroupKey = entity->getId();
-			while ((e = eg->getGroup(idGroupKey)->front()) != nullptr) {
-				eg->removeElement(idGroupKey, e);
-				_parentModel->getTracer()->traceSimulation(Util::TraceLevel::L7_internal, "Entity " + e ->getName() + " was separated out of the group " + std::to_string(idGroupKey));
+			while ((e = entityGroup->getGroup(idGroupKey)->front()) != nullptr) {
+				entityGroup->removeElement(idGroupKey, e);
+				_parentModel->getTracer()->traceSimulation(this, Util::TraceLevel::L7_internal, "Entity " + e ->getName() + " was separated out of the group " + std::to_string(idGroupKey));
 				_parentModel->sendEntityToComponent(e, _connections->getFrontConnection());
 			}
-			_parentModel->getData()-> remove(Util::TypeOf<EntityGroup>(), eg);
 			_parentModel->removeEntity(entity);
 		}
 	}

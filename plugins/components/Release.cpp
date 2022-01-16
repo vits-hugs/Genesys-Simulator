@@ -79,13 +79,13 @@ void Release::_execute(Entity* entity) {
 					index = _parentModel->parseExpression(seizable->getIndex());
 					break;
 			}
-			_parentModel->getTracer()->traceSimulation("Member of set " + set->getName() + " chosen index " + std::to_string(index), Util::TraceLevel::L8_detailed);
+			_parentModel->getTracer()->traceSimulation(this, "Member of set " + set->getName() + " chosen index " + std::to_string(index), Util::TraceLevel::L8_detailed);
 			resource = static_cast<Resource*> (set->getElementSet()->getAtRank(index));
 			assert(resource != nullptr);
 		}
 		unsigned int quantity = _parentModel->parseExpression(seizable->getQuantityExpression());
 		assert(resource->getNumberBusy() >= quantity); // 202104 ops. maybe not anymore
-		_parentModel->getTracer()->traceSimulation(_parentModel->getSimulation()->getSimulatedTime(), entity, this, entity->getName() + " releases " + std::to_string(quantity) + " units of resource \"" + resource->getName() + "\" seized on time " + std::to_string(resource->getLastTimeSeized()));
+		_parentModel->getTracer()->traceSimulation(this, _parentModel->getSimulation()->getSimulatedTime(), entity, this, entity->getName() + " releases " + std::to_string(quantity) + " units of resource \"" + resource->getName() + "\" seized on time " + std::to_string(resource->getLastTimeSeized()));
 		resource->release(quantity, _parentModel->getSimulation()->getSimulatedTime()); //{releases and sets the 'LastTimeSeized'property}
 	}
 	_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
