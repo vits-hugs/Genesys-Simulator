@@ -14,13 +14,13 @@
 #include "Create.h"
 #include "../../kernel/simulator/Model.h"
 #include "../../kernel/simulator/EntityType.h"
-#include "../../kernel/simulator/ElementManager.h"
+#include "../../kernel/simulator/ModelDataManager.h"
 #include "../../kernel/simulator/Attribute.h"
 #include "Assign.h"
 
 Create::Create(Model* model, std::string name) : SourceModelComponent(model, Util::TypeOf<Create>(), name) {
 	//_numberOut = new Counter(_parentModel, getName() + "." + "Count_number_in", this);
-	// @TODO Check if element has already been inserted and this is not needed: _parentModel->elements()->insert(_numberOut);
+	// @TODO Check if modeldatum has already been inserted and this is not needed: _parentModel->elements()->insert(_numberOut);
 	_connections->setMinInputConnections(0);
 	_connections->setMaxInputConnections(0);
 	GetterMember getter = DefineGetterMember<SourceModelComponent>(this, &Create::getEntitiesPerCreation);
@@ -39,7 +39,7 @@ std::string Create::show() {
 }
 
 void Create::_execute(Entity* entity) {
-	_parentModel->getElements()->insert(entity->getClassname(), entity);
+	_parentModel->getData()->insert(entity->getClassname(), entity);
 	double tnow = _parentModel->getSimulation()->getSimulatedTime();
 	entity->setAttributeValue("Entity.ArrivalTime", tnow); // ->find("Entity.ArrivalTime")->second->setValue(tnow);
 	//entity->setAttributeValue("Entity.Picture", 1); // ->find("Entity.ArrivalTime")->second->setValue(tnow);
@@ -111,13 +111,13 @@ bool Create::_check(std::string* errorMessage) {
 	return resultAll;
 }
 
-void Create::_createInternalElements() {
+void Create::_createInternalData() {
 	if (_reportStatistics && _numberOut == nullptr) {
 		_numberOut = new Counter(_parentModel, getName() + "." + "CountNumberOut", this);
-		_internalElements->insert({"CountNumberOut", _numberOut});
+		_internalData->insert({"CountNumberOut", _numberOut});
 		// @TODO _internelElements->insert("Count_number_in", _numberOut);
 	} else if (!_reportStatistics && _numberOut != nullptr) {
-		this->_removeInternalElements();
+		this->_removeInternalDatas();
 		// @TODO _internelElements->remove("Count_number_in");
 		//_numberOut->~Counter();
 		_numberOut = nullptr;

@@ -15,7 +15,7 @@
 #include "../../kernel/simulator/Counter.h"
 #include "../../kernel/simulator/Model.h"
 
-Resource::Resource(Model* model, std::string name) : ModelElement(model, Util::TypeOf<Resource>(), name) {
+Resource::Resource(Model* model, std::string name) : ModelData(model, Util::TypeOf<Resource>(), name) {
 	_resourceEventHandlers->setSortFunc([](const SortedResourceEventHandler* a, const SortedResourceEventHandler * b) {
 		return a->second < b->second; /// Handlers are sorted by priority
 	});
@@ -31,7 +31,7 @@ Resource::Resource(Model* model, std::string name) : ModelElement(model, Util::T
 }
 
 std::string Resource::show() {
-	return ModelElement::show() +
+	return ModelData::show() +
 			",capacity=" + strTruncIfInt(std::to_string(_capacity)) +
 			",costBusyByour=" + strTruncIfInt(std::to_string(_costBusyHour)) +
 			",costIdleByour=" + strTruncIfInt(std::to_string(_costIdleHour)) +
@@ -69,7 +69,7 @@ void Resource::release(unsigned int quantity, double tnow) {
 }
 
 void Resource::_initBetweenReplications() {
-	ModelElement::_initBetweenReplications();
+	ModelData::_initBetweenReplications();
 	this->_lastTimeSeized = 0.0;
 	this->_numberBusy = 0;
 }
@@ -149,7 +149,7 @@ PluginInformation* Resource::GetPluginInformation() {
 	return info;
 }
 
-ModelElement* Resource::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
+ModelData* Resource::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
 	Resource* newElement = new Resource(model);
 	try {
 		newElement->_loadInstance(fields);
@@ -160,7 +160,7 @@ ModelElement* Resource::LoadInstance(Model* model, std::map<std::string, std::st
 }
 
 bool Resource::_loadInstance(std::map<std::string, std::string>* fields) {
-	bool res = ModelElement::_loadInstance(fields);
+	bool res = ModelData::_loadInstance(fields);
 	if (res) {
 		_capacity = LoadField(fields, "capacity", DEFAULT.capacity);
 		_costBusyHour = LoadField(fields, "costBusyHour", DEFAULT.cost);
@@ -173,7 +173,7 @@ bool Resource::_loadInstance(std::map<std::string, std::string>* fields) {
 
 std::map<std::string, std::string>* Resource::_saveInstance(bool saveDefaultValues) {
 	bool saveDefaults = _getSaveDefaultsOption();
-	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues); //Util::TypeOf<Resource>());
+	std::map<std::string, std::string>* fields = ModelData::_saveInstance(saveDefaultValues); //Util::TypeOf<Resource>());
 	SaveField(fields, "capacity", _capacity, DEFAULT.capacity, saveDefaultValues);
 	SaveField(fields, "costBusyHour", _costBusyHour, DEFAULT.cost, saveDefaultValues);
 	SaveField(fields, "costIdleHour", _costIdleHour, DEFAULT.cost, saveDefaultValues);
@@ -187,17 +187,17 @@ bool Resource::_check(std::string* errorMessage) {
 	return true;
 }
 
-void Resource::_createInternalElements() {
+void Resource::_createInternalData() {
 	if (_reportStatistics && _cstatTimeSeized == nullptr) {
 		_cstatTimeSeized = new StatisticsCollector(_parentModel, getName() + "." + "TimeSeized", this);
 		_totalTimeSeized = new Counter(_parentModel, getName() + "." + "TotalTimeSeized", this);
 		_numSeizes = new Counter(_parentModel, getName() + "." + "Seizes", this);
 		_numReleases = new Counter(_parentModel, getName() + "." + "Releases", this);
-		_internalElements->insert({"TimeSeized", _cstatTimeSeized});
-		_internalElements->insert({"TotalTimeSeized", _totalTimeSeized});
-		_internalElements->insert({"Seizes", _numSeizes});
-		_internalElements->insert({"Releases", _numReleases});
+		_internalData->insert({"TimeSeized", _cstatTimeSeized});
+		_internalData->insert({"TotalTimeSeized", _totalTimeSeized});
+		_internalData->insert({"Seizes", _numSeizes});
+		_internalData->insert({"Releases", _numReleases});
 	} else if (!_reportStatistics && _cstatTimeSeized != nullptr) {
-		_removeInternalElements();
+		_removeInternalDatas();
 	}
 }

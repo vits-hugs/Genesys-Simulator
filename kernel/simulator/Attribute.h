@@ -17,8 +17,8 @@
 #include <string>
 #include <list>
 #include "../util/List.h"
-#include "ModelElement.h"
-#include "ElementManager.h"
+#include "ModelData.h"
+#include "ModelDataManager.h"
 #include "Plugin.h"
 
 //namespace GenesysKernel {
@@ -60,7 +60,7 @@ new values to the attribute by using the Assign module.
 Initial Value Entity attribute value when entity is created and enters the
 system.
  */
-class Attribute : public ModelElement {
+class Attribute : public ModelData {
 public:
 	Attribute(Model* model, std::string name = "");
 	virtual ~Attribute() = default;
@@ -68,7 +68,7 @@ public:
 	virtual std::string show();
 public:
 	static PluginInformation* GetPluginInformation();
-	static ModelElement* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 protected:
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);

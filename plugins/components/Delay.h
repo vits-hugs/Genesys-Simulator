@@ -61,7 +61,7 @@ protected:
 protected:
 	//virtual void _initBetweenReplications();
 	virtual bool _check(std::string* errorMessage);
-	virtual void _createInternalElements();
+	virtual void _createInternalData();
 private:
 
 	const struct DEFAULT_VALUES {

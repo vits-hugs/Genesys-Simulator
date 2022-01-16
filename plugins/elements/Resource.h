@@ -14,9 +14,9 @@
 #ifndef RESOURCE_H
 #define RESOURCE_H
 
-#include "../../kernel/simulator/ModelElement.h"
+#include "../../kernel/simulator/ModelData.h"
 #include "../../kernel/simulator/StatisticsCollector.h"
-#include "../../kernel/simulator/ElementManager.h"
+#include "../../kernel/simulator/ModelDataManager.h"
 #include "../../kernel/simulator/Counter.h"
 #include "../../kernel/simulator/Plugin.h"
 
@@ -78,7 +78,7 @@ occur for a busy resource unit.
 Report Statistics Specifies whether or not statistics will be collected automatically
 and stored in the report database for this resource.
  */
-class Resource : public ModelElement {
+class Resource : public ModelData {
 public:
 	typedef std::function<void(Resource*) > ResourceEventHandler;
 	typedef std::pair<std::pair<ResourceEventHandler, ModelComponent*>, unsigned int> SortedResourceEventHandler;
@@ -99,7 +99,7 @@ public:
 	virtual std::string show();
 public:
 	static PluginInformation* GetPluginInformation();
-	static ModelElement* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 public:
 	void seize(unsigned int quantity, double tnow);
 	void release(unsigned int quantity, double tnow);
@@ -123,7 +123,7 @@ protected:
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
-	virtual void _createInternalElements();
+	virtual void _createInternalData();
 	virtual void _initBetweenReplications();
 private:
 	void _notifyReleaseEventHandlers(); ///< Notify observer classes that some of the resource capacity has been released. It is useful for allocation components (such as Seize) to know when an entity waiting into a queue can try to seize the resource again

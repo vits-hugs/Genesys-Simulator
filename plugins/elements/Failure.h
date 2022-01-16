@@ -15,8 +15,8 @@
 #define FAILURE_H
 
 
-#include "../../kernel/simulator/ModelElement.h"
-#include "../../kernel/simulator/ElementManager.h"
+#include "../../kernel/simulator/ModelData.h"
+#include "../../kernel/simulator/ModelDataManager.h"
 //#include "ParserChangesInformation.h"
 #include "../../kernel/simulator/PluginInformation.h"
 
@@ -64,12 +64,12 @@ define a failure to be based only on the state Busy, and therefore,
 the time between downtimes would be based on the amount of
 time that a resource is busy, not simulated clock time.
  */
-class Failure : public ModelElement {
+class Failure : public ModelData {
 public:
 	Failure(Model* model, std::string name = "");
 	virtual ~Failure() = default;
 public: // static
-	static ModelElement* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 	static PluginInformation* GetPluginInformation();
 public:
 	virtual std::string show();

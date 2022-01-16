@@ -19,7 +19,7 @@
 
 typedef TraitsKernel<Model>::StatisticsCollector_StatisticsImplementation StatisticsClass;
 
-StatisticsCollector::StatisticsCollector(Model* model, std::string name, ModelElement* parent, bool insertIntoModel) : ModelElement(model, Util::TypeOf<StatisticsCollector>(), name, insertIntoModel) {
+StatisticsCollector::StatisticsCollector(Model* model, std::string name, ModelData* parent, bool insertIntoModel) : ModelData(model, Util::TypeOf<StatisticsCollector>(), name, insertIntoModel) {
 	_parent = parent;
 	_initStaticsAndCollector();
 	_addSimulationResponses();
@@ -37,7 +37,7 @@ void StatisticsCollector::_addSimulationResponses() {
 
 void StatisticsCollector::_initStaticsAndCollector() {
 	Collector_if* collector = new TraitsKernel<Model>::StatisticsCollector_CollectorImplementation();
-	_statistics = new StatisticsClass(collector); //TraitsKernel<ModelComponent>::StatisticsCollector_StatisticsImplementation(collector);
+	_statistics = new StatisticsClass(collector);
 }
 
 std::string StatisticsCollector::show() {
@@ -49,12 +49,12 @@ std::string StatisticsCollector::show() {
 			parentStr = "<<INCONSISTENT>>"; /* @TODO: ++*/
 		}
 	}
-	return ModelElement::show() +
+	return ModelData::show() +
 			",parent=\"" + parentStr + "\"" +
 			",numElements=" + std::to_string(_statistics->numElements());
 }
 
-ModelElement* StatisticsCollector::getParent() const {
+ModelData* StatisticsCollector::getParent() const {
 	return _parent;
 }
 
@@ -65,12 +65,12 @@ Statistics_if* StatisticsCollector::getStatistics() const {
 PluginInformation* StatisticsCollector::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<StatisticsCollector>(), &StatisticsCollector::LoadInstance);
 	info->setGenerateReport(true);
-	info->setDescriptionHelp("The StatisticsCollector is the ModelElement responsible for collecting data from the model (using the Collector) and simultaneouly keeping statistics updated (using the Statistics)");
+	info->setDescriptionHelp("The StatisticsCollector is the ModelData responsible for collecting data from the model (using the Collector) and simultaneouly keeping statistics updated (using the Statistics)");
 
 	return info;
 }
 
-ModelElement* StatisticsCollector::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
+ModelData* StatisticsCollector::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
 	StatisticsCollector* newElement = new StatisticsCollector(model);
 	try {
 		newElement->_loadInstance(fields);
@@ -81,14 +81,14 @@ ModelElement* StatisticsCollector::LoadInstance(Model* model, std::map<std::stri
 }
 
 bool StatisticsCollector::_loadInstance(std::map<std::string, std::string>* fields) {
-	bool res = ModelElement::_loadInstance(fields);
+	bool res = ModelData::_loadInstance(fields);
 	if (res) {
 	}
 	return res;
 }
 
 std::map<std::string, std::string>* StatisticsCollector::_saveInstance(bool saveDefaultValues) {
-	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues); //Util::TypeOf<StatisticsCollector>());
+	std::map<std::string, std::string>* fields = ModelData::_saveInstance(saveDefaultValues); //Util::TypeOf<StatisticsCollector>());
 	std::string parentId = "", parentTypename = "";
 	if (this->_parent != nullptr) {
 		parentId = std::to_string(_parent->getId());

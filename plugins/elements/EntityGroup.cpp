@@ -15,9 +15,9 @@
 #include "../../kernel/simulator/Model.h"
 #include "../../kernel/simulator/Attribute.h"
 
-EntityGroup::EntityGroup(Model* model, std::string name) : ModelElement(model, Util::TypeOf<EntityGroup>(), name) {
+EntityGroup::EntityGroup(Model* model, std::string name) : ModelData(model, Util::TypeOf<EntityGroup>(), name) {
 	// it is invoked in the constructor since EntityGroups are creted runtime by Components such as Batch
-	this->_createInternalElements();
+	this->_createInternalData();
 }
 
 EntityGroup::~EntityGroup() {
@@ -25,24 +25,24 @@ EntityGroup::~EntityGroup() {
 }
 
 std::string EntityGroup::show() {
-	return ModelElement::show(); // +
+	return ModelData::show(); // +
 	// TODO: Sow every group in the map",entities=" + this->_list->show();
 }
 
-void EntityGroup::insertElement(unsigned int idKey, Entity* element) {
+void EntityGroup::insertElement(unsigned int idKey, Entity* modeldatum) {
 	std::map<unsigned int, List<Entity*>*>::iterator it = _groupMap->find(idKey);
 	while (it == _groupMap->end()) {
 		_groupMap->insert({idKey, new List<Entity*>()});
 		it = _groupMap->find(idKey);
 	}
-	(*it).second->insert(element);
+	(*it).second->insert(modeldatum);
 	_cstatNumberInGroup->getStatistics()->getCollector()->addValue((*it).second->size());
 }
 
-void EntityGroup::removeElement(unsigned int idKey, Entity * element) {
+void EntityGroup::removeElement(unsigned int idKey, Entity * modeldatum) {
 	std::map<unsigned int, List<Entity*>*>::iterator it = _groupMap->find(idKey);
 	if (it != _groupMap->end()) {
-		(*it).second->remove(element);
+		(*it).second->remove(modeldatum);
 		_cstatNumberInGroup->getStatistics()->getCollector()->addValue((*it).second->size());
 	}
 }
@@ -62,7 +62,7 @@ PluginInformation * EntityGroup::GetPluginInformation() {
 	return info;
 }
 
-ModelElement * EntityGroup::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
+ModelData * EntityGroup::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
 	EntityGroup* newElement = new EntityGroup(model);
 	try {
 		newElement->_loadInstance(fields);
@@ -73,7 +73,7 @@ ModelElement * EntityGroup::LoadInstance(Model* model, std::map<std::string, std
 }
 
 bool EntityGroup::_loadInstance(std::map<std::string, std::string>* fields) {
-	bool res = ModelElement::_loadInstance(fields);
+	bool res = ModelData::_loadInstance(fields);
 	if (res) {
 		try {
 		} catch (...) {
@@ -83,28 +83,28 @@ bool EntityGroup::_loadInstance(std::map<std::string, std::string>* fields) {
 }
 
 std::map<std::string, std::string>* EntityGroup::_saveInstance(bool saveDefaultValues) {
-	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues); //Util::TypeOf<Group>());
+	std::map<std::string, std::string>* fields = ModelData::_saveInstance(saveDefaultValues); //Util::TypeOf<Group>());
 	return fields;
 }
 
 bool EntityGroup::_check(std::string * errorMessage) {
 	std::string newNeededAttributeName = "Entity.Group";
-	if (_parentModel->getElements()->getElement(Util::TypeOf<Attribute>(), newNeededAttributeName) == nullptr) {
+	if (_parentModel->getData()->getData(Util::TypeOf<Attribute>(), newNeededAttributeName) == nullptr) {
 		new Attribute(_parentModel, newNeededAttributeName);
 	}
 	*errorMessage += "";
 	return true;
 }
 
-void EntityGroup::_createInternalElements() {
+void EntityGroup::_createInternalData() {
 	if (_reportStatistics) {
 		if (_cstatNumberInGroup == nullptr) {
 			_cstatNumberInGroup = new StatisticsCollector(_parentModel, "NumberInGroup", this);
-			_internalElements->insert({"NumberInGroup", _cstatNumberInGroup});
+			_internalData->insert({"NumberInGroup", _cstatNumberInGroup});
 		}
 	} else
 		if (_cstatNumberInGroup != nullptr) {
-		_removeInternalElements();
+		_removeInternalDatas();
 	}
 }
 

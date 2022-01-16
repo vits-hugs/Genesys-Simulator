@@ -87,16 +87,16 @@ bool Decide::_check(std::string* errorMessage) {
 	return allResult;
 }
 
-void Decide::_createInternalElements() {
+void Decide::_createInternalData() {
 	if (_reportStatistics && _numberOuts == nullptr) {
 		_numberOuts = new List<Counter*>();
 		for (unsigned int i = 0; i<this->_connections->size(); i++) {
 			Counter* counter = new Counter(_parentModel, getName() + "." + "CountNumberOut" + std::to_string(i), this);
 			_numberOuts->insert(counter);
-			_internalElements->insert({"CountNumberOut" + std::to_string(i), counter});
+			_internalData->insert({"CountNumberOut" + std::to_string(i), counter});
 		}
 	} else if (!_reportStatistics && _numberOuts != nullptr) {
-		this->_removeInternalElements();
+		this->_removeInternalDatas();
 		_numberOuts = nullptr;
 	}
 

@@ -54,22 +54,22 @@ bool Dispose::_check(std::string* errorMessage) {
 	return true;
 }
 
-void Dispose::_createInternalElements() {
+void Dispose::_createInternalData() {
 	if (_reportStatistics && _numberOut == nullptr) {
 		// creates the counter (and then the CStats)
 		_numberOut = new Counter(_parentModel, getName() + "." + "CountNumberIn", this);
-		_internalElements->insert({"CountNumberIn", _numberOut});
+		_internalData->insert({"CountNumberIn", _numberOut});
 		// include StatisticsCollector needed for each EntityType
-		std::list<ModelElement*>* enttypes = _parentModel->getElements()->getElementList(Util::TypeOf<EntityType>())->list();
-		for (ModelElement* element : *enttypes) {
-			if (element->isReportStatistics())
-				static_cast<EntityType*> (element)->addGetStatisticsCollector(element->getName() + "." + "TotalTimeInSystem"); // force create this CStat before model checking
+		std::list<ModelData*>* enttypes = _parentModel->getData()->getElementList(Util::TypeOf<EntityType>())->list();
+		for (ModelData* modeldatum : *enttypes) {
+			if (modeldatum->isReportStatistics())
+				static_cast<EntityType*> (modeldatum)->addGetStatisticsCollector(modeldatum->getName() + "." + "TotalTimeInSystem"); // force create this CStat before model checking
 		}
 	} else if (!_reportStatistics && _numberOut != nullptr) {
 		//_numberOut->~Counter();
 		//_numberOut = nullptr;
 		// @TODO: delete the CSTATS?
-		_removeInternalElements();
+		_removeInternalDatas();
 	}
 }
 

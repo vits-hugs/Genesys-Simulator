@@ -15,7 +15,7 @@
 #include "../../kernel/simulator/Model.h"
 #include "../../kernel/simulator/Attribute.h"
 
-Queue::Queue(Model* model, std::string name) : ModelElement(model, Util::TypeOf<Queue>(), name) {
+Queue::Queue(Model* model, std::string name) : ModelData(model, Util::TypeOf<Queue>(), name) {
 }
 
 Queue::~Queue() {
@@ -24,22 +24,22 @@ Queue::~Queue() {
 }
 
 std::string Queue::show() {
-	return ModelElement::show() +
+	return ModelData::show() +
 			",waiting=" + this->_list->show();
 }
 
-void Queue::insertElement(Waiting* element) {
-	_list->insert(element);
+void Queue::insertElement(Waiting* modeldatum) {
+	_list->insert(modeldatum);
 	if (_reportStatistics)
 		this->_cstatNumberInQueue->getStatistics()->getCollector()->addValue(_list->size());
 }
 
-void Queue::removeElement(Waiting* element) {
+void Queue::removeElement(Waiting* modeldatum) {
 	double tnow = _parentModel->getSimulation()->getSimulatedTime();
-	_list->remove(element);
+	_list->remove(modeldatum);
 	if (_reportStatistics) {
 		this->_cstatNumberInQueue->getStatistics()->getCollector()->addValue(_list->size());
-		double timeInQueue = tnow - element->getTimeStartedWaiting();
+		double timeInQueue = tnow - modeldatum->getTimeStartedWaiting();
 		this->_cstatTimeInQueue->getStatistics()->getCollector()->addValue(timeInQueue);
 	}
 }
@@ -97,7 +97,7 @@ PluginInformation* Queue::GetPluginInformation() {
 	return info;
 }
 
-ModelElement* Queue::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
+ModelData* Queue::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
 	Queue* newElement = new Queue(model);
 	try {
 		newElement->_loadInstance(fields);
@@ -108,7 +108,7 @@ ModelElement* Queue::LoadInstance(Model* model, std::map<std::string, std::strin
 }
 
 bool Queue::_loadInstance(std::map<std::string, std::string>* fields) {
-	bool res = ModelElement::_loadInstance(fields);
+	bool res = ModelData::_loadInstance(fields);
 	if (res) {
 		try {
 			this->_attributeName = LoadField(fields, "attributeName", DEFAULT.attributeName);
@@ -120,27 +120,27 @@ bool Queue::_loadInstance(std::map<std::string, std::string>* fields) {
 }
 
 std::map<std::string, std::string>* Queue::_saveInstance(bool saveDefaultValues) {
-	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues); //Util::TypeOf<Queue>());
+	std::map<std::string, std::string>* fields = ModelData::_saveInstance(saveDefaultValues); //Util::TypeOf<Queue>());
 	SaveField(fields, "orderRule", static_cast<int> (this->_orderRule), static_cast<int> (DEFAULT.orderRule), saveDefaultValues);
 	SaveField(fields, "attributeName", this->_attributeName, DEFAULT.attributeName, saveDefaultValues);
 	return fields;
 }
 
 bool Queue::_check(std::string* errorMessage) {
-	return _parentModel->getElements()->check(Util::TypeOf<Attribute>(), _attributeName, "AttributeName", false, errorMessage);
+	return _parentModel->getData()->check(Util::TypeOf<Attribute>(), _attributeName, "AttributeName", false, errorMessage);
 }
 
-void Queue::_createInternalElements() {
+void Queue::_createInternalData() {
 	if (_reportStatistics) {
 		if (_cstatNumberInQueue == nullptr) {
 			_cstatNumberInQueue = new StatisticsCollector(_parentModel, getName() + "." + "NumberInQueue", this); /* @TODO: ++ WHY THIS INSERT "DISPOSE" AND "10ENTITYTYPE" STATCOLL ?? */
 			_cstatTimeInQueue = new StatisticsCollector(_parentModel, getName() + "." + "TimeInQueue", this);
-			_internalElements->insert({"NumberInQueue", _cstatNumberInQueue});
-			_internalElements->insert({"TimeInQueue", _cstatTimeInQueue});
+			_internalData->insert({"NumberInQueue", _cstatNumberInQueue});
+			_internalData->insert({"TimeInQueue", _cstatTimeInQueue});
 		}
 	} else if (_cstatNumberInQueue != nullptr) {
 		// @TODO: remove
-		_removeInternalElements();
+		_removeInternalDatas();
 		//_internelElements->remove(_cstatNumberInQueue);
 		//_internelElements->remove(_cstatTimeInQueue);
 		//_cstatNumberInQueue->~StatisticsCollector();

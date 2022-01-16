@@ -17,11 +17,11 @@
 
 //using namespace GenesysKernel;
 
-EntityType::EntityType(Model* model, std::string name) : ModelElement(model, Util::TypeOf<EntityType>(), name) {
+EntityType::EntityType(Model* model, std::string name) : ModelData(model, Util::TypeOf<EntityType>(), name) {
 }
 
 void EntityType::_initBetweenReplications() {
-	ModelElement::_initBetweenReplications();
+	ModelData::_initBetweenReplications();
 	_initialWaitingCost = 0.0;
 	_initialVACost = 0.0;
 	_initialNVACost = 0.0;
@@ -34,12 +34,12 @@ void EntityType::_initBetweenReplications() {
 EntityType::~EntityType() {
 	// remove all CStats
 	for (StatisticsCollector* cstat : *_statisticsCollectors->list()) {
-		_parentModel->getElements()->remove(Util::TypeOf<StatisticsCollector>(), cstat);
+		_parentModel->getData()->remove(Util::TypeOf<StatisticsCollector>(), cstat);
 	}
 }
 
 std::string EntityType::show() {
-	return ModelElement::show() +
+	return ModelData::show() +
 			",initialPicture=" + this->_initialPicture; // add more...
 }
 
@@ -89,10 +89,10 @@ StatisticsCollector* EntityType::addGetStatisticsCollector(std::string name) {
 			return cstat;
 		}
 	}
-	// not found. Create it, insert it into the list of cstats, into the model element manager, and then return it
+	// not found. Create it, insert it into the list of cstats, into the model modeldatum manager, and then return it
 	StatisticsCollector* cstat = new StatisticsCollector(_parentModel, name, this);
 	_statisticsCollectors->insert(cstat); // @TODO _statisticsCollectors list is probabily redundant to _internelElements and unnecessary
-	_internalElements->insert({name, cstat});
+	_internalData->insert({name, cstat});
 	//_parentModel->insert(cstat); // unnecessary
 	return cstat;
 }
@@ -103,7 +103,7 @@ PluginInformation* EntityType::GetPluginInformation() {
 	return info;
 }
 
-ModelElement* EntityType::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
+ModelData* EntityType::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
 	EntityType* newElement = new EntityType(model);
 	try {
 		newElement->_loadInstance(fields);
@@ -114,7 +114,7 @@ ModelElement* EntityType::LoadInstance(Model* model, std::map<std::string, std::
 }
 
 bool EntityType::_loadInstance(std::map<std::string, std::string>* fields) {
-	bool res = ModelElement::_loadInstance(fields);
+	bool res = ModelData::_loadInstance(fields);
 	if (res) {
 		this->_initialNVACost = LoadField(fields, "initialNVACost", DEFAULT.initialCost);
 		this->_initialOtherCost = LoadField(fields, "initialOtherCost", DEFAULT.initialCost);
@@ -127,7 +127,7 @@ bool EntityType::_loadInstance(std::map<std::string, std::string>* fields) {
 
 std::map<std::string, std::string>* EntityType::_saveInstance(bool saveDefaultValues) {
 	bool saveDefaults = _getSaveDefaultsOption();
-	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues); //Util::TypeOf<EntityType>());
+	std::map<std::string, std::string>* fields = ModelData::_saveInstance(saveDefaultValues); //Util::TypeOf<EntityType>());
 	SaveField(fields, "initialNVACost", _initialNVACost, DEFAULT.initialCost, saveDefaults);
 	SaveField(fields, "initialOtherCost", _initialOtherCost, DEFAULT.initialCost, saveDefaults);
 	SaveField(fields, "initialVACost", _initialVACost, DEFAULT.initialCost, saveDefaults);
@@ -141,11 +141,11 @@ bool EntityType::_check(std::string* errorMessage) {
 	return true;
 }
 
-void EntityType::_createInternalElements() {
+void EntityType::_createInternalData() {
 	if (_reportStatistics) { //@TODO: Fix inserting to _internalElements
 	} else {
 		while (_statisticsCollectors->size() > 0) {
-			_parentModel->getElements()->remove(_statisticsCollectors->front());
+			_parentModel->getData()->remove(_statisticsCollectors->front());
 			_statisticsCollectors->front()->~StatisticsCollector();
 			_statisticsCollectors->pop_front();
 		}

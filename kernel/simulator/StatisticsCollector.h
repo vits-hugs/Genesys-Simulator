@@ -14,27 +14,27 @@
 #ifndef STATISTICSCOLLECTOR_H
 #define STATISTICSCOLLECTOR_H
 
-#include "ModelElement.h"
+#include "ModelData.h"
 #include "../statistics/Statistics_if.h"
-#include "ElementManager.h"
+#include "ModelDataManager.h"
 #include "Plugin.h"
 
 //namespace GenesysKernel {
 
 /*!
- The StatisticsCollector is the ModelElement responsible for collecting data from the model (using the Collector) and simultaneouly keeping statistics updated (using the Statistics)
+ The StatisticsCollector is the ModelData responsible for collecting data from the model (using the Collector) and simultaneouly keeping statistics updated (using the Statistics)
  */
-class StatisticsCollector : public ModelElement {//, public Statistics_if {
+class StatisticsCollector : public ModelData {//, public Statistics_if {
 public:
-	StatisticsCollector(Model* model, std::string name = "", ModelElement* parent = nullptr, bool insertIntoModel = true);
+	StatisticsCollector(Model* model, std::string name = "", ModelData* parent = nullptr, bool insertIntoModel = true);
 	virtual ~StatisticsCollector() = default;
 public:
 	virtual std::string show();
 public:
 	static PluginInformation* GetPluginInformation();
-	static ModelElement* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 public:
-	ModelElement* getParent() const;
+	ModelData* getParent() const;
 	Statistics_if* getStatistics() const;
 
 protected:
@@ -46,8 +46,8 @@ protected:
 private:
 	void _initStaticsAndCollector();
 private:
-	ModelElement* _parent;
-	Statistics_if* _statistics; //= new Traits<ModelComponent>::StatisticsCollector_StatisticsImplementation();
+	ModelData* _parent;
+	Statistics_if* _statistics;
 };
 //namespace\\}
 #endif /* STATISTICSCOLLECTOR_H */

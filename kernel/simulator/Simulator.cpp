@@ -90,7 +90,7 @@ bool Simulator::_completePluginsFieldsAndTemplate() {
 	Plugin* plugin;
 	PluginInformation* info;
 	std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();
-	ModelElement* elem;
+	ModelData* datum;
 	ModelComponent* comp;
 	std::string text;
 	bool result = true;
@@ -105,9 +105,9 @@ bool Simulator::_completePluginsFieldsAndTemplate() {
 					comp->setName("name");
 					fields = comp->SaveInstance(comp);
 				} else {
-					elem = plugin->loadNew(tempModel, fields);
-					elem->setName("name");
-					fields = elem->SaveInstance(elem);
+					datum = plugin->loadNew(tempModel, fields);
+					datum->setName("name");
+					fields = datum->SaveInstance(datum);
 				}
 				for (std::pair<std::string, std::string> field : *fields) {
 					info->getFields()->insert({field.first, ""});

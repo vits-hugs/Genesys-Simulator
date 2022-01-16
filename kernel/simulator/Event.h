@@ -16,7 +16,7 @@
 
 #include <string>
 
-#include "ModelElement.h"
+#include "ModelData.h"
 #include "Entity.h"
 #include "ModelComponent.h"
 
@@ -25,7 +25,7 @@
 /*!
  * An an instantaneaous event, triggered at a certain moment by an entity upon reaching a component. The simulated time advances in discrete points in time and that are the instants that an event is triggered.
  */
-class Event {//: public ModelElement {
+class Event {//: public ModelData {
 public:
 	Event(double time, Entity* entity, ModelComponent* component, unsigned int componentInputNumber = 0);
 	Event(double time, Entity* entity, Connection* connection);

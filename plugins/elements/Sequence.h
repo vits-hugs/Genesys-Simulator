@@ -14,8 +14,8 @@
 #ifndef SEQUENCE_H
 #define SEQUENCE_H
 
-#include "../../kernel/simulator/ModelElement.h"
-#include "../../kernel/simulator/ElementManager.h"
+#include "../../kernel/simulator/ModelData.h"
+#include "../../kernel/simulator/ModelDataManager.h"
 #include "../../kernel/simulator/PluginInformation.h"
 #include "Station.h"
 
@@ -97,7 +97,7 @@ TYPICAL USES
 * Define a routing path for part processing
 * Define a sequence of steps patients must take upon arrival at an emergency room
  */
-class Sequence : public ModelElement {
+class Sequence : public ModelData {
 public:
 
 
@@ -108,7 +108,7 @@ public:
 	virtual std::string show();
 public: // static 
 	static PluginInformation* GetPluginInformation();
-	static ModelElement* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 	List<SequenceStep*>* getSteps() const;
 public:
 protected:

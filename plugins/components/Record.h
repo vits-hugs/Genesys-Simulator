@@ -83,13 +83,13 @@ protected:
 protected:
 	//virtual void _initBetweenReplications();
 	virtual bool _check(std::string* errorMessage);
-	virtual void _createInternalElements();
+	virtual void _createInternalData();
 private:
 	std::string _expression = "";
 	std::string _expressionName = "";
 	std::string _filename = "";
 private:
-	// not a child element
+	// not a child modeldatum
 	StatisticsCollector* _cstatExpression; /* @TODO: Cretae an internal class to agregate ExpressionStatisticsColelctor, and change Record to got a list of it, so Record cn record a set of expressions into a set of files */
 };
 

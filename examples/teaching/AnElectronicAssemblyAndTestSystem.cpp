@@ -89,7 +89,7 @@ int AnElectronicAssemblyAndTestSystem::main(int argc, char** argv) {
 	record2->getConnections()->insert(dispose2);
 	decide1->getConnections()->insert(record3);
 	record3->getConnections()->insert(dispose3);
-	// creating all ModelElements and filling all components attributes
+	// creating all ModelDatas and filling all components attributes
 	EntityType* partA = new EntityType(model, "Part_A");
 	create1->setEntityType(partA);
 	create1->setTimeBetweenCreationsExpression("expo(5)");

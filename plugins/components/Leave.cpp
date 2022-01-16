@@ -50,7 +50,7 @@ bool Leave::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
 		std::string stationName = LoadField(fields, "station", "");
-		Station* station = dynamic_cast<Station*> (_parentModel->getElements()->getElement(Util::TypeOf<Station>(), stationName));
+		Station* station = dynamic_cast<Station*> (_parentModel->getData()->getData(Util::TypeOf<Station>(), stationName));
 		this->_station = station;
 	}
 	return res;
@@ -70,7 +70,7 @@ std::map<std::string, std::string>* Leave::_saveInstance(bool saveDefaultValues)
 
 bool Leave::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	resultAll &= _parentModel->getElements()->check(Util::TypeOf<Station>(), _station, "Station", errorMessage);
+	resultAll &= _parentModel->getData()->check(Util::TypeOf<Station>(), _station, "Station", errorMessage);
 	return resultAll;
 }
 
@@ -80,14 +80,14 @@ PluginInformation* Leave::GetPluginInformation() {
 	return info;
 }
 
-void Leave::_createInternalElements() {
+void Leave::_createInternalData() {
 	if (_reportStatistics) {
 		if (_numberIn == nullptr) {
 			_numberIn = new Counter(_parentModel, getName() + "." + "CountNumberIn", this);
-			_internalElements->insert({"CountNumberIn", _numberIn});
+			_internalData->insert({"CountNumberIn", _numberIn});
 		} else
 			if (_numberIn != nullptr) {
-			_removeInternalElements();
+			_removeInternalDatas();
 		}
 	}
 }

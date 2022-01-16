@@ -14,10 +14,10 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
-#include "../../kernel/simulator/ModelElement.h"
+#include "../../kernel/simulator/ModelData.h"
 #include "../../kernel/util/List.h"
 #include "../../kernel/simulator/Entity.h"
-#include "../../kernel/simulator/ElementManager.h"
+#include "../../kernel/simulator/ModelDataManager.h"
 #include "../../kernel/simulator/StatisticsCollector.h"
 #include "../../kernel/simulator/Plugin.h"
 #include "../../kernel/simulator/ModelComponent.h"
@@ -34,7 +34,7 @@ public:
 	virtual ~Waiting() = default;
 public:
 	virtual std::string show() {
-		return //ModelElement::show()+
+		return //ModelData::show()+
 		",entity=" + std::to_string(_entity->getId()) +
 				",component=\"" + _component->getName() + "\"" +
 				",timeStatedWaiting=" + std::to_string(_timeStartedWaiting);
@@ -88,7 +88,7 @@ module from the Advanced Process panel).
 Report Statistics Specifies whether or not statistics will be collected automatically
 and stored in the report database for this queue.
  */
-class Queue : public ModelElement {
+class Queue : public ModelData {
 public:
 
 	enum class OrderRule : int {
@@ -102,10 +102,10 @@ public:
 	virtual std::string show();
 public: // static
 	static PluginInformation* GetPluginInformation();
-	static ModelElement* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 public:
-	void insertElement(Waiting* element);
-	void removeElement(Waiting* element);
+	void insertElement(Waiting* modeldatum);
+	void removeElement(Waiting* modeldatum);
 	unsigned int size();
 	Waiting* first();
 	Waiting* getAtRank(unsigned int rank);
@@ -122,7 +122,7 @@ protected:
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
-	virtual void _createInternalElements();
+	virtual void _createInternalData();
 	virtual ParserChangesInformation* _getParserChangesInformation();
 
 private:

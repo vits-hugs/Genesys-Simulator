@@ -151,7 +151,7 @@ protected:
 	virtual void _initBetweenReplications();
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
-	//virtual void _createInternalElements();
+	//virtual void _createInternalData();
 private:
 	void _handlerForResourceEvent(Resource* resource); ///< This method is indirectally invocked (notified) by resource when it's released, since it was added as ResourceEventHandler
 	Resource* _getResourceFromSeizableItem(SeizableItem* seizable, Entity* entity);

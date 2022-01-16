@@ -16,7 +16,7 @@
 
 #include "../elements/Queue.h"
 #include "../elements/Set.h"
-#include "../../kernel/simulator/ElementManager.h"
+#include "../../kernel/simulator/ModelDataManager.h"
 
 // @TODO should inhere from a common base to SeizeableItem
 
@@ -28,7 +28,7 @@ public:
 	};
 
 public:
-	QueueableItem(ModelElement* queueOrSet, QueueableItem::QueueableType queueableType = QueueableItem::QueueableType::QUEUE, std::string index = "0");
+	QueueableItem(ModelData* queueOrSet, QueueableItem::QueueableType queueableType = QueueableItem::QueueableType::QUEUE, std::string index = "0");
 public:
 	//virtual bool _loadInstance(std::map<std::string, std::string>* fields, unsigned int parentIndex);
 	//virtual std::map<std::string, std::string>* _saveInstance(unsigned int parentIndex);
@@ -46,8 +46,8 @@ public:
 	//
 	void setQueueableType(QueueableType queueableType);
 	QueueableType getQueueableType() const;
-	ModelElement* getQueueable() const;
-	void setElementManager(ElementManager* _elementManager);
+	ModelData* getQueueable() const;
+	void setElementManager(ModelDataManager* _elementManager);
 	//void setComponentManager(ComponentManager* _componentManager);
 
 private:
@@ -60,12 +60,12 @@ private:
 	} DEFAULT;
 
 	QueueableType _queueableType;
-	ModelElement* _queueOrSet;
+	ModelData* _queueOrSet;
 	std::string _queueableName;
 	std::string _index;
 private:
 	//ComponentManager* _componentManager;
-	ElementManager* _elementManager;
+	ModelDataManager* _elementManager;
 };
 
 

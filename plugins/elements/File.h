@@ -15,8 +15,8 @@
 #define FILE_H
 
 
-#include "../../kernel/simulator/ModelElement.h"
-#include "../../kernel/simulator/ElementManager.h"
+#include "../../kernel/simulator/ModelData.h"
+#include "../../kernel/simulator/ModelDataManager.h"
 //#include "ParserChangesInformation.h"
 #include "../../kernel/simulator/PluginInformation.h"
 
@@ -61,12 +61,12 @@ refers.
 Table Name The name of the table in the Access database to which the
 recordset refers.
  */
-class File : public ModelElement {
+class File : public ModelData {
 public:
 	File(Model* model, std::string name = "");
 	virtual ~File() = default;
 public: // static
-	static ModelElement* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 	static PluginInformation* GetPluginInformation();
 public:
 	virtual std::string show();

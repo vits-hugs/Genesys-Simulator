@@ -12,15 +12,15 @@
 
 #ifndef LABEL_H
 #define LABEL_H
-#include "../../kernel/simulator/ModelElement.h"
+#include "../../kernel/simulator/ModelData.h"
 #include "../../kernel/simulator/Entity.h"
 
-class Label : public ModelElement {
+class Label : public ModelData {
 public:
 	Label(Model* model, std::string name = "");
 	virtual ~Label() = default;
 public: // static
-	static ModelElement* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 	static PluginInformation* GetPluginInformation();
 public:
 	virtual std::string show();
@@ -35,7 +35,7 @@ protected: // could be overriden by derived classes
 	virtual bool _check(std::string* errorMessage);
 	//virtual ParserChangesInformation* _getParserChangesInformation();
 	//virtual void _initBetweenReplications();
-	//virtual void _createInternalElements();
+	//virtual void _createInternalData();
 private:
 	std::string _label;
 	ModelComponent* _enteringLabelComponent = nullptr;

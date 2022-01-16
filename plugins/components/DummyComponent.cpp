@@ -59,7 +59,7 @@ std::map<std::string, std::string>* DummyComponent::_saveInstance(bool saveDefau
 //	return resultAll;
 //}
 
-//void DummyComponent::_createInternalElements() {}
+//void DummyComponent::_createInternalData() {}
 
 PluginInformation* DummyComponent::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<DummyComponent>(), &DummyComponent::LoadInstance);

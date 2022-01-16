@@ -14,8 +14,8 @@
 #ifndef SET_H
 #define SET_H
 
-#include "../../kernel/simulator/ModelElement.h"
-#include "../../kernel/simulator/ElementManager.h"
+#include "../../kernel/simulator/ModelData.h"
+#include "../../kernel/simulator/ModelDataManager.h"
 #include "../../kernel/simulator/ParserChangesInformation.h"
 #include "../../kernel/simulator/PluginInformation.h"
 #include "../../kernel/simulator/EntityType.h"
@@ -53,19 +53,19 @@ when Type is Entity.
 Picture Name Name of the picture within the picture set. Applies only when
 Type is Entity Picture.
  */
-class Set : public ModelElement {
+class Set : public ModelData {
 public:
 	Set(Model* model, std::string name = "");
 	virtual ~Set() = default;
 public: // static
-	static ModelElement* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 	static PluginInformation* GetPluginInformation();
 public:
 	virtual std::string show();
 public:
 	void setSetOfType(std::string _setOfType);
 	std::string getSetOfType() const;
-	List<ModelElement*>* getElementSet() const;
+	List<ModelData*>* getElementSet() const;
 
 protected: // must be overriden by derived classes
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
@@ -80,7 +80,7 @@ private:
 		unsigned int membersSize = 0;
 		std::string setOfType = Util::TypeOf<EntityType>();
 	} DEFAULT;
-	List<ModelElement*>* _elementSet = new List<ModelElement*>();
+	List<ModelData*>* _elementSet = new List<ModelData*>();
 	std::string _setOfType = DEFAULT.setOfType;
 };
 

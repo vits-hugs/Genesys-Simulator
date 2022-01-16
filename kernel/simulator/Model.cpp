@@ -36,7 +36,7 @@ Model::Model(Simulator* simulator) {
 	_traceManager = simulator->getTracer(); // every model starts with the same tracer, unless a specific one is set
 	_modelInfo = new ModelInfo();
 	_eventManager = new OnEventManager(); // should be on .h (all that does not depends on THIS)
-	_elementManager = new ElementManager(this);
+	_elementManager = new ModelDataManager(this);
 	_componentManager = new ComponentManager(this);
 	_simulation = new ModelSimulation(this);
 	// 1:1 associations (Traits)
@@ -44,6 +44,7 @@ Model::Model(Simulator* simulator) {
 	_parser = new TraitsKernel<Parser_if>::Implementation(this, new TraitsKernel<Sampler_if>::Implementation());
 	_modelChecker = new TraitsKernel<ModelChecker_if>::Implementation(this);
 	_modelPersistence = new TraitsKernel<ModelPersistence_if>::Implementation(this);
+	_automaticallyCreatesModelDatas = TraitsKernel<Model>::automaticallyCreatesModelDatas;
 	// 1:n associations
 	_futureEvents = new List<Event*>(); /// The future events list must be chronologicaly sorted
 	//_events->setSortFunc(&EventCompare); // It works too
@@ -149,18 +150,18 @@ void Model::show() {
 	getTracer()->trace(Util::TraceLevel::L2_results, "End of Simulation Model");
 }
 
-bool Model::insert(ModelElement* elemOrComp) {
+bool Model::insert(ModelData* elemOrComp) {
 	ModelComponent* comp = dynamic_cast<ModelComponent*> (elemOrComp);
-	if (comp == nullptr) // it's a ModelElement
-		return this->getElements()->insert(elemOrComp);
+	if (comp == nullptr) // it's a ModelData
+		return this->getData()->insert(elemOrComp);
 	else // it's a ModelComponent
 		return this->getComponents()->insert(comp);
 }
 
-void Model::remove(ModelElement* elemOrComp) {
+void Model::remove(ModelData* elemOrComp) {
 	ModelComponent* comp = dynamic_cast<ModelComponent*> (elemOrComp);
-	if (comp == nullptr) // it's a ModelElement
-		this->getElements()->remove(elemOrComp);
+	if (comp == nullptr) // it's a ModelData
+		this->getData()->remove(elemOrComp);
 	else // it's a ModelComponent
 		this->getComponents()->remove(comp);
 }
@@ -170,17 +171,17 @@ void Model::_showElements() const {
 	Util::IncIndent();
 	{
 		std::string elementType;
-		ModelElement* element;
-		std::list<std::string>* elementTypes = getElements()->getElementClassnames();
+		ModelData* modeldatum;
+		std::list<std::string>* elementTypes = getData()->getElementClassnames();
 		for (std::list<std::string>::iterator typeIt = elementTypes->begin(); typeIt != elementTypes->end(); typeIt++) {
 			elementType = (*typeIt);
-			List<ModelElement*>* em = getElements()->getElementList(elementType);
+			List<ModelData*>* em = getData()->getElementList(elementType);
 			getTracer()->trace(Util::TraceLevel::L2_results, elementType + ":");
 			Util::IncIndent();
 			{
-				for (std::list<ModelElement*>::iterator it = em->list()->begin(); it != em->list()->end(); it++) {
-					element = (*it);
-					getTracer()->trace(Util::TraceLevel::L2_results, element->show());
+				for (std::list<ModelData*>::iterator it = em->list()->begin(); it != em->list()->end(); it++) {
+					modeldatum = (*it);
+					getTracer()->trace(Util::TraceLevel::L2_results, modeldatum->show());
 				}
 			}
 			Util::DecIndent();
@@ -236,17 +237,17 @@ void Model::_createModelInternalElements() {
 	for (ModelComponent* component : *_componentManager) {
 		getTracer()->trace(Util::TraceLevel::L8_detailed, "Internals for " + component->getClassname() + " \"" + component->getName() + "\"");
 		Util::IncIndent();
-		ModelComponent::CreateInternalElements(component);
+		ModelComponent::CreateInternalData(component);
 		Util::DecIndent();
 	}
 
-	std::list<ModelElement*>* modelElements;
-	unsigned int originalSize = getElements()->getElementClassnames()->size(), pos = 1;
+	std::list<ModelData*>* modelElements;
+	unsigned int originalSize = getData()->getElementClassnames()->size(), pos = 1;
 	//for (std::list<std::string>::iterator itty = elements()->elementClassnames()->begin(); itty != elements()->elementClassnames()->end(); itty++) {
-	std::list<std::string>::iterator itty = getElements()->getElementClassnames()->begin();
-	while (itty != getElements()->getElementClassnames()->end() && pos <= originalSize) {
+	std::list<std::string>::iterator itty = getData()->getElementClassnames()->begin();
+	while (itty != getData()->getElementClassnames()->end() && pos <= originalSize) {
 		//try {
-		modelElements = getElements()->getElementList((*itty))->list();
+		modelElements = getData()->getElementList((*itty))->list();
 		//} catch (const std::exception& e) {
 		// @TODO Is there a better solution to iterate over a changing sorted list??
 		// ops. Sorted list has changed and iteration fails. Starts iterating again
@@ -254,18 +255,18 @@ void Model::_createModelInternalElements() {
 		//	modelElements = elements()->elementList((*itty))->list();
 		//	tracer()->trace(Util::TraceLevel::L7_internal, "Creating internal elements");
 		//}
-		for (std::list<ModelElement*>::iterator itel = modelElements->begin(); itel != modelElements->end(); itel++) {
+		for (std::list<ModelData*>::iterator itel = modelElements->begin(); itel != modelElements->end(); itel++) {
 			getTracer()->trace(Util::TraceLevel::L8_detailed, "Internals for " + (*itel)->getClassname() + " \"" + (*itel)->getName() + "\""); // (" + std::to_string(pos) + "/" + std::to_string(originalSize) + ")");
 			Util::IncIndent();
-			ModelElement::CreateInternalElements((*itel));
+			ModelData::CreateInternalData((*itel));
 			Util::DecIndent();
 		}
-		if (originalSize == getElements()->getElementClassnames()->size()) {
+		if (originalSize == getData()->getElementClassnames()->size()) {
 			itty++;
 			pos++;
 		} else {
-			originalSize = getElements()->getElementClassnames()->size();
-			itty = getElements()->getElementClassnames()->begin();
+			originalSize = getData()->getElementClassnames()->size();
+			itty = getData()->getElementClassnames()->begin();
 			pos = 1;
 			getTracer()->trace(Util::TraceLevel::L7_internal, "Restarting to create internal elements (due to previous creations)");
 		}
@@ -276,7 +277,7 @@ void Model::_createModelInternalElements() {
 bool Model::check() {
 	getTracer()->trace(Util::TraceLevel::L7_internal, "Checking model consistency");
 	Util::IncIndent();
-	// before checking the model, creates all necessary internal ModelElements
+	// before checking the model, creates all necessary internal ModelDatas
 	_createModelInternalElements();
 	bool res = this->_modelChecker->checkAll();
 	Util::DecIndent();
@@ -307,7 +308,7 @@ Entity* Model::createEntity(std::string name, bool insertIntoModel) {
 void Model::removeEntity(Entity* entity) {//, bool collectStatistics) {
 	this->_eventManager->NotifyEntityRemoveHandlers(_simulation->_createSimulationEvent()); // it's my friend
 	std::string entId = std::to_string(entity->entityNumber());
-	this->getElements()->remove(Util::TypeOf<Entity>(), entity);
+	this->getData()->remove(Util::TypeOf<Entity>(), entity);
 	getTracer()->traceSimulation(/*"Entity " + entId +*/entity->getName() + " was removed from the system");
 	entity->~Entity();
 }
@@ -326,6 +327,14 @@ TraceManager * Model::getTracer() const {
 
 ModelPersistence_if* Model::getPersistence() const {
 	return _modelPersistence;
+}
+
+void Model::setAutomaticallyCreatesModelDatas(bool _automaticallyCreatesModelDatas) {
+	this->_automaticallyCreatesModelDatas = _automaticallyCreatesModelDatas;
+}
+
+bool Model::isAutomaticallyCreatesModelDatas() const {
+	return _automaticallyCreatesModelDatas;
 }
 
 bool Model::hasChanged() const {
@@ -353,7 +362,7 @@ OnEventManager * Model::getOnEvents() const {
 	return _eventManager;
 }
 
-ElementManager * Model::getElements() const {
+ModelDataManager * Model::getData() const {
 	return _elementManager;
 }
 

@@ -66,16 +66,16 @@ template <> struct TraitsKernel<Parser_if> {
 template <> struct TraitsKernel<Model> {
 	typedef StatisticsDefaultImpl1 StatisticsCollector_StatisticsImplementation;
 	typedef CollectorDefaultImpl1 StatisticsCollector_CollectorImplementation;
+	static constexpr bool automaticallyCreatesModelDatas = true; //@TODO: Need to be supported by every component
 	static const Util::TraceLevel traceLevel = Util::TraceLevel::L5_event;
 };
 
 template <> struct TraitsKernel<ModelComponent> {
-	static constexpr bool automaticallyCreateRequiredModelElements = true; //@TODO: Need to be supported by every component
 	static constexpr bool reportStatistics = true;
 	static const Util::TraceLevel traceLevel = Util::TraceLevel::L2_results;
 };
 
-template <> struct TraitsKernel<ModelElement> {
+template <> struct TraitsKernel<ModelData> {
 	static constexpr bool reportStatistics = true;
 	static const Util::TraceLevel traceLevel = Util::TraceLevel::L2_results;
 };
@@ -94,8 +94,6 @@ template <> struct TraitsKernel<ModelPersistence_if> {
  *  Statistics
  */
 template <> struct TraitsKernel<Statistics_if> {
-	typedef StatisticsDefaultImpl1 Implementation;
-	typedef CollectorDefaultImpl1 CollectorImplementation;
 	typedef double DataType; // TODO: not used yet. Change all classes that collect statistics to this type (so classes that deal with erros and bit limits can be assigned to it
 	static constexpr double SignificanceLevel = 0.05;
 };

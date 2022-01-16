@@ -2462,9 +2462,6 @@
         <itemPath>kernel/simulator/Counter.cpp</itemPath>
         <itemPath>kernel/simulator/Counter.h</itemPath>
         <itemPath>kernel/simulator/DefineGetterSetter.h</itemPath>
-        <itemPath>kernel/simulator/ElementManager.cpp</itemPath>
-        <itemPath>kernel/simulator/ElementManager.h</itemPath>
-        <itemPath>kernel/simulator/ElementManager_if.h</itemPath>
         <itemPath>kernel/simulator/Entity.cpp</itemPath>
         <itemPath>kernel/simulator/Entity.h</itemPath>
         <itemPath>kernel/simulator/EntityType.cpp</itemPath>
@@ -2485,8 +2482,10 @@
         <itemPath>kernel/simulator/ModelChecker_if.h</itemPath>
         <itemPath>kernel/simulator/ModelComponent.cpp</itemPath>
         <itemPath>kernel/simulator/ModelComponent.h</itemPath>
-        <itemPath>kernel/simulator/ModelElement.cpp</itemPath>
-        <itemPath>kernel/simulator/ModelElement.h</itemPath>
+        <itemPath>kernel/simulator/ModelData.cpp</itemPath>
+        <itemPath>kernel/simulator/ModelData.h</itemPath>
+        <itemPath>kernel/simulator/ModelDataManager.cpp</itemPath>
+        <itemPath>kernel/simulator/ModelDataManager.h</itemPath>
         <itemPath>kernel/simulator/ModelInfo.cpp</itemPath>
         <itemPath>kernel/simulator/ModelInfo.h</itemPath>
         <itemPath>kernel/simulator/ModelManager.cpp</itemPath>
@@ -14784,18 +14783,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="kernel/simulator/ElementManager.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="kernel/simulator/ElementManager.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="kernel/simulator/ElementManager_if.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="kernel/simulator/Entity.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="kernel/simulator/Entity.h" ex="false" tool="3" flavor2="0">
@@ -14863,9 +14850,19 @@
       </item>
       <item path="kernel/simulator/ModelComponent.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="kernel/simulator/ModelElement.cpp" ex="false" tool="1" flavor2="0">
+      <item path="kernel/simulator/ModelData.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="kernel/simulator/ModelElement.h" ex="false" tool="3" flavor2="0">
+      <item path="kernel/simulator/ModelData.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelDataManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelDataManager.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="kernel/simulator/ModelInfo.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -27232,18 +27229,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="kernel/simulator/ElementManager.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="kernel/simulator/ElementManager.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="kernel/simulator/ElementManager_if.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="kernel/simulator/Entity.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="kernel/simulator/Entity.h" ex="false" tool="3" flavor2="0">
@@ -27311,9 +27296,19 @@
       </item>
       <item path="kernel/simulator/ModelComponent.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="kernel/simulator/ModelElement.cpp" ex="false" tool="1" flavor2="0">
+      <item path="kernel/simulator/ModelData.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="kernel/simulator/ModelElement.h" ex="false" tool="3" flavor2="0">
+      <item path="kernel/simulator/ModelData.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelDataManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="kernel/simulator/ModelDataManager.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="kernel/simulator/ModelInfo.cpp" ex="false" tool="1" flavor2="0">
       </item>

@@ -85,7 +85,7 @@ public: // static
 	Batch::GroupedAttribs getGroupedAttributes() const;
 protected: // virtual should
 	//virtual void _initBetweenReplications();
-	virtual void _createInternalElements();
+	virtual void _createInternalData();
 	virtual bool _check(std::string* errorMessage);
 protected: // virtual must
 	virtual void _execute(Entity* entity);

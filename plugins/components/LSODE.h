@@ -47,7 +47,7 @@ protected: // virtual
 protected: // virtual
 	//virtual void _initBetweenReplications();
 	virtual bool _check(std::string* errorMessage);
-	//virtual void _createInternalElements();
+	//virtual void _createInternalData();
 private: // methods
 	bool _doStep();
 private: // attributes 1:1

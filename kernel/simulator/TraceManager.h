@@ -152,7 +152,6 @@ private: // trace listener
 	List<traceListenerMethod>* _traceReportHandlersMethod = new List<traceListenerMethod>();
 	List<traceSimulationListenerMethod>* _traceSimulationHandlersMethod = new List<traceSimulationListenerMethod>();
 private:
-	//Model* _model;
 	Simulator* _simulator;
 private:
 	Util::TraceLevel _traceLevel; // = Util::TraceLevel::L9_mostDetailed;

@@ -12,11 +12,11 @@
  */
 
 #include "SeizableItem.h"
-#include "../../kernel/simulator/ModelElement.h"
+#include "../../kernel/simulator/ModelData.h"
 #include "../../kernel/simulator/Model.h"
 #include <cassert>
 
-SeizableItem::SeizableItem(ModelElement* resourceOrSet, std::string quantityExpression, SeizableItem::SelectionRule selectionRule, std::string saveAttribute, std::string index) {
+SeizableItem::SeizableItem(ModelData* resourceOrSet, std::string quantityExpression, SeizableItem::SelectionRule selectionRule, std::string saveAttribute, std::string index) {
 	SeizableItem::SeizableType resourceType;
 	if (dynamic_cast<Resource*> (resourceOrSet) != nullptr) {
 		resourceType = SeizableItem::SeizableType::RESOURCE;
@@ -34,7 +34,7 @@ SeizableItem::SeizableItem(ModelElement* resourceOrSet, std::string quantityExpr
 }
 
 /*
-SeizableItem::SeizableItem(ModelElement* resourceOrSet, SeizableItem::SeizableType resourceType, std::string quantityExpression, SeizableItem::SelectionRule selectionRule, std::string saveAttribute, std::string index) {
+SeizableItem::SeizableItem(ModelData* resourceOrSet, SeizableItem::SeizableType resourceType, std::string quantityExpression, SeizableItem::SelectionRule selectionRule, std::string saveAttribute, std::string index) {
 	// TODO: It could infer _seizableType from resourceOrSet and avoid resourceType parameter
 	_seizableType = resourceType;
 	_resourceOrSet = resourceOrSet;
@@ -56,9 +56,9 @@ bool SeizableItem::loadInstance(std::map<std::string, std::string>* fields) {
 		_index = LoadField(fields, "index", DEFAULT.index);
 		if (_elementManager != nullptr) {
 			if (_seizableType == SeizableItem::SeizableType::RESOURCE) {
-				_resourceOrSet = _elementManager->getElement(Util::TypeOf<Resource>(), _seizableName);
+				_resourceOrSet = _elementManager->getData(Util::TypeOf<Resource>(), _seizableName);
 			} else if (_seizableType == SeizableItem::SeizableType::SET) {
-				_resourceOrSet = _elementManager->getElement(Util::TypeOf<Set>(), _seizableName);
+				_resourceOrSet = _elementManager->getData(Util::TypeOf<Set>(), _seizableName);
 			}
 			assert(_resourceOrSet != nullptr);
 		}
@@ -80,9 +80,9 @@ bool SeizableItem::loadInstance(std::map<std::string, std::string>* fields, unsi
 		_index = LoadField(fields, "index" + num, DEFAULT.index);
 		if (_elementManager != nullptr) {
 			if (_seizableType == SeizableItem::SeizableType::RESOURCE) {
-				_resourceOrSet = _elementManager->getElement(Util::TypeOf<Resource>(), _seizableName);
+				_resourceOrSet = _elementManager->getData(Util::TypeOf<Resource>(), _seizableName);
 			} else if (_seizableType == SeizableItem::SeizableType::SET) {
-				_resourceOrSet = _elementManager->getElement(Util::TypeOf<Set>(), _seizableName);
+				_resourceOrSet = _elementManager->getData(Util::TypeOf<Set>(), _seizableName);
 			}
 			assert(_resourceOrSet != nullptr);
 		}
@@ -191,11 +191,11 @@ unsigned int SeizableItem::getLastMemberSeized() const {
 	return _lastMemberSeized;
 }
 
-ModelElement* SeizableItem::getSeizable() const {
+ModelData* SeizableItem::getSeizable() const {
 	return _resourceOrSet;
 }
 
-void SeizableItem::setElementManager(ElementManager* _elementManager) {
+void SeizableItem::setElementManager(ModelDataManager* _elementManager) {
 	this->_elementManager = _elementManager;
 }
 

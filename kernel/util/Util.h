@@ -227,7 +227,7 @@ public: // template implementations
 		}
 	}
 	/*!
-	 * Every component or element has a unique ID for its class, but not unique for other classes. IDs are generated sequentially for each class.
+	 * Every component or modeldatum has a unique ID for its class, but not unique for other classes. IDs are generated sequentially for each class.
 	 */
 	template<class T> static Util::identification GenerateNewIdOfType() {
 		std::string objtype = Util::TypeOf<T>();

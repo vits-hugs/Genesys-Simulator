@@ -56,7 +56,7 @@ protected: // virtual
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
-	virtual void _createInternalElements();
+	virtual void _createInternalData();
 private: // methods
 private: // attributes 1:1
 	Seize* seize = nullptr;

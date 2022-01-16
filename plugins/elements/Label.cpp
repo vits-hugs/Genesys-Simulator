@@ -13,12 +13,12 @@
 #include "Label.h"
 #include "kernel/simulator/Model.h"
 
-Label::Label(Model* model, std::string name) : ModelElement(model, Util::TypeOf<Label>(), name) {
+Label::Label(Model* model, std::string name) : ModelData(model, Util::TypeOf<Label>(), name) {
 }
 
 // static 
 
-ModelElement* Label::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
+ModelData* Label::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
 	Label* newElement = new Label(model);
 	try {
 		newElement->_loadInstance(fields);
@@ -30,7 +30,7 @@ ModelElement* Label::LoadInstance(Model* model, std::map<std::string, std::strin
 
 PluginInformation* Label::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Label>(), &Label::LoadInstance);
-	std::string help = "Label element module represents a name to where entities can be sent to.";
+	std::string help = "Label modeldatum module represents a name to where entities can be sent to.";
 	help += "Any receiving transfer module such as 'Enter' can be assigned to a label.";
 	help += "Any other sending transfer module such as 'Route' can send an entity to a label, which corresponds to send it to the receiving module";
 	help += "TIPICAL USES include sending an entity to somewhere else without a direct connection.";
@@ -47,7 +47,7 @@ PluginInformation* Label::GetPluginInformation() {
 //
 
 std::string Label::show() {
-	return ModelElement::show();
+	return ModelData::show();
 }
 
 void Label::setLabel(std::string _label) {
@@ -70,7 +70,7 @@ void Label::sendEntityToLabelComponent(Entity* entity, double timeDelay) {
 // must be overriden by derived classes
 
 bool Label::_loadInstance(std::map<std::string, std::string>* fields) {
-	bool res = ModelElement::_loadInstance(fields);
+	bool res = ModelData::_loadInstance(fields);
 	if (res) {
 		try {
 			this->_label = LoadField(fields, "label", "");
@@ -86,7 +86,7 @@ bool Label::_loadInstance(std::map<std::string, std::string>* fields) {
 }
 
 std::map<std::string, std::string>* Label::_saveInstance(bool saveDefaultValues) {
-	std::map<std::string, std::string>* fields = ModelElement::_saveInstance(saveDefaultValues); //Util::TypeOf<Queue>());
+	std::map<std::string, std::string>* fields = ModelData::_saveInstance(saveDefaultValues); //Util::TypeOf<Queue>());
 	SaveField(fields, "label", this->_label, "", saveDefaultValues);
 	if (_enteringLabelComponent != nullptr) {
 		SaveField(fields, "enteringLabelComponent", _enteringLabelComponent->getName(), "", saveDefaultValues);
@@ -109,4 +109,4 @@ bool Label::_check(std::string* errorMessage) {
 
 //void Label::_initBetweenReplications() {}
 
-//void Label::_createInternalElements() {}
+//void Label::_createInternalData() {}

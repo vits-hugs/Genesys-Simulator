@@ -15,9 +15,9 @@
 #define ENTITYTYPE_H
 
 #include <string>
-#include "ModelElement.h"
+#include "ModelData.h"
 #include "StatisticsCollector.h"
-#include "ElementManager.h"
+#include "ModelDataManager.h"
 #include "Plugin.h"
 
 //#include "Model.h"
@@ -26,7 +26,7 @@
 /*!
  * 
  */
-class EntityType : public ModelElement {
+class EntityType : public ModelData {
 public:
 	EntityType(Model* model, std::string name = "");
 	virtual ~EntityType();
@@ -34,7 +34,7 @@ public:
 	virtual std::string show();
 public:
 	static PluginInformation* GetPluginInformation();
-	static ModelElement* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 public: //get & set
 	void setInitialWaitingCost(double _initialWaitingCost);
 	double initialWaitingCost() const;
@@ -54,7 +54,7 @@ protected: // must be overriden by derived classes
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
 	virtual void _initBetweenReplications();
-	virtual void _createInternalElements();
+	virtual void _createInternalData();
 private:
 	void _initCostsAndStatistics();
 private:

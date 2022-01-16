@@ -105,12 +105,12 @@ std::map<std::string, std::string>* Delay::_saveInstance(bool saveDefaultValues)
 
 bool Delay::_check(std::string* errorMessage) {
 	//include attributes needed
-	ElementManager* elements = _parentModel->getElements();
+	ModelDataManager* elements = _parentModel->getData();
 	std::vector<std::string> neededNames = {"Entity.TotalWaitTime"};
 	std::string neededName;
 	for (unsigned int i = 0; i < neededNames.size(); i++) {
 		neededName = neededNames[i];
-		if (elements->getElement(Util::TypeOf<Attribute>(), neededName) == nullptr) {
+		if (elements->getData(Util::TypeOf<Attribute>(), neededName) == nullptr) {
 			Attribute* attr1 = new Attribute(_parentModel, neededName);
 			elements->insert(attr1);
 		}
@@ -118,20 +118,20 @@ bool Delay::_check(std::string* errorMessage) {
 	return _parentModel->checkExpression(_delayExpression, "Delay expression", errorMessage);
 }
 
-void Delay::_createInternalElements() {
+void Delay::_createInternalData() {
 	if (_reportStatistics && _cstatWaitTime == nullptr) {
 		_cstatWaitTime = new StatisticsCollector(_parentModel, getName() + "." + "WaitTime", this);
-		_internalElements->insert({"WaitTime", _cstatWaitTime});
+		_internalData->insert({"WaitTime", _cstatWaitTime});
 		// include StatisticsCollector needed in EntityType 
-		ElementManager* elements = _parentModel->getElements();
-		std::list<ModelElement*>* enttypes = elements->getElementList(Util::TypeOf<EntityType>())->list();
-		for (ModelElement* element : *enttypes) {
-			EntityType* enttype = static_cast<EntityType*> (element);
-			if (element->isReportStatistics())
+		ModelDataManager* elements = _parentModel->getData();
+		std::list<ModelData*>* enttypes = elements->getElementList(Util::TypeOf<EntityType>())->list();
+		for (ModelData* modeldatum : *enttypes) {
+			EntityType* enttype = static_cast<EntityType*> (modeldatum);
+			if (modeldatum->isReportStatistics())
 				enttype->addGetStatisticsCollector(enttype->getName() + ".WaitTime"); // force create this CStat before simulation starts
 		}
 	} else {
-		_removeInternalElements();
+		_removeInternalDatas();
 		// @TODO remove StatisticsCollector needed in EntityType
 	}
 }

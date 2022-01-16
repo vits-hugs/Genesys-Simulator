@@ -125,7 +125,7 @@ void Batch::_execute(Entity* entity) {
 		representativeEnt->setEntityType(_groupedEntityType);
 		unsigned int groupIdKey = representativeEnt->getId(); // an "EntityGroup" is a MAP, with one LIST for every RepresentativeEntity ID as KEY
 		if (_batchType == Batch::BatchType::Temporary) {
-			representativeEnt->setAttributeValue("Entity.Group", _entityGroup->getId()); // The "Entity.Group" attribute is the EntityGroup Id (an internel element of Batch), while the ID of the representative entity is the KEY of the map of that EntityGroup
+			representativeEnt->setAttributeValue("Entity.Group", _entityGroup->getId()); // The "Entity.Group" attribute is the EntityGroup Id (an internel modeldatum of Batch), while the ID of the representative entity is the KEY of the map of that EntityGroup
 		}
 		// remove all entities from the queue while storing attributes depending on representative
 		Entity* enqueuedEnt;
@@ -142,7 +142,7 @@ void Batch::_execute(Entity* entity) {
 			if (accumAttribs) {
 				std::string attribName;
 				double value;
-				for (ModelElement* attrib : *_parentModel->getElements()->getElementList(Util::TypeOf<Attribute>())->list()) {
+				for (ModelData* attrib : *_parentModel->getData()->getElementList(Util::TypeOf<Attribute>())->list()) {
 					attribName = attrib->getName();
 					value = representativeEnt->getAttributeValue(attribName);
 					value += enqueuedEnt->getAttributeValue(attribName);
@@ -186,12 +186,12 @@ std::map<std::string, std::string>* Batch::_saveInstance(bool saveDefaultValues)
 
 //void Batch::_initBetweenReplications() {}
 
-void Batch::_createInternalElements() {
+void Batch::_createInternalData() {
 	if (_queue == nullptr) {
 		_queue = new Queue(_parentModel, this->getName() + ".Queue");
-		_internalElements->insert({"EntityQueue", _queue});
+		_internalData->insert({"EntityQueue", _queue});
 		_entityGroup = new EntityGroup(_parentModel, this->getName() + ".EntiyGroup");
-		_internalElements->insert({"EntityGroup", _entityGroup});
+		_internalData->insert({"EntityGroup", _entityGroup});
 	}
 }
 
