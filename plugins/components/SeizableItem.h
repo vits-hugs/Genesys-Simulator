@@ -59,7 +59,7 @@ public:
 	void setLastMemberSeized(unsigned int lastMemberSeized);
 	unsigned int getLastMemberSeized() const;
 	ModelData* getSeizable() const;
-	void setElementManager(ModelDataManager* _elementManager);
+	void setElementManager(ModelDataManager* _modeldataManager);
 	//void setComponentManager(ComponentManager* _componentManager);
 
 private:
@@ -82,7 +82,7 @@ private:
 	unsigned int _lastMemberSeized = 0;
 private:
 	//ComponentManager* _componentManager;
-	ModelDataManager* _elementManager;
+	ModelDataManager* _modeldataManager;
 };
 
 #endif /* SEIZABLEITEM_H */

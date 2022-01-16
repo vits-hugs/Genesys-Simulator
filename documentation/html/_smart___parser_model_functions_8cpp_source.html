@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="software_genesys.gif"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ReGenESyS - REborned GENeric and Expansible SYstem Simulator
-   &#160;<span id="projectnumber">v22.01 (jude)</span>
+   &#160;<span id="projectnumber">v22.01 (wealljudes)</span>
    </div>
    <div id="projectbrief">Genesys is a result of teaching and research activities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics and simulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesys development he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of that tool, including its graphical interface. Genesys allowed the inclusion of new simulation components through dynamic link libraries and also the parallel execution of simulation models in a distributed environment. The development of Genesys continued until 2007, when the professor stopped teaching systems simulation classes. Ten years later the professor starts again to teach systems simulation classes and to carry out scientific research in the area. So in 2018 Genesys is reborn as ReGenesys, with new language and programming techniques, and even more ambitious goals.</div>
   </td>
@@ -110,61 +110,74 @@ $(document).ready(function(){initNavTree('_smart___parser_model_functions_8cpp_s
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">// Model Components</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;../../plugins/components/Create.h&quot;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;../../plugins/components/Seize.h&quot;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;../../plugins/components/Delay.h&quot;</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;../../plugins/components/Write.h&quot;</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;../../plugins/components/Release.h&quot;</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;../../plugins/components/Dispose.h&quot;</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">// Model elements</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;../../kernel/simulator/EntityType.h&quot;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;plugins/components/Seize.h&quot;</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;Smart_ParserModelFunctions::Smart_ParserModelFunctions() {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;}</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keywordtype">int</span> Smart_ParserModelFunctions::main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>** argv) {</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="class_simulator.html">Simulator</a>* genesys = <span class="keyword">new</span> <a class="code" href="class_simulator.html">Simulator</a>();</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    this-&gt;insertFakePluginsByHand(genesys);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    this-&gt;setDefaultTraceHandlers(genesys-&gt;getTracer());</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    genesys-&gt;getTracer()-&gt;setTraceLevel(Util::TraceLevel::L2_results);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="class_model.html">Model</a>* m = genesys-&gt;getModels()-&gt;newModel();</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="class_create.html">Create</a>* c = <span class="keyword">new</span> <a class="code" href="class_create.html">Create</a>(m);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    c-&gt;setEntityType(<span class="keyword">new</span> EntityType(m));</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="class_seize.html">Seize</a>* s = <span class="keyword">new</span> <a class="code" href="class_seize.html">Seize</a>(m);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    s-&gt;setQueueableItem(<span class="keyword">new</span> QueueableItem(<span class="keyword">new</span> <a class="code" href="class_queue.html">Queue</a>(m)));</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    SeizableItem *si = <span class="keyword">new</span> SeizableItem(<span class="keyword">new</span> <a class="code" href="class_resource.html">Resource</a>(m));</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    s-&gt;getSeizeRequests()-&gt;insert(si);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="class_delay.html">Delay</a>* de = <span class="keyword">new</span> <a class="code" href="class_delay.html">Delay</a>(m);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="class_write.html">Write</a>* w = <span class="keyword">new</span> <a class="code" href="class_write.html">Write</a>(m);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="class_release.html">Release</a>* r = <span class="keyword">new</span> <a class="code" href="class_release.html">Release</a>(m);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    r-&gt;getReleaseRequests()-&gt;insert(si);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="class_dispose.html">Dispose</a>* di = <span class="keyword">new</span> <a class="code" href="class_dispose.html">Dispose</a>(m);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    c-&gt;<a class="code" href="class_model_component.html#a06a599a7ef8f709d7dbaea1c30caa3cd">getConnections</a>()-&gt;insert(s);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    s-&gt;<a class="code" href="class_model_component.html#a06a599a7ef8f709d7dbaea1c30caa3cd">getConnections</a>()-&gt;insert(de);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    de-&gt;<a class="code" href="class_model_component.html#a06a599a7ef8f709d7dbaea1c30caa3cd">getConnections</a>()-&gt;insert(w);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    w-&gt;<a class="code" href="class_model_component.html#a06a599a7ef8f709d7dbaea1c30caa3cd">getConnections</a>()-&gt;insert(r);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    r-&gt;<a class="code" href="class_model_component.html#a06a599a7ef8f709d7dbaea1c30caa3cd">getConnections</a>()-&gt;insert(di);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">//</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    w-&gt;writeElements()-&gt;insert(<span class="keyword">new</span> WritelnExpression(<span class="stringliteral">&quot;&quot;</span>));</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">//</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    m-&gt;<a class="code" href="class_model.html#a91b3f67aa8bf44c2632a773c567830a2">getSimulation</a>()-&gt;<a class="code" href="class_model_simulation.html#a7c9dcb206388ce068f3add6dda1d6117">start</a>();</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;};</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;../../plugins/components/Process.h&quot;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;../../plugins/components/Write.h&quot;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;../../plugins/components/Dispose.h&quot;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;../../plugins/data/Set.h&quot;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">// Model elements</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;../../kernel/simulator/EntityType.h&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;../../kernel/simulator/Attribute.h&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;Smart_ParserModelFunctions::Smart_ParserModelFunctions() {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">int</span> Smart_ParserModelFunctions::main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>** argv) {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="class_simulator.html">Simulator</a>* genesys = <span class="keyword">new</span> <a class="code" href="class_simulator.html">Simulator</a>();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    this-&gt;insertFakePluginsByHand(genesys);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    this-&gt;setDefaultTraceHandlers(genesys-&gt;getTracer());</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    genesys-&gt;getTracer()-&gt;setTraceLevel(Util::TraceLevel::L5_event);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="class_model.html">Model</a>* m = genesys-&gt;getModels()-&gt;newModel();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">// simple process model</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="class_create.html">Create</a>* c1 = <span class="keyword">new</span> <a class="code" href="class_create.html">Create</a>(m);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    c1-&gt;setEntityType(<span class="keyword">new</span> EntityType(m));</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">new</span> <a class="code" href="class_attribute.html">Attribute</a>(m, <span class="stringliteral">&quot;att1&quot;</span>);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="class_set.html">Set</a>* s = <span class="keyword">new</span> <a class="code" href="class_set.html">Set</a>(m);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    s-&gt;getElementSet()-&gt;insert(<span class="keyword">new</span> <a class="code" href="class_resource.html">Resource</a>(m));</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    s-&gt;getElementSet()-&gt;insert(<span class="keyword">new</span> <a class="code" href="class_resource.html">Resource</a>(m));</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    s-&gt;setSetOfType(<span class="stringliteral">&quot;Resource&quot;</span>);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="class_process.html">Process</a>* p1 = <span class="keyword">new</span> <a class="code" href="class_process.html">Process</a>(m);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    p1-&gt;getSeizeRequests()-&gt;insert(<span class="keyword">new</span> SeizableItem(s, <span class="stringliteral">&quot;1&quot;</span>, SeizableItem::SelectionRule::LARGESTREMAININGCAPACITY, <span class="stringliteral">&quot;saveAttribute&quot;</span>));</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    p1-&gt;setQueueableItem(<span class="keyword">new</span> QueueableItem(<span class="keyword">new</span> <a class="code" href="class_queue.html">Queue</a>(m)));</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="class_dispose.html">Dispose</a>* d1 = <span class="keyword">new</span> <a class="code" href="class_dispose.html">Dispose</a>(m);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    c1-&gt;<a class="code" href="class_model_component.html#a06a599a7ef8f709d7dbaea1c30caa3cd">getConnections</a>()-&gt;insert(p1);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    p1-&gt;<a class="code" href="class_model_component.html#a06a599a7ef8f709d7dbaea1c30caa3cd">getConnections</a>()-&gt;insert(d1);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">// other part to write parser expressions </span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="class_create.html">Create</a> * c2 = <span class="keyword">new</span> <a class="code" href="class_create.html">Create</a>(m);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    c2-&gt;setEntityType(<span class="keyword">new</span> EntityType(m, <span class="stringliteral">&quot;control&quot;</span>));</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    c2-&gt;setTimeBetweenCreationsExpression(<span class="stringliteral">&quot;1&quot;</span>);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="class_write.html">Write</a>* w = <span class="keyword">new</span> <a class="code" href="class_write.html">Write</a>(m);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="class_dispose.html">Dispose</a>* d2 = <span class="keyword">new</span> <a class="code" href="class_dispose.html">Dispose</a>(m);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    c2-&gt;<a class="code" href="class_model_component.html#a06a599a7ef8f709d7dbaea1c30caa3cd">getConnections</a>()-&gt;insert(w);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    w-&gt;<a class="code" href="class_model_component.html#a06a599a7ef8f709d7dbaea1c30caa3cd">getConnections</a>()-&gt;insert(d2);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    w-&gt;insertText({<span class="stringliteral">&quot;Simulation TNOW=&quot;</span>, <span class="stringliteral">&quot;@tnow&quot;</span>, <span class="stringliteral">&quot;, &quot;</span>, <span class="stringliteral">&quot;@tfin&quot;</span>, <span class="stringliteral">&quot;, &quot;</span>, <span class="stringliteral">&quot;@maxrep&quot;</span>, <span class="stringliteral">&quot;, &quot;</span>, <span class="stringliteral">&quot;@numrep&quot;</span>, <span class="stringliteral">&quot;, &quot;</span>, <span class="stringliteral">&quot;@ident&quot;</span>});</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    w-&gt;insertText({<span class="stringliteral">&quot;Resouce_2 NR=&quot;</span>, <span class="stringliteral">&quot;@nr(Resource_2)&quot;</span>, <span class="stringliteral">&quot;, MR=&quot;</span>, <span class="stringliteral">&quot;@mr(Resource_2)&quot;</span>, <span class="stringliteral">&quot;, STATE=&quot;</span>, <span class="stringliteral">&quot;@state(Resource_2)&quot;</span>}); <span class="comment">//, &quot;, RESSEIZES=&quot;, &quot;@ressizes(Resource_2)&quot;});</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    w-&gt;insertText({<span class="stringliteral">&quot;Queue_1 NQ=&quot;</span>, <span class="stringliteral">&quot;@nq(Queue_1)&quot;</span>, <span class="stringliteral">&quot;, FIRSTINQ=&quot;</span>, <span class="stringliteral">&quot;@firstinq(Queue_1)&quot;</span>, <span class="stringliteral">&quot;, LASTINQ=&quot;</span>, <span class="stringliteral">&quot;@lastinq(Queue_1)&quot;</span>, <span class="stringliteral">&quot;, SAQUE=&quot;</span>, <span class="stringliteral">&quot;@saque(Queue_1, att1)&quot;</span>});</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    w-&gt;insertText({<span class="stringliteral">&quot;Set_1 NUMSET=&quot;</span>, <span class="stringliteral">&quot;@numset(Set_1)&quot;</span>});</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    w-&gt;insertText({<span class="stringliteral">&quot;StatCollector TAVG=&quot;</span>, <span class="stringliteral">&quot;@tavg(EntityType_1.TotalTimeInSystem.average)&quot;</span>});</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    m-&gt;<a class="code" href="class_model.html#a91b3f67aa8bf44c2632a773c567830a2">getSimulation</a>()-&gt;setReplicationLength(5);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    m-&gt;<a class="code" href="class_model.html#a91b3f67aa8bf44c2632a773c567830a2">getSimulation</a>()-&gt;setShowReportsAfterReplication(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    m-&gt;<a class="code" href="class_model.html#a91b3f67aa8bf44c2632a773c567830a2">getSimulation</a>()-&gt;setShowReportsAfterSimulation(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    m-&gt;<a class="code" href="class_model.html#a91b3f67aa8bf44c2632a773c567830a2">getSimulation</a>()-&gt;<a class="code" href="class_model_simulation.html#a7c9dcb206388ce068f3add6dda1d6117">start</a>();</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 1e6; i++);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;};</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="ttc" id="aclass_attribute_html"><div class="ttname"><a href="class_attribute.html">Attribute</a></div><div class="ttdef"><b>Definition:</b> <a href="_attribute_8h_source.html#l00063">Attribute.h:63</a></div></div>
 <div class="ttc" id="aclass_create_html"><div class="ttname"><a href="class_create.html">Create</a></div><div class="ttdef"><b>Definition:</b> <a href="_create_8h_source.html#l00067">Create.h:67</a></div></div>
-<div class="ttc" id="aclass_delay_html"><div class="ttname"><a href="class_delay.html">Delay</a></div><div class="ttdef"><b>Definition:</b> <a href="_delay_8h_source.html#l00041">Delay.h:41</a></div></div>
 <div class="ttc" id="aclass_dispose_html"><div class="ttname"><a href="class_dispose.html">Dispose</a></div><div class="ttdef"><b>Definition:</b> <a href="_dispose_8h_source.html#l00038">Dispose.h:38</a></div></div>
 <div class="ttc" id="aclass_model_component_html_a06a599a7ef8f709d7dbaea1c30caa3cd"><div class="ttname"><a href="class_model_component.html#a06a599a7ef8f709d7dbaea1c30caa3cd">ModelComponent::getConnections</a></div><div class="ttdeci">ConnectionManager * getConnections() const</div><div class="ttdoc">Returns a list of components directly connected to the output. Usually the components have a single o...</div><div class="ttdef"><b>Definition:</b> <a href="_model_component_8cpp_source.html#l00094">ModelComponent.cpp:94</a></div></div>
 <div class="ttc" id="aclass_model_html"><div class="ttname"><a href="class_model.html">Model</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_8h_source.html#l00044">Model.h:44</a></div></div>
-<div class="ttc" id="aclass_model_html_a91b3f67aa8bf44c2632a773c567830a2"><div class="ttname"><a href="class_model.html#a91b3f67aa8bf44c2632a773c567830a2">Model::getSimulation</a></div><div class="ttdeci">ModelSimulation * getSimulation() const</div><div class="ttdoc">Provides access to the class that manages the model simulation.</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00371">Model.cpp:371</a></div></div>
+<div class="ttc" id="aclass_model_html_a91b3f67aa8bf44c2632a773c567830a2"><div class="ttname"><a href="class_model.html#a91b3f67aa8bf44c2632a773c567830a2">Model::getSimulation</a></div><div class="ttdeci">ModelSimulation * getSimulation() const</div><div class="ttdoc">Provides access to the class that manages the model simulation.</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00377">Model.cpp:377</a></div></div>
 <div class="ttc" id="aclass_model_simulation_html_a7c9dcb206388ce068f3add6dda1d6117"><div class="ttname"><a href="class_model_simulation.html#a7c9dcb206388ce068f3add6dda1d6117">ModelSimulation::start</a></div><div class="ttdeci">void start()</div><div class="ttdoc">Starts a sequential execution of a simulation, ie, a set of replications of this model.</div><div class="ttdef"><b>Definition:</b> <a href="_model_simulation_8cpp_source.html#l00090">ModelSimulation.cpp:90</a></div></div>
+<div class="ttc" id="aclass_process_html"><div class="ttname"><a href="class_process.html">Process</a></div><div class="ttdef"><b>Definition:</b> <a href="_process_8h_source.html#l00025">Process.h:25</a></div></div>
 <div class="ttc" id="aclass_queue_html"><div class="ttname"><a href="class_queue.html">Queue</a></div><div class="ttdef"><b>Definition:</b> <a href="_queue_8h_source.html#l00091">Queue.h:91</a></div></div>
-<div class="ttc" id="aclass_release_html"><div class="ttname"><a href="class_release.html">Release</a></div><div class="ttdef"><b>Definition:</b> <a href="_release_8h_source.html#l00064">Release.h:64</a></div></div>
 <div class="ttc" id="aclass_resource_html"><div class="ttname"><a href="class_resource.html">Resource</a></div><div class="ttdef"><b>Definition:</b> <a href="_resource_8h_source.html#l00081">Resource.h:81</a></div></div>
-<div class="ttc" id="aclass_seize_html"><div class="ttname"><a href="class_seize.html">Seize</a></div><div class="ttdef"><b>Definition:</b> <a href="_seize_8h_source.html#l00122">Seize.h:122</a></div></div>
+<div class="ttc" id="aclass_set_html"><div class="ttname"><a href="class_set.html">Set</a></div><div class="ttdef"><b>Definition:</b> <a href="_set_8h_source.html#l00056">Set.h:56</a></div></div>
 <div class="ttc" id="aclass_simulator_html"><div class="ttname"><a href="class_simulator.html">Simulator</a></div><div class="ttdef"><b>Definition:</b> <a href="_simulator_8h_source.html#l00035">Simulator.h:35</a></div></div>
-<div class="ttc" id="aclass_write_html"><div class="ttname"><a href="class_write.html">Write</a></div><div class="ttdef"><b>Definition:</b> <a href="_write_8h_source.html#l00080">Write.h:80</a></div></div>
+<div class="ttc" id="aclass_write_html"><div class="ttname"><a href="class_write.html">Write</a></div><div class="ttdef"><b>Definition:</b> <a href="_write_8h_source.html#l00023">Write.h:23</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

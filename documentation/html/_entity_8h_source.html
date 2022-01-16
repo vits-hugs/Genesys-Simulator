@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="software_genesys.gif"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ReGenESyS - REborned GENeric and Expansible SYstem Simulator
-   &#160;<span id="projectnumber">v22.01 (jude)</span>
+   &#160;<span id="projectnumber">v22.01 (wealljudes)</span>
    </div>
    <div id="projectbrief">Genesys is a result of teaching and research activities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics and simulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesys development he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of that tool, including its graphical interface. Genesys allowed the inclusion of new simulation components through dynamic link libraries and also the parallel execution of simulation models in a distributed environment. The development of Genesys continued until 2007, when the professor stopped teaching systems simulation classes. Ten years later the professor starts again to teach systems simulation classes and to carry out scientific research in the area. So in 2018 Genesys is reborn as ReGenesys, with new language and programming techniques, and even more ambitious goals.</div>
   </td>
@@ -109,11 +109,11 @@ $(document).ready(function(){initNavTree('_entity_8h_source.html',''); initResiz
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;../util/Util.h&quot;</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;../util/List.h&quot;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;ModelElement.h&quot;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;ModelData.h&quot;</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;EntityType.h&quot;</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">//namespace GenesysKernel {</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="class_entity.html">   76</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_entity.html">Entity</a> : <span class="keyword">public</span> <a class="code" href="class_model_element.html">ModelElement</a> {</div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="class_entity.html">   76</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_entity.html">Entity</a> : <span class="keyword">public</span> <a class="code" href="class_model_data.html">ModelData</a> {</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keyword">private</span>: <span class="comment">// no one can create or destry entities directlly. This can be done one throught friend class Model</span></div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <a class="code" href="class_entity.html">Entity</a>(<a class="code" href="class_model.html">Model</a>* model, std::string name = <span class="stringliteral">&quot;&quot;</span>, <span class="keywordtype">bool</span> insertIntoModel = <span class="keyword">true</span>);</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_entity.html">Entity</a>() = <span class="keywordflow">default</span>;</div>
@@ -123,7 +123,7 @@ $(document).ready(function(){initNavTree('_entity_8h_source.html',''); initResiz
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keyword">virtual</span> std::string show();</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="keyword">public</span>: <span class="comment">// g &amp; s</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">void</span> setEntityTypeName(std::string entityTypeName) <span class="keywordflow">throw</span> (); <span class="comment">//*!&lt; indirect access to EntityType</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">void</span> setEntityTypeName(std::string entityTypeName); <span class="comment">//*!&lt; indirect access to EntityType</span></div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    std::string getEntityTypeName() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordtype">void</span> setEntityType(EntityType* entityType); <span class="comment">//*!&lt; direct access to EntityType</span></div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    EntityType* getEntityType() <span class="keyword">const</span>;</div>
@@ -139,7 +139,7 @@ $(document).ready(function(){initNavTree('_entity_8h_source.html',''); initResiz
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    Util::identification entityNumber() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keyword">protected</span>:</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> _loadInstance(std::map&lt;std::string, std::string&gt;* fields);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keyword">virtual</span> std::map&lt;std::string, std::string&gt;* _saveInstance();</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keyword">virtual</span> std::map&lt;std::string, std::string&gt;* _saveInstance(<span class="keywordtype">bool</span> saveDefaultValues);</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> _check(std::string* errorMessage);</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    Util::identification _entityNumber;</div>
@@ -150,8 +150,8 @@ $(document).ready(function(){initNavTree('_entity_8h_source.html',''); initResiz
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* ENTITY_H */</span><span class="preprocessor"></span></div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
 <div class="ttc" id="aclass_entity_html"><div class="ttname"><a href="class_entity.html">Entity</a></div><div class="ttdef"><b>Definition:</b> <a href="_entity_8h_source.html#l00076">Entity.h:76</a></div></div>
-<div class="ttc" id="aclass_list_html"><div class="ttname"><a href="class_list.html">List</a></div><div class="ttdef"><b>Definition:</b> <a href="_list_8h_source.html#l00032">List.h:32</a></div></div>
-<div class="ttc" id="aclass_model_element_html"><div class="ttname"><a href="class_model_element.html">ModelElement</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_element_8h_source.html#l00033">ModelElement.h:33</a></div></div>
+<div class="ttc" id="aclass_list_html"><div class="ttname"><a href="class_list.html">List</a></div><div class="ttdef"><b>Definition:</b> <a href="_list_8h_source.html#l00031">List.h:31</a></div></div>
+<div class="ttc" id="aclass_model_data_html"><div class="ttname"><a href="class_model_data.html">ModelData</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_data_8h_source.html#l00034">ModelData.h:34</a></div></div>
 <div class="ttc" id="aclass_model_html"><div class="ttname"><a href="class_model.html">Model</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_8h_source.html#l00044">Model.h:44</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

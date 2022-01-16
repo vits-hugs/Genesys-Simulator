@@ -4,9 +4,8 @@ var class_pick_station =
     [ "~PickStation", "class_pick_station.html#a44a26f48d38659b9dbbe426c2aa62c41", null ],
     [ "_check", "class_pick_station.html#a8e972486e09616892a5ddb1820f82a94", null ],
     [ "_execute", "class_pick_station.html#af32a01257f18d4a336e44324cb58a378", null ],
-    [ "_initBetweenReplications", "class_pick_station.html#a333d8292a32a071ab56c5a580ada5805", null ],
     [ "_loadInstance", "class_pick_station.html#ad743362dd6f8f86eb3ad87d046823ace", null ],
-    [ "_saveInstance", "class_pick_station.html#a52a015a0024c0d18b63f5dab5e932a96", null ],
+    [ "_saveInstance", "class_pick_station.html#af3e3c26241dae68d506005ff9fa6cff3", null ],
     [ "GetPluginInformation", "class_pick_station.html#affe221585ed520662c9157533687b255", null ],
     [ "LoadInstance", "class_pick_station.html#a705d3695f6f3a89fcc850673da505ea9", null ],
     [ "show", "class_pick_station.html#ab2e434783560c005ae00a8ef21a84c89", null ]

@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="software_genesys.gif"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ReGenESyS - REborned GENeric and Expansible SYstem Simulator
-   &#160;<span id="projectnumber">v22.01 (jude)</span>
+   &#160;<span id="projectnumber">v22.01 (wealljudes)</span>
    </div>
    <div id="projectbrief">Genesys is a result of teaching and research activities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics and simulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesys development he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of that tool, including its graphical interface. Genesys allowed the inclusion of new simulation components through dynamic link libraries and also the parallel execution of simulation models in a distributed environment. The development of Genesys continued until 2007, when the professor stopped teaching systems simulation classes. Ten years later the professor starts again to teach systems simulation classes and to carry out scientific research in the area. So in 2018 Genesys is reborn as ReGenesys, with new language and programming techniques, and even more ambitious goals.</div>
   </td>
@@ -104,9 +104,9 @@ $(document).ready(function(){initNavTree('_assign_8cpp_source.html',''); initRes
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;Assign.h&quot;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;../../kernel/simulator/Model.h&quot;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;../elements/Variable.h&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;../data/Variable.h&quot;</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;../../kernel/simulator/Attribute.h&quot;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;../elements/Resource.h&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;../data/Resource.h&quot;</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;Assign::Assign(<a class="code" href="class_model.html">Model</a>* model, std::string name) : <a class="code" href="class_model_component.html">ModelComponent</a>(model, Util::TypeOf&lt;<a class="code" href="class_assign.html">Assign</a>&gt;(), name) {</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;}</div>
@@ -128,80 +128,91 @@ $(document).ready(function(){initNavTree('_assign_8cpp_source.html',''); initRes
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    PluginInformation* info = <span class="keyword">new</span> PluginInformation(Util::TypeOf&lt;Assign&gt;(), &amp;Assign::LoadInstance);</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="comment">//info-&gt;insertDynamicLibFileDependence(&quot;attribute.so&quot;);</span></div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    info-&gt;insertDynamicLibFileDependence(<span class="stringliteral">&quot;variable.so&quot;</span>);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordflow">return</span> info;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;}</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<a class="code" href="class_model_component.html">ModelComponent</a>* Assign::LoadInstance(<a class="code" href="class_model.html">Model</a>* model, std::map&lt;std::string, std::string&gt;* fields) {</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="class_assign.html">Assign</a>* newComponent = <span class="keyword">new</span> <a class="code" href="class_assign.html">Assign</a>(model);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        newComponent-&gt;_loadInstance(fields);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; e) {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    info-&gt;setCategory(<span class="stringliteral">&quot;Discrete Processing&quot;</span>);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    std::string text = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    text += <span class="stringliteral">&quot;This module is used for assigning new values to variables, entity attributes, entity types, entity pictures, or other system variables.&quot;</span>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    text += <span class="stringliteral">&quot; Multiple assignments can be made with a single Assign module.&quot;</span>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    text += <span class="stringliteral">&quot; TYPICAL USES: (1) Accumulate the number of subassemblies added to a part;&quot;</span>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    text += <span class="stringliteral">&quot; (2) Change an entity’s type to represent the customer copy of a multi - page form;&quot;</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    text += <span class="stringliteral">&quot; (3) Establish a customer’s priority&quot;</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    info-&gt;setDescriptionHelp(text);</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    }</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordflow">return</span> newComponent;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keywordtype">void</span> Assign::_execute(<a class="code" href="class_entity.html">Entity</a>* entity) {</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    Assignment* let;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    std::list&lt;Assignment*&gt;* lets = this-&gt;_assignments-&gt;list();</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordflow">for</span> (std::list&lt;Assignment*&gt;::iterator it = lets-&gt;begin(); it != lets-&gt;end(); it++) {</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        let = (*it);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordtype">double</span> value = _parentModel-&gt;<a class="code" href="class_model.html#a5ea283e339b50c0b77040bf908e25af3">parseExpression</a>(let-&gt;getExpression());</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        _parentModel-&gt;<a class="code" href="class_model.html#a5ea283e339b50c0b77040bf908e25af3">parseExpression</a>(let-&gt;getDestination() + <span class="stringliteral">&quot;=&quot;</span> + std::to_string(value));</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        _parentModel-&gt;<a class="code" href="class_model.html#a7d8576f92173d8e21076c6d1e7e1350e">getTracer</a>()-&gt;trace(<span class="stringliteral">&quot;Let \&quot;&quot;</span> + let-&gt;getDestination() + <span class="stringliteral">&quot;\&quot; = &quot;</span> + strTruncIfInt(std::to_string(value)) + <span class="stringliteral">&quot;  // &quot;</span> + let-&gt;getExpression());</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">return</span> info;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<a class="code" href="class_model_component.html">ModelComponent</a>* Assign::LoadInstance(<a class="code" href="class_model.html">Model</a>* model, std::map&lt;std::string, std::string&gt;* fields) {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="class_assign.html">Assign</a>* newComponent = <span class="keyword">new</span> <a class="code" href="class_assign.html">Assign</a>(model);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        newComponent-&gt;_loadInstance(fields);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; e) {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    }</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordflow">return</span> newComponent;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    this-&gt;_parentModel-&gt;<a class="code" href="class_model.html#a9b68e140fb30477b0e2b223c2d930450">sendEntityToComponent</a>(entity, this-&gt;<a class="code" href="class_model_component.html#a06a599a7ef8f709d7dbaea1c30caa3cd">getConnections</a>()-&gt;getFrontConnection());</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keywordtype">void</span> Assign::_initBetweenReplications() {</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;}</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keywordtype">bool</span> Assign::_loadInstance(std::map&lt;std::string, std::string&gt;* fields) {</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">bool</span> res = ModelComponent::_loadInstance(fields);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordflow">if</span> (res) {</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> nv = LoadField(fields, <span class="stringliteral">&quot;assignments&quot;</span>, DEFAULT.assignmentsSize);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; nv; i++) {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            std::string dest = LoadField(fields, <span class="stringliteral">&quot;destination&quot;</span> + std::to_string(i), <span class="stringliteral">&quot;&quot;</span>);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            std::string exp = LoadField(fields, <span class="stringliteral">&quot;expression&quot;</span> + std::to_string(i), <span class="stringliteral">&quot;&quot;</span>);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            Assignment* assmt = <span class="keyword">new</span> Assignment(dest, exp);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            this-&gt;_assignments-&gt;insert(assmt);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        }</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    }</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">return</span> res;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;std::map&lt;std::string, std::string&gt;* Assign::_saveInstance() {</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    std::map&lt;std::string, std::string&gt;* fields = ModelComponent::_saveInstance(); <span class="comment">//Util::TypeOf&lt;Assign&gt;());</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    Assignment* let;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    SaveField(fields, <span class="stringliteral">&quot;assignments&quot;</span>, _assignments-&gt;size(), DEFAULT.assignmentsSize);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> i = 0;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordflow">for</span> (std::list&lt;Assignment*&gt;::iterator it = _assignments-&gt;list()-&gt;begin(); it != _assignments-&gt;list()-&gt;end(); it++, i++) {</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        let = (*it);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        SaveField(fields, <span class="stringliteral">&quot;destination&quot;</span> + std::to_string(i), let-&gt;getDestination(), <span class="stringliteral">&quot;&quot;</span>);</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        SaveField(fields, <span class="stringliteral">&quot;expression&quot;</span> + std::to_string(i), let-&gt;getExpression(), <span class="stringliteral">&quot;&quot;</span>);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    }</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordflow">return</span> fields;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="keywordtype">bool</span> Assign::_check(std::string* errorMessage) {</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">bool</span> resultAll = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="comment">// \todo: Reimplement it. Since 201910, attributes may have index, just like &quot;atrrib1[2]&quot; or &quot;att[10,1]&quot;. Because of that, the string may contain not only the name of the attribute, but also its index and therefore, fails on the test bellow.</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordflow">for</span> (Assignment* let : *_assignments-&gt;list()) {</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        resultAll &amp;= _parentModel-&gt;<a class="code" href="class_model.html#a4ea188cd39bfd3171e8d00f883b008af">checkExpression</a>(let-&gt;getExpression(), <span class="stringliteral">&quot;assignment&quot;</span>, errorMessage);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    }</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordflow">return</span> resultAll;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;}</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keywordtype">void</span> Assign::_execute(<a class="code" href="class_entity.html">Entity</a>* entity) {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    Assignment* let;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    std::list&lt;Assignment*&gt;* lets = this-&gt;_assignments-&gt;list();</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordflow">for</span> (std::list&lt;Assignment*&gt;::iterator it = lets-&gt;begin(); it != lets-&gt;end(); it++) {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        let = (*it);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordtype">double</span> value = _parentModel-&gt;<a class="code" href="class_model.html#a5ea283e339b50c0b77040bf908e25af3">parseExpression</a>(let-&gt;getExpression());</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        _parentModel-&gt;<a class="code" href="class_model.html#a5ea283e339b50c0b77040bf908e25af3">parseExpression</a>(let-&gt;getDestination() + <span class="stringliteral">&quot;=&quot;</span> + std::to_string(value));</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        _parentModel-&gt;getTracer()-&gt;traceSimulation(<span class="keyword">this</span>, <span class="stringliteral">&quot;Let \&quot;&quot;</span> + let-&gt;getDestination() + <span class="stringliteral">&quot;\&quot; = &quot;</span> + strTruncIfInt(std::to_string(value)) + <span class="stringliteral">&quot;  // &quot;</span> + let-&gt;getExpression());</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    this-&gt;_parentModel-&gt;<a class="code" href="class_model.html#a9b68e140fb30477b0e2b223c2d930450">sendEntityToComponent</a>(entity, this-&gt;<a class="code" href="class_model_component.html#a06a599a7ef8f709d7dbaea1c30caa3cd">getConnections</a>()-&gt;getFrontConnection());</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">//void Assign::_initBetweenReplications() {}</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keywordtype">bool</span> Assign::_loadInstance(std::map&lt;std::string, std::string&gt;* fields) {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">bool</span> res = ModelComponent::_loadInstance(fields);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordflow">if</span> (res) {</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> nv = LoadField(fields, <span class="stringliteral">&quot;assignments&quot;</span>, DEFAULT.assignmentsSize);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; nv; i++) {</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            std::string dest = LoadField(fields, <span class="stringliteral">&quot;destination&quot;</span> + std::to_string(i), <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            std::string exp = LoadField(fields, <span class="stringliteral">&quot;expression&quot;</span> + std::to_string(i), <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            Assignment* assmt = <span class="keyword">new</span> Assignment(dest, exp);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            this-&gt;_assignments-&gt;insert(assmt);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        }</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordflow">return</span> res;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;}</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;std::map&lt;std::string, std::string&gt;* Assign::_saveInstance(<span class="keywordtype">bool</span> saveDefaultValues) {</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    std::map&lt;std::string, std::string&gt;* fields = ModelComponent::_saveInstance(saveDefaultValues); <span class="comment">//Util::TypeOf&lt;Assign&gt;());</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    Assignment* let;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    SaveField(fields, <span class="stringliteral">&quot;assignments&quot;</span>, _assignments-&gt;size(), DEFAULT.assignmentsSize, saveDefaultValues);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> i = 0;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordflow">for</span> (std::list&lt;Assignment*&gt;::iterator it = _assignments-&gt;list()-&gt;begin(); it != _assignments-&gt;list()-&gt;end(); it++, i++) {</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        let = (*it);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        SaveField(fields, <span class="stringliteral">&quot;destination&quot;</span> + std::to_string(i), let-&gt;getDestination(), <span class="stringliteral">&quot;&quot;</span>, saveDefaultValues);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        SaveField(fields, <span class="stringliteral">&quot;expression&quot;</span> + std::to_string(i), let-&gt;getExpression(), <span class="stringliteral">&quot;&quot;</span>, saveDefaultValues);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    }</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordflow">return</span> fields;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;}</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="keywordtype">bool</span> Assign::_check(std::string* errorMessage) {</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordtype">bool</span> resultAll = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="comment">// @TODO: Reimplement it. Since 201910, attributes may have index, just like &quot;atrrib1[2]&quot; or &quot;att[10,1]&quot;. Because of that, the string may contain not only the name of the attribute, but also its index and therefore, fails on the test bellow.</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordflow">for</span> (Assignment* let : *_assignments-&gt;list()) {</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        resultAll &amp;= _parentModel-&gt;<a class="code" href="class_model.html#a4ea188cd39bfd3171e8d00f883b008af">checkExpression</a>(let-&gt;getExpression(), <span class="stringliteral">&quot;assignment&quot;</span>, errorMessage);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    }</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordflow">return</span> resultAll;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;}</div>
 <div class="ttc" id="aclass_assign_html"><div class="ttname"><a href="class_assign.html">Assign</a></div><div class="ttdef"><b>Definition:</b> <a href="_assign_8h_source.html#l00058">Assign.h:58</a></div></div>
 <div class="ttc" id="aclass_entity_html"><div class="ttname"><a href="class_entity.html">Entity</a></div><div class="ttdef"><b>Definition:</b> <a href="_entity_8h_source.html#l00076">Entity.h:76</a></div></div>
 <div class="ttc" id="aclass_list_html"><div class="ttname"><a href="class_list.html">List&lt; Assign::Assignment * &gt;</a></div></div>
 <div class="ttc" id="aclass_model_component_html"><div class="ttname"><a href="class_model_component.html">ModelComponent</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_component_8h_source.html#l00033">ModelComponent.h:33</a></div></div>
 <div class="ttc" id="aclass_model_component_html_a06a599a7ef8f709d7dbaea1c30caa3cd"><div class="ttname"><a href="class_model_component.html#a06a599a7ef8f709d7dbaea1c30caa3cd">ModelComponent::getConnections</a></div><div class="ttdeci">ConnectionManager * getConnections() const</div><div class="ttdoc">Returns a list of components directly connected to the output. Usually the components have a single o...</div><div class="ttdef"><b>Definition:</b> <a href="_model_component_8cpp_source.html#l00094">ModelComponent.cpp:94</a></div></div>
 <div class="ttc" id="aclass_model_html"><div class="ttname"><a href="class_model.html">Model</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_8h_source.html#l00044">Model.h:44</a></div></div>
-<div class="ttc" id="aclass_model_html_a4ea188cd39bfd3171e8d00f883b008af"><div class="ttname"><a href="class_model.html#a4ea188cd39bfd3171e8d00f883b008af">Model::checkExpression</a></div><div class="ttdeci">bool checkExpression(const std::string expression, const std::string expressionName, std::string *errorMessage)</div><div class="ttdoc">This is invoked by ModelComponents and ModelElements in their private method _check() to verify if an...</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00121">Model.cpp:121</a></div></div>
-<div class="ttc" id="aclass_model_html_a5ea283e339b50c0b77040bf908e25af3"><div class="ttname"><a href="class_model.html#a5ea283e339b50c0b77040bf908e25af3">Model::parseExpression</a></div><div class="ttdeci">double parseExpression(const std::string expression)</div><div class="ttdoc">Invokes the parser to evaluate tyhe expression. Result is always a double, even if expression has syn...</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00113">Model.cpp:113</a></div></div>
-<div class="ttc" id="aclass_model_html_a7d8576f92173d8e21076c6d1e7e1350e"><div class="ttname"><a href="class_model.html#a7d8576f92173d8e21076c6d1e7e1350e">Model::getTracer</a></div><div class="ttdeci">TraceManager * getTracer() const</div><div class="ttdoc">Provides access to the class that performs the trace of simulation and replications.</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00330">Model.cpp:330</a></div></div>
-<div class="ttc" id="aclass_model_html_a9b68e140fb30477b0e2b223c2d930450"><div class="ttname"><a href="class_model.html#a9b68e140fb30477b0e2b223c2d930450">Model::sendEntityToComponent</a></div><div class="ttdeci">void sendEntityToComponent(Entity *entity, Connection *connection, double timeDelay=0.0)</div><div class="ttdoc">Used by components (ModelComponent) to send entities to another specific component,...</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00071">Model.cpp:71</a></div></div>
+<div class="ttc" id="aclass_model_html_a4ea188cd39bfd3171e8d00f883b008af"><div class="ttname"><a href="class_model.html#a4ea188cd39bfd3171e8d00f883b008af">Model::checkExpression</a></div><div class="ttdeci">bool checkExpression(const std::string expression, const std::string expressionName, std::string *errorMessage)</div><div class="ttdoc">This is invoked by ModelComponents and ModelDatas in their private method _check() to verify if an ex...</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00114">Model.cpp:114</a></div></div>
+<div class="ttc" id="aclass_model_html_a5ea283e339b50c0b77040bf908e25af3"><div class="ttname"><a href="class_model.html#a5ea283e339b50c0b77040bf908e25af3">Model::parseExpression</a></div><div class="ttdeci">double parseExpression(const std::string expression)</div><div class="ttdoc">Invokes the parser to evaluate tyhe expression. Result is always a double, even if expression has syn...</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00106">Model.cpp:106</a></div></div>
+<div class="ttc" id="aclass_model_html_a9b68e140fb30477b0e2b223c2d930450"><div class="ttname"><a href="class_model.html#a9b68e140fb30477b0e2b223c2d930450">Model::sendEntityToComponent</a></div><div class="ttdeci">void sendEntityToComponent(Entity *entity, Connection *connection, double timeDelay=0.0)</div><div class="ttdoc">Used by components (ModelComponent) to send entities to another specific component,...</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00072">Model.cpp:72</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

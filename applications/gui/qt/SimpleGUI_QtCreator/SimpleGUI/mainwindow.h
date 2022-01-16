@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QListWidget>
 #include "../../../../../kernel/simulator/Simulator.h"
 #include "../../../../../kernel/simulator/TraceManager.h"
 
@@ -39,6 +40,10 @@ private slots:
     void on_actionOpen_triggered();
 
     void on_textEdit_Model_textChanged();
+
+    void on_listWidget_Plugins_itemClicked(QListWidgetItem *item);
+
+    void on_listWidget_Plugins_itemDoubleClicked(QListWidgetItem *item);
 
 private: // VIEW
 

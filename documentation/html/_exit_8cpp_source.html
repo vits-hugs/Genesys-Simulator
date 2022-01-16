@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="software_genesys.gif"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ReGenESyS - REborned GENeric and Expansible SYstem Simulator
-   &#160;<span id="projectnumber">v22.01 (jude)</span>
+   &#160;<span id="projectnumber">v22.01 (wealljudes)</span>
    </div>
    <div id="projectbrief">Genesys is a result of teaching and research activities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics and simulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesys development he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of that tool, including its graphical interface. Genesys allowed the inclusion of new simulation components through dynamic link libraries and also the parallel execution of simulation models in a distributed environment. The development of Genesys continued until 2007, when the professor stopped teaching systems simulation classes. Ten years later the professor starts again to teach systems simulation classes and to carry out scientific research in the area. So in 2018 Genesys is reborn as ReGenesys, with new language and programming techniques, and even more ambitious goals.</div>
   </td>
@@ -123,48 +123,46 @@ $(document).ready(function(){initNavTree('_exit_8cpp_source.html',''); initResiz
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keywordtype">void</span> Exit::_execute(<a class="code" href="class_entity.html">Entity</a>* entity) {</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    _parentModel-&gt;<a class="code" href="class_model.html#a7d8576f92173d8e21076c6d1e7e1350e">getTracer</a>()-&gt;trace(<span class="stringliteral">&quot;I&#39;m just a dummy model and I&#39;ll just send the entity forward&quot;</span>);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    _parentModel-&gt;getTracer()-&gt;trace(<span class="stringliteral">&quot;I&#39;m just a dummy model and I&#39;ll just send the entity forward&quot;</span>);</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    this-&gt;_parentModel-&gt;<a class="code" href="class_model.html#a9b68e140fb30477b0e2b223c2d930450">sendEntityToComponent</a>(entity, this-&gt;<a class="code" href="class_model_component.html#a06a599a7ef8f709d7dbaea1c30caa3cd">getConnections</a>()-&gt;getFrontConnection());</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;}</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keywordtype">bool</span> Exit::_loadInstance(std::map&lt;std::string, std::string&gt;* fields) {</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">bool</span> res = ModelComponent::_loadInstance(fields);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordflow">if</span> (res) {</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="comment">// \todo: not implemented yet</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="comment">// @TODO: not implemented yet</span></div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordflow">return</span> res;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keywordtype">void</span> Exit::_initBetweenReplications() {</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;}</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;std::map&lt;std::string, std::string&gt;* Exit::_saveInstance() {</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    std::map&lt;std::string, std::string&gt;* fields = ModelComponent::_saveInstance();</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">// \todo: not implemented yet</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordflow">return</span> fields;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keywordtype">bool</span> Exit::_check(std::string* errorMessage) {</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">bool</span> resultAll = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">// \todo: not implemented yet</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    *errorMessage += <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordflow">return</span> resultAll;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;PluginInformation* Exit::GetPluginInformation() {</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    PluginInformation* info = <span class="keyword">new</span> PluginInformation(Util::TypeOf&lt;Exit&gt;(), &amp;Exit::LoadInstance);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="comment">// ...</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordflow">return</span> info;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;}</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">//void Exit::_initBetweenReplications() {}</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;std::map&lt;std::string, std::string&gt;* Exit::_saveInstance(<span class="keywordtype">bool</span> saveDefaultValues) {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    std::map&lt;std::string, std::string&gt;* fields = ModelComponent::_saveInstance(saveDefaultValues);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">// @TODO: not implemented yet</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">return</span> fields;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keywordtype">bool</span> Exit::_check(std::string* errorMessage) {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">bool</span> resultAll = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">// @TODO: not implemented yet</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    *errorMessage += <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordflow">return</span> resultAll;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;PluginInformation* Exit::GetPluginInformation() {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    PluginInformation* info = <span class="keyword">new</span> PluginInformation(Util::TypeOf&lt;Exit&gt;(), &amp;Exit::LoadInstance);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    info-&gt;setCategory(<span class="stringliteral">&quot;Material Handling&quot;</span>);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordflow">return</span> info;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
 <div class="ttc" id="aclass_entity_html"><div class="ttname"><a href="class_entity.html">Entity</a></div><div class="ttdef"><b>Definition:</b> <a href="_entity_8h_source.html#l00076">Entity.h:76</a></div></div>
 <div class="ttc" id="aclass_exit_html"><div class="ttname"><a href="class_exit.html">Exit</a></div><div class="ttdef"><b>Definition:</b> <a href="_exit_8h_source.html#l00037">Exit.h:37</a></div></div>
 <div class="ttc" id="aclass_model_component_html"><div class="ttname"><a href="class_model_component.html">ModelComponent</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_component_8h_source.html#l00033">ModelComponent.h:33</a></div></div>
 <div class="ttc" id="aclass_model_component_html_a06a599a7ef8f709d7dbaea1c30caa3cd"><div class="ttname"><a href="class_model_component.html#a06a599a7ef8f709d7dbaea1c30caa3cd">ModelComponent::getConnections</a></div><div class="ttdeci">ConnectionManager * getConnections() const</div><div class="ttdoc">Returns a list of components directly connected to the output. Usually the components have a single o...</div><div class="ttdef"><b>Definition:</b> <a href="_model_component_8cpp_source.html#l00094">ModelComponent.cpp:94</a></div></div>
 <div class="ttc" id="aclass_model_html"><div class="ttname"><a href="class_model.html">Model</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_8h_source.html#l00044">Model.h:44</a></div></div>
-<div class="ttc" id="aclass_model_html_a7d8576f92173d8e21076c6d1e7e1350e"><div class="ttname"><a href="class_model.html#a7d8576f92173d8e21076c6d1e7e1350e">Model::getTracer</a></div><div class="ttdeci">TraceManager * getTracer() const</div><div class="ttdoc">Provides access to the class that performs the trace of simulation and replications.</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00330">Model.cpp:330</a></div></div>
-<div class="ttc" id="aclass_model_html_a9b68e140fb30477b0e2b223c2d930450"><div class="ttname"><a href="class_model.html#a9b68e140fb30477b0e2b223c2d930450">Model::sendEntityToComponent</a></div><div class="ttdeci">void sendEntityToComponent(Entity *entity, Connection *connection, double timeDelay=0.0)</div><div class="ttdoc">Used by components (ModelComponent) to send entities to another specific component,...</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00071">Model.cpp:71</a></div></div>
+<div class="ttc" id="aclass_model_html_a9b68e140fb30477b0e2b223c2d930450"><div class="ttname"><a href="class_model.html#a9b68e140fb30477b0e2b223c2d930450">Model::sendEntityToComponent</a></div><div class="ttdeci">void sendEntityToComponent(Entity *entity, Connection *connection, double timeDelay=0.0)</div><div class="ttdoc">Used by components (ModelComponent) to send entities to another specific component,...</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00072">Model.cpp:72</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

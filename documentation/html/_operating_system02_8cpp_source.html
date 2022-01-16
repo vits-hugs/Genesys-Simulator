@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="software_genesys.gif"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ReGenESyS - REborned GENeric and Expansible SYstem Simulator
-   &#160;<span id="projectnumber">v22.01 (jude)</span>
+   &#160;<span id="projectnumber">v22.01 (wealljudes)</span>
    </div>
    <div id="projectbrief">Genesys is a result of teaching and research activities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics and simulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesys development he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of that tool, including its graphical interface. Genesys allowed the inclusion of new simulation components through dynamic link libraries and also the parallel execution of simulation models in a distributed environment. The development of Genesys continued until 2007, when the professor stopped teaching systems simulation classes. Ten years later the professor starts again to teach systems simulation classes and to carry out scientific research in the area. So in 2018 Genesys is reborn as ReGenesys, with new language and programming techniques, and even more ambitious goals.</div>
   </td>
@@ -108,9 +108,9 @@ $(document).ready(function(){initNavTree('_operating_system02_8cpp_source.html',
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;../../kernel/simulator/Attribute.h&quot;</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;../../kernel/simulator/EntityType.h&quot;</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;../../plugins/elements/Queue.h&quot;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;../../plugins/elements/Resource.h&quot;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;../../plugins/elements/Station.h&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;../../plugins/data/Queue.h&quot;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;../../plugins/data/Resource.h&quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;../../plugins/data/Station.h&quot;</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;../../plugins/components/Create.h&quot;</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;../../plugins/components/Seize.h&quot;</span></div>
@@ -273,7 +273,7 @@ $(document).ready(function(){initNavTree('_operating_system02_8cpp_source.html',
 <div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    <span class="comment">// AJUSTA NÍVEL DE TRACE</span></div>
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    genesys-&gt;getTracer()-&gt;setTraceLevel(Util::TraceLevel::L2_results);</div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <span class="comment">// SALVA MODELO</span></div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    model-&gt;save(<span class="stringliteral">&quot;./models/SistemaOperacional02.txt&quot;</span>);</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    model-&gt;save(<span class="stringliteral">&quot;./models/SistemaOperacional02.gen&quot;</span>);</div>
 <div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <span class="comment">// EXECUTA CADA REPLICAÇÃO, RECOMEÇANDO APÓS CADA PAUSA</span></div>
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <span class="keywordflow">do</span> {</div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        sim-&gt;<a class="code" href="class_model_simulation.html#a7c9dcb206388ce068f3add6dda1d6117">start</a>();</div>
@@ -290,7 +290,7 @@ $(document).ready(function(){initNavTree('_operating_system02_8cpp_source.html',
 <div class="ttc" id="aclass_enter_html"><div class="ttname"><a href="class_enter.html">Enter</a></div><div class="ttdef"><b>Definition:</b> <a href="_enter_8h_source.html#l00099">Enter.h:99</a></div></div>
 <div class="ttc" id="aclass_model_component_html_a06a599a7ef8f709d7dbaea1c30caa3cd"><div class="ttname"><a href="class_model_component.html#a06a599a7ef8f709d7dbaea1c30caa3cd">ModelComponent::getConnections</a></div><div class="ttdeci">ConnectionManager * getConnections() const</div><div class="ttdoc">Returns a list of components directly connected to the output. Usually the components have a single o...</div><div class="ttdef"><b>Definition:</b> <a href="_model_component_8cpp_source.html#l00094">ModelComponent.cpp:94</a></div></div>
 <div class="ttc" id="aclass_model_html"><div class="ttname"><a href="class_model.html">Model</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_8h_source.html#l00044">Model.h:44</a></div></div>
-<div class="ttc" id="aclass_model_html_a91b3f67aa8bf44c2632a773c567830a2"><div class="ttname"><a href="class_model.html#a91b3f67aa8bf44c2632a773c567830a2">Model::getSimulation</a></div><div class="ttdeci">ModelSimulation * getSimulation() const</div><div class="ttdoc">Provides access to the class that manages the model simulation.</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00371">Model.cpp:371</a></div></div>
+<div class="ttc" id="aclass_model_html_a91b3f67aa8bf44c2632a773c567830a2"><div class="ttname"><a href="class_model.html#a91b3f67aa8bf44c2632a773c567830a2">Model::getSimulation</a></div><div class="ttdeci">ModelSimulation * getSimulation() const</div><div class="ttdoc">Provides access to the class that manages the model simulation.</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00377">Model.cpp:377</a></div></div>
 <div class="ttc" id="aclass_model_simulation_html"><div class="ttname"><a href="class_model_simulation.html">ModelSimulation</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_simulation_8h_source.html#l00033">ModelSimulation.h:33</a></div></div>
 <div class="ttc" id="aclass_model_simulation_html_a7c9dcb206388ce068f3add6dda1d6117"><div class="ttname"><a href="class_model_simulation.html#a7c9dcb206388ce068f3add6dda1d6117">ModelSimulation::start</a></div><div class="ttdeci">void start()</div><div class="ttdoc">Starts a sequential execution of a simulation, ie, a set of replications of this model.</div><div class="ttdef"><b>Definition:</b> <a href="_model_simulation_8cpp_source.html#l00090">ModelSimulation.cpp:90</a></div></div>
 <div class="ttc" id="aclass_queue_html"><div class="ttname"><a href="class_queue.html">Queue</a></div><div class="ttdef"><b>Definition:</b> <a href="_queue_8h_source.html#l00091">Queue.h:91</a></div></div>

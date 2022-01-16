@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="software_genesys.gif"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ReGenESyS - REborned GENeric and Expansible SYstem Simulator
-   &#160;<span id="projectnumber">v22.01 (jude)</span>
+   &#160;<span id="projectnumber">v22.01 (wealljudes)</span>
    </div>
    <div id="projectbrief">Genesys is a result of teaching and research activities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics and simulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesys development he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of that tool, including its graphical interface. Genesys allowed the inclusion of new simulation components through dynamic link libraries and also the parallel execution of simulation models in a distributed environment. The development of Genesys continued until 2007, when the professor stopped teaching systems simulation classes. Ten years later the professor starts again to teach systems simulation classes and to carry out scientific research in the area. So in 2018 Genesys is reborn as ReGenesys, with new language and programming techniques, and even more ambitious goals.</div>
   </td>
@@ -105,7 +105,7 @@ $(document).ready(function(){initNavTree('_route_8h_source.html',''); initResiza
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#define ROUTE_H</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;../../kernel/simulator/ModelComponent.h&quot;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;../elements/Station.h&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;../data/Station.h&quot;</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;../../kernel/simulator/Counter.h&quot;</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
 <div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="class_route.html">   53</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_route.html">Route</a> : <span class="keyword">public</span> <a class="code" href="class_model_component.html">ModelComponent</a> {</div>
@@ -131,14 +131,14 @@ $(document).ready(function(){initNavTree('_route_8h_source.html',''); initResiza
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    Util::TimeUnit getRouteTimeTimeUnit() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">void</span> setRouteDestinationType(DestinationType _routeDestinationType);</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    Route::DestinationType getRouteDestinationType() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> _execute(<a class="code" href="class_entity.html">Entity</a>* entity);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> _initBetweenReplications();</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> _loadInstance(std::map&lt;std::string, std::string&gt;* fields);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keyword">virtual</span> std::map&lt;std::string, std::string&gt;* _saveInstance();</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> _execute(<a class="code" href="class_entity.html">Entity</a>* entity);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> _loadInstance(std::map&lt;std::string, std::string&gt;* fields);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">virtual</span> std::map&lt;std::string, std::string&gt;* _saveInstance(<span class="keywordtype">bool</span> saveDefaultValues);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="comment">//virtual void _initBetweenReplications();</span></div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> _check(std::string* errorMessage);</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_route.html#ac03010a5c3945f57880126e0a4432fd4">_createInternalElements</a>();</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_route.html#a120fbc0505b3a17764d5941c5f8f088b">_createInternalData</a>();</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keyword">const</span> <span class="keyword">struct </span>DEFAULT_VALUES {</div>
@@ -150,8 +150,8 @@ $(document).ready(function(){initNavTree('_route_8h_source.html',''); initResiza
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    Util::TimeUnit _routeTimeTimeUnit = DEFAULT.routeTimeTimeUnit;</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    Route::DestinationType _routeDestinationType = DEFAULT.routeDestinationType;</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="keyword">private</span>: <span class="comment">// association</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    Station* _station;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keyword">private</span>: <span class="comment">// children elements</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    Station* _station = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keyword">private</span>: <span class="comment">// internel elements</span></div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <a class="code" href="class_counter.html">Counter</a>* _numberIn = <span class="keyword">nullptr</span>;</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;};</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
@@ -162,7 +162,7 @@ $(document).ready(function(){initNavTree('_route_8h_source.html',''); initResiza
 <div class="ttc" id="aclass_model_component_html"><div class="ttname"><a href="class_model_component.html">ModelComponent</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_component_8h_source.html#l00033">ModelComponent.h:33</a></div></div>
 <div class="ttc" id="aclass_model_html"><div class="ttname"><a href="class_model.html">Model</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_8h_source.html#l00044">Model.h:44</a></div></div>
 <div class="ttc" id="aclass_route_html"><div class="ttname"><a href="class_route.html">Route</a></div><div class="ttdef"><b>Definition:</b> <a href="_route_8h_source.html#l00053">Route.h:53</a></div></div>
-<div class="ttc" id="aclass_route_html_ac03010a5c3945f57880126e0a4432fd4"><div class="ttname"><a href="class_route.html#ac03010a5c3945f57880126e0a4432fd4">Route::_createInternalElements</a></div><div class="ttdeci">virtual void _createInternalElements()</div><div class="ttdoc">This method is necessary only for those components that instantiate internal elements that must exist...</div><div class="ttdef"><b>Definition:</b> <a href="_route_8cpp_source.html#l00182">Route.cpp:182</a></div></div>
+<div class="ttc" id="aclass_route_html_a120fbc0505b3a17764d5941c5f8f088b"><div class="ttname"><a href="class_route.html#a120fbc0505b3a17764d5941c5f8f088b">Route::_createInternalData</a></div><div class="ttdeci">virtual void _createInternalData()</div><div class="ttdef"><b>Definition:</b> <a href="_route_8cpp_source.html#l00193">Route.cpp:193</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

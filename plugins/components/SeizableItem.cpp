@@ -54,11 +54,11 @@ bool SeizableItem::loadInstance(std::map<std::string, std::string>* fields) {
 		_selectionRule = static_cast<SeizableItem::SelectionRule> (LoadField(fields, "selectionRule", static_cast<int> (DEFAULT.selectionRule)));
 		_saveAttribute = LoadField(fields, "saveAttribute", DEFAULT.saveAttribute);
 		_index = LoadField(fields, "index", DEFAULT.index);
-		if (_elementManager != nullptr) {
+		if (_modeldataManager != nullptr) {
 			if (_seizableType == SeizableItem::SeizableType::RESOURCE) {
-				_resourceOrSet = _elementManager->getData(Util::TypeOf<Resource>(), _seizableName);
+				_resourceOrSet = _modeldataManager->getData(Util::TypeOf<Resource>(), _seizableName);
 			} else if (_seizableType == SeizableItem::SeizableType::SET) {
-				_resourceOrSet = _elementManager->getData(Util::TypeOf<Set>(), _seizableName);
+				_resourceOrSet = _modeldataManager->getData(Util::TypeOf<Set>(), _seizableName);
 			}
 			assert(_resourceOrSet != nullptr);
 		}
@@ -78,11 +78,11 @@ bool SeizableItem::loadInstance(std::map<std::string, std::string>* fields, unsi
 		_selectionRule = static_cast<SeizableItem::SelectionRule> (LoadField(fields, "selectionRule" + num, static_cast<int> (DEFAULT.selectionRule)));
 		_saveAttribute = LoadField(fields, "saveAttribute" + num, DEFAULT.saveAttribute);
 		_index = LoadField(fields, "index" + num, DEFAULT.index);
-		if (_elementManager != nullptr) {
+		if (_modeldataManager != nullptr) {
 			if (_seizableType == SeizableItem::SeizableType::RESOURCE) {
-				_resourceOrSet = _elementManager->getData(Util::TypeOf<Resource>(), _seizableName);
+				_resourceOrSet = _modeldataManager->getData(Util::TypeOf<Resource>(), _seizableName);
 			} else if (_seizableType == SeizableItem::SeizableType::SET) {
-				_resourceOrSet = _elementManager->getData(Util::TypeOf<Set>(), _seizableName);
+				_resourceOrSet = _modeldataManager->getData(Util::TypeOf<Set>(), _seizableName);
 			}
 			assert(_resourceOrSet != nullptr);
 		}
@@ -195,8 +195,8 @@ ModelData* SeizableItem::getSeizable() const {
 	return _resourceOrSet;
 }
 
-void SeizableItem::setElementManager(ModelDataManager* _elementManager) {
-	this->_elementManager = _elementManager;
+void SeizableItem::setElementManager(ModelDataManager* _modeldataManager) {
+	this->_modeldataManager = _modeldataManager;
 }
 
 //void SeizableItem::setComponentManager(ComponentManager* _componentManager) {

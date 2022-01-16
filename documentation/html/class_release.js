@@ -6,7 +6,7 @@ var class_release =
     [ "_execute", "class_release.html#a63c3cd89082e7f6c1fb61646b93a5c32", null ],
     [ "_initBetweenReplications", "class_release.html#aeaf140825c03060c5531a326d571c232", null ],
     [ "_loadInstance", "class_release.html#a5404acc7eba71e61033a36c58dbac731", null ],
-    [ "_saveInstance", "class_release.html#a55b3d5608be3c9d6626bb2d2fdaa95bf", null ],
+    [ "_saveInstance", "class_release.html#a1111a101fdb426d08f3e900e16bf30b3", null ],
     [ "GetPluginInformation", "class_release.html#a11d37e4c8822962ec3de958e02893a57", null ],
     [ "getReleaseRequests", "class_release.html#a20414eec34fa08eaad23fd89dab67747", null ],
     [ "LoadInstance", "class_release.html#a98ac63ee57e5465463469fecf1b772c1", null ],

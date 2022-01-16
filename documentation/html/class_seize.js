@@ -6,7 +6,7 @@ var class_seize =
     [ "_execute", "class_seize.html#a96f6517a40b3bfd0d5ea753d59cef797", null ],
     [ "_initBetweenReplications", "class_seize.html#a21fced34dc3b165ce6811be5f6fe4348", null ],
     [ "_loadInstance", "class_seize.html#a7d036a9b1370aafddf3713e632078a76", null ],
-    [ "_saveInstance", "class_seize.html#add29455df69971538fd1df6972f53244", null ],
+    [ "_saveInstance", "class_seize.html#ac6d02540dc7be5872b13e27b389062a6", null ],
     [ "getAllocationType", "class_seize.html#a3bcf65a95eb4094631d64d7b5fa53001", null ],
     [ "GetPluginInformation", "class_seize.html#ac1bf370b3f2d506ee0aff4bc8b4789ef", null ],
     [ "getPriority", "class_seize.html#ac4976959198b0f270cd4c519c2259252", null ],

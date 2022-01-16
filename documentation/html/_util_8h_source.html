@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="software_genesys.gif"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ReGenESyS - REborned GENeric and Expansible SYstem Simulator
-   &#160;<span id="projectnumber">v22.01 (jude)</span>
+   &#160;<span id="projectnumber">v22.01 (wealljudes)</span>
    </div>
    <div id="projectbrief">Genesys is a result of teaching and research activities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics and simulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesys development he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of that tool, including its graphical interface. Genesys allowed the inclusion of new simulation components through dynamic link libraries and also the parallel execution of simulation models in a distributed environment. The development of Genesys continued until 2007, when the professor stopped teaching systems simulation classes. Ten years later the professor starts again to teach systems simulation classes and to carry out scientific research in the area. So in 2018 Genesys is reborn as ReGenesys, with new language and programming techniques, and even more ambitious goals.</div>
   </td>
@@ -279,7 +279,7 @@ $(document).ready(function(){initNavTree('_util_8h_source.html',''); initResizab
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <span class="keyword">static</span> std::map&lt;std::string, std::string&gt; _S_TypeOf;</div>
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160; </div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="keyword">public</span>: <span class="comment">// indentation and string</span></div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> _S_indentation; <span class="comment">// \todo: IT IS PRIVATE. ITS HERE JUST TO INCLUDE IT AS A WATCH</span></div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> _S_indentation; <span class="comment">// @TODO: IT IS PRIVATE. ITS HERE JUST TO INCLUDE IT AS A WATCH</span></div>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> SetIndent(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> indent);</div>
 <div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> IncIndent();</div>
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> DecIndent();</div>
@@ -288,95 +288,99 @@ $(document).ready(function(){initNavTree('_util_8h_source.html',''); initResizab
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <span class="keyword">static</span> std::string SetW(std::string text, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> width);</div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    <span class="keyword">static</span> std::string StrTimeUnitShort(Util::TimeUnit timeUnit);</div>
 <div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    <span class="keyword">static</span> std::string StrTimeUnitLong(Util::TimeUnit timeUnit);</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="keyword">public</span>: <span class="comment">// identitification</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="keyword">public</span>: <span class="comment">// identitification //@TODO: CHECK ALL, since some should be private and available to FRIEND classes in the kernel</span></div>
 <div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    <span class="keyword">static</span> Util::identification GenerateNewId();</div>
 <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <span class="keyword">static</span> Util::identification GenerateNewIdOfType(std::string objtype);</div>
 <div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <span class="keyword">static</span> Util::identification GetLastIdOfType(std::string objtype);</div>
 <div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> ResetIdOfType(std::string objtype);</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160; </div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<span class="keyword">public</span>: <span class="comment">// simulation support</span></div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">double</span> TimeUnitConvert(Util::TimeUnit timeUnit1, Util::TimeUnit timeUnit2);</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="keyword">public</span>: <span class="comment">// template implementations</span></div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="comment"></span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt; <span class="keyword">static</span> std::string TypeOf() {</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        std::string name = <span class="keyword">typeid</span> (T).name();</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        std::map&lt;std::string, std::string&gt;::iterator it = _S_TypeOf.find(name);</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;        <span class="keywordflow">if</span> (it != _S_TypeOf.end()) {</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;            <span class="keywordflow">return</span> (*it).second;</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;            std::string newname(name);</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;            <span class="keywordflow">while</span> (std::isdigit(newname[0])) {</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;                newname.erase(0, 1);</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;            }</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;            _S_TypeOf.insert(std::pair&lt;std::string, std::string&gt;(name, newname));</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;            <span class="keywordflow">return</span> newname;</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        }</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    }</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt; <span class="keyword">static</span> Util::identification GenerateNewIdOfType() {</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;        std::string objtype = Util::TypeOf&lt;T&gt;();</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        std::map&lt;std::string, Util::identification&gt;::iterator it = Util::_S_lastIdOfType.find(objtype);</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        <span class="keywordflow">if</span> (it == Util::_S_lastIdOfType.end()) {</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;            <span class="comment">// a new one. create the pair</span></div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;            Util::_S_lastIdOfType.insert(std::pair&lt;std::string, Util::identification&gt;(objtype, 0));</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;            it = Util::_S_lastIdOfType.find(objtype);</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        }</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        Util::identification next = (*it).second;</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        next++;</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        (*it).second = next;</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        <span class="keywordflow">return</span> (*it).second;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    }</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160; </div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    Util();</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    <span class="keyword">virtual</span> ~Util() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;};</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160; </div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> ResetAllIds();</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160; </div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="keyword">public</span>: <span class="comment">// simulation support</span></div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">double</span> TimeUnitConvert(Util::TimeUnit timeUnit1, Util::TimeUnit timeUnit2);</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160; </div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="keyword">public</span>: <span class="comment">// template implementations</span></div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="comment"></span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt; <span class="keyword">static</span> std::string TypeOf() {</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        std::string name = <span class="keyword">typeid</span> (T).name();</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;        std::map&lt;std::string, std::string&gt;::iterator it = _S_TypeOf.find(name);</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        <span class="keywordflow">if</span> (it != _S_TypeOf.end()) {</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;            <span class="keywordflow">return</span> (*it).second;</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;            std::string newname(name);</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;            <span class="keywordflow">while</span> (std::isdigit(newname[0])) {</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;                newname.erase(0, 1);</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;            }</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;            _S_TypeOf.insert(std::pair&lt;std::string, std::string&gt;(name, newname));</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;            <span class="keywordflow">return</span> newname;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        }</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    }</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt; <span class="keyword">static</span> Util::identification GenerateNewIdOfType() {</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        std::string objtype = Util::TypeOf&lt;T&gt;();</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        std::map&lt;std::string, Util::identification&gt;::iterator it = Util::_S_lastIdOfType.find(objtype);</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        <span class="keywordflow">if</span> (it == Util::_S_lastIdOfType.end()) {</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;            <span class="comment">// a new one. create the pair</span></div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;            Util::_S_lastIdOfType.insert(std::pair&lt;std::string, Util::identification&gt;(objtype, 0));</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;            it = Util::_S_lastIdOfType.find(objtype);</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        }</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        Util::identification next = (*it).second;</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        next++;</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        (*it).second = next;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        <span class="keywordflow">return</span> (*it).second;</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    }</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160; </div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    Util();</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    <span class="keyword">virtual</span> ~Util() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;};</div>
 <div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160; </div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="comment">// \todo Implement it using templates (check impact on calling syntax)</span></div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> std::string LoadField(std::map&lt;std::string, std::string&gt;* fields, std::string fieldName, std::string defaultValue = <span class="stringliteral">&quot;&quot;</span>) {</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    <span class="keywordflow">return</span> fields-&gt;find(fieldName) != fields-&gt;end() ? ((*(fields-&gt;find(fieldName))).second) : defaultValue;</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;}</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">double</span> LoadField(std::map&lt;std::string, std::string&gt;* fields, std::string fieldName, <span class="keywordtype">double</span> defaultValue) {</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    <span class="keywordflow">return</span> std::stod(fields-&gt;find(fieldName) != fields-&gt;end() ? ((*(fields-&gt;find(fieldName))).second) : std::to_string(defaultValue));</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;}</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> LoadField(std::map&lt;std::string, std::string&gt;* fields, std::string fieldName, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> defaultValue) {</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    <span class="keywordflow">return</span> std::stoi(fields-&gt;find(fieldName) != fields-&gt;end() ? ((*(fields-&gt;find(fieldName))).second) : std::to_string(defaultValue));</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;}</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> LoadField(std::map&lt;std::string, std::string&gt;* fields, std::string fieldName, <span class="keywordtype">int</span> defaultValue) {</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    <span class="keywordflow">return</span> std::stoi(fields-&gt;find(fieldName) != fields-&gt;end() ? ((*(fields-&gt;find(fieldName))).second) : std::to_string(defaultValue));</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;}</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> Util::TimeUnit LoadField(std::map&lt;std::string, std::string&gt;* fields, std::string fieldName, Util::TimeUnit defaultValue) {</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>Util::TimeUnit<span class="keyword">&gt;</span> (std::stoi(fields-&gt;find(fieldName) != fields-&gt;end() ? ((*(fields-&gt;find(fieldName))).second) : std::to_string(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span> (defaultValue))));</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;}</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160; </div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;<span class="comment">// \todo Implement it using templates (check impact on calling syntax)</span></div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> SaveField(std::map&lt;std::string, std::string&gt;* fields, std::string fieldName, std::string fieldValue, <span class="keyword">const</span> std::string fieldDefaultValue = <span class="stringliteral">&quot;&quot;</span>, <span class="keyword">const</span> <span class="keywordtype">bool</span> saveIfEqualsDefault = <span class="keyword">false</span>) {</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    <span class="keywordflow">if</span> (saveIfEqualsDefault || (fieldValue != fieldDefaultValue))</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;        fields-&gt;emplace(fieldName, <span class="stringliteral">&quot;\&quot;&quot;</span> + fieldValue + <span class="stringliteral">&quot;\&quot;&quot;</span>);</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;}</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> SaveField(std::map&lt;std::string, std::string&gt;* fields, std::string fieldName, <span class="keywordtype">double</span> fieldValue, <span class="keyword">const</span> <span class="keywordtype">double</span> fieldDefaultValue) {</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;    <span class="keywordflow">if</span> (fieldValue != fieldDefaultValue)</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;        fields-&gt;emplace(fieldName, std::to_string(fieldValue));</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160; </div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<span class="comment">// @TODO Implement it using templates (check impact on calling syntax)</span></div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> std::string LoadField(std::map&lt;std::string, std::string&gt;* fields, std::string fieldName, std::string defaultValue = <span class="stringliteral">&quot;&quot;</span>) {</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    <span class="keywordflow">return</span> fields-&gt;find(fieldName) != fields-&gt;end() ? ((*(fields-&gt;find(fieldName))).second) : defaultValue;</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;}</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">double</span> LoadField(std::map&lt;std::string, std::string&gt;* fields, std::string fieldName, <span class="keywordtype">double</span> defaultValue) {</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    <span class="keywordflow">return</span> std::stod(fields-&gt;find(fieldName) != fields-&gt;end() ? ((*(fields-&gt;find(fieldName))).second) : std::to_string(defaultValue));</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;}</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> LoadField(std::map&lt;std::string, std::string&gt;* fields, std::string fieldName, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> defaultValue) {</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    <span class="keywordflow">return</span> std::stoi(fields-&gt;find(fieldName) != fields-&gt;end() ? ((*(fields-&gt;find(fieldName))).second) : std::to_string(defaultValue));</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;}</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> LoadField(std::map&lt;std::string, std::string&gt;* fields, std::string fieldName, <span class="keywordtype">int</span> defaultValue) {</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    <span class="keywordflow">return</span> std::stoi(fields-&gt;find(fieldName) != fields-&gt;end() ? ((*(fields-&gt;find(fieldName))).second) : std::to_string(defaultValue));</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;}</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> Util::TimeUnit LoadField(std::map&lt;std::string, std::string&gt;* fields, std::string fieldName, Util::TimeUnit defaultValue) {</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>Util::TimeUnit<span class="keyword">&gt;</span> (std::stoi(fields-&gt;find(fieldName) != fields-&gt;end() ? ((*(fields-&gt;find(fieldName))).second) : std::to_string(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span> (defaultValue))));</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;}</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160; </div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;<span class="comment">// @TODO Implement it using templates (check impact on calling syntax)</span></div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> SaveField(std::map&lt;std::string, std::string&gt;* fields, std::string fieldName, std::string fieldValue, <span class="keyword">const</span> std::string fieldDefaultValue, <span class="keyword">const</span> <span class="keywordtype">bool</span> saveDefaultValue = <span class="keyword">false</span>) {</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    <span class="keywordflow">if</span> (saveDefaultValue || (fieldValue != fieldDefaultValue))</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        fields-&gt;emplace(fieldName, <span class="stringliteral">&quot;\&quot;&quot;</span> + fieldValue + <span class="stringliteral">&quot;\&quot;&quot;</span>);</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;}</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> SaveField(std::map&lt;std::string, std::string&gt;* fields, std::string fieldName, std::string fieldValue) {</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    fields-&gt;emplace(fieldName, <span class="stringliteral">&quot;\&quot;&quot;</span> + fieldValue + <span class="stringliteral">&quot;\&quot;&quot;</span>);</div>
 <div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;}</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> SaveField(std::map&lt;std::string, std::string&gt;* fields, std::string fieldName, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> fieldValue, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> fieldDefaultValue) {</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    <span class="keywordflow">if</span> (fieldValue != fieldDefaultValue)</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> SaveField(std::map&lt;std::string, std::string&gt;* fields, std::string fieldName, <span class="keywordtype">double</span> fieldValue, <span class="keyword">const</span> <span class="keywordtype">double</span> fieldDefaultValue, <span class="keyword">const</span> <span class="keywordtype">bool</span> saveDefaultValue = <span class="keyword">false</span>) {</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    <span class="keywordflow">if</span> (saveDefaultValue || (fieldValue != fieldDefaultValue))</div>
 <div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        fields-&gt;emplace(fieldName, std::to_string(fieldValue));</div>
 <div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;}</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> SaveField(std::map&lt;std::string, std::string&gt;* fields, std::string fieldName, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> fieldValue) {</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    fields-&gt;emplace(fieldName, std::to_string(fieldValue));</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;}</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> SaveField(std::map&lt;std::string, std::string&gt;* fields, std::string fieldName, <span class="keywordtype">int</span> fieldValue, <span class="keyword">const</span> <span class="keywordtype">int</span> fieldDefaultValue) {</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    <span class="keywordflow">if</span> (fieldValue != fieldDefaultValue)</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;        fields-&gt;emplace(fieldName, std::to_string(fieldValue));</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> SaveField(std::map&lt;std::string, std::string&gt;* fields, std::string fieldName, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> fieldValue, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> fieldDefaultValue, <span class="keyword">const</span> <span class="keywordtype">bool</span> saveDefaultValue = <span class="keyword">false</span>) {</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    <span class="keywordflow">if</span> (saveDefaultValue || (fieldValue != fieldDefaultValue))</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;        fields-&gt;emplace(fieldName, std::to_string(fieldValue));</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;}</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> SaveField(std::map&lt;std::string, std::string&gt;* fields, std::string fieldName, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> fieldValue) {</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;    fields-&gt;emplace(fieldName, std::to_string(fieldValue));</div>
 <div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;}</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> SaveField(std::map&lt;std::string, std::string&gt;* fields, std::string fieldName, Util::TimeUnit fieldValue, <span class="keyword">const</span> Util::TimeUnit fieldDefaultValue, <span class="keyword">const</span> <span class="keywordtype">bool</span> saveDefaultValue = <span class="keyword">false</span>) {</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> SaveField(std::map&lt;std::string, std::string&gt;* fields, std::string fieldName, <span class="keywordtype">int</span> fieldValue, <span class="keyword">const</span> <span class="keywordtype">int</span> fieldDefaultValue, <span class="keyword">const</span> <span class="keywordtype">bool</span> saveDefaultValue = <span class="keyword">false</span>) {</div>
 <div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    <span class="keywordflow">if</span> (saveDefaultValue || (fieldValue != fieldDefaultValue))</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;        fields-&gt;emplace(fieldName, std::to_string(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span> (fieldValue)));</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;        fields-&gt;emplace(fieldName, std::to_string(fieldValue));</div>
 <div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;}</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160; </div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;<span class="comment">//namespace\\}</span></div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* UTIL_H */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160; </div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> SaveField(std::map&lt;std::string, std::string&gt;* fields, std::string fieldName, Util::TimeUnit fieldValue, <span class="keyword">const</span> Util::TimeUnit fieldDefaultValue, <span class="keyword">const</span> <span class="keywordtype">bool</span> saveDefaultValue = <span class="keyword">false</span>) {</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    <span class="keywordflow">if</span> (saveDefaultValue || (fieldValue != fieldDefaultValue))</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;        fields-&gt;emplace(fieldName, std::to_string(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span> (fieldValue)));</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;}</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160; </div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;<span class="comment">//namespace\\}</span></div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* UTIL_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160; </div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

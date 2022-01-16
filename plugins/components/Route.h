@@ -92,7 +92,7 @@ private:
 	Util::TimeUnit _routeTimeTimeUnit = DEFAULT.routeTimeTimeUnit;
 	Route::DestinationType _routeDestinationType = DEFAULT.routeDestinationType;
 private: // association
-	Station* _station;
+	Station* _station = nullptr;
 private: // internel elements
 	Counter* _numberIn = nullptr;
 };

@@ -47,7 +47,7 @@ public:
 	void setQueueableType(QueueableType queueableType);
 	QueueableType getQueueableType() const;
 	ModelData* getQueueable() const;
-	void setElementManager(ModelDataManager* _elementManager);
+	void setElementManager(ModelDataManager* _modeldataManager);
 	//void setComponentManager(ComponentManager* _componentManager);
 
 private:
@@ -59,13 +59,13 @@ private:
 		const std::string index = "0";
 	} DEFAULT;
 
-	QueueableType _queueableType;
-	ModelData* _queueOrSet;
+	QueueableType _queueableType = DEFAULT.queueableType;
+	ModelData* _queueOrSet = nullptr;
 	std::string _queueableName;
-	std::string _index;
+	std::string _index = DEFAULT.index;
 private:
 	//ComponentManager* _componentManager;
-	ModelDataManager* _elementManager;
+	ModelDataManager* _modeldataManager = nullptr;
 };
 
 

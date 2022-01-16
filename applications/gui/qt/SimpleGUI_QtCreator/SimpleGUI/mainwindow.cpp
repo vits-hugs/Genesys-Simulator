@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
 	ui->setupUi(this);
 	ui->dockWidgetContentsConsole->setMaximumHeight(150);
 	ui->dockWidgetContentsPlugin->setMaximumWidth(150);
+    //ui->treeWidget_Plugins->setVisible(false);
 	simulator = new Simulator();
 	simulator->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
 	simulator->getTracer()->addTraceHandler<MainWindow>(this, &MainWindow::_simulatorTraceHandler);
@@ -133,15 +134,21 @@ void MainWindow::_insertPluginUI(Plugin* plugin) {
 	if (plugin != nullptr) {
 		if (plugin->isIsValidPlugin()) {
 			QListWidgetItem* item = new QListWidgetItem(QString::fromStdString(plugin->getPluginInfo()->getPluginTypename()));
-			std::string plugtextAdds = "";
+            //QTreeWidgetItem *treeItem = new QTreeWidgetItem; //(ui->treeWidget_Plugins);
+            std::string plugtextAdds = "";
+            QBrush brush;
 			if (plugin->getPluginInfo()->isComponent()) {
 				plugtextAdds += ",Component";
-				//item->setBackgroundColor(Qt::white);
+                brush.setColor(Qt::white);
+                item->setBackground(brush);
+                item->setBackgroundColor(Qt::white);
 				item->setIcon(QIcon(":/resources/icons/pack3/ico/component.ico"));
 			} else {
 				plugtextAdds += ",Element";
-				//item->setBackgroundColor(Qt::lightGray);
-				item->setIcon(QIcon(":/resources/icons/pack3/ico/calendar.ico"));
+                brush.setColor(Qt::lightGray);
+                item->setBackground(brush);
+                item->setBackgroundColor(Qt::lightGray);
+                item->setIcon(QIcon(":/resources/icons/pack3/ico/calendar.ico"));
 				//item->setFont(QFont::Style::StyleItalic);
 			}
 			if (plugin->getPluginInfo()->isSink()) {
@@ -160,24 +167,33 @@ void MainWindow::_insertPluginUI(Plugin* plugin) {
 				plugtextAdds += ",SendTransfer";
 				item->setIcon(QIcon(":/resources/icons/pack3/ico/loadInv.ico"));
 			}
+            //treeItem->setText(0,QString::fromStdString(plugtextAdds));
 			plugtextAdds += "\n" + plugin->getPluginInfo()->getDescriptionHelp();
 			plugtextAdds = plugtextAdds.erase(0, 1);
-			item->setToolTip(QString::fromStdString(plugtextAdds));
-			item->setStatusTip(QString::fromStdString(plugtextAdds));
+            item->setToolTip(QString::fromStdString(plugtextAdds));
+            item->setStatusTip(QString::fromStdString(plugin->getPluginInfo()->getLanguageTemplate()));
 			ui->listWidget_Plugins->addItem(item);
+
+
 		}
 	}
 }
 
 void MainWindow::_insertFakePlugins() {
 	PluginManager* pm = simulator->getPlugins();
-	// TRYING SOME NEW ORGANIZATION (BASED ON ARENA 16..20)
+    // TRYING SOME NEW ORGANIZATION (BASED ON ARENA 16..20)
 
-	// DISCRETE
+        // DISCRETE PROCESSING
 
-	// CONTINUOS
+        // GROUPING
 
-	// DATA DEFINITION
+        //INPUT/OUTPUT
+
+        // MATERIAL HANDLING
+
+        // CONTINUOS
+
+        // DATA DEFINITION
 
 
 	//-----------------------------------------------------
@@ -253,6 +269,8 @@ void MainWindow::_insertFakePlugins() {
 	_insertPluginUI(pm->insert("markovchain.so"));
 	_insertPluginUI(pm->insert("cellularautomata.so"));
 	_insertPluginUI(pm->insert("cppforg.so"));
+    // now complete the information
+    simulator->getPlugins()->completePluginsFieldsAndTemplates();
 }
 
 
@@ -413,4 +431,16 @@ void MainWindow::on_actionOpen_triggered() {
 
 void MainWindow::on_textEdit_Model_textChanged() {
 	this->_actualizeModelTextHasChanged(true);
+}
+
+void MainWindow::on_listWidget_Plugins_itemClicked(QListWidgetItem *item)
+{
+
+}
+
+void MainWindow::on_listWidget_Plugins_itemDoubleClicked(QListWidgetItem *item)
+{
+    if (ui->textEdit_Model->isEnabled()) {
+        ui->textEdit_Model->append(item->statusTip());
+    }
 }

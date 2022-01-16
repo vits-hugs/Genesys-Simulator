@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['remove_406',['remove',['../class_element_manager.html#a1e7651cf10bdda36e9c020ca685bd123',1,'ElementManager::remove()'],['../class_model.html#a6777d30aa1126dfe840f2364b7cb27fc',1,'Model::remove()']]]
+  ['remove_413',['remove',['../class_model.html#a528df31688d07f1771da1ec5e8fb55d3',1,'Model::remove()'],['../class_model_data_manager.html#aeb3de3b4c1c41e1890f2068a816dc9d8',1,'ModelDataManager::remove()']]]
 ];

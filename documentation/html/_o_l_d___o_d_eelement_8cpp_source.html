@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="software_genesys.gif"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ReGenESyS - REborned GENeric and Expansible SYstem Simulator
-   &#160;<span id="projectnumber">v22.01 (jude)</span>
+   &#160;<span id="projectnumber">v22.01 (wealljudes)</span>
    </div>
    <div id="projectbrief">Genesys is a result of teaching and research activities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics and simulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesys development he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of that tool, including its graphical interface. Genesys allowed the inclusion of new simulation components through dynamic link libraries and also the parallel execution of simulation models in a distributed environment. The development of Genesys continued until 2007, when the professor stopped teaching systems simulation classes. Ten years later the professor starts again to teach systems simulation classes and to carry out scientific research in the area. So in 2018 Genesys is reborn as ReGenesys, with new language and programming techniques, and even more ambitious goals.</div>
   </td>
@@ -104,12 +104,12 @@ $(document).ready(function(){initNavTree('_o_l_d___o_d_eelement_8cpp_source.html
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;OLD_ODEelement.h&quot;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;../../kernel/simulator/Model.h&quot;</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;OLD_ODEelement::OLD_ODEelement(<a class="code" href="class_model.html">Model</a>* model, std::string name) : <a class="code" href="class_model_element.html">ModelElement</a>(model, Util::TypeOf&lt;OLD_ODEelement&gt;(), name) {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;OLD_ODEelement::OLD_ODEelement(<a class="code" href="class_model.html">Model</a>* model, std::string name) : <a class="code" href="class_model_data.html">ModelData</a>(model, Util::TypeOf&lt;OLD_ODEelement&gt;(), name) {</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="comment">//_elems = elems;</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;}</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;std::string OLD_ODEelement::show() {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    std::string txt = ModelElement::show();</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    std::string txt = ModelData::show();</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> i = 0;</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordflow">for</span> (std::list&lt;ODEfunction*&gt;::iterator it = _ODEfunctions-&gt;list()-&gt;begin(); it != _ODEfunctions-&gt;list()-&gt;end(); it++) {</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        txt += <span class="stringliteral">&quot;,func[&quot;</span> + std::to_string(i) + <span class="stringliteral">&quot;]=\&quot;&quot;</span> + (*it)-&gt;expression + <span class="stringliteral">&quot;\&quot;,(func[&quot;</span> + std::to_string(i) + <span class="stringliteral">&quot;][&quot;</span> + std::to_string((*it)-&gt;initialPoint) + <span class="stringliteral">&quot;]=&quot;</span> + std::to_string((*it)-&gt;initialValue) + <span class="stringliteral">&quot;)&quot;</span>;</div>
@@ -146,7 +146,7 @@ $(document).ready(function(){initNavTree('_o_l_d___o_d_eelement_8cpp_source.html
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordflow">return</span> info;</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<a class="code" href="class_model_element.html">ModelElement</a>* <a class="code" href="class_model_element.html#a31b6f0e3b2ab2bb2d6606db88d1d2962">OLD_ODEelement::LoadInstance</a>(<a class="code" href="class_model.html">Model</a>* model, std::map&lt;std::string, std::string&gt;* fields) {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<a class="code" href="class_model_data.html">ModelData</a>* <a class="code" href="class_model_data.html#a5e2ab4c80464e0ecaa4d86101ae2bf37">OLD_ODEelement::LoadInstance</a>(<a class="code" href="class_model.html">Model</a>* model, std::map&lt;std::string, std::string&gt;* fields) {</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    OLD_ODEelement* newElement = <span class="keyword">new</span> OLD_ODEelement(model);</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordflow">try</span> {</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        newElement-&gt;_loadInstance(fields);</div>
@@ -157,11 +157,11 @@ $(document).ready(function(){initNavTree('_o_l_d___o_d_eelement_8cpp_source.html
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;}</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keywordtype">bool</span> OLD_ODEelement::_loadInstance(std::map&lt;std::string, std::string&gt;* fields) {</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordflow">return</span> ModelElement::_loadInstance(fields);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordflow">return</span> ModelData::_loadInstance(fields);</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;}</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;std::map&lt;std::string, std::string&gt;* OLD_ODEelement::_saveInstance() {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordflow">return</span> ModelElement::_saveInstance();</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;std::map&lt;std::string, std::string&gt;* OLD_ODEelement::_saveInstance(<span class="keywordtype">bool</span> saveDefaultValues) {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordflow">return</span> ModelData::_saveInstance(saveDefaultValues);</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keywordtype">bool</span> OLD_ODEelement::_check(std::string* errorMessage) {</div>
@@ -175,8 +175,8 @@ $(document).ready(function(){initNavTree('_o_l_d___o_d_eelement_8cpp_source.html
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordflow">return</span> result;</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;}</div>
 <div class="ttc" id="aclass_list_html"><div class="ttname"><a href="class_list.html">List&lt; ODEfunction * &gt;</a></div></div>
-<div class="ttc" id="aclass_model_element_html"><div class="ttname"><a href="class_model_element.html">ModelElement</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_element_8h_source.html#l00033">ModelElement.h:33</a></div></div>
-<div class="ttc" id="aclass_model_element_html_a31b6f0e3b2ab2bb2d6606db88d1d2962"><div class="ttname"><a href="class_model_element.html#a31b6f0e3b2ab2bb2d6606db88d1d2962">ModelElement::LoadInstance</a></div><div class="ttdeci">static ModelElement * LoadInstance(Model *model, std::map&lt; std::string, std::string &gt; *fields, bool insertIntoModel)</div><div class="ttdef"><b>Definition:</b> <a href="_model_element_8cpp_source.html#l00202">ModelElement.cpp:202</a></div></div>
+<div class="ttc" id="aclass_model_data_html"><div class="ttname"><a href="class_model_data.html">ModelData</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_data_8h_source.html#l00034">ModelData.h:34</a></div></div>
+<div class="ttc" id="aclass_model_data_html_a5e2ab4c80464e0ecaa4d86101ae2bf37"><div class="ttname"><a href="class_model_data.html#a5e2ab4c80464e0ecaa4d86101ae2bf37">ModelData::LoadInstance</a></div><div class="ttdeci">static ModelData * LoadInstance(Model *model, std::map&lt; std::string, std::string &gt; *fields, bool insertIntoModel)</div><div class="ttdef"><b>Definition:</b> <a href="_model_data_8cpp_source.html#l00208">ModelData.cpp:208</a></div></div>
 <div class="ttc" id="aclass_model_html"><div class="ttname"><a href="class_model.html">Model</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_8h_source.html#l00044">Model.h:44</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

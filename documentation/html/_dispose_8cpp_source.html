@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="software_genesys.gif"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ReGenESyS - REborned GENeric and Expansible SYstem Simulator
-   &#160;<span id="projectnumber">v22.01 (jude)</span>
+   &#160;<span id="projectnumber">v22.01 (wealljudes)</span>
    </div>
    <div id="projectbrief">Genesys is a result of teaching and research activities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics and simulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesys development he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of that tool, including its graphical interface. Genesys allowed the inclusion of new simulation components through dynamic link libraries and also the parallel execution of simulation models in a distributed environment. The development of Genesys continued until 2007, when the professor stopped teaching systems simulation classes. Ten years later the professor starts again to teach systems simulation classes and to carry out scientific research in the area. So in 2018 Genesys is reborn as ReGenesys, with new language and programming techniques, and even more ambitious goals.</div>
   </td>
@@ -133,8 +133,8 @@ $(document).ready(function(){initNavTree('_dispose_8cpp_source.html',''); initRe
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    SinkModelComponent::_initBetweenReplications();</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;std::map&lt;std::string, std::string&gt;* Dispose::_saveInstance() {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    std::map&lt;std::string, std::string&gt;* fields = ModelComponent::_saveInstance();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;std::map&lt;std::string, std::string&gt;* Dispose::_saveInstance(<span class="keywordtype">bool</span> saveDefaultValues) {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    std::map&lt;std::string, std::string&gt;* fields = ModelComponent::_saveInstance(saveDefaultValues);</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordflow">return</span> fields;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;}</div>
@@ -144,49 +144,54 @@ $(document).ready(function(){initNavTree('_dispose_8cpp_source.html',''); initRe
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="class_dispose.html#a13f6aee0b41e92d406a7a008331421d5">   57</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_dispose.html#a13f6aee0b41e92d406a7a008331421d5">Dispose::_createInternalElements</a>() {</div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="class_dispose.html#a0192bbd24bc77349929d22fec647d008">   57</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_dispose.html#a0192bbd24bc77349929d22fec647d008">Dispose::_createInternalData</a>() {</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordflow">if</span> (_reportStatistics &amp;&amp; _numberOut == <span class="keyword">nullptr</span>) {</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="comment">// creates the counter (and then the CStats)</span></div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        _numberOut = <span class="keyword">new</span> <a class="code" href="class_counter.html">Counter</a>(_parentModel, getName() + <span class="stringliteral">&quot;.&quot;</span> + <span class="stringliteral">&quot;CountNumberIn&quot;</span>, <span class="keyword">this</span>);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        _childrenElements-&gt;insert({<span class="stringliteral">&quot;CountNumberIn&quot;</span>, _numberOut});</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        _internalData-&gt;insert({<span class="stringliteral">&quot;CountNumberIn&quot;</span>, _numberOut});</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="comment">// include StatisticsCollector needed for each EntityType</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        std::list&lt;ModelElement*&gt;* enttypes = _parentModel-&gt;<a class="code" href="class_model.html#a231e63a5fde15bf1ce8446b23d06f0e7">getElements</a>()-&gt;getElementList(Util::TypeOf&lt;EntityType&gt;())-&gt;list();</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordflow">for</span> (<a class="code" href="class_model_element.html">ModelElement</a>* element : *enttypes) {</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            <span class="keywordflow">if</span> (element-&gt;isReportStatistics())</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                <span class="keyword">static_cast&lt;</span>EntityType*<span class="keyword">&gt;</span> (element)-&gt;addGetStatisticsCollector(element-&gt;getName() + <span class="stringliteral">&quot;.&quot;</span> + <span class="stringliteral">&quot;TotalTimeInSystem&quot;</span>); <span class="comment">// force create this CStat before model checking</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        std::list&lt;ModelData*&gt;* enttypes = _parentModel-&gt;<a class="code" href="class_model.html#a7ebcb346cd227a70a96f9f81d7ab2779">getData</a>()-&gt;getElementList(Util::TypeOf&lt;EntityType&gt;())-&gt;list();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordflow">for</span> (<a class="code" href="class_model_data.html">ModelData</a>* modeldatum : *enttypes) {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            <span class="keywordflow">if</span> (modeldatum-&gt;isReportStatistics())</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                <span class="keyword">static_cast&lt;</span>EntityType*<span class="keyword">&gt;</span> (modeldatum)-&gt;addGetStatisticsCollector(modeldatum-&gt;getName() + <span class="stringliteral">&quot;.&quot;</span> + <span class="stringliteral">&quot;TotalTimeInSystem&quot;</span>); <span class="comment">// force create this CStat before model checking</span></div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        }</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (!_reportStatistics &amp;&amp; _numberOut != <span class="keyword">nullptr</span>) {</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="comment">//_numberOut-&gt;~Counter();</span></div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="comment">//_numberOut = nullptr;</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="comment">// \todo: delete the CSTATS?</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        _removeChildrenElements();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="comment">// @TODO: delete the CSTATS?</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        _removeInternalDatas();</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;}</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;PluginInformation* Dispose::GetPluginInformation() {</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    PluginInformation* info = <span class="keyword">new</span> PluginInformation(Util::TypeOf&lt;Dispose&gt;(), &amp;Dispose::LoadInstance);</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    info-&gt;setSink(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordflow">return</span> info;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;}</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<a class="code" href="class_model_component.html">ModelComponent</a>* Dispose::LoadInstance(<a class="code" href="class_model.html">Model</a>* model, std::map&lt;std::string, std::string&gt;* fields) {</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <a class="code" href="class_dispose.html">Dispose</a>* newComponent = <span class="keyword">new</span> <a class="code" href="class_dispose.html">Dispose</a>(model);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        newComponent-&gt;_loadInstance(fields);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; e) {</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    }</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordflow">return</span> newComponent;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;}</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    std::string text = <span class="stringliteral">&quot;This module is intended as the ending point for entities in a simulation model.&quot;</span>;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    text += <span class="stringliteral">&quot; Entity statistics may be recorded before the entity is disposed.&quot;</span>;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    text += <span class="stringliteral">&quot; Animation showing the number of entities disposed is displayed when the module is placed.&quot;</span>;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    text += <span class="stringliteral">&quot; TYPICAL USES: (1) Parts leaving the modeled facility; (2) The termination of a business process; (3) Customers departing from the store&quot;</span>;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    info-&gt;setDescriptionHelp(text);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">return</span> info;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<a class="code" href="class_model_component.html">ModelComponent</a>* Dispose::LoadInstance(<a class="code" href="class_model.html">Model</a>* model, std::map&lt;std::string, std::string&gt;* fields) {</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <a class="code" href="class_dispose.html">Dispose</a>* newComponent = <span class="keyword">new</span> <a class="code" href="class_dispose.html">Dispose</a>(model);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        newComponent-&gt;_loadInstance(fields);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; e) {</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    }</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordflow">return</span> newComponent;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
 <div class="ttc" id="aclass_counter_html"><div class="ttname"><a href="class_counter.html">Counter</a></div><div class="ttdef"><b>Definition:</b> <a href="_counter_8h_source.html#l00025">Counter.h:25</a></div></div>
 <div class="ttc" id="aclass_dispose_html"><div class="ttname"><a href="class_dispose.html">Dispose</a></div><div class="ttdef"><b>Definition:</b> <a href="_dispose_8h_source.html#l00038">Dispose.h:38</a></div></div>
-<div class="ttc" id="aclass_dispose_html_a13f6aee0b41e92d406a7a008331421d5"><div class="ttname"><a href="class_dispose.html#a13f6aee0b41e92d406a7a008331421d5">Dispose::_createInternalElements</a></div><div class="ttdeci">virtual void _createInternalElements()</div><div class="ttdoc">This method is necessary only for those components that instantiate internal elements that must exist...</div><div class="ttdef"><b>Definition:</b> <a href="_dispose_8cpp_source.html#l00057">Dispose.cpp:57</a></div></div>
+<div class="ttc" id="aclass_dispose_html_a0192bbd24bc77349929d22fec647d008"><div class="ttname"><a href="class_dispose.html#a0192bbd24bc77349929d22fec647d008">Dispose::_createInternalData</a></div><div class="ttdeci">virtual void _createInternalData()</div><div class="ttdef"><b>Definition:</b> <a href="_dispose_8cpp_source.html#l00057">Dispose.cpp:57</a></div></div>
 <div class="ttc" id="aclass_entity_html"><div class="ttname"><a href="class_entity.html">Entity</a></div><div class="ttdef"><b>Definition:</b> <a href="_entity_8h_source.html#l00076">Entity.h:76</a></div></div>
 <div class="ttc" id="aclass_model_component_html"><div class="ttname"><a href="class_model_component.html">ModelComponent</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_component_8h_source.html#l00033">ModelComponent.h:33</a></div></div>
-<div class="ttc" id="aclass_model_element_html"><div class="ttname"><a href="class_model_element.html">ModelElement</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_element_8h_source.html#l00033">ModelElement.h:33</a></div></div>
+<div class="ttc" id="aclass_model_data_html"><div class="ttname"><a href="class_model_data.html">ModelData</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_data_8h_source.html#l00034">ModelData.h:34</a></div></div>
 <div class="ttc" id="aclass_model_html"><div class="ttname"><a href="class_model.html">Model</a></div><div class="ttdef"><b>Definition:</b> <a href="_model_8h_source.html#l00044">Model.h:44</a></div></div>
-<div class="ttc" id="aclass_model_html_a231e63a5fde15bf1ce8446b23d06f0e7"><div class="ttname"><a href="class_model.html#a231e63a5fde15bf1ce8446b23d06f0e7">Model::getElements</a></div><div class="ttdeci">ElementManager * getElements() const</div><div class="ttdoc">Provides access to the class that manages the most basic elements of the simulation model (such as qu...</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00359">Model.cpp:359</a></div></div>
-<div class="ttc" id="aclass_model_html_a91b3f67aa8bf44c2632a773c567830a2"><div class="ttname"><a href="class_model.html#a91b3f67aa8bf44c2632a773c567830a2">Model::getSimulation</a></div><div class="ttdeci">ModelSimulation * getSimulation() const</div><div class="ttdoc">Provides access to the class that manages the model simulation.</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00371">Model.cpp:371</a></div></div>
+<div class="ttc" id="aclass_model_html_a7ebcb346cd227a70a96f9f81d7ab2779"><div class="ttname"><a href="class_model.html#a7ebcb346cd227a70a96f9f81d7ab2779">Model::getData</a></div><div class="ttdeci">ModelDataManager * getData() const</div><div class="ttdoc">Provides access to the class that manages the most basic elements of the simulation model (such as qu...</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00365">Model.cpp:365</a></div></div>
+<div class="ttc" id="aclass_model_html_a91b3f67aa8bf44c2632a773c567830a2"><div class="ttname"><a href="class_model.html#a91b3f67aa8bf44c2632a773c567830a2">Model::getSimulation</a></div><div class="ttdeci">ModelSimulation * getSimulation() const</div><div class="ttdoc">Provides access to the class that manages the model simulation.</div><div class="ttdef"><b>Definition:</b> <a href="_model_8cpp_source.html#l00377">Model.cpp:377</a></div></div>
 <div class="ttc" id="aclass_sink_model_component_html"><div class="ttname"><a href="class_sink_model_component.html">SinkModelComponent</a></div><div class="ttdef"><b>Definition:</b> <a href="_sink_model_component_8h_source.html#l00025">SinkModelComponent.h:25</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

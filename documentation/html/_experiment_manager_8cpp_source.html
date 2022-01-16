@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="software_genesys.gif"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ReGenESyS - REborned GENeric and Expansible SYstem Simulator
-   &#160;<span id="projectnumber">v22.01 (jude)</span>
+   &#160;<span id="projectnumber">v22.01 (wealljudes)</span>
    </div>
    <div id="projectbrief">Genesys is a result of teaching and research activities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics and simulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesys development he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of that tool, including its graphical interface. Genesys allowed the inclusion of new simulation components through dynamic link libraries and also the parallel execution of simulation models in a distributed environment. The development of Genesys continued until 2007, when the professor stopped teaching systems simulation classes. Ten years later the professor starts again to teach systems simulation classes and to carry out scientific research in the area. So in 2018 Genesys is reborn as ReGenesys, with new language and programming techniques, and even more ambitious goals.</div>
   </td>
@@ -138,7 +138,7 @@ $(document).ready(function(){initNavTree('_experiment_manager_8cpp_source.html',
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">bool</span> ExperimentManager::saveSimulationExperiment(std::string filename) {</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">// \todo: implement</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">// @TODO: implement</span></div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordflow">if</span> (_currentSimulationExperiment != <span class="keyword">nullptr</span>) {</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        filename = <span class="stringliteral">&quot;&quot;</span>; <span class="comment">// just to avoid not using it</span></div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="comment">//return _currentSimulationExperiment-&gt;save(filename);</span></div>
@@ -148,7 +148,7 @@ $(document).ready(function(){initNavTree('_experiment_manager_8cpp_source.html',
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keywordtype">bool</span> ExperimentManager::loadSimulationExperiment(std::string filename) {</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    SimulationExperiment* experiment = <span class="keyword">new</span> SimulationExperiment(); <span class="comment">//_simulator);</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">// \todo: not implemented yet!</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">// @TODO: not implemented yet!</span></div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    filename = <span class="stringliteral">&quot;&quot;</span>; <span class="comment">// jut to avoid not using it</span></div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">bool</span> res = <span class="keyword">false</span>; <span class="comment">// = experiment-&gt;load(filename);</span></div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordflow">if</span> (res) {</div>

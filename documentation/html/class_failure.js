@@ -5,8 +5,8 @@ var class_failure =
     [ "_check", "class_failure.html#afb75c94154b53b9336fd485b6c1435b9", null ],
     [ "_getParserChangesInformation", "class_failure.html#a5f147309c0f31ec122e212a79e96119e", null ],
     [ "_loadInstance", "class_failure.html#ac5892110f65d8a480b2944db680dd647", null ],
-    [ "_saveInstance", "class_failure.html#a372a8ce19e4abec8544c7d890f452087", null ],
+    [ "_saveInstance", "class_failure.html#a06dcb78a6d841de243347cf658d961c5", null ],
     [ "GetPluginInformation", "class_failure.html#ab3a3c1dfeba57ab2f21d2c5d55dae7b5", null ],
-    [ "LoadInstance", "class_failure.html#a837dfea9c3b32c23296e9352160e0230", null ],
+    [ "LoadInstance", "class_failure.html#ab77fd53e8bd4db000f0c56cbd532fd04", null ],
     [ "show", "class_failure.html#ad6af9f14864784a5d39e47b6c66f99f5", null ]
 ];

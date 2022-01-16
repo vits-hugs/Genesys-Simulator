@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="software_genesys.gif"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ReGenESyS - REborned GENeric and Expansible SYstem Simulator
-   &#160;<span id="projectnumber">v22.01 (jude)</span>
+   &#160;<span id="projectnumber">v22.01 (wealljudes)</span>
    </div>
    <div id="projectbrief">Genesys is a result of teaching and research activities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics and simulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesys development he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of that tool, including its graphical interface. Genesys allowed the inclusion of new simulation components through dynamic link libraries and also the parallel execution of simulation models in a distributed environment. The development of Genesys continued until 2007, when the professor stopped teaching systems simulation classes. Ten years later the professor starts again to teach systems simulation classes and to carry out scientific research in the area. So in 2018 Genesys is reborn as ReGenesys, with new language and programming techniques, and even more ambitious goals.</div>
   </td>
@@ -116,26 +116,32 @@ $(document).ready(function(){initNavTree('_plugin_manager_8h_source.html',''); i
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    PluginManager(<a class="code" href="class_simulator.html">Simulator</a>* simulator);</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">virtual</span> ~PluginManager() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">bool</span> check(<span class="keyword">const</span> std::string dynamicLibraryFilename);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="class_plugin.html">Plugin</a>* insert(<span class="keyword">const</span> std::string dynamicLibraryFilename);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">bool</span> remove(<span class="keyword">const</span> std::string dynamicLibraryFilename);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">bool</span> remove(<a class="code" href="class_plugin.html">Plugin</a>* plugin);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="class_plugin.html">Plugin</a>* find(std::string pluginTypeName);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="class_plugin.html">Plugin</a>* front();</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="class_plugin.html">Plugin</a>* next();</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="class_plugin.html">Plugin</a>* last();</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">bool</span> _insert(<a class="code" href="class_plugin.html">Plugin</a>* plugin);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">void</span> _insertDefaultKernelElements();</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="class_list.html">List&lt;Plugin*&gt;</a>* _plugins = <span class="keyword">new</span> <a class="code" href="class_list.html">List&lt;Plugin*&gt;</a>();</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="class_simulator.html">Simulator</a>* _simulator;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    PluginConnector_if* _pluginConnector;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;};</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">//namespace\\}</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* PLUGINMANAGER_H */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    std::string show();</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">bool</span> completePluginsFieldsAndTemplates();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">bool</span> check(<span class="keyword">const</span> std::string dynamicLibraryFilename);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="class_plugin.html">Plugin</a>* insert(<span class="keyword">const</span> std::string dynamicLibraryFilename);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">bool</span> remove(<span class="keyword">const</span> std::string dynamicLibraryFilename);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">bool</span> remove(<a class="code" href="class_plugin.html">Plugin</a>* plugin);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="class_plugin.html">Plugin</a>* find(std::string pluginTypeName);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="class_plugin.html">Plugin</a>* front();</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="class_plugin.html">Plugin</a>* next();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="class_plugin.html">Plugin</a>* last();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> size();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="class_plugin.html">Plugin</a>* getAtRank(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> rank);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">bool</span> _insert(<a class="code" href="class_plugin.html">Plugin</a>* plugin);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">void</span> _insertDefaultKernelElements();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="class_list.html">List&lt;Plugin*&gt;</a>* _plugins = <span class="keyword">new</span> <a class="code" href="class_list.html">List&lt;Plugin*&gt;</a>();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="class_simulator.html">Simulator</a>* _simulator;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    PluginConnector_if* _pluginConnector;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;};</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">//namespace\\}</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* PLUGINMANAGER_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
 <div class="ttc" id="aclass_list_html"><div class="ttname"><a href="class_list.html">List&lt; Plugin * &gt;</a></div></div>
 <div class="ttc" id="aclass_plugin_html"><div class="ttname"><a href="class_plugin.html">Plugin</a></div><div class="ttdef"><b>Definition:</b> <a href="_plugin_8h_source.html#l00030">Plugin.h:30</a></div></div>
 <div class="ttc" id="aclass_simulator_html"><div class="ttname"><a href="class_simulator.html">Simulator</a></div><div class="ttdef"><b>Definition:</b> <a href="_simulator_8h_source.html#l00035">Simulator.h:35</a></div></div>

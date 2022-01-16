@@ -52,7 +52,7 @@ protected:
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
 protected: // get & set
-	EntityType* _entityType;
+	EntityType* _entityType = nullptr;
 
 	const struct DEFAULT_VALUES {
 		const double firstCreation = 0.0;
