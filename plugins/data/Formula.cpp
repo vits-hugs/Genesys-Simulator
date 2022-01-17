@@ -16,7 +16,7 @@
 #include "../../kernel/simulator/ModelDataManager.h"
 #include "../../kernel/simulator/Model.h"
 
-Formula::Formula(Model* model, std::string name) : ModelData(model, Util::TypeOf<Formula>(), name) {
+Formula::Formula(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<Formula>(), name) {
 	//_myPrivateParser = new Traits<Parser_if>::Implementation(_parentModel);
 }
 
@@ -26,7 +26,7 @@ std::string Formula::show() {
 	// for (std::list<std::string>::iterator it = _formulaExpressions->list()->begin(); it != _formulaExpressions->list()->end(); it++) {
 	//expressions += "expression[" + std::to_string(i++) + "]=\"" + (*it) + "\"; ";
 	//}
-	return ModelData::show() + expressions;
+	return ModelDataDefinition::show() + expressions;
 }
 
 unsigned int Formula::size() {
@@ -79,7 +79,7 @@ PluginInformation* Formula::GetPluginInformation() {
 	return info;
 }
 
-ModelData* Formula::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
+ModelDataDefinition* Formula::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
 	Formula* newElement = new Formula(model);
 	try {
 		newElement->_loadInstance(fields);
@@ -90,11 +90,11 @@ ModelData* Formula::LoadInstance(Model* model, std::map<std::string, std::string
 }
 
 bool Formula::_loadInstance(std::map<std::string, std::string>* fields) {
-	return ModelData::_loadInstance(fields);
+	return ModelDataDefinition::_loadInstance(fields);
 }
 
 std::map<std::string, std::string>* Formula::_saveInstance(bool saveDefaultValues) {
-	std::map<std::string, std::string>* fields = ModelData::_saveInstance(saveDefaultValues);
+	std::map<std::string, std::string>* fields = ModelDataDefinition::_saveInstance(saveDefaultValues);
 	//SaveField(fields, "...", std::to_string(this->_...));
 	return fields;
 }

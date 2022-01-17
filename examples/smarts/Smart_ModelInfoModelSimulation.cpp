@@ -22,7 +22,7 @@
 #include "../../plugins/components/Delay.h"
 #include "../../plugins/components/Dispose.h"
 
-// Model elements
+// Model data definitions
 #include "../../kernel/simulator/EntityType.h"
 
 Smart_ModelInfoModelSimulation::Smart_ModelInfoModelSimulation() {

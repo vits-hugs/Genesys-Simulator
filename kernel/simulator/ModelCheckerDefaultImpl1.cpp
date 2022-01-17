@@ -135,15 +135,15 @@ bool ModelCheckerDefaultImpl1::checkSymbols() {
 			{
 				std::string elementType;
 				bool result;
-				ModelData* modeldatum;
+				ModelDataDefinition* modeldatum;
 				std::string* errorMessage = new std::string();
-				std::list<std::string>* elementTypes = _model->getData()->getElementClassnames();
+				std::list<std::string>* elementTypes = _model->getDataManager()->getDataDefinitionClassnames();
 				for (std::list<std::string>::iterator typeIt = elementTypes->begin(); typeIt != elementTypes->end(); typeIt++) {
 					elementType = (*typeIt);
-					List<ModelData*>* elements = _model->getData()->getElementList(elementType);
-					for (std::list<ModelData*>::iterator it = elements->list()->begin(); it != elements->list()->end(); it++) {
+					List<ModelDataDefinition*>* elements = _model->getDataManager()->getDataDefinitionList(elementType);
+					for (std::list<ModelDataDefinition*>::iterator it = elements->list()->begin(); it != elements->list()->end(); it++) {
 						modeldatum = (*it);
-						// copyed from modelCOmponent. It is not inside the ModelData::Check because ModelData has no access to Model to call Tracer
+						// copyed from modelCOmponent. It is not inside the ModelDataDefinition::Check because ModelDataDefinition has no access to Model to call Tracer
 						_model->getTracer()->trace(Util::TraceLevel::L8_detailed, "Checking " + modeldatum->getClassname() + ": \"" + modeldatum->getName() + "\" (id " + std::to_string(modeldatum->getId()) + ")"); //std::to_string(component->_id));
 						Util::IncIndent();
 						{
@@ -196,12 +196,12 @@ bool ModelCheckerDefaultImpl1::checkLimits() {
 			text = "Model has " + std::to_string(_model->getComponents()->getNumberOfComponents()) + " components, exceding the limit of " + std::to_string(licence->getModelComponentsLimit()) + " components imposed by the current activation code";
 			//_model->getTraceManager()->trace(Util::TraceLevel::errors, text);
 		} else {
-			value = _model->getData()->getNumberOfElements();
+			value = _model->getDataManager()->getNumberOfDataDefinitions();
 			limit = licence->getModelDatasLimit();
 			res &= value <= limit;
 			_model->getTracer()->trace("Model has " + std::to_string(value) + "/" + std::to_string(limit) + " elements");
 			if (!res) {
-				text = "Model has " + std::to_string(_model->getData()->getNumberOfElements()) + " elements, exceding the limit of " + std::to_string(licence->getModelDatasLimit()) + " elements imposed by the current activation code";
+				text = "Model has " + std::to_string(_model->getDataManager()->getNumberOfDataDefinitions()) + " elements, exceding the limit of " + std::to_string(licence->getModelDatasLimit()) + " elements imposed by the current activation code";
 				//_model->getTraceManager()->trace(Util::TraceLevel::errors, text);
 			}
 		}

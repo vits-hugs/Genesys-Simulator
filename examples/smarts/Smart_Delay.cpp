@@ -23,7 +23,7 @@
 #include "../../plugins/components/Delay.h"
 #include "../../plugins/components/Dispose.h"
 
-// Model elements
+// Model data definitions
 #include "../../kernel/simulator/EntityType.h"
 
 Smart_Delay::Smart_Delay() {
@@ -44,7 +44,7 @@ int Smart_Delay::main(int argc, char** argv) {
 	// build the simulation model
 	// if no ModelInfo is provided, then the model will be simulated once (one replication) and the replication length will be 3600 seconds (simulated time)
 	model->getSimulation()->setReplicationLength(60);
-	// create a (Source)ModelData of type EntityType, used by a ModelComponent that follows
+	// create a (Source)ModelDataDefinition of type EntityType, used by a ModelComponent that follows
 	EntityType* entityType1 = new EntityType(model, "Type_of_Representative_Entity");
 	// create a ModelComponent of type Create, used to insert entities into the model
 	Create* create1 = new Create(model);

@@ -12,15 +12,15 @@
 
 #ifndef LABEL_H
 #define LABEL_H
-#include "../../kernel/simulator/ModelData.h"
+#include "../../kernel/simulator/ModelDataDefinition.h"
 #include "../../kernel/simulator/Entity.h"
 
-class Label : public ModelData {
+class Label : public ModelDataDefinition {
 public:
 	Label(Model* model, std::string name = "");
 	virtual ~Label() = default;
 public: // static
-	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 	static PluginInformation* GetPluginInformation();
 public:
 	virtual std::string show();

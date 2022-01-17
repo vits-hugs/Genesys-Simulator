@@ -13,11 +13,11 @@
 
 #include "Storage.h"
 
-Storage::Storage(Model* model, std::string name) : ModelData(model, Util::TypeOf<Storage>(), name) {
+Storage::Storage(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<Storage>(), name) {
 }
 
 std::string Storage::show() {
-	return ModelData::show() +
+	return ModelDataDefinition::show() +
 			"";
 }
 
@@ -26,7 +26,7 @@ PluginInformation* Storage::GetPluginInformation() {
 	return info;
 }
 
-ModelData* Storage::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
+ModelDataDefinition* Storage::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
 	Storage* newElement = new Storage(model);
 	try {
 		newElement->_loadInstance(fields);
@@ -37,7 +37,7 @@ ModelData* Storage::LoadInstance(Model* model, std::map<std::string, std::string
 }
 
 bool Storage::_loadInstance(std::map<std::string, std::string>* fields) {
-	bool res = ModelData::_loadInstance(fields);
+	bool res = ModelDataDefinition::_loadInstance(fields);
 	if (res) {
 		try {
 			//this->_attributeName = (*fields->find("attributeName")).second;
@@ -49,7 +49,7 @@ bool Storage::_loadInstance(std::map<std::string, std::string>* fields) {
 }
 
 std::map<std::string, std::string>* Storage::_saveInstance(bool saveDefaultValues) {
-	std::map<std::string, std::string>* fields = ModelData::_saveInstance(saveDefaultValues); //Util::TypeOf<Storage>());
+	std::map<std::string, std::string>* fields = ModelDataDefinition::_saveInstance(saveDefaultValues); //Util::TypeOf<Storage>());
 	//SaveField(fields, "orderRule", std::to_string(static_cast<int> (this->_orderRule)));
 	//SaveField(fields, "attributeName", "\""+this->_attributeName+"\"");
 	return fields;

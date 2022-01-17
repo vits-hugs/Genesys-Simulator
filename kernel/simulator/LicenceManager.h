@@ -43,7 +43,7 @@ private:
 	Simulator* _simulator;
 	std::string _licence;
 	std::string _activationCode;
-	unsigned int _components, _elements, _entities, _hosts, _threads;
+	unsigned int _components, _datadefinitions, _entities, _hosts, _threads;
 };
 //namespace\\}
 #endif /* LICENCEMANAGER_H */

@@ -59,15 +59,15 @@ bool ModelPersistenceDefaultImpl1::save(std::string filename) {
 		simulationInfosToSave = _adjustFieldsToSave(fields);
 		// save infras
 		modelElementsToSave = new std::list<std::string>();
-		std::list<std::string>* elementTypenames = _model->getData()->getElementClassnames();
+		std::list<std::string>* datadefinitionTypenames = _model->getDataManager()->getDataDefinitionClassnames();
 		const std::string UtilTypeOfCounter = Util::TypeOf<Counter>();
-		for (std::list<std::string>::iterator itTypenames = elementTypenames->begin(); itTypenames != elementTypenames->end(); itTypenames++) {
+		for (std::list<std::string>::iterator itTypenames = datadefinitionTypenames->begin(); itTypenames != datadefinitionTypenames->end(); itTypenames++) {
 			if ((*itTypenames) != Util::TypeOf<StatisticsCollector>() && (*itTypenames) != UtilTypeOfCounter) { // STATISTICSCOLLECTR and COUNTERs do NOT need to be saved
-				List<ModelData*>* infras = _model->getData()->getElementList((*itTypenames));
+				List<ModelDataDefinition*>* infras = _model->getDataManager()->getDataDefinitionList((*itTypenames));
 				_model->getTracer()->trace(Util::TraceLevel::L9_mostDetailed, "Writing elements of type \"" + (*itTypenames) + "\":");
 				Util::IncIndent();
 				{
-					for (std::list<ModelData*>::iterator it = infras->list()->begin(); it != infras->list()->end(); it++) {
+					for (std::list<ModelDataDefinition*>::iterator it = infras->list()->begin(); it != infras->list()->end(); it++) {
 						_model->getTracer()->trace(Util::TraceLevel::L9_mostDetailed, "Writing " + (*itTypenames) + " \"" + (*it)->getName() + "\"");
 						fields = (*it)->SaveInstance((*it));
 						Util::IncIndent();
@@ -110,7 +110,7 @@ bool ModelPersistenceDefaultImpl1::save(std::string filename) {
 			//savefile << "# simulation infos / experimental design" << std::endl;
 			_saveContent(simulationInfosToSave, &savefile);
 			//savefile << "#" << std::endl;
-			//savefile << "# model elements" << std::endl;
+			//savefile << "# Model data definitions" << std::endl;
 			_saveContent(modelElementsToSave, &savefile);
 			//savefile << "#" << std::endl;
 			//savefile << "# model components" << std::endl;
@@ -216,11 +216,11 @@ bool ModelPersistenceDefaultImpl1::_loadFields(std::string line) {
 			} else if (thistypename == "ModelSimulation") {
 				_model->getSimulation()->loadInstance(fields);
 			} else {
-				// this should be a ModelComponent or ModelData.
-				ModelData* newUselessElement = ModelData::LoadInstance(_model, fields, false);
+				// this should be a ModelComponent or ModelDataDefinition.
+				ModelDataDefinition* newUselessElement = ModelDataDefinition::LoadInstance(_model, fields, false);
 				if (newUselessElement != nullptr) {
 					// @TODO how free newUselessElement without invoking destructor?
-					////newUselessElement->~ModelData(false);
+					////newUselessElement->~ModelDataDefinition(false);
 					Plugin* plugin = this->_model->getParentSimulator()->getPlugins()->find(thistypename);
 					if (plugin != nullptr) {
 						res = plugin->loadAndInsertNew(_model, fields);
@@ -277,7 +277,7 @@ bool ModelPersistenceDefaultImpl1::load(std::string filename) {
 		}
 	}
 	// check if something was loaded
-	res &= (_model->getComponents()->getNumberOfComponents() > 0) & (_model->getData()->getNumberOfElements() > 0);
+	res &= (_model->getComponents()->getNumberOfComponents() > 0) & (_model->getDataManager()->getNumberOfDataDefinitions() > 0);
 	if (res) {
 		//
 		// CONNECT LOADED COMPONENTS (must wait for all components to be loaded so they can be connected)
@@ -333,7 +333,7 @@ bool ModelPersistenceDefaultImpl1::load(std::string filename) {
 			}
 		}
 		Util::DecIndent();
-		_model->getTracer()->trace(Util::TraceLevel::L7_internal, "File successfully loaded with " + std::to_string(_model->getComponents()->getNumberOfComponents()) + " components and " + std::to_string(_model->getData()->getNumberOfElements()) + " elements");
+		_model->getTracer()->trace(Util::TraceLevel::L7_internal, "File successfully loaded with " + std::to_string(_model->getComponents()->getNumberOfComponents()) + " components and " + std::to_string(_model->getDataManager()->getNumberOfDataDefinitions()) + " elements");
 	}
 	Util::DecIndent();
 	if (res) {

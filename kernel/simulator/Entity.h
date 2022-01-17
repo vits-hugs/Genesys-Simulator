@@ -19,7 +19,7 @@
 
 #include "../util/Util.h"
 #include "../util/List.h"
-#include "ModelData.h"
+#include "ModelDataDefinition.h"
 #include "EntityType.h"
 //namespace GenesysKernel {
 
@@ -73,7 +73,7 @@ entity is spending time in another activity.
 Report Statistics Specifies whether or not statistics will be collected automatically
 and stored in the report database for this entity type.
  */
-class Entity : public ModelData {
+class Entity : public ModelDataDefinition {
 private: // no one can create or destry entities directlly. This can be done one throught friend class Model
 	Entity(Model* model, std::string name = "", bool insertIntoModel = true);
 	virtual ~Entity() = default;

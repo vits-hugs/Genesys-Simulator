@@ -50,7 +50,7 @@ bool Leave::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
 		std::string stationName = LoadField(fields, "station", "");
-		Station* station = dynamic_cast<Station*> (_parentModel->getData()->getData(Util::TypeOf<Station>(), stationName));
+		Station* station = dynamic_cast<Station*> (_parentModel->getDataManager()->getDataDefinition(Util::TypeOf<Station>(), stationName));
 		this->_station = station;
 	}
 	return res;
@@ -70,7 +70,7 @@ std::map<std::string, std::string>* Leave::_saveInstance(bool saveDefaultValues)
 
 bool Leave::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	resultAll &= _parentModel->getData()->check(Util::TypeOf<Station>(), _station, "Station", errorMessage);
+	resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Station>(), _station, "Station", errorMessage);
 	return resultAll;
 }
 

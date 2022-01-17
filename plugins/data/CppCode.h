@@ -13,10 +13,10 @@
 #ifndef CPPCODE_H
 #define CPPCODE_H
 
-#include "../../kernel/simulator/ModelData.h"
-//#include "../../kernel/simulator/ModelData.h"
+#include "../../kernel/simulator/ModelDataDefinition.h"
+//#include "../../kernel/simulator/ModelDataDefinition.h"
 
-class CppCode : public ModelData {
+class CppCode : public ModelDataDefinition {
 public:
 
 	class CodeResult {
@@ -35,7 +35,7 @@ public:
 	CppCode(Model* model, std::string name = "");
 	virtual ~CppCode() = default;
 public: // static
-	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 	static PluginInformation* GetPluginInformation();
 public:
 	virtual std::string show();

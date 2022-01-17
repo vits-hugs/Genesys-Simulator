@@ -25,7 +25,7 @@
 #include "../../plugins/components/Dispose.h"
 #include "../../plugins/data/Set.h"
 
-// Model elements
+// Model data definitions
 #include "../../kernel/simulator/EntityType.h"
 #include "../../kernel/simulator/Attribute.h"
 

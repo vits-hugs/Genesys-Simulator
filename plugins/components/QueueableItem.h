@@ -28,7 +28,7 @@ public:
 	};
 
 public:
-	QueueableItem(ModelData* queueOrSet, QueueableItem::QueueableType queueableType = QueueableItem::QueueableType::QUEUE, std::string index = "0");
+	QueueableItem(ModelDataDefinition* queueOrSet, QueueableItem::QueueableType queueableType = QueueableItem::QueueableType::QUEUE, std::string index = "0");
 public:
 	//virtual bool _loadInstance(std::map<std::string, std::string>* fields, unsigned int parentIndex);
 	//virtual std::map<std::string, std::string>* _saveInstance(unsigned int parentIndex);
@@ -46,7 +46,7 @@ public:
 	//
 	void setQueueableType(QueueableType queueableType);
 	QueueableType getQueueableType() const;
-	ModelData* getQueueable() const;
+	ModelDataDefinition* getQueueable() const;
 	void setElementManager(ModelDataManager* _modeldataManager);
 	//void setComponentManager(ComponentManager* _componentManager);
 
@@ -60,7 +60,7 @@ private:
 	} DEFAULT;
 
 	QueueableType _queueableType = DEFAULT.queueableType;
-	ModelData* _queueOrSet = nullptr;
+	ModelDataDefinition* _queueOrSet = nullptr;
 	std::string _queueableName;
 	std::string _index = DEFAULT.index;
 private:

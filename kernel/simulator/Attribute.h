@@ -17,7 +17,7 @@
 #include <string>
 #include <list>
 #include "../util/List.h"
-#include "ModelData.h"
+#include "ModelDataDefinition.h"
 #include "ModelDataManager.h"
 #include "Plugin.h"
 
@@ -60,7 +60,7 @@ new values to the attribute by using the Assign module.
 Initial Value Entity attribute value when entity is created and enters the
 system.
  */
-class Attribute : public ModelData {
+class Attribute : public ModelDataDefinition {
 public:
 	Attribute(Model* model, std::string name = "");
 	virtual ~Attribute() = default;
@@ -68,7 +68,7 @@ public:
 	virtual std::string show();
 public:
 	static PluginInformation* GetPluginInformation();
-	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 protected:
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);

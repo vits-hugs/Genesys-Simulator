@@ -65,11 +65,11 @@ expression to scale a delay time during various parts of the day.
 Duration Time duration for which a specified Value will be valid.
  */
 
-#include "../../kernel/simulator/ModelData.h"
+#include "../../kernel/simulator/ModelDataDefinition.h"
 #include "../../kernel/simulator/ModelDataManager.h"
 #include "../../kernel/simulator/PluginInformation.h"
 
-class Schedule : public ModelData {
+class Schedule : public ModelDataDefinition {
 public: // constructors
 	Schedule(Model* model, std::string name = "");
 	virtual ~Schedule() = default;
@@ -77,7 +77,7 @@ public: // virtual
 	virtual std::string show();
 public: // static 
 	static PluginInformation* GetPluginInformation();
-	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 public:
 protected:
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);

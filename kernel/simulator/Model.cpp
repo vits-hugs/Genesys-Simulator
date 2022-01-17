@@ -150,18 +150,18 @@ void Model::show() {
 	getTracer()->trace(Util::TraceLevel::L2_results, "End of Simulation Model");
 }
 
-bool Model::insert(ModelData* elemOrComp) {
+bool Model::insert(ModelDataDefinition* elemOrComp) {
 	ModelComponent* comp = dynamic_cast<ModelComponent*> (elemOrComp);
-	if (comp == nullptr) // it's a ModelData
-		return this->getData()->insert(elemOrComp);
+	if (comp == nullptr) // it's a ModelDataDefinition
+		return this->getDataManager()->insert(elemOrComp);
 	else // it's a ModelComponent
 		return this->getComponents()->insert(comp);
 }
 
-void Model::remove(ModelData* elemOrComp) {
+void Model::remove(ModelDataDefinition* elemOrComp) {
 	ModelComponent* comp = dynamic_cast<ModelComponent*> (elemOrComp);
-	if (comp == nullptr) // it's a ModelData
-		this->getData()->remove(elemOrComp);
+	if (comp == nullptr) // it's a ModelDataDefinition
+		this->getDataManager()->remove(elemOrComp);
 	else // it's a ModelComponent
 		this->getComponents()->remove(comp);
 }
@@ -171,15 +171,15 @@ void Model::_showElements() const {
 	Util::IncIndent();
 	{
 		std::string elementType;
-		ModelData* modeldatum;
-		std::list<std::string>* elementTypes = getData()->getElementClassnames();
+		ModelDataDefinition* modeldatum;
+		std::list<std::string>* elementTypes = getDataManager()->getDataDefinitionClassnames();
 		for (std::list<std::string>::iterator typeIt = elementTypes->begin(); typeIt != elementTypes->end(); typeIt++) {
 			elementType = (*typeIt);
-			List<ModelData*>* em = getData()->getElementList(elementType);
+			List<ModelDataDefinition*>* em = getDataManager()->getDataDefinitionList(elementType);
 			getTracer()->trace(Util::TraceLevel::L2_results, elementType + ":");
 			Util::IncIndent();
 			{
-				for (std::list<ModelData*>::iterator it = em->list()->begin(); it != em->list()->end(); it++) {
+				for (std::list<ModelDataDefinition*>::iterator it = em->list()->begin(); it != em->list()->end(); it++) {
 					modeldatum = (*it);
 					getTracer()->trace(Util::TraceLevel::L2_results, modeldatum->show());
 				}
@@ -241,13 +241,13 @@ void Model::_createModelInternalElements() {
 		Util::DecIndent();
 	}
 
-	std::list<ModelData*>* modelElements;
-	unsigned int originalSize = getData()->getElementClassnames()->size(), pos = 1;
+	std::list<ModelDataDefinition*>* modelElements;
+	unsigned int originalSize = getDataManager()->getDataDefinitionClassnames()->size(), pos = 1;
 	//for (std::list<std::string>::iterator itty = elements()->elementClassnames()->begin(); itty != elements()->elementClassnames()->end(); itty++) {
-	std::list<std::string>::iterator itty = getData()->getElementClassnames()->begin();
-	while (itty != getData()->getElementClassnames()->end() && pos <= originalSize) {
+	std::list<std::string>::iterator itty = getDataManager()->getDataDefinitionClassnames()->begin();
+	while (itty != getDataManager()->getDataDefinitionClassnames()->end() && pos <= originalSize) {
 		//try {
-		modelElements = getData()->getElementList((*itty))->list();
+		modelElements = getDataManager()->getDataDefinitionList((*itty))->list();
 		//} catch (const std::exception& e) {
 		// @TODO Is there a better solution to iterate over a changing sorted list??
 		// ops. Sorted list has changed and iteration fails. Starts iterating again
@@ -255,18 +255,18 @@ void Model::_createModelInternalElements() {
 		//	modelElements = elements()->elementList((*itty))->list();
 		//	tracer()->trace(Util::TraceLevel::L7_internal, "Creating internal elements");
 		//}
-		for (std::list<ModelData*>::iterator itel = modelElements->begin(); itel != modelElements->end(); itel++) {
+		for (std::list<ModelDataDefinition*>::iterator itel = modelElements->begin(); itel != modelElements->end(); itel++) {
 			getTracer()->trace(Util::TraceLevel::L8_detailed, "Internals for " + (*itel)->getClassname() + " \"" + (*itel)->getName() + "\""); // (" + std::to_string(pos) + "/" + std::to_string(originalSize) + ")");
 			Util::IncIndent();
-			ModelData::CreateInternalData((*itel));
+			ModelDataDefinition::CreateInternalData((*itel));
 			Util::DecIndent();
 		}
-		if (originalSize == getData()->getElementClassnames()->size()) {
+		if (originalSize == getDataManager()->getDataDefinitionClassnames()->size()) {
 			itty++;
 			pos++;
 		} else {
-			originalSize = getData()->getElementClassnames()->size();
-			itty = getData()->getElementClassnames()->begin();
+			originalSize = getDataManager()->getDataDefinitionClassnames()->size();
+			itty = getDataManager()->getDataDefinitionClassnames()->begin();
 			pos = 1;
 			getTracer()->trace(Util::TraceLevel::L7_internal, "Restarting to create internal elements (due to previous creations)");
 		}
@@ -308,7 +308,7 @@ Entity* Model::createEntity(std::string name, bool insertIntoModel) {
 void Model::removeEntity(Entity* entity) {//, bool collectStatistics) {
 	this->_eventManager->NotifyEntityRemoveHandlers(_simulation->_createSimulationEvent()); // it's my friend
 	std::string entId = std::to_string(entity->entityNumber());
-	this->getData()->remove(Util::TypeOf<Entity>(), entity);
+	this->getDataManager()->remove(Util::TypeOf<Entity>(), entity);
 	getTracer()->traceSimulation(this, /*"Entity " + entId +*/entity->getName() + " was removed from the system");
 	entity->~Entity();
 }
@@ -362,7 +362,7 @@ OnEventManager * Model::getOnEvents() const {
 	return _eventManager;
 }
 
-ModelDataManager * Model::getData() const {
+ModelDataManager * Model::getDataManager() const {
 	return _modeldataManager;
 }
 

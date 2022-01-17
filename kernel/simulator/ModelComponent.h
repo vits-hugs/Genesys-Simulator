@@ -20,7 +20,7 @@
 #include "Plugin.h"
 #include "../util/List.h"
 #include "Entity.h"
-#include "ModelData.h"
+#include "ModelDataDefinition.h"
 #include "ConnectionManager.h"
 //namespace GenesysKernel {
 
@@ -30,7 +30,7 @@ class Model;
  * A component of the model is a block that represents a specific behavior to be simulated. The behavior is triggered when an entity arrives at the component, which corresponds to the occurrence of an event. A simulation model corresponds to a set of interconnected components to form the process by which the entity is submitted.
  * @param model The model this component belongs to
  */
-class ModelComponent : public ModelData {
+class ModelComponent : public ModelDataDefinition {
 public:
 	ModelComponent(Model* model, std::string componentTypename, std::string name = "");
 	virtual ~ModelComponent();

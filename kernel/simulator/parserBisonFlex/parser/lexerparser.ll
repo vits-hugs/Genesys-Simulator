@@ -10,7 +10,7 @@
 # include "obj_t.h"
 # include "../../util/Util.h"
 # include "../../util/List.h"
-# include "../ModelData.h"
+# include "../ModelDataDefinition.h"
 # include "../Attribute.h"
 # include "../StatisticsCollector.h"
 /**begin_Includes_plugins**/
@@ -209,31 +209,31 @@ L      [A-Za-z0-9_.]+
 T
 
 {L}   {
-        ModelData* element; 
+        ModelDataDefinition* datadef; 
 
 		//std::cout << "Verificando o que é o Literal \""+std::string(yytext)+"\"\n";
 		//std::cout << driver.getModel()->getInfos()->getName() << std::endl;
         // check if it is an ATTRIBUTE (and return the attribute ID (and not the value!)
-		element = driver.getModel()->getData()->getData(Util::TypeOf<Attribute>(), std::string(yytext));
-        if (element != nullptr) {
+		datadef = driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Attribute>(), std::string(yytext));
+        if (datadef != nullptr) {
 			//std::cout << "Found attribute" << std::string(yytext) << std::endl;
-            return yy::genesyspp_parser::make_ATRIB(obj_t(0, Util::TypeOf<Attribute>(), element->getId()),loc);
+            return yy::genesyspp_parser::make_ATRIB(obj_t(0, Util::TypeOf<Attribute>(), datadef->getId()),loc);
         }
 
 
         //check CSTAT
-        element = driver.getModel()->getData()->getData(Util::TypeOf<StatisticsCollector>(), std::string(yytext));
-        if (element != nullptr) { 
-            return yy::genesyspp_parser::make_CSTAT(obj_t(0, Util::TypeOf<StatisticsCollector>(), element->getId()),loc);
+        datadef = driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<StatisticsCollector>(), std::string(yytext));
+        if (datadef != nullptr) { 
+            return yy::genesyspp_parser::make_CSTAT(obj_t(0, Util::TypeOf<StatisticsCollector>(), datadef->getId()),loc);
         }
 
 /****begin_LexicalLiterals_plugins****/
 
 /**begin_LexicalLiterals:Variable**/
         // check VARIABLE
-        element = driver.getModel()->getData()->getData(Util::TypeOf<Variable>(), std::string(yytext));
-        if (element != nullptr) { // it is a variable
-            Variable* var = static_cast<Variable*>(element);
+        datadef = driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Variable>(), std::string(yytext));
+        if (datadef != nullptr) { // it is a variable
+            Variable* var = static_cast<Variable*>(datadef);
             //double variableID = var->getId();// ->getValue(); // var->getId()
 	    //std::cout << "FOUND VARIABLE " << var->getName() <<" ID " << var->getId() << std::endl;
             return yy::genesyspp_parser::make_VARI(obj_t(0, Util::TypeOf<Variable>(), var->getId()),loc);
@@ -242,9 +242,9 @@ T
 
 /**begin_LexicalLiterals:Formula**/
         // check FORMULA
-        element = driver.getModel()->getData()->getData(Util::TypeOf<Formula>(), std::string(yytext));
-        if (element != nullptr) { // it is a FORMULA
-            Formula* form = static_cast<Formula*>(element);
+        datadef = driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), std::string(yytext));
+        if (datadef != nullptr) { // it is a FORMULA
+            Formula* form = static_cast<Formula*>(datadef);
             //double formulaValue = form->getValue(); // return only formula ID
 	    //std::cout << "FOUND FORMULA " << form->getName() <<" ID " << form->getId() << std::endl;
             return yy::genesyspp_parser::make_FORM(obj_t(0, Util::TypeOf<Formula>(), form->getId()),loc);
@@ -253,25 +253,25 @@ T
 
 /**begin_LexicalLiterals:Queue**/
         // check QUEUE
-        element = driver.getModel()->getData()->getData(Util::TypeOf<Queue>(), std::string(yytext));
-        if (element != nullptr) { 
-            return yy::genesyspp_parser::make_QUEUE(obj_t(0, Util::TypeOf<Queue>(), element->getId()),loc);
+        datadef = driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Queue>(), std::string(yytext));
+        if (datadef != nullptr) { 
+            return yy::genesyspp_parser::make_QUEUE(obj_t(0, Util::TypeOf<Queue>(), datadef->getId()),loc);
         }
 /**end_LexicalLiterals:Queue**/
 
 /**begin_LexicalLiterals:Resource**/
         // check RESOURCE
-        element = driver.getModel()->getData()->getData(Util::TypeOf<Resource>(), std::string(yytext));
-        if (element != nullptr) { 
-            return yy::genesyspp_parser::make_RESOURCE(obj_t(0, Util::TypeOf<Resource>(), element->getId()),loc);
+        datadef = driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Resource>(), std::string(yytext));
+        if (datadef != nullptr) { 
+            return yy::genesyspp_parser::make_RESOURCE(obj_t(0, Util::TypeOf<Resource>(), datadef->getId()),loc);
         }
 /**end_LexicalLiterals:Resource**/
 
 /**begin_LexicalLiterals:Set**/
         //check SET
-        element = driver.getModel()->getData()->getData(Util::TypeOf<Set>(), std::string(yytext));
-        if (element != nullptr) { 
-            return yy::genesyspp_parser::make_SET(obj_t(0, Util::TypeOf<Set>(), element->getId()),loc);
+        datadef = driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Set>(), std::string(yytext));
+        if (datadef != nullptr) { 
+            return yy::genesyspp_parser::make_SET(obj_t(0, Util::TypeOf<Set>(), datadef->getId()),loc);
         }
 /**end_LexicalLiterals:Set**/
 

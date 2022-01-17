@@ -28,7 +28,7 @@ int Smart_Plugin::main(int argc, char** argv) {
 		m->getPersistence()->setOption(ModelPersistence_if::Options::SAVEDEFAULTS, true);
 		Plugin* plugin;
 		PluginInformation* info;
-		ModelData* datum;
+		ModelDataDefinition* datum;
 		ModelComponent* comp;
 		std::string text;
 		std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();

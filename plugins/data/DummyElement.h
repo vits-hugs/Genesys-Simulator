@@ -13,14 +13,14 @@
 #ifndef DUMMYELEMENT_H
 #define DUMMYELEMENT_H
 
-#include "../../kernel/simulator/ModelData.h"
+#include "../../kernel/simulator/ModelDataDefinition.h"
 
-class DummyElement : public ModelData {
+class DummyElement : public ModelDataDefinition {
 public:
 	DummyElement(Model* model, std::string name = "");
 	virtual ~DummyElement() = default;
 public: // static
-	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 	static PluginInformation* GetPluginInformation();
 public:
 	virtual std::string show();

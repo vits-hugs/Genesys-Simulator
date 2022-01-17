@@ -17,13 +17,13 @@
 #include <list>
 #include <map>
 #include "../util/List.h"
-#include "ModelData.h"
+#include "ModelDataDefinition.h"
 
 //namespace GenesysKernel {
 class Model;
 
 /*!
- * The ElementManager is responsible for inserting and removing elements (ModelData) used by components,
+ * The ModelDataManager is responsible for inserting and removing elements (ModelDataDefinition) used by components,
  * in a consistent way.
  * TO FIX: No direct access for insertion or deletion should be allow
  */
@@ -32,32 +32,32 @@ public:
 	ModelDataManager(Model* model);
 	virtual ~ModelDataManager() = default;
 public:
-	bool insert(ModelData* anElement);
-	void remove(ModelData* anElement); ///< Deprected
-	bool insert(std::string elementTypename, ModelData* anElement); ///< Deprected
-	void remove(std::string elementTypename, ModelData* anElement);
-	bool check(std::string elementTypename, ModelData* anElement, std::string expressionName, std::string* errorMessage);
-	bool check(std::string elementTypename, std::string elementName, std::string expressionName, bool mandatory, std::string* errorMessage);
+	bool insert(ModelDataDefinition* anElement);
+	void remove(ModelDataDefinition* anElement); ///< Deprected
+	bool insert(std::string datadefinitionTypename, ModelDataDefinition* anElement); ///< Deprected
+	void remove(std::string datadefinitionTypename, ModelDataDefinition* anElement);
+	bool check(std::string datadefinitionTypename, ModelDataDefinition* anElement, std::string expressionName, std::string* errorMessage);
+	bool check(std::string datadefinitionTypename, std::string elementName, std::string expressionName, bool mandatory, std::string* errorMessage);
 	void clear();
 public:
-	ModelData* getData(std::string elementTypename, Util::identification id);
-	ModelData* getData(std::string elementTypename, std::string name);
-	unsigned int getNumberOfElements(std::string elementTypename);
-	unsigned int getNumberOfElements();
-	int getRankOf(std::string elementTypename, std::string name); ///< returns the position (1st position=0) of the modeldatum if found, or negative value if not found
-	std::list<std::string>* getElementClassnames() const;
+	ModelDataDefinition* getDataDefinition(std::string datadefinitionTypename, Util::identification id);
+	ModelDataDefinition* getDataDefinition(std::string datadefinitionTypename, std::string name);
+	unsigned int getNumberOfDataDefinitions(std::string datadefinitionTypename);
+	unsigned int getNumberOfDataDefinitions();
+	int getRankOf(std::string datadefinitionTypename, std::string name); ///< returns the position (1st position=0) of the modeldatum if found, or negative value if not found
+	std::list<std::string>* getDataDefinitionClassnames() const;
 
 	//private:
 public:
 	// @TODO: Should be removed and replaced by GetElement(elementType, rank)
-	List<ModelData*>* getElementList(std::string elementTypename) const;
+	List<ModelDataDefinition*>* getDataDefinitionList(std::string datadefinitionTypename) const;
 public:
 	void show();
 	Model* getParentModel() const;
 	bool hasChanged() const;
 	void setHasChanged(bool _hasChanged);
 private:
-	std::map<std::string, List<ModelData*>*>* _elements;
+	std::map<std::string, List<ModelDataDefinition*>*>* _datadefinitions;
 	Model* _parentModel;
 	bool _hasChanged = false;
 };

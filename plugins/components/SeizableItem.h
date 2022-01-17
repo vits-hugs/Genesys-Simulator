@@ -32,7 +32,7 @@ public:
 	};
 
 public:
-	SeizableItem(ModelData* resourceOrSet, std::string quantityExpression = "1", SeizableItem::SelectionRule selectionRule = SeizableItem::SelectionRule::LARGESTREMAININGCAPACITY, std::string saveAttribute = "", std::string index = "0");
+	SeizableItem(ModelDataDefinition* resourceOrSet, std::string quantityExpression = "1", SeizableItem::SelectionRule selectionRule = SeizableItem::SelectionRule::LARGESTREMAININGCAPACITY, std::string saveAttribute = "", std::string index = "0");
 
 public:
 	bool loadInstance(std::map<std::string, std::string>* fields, unsigned int parentIndex);
@@ -58,7 +58,7 @@ public:
 	SeizableType getSeizableType() const;
 	void setLastMemberSeized(unsigned int lastMemberSeized);
 	unsigned int getLastMemberSeized() const;
-	ModelData* getSeizable() const;
+	ModelDataDefinition* getSeizable() const;
 	void setElementManager(ModelDataManager* _modeldataManager);
 	//void setComponentManager(ComponentManager* _componentManager);
 
@@ -76,7 +76,7 @@ private:
 	SelectionRule _selectionRule = DEFAULT.selectionRule;
 	std::string _saveAttribute = DEFAULT.saveAttribute;
 	std::string _index = DEFAULT.index;
-	ModelData* _resourceOrSet;
+	ModelDataDefinition* _resourceOrSet;
 	std::string _seizableName;
 	std::string _quantityExpression;
 	unsigned int _lastMemberSeized = 0;

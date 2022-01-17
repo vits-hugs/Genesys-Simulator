@@ -5,7 +5,7 @@
  */
 
 /* 
- * File:   ModelData.h
+ * File:   ModelDataDefinition.h
  * Author: rafael.luiz.cancian
  *
  * Created on 21 de Junho de 2018, 19:40
@@ -31,42 +31,42 @@ class Model;
  * This class is the basis for any modeldatum of the model (such as Queue, Resource, Variable, etc.) and also for any component of the model. 
  * It has the infrastructure to read and write on file and to verify symbols.
  */
-class ModelData : PersistentObject_base {
+class ModelDataDefinition : PersistentObject_base {
 public:
-	ModelData(Model* model, std::string elementTypename, std::string name = "", bool insertIntoModel = true);
-	//ModelData(Model* model, std::string elementTypename, std::string name = "", bool insertIntoModel = true);
-	//ModelData(const ModelData &orig);
-	virtual ~ModelData();
+	ModelDataDefinition(Model* model, std::string datadefinitionTypename, std::string name = "", bool insertIntoModel = true);
+	//ModelDataDefinition(Model* model, std::string datadefinitionTypename, std::string name = "", bool insertIntoModel = true);
+	//ModelDataDefinition(const ModelDataDefinition &orig);
+	virtual ~ModelDataDefinition();
 
 public: // get & set
 	Util::identification getId() const;
 	void setName(std::string name);
 	std::string getName() const;
 	std::string getClassname() const;
-	/*! Return true if this ModelData generates statics for simulation reports*/
+	/*! Return true if this ModelDataDefinition generates statics for simulation reports*/
 	bool isReportStatistics() const;
-	/*! Defnes if this ModelData generates statics for simulation reports*/
+	/*! Defnes if this ModelDataDefinition generates statics for simulation reports*/
 	void setReportStatistics(bool reportStatistics);
 public: // static
 	/*! This class method receives a map of fields readed from a file (or somewhere else) creates an instace of the ModelDatas and inokes the protected method _loadInstance() of that instance, whch fills the field values. The instance can be automatticaly inserted into the simulation model if required*/
-	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields, bool insertIntoModel); // @TODO: return ModelComponent* ?
-	/*! This class method takes an instance of a ModelData, invokes the protected method _saveInstance() of that instance and retorns a map of filds (name=value) that can be saved on a file (or somewhere else)*/
-	static std::map<std::string, std::string>* SaveInstance(ModelData* modeldatum);
-	/*! This class method takes an instance of a ModelData and invokes the private method_check() method of that instance, which checks itself */
-	static bool Check(ModelData* modeldatum, std::string* errorMessage);
-	/*! This class method is responsible for invoking the protected method _check() of the instance modeldatum, which creates any internal ModelData (such as internelElements) or even other external needed ModelDatas, such as attributes or variables */
-	static void CreateInternalData(ModelData* modeldatum);
+	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields, bool insertIntoModel); // @TODO: return ModelComponent* ?
+	/*! This class method takes an instance of a ModelDataDefinition, invokes the protected method _saveInstance() of that instance and retorns a map of filds (name=value) that can be saved on a file (or somewhere else)*/
+	static std::map<std::string, std::string>* SaveInstance(ModelDataDefinition* modeldatum);
+	/*! This class method takes an instance of a ModelDataDefinition and invokes the private method_check() method of that instance, which checks itself */
+	static bool Check(ModelDataDefinition* modeldatum, std::string* errorMessage);
+	/*! This class method is responsible for invoking the protected method _check() of the instance modeldatum, which creates any internal ModelDataDefinition (such as internelElements) or even other external needed ModelDatas, such as attributes or variables */
+	static void CreateInternalData(ModelDataDefinition* modeldatum);
 	/* This class methood is responsible for invoking the protected method _initBetweenReplication(), which clears all statistics, attributes, counters and other stuff before starting a new repliction */
-	static void InitBetweenReplications(ModelData* modeldatum);
+	static void InitBetweenReplications(ModelDataDefinition* modeldatum);
 	//static PluginInformation* GetPluginInformation();
 public:
 	virtual std::string show();
-	/*! Returns a list of keys (names) of internal ModelDatas, cuch as Counters, StatisticsCollectors and others. ChildrenElements are ModelDatas used by this ModelData thar are needed before model checking */
+	/*! Returns a list of keys (names) of internal ModelDatas, cuch as Counters, StatisticsCollectors and others. ChildrenElements are ModelDatas used by this ModelDataDefinition thar are needed before model checking */
 	std::list<std::string>* getInternalDatasKeys() const;
-	ModelData* getInternalData(std::string key) const;
+	ModelDataDefinition* getInternalData(std::string key) const;
 	bool hasChanged() const;
 protected:
-	void _setInternalData(std::string key, ModelData* child);
+	void _setInternalData(std::string key, ModelDataDefinition* child);
 	void _removeInternalDatas();
 	void _removeInternalData(std::string key);
 	bool _getSaveDefaultsOption();
@@ -91,7 +91,7 @@ protected:
 	bool _hasChanged;
 	Model* _parentModel;
 protected:
-	std::map<std::string, ModelData*>* _internalData = new std::map<std::string, ModelData*>();
+	std::map<std::string, ModelDataDefinition*>* _internalData = new std::map<std::string, ModelDataDefinition*>();
 };
 //namespace\\}
 

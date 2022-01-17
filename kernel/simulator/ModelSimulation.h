@@ -178,7 +178,7 @@ private:
 	Model* _model;
 	ModelInfo* _info;
 	SimulationReporter_if* _simulationReporter;
-	List<ModelData*>* _statsCountersSimulation = new List<ModelData*>();
+	List<ModelDataDefinition*>* _statsCountersSimulation = new List<ModelDataDefinition*>();
 	List<double>* _breakpointsOnTime = new List<double>();
 	List<ModelComponent*>* _breakpointsOnComponent = new List<ModelComponent*>();
 	List<Entity*>* _breakpointsOnEntity = new List<Entity*>();

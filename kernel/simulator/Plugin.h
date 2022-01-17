@@ -24,7 +24,7 @@
 //namespace GenesysKernel {
 
 /*!
- * A Plugin represents a dynamically linked component class (ModelComponent) or modeldatum class (ModelData); It gives access to a ModelComponent so it can be used by the model. Classes like Create, Delay, and Dispose are examples of PlugIns.  It corresponds directly to the  "Expansible" part (the capitalized 'E') of the GenESyS acronymous
+ * A Plugin represents a dynamically linked component class (ModelComponent) or modeldatum class (ModelDataDefinition); It gives access to a ModelComponent so it can be used by the model. Classes like Create, Delay, and Dispose are examples of PlugIns.  It corresponds directly to the  "Expansible" part (the capitalized 'E') of the GenESyS acronymous
 PlugIns are NOT implemented yet
  */
 class Plugin {
@@ -38,11 +38,11 @@ public:
 	bool isIsValidPlugin() const;
 	PluginInformation* getPluginInfo() const;
 public:
-	ModelData* loadNew(Model* model, std::map<std::string, std::string>* fields); ///< creates a new ModelData from fields loaded from a file
+	ModelDataDefinition* loadNew(Model* model, std::map<std::string, std::string>* fields); ///< creates a new ModelDataDefinition from fields loaded from a file
 	bool loadAndInsertNew(Model* model, std::map<std::string, std::string>* fields);
 private:
 	ModelComponent* _loadNewComponent(Model* model, std::map<std::string, std::string>* fields);
-	ModelData* _loadNewElement(Model* model, std::map<std::string, std::string>* fields);
+	ModelDataDefinition* _loadNewElement(Model* model, std::map<std::string, std::string>* fields);
 private: // read only
 	bool _isValidPlugin;
 	PluginInformation* _pluginInfo;

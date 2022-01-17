@@ -14,12 +14,12 @@
 #include "OLD_ODEelement.h"
 #include "../../kernel/simulator/Model.h"
 
-OLD_ODEelement::OLD_ODEelement(Model* model, std::string name) : ModelData(model, Util::TypeOf<OLD_ODEelement>(), name) {
+OLD_ODEelement::OLD_ODEelement(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<OLD_ODEelement>(), name) {
 	//_elems = elems;
 }
 
 std::string OLD_ODEelement::show() {
-	std::string txt = ModelData::show();
+	std::string txt = ModelDataDefinition::show();
 	unsigned short i = 0;
 	for (std::list<ODEfunction*>::iterator it = _ODEfunctions->list()->begin(); it != _ODEfunctions->list()->end(); it++) {
 		txt += ",func[" + std::to_string(i) + "]=\"" + (*it)->expression + "\",(func[" + std::to_string(i) + "][" + std::to_string((*it)->initialPoint) + "]=" + std::to_string((*it)->initialValue) + ")";
@@ -57,7 +57,7 @@ PluginInformation* OLD_ODEelement::GetPluginInformation() {
 	return info;
 }
 
-ModelData* OLD_ODEelement::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
+ModelDataDefinition* OLD_ODEelement::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
 	OLD_ODEelement* newElement = new OLD_ODEelement(model);
 	try {
 		newElement->_loadInstance(fields);
@@ -68,11 +68,11 @@ ModelData* OLD_ODEelement::LoadInstance(Model* model, std::map<std::string, std:
 }
 
 bool OLD_ODEelement::_loadInstance(std::map<std::string, std::string>* fields) {
-	return ModelData::_loadInstance(fields);
+	return ModelDataDefinition::_loadInstance(fields);
 }
 
 std::map<std::string, std::string>* OLD_ODEelement::_saveInstance(bool saveDefaultValues) {
-	return ModelData::_saveInstance(saveDefaultValues);
+	return ModelDataDefinition::_saveInstance(saveDefaultValues);
 }
 
 bool OLD_ODEelement::_check(std::string* errorMessage) {

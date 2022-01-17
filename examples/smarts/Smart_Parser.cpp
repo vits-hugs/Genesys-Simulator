@@ -22,7 +22,7 @@
 #include "../../plugins/components/Create.h"
 #include "../../plugins/components/Dispose.h"
 
-// Model elements
+// Model data definitions
 #include "../../kernel/simulator/EntityType.h"
 
 Smart_Parser::Smart_Parser() {

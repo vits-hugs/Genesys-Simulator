@@ -14,7 +14,7 @@
 #ifndef RESOURCE_H
 #define RESOURCE_H
 
-#include "../../kernel/simulator/ModelData.h"
+#include "../../kernel/simulator/ModelDataDefinition.h"
 #include "../../kernel/simulator/StatisticsCollector.h"
 #include "../../kernel/simulator/ModelDataManager.h"
 #include "../../kernel/simulator/Counter.h"
@@ -78,7 +78,7 @@ occur for a busy resource unit.
 Report Statistics Specifies whether or not statistics will be collected automatically
 and stored in the report database for this resource.
  */
-class Resource : public ModelData {
+class Resource : public ModelDataDefinition {
 public:
 	typedef std::function<void(Resource*) > ResourceEventHandler;
 	typedef std::pair<std::pair<ResourceEventHandler, ModelComponent*>, unsigned int> SortedResourceEventHandler;
@@ -99,7 +99,7 @@ public:
 	virtual std::string show();
 public:
 	static PluginInformation* GetPluginInformation();
-	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 public:
 	void seize(unsigned int quantity, double tnow);
 	void release(unsigned int quantity, double tnow);

@@ -12,12 +12,12 @@
 
 #include "CppCode.h"
 
-CppCode::CppCode(Model* model, std::string name) : ModelData(model, Util::TypeOf<CppCode>(), name) {
+CppCode::CppCode(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<CppCode>(), name) {
 }
 
 // static 
 
-ModelData* CppCode::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
+ModelDataDefinition* CppCode::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
 	CppCode* newElement = new CppCode(model);
 	try {
 		newElement->_loadInstance(fields);
@@ -41,7 +41,7 @@ PluginInformation* CppCode::GetPluginInformation() {
 //
 
 std::string CppCode::show() {
-	return ModelData::show();
+	return ModelDataDefinition::show();
 }
 
 void CppCode::setCode(std::string _code) {
@@ -54,7 +54,7 @@ std::string CppCode::getCode() const {
 // must be overriden by derived classes
 
 bool CppCode::_loadInstance(std::map<std::string, std::string>* fields) {
-	bool res = ModelData::_loadInstance(fields);
+	bool res = ModelDataDefinition::_loadInstance(fields);
 	if (res) {
 		// @TODO: not implemented yet
 	}
@@ -62,7 +62,7 @@ bool CppCode::_loadInstance(std::map<std::string, std::string>* fields) {
 }
 
 std::map<std::string, std::string>* CppCode::_saveInstance(bool saveDefaultValues) {
-	std::map<std::string, std::string>* fields = ModelData::_saveInstance(saveDefaultValues);
+	std::map<std::string, std::string>* fields = ModelDataDefinition::_saveInstance(saveDefaultValues);
 	// @TODO: not implemented yet
 	return fields;
 }

@@ -13,7 +13,7 @@
 
 #include "Schedule.h"
 
-Schedule::Schedule(Model* model, std::string name) : ModelData(model, Util::TypeOf<Schedule>(), name) {
+Schedule::Schedule(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<Schedule>(), name) {
 }
 
 std::string Schedule::show() {
@@ -22,7 +22,7 @@ std::string Schedule::show() {
 PluginInformation* Schedule::GetPluginInformation() {
 }
 
-ModelData* Schedule::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
+ModelDataDefinition* Schedule::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
 }
 
 bool Schedule::_loadInstance(std::map<std::string, std::string>* fields) {

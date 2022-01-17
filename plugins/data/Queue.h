@@ -14,7 +14,7 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
-#include "../../kernel/simulator/ModelData.h"
+#include "../../kernel/simulator/ModelDataDefinition.h"
 #include "../../kernel/util/List.h"
 #include "../../kernel/simulator/Entity.h"
 #include "../../kernel/simulator/ModelDataManager.h"
@@ -34,7 +34,7 @@ public:
 	virtual ~Waiting() = default;
 public:
 	virtual std::string show() {
-		return //ModelData::show()+
+		return //ModelDataDefinition::show()+
 		",entity=" + std::to_string(_entity->getId()) +
 				",component=\"" + _component->getName() + "\"" +
 				",timeStatedWaiting=" + std::to_string(_timeStartedWaiting);
@@ -88,7 +88,7 @@ module from the Advanced Process panel).
 Report Statistics Specifies whether or not statistics will be collected automatically
 and stored in the report database for this queue.
  */
-class Queue : public ModelData {
+class Queue : public ModelDataDefinition {
 public:
 
 	enum class OrderRule : int {
@@ -102,7 +102,7 @@ public:
 	virtual std::string show();
 public: // static
 	static PluginInformation* GetPluginInformation();
-	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 public:
 	void insertElement(Waiting* modeldatum);
 	void removeElement(Waiting* modeldatum);

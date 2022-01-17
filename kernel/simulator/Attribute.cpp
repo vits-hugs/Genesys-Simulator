@@ -15,15 +15,15 @@
 
 //using namespace GenesysKernel;
 
-Attribute::Attribute(Model* model, std::string name) : ModelData(model, Util::TypeOf<Attribute>(), name) {
+Attribute::Attribute(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<Attribute>(), name) {
 }
 
 std::string Attribute::show() {
-	return ModelData::show();
+	return ModelDataDefinition::show();
 }
 
 bool Attribute::_loadInstance(std::map<std::string, std::string>* fields) {
-	return ModelData::_loadInstance(fields);
+	return ModelDataDefinition::_loadInstance(fields);
 }
 
 PluginInformation* Attribute::GetPluginInformation() {
@@ -33,7 +33,7 @@ PluginInformation* Attribute::GetPluginInformation() {
 
 }
 
-ModelData* Attribute::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
+ModelDataDefinition* Attribute::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
 	Attribute* newElement = new Attribute(model);
 	try {
 		newElement->_loadInstance(fields);
@@ -45,7 +45,7 @@ ModelData* Attribute::LoadInstance(Model* model, std::map<std::string, std::stri
 
 std::map<std::string, std::string>* Attribute::_saveInstance(bool saveDefaultValues) {
 	bool saveDefaults = this->_getSaveDefaultsOption();
-	std::map<std::string, std::string>* fields = ModelData::_saveInstance(saveDefaultValues); //Util::TypeOf<Attribute>());
+	std::map<std::string, std::string>* fields = ModelDataDefinition::_saveInstance(saveDefaultValues); //Util::TypeOf<Attribute>());
 	return fields;
 }
 

@@ -17,11 +17,11 @@
 
 //using namespace GenesysKernel;
 
-EntityType::EntityType(Model* model, std::string name) : ModelData(model, Util::TypeOf<EntityType>(), name) {
+EntityType::EntityType(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<EntityType>(), name) {
 }
 
 void EntityType::_initBetweenReplications() {
-	ModelData::_initBetweenReplications();
+	ModelDataDefinition::_initBetweenReplications();
 	_initialWaitingCost = 0.0;
 	_initialVACost = 0.0;
 	_initialNVACost = 0.0;
@@ -34,12 +34,12 @@ void EntityType::_initBetweenReplications() {
 EntityType::~EntityType() {
 	// remove all CStats
 	for (StatisticsCollector* cstat : *_statisticsCollectors->list()) {
-		_parentModel->getData()->remove(Util::TypeOf<StatisticsCollector>(), cstat);
+		_parentModel->getDataManager()->remove(Util::TypeOf<StatisticsCollector>(), cstat);
 	}
 }
 
 std::string EntityType::show() {
-	return ModelData::show() +
+	return ModelDataDefinition::show() +
 			",initialPicture=" + this->_initialPicture; // add more...
 }
 
@@ -103,7 +103,7 @@ PluginInformation* EntityType::GetPluginInformation() {
 	return info;
 }
 
-ModelData* EntityType::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
+ModelDataDefinition* EntityType::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
 	EntityType* newElement = new EntityType(model);
 	try {
 		newElement->_loadInstance(fields);
@@ -114,7 +114,7 @@ ModelData* EntityType::LoadInstance(Model* model, std::map<std::string, std::str
 }
 
 bool EntityType::_loadInstance(std::map<std::string, std::string>* fields) {
-	bool res = ModelData::_loadInstance(fields);
+	bool res = ModelDataDefinition::_loadInstance(fields);
 	if (res) {
 		this->_initialNVACost = LoadField(fields, "initialNVACost", DEFAULT.initialCost);
 		this->_initialOtherCost = LoadField(fields, "initialOtherCost", DEFAULT.initialCost);
@@ -127,7 +127,7 @@ bool EntityType::_loadInstance(std::map<std::string, std::string>* fields) {
 
 std::map<std::string, std::string>* EntityType::_saveInstance(bool saveDefaultValues) {
 	bool saveDefaults = _getSaveDefaultsOption();
-	std::map<std::string, std::string>* fields = ModelData::_saveInstance(saveDefaultValues); //Util::TypeOf<EntityType>());
+	std::map<std::string, std::string>* fields = ModelDataDefinition::_saveInstance(saveDefaultValues); //Util::TypeOf<EntityType>());
 	SaveField(fields, "initialNVACost", _initialNVACost, DEFAULT.initialCost, saveDefaults);
 	SaveField(fields, "initialOtherCost", _initialOtherCost, DEFAULT.initialCost, saveDefaults);
 	SaveField(fields, "initialVACost", _initialVACost, DEFAULT.initialCost, saveDefaults);
@@ -145,7 +145,7 @@ void EntityType::_createInternalData() {
 	if (_reportStatistics) { //@TODO: Fix inserting to _internalElements
 	} else {
 		while (_statisticsCollectors->size() > 0) {
-			_parentModel->getData()->remove(_statisticsCollectors->front());
+			_parentModel->getDataManager()->remove(_statisticsCollectors->front());
 			_statisticsCollectors->front()->~StatisticsCollector();
 			_statisticsCollectors->pop_front();
 		}

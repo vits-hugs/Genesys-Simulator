@@ -23,7 +23,7 @@
 #include "../../plugins/components/Process.h"
 #include "../../plugins/components/Dispose.h"
 
-// Model elements
+// Model data definitions
 #include "../../kernel/simulator/EntityType.h"
 
 Smart_ProcessSet::Smart_ProcessSet() {

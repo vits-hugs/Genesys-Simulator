@@ -14,7 +14,7 @@
 #ifndef STATION_H
 #define STATION_H
 
-#include "../../kernel/simulator/ModelData.h"
+#include "../../kernel/simulator/ModelDataDefinition.h"
 #include "../../kernel/simulator/ModelDataManager.h"
 #include "../../kernel/simulator/Plugin.h"
 #include "../../kernel/simulator/Entity.h"
@@ -61,7 +61,7 @@ Report Statistics Specifies whether or not statistics will automatically be coll
 and stored in the report database for this station set member and
 its corresponding activity area. 
  */
-class Station : public ModelData {
+class Station : public ModelDataDefinition {
 public:
 	Station(Model* model, std::string name = "");
 	virtual ~Station();
@@ -69,7 +69,7 @@ public:
 	virtual std::string show();
 public: // static 
 	static PluginInformation* GetPluginInformation();
-	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 public:
 	void initBetweenReplications();
 	void enter(Entity* entity);

@@ -15,7 +15,7 @@
 #define ENTITYTYPE_H
 
 #include <string>
-#include "ModelData.h"
+#include "ModelDataDefinition.h"
 #include "StatisticsCollector.h"
 #include "ModelDataManager.h"
 #include "Plugin.h"
@@ -26,7 +26,7 @@
 /*!
  * 
  */
-class EntityType : public ModelData {
+class EntityType : public ModelDataDefinition {
 public:
 	EntityType(Model* model, std::string name = "");
 	virtual ~EntityType();
@@ -34,7 +34,7 @@ public:
 	virtual std::string show();
 public:
 	static PluginInformation* GetPluginInformation();
-	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 public: //get & set
 	void setInitialWaitingCost(double _initialWaitingCost);
 	double initialWaitingCost() const;

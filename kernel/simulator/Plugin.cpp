@@ -99,7 +99,7 @@ bool Plugin::isIsValidPlugin() const {
 //    _drain = drain;
 //}
 
-ModelData* Plugin::loadNew(Model* model, std::map<std::string, std::string>* fields) {
+ModelDataDefinition* Plugin::loadNew(Model* model, std::map<std::string, std::string>* fields) {
 	if (this->_pluginInfo->isComponent()) {
 		return _loadNewComponent(model, fields);
 	} else {
@@ -115,7 +115,7 @@ bool Plugin::loadAndInsertNew(Model* model, std::map<std::string, std::string>* 
 			return true; //model->components()->insert(newComp);
 		}
 	} else {
-		ModelData* newElem = _loadNewElement(model, fields);
+		ModelDataDefinition* newElem = _loadNewElement(model, fields);
 		if (newElem != nullptr) {
 			//model->getTraceManager()->trace(newElem->show());
 			return true; //model->elements()->insert(this->_pluginInfo->pluginTypename(), newElem);
@@ -131,8 +131,8 @@ ModelComponent* Plugin::_loadNewComponent(Model* model, std::map<std::string, st
 	return newElementOrComponent;
 }
 
-ModelData* Plugin::_loadNewElement(Model* model, std::map<std::string, std::string>* fields) {
+ModelDataDefinition* Plugin::_loadNewElement(Model* model, std::map<std::string, std::string>* fields) {
 	StaticLoaderElementInstance loader = this->_pluginInfo->getElementLoader();
-	ModelData* newElementOrComponent = loader(model, fields);
+	ModelDataDefinition* newElementOrComponent = loader(model, fields);
 	return newElementOrComponent;
 }

@@ -107,9 +107,9 @@ bool Release::_loadInstance(std::map<std::string, std::string>* fields) {
 		unsigned short numRequests = LoadField(fields, "resquestSize", DEFAULT.releaseRequestSize);
 		for (unsigned short i = 0; i < numRequests; i++) {
 			SeizableItem* Item = new SeizableItem(nullptr);
-			Item->setElementManager(_parentModel->getData());
+			Item->setElementManager(_parentModel->getDataManager());
 			Item->loadInstance(fields, i);
-			//Resource* resource = static_cast<Resource*> (_parentModel->getData()->getData(Util::TypeOf<Resource>(), Item->getResourceName()));
+			//Resource* resource = static_cast<Resource*> (_parentModel->getDataDefinition()->getDataDefinition(Util::TypeOf<Resource>(), Item->getResourceName()));
 			//Item->setResource(resource);
 			//this->_releaseRequests->insert(Item);
 		}
@@ -136,9 +136,9 @@ bool Release::_check(std::string* errorMessage) {
 	for (SeizableItem* seizable : * _releaseRequests->list()) {
 		resultAll &= _parentModel->checkExpression(seizable->getQuantityExpression(), "quantity", errorMessage);
 		if (seizable->getSeizableType() == SeizableItem::SeizableType::RESOURCE) {
-			resultAll &= _parentModel->getData()->check(Util::TypeOf<Resource>(), seizable->getResource(), "Resource", errorMessage);
+			resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Resource>(), seizable->getResource(), "Resource", errorMessage);
 		} else if (seizable->getSeizableType() == SeizableItem::SeizableType::SET) {
-			resultAll &= _parentModel->getData()->check(Util::TypeOf<Set>(), seizable->getSet(), "Set", errorMessage);
+			resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Set>(), seizable->getSet(), "Set", errorMessage);
 		}
 		// @TODO: Should be checking saveAttribute, index, etc
 	}
@@ -146,7 +146,7 @@ bool Release::_check(std::string* errorMessage) {
 }
 
 //void Release::setResourceName(std::string resourceName) throw () {
-//	ModelData* resource = _parentModel->elements()->modeldatum(Util::TypeOf<Resource>(), resourceName);
+//	ModelDataDefinition* resource = _parentModel->elements()->modeldatum(Util::TypeOf<Resource>(), resourceName);
 //	if (resource != nullptr) {
 //		this->_resource = dynamic_cast<Resource*> (resource);
 //	} else {

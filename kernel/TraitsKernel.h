@@ -75,7 +75,7 @@ template <> struct TraitsKernel<ModelComponent> {
 	static const Util::TraceLevel traceLevel = Util::TraceLevel::L2_results;
 };
 
-template <> struct TraitsKernel<ModelData> {
+template <> struct TraitsKernel<ModelDataDefinition> {
 	static constexpr bool reportStatistics = true;
 	static const Util::TraceLevel traceLevel = Util::TraceLevel::L2_results;
 };
