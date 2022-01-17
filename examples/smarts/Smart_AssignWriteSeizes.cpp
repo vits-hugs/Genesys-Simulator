@@ -27,7 +27,7 @@
 #include "../../plugins/components/Decide.h"
 #include "../../plugins/components/Write.h"
 
-// Model elements
+// Model data definitions
 #include "../../kernel/simulator/ModelDataManager.h"
 #include "../../kernel/simulator/EntityType.h"
 #include "../../kernel/simulator/Attribute.h"

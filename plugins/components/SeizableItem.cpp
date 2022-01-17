@@ -12,11 +12,11 @@
  */
 
 #include "SeizableItem.h"
-#include "../../kernel/simulator/ModelData.h"
+#include "../../kernel/simulator/ModelDataDefinition.h"
 #include "../../kernel/simulator/Model.h"
 #include <cassert>
 
-SeizableItem::SeizableItem(ModelData* resourceOrSet, std::string quantityExpression, SeizableItem::SelectionRule selectionRule, std::string saveAttribute, std::string index) {
+SeizableItem::SeizableItem(ModelDataDefinition* resourceOrSet, std::string quantityExpression, SeizableItem::SelectionRule selectionRule, std::string saveAttribute, std::string index) {
 	SeizableItem::SeizableType resourceType;
 	if (dynamic_cast<Resource*> (resourceOrSet) != nullptr) {
 		resourceType = SeizableItem::SeizableType::RESOURCE;
@@ -34,7 +34,7 @@ SeizableItem::SeizableItem(ModelData* resourceOrSet, std::string quantityExpress
 }
 
 /*
-SeizableItem::SeizableItem(ModelData* resourceOrSet, SeizableItem::SeizableType resourceType, std::string quantityExpression, SeizableItem::SelectionRule selectionRule, std::string saveAttribute, std::string index) {
+SeizableItem::SeizableItem(ModelDataDefinition* resourceOrSet, SeizableItem::SeizableType resourceType, std::string quantityExpression, SeizableItem::SelectionRule selectionRule, std::string saveAttribute, std::string index) {
 	// TODO: It could infer _seizableType from resourceOrSet and avoid resourceType parameter
 	_seizableType = resourceType;
 	_resourceOrSet = resourceOrSet;
@@ -56,9 +56,9 @@ bool SeizableItem::loadInstance(std::map<std::string, std::string>* fields) {
 		_index = LoadField(fields, "index", DEFAULT.index);
 		if (_modeldataManager != nullptr) {
 			if (_seizableType == SeizableItem::SeizableType::RESOURCE) {
-				_resourceOrSet = _modeldataManager->getData(Util::TypeOf<Resource>(), _seizableName);
+				_resourceOrSet = _modeldataManager->getDataDefinition(Util::TypeOf<Resource>(), _seizableName);
 			} else if (_seizableType == SeizableItem::SeizableType::SET) {
-				_resourceOrSet = _modeldataManager->getData(Util::TypeOf<Set>(), _seizableName);
+				_resourceOrSet = _modeldataManager->getDataDefinition(Util::TypeOf<Set>(), _seizableName);
 			}
 			assert(_resourceOrSet != nullptr);
 		}
@@ -80,9 +80,9 @@ bool SeizableItem::loadInstance(std::map<std::string, std::string>* fields, unsi
 		_index = LoadField(fields, "index" + num, DEFAULT.index);
 		if (_modeldataManager != nullptr) {
 			if (_seizableType == SeizableItem::SeizableType::RESOURCE) {
-				_resourceOrSet = _modeldataManager->getData(Util::TypeOf<Resource>(), _seizableName);
+				_resourceOrSet = _modeldataManager->getDataDefinition(Util::TypeOf<Resource>(), _seizableName);
 			} else if (_seizableType == SeizableItem::SeizableType::SET) {
-				_resourceOrSet = _modeldataManager->getData(Util::TypeOf<Set>(), _seizableName);
+				_resourceOrSet = _modeldataManager->getDataDefinition(Util::TypeOf<Set>(), _seizableName);
 			}
 			assert(_resourceOrSet != nullptr);
 		}
@@ -191,7 +191,7 @@ unsigned int SeizableItem::getLastMemberSeized() const {
 	return _lastMemberSeized;
 }
 
-ModelData* SeizableItem::getSeizable() const {
+ModelDataDefinition* SeizableItem::getSeizable() const {
 	return _resourceOrSet;
 }
 

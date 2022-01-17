@@ -20,7 +20,7 @@
 #include "../../plugins/components/Record.h"
 #include "../../plugins/components/Decide.h"
 
-// Model elements
+// Model data definitions
 #include "../../kernel/simulator/EntityType.h"
 #include "../../kernel/simulator/Attribute.h"
 #include "../../plugins/data/Variable.h"

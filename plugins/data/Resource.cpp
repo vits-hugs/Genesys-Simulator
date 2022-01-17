@@ -15,7 +15,7 @@
 #include "../../kernel/simulator/Counter.h"
 #include "../../kernel/simulator/Model.h"
 
-Resource::Resource(Model* model, std::string name) : ModelData(model, Util::TypeOf<Resource>(), name) {
+Resource::Resource(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<Resource>(), name) {
 	_resourceEventHandlers->setSortFunc([](const SortedResourceEventHandler* a, const SortedResourceEventHandler * b) {
 		return a->second < b->second; /// Handlers are sorted by priority
 	});
@@ -31,7 +31,7 @@ Resource::Resource(Model* model, std::string name) : ModelData(model, Util::Type
 }
 
 std::string Resource::show() {
-	return ModelData::show() +
+	return ModelDataDefinition::show() +
 			",capacity=" + strTruncIfInt(std::to_string(_capacity)) +
 			",costBusyByour=" + strTruncIfInt(std::to_string(_costBusyHour)) +
 			",costIdleByour=" + strTruncIfInt(std::to_string(_costIdleHour)) +
@@ -69,7 +69,7 @@ void Resource::release(unsigned int quantity, double tnow) {
 }
 
 void Resource::_initBetweenReplications() {
-	ModelData::_initBetweenReplications();
+	ModelDataDefinition::_initBetweenReplications();
 	this->_lastTimeSeized = 0.0;
 	this->_numberBusy = 0;
 }
@@ -149,7 +149,7 @@ PluginInformation* Resource::GetPluginInformation() {
 	return info;
 }
 
-ModelData* Resource::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
+ModelDataDefinition* Resource::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
 	Resource* newElement = new Resource(model);
 	try {
 		newElement->_loadInstance(fields);
@@ -160,7 +160,7 @@ ModelData* Resource::LoadInstance(Model* model, std::map<std::string, std::strin
 }
 
 bool Resource::_loadInstance(std::map<std::string, std::string>* fields) {
-	bool res = ModelData::_loadInstance(fields);
+	bool res = ModelDataDefinition::_loadInstance(fields);
 	if (res) {
 		_capacity = LoadField(fields, "capacity", DEFAULT.capacity);
 		_costBusyHour = LoadField(fields, "costBusyHour", DEFAULT.cost);
@@ -173,7 +173,7 @@ bool Resource::_loadInstance(std::map<std::string, std::string>* fields) {
 
 std::map<std::string, std::string>* Resource::_saveInstance(bool saveDefaultValues) {
 	bool saveDefaults = _getSaveDefaultsOption();
-	std::map<std::string, std::string>* fields = ModelData::_saveInstance(saveDefaultValues); //Util::TypeOf<Resource>());
+	std::map<std::string, std::string>* fields = ModelDataDefinition::_saveInstance(saveDefaultValues); //Util::TypeOf<Resource>());
 	SaveField(fields, "capacity", _capacity, DEFAULT.capacity, saveDefaultValues);
 	SaveField(fields, "costBusyHour", _costBusyHour, DEFAULT.cost, saveDefaultValues);
 	SaveField(fields, "costIdleHour", _costIdleHour, DEFAULT.cost, saveDefaultValues);

@@ -13,11 +13,11 @@
 
 #include "Failure.h"
 
-Failure::Failure(Model* model, std::string name) : ModelData(model, Util::TypeOf<Failure>(), name) {
+Failure::Failure(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<Failure>(), name) {
 }
 
 std::string Failure::show() {
-	return ModelData::show() +
+	return ModelDataDefinition::show() +
 			"";
 }
 
@@ -26,7 +26,7 @@ PluginInformation* Failure::GetPluginInformation() {
 	return info;
 }
 
-ModelData* Failure::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
+ModelDataDefinition* Failure::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
 	Failure* newElement = new Failure(model);
 	try {
 		newElement->_loadInstance(fields);
@@ -37,7 +37,7 @@ ModelData* Failure::LoadInstance(Model* model, std::map<std::string, std::string
 }
 
 bool Failure::_loadInstance(std::map<std::string, std::string>* fields) {
-	bool res = ModelData::_loadInstance(fields);
+	bool res = ModelDataDefinition::_loadInstance(fields);
 	if (res) {
 		try {
 			//this->_attributeName = (*fields->find("attributeName")).second;
@@ -49,7 +49,7 @@ bool Failure::_loadInstance(std::map<std::string, std::string>* fields) {
 }
 
 std::map<std::string, std::string>* Failure::_saveInstance(bool saveDefaultValues) {
-	std::map<std::string, std::string>* fields = ModelData::_saveInstance(saveDefaultValues); //Util::TypeOf<Failure>());
+	std::map<std::string, std::string>* fields = ModelDataDefinition::_saveInstance(saveDefaultValues); //Util::TypeOf<Failure>());
 	//SaveField(fields, "orderRule", std::to_string(static_cast<int> (this->_orderRule)));
 	//SaveField(fields, "attributeName", "\""+this->_attributeName+"\"");
 	return fields;

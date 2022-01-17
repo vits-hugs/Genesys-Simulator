@@ -21,7 +21,7 @@ Record::Record(Model* model, std::string name) : ModelComponent(model, Util::Typ
 }
 
 Record::~Record() {
-	_parentModel->getData()->remove(Util::TypeOf<StatisticsCollector>(), _cstatExpression);
+	_parentModel->getDataManager()->remove(Util::TypeOf<StatisticsCollector>(), _cstatExpression);
 }
 
 std::string Record::show() {
@@ -105,7 +105,7 @@ bool Record::_check(std::string* errorMessage) {
 void Record::_createInternalData() {
 	if (_reportStatistics && _cstatExpression == nullptr) {
 		_cstatExpression = new StatisticsCollector(_parentModel, getName() + "." + _expressionName, this);
-		//_parentModel->getData()->insert(_cstatExpression);
+		//_parentModel->getDataDefinition()->insert(_cstatExpression);
 		_internalData->insert({_expressionName, _cstatExpression});
 	} else if (!_reportStatistics && _cstatExpression != nullptr) {
 		this->_removeInternalDatas();

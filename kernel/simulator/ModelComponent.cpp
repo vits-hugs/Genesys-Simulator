@@ -16,7 +16,7 @@
 
 //using namespace GenesysKernel;
 
-ModelComponent::ModelComponent(Model* model, std::string componentTypename, std::string name) : ModelData(model, componentTypename, name, false) {
+ModelComponent::ModelComponent(Model* model, std::string componentTypename, std::string name) : ModelDataDefinition(model, componentTypename, name, false) {
 	model->getComponents()->insert(this);
 }
 
@@ -96,11 +96,11 @@ ConnectionManager* ModelComponent::getConnections() const {
 }
 
 std::string ModelComponent::show() {
-	return ModelData::show(); // "{id=" + std::to_string(this->_id) + ",name=\""+this->_name + "\"}"; // , nextComponents[]=(" + _nextComponents->show() + ")}";
+	return ModelDataDefinition::show(); // "{id=" + std::to_string(this->_id) + ",name=\""+this->_name + "\"}"; // , nextComponents[]=(" + _nextComponents->show() + ")}";
 }
 
 bool ModelComponent::_loadInstance(std::map<std::string, std::string>* fields) {
-	bool res = ModelData::_loadInstance(fields);
+	bool res = ModelDataDefinition::_loadInstance(fields);
 	if (res) {
 		_description = LoadField(fields, "caption", DEFAULT.description);
 		// Now it should load nextComponents. The problem is that the nextComponent may not be loaded yet.
@@ -116,7 +116,7 @@ bool ModelComponent::_loadInstance(std::map<std::string, std::string>* fields) {
 }
 
 std::map<std::string, std::string>* ModelComponent::_saveInstance(bool saveDefaultValues) {
-	std::map<std::string, std::string>* fields = ModelData::_saveInstance(saveDefaultValues);
+	std::map<std::string, std::string>* fields = ModelDataDefinition::_saveInstance(saveDefaultValues);
 	SaveField(fields, "caption", _description, DEFAULT.description, saveDefaultValues);
 	if (true) {//(_connections->size() != 1) { // save nextSize only if it is != 1
 		SaveField(fields, "nextSize", _connections->size(), DEFAULT.nextSize, saveDefaultValues);

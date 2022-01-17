@@ -20,7 +20,7 @@
 #include <functional>
 #include <algorithm>
 #include "Util.h"
-#include "../simulator/ModelData.h"
+#include "../simulator/ModelDataDefinition.h"
 
 //class Simulator;
 

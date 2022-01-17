@@ -24,7 +24,7 @@ void LicenceManager::setDefaultLicenceAndLimits() {
 	_licence = "LICENCE: Academic Mode. In academic mode this software has full functionality and executing training-size simulation models. This software may be duplicated and used for educational purposes only; any commercial application is a violation of the license agreement. Designed and developed by prof. Dr. Ing Rafael Luiz Cancian, 2018-2021";
 	_activationCode = "";
 	_components = 50;
-	_elements = 100;
+	_datadefinitions = 100;
 	_entities = 200;
 	_hosts = 1;
 	_threads = 1;
@@ -37,7 +37,7 @@ const std::string LicenceManager::showLicence() const {
 const std::string LicenceManager::showLimits() const {
 	std::string msg = "LIMITS: Based on your licence and activation code, your simulator is running under the following limits" +
 			std::string(": ") + std::to_string(_components) + " components" +
-			", " + std::to_string(_elements) + " elements" +
+			", " + std::to_string(_datadefinitions) + " elements" +
 			", " + std::to_string(_entities) + " entities" +
 			", " + std::to_string(_hosts) + " hosts" +
 			", " + std::to_string(_threads) + " threads.";
@@ -68,7 +68,7 @@ unsigned int LicenceManager::getModelComponentsLimit() {
 }
 
 unsigned int LicenceManager::getModelDatasLimit() {
-	return this->_elements;
+	return this->_datadefinitions;
 }
 
 unsigned int LicenceManager::getEntityLimit() {

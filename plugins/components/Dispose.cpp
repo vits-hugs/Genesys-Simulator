@@ -60,15 +60,12 @@ void Dispose::_createInternalData() {
 		_numberOut = new Counter(_parentModel, getName() + "." + "CountNumberIn", this);
 		_internalData->insert({"CountNumberIn", _numberOut});
 		// include StatisticsCollector needed for each EntityType
-		std::list<ModelData*>* enttypes = _parentModel->getData()->getElementList(Util::TypeOf<EntityType>())->list();
-		for (ModelData* modeldatum : *enttypes) {
+		std::list<ModelDataDefinition*>* enttypes = _parentModel->getDataManager()->getDataDefinitionList(Util::TypeOf<EntityType>())->list();
+		for (ModelDataDefinition* modeldatum : *enttypes) {
 			if (modeldatum->isReportStatistics())
 				static_cast<EntityType*> (modeldatum)->addGetStatisticsCollector(modeldatum->getName() + "." + "TotalTimeInSystem"); // force create this CStat before model checking
 		}
 	} else if (!_reportStatistics && _numberOut != nullptr) {
-		//_numberOut->~Counter();
-		//_numberOut = nullptr;
-		// @TODO: delete the CSTATS?
 		_removeInternalDatas();
 	}
 }

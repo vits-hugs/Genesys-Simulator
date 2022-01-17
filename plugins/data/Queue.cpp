@@ -15,7 +15,7 @@
 #include "../../kernel/simulator/Model.h"
 #include "../../kernel/simulator/Attribute.h"
 
-Queue::Queue(Model* model, std::string name) : ModelData(model, Util::TypeOf<Queue>(), name) {
+Queue::Queue(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<Queue>(), name) {
 }
 
 Queue::~Queue() {
@@ -24,7 +24,7 @@ Queue::~Queue() {
 }
 
 std::string Queue::show() {
-	return ModelData::show() +
+	return ModelDataDefinition::show() +
 			",waiting=" + this->_list->show();
 }
 
@@ -97,7 +97,7 @@ PluginInformation* Queue::GetPluginInformation() {
 	return info;
 }
 
-ModelData* Queue::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
+ModelDataDefinition* Queue::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
 	Queue* newElement = new Queue(model);
 	try {
 		newElement->_loadInstance(fields);
@@ -108,7 +108,7 @@ ModelData* Queue::LoadInstance(Model* model, std::map<std::string, std::string>*
 }
 
 bool Queue::_loadInstance(std::map<std::string, std::string>* fields) {
-	bool res = ModelData::_loadInstance(fields);
+	bool res = ModelDataDefinition::_loadInstance(fields);
 	if (res) {
 		try {
 			this->_attributeName = LoadField(fields, "attributeName", DEFAULT.attributeName);
@@ -120,14 +120,14 @@ bool Queue::_loadInstance(std::map<std::string, std::string>* fields) {
 }
 
 std::map<std::string, std::string>* Queue::_saveInstance(bool saveDefaultValues) {
-	std::map<std::string, std::string>* fields = ModelData::_saveInstance(saveDefaultValues); //Util::TypeOf<Queue>());
+	std::map<std::string, std::string>* fields = ModelDataDefinition::_saveInstance(saveDefaultValues); //Util::TypeOf<Queue>());
 	SaveField(fields, "orderRule", static_cast<int> (this->_orderRule), static_cast<int> (DEFAULT.orderRule), saveDefaultValues);
 	SaveField(fields, "attributeName", this->_attributeName, DEFAULT.attributeName, saveDefaultValues);
 	return fields;
 }
 
 bool Queue::_check(std::string* errorMessage) {
-	return _parentModel->getData()->check(Util::TypeOf<Attribute>(), _attributeName, "AttributeName", false, errorMessage);
+	return _parentModel->getDataManager()->check(Util::TypeOf<Attribute>(), _attributeName, "AttributeName", false, errorMessage);
 }
 
 void Queue::_createInternalData() {

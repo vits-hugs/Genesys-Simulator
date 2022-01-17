@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
 	ui->setupUi(this);
 	ui->dockWidgetContentsConsole->setMaximumHeight(150);
 	ui->dockWidgetContentsPlugin->setMaximumWidth(150);
+    ui->listWidget_Plugins->setSortingEnabled(true);
     //ui->treeWidget_Plugins->setVisible(false);
 	simulator = new Simulator();
 	simulator->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
@@ -135,16 +136,16 @@ void MainWindow::_insertPluginUI(Plugin* plugin) {
 		if (plugin->isIsValidPlugin()) {
 			QListWidgetItem* item = new QListWidgetItem(QString::fromStdString(plugin->getPluginInfo()->getPluginTypename()));
             //QTreeWidgetItem *treeItem = new QTreeWidgetItem; //(ui->treeWidget_Plugins);
-            std::string plugtextAdds = "";
+            std::string plugtextAdds = plugin->getPluginInfo()->getCategory() + ": ";
             QBrush brush;
 			if (plugin->getPluginInfo()->isComponent()) {
-				plugtextAdds += ",Component";
+                plugtextAdds += " Component";
                 brush.setColor(Qt::white);
                 item->setBackground(brush);
                 item->setBackgroundColor(Qt::white);
 				item->setIcon(QIcon(":/resources/icons/pack3/ico/component.ico"));
 			} else {
-				plugtextAdds += ",Element";
+                plugtextAdds += " DataDefinition";
                 brush.setColor(Qt::lightGray);
                 item->setBackground(brush);
                 item->setBackgroundColor(Qt::lightGray);
@@ -152,24 +153,28 @@ void MainWindow::_insertPluginUI(Plugin* plugin) {
 				//item->setFont(QFont::Style::StyleItalic);
 			}
 			if (plugin->getPluginInfo()->isSink()) {
-				plugtextAdds += ",Sink";
+                plugtextAdds += ", Sink";
+                item->setTextColor(Qt::blue);
 				item->setIcon(QIcon(":/resources/icons/pack3/ico/loadInv.ico"));
 			}
 			if (plugin->getPluginInfo()->isSource()) {
-				plugtextAdds += ",Source";
-				item->setIcon(QIcon(":/resources/icons/pack3/ico/load.ico"));
+                plugtextAdds += ", Source";
+                item->setTextColor(Qt::blue);
+                item->setIcon(QIcon(":/resources/icons/pack3/ico/load.ico"));
 			}
 			if (plugin->getPluginInfo()->isReceiveTransfer()) {
-				plugtextAdds += ",ReceiveTransfer";
-				item->setIcon(QIcon(":/resources/icons/pack3/ico/load.ico"));
+                plugtextAdds += ", ReceiveTransfer";
+                item->setTextColor(Qt::blue);
+                item->setIcon(QIcon(":/resources/icons/pack3/ico/load.ico"));
 			}
 			if (plugin->getPluginInfo()->isSendTransfer()) {
-				plugtextAdds += ",SendTransfer";
-				item->setIcon(QIcon(":/resources/icons/pack3/ico/loadInv.ico"));
+                plugtextAdds += ", SendTransfer";
+                item->setTextColor(Qt::blue);
+                item->setIcon(QIcon(":/resources/icons/pack3/ico/loadInv.ico"));
 			}
             //treeItem->setText(0,QString::fromStdString(plugtextAdds));
-			plugtextAdds += "\n" + plugin->getPluginInfo()->getDescriptionHelp();
-			plugtextAdds = plugtextAdds.erase(0, 1);
+            plugtextAdds += "\nDescrption: " + plugin->getPluginInfo()->getDescriptionHelp();
+            plugtextAdds += "\nTemplate: " + plugin->getPluginInfo()->getLanguageTemplate();
             item->setToolTip(QString::fromStdString(plugtextAdds));
             item->setStatusTip(QString::fromStdString(plugin->getPluginInfo()->getLanguageTemplate()));
 			ui->listWidget_Plugins->addItem(item);

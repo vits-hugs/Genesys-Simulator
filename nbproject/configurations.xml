@@ -2488,8 +2488,8 @@
         <itemPath>kernel/simulator/ModelChecker_if.h</itemPath>
         <itemPath>kernel/simulator/ModelComponent.cpp</itemPath>
         <itemPath>kernel/simulator/ModelComponent.h</itemPath>
-        <itemPath>kernel/simulator/ModelData.cpp</itemPath>
-        <itemPath>kernel/simulator/ModelData.h</itemPath>
+        <itemPath>kernel/simulator/ModelDataDefinition.cpp</itemPath>
+        <itemPath>kernel/simulator/ModelDataDefinition.h</itemPath>
         <itemPath>kernel/simulator/ModelDataManager.cpp</itemPath>
         <itemPath>kernel/simulator/ModelDataManager.h</itemPath>
         <itemPath>kernel/simulator/ModelInfo.cpp</itemPath>
@@ -2766,6 +2766,12 @@
         <packType>Debian</packType>
         <verbose>false</verbose>
         <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
           <packFileListElem type="File"
                             to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
                             from="${OUTPUT_PATH}"
@@ -14870,9 +14876,15 @@
       </item>
       <item path="kernel/simulator/ModelComponent.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="kernel/simulator/ModelData.cpp" ex="false" tool="1" flavor2="0">
+      <item path="kernel/simulator/ModelDataDefinition.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
-      <item path="kernel/simulator/ModelData.h" ex="false" tool="3" flavor2="0">
+      <item path="kernel/simulator/ModelDataDefinition.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="kernel/simulator/ModelDataManager.cpp"
             ex="false"
@@ -27326,9 +27338,15 @@
       </item>
       <item path="kernel/simulator/ModelComponent.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="kernel/simulator/ModelData.cpp" ex="false" tool="1" flavor2="0">
+      <item path="kernel/simulator/ModelDataDefinition.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
-      <item path="kernel/simulator/ModelData.h" ex="false" tool="3" flavor2="0">
+      <item path="kernel/simulator/ModelDataDefinition.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="kernel/simulator/ModelDataManager.cpp"
             ex="false"

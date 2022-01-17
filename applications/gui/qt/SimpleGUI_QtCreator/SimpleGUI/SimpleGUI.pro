@@ -13,7 +13,7 @@ SOURCES += \
     ../../../../../kernel/simulator/ComponentManager.cpp \
     ../../../../../kernel/simulator/ConnectionManager.cpp \
     ../../../../../kernel/simulator/Counter.cpp \
-    ../../../../../kernel/simulator/ModelDatamanager.cpp \
+    ../../../../../kernel/simulator/ModelDataManager.cpp \
     ../../../../../kernel/simulator/Entity.cpp \
     ../../../../../kernel/simulator/EntityType.cpp \
     ../../../../../kernel/simulator/Event.cpp \
@@ -23,7 +23,7 @@ SOURCES += \
     ../../../../../kernel/simulator/Model.cpp \
     ../../../../../kernel/simulator/ModelCheckerDefaultImpl1.cpp \
     ../../../../../kernel/simulator/ModelComponent.cpp \
-    ../../../../../kernel/simulator/ModelData.cpp \
+    ../../../../../kernel/simulator/ModelDataDefinition.cpp \
     ../../../../../kernel/simulator/ModelInfo.cpp \
     ../../../../../kernel/simulator/ModelManager.cpp \
     ../../../../../kernel/simulator/ModelPersistenceDefaultImpl1.cpp \
@@ -123,7 +123,7 @@ HEADERS += \
     ../../../../../kernel/simulator/ConnectionManager.h \
     ../../../../../kernel/simulator/Counter.h \
     ../../../../../kernel/simulator/DefineGetterSetter.h \
-    ../../../../../kernel/simulator/ModelDatamanager.h \
+    ../../../../../kernel/simulator/ModelDataManager.h \
     ../../../../../kernel/simulator/Entity.h \
     ../../../../../kernel/simulator/EntityType.h \
     ../../../../../kernel/simulator/Event.h \
@@ -135,7 +135,7 @@ HEADERS += \
     ../../../../../kernel/simulator/ModelCheckerDefaultImpl1.h \
     ../../../../../kernel/simulator/ModelChecker_if.h \
     ../../../../../kernel/simulator/ModelComponent.h \
-    ../../../../../kernel/simulator/ModelData.h \
+    ../../../../../kernel/simulator/ModelDataDefinition.h \
     ../../../../../kernel/simulator/ModelInfo.h \
     ../../../../../kernel/simulator/ModelManager.h \
     ../../../../../kernel/simulator/ModelPersistenceDefaultImpl1.h \

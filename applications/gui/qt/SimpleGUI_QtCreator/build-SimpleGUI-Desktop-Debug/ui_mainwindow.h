@@ -245,7 +245,6 @@ public:
         dockWidgetPlugins->setObjectName(QString::fromUtf8("dockWidgetPlugins"));
         sizePolicy.setHeightForWidth(dockWidgetPlugins->sizePolicy().hasHeightForWidth());
         dockWidgetPlugins->setSizePolicy(sizePolicy);
-        dockWidgetPlugins->setMinimumSize(QSize(100, 109));
         dockWidgetPlugins->setBaseSize(QSize(100, 100));
         QIcon icon12;
         icon12.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/component.ico"), QSize(), QIcon::Normal, QIcon::Off);
@@ -258,7 +257,8 @@ public:
         horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
         listWidget_Plugins = new QListWidget(dockWidgetContentsPlugin);
         listWidget_Plugins->setObjectName(QString::fromUtf8("listWidget_Plugins"));
-        listWidget_Plugins->setFont(font2);
+        sizePolicy.setHeightForWidth(listWidget_Plugins->sizePolicy().hasHeightForWidth());
+        listWidget_Plugins->setSizePolicy(sizePolicy);
 
         horizontalLayout_5->addWidget(listWidget_Plugins);
 

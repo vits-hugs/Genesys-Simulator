@@ -15,11 +15,11 @@
 #include "../../kernel/simulator/Attribute.h"
 #include "../../kernel/simulator/Model.h"
 
-Sequence::Sequence(Model* model, std::string name) : ModelData(model, Util::TypeOf<Sequence>(), name) {
+Sequence::Sequence(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<Sequence>(), name) {
 }
 
 std::string Sequence::show() {
-	std::string msg = ModelData::show();
+	std::string msg = ModelDataDefinition::show();
 	return msg;
 }
 
@@ -28,7 +28,7 @@ PluginInformation* Sequence::GetPluginInformation() {
 	return info;
 }
 
-ModelData* Sequence::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
+ModelDataDefinition* Sequence::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
 	Sequence* newElement = new Sequence(model);
 	try {
 		newElement->_loadInstance(fields);
@@ -43,7 +43,7 @@ List<SequenceStep*>* Sequence::getSteps() const {
 }
 
 bool Sequence::_loadInstance(std::map<std::string, std::string>* fields) {
-	bool res = ModelData::_loadInstance(fields);
+	bool res = ModelDataDefinition::_loadInstance(fields);
 	if (res) {
 		try {
 		} catch (...) {
@@ -53,7 +53,7 @@ bool Sequence::_loadInstance(std::map<std::string, std::string>* fields) {
 }
 
 std::map<std::string, std::string>* Sequence::_saveInstance(bool saveDefaultValues) {
-	std::map<std::string, std::string>* fields = ModelData::_saveInstance(saveDefaultValues); //Util::TypeOf<Sequence>());
+	std::map<std::string, std::string>* fields = ModelDataDefinition::_saveInstance(saveDefaultValues); //Util::TypeOf<Sequence>());
 	return fields;
 }
 
@@ -63,7 +63,7 @@ bool Sequence::_check(std::string* errorMessage) {
 	std::string neededName;
 	for (unsigned int i = 0; i < neededNames.size(); i++) {
 		neededName = neededNames[i];
-		if (_parentModel->getData()->getData(Util::TypeOf<Attribute>(), neededName) == nullptr) {
+		if (_parentModel->getDataManager()->getDataDefinition(Util::TypeOf<Attribute>(), neededName) == nullptr) {
 			new Attribute(_parentModel, neededName);
 			//_parentModel->insert(attr1);
 		}

@@ -14,12 +14,12 @@
 #ifndef FORMULA_H
 #define FORMULA_H
 
-#include "../../kernel/simulator/ModelData.h"
+#include "../../kernel/simulator/ModelDataDefinition.h"
 #include "../../kernel/simulator/ModelDataManager.h"
 #include "../../kernel/simulator/Plugin.h"
 #include "../../kernel/simulator/Parser_if.h"
 
-class Formula : public ModelData {
+class Formula : public ModelDataDefinition {
 public:
 	Formula(Model* model, std::string name = "");
 	virtual ~Formula() = default;
@@ -35,7 +35,7 @@ public:
 	double value(std::string index);
 public: // statics
 	static PluginInformation* GetPluginInformation();
-	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 protected: // must be overriden by derived classes
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);

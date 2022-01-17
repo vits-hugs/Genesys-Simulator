@@ -24,7 +24,7 @@
 #include "../../plugins/components/Signal.h"
 #include "../../plugins/components/Dispose.h"
 
-// Model elements
+// Model data definitions
 
 Smart_HoldSignal::Smart_HoldSignal() {
 }

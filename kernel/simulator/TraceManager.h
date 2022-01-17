@@ -120,7 +120,7 @@ public: // add trace handlers
 	template<typename Class> void addTraceErrorHandler(Class * object, void (Class::*function)(TraceErrorEvent));
 	template<typename Class> void addTraceReportHandler(Class * object, void (Class::*function)(TraceEvent));
 	template<typename Class> void addTraceSimulationHandler(Class * object, void (Class::*function)(TraceSimulationEvent));
-public: // add ModelData (or subclasses) allowed (or restrcted) to traceSimulation
+public: // add ModelDataDefinition (or subclasses) allowed (or restrcted) to traceSimulation
 	void addTraceSimulationExceptionRuleModelData(void* thisobject);
 public: // traces (invoke trace handlers) 
 	void trace(Util::TraceLevel level, std::string text);

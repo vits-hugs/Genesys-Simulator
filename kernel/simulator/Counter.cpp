@@ -17,7 +17,7 @@
 
 //using namespace GenesysKernel;
 
-Counter::Counter(Model* model, std::string name, ModelData* parent) : ModelData(model, Util::TypeOf<Counter>(), name) {
+Counter::Counter(Model* model, std::string name, ModelDataDefinition* parent) : ModelDataDefinition(model, Util::TypeOf<Counter>(), name) {
 	_parent = parent;
 	GetterMember getterMember = DefineGetterMember<Counter>(this, &Counter::getCountValue);
 	std::string parentName = "";
@@ -28,7 +28,7 @@ Counter::Counter(Model* model, std::string name, ModelData* parent) : ModelData(
 }
 
 std::string Counter::show() {
-	return ModelData::show() +
+	return ModelDataDefinition::show() +
 			", count=" + std::to_string(this->_count);
 }
 
@@ -44,7 +44,7 @@ double Counter::getCountValue() const {
 	return _count;
 }
 
-ModelData* Counter::getParent() const {
+ModelDataDefinition* Counter::getParent() const {
 	return _parent;
 }
 
@@ -55,7 +55,7 @@ PluginInformation* Counter::GetPluginInformation() {
 	return info;
 }
 
-ModelData* Counter::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
+ModelDataDefinition* Counter::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
 	Counter* newElement = new Counter(model);
 	try {
 		newElement->_loadInstance(fields);
@@ -66,11 +66,11 @@ ModelData* Counter::LoadInstance(Model* model, std::map<std::string, std::string
 }
 
 bool Counter::_loadInstance(std::map<std::string, std::string>* fields) {
-	return ModelData::_loadInstance(fields);
+	return ModelDataDefinition::_loadInstance(fields);
 }
 
 std::map<std::string, std::string>* Counter::_saveInstance(bool saveDefaultValues) {
-	return ModelData::_saveInstance(saveDefaultValues);
+	return ModelDataDefinition::_saveInstance(saveDefaultValues);
 }
 
 bool Counter::_check(std::string* errorMessage) {

@@ -39,7 +39,7 @@ std::string Create::show() {
 }
 
 void Create::_execute(Entity* entity) {
-	_parentModel->getData()->insert(entity->getClassname(), entity);
+	_parentModel->getDataManager()->insert(entity->getClassname(), entity);
 	double tnow = _parentModel->getSimulation()->getSimulatedTime();
 	entity->setAttributeValue("Entity.ArrivalTime", tnow); // ->find("Entity.ArrivalTime")->second->setValue(tnow);
 	//entity->setAttributeValue("Entity.Picture", 1); // ->find("Entity.ArrivalTime")->second->setValue(tnow);

@@ -123,8 +123,14 @@ void Batch::_execute(Entity* entity) {
 		//_parentModel->getTracer()->traceSimulation(this, "Queue has " + std::to_string(_queue->size()) + " elements, not enought to form a group");
 		assert(entitiesToGroup->size() == batchSize);
 		// creates a new entity that represents the group
-		Entity* representativeEnt = _parentModel->createEntity(_groupedEntityType->getName() + "_Group", true);
-		representativeEnt->setEntityType(_groupedEntityType);
+		Entity* representativeEnt;
+		if (_groupedEntityType != nullptr) {
+			representativeEnt = _parentModel->createEntity(_groupedEntityType->getName() + "_Group", true);
+			representativeEnt->setEntityType(_groupedEntityType);
+		} else {
+			representativeEnt = _parentModel->createEntity(entity->getEntityType()->getName() + "_Group", true);
+			representativeEnt->setEntityType(entity->getEntityType());
+		}
 		unsigned int groupIdKey = representativeEnt->getId(); // an "EntityGroup" is a MAP, with one LIST for every RepresentativeEntity ID as KEY
 		if (_batchType == Batch::BatchType::Temporary) {
 			representativeEnt->setAttributeValue("Entity.Group", _entityGroup->getId()); // The "Entity.Group" attribute is the EntityGroup Id (an internel modeldatum of Batch), while the ID of the representative entity is the KEY of the map of that EntityGroup
@@ -144,7 +150,7 @@ void Batch::_execute(Entity* entity) {
 			if (accumAttribs) {
 				std::string attribName;
 				double value;
-				for (ModelData* attrib : *_parentModel->getData()->getElementList(Util::TypeOf<Attribute>())->list()) {
+				for (ModelDataDefinition* attrib : *_parentModel->getDataManager()->getDataDefinitionList(Util::TypeOf<Attribute>())->list()) {
 					attribName = attrib->getName();
 					value = representativeEnt->getAttributeValue(attribName);
 					value += enqueuedEnt->getAttributeValue(attribName);
@@ -178,16 +184,29 @@ void Batch::_execute(Entity* entity) {
 bool Batch::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
-		// @TODO: not implemented yet
+		_batchType = static_cast<Batch::BatchType> (LoadField(fields, "batchType", static_cast<int> (DEFAULT.batchType)));
+		_rule = static_cast<Batch::Rule> (LoadField(fields, "rule", static_cast<int> (DEFAULT.rule)));
+		_groupedAttributes = static_cast<Batch::GroupedAttribs> (LoadField(fields, "groupedAttributes", static_cast<int> (DEFAULT.groupedAttributes)));
+		_batchSize = LoadField(fields, "batchSize", DEFAULT.batchSize);
+		_attributeName = LoadField(fields, "attributeName", DEFAULT.attributeName);
+		if (_groupedEntityType != nullptr) {
+			std::string groupedEntityTypeName = LoadField(fields, "groupedEntityType", "");
+			_groupedEntityType = dynamic_cast<EntityType*> (_parentModel->getDataManager()->getDataDefinition(Util::TypeOf<EntityType>(), groupedEntityTypeName));
+		}
 	}
-
 	return res;
 }
 
 std::map<std::string, std::string>* Batch::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
-	// @TODO: not implemented yet
-
+	SaveField(fields, "batchType", static_cast<int> (_batchType), static_cast<int> (DEFAULT.batchType), saveDefaultValues);
+	SaveField(fields, "rule", static_cast<int> (_rule), static_cast<int> (DEFAULT.rule), saveDefaultValues);
+	SaveField(fields, "groupedAttributes", static_cast<int> (_groupedAttributes), static_cast<int> (DEFAULT.groupedAttributes), saveDefaultValues);
+	SaveField(fields, "batchSize", _batchSize, DEFAULT.batchSize, saveDefaultValues);
+	SaveField(fields, "attributeName", _attributeName, DEFAULT.attributeName, saveDefaultValues);
+	if (_groupedEntityType != nullptr) {
+		SaveField(fields, "groupedEntityType", _groupedEntityType->getName(), "", saveDefaultValues);
+	}
 	return fields;
 }
 
@@ -206,7 +225,10 @@ bool Batch::_check(std::string * errorMessage) {
 	bool resultAll = true;
 	*errorMessage += "";
 	// @TODO: not implemented yet
-	// groupedEntityType, ...
+	if (_groupedEntityType != nullptr) {
+		resultAll += _parentModel->getDataManager()->check(Util::TypeOf<EntityType>(), _groupedEntityType, "Grouped Entity Type", errorMessage);
+	}
+	resultAll += _parentModel->checkExpression(_batchSize, "Batch Size", errorMessage);
 	return resultAll;
 }
 

@@ -39,7 +39,7 @@ void Separate::_execute(Entity* entity) {
 		_parentModel->getTracer()->traceSimulation(this, Util::TraceLevel::L7_internal, "Entity is not grouped. Nothing to do");
 		this->_parentModel->sendEntityToComponent(entity, getConnections()->getFrontConnection());
 	} else {
-		EntityGroup* entityGroup = dynamic_cast<EntityGroup*> (_parentModel->getData()->getData(Util::TypeOf<EntityGroup>(), entityGroupId));
+		EntityGroup* entityGroup = dynamic_cast<EntityGroup*> (_parentModel->getDataManager()->getDataDefinition(Util::TypeOf<EntityGroup>(), entityGroupId));
 		if (entityGroup == nullptr) {
 			_parentModel->getTracer()->traceSimulation(this, Util::TraceLevel::L3_errorRecover, "Error: Could not find EntityGroup Id=" + std::to_string(entityGroupId));
 		} else {

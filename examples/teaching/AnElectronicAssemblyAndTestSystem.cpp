@@ -23,7 +23,7 @@
 #include "../../plugins/components/Seize.h"
 #include "../../plugins/components/Release.h"
 #include "plugins/components/Decide.h"
-// Model elements
+// Model data definitions
 #include "../../kernel/simulator/EntityType.h"
 #include "../../kernel/simulator/Attribute.h"
 #include "../../plugins/components/SeizableItem.h"

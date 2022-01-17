@@ -14,7 +14,7 @@
 #ifndef COUNTERDEFAULTIMPL1_H
 #define COUNTERDEFAULTIMPL1_H
 
-#include "ModelData.h"
+#include "ModelDataDefinition.h"
 #include "ModelDataManager.h"
 #include "Plugin.h"
 //namespace GenesysKernel {
@@ -22,27 +22,27 @@
 /*!
  The Counter modeldatum is used to count events, and its internal count value is added by a configurable amount, usually incremented by one.
  */
-class Counter : public ModelData {
+class Counter : public ModelDataDefinition {
 public:
-	Counter(Model* model, std::string name = "", ModelData* parent = nullptr);
+	Counter(Model* model, std::string name = "", ModelDataDefinition* parent = nullptr);
 	virtual ~Counter() = default;
 public:
 	virtual std::string show();
 public:
 	static PluginInformation* GetPluginInformation();
-	static ModelData* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 public:
 	void clear();
 	void incCountValue(/*int*/double value = 1.0);
 	double /*unsigned long*/ getCountValue() const;
-	ModelData* getParent() const;
-protected: // from ModelData
+	ModelDataDefinition* getParent() const;
+protected: // from ModelDataDefinition
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
 	virtual void _initBetweenReplications();
 private:
-	ModelData* _parent;
+	ModelDataDefinition* _parent;
 	double /*unsigned long*/ _count = 0;
 };
 //namespace\\}

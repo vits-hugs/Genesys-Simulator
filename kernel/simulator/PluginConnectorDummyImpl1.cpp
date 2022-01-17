@@ -52,7 +52,7 @@
 #include "../../plugins/components/LSODE.h"
 
 
-// Model elements
+// Model data definitions
 #include "../../plugins/data/CppCode.h"
 #include "../../plugins/data/EntityGroup.h"
 #include "../../plugins/data/Failure.h"
@@ -87,7 +87,7 @@ Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilen
 	Plugin* pluginResult = nullptr;
 	// ODO: Remove this mostruosity and and trully dynamically loaded libraries    
 
-	// model elements
+	// Model data definitions
 
 
 	//if (fn == "attribute.so")

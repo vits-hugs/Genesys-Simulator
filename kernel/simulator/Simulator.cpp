@@ -91,7 +91,7 @@ bool Simulator::_completePluginsFieldsAndTemplate() {
 	Plugin* plugin;
 	PluginInformation* info;
 	std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();
-	ModelData* datum;
+	ModelDataDefinition* datum;
 	ModelComponent* comp;
 	std::string text;
 	bool result = true;
@@ -119,7 +119,7 @@ bool Simulator::_completePluginsFieldsAndTemplate() {
 					info->getFields()->insert({field.first, ""});
 				}
 				std::string templateLanguage = tempModel->getPersistence()->getFormatedField(fields);
-				//std::cout << std::endl << info->getPluginTypename() << ": " << templateLanguage << std::endl;
+                //std::cout << info->getPluginTypename() << ": " << templateLanguage << std::endl;
 				info->setLanguageTemplate(templateLanguage);
 			}
 		} catch (...) {

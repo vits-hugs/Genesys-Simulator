@@ -37,7 +37,7 @@ bool SourceModelComponent::_loadInstance(std::map<std::string, std::string>* fie
 		this->_maxCreationsExpression = LoadField(fields, "maxCreations", DEFAULT.maxCreationsExpression);
 		std::string entityTypename = LoadField(fields, "EntityType");
 		if (entityTypename != "") {
-			this->_entityType = dynamic_cast<EntityType*> (_parentModel->getData()->getData(Util::TypeOf<EntityType>(), entityTypename));
+			this->_entityType = dynamic_cast<EntityType*> (_parentModel->getDataManager()->getDataDefinition(Util::TypeOf<EntityType>(), entityTypename));
 		} else {
 			this->_entityType = nullptr;
 		}
@@ -66,18 +66,18 @@ std::map<std::string, std::string>* SourceModelComponent::_saveInstance(bool sav
 
 bool SourceModelComponent::_check(std::string* errorMessage) {
 	/* include attributes needed */
-	ModelDataManager* elements = _parentModel->getData();
+	ModelDataManager* elements = _parentModel->getDataManager();
 	std::vector<std::string> neededNames = {"Entity.ArrivalTime"};
 	std::string neededName;
 	for (unsigned int i = 0; i < neededNames.size(); i++) {
 		neededName = neededNames[i];
-		if (elements->getData(Util::TypeOf<Attribute>(), neededName) == nullptr) {
+		if (elements->getDataDefinition(Util::TypeOf<Attribute>(), neededName) == nullptr) {
 			Attribute* attr1 = new Attribute(_parentModel, neededName);
 			elements->insert(attr1);
 		}
 	}
 	bool resultAll = true;
-	resultAll &= _parentModel->getData()->check(Util::TypeOf<EntityType>(), _entityType, "entitytype", errorMessage);
+	resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<EntityType>(), _entityType, "entitytype", errorMessage);
 	resultAll &= _parentModel->checkExpression(this->_timeBetweenCreationsExpression, "time between creations", errorMessage);
 	return resultAll;
 }

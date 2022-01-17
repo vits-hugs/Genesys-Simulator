@@ -105,12 +105,12 @@ std::map<std::string, std::string>* Delay::_saveInstance(bool saveDefaultValues)
 
 bool Delay::_check(std::string* errorMessage) {
 	//include attributes needed
-	ModelDataManager* elements = _parentModel->getData();
+	ModelDataManager* elements = _parentModel->getDataManager();
 	std::vector<std::string> neededNames = {"Entity.TotalWaitTime"};
 	std::string neededName;
 	for (unsigned int i = 0; i < neededNames.size(); i++) {
 		neededName = neededNames[i];
-		if (elements->getData(Util::TypeOf<Attribute>(), neededName) == nullptr) {
+		if (elements->getDataDefinition(Util::TypeOf<Attribute>(), neededName) == nullptr) {
 			Attribute* attr1 = new Attribute(_parentModel, neededName);
 			elements->insert(attr1);
 		}
@@ -123,9 +123,9 @@ void Delay::_createInternalData() {
 		_cstatWaitTime = new StatisticsCollector(_parentModel, getName() + "." + "WaitTime", this);
 		_internalData->insert({"WaitTime", _cstatWaitTime});
 		// include StatisticsCollector needed in EntityType 
-		ModelDataManager* elements = _parentModel->getData();
-		std::list<ModelData*>* enttypes = elements->getElementList(Util::TypeOf<EntityType>())->list();
-		for (ModelData* modeldatum : *enttypes) {
+		ModelDataManager* elements = _parentModel->getDataManager();
+		std::list<ModelDataDefinition*>* enttypes = elements->getDataDefinitionList(Util::TypeOf<EntityType>())->list();
+		for (ModelDataDefinition* modeldatum : *enttypes) {
 			EntityType* enttype = static_cast<EntityType*> (modeldatum);
 			if (modeldatum->isReportStatistics())
 				enttype->addGetStatisticsCollector(enttype->getName() + ".WaitTime"); // force create this CStat before simulation starts

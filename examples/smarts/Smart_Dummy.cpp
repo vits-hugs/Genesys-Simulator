@@ -23,7 +23,7 @@
 #include "../../plugins/components/Delay.h"
 #include "../../plugins/components/Dispose.h"
 
-// Model elements
+// Model data definitions
 #include "../../kernel/simulator/EntityType.h"
 
 Smart_Dummy::Smart_Dummy() {
@@ -41,7 +41,7 @@ int Smart_Dummy::main(int argc, char** argv) {
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	Model* model = genesys->getModels()->newModel();
 	model->getSimulation()->setReplicationLength(60);
-	// create a (Source)ModelData of type EntityType, used by a ModelComponent that follows
+	// create a (Source)ModelDataDefinition of type EntityType, used by a ModelComponent that follows
 	EntityType* entityType1 = new EntityType(model, "Type_of_Representative_Entity");
 	// create a ModelComponent of type Create, used to insert entities into the model
 	Create* create1 = new Create(model);

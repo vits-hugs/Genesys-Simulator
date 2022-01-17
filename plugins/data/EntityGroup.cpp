@@ -15,7 +15,7 @@
 #include "../../kernel/simulator/Model.h"
 #include "../../kernel/simulator/Attribute.h"
 
-EntityGroup::EntityGroup(Model* model, std::string name) : ModelData(model, Util::TypeOf<EntityGroup>(), name) {
+EntityGroup::EntityGroup(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<EntityGroup>(), name) {
 	// it is invoked in the constructor since EntityGroups are creted runtime by Components such as Batch
 	this->_createInternalData();
 }
@@ -25,7 +25,7 @@ EntityGroup::~EntityGroup() {
 }
 
 std::string EntityGroup::show() {
-	return ModelData::show(); // +
+	return ModelDataDefinition::show(); // +
 	// TODO: Sow every group in the map",entities=" + this->_list->show();
 }
 
@@ -62,7 +62,7 @@ PluginInformation * EntityGroup::GetPluginInformation() {
 	return info;
 }
 
-ModelData * EntityGroup::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
+ModelDataDefinition * EntityGroup::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
 	EntityGroup* newElement = new EntityGroup(model);
 	try {
 		newElement->_loadInstance(fields);
@@ -73,7 +73,7 @@ ModelData * EntityGroup::LoadInstance(Model* model, std::map<std::string, std::s
 }
 
 bool EntityGroup::_loadInstance(std::map<std::string, std::string>* fields) {
-	bool res = ModelData::_loadInstance(fields);
+	bool res = ModelDataDefinition::_loadInstance(fields);
 	if (res) {
 		try {
 		} catch (...) {
@@ -83,13 +83,13 @@ bool EntityGroup::_loadInstance(std::map<std::string, std::string>* fields) {
 }
 
 std::map<std::string, std::string>* EntityGroup::_saveInstance(bool saveDefaultValues) {
-	std::map<std::string, std::string>* fields = ModelData::_saveInstance(saveDefaultValues); //Util::TypeOf<Group>());
+	std::map<std::string, std::string>* fields = ModelDataDefinition::_saveInstance(saveDefaultValues); //Util::TypeOf<Group>());
 	return fields;
 }
 
 bool EntityGroup::_check(std::string * errorMessage) {
 	std::string newNeededAttributeName = "Entity.Group";
-	if (_parentModel->getData()->getData(Util::TypeOf<Attribute>(), newNeededAttributeName) == nullptr) {
+	if (_parentModel->getDataManager()->getDataDefinition(Util::TypeOf<Attribute>(), newNeededAttributeName) == nullptr) {
 		new Attribute(_parentModel, newNeededAttributeName);
 	}
 	*errorMessage += "";

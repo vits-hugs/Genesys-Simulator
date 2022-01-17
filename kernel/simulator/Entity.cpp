@@ -19,9 +19,9 @@
 
 //using namespace GenesysKernel;
 
-Entity::Entity(Model* model, std::string name, bool insertIntoModel) : ModelData(model, Util::TypeOf<Entity>(), name, insertIntoModel) {
+Entity::Entity(Model* model, std::string name, bool insertIntoModel) : ModelDataDefinition(model, Util::TypeOf<Entity>(), name, insertIntoModel) {
 	_entityNumber = Util::GetLastIdOfType(Util::TypeOf<Entity>());
-	unsigned int numAttributes = _parentModel->getData()->getNumberOfElements(Util::TypeOf<Attribute>());
+	unsigned int numAttributes = _parentModel->getDataManager()->getNumberOfDataDefinitions(Util::TypeOf<Attribute>());
 	for (unsigned i = 0; i < numAttributes; i++) {
 		std::map<std::string, double>* map = new std::map<std::string, double>();
 		_attributeValues->insert(map);
@@ -29,7 +29,7 @@ Entity::Entity(Model* model, std::string name, bool insertIntoModel) : ModelData
 }
 
 void Entity::setEntityTypeName(std::string entityTypeName) {
-	EntityType* entitytype = dynamic_cast<EntityType*> (_parentModel->getData()->getData(Util::TypeOf<EntityType>(), entityTypeName));
+	EntityType* entitytype = dynamic_cast<EntityType*> (_parentModel->getDataManager()->getDataDefinition(Util::TypeOf<EntityType>(), entityTypeName));
 	if (entitytype != nullptr) {
 		this->_entityType = entitytype;
 	}
@@ -51,7 +51,7 @@ EntityType* Entity::getEntityType() const {
 }
 
 std::string Entity::show() {
-	std::string message = ModelData::show();
+	std::string message = ModelDataDefinition::show();
 	if (this->_entityType != nullptr) {
 		message += ",entityType=\"" + this->_entityType->getName() + "\"";
 	}
@@ -59,7 +59,7 @@ std::string Entity::show() {
 	_attributeValues->front();
 	for (unsigned int i = 0; i < _attributeValues->size(); i++) {
 		std::map<std::string, double>* map = _attributeValues->current();
-		std::string attributeName = _parentModel->getData()->getElementList(Util::TypeOf<Attribute>())->getAtRank(i)->getName();
+		std::string attributeName = _parentModel->getDataManager()->getDataDefinitionList(Util::TypeOf<Attribute>())->getAtRank(i)->getName();
 		message += attributeName + "=";
 		if (map->size() == 0) { // scalar
 			message += "NaN;"; //std::to_string(map->begin()->second) + ";";
@@ -88,7 +88,7 @@ double Entity::getAttributeValue(std::string attributeName) {
 }
 
 double Entity::getAttributeValue(std::string index, std::string attributeName) {
-	int rank = _parentModel->getData()->getRankOf(Util::TypeOf<Attribute>(), attributeName);
+	int rank = _parentModel->getDataManager()->getRankOf(Util::TypeOf<Attribute>(), attributeName);
 	if (rank >= 0) {
 		std::map<std::string, double>* map = this->_attributeValues->getAtRank(rank);
 		std::map<std::string, double>::iterator mapIt = map->find(index);
@@ -109,7 +109,7 @@ double Entity::getAttributeValue(Util::identification attributeID) {
 
 double Entity::getAttributeValue(std::string index, Util::identification attributeID) {
 	//assert(this->_parentModel != nullptr);
-	ModelData* modeldatum = _parentModel->getData()->getData(Util::TypeOf<Attribute>(), attributeID);
+	ModelDataDefinition* modeldatum = _parentModel->getDataManager()->getDataDefinition(Util::TypeOf<Attribute>(), attributeID);
 	if (modeldatum != nullptr) {
 
 		return getAttributeValue(index, modeldatum->getName());
@@ -122,7 +122,7 @@ void Entity::setAttributeValue(std::string attributeName, double value) {
 }
 
 void Entity::setAttributeValue(std::string index, std::string attributeName, double value) {
-	int rank = _parentModel->getData()->getRankOf(Util::TypeOf<Attribute>(), attributeName);
+	int rank = _parentModel->getDataManager()->getRankOf(Util::TypeOf<Attribute>(), attributeName);
 	if (rank >= 0) {
 		std::map<std::string, double>* map = _attributeValues->getAtRank(rank);
 		std::map<std::string, double>::iterator mapIt = map->find(index);
@@ -143,7 +143,7 @@ void Entity::setAttributeValue(Util::identification attributeID, double value) {
 
 void Entity::setAttributeValue(std::string index, Util::identification attributeID, double value) {
 
-	std::string attrname = _parentModel->getData()->getData(Util::TypeOf<Attribute>(), attributeID)->getName();
+	std::string attrname = _parentModel->getDataManager()->getDataDefinition(Util::TypeOf<Attribute>(), attributeID)->getName();
 	setAttributeValue(index, attrname, value);
 }
 
