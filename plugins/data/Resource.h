@@ -101,8 +101,8 @@ public:
 	static PluginInformation* GetPluginInformation();
 	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 public:
-	void seize(unsigned int quantity, double tnow);
-	void release(unsigned int quantity, double tnow);
+	void seize(unsigned int quantity);
+	void release(unsigned int quantity);
 public: // g&s
 	void setResourceState(ResourceState _resourceState);
 	Resource::ResourceState getResourceState() const;

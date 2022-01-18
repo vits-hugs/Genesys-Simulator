@@ -219,7 +219,7 @@ void Seize::_onDispatchEvent(Entity* entity) {
 			_parentModel->getTracer()->traceSimulation(this, _parentModel->getSimulation()->getSimulatedTime(), entity, this, "Entity starts to wait for resource in queue \"" + queue->getName() + "\" with " + std::to_string(queue->size()) + " elements");
 			return;
 		} else { // alocate the resource
-			resource->seize(quantity, _parentModel->getSimulation()->getSimulatedTime());
+			resource->seize(quantity);
 			_parentModel->getTracer()->traceSimulation(this, _parentModel->getSimulation()->getSimulatedTime(), entity, this, entity->getName() + " seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\" (capacity:" + std::to_string(resource->getCapacity()) + ", numberbusy:" + std::to_string(resource->getNumberBusy()) + ")");
 		}
 	}
@@ -321,7 +321,7 @@ PluginInformation* Seize::GetPluginInformation() {
 	help += " When an entity enters this module, it waits in a queue (if specified) until all specified resources are available simultaneously.";
 	help += " Allocation type for resource usage is also specified.";
 	help += " An animated queue is displayed above the module when the module is placed.";
-    help += " TYPICAL USES: (1) Beginning a customer order (seize the operator); (2) Starting a tax return (seize the accountant);";
+	help += " TYPICAL USES: (1) Beginning a customer order (seize the operator); (2) Starting a tax return (seize the accountant);";
 	help += " (3) Being admitted to hospital (seize the hospital room, nurse, doctor)";
 	info->setDescriptionHelp(help);
 	return info;

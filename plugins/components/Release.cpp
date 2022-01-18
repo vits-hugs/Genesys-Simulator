@@ -86,7 +86,7 @@ void Release::_onDispatchEvent(Entity* entity) {
 		unsigned int quantity = _parentModel->parseExpression(seizable->getQuantityExpression());
 		assert(resource->getNumberBusy() >= quantity); // 202104 ops. maybe not anymore
 		_parentModel->getTracer()->traceSimulation(this, _parentModel->getSimulation()->getSimulatedTime(), entity, this, entity->getName() + " releases " + std::to_string(quantity) + " units of resource \"" + resource->getName() + "\" seized on time " + std::to_string(resource->getLastTimeSeized()));
-		resource->release(quantity, _parentModel->getSimulation()->getSimulatedTime()); //{releases and sets the 'LastTimeSeized'property}
+		resource->release(quantity); //{releases and sets the 'LastTimeSeized'property}
 	}
 	_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }

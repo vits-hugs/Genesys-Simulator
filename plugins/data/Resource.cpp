@@ -39,16 +39,16 @@ std::string Resource::show() {
 			",state=" + strTruncIfInt(std::to_string(static_cast<int> (_resourceState)));
 }
 
-void Resource::seize(unsigned int quantity, double tnow) {
+void Resource::seize(unsigned int quantity) {
 	_numberBusy += quantity;
 	if (_reportStatistics)
 		_numSeizes->incCountValue(quantity);
-	_lastTimeSeized = tnow;
+	_lastTimeSeized = _parentModel->getSimulation()->getSimulatedTime();
 	_resourceState = Resource::ResourceState::BUSY;
 	// @TODO implement costs
 }
 
-void Resource::release(unsigned int quantity, double tnow) {
+void Resource::release(unsigned int quantity) {
 	if (_numberBusy >= quantity) {
 		_numberBusy -= quantity;
 	} else {
@@ -57,7 +57,7 @@ void Resource::release(unsigned int quantity, double tnow) {
 	if (_numberBusy == 0) {
 		_resourceState = Resource::ResourceState::IDLE;
 	}
-	double timeSeized = tnow - _lastTimeSeized;
+	double timeSeized = _parentModel->getSimulation()->getSimulatedTime() - _lastTimeSeized;
 	if (_reportStatistics) {
 		_numReleases->incCountValue(quantity);
 		_cstatTimeSeized->getStatistics()->getCollector()->addValue(timeSeized);
