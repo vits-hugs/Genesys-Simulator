@@ -68,7 +68,7 @@ Util::TimeUnit Delay::delayTimeUnit() const {
 	return _delayTimeUnit;
 }
 
-void Delay::_execute(Entity* entity) {
+void Delay::_onDispatchEvent(Entity* entity) {
 	double waitTime = _parentModel->parseExpression(_delayExpression);
 	Util::TimeUnit stu = _parentModel->getSimulation()->getReplicationBaseTimeUnit(); //getReplicationLengthTimeUnit();
 	waitTime *= Util::TimeUnitConvert(_delayTimeUnit, stu);

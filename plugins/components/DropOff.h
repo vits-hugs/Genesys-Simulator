@@ -48,7 +48,7 @@ public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 protected: // virtual
-	virtual void _execute(Entity* entity);
+	virtual void _onDispatchEvent(Entity* entity);
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 protected: // virtual
 	//virtual void _initBetweenReplications();

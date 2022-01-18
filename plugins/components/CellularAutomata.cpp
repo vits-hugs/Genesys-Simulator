@@ -31,7 +31,7 @@ ModelComponent* CelularAutomata::LoadInstance(Model* model, std::map<std::string
 	return newComponent;
 }
 
-void CelularAutomata::_execute(Entity* entity) {
+void CelularAutomata::_onDispatchEvent(Entity* entity) {
 	_parentModel->getTracer()->traceSimulation(this, "I'm just a dummy model and I'll just send the entity forward");
 	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }

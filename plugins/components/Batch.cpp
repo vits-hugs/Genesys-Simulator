@@ -74,7 +74,7 @@ Batch::GroupedAttribs Batch::getGroupedAttributes() const {
 	return _groupedAttributes;
 }
 
-void Batch::_execute(Entity* entity) {
+void Batch::_onDispatchEvent(Entity* entity) {
 	double tnow = _parentModel->getSimulation()->getSimulatedTime();
 	_queue->insertElement(new Waiting(entity, tnow, this, 0));
 	unsigned int batchSize = _parentModel->parseExpression(_batchSize);

@@ -380,18 +380,33 @@ void ModelSimulation::_checkWarmUpTime(Event* nextEvent) {
 }
 
 void ModelSimulation::_stepSimulation() {
-	// process one single event
-	Event* nextEvent;
-	nextEvent = _model->getFutureEvents()->front();
+	Event* nextEvent = _model->getFutureEvents()->front();
+	_model->getFutureEvents()->pop_front();
 	if (_warmUpPeriod > 0.0)
 		_checkWarmUpTime(nextEvent);
 	if (nextEvent->getTime() <= _replicationLength * _replicationTimeScaleFactorToBase) {
 		if (_checkBreakpointAt(nextEvent)) {
 			this->_pauseRequested = true;
 		} else {
-			_model->getFutureEvents()->pop_front();
 			_model->getOnEvents()->NotifyReplicationStepHandlers(_createSimulationEvent());
-			_processEvent(nextEvent);
+			_model->getTracer()->traceSimulation(this, Util::TraceLevel::L5_event, "Event {" + nextEvent->show() + "}");
+			Util::IncIndent();
+			_model->getTracer()->traceSimulation(this, Util::TraceLevel::L8_detailed, "Entity " + nextEvent->getEntity()->show());
+			this->_currentEvent = nextEvent;
+			//assert(_simulatedTime <= event->getTime()); // _simulatedTime only goes forward (futureEvents is chronologically sorted
+			if (nextEvent->getTime() >= _simulatedTime) { // the philosophycal approach taken is: if the next event is in the past, lets just assume it's happening rigth now...
+				_simulatedTime = nextEvent->getTime();
+			}
+			_model->getOnEvents()->NotifyProcessEventHandlers(_createSimulationEvent());
+			try {
+				ModelComponent::DispatchEvent(nextEvent);
+			} catch (std::exception *e) {
+				_model->getTracer()->traceError(*e, "Error on processing event (" + nextEvent->show() + ")");
+			}
+			if (_pauseOnEvent) {
+				_pauseRequested = true;
+			}
+			Util::DecIndent();
 		}
 	} else {
 		this->_simulatedTime = _replicationLength; ////nextEvent->getTime(); // just to advance time to beyond simulatedTime
@@ -437,33 +452,6 @@ bool ModelSimulation::_checkBreakpointAt(Event* event) {
 		}
 	}
 	return res;
-}
-
-void ModelSimulation::_processEvent(Event* event) {
-	//	_model->getTracer()->traceSimulation(this, Util::TraceLevel::75_event, event->time(), event->entity(), event->component(), "");
-	_model->getTracer()->traceSimulation(this, Util::TraceLevel::L5_event, "Event {" + event->show() + "}");
-	Util::IncIndent();
-	_model->getTracer()->traceSimulation(this, Util::TraceLevel::L8_detailed, "Entity " + event->getEntity()->show());
-	this->_currentEvent = event;
-	// next three lines could be removed since currentEvet is now available
-	this->_currentEntity = event->getEntity();
-	this->_currentComponent = event->getComponent();
-	this->_currentInputNumber = event->getComponentInputNumber();
-	//assert(_simulatedTime <= event->getTime()); // _simulatedTime only goes forward (futureEvents is chronologically sorted
-	if (event->getTime() >= _simulatedTime) { // the philosophical approach taken is: if the next event is in the past, lets just assume it's happening rigth now...
-		_simulatedTime = event->getTime();
-	}
-	_model->getOnEvents()->NotifyProcessEventHandlers(_createSimulationEvent());
-	try {
-		//event->getComponent()->Execute(event->getEntity(), event->getComponent()); // Execute is static
-		ModelComponent::Execute(event->getEntity(), event->getComponent(), event->getComponentInputNumber());
-	} catch (std::exception *e) {
-		_model->getTracer()->traceError(*e, "Error on processing event (" + event->show() + ")");
-	}
-	if (_pauseOnEvent) {
-		_pauseRequested = true;
-	}
-	Util::DecIndent();
 }
 
 void ModelSimulation::pause() {

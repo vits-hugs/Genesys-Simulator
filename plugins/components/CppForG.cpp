@@ -39,7 +39,7 @@ std::string CppForG::getSourceCode() const {
 	return _cppcode->getCode();
 }
 
-void CppForG::_execute(Entity* entity) {
+void CppForG::_onDispatchEvent(Entity* entity) {
 	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
 	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }

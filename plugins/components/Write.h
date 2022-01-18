@@ -45,7 +45,7 @@ public:
 	Write::WriteToType writeToType() const;
 
 protected: // virtual
-	virtual void _execute(Entity* entity);
+	virtual void _onDispatchEvent(Entity* entity);
 	virtual void _initBetweenReplications();
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);

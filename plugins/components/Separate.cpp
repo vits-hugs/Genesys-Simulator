@@ -33,7 +33,7 @@ ModelComponent* Separate::LoadInstance(Model* model, std::map<std::string, std::
 	return newComponent;
 }
 
-void Separate::_execute(Entity* entity) {
+void Separate::_onDispatchEvent(Entity* entity) {
 	unsigned int entityGroupId = entity->getAttributeValue("Entity.Group"); //This attribute refers to the Batch internal modeldatum EntityGroup (which may contain several groups --map--
 	if (entityGroupId == 0) {
 		_parentModel->getTracer()->traceSimulation(this, Util::TraceLevel::L7_internal, "Entity is not grouped. Nothing to do");

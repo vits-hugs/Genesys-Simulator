@@ -67,7 +67,7 @@ Write::WriteToType Write::writeToType() const {
 	return _writeToType;
 }
 
-void Write::_execute(Entity* entity) {
+void Write::_onDispatchEvent(Entity* entity) {
 	std::ofstream savefile;
 	if (this->_writeToType == Write::WriteToType::FILE) {
 		savefile.open(_filename, std::ofstream::app);

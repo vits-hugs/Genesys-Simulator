@@ -41,7 +41,7 @@ Station* Enter::getStation() const {
 	return _station;
 }
 
-void Enter::_execute(Entity* entity) {
+void Enter::_onDispatchEvent(Entity* entity) {
 	if (_reportStatistics)
 		_numberIn->incCountValue();
 	_station->enter(entity);

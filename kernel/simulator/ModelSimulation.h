@@ -104,7 +104,6 @@ private: // simulation control
 	void _stepSimulation(); ///<
 	void _replicationEnded(); ///<
 	void _simulationEnded(); ///<
-	void _processEvent(Event* event); ///<
 private:
 	bool _checkBreakpointAt(Event* event); ///<
 	bool _isReplicationEndCondition(); ///<

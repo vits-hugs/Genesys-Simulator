@@ -39,7 +39,7 @@ Station* Leave::getStation() const {
 	return _station;
 }
 
-void Leave::_execute(Entity* entity) {
+void Leave::_onDispatchEvent(Entity* entity) {
 	if (_reportStatistics)
 		_numberIn->incCountValue();
 	_station->leave(entity);

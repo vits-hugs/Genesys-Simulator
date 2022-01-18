@@ -38,7 +38,7 @@ std::string Create::show() {
 	return SourceModelComponent::show();
 }
 
-void Create::_execute(Entity* entity) {
+void Create::_onDispatchEvent(Entity* entity) {
 	_parentModel->getDataManager()->insert(entity->getClassname(), entity);
 	double tnow = _parentModel->getSimulation()->getSimulatedTime();
 	entity->setAttributeValue("Entity.ArrivalTime", tnow); // ->find("Entity.ArrivalTime")->second->setValue(tnow);

@@ -84,7 +84,7 @@ ModelComponent* Process::LoadInstance(Model* model, std::map<std::string, std::s
 	return newComponent;
 }
 
-void Process::_execute(Entity* entity) {
+void Process::_onDispatchEvent(Entity* entity) {
 	this->_parentModel->sendEntityToComponent(entity, seize, 0.0);
 }
 

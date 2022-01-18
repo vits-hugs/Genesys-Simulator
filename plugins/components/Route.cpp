@@ -72,7 +72,7 @@ Route::DestinationType Route::getRouteDestinationType() const {
 	return _routeDestinationType;
 }
 
-void Route::_execute(Entity* entity) {
+void Route::_onDispatchEvent(Entity* entity) {
 	Station* destinyStation = _station;
 	if (_routeDestinationType == Route::DestinationType::BySequence) {
 		unsigned int sequenceId = static_cast<unsigned int> (entity->getAttributeValue("Entity.Sequence"));

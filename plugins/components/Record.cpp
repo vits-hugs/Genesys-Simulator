@@ -61,7 +61,7 @@ std::string Record::getExpression() const {
 	return _expression;
 }
 
-void Record::_execute(Entity* entity) {
+void Record::_onDispatchEvent(Entity* entity) {
 	double value = _parentModel->parseExpression(_expression);
 	_cstatExpression->getStatistics()->getCollector()->addValue(value);
 	if (_filename != "") {

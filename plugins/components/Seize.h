@@ -146,7 +146,7 @@ public: // get & set
 	void setSaveAttribute(std::string _saveAttribute);
 	std::string getSaveAttribute() const;
 protected:
-	virtual void _execute(Entity* entity);
+	virtual void _onDispatchEvent(Entity* entity);
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual void _initBetweenReplications();
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);

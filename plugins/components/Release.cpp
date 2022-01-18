@@ -53,7 +53,7 @@ List<SeizableItem*>* Release::getReleaseRequests() const {
 //	return _resource;
 //}
 
-void Release::_execute(Entity* entity) {
+void Release::_onDispatchEvent(Entity* entity) {
 	for (SeizableItem* seizable : *_releaseRequests->list()) {
 		Resource* resource;
 		if (seizable->getSeizableType() == SeizableItem::SeizableType::RESOURCE) {

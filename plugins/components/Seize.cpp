@@ -200,7 +200,7 @@ Resource* Seize::_getResourceFromSeizableItem(SeizableItem* seizable, Entity* en
 	return resource;
 }
 
-void Seize::_execute(Entity* entity) {
+void Seize::_onDispatchEvent(Entity* entity) {
 	for (SeizableItem* seizable : *_seizeRequests->list()) {
 		Resource* resource = _getResourceFromSeizableItem(seizable, entity);
 		unsigned int quantity = _parentModel->parseExpression(seizable->getQuantityExpression());

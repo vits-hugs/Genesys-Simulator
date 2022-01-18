@@ -61,7 +61,7 @@ ModelComponent* Assign::LoadInstance(Model* model, std::map<std::string, std::st
 	return newComponent;
 }
 
-void Assign::_execute(Entity* entity) {
+void Assign::_onDispatchEvent(Entity* entity) {
 	Assignment* let;
 	std::list<Assignment*>* lets = this->_assignments->list();
 	for (std::list<Assignment*>::iterator it = lets->begin(); it != lets->end(); it++) {

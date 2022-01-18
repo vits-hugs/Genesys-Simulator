@@ -31,7 +31,7 @@ ModelComponent* Store::LoadInstance(Model* model, std::map<std::string, std::str
 	return newComponent;
 }
 
-void Store::_execute(Entity* entity) {
+void Store::_onDispatchEvent(Entity* entity) {
 	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
 	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }

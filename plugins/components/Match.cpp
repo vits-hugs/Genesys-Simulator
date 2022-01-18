@@ -32,7 +32,7 @@ ModelComponent* Match::LoadInstance(Model* model, std::map<std::string, std::str
 	return newComponent;
 }
 
-void Match::_execute(Entity* entity) {
+void Match::_onDispatchEvent(Entity* entity) {
 	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
 	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }

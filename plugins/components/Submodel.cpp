@@ -32,7 +32,7 @@ ModelComponent* Submodel::LoadInstance(Model* model, std::map<std::string, std::
 	return newComponent;
 }
 
-void Submodel::_execute(Entity* entity) {
+void Submodel::_onDispatchEvent(Entity* entity) {
 	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
 	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
