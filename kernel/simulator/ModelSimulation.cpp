@@ -70,10 +70,10 @@ void ModelSimulation::_traceReplicationEnded() {
 
 SimulationEvent* ModelSimulation::_createSimulationEvent(void* thiscustomObject) {
 	SimulationEvent* se = new SimulationEvent();
-	se->currentComponent = _currentComponent;
-	se->currentEntity = _currentEntity;
+	//	se->currentComponent = _currentComponent;
+	//	se->currentEntity = _currentEntity;
 	se->currentEvent = _currentEvent;
-	se->currentInputNumber = _currentInputNumber;
+	//	se->currentInputNumber = _currentInputNumber;
 	se->currentReplicationNumber = _currentReplicationNumber;
 	se->customObject = thiscustomObject;
 	se->_isPaused = this->_isPaused;
@@ -148,8 +148,9 @@ void ModelSimulation::_simulationEnded() {
 		_simulationReporter->showSimulationStatistics(); //_cStatsSimulation);
 	Util::DecIndent();
 	// clear current event
-	_currentEntity = nullptr;
-	_currentComponent = nullptr;
+	//_currentEntity = nullptr;
+	//_currentComponent = nullptr;
+	_currentEvent = nullptr;
 	//
 	std::chrono::duration<double> duration = std::chrono::system_clock::now() - this->_startRealSimulationTimeSimulation;
 	_model->getTracer()->traceSimulation(this, Util::TraceLevel::L5_event, "Simulation of model \"" + _info->getName() + "\" has finished. Elapsed time " + std::to_string(duration.count()) + " seconds.");
@@ -314,6 +315,7 @@ void ModelSimulation::_initReplication() {
 	// init all components between replications
 	Util::IncIndent();
 	tm->traceSimulation(this, Util::TraceLevel::L8_detailed, "Initing Replication");
+	Util::IncIndent();
 	for (std::list<ModelComponent*>::iterator it = _model->getComponents()->begin(); it != _model->getComponents()->end(); it++) {
 		ModelComponent::InitBetweenReplications((*it));
 	}
@@ -325,6 +327,7 @@ void ModelSimulation::_initReplication() {
 			ModelDataDefinition::InitBetweenReplications(modeldatum);
 		}
 	}
+	Util::DecIndent();
 	Util::DecIndent();
 	//}
 	Util::ResetIdOfType(Util::TypeOf<Entity>());
@@ -524,13 +527,13 @@ unsigned int ModelSimulation::getCurrentReplicationNumber() const {
 	return _currentReplicationNumber;
 }
 
-ModelComponent* ModelSimulation::getCurrentComponent() const {
-	return _currentComponent;
-}
+//ModelComponent* ModelSimulation::getCurrentComponent() const {
+//	return _currentComponent;
+//}
 
-Entity* ModelSimulation::getCurrentEntity() const {
-	return _currentEntity;
-}
+//Entity* ModelSimulation::getCurrentEvent()->getEntity() const {
+//	return _currentEntity;
+//}
 
 void ModelSimulation::setReporter(SimulationReporter_if* _simulationReporter) {
 	this->_simulationReporter = _simulationReporter;
@@ -538,11 +541,12 @@ void ModelSimulation::setReporter(SimulationReporter_if* _simulationReporter) {
 
 SimulationReporter_if* ModelSimulation::getReporter() const {
 	return _simulationReporter;
+	//_currentEvent->
 }
 
-unsigned int ModelSimulation::getCurrentInputNumber() const {
-	return _currentInputNumber;
-}
+//unsigned int ModelSimulation::getCurrentInputNumber() const {
+//	return _currentInputNumber;
+//}
 
 void ModelSimulation::setShowReportsAfterReplication(bool showReportsAfterReplication) {
 	this->_showReportsAfterReplication = showReportsAfterReplication;

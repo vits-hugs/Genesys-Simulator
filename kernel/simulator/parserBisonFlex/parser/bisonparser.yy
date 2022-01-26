@@ -311,7 +311,7 @@ kernelFunction:
     | fTFIN      { $$.valor = driver.getModel()->getSimulation()->getReplicationLength();}
     | fMAXREP    { $$.valor = driver.getModel()->getSimulation()->getNumberOfReplications();}
     | fNUMREP    { $$.valor = driver.getModel()->getSimulation()->getCurrentReplicationNumber();}
-    | fIDENT     { $$.valor = driver.getModel()->getSimulation()->getCurrentEntity()->getId();}
+    | fIDENT     { $$.valor = driver.getModel()->getSimulation()->getCurrentEvent()->getEntity()->getId();}
     | CSTAT		 { $$.valor = 0; }
     | fTAVG  "(" CSTAT ")"     {
                     StatisticsCollector* cstat = ((StatisticsCollector*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<StatisticsCollector>(), $3.id)));
@@ -386,9 +386,10 @@ illegal:
 atributo:
 	ATRIB      {  
 		double attributeValue = 0.0;
-		if (driver.getModel()->getSimulation()->getCurrentEntity() != nullptr) {
+		//std::cout << "Tentando..." << std::endl;
+		if (driver.getModel()->getSimulation()->getCurrentEvent() != nullptr) {
 			// it could crach because there may be no current entity, if the parse is running before simulation and therefore there is no CurrentEntity
-			attributeValue = driver.getModel()->getSimulation()->getCurrentEntity()->getAttributeValue($1.id);
+			attributeValue = driver.getModel()->getSimulation()->getCurrentEvent()->getEntity()->getAttributeValue($1.id);
 		}
 		//std::cout << "Passei" << std::endl;
 		$$.valor = attributeValue; 
@@ -396,27 +397,27 @@ atributo:
 	| ATRIB LBRACKET expression RBRACKET  {  
 		double attributeValue = 0.0;
 		std::string index = std::to_string(static_cast<unsigned int>($3.valor));
-		if (driver.getModel()->getSimulation()->getCurrentEntity() != nullptr) {
+		if (driver.getModel()->getSimulation()->getCurrentEvent() != nullptr) {
 			// it could crach because there may be no current entity, if the parse is running before simulation and therefore there is no CurrentEntity
-			attributeValue = driver.getModel()->getSimulation()->getCurrentEntity()->getAttributeValue(index, $1.id);
+			attributeValue = driver.getModel()->getSimulation()->getCurrentEvent()->getEntity()->getAttributeValue(index, $1.id);
 		}
 		$$.valor = attributeValue; 
 	}
 	| ATRIB LBRACKET expression "," expression RBRACKET  {  
 		double attributeValue = 0.0;
 		std::string index = std::to_string(static_cast<unsigned int>($3.valor))+","+std::to_string(static_cast<unsigned int>($5.valor));
-		if (driver.getModel()->getSimulation()->getCurrentEntity() != nullptr) {
+		if (driver.getModel()->getSimulation()->getCurrentEvent() != nullptr) {
 			// it could crach because there may be no current entity, if the parse is running before simulation and therefore there is no CurrentEntity
-			attributeValue = driver.getModel()->getSimulation()->getCurrentEntity()->getAttributeValue(index, $1.id);
+			attributeValue = driver.getModel()->getSimulation()->getCurrentEvent()->getEntity()->getAttributeValue(index, $1.id);
 		}
 		$$.valor = attributeValue; 
 	}
 	| ATRIB LBRACKET expression "," expression "," expression RBRACKET  {  
 		double attributeValue = 0.0;
 		std::string index = std::to_string(static_cast<unsigned int>($3.valor))+","+std::to_string(static_cast<unsigned int>($5.valor))+","+std::to_string(static_cast<unsigned int>($7.valor));
-		if (driver.getModel()->getSimulation()->getCurrentEntity() != nullptr) {
+		if (driver.getModel()->getSimulation()->getCurrentEvent() != nullptr) {
 			// it could crach because there may be no current entity, if the parse is running before simulation and therefore there is no CurrentEntity
-			attributeValue = driver.getModel()->getSimulation()->getCurrentEntity()->getAttributeValue(index, $1.id);
+			attributeValue = driver.getModel()->getSimulation()->getCurrentEvent()->getEntity()->getAttributeValue(index, $1.id);
 		}
 		$$.valor = attributeValue; 
 	}
@@ -457,25 +458,27 @@ atributo:
 
 	//Check if want to set the atributo or variavel with expression or just return the expression value, for now just returns expression value
 	atribuicao  : ATRIB ASSIGN expression    { 
-					driver.getModel()->getSimulation()->getCurrentEntity()->setAttributeValue("", $1.id, $3.valor);
+					// @TODO: getCurrentEvent()->getEntity() may be nullptr if simulation hasn't started yet
+					driver.getModel()->getSimulation()->getCurrentEvent()->getEntity()->setAttributeValue("", $1.id, $3.valor);
 					$$.valor = $3.valor; }
 				| ATRIB LBRACKET expression RBRACKET ASSIGN expression    { 
 					std::string index = std::to_string(static_cast<unsigned int>($3.valor));
-					driver.getModel()->getSimulation()->getCurrentEntity()->setAttributeValue(index, $1.id, $6.valor);
+					driver.getModel()->getSimulation()->getCurrentEvent()->getEntity()->setAttributeValue(index, $1.id, $6.valor);
 					$$.valor = $6.valor; }
 				| ATRIB LBRACKET expression "," expression RBRACKET ASSIGN expression   {
 					std::string index = std::to_string(static_cast<unsigned int>($3.valor))+","+std::to_string(static_cast<unsigned int>($5.valor)); 
-					driver.getModel()->getSimulation()->getCurrentEntity()->setAttributeValue(index, $1.id, $8.valor); 
+					driver.getModel()->getSimulation()->getCurrentEvent()->getEntity()->setAttributeValue(index, $1.id, $8.valor); 
 					$$.valor = $8.valor;}
 				| ATRIB LBRACKET expression "," expression "," expression RBRACKET ASSIGN expression      {
 					std::string index = std::to_string(static_cast<unsigned int>($3.valor))+","+std::to_string(static_cast<unsigned int>($5.valor))+","+std::to_string(static_cast<unsigned int>($7.valor));
-					driver.getModel()->getSimulation()->getCurrentEntity()->setAttributeValue(index, $1.id, $10.valor);
+					driver.getModel()->getSimulation()->getCurrentEvent()->getEntity()->setAttributeValue(index, $1.id, $10.valor);
 					$$.valor = $10.valor; }
 	/****begin_Assignment_plugins****/
 	/**begin_Assignment:Variable**/
 				| VARI ASSIGN expression        {
 					((Variable*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Variable>(), $1.id)))->setValue($3.valor);
-					$$.valor = $3.valor; }
+					$$.valor = $3.valor; 
+					}
 				| VARI LBRACKET expression RBRACKET ASSIGN expression    { 
 					std::string index = std::to_string(static_cast<unsigned int>($3.valor));
 					((Variable*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Variable>(), $1.id)))->setValue(index, $6.valor); 

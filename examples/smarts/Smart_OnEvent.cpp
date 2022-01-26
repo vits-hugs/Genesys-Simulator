@@ -38,7 +38,7 @@ void Smart_OnEvent::onEntityCreateHandler(SimulationEvent* re) {
 }
 
 void Smart_OnEvent::onEntityMoveHandler(SimulationEvent* re) {
-	std::cout << "(Event Handler) " << "Entity " << re->getCurrentEntity()->getName() << " was moved to component" << re->getDestinationComponent()->getName() << std::endl;
+	std::cout << "(Event Handler) " << "Entity " << re->getCurrentEvent()->getEntity()->getName() << " was moved to component" << re->getDestinationComponent()->getName() << std::endl;
 }
 
 void Smart_OnEvent::onEntityRemoveHandler(SimulationEvent* re) {

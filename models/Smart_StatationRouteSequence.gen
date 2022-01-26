@@ -1,6 +1,6 @@
 0   SimulatorInfo "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220111 
 0   ModelInfo  "Model 1" analystName="" description="" projectTitle="" version="1.0" 
-0   ModelSimulation "ModelSimulation" numberOfReplications=5 replicationLength=100.000000 traceLevel=2 
+0   ModelSimulation "ModelSimulation" numberOfReplications=5 replicationLength=100.000000 traceLevel=9 
 56  EntityType "Part" 
 59  Attribute  "index" 
 60  Variable   "varNextIndex" 

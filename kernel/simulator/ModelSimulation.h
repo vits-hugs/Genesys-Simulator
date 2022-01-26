@@ -75,9 +75,9 @@ public: // only gets
 	bool isRunning() const;
 	bool isPaused() const;
 	unsigned int getCurrentReplicationNumber() const;
-	ModelComponent* getCurrentComponent() const;
-	Entity* getCurrentEntity() const;
-	unsigned int getCurrentInputNumber() const;
+	//ModelComponent* getCurrentComponent() const;
+	//Entity* getCurrentEntity() const;
+	//unsigned int getCurrentInputNumber() const;
 	void setShowReportsAfterReplication(bool showReportsAfterReplication);
 	bool isShowReportsAfterReplication() const;
 	void setShowReportsAfterSimulation(bool showReportsAfterSimulation);
@@ -166,9 +166,9 @@ private:
 	std::chrono::system_clock::time_point _startRealSimulationTimeReplication;
 private:
 	// currenEntity, currentComponent and currentInputNumber could be taken throught currentEvent only
-	Entity* _currentEntity = nullptr;
-	ModelComponent* _currentComponent = nullptr;
-	unsigned int _currentInputNumber = 0;
+	//Entity* _currentEntity = nullptr;
+	//ModelComponent* _currentComponent = nullptr;
+	//unsigned int _currentInputNumber = 0;
 	Event* _currentEvent = nullptr;
 	unsigned int _currentReplicationNumber;
 private:
