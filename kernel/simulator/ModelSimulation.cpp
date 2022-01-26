@@ -111,9 +111,12 @@ void ModelSimulation::start() {
 			Util::IncIndent();
 		}
 		replicationEnded = _isReplicationEndCondition();
-		while (!replicationEnded && !_pauseRequested) { // this is the main simulation loop
+		while (!replicationEnded) { // this is the main simulation loop
 			_stepSimulation();
 			replicationEnded = _isReplicationEndCondition();
+			if (_pauseRequested) { //check this only after _stepSimulation() and not on loop entering conditin
+				break;
+			}
 		};
 		if (replicationEnded) {
 			Util::SetIndent(1); // force
