@@ -113,7 +113,7 @@ protected:
 	virtual bool _check(std::string* errorMessage);
 	virtual void _createInternalData();
 private: // association
-	Station* _station;
+    Station* _station = nullptr;
 private: // internel elements
 	Counter* _numberIn = nullptr;
 };

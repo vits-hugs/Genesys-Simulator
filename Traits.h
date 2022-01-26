@@ -56,7 +56,6 @@
 template <typename T>
 struct Traits {
 };
-
 /*!
  *  Configure the Genesys Application to be compiled and executed
  */
@@ -64,23 +63,23 @@ template <> struct Traits<GenesysApplication_if> {
 	static const Util::TraceLevel traceLevel = Util::TraceLevel::L6_arrival;
 
 	//// SMART SMART_S SORTED
-	//typedef Smart_AssignWriteSeizes Application; //ERROR
-	//typedef Smart_BatchSeparate Application; //ERROR
+	//typedef Smart_AssignWriteSeizes Application;
+	//typedef Smart_BatchSeparate Application;
 	//typedef Smart_Delay Application;
 	//typedef Smart_Dummy Application;
 	//typedef Smart_HoldSignal Application;
 	//typedef Smart_ModelInfoModelSimulation Application;
 	//typedef Smart_ODE Application;
-	//typedef Smart_OnEvent Application; // ERROR NAO SEGUE
+	//typedef Smart_OnEvent Application;
 	//typedef Smart_Parser Application;
-	//typedef Smart_ParserModelFunctions Application; // ERROR
+	//typedef Smart_ParserModelFunctions Application;
 	//typedef Smart_Plugin Application;
-	//typedef Smart_Process Application; // ERROR NAO SEGUE
-	//typedef Smart_ProcessSet Application;// ERROR NAO SEGUE
+	//typedef Smart_Process Application;
+	//typedef Smart_ProcessSet Application;
 	//typedef Smart_RouteStation Application;
 	//typedef Smart_SeizeDelayRelease Application;
-	//typedef Smart_SeizeDelayReleaseMany Application; // ERROR NAO SEGUE
-	//typedef Smart_Sequence Application; //ERROR
+	//typedef Smart_SeizeDelayReleaseMany Application; 
+	//typedef Smart_Sequence Application;
 	//typedef Smart_CppForG Application;
 
 	//// TEACHING
@@ -91,7 +90,7 @@ template <> struct Traits<GenesysApplication_if> {
 	//// APPLICATIONS
 	//typedef GenesysTerminalApp Application;
 	//typedef GenesysQtGUIFull Application;
-	//typedef SimpleQtGUI Application;
+	typedef SimpleQtGUI Application;
 };
 
 /*!

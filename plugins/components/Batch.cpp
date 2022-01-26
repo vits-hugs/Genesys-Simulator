@@ -16,7 +16,7 @@
 #include "../../kernel/simulator/Model.h"
 #include "../../kernel/simulator/Attribute.h"
 #include "../../plugins/data/EntityGroup.h"
-#include "kernel/simulator/Simulator.h"
+#include "../../kernel/simulator/Simulator.h"
 
 #ifdef PLUGINCONNECT_DYNAMIC
 
