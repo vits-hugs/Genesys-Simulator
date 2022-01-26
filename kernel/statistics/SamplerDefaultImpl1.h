@@ -47,8 +47,8 @@ public: // continuous probability distributions
 public: // discrete probability distributions   
 	virtual double sampleBinomial(int trials, double p);
 	virtual double sampleBernoulli(double p);
-	virtual double sampleDiscrete(double acumProb, double value, ...);
-	virtual double sampleDiscrete(double acumProb, double *prob, double *value, int size);
+	virtual double sampleDiscrete(double prob, double value, ...);
+	virtual double sampleDiscrete(double *prob, double *value, int size);
 	virtual double sampleGeometric(double p);
 public:
 	void reset(); ///< reinitialize seed and other parameters so (pseudo) random number sequence will be generated again.

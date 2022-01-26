@@ -6,27 +6,6 @@
     </data>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="45">
         <file>
-            <url>kernel/simulator/EntityType.cpp</url>
-            <bookmark id="45">
-                <name/>
-                <line>146</line>
-                <key/>
-            </bookmark>
-        </file>
-        <file>
-            <url>kernel/simulator/ExperimentManager.cpp</url>
-            <bookmark id="37">
-                <name/>
-                <line>50</line>
-                <key/>
-            </bookmark>
-            <bookmark id="38">
-                <name/>
-                <line>60</line>
-                <key/>
-            </bookmark>
-        </file>
-        <file>
             <url>plugins/elements/Variable.cpp</url>
             <bookmark id="44">
                 <name/>
@@ -44,40 +23,6 @@
             <bookmark id="41">
                 <name/>
                 <line>52</line>
-                <key/>
-            </bookmark>
-        </file>
-        <file>
-            <url>kernel/simulator/ExperimentManagerDefaultImpl1.cpp</url>
-            <bookmark id="39">
-                <name/>
-                <line>19</line>
-                <key/>
-            </bookmark>
-        </file>
-        <file>
-            <url>kernel/simulator/parserBisonFlex/parser/lexerparser.ll</url>
-            <bookmark id="32">
-                <name/>
-                <line>210</line>
-                <key/>
-            </bookmark>
-        </file>
-        <file>
-            <url>kernel/TraitsKernel.h</url>
-            <bookmark id="33">
-                <name/>
-                <line>71</line>
-                <key/>
-            </bookmark>
-            <bookmark id="34">
-                <name/>
-                <line>96</line>
-                <key/>
-            </bookmark>
-            <bookmark id="35">
-                <name/>
-                <line>111</line>
                 <key/>
             </bookmark>
         </file>
@@ -125,10 +70,65 @@
             </bookmark>
         </file>
         <file>
+            <url>kernel/TraitsKernel.h</url>
+            <bookmark id="33">
+                <name/>
+                <line>71</line>
+                <key/>
+            </bookmark>
+            <bookmark id="34">
+                <name/>
+                <line>96</line>
+                <key/>
+            </bookmark>
+            <bookmark id="35">
+                <name/>
+                <line>111</line>
+                <key/>
+            </bookmark>
+        </file>
+        <file>
+            <url>kernel/simulator/EntityType.cpp</url>
+            <bookmark id="45">
+                <name/>
+                <line>157</line>
+                <key/>
+            </bookmark>
+        </file>
+        <file>
             <url>kernel/simulator/ConnectionManager.cpp</url>
             <bookmark id="36">
                 <name/>
                 <line>53</line>
+                <key/>
+            </bookmark>
+        </file>
+        <file>
+            <url>kernel/simulator/ExperimentManager.cpp</url>
+            <bookmark id="37">
+                <name/>
+                <line>50</line>
+                <key/>
+            </bookmark>
+            <bookmark id="38">
+                <name/>
+                <line>60</line>
+                <key/>
+            </bookmark>
+        </file>
+        <file>
+            <url>kernel/simulator/ExperimentManagerDefaultImpl1.cpp</url>
+            <bookmark id="39">
+                <name/>
+                <line>19</line>
+                <key/>
+            </bookmark>
+        </file>
+        <file>
+            <url>kernel/simulator/parserBisonFlex/parser/lexerparser.ll</url>
+            <bookmark id="32">
+                <name/>
+                <line>210</line>
                 <key/>
             </bookmark>
         </file>
@@ -147,15 +147,7 @@
             <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/plugins/elements/Variable.cpp</file>
         </group>
         <group name="GenESyS">
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/SimpleGUI.pro</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/simulator/parserBisonFlex/parser/lexerparser.ll</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/simulator/parserBisonFlex/parser/bisonparser.yy</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/simulator/parserBisonFlex/Genesys++-scanner.cpp</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/simulator/ModelDataManager.cpp</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/examples/smarts/Smart_ParserModelFunctions.cpp</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/simulator/ModelDataDefinition.h</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/simulator/ModelDataManager.h</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/simulator/Model.h</file>
+            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/Traits.h</file>
         </group>
     </open-files>
 </project-private>

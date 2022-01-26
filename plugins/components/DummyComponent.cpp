@@ -14,6 +14,17 @@
 #include "DummyComponent.h"
 #include "../../kernel/simulator/Model.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &DummyComponent::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* DummyComponent::NewInstance(Model* model, std::string name) {
+	return new DummyComponent(model, name);
+}
+
 DummyComponent::DummyComponent(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<DummyComponent>(), name) {
 }
 
@@ -62,7 +73,7 @@ std::map<std::string, std::string>* DummyComponent::_saveInstance(bool saveDefau
 //void DummyComponent::_createInternalData() {}
 
 PluginInformation* DummyComponent::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<DummyComponent>(), &DummyComponent::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<DummyComponent>(), &DummyComponent::LoadInstance, &DummyComponent::NewInstance);
 	info->setDescriptionHelp("//@TODO");
 	return info;
 }

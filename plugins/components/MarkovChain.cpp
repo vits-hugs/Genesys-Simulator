@@ -19,6 +19,17 @@
 #include "../../kernel/simulator/Simulator.h"
 #include "../../kernel/TraitsKernel.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &MarkovChain::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* MarkovChain::NewInstance(Model* model, std::string name) {
+	return new MarkovChain(model, name);
+}
+
 MarkovChain::MarkovChain(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<MarkovChain>(), name) {
 	_sampler = new TraitsKernel<Sampler_if>::Implementation();
 }
@@ -132,7 +143,7 @@ bool MarkovChain::_check(std::string* errorMessage) {
 }
 
 PluginInformation* MarkovChain::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<MarkovChain>(), &MarkovChain::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<MarkovChain>(), &MarkovChain::LoadInstance, &MarkovChain::NewInstance);
 	info->setCategory("Logic");
 	// ...
 	return info;

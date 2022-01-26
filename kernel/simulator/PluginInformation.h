@@ -24,20 +24,21 @@ class ModelComponent;
 class Model;
 class ModelDataManager;
 
-// @TODO: the following 2 types were diffferent but now on they are the same and should be merged
 typedef ModelComponent* (*StaticLoaderComponentInstance)(Model*, std::map<std::string, std::string>*);
-typedef ModelDataDefinition* (*StaticLoaderElementInstance)(Model*, std::map<std::string, std::string>*);
+typedef ModelDataDefinition* (*StaticLoaderDataDefinitionInstance)(Model*, std::map<std::string, std::string>*);
+typedef ModelDataDefinition* (*StaticConstructorDataDefinitionInstance)(Model*, std::string);
 class PluginInformation;
 typedef PluginInformation* (*StaticGetPluginInformation)();
 
 class PluginInformation {
 public:
-	PluginInformation(std::string pluginTypename, StaticLoaderComponentInstance componentloader);
-	PluginInformation(std::string pluginTypename, StaticLoaderElementInstance elementloader);
+	PluginInformation(std::string pluginTypename, StaticLoaderComponentInstance componentloader, StaticConstructorDataDefinitionInstance elementConstructor);
+	PluginInformation(std::string pluginTypename, StaticLoaderDataDefinitionInstance elementloader, StaticConstructorDataDefinitionInstance elementConstructor);
 public:
 	// gets
-	StaticLoaderElementInstance getElementLoader() const;
+	StaticLoaderDataDefinitionInstance getDataDefinitionLoader() const;
 	StaticLoaderComponentInstance GetComponentLoader() const;
+	StaticConstructorDataDefinitionInstance getDataDefinitionConstructor() const;
 	bool isGenerateReport() const;
 	bool isComponent() const;
 	bool isSendTransfer() const;
@@ -74,7 +75,7 @@ public:
 	std::string getDescriptionHelp() const;
 	void setFields(std::map<std::string, std::string>* _fiewlds);
 	std::map<std::string, std::string>* getFields() const;
-    void setLanguageTemplate(std::string _languageTemplate);
+	void setLanguageTemplate(std::string _languageTemplate);
 	std::string getLanguageTemplate() const;
 	void setCategory(std::string _category);
 	std::string getCategory() const;
@@ -102,7 +103,8 @@ private:
 	unsigned short _minimumOutputs = 1;
 	unsigned short _maximumOutputs = 1;
 	StaticLoaderComponentInstance _componentloader;
-	StaticLoaderElementInstance _elementloader;
+	StaticLoaderDataDefinitionInstance _elementloader;
+	StaticConstructorDataDefinitionInstance _elementConstructor;
 };
 //namespace\\}
 

@@ -12,6 +12,17 @@
 
 #include "DummyElement.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &DummyElement::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* DummyElement::NewInstance(Model* model, std::string name) {
+	return new DummyElement(model, name);
+}
+
 DummyElement::DummyElement(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<DummyElement>(), name) {
 }
 
@@ -28,7 +39,7 @@ ModelDataDefinition* DummyElement::LoadInstance(Model* model, std::map<std::stri
 }
 
 PluginInformation* DummyElement::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<DummyElement>(), &DummyElement::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<DummyElement>(), &DummyElement::LoadInstance, &DummyElement::NewInstance);
 	info->setDescriptionHelp("//@TODO");
 	//info->setDescriptionHelp("");
 	//info->setObservation("");

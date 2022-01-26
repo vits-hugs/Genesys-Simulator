@@ -41,33 +41,34 @@ int Smart_RouteStation::main(int argc, char** argv) {
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
 	Model* model = genesys->getModels()->newModel();
-	Create* create1 = new Create(model);
-	create1->setEntityType(new EntityType(model));
+	PluginManager* plugins = genesys->getPlugins();
+	Create* create1 = plugins->newInstance<Create>(model);
+	create1->setEntityType(plugins->newInstance<EntityType>(model));
 	create1->setTimeBetweenCreationsExpression("4.0");
-	Station* station1 = new Station(model);
-	Route* route1 = new Route(model);
+	Station* station1 = plugins->newInstance<Station>(model);
+	Route* route1 = plugins->newInstance<Route>(model);
 	route1->setStation(station1);
 	route1->setRouteTimeExpression("0.1");
 	//
-	Enter* enter1 = new Enter(model);
+	Enter* enter1 = plugins->newInstance<Enter>(model);
 	enter1->setStation(station1);
-	Delay* delay1 = new Delay(model);
-	Station* station2 = new Station(model);
-	Route* route2 = new Route(model);
+	Delay* delay1 = plugins->newInstance<Delay>(model);
+	Station* station2 = plugins->newInstance<Station>(model);
+	Route* route2 = plugins->newInstance<Route>(model);
 	route2->setStation(station2);
 	route2->setRouteTimeExpression("0.2");
 	//
-	Enter* enter2 = new Enter(model);
+	Enter* enter2 = plugins->newInstance<Enter>(model);
 	enter2->setStation(station2);
-	Delay* delay2 = new Delay(model);
-	Station* station3 = new Station(model);
-	Route* route3 = new Route(model);
+	Delay* delay2 = plugins->newInstance<Delay>(model);
+	Station* station3 = plugins->newInstance<Station>(model);
+	Route* route3 = plugins->newInstance<Route>(model);
 	route3->setStation(station3);
 	route3->setRouteTimeExpression("0.3");
 	//
-	Enter* enter3 = new Enter(model);
+	Enter* enter3 = plugins->newInstance<Enter>(model);
 	enter3->setStation(station3);
-	Dispose* dispose1 = new Dispose(model);
+	Dispose* dispose1 = plugins->newInstance<Dispose>(model);
 	//
 	create1->getConnections()->insert(route1);
 	enter1->getConnections()->insert(delay1);

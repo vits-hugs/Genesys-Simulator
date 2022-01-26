@@ -15,6 +15,17 @@
 
 #include "../../kernel/simulator/Model.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Signal::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Signal::NewInstance(Model* model, std::string name) {
+	return new Signal(model, name);
+}
+
 Signal::Signal(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Signal>(), name) {
 }
 
@@ -61,7 +72,7 @@ bool Signal::_check(std::string* errorMessage) {
 }
 
 PluginInformation* Signal::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Signal>(), &Signal::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Signal>(), &Signal::LoadInstance, &Signal::NewInstance);
 	// ...
 	return info;
 }

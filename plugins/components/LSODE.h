@@ -30,6 +30,7 @@ public: // virtual
 public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public: // g&s
 	void setTimeVariable(Variable* _timeVariable);
 	Variable* getTimeVariable() const;

@@ -15,6 +15,17 @@
 #include "../../kernel/simulator/Model.h"
 #include "../../kernel/simulator/Counter.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Decide::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Decide::NewInstance(Model* model, std::string name) {
+	return new Decide(model, name);
+}
+
 Decide::Decide(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Decide>(), name) {
 }
 
@@ -103,7 +114,7 @@ void Decide::_createInternalData() {
 }
 
 PluginInformation* Decide::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Decide>(), &Decide::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Decide>(), &Decide::LoadInstance, &Decide::NewInstance);
 	info->setCategory("Decisions");
 	std::string help = "This module allows for decision-making processes in the system.";
 	help += " It includes options to make decisions based on one or more conditions(for example, if entity type is Gold Card) or based on one or more probabilities(for example, 75 %, true; 25 %, false).";

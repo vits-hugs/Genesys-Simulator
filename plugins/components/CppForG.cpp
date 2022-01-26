@@ -13,6 +13,17 @@
 #include "CppForG.h"
 #include "../../kernel/simulator/Model.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &CppForG::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* CppForG::NewInstance(Model* model, std::string name) {
+	return new CppForG(model, name);
+}
+
 CppForG::CppForG(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<CppForG>(), name) {
 	_createInternalData();
 }
@@ -89,7 +100,7 @@ void CppForG::_createInternalData() {
 }
 
 PluginInformation* CppForG::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<CppForG>(), &CppForG::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<CppForG>(), &CppForG::LoadInstance, &CppForG::NewInstance);
 	info->setCategory("Logic");
 	info->insertDynamicLibFileDependence("cppcode.so");
 	info->setDescriptionHelp("//@TODO");

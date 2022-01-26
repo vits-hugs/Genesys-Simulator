@@ -40,18 +40,19 @@ int Smart_Dummy::main(int argc, char** argv) {
 	// Handle traces and simulation events to output them
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	Model* model = genesys->getModels()->newModel();
+	PluginManager* plugins = genesys->getPlugins();
 	model->getSimulation()->setReplicationLength(60);
 	// create a (Source)ModelDataDefinition of type EntityType, used by a ModelComponent that follows
-	EntityType* entityType1 = new EntityType(model, "Type_of_Representative_Entity");
+	EntityType* entityType1 = plugins->newInstance<EntityType>(model, "Type_of_Representative_Entity");
 	// create a ModelComponent of type Create, used to insert entities into the model
-	Create* create1 = new Create(model);
+	Create* create1 = plugins->newInstance<Create>(model);
 	create1->setEntityType(entityType1);
 	create1->setTimeBetweenCreationsExpression("1.5"); // create one new entity every 1.5 seconds
 	// create a ModelComponent of type Delay, used to represent a time delay
-	Delay* delay1 = new Delay(model);
+	Delay* delay1 = plugins->newInstance<Delay>(model);
 	// if nothing else is set, the delay will take 1 second
 	// create a (Sink)ModelComponent of type Dispose, used to remove entities from the model
-	Dispose* dispose1 = new Dispose(model); // insert the component into the model
+	Dispose* dispose1 = plugins->newInstance<Dispose>(model); // insert the component into the model
 	// connect model components to create a "workflow" -- should always start from a SourceModelComponent and end at a SinkModelComponent (it will be checked)
 	create1->getConnections()->insert(delay1);
 	delay1->getConnections()->insert(dispose1);

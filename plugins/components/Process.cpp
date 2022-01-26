@@ -12,7 +12,18 @@
  */
 
 #include "Process.h"
-//#include "../../kernel/simulator/Model.h"
+#include "../../kernel/simulator/Simulator.h"
+
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Process::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Process::NewInstance(Model* model, std::string name) {
+	return new Process(model, name);
+}
 
 Process::Process(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Process>(), name) {
 	_createInternalData(); // its's called by the constructor because internal components can be accessed by process' public methods, so they must exist ever since
@@ -90,9 +101,10 @@ void Process::_onDispatchEvent(Entity* entity) {
 
 void Process::_createInternalData() {
 	if (seize == nullptr) {
-		seize = new Seize(_parentModel, getName() + ".Seize");
-		delay = new Delay(_parentModel, getName() + ".Delay");
-		release = new Release(_parentModel, getName() + ".Release");
+		PluginManager* plugins = _parentModel->getParentSimulator()->getPlugins();
+		seize = plugins->newInstance<Seize>(_parentModel, getName() + ".Seize");
+		delay = plugins->newInstance<Delay>(_parentModel, getName() + ".Delay");
+		release = plugins->newInstance<Release>(_parentModel, getName() + ".Release");
 		seize->getConnections()->insert(delay);
 		delay->getConnections()->insert(release);
 		_internalData->insert({"Seize", seize});
@@ -139,7 +151,7 @@ bool Process::_check(std::string* errorMessage) {
 }
 
 PluginInformation* Process::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Process>(), &Process::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Process>(), &Process::LoadInstance, &Process::NewInstance);
 	info->insertDynamicLibFileDependence("seize.so");
 	info->insertDynamicLibFileDependence("delay.so");
 	info->insertDynamicLibFileDependence("release.so");

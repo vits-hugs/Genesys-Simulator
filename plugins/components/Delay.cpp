@@ -15,6 +15,17 @@
 #include "../../kernel/simulator/Model.h"
 #include "../../kernel/simulator/Attribute.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Delay::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Delay::NewInstance(Model* model, std::string name) {
+	return new Delay(model, name);
+}
+
 Delay::Delay(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Delay>(), name) {
 
 	GetterMember getter = DefineGetterMember<Delay>(this, &Delay::delay);
@@ -137,7 +148,7 @@ void Delay::_createInternalData() {
 }
 
 PluginInformation* Delay::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Delay>(), &Delay::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Delay>(), &Delay::LoadInstance, &Delay::NewInstance);
 	std::string text = "The Delay module delays an entity by a specified amount of time.";
 	text += " When an entity arrives at a Delay module, the time delay expression is evaluated and the entity remains in the module for the resulting time.";
 	text += " The time is then allocated to the entity’s value-added, non-value added, transfer, wait, or other time.";

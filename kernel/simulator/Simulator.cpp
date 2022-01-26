@@ -119,7 +119,7 @@ bool Simulator::_completePluginsFieldsAndTemplate() {
 					info->getFields()->insert({field.first, ""});
 				}
 				std::string templateLanguage = tempModel->getPersistence()->getFormatedField(fields);
-                //std::cout << info->getPluginTypename() << ": " << templateLanguage << std::endl;
+				//std::cout << info->getPluginTypename() << ": " << templateLanguage << std::endl;
 				info->setLanguageTemplate(templateLanguage);
 			}
 		} catch (...) {

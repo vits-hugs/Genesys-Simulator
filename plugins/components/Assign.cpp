@@ -18,6 +18,17 @@
 #include "../../kernel/simulator/Attribute.h"
 #include "../data/Resource.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Assign::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Assign::NewInstance(Model* model, std::string name) {
+	return new Assign(model, name);
+}
+
 Assign::Assign(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Assign>(), name) {
 }
 
@@ -35,7 +46,7 @@ List<Assign::Assignment*>* Assign::getAssignments() const {
 }
 
 PluginInformation* Assign::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Assign>(), &Assign::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Assign>(), &Assign::LoadInstance, &Assign::NewInstance);
 	//info->insertDynamicLibFileDependence("attribute.so");
 	info->insertDynamicLibFileDependence("variable.so");
 	info->setCategory("Discrete Processing");

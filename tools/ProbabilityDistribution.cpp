@@ -50,7 +50,7 @@ double ProbabilityDistribution::exponential(double x, double mean) {
 
 double ProbabilityDistribution::fisherSnedecor(double x, double d1, double d2) {
 	assert(x >= 0);
-	double x1 = 1 / _betaFunction(d1 / 2, d2 / 2);
+	double x1 = 1 / _betaFunction(d1 / 2, d2 / 2); //@TODO: Reimplement using _gammaFunction, but NOT _betaFunction
 	double x2 = pow(d1 / d2, d1 / 2) * pow(x, d1 / 2 - 1);
 	double x3 = pow(1 + (d1 / d2) * x, -(d1 + d2) / 2);
 	return x1 * x2 * x3;

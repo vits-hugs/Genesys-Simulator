@@ -31,9 +31,8 @@ public: // virtual
 public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
-
 	void setPriority(unsigned short _priority);
 	unsigned short getPriority() const;
 	void setAllocationType(unsigned int _allocationType);
@@ -47,9 +46,6 @@ public:
 	std::string delayExpression() const;
 	void setDelayTimeUnit(Util::TimeUnit _delayTimeUnit);
 	Util::TimeUnit delayTimeUnit() const;
-
-
-
 protected: // virtual
 	virtual void _onDispatchEvent(Entity* entity);
 	// virtual void _initBetweenReplications();

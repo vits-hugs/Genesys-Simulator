@@ -41,6 +41,22 @@ public:
 	Plugin* last();
 	unsigned int size();
 	Plugin* getAtRank(unsigned int rank);
+public:
+	template <typename T>T* newInstance(Model* model, std::string name = "") {
+		Plugin* plugin;
+		std::string pluginTypename = Util::TypeOf<T>();
+		for (unsigned short i = 0; i < _plugins->size(); i++) {
+			plugin = _plugins->getAtRank(i);
+			if (plugin->getPluginInfo()->getPluginTypename() == pluginTypename) {
+				T* instance;
+				StaticConstructorDataDefinitionInstance constructor = plugin->getPluginInfo()->getDataDefinitionConstructor();
+				instance = static_cast<T*> (constructor(model, name));
+				return instance;
+			}
+		}
+		_simulator->getTracer()->trace(Util::TraceLevel::L1_errorFatal, "Error: Could not find any plugin with Typename \"" + pluginTypename + "\"");
+		return nullptr;
+	}
 private:
 	bool _insert(Plugin* plugin);
 	void _insertDefaultKernelElements();

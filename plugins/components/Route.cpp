@@ -18,6 +18,17 @@
 #include "../../kernel/simulator/Simulator.h"
 #include "../data/Sequence.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Route::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Route::NewInstance(Model* model, std::string name) {
+	return new Route(model, name);
+}
+
 Route::Route(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Route>(), name) {
 }
 
@@ -175,7 +186,7 @@ bool Route::_check(std::string* errorMessage) {
 }
 
 PluginInformation* Route::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Route>(), &Route::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Route>(), &Route::LoadInstance, &Route::NewInstance);
 	info->setSendTransfer(true);
 	info->setCategory("Material Handling");
 	info->insertDynamicLibFileDependence("station.so");

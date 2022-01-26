@@ -54,6 +54,7 @@ public:
 public:
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 protected:
 	virtual void _onDispatchEvent(Entity* entity);
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);

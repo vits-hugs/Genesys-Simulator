@@ -15,6 +15,17 @@
 
 #include "../../kernel/simulator/Model.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &PickStation::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* PickStation::NewInstance(Model* model, std::string name) {
+	return new PickStation(model, name);
+}
+
 PickStation::PickStation(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<PickStation>(), name) {
 }
 
@@ -61,7 +72,7 @@ bool PickStation::_check(std::string* errorMessage) {
 }
 
 PluginInformation* PickStation::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<PickStation>(), &PickStation::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<PickStation>(), &PickStation::LoadInstance, &PickStation::NewInstance);
 	info->insertDynamicLibFileDependence("station.so");
 	std::string text = "The PickStation module allows an entity to select a station from the multiple stations specified.";
 	text += " This module picks among the group of stations based on the selection logic defined with the module.";

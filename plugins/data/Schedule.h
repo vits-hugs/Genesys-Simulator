@@ -78,6 +78,7 @@ public: // virtual
 public: // static 
 	static PluginInformation* GetPluginInformation();
 	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
 protected:
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);

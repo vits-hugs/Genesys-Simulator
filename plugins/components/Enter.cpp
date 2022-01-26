@@ -15,6 +15,17 @@
 #include "../../kernel/simulator/Model.h"
 #include "../../kernel/simulator/Counter.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Enter::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Enter::NewInstance(Model* model, std::string name) {
+	return new Enter(model, name);
+}
+
 Enter::Enter(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Enter>(), name) {
 }
 
@@ -77,7 +88,7 @@ bool Enter::_check(std::string* errorMessage) {
 }
 
 PluginInformation* Enter::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Enter>(), &Enter::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Enter>(), &Enter::LoadInstance, &Enter::NewInstance);
 	info->setReceiveTransfer(true);
 	info->setCategory("Material Handling");
 	info->insertDynamicLibFileDependence("station.so");

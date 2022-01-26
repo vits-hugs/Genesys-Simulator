@@ -14,6 +14,17 @@
 #include "Leave.h"
 #include "../../kernel/simulator/Model.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Leave::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Leave::NewInstance(Model* model, std::string name) {
+	return new Leave(model, name);
+}
+
 Leave::Leave(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Leave>(), name) {
 }
 
@@ -75,7 +86,7 @@ bool Leave::_check(std::string* errorMessage) {
 }
 
 PluginInformation* Leave::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Leave>(), &Leave::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Leave>(), &Leave::LoadInstance, &Leave::NewInstance);
 	info->insertDynamicLibFileDependence("station.so");
 	info->setCategory("Material Handling");
 	return info;

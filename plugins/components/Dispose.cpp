@@ -14,6 +14,17 @@
 #include "Dispose.h"
 #include "../../kernel/simulator/Model.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Dispose::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Dispose::NewInstance(Model* model, std::string name) {
+	return new Dispose(model, name);
+}
+
 Dispose::Dispose(Model* model, std::string name) : SinkModelComponent(model, Util::TypeOf<Dispose>(), name) {
 	//_numberOut = new Counter(_parentModel, getName() + "." + "Count_number_out", this);
 	_connections->setMinOutputConnections(0);
@@ -71,7 +82,7 @@ void Dispose::_createInternalData() {
 }
 
 PluginInformation* Dispose::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Dispose>(), &Dispose::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Dispose>(), &Dispose::LoadInstance, &Dispose::NewInstance);
 	info->setSink(true);
 	std::string text = "This module is intended as the ending point for entities in a simulation model.";
 	text += " Entity statistics may be recorded before the entity is disposed.";

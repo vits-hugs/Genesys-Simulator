@@ -18,6 +18,7 @@
 #include "Counter.h"
 #include "EntityType.h"
 #include "StatisticsCollector.h"
+#include "Model.h"
 
 //using namespace GenesysKernel;
 

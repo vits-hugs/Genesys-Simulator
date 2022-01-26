@@ -16,6 +16,18 @@
 #include "../../kernel/simulator/Model.h"
 #include "../../kernel/simulator/Attribute.h"
 #include "../../plugins/data/EntityGroup.h"
+#include "kernel/simulator/Simulator.h"
+
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Batch::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Batch::NewInstance(Model* model, std::string name) {
+	return new Batch(model, name);
+}
 
 Batch::Batch(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Batch>(), name) {
 }
@@ -113,6 +125,7 @@ void Batch::_onDispatchEvent(Entity* entity) {
 					}
 				}
 				_parentModel->getTracer()->traceSimulation(this, Util::TraceLevel::L7_internal, "Found " + std::to_string(entitiesToGroup->size()) + " elements in queue with the same value (" + std::to_string(value) + ") for attribute \"" + _attributeName + "\", and a group will be created");
+				break;
 				exit; //breake? //next?
 			}
 		}
@@ -214,7 +227,8 @@ std::map<std::string, std::string>* Batch::_saveInstance(bool saveDefaultValues)
 
 void Batch::_createInternalData() {
 	if (_queue == nullptr) {
-		_queue = new Queue(_parentModel, this->getName() + ".Queue");
+		PluginManager* plugins = _parentModel->getParentSimulator()->getPlugins();
+		_queue = plugins->newInstance<Queue>(_parentModel, this->getName() + ".Queue");
 		_internalData->insert({"EntityQueue", _queue});
 		_entityGroup = new EntityGroup(_parentModel, this->getName() + ".EntiyGroup");
 		_internalData->insert({"EntityGroup", _entityGroup});
@@ -233,7 +247,7 @@ bool Batch::_check(std::string * errorMessage) {
 }
 
 PluginInformation * Batch::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Batch>(), &Batch::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Batch>(), &Batch::LoadInstance, &Batch::NewInstance);
 	info->insertDynamicLibFileDependence("entitygroup.so");
 	info->insertDynamicLibFileDependence("queue.so");
 	info->setCategory("Grouping");

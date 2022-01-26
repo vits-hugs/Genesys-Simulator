@@ -28,10 +28,11 @@ int Smart_CppForG::main(int argc, char** argv) {
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
 	Model* m = genesys->getModels()->newModel();
-	Create* cr = new Create(m);
-	cr->setEntityType(new EntityType(m));
-	CppForG* sc = new CppForG(m);
-	Dispose* di = new Dispose(m);
+	PluginManager* plugins = genesys->getPlugins();
+	Create* cr = plugins->newInstance<Create>(m);
+	cr->setEntityType(plugins->newInstance<EntityType>(m));
+	CppForG* sc = plugins->newInstance<CppForG>(m);
+	Dispose* di = plugins->newInstance<Dispose>(m);
 	cr->getConnections()->insert(sc);
 	sc->getConnections()->insert(di);
 	ModelSimulation* s = m->getSimulation();

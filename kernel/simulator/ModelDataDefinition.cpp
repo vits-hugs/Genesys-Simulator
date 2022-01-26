@@ -14,6 +14,7 @@
 //#include <typeinfo>
 #include "ModelDataDefinition.h"
 #include <iostream>   
+#include <cassert>
 #include "Model.h"
 #include "../TraitsKernel.h"
 
@@ -220,6 +221,12 @@ ModelDataDefinition* ModelDataDefinition::LoadInstance(Model* model, std::map<st
 
 	}
 	return newElement;
+}
+
+ModelDataDefinition* ModelDataDefinition::NewInstance(Model* model, std::string name) {
+	//nobody will never call this static method. Only its subclasses
+	assert(false);
+	return nullptr;
 }
 
 std::map<std::string, std::string>* ModelDataDefinition::SaveInstance(ModelDataDefinition* modeldatum) {

@@ -14,6 +14,17 @@
 #include "Store.h"
 #include "../../kernel/simulator/Model.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Store::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Store::NewInstance(Model* model, std::string name) {
+	return new Store(model, name);
+}
+
 Store::Store(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Store>(), name) {
 }
 
@@ -60,7 +71,7 @@ bool Store::_check(std::string* errorMessage) {
 }
 
 PluginInformation* Store::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Store>(), &Store::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Store>(), &Store::LoadInstance, &Store::NewInstance);
 	info->setCategory("Material Handling");
 	// ...
 	return info;

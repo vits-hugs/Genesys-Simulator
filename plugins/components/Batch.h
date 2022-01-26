@@ -73,6 +73,8 @@ public: // virtual
 public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+public:
     void setGroupedEntityType(EntityType* _groupedEntityType);
     EntityType* getGroupedEntityType() const;
     void setAttributeName(std::string _attributeName);

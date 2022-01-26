@@ -50,6 +50,8 @@ public: // get & set
 public: // static
 	/*! This class method receives a map of fields readed from a file (or somewhere else) creates an instace of the ModelDatas and inokes the protected method _loadInstance() of that instance, whch fills the field values. The instance can be automatticaly inserted into the simulation model if required*/
 	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields, bool insertIntoModel); // @TODO: return ModelComponent* ?
+	/*! This class method invokes the constructor and returns a new instance (that demands a typecast to the rigth subclass). It is used to construct a new instance when plugins are connected using dynamic loaded libraries*/
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 	/*! This class method takes an instance of a ModelDataDefinition, invokes the protected method _saveInstance() of that instance and retorns a map of filds (name=value) that can be saved on a file (or somewhere else)*/
 	static std::map<std::string, std::string>* SaveInstance(ModelDataDefinition* modeldatum);
 	/*! This class method takes an instance of a ModelDataDefinition and invokes the private method_check() method of that instance, which checks itself */

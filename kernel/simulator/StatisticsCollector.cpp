@@ -16,6 +16,17 @@
 
 //using namespace GenesysKernel;
 
+#ifdef PLUGINCONNECT_DYNAMIC 
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &StatisticsCollector::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* StatisticsCollector::NewInstance(Model* model, std::string name) {
+	return new StatisticsCollector(model, name);
+}
+
 
 typedef TraitsKernel<Model>::StatisticsCollector_StatisticsImplementation StatisticsClass;
 
@@ -63,7 +74,7 @@ Statistics_if* StatisticsCollector::getStatistics() const {
 }
 
 PluginInformation* StatisticsCollector::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<StatisticsCollector>(), &StatisticsCollector::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<StatisticsCollector>(), &StatisticsCollector::LoadInstance, &StatisticsCollector::NewInstance);
 	info->setGenerateReport(true);
 	info->setDescriptionHelp("The StatisticsCollector is the ModelDataDefinition responsible for collecting data from the model (using the Collector) and simultaneouly keeping statistics updated (using the Statistics)");
 

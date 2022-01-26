@@ -15,6 +15,17 @@
 #include "../../kernel/simulator/Model.h"
 #include "../../kernel/simulator/Attribute.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Queue::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Queue::NewInstance(Model* model, std::string name) {
+	return new Queue(model, name);
+}
+
 Queue::Queue(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<Queue>(), name) {
 }
 
@@ -93,7 +104,7 @@ double Queue::getAttributeFromWaitingRank(unsigned int rank, Util::identificatio
 }
 
 PluginInformation* Queue::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Queue>(), &Queue::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Queue>(), &Queue::LoadInstance, &Queue::NewInstance);
 	return info;
 }
 

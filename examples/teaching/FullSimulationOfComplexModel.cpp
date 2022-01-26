@@ -39,6 +39,7 @@ int FullSimulationOfComplexModel::main(int argc, char** argv) {
 	this->insertFakePluginsByHand(genesys);
 	// creates an empty model
 	Model* model = genesys->getModels()->newModel();
+	PluginManager* plugins = genesys->getPlugins();
 	// Handle traces and simulation events to output them
 	TraceManager* tm = model->getTracer();
 	this->setDefaultTraceHandlers(tm);
@@ -58,50 +59,50 @@ int FullSimulationOfComplexModel::main(int argc, char** argv) {
 	sim->setNumberOfReplications(3000);
 	tm->setTraceLevel(Util::TraceLevel::L2_results);
 
-	EntityType* entityType1 = new EntityType(model, "Representative_EntityType");
+	EntityType* entityType1 = plugins->newInstance<EntityType>(model, "Representative_EntityType");
 
-	Create* create1 = new Create(model);
+	Create* create1 = plugins->newInstance<Create>(model);
 	create1->setEntityType(entityType1);
 	create1->setTimeBetweenCreationsExpression("EXPO(5)");
 	create1->setTimeUnit(Util::TimeUnit::minute);
 	create1->setEntitiesPerCreation(1);
 	components->insert(create1);
 
-	new Attribute(model, "Attribute_1");
-	new Variable(model, "Variable_1");
+	plugins->newInstance<Attribute>(model, "Attribute_1");
+	plugins->newInstance<Variable>(model, "Variable_1");
 
-	Assign* assign1 = new Assign(model);
+	Assign* assign1 = plugins->newInstance<Assign>(model);
 	Assign::Assignment* attrib2Assignment = new Assign::Assignment("Variable_1", "Variable_1 + 1");
 	assign1->getAssignments()->insert(attrib2Assignment);
 	Assign::Assignment* attrib1Assignment = new Assign::Assignment("Attribute_1", "Variable_1");
 	assign1->getAssignments()->insert(attrib1Assignment);
 
-	Decide* decide1 = new Decide(model);
+	Decide* decide1 = plugins->newInstance<Decide>(model);
 	decide1->getConditions()->insert("UNIF(0,1) > 0.5");
 
-	Resource* maquina1 = new Resource(model, "Máquina 1");
+	Resource* maquina1 = plugins->newInstance<Resource>(model, "Máquina 1");
 	maquina1->setCapacity(1);
 
-	Queue* filaSeize1 = new Queue(model);
+	Queue* filaSeize1 = plugins->newInstance<Queue>(model);
 	filaSeize1->setOrderRule(Queue::OrderRule::FIFO);
 
-	Seize* seize1 = new Seize(model);
+	Seize* seize1 = plugins->newInstance<Seize>(model);
 	seize1->getSeizeRequests()->insert(new SeizableItem(maquina1));
 	seize1->setQueue(filaSeize1);
 
-	Delay* delay1 = new Delay(model);
+	Delay* delay1 = plugins->newInstance<Delay>(model);
 	delay1->setDelayExpression("NORM(5, 3)");
 	delay1->setDelayTimeUnit(Util::TimeUnit::minute);
 
-	Release* release1 = new Release(model);
+	Release* release1 = plugins->newInstance<Release>(model);
 	release1->getReleaseRequests()->insert(new SeizableItem(maquina1));
 
-	Record* record1 = new Record(model);
+	Record* record1 = plugins->newInstance<Record>(model);
 	record1->setExpressionName("Tempo total no sistema");
 	record1->setExpression("TNOW - Entity.ArrivalTime");
 	record1->setFilename("./temp/TotalTimeInSystem.gen");
 
-	Dispose* dispose1 = new Dispose(model);
+	Dispose* dispose1 = plugins->newInstance<Dispose>(model);
 
 	// connect model components to create a "workflow" -- should always start from a SourceModelComponent and end at a SinkModelComponent (it will be checked)
 	create1->getConnections()->insert(assign1);

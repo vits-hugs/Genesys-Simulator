@@ -17,6 +17,17 @@
 #include <assert.h>
 #include <cmath>
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Seize::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Seize::NewInstance(Model* model, std::string name) {
+	return new Seize(model, name);
+}
+
 Seize::Seize(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Seize>(), name) {
 }
 
@@ -313,7 +324,7 @@ bool Seize::_check(std::string* errorMessage) {
 }
 
 PluginInformation* Seize::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Seize>(), &Seize::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Seize>(), &Seize::LoadInstance, &Seize::NewInstance);
 	info->insertDynamicLibFileDependence("queue.so");
 	info->insertDynamicLibFileDependence("resource.so");
 	std::string help = "The Seize module allocates units of one or more resources to an entity.";

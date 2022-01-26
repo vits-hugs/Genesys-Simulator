@@ -15,6 +15,17 @@
 
 #include "../../kernel/simulator/Model.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Match::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Match::NewInstance(Model* model, std::string name) {
+	return new Match(model, name);
+}
+
 Match::Match(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Match>(), name) {
 }
 
@@ -61,7 +72,7 @@ bool Match::_check(std::string* errorMessage) {
 }
 
 PluginInformation* Match::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Match>(), &Match::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Match>(), &Match::LoadInstance, &Match::NewInstance);
 	info->setCategory("Decision");
 	// ...
 	return info;

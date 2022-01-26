@@ -155,33 +155,6 @@ public:
 		L7_internal = 7,
 		L8_detailed = 8,
 		L9_mostDetailed = 9
-		/*				,
-		
-						simulatorResult = 10,
-						toolResult = 11,
-						modelResult = 12,
-						componentResult = 13,
-						elementResult = 14,
-
-						modelSimulationEvent = 15,
-
-						componentArrival = 20,
-						simulatorInternal = 21,
-						toolInternal = 22,
-						modelSimulationInternal = 23,
-						modelInternal = 24,
-						componentInternal = 25,
-						elementInternal = 26,
-
-						simulatorDetailed = 30,
-						toolDetailed = 31,
-						modelSimulationDetailed = 32,
-						modelDetailed = 33,
-						componentDetailed = 34,
-						elementDetailed = 35,
-
-						everythingMostDetailed = 99
-		 */
 	};
 private:
 	static Util::identification _S_lastId;

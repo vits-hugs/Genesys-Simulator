@@ -13,6 +13,17 @@
 
 #include "File.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &File::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* File::NewInstance(Model* model, std::string name) {
+	return new File(model, name);
+}
+
 File::File(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<File>(), name) {
 	//_elems = elems;
 }
@@ -23,7 +34,7 @@ std::string File::show() {
 }
 
 PluginInformation* File::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<File>(), &File::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<File>(), &File::LoadInstance, &File::NewInstance);
 	return info;
 }
 

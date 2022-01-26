@@ -15,6 +15,17 @@
 
 #include "../../kernel/simulator/Model.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Start::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Start::NewInstance(Model* model, std::string name) {
+	return new Start(model, name);
+}
+
 Start::Start(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Start>(), name) {
 }
 
@@ -61,7 +72,7 @@ bool Start::_check(std::string* errorMessage) {
 }
 
 PluginInformation* Start::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Start>(), &Start::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Start>(), &Start::LoadInstance, &Start::NewInstance);
 	info->setCategory("Material Handling");
 	// ...
 	return info;

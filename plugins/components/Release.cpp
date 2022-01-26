@@ -18,6 +18,17 @@
 #include <assert.h>
 #include <cmath>
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Release::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Release::NewInstance(Model* model, std::string name) {
+	return new Release(model, name);
+}
+
 Release::Release(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Release>(), name) {
 }
 
@@ -159,7 +170,7 @@ bool Release::_check(std::string* errorMessage) {
 //}
 
 PluginInformation* Release::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Release>(), &Release::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Release>(), &Release::LoadInstance, &Release::NewInstance);
 	info->insertDynamicLibFileDependence("resource.so");
 	std::string help = "The Release module is used to release units of a resource that an entity previously has seized.";
 	help += " This module may be used to release individual resources or may be used to release resources within a set.";

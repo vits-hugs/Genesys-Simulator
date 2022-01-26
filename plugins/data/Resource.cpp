@@ -15,6 +15,17 @@
 #include "../../kernel/simulator/Counter.h"
 #include "../../kernel/simulator/Model.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC 
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Resource::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Resource::NewInstance(Model* model, std::string name) {
+	return new Resource(model, name);
+}
+
 Resource::Resource(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<Resource>(), name) {
 	_resourceEventHandlers->setSortFunc([](const SortedResourceEventHandler* a, const SortedResourceEventHandler * b) {
 		return a->second < b->second; /// Handlers are sorted by priority
@@ -145,7 +156,7 @@ void Resource::_notifyReleaseEventHandlers() {
 }
 
 PluginInformation* Resource::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Resource>(), &Resource::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Resource>(), &Resource::LoadInstance, &Resource::NewInstance);
 	return info;
 }
 

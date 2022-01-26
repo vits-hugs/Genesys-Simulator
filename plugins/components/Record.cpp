@@ -17,6 +17,17 @@
 #include <cstdio>
 #include <iostream>
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Record::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Record::NewInstance(Model* model, std::string name) {
+	return new Record(model, name);
+}
+
 Record::Record(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Record>(), name) {
 }
 
@@ -114,7 +125,7 @@ void Record::_createInternalData() {
 }
 
 PluginInformation* Record::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Record>(), &Record::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Record>(), &Record::LoadInstance, &Record::NewInstance);
 	info->setCategory("Input Output");
 	return info;
 }

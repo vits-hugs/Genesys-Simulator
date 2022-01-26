@@ -15,6 +15,17 @@
 
 #include "../../kernel/simulator/Model.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &PickUp::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* PickUp::NewInstance(Model* model, std::string name) {
+	return new PickUp(model, name);
+}
+
 PickUp::PickUp(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<PickUp>(), name) {
 }
 
@@ -61,7 +72,7 @@ bool PickUp::_check(std::string* errorMessage) {
 }
 
 PluginInformation* PickUp::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<PickUp>(), &PickUp::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<PickUp>(), &PickUp::LoadInstance, &PickUp::NewInstance);
 	// ...
 	return info;
 }

@@ -16,6 +16,17 @@
 #include "../../kernel/simulator/Model.h"
 #include "../../plugins/data/EntityGroup.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Separate::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Separate::NewInstance(Model* model, std::string name) {
+	return new Separate(model, name);
+}
+
 Separate::Separate(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Separate>(), name) {
 }
 
@@ -79,7 +90,7 @@ bool Separate::_check(std::string* errorMessage) {
 }
 
 PluginInformation* Separate::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Separate>(), &Separate::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Separate>(), &Separate::LoadInstance, &Separate::NewInstance);
 	info->setCategory("Grouping");
 	// ...
 	return info;

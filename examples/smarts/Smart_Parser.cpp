@@ -38,6 +38,7 @@ int Smart_Parser::main(int argc, char** argv) {
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
 	Model* model = genesys->getModels()->newModel();
+	PluginManager* plugins = genesys->getPlugins();
 	std::vector<std::string> expressions = {
 		"-3 + 2*0.25 +0xc/4 -1.34e-3 *(-1*-1)-2^5",
 		"sin(0.3) - cos(1.75)",

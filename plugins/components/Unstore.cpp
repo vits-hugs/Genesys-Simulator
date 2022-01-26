@@ -14,6 +14,17 @@
 #include "Unstore.h"
 #include "../../kernel/simulator/Model.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Unstore::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Unstore::NewInstance(Model* model, std::string name) {
+	return new Unstore(model, name);
+}
+
 Unstore::Unstore(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Unstore>(), name) {
 }
 
@@ -60,7 +71,7 @@ bool Unstore::_check(std::string* errorMessage) {
 }
 
 PluginInformation* Unstore::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Unstore>(), &Unstore::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Unstore>(), &Unstore::LoadInstance, &Unstore::NewInstance);
 	info->setCategory("Material Handling");
 	// ...
 	return info;

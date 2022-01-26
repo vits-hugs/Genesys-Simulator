@@ -1,27 +1,27 @@
 0   SimulatorInfo "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220111 
-0   ModelInfo  "Model 2" analystName="" description="" projectTitle="" version="1.0" 
+0   ModelInfo  "Model 1" analystName="" description="" projectTitle="" version="1.0" 
 0   ModelSimulation "ModelSimulation" numberOfReplications=5 replicationLength=100.000000 traceLevel=2 
-53  EntityType "Part" 
-56  Attribute  "index" 
-57  Variable   "varNextIndex" 
-59  Resource   "Machine_1" 
-60  Resource   "Machine_2" capacity=2 
-61  Resource   "Machine_3" capacity=3 
-62  Set        "Machine_Set" member0="Machine_1" member1="Machine_2" member2="Machine_3" membersSize=3 type="Resource" 
-64  Queue      "Queue_Seize_1" 
-68  Queue      "Queue_Seize_2" 
-72  Queue      "Queue_Seize_3" 
-54  Create     "Create_2" EntityType="Part" timeBetweenCreations="norm(1.5,0.5)" nextId=55 
-55  Assign     "Assign_2" assignments=2 destination0="varNextIndex" destination1="index" expression0="varNextIndex + 1" expression1="varNextIndex" nextId=58 
-58  Write      "Write_2" writesSize=7 nextId=63 
-63  Decide     "Decide_2" condition0="NR(Machine_1) < MR(Machine_1)" condition1="NR(Machine_2) < MR(Machine_2)" conditions=2 nextSize=3 nextId0=65 nextId1=69 nextId2=73 
-65  Seize      "Seize_2" queueId=64 queueable="Queue_Seize_1" seizable0="Machine_1" nextId=66 
-66  Delay      "Delay_2" delayExpression="norm(15,1)" nextId=67 
-67  Release    "Release_2" seizable0="Machine_1" nextId=76 
-69  Seize      "Seize_3" queueId=68 queueable="Queue_Seize_2" seizable0="Machine_2" nextId=70 
-70  Delay      "Delay_3" delayExpression="norm(15,1)" nextId=71 
-71  Release    "Release_3" seizable0="Machine_2" nextId=76 
-73  Seize      "Seize_4" queueId=72 queueable="Queue_Seize_3" seizable0="Machine_3" nextId=74 
-74  Delay      "Delay_4" delayExpression="norm(15,1)" nextId=75 
-75  Release    "Release_4" seizable0="Machine_3" nextId=76 
-76  Dispose    "Dispose_2" nextSize=0 
+56  EntityType "Part" 
+59  Attribute  "index" 
+60  Variable   "varNextIndex" 
+62  Resource   "Machine_1" 
+63  Resource   "Machine_2" capacity=2 
+64  Resource   "Machine_3" capacity=3 
+65  Set        "Machine_Set" member0="Machine_1" member1="Machine_2" member2="Machine_3" membersSize=3 type="Resource" 
+67  Queue      "Queue_Seize_1" 
+71  Queue      "Queue_Seize_2" 
+75  Queue      "Queue_Seize_3" 
+57  Create     "Create_1" EntityType="Part" timeBetweenCreations="norm(1.5,0.5)" nextId=58 
+58  Assign     "Assign_1" assignments=2 destination0="varNextIndex" destination1="index" expression0="varNextIndex + 1" expression1="varNextIndex" nextId=61 
+61  Write      "Write_1" writesSize=7 nextId=66 
+66  Decide     "Decide_1" condition0="NR(Machine_1) < MR(Machine_1)" condition1="NR(Machine_2) < MR(Machine_2)" conditions=2 nextSize=3 nextId0=68 nextId1=72 nextId2=76 
+68  Seize      "Seize_1" queueId=67 queueable="Queue_Seize_1" seizable0="Machine_1" nextId=69 
+69  Delay      "Delay_1" delayExpression="norm(15,1)" nextId=70 
+70  Release    "Release_1" seizable0="Machine_1" nextId=79 
+72  Seize      "Seize_2" queueId=71 queueable="Queue_Seize_2" seizable0="Machine_2" nextId=73 
+73  Delay      "Delay_2" delayExpression="norm(15,1)" nextId=74 
+74  Release    "Release_2" seizable0="Machine_2" nextId=79 
+76  Seize      "Seize_3" queueId=75 queueable="Queue_Seize_3" seizable0="Machine_3" nextId=77 
+77  Delay      "Delay_3" delayExpression="norm(15,1)" nextId=78 
+78  Release    "Release_3" seizable0="Machine_3" nextId=79 
+79  Dispose    "Dispose_1" nextSize=0 

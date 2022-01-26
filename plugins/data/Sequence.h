@@ -109,8 +109,9 @@ public:
 public: // static 
 	static PluginInformation* GetPluginInformation();
 	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-	List<SequenceStep*>* getSteps() const;
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
+	List<SequenceStep*>* getSteps() const;
 protected:
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);

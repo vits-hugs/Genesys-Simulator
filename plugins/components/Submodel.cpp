@@ -15,6 +15,17 @@
 
 #include "../../kernel/simulator/Model.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC 
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Submodel::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Submodel::NewInstance(Model* model, std::string name) {
+	return new Submodel(model, name);
+}
+
 Submodel::Submodel(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Submodel>(), name) {
 }
 
@@ -61,7 +72,7 @@ bool Submodel::_check(std::string* errorMessage) {
 }
 
 PluginInformation* Submodel::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Submodel>(), &Submodel::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Submodel>(), &Submodel::LoadInstance, &Submodel::NewInstance);
 	info->setCategory("Logic");
 	// ...
 	return info;

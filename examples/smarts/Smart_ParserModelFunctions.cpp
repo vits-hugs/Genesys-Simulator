@@ -42,26 +42,27 @@ int Smart_ParserModelFunctions::main(int argc, char** argv) {
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L5_event);
 	Model* m = genesys->getModels()->newModel();
+	PluginManager* plugins = genesys->getPlugins();
 	// simple process model
-	Create* c1 = new Create(m);
-	c1->setEntityType(new EntityType(m));
-	new Attribute(m, "att1");
-	Set* s = new Set(m);
-	s->getElementSet()->insert(new Resource(m));
-	s->getElementSet()->insert(new Resource(m));
+	Create* c1 = plugins->newInstance<Create>(m);
+	c1->setEntityType(plugins->newInstance<EntityType>(m));
+	plugins->newInstance<Attribute>(m, "att1");
+	Set* s = plugins->newInstance<Set>(m);
+	s->getElementSet()->insert(plugins->newInstance<Resource>(m));
+	s->getElementSet()->insert(plugins->newInstance<Resource>(m));
 	s->setSetOfType("Resource");
-	Process* p1 = new Process(m);
+	Process* p1 = plugins->newInstance<Process>(m);
 	p1->getSeizeRequests()->insert(new SeizableItem(s, "1", SeizableItem::SelectionRule::LARGESTREMAININGCAPACITY, "saveAttribute"));
-	p1->setQueueableItem(new QueueableItem(new Queue(m)));
-	Dispose* d1 = new Dispose(m);
+	p1->setQueueableItem(new QueueableItem(plugins->newInstance<Queue>(m)));
+	Dispose* d1 = plugins->newInstance<Dispose>(m);
 	c1->getConnections()->insert(p1);
 	p1->getConnections()->insert(d1);
 	// other part to write parser expressions 
-	Create * c2 = new Create(m);
-	c2->setEntityType(new EntityType(m, "control"));
+	Create * c2 = plugins->newInstance<Create>(m);
+	c2->setEntityType(plugins->newInstance<EntityType>(m, "control"));
 	c2->setTimeBetweenCreationsExpression("1");
-	Write* w = new Write(m);
-	Dispose* d2 = new Dispose(m);
+	Write* w = plugins->newInstance<Write>(m);
+	Dispose* d2 = plugins->newInstance<Dispose>(m);
 	c2->getConnections()->insert(w);
 	w->getConnections()->insert(d2);
 	//

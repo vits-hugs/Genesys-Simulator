@@ -13,6 +13,17 @@
 #include "Label.h"
 #include "../../kernel/simulator/Model.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Label::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Label::NewInstance(Model* model, std::string name) {
+	return new Label(model, name);
+}
+
 Label::Label(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<Label>(), name) {
 }
 
@@ -29,7 +40,7 @@ ModelDataDefinition* Label::LoadInstance(Model* model, std::map<std::string, std
 }
 
 PluginInformation* Label::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Label>(), &Label::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Label>(), &Label::LoadInstance, &Label::NewInstance);
 	std::string help = "Label modeldatum module represents a name to where entities can be sent to.";
 	help += "Any receiving transfer module such as 'Enter' can be assigned to a label.";
 	help += "Any other sending transfer module such as 'Route' can send an entity to a label, which corresponds to send it to the receiving module";

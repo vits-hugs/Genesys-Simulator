@@ -85,6 +85,7 @@ int Smart_OnEvent::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	this->insertFakePluginsByHand(genesys);
 	Model* model = genesys->getModels()->newModel();
+	PluginManager* plugins = genesys->getPlugins();
 	model->getTracer()->setTraceLevel(Util::TraceLevel::L0_noTraces); // no traces!!
 	//
 	OnEventManager* oem = model->getOnEvents();
@@ -101,10 +102,10 @@ int Smart_OnEvent::main(int argc, char** argv) {
 	oem->addOnSimulationResumeHandler(this, &Smart_OnEvent::onSimulationResumeHandler);
 	oem->addOnSimulationStartHandler(this, &Smart_OnEvent::onSimulationStartHandler);
 	//
-	Create* create1 = new Create(model);
-	create1->setEntityType(new EntityType(model));
-	Delay* delay1 = new Delay(model);
-	Dispose* dispose1 = new Dispose(model);
+	Create* create1 = plugins->newInstance<Create>(model);
+	create1->setEntityType(plugins->newInstance<EntityType>(model));
+	Delay* delay1 = plugins->newInstance<Delay>(model);
+	Dispose* dispose1 = plugins->newInstance<Dispose>(model);
 	create1->getConnections()->insert(delay1);
 	delay1->getConnections()->insert(dispose1);
 	model->getSimulation()->setReplicationLength(10);

@@ -37,6 +37,7 @@ public: // virtual
 public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
 	void insertText(std::list<std::string> texts);
 	void setFilename(std::string _filename);

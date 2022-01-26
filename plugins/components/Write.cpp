@@ -16,6 +16,17 @@
 
 #include <fstream>
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Write::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Write::NewInstance(Model* model, std::string name) {
+	return new Write(model, name);
+}
+
 Write::Write(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Write>(), name) {
 }
 
@@ -187,7 +198,7 @@ bool Write::_check(std::string* errorMessage) {
 }
 
 PluginInformation* Write::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Write>(), &Write::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Write>(), &Write::LoadInstance, &Write::NewInstance);
 	info->setCategory("Input Output");
 	// ...
 	return info;

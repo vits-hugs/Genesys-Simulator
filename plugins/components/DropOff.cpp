@@ -14,6 +14,17 @@
 #include "DropOff.h"
 #include "../../kernel/simulator/Model.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &DropOff::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* DropOff::NewInstance(Model* model, std::string name) {
+	return new DropOff(model, name);
+}
+
 DropOff::DropOff(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<DropOff>(), name) {
 }
 
@@ -60,7 +71,7 @@ bool DropOff::_check(std::string* errorMessage) {
 }
 
 PluginInformation* DropOff::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<DropOff>(), &DropOff::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<DropOff>(), &DropOff::LoadInstance, &DropOff::NewInstance);
 	info->setDescriptionHelp("//@TODO");
 	return info;
 }

@@ -15,21 +15,27 @@
 
 //using namespace GenesysKernel;
 
-PluginInformation::PluginInformation(std::string pluginTypename, StaticLoaderComponentInstance componentloader) {
-	this->_componentloader = componentloader; //// @TODO:
-	this->_elementloader = nullptr; /// @TODO:
-	this->_isComponent = true; //// @TODO:
+PluginInformation::PluginInformation(std::string pluginTypename, StaticLoaderComponentInstance componentloader, StaticConstructorDataDefinitionInstance elementConstructor) {
+	this->_componentloader = componentloader;
+	this->_elementloader = nullptr;
+	this->_elementConstructor = elementConstructor;
+	this->_isComponent = true;
 	this->_pluginTypename = pluginTypename;
 }
 
-PluginInformation::PluginInformation(std::string pluginTypename, StaticLoaderElementInstance elementloader) {
+PluginInformation::PluginInformation(std::string pluginTypename, StaticLoaderDataDefinitionInstance elementloader, StaticConstructorDataDefinitionInstance elementConstructor) {
 	this->_componentloader = nullptr;
 	this->_elementloader = elementloader;
+	this->_elementConstructor = elementConstructor;
 	this->_isComponent = false;
 	this->_pluginTypename = pluginTypename;
 }
 
-StaticLoaderElementInstance PluginInformation::getElementLoader() const {
+StaticConstructorDataDefinitionInstance PluginInformation::getDataDefinitionConstructor() const {
+	return _elementConstructor;
+}
+
+StaticLoaderDataDefinitionInstance PluginInformation::getDataDefinitionLoader() const {
 	return _elementloader;
 }
 
