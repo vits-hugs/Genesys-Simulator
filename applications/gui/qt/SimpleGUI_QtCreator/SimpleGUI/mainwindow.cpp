@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
 	simulator->getTracer()->addTraceReportHandler<MainWindow>(this, &MainWindow::_simulatorTraceReportsHandler);
 	simulator->getTracer()->addTraceSimulationHandler<MainWindow>(this, &MainWindow::_simulatorTraceSimulationHandler);
 	_insertFakePlugins();
+    //...
 }
 
 MainWindow::~MainWindow() {
@@ -187,95 +188,86 @@ void MainWindow::_insertPluginUI(Plugin* plugin) {
 void MainWindow::_insertFakePlugins() {
 	PluginManager* pm = simulator->getPlugins();
     // TRYING SOME NEW ORGANIZATION (BASED ON ARENA 16..20)
-
-        // DISCRETE PROCESSING
-
-        // GROUPING
-
-        //INPUT/OUTPUT
-
-        // MATERIAL HANDLING
-
-        // CONTINUOS
-
-        // DATA DEFINITION
-
-
+    // ...
 	//-----------------------------------------------------
 
 	// OLD ORGANIZATION
 
 	// model components
 	// arena basic process
-	_insertPluginUI(pm->insert("create.so"));
-	_insertPluginUI(pm->insert("dispose.so"));
-	_insertPluginUI(pm->insert("decide.so"));
-	_insertPluginUI(pm->insert("batch.so"));
-	_insertPluginUI(pm->insert("separate.so"));
-	_insertPluginUI(pm->insert("assign.so"));
-	_insertPluginUI(pm->insert("record.so"));
-	_insertPluginUI(pm->insert("process.so"));
-	_insertPluginUI(pm->insert("submodel.so"));
-	_insertPluginUI(pm->insert("entitygroup.so"));
-	_insertPluginUI(pm->insert("queue.so"));
-	_insertPluginUI(pm->insert("set.so"));
-	_insertPluginUI(pm->insert("resource.so"));
-	_insertPluginUI(pm->insert("variable.so"));
-	_insertPluginUI(pm->insert("schedule.so"));
-	_insertPluginUI(pm->insert("entitygroup.so"));
+    (pm->insert("create.so"));
+    (pm->insert("dispose.so"));
+    (pm->insert("decide.so"));
+    (pm->insert("batch.so"));
+    (pm->insert("separate.so"));
+    (pm->insert("assign.so"));
+    (pm->insert("record.so"));
+    (pm->insert("process.so"));
+    (pm->insert("submodel.so"));
+    (pm->insert("entitygroup.so"));
+    (pm->insert("queue.so"));
+    (pm->insert("set.so"));
+    (pm->insert("resource.so"));
+    (pm->insert("variable.so"));
+    (pm->insert("schedule.so"));
+    (pm->insert("entitygroup.so"));
 	// arena advanced process
-	_insertPluginUI(pm->insert("delay.so"));
-	_insertPluginUI(pm->insert("dropoff.so"));
-	_insertPluginUI(pm->insert("hold.so"));
-	_insertPluginUI(pm->insert("match.so"));
-	_insertPluginUI(pm->insert("pickup.so"));
-	_insertPluginUI(pm->insert("read.so"));
-	_insertPluginUI(pm->insert("write.so"));
-	_insertPluginUI(pm->insert("release.so"));
-	_insertPluginUI(pm->insert("remove.so"));
-	_insertPluginUI(pm->insert("seize.so"));
-	_insertPluginUI(pm->insert("search.so"));
-	_insertPluginUI(pm->insert("signal.so"));
-	_insertPluginUI(pm->insert("store.so"));
-	_insertPluginUI(pm->insert("unstore.so"));
-	_insertPluginUI(pm->insert("expression.so"));
-	_insertPluginUI(pm->insert("failure.so"));
-	_insertPluginUI(pm->insert("file.so"));
-	_insertPluginUI(pm->insert("storage.so"));
+    (pm->insert("delay.so"));
+    (pm->insert("dropoff.so"));
+    (pm->insert("hold.so"));
+    (pm->insert("match.so"));
+    (pm->insert("pickup.so"));
+    (pm->insert("read.so"));
+    (pm->insert("write.so"));
+    (pm->insert("release.so"));
+    (pm->insert("remove.so"));
+    (pm->insert("seize.so"));
+    (pm->insert("search.so"));
+    (pm->insert("signal.so"));
+    (pm->insert("store.so"));
+    (pm->insert("unstore.so"));
+    (pm->insert("expression.so"));
+    (pm->insert("failure.so"));
+    (pm->insert("file.so"));
+    (pm->insert("storage.so"));
 	// arena transfer station
-	_insertPluginUI(pm->insert("enter.so"));
-	_insertPluginUI(pm->insert("leave.so"));
-	_insertPluginUI(pm->insert("pickstation.so"));
-	_insertPluginUI(pm->insert("route.so"));
-	_insertPluginUI(pm->insert("sequence.so"));
-	_insertPluginUI(pm->insert("station.so"));
-	_insertPluginUI(pm->insert("label.so"));
+    (pm->insert("enter.so"));
+    (pm->insert("leave.so"));
+    (pm->insert("pickstation.so"));
+    (pm->insert("route.so"));
+    (pm->insert("sequence.so"));
+    (pm->insert("station.so"));
+    (pm->insert("label.so"));
 	// arena transfer conveyour
-	_insertPluginUI(pm->insert("access.so"));
-	_insertPluginUI(pm->insert("exit.so"));
-	_insertPluginUI(pm->insert("start.so"));
-	_insertPluginUI(pm->insert("stop.so"));
-	_insertPluginUI(pm->insert("conveyour.so"));
-	_insertPluginUI(pm->insert("segment.so"));
+    (pm->insert("access.so"));
+    (pm->insert("exit.so"));
+    (pm->insert("start.so"));
+    (pm->insert("stop.so"));
+    (pm->insert("conveyour.so"));
+    (pm->insert("segment.so"));
 	// arena transfer transport
-	_insertPluginUI(pm->insert("alocate.so"));
-	_insertPluginUI(pm->insert("free.so"));
-	_insertPluginUI(pm->insert("halt.so"));
-	_insertPluginUI(pm->insert("move.so"));
-	_insertPluginUI(pm->insert("request.so"));
-	_insertPluginUI(pm->insert("transporter.so"));
-	_insertPluginUI(pm->insert("distance.so"));
-	_insertPluginUI(pm->insert("network.so"));
-	_insertPluginUI(pm->insert("networklink.so"));
+    (pm->insert("alocate.so"));
+    (pm->insert("free.so"));
+    (pm->insert("halt.so"));
+    (pm->insert("move.so"));
+    (pm->insert("request.so"));
+    (pm->insert("transporter.so"));
+    (pm->insert("distance.so"));
+    (pm->insert("network.so"));
+    (pm->insert("networklink.so"));
 	// others
-	_insertPluginUI(pm->insert("dummy.so"));
-	_insertPluginUI(pm->insert("lsode.so"));
-	_insertPluginUI(pm->insert("biochemical.so"));
-	_insertPluginUI(pm->insert("markovchain.so"));
-	_insertPluginUI(pm->insert("cellularautomata.so"));
-	_insertPluginUI(pm->insert("cppforg.so"));
+    (pm->insert("dummy.so"));
+    (pm->insert("lsode.so"));
+    (pm->insert("biochemical.so"));
+    (pm->insert("markovchain.so"));
+    (pm->insert("cellularautomata.so"));
+    (pm->insert("cppforg.so"));
     // now complete the information
     simulator->getPlugins()->completePluginsFieldsAndTemplates();
+    for (unsigned int i=0; i<simulator->getPlugins()->size(); i++) {
+        //@TODO: now it's the opportunity to adjust template
+        _insertPluginUI(simulator->getPlugins()->getAtRank(i));
+    }
 }
 
 

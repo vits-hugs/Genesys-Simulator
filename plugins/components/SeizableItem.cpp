@@ -14,7 +14,7 @@
 #include "SeizableItem.h"
 #include "../../kernel/simulator/ModelDataDefinition.h"
 #include "../../kernel/simulator/Model.h"
-#include "kernel/simulator/Simulator.h"
+#include "../../kernel/simulator/Simulator.h"
 #include <cassert>
 
 SeizableItem::SeizableItem(ModelDataDefinition* resourceOrSet, std::string quantityExpression, SeizableItem::SelectionRule selectionRule, std::string saveAttribute, std::string index) {

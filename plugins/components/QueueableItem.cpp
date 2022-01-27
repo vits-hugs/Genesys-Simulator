@@ -14,7 +14,7 @@
 #include "QueueableItem.h"
 #include "../../kernel/simulator/ModelDataDefinition.h"
 #include "../../kernel/simulator/Model.h"
-#include "kernel/simulator/Simulator.h"
+#include "../../kernel/simulator/Simulator.h"
 #include <cassert>
 
 QueueableItem::QueueableItem(ModelDataDefinition* queueOrSet, QueueableItem::QueueableType queueableType, std::string index) {
