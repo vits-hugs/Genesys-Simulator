@@ -29,6 +29,7 @@ public:
 
 public:
 	QueueableItem(ModelDataDefinition* queueOrSet, QueueableItem::QueueableType queueableType = QueueableItem::QueueableType::QUEUE, std::string index = "0");
+	QueueableItem(Model* model, std::string queueName);
 public:
 	//virtual bool _loadInstance(std::map<std::string, std::string>* fields, unsigned int parentIndex);
 	//virtual std::map<std::string, std::string>* _saveInstance(unsigned int parentIndex);

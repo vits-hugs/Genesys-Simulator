@@ -20,34 +20,9 @@ Smart_Plugin::Smart_Plugin() {
 int Smart_Plugin::main(int argc, char** argv) {
 	Simulator* simulator = new Simulator();
 	this->insertFakePluginsByHand(simulator);
+	// just show information about the connected plugins
 	for (unsigned int i = 0; i < simulator->getPlugins()->size(); i++) {
 		std::cout << std::endl << simulator->getPlugins()->getAtRank(i)->show() << std::endl;
 	}
 	return 0;
-	/*
-		m->getPersistence()->setOption(ModelPersistence_if::Options::SAVEDEFAULTS, true);
-		Plugin* plugin;
-		PluginInformation* info;
-		ModelDataDefinition* datum;
-		ModelComponent* comp;
-		std::string text;
-		std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();
-		for (unsigned int i = 0; i < plugins->size(); i++) {
-			plugin = plugins->getAtRank(i);
-			info = plugin->getPluginInfo();
-			fields->clear();
-			if (info->isComponent()) {
-				comp = dynamic_cast<ModelComponent*> (plugin->loadNew(m, fields));
-				fields = comp->SaveInstance(comp);
-			} else {
-				datum = plugin->loadNew(m, fields);
-				fields = datum->SaveInstance(datum);
-			}
-			text = "\n" + info->getPluginTypename() + " Fields: ";
-			for (std::pair<std::string, std::string> field : *fields) {
-				text += " " + field.first + "=" + field.second + ", ";
-			}
-			std::cout << text << std::endl;
-		}
-	 */
 }

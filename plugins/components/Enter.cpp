@@ -13,6 +13,7 @@
 
 #include "Enter.h"
 #include "../../kernel/simulator/Model.h"
+#include "../../kernel/simulator/Simulator.h"
 #include "../../kernel/simulator/Counter.h"
 
 #ifdef PLUGINCONNECT_DYNAMIC
@@ -45,6 +46,16 @@ ModelComponent* Enter::LoadInstance(Model* model, std::map<std::string, std::str
 
 void Enter::setStation(Station* _station) {
 	this->_station = _station;
+	_station->setEnterIntoStationComponent(this);
+}
+
+void Enter::setStationName(std::string stationName) {
+	ModelDataDefinition* data = _parentModel->getDataManager()->getDataDefinition(Util::TypeOf<Station>(), stationName);
+	if (data != nullptr) {
+		_station = dynamic_cast<Station*> (data);
+	} else {
+		_station = _parentModel->getParentSimulator()->getPlugins()->newInstance<Station>(_parentModel, stationName);
+	}
 	_station->setEnterIntoStationComponent(this);
 }
 
@@ -97,6 +108,12 @@ PluginInformation* Enter::GetPluginInformation() {
 }
 
 void Enter::_createInternalData() {
+	if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+		if (_station == nullptr) {
+			_station = _parentModel->getParentSimulator()->getPlugins()->newInstance<Station>(_parentModel);
+			_station->setEnterIntoStationComponent(this);
+		}
+	}
 	if (_reportStatistics) {
 		if (_numberIn == nullptr) {
 			_numberIn = new Counter(_parentModel, getName() + "." + "CountNumberIn", this);

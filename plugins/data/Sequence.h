@@ -45,12 +45,10 @@ public:
 	private:
 		std::string _destination = "";
 		std::string _expression = "";
-
 	};
-
 public:
-
 	SequenceStep(Station* station, std::list<Assignment*>* assignments = nullptr);
+	SequenceStep(Model* model, std::string stationName, std::list<Assignment*>* assignments = nullptr);
 public: // virtual
 
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields, unsigned int parentIndex);

@@ -67,6 +67,7 @@ public:
 	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
 	void setStation(Station* _station);
+	void setStationName(std::string stationName);
 	Station* getStation() const;
 	void setRouteTimeExpression(std::string _routeTimeExpression);
 	std::string getRouteTimeExpression() const;

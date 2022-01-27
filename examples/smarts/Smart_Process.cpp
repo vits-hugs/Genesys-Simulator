@@ -23,9 +23,6 @@
 #include "../../plugins/components/Process.h"
 #include "../../plugins/components/Dispose.h"
 
-// Model data definitions
-#include "../../kernel/simulator/EntityType.h"
-
 Smart_Process::Smart_Process() {
 }
 
@@ -38,23 +35,23 @@ int Smart_Process::main(int argc, char** argv) {
 	this->insertFakePluginsByHand(genesys);
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
+	// crete model
 	Model* model = genesys->getModels()->newModel();
 	PluginManager* plugins = genesys->getPlugins();
 	Create *create = plugins->newInstance<Create>(model);
-	create->setEntityType(plugins->newInstance<EntityType>(model, "Client"));
-	create->setTimeBetweenCreationsExpression("1");
 	Process* process = plugins->newInstance<Process>(model);
 	process->getSeizeRequests()->insert(new SeizableItem(plugins->newInstance<Resource>(model)));
 	process->setQueueableItem(new QueueableItem(plugins->newInstance<Queue>(model)));
-	process->setDelayExpression("unif(0.8,1.2)");
+	process->setDelayExpression("unif(0.7,1.5)");
 	Dispose* dispose = plugins->newInstance<Dispose>(model);
+	// connect model components to create a "workflow"
 	create->getConnections()->insert(process);
 	process->getConnections()->insert(dispose);
+	// set options, save and simulate step-by-step (but no user interaction required)
 	model->getSimulation()->setReplicationLength(10);
 	model->save("./models/Smart_Process.gen");
 	do {
 		model->getSimulation()->step();
-		//		std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
 	} while (model->getSimulation()->isPaused());
 	genesys->~Simulator();
 	return 0;

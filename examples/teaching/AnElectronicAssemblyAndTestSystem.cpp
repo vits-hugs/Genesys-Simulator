@@ -24,7 +24,6 @@
 #include "../../plugins/components/Release.h"
 #include "plugins/components/Decide.h"
 // Model data definitions
-#include "../../kernel/simulator/EntityType.h"
 #include "../../kernel/simulator/Attribute.h"
 #include "../../plugins/components/SeizableItem.h"
 #include "../../plugins/components/QueueableItem.h"
@@ -91,12 +90,14 @@ int AnElectronicAssemblyAndTestSystem::main(int argc, char** argv) {
 	decide1->getConnections()->insert(record3);
 	record3->getConnections()->insert(dispose3);
 	// creating all ModelDatas and filling all components attributes
-	EntityType* partA = plugins->newInstance<EntityType>(model, "Part_A");
-	create1->setEntityType(partA);
+	//EntityType* partA = plugins->newInstance<EntityType>(model, "Part_A");
+	//create1->setEntityType(partA);
+	create1->setEntityTypeName("Part_A");
 	create1->setTimeBetweenCreationsExpression("expo(5)");
 	create1->setTimeUnit(Util::TimeUnit::minute);
-	EntityType* partB = plugins->newInstance<EntityType>(model, "Part_B");
-	create2->setEntityType(partB);
+	//EntityType* partB = plugins->newInstance<EntityType>(model, "Part_B");
+	//create2->setEntityType(partB);
+	create2->setEntityTypeName("Part_B");
 	create2->setTimeBetweenCreationsExpression("expo(30)");
 	create2->setTimeUnit(Util::TimeUnit::minute);
 	plugins->newInstance<Attribute>(model, "Sealer_Time"); // NOT SAVED IN FILE!!
@@ -106,31 +107,31 @@ int AnElectronicAssemblyAndTestSystem::main(int argc, char** argv) {
 	assign2->getAssignments()->insert(new Assign::Assignment("Sealer_Time", "weib(2.5, 5.3)"));
 	assign2->getAssignments()->insert(new Assign::Assignment("Arrive_Time", "tnow"));
 	Resource* prepA = plugins->newInstance<Resource>(model, "PrepA");
-	Queue* queuePrepA = plugins->newInstance<Queue>(model, "QueuePrepA");
+	//Queue* queuePrepA = plugins->newInstance<Queue>(model, "QueuePrepA");
 	seize1->getSeizeRequests()->insert(new SeizableItem(prepA, "1"));
-	seize1->setQueueableItem(new QueueableItem(queuePrepA));
+	seize1->setQueueableItem(new QueueableItem(model, "QueuePrepA")); //(queuePrepA));
 	delay1->setDelayExpression("tria(1,4,8)");
 	delay1->setDelayTimeUnit(Util::TimeUnit::minute);
 	release1->getReleaseRequests()->insert(new SeizableItem(prepA, "1"));
 	Resource* prepB = plugins->newInstance<Resource>(model, "PrepB");
-	Queue* queuePrepB = plugins->newInstance<Queue>(model, "QueuePrepB");
+	//Queue* queuePrepB = plugins->newInstance<Queue>(model, "QueuePrepB");
 	seize2->getSeizeRequests()->insert(new SeizableItem(prepB, "1"));
-	seize2->setQueueableItem(new QueueableItem(queuePrepB));
+	seize2->setQueueableItem(new QueueableItem(model, "QueuePrepB")); //(queuePrepB));
 	delay2->setDelayExpression("tria(3,5,10)");
 	delay2->setDelayTimeUnit(Util::TimeUnit::minute);
 	release2->getReleaseRequests()->insert(new SeizableItem(prepB, "1"));
 	Resource* sealer = plugins->newInstance<Resource>(model, "Sealer");
-	Queue* queueSealer = plugins->newInstance<Queue>(model, "QueueSealer");
+	//Queue* queueSealer = plugins->newInstance<Queue>(model, "QueueSealer");
 	seize3->getSeizeRequests()->insert(new SeizableItem(sealer, "1"));
-	seize3->setQueueableItem(new QueueableItem(queueSealer));
+	seize3->setQueueableItem(new QueueableItem(model, "QueueSealer")); //(queueSealer));
 	delay3->setDelayExpression("Sealer_Time");
 	delay3->setDelayTimeUnit(Util::TimeUnit::minute);
 	release3->getReleaseRequests()->insert(new SeizableItem(sealer, "1"));
 	decide1->getConditions()->insert("unif(0,1)<0.09");
 	Resource* rework = plugins->newInstance<Resource>(model, "Rework");
-	Queue* queueRework = plugins->newInstance<Queue>(model, "QueueRework");
+	//Queue* queueRework = plugins->newInstance<Queue>(model, "QueueRework");
 	seize4->getSeizeRequests()->insert(new SeizableItem(rework, "1"));
-	seize4->setQueueableItem(new QueueableItem(queueRework));
+	seize4->setQueueableItem(new QueueableItem(model, "QueueRework")); //(queueRework));
 	delay4->setDelayExpression("45");
 	delay4->setDelayTimeUnit(Util::TimeUnit::minute);
 	release4->getReleaseRequests()->insert(new SeizableItem(rework, "1"));

@@ -14,6 +14,7 @@
 #include "SeizableItem.h"
 #include "../../kernel/simulator/ModelDataDefinition.h"
 #include "../../kernel/simulator/Model.h"
+#include "kernel/simulator/Simulator.h"
 #include <cassert>
 
 SeizableItem::SeizableItem(ModelDataDefinition* resourceOrSet, std::string quantityExpression, SeizableItem::SelectionRule selectionRule, std::string saveAttribute, std::string index) {
@@ -31,6 +32,14 @@ SeizableItem::SeizableItem(ModelDataDefinition* resourceOrSet, std::string quant
 	_selectionRule = selectionRule;
 	_saveAttribute = saveAttribute;
 	_index = index;
+}
+
+SeizableItem::SeizableItem(Model* model, std::string resourceName, std::string quantityExpression, SeizableItem::SelectionRule selectionRule, std::string saveAttribute, std::string index) {
+	ModelDataDefinition* resource = model->getDataManager()->getDataDefinition(Util::TypeOf<Resource>(), resourceName);
+	if (resource == nullptr) {
+		resource = model->getParentSimulator()->getPlugins()->newInstance<Resource>(model, resourceName);
+	}
+	SeizableItem(resource, quantityExpression, selectionRule, saveAttribute, index);
 }
 
 /*

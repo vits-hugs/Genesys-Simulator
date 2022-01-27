@@ -75,11 +75,12 @@ public: // static
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
-    void setGroupedEntityType(EntityType* _groupedEntityType);
-    EntityType* getGroupedEntityType() const;
-    void setAttributeName(std::string _attributeName);
+	void setGroupedEntityType(EntityType* groupedEntityType);
+	void setGroupedEntityTypeName(std::string groupedEntityTypeName);
+	EntityType* getGroupedEntityType() const;
+	void setAttributeName(std::string attributeName);
     std::string getAttributeName() const;
-    void setBatchSize(std::string _batchSize);
+	void setBatchSize(std::string batchSize);
     std::string getBatchSize() const;
     void setRule(Batch::Rule _rule);
     Batch::Rule getRule() const;

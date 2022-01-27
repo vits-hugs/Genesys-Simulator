@@ -16,7 +16,6 @@
 #include "../../plugins/components/Create.h"
 #include "../../plugins/components/CppForG.h"
 #include "../../plugins/components/Dispose.h"
-#include "../../kernel/simulator/EntityType.h"
 #include "../../kernel/simulator/ModelSimulation.h"
 
 Smart_CppForG::Smart_CppForG() {
@@ -27,14 +26,16 @@ int Smart_CppForG::main(int argc, char** argv) {
 	this->insertFakePluginsByHand(genesys);
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
+	// crete model
 	Model* m = genesys->getModels()->newModel();
 	PluginManager* plugins = genesys->getPlugins();
 	Create* cr = plugins->newInstance<Create>(m);
-	cr->setEntityType(plugins->newInstance<EntityType>(m));
 	CppForG* sc = plugins->newInstance<CppForG>(m);
 	Dispose* di = plugins->newInstance<Dispose>(m);
+	// connect model components to create a "workflow"
 	cr->getConnections()->insert(sc);
 	sc->getConnections()->insert(di);
+	// set options, save and simulate
 	ModelSimulation* s = m->getSimulation();
 	s->setReplicationLength(10);
 	s->setShowReportsAfterReplication(false);

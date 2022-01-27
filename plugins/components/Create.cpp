@@ -123,6 +123,7 @@ bool Create::_check(std::string* errorMessage) {
 }
 
 void Create::_createInternalData() {
+	SourceModelComponent::_createInternalData();
 	if (_reportStatistics && _numberOut == nullptr) {
 		_numberOut = new Counter(_parentModel, getName() + "." + "CountNumberOut", this);
 		_internalData->insert({"CountNumberOut", _numberOut});

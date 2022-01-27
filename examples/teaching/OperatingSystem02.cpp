@@ -16,7 +16,6 @@
 #include "../../kernel/simulator/Simulator.h"
 #include "../../kernel/simulator/Model.h"
 #include "../../kernel/simulator/Attribute.h"
-#include "../../kernel/simulator/EntityType.h"
 
 #include "../../plugins/data/Queue.h"
 #include "../../plugins/data/Resource.h"
@@ -43,10 +42,10 @@ int OperatingSystem02::main(int argc, char** argv) {
 	PluginManager* plugins = genesys->getPlugins();
 	//
 	// CREATE Processo é criado no computador
-	EntityType* et = plugins->newInstance<EntityType>(model, "processo");
+	//EntityType* et = plugins->newInstance<EntityType>(model, "processo");
 	Create* createProc = plugins->newInstance<Create>(model);
 	createProc->setDescription("Processo é criado no computador");
-	createProc->setEntityType(et);
+	createProc->setEntityTypeName("processo"); //(et);
 	createProc->setTimeBetweenCreationsExpression("expo(10)");
 	createProc->setTimeUnit(Util::TimeUnit::milisecond);
 	//

@@ -1,17 +1,16 @@
 0   SimulatorInfo "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220111 
 0   ModelInfo  "Model 1" analystName="" description="" projectTitle="" version="1.0" 
 0   ModelSimulation "ModelSimulation" replicationLength=20.000000 traceLevel=9 
-57  EntityType "EntityType_1" 
-58  Station    "Station_1" 
-62  Station    "Station_2" 
-66  Station    "Station_3" 
-56  Create     "Create_1" EntityType="EntityType_1" timeBetweenCreations="4.0" nextId=59 
-59  Route      "Route_1" routeTimeExpression="0.1" station="Station_1" nextSize=0 
-60  Enter      "Enter_1" station="Station_1" nextId=61 
-61  Delay      "Delay_1" nextId=63 
-63  Route      "Route_2" routeTimeExpression="0.2" station="Station_2" nextSize=0 
-64  Enter      "Enter_2" station="Station_2" nextId=65 
-65  Delay      "Delay_2" nextId=67 
-67  Route      "Route_3" routeTimeExpression="0.3" station="Station_3" nextSize=0 
-68  Enter      "Enter_3" station="Station_3" nextId=69 
-69  Dispose    "Dispose_1" nextSize=0 
+58  Station    "station1" 
+62  Station    "station2" 
+66  Station    "station3" 
+56  Create     "Create_1" EntityType="" timeBetweenCreations="4.0" nextId=57 
+57  Route      "Route_1" routeTimeExpression="0.1" station="station1" nextSize=0 
+59  Enter      "Enter_1" station="station1" nextId=60 
+60  Delay      "Delay_1" nextId=61 
+61  Route      "Route_2" routeTimeExpression="0.2" station="station2" nextSize=0 
+63  Enter      "Enter_2" station="station2" nextId=64 
+64  Delay      "Delay_2" nextId=65 
+65  Route      "Route_3" routeTimeExpression="0.3" station="station3" nextSize=0 
+67  Enter      "Enter_3" station="station3" nextId=68 
+68  Dispose    "Dispose_1" nextSize=0 

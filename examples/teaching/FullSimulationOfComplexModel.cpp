@@ -21,7 +21,6 @@
 #include "../../plugins/components/Decide.h"
 
 // Model data definitions
-#include "../../kernel/simulator/EntityType.h"
 #include "../../kernel/simulator/Attribute.h"
 #include "../../plugins/data/Variable.h"
 
@@ -59,10 +58,10 @@ int FullSimulationOfComplexModel::main(int argc, char** argv) {
 	sim->setNumberOfReplications(3000);
 	tm->setTraceLevel(Util::TraceLevel::L2_results);
 
-	EntityType* entityType1 = plugins->newInstance<EntityType>(model, "Representative_EntityType");
+	//EntityType* entityType1 = plugins->newInstance<EntityType>(model, "Representative_EntityType");
 
 	Create* create1 = plugins->newInstance<Create>(model);
-	create1->setEntityType(entityType1);
+	//create1->setEntityType(entityType1);
 	create1->setTimeBetweenCreationsExpression("EXPO(5)");
 	create1->setTimeUnit(Util::TimeUnit::minute);
 	create1->setEntitiesPerCreation(1);

@@ -22,9 +22,6 @@
 #include "../../plugins/components/Create.h"
 #include "../../plugins/components/Dispose.h"
 
-// Model data definitions
-#include "../../kernel/simulator/EntityType.h"
-
 Smart_Parser::Smart_Parser() {
 }
 
@@ -37,8 +34,8 @@ int Smart_Parser::main(int argc, char** argv) {
 	this->insertFakePluginsByHand(genesys);
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
-	Model* model = genesys->getModels()->newModel();
-	PluginManager* plugins = genesys->getPlugins();
+	// Just parser evaluating different expressions 
+	// (arithmetic, trigonometric, matemathic, logic, statistic and conditional)
 	std::vector<std::string> expressions = {
 		"-3 + 2*0.25 +0xc/4 -1.34e-3 *(-1*-1)-2^5",
 		"sin(0.3) - cos(1.75)",
@@ -50,6 +47,8 @@ int Smart_Parser::main(int argc, char** argv) {
 		"disc(0.1,1,0.3,2,0.6,3,1,4)", // not implemented in parser
 		"if 0 if 1 0 else 1 else if 1 2 else 3"
 	};
+	// an empty model is created since parser is attached to a model
+	Model* model = genesys->getModels()->newModel();
 	for (unsigned int i = 0; i < expressions.size(); i++) {
 		std::cout << "\"" << expressions[i] << "\" = " << model->parseExpression(expressions[i]) << std::endl;
 	}

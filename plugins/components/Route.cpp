@@ -55,6 +55,15 @@ void Route::setStation(Station* _station) {
 	this->_station = _station;
 }
 
+void Route::setStationName(std::string stationName) {
+	ModelDataDefinition* data = _parentModel->getDataManager()->getDataDefinition(Util::TypeOf<Station>(), stationName);
+	if (data != nullptr) {
+		_station = dynamic_cast<Station*> (data);
+	} else {
+		_station = _parentModel->getParentSimulator()->getPlugins()->newInstance<Station>(_parentModel, stationName);
+	}
+}
+
 Station* Route::getStation() const {
 	return _station;
 }
@@ -139,11 +148,11 @@ bool Route::_loadInstance(std::map<std::string, std::string>* fields) {
 
 std::map<std::string, std::string>* Route::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
-	std::string text = "";
-	if (_station != nullptr) {
-		text = _station->getName();
-	}
 	if (_routeDestinationType == DestinationType::Station) {
+		std::string text = "";
+		if (_station != nullptr) {
+			text = _station->getName();
+		}
 		SaveField(fields, "station", text);
 	}
 	SaveField(fields, "routeTimeExpression", _routeTimeExpression, DEFAULT.routeTimeExpression, saveDefaultValues);
@@ -202,6 +211,11 @@ PluginInformation* Route::GetPluginInformation() {
 }
 
 void Route::_createInternalData() {
+	if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+		if (_station == nullptr) {
+			_station = _parentModel->getParentSimulator()->getPlugins()->newInstance<Station>(_parentModel);
+		}
+	}
 	if (_reportStatistics) {
 		if (_numberIn == nullptr) {
 			_numberIn = new Counter(_parentModel, getName() + "." + "CountNumberIn", this);

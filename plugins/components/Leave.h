@@ -103,6 +103,7 @@ public:
 	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
 	void setStation(Station* _station);
+	void setStationName(std::string stationName);
 	Station* getStation() const;
 protected:
 	virtual void _onDispatchEvent(Entity* entity);

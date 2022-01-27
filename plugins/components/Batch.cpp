@@ -46,24 +46,33 @@ ModelComponent* Batch::LoadInstance(Model* model, std::map<std::string, std::str
 	return newComponent;
 }
 
-void Batch::setGroupedEntityType(EntityType* _groupedEntityType) {
-	this->_groupedEntityType = _groupedEntityType;
+void Batch::setGroupedEntityType(EntityType* groupedEntityType) {
+	this->_groupedEntityType = groupedEntityType;
+}
+
+void Batch::setGroupedEntityTypeName(std::string groupedEntityTypeName) {
+	ModelDataDefinition* data = _parentModel->getDataManager()->getDataDefinition(Util::TypeOf<EntityType>(), groupedEntityTypeName);
+	if (data != nullptr) {
+		this->_groupedEntityType = dynamic_cast<EntityType*> (data);
+	} else {
+		this->_groupedEntityType = new EntityType(_parentModel, groupedEntityTypeName);
+	}
 }
 
 EntityType* Batch::getGroupedEntityType() const {
 	return _groupedEntityType;
 }
 
-void Batch::setAttributeName(std::string _attributeName) {
-	this->_attributeName = _attributeName;
+void Batch::setAttributeName(std::string attributeName) {
+	this->_attributeName = attributeName;
 }
 
 std::string Batch::getAttributeName() const {
 	return _attributeName;
 }
 
-void Batch::setBatchSize(std::string _batchSize) {
-	this->_batchSize = _batchSize;
+void Batch::setBatchSize(std::string batchSize) {
+	this->_batchSize = batchSize;
 }
 
 std::string Batch::getBatchSize() const {
@@ -202,8 +211,8 @@ bool Batch::_loadInstance(std::map<std::string, std::string>* fields) {
 		_groupedAttributes = static_cast<Batch::GroupedAttribs> (LoadField(fields, "groupedAttributes", static_cast<int> (DEFAULT.groupedAttributes)));
 		_batchSize = LoadField(fields, "batchSize", DEFAULT.batchSize);
 		_attributeName = LoadField(fields, "attributeName", DEFAULT.attributeName);
-		if (_groupedEntityType != nullptr) {
-			std::string groupedEntityTypeName = LoadField(fields, "groupedEntityType", "");
+		std::string groupedEntityTypeName = LoadField(fields, "groupedEntityType", "");
+		if (groupedEntityTypeName != "") {
 			_groupedEntityType = dynamic_cast<EntityType*> (_parentModel->getDataManager()->getDataDefinition(Util::TypeOf<EntityType>(), groupedEntityTypeName));
 		}
 	}
@@ -226,6 +235,11 @@ std::map<std::string, std::string>* Batch::_saveInstance(bool saveDefaultValues)
 //void Batch::_initBetweenReplications() {}
 
 void Batch::_createInternalData() {
+	if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+		if (_attributeName != "" && _parentModel->getDataManager()->getDataDefinition(Util::TypeOf<Attribute>(), _attributeName) == nullptr) {
+			new Attribute(_parentModel, _attributeName);
+		}
+	}
 	if (_queue == nullptr) {
 		PluginManager* plugins = _parentModel->getParentSimulator()->getPlugins();
 		_queue = plugins->newInstance<Queue>(_parentModel, this->getName() + ".Queue");
@@ -242,7 +256,14 @@ bool Batch::_check(std::string * errorMessage) {
 	if (_groupedEntityType != nullptr) {
 		resultAll += _parentModel->getDataManager()->check(Util::TypeOf<EntityType>(), _groupedEntityType, "Grouped Entity Type", errorMessage);
 	}
+	if (_attributeName != "") {
+		if (_parentModel->getDataManager()->getDataDefinition(Util::TypeOf<Attribute>(), _attributeName) == nullptr) {
+			resultAll = false;
+			*errorMessage += "Error: Could not found attribute name \"" + _attributeName + "\"";
+		}
+	}
 	resultAll += _parentModel->checkExpression(_batchSize, "Batch Size", errorMessage);
+
 	return resultAll;
 }
 

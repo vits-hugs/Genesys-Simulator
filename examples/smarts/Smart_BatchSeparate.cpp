@@ -28,29 +28,31 @@ int Smart_BatchSeparate::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	this->insertFakePluginsByHand(genesys);
+	// create model
 	Model* m = new Model(genesys);
 	PluginManager* plugins = genesys->getPlugins();
 	Create* cr = plugins->newInstance<Create>(m);
-	cr->setEntityType(plugins->newInstance<EntityType>(m, "normal"));
+	cr->setEntityTypeName("normal");
 	cr->setMaxCreations(50);
 	Assign* as = plugins->newInstance<Assign>(m);
-	plugins->newInstance<Attribute>(m, "batchNum");
-	as->getAssignments()->insert(new Assign::Assignment("batchNum", "trunc(unif(0,5))"));
+	as->getAssignments()->insert(new Assign::Assignment(m, "batchNum", "trunc(unif(0,5))"));
 	Batch* ba = plugins->newInstance<Batch>(m);
 	ba->setBatchSize("4");
 	ba->setRule(Batch::Rule::ByAttribute);
 	ba->setAttributeName("batchNum");
 	ba->setGroupedAttributes(Batch::GroupedAttribs::SumAttributes);
-	ba->setGroupedEntityType(plugins->newInstance<EntityType>(m, "grouped"));
+	ba->setGroupedEntityTypeName("grouped");
 	Delay* de = plugins->newInstance<Delay>(m);
 	de->setDelay(25);
 	Separate* se = plugins->newInstance<Separate>(m);
 	Dispose* di = plugins->newInstance<Dispose>(m);
+	// connect model components to create a "workflow"
 	cr->getConnections()->insert(as);
 	as->getConnections()->insert(ba);
 	ba->getConnections()->insert(de);
 	de->getConnections()->insert(se);
 	se->getConnections()->insert(di);
+	// save, trace specific modules and aimulate
 	ModelSimulation* sim = m->getSimulation();
 	sim->setReplicationLength(100);
 	sim->setShowReportsAfterReplication(false);

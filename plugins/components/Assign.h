@@ -17,6 +17,8 @@
 #include "../../kernel/simulator/ModelComponent.h"
 #include "../../kernel/simulator/Model.h"
 #include "../../kernel/simulator/Plugin.h"
+#include "../../kernel/simulator/Attribute.h"
+#include "../data/Variable.h"
 
 /*!
  Assign module
@@ -63,6 +65,19 @@ public:
 	 */
 	class Assignment {
 	public:
+		Assignment(Model* model, std::string destination, std::string expression, bool isAttributeNotVariable = true) {
+			this->_destination = destination;
+			this->_expression = expression;
+			if (isAttributeNotVariable) {
+				if (model->getDataManager()->getDataDefinition(Util::TypeOf<Attribute>(), destination) == nullptr) {
+					model->getDataManager()->insert(Util::TypeOf<Attribute>(), new Attribute(model, destination));
+				}
+				} else {
+				if (model->getDataManager()->getDataDefinition(Util::TypeOf<Variable>(), destination) == nullptr) {
+					model->getDataManager()->insert(Util::TypeOf<Variable>(), new Attribute(model, destination));
+				}
+			}
+		}
 		Assignment(std::string destination, std::string expression) {
 			this->_destination = destination;
 			this->_expression = expression;

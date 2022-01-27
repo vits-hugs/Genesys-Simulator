@@ -33,6 +33,7 @@ public:
 
 public:
 	SeizableItem(ModelDataDefinition* resourceOrSet, std::string quantityExpression = "1", SeizableItem::SelectionRule selectionRule = SeizableItem::SelectionRule::LARGESTREMAININGCAPACITY, std::string saveAttribute = "", std::string index = "0");
+	SeizableItem(Model* model, std::string resourceName, std::string quantityExpression = "1", SeizableItem::SelectionRule selectionRule = SeizableItem::SelectionRule::LARGESTREMAININGCAPACITY, std::string saveAttribute = "", std::string index = "0");
 
 public:
 	bool loadInstance(std::map<std::string, std::string>* fields, unsigned int parentIndex);

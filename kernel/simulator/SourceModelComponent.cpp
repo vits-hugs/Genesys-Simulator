@@ -35,9 +35,10 @@ bool SourceModelComponent::_loadInstance(std::map<std::string, std::string>* fie
 		this->_timeBetweenCreationsExpression = LoadField(fields, "timeBetweenCreations", DEFAULT.timeBetweenCreationsExpression);
 		this->_timeBetweenCreationsTimeUnit = LoadField(fields, "timeBetweenCreationsTimeUnit", DEFAULT.timeBetweenCreationsTimeUnit);
 		this->_maxCreationsExpression = LoadField(fields, "maxCreations", DEFAULT.maxCreationsExpression);
-		std::string entityTypename = LoadField(fields, "EntityType");
-		if (entityTypename != "") {
-			this->_entityType = dynamic_cast<EntityType*> (_parentModel->getDataManager()->getDataDefinition(Util::TypeOf<EntityType>(), entityTypename));
+		std::string entityTypename = LoadField(fields, "EntityType", DEFAULT.entityTypename);
+		ModelDataDefinition* enttype = (_parentModel->getDataManager()->getDataDefinition(Util::TypeOf<EntityType>(), entityTypename));
+		if (enttype != nullptr) {
+			this->_entityType = dynamic_cast<EntityType*> (enttype);
 		} else {
 			this->_entityType = nullptr;
 		}
@@ -59,7 +60,7 @@ std::map<std::string, std::string>* SourceModelComponent::_saveInstance(bool sav
 	if (_entityType != nullptr) {
 		SaveField(fields, "EntityType", _entityType->getName());
 	} else {
-		SaveField(fields, "EntityType", "");
+		SaveField(fields, "EntityType", ""); // check DEFAULT.entityTypename);
 	}
 	return fields;
 }
@@ -82,6 +83,14 @@ bool SourceModelComponent::_check(std::string* errorMessage) {
 	return resultAll;
 }
 
+void SourceModelComponent::_createInternalData() {
+	if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+		if (this->_entityType == nullptr) {
+			_entityType = new EntityType(_parentModel, DEFAULT.entityTypename);
+		}
+	}
+}
+
 void SourceModelComponent::setFirstCreation(double _firstCreation) {
 	this->_firstCreation = _firstCreation;
 }
@@ -90,16 +99,17 @@ double SourceModelComponent::getFirstCreation() const {
 	return _firstCreation;
 }
 
-//void SourceModelComponent::setCollectStatistics(bool _collectStatistics) {
-//    this->_collectStatistics = _collectStatistics;
-//}
-//
-//bool SourceModelComponent::isCollectStatistics() const {
-//    return _collectStatistics;
-//}
-
 void SourceModelComponent::setEntityType(EntityType* entityType) {
 	_entityType = entityType;
+}
+
+void SourceModelComponent::setEntityTypeName(std::string entityTypeName) {
+	ModelDataDefinition* data = _parentModel->getDataManager()->getDataDefinition(Util::TypeOf<EntityType>(), entityTypeName);
+	if (data != nullptr) {
+		_entityType = dynamic_cast<EntityType*> (data);
+	} else {
+		_entityType = new EntityType(_parentModel, entityTypeName);
+	}
 }
 
 EntityType* SourceModelComponent::getEntityType() const {

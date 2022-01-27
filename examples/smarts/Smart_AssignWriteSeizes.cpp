@@ -29,10 +29,6 @@
 
 // Model data definitions
 #include "../../kernel/simulator/ModelDataManager.h"
-#include "../../kernel/simulator/EntityType.h"
-#include "../../kernel/simulator/Attribute.h"
-#include "../../plugins/data/Variable.h"
-#include "../../plugins/data/EntityGroup.h"
 #include "../../plugins/data/Set.h"
 
 Smart_AssignWriteSeizes::Smart_AssignWriteSeizes() {
@@ -43,56 +39,21 @@ int Smart_AssignWriteSeizes::main(int argc, char** argv) {
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L4_warning);
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	this->insertFakePluginsByHand(genesys);
-
+	// create model
 	Model* model = genesys->getModels()->newModel();
-	ModelSimulation* sim = model->getSimulation();
-	sim->setNumberOfReplications(5);
-	sim->setReplicationLength(100);
 	PluginManager* plugins = genesys->getPlugins();
-	EntityType* part = plugins->newInstance<EntityType>(model, "Part");
 	Create* create1 = plugins->newInstance<Create>(model);
-	create1->setEntityType(part);
+	create1->setEntityTypeName("Part");
 	create1->setTimeBetweenCreationsExpression("norm(1.5,0.5)");
 	create1->setTimeUnit(Util::TimeUnit::second);
 	create1->setEntitiesPerCreation(1);
 	Assign* assign1 = plugins->newInstance<Assign>(model);
-	assign1->getAssignments()->insert(new Assign::Assignment("varNextIndex", "varNextIndex + 1"));
-	assign1->getAssignments()->insert(new Assign::Assignment("index", "varNextIndex"));
-	Attribute* attr1 = plugins->newInstance<Attribute>(model, "index");
-	Variable* var1 = plugins->newInstance<Variable>(model, "varNextIndex");
+	assign1->getAssignments()->insert(new Assign::Assignment(model, "varNextIndex", "varNextIndex + 1", false));
+	assign1->getAssignments()->insert(new Assign::Assignment(model, "index", "varNextIndex", true));
 	Write* write1 = plugins->newInstance<Write>(model);
 	write1->setWriteToType(Write::WriteToType::SCREEN);
 	write1->insertText({"\n", "Atributo index: ", "'index'"});
 	write1->insertText({"Variável nextIndex: ", "'varNextIndex'"});
-	/*
-	write1->getWrites()->insert(new WritelnText(""));
-	write1->getWrites()->insert(new WriteText("Atributo index: "));
-	write1->getWrites()->insert(new WritelnExpression("index"));
-	write1->getWrites()->insert(new WriteText("Variável nextIndex: "));
-	write1->getWrites()->insert(new WritelnExpression("varNextIndex"));
-	write1->getWrites()->insert(new WriteText("Quantidade ocupada das máquinas: "));
-	write1->getWrites()->insert(new WriteExpression("NR( Machine_1 )"));
-	write1->getWrites()->insert(new WriteText(", "));
-	write1->getWrites()->insert(new WriteExpression("NR(Machine_2)"));
-	write1->getWrites()->insert(new WriteText(", "));
-	write1->getWrites()->insert(new WritelnExpression("NR(Machine_3)"));
-	write1->getWrites()->insert(new WriteText("Estado das máquinas: "));
-	write1->getWrites()->insert(new WriteExpression("STATE(Machine_1)"));
-	write1->getWrites()->insert(new WriteText(", "));
-	write1->getWrites()->insert(new WriteExpression("STATE(Machine_2)"));
-	write1->getWrites()->insert(new WriteText(", "));
-	write1->getWrites()->insert(new WritelnExpression("STATE(Machine_3)"));
-	write1->getWrites()->insert(new WriteText("Quantidade de máquinas ocupadas no Set: "));
-	write1->getWrites()->insert(new WritelnExpression("SETSUM(Machine_Set)"));
-	write1->getWrites()->insert(new WriteText("Quantidade de entidades na fila 3: "));
-	write1->getWrites()->insert(new WritelnExpression("NQ(Queue_Seize_3)"));
-	write1->getWrites()->insert(new WriteText("Somatório do atributo 'index' das entidades na fila 3: "));
-	write1->getWrites()->insert(new WritelnExpression("SAQUE(Queue_Seize_3,index)"));
-	write1->getWrites()->insert(new WriteText("Valor do atributo 'index' da 2ª entidade na fila 3: "));
-	write1->getWrites()->insert(new WritelnExpression("AQUE(Queue_Seize_3,2,index)"));
-	write1->getWrites()->insert(new WriteText("Tempo médio das entidades na fila 3: "));
-	write1->getWrites()->insert(new WritelnExpression("TAVG(Queue_Seize_3.TimeInQueue)"));
-	 */
 	//
 	Resource* machine1 = plugins->newInstance<Resource>(model, "Machine_1");
 	machine1->setCapacity(1);
@@ -139,7 +100,7 @@ int Smart_AssignWriteSeizes::main(int argc, char** argv) {
 	Release* release3 = plugins->newInstance<Release>(model);
 	release3->getReleaseRequests()->insert(new SeizableItem(machine3));
 	Dispose* dispose1 = plugins->newInstance<Dispose>(model);
-	//
+	// connect model components to create a "workflow"
 	create1->getConnections()->insert(assign1);
 	assign1->getConnections()->insert(write1);
 	write1->getConnections()->insert(decide1);
@@ -155,9 +116,13 @@ int Smart_AssignWriteSeizes::main(int argc, char** argv) {
 	seize3->getConnections()->insert(delay3);
 	delay3->getConnections()->insert(release3);
 	release3->getConnections()->insert(dispose1);
-	//
+	// save and run
+	ModelSimulation* sim = model->getSimulation();
+	sim->setNumberOfReplications(5);
+	sim->setReplicationLength(100);
 	model->save("./models/Smart_StatationRouteSequence.gen");
 	sim->start();
+	genesys->~Simulator();
 	return 0;
 }
 

@@ -12,7 +12,6 @@
 
 #include "Book_Cap02_Example01.h"
 #include "../../kernel/simulator/Simulator.h"
-#include "../../kernel/simulator/EntityType.h"
 #include "../../plugins/components/Create.h"
 #include "../../plugins/components/Delay.h"
 #include "../../plugins/components/Dispose.h"
@@ -26,9 +25,9 @@ int Book_Cap02_Example01::main(int argc, char** argv) {
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	Model* model = genesys->getModels()->newModel();
 	PluginManager* plugins = genesys->getPlugins();
-	EntityType* entityType1 = plugins->newInstance<EntityType>(model, "EntityType1");
 	Create* create1 = plugins->newInstance<Create>(model);
-	create1->setEntityType(entityType1);
+	//EntityType* entityType1 = plugins->newInstance<EntityType>(model, "EntityType1");
+	//create1->setEntityType(entityType1);
 	create1->setTimeBetweenCreationsExpression("NORM(5,2)");
 	Delay* delay1 = plugins->newInstance<Delay>(model);
 	delay1->setDelayExpression("unif(3,7)");

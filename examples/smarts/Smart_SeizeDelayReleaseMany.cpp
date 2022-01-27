@@ -25,9 +25,6 @@
 #include "../../plugins/components/Release.h"
 #include "../../plugins/components/Dispose.h"
 
-// Model data definitions
-#include "../../kernel/simulator/EntityType.h"
-
 Smart_SeizeDelayReleaseMany::Smart_SeizeDelayReleaseMany() {
 }
 
@@ -40,16 +37,10 @@ int Smart_SeizeDelayReleaseMany::main(int argc, char** argv) {
 	this->insertFakePluginsByHand(genesys);
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
+	// create model
 	Model* m = genesys->getModels()->newModel();
 	PluginManager* plugins = genesys->getPlugins();
-	//m->load("./models/Smart_SeizeDelayReleaseMany.gen");
-	//genesys->getModels()->current()->getSimulation()->start();
-	//return 0;
-
-	EntityType* customer = plugins->newInstance<EntityType>(m, "Customer");
 	Create* create1 = plugins->newInstance<Create>(m);
-	create1->setEntityType(customer);
-	create1->setTimeBetweenCreationsExpression("1");
 	Resource* machine1 = plugins->newInstance<Resource>(m);
 	Resource* machine2 = plugins->newInstance<Resource>(m);
 	Resource* machine3 = plugins->newInstance<Resource>(m);
@@ -65,7 +56,7 @@ int Smart_SeizeDelayReleaseMany::main(int argc, char** argv) {
 	seize1->getSeizeRequests()->insert(new SeizableItem(machine5));
 	seize1->setQueue(queueSeize1);
 	Delay* delay1 = plugins->newInstance<Delay>(m);
-	delay1->setDelayExpression("unif(0.8,1.2)");
+	delay1->setDelayExpression("unif(0.6,1.5)");
 	Release* release1 = plugins->newInstance<Release>(m);
 	release1->getReleaseRequests()->insert(new SeizableItem(machine1));
 	release1->getReleaseRequests()->insert(new SeizableItem(machine2));
@@ -78,16 +69,15 @@ int Smart_SeizeDelayReleaseMany::main(int argc, char** argv) {
 	seize1->getConnections()->insert(delay1);
 	delay1->getConnections()->insert(release1);
 	release1->getConnections()->insert(dispose1);
-	// save the model into a text file
+	// set options, save and simulate step-by-step
 	ModelSimulation* sim = m->getSimulation();
 	sim->setReplicationLength(10);
 	sim->setNumberOfReplications(3);
 	m->save("./models/Smart_SeizeDelayReleaseMany.gen");
-	//sim->start();
-
 	do {
 		sim->step();
 		std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
 	} while (sim->isPaused());
+	genesys->~Simulator();
 	return 0;
 };
