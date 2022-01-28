@@ -52,10 +52,13 @@
            <number>3</number>
           </property>
           <property name="verticalScrollBarPolicy">
-           <enum>Qt::ScrollBarAlwaysOn</enum>
+           <enum>Qt::ScrollBarAsNeeded</enum>
           </property>
           <property name="horizontalScrollBarPolicy">
            <enum>Qt::ScrollBarAsNeeded</enum>
+          </property>
+          <property name="lineWrapMode">
+           <enum>QTextEdit::NoWrap</enum>
           </property>
           <property name="textInteractionFlags">
            <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
@@ -68,7 +71,7 @@
        <attribute name="title">
         <string>Simulation</string>
        </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
          <widget class="QTextEdit" name="textEdit_Simulation">
           <property name="font">
@@ -76,10 +79,45 @@
             <pointsize>10</pointsize>
            </font>
           </property>
+          <property name="lineWrapMode">
+           <enum>QTextEdit::NoWrap</enum>
+          </property>
           <property name="textInteractionFlags">
            <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
           </property>
          </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Replication </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_ReplicationNum">
+            <property name="text">
+             <string>1/1</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QProgressBar" name="progressBarSimulation">
+            <property name="value">
+             <number>0</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
@@ -95,6 +133,9 @@
             <family>Courier 10 Pitch</family>
             <pointsize>10</pointsize>
            </font>
+          </property>
+          <property name="lineWrapMode">
+           <enum>QTextEdit::NoWrap</enum>
           </property>
           <property name="textInteractionFlags">
            <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
@@ -266,6 +307,9 @@
    <property name="text">
     <string>New</string>
    </property>
+   <property name="toolTip">
+    <string>New Model</string>
+   </property>
   </action>
   <action name="actionOpen">
    <property name="icon">
@@ -274,6 +318,12 @@
    </property>
    <property name="text">
     <string>Open</string>
+   </property>
+   <property name="toolTip">
+    <string>Open Model</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
    </property>
   </action>
   <action name="actionSave">
@@ -287,6 +337,12 @@
    <property name="text">
     <string>Save</string>
    </property>
+   <property name="toolTip">
+    <string>Save Model</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
   </action>
   <action name="actionExit">
    <property name="icon">
@@ -295,6 +351,12 @@
    </property>
    <property name="text">
     <string>Exit</string>
+   </property>
+   <property name="toolTip">
+    <string>Exit Genesys</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
    </property>
   </action>
   <action name="actionStart">
@@ -308,6 +370,12 @@
    <property name="text">
     <string>Start</string>
    </property>
+   <property name="toolTip">
+    <string>Start Simulation</string>
+   </property>
+   <property name="shortcut">
+    <string>F5</string>
+   </property>
   </action>
   <action name="actionStep">
    <property name="enabled">
@@ -319,6 +387,12 @@
    </property>
    <property name="text">
     <string>Step</string>
+   </property>
+   <property name="toolTip">
+    <string>Step Simulation</string>
+   </property>
+   <property name="shortcut">
+    <string>F6</string>
    </property>
   </action>
   <action name="actionStop">
@@ -332,6 +406,12 @@
    <property name="text">
     <string>Stop</string>
    </property>
+   <property name="toolTip">
+    <string>Stop Simulation</string>
+   </property>
+   <property name="shortcut">
+    <string>F7</string>
+   </property>
   </action>
   <action name="actionPause">
    <property name="enabled">
@@ -343,6 +423,12 @@
    </property>
    <property name="text">
     <string>Pause</string>
+   </property>
+   <property name="toolTip">
+    <string>Pause Simulation</string>
+   </property>
+   <property name="shortcut">
+    <string>F8</string>
    </property>
   </action>
   <action name="actionResume">
@@ -356,6 +442,12 @@
    <property name="text">
     <string>Resume</string>
    </property>
+   <property name="toolTip">
+    <string>Resume Simulation</string>
+   </property>
+   <property name="shortcut">
+    <string>F9</string>
+   </property>
   </action>
   <action name="actionClose">
    <property name="enabled">
@@ -367,6 +459,12 @@
    </property>
    <property name="text">
     <string>Close</string>
+   </property>
+   <property name="toolTip">
+    <string>Close Model</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+W</string>
    </property>
   </action>
   <action name="actionCheck">
@@ -380,11 +478,16 @@
    <property name="text">
     <string>Check</string>
    </property>
+   <property name="toolTip">
+    <string>Check Model</string>
+   </property>
+   <property name="shortcut">
+    <string>F4</string>
+   </property>
   </action>
  </widget>
  <tabstops>
   <tabstop>textEdit_Model</tabstop>
-  <tabstop>textEdit_Simulation</tabstop>
   <tabstop>textEdit_Reports</tabstop>
   <tabstop>tabWidgetModel</tabstop>
  </tabstops>

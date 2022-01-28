@@ -95,26 +95,28 @@ void ModelSimulation::start() {
 			return;
 		}
 		_initSimulation();
-	}
-	if (_isPaused) { // continue after a pause
-		_model->getTracer()->trace("Replication resumed", Util::TraceLevel::L3_errorRecover);
-		_model->getOnEvents()->NotifySimulationResumeHandlers(_createSimulationEvent());
+		_isRunning = true; // set it before notifying handlers
+		_model->getOnEvents()->NotifySimulationStartHandlers(_createSimulationEvent());
 	}
 	_isRunning = true;
-	_isPaused = false;
+	if (_isPaused) { // continue after a pause
+		_model->getTracer()->trace("Replication resumed", Util::TraceLevel::L3_errorRecover);
+		_isPaused = false; // set it before notifying handlers
+		_model->getOnEvents()->NotifySimulationResumeHandlers(_createSimulationEvent());
+	}
 	bool replicationEnded;
 	do {
 		if (!_replicationIsInitiaded) {
 			Util::SetIndent(1);
-			_model->getOnEvents()->NotifyReplicationStartHandlers(_createSimulationEvent());
 			_initReplication();
+			_model->getOnEvents()->NotifyReplicationStartHandlers(_createSimulationEvent());
 			Util::IncIndent();
 		}
 		replicationEnded = _isReplicationEndCondition();
 		while (!replicationEnded) { // this is the main simulation loop
 			_stepSimulation();
 			replicationEnded = _isReplicationEndCondition();
-			if (_pauseRequested) { //check this only after _stepSimulation() and not on loop entering conditin
+			if (_pauseRequested || _stopRequested) { //check this only after _stepSimulation() and not on loop entering conditin
 				break;
 			}
 		};
@@ -131,18 +133,18 @@ void ModelSimulation::start() {
 				_pauseRequested = false;
 			}
 		}
-	} while (_currentReplicationNumber <= _numberOfReplications && !_pauseRequested);
+	} while (_currentReplicationNumber <= _numberOfReplications && !(_pauseRequested || _stopRequested));
 	// all replications done (or paused during execution)
-	if (!_pauseRequested) { // done
+	_isRunning = false;
+	if (!_pauseRequested) { // done or stopped
+		_stopRequested = false;
 		_simulationEnded();
 	} else { // paused
 		_model->getTracer()->trace("Replication paused", Util::TraceLevel::L3_errorRecover);
-		_model->getOnEvents()->NotifySimulationPausedHandlers(_createSimulationEvent());
-		_pauseRequested = false;
+		_pauseRequested = false; // set them before notifying handlers
 		_isPaused = true;
+		_model->getOnEvents()->NotifySimulationPausedHandlers(_createSimulationEvent());
 	}
-	_isRunning = false;
-	_pauseRequested = false;
 }
 
 void ModelSimulation::_simulationEnded() {
@@ -304,7 +306,6 @@ void ModelSimulation::_initSimulation() {
 	_simulationIsInitiated = true; // @TODO Check the uses of _simulationIsInitiated and when it should be set to false
 	_replicationIsInitiaded = false;
 	_currentReplicationNumber = 1;
-	_model->getOnEvents()->NotifySimulationStartHandlers(_createSimulationEvent());
 }
 
 void ModelSimulation::_initReplication() {
@@ -386,6 +387,8 @@ void ModelSimulation::_checkWarmUpTime(Event* nextEvent) {
 }
 
 void ModelSimulation::_stepSimulation() {
+	// "onReplicationStep" is before taking the event from the calendar and "onProcessEvent" is after the event is removed and turned into the current one
+	_model->getOnEvents()->NotifyReplicationStepHandlers(_createSimulationEvent());
 	Event* nextEvent = _model->getFutureEvents()->front();
 	_model->getFutureEvents()->pop_front();
 	if (_warmUpPeriod > 0.0)
@@ -394,7 +397,6 @@ void ModelSimulation::_stepSimulation() {
 		if (_checkBreakpointAt(nextEvent)) {
 			this->_pauseRequested = true;
 		} else {
-			_model->getOnEvents()->NotifyReplicationStepHandlers(_createSimulationEvent());
 			_model->getTracer()->traceSimulation(this, Util::TraceLevel::L5_event, "Event {" + nextEvent->show() + "}");
 			Util::IncIndent();
 			_model->getTracer()->traceSimulation(this, Util::TraceLevel::L8_detailed, "Entity " + nextEvent->getEntity()->show());
@@ -438,8 +440,8 @@ bool ModelSimulation::_checkBreakpointAt(Event* event) {
 			_justTriggeredBreakpointsOnEntity = nullptr;
 		} else {
 			_justTriggeredBreakpointsOnEntity = event->getEntity();
-			_model->getOnEvents()->NotifyBreakpointHandlers(se);
 			_model->getTracer()->trace("Breakpoint found at entity '" + event->getEntity()->getName() + "'. Replication is paused.", Util::TraceLevel::L5_event);
+			_model->getOnEvents()->NotifyBreakpointHandlers(se);
 			res = true;
 		}
 	}
@@ -451,8 +453,8 @@ bool ModelSimulation::_checkBreakpointAt(Event* event) {
 				_justTriggeredBreakpointsOnTime = 0.0;
 			} else {
 				_justTriggeredBreakpointsOnTime = time;
-				_model->getOnEvents()->NotifyBreakpointHandlers(se);
 				_model->getTracer()->trace("Breakpoint found at time '" + std::to_string(event->getTime()) + "'. Replication is paused.", Util::TraceLevel::L5_event);
+				_model->getOnEvents()->NotifyBreakpointHandlers(se);
 				return true;
 			}
 		}
@@ -472,10 +474,7 @@ void ModelSimulation::step() {
 }
 
 void ModelSimulation::stop() {
-	this->_isPaused = false;
-	this->_isRunning = false;
-	this->_replicationIsInitiaded = false;
-	this->_simulationIsInitiated = false;
+	this->_stopRequested = true;
 }
 
 void ModelSimulation::setPauseOnEvent(bool _pauseOnEvent) {
@@ -660,7 +659,7 @@ void ModelSimulation::loadInstance(std::map<std::string, std::string>* fields) {
 std::map<std::string, std::string>* ModelSimulation::saveInstance(bool saveDefaults) {
 	std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();
 	SaveField(fields, "typename", "ModelSimulation");
-	SaveField(fields, "name", "ModelSimulation"); //getName());
+	SaveField(fields, "name", ""); //getName());
 	SaveField(fields, "numberOfReplications", _numberOfReplications, DEFAULT.numberOfReplications, saveDefaults);
 	SaveField(fields, "replicationLength", _replicationLength, DEFAULT.replicationLength, saveDefaults);
 	SaveField(fields, "replicationLengthTimeUnit", _replicationLengthTimeUnit, DEFAULT.replicationLengthTimeUnit, saveDefaults);
@@ -672,7 +671,7 @@ std::map<std::string, std::string>* ModelSimulation::saveInstance(bool saveDefau
 	SaveField(fields, "showReportsAfterSimulation", _showReportsAfterSimulation, DEFAULT.showReportsAfterSimulation, saveDefaults);
 	SaveField(fields, "showSimulationControlsInReport", _showSimulationControlsInReport, DEFAULT.showSimulationControlsInReport, saveDefaults);
 	SaveField(fields, "showSimulationResposesInReport", _showSimulationResposesInReport, DEFAULT.showSimulationResposesInReport, saveDefaults);
-	// not a field of ModelSimulation, but I'll save it here
+	// @TODO not a field of ModelSimulation, but I'll save it here for now 
 	SaveField(fields, "traceLevel", static_cast<int> (_model->getTracer()->getTraceLevel()), static_cast<int> (TraitsKernel<Model>::traceLevel));
 	_hasChanged = false;
 	return fields;

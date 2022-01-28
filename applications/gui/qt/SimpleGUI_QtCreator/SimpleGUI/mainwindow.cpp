@@ -46,8 +46,8 @@ void MainWindow::_actualizeWidgets() {
 	ui->actionClose->setEnabled(opened);
 	ui->actionCheck->setEnabled(opened);
 	ui->menuSimulation->setEnabled(opened);
-	ui->actionStart->setEnabled(opened);
-	ui->actionStep->setEnabled(opened);
+    ui->actionStart->setEnabled(opened && !running);
+    ui->actionStep->setEnabled(opened && !running);
 	ui->actionStop->setEnabled(opened && (running || paused));
 	ui->actionPause->setEnabled(opened && running);
 	ui->actionResume->setEnabled(opened && paused);
@@ -72,8 +72,14 @@ void MainWindow::_actualizeModelTextHasChanged(bool hasChanged) {
 }
 
 void MainWindow::_insertCommandInConsole(std::string text) {
-	ui->textEdit_Console->setTextColor(QColor::fromRgb(0, 255, 0));
+    ui->textEdit_Console->setTextColor(QColor::fromRgb(0, 128, 0));
+    QFont font(ui->textEdit_Console->font());
+    font.setBold(true);
+    ui->textEdit_Console->setFont(font);
 	ui->textEdit_Console->append("\n$genesys> " + QString::fromStdString(text));
+    ui->textEdit_Console->moveCursor(QTextCursor::MoveOperation::Down, QTextCursor::MoveMode::MoveAnchor);
+    font.setBold(false);
+    ui->textEdit_Console->setFont(font);
 }
 
 void MainWindow::_clearModelEditors() {
@@ -82,14 +88,18 @@ void MainWindow::_clearModelEditors() {
 	ui->textEdit_Reports->clear();
 }
 
-void MainWindow::_checkStartSimulation() {
+bool MainWindow::_checkStartSimulation() {
     Model* model = simulator->getModels()->current();
-    if (model == nullptr) {
+    if (this->_textModelHasChanged) {
+        simulator->getModels()->remove(model);
+        model = nullptr;
+    }
+    if (model == nullptr) { // only model text written in UI
         QString modelLanguage = ui->textEdit_Model->toPlainText();
         if (!simulator->getModels()->createFromLanguage(modelLanguage.toStdString())) {
             // show error message
             QErrorMessage error;
-            error.showMessage("Simulation", "Error");
+            error.showMessage("Error in the model text. See console for more information.");
             error.exec();
         }
         model = simulator->getModels()->current();
@@ -102,6 +112,7 @@ void MainWindow::_checkStartSimulation() {
         }
         ui->tabWidgetModel->setCurrentIndex(1);
     }
+    return simulator->getModels()->current() != nullptr;
 }
 
 //-------------------------
@@ -122,47 +133,70 @@ void MainWindow::_simulatorTraceHandler(TraceEvent e) {
 		ui->textEdit_Console->setTextColor(QColor::fromRgb(grayVal, grayVal, grayVal));
 	}
 	ui->textEdit_Console->append(QString::fromStdString(e.getText()));
+    QCoreApplication::processEvents();
 }
 
 void MainWindow::_simulatorTraceErrorHandler(TraceErrorEvent e) {
 	ui->textEdit_Console->setTextColor(QColor::fromRgb(255, 0, 0));
 	ui->textEdit_Console->append(QString::fromStdString(e.getText()));
+    QCoreApplication::processEvents();
 }
 
 void MainWindow::_simulatorTraceSimulationHandler(TraceSimulationEvent e) {
     unsigned short grayVal = 20 * (static_cast<unsigned int> (e.getTracelevel()) - 5);
 	ui->textEdit_Simulation->setTextColor(QColor::fromRgb(grayVal, grayVal, grayVal));
 	ui->textEdit_Simulation->append(QString::fromStdString(e.getText()));
+    QCoreApplication::processEvents();
 }
 
 void MainWindow::_simulatorTraceReportsHandler(TraceEvent e) {
 	ui->textEdit_Reports->append(QString::fromStdString(e.getText()));
+    QCoreApplication::processEvents();
+}
+
+void MainWindow::_onReplicationStartHandler(SimulationEvent* re){
+    ModelSimulation* sim = simulator->getModels()->current()->getSimulation();
+    QString text = QString::fromStdString(std::to_string(sim->getCurrentReplicationNumber())) + "/" + QString::fromStdString(std::to_string(sim->getNumberOfReplications()));
+    ui->label_ReplicationNum->setText(text);
+    QCoreApplication::processEvents();
 }
 
 void MainWindow::_onSimulationStartHandler(SimulationEvent* re) {
     _actualizeWidgets();
+    ui->progressBarSimulation->setMaximum(simulator->getModels()->current()->getSimulation()->getReplicationLength());
     ui->tabWidgetModel->setCurrentIndex(1);
+    QCoreApplication::processEvents();
 }
 
 void MainWindow::_onSimulationPausedHandler(SimulationEvent* re) {
 	_actualizeWidgets();
+    QCoreApplication::processEvents();
 }
 
 void MainWindow::_onSimulationResumeHandler(SimulationEvent* re) {
     _actualizeWidgets();
     ui->tabWidgetModel->setCurrentIndex(1);
+    QCoreApplication::processEvents();
 }
 
 void MainWindow::_onSimulationEndHandler(SimulationEvent* re) {
 	_actualizeWidgets();
 	ui->tabWidgetModel->setCurrentIndex(2);
+    QCoreApplication::processEvents();
+}
+
+void MainWindow::_onProcessEventHandler(SimulationEvent* re) {
+    ui->progressBarSimulation->setValue(simulator->getModels()->current()->getSimulation()->getSimulatedTime());
+    QCoreApplication::processEvents();
 }
 
 void MainWindow::_setOnEventHandlers() {
+    simulator->getModels()->current()->getOnEvents()->addOnReplicationStartHandler(this, &MainWindow::_onReplicationStartHandler);
     simulator->getModels()->current()->getOnEvents()->addOnSimulationStartHandler(this, &MainWindow::_onSimulationStartHandler);
     simulator->getModels()->current()->getOnEvents()->addOnSimulationEndHandler(this, &MainWindow::_onSimulationEndHandler);
     simulator->getModels()->current()->getOnEvents()->addOnSimulationPausedHandler(this, &MainWindow::_onSimulationPausedHandler);
     simulator->getModels()->current()->getOnEvents()->addOnSimulationResumeHandler(this, &MainWindow::_onSimulationResumeHandler);
+    simulator->getModels()->current()->getOnEvents()->addOnProcessEventHandler(this, &MainWindow::_onProcessEventHandler);
 }
 
 //-------------------------
@@ -321,7 +355,7 @@ void MainWindow::on_actionNew_triggered() {
 			return;
 		}
 	}
-	_insertCommandInConsole("model_new");
+    _insertCommandInConsole("new");
 	if (m != nullptr) {
 		simulator->getModels()->remove(m);
 	}
@@ -341,7 +375,7 @@ void MainWindow::on_actionNew_triggered() {
 		std::ifstream file(tempFilename);
 		if (file.is_open()) {
             ui->textEdit_Model->append("# Genesys Model File");
-            ui->textEdit_Model->append("# SimulatorInfo, ModelInfo and ModelSimulation");
+            ui->textEdit_Model->append("# Simulator, ModelInfo and ModelSimulation");
             while (std::getline(file, line)) {
 				ui->textEdit_Model->append(QString::fromStdString(line));
 			}
@@ -367,7 +401,7 @@ void MainWindow::on_actionSave_triggered() {
 	if (fileName.isEmpty())
 		return;
 	else {
-		_insertCommandInConsole("model_save");
+        _insertCommandInConsole("save "+fileName.toStdString());
 		QFile file(fileName);
 		if (!file.open(QIODevice::WriteOnly)) {
 			QMessageBox::information(this, tr("Unable to access file to save"),
@@ -389,7 +423,7 @@ void MainWindow::on_actionSave_triggered() {
 }
 
 void MainWindow::on_actionClose_triggered() {
-	_insertCommandInConsole("model_close");
+    _insertCommandInConsole("close");
 	simulator->getModels()->remove(simulator->getModels()->current());
 	_actualizeWidgets();
 	QMessageBox::information(this, "Close Model", "Model successfully closed");
@@ -405,36 +439,29 @@ void MainWindow::on_actionExit_triggered() {
 void MainWindow::on_actionStop_triggered() {
 	_insertCommandInConsole("stop");
 	simulator->getModels()->current()->getSimulation()->stop();
-	_actualizeWidgets();
 }
 
 void MainWindow::on_actionStart_triggered() {
 	_insertCommandInConsole("start");
-    _checkStartSimulation();
-	simulator->getModels()->current()->getSimulation()->start();
-	_actualizeWidgets();
-    //ui->tabWidgetModel->setCurrentIndex(1);
+    if (_checkStartSimulation())
+        simulator->getModels()->current()->getSimulation()->start();
 }
 
 void MainWindow::on_actionStep_triggered() {
 	_insertCommandInConsole("step");
-    _checkStartSimulation();
-    simulator->getModels()->current()->getSimulation()->step();
-	_actualizeWidgets();
-	ui->tabWidgetModel->setCurrentIndex(1);
+    if (_checkStartSimulation())
+        simulator->getModels()->current()->getSimulation()->step();
 }
 
 void MainWindow::on_actionPause_triggered() {
 	_insertCommandInConsole("pause");
 	simulator->getModels()->current()->getSimulation()->pause();
-	_actualizeWidgets();
 }
 
 void MainWindow::on_actionResume_triggered() {
     _insertCommandInConsole("resume");
-	simulator->getModels()->current()->getSimulation()->start();
-	_actualizeWidgets();
-	ui->tabWidgetModel->setCurrentIndex(1);
+    if (_checkStartSimulation())
+        simulator->getModels()->current()->getSimulation()->start();
 }
 
 void MainWindow::on_actionOpen_triggered() {
@@ -444,7 +471,7 @@ void MainWindow::on_actionOpen_triggered() {
 	if (fileName == "") {
 		return;
 	}
-	_insertCommandInConsole("model_open");
+    _insertCommandInConsole("load "+fileName.toStdString());
 	bool result = simulator->getModels()->loadModel(fileName.toStdString());
 	if (result) {
 		_clearModelEditors();
@@ -497,16 +524,31 @@ void MainWindow::on_listWidget_Plugins_itemDoubleClicked(QListWidgetItem *item)
     }
 }
 
-void MainWindow::on_listWidget_itemClicked(QListWidgetItem *item)
-{
-
-}
-
-void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item)
-{
-
-}
 
 void MainWindow::on_listWidget_Plugins_doubleClicked(const QModelIndex &index)
 {
+    //
+}
+
+void MainWindow::on_listWidget_Plugins_itemClicked(QListWidgetItem *item)
+{
+    //
+}
+
+void MainWindow::on_listWidget_Plugins_clicked(const QModelIndex &index)
+{
+    //
+}
+
+void MainWindow::on_actionCheck_triggered()
+{
+    _insertCommandInConsole("check");
+    bool res = simulator->getModels()->current()->check();
+    if (res) {
+        QMessageBox::information(this, "Model Check", "Model successfully checked.");
+    } else {
+        QErrorMessage error;
+        error.showMessage("Model Check", "Model has erros. See the console for more information.");
+        error.exec();
+    }
 }

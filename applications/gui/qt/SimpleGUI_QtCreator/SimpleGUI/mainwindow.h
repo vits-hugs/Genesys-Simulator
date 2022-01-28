@@ -45,11 +45,11 @@ private slots:
 
     void on_listWidget_Plugins_itemDoubleClicked(QListWidgetItem *item);
 
-    void on_listWidget_itemClicked(QListWidgetItem *item);
-
-    void on_listWidget_itemDoubleClicked(QListWidgetItem *item);
-
     void on_listWidget_Plugins_doubleClicked(const QModelIndex &index);
+
+    void on_listWidget_Plugins_clicked(const QModelIndex &index);
+
+    void on_actionCheck_triggered();
 
 private: // VIEW
 
@@ -59,10 +59,12 @@ private: // trace handlers
     void _simulatorTraceSimulationHandler(TraceSimulationEvent e);
     void _simulatorTraceReportsHandler(TraceEvent e);
 private: // event handlers
+    void _onReplicationStartHandler(SimulationEvent* re);
     void _onSimulationStartHandler(SimulationEvent* re);
     void _onSimulationPausedHandler(SimulationEvent* re);
     void _onSimulationResumeHandler(SimulationEvent* re);
     void _onSimulationEndHandler(SimulationEvent* re);
+    void _onProcessEventHandler(SimulationEvent* re);
 private:
     void _setOnEventHandlers();
     void _insertPluginUI(Plugin* plugin);
@@ -71,7 +73,7 @@ private:
     void _actualizeModelTextHasChanged(bool hasChanged);
     void _insertCommandInConsole(std::string text);
     void _clearModelEditors();
-    void _checkStartSimulation();
+    bool _checkStartSimulation();
 private:
     Ui::MainWindow *ui;
     Simulator* simulator;

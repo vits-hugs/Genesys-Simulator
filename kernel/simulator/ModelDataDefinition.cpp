@@ -48,7 +48,7 @@ bool ModelDataDefinition::hasChanged() const {
 //}
 
 ModelDataDefinition::~ModelDataDefinition() {
-	_parentModel->getTracer()->trace(Util::TraceLevel::L9_mostDetailed, "Removing Element \"" + this->_name + "\" from the model");
+	////_parentModel->getTracer()->trace(Util::TraceLevel::L9_mostDetailed, "Removing Element \"" + this->_name + "\" from the model");
 	_removeInternalDatas();
 	_parentModel->getDataManager()->remove(this);
 }
