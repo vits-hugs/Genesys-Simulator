@@ -162,7 +162,7 @@ public:
         textEdit_Model->setFont(font1);
         textEdit_Model->setLineWidth(3);
         textEdit_Model->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-        textEdit_Model->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+        textEdit_Model->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         textEdit_Model->setTextInteractionFlags(Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
         horizontalLayout->addWidget(textEdit_Model);
@@ -257,8 +257,6 @@ public:
         horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
         listWidget_Plugins = new QListWidget(dockWidgetContentsPlugin);
         listWidget_Plugins->setObjectName(QString::fromUtf8("listWidget_Plugins"));
-        sizePolicy.setHeightForWidth(listWidget_Plugins->sizePolicy().hasHeightForWidth());
-        listWidget_Plugins->setSizePolicy(sizePolicy);
 
         horizontalLayout_5->addWidget(listWidget_Plugins);
 
@@ -300,7 +298,7 @@ public:
         retranslateUi(MainWindow);
         QObject::connect(actionExit, SIGNAL(triggered()), MainWindow, SLOT(close()));
 
-        tabWidgetModel->setCurrentIndex(0);
+        tabWidgetModel->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

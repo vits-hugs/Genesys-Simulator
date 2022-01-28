@@ -5,13 +5,14 @@
 #include <streambuf>
 #include <QMessageBox>
 #include <QFileDialog>
+#include <QErrorMessage>
 
 MainWindow::MainWindow(QWidget *parent)
 : QMainWindow(parent)
 , ui(new Ui::MainWindow) {
 	ui->setupUi(this);
 	ui->dockWidgetContentsConsole->setMaximumHeight(150);
-	ui->dockWidgetContentsPlugin->setMaximumWidth(150);
+    ui->dockWidgetContentsPlugin->setMaximumWidth(200);
     ui->listWidget_Plugins->setSortingEnabled(true);
     //ui->treeWidget_Plugins->setVisible(false);
 	simulator = new Simulator();
@@ -51,7 +52,9 @@ void MainWindow::_actualizeWidgets() {
 	ui->actionPause->setEnabled(opened && running);
 	ui->actionResume->setEnabled(opened && paused);
 	ui->tabWidgetModel->setEnabled(opened);
-	if (!opened) {
+    ui->tabSimulation->setEnabled(opened);
+    ui->tabReport->setEnabled(opened);
+    if (!opened) {
 		_clearModelEditors();
 	}
 }
@@ -79,6 +82,28 @@ void MainWindow::_clearModelEditors() {
 	ui->textEdit_Reports->clear();
 }
 
+void MainWindow::_checkStartSimulation() {
+    Model* model = simulator->getModels()->current();
+    if (model == nullptr) {
+        QString modelLanguage = ui->textEdit_Model->toPlainText();
+        if (!simulator->getModels()->createFromLanguage(modelLanguage.toStdString())) {
+            // show error message
+            QErrorMessage error;
+            error.showMessage("Simulation", "Error");
+            error.exec();
+        }
+        model = simulator->getModels()->current();
+    }
+    if (model != nullptr) {
+        ModelSimulation* sim = model->getSimulation();
+        if (!sim->isPaused() && !sim->isRunning()) {
+            ui->textEdit_Simulation->clear();
+            ui->textEdit_Reports->clear();
+        }
+        ui->tabWidgetModel->setCurrentIndex(1);
+    }
+}
+
 //-------------------------
 // Simulator Trace Handlers
 //-------------------------
@@ -93,7 +118,7 @@ void MainWindow::_simulatorTraceHandler(TraceEvent e) {
 	else if (e.getTracelevel() == Util::TraceLevel::L4_warning)
 		ui->textEdit_Console->setTextColor(QColor::fromRgb(128, 0, 0));
 	else {
-		unsigned short grayVal = 45 * (static_cast<unsigned int> (e.getTracelevel()) - 5);
+        unsigned short grayVal = 20 * (static_cast<unsigned int> (e.getTracelevel()) - 5);
 		ui->textEdit_Console->setTextColor(QColor::fromRgb(grayVal, grayVal, grayVal));
 	}
 	ui->textEdit_Console->append(QString::fromStdString(e.getText()));
@@ -105,7 +130,7 @@ void MainWindow::_simulatorTraceErrorHandler(TraceErrorEvent e) {
 }
 
 void MainWindow::_simulatorTraceSimulationHandler(TraceSimulationEvent e) {
-	unsigned short grayVal = 45 * (static_cast<unsigned int> (e.getTracelevel()) - 5);
+    unsigned short grayVal = 20 * (static_cast<unsigned int> (e.getTracelevel()) - 5);
 	ui->textEdit_Simulation->setTextColor(QColor::fromRgb(grayVal, grayVal, grayVal));
 	ui->textEdit_Simulation->append(QString::fromStdString(e.getText()));
 }
@@ -114,8 +139,18 @@ void MainWindow::_simulatorTraceReportsHandler(TraceEvent e) {
 	ui->textEdit_Reports->append(QString::fromStdString(e.getText()));
 }
 
+void MainWindow::_onSimulationStartHandler(SimulationEvent* re) {
+    _actualizeWidgets();
+    ui->tabWidgetModel->setCurrentIndex(1);
+}
+
 void MainWindow::_onSimulationPausedHandler(SimulationEvent* re) {
 	_actualizeWidgets();
+}
+
+void MainWindow::_onSimulationResumeHandler(SimulationEvent* re) {
+    _actualizeWidgets();
+    ui->tabWidgetModel->setCurrentIndex(1);
 }
 
 void MainWindow::_onSimulationEndHandler(SimulationEvent* re) {
@@ -124,8 +159,10 @@ void MainWindow::_onSimulationEndHandler(SimulationEvent* re) {
 }
 
 void MainWindow::_setOnEventHandlers() {
-	simulator->getModels()->current()->getOnEvents()->addOnSimulationEndHandler(this, &MainWindow::_onSimulationEndHandler);
-	simulator->getModels()->current()->getOnEvents()->addOnSimulationPausedHandler(this, &MainWindow::_onSimulationPausedHandler);
+    simulator->getModels()->current()->getOnEvents()->addOnSimulationStartHandler(this, &MainWindow::_onSimulationStartHandler);
+    simulator->getModels()->current()->getOnEvents()->addOnSimulationEndHandler(this, &MainWindow::_onSimulationEndHandler);
+    simulator->getModels()->current()->getOnEvents()->addOnSimulationPausedHandler(this, &MainWindow::_onSimulationPausedHandler);
+    simulator->getModels()->current()->getOnEvents()->addOnSimulationResumeHandler(this, &MainWindow::_onSimulationResumeHandler);
 }
 
 //-------------------------
@@ -137,48 +174,49 @@ void MainWindow::_insertPluginUI(Plugin* plugin) {
 		if (plugin->isIsValidPlugin()) {
 			QListWidgetItem* item = new QListWidgetItem(QString::fromStdString(plugin->getPluginInfo()->getPluginTypename()));
             //QTreeWidgetItem *treeItem = new QTreeWidgetItem; //(ui->treeWidget_Plugins);
-            std::string plugtextAdds = plugin->getPluginInfo()->getCategory() + ": ";
+            std::string plugtextAdds = "["+plugin->getPluginInfo()->getCategory() + "]: ";
             QBrush brush;
 			if (plugin->getPluginInfo()->isComponent()) {
                 plugtextAdds += " Component";
                 brush.setColor(Qt::white);
                 item->setBackground(brush);
                 item->setBackgroundColor(Qt::white);
-				item->setIcon(QIcon(":/resources/icons/pack3/ico/component.ico"));
+                item->setIcon(QIcon(":/icons3/resources/icons/pack3/ico/component.ico"));
 			} else {
                 plugtextAdds += " DataDefinition";
                 brush.setColor(Qt::lightGray);
                 item->setBackground(brush);
                 item->setBackgroundColor(Qt::lightGray);
-                item->setIcon(QIcon(":/resources/icons/pack3/ico/calendar.ico"));
+                item->setIcon(QIcon(":/icons3/resources/icons/pack3/ico/calendar.ico"));
 				//item->setFont(QFont::Style::StyleItalic);
 			}
 			if (plugin->getPluginInfo()->isSink()) {
                 plugtextAdds += ", Sink";
                 item->setTextColor(Qt::blue);
-				item->setIcon(QIcon(":/resources/icons/pack3/ico/loadInv.ico"));
+                item->setIcon(QIcon(":/icons3/resources/icons/pack3/ico/loadinv.ico"));
 			}
 			if (plugin->getPluginInfo()->isSource()) {
                 plugtextAdds += ", Source";
                 item->setTextColor(Qt::blue);
-                item->setIcon(QIcon(":/resources/icons/pack3/ico/load.ico"));
+                item->setIcon(QIcon(":/icons3/resources/icons/pack3/ico/load.ico"));
 			}
 			if (plugin->getPluginInfo()->isReceiveTransfer()) {
                 plugtextAdds += ", ReceiveTransfer";
                 item->setTextColor(Qt::blue);
-                item->setIcon(QIcon(":/resources/icons/pack3/ico/load.ico"));
+                item->setIcon(QIcon(":/icons3/resources/icons/pack3/ico/load.ico"));
 			}
 			if (plugin->getPluginInfo()->isSendTransfer()) {
                 plugtextAdds += ", SendTransfer";
                 item->setTextColor(Qt::blue);
-                item->setIcon(QIcon(":/resources/icons/pack3/ico/loadInv.ico"));
+                item->setIcon(QIcon(":/icons3/resources/icons/pack3/ico/loadinv.ico"));
 			}
             //treeItem->setText(0,QString::fromStdString(plugtextAdds));
-            plugtextAdds += "\nDescrption: " + plugin->getPluginInfo()->getDescriptionHelp();
-            plugtextAdds += "\nTemplate: " + plugin->getPluginInfo()->getLanguageTemplate();
+            plugtextAdds += "\n\nDescrption: " + plugin->getPluginInfo()->getDescriptionHelp();
+            plugtextAdds += "\n\nTemplate: " + plugin->getPluginInfo()->getLanguageTemplate()+ " (double click to add to model)";
+            //item->button...
             item->setToolTip(QString::fromStdString(plugtextAdds));
             item->setStatusTip(QString::fromStdString(plugin->getPluginInfo()->getLanguageTemplate()));
-			ui->listWidget_Plugins->addItem(item);
+            ui->listWidget_Plugins->addItem(item);
 
 
 		}
@@ -292,6 +330,7 @@ void MainWindow::on_actionNew_triggered() {
 	ui->textEdit_Simulation->clear();
 	ui->textEdit_Reports->clear();
 	ui->textEdit_Console->moveCursor(QTextCursor::End);
+    ui->tabWidgetModel->setCurrentIndex(0);
 	// create a basic initial template for the model
 	std::string tempFilename = "./temp.tmp";
 	m->getPersistence()->setOption(ModelPersistence_if::Options::SAVEDEFAULTS, true);
@@ -301,10 +340,14 @@ void MainWindow::on_actionNew_triggered() {
 		std::string line;
 		std::ifstream file(tempFilename);
 		if (file.is_open()) {
-			while (std::getline(file, line)) {
+            ui->textEdit_Model->append("# Genesys Model File");
+            ui->textEdit_Model->append("# SimulatorInfo, ModelInfo and ModelSimulation");
+            while (std::getline(file, line)) {
 				ui->textEdit_Model->append(QString::fromStdString(line));
 			}
 			file.close();
+            ui->textEdit_Model->append("\n# Model Data Definitions");
+            ui->textEdit_Model->append("\n\n# Model Components\n");
 			QMessageBox::information(this, "New Model", "Model successfully created");
 		} else {
 			ui->textEdit_Console->append(QString("Error reading template model file"));
@@ -331,15 +374,15 @@ void MainWindow::on_actionSave_triggered() {
 					file.errorString());
 			return;
 		}
-		std::ofstream savefile;
-		savefile.open(fileName.toStdString(), std::ofstream::out);
-		QString data = ui->textEdit_Model->toPlainText();
-		QStringList strList = data.split(QRegExp("[\n]"), QString::SkipEmptyParts);
-		for (unsigned int i = 0; i < strList.size(); i++) {
-			savefile << strList.at(i).toStdString() << std::endl;
-		}
-		savefile.close();
-		QMessageBox::information(this, "Save Model", "Model successfully saved");
+        std::ofstream savefile;
+        savefile.open(fileName.toStdString(), std::ofstream::out);
+        QString data = ui->textEdit_Model->toPlainText();
+        QStringList strList = data.split(QRegExp("[\n]"), QString::SkipEmptyParts);
+        for (unsigned int i = 0; i < strList.size(); i++) {
+            savefile << strList.at(i).toStdString() << std::endl;
+        }
+        savefile.close();
+        QMessageBox::information(this, "Save Model", "Model successfully saved");
 		_actualizeModelTextHasChanged(false);
 	}
 	_actualizeWidgets();
@@ -367,16 +410,16 @@ void MainWindow::on_actionStop_triggered() {
 
 void MainWindow::on_actionStart_triggered() {
 	_insertCommandInConsole("start");
-	ui->textEdit_Simulation->clear();
-	ui->textEdit_Reports->clear();
+    _checkStartSimulation();
 	simulator->getModels()->current()->getSimulation()->start();
 	_actualizeWidgets();
-	ui->tabWidgetModel->setCurrentIndex(1);
+    //ui->tabWidgetModel->setCurrentIndex(1);
 }
 
 void MainWindow::on_actionStep_triggered() {
 	_insertCommandInConsole("step");
-	simulator->getModels()->current()->getSimulation()->step();
+    _checkStartSimulation();
+    simulator->getModels()->current()->getSimulation()->step();
 	_actualizeWidgets();
 	ui->tabWidgetModel->setCurrentIndex(1);
 }
@@ -388,7 +431,7 @@ void MainWindow::on_actionPause_triggered() {
 }
 
 void MainWindow::on_actionResume_triggered() {
-	_insertCommandInConsole("start");
+    _insertCommandInConsole("resume");
 	simulator->getModels()->current()->getSimulation()->start();
 	_actualizeWidgets();
 	ui->tabWidgetModel->setCurrentIndex(1);
@@ -419,6 +462,7 @@ void MainWindow::on_actionOpen_triggered() {
 		_setOnEventHandlers();
 		_actualizeModelTextHasChanged(false);
 		_actualizeWidgets();
+        ui->tabWidgetModel->setCurrentIndex(0);
 		QMessageBox::information(this, "Open Model", "Model successfully oppened");
 	} else {
 		QMessageBox::warning(this, "Open Model", "Error while opening model");
@@ -430,14 +474,39 @@ void MainWindow::on_textEdit_Model_textChanged() {
 	this->_actualizeModelTextHasChanged(true);
 }
 
-void MainWindow::on_listWidget_Plugins_itemClicked(QListWidgetItem *item)
+void MainWindow::on_listWidget_Plugins_itemDoubleClicked(QListWidgetItem *item)
+{
+    if (ui->textEdit_Model->isEnabled()) {
+        if (item->toolTip().contains("DataDefinition")) {
+            //QTextDocument::FindFlags flag;
+            QTextCursor cursor = ui->textEdit_Model->textCursor();
+            QTextCursor cursorSaved = cursor;
+            cursor.movePosition(QTextCursor::Start);
+            ui->textEdit_Model->setTextCursor(cursor);
+            //QTextCursor highlightCursor(ui->textEdit_Model->document());
+            if (ui->textEdit_Model->find("# Model Components")) {
+                ui->textEdit_Model->moveCursor(QTextCursor::MoveOperation::Left, QTextCursor::MoveMode::MoveAnchor);
+                ui->textEdit_Model->moveCursor(QTextCursor::MoveOperation::Up, QTextCursor::MoveMode::MoveAnchor);
+                ui->textEdit_Model->insertPlainText(item->statusTip()+"\n");
+            } else {
+                ui->textEdit_Model->append(item->statusTip());
+            }
+        } else {
+            ui->textEdit_Model->append(item->statusTip());
+        }
+    }
+}
+
+void MainWindow::on_listWidget_itemClicked(QListWidgetItem *item)
 {
 
 }
 
-void MainWindow::on_listWidget_Plugins_itemDoubleClicked(QListWidgetItem *item)
+void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item)
 {
-    if (ui->textEdit_Model->isEnabled()) {
-        ui->textEdit_Model->append(item->statusTip());
-    }
+
+}
+
+void MainWindow::on_listWidget_Plugins_doubleClicked(const QModelIndex &index)
+{
 }

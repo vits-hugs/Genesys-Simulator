@@ -84,6 +84,8 @@ void Dispose::_createInternalData() {
 PluginInformation* Dispose::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Dispose>(), &Dispose::LoadInstance, &Dispose::NewInstance);
 	info->setSink(true);
+    info->setMinimumOutputs(0);
+    info->setMaximumOutputs(0);
 	std::string text = "This module is intended as the ending point for entities in a simulation model.";
 	text += " Entity statistics may be recorded before the entity is disposed.";
 	text += " Animation showing the number of entities disposed is displayed when the module is placed.";
