@@ -80,13 +80,14 @@ bool ModelManager::createFromLanguage(std::string modelSpecification) {
 	for (unsigned short i = 0; i < 16; i++) {
 		randomTempFilename += alphanum[rand() % stringLength];
 	}
+    randomTempFilename ="__TEMPFILEMODELO.GEN"; //@TODO: Remove this line
 	std::ofstream savefile;
-	savefile.open("tmp_createfromlanguage.tmp" /*randomTempFilename*/, std::ofstream::out);
+    savefile.open(randomTempFilename, std::ofstream::out);
 	savefile << modelSpecification;
 	savefile.close();
 	bool result = this->loadModel(randomTempFilename);
-	//const std::string filename = randomTempFilename;
-	std::remove("tmp_createfromlanguage.tmp" /*randomTempFilename*/);
+    const char* fname = randomTempFilename.c_str();
+    std::remove(fname);
 	return result;
 }
 

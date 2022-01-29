@@ -14,6 +14,17 @@
 #include "Set.h"
 #include "../../kernel/simulator/Model.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Set::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Set::NewInstance(Model* model, std::string name) {
+	return new Set(model, name);
+}
+
 Set::Set(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<Set>(), name) {
 }
 
@@ -35,7 +46,7 @@ List<ModelDataDefinition*>* Set::getElementSet() const {
 }
 
 PluginInformation* Set::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Set>(), &Set::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Set>(), &Set::LoadInstance, &Set::NewInstance);
 	return info;
 }
 

@@ -32,9 +32,10 @@ public:
 	virtual ~EntityType();
 public:
 	virtual std::string show();
-public:
+public: //static
 	static PluginInformation* GetPluginInformation();
 	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public: //get & set
 	void setInitialWaitingCost(double _initialWaitingCost);
 	double initialWaitingCost() const;

@@ -15,6 +15,17 @@
 
 #include "../../kernel/simulator/Model.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Exit::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Exit::NewInstance(Model* model, std::string name) {
+	return new Exit(model, name);
+}
+
 Exit::Exit(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Exit>(), name) {
 }
 
@@ -32,7 +43,7 @@ ModelComponent* Exit::LoadInstance(Model* model, std::map<std::string, std::stri
 	return newComponent;
 }
 
-void Exit::_execute(Entity* entity) {
+void Exit::_onDispatchEvent(Entity* entity) {
 	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
 	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
@@ -61,7 +72,7 @@ bool Exit::_check(std::string* errorMessage) {
 }
 
 PluginInformation* Exit::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Exit>(), &Exit::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Exit>(), &Exit::LoadInstance, &Exit::NewInstance);
 	info->setCategory("Material Handling");
 	return info;
 }

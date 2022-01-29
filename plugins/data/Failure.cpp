@@ -13,6 +13,17 @@
 
 #include "Failure.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Failure::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Failure::NewInstance(Model* model, std::string name) {
+	return new Failure(model, name);
+}
+
 Failure::Failure(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<Failure>(), name) {
 }
 
@@ -22,7 +33,7 @@ std::string Failure::show() {
 }
 
 PluginInformation* Failure::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Failure>(), &Failure::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Failure>(), &Failure::LoadInstance, &Failure::NewInstance);
 	return info;
 }
 

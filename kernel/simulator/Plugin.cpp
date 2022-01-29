@@ -132,7 +132,7 @@ ModelComponent* Plugin::_loadNewComponent(Model* model, std::map<std::string, st
 }
 
 ModelDataDefinition* Plugin::_loadNewElement(Model* model, std::map<std::string, std::string>* fields) {
-	StaticLoaderElementInstance loader = this->_pluginInfo->getElementLoader();
+	StaticLoaderDataDefinitionInstance loader = this->_pluginInfo->getDataDefinitionLoader();
 	ModelDataDefinition* newElementOrComponent = loader(model, fields);
 	return newElementOrComponent;
 }

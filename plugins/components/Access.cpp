@@ -15,6 +15,17 @@
 
 #include "../../kernel/simulator/Model.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Access::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Access::NewInstance(Model* model, std::string name) {
+	return new Access(model, name);
+}
+
 Access::Access(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Access>(), name) {
 }
 
@@ -32,7 +43,7 @@ ModelComponent* Access::LoadInstance(Model* model, std::map<std::string, std::st
 	return newComponent;
 }
 
-void Access::_execute(Entity* entity) {
+void Access::_onDispatchEvent(Entity* entity) {
 	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
 	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
@@ -61,7 +72,7 @@ bool Access::_check(std::string* errorMessage) {
 }
 
 PluginInformation* Access::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Access>(), &Access::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Access>(), &Access::LoadInstance, &Access::NewInstance);
 	info->setDescriptionHelp("//@TODO");
 	// ...
 	return info;

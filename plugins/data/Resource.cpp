@@ -15,6 +15,17 @@
 #include "../../kernel/simulator/Counter.h"
 #include "../../kernel/simulator/Model.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC 
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Resource::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Resource::NewInstance(Model* model, std::string name) {
+	return new Resource(model, name);
+}
+
 Resource::Resource(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<Resource>(), name) {
 	_resourceEventHandlers->setSortFunc([](const SortedResourceEventHandler* a, const SortedResourceEventHandler * b) {
 		return a->second < b->second; /// Handlers are sorted by priority
@@ -39,16 +50,16 @@ std::string Resource::show() {
 			",state=" + strTruncIfInt(std::to_string(static_cast<int> (_resourceState)));
 }
 
-void Resource::seize(unsigned int quantity, double tnow) {
+void Resource::seize(unsigned int quantity) {
 	_numberBusy += quantity;
 	if (_reportStatistics)
 		_numSeizes->incCountValue(quantity);
-	_lastTimeSeized = tnow;
+	_lastTimeSeized = _parentModel->getSimulation()->getSimulatedTime();
 	_resourceState = Resource::ResourceState::BUSY;
 	// @TODO implement costs
 }
 
-void Resource::release(unsigned int quantity, double tnow) {
+void Resource::release(unsigned int quantity) {
 	if (_numberBusy >= quantity) {
 		_numberBusy -= quantity;
 	} else {
@@ -57,7 +68,7 @@ void Resource::release(unsigned int quantity, double tnow) {
 	if (_numberBusy == 0) {
 		_resourceState = Resource::ResourceState::IDLE;
 	}
-	double timeSeized = tnow - _lastTimeSeized;
+	double timeSeized = _parentModel->getSimulation()->getSimulatedTime() - _lastTimeSeized;
 	if (_reportStatistics) {
 		_numReleases->incCountValue(quantity);
 		_cstatTimeSeized->getStatistics()->getCollector()->addValue(timeSeized);
@@ -145,7 +156,7 @@ void Resource::_notifyReleaseEventHandlers() {
 }
 
 PluginInformation* Resource::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Resource>(), &Resource::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Resource>(), &Resource::LoadInstance, &Resource::NewInstance);
 	return info;
 }
 

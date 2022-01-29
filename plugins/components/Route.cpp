@@ -18,6 +18,17 @@
 #include "../../kernel/simulator/Simulator.h"
 #include "../data/Sequence.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Route::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Route::NewInstance(Model* model, std::string name) {
+	return new Route(model, name);
+}
+
 Route::Route(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Route>(), name) {
 }
 
@@ -42,6 +53,15 @@ ModelComponent* Route::LoadInstance(Model* model, std::map<std::string, std::str
 
 void Route::setStation(Station* _station) {
 	this->_station = _station;
+}
+
+void Route::setStationName(std::string stationName) {
+	ModelDataDefinition* data = _parentModel->getDataManager()->getDataDefinition(Util::TypeOf<Station>(), stationName);
+	if (data != nullptr) {
+		_station = dynamic_cast<Station*> (data);
+	} else {
+		_station = _parentModel->getParentSimulator()->getPlugins()->newInstance<Station>(_parentModel, stationName);
+	}
 }
 
 Station* Route::getStation() const {
@@ -72,7 +92,7 @@ Route::DestinationType Route::getRouteDestinationType() const {
 	return _routeDestinationType;
 }
 
-void Route::_execute(Entity* entity) {
+void Route::_onDispatchEvent(Entity* entity) {
 	Station* destinyStation = _station;
 	if (_routeDestinationType == Route::DestinationType::BySequence) {
 		unsigned int sequenceId = static_cast<unsigned int> (entity->getAttributeValue("Entity.Sequence"));
@@ -128,11 +148,11 @@ bool Route::_loadInstance(std::map<std::string, std::string>* fields) {
 
 std::map<std::string, std::string>* Route::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
-	std::string text = "";
-	if (_station != nullptr) {
-		text = _station->getName();
-	}
 	if (_routeDestinationType == DestinationType::Station) {
+		std::string text = "";
+		if (_station != nullptr) {
+			text = _station->getName();
+		}
 		SaveField(fields, "station", text);
 	}
 	SaveField(fields, "routeTimeExpression", _routeTimeExpression, DEFAULT.routeTimeExpression, saveDefaultValues);
@@ -175,7 +195,7 @@ bool Route::_check(std::string* errorMessage) {
 }
 
 PluginInformation* Route::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Route>(), &Route::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Route>(), &Route::LoadInstance, &Route::NewInstance);
 	info->setSendTransfer(true);
 	info->setCategory("Material Handling");
 	info->insertDynamicLibFileDependence("station.so");
@@ -191,6 +211,11 @@ PluginInformation* Route::GetPluginInformation() {
 }
 
 void Route::_createInternalData() {
+	if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+		if (_station == nullptr) {
+			_station = _parentModel->getParentSimulator()->getPlugins()->newInstance<Station>(_parentModel);
+		}
+	}
 	if (_reportStatistics) {
 		if (_numberIn == nullptr) {
 			_numberIn = new Counter(_parentModel, getName() + "." + "CountNumberIn", this);

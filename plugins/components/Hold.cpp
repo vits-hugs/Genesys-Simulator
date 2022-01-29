@@ -14,6 +14,17 @@
 #include "Hold.h"
 #include "../../kernel/simulator/Model.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Hold::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Hold::NewInstance(Model* model, std::string name) {
+	return new Hold(model, name);
+}
+
 Hold::Hold(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Hold>(), name) {
 }
 
@@ -31,7 +42,7 @@ ModelComponent* Hold::LoadInstance(Model* model, std::map<std::string, std::stri
 	return newComponent;
 }
 
-void Hold::_execute(Entity* entity) {
+void Hold::_onDispatchEvent(Entity* entity) {
 	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
 	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
@@ -60,7 +71,7 @@ bool Hold::_check(std::string* errorMessage) {
 }
 
 PluginInformation* Hold::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Hold>(), &Hold::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Hold>(), &Hold::LoadInstance, &Hold::NewInstance);
 	info->setCategory("Decisions");
 	return info;
 }

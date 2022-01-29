@@ -50,7 +50,7 @@ void BaseConsoleGenesysApplication::onEntityCreateHandler(SimulationEvent* re) {
 }
 
 void BaseConsoleGenesysApplication::onEntityMoveHandler(SimulationEvent* re) {
-	std::cout << "(Event Handler) " << "Entity " << re->getCurrentEntity()->getName() << " was moved to component" << re->getDestinationComponent()->getName() << std::endl;
+	std::cout << "(Event Handler) " << "Entity " << re->getCurrentEvent()->getEntity()->getName() << " was moved to component" << re->getDestinationComponent()->getName() << std::endl;
 }
 
 void BaseConsoleGenesysApplication::onEntityRemoveHandler(SimulationEvent* re) {

@@ -15,6 +15,17 @@
 #include "../../kernel/simulator/Model.h"
 #include "../../kernel/simulator/Attribute.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &EntityGroup::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* EntityGroup::NewInstance(Model* model, std::string name) {
+	return new EntityGroup(model, name);
+}
+
 EntityGroup::EntityGroup(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<EntityGroup>(), name) {
 	// it is invoked in the constructor since EntityGroups are creted runtime by Components such as Batch
 	this->_createInternalData();
@@ -57,7 +68,7 @@ List<Entity*>* EntityGroup::getGroup(unsigned int idKey) {
 }
 
 PluginInformation * EntityGroup::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<EntityGroup>(), &EntityGroup::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<EntityGroup>(), &EntityGroup::LoadInstance, &EntityGroup::NewInstance);
 	info->setDescriptionHelp("//@TODO");
 	return info;
 }

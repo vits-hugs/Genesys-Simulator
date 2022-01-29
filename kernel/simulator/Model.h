@@ -81,8 +81,8 @@ public: // gets and sets
 	void setTracer(TraceManager* _traceManager);
 	TraceManager* getTracer() const;
     ModelPersistence_if* getPersistence() const;
-    void setAutomaticallyCreatesModelDatas(bool _automaticallyCreatesModelDatas);
-    bool isAutomaticallyCreatesModelDatas() const; ///< Provides access to the class that performs the trace of simulation and replications.
+	void setAutomaticallyCreatesModelDataDefinitions(bool _automaticallyCreatesModelDataDefinitions);
+	bool isAutomaticallyCreatesModelDataDefinitions() const; ///< Provides access to the class that performs the trace of simulation and replications.
 	/*
 	 * PRIVATE
 	 */
@@ -96,7 +96,7 @@ private:
 private:
 	bool _hasChanged = false;
 	bool _isChecked = false; // @TODO: Not implemented yet. First, _hasChanged should be trustful
-	bool _automaticallyCreatesModelDatas; // default will come from Traits in the constructor
+	bool _automaticallyCreatesModelDataDefinitions; // default will come from Traits in the constructor
 private: // read only public access (gets)
 	Util::identification _id;
 	Simulator* _parentSimulator; /*! The parente of the model */

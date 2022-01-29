@@ -64,8 +64,10 @@ public:
 public:
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
 	void setStation(Station* _station);
+	void setStationName(std::string stationName);
 	Station* getStation() const;
 	void setRouteTimeExpression(std::string _routeTimeExpression);
 	std::string getRouteTimeExpression() const;
@@ -74,7 +76,7 @@ public:
 	void setRouteDestinationType(DestinationType _routeDestinationType);
 	Route::DestinationType getRouteDestinationType() const;
 protected:
-	virtual void _execute(Entity* entity);
+	virtual void _onDispatchEvent(Entity* entity);
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 protected:

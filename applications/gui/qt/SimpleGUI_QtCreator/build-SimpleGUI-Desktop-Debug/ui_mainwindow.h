@@ -15,10 +15,12 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDockWidget>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QProgressBar>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTextEdit>
@@ -42,6 +44,7 @@ public:
     QAction *actionResume;
     QAction *actionClose;
     QAction *actionCheck;
+    QAction *actionAbout;
     QWidget *centralwidget;
     QHBoxLayout *horizontalLayout_2;
     QTabWidget *tabWidgetModel;
@@ -49,14 +52,20 @@ public:
     QHBoxLayout *horizontalLayout;
     QTextEdit *textEdit_Model;
     QWidget *tabSimulation;
-    QHBoxLayout *horizontalLayout_3;
+    QVBoxLayout *verticalLayout_2;
     QTextEdit *textEdit_Simulation;
+    QHBoxLayout *horizontalLayout_3;
+    QLabel *label_2;
+    QLabel *label_ReplicationNum;
+    QLabel *label;
+    QProgressBar *progressBarSimulation;
     QWidget *tabReport;
     QHBoxLayout *horizontalLayout_4;
     QTextEdit *textEdit_Reports;
     QMenuBar *menubar;
     QMenu *menuModel;
     QMenu *menuSimulation;
+    QMenu *menuAbout;
     QStatusBar *statusbar;
     QToolBar *toolBar;
     QDockWidget *dockWidgetConsole;
@@ -74,7 +83,7 @@ public:
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(877, 606);
         QIcon icon;
-        icon.addFile(QString::fromUtf8(":/icons2/resources/icons/pack2/ico/6.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/3d bar chart.ico"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
         MainWindow->setDockNestingEnabled(true);
         actionNew = new QAction(MainWindow);
@@ -140,6 +149,8 @@ public:
         QIcon icon11;
         icon11.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/yes.ico"), QSize(), QIcon::Normal, QIcon::Off);
         actionCheck->setIcon(icon11);
+        actionAbout = new QAction(MainWindow);
+        actionAbout->setObjectName(QString::fromUtf8("actionAbout"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         horizontalLayout_2 = new QHBoxLayout(centralwidget);
@@ -161,8 +172,9 @@ public:
         font1.setPointSize(12);
         textEdit_Model->setFont(font1);
         textEdit_Model->setLineWidth(3);
-        textEdit_Model->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-        textEdit_Model->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+        textEdit_Model->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        textEdit_Model->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        textEdit_Model->setLineWrapMode(QTextEdit::NoWrap);
         textEdit_Model->setTextInteractionFlags(Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
         horizontalLayout->addWidget(textEdit_Model);
@@ -170,16 +182,43 @@ public:
         tabWidgetModel->addTab(tabModel, QString());
         tabSimulation = new QWidget();
         tabSimulation->setObjectName(QString::fromUtf8("tabSimulation"));
-        horizontalLayout_3 = new QHBoxLayout(tabSimulation);
-        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        verticalLayout_2 = new QVBoxLayout(tabSimulation);
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         textEdit_Simulation = new QTextEdit(tabSimulation);
         textEdit_Simulation->setObjectName(QString::fromUtf8("textEdit_Simulation"));
         QFont font2;
         font2.setPointSize(10);
         textEdit_Simulation->setFont(font2);
+        textEdit_Simulation->setLineWrapMode(QTextEdit::NoWrap);
         textEdit_Simulation->setTextInteractionFlags(Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
-        horizontalLayout_3->addWidget(textEdit_Simulation);
+        verticalLayout_2->addWidget(textEdit_Simulation);
+
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        label_2 = new QLabel(tabSimulation);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+
+        horizontalLayout_3->addWidget(label_2);
+
+        label_ReplicationNum = new QLabel(tabSimulation);
+        label_ReplicationNum->setObjectName(QString::fromUtf8("label_ReplicationNum"));
+
+        horizontalLayout_3->addWidget(label_ReplicationNum);
+
+        label = new QLabel(tabSimulation);
+        label->setObjectName(QString::fromUtf8("label"));
+
+        horizontalLayout_3->addWidget(label);
+
+        progressBarSimulation = new QProgressBar(tabSimulation);
+        progressBarSimulation->setObjectName(QString::fromUtf8("progressBarSimulation"));
+        progressBarSimulation->setValue(0);
+
+        horizontalLayout_3->addWidget(progressBarSimulation);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_3);
 
         tabWidgetModel->addTab(tabSimulation, QString());
         tabReport = new QWidget();
@@ -192,6 +231,7 @@ public:
         font3.setFamily(QString::fromUtf8("Courier 10 Pitch"));
         font3.setPointSize(10);
         textEdit_Reports->setFont(font3);
+        textEdit_Reports->setLineWrapMode(QTextEdit::NoWrap);
         textEdit_Reports->setTextInteractionFlags(Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
         horizontalLayout_4->addWidget(textEdit_Reports);
@@ -209,6 +249,8 @@ public:
         menuSimulation = new QMenu(menubar);
         menuSimulation->setObjectName(QString::fromUtf8("menuSimulation"));
         menuSimulation->setEnabled(false);
+        menuAbout = new QMenu(menubar);
+        menuAbout->setObjectName(QString::fromUtf8("menuAbout"));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -257,19 +299,17 @@ public:
         horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
         listWidget_Plugins = new QListWidget(dockWidgetContentsPlugin);
         listWidget_Plugins->setObjectName(QString::fromUtf8("listWidget_Plugins"));
-        sizePolicy.setHeightForWidth(listWidget_Plugins->sizePolicy().hasHeightForWidth());
-        listWidget_Plugins->setSizePolicy(sizePolicy);
 
         horizontalLayout_5->addWidget(listWidget_Plugins);
 
         dockWidgetPlugins->setWidget(dockWidgetContentsPlugin);
         MainWindow->addDockWidget(Qt::LeftDockWidgetArea, dockWidgetPlugins);
-        QWidget::setTabOrder(textEdit_Model, textEdit_Simulation);
-        QWidget::setTabOrder(textEdit_Simulation, textEdit_Reports);
+        QWidget::setTabOrder(textEdit_Model, textEdit_Reports);
         QWidget::setTabOrder(textEdit_Reports, tabWidgetModel);
 
         menubar->addAction(menuModel->menuAction());
         menubar->addAction(menuSimulation->menuAction());
+        menubar->addAction(menuAbout->menuAction());
         menuModel->addAction(actionNew);
         menuModel->addSeparator();
         menuModel->addAction(actionOpen);
@@ -285,6 +325,7 @@ public:
         menuSimulation->addSeparator();
         menuSimulation->addAction(actionPause);
         menuSimulation->addAction(actionResume);
+        menuAbout->addAction(actionAbout);
         toolBar->addAction(actionNew);
         toolBar->addAction(actionOpen);
         toolBar->addAction(actionSave);
@@ -310,21 +351,89 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "GenESyS - Generic and Expansible System Simulator", nullptr));
         actionNew->setText(QCoreApplication::translate("MainWindow", "New", nullptr));
+#if QT_CONFIG(tooltip)
+        actionNew->setToolTip(QCoreApplication::translate("MainWindow", "New Model", nullptr));
+#endif // QT_CONFIG(tooltip)
         actionOpen->setText(QCoreApplication::translate("MainWindow", "Open", nullptr));
+#if QT_CONFIG(tooltip)
+        actionOpen->setToolTip(QCoreApplication::translate("MainWindow", "Open Model", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        actionOpen->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+O", nullptr));
+#endif // QT_CONFIG(shortcut)
         actionSave->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
+#if QT_CONFIG(tooltip)
+        actionSave->setToolTip(QCoreApplication::translate("MainWindow", "Save Model", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        actionSave->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+S", nullptr));
+#endif // QT_CONFIG(shortcut)
         actionExit->setText(QCoreApplication::translate("MainWindow", "Exit", nullptr));
+#if QT_CONFIG(tooltip)
+        actionExit->setToolTip(QCoreApplication::translate("MainWindow", "Exit Genesys", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        actionExit->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+X", nullptr));
+#endif // QT_CONFIG(shortcut)
         actionStart->setText(QCoreApplication::translate("MainWindow", "Start", nullptr));
+#if QT_CONFIG(tooltip)
+        actionStart->setToolTip(QCoreApplication::translate("MainWindow", "Start Simulation", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        actionStart->setShortcut(QCoreApplication::translate("MainWindow", "F5", nullptr));
+#endif // QT_CONFIG(shortcut)
         actionStep->setText(QCoreApplication::translate("MainWindow", "Step", nullptr));
+#if QT_CONFIG(tooltip)
+        actionStep->setToolTip(QCoreApplication::translate("MainWindow", "Step Simulation", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        actionStep->setShortcut(QCoreApplication::translate("MainWindow", "F6", nullptr));
+#endif // QT_CONFIG(shortcut)
         actionStop->setText(QCoreApplication::translate("MainWindow", "Stop", nullptr));
+#if QT_CONFIG(tooltip)
+        actionStop->setToolTip(QCoreApplication::translate("MainWindow", "Stop Simulation", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        actionStop->setShortcut(QCoreApplication::translate("MainWindow", "F7", nullptr));
+#endif // QT_CONFIG(shortcut)
         actionPause->setText(QCoreApplication::translate("MainWindow", "Pause", nullptr));
+#if QT_CONFIG(tooltip)
+        actionPause->setToolTip(QCoreApplication::translate("MainWindow", "Pause Simulation", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        actionPause->setShortcut(QCoreApplication::translate("MainWindow", "F8", nullptr));
+#endif // QT_CONFIG(shortcut)
         actionResume->setText(QCoreApplication::translate("MainWindow", "Resume", nullptr));
+#if QT_CONFIG(tooltip)
+        actionResume->setToolTip(QCoreApplication::translate("MainWindow", "Resume Simulation", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        actionResume->setShortcut(QCoreApplication::translate("MainWindow", "F9", nullptr));
+#endif // QT_CONFIG(shortcut)
         actionClose->setText(QCoreApplication::translate("MainWindow", "Close", nullptr));
+#if QT_CONFIG(tooltip)
+        actionClose->setToolTip(QCoreApplication::translate("MainWindow", "Close Model", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        actionClose->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+W", nullptr));
+#endif // QT_CONFIG(shortcut)
         actionCheck->setText(QCoreApplication::translate("MainWindow", "Check", nullptr));
+#if QT_CONFIG(tooltip)
+        actionCheck->setToolTip(QCoreApplication::translate("MainWindow", "Check Model", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        actionCheck->setShortcut(QCoreApplication::translate("MainWindow", "F4", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionAbout->setText(QCoreApplication::translate("MainWindow", "About", nullptr));
         tabWidgetModel->setTabText(tabWidgetModel->indexOf(tabModel), QCoreApplication::translate("MainWindow", "Model", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "Replication ", nullptr));
+        label_ReplicationNum->setText(QCoreApplication::translate("MainWindow", "1/1", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", ":", nullptr));
         tabWidgetModel->setTabText(tabWidgetModel->indexOf(tabSimulation), QCoreApplication::translate("MainWindow", "Simulation", nullptr));
         tabWidgetModel->setTabText(tabWidgetModel->indexOf(tabReport), QCoreApplication::translate("MainWindow", "Reports", nullptr));
         menuModel->setTitle(QCoreApplication::translate("MainWindow", "Model", nullptr));
         menuSimulation->setTitle(QCoreApplication::translate("MainWindow", "Simulation", nullptr));
+        menuAbout->setTitle(QCoreApplication::translate("MainWindow", "About", nullptr));
         toolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
         dockWidgetConsole->setWindowTitle(QCoreApplication::translate("MainWindow", "Console", nullptr));
         dockWidgetPlugins->setWindowTitle(QCoreApplication::translate("MainWindow", "Plugins", nullptr));

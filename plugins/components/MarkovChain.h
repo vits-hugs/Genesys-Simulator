@@ -27,6 +27,7 @@ public: // virtual
 public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public: // get and set
 	void setTransitionProbabilityMatrix(Variable* _transitionMatrix);
 	Variable* getTransitionMatrix() const;
@@ -37,7 +38,7 @@ public: // get and set
 	bool isInitilized() const;
 	void setCurrentState(Variable* _currentState);
 protected: // virtual
-	virtual void _execute(Entity* entity);
+	virtual void _onDispatchEvent(Entity* entity);
 	virtual void _initBetweenReplications();
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);

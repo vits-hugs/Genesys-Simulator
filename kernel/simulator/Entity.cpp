@@ -155,7 +155,6 @@ Util::identification Entity::entityNumber() const {
 bool Entity::_loadInstance(std::map<std::string, std::string>* fields) {
 	// never loads an entity 
 	fields = nullptr; // just to use the parameter and avoid warning for not using it
-
 	return fields;
 }
 

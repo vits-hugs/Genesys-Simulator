@@ -42,7 +42,7 @@ Sampler_if::RNG_Parameters * SamplerDefaultImpl1::getRNGparameters() const {
 double SamplerDefaultImpl1::random() {
 	unsigned long a = static_cast<DefaultImpl1RNG_Parameters*> (_param)->a;
 	unsigned long m = static_cast<DefaultImpl1RNG_Parameters*> (_param)->m;
-	_xi = (uint64_t) _xi * a % m;
+	_xi = (uint64_t) _xi * a % m; //@TODO: Check the target-architecture and choose 64 or 32 bits
 	//unsigned long c = static_cast<DefaultImpl1RNG_Parameters*> (_param)->c;
 	// _xi = ((uint64_t)_xi * a + c) % m;
 	return (double) (_xi) / (double) (m);
@@ -101,18 +101,17 @@ double SamplerDefaultImpl1::sampleTriangular(double min, double mode, double max
 		return max - sqrt(Part2 * Full * (1.0 - R));
 }
 
-double SamplerDefaultImpl1::sampleDiscrete(double acumProb, double value, ...) {
+double SamplerDefaultImpl1::sampleDiscrete(double prob, double value, ...) {
 	// @TODO: to implement
 	return 0.0;
 }
 
-double SamplerDefaultImpl1::sampleDiscrete(double acumProb, double *prob, double *value, int size) {
+double SamplerDefaultImpl1::sampleDiscrete(double *prob, double *value, int size) {
 	double cdf = 0;
 	double x;
 	x = random();
-
 	for (int i = 0; i < size; i++) {
-		cdf += prob[i] / acumProb;
+		cdf += prob[i];
 		if (x <= cdf) {
 			return value[i];
 		}

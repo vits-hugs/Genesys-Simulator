@@ -32,6 +32,7 @@ public: // get & set
 	void setFirstCreation(double _firstCreation);
 	double getFirstCreation() const;
 	void setEntityType(EntityType* _entityType);
+	void setEntityTypeName(std::string entityTypeName);
 	EntityType* getEntityType() const;
 	void setTimeUnit(Util::TimeUnit _timeUnit);
 	Util::TimeUnit getTimeUnit() const;
@@ -51,6 +52,7 @@ protected:
 	virtual void _initBetweenReplications();
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
+	virtual void _createInternalData();
 protected: // get & set
 	EntityType* _entityType = nullptr;
 
@@ -60,6 +62,8 @@ protected: // get & set
 		const std::string maxCreationsExpression = std::to_string(std::numeric_limits<unsigned int>::max());
 		const std::string timeBetweenCreationsExpression = "EXPO(1.0)";
 		const Util::TimeUnit timeBetweenCreationsTimeUnit = Util::TimeUnit::second;
+		//
+		const std::string entityTypename = "entitytype";
 	} DEFAULT;
 	double _firstCreation = DEFAULT.firstCreation;
 	unsigned int _entitiesPerCreation = DEFAULT.entitiesPerCreation;

@@ -14,12 +14,24 @@
 #include "QueueableItem.h"
 #include "../../kernel/simulator/ModelDataDefinition.h"
 #include "../../kernel/simulator/Model.h"
+#include "../../kernel/simulator/Simulator.h"
 #include <cassert>
 
 QueueableItem::QueueableItem(ModelDataDefinition* queueOrSet, QueueableItem::QueueableType queueableType, std::string index) {
 	_queueableType = queueableType;
 	_queueOrSet = queueOrSet;
 	_index = index;
+}
+
+QueueableItem::QueueableItem(Model* model, std::string queueName = "") {
+	_queueableType = QueueableItem::QueueableType::QUEUE;
+	ModelDataDefinition* data = model->getDataManager()->getDataDefinition(Util::TypeOf<Queue>(), queueName);
+	if (data != nullptr) {
+		_queueOrSet = dynamic_cast<Queue*> (data);
+	} else {
+		_queueOrSet = model->getParentSimulator()->getPlugins()->newInstance<Queue>(model, queueName);
+	}
+	_index = "0";
 }
 
 /* Queue* QueueableItem::getRequestedQueue() const {

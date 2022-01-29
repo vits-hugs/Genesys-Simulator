@@ -73,11 +73,14 @@ public: // virtual
 public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-    void setGroupedEntityType(EntityType* _groupedEntityType);
-    EntityType* getGroupedEntityType() const;
-    void setAttributeName(std::string _attributeName);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+public:
+	void setGroupedEntityType(EntityType* groupedEntityType);
+	void setGroupedEntityTypeName(std::string groupedEntityTypeName);
+	EntityType* getGroupedEntityType() const;
+	void setAttributeName(std::string attributeName);
     std::string getAttributeName() const;
-    void setBatchSize(std::string _batchSize);
+	void setBatchSize(std::string batchSize);
     std::string getBatchSize() const;
     void setRule(Batch::Rule _rule);
     Batch::Rule getRule() const;
@@ -88,7 +91,7 @@ protected: // virtual should
 	virtual void _createInternalData();
 	virtual bool _check(std::string* errorMessage);
 protected: // virtual must
-	virtual void _execute(Entity* entity);
+	virtual void _onDispatchEvent(Entity* entity);
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 private: // methods

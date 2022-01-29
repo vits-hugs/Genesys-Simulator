@@ -23,9 +23,6 @@
 #include "../../plugins/components/Process.h"
 #include "../../plugins/components/Dispose.h"
 
-// Model data definitions
-#include "../../kernel/simulator/EntityType.h"
-
 Smart_ProcessSet::Smart_ProcessSet() {
 }
 
@@ -38,29 +35,32 @@ int Smart_ProcessSet::main(int argc, char** argv) {
 	this->insertFakePluginsByHand(genesys);
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L8_detailed);
+	// create model
 	Model* model = genesys->getModels()->newModel();
-	Create *create = new Create(model);
-	create->setEntityType(new EntityType(model, "Client"));
+	PluginManager* plugins = genesys->getPlugins();
+	Create *create = plugins->newInstance<Create>(model);
+	create->setEntityTypeName("Client");
 	create->setTimeBetweenCreationsExpression("1");
-	Set* set = new Set(model);
+	Dispose* dispose = plugins->newInstance<Dispose>(model);
+	Set* set = plugins->newInstance<Set>(model);
 	set->setSetOfType("Resource");
-	set->getElementSet()->insert(new Resource(model));
-	set->getElementSet()->insert(new Resource(model));
-	set->getElementSet()->insert(new Resource(model));
-	set->getElementSet()->insert(new Resource(model));
-	set->getElementSet()->insert(new Resource(model));
-	Process* process = new Process(model);
-	process->getSeizeRequests()->insert(new SeizableItem(set)); //, SeizableItem::SeizableType::SET));
-	process->setQueueableItem(new QueueableItem(new Queue(model)));
-	process->setDelayExpression("unif(0.8,1.2)");
-	Dispose* dispose = new Dispose(model);
+	set->getElementSet()->insert(plugins->newInstance<Resource>(model));
+	set->getElementSet()->insert(plugins->newInstance<Resource>(model));
+	set->getElementSet()->insert(plugins->newInstance<Resource>(model));
+	set->getElementSet()->insert(plugins->newInstance<Resource>(model));
+	set->getElementSet()->insert(plugins->newInstance<Resource>(model));
+	Process* process = plugins->newInstance<Process>(model);
+	process->getSeizeRequests()->insert(new SeizableItem(set));
+	process->setQueueableItem(new QueueableItem(model, "myqueue"));
+	process->setDelayExpression("unif(0.6,1.4)");
+	// connect model components to create a "workflow"
 	create->getConnections()->insert(process);
 	process->getConnections()->insert(dispose);
+	// set options, save and simulate step-by-step (but no user interaction required)
 	model->getSimulation()->setReplicationLength(10);
 	model->save("./models/Smart_ProcessSet.gen");
 	do {
 		model->getSimulation()->step();
-		//		std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
 	} while (model->getSimulation()->isPaused());
 	genesys->~Simulator();
 	return 0;

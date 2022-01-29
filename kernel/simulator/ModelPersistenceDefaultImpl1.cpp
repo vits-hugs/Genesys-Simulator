@@ -31,7 +31,7 @@ ModelPersistenceDefaultImpl1::ModelPersistenceDefaultImpl1(Model* model) {
 
 std::map<std::string, std::string>* ModelPersistenceDefaultImpl1::_getSimulatorInfoFieldsToSave() {
 	std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();
-	SaveField(fields, "typename", "SimulatorInfo");
+	SaveField(fields, "typename", "Simulator");
 	SaveField(fields, "name", _model->getParentSimulator()->getName());
 	SaveField(fields, "versionNumber", _model->getParentSimulator()->getVersionNumber());
 	//SaveField(fields, "version", _model->getParentSimulator()->getVersion());
@@ -54,7 +54,7 @@ bool ModelPersistenceDefaultImpl1::save(std::string filename) {
 		fields = _model->getInfos()->saveInstance();
 		modelInfosToSave = _adjustFieldsToSave(fields);
 		// save model own infos
-		// @TODO save modelSimulation fields (breakpoints)
+		// @TODO save modelSimulation fields (breakpoints and other stuff included?)
 		fields = _model->getSimulation()->saveInstance(saveDefaults);
 		simulationInfosToSave = _adjustFieldsToSave(fields);
 		// save infras
@@ -209,7 +209,7 @@ bool ModelPersistenceDefaultImpl1::_loadFields(std::string line) {
 		{
 			std::string thistypename = (*fields->find("typename")).second;
 			_model->getTracer()->trace(Util::TraceLevel::L7_internal, "loading " + thistypename + "");
-			if (thistypename == "SimulatorInfo") {
+			if (thistypename == "SimulatorInfo" || thistypename == "Simulator") {
 				this->_loadSimulatorInfoFields(fields);
 			} else if (thistypename == "ModelInfo") {
 				_model->getInfos()->loadInstance(fields);
@@ -277,7 +277,7 @@ bool ModelPersistenceDefaultImpl1::load(std::string filename) {
 		}
 	}
 	// check if something was loaded
-	res &= (_model->getComponents()->getNumberOfComponents() > 0) & (_model->getDataManager()->getNumberOfDataDefinitions() > 0);
+    //res &= (_model->getComponents()->getNumberOfComponents() > 0) & (_model->getDataManager()->getNumberOfDataDefinitions() > 0);
 	if (res) {
 		//
 		// CONNECT LOADED COMPONENTS (must wait for all components to be loaded so they can be connected)

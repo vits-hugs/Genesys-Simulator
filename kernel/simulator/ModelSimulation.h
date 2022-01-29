@@ -75,9 +75,6 @@ public: // only gets
 	bool isRunning() const;
 	bool isPaused() const;
 	unsigned int getCurrentReplicationNumber() const;
-	ModelComponent* getCurrentComponent() const;
-	Entity* getCurrentEntity() const;
-	unsigned int getCurrentInputNumber() const;
 	void setShowReportsAfterReplication(bool showReportsAfterReplication);
 	bool isShowReportsAfterReplication() const;
 	void setShowReportsAfterSimulation(bool showReportsAfterSimulation);
@@ -104,7 +101,6 @@ private: // simulation control
 	void _stepSimulation(); ///<
 	void _replicationEnded(); ///<
 	void _simulationEnded(); ///<
-	void _processEvent(Event* event); ///<
 private:
 	bool _checkBreakpointAt(Event* event); ///<
 	bool _isReplicationEndCondition(); ///<
@@ -140,11 +136,11 @@ private:
 
 	const struct DEFAULT_VALUES {
 		unsigned int numberOfReplications = 1;
-		double replicationLength = 3600.0; // by default, 3600 s = 1.0 h
+        double replicationLength = 60.0; // by default, 60s = 1min
 		Util::TimeUnit replicationLengthTimeUnit = Util::TimeUnit::second;
 		Util::TimeUnit replicationBeseTimeUnit = Util::TimeUnit::second;
 		Util::TimeUnit replicationReportBaseTimeUnit = Util::TimeUnit::second;
-		double warmUpPeriod = replicationLength * 0.10; // 0.0;
+        double warmUpPeriod = 0.0;
 		Util::TimeUnit warmUpPeriodTimeUnit = Util::TimeUnit::second;
 		std::string terminatingCondition = "";
 		bool initializeStatisticsBetweenReplications = true;
@@ -166,10 +162,6 @@ private:
 	std::chrono::system_clock::time_point _startRealSimulationTimeSimulation;
 	std::chrono::system_clock::time_point _startRealSimulationTimeReplication;
 private:
-	// currenEntity, currentComponent and currentInputNumber could be taken throught currentEvent only
-	Entity* _currentEntity = nullptr;
-	ModelComponent* _currentComponent = nullptr;
-	unsigned int _currentInputNumber = 0;
 	Event* _currentEvent = nullptr;
 	unsigned int _currentReplicationNumber;
 private:

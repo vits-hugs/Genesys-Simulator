@@ -13,6 +13,17 @@
 
 #include "Storage.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Storage::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Storage::NewInstance(Model* model, std::string name) {
+	return new Storage(model, name);
+}
+
 Storage::Storage(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<Storage>(), name) {
 }
 
@@ -22,7 +33,7 @@ std::string Storage::show() {
 }
 
 PluginInformation* Storage::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Storage>(), &Storage::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Storage>(), &Storage::LoadInstance, &Storage::NewInstance);
 	return info;
 }
 

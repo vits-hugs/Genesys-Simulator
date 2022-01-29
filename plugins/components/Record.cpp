@@ -17,6 +17,17 @@
 #include <cstdio>
 #include <iostream>
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Record::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Record::NewInstance(Model* model, std::string name) {
+	return new Record(model, name);
+}
+
 Record::Record(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Record>(), name) {
 }
 
@@ -61,7 +72,7 @@ std::string Record::getExpression() const {
 	return _expression;
 }
 
-void Record::_execute(Entity* entity) {
+void Record::_onDispatchEvent(Entity* entity) {
 	double value = _parentModel->parseExpression(_expression);
 	_cstatExpression->getStatistics()->getCollector()->addValue(value);
 	if (_filename != "") {
@@ -114,7 +125,7 @@ void Record::_createInternalData() {
 }
 
 PluginInformation* Record::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Record>(), &Record::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Record>(), &Record::LoadInstance, &Record::NewInstance);
 	info->setCategory("Input Output");
 	return info;
 }

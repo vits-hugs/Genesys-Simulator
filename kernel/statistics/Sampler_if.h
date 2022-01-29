@@ -43,8 +43,8 @@ public: // continuous probability distributions
 public: // discrete probability distributions    
 	virtual double sampleBinomial(int trials, double p) = 0;
 	virtual double sampleBernoulli(double p) = 0;
-	virtual double sampleDiscrete(double acumProb, double value, ...) = 0;
-	virtual double sampleDiscrete(double acumProb, double *prob, double *value, int size) = 0;
+	virtual double sampleDiscrete(double prob, double value, ...) = 0;
+	virtual double sampleDiscrete(double *prob, double *value, int size) = 0;
 	virtual double sampleGeometric(double p) = 0;
 public:
 	virtual void setRNGparameters(RNG_Parameters* param) = 0;

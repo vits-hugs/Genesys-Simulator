@@ -1,9 +1,9 @@
 0   SimulatorInfo "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220111 
-0   ModelInfo  "Model 2" analystName="" description="" projectTitle="" version="1.0" 
+0   ModelInfo  "Model 1" analystName="" description="" projectTitle="" version="1.0" 
 0   ModelSimulation "ModelSimulation" replicationLength=2.000000 showReportsAfterReplicaton=0 showReportsAfterSimulation=0 
-54  EntityType "EntityType_2" 
-55  Variable   "x" dimension0=2 numDimensions=1 numValues=2 pos1="1" value0=1.000000 
-56  Variable   "t" 
-53  Create     "Create_2" EntityType="EntityType_2" timeBetweenCreations="0.5" nextId=57 
-57  LSODE      "LSODE_2" nextId=58 
-58  Dispose    "Dispose_2" nextSize=0 
+57  EntityType "EntityType_1" 
+58  Variable   "x" dimension0=2 numDimensions=1 numValues=2 pos1="1" value0=1.000000 
+59  Variable   "t" 
+56  Create     "Create_1" EntityType="EntityType_1" timeBetweenCreations="0.5" nextId=60 
+60  LSODE      "LSODE_1" nextId=61 
+61  Dispose    "Dispose_1" nextSize=0 

@@ -23,9 +23,6 @@
 #include "../../plugins/components/Delay.h"
 #include "../../plugins/components/Dispose.h"
 
-// Model data definitions
-#include "../../kernel/simulator/EntityType.h"
-
 Smart_OnEvent::Smart_OnEvent() {
 }
 
@@ -38,7 +35,7 @@ void Smart_OnEvent::onEntityCreateHandler(SimulationEvent* re) {
 }
 
 void Smart_OnEvent::onEntityMoveHandler(SimulationEvent* re) {
-	std::cout << "(Event Handler) " << "Entity " << re->getCurrentEntity()->getName() << " was moved to component" << re->getDestinationComponent()->getName() << std::endl;
+	std::cout << "(Event Handler) " << "Entity " << re->getCurrentEvent()->getEntity()->getName() << " was moved to component" << re->getDestinationComponent()->getName() << std::endl;
 }
 
 void Smart_OnEvent::onEntityRemoveHandler(SimulationEvent* re) {
@@ -85,8 +82,9 @@ int Smart_OnEvent::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	this->insertFakePluginsByHand(genesys);
 	Model* model = genesys->getModels()->newModel();
-	model->getTracer()->setTraceLevel(Util::TraceLevel::L0_noTraces); // no traces!!
-	//
+	PluginManager* plugins = genesys->getPlugins();
+	model->getTracer()->setTraceLevel(Util::TraceLevel::L0_noTraces); // NO TRACES. Genesys will show anything!
+	// set event handler to the previous methods. All outputs will come from these handlers
 	OnEventManager* oem = model->getOnEvents();
 	oem->addOnBreakpointHandler(this, &Smart_OnEvent::onBreakpointHandler);
 	oem->addOnEntityCreateHandler(this, &Smart_OnEvent::onEntityCreateHandler);
@@ -100,13 +98,14 @@ int Smart_OnEvent::main(int argc, char** argv) {
 	oem->addOnSimulationPausedHandler(this, &Smart_OnEvent::onSimulationPausedHandler);
 	oem->addOnSimulationResumeHandler(this, &Smart_OnEvent::onSimulationResumeHandler);
 	oem->addOnSimulationStartHandler(this, &Smart_OnEvent::onSimulationStartHandler);
-	//
-	Create* create1 = new Create(model);
-	create1->setEntityType(new EntityType(model));
-	Delay* delay1 = new Delay(model);
-	Dispose* dispose1 = new Dispose(model);
+	// create model 
+	Create* create1 = plugins->newInstance<Create>(model);
+	Delay* delay1 = plugins->newInstance<Delay>(model);
+	Dispose* dispose1 = plugins->newInstance<Dispose>(model);
+	// connect model components to create a "workflow"
 	create1->getConnections()->insert(delay1);
 	delay1->getConnections()->insert(dispose1);
+	// set options, save and simulate. It will pause every step and require to press ENTER
 	model->getSimulation()->setReplicationLength(10);
 	model->save("./models/Smart_OnEvent.gen");
 	do {

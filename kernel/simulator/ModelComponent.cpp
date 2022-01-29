@@ -24,7 +24,10 @@ ModelComponent::~ModelComponent() {
 	_parentModel->getComponents()->remove(this);
 }
 
-void ModelComponent::Execute(Entity* entity, ModelComponent* component, unsigned int inputNumber) {
+void ModelComponent::DispatchEvent(Event* event) {
+	Entity* entity = event->getEntity();
+	ModelComponent* component = event->getComponent();
+	unsigned int inputNumber = event->getComponentInputNumber();
 	std::string msg = /*"Entity " +std::to_string(entity->entityNumber())*/ entity->getName() + " has arrived at component \"" + component->getName() + "\"";
 	if (component->getDescription() != "")
 		msg += ": " + component->getDescription();
@@ -34,7 +37,7 @@ void ModelComponent::Execute(Entity* entity, ModelComponent* component, unsigned
 	component->_parentModel->getTracer()->traceSimulation(component, Util::TraceLevel::L6_arrival, msg);
 	Util::IncIndent();
 	try {
-		component->_execute(entity);
+		component->_onDispatchEvent(entity);
 	} catch (const std::exception& e) {
 		component->_parentModel->getTracer()->traceError(e, "Error executing component " + component->show());
 	}

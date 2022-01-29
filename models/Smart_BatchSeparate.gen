@@ -1,12 +1,12 @@
 0   SimulatorInfo "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220111 
 0   ModelInfo  "Model 1" analystName="" description="" projectTitle="" version="1.0" 
 0   ModelSimulation "ModelSimulation" replicationLength=100.000000 showReportsAfterReplicaton=0 showReportsAfterSimulation=0 traceLevel=7 
-56  EntityType "normal" 
-58  Attribute  "batchNum" 
-60  EntityType "grouped" 
-55  Create     "Create_1" EntityType="normal" maxCreations="50" nextId=57 
-57  Assign     "Assign_1" destination0="batchNum" expression0="trunc(unif(0,5))" nextId=59 
-59  Batch      "Batch_1" nextId=61 
-61  Delay      "Delay_1" delayExpression="25.000000" nextId=62 
-62  Separate   "Separate_1" nextId=63 
-63  Dispose    "Dispose_1" nextSize=0 
+57  EntityType "normal" 
+59  Attribute  "batchNum" 
+61  EntityType "grouped" 
+56  Create     "Create_1" EntityType="normal" maxCreations="50" nextId=58 
+58  Assign     "Assign_1" destination0="batchNum" expression0="trunc(unif(0,5))" nextId=60 
+60  Batch      "Batch_1" attributeName="batchNum" batchSize="4" groupedAttributes=2 groupedEntityType="grouped" rule=1 nextId=62 
+62  Delay      "Delay_1" delayExpression="25.000000" nextId=63 
+63  Separate   "Separate_1" nextId=64 
+64  Dispose    "Dispose_1" nextSize=0 

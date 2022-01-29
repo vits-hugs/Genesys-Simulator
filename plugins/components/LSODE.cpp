@@ -15,6 +15,17 @@
 #include "LSODE.h"
 #include "../../kernel/simulator/Model.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &LSODE::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* LSODE::NewInstance(Model* model, std::string name) {
+	return new LSODE(model, name);
+}
+
 LSODE::LSODE(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<LSODE>(), name) {
 }
 
@@ -124,7 +135,7 @@ bool LSODE::_doStep() {
 	return res;
 }
 
-void LSODE::_execute(Entity* entity) {
+void LSODE::_onDispatchEvent(Entity* entity) {
 	// open file
 	std::ofstream savefile;
 	if (_filename != "") {
@@ -202,7 +213,7 @@ bool LSODE::_check(std::string* errorMessage) {
 }
 
 PluginInformation* LSODE::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<LSODE>(), &LSODE::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<LSODE>(), &LSODE::LoadInstance, &LSODE::NewInstance);
 	info->setCategory("Physical");
 	// ...
 	return info;

@@ -23,9 +23,6 @@
 #include "../../plugins/components/Delay.h"
 #include "../../plugins/components/Dispose.h"
 
-// Model data definitions
-#include "../../kernel/simulator/EntityType.h"
-
 Smart_Dummy::Smart_Dummy() {
 }
 
@@ -35,29 +32,20 @@ Smart_Dummy::Smart_Dummy() {
  */
 int Smart_Dummy::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	// insert "fake plugins" since plugins based on dynamic loaded library are not implemented yet
 	this->insertFakePluginsByHand(genesys);
-	// Handle traces and simulation events to output them
 	this->setDefaultTraceHandlers(genesys->getTracer());
+	// crete model
 	Model* model = genesys->getModels()->newModel();
-	model->getSimulation()->setReplicationLength(60);
-	// create a (Source)ModelDataDefinition of type EntityType, used by a ModelComponent that follows
-	EntityType* entityType1 = new EntityType(model, "Type_of_Representative_Entity");
-	// create a ModelComponent of type Create, used to insert entities into the model
-	Create* create1 = new Create(model);
-	create1->setEntityType(entityType1);
-	create1->setTimeBetweenCreationsExpression("1.5"); // create one new entity every 1.5 seconds
-	// create a ModelComponent of type Delay, used to represent a time delay
-	Delay* delay1 = new Delay(model);
-	// if nothing else is set, the delay will take 1 second
-	// create a (Sink)ModelComponent of type Dispose, used to remove entities from the model
-	Dispose* dispose1 = new Dispose(model); // insert the component into the model
-	// connect model components to create a "workflow" -- should always start from a SourceModelComponent and end at a SinkModelComponent (it will be checked)
+	PluginManager* plugins = genesys->getPlugins();
+	Create* create1 = plugins->newInstance<Create>(model);
+	Delay* delay1 = plugins->newInstance<Delay>(model);
+	Dispose* dispose1 = plugins->newInstance<Dispose>(model);
+	// connect model components to create a "workflow"
 	create1->getConnections()->insert(delay1);
 	delay1->getConnections()->insert(dispose1);
-	// save the model into a text file
+	// set options, save and simulate
+	model->getSimulation()->setReplicationLength(60);
 	model->save("./models/Smart_Dummy.gen");
-	// execute the simulation util completed and show the report
 	model->getSimulation()->start();
 	genesys->~Simulator();
 	return 0;

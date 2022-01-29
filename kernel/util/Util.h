@@ -155,41 +155,14 @@ public:
 		L7_internal = 7,
 		L8_detailed = 8,
 		L9_mostDetailed = 9
-		/*				,
-		
-						simulatorResult = 10,
-						toolResult = 11,
-						modelResult = 12,
-						componentResult = 13,
-						elementResult = 14,
-
-						modelSimulationEvent = 15,
-
-						componentArrival = 20,
-						simulatorInternal = 21,
-						toolInternal = 22,
-						modelSimulationInternal = 23,
-						modelInternal = 24,
-						componentInternal = 25,
-						elementInternal = 26,
-
-						simulatorDetailed = 30,
-						toolDetailed = 31,
-						modelSimulationDetailed = 32,
-						modelDetailed = 33,
-						componentDetailed = 34,
-						elementDetailed = 35,
-
-						everythingMostDetailed = 99
-		 */
 	};
 private:
+	static unsigned int _S_indentation;
 	static Util::identification _S_lastId;
 	static std::map<std::string, Util::identification> _S_lastIdOfType;
 	static std::map<std::string, std::string> _S_TypeOf;
 
 public: // indentation and string
-	static unsigned int _S_indentation; // @TODO: IT IS PRIVATE. ITS HERE JUST TO INCLUDE IT AS A WATCH
 	static void SetIndent(const unsigned short indent);
 	static void IncIndent();
 	static void DecIndent();
@@ -247,9 +220,6 @@ private:
 	Util();
 	virtual ~Util() = default;
 };
-
-
-// @TODO Implement it using templates (check impact on calling syntax)
 static inline std::string LoadField(std::map<std::string, std::string>* fields, std::string fieldName, std::string defaultValue = "") {
 	return fields->find(fieldName) != fields->end() ? ((*(fields->find(fieldName))).second) : defaultValue;
 }
@@ -265,8 +235,6 @@ static inline int LoadField(std::map<std::string, std::string>* fields, std::str
 static inline Util::TimeUnit LoadField(std::map<std::string, std::string>* fields, std::string fieldName, Util::TimeUnit defaultValue) {
 	return static_cast<Util::TimeUnit> (std::stoi(fields->find(fieldName) != fields->end() ? ((*(fields->find(fieldName))).second) : std::to_string(static_cast<int> (defaultValue))));
 }
-
-// @TODO Implement it using templates (check impact on calling syntax)
 static inline void SaveField(std::map<std::string, std::string>* fields, std::string fieldName, std::string fieldValue, const std::string fieldDefaultValue, const bool saveDefaultValue = false) {
 	if (saveDefaultValue || (fieldValue != fieldDefaultValue))
 		fields->emplace(fieldName, "\"" + fieldValue + "\"");

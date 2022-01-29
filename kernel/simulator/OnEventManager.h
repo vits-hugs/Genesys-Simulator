@@ -77,24 +77,24 @@ public:
 	Event* getCurrentEvent() const {
 		return currentEvent;
 	}
-	void setCurrentInputNumber(unsigned int currentInputNumber) {
-		this->currentInputNumber = currentInputNumber;
-	}
-	unsigned int getCurrentInputNumber() const {
-		return currentInputNumber;
-	}
-	void setCurrentComponent(ModelComponent* currentComponent) {
-		this->currentComponent = currentComponent;
-	}
-	ModelComponent* getCurrentComponent() const {
-		return currentComponent;
-	}
-	void setCurrentEntity(Entity* currentEntity) {
-		this->currentEntity = currentEntity;
-	}
-	Entity* getCurrentEntity() const {
-		return currentEntity;
-	}
+	//void setCurrentInputNumber(unsigned int currentInputNumber) {
+	//	this->currentInputNumber = currentInputNumber;
+	//}
+	//unsigned int getCurrentInputNumber() const {
+	//	return currentInputNumber;
+	//}
+	//void setCurrentComponent(ModelComponent* currentComponent) {
+	//	this->currentComponent = currentComponent;
+	//}
+	//ModelComponent* getCurrentComponent() const {
+	//	return currentComponent;
+	//}
+	//void setCurrentEntity(Entity* currentEntity) {
+	//	this->currentEntity = currentEntity;
+	//}
+	//Entity* getCurrentEntity() const {
+	//	return currentEntity;
+	//}
 	void setEntityCreated(Entity* entityCreated) {
 		this->entityCreated = entityCreated;
 	}
@@ -122,13 +122,13 @@ private:
 	}
 	friend class ModelSimulation;
 private:
-	Entity* currentEntity = nullptr;
 	Entity* entityCreated = nullptr;
 	Event* currentEvent = nullptr;
-	ModelComponent* currentComponent = nullptr;
+	//Entity* currentEntity = nullptr;
+	//unsigned int currentInputNumber = 0;
+	//ModelComponent* currentComponent = nullptr;
 	ModelComponent* destinationComponent = nullptr;
 	void* customObject = nullptr;
-	unsigned int currentInputNumber = 0;
 	unsigned int currentReplicationNumber = 0;
 	double simulatedTime = 0.0;
 	double entityMoveTimeDelay = 0.0;

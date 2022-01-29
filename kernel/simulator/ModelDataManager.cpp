@@ -52,7 +52,7 @@ void ModelDataManager::remove(ModelDataDefinition * anElement) {
 	List<ModelDataDefinition*>* listElements = getDataDefinitionList(datadefinitionTypename);
 	listElements->remove(anElement);
 	_hasChanged = true;
-	_parentModel->getTracer()->trace(Util::TraceLevel::L8_detailed, "Element successfully removed.");
+	////_parentModel->getTracer()->trace(Util::TraceLevel::L8_detailed, "Element successfully removed.");
 
 }
 

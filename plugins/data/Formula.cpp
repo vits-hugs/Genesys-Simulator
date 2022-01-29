@@ -16,6 +16,17 @@
 #include "../../kernel/simulator/ModelDataManager.h"
 #include "../../kernel/simulator/Model.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Formula::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Formula::NewInstance(Model* model, std::string name) {
+	return new Formula(model, name);
+}
+
 Formula::Formula(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<Formula>(), name) {
 	//_myPrivateParser = new Traits<Parser_if>::Implementation(_parentModel);
 }
@@ -75,7 +86,7 @@ double Formula::value() {
 }
 
 PluginInformation* Formula::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Formula>(), &Formula::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Formula>(), &Formula::LoadInstance, &Formula::NewInstance);
 	return info;
 }
 

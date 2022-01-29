@@ -15,6 +15,17 @@
 
 //using namespace GenesysKernel;
 
+#ifdef PLUGINCONNECT_DYNAMIC 
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Attribute::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Attribute::NewInstance(Model* model, std::string name) {
+	return new Attribute(model, name);
+}
+
 Attribute::Attribute(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<Attribute>(), name) {
 }
 
@@ -27,7 +38,7 @@ bool Attribute::_loadInstance(std::map<std::string, std::string>* fields) {
 }
 
 PluginInformation* Attribute::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Attribute>(), &Attribute::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Attribute>(), &Attribute::LoadInstance, &Attribute::NewInstance);
 	info->setDescriptionHelp("//@TODO");
 	return info;
 

@@ -22,6 +22,7 @@ public:
 public: // static
 	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 	static PluginInformation* GetPluginInformation();
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
 	virtual std::string show();
 protected: // must be overriden by derived classes

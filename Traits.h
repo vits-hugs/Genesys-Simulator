@@ -56,7 +56,6 @@
 template <typename T>
 struct Traits {
 };
-
 /*!
  *  Configure the Genesys Application to be compiled and executed
  */
@@ -66,7 +65,7 @@ template <> struct Traits<GenesysApplication_if> {
 	//// SMART SMART_S SORTED
 	//typedef Smart_AssignWriteSeizes Application;
 	//typedef Smart_BatchSeparate Application;
-	//typedef Smart_Delay Applicatodatafilion;
+	//typedef Smart_Delay Application;
 	//typedef Smart_Dummy Application;
 	//typedef Smart_HoldSignal Application;
 	//typedef Smart_ModelInfoModelSimulation Application;
@@ -79,7 +78,7 @@ template <> struct Traits<GenesysApplication_if> {
 	//typedef Smart_ProcessSet Application;
 	//typedef Smart_RouteStation Application;
 	//typedef Smart_SeizeDelayRelease Application;
-	//typedef Smart_SeizeDelayReleaseMany Application;
+	//typedef Smart_SeizeDelayReleaseMany Application; 
 	//typedef Smart_Sequence Application;
 	//typedef Smart_CppForG Application;
 

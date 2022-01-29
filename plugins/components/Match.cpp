@@ -15,6 +15,17 @@
 
 #include "../../kernel/simulator/Model.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Match::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Match::NewInstance(Model* model, std::string name) {
+	return new Match(model, name);
+}
+
 Match::Match(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Match>(), name) {
 }
 
@@ -32,7 +43,7 @@ ModelComponent* Match::LoadInstance(Model* model, std::map<std::string, std::str
 	return newComponent;
 }
 
-void Match::_execute(Entity* entity) {
+void Match::_onDispatchEvent(Entity* entity) {
 	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
 	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
@@ -61,7 +72,7 @@ bool Match::_check(std::string* errorMessage) {
 }
 
 PluginInformation* Match::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Match>(), &Match::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Match>(), &Match::LoadInstance, &Match::NewInstance);
 	info->setCategory("Decision");
 	// ...
 	return info;

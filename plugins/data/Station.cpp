@@ -16,6 +16,17 @@
 #include "../../kernel/simulator/Model.h"
 #include "../../kernel/simulator/Attribute.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Station::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Station::NewInstance(Model* model, std::string name) {
+	return new Station(model, name);
+}
+
 Station::Station(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<Station>(), name) {
 }
 
@@ -73,7 +84,7 @@ ModelComponent* Station::getEnterIntoStationComponent() const {
 }
 
 PluginInformation* Station::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Station>(), &Station::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Station>(), &Station::LoadInstance, &Station::NewInstance);
 	std::string help = "The Station module defines a station (or a set of stations) corresponding to a physical or logical location where processing occurs.";
 	help += " If the Station module defines a station set, it is effectively defining multiple processing locations.";
 	help += " The station (or each station within the defined set) has a matching Activity Area that is used to report all times and costs accrued by the entities in this station.";

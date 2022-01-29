@@ -14,6 +14,18 @@
 #include "Sequence.h"
 #include "../../kernel/simulator/Attribute.h"
 #include "../../kernel/simulator/Model.h"
+#include "../../kernel/simulator/Simulator.h"
+
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Sequence::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Sequence::NewInstance(Model* model, std::string name) {
+	return new Sequence(model, name);
+}
 
 Sequence::Sequence(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<Sequence>(), name) {
 }
@@ -24,7 +36,7 @@ std::string Sequence::show() {
 }
 
 PluginInformation* Sequence::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Sequence>(), &Sequence::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Sequence>(), &Sequence::LoadInstance, &Sequence::NewInstance);
 	return info;
 }
 
@@ -78,6 +90,17 @@ SequenceStep::SequenceStep(Station* station, std::list<Assignment*>* assignments
 		_assignments = assignments;
 	else
 		_assignments = new std::list<Assignment*>();
+}
+
+SequenceStep::SequenceStep(Model* model, std::string stationName, std::list<Assignment*>* assignments) {
+	Station* station;
+	ModelDataDefinition* data = model->getDataManager()->getDataDefinition(Util::TypeOf<Station>(), stationName);
+	if (data != nullptr) {
+		station = dynamic_cast<Station*> (data);
+	} else {
+		station = model->getParentSimulator()->getPlugins()->newInstance<Station>(model, stationName);
+	}
+	SequenceStep(station, assignments);
 }
 
 bool SequenceStep::_loadInstance(std::map<std::string, std::string>* fields, unsigned int parentIndex) {

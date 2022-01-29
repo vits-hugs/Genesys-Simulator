@@ -18,6 +18,17 @@
 #include "../../kernel/simulator/Attribute.h"
 #include "Assign.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Create::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Create::NewInstance(Model* model, std::string name) {
+	return new Create(model, name);
+}
+
 Create::Create(Model* model, std::string name) : SourceModelComponent(model, Util::TypeOf<Create>(), name) {
 	//_numberOut = new Counter(_parentModel, getName() + "." + "Count_number_in", this);
 	// @TODO Check if modeldatum has already been inserted and this is not needed: _parentModel->elements()->insert(_numberOut);
@@ -38,7 +49,7 @@ std::string Create::show() {
 	return SourceModelComponent::show();
 }
 
-void Create::_execute(Entity* entity) {
+void Create::_onDispatchEvent(Entity* entity) {
 	_parentModel->getDataManager()->insert(entity->getClassname(), entity);
 	double tnow = _parentModel->getSimulation()->getSimulatedTime();
 	entity->setAttributeValue("Entity.ArrivalTime", tnow); // ->find("Entity.ArrivalTime")->second->setValue(tnow);
@@ -67,7 +78,7 @@ void Create::_execute(Entity* entity) {
 }
 
 PluginInformation* Create::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Create>(), &Create::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Create>(), &Create::LoadInstance, &Create::NewInstance);
 	info->setSource(true);
 	std::string text = "This module is intended as the starting point for entities in a simulation model.";
 	text += "	Entities are created using a schedule or based on a time between arrivals. Entities then leave the module to begin processing through the system.";
@@ -112,6 +123,7 @@ bool Create::_check(std::string* errorMessage) {
 }
 
 void Create::_createInternalData() {
+	SourceModelComponent::_createInternalData();
 	if (_reportStatistics && _numberOut == nullptr) {
 		_numberOut = new Counter(_parentModel, getName() + "." + "CountNumberOut", this);
 		_internalData->insert({"CountNumberOut", _numberOut});

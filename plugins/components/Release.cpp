@@ -18,6 +18,17 @@
 #include <assert.h>
 #include <cmath>
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Release::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Release::NewInstance(Model* model, std::string name) {
+	return new Release(model, name);
+}
+
 Release::Release(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Release>(), name) {
 }
 
@@ -53,7 +64,7 @@ List<SeizableItem*>* Release::getReleaseRequests() const {
 //	return _resource;
 //}
 
-void Release::_execute(Entity* entity) {
+void Release::_onDispatchEvent(Entity* entity) {
 	for (SeizableItem* seizable : *_releaseRequests->list()) {
 		Resource* resource;
 		if (seizable->getSeizableType() == SeizableItem::SeizableType::RESOURCE) {
@@ -86,7 +97,7 @@ void Release::_execute(Entity* entity) {
 		unsigned int quantity = _parentModel->parseExpression(seizable->getQuantityExpression());
 		assert(resource->getNumberBusy() >= quantity); // 202104 ops. maybe not anymore
 		_parentModel->getTracer()->traceSimulation(this, _parentModel->getSimulation()->getSimulatedTime(), entity, this, entity->getName() + " releases " + std::to_string(quantity) + " units of resource \"" + resource->getName() + "\" seized on time " + std::to_string(resource->getLastTimeSeized()));
-		resource->release(quantity, _parentModel->getSimulation()->getSimulatedTime()); //{releases and sets the 'LastTimeSeized'property}
+		resource->release(quantity); //{releases and sets the 'LastTimeSeized'property}
 	}
 	_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
@@ -159,7 +170,7 @@ bool Release::_check(std::string* errorMessage) {
 //}
 
 PluginInformation* Release::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Release>(), &Release::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Release>(), &Release::LoadInstance, &Release::NewInstance);
 	info->insertDynamicLibFileDependence("resource.so");
 	std::string help = "The Release module is used to release units of a resource that an entity previously has seized.";
 	help += " This module may be used to release individual resources or may be used to release resources within a set.";

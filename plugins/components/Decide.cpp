@@ -15,6 +15,17 @@
 #include "../../kernel/simulator/Model.h"
 #include "../../kernel/simulator/Counter.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Decide::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Decide::NewInstance(Model* model, std::string name) {
+	return new Decide(model, name);
+}
+
 Decide::Decide(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Decide>(), name) {
 }
 
@@ -26,7 +37,7 @@ std::string Decide::show() {
 	return ModelComponent::show() + "";
 }
 
-void Decide::_execute(Entity* entity) {
+void Decide::_onDispatchEvent(Entity* entity) {
 	double value;
 	unsigned short i = 0;
 	for (std::list<std::string>::iterator it = _conditions->list()->begin(); it != _conditions->list()->end(); it++) {
@@ -103,8 +114,10 @@ void Decide::_createInternalData() {
 }
 
 PluginInformation* Decide::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Decide>(), &Decide::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Decide>(), &Decide::LoadInstance, &Decide::NewInstance);
 	info->setCategory("Decisions");
+    info->setMinimumOutputs(2);
+    info->setMaximumOutputs(999);
 	std::string help = "This module allows for decision-making processes in the system.";
 	help += " It includes options to make decisions based on one or more conditions(for example, if entity type is Gold Card) or based on one or more probabilities(for example, 75 %, true; 25 %, false).";
 	help += " Conditions can be based on attribute values(for example, Priority), variable values(for example, Number Denied), the entity type, or an expression(for example, NQ(ProcessA.Queue)).";

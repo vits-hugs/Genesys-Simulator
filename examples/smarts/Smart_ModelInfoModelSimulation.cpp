@@ -22,9 +22,6 @@
 #include "../../plugins/components/Delay.h"
 #include "../../plugins/components/Dispose.h"
 
-// Model data definitions
-#include "../../kernel/simulator/EntityType.h"
-
 Smart_ModelInfoModelSimulation::Smart_ModelInfoModelSimulation() {
 }
 
@@ -37,21 +34,23 @@ int Smart_ModelInfoModelSimulation::main(int argc, char** argv) {
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L6_arrival);
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	this->insertFakePluginsByHand(genesys);
+	//
 	Model* model = genesys->getModels()->newModel();
+	PluginManager* plugins = genesys->getPlugins();
 	// set general info about the model
 	ModelInfo* infos = model->getInfos();
 	infos->setAnalystName("Your name");
 	infos->setProjectTitle("The title of the project");
 	infos->setDescription("This simulation model tests one of the most basic models possible.");
 	infos->setVersion("1.0");
-	//
-	Create* create1 = new Create(model);
-	create1->setEntityType(new EntityType(model));
+	// create model
+	Create* create1 = plugins->newInstance<Create>(model);
 	create1->setTimeUnit(Util::TimeUnit::minute);
-	Delay* delay1 = new Delay(model);
+	Delay* delay1 = plugins->newInstance<Delay>(model);
 	delay1->setDelayExpression("NORM(1,0.2)");
 	delay1->setDelayTimeUnit(Util::TimeUnit::minute);
-	Dispose* dispose1 = new Dispose(model);
+	Dispose* dispose1 = plugins->newInstance<Dispose>(model);
+	// connect model components to create a "workflow"
 	create1->getConnections()->insert(delay1);
 	delay1->getConnections()->insert(dispose1);
 	// set model simulation
@@ -71,7 +70,7 @@ int Smart_ModelInfoModelSimulation::main(int argc, char** argv) {
 	sim->getBreakpointsOnComponent()->insert(delay1);
 	sim->getBreakpointsOnTime()->insert(6.5);
 	sim->getBreakpointsOnTime()->insert(14.0);
-	//
+	// save and simulate. Several pauses will occour due to previous settings
 	model->save("./models/Smart_ModelInfoModelSimulation.gen");
 	do {
 		sim->start();

@@ -105,6 +105,9 @@ bool Simulator::_completePluginsFieldsAndTemplate() {
 					if (info->isComponent()) {
 						comp = dynamic_cast<ModelComponent*> (plugin->loadNew(tempModel, fields));
 						comp->setName("name");
+                        while (comp->getConnections()->size() < info->getMinimumOutputs()) {
+                            comp->getConnections()->insert(comp);
+                        }
 						fields = comp->SaveInstance(comp);
 					} else {
 						datum = plugin->loadNew(tempModel, fields);
@@ -119,7 +122,7 @@ bool Simulator::_completePluginsFieldsAndTemplate() {
 					info->getFields()->insert({field.first, ""});
 				}
 				std::string templateLanguage = tempModel->getPersistence()->getFormatedField(fields);
-                //std::cout << info->getPluginTypename() << ": " << templateLanguage << std::endl;
+				//std::cout << info->getPluginTypename() << ": " << templateLanguage << std::endl;
 				info->setLanguageTemplate(templateLanguage);
 			}
 		} catch (...) {

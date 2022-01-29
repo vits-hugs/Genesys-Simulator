@@ -100,11 +100,13 @@ public:
 public:
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
 	void setStation(Station* _station);
+	void setStationName(std::string stationName);
 	Station* getStation() const;
 protected:
-	virtual void _execute(Entity* entity);
+	virtual void _onDispatchEvent(Entity* entity);
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 protected:
@@ -112,7 +114,7 @@ protected:
 	virtual bool _check(std::string* errorMessage);
 	virtual void _createInternalData();
 private: // association
-	Station* _station;
+    Station* _station = nullptr;
 private: // internel elements
 	Counter* _numberIn = nullptr;
 };

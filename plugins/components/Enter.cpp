@@ -13,7 +13,19 @@
 
 #include "Enter.h"
 #include "../../kernel/simulator/Model.h"
+#include "../../kernel/simulator/Simulator.h"
 #include "../../kernel/simulator/Counter.h"
+
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Enter::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Enter::NewInstance(Model* model, std::string name) {
+	return new Enter(model, name);
+}
 
 Enter::Enter(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Enter>(), name) {
 }
@@ -37,11 +49,21 @@ void Enter::setStation(Station* _station) {
 	_station->setEnterIntoStationComponent(this);
 }
 
+void Enter::setStationName(std::string stationName) {
+	ModelDataDefinition* data = _parentModel->getDataManager()->getDataDefinition(Util::TypeOf<Station>(), stationName);
+	if (data != nullptr) {
+		_station = dynamic_cast<Station*> (data);
+	} else {
+		_station = _parentModel->getParentSimulator()->getPlugins()->newInstance<Station>(_parentModel, stationName);
+	}
+	_station->setEnterIntoStationComponent(this);
+}
+
 Station* Enter::getStation() const {
 	return _station;
 }
 
-void Enter::_execute(Entity* entity) {
+void Enter::_onDispatchEvent(Entity* entity) {
 	if (_reportStatistics)
 		_numberIn->incCountValue();
 	_station->enter(entity);
@@ -77,7 +99,7 @@ bool Enter::_check(std::string* errorMessage) {
 }
 
 PluginInformation* Enter::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Enter>(), &Enter::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Enter>(), &Enter::LoadInstance, &Enter::NewInstance);
 	info->setReceiveTransfer(true);
 	info->setCategory("Material Handling");
 	info->insertDynamicLibFileDependence("station.so");
@@ -86,6 +108,12 @@ PluginInformation* Enter::GetPluginInformation() {
 }
 
 void Enter::_createInternalData() {
+	if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+		if (_station == nullptr) {
+			_station = _parentModel->getParentSimulator()->getPlugins()->newInstance<Station>(_parentModel);
+			_station->setEnterIntoStationComponent(this);
+		}
+	}
 	if (_reportStatistics) {
 		if (_numberIn == nullptr) {
 			_numberIn = new Counter(_parentModel, getName() + "." + "CountNumberIn", this);

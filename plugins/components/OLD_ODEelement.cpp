@@ -14,6 +14,17 @@
 #include "OLD_ODEelement.h"
 #include "../../kernel/simulator/Model.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &OLD_ODEelement::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* OLD_ODEelement::NewInstance(Model* model, std::string name) {
+	return new OLD_ODEelement(model, name);
+}
+
 OLD_ODEelement::OLD_ODEelement(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<OLD_ODEelement>(), name) {
 	//_elems = elems;
 }
@@ -53,7 +64,7 @@ List<ODEfunction*>* OLD_ODEelement::getODEfunctions() const {
 }
 
 PluginInformation* OLD_ODEelement::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<OLD_ODEelement>(), &OLD_ODEelement::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<OLD_ODEelement>(), &OLD_ODEelement::LoadInstance, &OLD_ODEelement::NewInstance);
 	return info;
 }
 

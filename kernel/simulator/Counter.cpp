@@ -17,6 +17,17 @@
 
 //using namespace GenesysKernel;
 
+#ifdef PLUGINCONNECT_DYNAMIC 
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Counter::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Counter::NewInstance(Model* model, std::string name) {
+	return new Counter(model, name);
+}
+
 Counter::Counter(Model* model, std::string name, ModelDataDefinition* parent) : ModelDataDefinition(model, Util::TypeOf<Counter>(), name) {
 	_parent = parent;
 	GetterMember getterMember = DefineGetterMember<Counter>(this, &Counter::getCountValue);
@@ -49,7 +60,7 @@ ModelDataDefinition* Counter::getParent() const {
 }
 
 PluginInformation* Counter::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Counter>(), &Counter::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Counter>(), &Counter::LoadInstance, &Counter::NewInstance);
 	info->setGenerateReport(true);
 	info->setDescriptionHelp("The Counter modeldatum is used to count events, and its internal count value is added by a configurable amount, usually incremented by one.");
 	return info;

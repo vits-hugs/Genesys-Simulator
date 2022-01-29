@@ -12,7 +12,6 @@
 
 #include "Book_Cap02_Example01.h"
 #include "../../kernel/simulator/Simulator.h"
-#include "../../kernel/simulator/EntityType.h"
 #include "../../plugins/components/Create.h"
 #include "../../plugins/components/Delay.h"
 #include "../../plugins/components/Dispose.h"
@@ -25,13 +24,14 @@ int Book_Cap02_Example01::main(int argc, char** argv) {
 	this->insertFakePluginsByHand(genesys);
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	Model* model = genesys->getModels()->newModel();
-	EntityType* entityType1 = new EntityType(model, "EntityType1");
-	Create* create1 = new Create(model);
-	create1->setEntityType(entityType1);
+	PluginManager* plugins = genesys->getPlugins();
+	Create* create1 = plugins->newInstance<Create>(model);
+	//EntityType* entityType1 = plugins->newInstance<EntityType>(model, "EntityType1");
+	//create1->setEntityType(entityType1);
 	create1->setTimeBetweenCreationsExpression("NORM(5,2)");
-	Delay* delay1 = new Delay(model);
+	Delay* delay1 = plugins->newInstance<Delay>(model);
 	delay1->setDelayExpression("unif(3,7)");
-	Dispose* dispose1 = new Dispose(model);
+	Dispose* dispose1 = plugins->newInstance<Dispose>(model);
 	create1->getConnections()->insert(delay1);
 	delay1->getConnections()->insert(dispose1);
 	model->getSimulation()->setReplicationLength(30);

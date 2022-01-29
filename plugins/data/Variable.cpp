@@ -14,6 +14,17 @@
 #include "Variable.h"
 #include "../../kernel/simulator/Plugin.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Variable::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Variable::NewInstance(Model* model, std::string name) {
+	return new Variable(model, name);
+}
+
 Variable::Variable(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<Variable>(), name) {
 	setName(name);
 }
@@ -29,7 +40,7 @@ std::string Variable::show() {
 }
 
 PluginInformation* Variable::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Variable>(), &Variable::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Variable>(), &Variable::LoadInstance, &Variable::NewInstance);
 	return info;
 }
 

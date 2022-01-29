@@ -14,6 +14,17 @@
 #include "Search.h"
 #include "../../kernel/simulator/Model.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Search::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Search::NewInstance(Model* model, std::string name) {
+	return new Search(model, name);
+}
+
 Search::Search(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Search>(), name) {
 }
 
@@ -31,7 +42,7 @@ ModelComponent* Search::LoadInstance(Model* model, std::map<std::string, std::st
 	return newComponent;
 }
 
-void Search::_execute(Entity* entity) {
+void Search::_onDispatchEvent(Entity* entity) {
 	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
 	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
@@ -60,7 +71,7 @@ bool Search::_check(std::string* errorMessage) {
 }
 
 PluginInformation* Search::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Search>(), &Search::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Search>(), &Search::LoadInstance, &Search::NewInstance);
 	// ...
 	return info;
 }

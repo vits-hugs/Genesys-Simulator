@@ -17,6 +17,17 @@
 
 //using namespace GenesysKernel;
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &EntityType::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* EntityType::NewInstance(Model* model, std::string name) {
+	return new EntityType(model, name);
+}
+
 EntityType::EntityType(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<EntityType>(), name) {
 }
 
@@ -98,7 +109,7 @@ StatisticsCollector* EntityType::addGetStatisticsCollector(std::string name) {
 }
 
 PluginInformation* EntityType::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<EntityType>(), &EntityType::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<EntityType>(), &EntityType::LoadInstance, &EntityType::NewInstance);
 	info->setDescriptionHelp("//@TODO");
 	return info;
 }

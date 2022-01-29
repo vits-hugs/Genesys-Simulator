@@ -44,7 +44,7 @@ Model::Model(Simulator* simulator) {
 	_parser = new TraitsKernel<Parser_if>::Implementation(this, new TraitsKernel<Sampler_if>::Implementation());
 	_modelChecker = new TraitsKernel<ModelChecker_if>::Implementation(this);
 	_modelPersistence = new TraitsKernel<ModelPersistence_if>::Implementation(this);
-	_automaticallyCreatesModelDatas = TraitsKernel<Model>::automaticallyCreatesModelDatas;
+	_automaticallyCreatesModelDataDefinitions = TraitsKernel<Model>::automaticallyCreatesModelDatas;
 	// 1:n associations
 	_futureEvents = new List<Event*>(); /// The future events list must be chronologicaly sorted
 	//_events->setSortFunc(&EventCompare); // It works too
@@ -329,12 +329,12 @@ ModelPersistence_if* Model::getPersistence() const {
 	return _modelPersistence;
 }
 
-void Model::setAutomaticallyCreatesModelDatas(bool _automaticallyCreatesModelDatas) {
-	this->_automaticallyCreatesModelDatas = _automaticallyCreatesModelDatas;
+void Model::setAutomaticallyCreatesModelDataDefinitions(bool _automaticallyCreatesModelDataDefinitions) {
+	this->_automaticallyCreatesModelDataDefinitions = _automaticallyCreatesModelDataDefinitions;
 }
 
-bool Model::isAutomaticallyCreatesModelDatas() const {
-	return _automaticallyCreatesModelDatas;
+bool Model::isAutomaticallyCreatesModelDataDefinitions() const {
+	return _automaticallyCreatesModelDataDefinitions;
 }
 
 bool Model::hasChanged() const {

@@ -12,6 +12,17 @@
 
 #include "CppCode.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &CppCode::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* CppCode::NewInstance(Model* model, std::string name) {
+	return new CppCode(model, name);
+}
+
 CppCode::CppCode(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<CppCode>(), name) {
 }
 
@@ -28,7 +39,7 @@ ModelDataDefinition* CppCode::LoadInstance(Model* model, std::map<std::string, s
 }
 
 PluginInformation* CppCode::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<CppCode>(), &CppCode::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<CppCode>(), &CppCode::LoadInstance, &CppCode::NewInstance);
 	info->setDescriptionHelp("//@TODO");
 	//info->setObservation("");
 	//info->setMinimumOutputs();

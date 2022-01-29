@@ -14,6 +14,17 @@
 #include "Remove.h"
 #include "../../kernel/simulator/Model.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Remove::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Remove::NewInstance(Model* model, std::string name) {
+	return new Remove(model, name);
+}
+
 Remove::Remove(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Remove>(), name) {
 }
 
@@ -31,7 +42,7 @@ ModelComponent* Remove::LoadInstance(Model* model, std::map<std::string, std::st
 	return newComponent;
 }
 
-void Remove::_execute(Entity* entity) {
+void Remove::_onDispatchEvent(Entity* entity) {
 	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
 	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
@@ -60,7 +71,7 @@ bool Remove::_check(std::string* errorMessage) {
 }
 
 PluginInformation* Remove::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Remove>(), &Remove::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Remove>(), &Remove::LoadInstance, &Remove::NewInstance);
 	info->setCategory("Decisions");
 	// ...
 	return info;

@@ -17,6 +17,17 @@
 #include <assert.h>
 #include <cmath>
 
+#ifdef PLUGINCONNECT_DYNAMIC
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Seize::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Seize::NewInstance(Model* model, std::string name) {
+	return new Seize(model, name);
+}
+
 Seize::Seize(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Seize>(), name) {
 }
 
@@ -200,7 +211,7 @@ Resource* Seize::_getResourceFromSeizableItem(SeizableItem* seizable, Entity* en
 	return resource;
 }
 
-void Seize::_execute(Entity* entity) {
+void Seize::_onDispatchEvent(Entity* entity) {
 	for (SeizableItem* seizable : *_seizeRequests->list()) {
 		Resource* resource = _getResourceFromSeizableItem(seizable, entity);
 		unsigned int quantity = _parentModel->parseExpression(seizable->getQuantityExpression());
@@ -219,7 +230,7 @@ void Seize::_execute(Entity* entity) {
 			_parentModel->getTracer()->traceSimulation(this, _parentModel->getSimulation()->getSimulatedTime(), entity, this, "Entity starts to wait for resource in queue \"" + queue->getName() + "\" with " + std::to_string(queue->size()) + " elements");
 			return;
 		} else { // alocate the resource
-			resource->seize(quantity, _parentModel->getSimulation()->getSimulatedTime());
+			resource->seize(quantity);
 			_parentModel->getTracer()->traceSimulation(this, _parentModel->getSimulation()->getSimulatedTime(), entity, this, entity->getName() + " seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\" (capacity:" + std::to_string(resource->getCapacity()) + ", numberbusy:" + std::to_string(resource->getNumberBusy()) + ")");
 		}
 	}
@@ -313,7 +324,7 @@ bool Seize::_check(std::string* errorMessage) {
 }
 
 PluginInformation* Seize::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Seize>(), &Seize::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Seize>(), &Seize::LoadInstance, &Seize::NewInstance);
 	info->insertDynamicLibFileDependence("queue.so");
 	info->insertDynamicLibFileDependence("resource.so");
 	std::string help = "The Seize module allocates units of one or more resources to an entity.";
@@ -321,7 +332,7 @@ PluginInformation* Seize::GetPluginInformation() {
 	help += " When an entity enters this module, it waits in a queue (if specified) until all specified resources are available simultaneously.";
 	help += " Allocation type for resource usage is also specified.";
 	help += " An animated queue is displayed above the module when the module is placed.";
-    help += " TYPICAL USES: (1) Beginning a customer order (seize the operator); (2) Starting a tax return (seize the accountant);";
+	help += " TYPICAL USES: (1) Beginning a customer order (seize the operator); (2) Starting a tax return (seize the accountant);";
 	help += " (3) Being admitted to hospital (seize the hospital room, nurse, doctor)";
 	info->setDescriptionHelp(help);
 	return info;

@@ -15,6 +15,17 @@
 
 #include "../../kernel/simulator/Model.h"
 
+#ifdef PLUGINCONNECT_DYNAMIC 
+
+extern "C" StaticGetPluginInformation GetPluginInformation() {
+	return &Stop::GetPluginInformation;
+}
+#endif
+
+ModelDataDefinition* Stop::NewInstance(Model* model, std::string name) {
+	return new Stop(model, name);
+}
+
 Stop::Stop(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Stop>(), name) {
 }
 
@@ -32,7 +43,7 @@ ModelComponent* Stop::LoadInstance(Model* model, std::map<std::string, std::stri
 	return newComponent;
 }
 
-void Stop::_execute(Entity* entity) {
+void Stop::_onDispatchEvent(Entity* entity) {
 	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
 	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
@@ -61,7 +72,7 @@ bool Stop::_check(std::string* errorMessage) {
 }
 
 PluginInformation* Stop::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Stop>(), &Stop::LoadInstance);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Stop>(), &Stop::LoadInstance, &Stop::NewInstance);
 	info->setCategory("Material Handling");
 	// ...
 	return info;

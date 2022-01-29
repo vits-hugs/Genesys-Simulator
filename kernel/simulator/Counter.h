@@ -31,6 +31,7 @@ public:
 public:
 	static PluginInformation* GetPluginInformation();
 	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
 	void clear();
 	void incCountValue(/*int*/double value = 1.0);
