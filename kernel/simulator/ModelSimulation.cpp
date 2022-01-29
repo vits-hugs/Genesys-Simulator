@@ -236,7 +236,7 @@ void ModelSimulation::_actualizeSimulationStatistics() {
 
 void ModelSimulation::_showSimulationHeader() {
 	TraceManager* tm = _model->getTracer();
-	tm->traceReport("\n-----------------------------------------------------");
+    //tm->traceReport("\n-----------------------------------------------------");
 	// simulator infos
 	tm->traceReport(_model->getParentSimulator()->getName());
 	tm->traceReport(_model->getParentSimulator()->getLicenceManager()->showLicence());

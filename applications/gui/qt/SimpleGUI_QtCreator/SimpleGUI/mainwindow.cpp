@@ -5,7 +5,6 @@
 #include <streambuf>
 #include <QMessageBox>
 #include <QFileDialog>
-#include <QErrorMessage>
 
 MainWindow::MainWindow(QWidget *parent)
 : QMainWindow(parent)
@@ -97,12 +96,12 @@ bool MainWindow::_checkStartSimulation() {
     if (model == nullptr) { // only model text written in UI
         QString modelLanguage = ui->textEdit_Model->toPlainText();
         if (!simulator->getModels()->createFromLanguage(modelLanguage.toStdString())) {
-            // show error message
-            QErrorMessage error;
-            error.showMessage("Error in the model text. See console for more information.");
-            error.exec();
+            QMessageBox::critical(this, "Chek Model Simulation", "Error in the model text. See console for more information.");
         }
         model = simulator->getModels()->current();
+        if (model != nullptr) {
+            _setOnEventHandlers();
+        }
     }
     if (model != nullptr) {
         ModelSimulation* sim = model->getSimulation();
@@ -133,6 +132,7 @@ void MainWindow::_simulatorTraceHandler(TraceEvent e) {
 		ui->textEdit_Console->setTextColor(QColor::fromRgb(grayVal, grayVal, grayVal));
 	}
 	ui->textEdit_Console->append(QString::fromStdString(e.getText()));
+    ui->textEdit_Console->moveCursor(QTextCursor::MoveOperation::End, QTextCursor::MoveMode::MoveAnchor);
     QCoreApplication::processEvents();
 }
 
@@ -143,9 +143,13 @@ void MainWindow::_simulatorTraceErrorHandler(TraceErrorEvent e) {
 }
 
 void MainWindow::_simulatorTraceSimulationHandler(TraceSimulationEvent e) {
-    unsigned short grayVal = 20 * (static_cast<unsigned int> (e.getTracelevel()) - 5);
-	ui->textEdit_Simulation->setTextColor(QColor::fromRgb(grayVal, grayVal, grayVal));
-	ui->textEdit_Simulation->append(QString::fromStdString(e.getText()));
+    if (e.getText().find("Event {time=")!= std::string::npos){
+        ui->textEdit_Simulation->setTextColor(QColor::fromRgb(0,0,128));
+    } else {
+        unsigned short grayVal = 20 * (static_cast<unsigned int> (e.getTracelevel()) - 5);
+        ui->textEdit_Simulation->setTextColor(QColor::fromRgb(grayVal, grayVal, grayVal));
+    }
+    ui->textEdit_Simulation->append(QString::fromStdString(e.getText()));
     QCoreApplication::processEvents();
 }
 
@@ -430,10 +434,19 @@ void MainWindow::on_actionClose_triggered() {
 }
 
 void MainWindow::on_actionExit_triggered() {
-	QMessageBox::StandardButton res = QMessageBox::question(this, "Exit GenESyS", "Do you want to exit GenESyS?", QMessageBox::Yes | QMessageBox::No);
-	if (res == QMessageBox::Yes) {
+    QMessageBox::StandardButton res;
+    if (this->_textModelHasChanged) {
+        res = QMessageBox::question(this, "Exit GenESyS", "Model has changed. Do you want to save it?", QMessageBox::Yes | QMessageBox::No);
+        if (res == QMessageBox::Yes) {
+            this->on_actionSave_triggered();
+        }
+    }
+    res = QMessageBox::question(this, "Exit GenESyS", "Do you want to exit GenESyS?", QMessageBox::Yes | QMessageBox::No);
+    if (res == QMessageBox::Yes) {
 		QApplication::quit();
-	}
+    } else {
+        // it does not quit, but the window is closed. Check it. @TODO
+    }
 }
 
 void MainWindow::on_actionStop_triggered() {
@@ -547,8 +560,11 @@ void MainWindow::on_actionCheck_triggered()
     if (res) {
         QMessageBox::information(this, "Model Check", "Model successfully checked.");
     } else {
-        QErrorMessage error;
-        error.showMessage("Model Check", "Model has erros. See the console for more information.");
-        error.exec();
+        QMessageBox::critical(this, "Model Check", "Model has erros. See the console for more information.");
     }
+}
+
+void MainWindow::on_actionAbout_triggered()
+{
+    QMessageBox::about(this, "About Genesys", "Genesys is a result of teaching and research activities of Professor Dr. Ing Rafael Luiz Cancian. \nIt began in early 2002 as a way to teach students the basics and simulation techniques of systems implemented by other comercial simulation tools, such as Arena. \nIn Genesys development he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of that tool, including its graphical interface. \nGenesys allowed the inclusion of new simulation components through dynamic link libraries and also the parallel execution of simulation models in a distributed environment. \nThe development of Genesys continued until 2007, when the professor stopped teaching systems simulation classes. \nTen years later the professor starts again to teach systems simulation classes and to carry out scientific research in the area. \nSo in 2018 Genesys is reborn, with new language and programming techniques, and even more ambitious goals.");
 }

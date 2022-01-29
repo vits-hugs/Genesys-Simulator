@@ -51,6 +51,8 @@ private slots:
 
     void on_actionCheck_triggered();
 
+    void on_actionAbout_triggered();
+
 private: // VIEW
 
 private: // trace handlers

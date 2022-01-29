@@ -44,6 +44,7 @@ public:
     QAction *actionResume;
     QAction *actionClose;
     QAction *actionCheck;
+    QAction *actionAbout;
     QWidget *centralwidget;
     QHBoxLayout *horizontalLayout_2;
     QTabWidget *tabWidgetModel;
@@ -64,6 +65,7 @@ public:
     QMenuBar *menubar;
     QMenu *menuModel;
     QMenu *menuSimulation;
+    QMenu *menuAbout;
     QStatusBar *statusbar;
     QToolBar *toolBar;
     QDockWidget *dockWidgetConsole;
@@ -81,7 +83,7 @@ public:
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(877, 606);
         QIcon icon;
-        icon.addFile(QString::fromUtf8(":/icons2/resources/icons/pack2/ico/6.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/3d bar chart.ico"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
         MainWindow->setDockNestingEnabled(true);
         actionNew = new QAction(MainWindow);
@@ -147,6 +149,8 @@ public:
         QIcon icon11;
         icon11.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/yes.ico"), QSize(), QIcon::Normal, QIcon::Off);
         actionCheck->setIcon(icon11);
+        actionAbout = new QAction(MainWindow);
+        actionAbout->setObjectName(QString::fromUtf8("actionAbout"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         horizontalLayout_2 = new QHBoxLayout(centralwidget);
@@ -245,6 +249,8 @@ public:
         menuSimulation = new QMenu(menubar);
         menuSimulation->setObjectName(QString::fromUtf8("menuSimulation"));
         menuSimulation->setEnabled(false);
+        menuAbout = new QMenu(menubar);
+        menuAbout->setObjectName(QString::fromUtf8("menuAbout"));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -303,6 +309,7 @@ public:
 
         menubar->addAction(menuModel->menuAction());
         menubar->addAction(menuSimulation->menuAction());
+        menubar->addAction(menuAbout->menuAction());
         menuModel->addAction(actionNew);
         menuModel->addSeparator();
         menuModel->addAction(actionOpen);
@@ -318,6 +325,7 @@ public:
         menuSimulation->addSeparator();
         menuSimulation->addAction(actionPause);
         menuSimulation->addAction(actionResume);
+        menuAbout->addAction(actionAbout);
         toolBar->addAction(actionNew);
         toolBar->addAction(actionOpen);
         toolBar->addAction(actionSave);
@@ -333,7 +341,7 @@ public:
         retranslateUi(MainWindow);
         QObject::connect(actionExit, SIGNAL(triggered()), MainWindow, SLOT(close()));
 
-        tabWidgetModel->setCurrentIndex(1);
+        tabWidgetModel->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -416,6 +424,7 @@ public:
 #if QT_CONFIG(shortcut)
         actionCheck->setShortcut(QCoreApplication::translate("MainWindow", "F4", nullptr));
 #endif // QT_CONFIG(shortcut)
+        actionAbout->setText(QCoreApplication::translate("MainWindow", "About", nullptr));
         tabWidgetModel->setTabText(tabWidgetModel->indexOf(tabModel), QCoreApplication::translate("MainWindow", "Model", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "Replication ", nullptr));
         label_ReplicationNum->setText(QCoreApplication::translate("MainWindow", "1/1", nullptr));
@@ -424,6 +433,7 @@ public:
         tabWidgetModel->setTabText(tabWidgetModel->indexOf(tabReport), QCoreApplication::translate("MainWindow", "Reports", nullptr));
         menuModel->setTitle(QCoreApplication::translate("MainWindow", "Model", nullptr));
         menuSimulation->setTitle(QCoreApplication::translate("MainWindow", "Simulation", nullptr));
+        menuAbout->setTitle(QCoreApplication::translate("MainWindow", "About", nullptr));
         toolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
         dockWidgetConsole->setWindowTitle(QCoreApplication::translate("MainWindow", "Console", nullptr));
         dockWidgetPlugins->setWindowTitle(QCoreApplication::translate("MainWindow", "Plugins", nullptr));

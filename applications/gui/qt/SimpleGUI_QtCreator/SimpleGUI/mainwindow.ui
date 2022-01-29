@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="simpleGUI_resources.qrc">
-    <normaloff>:/icons2/resources/icons/pack2/ico/6.ico</normaloff>:/icons2/resources/icons/pack2/ico/6.ico</iconset>
+    <normaloff>:/icons3/resources/icons/pack3/ico/3d bar chart.ico</normaloff>:/icons3/resources/icons/pack3/ico/3d bar chart.ico</iconset>
   </property>
   <property name="dockNestingEnabled">
    <bool>true</bool>
@@ -33,7 +33,7 @@
        </font>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tabModel">
        <attribute name="title">
@@ -185,8 +185,15 @@
     <addaction name="actionPause"/>
     <addaction name="actionResume"/>
    </widget>
+   <widget class="QMenu" name="menuAbout">
+    <property name="title">
+     <string>About</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
    <addaction name="menuModel"/>
    <addaction name="menuSimulation"/>
+   <addaction name="menuAbout"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
@@ -483,6 +490,11 @@
    </property>
    <property name="shortcut">
     <string>F4</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
    </property>
   </action>
  </widget>
