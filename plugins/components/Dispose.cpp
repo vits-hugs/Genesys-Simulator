@@ -61,7 +61,7 @@ std::map<std::string, std::string>* Dispose::_saveInstance(bool saveDefaultValue
 }
 
 bool Dispose::_check(std::string* errorMessage) {
-	*errorMessage += "";
+	//*errorMessage += "";
 	return true;
 }
 

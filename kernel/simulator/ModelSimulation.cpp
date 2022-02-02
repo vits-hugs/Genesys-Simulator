@@ -236,7 +236,7 @@ void ModelSimulation::_actualizeSimulationStatistics() {
 
 void ModelSimulation::_showSimulationHeader() {
 	TraceManager* tm = _model->getTracer();
-    //tm->traceReport("\n-----------------------------------------------------");
+	//tm->traceReport("\n-----------------------------------------------------");
 	// simulator infos
 	tm->traceReport(_model->getParentSimulator()->getName());
 	tm->traceReport(_model->getParentSimulator()->getLicenceManager()->showLicence());
@@ -357,12 +357,13 @@ void ModelSimulation::_initReplication() {
 		}
 	}
 	if (this->_initializeStatisticsBetweenReplications) {
-		_initStatistics();
+		_clearStatistics();
 	}
 	this->_replicationIsInitiaded = true; // @TODO Check the uses of _replicationIsInitiaded and when it should be set to false
 }
 
-void ModelSimulation::_initStatistics() {
+void ModelSimulation::_clearStatistics() {
+	//@Todo create a OnClearStatistics event handler
 	StatisticsCollector* cstat;
 	List<ModelDataDefinition*>* list = _model->getDataManager()->getDataDefinitionList(Util::TypeOf<StatisticsCollector>());
 	for (std::list<ModelDataDefinition*>::iterator it = list->list()->begin(); it != list->list()->end(); it++) {
@@ -382,7 +383,7 @@ void ModelSimulation::_checkWarmUpTime(Event* nextEvent) {
 	warmupTime *= _warmUpPeriod;
 	if (warmupTime > 0.0 && _model->getSimulation()->getSimulatedTime() <= warmupTime && nextEvent->getTime() > warmupTime) {// warmuTime. Time to initStats
 		_model->getTracer()->traceSimulation(this, Util::TraceLevel::L7_internal, "Warmup time reached. Statistics are being reseted.");
-		_initStatistics();
+		_clearStatistics();
 	}
 }
 

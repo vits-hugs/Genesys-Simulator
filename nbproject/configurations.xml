@@ -2363,6 +2363,9 @@
                 </logicalFolder>
                 <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/software_genesys.gif</itemPath>
               </logicalFolder>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/CodeEditor.cpp</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/CodeEditor.h</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/LineNumberArea.h</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/SimpleGUI.pro</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.cpp</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.h</itemPath>
@@ -3102,6 +3105,12 @@
                             perm="755"
                             owner="root"
                             group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
         </packFileList>
         <packInfoList>
           <packInfoListElem name="Package" value="20192022GenESyS" mandatory="true"/>
@@ -3126,6 +3135,21 @@
             flavor2="0">
       </item>
       <item path="applications/GenesysApplication_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/CodeEditor.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/CodeEditor.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/LineNumberArea.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -15588,6 +15612,21 @@
             flavor2="0">
       </item>
       <item path="applications/GenesysApplication_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/CodeEditor.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/CodeEditor.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/LineNumberArea.h"
             ex="false"
             tool="3"
             flavor2="0">

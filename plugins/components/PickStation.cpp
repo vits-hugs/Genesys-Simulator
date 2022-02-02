@@ -67,7 +67,7 @@ std::map<std::string, std::string>* PickStation::_saveInstance(bool saveDefaultV
 bool PickStation::_check(std::string* errorMessage) {
 	bool resultAll = true;
 	// @TODO: not implemented yet
-	*errorMessage += "";
+	//*errorMessage += "";
 	return resultAll;
 }
 

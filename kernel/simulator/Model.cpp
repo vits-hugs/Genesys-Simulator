@@ -86,6 +86,7 @@ bool Model::save(std::string filename) {
 	bool res = this->_modelPersistence->save(filename);
 	if (res) {
 		this->_traceManager->trace(Util::TraceLevel::L2_results, "Model successfully saved");
+		//@TODO Create a onModelSave event handler
 	} else {
 		this->_traceManager->trace(Util::TraceLevel::L2_results, "Model could not be saved");
 
@@ -98,6 +99,7 @@ bool Model::load(std::string filename) {
 	bool res = this->_modelPersistence->load(filename);
 	if (res)
 		this->_traceManager->trace(Util::TraceLevel::L2_results, "Model successfully loaded");
+		//@TODO Create a onModelLoad event handler
 	else
 		this->_traceManager->trace(Util::TraceLevel::L2_results, "Model could not be loaded");
 	return res;
@@ -107,6 +109,7 @@ double Model::parseExpression(const std::string expression) {
 	try {
 		return _parser->parse(expression);
 	} catch (...) {
+		//@TODO Create a onParserError event handler
 		return 0.0; // @TODO: HOW SAY THERE WAS AN ERROR?
 	}
 }

@@ -251,7 +251,7 @@ void Batch::_createInternalData() {
 
 bool Batch::_check(std::string * errorMessage) {
 	bool resultAll = true;
-	*errorMessage += "";
+	//*errorMessage += "";
 	// @TODO: not implemented yet
 	if (_groupedEntityType != nullptr) {
 		resultAll += _parentModel->getDataManager()->check(Util::TypeOf<EntityType>(), _groupedEntityType, "Grouped Entity Type", errorMessage);

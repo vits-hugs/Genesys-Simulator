@@ -163,6 +163,6 @@ std::map<std::string, std::string>* Entity::_saveInstance(bool saveDefaultValues
 }
 
 bool Entity::_check(std::string* errorMessage) {
-	*errorMessage += "";
+	//*errorMessage += "";
 	return true;
 }

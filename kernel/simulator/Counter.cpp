@@ -85,7 +85,7 @@ std::map<std::string, std::string>* Counter::_saveInstance(bool saveDefaultValue
 }
 
 bool Counter::_check(std::string* errorMessage) {
-	*errorMessage += "";
+	//*errorMessage += "";
 	return true;
 }
 

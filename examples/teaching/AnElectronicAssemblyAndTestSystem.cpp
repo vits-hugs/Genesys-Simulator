@@ -35,6 +35,7 @@ int AnElectronicAssemblyAndTestSystem::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	this->insertFakePluginsByHand(genesys);
 	this->setDefaultTraceHandlers(genesys->getTracer());
+	// creating the model
 	Model* model = genesys->getModels()->newModel();
 	PluginManager* plugins = genesys->getPlugins();
 	ModelInfo* infos = model->getInfos();
@@ -89,49 +90,41 @@ int AnElectronicAssemblyAndTestSystem::main(int argc, char** argv) {
 	record2->getConnections()->insert(dispose2);
 	decide1->getConnections()->insert(record3);
 	record3->getConnections()->insert(dispose3);
-	// creating all ModelDatas and filling all components attributes
-	//EntityType* partA = plugins->newInstance<EntityType>(model, "Part_A");
-	//create1->setEntityType(partA);
+	// filling component settings
 	create1->setEntityTypeName("Part_A");
 	create1->setTimeBetweenCreationsExpression("expo(5)");
 	create1->setTimeUnit(Util::TimeUnit::minute);
-	//EntityType* partB = plugins->newInstance<EntityType>(model, "Part_B");
-	//create2->setEntityType(partB);
 	create2->setEntityTypeName("Part_B");
 	create2->setTimeBetweenCreationsExpression("expo(30)");
 	create2->setTimeUnit(Util::TimeUnit::minute);
-	plugins->newInstance<Attribute>(model, "Sealer_Time"); // NOT SAVED IN FILE!!
+	plugins->newInstance<Attribute>(model, "Sealer_Time");
 	plugins->newInstance<Attribute>(model, "Arrive_Time");
 	assign1->getAssignments()->insert(new Assign::Assignment("Sealer_Time", "tria(1,3,4)"));
 	assign1->getAssignments()->insert(new Assign::Assignment("Arrive_Time", "tnow"));
 	assign2->getAssignments()->insert(new Assign::Assignment("Sealer_Time", "weib(2.5, 5.3)"));
 	assign2->getAssignments()->insert(new Assign::Assignment("Arrive_Time", "tnow"));
 	Resource* prepA = plugins->newInstance<Resource>(model, "PrepA");
-	//Queue* queuePrepA = plugins->newInstance<Queue>(model, "QueuePrepA");
 	seize1->getSeizeRequests()->insert(new SeizableItem(prepA, "1"));
-	seize1->setQueueableItem(new QueueableItem(model, "QueuePrepA")); //(queuePrepA));
+	seize1->setQueueableItem(new QueueableItem(model, "QueuePrepA"));
 	delay1->setDelayExpression("tria(1,4,8)");
 	delay1->setDelayTimeUnit(Util::TimeUnit::minute);
 	release1->getReleaseRequests()->insert(new SeizableItem(prepA, "1"));
 	Resource* prepB = plugins->newInstance<Resource>(model, "PrepB");
-	//Queue* queuePrepB = plugins->newInstance<Queue>(model, "QueuePrepB");
 	seize2->getSeizeRequests()->insert(new SeizableItem(prepB, "1"));
-	seize2->setQueueableItem(new QueueableItem(model, "QueuePrepB")); //(queuePrepB));
+	seize2->setQueueableItem(new QueueableItem(model, "QueuePrepB"));
 	delay2->setDelayExpression("tria(3,5,10)");
 	delay2->setDelayTimeUnit(Util::TimeUnit::minute);
 	release2->getReleaseRequests()->insert(new SeizableItem(prepB, "1"));
 	Resource* sealer = plugins->newInstance<Resource>(model, "Sealer");
-	//Queue* queueSealer = plugins->newInstance<Queue>(model, "QueueSealer");
 	seize3->getSeizeRequests()->insert(new SeizableItem(sealer, "1"));
-	seize3->setQueueableItem(new QueueableItem(model, "QueueSealer")); //(queueSealer));
+	seize3->setQueueableItem(new QueueableItem(model, "QueueSealer"));
 	delay3->setDelayExpression("Sealer_Time");
 	delay3->setDelayTimeUnit(Util::TimeUnit::minute);
 	release3->getReleaseRequests()->insert(new SeizableItem(sealer, "1"));
 	decide1->getConditions()->insert("unif(0,1)<0.09");
 	Resource* rework = plugins->newInstance<Resource>(model, "Rework");
-	//Queue* queueRework = plugins->newInstance<Queue>(model, "QueueRework");
 	seize4->getSeizeRequests()->insert(new SeizableItem(rework, "1"));
-	seize4->setQueueableItem(new QueueableItem(model, "QueueRework")); //(queueRework));
+	seize4->setQueueableItem(new QueueableItem(model, "QueueRework"));
 	delay4->setDelayExpression("45");
 	delay4->setDelayTimeUnit(Util::TimeUnit::minute);
 	release4->getReleaseRequests()->insert(new SeizableItem(rework, "1"));

@@ -36,38 +36,110 @@
        <number>0</number>
       </property>
       <widget class="QWidget" name="tabModel">
+       <attribute name="icon">
+        <iconset>
+         <normalon>:/icons3/resources/icons/pack3/ico/list.ico</normalon>
+        </iconset>
+       </attribute>
        <attribute name="title">
         <string>Model</string>
        </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout">
+       <attribute name="toolTip">
+        <string>Model in Genesys Simulation Language</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
-         <widget class="QTextEdit" name="textEdit_Model">
-          <property name="font">
-           <font>
-            <family>Courier</family>
-            <pointsize>12</pointsize>
-           </font>
+         <widget class="QTabWidget" name="tabWidgetModel_2">
+          <property name="tabPosition">
+           <enum>QTabWidget::East</enum>
           </property>
-          <property name="lineWidth">
-           <number>3</number>
+          <property name="currentIndex">
+           <number>0</number>
           </property>
-          <property name="verticalScrollBarPolicy">
-           <enum>Qt::ScrollBarAsNeeded</enum>
-          </property>
-          <property name="horizontalScrollBarPolicy">
-           <enum>Qt::ScrollBarAsNeeded</enum>
-          </property>
-          <property name="lineWrapMode">
-           <enum>QTextEdit::NoWrap</enum>
-          </property>
-          <property name="textInteractionFlags">
-           <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
-          </property>
+          <widget class="QWidget" name="tabModelText">
+           <attribute name="icon">
+            <iconset resource="simpleGUI_resources.qrc">
+             <normaloff>:/icons3/resources/icons/pack3/ico/text.ico</normaloff>:/icons3/resources/icons/pack3/ico/text.ico</iconset>
+           </attribute>
+           <attribute name="title">
+            <string>Text</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_4"/>
+          </widget>
+          <widget class="QWidget" name="tabModelGraphic">
+           <attribute name="icon">
+            <iconset resource="simpleGUI_resources.qrc">
+             <normaloff>:/mxgraph/resources/icons/pack4/iconsMxGraph/vertical.png</normaloff>:/mxgraph/resources/icons/pack4/iconsMxGraph/vertical.png</iconset>
+           </attribute>
+           <attribute name="title">
+            <string>Graphic</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_5">
+            <item>
+             <widget class="QLabel" name="label_ModelGraphic">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>3</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout">
+              <item>
+               <widget class="QLabel" name="label_GraphicMsg">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>2</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>...</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBox_ShowElements">
+                <property name="text">
+                 <string>Show elements</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBox_ShowInternals">
+                <property name="text">
+                 <string>Show internals</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
          </widget>
         </item>
        </layout>
       </widget>
       <widget class="QWidget" name="tabSimulation">
+       <attribute name="icon">
+        <iconset>
+         <normalon>:/icons2/resources/icons/pack2/ico/19.ico</normalon>
+        </iconset>
+       </attribute>
        <attribute name="title">
         <string>Simulation</string>
        </attribute>
@@ -122,6 +194,11 @@
        </layout>
       </widget>
       <widget class="QWidget" name="tabReport">
+       <attribute name="icon">
+        <iconset>
+         <normalon>:/icons2/resources/icons/pack2/ico/16.ico</normalon>
+        </iconset>
+       </attribute>
        <attribute name="title">
         <string>Reports</string>
        </attribute>
@@ -190,6 +267,7 @@
      <string>About</string>
     </property>
     <addaction name="actionAbout"/>
+    <addaction name="actionLicence"/>
    </widget>
    <addaction name="menuModel"/>
    <addaction name="menuSimulation"/>
@@ -207,16 +285,26 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionNew"/>
+   <addaction name="separator"/>
    <addaction name="actionOpen"/>
    <addaction name="actionSave"/>
    <addaction name="actionClose"/>
+   <addaction name="separator"/>
    <addaction name="actionCheck"/>
+   <addaction name="separator"/>
    <addaction name="actionExit"/>
+   <addaction name="separator"/>
+   <addaction name="separator"/>
    <addaction name="actionStart"/>
    <addaction name="actionStep"/>
    <addaction name="actionStop"/>
+   <addaction name="separator"/>
    <addaction name="actionPause"/>
    <addaction name="actionResume"/>
+   <addaction name="separator"/>
+   <addaction name="separator"/>
+   <addaction name="actionAbout"/>
+   <addaction name="actionLicence"/>
   </widget>
   <widget class="QDockWidget" name="dockWidgetConsole">
    <property name="sizePolicy">
@@ -493,13 +581,31 @@
    </property>
   </action>
   <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="simpleGUI_resources.qrc">
+     <normaloff>:/icons1/resources/icons/pack1/ico/106.ico</normaloff>:/icons1/resources/icons/pack1/ico/106.ico</iconset>
+   </property>
    <property name="text">
-    <string>About</string>
+    <string>Genesys</string>
+   </property>
+   <property name="toolTip">
+    <string>About Genesys</string>
+   </property>
+  </action>
+  <action name="actionLicence">
+   <property name="icon">
+    <iconset resource="simpleGUI_resources.qrc">
+     <normaloff>:/icons2/resources/icons/pack2/ico/28.ico</normaloff>:/icons2/resources/icons/pack2/ico/28.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Licence</string>
+   </property>
+   <property name="toolTip">
+    <string>About Licence</string>
    </property>
   </action>
  </widget>
  <tabstops>
-  <tabstop>textEdit_Model</tabstop>
   <tabstop>textEdit_Reports</tabstop>
   <tabstop>tabWidgetModel</tabstop>
  </tabstops>

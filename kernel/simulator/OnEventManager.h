@@ -281,6 +281,41 @@ template<typename Class> void OnEventManager::addOnBreakpointHandler(Class * obj
 }
 
 
+/*
+Private Sub ModelLogic_DocumentOpen()
+Private Sub ModelLogic_DocumentSave()
+Private Sub ModelLogic_OnClearStatistics()
+Private Sub ModelLogic_OnFileClose(ByVal filesElementNumber As Long, ByVal fileName As String)
+Private Sub ModelLogic_OnFileRead(ByVal filesElementNumber As Long, ByVal fileName As String, ByVal numberOfItems As Long, readBuffer() As Double)
+Private Sub ModelLogic_OnFileReadAsVariant(ByVal filesElementNumber As Long, ByVal fileName As String, ByVal numberOfItems As Long, readBuffer() As Variant)
+Private Sub ModelLogic_OnFileWrite(ByVal filesElementNumber As Long, ByVal fileName As String, ByVal numberOfItems As Long, writeBuffer() As Double)
+Private Sub ModelLogic_OnFileWriteAsVariant(ByVal filesElementNumber As Long, ByVal fileName As String, ByVal numberOfItems As Long, writeBuffer() As Variant)
+Private Sub ModelLogic_OnKeystroke(ByVal keyCode As Long)
+Private Function ModelLogic_RealTimeGetMaxTimeAdvance() As Long
+Private Function ModelLogic_RealTimeInitialize(ByVal processName As String, ByVal remoteProcessName As String) As Long
+Private Sub ModelLogic_RealTimeInitializeMaxTimeAdvance()
+Private Function ModelLogic_RealTimeReceive(message As String) As Long
+Private Function ModelLogic_RealTimeSend(ByVal message As String) As Long
+Private Function ModelLogic_RealTimeTerminate() As Long
+Private Sub ModelLogic_RunBegin()
+Private Sub ModelLogic_RunBeginReplication()
+Private Sub ModelLogic_RunBeginSimulation()
+Private Sub ModelLogic_RunBreak()
+Private Sub ModelLogic_RunEnd()
+Private Sub ModelLogic_RunEndReplication()
+Private Sub ModelLogic_RunEndSimulation()
+Private Sub ModelLogic_RunFastForward()
+Private Sub ModelLogic_RunPause()
+Private Sub ModelLogic_RunRestart()
+Private Sub ModelLogic_RunResume()
+Private Sub ModelLogic_RunStep()
+Private Sub ModelLogic_SimanError(ByVal routineName As String, msgType As Long, msgNum As Long)
+Private Sub ModelLogic_UserContinuousEquations()
+Private Function ModelLogic_UserFunction(ByVal entityID As Long, ByVal functionID As Long) As Double
+Private Function ModelLogic_UserRule(ByVal entityID As Long, ByVal ruleID As Long) As Double
+Private Sub VBA_Block_1_Fire()
+ */
+
 //namespace\\}
 #endif /* ONEVENTMANAGER_H */
 

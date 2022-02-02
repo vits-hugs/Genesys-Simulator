@@ -80,7 +80,7 @@ bool Sequence::_check(std::string* errorMessage) {
 			//_parentModel->insert(attr1);
 		}
 	}
-	*errorMessage += "";
+	//*errorMessage += "";
 	return true;
 }
 

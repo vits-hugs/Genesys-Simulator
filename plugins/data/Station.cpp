@@ -131,7 +131,7 @@ bool Station::_check(std::string* errorMessage) {
 			new Attribute(_parentModel, neededName);
 		}
 	}
-	*errorMessage += "";
+	//*errorMessage += "";
 	return true;
 }
 

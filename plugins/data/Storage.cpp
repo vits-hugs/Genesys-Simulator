@@ -69,7 +69,7 @@ std::map<std::string, std::string>* Storage::_saveInstance(bool saveDefaultValue
 bool Storage::_check(std::string* errorMessage) {
 	bool resultAll = true;
 	// resultAll |= ...
-	*errorMessage += "";
+	//*errorMessage += "";
 	return resultAll;
 }
 

@@ -30,22 +30,20 @@ ModelDataDefinition* Create::NewInstance(Model* model, std::string name) {
 }
 
 Create::Create(Model* model, std::string name) : SourceModelComponent(model, Util::TypeOf<Create>(), name) {
-	//_numberOut = new Counter(_parentModel, getName() + "." + "Count_number_in", this);
-	// @TODO Check if modeldatum has already been inserted and this is not needed: _parentModel->elements()->insert(_numberOut);
-	_connections->setMinInputConnections(0);
-	_connections->setMaxInputConnections(0);
+	// @TODO get plugin information???
+	//_connections->setMinInputConnections(0);
+	//_connections->setMaxInputConnections(0);
 	GetterMember getter = DefineGetterMember<SourceModelComponent>(this, &Create::getEntitiesPerCreation);
 	SetterMember setter = DefineSetterMember<SourceModelComponent>(this, &Create::setEntitiesPerCreation);
 	model->getControls()->insert(new SimulationControl(Util::TypeOf<Create>(), getName() + ".EntitiesPerCreation", getter, setter));
-	/* @TODO:
-	model->getControls()->insert(new SimulationControl(Util::TypeOf<Create>(), "Time Between Creations",
-			DefineGetterMember<SourceModelComponent>(this, &Create::getTimeBetweenCreationsExpression),
-			DefineSetterMember<SourceModelComponent>(this, &Create::setTimeBetweenCreationsExpression))
-			);
-	 */
+	//@TODO: Solve this template mess
+	//GetterMember getter2 = DefineGetterMember<SourceModelComponent>(this, &Create::getTimeBetweenCreationsExpression);
+	//SetterMember setter2 = DefineSetterMember<SourceModelComponent>(this, &Create::setTimeBetweenCreationsExpression);
+	//model->getControls()->insert(new SimulationControl(Util::TypeOf<Create>(), "Time Between Creations", getter2, setter2));
 }
 
 std::string Create::show() {
+
 	return SourceModelComponent::show();
 }
 
@@ -72,6 +70,7 @@ void Create::_onDispatchEvent(Entity* entity) {
 			}
 		}
 	}
+
 	if (_reportStatistics)
 		_numberOut->incCountValue();
 	_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
@@ -80,6 +79,8 @@ void Create::_onDispatchEvent(Entity* entity) {
 PluginInformation* Create::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Create>(), &Create::LoadInstance, &Create::NewInstance);
 	info->setSource(true);
+	info->setMaximumInputs(0);
+	info->setMinimumInputs(0);
 	std::string text = "This module is intended as the starting point for entities in a simulation model.";
 	text += "	Entities are created using a schedule or based on a time between arrivals. Entities then leave the module to begin processing through the system.";
 	text += "	The entity type is specified in this module.";
@@ -91,6 +92,7 @@ PluginInformation* Create::GetPluginInformation() {
 	//info->insertDynamicLibFileDependence("attribute.so");
 	//info->insertDynamicLibFileDependence("entitytype.so");
 	//info->insertDynamicLibFileDependence("statisticscollector.so");
+
 	return info;
 }
 
@@ -101,24 +103,29 @@ ModelComponent* Create::LoadInstance(Model* model, std::map<std::string, std::st
 	} catch (const std::exception& e) {
 
 	}
+
 	return newComponent;
 }
 
 bool Create::_loadInstance(std::map<std::string, std::string>* fields) {
+
 	return SourceModelComponent::_loadInstance(fields);
 }
 
 void Create::_initBetweenReplications() {
+
 	SourceModelComponent::_initBetweenReplications();
 }
 
 std::map<std::string, std::string>* Create::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = SourceModelComponent::_saveInstance(saveDefaultValues);
+
 	return fields;
 }
 
 bool Create::_check(std::string* errorMessage) {
 	bool resultAll = SourceModelComponent::_check(errorMessage);
+
 	return resultAll;
 }
 

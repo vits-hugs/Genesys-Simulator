@@ -70,7 +70,7 @@ std::map<std::string, std::string>* File::_saveInstance(bool saveDefaultValues) 
 bool File::_check(std::string* errorMessage) {
 	bool resultAll = true;
 	// resultAll |= ...
-	*errorMessage += "";
+	//*errorMessage += "";
 	return resultAll;
 }
 

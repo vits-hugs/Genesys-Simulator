@@ -194,7 +194,7 @@ std::map<std::string, std::string>* Resource::_saveInstance(bool saveDefaultValu
 }
 
 bool Resource::_check(std::string* errorMessage) {
-	*errorMessage += "";
+	//*errorMessage += "";
 	return true;
 }
 

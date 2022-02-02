@@ -5,6 +5,7 @@
 #include <QListWidget>
 #include "../../../../../kernel/simulator/Simulator.h"
 #include "../../../../../kernel/simulator/TraceManager.h"
+#include "CodeEditor.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -39,7 +40,7 @@ private slots:
 
     void on_actionOpen_triggered();
 
-    void on_textEdit_Model_textChanged();
+    void on_textCodeEdit_Model_textChanged();
 
     void on_listWidget_Plugins_itemClicked(QListWidgetItem *item);
 
@@ -52,6 +53,12 @@ private slots:
     void on_actionCheck_triggered();
 
     void on_actionAbout_triggered();
+
+    void on_actionLicence_triggered();
+
+    void on_pushButton_clicked();
+
+    void on_tabWidgetModel_2_tabBarClicked(int index);
 
 private: // VIEW
 
@@ -76,9 +83,14 @@ private:
     void _insertCommandInConsole(std::string text);
     void _clearModelEditors();
     bool _checkStartSimulation();
+    bool _setSimulationModelBasedOnText();
+    bool _createModelGraphicPicture();
+    std::string _recursiveCreateModelGraphicPicture(ModelComponent* component, std::list<ModelComponent*>* visited);
 private:
     Ui::MainWindow *ui;
     Simulator* simulator;
     bool _textModelHasChanged;
+private:
+    CodeEditor* textCodeEdit_Model;
 };
 #endif // MAINWINDOW_H

@@ -67,7 +67,7 @@ std::map<std::string, std::string>* PickUp::_saveInstance(bool saveDefaultValues
 bool PickUp::_check(std::string* errorMessage) {
 	bool resultAll = true;
 	// @TODO: not implemented yet
-	*errorMessage += "";
+	//*errorMessage += "";
 	return resultAll;
 }
 

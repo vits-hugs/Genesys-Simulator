@@ -148,7 +148,7 @@ std::map<std::string, std::string>* EntityType::_saveInstance(bool saveDefaultVa
 }
 
 bool EntityType::_check(std::string* errorMessage) {
-	*errorMessage += "";
+	//*errorMessage += "";
 	return true;
 }
 

@@ -67,7 +67,7 @@ std::map<std::string, std::string>* Exit::_saveInstance(bool saveDefaultValues) 
 bool Exit::_check(std::string* errorMessage) {
 	bool resultAll = true;
 	// @TODO: not implemented yet
-	*errorMessage += "";
+	//*errorMessage += "";
 	return resultAll;
 }
 

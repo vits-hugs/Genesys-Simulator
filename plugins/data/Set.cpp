@@ -104,7 +104,7 @@ bool Set::_check(std::string* errorMessage) {
 			*errorMessage += "Set is of type \"" + _setOfType + "\" and first modeldatum is of type \"" + typeOfFirstElement + "\"";
 		}
 	}
-	*errorMessage += "";
+	//*errorMessage += "";
 	return resultAll;
 }
 

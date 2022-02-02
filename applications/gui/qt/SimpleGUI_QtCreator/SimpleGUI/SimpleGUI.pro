@@ -112,6 +112,7 @@ SOURCES += \
     ../../../../../plugins/data/Station.cpp \
     ../../../../../plugins/data/Storage.cpp \
     ../../../../../plugins/data/Variable.cpp \
+    CodeEditor.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -240,6 +241,8 @@ HEADERS += \
     ../../../../../plugins/data/Station.h \
     ../../../../../plugins/data/Storage.h \
     ../../../../../plugins/data/Variable.h \
+    CodeEditor.h \
+    LineNumberArea.h \
     mainwindow.h
 
 FORMS += \

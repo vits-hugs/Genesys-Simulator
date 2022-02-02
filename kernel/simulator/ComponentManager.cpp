@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   ComponentManager.cpp
  * Author: rafael.luiz.cancian
- * 
+ *
  * Created on 28 de Maio de 2019, 10:41
  */
 
@@ -18,42 +18,42 @@
 //using namespace GenesysKernel;
 
 ComponentManager::ComponentManager(Model* model) {
-	_parentModel = model;
-	_components = new List<ModelComponent*>();
-	_components->setSortFunc([](const ModelComponent* a, const ModelComponent * b) {
-		return a->getId() < b->getId(); /// Components are sorted by ID
-	});
+    _parentModel = model;
+    _components = new List<ModelComponent*>();
+    _components->setSortFunc([](const ModelComponent* a, const ModelComponent * b) {
+        return a->getId() < b->getId(); /// Components are sorted by ID
+    });
 }
 
 bool ComponentManager::insert(ModelComponent* comp) {
-	if (_components->find(comp) == _components->list()->end()) {
-		_components->insert(comp);
-		_parentModel->getTracer()->trace(Util::TraceLevel::L2_results, "Component \"" + comp->getName() + "\" successfully inserted");
-		_hasChanged = true;
-		return true;
-	}
-	_parentModel->getTracer()->trace(Util::TraceLevel::L2_results, "Component \"" + comp->getName() + "\" could not be inserted");
-	return false;
+    if (_components->find(comp) == _components->list()->end()) {
+        _components->insert(comp);
+        _parentModel->getTracer()->trace(Util::TraceLevel::L2_results, "Component \"" + comp->getName() + "\" successfully inserted");
+        _hasChanged = true;
+        return true;
+    }
+    _parentModel->getTracer()->trace(Util::TraceLevel::L2_results, "Component \"" + comp->getName() + "\" could not be inserted");
+    return false;
 }
 
 ModelComponent* ComponentManager::find(std::string name) {
-	for (ModelComponent* component : *_components->list()) {
-		if (component->getName() == name) {
-			return component;
-		}
-	}
-	return nullptr;
+    for (ModelComponent* component : *_components->list()) {
+        if (component->getName() == name) {
+            return component;
+        }
+    }
+    return nullptr;
 }
 
 void ComponentManager::remove(ModelComponent* comp) {
-	_components->remove(comp);
-	_parentModel->getTracer()->trace(Util::TraceLevel::L2_results, "Component \"" + comp->getName() + "\" successfully removed");
-	_hasChanged = true;
+    _components->remove(comp);
+    _parentModel->getTracer()->trace(Util::TraceLevel::L2_results, "Component \"" + comp->getName() + "\" successfully removed");
+    _hasChanged = true;
 }
 
 void ComponentManager::clear() {
-	this->_components->clear();
-	_hasChanged = true;
+    this->_components->clear();
+    _hasChanged = true;
 }
 
 //ModelComponent* ComponentManager::getComponent(Util::identification id) {
@@ -63,37 +63,49 @@ void ComponentManager::clear() {
 //}
 
 unsigned int ComponentManager::getNumberOfComponents() {
-	return _components->size();
+    return _components->size();
 }
 
 std::list<ModelComponent*>::iterator ComponentManager::begin() {
-	return _components->list()->begin();
+    return _components->list()->begin();
 }
 
 std::list<ModelComponent*>::iterator ComponentManager::end() {
-	return _components->list()->end();
+    return _components->list()->end();
 }
 
 ModelComponent* ComponentManager::front() {
-	return _components->front();
+    return _components->front();
 }
 
 ModelComponent* ComponentManager::next() {
-	return _components->next();
+    return _components->next();
 }
 
 bool ComponentManager::hasChanged() const {
-	if (_hasChanged)
-		return _hasChanged;
-	for (ModelComponent* component : *_components->list()) {
-		if (component->hasChanged()) {
-			//_hasChanged = true;
-			return true;
-		}
-	}
-	return false;
+    if (_hasChanged)
+        return _hasChanged;
+    for (ModelComponent* component : *_components->list()) {
+        if (component->hasChanged()) {
+            //_hasChanged = true;
+            return true;
+        }
+    }
+    return false;
 }
 
 void ComponentManager::setHasChanged(bool _hasChanged) {
-	this->_hasChanged = _hasChanged;
+    this->_hasChanged = _hasChanged;
+}
+
+std::list<SourceModelComponent*>* ComponentManager::getSourceComponents(){
+    std::list<SourceModelComponent*>* sourcelist = new std::list<SourceModelComponent*>();
+    SourceModelComponent* source;
+    for (ModelComponent* component: *_components->list()) {
+        source = dynamic_cast<SourceModelComponent*>(component);
+        if (source != nullptr) {
+            sourcelist->insert(sourcelist->end(), source);
+        }
+    }
+    return sourcelist;
 }

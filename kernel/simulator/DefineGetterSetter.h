@@ -23,8 +23,8 @@ typedef std::function<void(double) > SetterMember; //!< Pointer to a setter func
 typedef std::function<std::string() > GetterMemberString; //!< Pointer to a getter function that return a string. Used to get values from SimulationControl and Simulationresponse
 typedef std::function<void(std::string) > SetterMemberString; //!< Pointer to a setter function that sets a string. Used to set values to Simulationresponse
 
-typedef std::function<double() > GetterMemberBool; //!< Pointer to a getter function that return a bool. Used to get values from SimulationControl and Simulationresponse
-typedef std::function<void(double) > SetterMemberBool; //!< Pointer to a setter function that sets a bool. Used to set values to Simulationresponse
+typedef std::function<bool() > GetterMemberBool; //!< Pointer to a getter function that return a bool. Used to get values from SimulationControl and Simulationresponse
+typedef std::function<void(bool) > SetterMemberBool; //!< Pointer to a setter function that sets a bool. Used to set values to Simulationresponse
 
 // double
 template<typename Class>
@@ -80,14 +80,15 @@ template<typename Class>
 SetterMember DefineSetterMember(Class * object, void (Class::*function)(std::string) const) {
 	return std::bind(function, object, std::placeholders::_1);
 }
-template<typename Class>
-GetterMemberString DefineGetterMember(Class * object, std::string(Class::*function)() const) {
-	return std::bind(function, object);
-}
-template<typename Class>
-SetterMemberString DefineSetterMember(Class * object, void (Class::*function)(std::string) const) {
-	return std::bind(function, object, std::placeholders::_1);
-}
+
+//template<typename Class>
+//GetterMemberString DefineGetterMember(Class * object, std::string(Class::*function)() const) {
+//	return std::bind(function, object);
+//}
+//template<typename Class>
+//SetterMemberString DefineSetterMember(Class * object, void (Class::*function)(std::string) const) {
+//	return std::bind(function, object, std::placeholders::_1);
+//}
 
 
 // Util::TimeUnit
