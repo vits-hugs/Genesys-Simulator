@@ -70,16 +70,7 @@ std::map<std::string, std::string>* Sequence::_saveInstance(bool saveDefaultValu
 }
 
 bool Sequence::_check(std::string* errorMessage) {
-	/* include attributes needed */
-	std::vector<std::string> neededNames = {"Entity.Sequence", "Entity.SequenceStep"};
-	std::string neededName;
-	for (unsigned int i = 0; i < neededNames.size(); i++) {
-		neededName = neededNames[i];
-		if (_parentModel->getDataManager()->getDataDefinition(Util::TypeOf<Attribute>(), neededName) == nullptr) {
-			new Attribute(_parentModel, neededName);
-			//_parentModel->insert(attr1);
-		}
-	}
+	_insertNeededAttributes({"Entity.Sequence", "Entity.SequenceStep"});
 	//*errorMessage += "";
 	return true;
 }

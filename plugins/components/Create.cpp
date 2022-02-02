@@ -134,7 +134,6 @@ void Create::_createInternalData() {
 	if (_reportStatistics && _numberOut == nullptr) {
 		_numberOut = new Counter(_parentModel, getName() + "." + "CountNumberOut", this);
 		_internalData->insert({"CountNumberOut", _numberOut});
-		// @TODO _internelElements->insert("Count_number_in", _numberOut);
 	} else if (!_reportStatistics && _numberOut != nullptr) {
 		this->_removeInternalDatas();
 		// @TODO _internelElements->remove("Count_number_in");

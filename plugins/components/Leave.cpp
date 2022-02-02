@@ -92,6 +92,13 @@ std::map<std::string, std::string>* Leave::_saveInstance(bool saveDefaultValues)
 
 bool Leave::_check(std::string* errorMessage) {
 	bool resultAll = true;
+	if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+		if (_station == nullptr) {
+			_station = _parentModel->getParentSimulator()->getPlugins()->newInstance<Station>(_parentModel);
+			_station->setEnterIntoStationComponent(this);
+		}
+	}
+	_setAttachedData("Station", _station);
 	resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Station>(), _station, "Station", errorMessage);
 	return resultAll;
 }
@@ -104,12 +111,6 @@ PluginInformation* Leave::GetPluginInformation() {
 }
 
 void Leave::_createInternalData() {
-	if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
-		if (_station == nullptr) {
-			_station = _parentModel->getParentSimulator()->getPlugins()->newInstance<Station>(_parentModel);
-			_station->setEnterIntoStationComponent(this);
-		}
-	}
 	if (_reportStatistics) {
 		if (_numberIn == nullptr) {
 			_numberIn = new Counter(_parentModel, getName() + "." + "CountNumberIn", this);

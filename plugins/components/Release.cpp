@@ -13,8 +13,9 @@
 
 #include "Release.h"
 #include "../../kernel/simulator/Model.h"
+#include "../../kernel/simulator/Simulator.h"
 #include "../data/Resource.h"
-#include "../../kernel/simulator/Attribute.h"
+//#include "../../kernel/simulator/Attribute.h"
 #include <assert.h>
 #include <cmath>
 
@@ -117,12 +118,10 @@ bool Release::_loadInstance(std::map<std::string, std::string>* fields) {
 		this->_priority = LoadField(fields, "priority", DEFAULT.priority);
 		unsigned short numRequests = LoadField(fields, "resquestSize", DEFAULT.releaseRequestSize);
 		for (unsigned short i = 0; i < numRequests; i++) {
-			SeizableItem* Item = new SeizableItem(nullptr);
-			Item->setElementManager(_parentModel->getDataManager());
-			Item->loadInstance(fields, i);
-			//Resource* resource = static_cast<Resource*> (_parentModel->getDataDefinition()->getDataDefinition(Util::TypeOf<Resource>(), Item->getResourceName()));
-			//Item->setResource(resource);
-			//this->_releaseRequests->insert(Item);
+			SeizableItem* item = new SeizableItem(nullptr);
+			item->setElementManager(_parentModel->getDataManager());
+			item->loadInstance(fields, i);
+			this->_releaseRequests->insert(item);
 		}
 	}
 	return res;
@@ -143,31 +142,28 @@ std::map<std::string, std::string>* Release::_saveInstance(bool saveDefaultValue
 
 bool Release::_check(std::string* errorMessage) {
 	bool resultAll = true;
-
+	int i = 0;
 	for (SeizableItem* seizable : * _releaseRequests->list()) {
 		resultAll &= _parentModel->checkExpression(seizable->getQuantityExpression(), "quantity", errorMessage);
 		if (seizable->getSeizableType() == SeizableItem::SeizableType::RESOURCE) {
+			Resource* resource = seizable->getResource();
+			if (resource == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+				resource = _parentModel->getParentSimulator()->getPlugins()->newInstance<Resource>(_parentModel);
+			}
+			_setAttachedData("SeizableItem" + std::to_string(i), resource);
 			resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Resource>(), seizable->getResource(), "Resource", errorMessage);
 		} else if (seizable->getSeizableType() == SeizableItem::SeizableType::SET) {
+			Set* set = seizable->getSet();
+			if (set == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+				set = _parentModel->getParentSimulator()->getPlugins()->newInstance<Set>(_parentModel);
+			}
+			_setAttachedData("SeizableItem" + std::to_string(i), set);
 			resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Set>(), seizable->getSet(), "Set", errorMessage);
 		}
-		// @TODO: Should be checking saveAttribute, index, etc
+		i++;
 	}
 	return resultAll;
 }
-
-//void Release::setResourceName(std::string resourceName) throw () {
-//	ModelDataDefinition* resource = _parentModel->elements()->modeldatum(Util::TypeOf<Resource>(), resourceName);
-//	if (resource != nullptr) {
-//		this->_resource = dynamic_cast<Resource*> (resource);
-//	} else {
-//		throw std::invalid_argument("Resource does not exist");
-//	}
-//}
-
-//std::string Release::resourceName() const {
-//	return _resource->name();
-//}
 
 PluginInformation* Release::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Release>(), &Release::LoadInstance, &Release::NewInstance);

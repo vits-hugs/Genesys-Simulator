@@ -55,6 +55,15 @@ void Util::SepKeyVal(std::string str, std::string *key, std::string *value) {
 	}
 }
 
+std::string Util::StrReplaceAll(std::string text, std::string searchFor, std::string replaceBy) {
+	unsigned int pos = text.find(searchFor, 0);
+	while (pos < text.length()) {// != std::string::npos) {
+		text = text.replace(pos, pos + searchFor.length(), replaceBy);
+		pos = text.find(searchFor, 0);
+	}
+	return text;
+}
+
 std::string Util::Indent() {
 	std::string spaces = "";
 	for (unsigned int i = 0; i < Util::_S_indentation; i++) {

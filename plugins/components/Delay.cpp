@@ -115,17 +115,7 @@ std::map<std::string, std::string>* Delay::_saveInstance(bool saveDefaultValues)
 }
 
 bool Delay::_check(std::string* errorMessage) {
-	//include attributes needed
-	ModelDataManager* elements = _parentModel->getDataManager();
-	std::vector<std::string> neededNames = {"Entity.TotalWaitTime"};
-	std::string neededName;
-	for (unsigned int i = 0; i < neededNames.size(); i++) {
-		neededName = neededNames[i];
-		if (elements->getDataDefinition(Util::TypeOf<Attribute>(), neededName) == nullptr) {
-			Attribute* attr1 = new Attribute(_parentModel, neededName);
-			elements->insert(attr1);
-		}
-	}
+	_insertNeededAttributes({"Entity.TotalWaitTime"});
 	return _parentModel->checkExpression(_delayExpression, "Delay expression", errorMessage);
 }
 

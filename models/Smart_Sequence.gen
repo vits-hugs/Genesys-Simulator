@@ -1,21 +1,20 @@
-0   SimulatorInfo "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220111 
+0   Simulator  "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220131 
 0   ModelInfo  "Model 1" analystName="" description="" projectTitle="" version="1.0" 
-0   ModelSimulation "ModelSimulation" replicationLength=60.000000 showReportsAfterReplicaton=0 showReportsAfterSimulation=0 traceLevel=6 
-57  EntityType "EntityType_1" 
-58  Station    "Station_1" 
-62  Station    "Station_2" 
-68  Station    "Station_3" 
-72  Sequence   "Sequence_1" 
-56  Create     "Create_1" EntityType="EntityType_1" timeBetweenCreations="10" nextId=73 
-59  Route      "Route_1" destinationType=1 routeTimeExpression="0.1" nextSize=0 
-60  Enter      "Enter_1" station="Station_1" nextId=61 
-61  Delay      "Delay_1" nextId=63 
-63  Leave      "Leave_1" station="Station_1" nextId=64 
-64  Route      "Route_2" destinationType=1 routeTimeExpression="0.2" nextSize=0 
-65  Enter      "Enter_2" station="Station_2" nextId=66 
-66  Delay      "Delay_2" delayExpression="2" nextId=67 
-67  Leave      "Leave_2" station="Station_2" nextId=69 
-69  Route      "Route_3" destinationType=1 routeTimeExpression="0.3" nextSize=0 
-70  Enter      "Enter_3" station="Station_3" nextId=71 
-71  Dispose    "Dispose_1" nextSize=0 
-73  Assign     "Assign_1" destination0="Entity.Sequence" expression0="72" nextId=59 
+0   ModelSimulation "" showReportsAfterReplicaton=0 showReportsAfterSimulation=0 traceLevel=6 
+59  Station    "s1" 
+64  Station    "s2" 
+69  Station    "s3" 
+71  Sequence   "Sequence_1" 
+56  Create     "Create_1" EntityType="" timeBetweenCreations="10" nextId=72 
+57  Route      "Route_1" destinationType=1 routeTimeExpression="0.1" nextSize=0 
+58  Enter      "Enter_1" station="s1" nextId=60 
+60  Delay      "Delay_1" nextId=61 
+61  Leave      "Leave_1" station="s1" nextId=62 
+62  Route      "Route_2" destinationType=1 routeTimeExpression="0.2" nextSize=0 
+63  Enter      "Enter_2" station="s2" nextId=65 
+65  Delay      "Delay_2" delayExpression="2" nextId=66 
+66  Leave      "Leave_2" station="s2" nextId=67 
+67  Route      "Route_3" destinationType=1 routeTimeExpression="0.3" nextSize=0 
+68  Enter      "Enter_3" station="s3" nextId=70 
+70  Dispose    "Dispose_1" nextSize=0 
+72  Assign     "Assign_1" destination0="Entity.Sequence" expression0="71" nextId=57 

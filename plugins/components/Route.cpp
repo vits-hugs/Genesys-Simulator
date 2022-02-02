@@ -162,19 +162,15 @@ std::map<std::string, std::string>* Route::_saveInstance(bool saveDefaultValues)
 }
 
 bool Route::_check(std::string* errorMessage) {
-	//include attributes needed
-	ModelDataManager* elements = _parentModel->getDataManager();
-	std::vector<std::string> neededNames = {"Entity.TotalTransferTime", "Entity.Station"};
-	std::string neededName;
-	for (unsigned int i = 0; i < neededNames.size(); i++) {
-		neededName = neededNames[i];
-		if (elements->getDataDefinition(Util::TypeOf<Attribute>(), neededName) == nullptr) {
-			Attribute* attr1 = new Attribute(_parentModel, neededName);
-			elements->insert(attr1);
+	_insertNeededAttributes({"Entity.TotalTransferTime", "Entity.Station", "Entity.Sequence", "Entity.SequenceStep"});
+	if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+		if (_station == nullptr && this->_routeDestinationType == Route::DestinationType::Station) {
+			_station = _parentModel->getParentSimulator()->getPlugins()->newInstance<Station>(_parentModel);
 		}
 	}
+	this->_setAttachedData("Station", _station);
 	// include StatisticsCollector needed in EntityType
-	std::list<ModelDataDefinition*>* enttypes = elements->getDataDefinitionList(Util::TypeOf<EntityType>())->list();
+	std::list<ModelDataDefinition*>* enttypes = _parentModel->getDataManager()->getDataDefinitionList(Util::TypeOf<EntityType>())->list();
 	for (ModelDataDefinition* modeldatum : *enttypes) {
 		if (modeldatum->isReportStatistics())
 			static_cast<EntityType*> (modeldatum)->addGetStatisticsCollector(modeldatum->getName() + ".TransferTime"); // force create this CStat before simulation starts
@@ -211,11 +207,6 @@ PluginInformation* Route::GetPluginInformation() {
 }
 
 void Route::_createInternalData() {
-	if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
-		if (_station == nullptr) {
-			_station = _parentModel->getParentSimulator()->getPlugins()->newInstance<Station>(_parentModel);
-		}
-	}
 	if (_reportStatistics) {
 		if (_numberIn == nullptr) {
 			_numberIn = new Counter(_parentModel, getName() + "." + "CountNumberIn", this);

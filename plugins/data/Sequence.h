@@ -66,8 +66,8 @@ private:
 	const struct DEFAULT_VALUES {
 		const unsigned int assignmentsSize = 0;
 	} DEFAULT;
-	Station* _station;
-	std::list<Assignment*>* _assignments;
+	Station* _station = nullptr;
+	std::list<Assignment*>* _assignments = new std::list<Assignment*>();
 };
 
 /*!

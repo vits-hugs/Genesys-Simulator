@@ -22,6 +22,7 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QProgressBar>
+#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTextEdit>
@@ -56,6 +57,9 @@ public:
     QWidget *tabModelText;
     QVBoxLayout *verticalLayout_4;
     QWidget *tabModelGraphic;
+    QVBoxLayout *verticalLayout_6;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents;
     QVBoxLayout *verticalLayout_5;
     QLabel *label_ModelGraphic;
     QHBoxLayout *horizontalLayout;
@@ -196,9 +200,18 @@ public:
         tabWidgetModel_2->addTab(tabModelText, icon14, QString());
         tabModelGraphic = new QWidget();
         tabModelGraphic->setObjectName(QString::fromUtf8("tabModelGraphic"));
-        verticalLayout_5 = new QVBoxLayout(tabModelGraphic);
+        verticalLayout_6 = new QVBoxLayout(tabModelGraphic);
+        verticalLayout_6->setObjectName(QString::fromUtf8("verticalLayout_6"));
+        scrollArea = new QScrollArea(tabModelGraphic);
+        scrollArea->setObjectName(QString::fromUtf8("scrollArea"));
+        scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 495, 161));
+        verticalLayout_5 = new QVBoxLayout(scrollAreaWidgetContents);
         verticalLayout_5->setObjectName(QString::fromUtf8("verticalLayout_5"));
-        label_ModelGraphic = new QLabel(tabModelGraphic);
+        label_ModelGraphic = new QLabel(scrollAreaWidgetContents);
         label_ModelGraphic->setObjectName(QString::fromUtf8("label_ModelGraphic"));
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
@@ -208,6 +221,10 @@ public:
         label_ModelGraphic->setAlignment(Qt::AlignCenter);
 
         verticalLayout_5->addWidget(label_ModelGraphic);
+
+        scrollArea->setWidget(scrollAreaWidgetContents);
+
+        verticalLayout_6->addWidget(scrollArea);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
@@ -234,7 +251,7 @@ public:
         horizontalLayout->addWidget(checkBox_ShowInternals);
 
 
-        verticalLayout_5->addLayout(horizontalLayout);
+        verticalLayout_6->addLayout(horizontalLayout);
 
         QIcon icon15;
         icon15.addFile(QString::fromUtf8(":/mxgraph/resources/icons/pack4/iconsMxGraph/vertical.png"), QSize(), QIcon::Normal, QIcon::Off);

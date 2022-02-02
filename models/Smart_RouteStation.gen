@@ -1,6 +1,6 @@
-0   SimulatorInfo "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220111 
+0   Simulator  "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220131 
 0   ModelInfo  "Model 1" analystName="" description="" projectTitle="" version="1.0" 
-0   ModelSimulation "ModelSimulation" replicationLength=20.000000 traceLevel=9 
+0   ModelSimulation "" replicationLength=20.000000 traceLevel=9 
 58  Station    "station1" 
 62  Station    "station2" 
 66  Station    "station3" 

@@ -15,6 +15,7 @@
 #define PLUGINMANAGER_H
 
 #include "../util/List.h"
+//#include "Simulator.h"
 #include "Plugin.h"
 #include "PluginConnector_if.h"
 

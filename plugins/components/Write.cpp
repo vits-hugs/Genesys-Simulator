@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   Write.cpp
  * Author: rlcancian
- * 
+ *
  * Created on 11 de Setembro de 2019, 13:06
  */
 
@@ -86,7 +86,7 @@ void Write::_onDispatchEvent(Entity* entity) {
 	std::string message = "";
 	bool lastWasShown = true;
 	for (std::string msgElem : *_writeElements->list()) {
-		if (msgElem.substr(0, 1) == "@") { // to start with '@' is the signal that the following text is an expression to the parser 
+		if (msgElem.substr(0, 1) == "@") { // to start with '@' is the signal that the following text is an expression to the parser
 			message += std::to_string(_parentModel->parseExpression(msgElem.substr(1, msgElem.length() - 1)));
 		} else {
 			message += msgElem;
@@ -131,28 +131,14 @@ void Write::_initBetweenReplications() {
 bool Write::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
-		this->_writeToType = static_cast<WriteToType> (std::stoi((*fields->find("writeToType")).second));
-		unsigned short writesSize = std::stoi((*fields->find("writesSize")).second);
+		//this->_writeToType = static_cast<WriteToType> (std::stoi((*fields->find("writeToType")).second));
+		_writeToType = static_cast<WriteToType> (LoadField(fields, "writeToType", static_cast<int> (DEFAULT.writeToType)));
+		_filename = LoadField(fields, "filename", DEFAULT.filename);
+		unsigned short writesSize = LoadField(fields, "writesSize", 0u); //std::stoi((*fields->find("writesSize")).second);
 		for (unsigned short i = 0; i < writesSize; i++) {
-
-			std::string text = (*fields->find(text)).second;
-			/*
-			bool isExpression = static_cast<bool> (std::stoi((*fields->find("isExpression")).second));
-			bool newline = static_cast<bool> (std::stoi((*fields->find("newline")).second));
-			if (isExpression) {
-				if (newline) {
-					this->_writeElements->insert(new WritelnExpression(text));
-				} else {
-					this->_writeElements->insert(new WriteExpression(text));
-				}
-			} else {
-				if (newline) {
-					this->_writeElements->insert(new WritelnText(text));
-				} else {
-					this->_writeElements->insert(new WriteText(text));
-				}
-			}
-			 */
+			std::string text = LoadField(fields, "text" + std::to_string(i), "");
+			_writeElements->insert(text);
+			i++;
 		}
 	}
 	return res;
@@ -161,19 +147,14 @@ bool Write::_loadInstance(std::map<std::string, std::string>* fields) {
 std::map<std::string, std::string>* Write::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
 	SaveField(fields, "writeToType", static_cast<int> (_writeToType), static_cast<int> (DEFAULT.writeToType), saveDefaultValues);
+	SaveField(fields, "filename", _filename, DEFAULT.filename, saveDefaultValues);
 	SaveField(fields, "writesSize", _writeElements->size(), 0u, saveDefaultValues);
 	unsigned short i = 0;
-	/*
-	WriteText* writeElem;
-	for (std::list<WriteText*>::iterator it = _writeElements->list()->begin(); it != _writeElements->list()->end(); it++, i++) {
-		writeElem = (*it);
-		SaveField(fields, "isExpression" + std::to_string(i), writeElem->isExpression, writeElem->DEFAULT.isExpression);
-		SaveField(fields, "newline" + std::to_string(i), writeElem->newline, writeElem->DEFAULT.newline);
-		SaveField(fields, "text" + std::to_string(i), writeElem->text, writeElem->DEFAULT.text);
+	for (std::string text : *_writeElements->list()) {
+		//@ TODO: NEED TO AVOID \N TO BE SAVE AS A REAL NEW LINE. SHOULD SAVE "\n"
+		SaveField(fields, "text" + std::to_string(i), text, "", saveDefaultValues);
+		i++;
 	}
-	 */
-	//this->_writeElements
-
 	return fields;
 }
 

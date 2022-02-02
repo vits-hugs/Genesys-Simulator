@@ -120,7 +120,7 @@ int Smart_AssignWriteSeizes::main(int argc, char** argv) {
 	ModelSimulation* sim = model->getSimulation();
 	sim->setNumberOfReplications(5);
 	sim->setReplicationLength(100);
-	model->save("./models/Smart_StatationRouteSequence.gen");
+	model->save("./models/Smart_AssignWriteSeizes.gen");
 	sim->start();
 	genesys->~Simulator();
 	return 0;

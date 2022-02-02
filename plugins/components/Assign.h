@@ -68,17 +68,18 @@ public:
 		Assignment(Model* model, std::string destination, std::string expression, bool isAttributeNotVariable = true) {
 			this->_destination = destination;
 			this->_expression = expression;
+			this->_isAttributeNotVariable = isAttributeNotVariable;
 			if (isAttributeNotVariable) {
 				if (model->getDataManager()->getDataDefinition(Util::TypeOf<Attribute>(), destination) == nullptr) {
 					model->getDataManager()->insert(Util::TypeOf<Attribute>(), new Attribute(model, destination));
 				}
 				} else {
 				if (model->getDataManager()->getDataDefinition(Util::TypeOf<Variable>(), destination) == nullptr) {
-					model->getDataManager()->insert(Util::TypeOf<Variable>(), new Attribute(model, destination));
+					model->getDataManager()->insert(Util::TypeOf<Variable>(), new Variable(model, destination));
 				}
 			}
 		}
-		Assignment(std::string destination, std::string expression) {
+		Assignment(std::string destination, std::string expression, bool isAttributeNotVariable = true) {
 			this->_destination = destination;
 			this->_expression = expression;
 			// an assignment is always in the form:
@@ -96,10 +97,16 @@ public:
 		std::string getExpression() const {
 			return _expression;
 		}
+		void setAttributeNotVariable(bool isAttributeNotVariable) {
+			this->_isAttributeNotVariable = isAttributeNotVariable;
+		}
+		bool isAttributeNotVariable() const {
+			return _isAttributeNotVariable;
+		}
 	private:
 		std::string _destination = "";
 		std::string _expression = "";
-
+		bool _isAttributeNotVariable = true;
 	};
 public:
 	Assign(Model* model, std::string name = "");

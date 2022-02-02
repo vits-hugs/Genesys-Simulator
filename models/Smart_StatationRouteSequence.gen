@@ -1,9 +1,10 @@
-0   SimulatorInfo "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220111 
+0   Simulator  "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220131 
 0   ModelInfo  "Model 1" analystName="" description="" projectTitle="" version="1.0" 
-0   ModelSimulation "ModelSimulation" numberOfReplications=5 replicationLength=100.000000 traceLevel=9 
-56  EntityType "Part" 
-59  Attribute  "index" 
-60  Variable   "varNextIndex" 
+0   ModelSimulation "" numberOfReplications=5 replicationLength=100.000000 traceLevel=4 
+57  EntityType "Part" 
+59  Attribute  "varNextIndex" 
+59  Attribute  "varNextIndex" 
+60  Attribute  "index" 
 62  Resource   "Machine_1" 
 63  Resource   "Machine_2" capacity=2 
 64  Resource   "Machine_3" capacity=3 
@@ -11,7 +12,7 @@
 67  Queue      "Queue_Seize_1" 
 71  Queue      "Queue_Seize_2" 
 75  Queue      "Queue_Seize_3" 
-57  Create     "Create_1" EntityType="Part" timeBetweenCreations="norm(1.5,0.5)" nextId=58 
+56  Create     "Create_1" EntityType="Part" timeBetweenCreations="norm(1.5,0.5)" nextId=58 
 58  Assign     "Assign_1" assignments=2 destination0="varNextIndex" destination1="index" expression0="varNextIndex + 1" expression1="varNextIndex" nextId=61 
 61  Write      "Write_1" writesSize=7 nextId=66 
 66  Decide     "Decide_1" condition0="NR(Machine_1) < MR(Machine_1)" condition1="NR(Machine_2) < MR(Machine_2)" conditions=2 nextSize=3 nextId0=68 nextId1=72 nextId2=76 

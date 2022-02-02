@@ -60,6 +60,10 @@ private slots:
 
     void on_tabWidgetModel_2_tabBarClicked(int index);
 
+    void on_checkBox_ShowElements_stateChanged(int arg1);
+
+    void on_checkBox_ShowInternals_stateChanged(int arg1);
+
 private: // VIEW
 
 private: // trace handlers
@@ -85,7 +89,7 @@ private:
     bool _checkStartSimulation();
     bool _setSimulationModelBasedOnText();
     bool _createModelGraphicPicture();
-    std::string _recursiveCreateModelGraphicPicture(ModelComponent* component, std::list<ModelComponent*>* visited);
+    std::string _recursiveCreateModelGraphicPicture(ModelComponent* component, std::list<ModelDataDefinition*>* visited);
 private:
     Ui::MainWindow *ui;
     Simulator* simulator;

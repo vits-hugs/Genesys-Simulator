@@ -55,9 +55,9 @@ protected: // virtual
 	virtual void _createInternalData();
 private: // methods
 private: // attributes 1:1
-	Seize* seize = nullptr;
-	Delay* delay = nullptr;
-	Release* release = nullptr;
+	Seize* _seize = nullptr;
+	Delay* _delay = nullptr;
+	Release* _release = nullptr;
 	ModelComponent* _nextComponent = nullptr;
 	unsigned int _nextInput;
 private: // attributes 1:n

@@ -41,7 +41,8 @@ public:
     bool hasChanged() const;
     void setHasChanged(bool _hasChanged);
 public:
-    std::list<SourceModelComponent*>* getSourceComponents();
+	std::list<SourceModelComponent*>* getSourceComponents();
+	std::list<ModelComponent*>* getTransferInComponents();
 private:
     List<ModelComponent*>* _components;
     Model* _parentModel;

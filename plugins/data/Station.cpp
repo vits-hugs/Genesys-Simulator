@@ -121,16 +121,7 @@ std::map<std::string, std::string>* Station::_saveInstance(bool saveDefaultValue
 }
 
 bool Station::_check(std::string* errorMessage) {
-	/* include attributes needed */
-	std::vector<std::string> neededNames = {"Entity.Station"};
-	neededNames.insert(neededNames.begin(), "Entity.ArrivalAt" + this->getName());
-	std::string neededName;
-	for (unsigned int i = 0; i < neededNames.size(); i++) {
-		neededName = neededNames[i];
-		if (_parentModel->getDataManager()->getDataDefinition(Util::TypeOf<Attribute>(), neededName) == nullptr) {
-			new Attribute(_parentModel, neededName);
-		}
-	}
+	_insertNeededAttributes({"Entity.Station", "Entity.ArrivalAt" + this->getName()});
 	//*errorMessage += "";
 	return true;
 }

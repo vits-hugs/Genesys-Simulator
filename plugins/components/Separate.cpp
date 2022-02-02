@@ -4,16 +4,17 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   Separate.cpp
  * Author: rlcancian
- * 
+ *
  * Created on 03 de Junho de 2019, 15:14
  */
 
 #include "Separate.h"
 
 #include "../../kernel/simulator/Model.h"
+#include "../../kernel/simulator/Attribute.h"
 #include "../../plugins/data/EntityGroup.h"
 
 #ifdef PLUGINCONNECT_DYNAMIC
@@ -84,8 +85,7 @@ std::map<std::string, std::string>* Separate::_saveInstance(bool saveDefaultValu
 
 bool Separate::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	// @TODO: not implemented yet
-	//*errorMessage += "";
+	_insertNeededAttributes({"Entity.Group"});
 	return resultAll;
 }
 
