@@ -88,12 +88,19 @@ bool ModelDataDefinition::_getSaveDefaultsOption() {
 }
 
 bool ModelDataDefinition::_loadInstance(std::map<std::string, std::string>* fields) {
+	//std::cout << "FIELDS: " << map2str(fields) << std::endl;
 	bool res = true;
 	std::map<std::string, std::string>::iterator it;
 	it = fields->find("id");
-	it != fields->end() ? this->_id = std::stoi((*it).second) : res = false;
+	if (it != fields->end())
+		this->_id = std::stoi((*it).second);
+	else
+		res = false;
 	it = fields->find("name");
-	it != fields->end() ? this->_name = (*it).second : this->_name = "";
+	if (it != fields->end())
+		this->_name = (*it).second;
+	else
+		this->_name = "";
 	//it != fields->end() ? this->_name = (*it).second : res = false;
 	it = fields->find("reportStatistics");
 	it != fields->end() ? this->_reportStatistics = std::stoi((*it).second) : this->_reportStatistics = TraitsKernel<ModelDataDefinition>::reportStatistics;
@@ -103,7 +110,7 @@ bool ModelDataDefinition::_loadInstance(std::map<std::string, std::string>* fiel
 std::map<std::string, std::string>* ModelDataDefinition::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();
 	SaveField(fields, "typename", _typename);
-	SaveField(fields, "id", this->_id);
+	SaveField(fields, "id", _id);
 	SaveField(fields, "name", _name);
 	SaveField(fields, "reportStatistics", _reportStatistics, TraitsKernel<ModelDataDefinition>::reportStatistics, saveDefaultValues);
 	return fields;
@@ -273,7 +280,7 @@ bool ModelDataDefinition::Check(ModelDataDefinition* modeldatum, std::string* er
 		try {
 			res = modeldatum->_check(errorMessage);
 			if (!res) {
-				//                modeldatum->_model->getTraceManager()->trace(Util::TraceLevel::errors, "Error: Checking has failed with message '" + *errorMessage + "'");
+				//                modeldatum->_model->getTraceManager()->traceError(Util::TraceLevel::errors, "Error: Checking has failed with message '" + *errorMessage + "'");
 			}
 		} catch (const std::exception& e) {
 			//            modeldatum->_model->getTraceManager()->traceError(e, "Error verifying modeldatum " + modeldatum->show());

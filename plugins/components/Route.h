@@ -15,8 +15,10 @@
 #define ROUTE_H
 
 #include "../../kernel/simulator/ModelComponent.h"
-#include "../data/Station.h"
 #include "../../kernel/simulator/Counter.h"
+#include "../data/Station.h"
+#include "../data/Sequence.h"
+#include "../data/Label.h"
 
 /*!
 Route module
@@ -54,7 +56,7 @@ class Route : public ModelComponent {
 public:
 
 	enum class DestinationType : int {
-		Station = 0, BySequence = 1
+		Station = 0, Sequence = 1, Label = 2
 	};
 public:
 	Route(Model* model, std::string name = "");
@@ -75,6 +77,8 @@ public:
 	Util::TimeUnit getRouteTimeTimeUnit() const;
 	void setRouteDestinationType(DestinationType _routeDestinationType);
 	Route::DestinationType getRouteDestinationType() const;
+	void setLabel(Label* _label);
+	Label* getLabel() const;
 protected:
 	virtual void _onDispatchEvent(Entity* entity);
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
@@ -88,13 +92,14 @@ private:
 	const struct DEFAULT_VALUES {
 		std::string routeTimeExpression = "0.0";
 		Util::TimeUnit routeTimeTimeUnit = Util::TimeUnit::second;
-		Route::DestinationType routeDestinationType = DestinationType::Station;
+		Route::DestinationType routeDestinationType = DestinationType::Label;
 	} DEFAULT;
 	std::string _routeTimeExpression = DEFAULT.routeTimeExpression;
 	Util::TimeUnit _routeTimeTimeUnit = DEFAULT.routeTimeTimeUnit;
 	Route::DestinationType _routeDestinationType = DEFAULT.routeDestinationType;
 private: // association
 	Station* _station = nullptr;
+	Label* _label = nullptr;
 private: // internel elements
 	Counter* _numberIn = nullptr;
 };

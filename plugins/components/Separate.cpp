@@ -53,7 +53,7 @@ void Separate::_onDispatchEvent(Entity* entity) {
 	} else {
 		EntityGroup* entityGroup = dynamic_cast<EntityGroup*> (_parentModel->getDataManager()->getDataDefinition(Util::TypeOf<EntityGroup>(), entityGroupId));
 		if (entityGroup == nullptr) {
-			_parentModel->getTracer()->traceSimulation(this, Util::TraceLevel::L3_errorRecover, "Error: Could not find EntityGroup Id=" + std::to_string(entityGroupId));
+			_parentModel->getTracer()->traceError(Util::TraceLevel::L3_errorRecover, "Error: Could not find EntityGroup Id=" + std::to_string(entityGroupId));
 		} else {
 			Entity* e;
 			unsigned int idGroupKey = entity->getId();

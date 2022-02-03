@@ -55,7 +55,7 @@ void ModelCheckerDefaultImpl1::_recursiveConnectedTo(PluginManager* pluginManage
 	} else { // it is not a sink
 		if (comp->getConnections()->size() == 0) {
 			unconnected->insert(comp);
-			_model->getTracer()->trace(Util::TraceLevel::L1_errorFatal, "Component \"" + comp->getName() + "\" is unconnected (not a sink with no next componentes connected to)");
+			_model->getTracer()->traceError(Util::TraceLevel::L1_errorFatal, "Component \"" + comp->getName() + "\" is unconnected (not a sink with no next componentes connected to)");
 			*drenoFound = false;
 		} else {
 			ModelComponent* nextComp;
@@ -103,7 +103,7 @@ bool ModelCheckerDefaultImpl1::checkConnected() {
 			comp = (*it);
 			if (visited->find(comp) == visited->list()->end()) { //not found
 				resultAll = false;
-				_model->getTracer()->trace(Util::TraceLevel::L1_errorFatal, "Component \"" + comp->getName() + "\" is unconnected.");
+				_model->getTracer()->traceError(Util::TraceLevel::L1_errorFatal, "Component \"" + comp->getName() + "\" is unconnected.");
 			}
 		}
 
@@ -151,7 +151,7 @@ bool ModelCheckerDefaultImpl1::checkSymbols() {
 								result = modeldatum->Check((*it), errorMessage);
 								res &= result;
 								if (!result) {
-									_model->getTracer()->trace(Util::TraceLevel::L1_errorFatal, "Error: Checking has failed with message '" + *errorMessage + "'");
+									_model->getTracer()->traceError(Util::TraceLevel::L1_errorFatal, "Error: Checking has failed with message '" + *errorMessage + "'");
 								}
 							} catch (const std::exception& e) {
 								_model->getTracer()->traceError(e, "Error verifying component " + modeldatum->show());
@@ -206,7 +206,7 @@ bool ModelCheckerDefaultImpl1::checkLimits() {
 			}
 		}
 		if (!res) {
-			_model->getTracer()->trace(Util::TraceLevel::L1_errorFatal, "Error: Checking has failed with message '" + text + "'");
+			_model->getTracer()->traceError(Util::TraceLevel::L1_errorFatal, "Error: Checking has failed with message '" + text + "'");
 		}
 	}
 	Util::DecIndent();

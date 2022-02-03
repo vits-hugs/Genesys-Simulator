@@ -57,19 +57,19 @@ SeizableItem::SeizableItem(ModelDataDefinition* resourceOrSet, SeizableItem::Sei
 bool SeizableItem::loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = true;
 	try {
-		_seizableType = static_cast<SeizableItem::SeizableType> (LoadField(fields, "seizableType", static_cast<int> (DEFAULT.seizableType)));
-		_seizableName = LoadField(fields, "seizable", "");
-		_quantityExpression = LoadField(fields, "quantityExpression", DEFAULT.quantityExpression);
-		_selectionRule = static_cast<SeizableItem::SelectionRule> (LoadField(fields, "selectionRule", static_cast<int> (DEFAULT.selectionRule)));
-		_saveAttribute = LoadField(fields, "saveAttribute", DEFAULT.saveAttribute);
-		_index = LoadField(fields, "index", DEFAULT.index);
+		_seizableType = static_cast<SeizableItem::SeizableType> (LoadField(fields, "requestSeizableType", static_cast<int> (DEFAULT.seizableType)));
+		_seizableName = LoadField(fields, "requestSeizable", "");
+		_quantityExpression = LoadField(fields, "requestQuantityExpression", DEFAULT.quantityExpression);
+		_selectionRule = static_cast<SeizableItem::SelectionRule> (LoadField(fields, "requestSelectionRule", static_cast<int> (DEFAULT.selectionRule)));
+		_saveAttribute = LoadField(fields, "requestSaveAttribute", DEFAULT.saveAttribute);
+		_index = LoadField(fields, "requestIndex", DEFAULT.index);
 		if (_modeldataManager != nullptr) {
 			if (_seizableType == SeizableItem::SeizableType::RESOURCE) {
 				_resourceOrSet = _modeldataManager->getDataDefinition(Util::TypeOf<Resource>(), _seizableName);
 			} else if (_seizableType == SeizableItem::SeizableType::SET) {
 				_resourceOrSet = _modeldataManager->getDataDefinition(Util::TypeOf<Set>(), _seizableName);
 			}
-			//assert(_resourceOrSet != nullptr);
+			//assert(_resourceOrSet != nullptr); // @TODO TraceError
 		}
 	} catch (...) {
 		res = false;
@@ -81,12 +81,12 @@ bool SeizableItem::loadInstance(std::map<std::string, std::string>* fields, unsi
 	bool res = true;
 	std::string num = strIndex(parentIndex);
 	try {
-		_seizableType = static_cast<SeizableItem::SeizableType> (LoadField(fields, "seizableType" + num, static_cast<int> (DEFAULT.seizableType)));
-		_seizableName = LoadField(fields, "seizable" + num, "");
-		_quantityExpression = LoadField(fields, "quantityExpression" + num, DEFAULT.quantityExpression);
-		_selectionRule = static_cast<SeizableItem::SelectionRule> (LoadField(fields, "selectionRule" + num, static_cast<int> (DEFAULT.selectionRule)));
-		_saveAttribute = LoadField(fields, "saveAttribute" + num, DEFAULT.saveAttribute);
-		_index = LoadField(fields, "index" + num, DEFAULT.index);
+		_seizableType = static_cast<SeizableItem::SeizableType> (LoadField(fields, "requestSeizableType" + num, static_cast<int> (DEFAULT.seizableType)));
+		_seizableName = LoadField(fields, "requestSeizable" + num, "");
+		_quantityExpression = LoadField(fields, "requestQuantityExpression" + num, DEFAULT.quantityExpression);
+		_selectionRule = static_cast<SeizableItem::SelectionRule> (LoadField(fields, "requestSelectionRule" + num, static_cast<int> (DEFAULT.selectionRule)));
+		_saveAttribute = LoadField(fields, "requestSaveAttribute" + num, DEFAULT.saveAttribute);
+		_index = LoadField(fields, "requestIndex" + num, DEFAULT.index);
 		if (_modeldataManager != nullptr) {
 			if (_seizableType == SeizableItem::SeizableType::RESOURCE) {
 				_resourceOrSet = _modeldataManager->getDataDefinition(Util::TypeOf<Resource>(), _seizableName);
@@ -94,8 +94,9 @@ bool SeizableItem::loadInstance(std::map<std::string, std::string>* fields, unsi
 				_resourceOrSet = _modeldataManager->getDataDefinition(Util::TypeOf<Set>(), _seizableName);
 			} else {
 				_resourceOrSet = nullptr;
+				_modeldataManager->getParentModel()->getTracer()->traceError("SeizableItem named '" + _seizableName + "' could not be found on loading");
 			}
-			//assert(_resourceOrSet != nullptr);
+			//assert(_resourceOrSet != nullptr); // @TODO TraceError
 		}
 	} catch (...) {
 		res = false;

@@ -69,7 +69,7 @@ std::string Label::getLabel() const {
 	return _label;
 }
 
-ModelComponent* Label::getEnteringLabelComponent() const {
+ModelComponent* Label::getEnterIntoLabelComponent() const {
 	return _enteringLabelComponent;
 }
 

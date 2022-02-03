@@ -55,7 +55,7 @@ public:
 				return instance;
 			}
 		}
-		_simulator->getTracer()->trace(Util::TraceLevel::L1_errorFatal, "Error: Could not find any plugin with Typename \"" + pluginTypename + "\"");
+		_simulator->getTracer()->traceError(Util::TraceLevel::L1_errorFatal, "Error: Could not find any plugin with Typename \"" + pluginTypename + "\"");
 		return nullptr;
 	}
 private:

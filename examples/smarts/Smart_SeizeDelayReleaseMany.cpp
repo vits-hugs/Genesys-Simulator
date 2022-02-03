@@ -69,14 +69,14 @@ int Smart_SeizeDelayReleaseMany::main(int argc, char** argv) {
 	seize1->getConnections()->insert(delay1);
 	delay1->getConnections()->insert(release1);
 	release1->getConnections()->insert(dispose1);
-	// set options, save and simulate step-by-step
+	// set options, save and simulate 
 	ModelSimulation* sim = m->getSimulation();
 	sim->setReplicationLength(10);
 	sim->setNumberOfReplications(3);
 	m->save("./models/Smart_SeizeDelayReleaseMany.gen");
 	do {
-		sim->step();
-		std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
+		sim->start(); //step();
+		//std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
 	} while (sim->isPaused());
 	genesys->~Simulator();
 	return 0;

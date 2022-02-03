@@ -33,7 +33,7 @@ int Smart_Sequence::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	this->insertFakePluginsByHand(genesys);
 	this->setDefaultTraceHandlers(genesys->getTracer());
-	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L6_arrival);
+	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
 	// create model
 	Model* m = genesys->getModels()->newModel();
 	PluginManager* plugins = genesys->getPlugins();
@@ -41,7 +41,7 @@ int Smart_Sequence::main(int argc, char** argv) {
 	Create* c1 = plugins->newInstance<Create>(m);
 	c1->setTimeBetweenCreationsExpression("10");
 	Route* r0 = plugins->newInstance<Route>(m);
-	r0->setRouteDestinationType(Route::DestinationType::BySequence);
+	r0->setRouteDestinationType(Route::DestinationType::Sequence);
 	r0->setRouteTimeExpression("0.1");
 	Enter* e1 = plugins->newInstance<Enter>(m);
 	e1->setStationName("s1");
@@ -49,7 +49,7 @@ int Smart_Sequence::main(int argc, char** argv) {
 	Leave* l1 = plugins->newInstance<Leave>(m);
 	l1->setStationName("s1");
 	Route* r1 = plugins->newInstance<Route>(m);
-	r1->setRouteDestinationType(Route::DestinationType::BySequence);
+	r1->setRouteDestinationType(Route::DestinationType::Sequence);
 	r1->setRouteTimeExpression("0.2");
 	Enter* e2 = plugins->newInstance<Enter>(m);
 	e2->setStationName("s2");
@@ -58,13 +58,13 @@ int Smart_Sequence::main(int argc, char** argv) {
 	Leave* l2 = plugins->newInstance<Leave>(m);
 	l2->setStationName("s2");
 	Route* r2 = plugins->newInstance<Route>(m);
-	r2->setRouteDestinationType(Route::DestinationType::BySequence);
+	r2->setRouteDestinationType(Route::DestinationType::Sequence);
 	r2->setRouteTimeExpression("0.3");
 	Enter* e3 = plugins->newInstance<Enter>(m);
 	e3->setStationName("s3");
 	Dispose* dp1 = plugins->newInstance<Dispose>(m);
 	// now defines the sequence of stations
-	Sequence* seq = new Sequence(m);
+	Sequence* seq = new Sequence(m, "mysequence");
 	seq->getSteps()->insert(new SequenceStep(m, "s1"));
 	seq->getSteps()->insert(new SequenceStep(m, "s2"));
 	seq->getSteps()->insert(new SequenceStep(m, "s1"));
@@ -72,7 +72,7 @@ int Smart_Sequence::main(int argc, char** argv) {
 	seq->getSteps()->insert(new SequenceStep(m, "s3"));
 	// finally defines the created entities will follow this sequence
 	Assign* a1 = plugins->newInstance<Assign>(m);
-	a1->getAssignments()->insert(new Assignment("Entity.Sequence", std::to_string(seq->getId())));
+	a1->getAssignments()->insert(new Assignment("Entity.Sequence", std::to_string(seq->getId()))); //@TODO: Implement in parser to be possible to extract ID from SequenceName
 	// connect model components to create a "workflow"
 	c1->getConnections()->insert(a1);
 	a1->getConnections()->insert(r0);

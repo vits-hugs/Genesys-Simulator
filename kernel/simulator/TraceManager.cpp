@@ -86,6 +86,15 @@ void TraceManager::traceError(std::exception e, std::string text) {
 	traceError(text, e);
 }
 
+void TraceManager::traceError(Util::TraceLevel level, std::string text) {
+	traceError(text, level);
+}
+
+void TraceManager::traceError(std::string text, Util::TraceLevel level) {
+	std::exception e;
+	traceError(text, e);
+}
+
 void TraceManager::traceError(std::string text, std::exception e) {
 	text = Util::Indent() + text;
 	TraceErrorEvent exceptEvent = TraceErrorEvent(text, e);

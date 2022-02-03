@@ -27,7 +27,7 @@ public:
 	virtual std::string show();
 	void setLabel(std::string _label);
 	std::string getLabel() const;
-	ModelComponent* getEnteringLabelComponent() const;
+	ModelComponent* getEnterIntoLabelComponent() const;
 	void sendEntityToLabelComponent(Entity* entity, double timeDelay);
 protected: // must be overriden by derived classes
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);

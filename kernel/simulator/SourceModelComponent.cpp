@@ -21,136 +21,136 @@ SourceModelComponent::SourceModelComponent(Model* model, std::string componentTy
 }
 
 std::string SourceModelComponent::show() {
-    std::string text = ModelComponent::show() +
-            ",entityType=\"" + _entityType->getName() + "\"" +
-            ",firstCreation=" + std::to_string(_firstCreation);
-    return text;
+	std::string text = ModelComponent::show() +
+			",entityType=\"" + _entityType->getName() + "\"" +
+			",firstCreation=" + std::to_string(_firstCreation);
+	return text;
 }
 
 bool SourceModelComponent::_loadInstance(std::map<std::string, std::string>* fields) {
-    bool res = ModelComponent::_loadInstance(fields);
-    if (res) {
-        this->_entitiesPerCreation = LoadField(fields, "entitiesPerCreation", DEFAULT.entitiesPerCreation);
-        this->_firstCreation = LoadField(fields, "firstCreation", DEFAULT.firstCreation);
-        this->_timeBetweenCreationsExpression = LoadField(fields, "timeBetweenCreations", DEFAULT.timeBetweenCreationsExpression);
-        this->_timeBetweenCreationsTimeUnit = LoadField(fields, "timeBetweenCreationsTimeUnit", DEFAULT.timeBetweenCreationsTimeUnit);
-        this->_maxCreationsExpression = LoadField(fields, "maxCreations", DEFAULT.maxCreationsExpression);
-        std::string entityTypename = LoadField(fields, "EntityType", DEFAULT.entityTypename);
-        ModelDataDefinition* enttype = (_parentModel->getDataManager()->getDataDefinition(Util::TypeOf<EntityType>(), entityTypename));
-        if (enttype != nullptr) {
-            this->_entityType = dynamic_cast<EntityType*> (enttype);
-        } else {
-            this->_entityType = nullptr;
-        }
-    }
-    return res;
+	bool res = ModelComponent::_loadInstance(fields);
+	if (res) {
+		this->_entitiesPerCreation = LoadField(fields, "entitiesPerCreation", DEFAULT.entitiesPerCreation);
+		this->_firstCreation = LoadField(fields, "firstCreation", DEFAULT.firstCreation);
+		this->_timeBetweenCreationsExpression = LoadField(fields, "timeBetweenCreations", DEFAULT.timeBetweenCreationsExpression);
+		this->_timeBetweenCreationsTimeUnit = LoadField(fields, "timeBetweenCreationsTimeUnit", DEFAULT.timeBetweenCreationsTimeUnit);
+		this->_maxCreationsExpression = LoadField(fields, "maxCreations", DEFAULT.maxCreationsExpression);
+		std::string entityTypename = LoadField(fields, "entityType", DEFAULT.entityTypename);
+		ModelDataDefinition* enttype = (_parentModel->getDataManager()->getDataDefinition(Util::TypeOf<EntityType>(), entityTypename));
+		if (enttype != nullptr) {
+			this->_entityType = dynamic_cast<EntityType*> (enttype);
+		} else {
+			this->_entityType = nullptr;
+		}
+	}
+	return res;
 }
 
 void SourceModelComponent::_initBetweenReplications() {
-    this->_entitiesCreatedSoFar = 0;
+	this->_entitiesCreatedSoFar = 0;
 }
 
 std::map<std::string, std::string>* SourceModelComponent::_saveInstance(bool saveDefaultValues) {
-    std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
-    SaveField(fields, "entitiesPerCreation", _entitiesPerCreation, DEFAULT.entitiesPerCreation, saveDefaultValues);
-    SaveField(fields, "firstCreation", _firstCreation, DEFAULT.firstCreation, saveDefaultValues);
-    SaveField(fields, "timeBetweenCreations", _timeBetweenCreationsExpression, DEFAULT.timeBetweenCreationsExpression, saveDefaultValues);
-    SaveField(fields, "timeBetweenCreationsTimeUnit", _timeBetweenCreationsTimeUnit, DEFAULT.timeBetweenCreationsTimeUnit, saveDefaultValues);
-    SaveField(fields, "maxCreations", _maxCreationsExpression, DEFAULT.maxCreationsExpression, saveDefaultValues);
-    if (_entityType != nullptr) {
-        SaveField(fields, "EntityType", _entityType->getName());
-    } else {
-        SaveField(fields, "EntityType", ""); // check DEFAULT.entityTypename);
-    }
-    return fields;
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
+	SaveField(fields, "entitiesPerCreation", _entitiesPerCreation, DEFAULT.entitiesPerCreation, saveDefaultValues);
+	SaveField(fields, "firstCreation", _firstCreation, DEFAULT.firstCreation, saveDefaultValues);
+	SaveField(fields, "timeBetweenCreations", _timeBetweenCreationsExpression, DEFAULT.timeBetweenCreationsExpression, saveDefaultValues);
+	SaveField(fields, "timeBetweenCreationsTimeUnit", _timeBetweenCreationsTimeUnit, DEFAULT.timeBetweenCreationsTimeUnit, saveDefaultValues);
+	SaveField(fields, "maxCreations", _maxCreationsExpression, DEFAULT.maxCreationsExpression, saveDefaultValues);
+	if (_entityType != nullptr) {
+		SaveField(fields, "entityType", _entityType->getName());
+	} else {
+		SaveField(fields, "entityType", DEFAULT.entityTypename);
+	}
+	return fields;
 }
 
 bool SourceModelComponent::_check(std::string* errorMessage) {
-    bool resultAll = true;
-    _insertNeededAttributes({"Entity.ArrivalTime"});
-    if (this->_entityType == nullptr) {
-        if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
-            _entityType = new EntityType(_parentModel, DEFAULT.entityTypename);
-        } else {
-            resultAll &= false;
-            *errorMessage += "Error: EntityType do not exist";
-        }
-    }
-    _attachedData->insert({"EntityType", _entityType});
-    resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<EntityType>(), _entityType, "entitytype", errorMessage);
-    resultAll &= _parentModel->checkExpression(this->_timeBetweenCreationsExpression, "time between creations", errorMessage);
-    return resultAll;
+	bool resultAll = true;
+	_insertNeededAttributes({"Entity.ArrivalTime"});
+	if (this->_entityType == nullptr) {
+		if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+			_entityType = new EntityType(_parentModel, DEFAULT.entityTypename);
+		} else {
+			resultAll &= false;
+			*errorMessage += "Error: EntityType do not exist";
+		}
+	}
+	_attachedData->insert({"EntityType", _entityType});
+	resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<EntityType>(), _entityType, "entitytype", errorMessage);
+	resultAll &= _parentModel->checkExpression(this->_timeBetweenCreationsExpression, "time between creations", errorMessage);
+	return resultAll;
 }
 
 void SourceModelComponent::_createInternalData() {
 }
 
 void SourceModelComponent::setFirstCreation(double _firstCreation) {
-    this->_firstCreation = _firstCreation;
+	this->_firstCreation = _firstCreation;
 }
 
 double SourceModelComponent::getFirstCreation() const {
-    return _firstCreation;
+	return _firstCreation;
 }
 
 void SourceModelComponent::setEntityType(EntityType* entityType) {
-    _entityType = entityType;
+	_entityType = entityType;
 }
 
 void SourceModelComponent::setEntityTypeName(std::string entityTypeName) {
-    ModelDataDefinition* data = _parentModel->getDataManager()->getDataDefinition(Util::TypeOf<EntityType>(), entityTypeName);
-    if (data != nullptr) {
-        _entityType = dynamic_cast<EntityType*> (data);
-    } else {
-        _entityType = new EntityType(_parentModel, entityTypeName);
-    }
+	ModelDataDefinition* data = _parentModel->getDataManager()->getDataDefinition(Util::TypeOf<EntityType>(), entityTypeName);
+	if (data != nullptr) {
+		_entityType = dynamic_cast<EntityType*> (data);
+	} else {
+		_entityType = new EntityType(_parentModel, entityTypeName);
+	}
 }
 
 EntityType* SourceModelComponent::getEntityType() const {
-    return _entityType;
+	return _entityType;
 }
 
 void SourceModelComponent::setTimeUnit(Util::TimeUnit _timeUnit) {
-    this->_timeBetweenCreationsTimeUnit = _timeUnit;
+	this->_timeBetweenCreationsTimeUnit = _timeUnit;
 }
 
 Util::TimeUnit SourceModelComponent::getTimeUnit() const {
-    return this->_timeBetweenCreationsTimeUnit;
+	return this->_timeBetweenCreationsTimeUnit;
 }
 
 void SourceModelComponent::setTimeBetweenCreationsExpression(std::string _timeBetweenCreations) {
-    this->_timeBetweenCreationsExpression = _timeBetweenCreations;
+	this->_timeBetweenCreationsExpression = _timeBetweenCreations;
 }
 
 std::string SourceModelComponent::getTimeBetweenCreationsExpression() const {
-    return _timeBetweenCreationsExpression;
+	return _timeBetweenCreationsExpression;
 }
 
 void SourceModelComponent::setMaxCreations(std::string _maxCreationsExpression) {
-    this->_maxCreationsExpression = _maxCreationsExpression;
+	this->_maxCreationsExpression = _maxCreationsExpression;
 }
 
 void SourceModelComponent::setMaxCreations(unsigned long _maxCreations) {
-    this->_maxCreationsExpression = std::to_string(_maxCreations);
+	this->_maxCreationsExpression = std::to_string(_maxCreations);
 }
 
 std::string SourceModelComponent::getMaxCreations() const {
-    return _maxCreationsExpression;
+	return _maxCreationsExpression;
 }
 
 unsigned int SourceModelComponent::getEntitiesCreated() const {
-    return _entitiesCreatedSoFar;
+	return _entitiesCreatedSoFar;
 }
 
 void SourceModelComponent::setEntitiesCreated(unsigned int _entitiesCreated) {
-    this->_entitiesCreatedSoFar = _entitiesCreated;
+	this->_entitiesCreatedSoFar = _entitiesCreated;
 }
 
 void SourceModelComponent::setEntitiesPerCreation(unsigned int _entitiesPerCreation) {
-    this->_entitiesPerCreation = _entitiesPerCreation;
-    //this->_entitiesCreatedSoFar = _entitiesPerCreation; // that's because "entitiesPerCreation" entities are included in the future events list BEFORE replication starts (to initialize events list)
+	this->_entitiesPerCreation = _entitiesPerCreation;
+	//this->_entitiesCreatedSoFar = _entitiesPerCreation; // that's because "entitiesPerCreation" entities are included in the future events list BEFORE replication starts (to initialize events list)
 }
 
 unsigned int SourceModelComponent::getEntitiesPerCreation() const {
-    return _entitiesPerCreation;
+	return _entitiesPerCreation;
 }

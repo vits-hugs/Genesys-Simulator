@@ -125,12 +125,14 @@ public: // add ModelDataDefinition (or subclasses) allowed (or restrcted) to tra
 public: // traces (invoke trace handlers) 
 	void trace(Util::TraceLevel level, std::string text);
 	void traceError(std::exception e, std::string text);
+	void traceError(Util::TraceLevel level, std::string text);
 	void traceReport(Util::TraceLevel level, std::string text);
 	void traceSimulation(void* thisobject, Util::TraceLevel level, double time, Entity* entity, ModelComponent* component, std::string text);
 	void traceSimulation(void* thisobject, Util::TraceLevel level, std::string text);
 public: // traces (invoke trace handlers) SINCE 20191025 NEW TRACES JUST INVERTED THE PARAMETERS, MAKING TRACELEVEL OPTIONAL
 	void trace(std::string text, Util::TraceLevel level = Util::TraceLevel::L8_detailed);
 	void traceError(std::string text, std::exception e);
+	void traceError(std::string text, Util::TraceLevel level = Util::TraceLevel::L1_errorFatal);
 	void traceReport(std::string text, Util::TraceLevel level = Util::TraceLevel::L2_results);
 	void traceSimulation(void* thisobject, double time, Entity* entity, ModelComponent* component, std::string text, Util::TraceLevel level = Util::TraceLevel::L8_detailed);
 	void traceSimulation(void* thisobject, std::string text, Util::TraceLevel level = Util::TraceLevel::L8_detailed);

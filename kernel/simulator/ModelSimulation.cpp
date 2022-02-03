@@ -91,7 +91,7 @@ void ModelSimulation::start() {
 	if (!_simulationIsInitiated) { // begin of a new simulation
 		Util::SetIndent(0); //force indentation
 		if (!_model->check()) {
-			_model->getTracer()->trace(Util::TraceLevel::L1_errorFatal, "Model check failed. Cannot start simulation.");
+			_model->getTracer()->traceError(Util::TraceLevel::L1_errorFatal, "Model check failed. Cannot start simulation.");
 			return;
 		}
 		_initSimulation();

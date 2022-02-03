@@ -79,7 +79,7 @@ std::string Plugin::show() {
 		message += "] ";
 	}
 	if (_pluginInfo->getLanguageTemplate() != "") {
-		message += "template=<" + _pluginInfo->getLanguageTemplate() + "nextId0=0 > ";
+		message += "template=<" + _pluginInfo->getLanguageTemplate() + "nextId=0 > ";
 	}
 	message = message.substr(0, message.length() - 1);
 	return message;

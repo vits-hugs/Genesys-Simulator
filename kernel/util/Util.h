@@ -174,7 +174,6 @@ public: // indentation and string
 	static void DecIndent();
 	static void SepKeyVal(std::string str, std::string *key, std::string *value);
 	static std::string StrReplaceAll(std::string text, std::string searchFor, std::string replaceBy);
-	static std::string inline StrIndex(int index);
 	static std::string Indent();
 	static std::string SetW(std::string text, unsigned short width);
 	static std::string StrTimeUnitShort(Util::TimeUnit timeUnit);

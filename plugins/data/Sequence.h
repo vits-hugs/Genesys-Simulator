@@ -18,12 +18,14 @@
 #include "../../kernel/simulator/ModelDataManager.h"
 #include "../../kernel/simulator/PluginInformation.h"
 #include "Station.h"
+#include "Label.h"
 #include "AssignmentItem.h"
 
 class SequenceStep : public PersistentObject_base {
 public:
 	SequenceStep(Station* station, std::list<Assignment*>* assignments = nullptr);
-	SequenceStep(Model* model, std::string stationName, std::list<Assignment*>* assignments = nullptr);
+	SequenceStep(Label* label, std::list<Assignment*>* assignments = nullptr);
+	SequenceStep(Model* model, std::string stationOrLabelName, bool isStation = true, std::list<Assignment*>* assignments = nullptr);
 public: // virtual
 
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields, unsigned int parentIndex);
@@ -37,12 +39,15 @@ public:
 	void setStation(Station* _station);
 	Station* getStation() const;
 	void setElementManager(ModelDataManager* _modeldataManager);
+    void setLabel(Label* _label);
+    Label* getLabel() const;
 private:
 
 	const struct DEFAULT_VALUES {
 		const unsigned int assignmentsSize = 0;
 	} DEFAULT;
 	Station* _station = nullptr;
+	Label* _label = nullptr;
 	std::list<Assignment*>* _assignments = new std::list<Assignment*>();
 private:
 	ModelDataManager* _modeldataManager = nullptr;

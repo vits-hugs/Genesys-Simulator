@@ -85,6 +85,8 @@ LicenceManager* Simulator::getLicenceManager() const {
 
 bool Simulator::_completePluginsFieldsAndTemplate() {
 	Util::TraceLevel savedTraceLevel = _traceManager->getTraceLevel();
+	// this crap stuff should not been shown
+	_traceManager->trace("Completing plugins and templates", Util::TraceLevel::L8_detailed);
 	_traceManager->setTraceLevel(Util::TraceLevel::L0_noTraces); // this crap stuff should not been shown
 	Model* tempModel = new Model(this);
 	tempModel->getPersistence()->setOption(ModelPersistence_if::Options::SAVEDEFAULTS, true);
@@ -116,7 +118,7 @@ bool Simulator::_completePluginsFieldsAndTemplate() {
 					}
 				} catch (...) {
 					//@TODO
-					std::cout << "ERROR completing plugin " << info->getPluginTypename() << std::endl;
+					//std::cout << "ERROR completing plugin " << info->getPluginTypename() << std::endl;
 				}
 				for (std::pair<std::string, std::string> field : *fields) {
 					info->getFields()->insert({field.first, ""});

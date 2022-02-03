@@ -60,7 +60,7 @@ bool Sequence::_loadInstance(std::map<std::string, std::string>* fields) {
 		try {
 			unsigned short numSteps = LoadField(fields, "steps", 0);
 			for (unsigned short i = 0; i < numSteps; i++) {
-				SequenceStep* step = new SequenceStep(nullptr);
+				SequenceStep* step = new SequenceStep((Station*)nullptr);
 				step->setElementManager(_parentModel->getDataManager());
 				step->_loadInstance(fields, i);
 				this->_steps->insert(step);
@@ -85,6 +85,12 @@ std::map<std::string, std::string>* Sequence::_saveInstance(bool saveDefaultValu
 
 bool Sequence::_check(std::string* errorMessage) {
 	_insertNeededAttributes({"Entity.Sequence", "Entity.SequenceStep"});
+	int i = 0;
+	for (SequenceStep* step : *_steps->list()) {
+		_setAttachedData("StepStation" + strIndex(i), step->getStation());
+		_setAttachedData("StepLabel" + strIndex(i), step->getLabel());
+		i++;
+	}
 	//*errorMessage += "";
 	return true;
 }
@@ -97,15 +103,39 @@ SequenceStep::SequenceStep(Station* station, std::list<Assignment*>* assignments
 		_assignments = new std::list<Assignment*>();
 }
 
-SequenceStep::SequenceStep(Model* model, std::string stationName, std::list<Assignment*>* assignments) {
-	Station* station;
-	ModelDataDefinition* data = model->getDataManager()->getDataDefinition(Util::TypeOf<Station>(), stationName);
-	if (data != nullptr) {
-		station = dynamic_cast<Station*> (data);
-	} else {
-		station = model->getParentSimulator()->getPlugins()->newInstance<Station>(model, stationName);
+SequenceStep::SequenceStep(Label* label, std::list<Assignment*>* assignments) {
+	this->_label = label;
+	if (assignments != nullptr)
+		_assignments = assignments;
+	else
+		_assignments = new std::list<Assignment*>();
+}
+
+SequenceStep::SequenceStep(Model* model, std::string stationOrLabelName, bool isStation, std::list<Assignment*>* assignments) {
+	this->_modeldataManager = model->getDataManager();
+	if (isStation) {
+		Station* station;
+		ModelDataDefinition* data = model->getDataManager()->getDataDefinition(Util::TypeOf<Station>(), stationOrLabelName);
+		if (data != nullptr) {
+			station = dynamic_cast<Station*> (data);
+		} else {
+			station = model->getParentSimulator()->getPlugins()->newInstance<Station>(model, stationOrLabelName);
+		}
+		this->_station = station;
+	} else {//isLabel
+		Label* label;
+		ModelDataDefinition* data = model->getDataManager()->getDataDefinition(Util::TypeOf<Label>(), stationOrLabelName);
+		if (data != nullptr) {
+			label = dynamic_cast<Label*> (data);
+		} else {
+			label = model->getParentSimulator()->getPlugins()->newInstance<Label>(model, stationOrLabelName);
+		}
+		this->_label = label;
 	}
-	SequenceStep(station, assignments);
+	if (assignments != nullptr)
+		_assignments = assignments;
+	else
+		_assignments = new std::list<Assignment*>();
 }
 
 bool SequenceStep::_loadInstance(std::map<std::string, std::string>* fields, unsigned int parentIndex) {
@@ -116,6 +146,10 @@ bool SequenceStep::_loadInstance(std::map<std::string, std::string>* fields, uns
 		std::string stationName = LoadField(fields, "stepStation" + num, "");
 		if (_modeldataManager != nullptr) {
 			_station = static_cast<Station*> (_modeldataManager->getDataDefinition(Util::TypeOf<Station>(), stationName));
+		}
+		std::string labelName = LoadField(fields, "stepLabel" + num, "");
+		if (_modeldataManager != nullptr) {
+			_label = static_cast<Label*> (_modeldataManager->getDataDefinition(Util::TypeOf<Label>(), labelName));
 		}
 		unsigned int assignmentsSize = LoadField(fields, "stepAssignments" + num, DEFAULT.assignmentsSize);
 		for (unsigned short i = 0; i < assignmentsSize; i++) {
@@ -132,7 +166,12 @@ bool SequenceStep::_loadInstance(std::map<std::string, std::string>* fields, uns
 std::map<std::string, std::string>* SequenceStep::_saveInstance(unsigned int parentIndex, bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();
 	std::string num = strIndex(parentIndex);
-	SaveField(fields, "stepStation" + num, _station->getName());
+	if (_station != nullptr) {
+		SaveField(fields, "stepStation" + num, _station->getName());
+	}
+	if (_label != nullptr) {
+		SaveField(fields, "stepLabel" + num, _label->getName());
+	}
 	SaveField(fields, "stepAssignments" + num, _assignments->size(), DEFAULT.assignmentsSize);
 	unsigned short i = 0;
 	for (Assignment* assm : *_assignments) {
@@ -171,4 +210,12 @@ Station* SequenceStep::getStation() const {
 
 void SequenceStep::setElementManager(ModelDataManager* _modeldataManager) {
 	this->_modeldataManager = _modeldataManager;
+}
+
+void SequenceStep::setLabel(Label* _label) {
+	this->_label = _label;
+}
+
+Label* SequenceStep::getLabel() const {
+	return _label;
 }

@@ -85,7 +85,7 @@ bool PluginManager::_insert(Plugin * plugin) {
 			Util::DecIndent();
 		}
 		if (!allDependenciesInserted) {
-			_simulator->getTracer()->trace(Util::TraceLevel::L3_errorRecover, "Plugin dependencies could not be inserted; therefore, plugin will not be inserted");
+			_simulator->getTracer()->traceError(Util::TraceLevel::L3_errorRecover, "Plugin dependencies could not be inserted; therefore, plugin will not be inserted");
 			return false;
 		}
 		if (this->find(plugInfo->getPluginTypename()) != nullptr) { // plugin alread exists
@@ -125,7 +125,7 @@ Plugin * PluginManager::insert(std::string dynamicLibraryFilename) {
 		if (plugin != nullptr)
 			_insert(plugin);
 		else {
-			_simulator->getTracer()->trace(Util::TraceLevel::L3_errorRecover, "Plugin from file \"" + dynamicLibraryFilename + "\" could not be loaded.");
+			_simulator->getTracer()->traceError(Util::TraceLevel::L3_errorRecover, "Plugin from file \"" + dynamicLibraryFilename + "\" could not be loaded.");
 		}
 	} catch (...) {
 

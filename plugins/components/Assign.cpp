@@ -135,7 +135,7 @@ bool Assign::_check(std::string* errorMessage) {
 				_parentModel->getDataManager()->insert(data);
 			}
 		}
-		_setAttachedData("Assignment" + std::to_string(i), data);
+		_setAttachedData("Assignment" + strIndex(i), data);
 		// @TODO: Reimplement it. Since 201910, attributes may have index, just like "atrrib1[2]" or "att[10,1]". Because of that, the string may contain not only the name of the attribute, but also its index and therefore, fails on the test bellow.
 		resultAll &= _parentModel->checkExpression(let->getExpression(), "assignment", errorMessage);
 		i++;

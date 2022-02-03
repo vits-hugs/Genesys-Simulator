@@ -84,7 +84,7 @@ bool ModelComponent::Check(ModelComponent* component) {
 		try {
 			res = component->_check(errorMessage);
 			if (!res) {
-				component->_parentModel->getTracer()->trace(Util::TraceLevel::L1_errorFatal, "Error: Checking has failed with message '" + *errorMessage + "'");
+				component->_parentModel->getTracer()->traceError(Util::TraceLevel::L1_errorFatal, "Error: Checking has failed with message '" + *errorMessage + "'");
 			}
 		} catch (const std::exception& e) {
 			component->_parentModel->getTracer()->traceError(e, "Error verifying component " + component->show());
@@ -122,17 +122,17 @@ std::map<std::string, std::string>* ModelComponent::_saveInstance(bool saveDefau
 	std::map<std::string, std::string>* fields = ModelDataDefinition::_saveInstance(saveDefaultValues);
 	SaveField(fields, "caption", _description, DEFAULT.description, saveDefaultValues);
 	if (true) {//(_connections->size() != 1) { // save nextSize only if it is != 1
-		SaveField(fields, "nextSize", _connections->size(), DEFAULT.nextSize, saveDefaultValues);
+		SaveField(fields, "nexts", _connections->size(), DEFAULT.nextSize, saveDefaultValues);
 	}
 	unsigned short i = 0;
 	for (Connection* connection : *_connections->list()) {
 		if (_connections->list()->size() == 1) {
 			SaveField(fields, "nextId", connection->first->_id, 0, saveDefaultValues);
 		} else {
-			SaveField(fields, "nextId" + std::to_string(i), connection->first->_id, 0, saveDefaultValues);
+			SaveField(fields, "nextId" + strIndex(i), connection->first->_id, 0, saveDefaultValues);
 		}
 		if (connection->second != 0) {//((*it)->second != 0) { // save nextInputNumber only if it is != 0
-			SaveField(fields, "nextInputNumber" + std::to_string(i), connection->second, DEFAULT.nextInputNumber, saveDefaultValues);
+			SaveField(fields, "nextInputNumber" + strIndex(i), connection->second, DEFAULT.nextInputNumber, saveDefaultValues);
 		}
 		i++;
 	}

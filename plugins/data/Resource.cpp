@@ -30,11 +30,9 @@ Resource::Resource(Model* model, std::string name) : ModelDataDefinition(model, 
 	_resourceEventHandlers->setSortFunc([](const SortedResourceEventHandler* a, const SortedResourceEventHandler * b) {
 		return a->second < b->second; /// Handlers are sorted by priority
 	});
-
 	GetterMember getter = DefineGetterMember<Resource>(this, &Resource::getCapacity);
 	SetterMember setter = DefineSetterMember<Resource>(this, &Resource::setCapacity);
 	model->getControls()->insert(new SimulationControl(Util::TypeOf<Resource>(), getName() + ".Capacity", getter, setter));
-
 	GetterMember getter2 = DefineGetterMember<Resource>(this, &Resource::getCostPerUse);
 	SetterMember setter2 = DefineSetterMember<Resource>(this, &Resource::setCostPerUse);
 	model->getControls()->insert(new SimulationControl(Util::TypeOf<Resource>(), getName() + ".CostPerUse", getter2, setter2));
@@ -130,9 +128,8 @@ unsigned int Resource::getNumberBusy() const {
 }
 
 void Resource::addReleaseResourceEventHandler(ResourceEventHandler eventHandler, ModelComponent* component, unsigned int priority) {
-	//@TODO: if (_resourceEventHandlers->find(eventHandler) != _resourceEventHandlers->list()->end()) {
 	ModelComponent* compHandler;
-	for (SortedResourceEventHandler* sreh : *_resourceEventHandlers->list()) {
+	for (SortedResourceEventHandler* sreh : * this->_resourceEventHandlers->list()) {
 		compHandler = sreh->first.second;
 		if (compHandler == component) {
 			return; // already exists. Do not insert again

@@ -99,21 +99,21 @@ bool ModelPersistenceDefaultImpl1::save(std::string filename) {
 			// open file
 			std::ofstream savefile;
 			savefile.open(filename, std::ofstream::out);
-			//savefile << "# Genesys simulation model " << std::endl;
+			savefile << "# Genesys Simulation Model " << std::endl;
 			////time_t now = time(0);
 			////char* dt = ctime(&now);
 			//savefile << "# Last saved on " << dt;
-			//savefile << "# simulator infos" << std::endl;
+			savefile << "# Simulator, Model and Simulation infos" << std::endl;
 			_saveContent(simulatorInfosToSave, &savefile);
 			//savefile << "# model infos" << std::endl;
 			_saveContent(modelInfosToSave, &savefile);
 			//savefile << "# simulation infos / experimental design" << std::endl;
 			_saveContent(simulationInfosToSave, &savefile);
 			//savefile << "#" << std::endl;
-			//savefile << "# Model data definitions" << std::endl;
+			savefile << "# Model data definitions" << std::endl;
 			_saveContent(modelElementsToSave, &savefile);
 			//savefile << "#" << std::endl;
-			//savefile << "# model components" << std::endl;
+			savefile << "# model components" << std::endl;
 			_saveContent(modelComponentsToSave, &savefile);
 			savefile.close();
 		}
@@ -217,25 +217,25 @@ bool ModelPersistenceDefaultImpl1::_loadFields(std::string line) {
 				_model->getSimulation()->loadInstance(fields);
 			} else {
 				// this should be a ModelComponent or ModelDataDefinition.
-				ModelDataDefinition* newUselessElement = ModelDataDefinition::LoadInstance(_model, fields, false);
-				if (newUselessElement != nullptr) {
-					// @TODO how free newUselessElement without invoking destructor?
-					////newUselessElement->~ModelDataDefinition(false);
-					Plugin* plugin = this->_model->getParentSimulator()->getPlugins()->find(thistypename);
-					if (plugin != nullptr) {
-						res = plugin->loadAndInsertNew(_model, fields);
-						// save fields for components, in order to allow to connect components after all of them have been loaded
-						if (res && plugin->getPluginInfo()->isComponent()) {
-							_componentFields->insert(_componentFields->end(), fields);
-						}
-					} else {
-						_model->getTracer()->trace(Util::TraceLevel::L1_errorFatal, "Error loading file: Could not identity typename \"" + thistypename + "\"");
-						res = false;
+				//ModelDataDefinition* newUselessElement = ModelDataDefinition::LoadInstance(_model, fields, false);
+				//if (newUselessElement != nullptr) {
+				// @TODO how free newUselessElement without invoking destructor?
+				////newUselessElement->~ModelDataDefinition(false);
+				Plugin* plugin = this->_model->getParentSimulator()->getPlugins()->find(thistypename);
+				if (plugin != nullptr) {
+					res = plugin->loadAndInsertNew(_model, fields);
+					// save fields for components, in order to allow to connect components after all of them have been loaded
+					if (res && plugin->getPluginInfo()->isComponent()) {
+						_componentFields->insert(_componentFields->end(), fields);
 					}
 				} else {
-					_model->getTracer()->trace(Util::TraceLevel::L1_errorFatal, "Error loading file: Could not identity typename \"" + thistypename + "\"");
+					_model->getTracer()->traceError(Util::TraceLevel::L1_errorFatal, "Error loading file: Could not identity typename \"" + thistypename + "\"");
 					res = false;
 				}
+				//} else {
+				//	_model->getTracer()->traceError(Util::TraceLevel::L1_errorFatal, "Error loading file: Could not identity typename \"" + thistypename + "\"");
+				//	res = false;
+				//}
 			}
 		}
 		Util::DecIndent();
@@ -273,11 +273,11 @@ bool ModelPersistenceDefaultImpl1::load(std::string filename) {
 			}
 			modelFile.close();
 		} catch (...) {
-			_model->getTracer()->trace(Util::TraceLevel::L1_errorFatal, "Error loading file \"" + filename + "\"");
+			_model->getTracer()->traceError(Util::TraceLevel::L1_errorFatal, "Error loading file \"" + filename + "\"");
 		}
 	}
 	// check if something was loaded
-    //res &= (_model->getComponents()->getNumberOfComponents() > 0) & (_model->getDataManager()->getNumberOfDataDefinitions() > 0);
+	//res &= (_model->getComponents()->getNumberOfComponents() > 0) & (_model->getDataManager()->getNumberOfDataDefinitions() > 0);
 	if (res) {
 		//
 		// CONNECT LOADED COMPONENTS (must wait for all components to be loaded so they can be connected)
@@ -301,8 +301,8 @@ bool ModelPersistenceDefaultImpl1::load(std::string filename) {
 
 				// find the next components connected with this one
 				unsigned short nextSize = 1;
-				if (fields->find("nextSize") != fields->end()) { // found nextSize
-					nextSize = std::stoi((*fields->find("nextSize")).second);
+				if (fields->find("nexts") != fields->end()) { // found nextSize
+					nextSize = std::stoi((*fields->find("nexts")).second);
 				}
 				for (unsigned short i = 0; i < nextSize; i++) {
 					Util::identification nextId;
@@ -310,10 +310,10 @@ bool ModelPersistenceDefaultImpl1::load(std::string filename) {
 						if (fields->find("nextId") != fields->end()) {
 							nextId = std::stoi((*fields->find("nextId")).second);
 						} else {
-							nextId = std::stoi((*fields->find("nextId" + std::to_string(i))).second);
+							nextId = std::stoi((*fields->find("nextId" + strIndex(i))).second);
 						}
 					} else {
-						nextId = std::stoi((*fields->find("nextId" + std::to_string(i))).second);
+						nextId = std::stoi((*fields->find("nextId" + strIndex(i))).second);
 					}
 					unsigned short nextInputNumber = 0; // default value if it is not found bellow
 					if (fields->find("nextInputNumber" + std::to_string(i)) != fields->end())
@@ -403,7 +403,7 @@ std::list<std::string>* ModelPersistenceDefaultImpl1::_adjustFieldsToSave(std::m
 			nextIDV2004 += (*it).first + "=" + (*it).second + _fieldseparator;
 		else if ((*it).first.find("nextInputNumber", 0) != std::string::npos)
 			nextIDV2004 += (*it).first + "=" + (*it).second + _fieldseparator;
-		else if ((*it).first.find("nextSize", 0) != std::string::npos)
+		else if ((*it).first.find("nexts", 0) != std::string::npos)
 			nextIDV2004 = (*it).first + "=" + (*it).second + _fieldseparator + nextIDV2004;
 		else {
 			// version V210329: (*it).second should NEVER contain _linefieldseparator. So, replace it by _linefieldseparatorReplacement

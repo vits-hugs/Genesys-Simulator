@@ -1,10 +1,10 @@
 0   Simulator  "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220131 
 0   ModelInfo  "Model 1" analystName="" description="" projectTitle="" version="1.0" 
-0   ModelSimulation "" showReportsAfterReplicaton=0 showReportsAfterSimulation=0 traceLevel=6 
+0   ModelSimulation "" showReportsAfterReplicaton=0 showReportsAfterSimulation=0 traceLevel=9 
 59  Station    "s1" 
 64  Station    "s2" 
 69  Station    "s3" 
-71  Sequence   "Sequence_1" stepSize=4 station0="s1" assignmentSize0=0 station1="s2" assignmentSize1=0 station2="s1" assignmentSize2=0 station3="s1" assignmentSize3=0 station4="s3" assignmentSize4=0
+71  Sequence   "mysequence" stepStation[0]="s1" stepStation[1]="s2" stepStation[2]="s1" stepStation[3]="s1" stepStation[4]="s3" steps=5 
 56  Create     "Create_1" EntityType="" timeBetweenCreations="10" nextId=72 
 57  Route      "Route_1" destinationType=1 routeTimeExpression="0.1" nextSize=0 
 58  Enter      "Enter_1" station="s1" nextId=60 
@@ -17,4 +17,4 @@
 67  Route      "Route_3" destinationType=1 routeTimeExpression="0.3" nextSize=0 
 68  Enter      "Enter_3" station="s3" nextId=70 
 70  Dispose    "Dispose_1" nextSize=0 
-72  Assign     "Assign_1" destination0="Entity.Sequence" expression0="71" nextId=57 
+72  Assign     "Assign_1" assignDest[0]="Entity.Sequence" assignExpr[0]="71" nextId=57 

@@ -147,7 +147,8 @@ Resource* Seize::_getResourceFromSeizableItem(SeizableItem* seizable, Entity* en
 				// @TODO
 				break;
 			case SeizableItem::SelectionRule::RANDOM:
-				index = std::trunc(rand() * _seizeRequests->list()->size()); // TODO: RANDOM IS REALLY A PROBLEM!! NOW IT MAY CAUSE AN ERROR (DEQUEUE AN ENTITY BECAUSE IT CAN SEIZE ALL REQUESTS, BUT ANOTHER RANDOM REQUEST MY BE SELECTED AFTER, IT IT MAY BE BUSY
+				// @TODO: RANDOM IS REALLY A PROBLEM!!! NOW IT MAY CAUSE AN ERROR (DEQUEUE AN ENTITY BECAUSE IT CAN SEIZE ALL REQUESTS, BUT ANOTHER RANDOM REQUEST MY BE SELECTED AFTER, IT IT MAY BE BUSY
+				index = std::trunc(rand() * _seizeRequests->list()->size());
 				break;
 			case SeizableItem::SelectionRule::SMALLESTNUMBERBUSY:
 				// @TODO
@@ -250,16 +251,18 @@ bool Seize::_check(std::string* errorMessage) {
 			Resource* resource = seizable->getResource();
 			if (resource == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
 				resource = _parentModel->getParentSimulator()->getPlugins()->newInstance<Resource>(_parentModel);
+				seizable->setResource(resource);
 			}
-			_setAttachedData("SeizableItem" + std::to_string(i), resource);
+			_setAttachedData("SeizableItem" + strIndex(i), resource);
 			resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Resource>(), seizable->getResource(), "Resource", errorMessage);
-			seizable->getResource()->addReleaseResourceEventHandler(Resource::SetResourceEventHandler<Seize>(&Seize::_handlerForResourceEvent, this), this, _priority);
+			Resource::ResourceEventHandler handler = Resource::SetResourceEventHandler<Seize>(&Seize::_handlerForResourceEvent, this);
+			resource->addReleaseResourceEventHandler(handler, this, _priority);
 		} else if (seizable->getSeizableType() == SeizableItem::SeizableType::SET) {
 			Set* set = seizable->getSet();
 			if (set == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
 				set = _parentModel->getParentSimulator()->getPlugins()->newInstance<Set>(_parentModel);
 			}
-			_setAttachedData("SeizableItem" + std::to_string(i), set);
+			_setAttachedData("SeizableItem" + strIndex(i), set);
 			resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Set>(), seizable->getSet(), "Set", errorMessage);
 			Resource* rec;
 			for (ModelDataDefinition* datum : *seizable->getSet()->getElementSet()->list()) {
@@ -274,6 +277,7 @@ bool Seize::_check(std::string* errorMessage) {
 		Queue* queue = _queueableItem->getQueue();
 		if (queue == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
 			queue = _parentModel->getParentSimulator()->getPlugins()->newInstance<Queue>(_parentModel);
+			_queueableItem->setQueue(queue);
 		}
 		_setAttachedData("QueueableItem", queue);
 		resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Queue>(), _queueableItem->getQueue(), "Queueable Queue", errorMessage);
@@ -281,6 +285,7 @@ bool Seize::_check(std::string* errorMessage) {
 		Set* set = _queueableItem->getSet();
 		if (set == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
 			set = _parentModel->getParentSimulator()->getPlugins()->newInstance<Set>(_parentModel);
+			_queueableItem->setSet(set);
 		}
 		_setAttachedData("QueueableItem", set);
 		resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Set>(), _queueableItem->getSet(), "Queueable Set", errorMessage);
