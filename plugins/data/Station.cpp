@@ -107,16 +107,11 @@ ModelDataDefinition* Station::LoadInstance(Model* model, std::map<std::string, s
 
 bool Station::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelDataDefinition::_loadInstance(fields);
-	if (res) {
-		try {
-		} catch (...) {
-		}
-	}
 	return res;
 }
 
 std::map<std::string, std::string>* Station::_saveInstance(bool saveDefaultValues) {
-	std::map<std::string, std::string>* fields = ModelDataDefinition::_saveInstance(saveDefaultValues); //Util::TypeOf<Station>());
+	std::map<std::string, std::string>* fields = ModelDataDefinition::_saveInstance(saveDefaultValues);
 	return fields;
 }
 

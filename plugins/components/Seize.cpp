@@ -210,7 +210,7 @@ bool Seize::_loadInstance(std::map<std::string, std::string>* fields) {
 		_queueableItem = new QueueableItem(nullptr);
 		_queueableItem->setElementManager(_parentModel->getDataManager());
 		_queueableItem->loadInstance(fields);
-		unsigned short numRequests = LoadField(fields, "resquestSize", DEFAULT.seizeRequestSize);
+		unsigned short numRequests = LoadField(fields, "resquests", DEFAULT.seizeRequestSize);
 		for (unsigned short i = 0; i < numRequests; i++) {
 			SeizableItem* item = new SeizableItem(nullptr);
 			item->setElementManager(_parentModel->getDataManager());
@@ -230,7 +230,7 @@ std::map<std::string, std::string>* Seize::_saveInstance(bool saveDefaultValues)
 		std::map<std::string, std::string>* queueablefields = _queueableItem->saveInstance(saveDefaultValues);
 		fields->insert(queueablefields->begin(), queueablefields->end());
 	}
-	SaveField(fields, "resquestSize", _seizeRequests->size(), DEFAULT.seizeRequestSize, saveDefaultValues);
+	SaveField(fields, "resquests", _seizeRequests->size(), DEFAULT.seizeRequestSize, saveDefaultValues);
 	unsigned short i = 0;
 	for (SeizableItem* request : *_seizeRequests->list()) {
 		std::map<std::string, std::string>* seizablefields = request->saveInstance(i, saveDefaultValues);
@@ -242,7 +242,7 @@ std::map<std::string, std::string>* Seize::_saveInstance(bool saveDefaultValues)
 
 bool Seize::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	// Check QueueableItems
+	// Check SeizableItems
 	int i = 0;
 	for (SeizableItem* seizable : *_seizeRequests->list()) {
 		resultAll &= _parentModel->checkExpression(seizable->getQuantityExpression(), "quantity", errorMessage);

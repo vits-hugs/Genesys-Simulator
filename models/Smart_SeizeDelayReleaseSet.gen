@@ -1,0 +1,19 @@
+# Genesys Model File
+# Simulator, ModelInfo and ModelSimulation
+0   Simulator  "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220131 
+0   ModelInfo  "Model 2" analystName="" description="" projectTitle="" version="1.0" 
+0   ModelSimulation "" numberOfReplications=1 replicationBaseTimeUnit=5 replicationLength=60.000000 replicationLengthTimeUnit=5 showReportsAfterReplicaton=1 showReportsAfterSimulation=1 showSimulationControlsInReport=0 showSimulationResposesInReport=0 terminatingCondition="" traceLevel=9 warmUpTime=0.000000 warmUpTimeTimeUnit=5 
+# Model Data Definitions
+57  EntityType "Customer" 
+59  Queue      "Seize_1.Queue" 
+58  Resource   "Machine_1" 
+86  Resource   "Machine_2" 
+87  Resource   "Machine_3" 
+88  Resource   "Machine_4" 
+24  Set        "MachineSet" membersSize=5 member0="Machine_1" member1="Machine_2" member2="Machine_3" member3="Machine_4" reportStatistics=1 type="EntityType" 
+# Model Components
+56  Create     "Create_1" EntityType="Customer" timeBetweenCreations="expo(20)" nextId=60 
+60  Seize      "Seize_1" queueable="Seize_1.Queue" priority=1 saveAttribute="myMachine" resquestSize=1 seizableType0=2 seizable="MachineSet" quantityExpression="1" selectionRule=3 nextId=61 
+61  Delay      "Delay_1" delayExpression="unif(15,30)" nextId=62 
+62  Release    "Release_1" seizable0="Machine_1" nextId=63 
+63  Dispose    "Dispose_1" nextSize=0 

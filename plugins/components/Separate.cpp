@@ -67,19 +67,15 @@ void Separate::_onDispatchEvent(Entity* entity) {
 	}
 }
 
+//void Separate::_initBetweenReplications() {}
+
 bool Separate::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
-	if (res) {
-		// @TODO: not implemented yet
-	}
 	return res;
 }
 
-//void Separate::_initBetweenReplications() {}
-
 std::map<std::string, std::string>* Separate::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
-	// @TODO: not implemented yet
 	return fields;
 }
 

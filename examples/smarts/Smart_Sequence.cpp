@@ -72,7 +72,7 @@ int Smart_Sequence::main(int argc, char** argv) {
 	seq->getSteps()->insert(new SequenceStep(m, "s3"));
 	// finally defines the created entities will follow this sequence
 	Assign* a1 = plugins->newInstance<Assign>(m);
-	a1->getAssignments()->insert(new Assign::Assignment("Entity.Sequence", std::to_string(seq->getId())));
+	a1->getAssignments()->insert(new Assignment("Entity.Sequence", std::to_string(seq->getId())));
 	// connect model components to create a "workflow"
 	c1->getConnections()->insert(a1);
 	a1->getConnections()->insert(r0);

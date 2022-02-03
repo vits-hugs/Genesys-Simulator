@@ -54,9 +54,9 @@ int OperatingSystem03::main(int argc, char** argv) {
 	// ASSIGN Define informacoes do processo
 	Assign* assignProc = plugins->newInstance<Assign>(model);
 	assignProc->setDescription("Define informacoes do processo");
-	assignProc->getAssignments()->insert(new Assign::Assignment("memoriaOcupada", "TRUNC(UNIF(2,32))"));
-	assignProc->getAssignments()->insert(new Assign::Assignment("tempoExecucao", "NORM(6,2) * memoriaOcupada/5"));
-	assignProc->getAssignments()->insert(new Assign::Assignment("processoSO", "UNIF(0,1) < 0.1"));
+	assignProc->getAssignments()->insert(new Assignment("memoriaOcupada", "TRUNC(UNIF(2,32))"));
+	assignProc->getAssignments()->insert(new Assignment("tempoExecucao", "NORM(6,2) * memoriaOcupada/5"));
+	assignProc->getAssignments()->insert(new Assignment("processoSO", "UNIF(0,1) < 0.1"));
 	// atributos (não precisa guardar objetos se não for usar)
 	plugins->newInstance<Attribute>(model, "memoriaOcupada");
 	plugins->newInstance<Attribute>(model, "tempoExecucao");
@@ -86,20 +86,20 @@ int OperatingSystem03::main(int argc, char** argv) {
 	//
 	// ASSIGN Nucleo 0
 	Assign* assignDefNucleo0 = plugins->newInstance<Assign>(model);
-	assignDefNucleo0->getAssignments()->insert(new Assign::Assignment("nucleoExecucao", "0"));
+	assignDefNucleo0->getAssignments()->insert(new Assignment("nucleoExecucao", "0"));
 	plugins->newInstance<Attribute>(model, "nucleoExecucao");
 	//
 	// ASSIGN Nucleo 1
 	Assign* assignDefNucleo1 = plugins->newInstance<Assign>(model);
-	assignDefNucleo1->getAssignments()->insert(new Assign::Assignment("nucleoExecucao", "1"));
+	assignDefNucleo1->getAssignments()->insert(new Assignment("nucleoExecucao", "1"));
 	//
 	// ASSIGN Nucleo 2
 	Assign* assignDefNucleo2 = plugins->newInstance<Assign>(model);
-	assignDefNucleo2->getAssignments()->insert(new Assign::Assignment("nucleoExecucao", "2"));
+	assignDefNucleo2->getAssignments()->insert(new Assignment("nucleoExecucao", "2"));
 	//
 	// ASSIGN Nucleo 3
 	Assign* assignDefNucleo3 = plugins->newInstance<Assign>(model);
-	assignDefNucleo3->getAssignments()->insert(new Assign::Assignment("nucleoExecucao", "3"));
+	assignDefNucleo3->getAssignments()->insert(new Assignment("nucleoExecucao", "3"));
 
 	decideNucleo->getConnections()->insert(assignDefNucleo0);
 	decideNucleo->getConnections()->insert(assignDefNucleo1);
@@ -158,8 +158,8 @@ int OperatingSystem03::main(int argc, char** argv) {
 	// ASSIGN Define execucao por um quantum de tempo
 	Assign* assignExecFatia = plugins->newInstance<Assign>(model);
 	assignExecFatia->setDescription("Define execucao por um quantum de tempo");
-	assignExecFatia->getAssignments()->insert(new Assign::Assignment("fatiaTempo", "2"));
-	assignExecFatia->getAssignments()->insert(new Assign::Assignment("tempoExecucao", "tempoExecucao-fatiaTempo"));
+	assignExecFatia->getAssignments()->insert(new Assignment("fatiaTempo", "2"));
+	assignExecFatia->getAssignments()->insert(new Assignment("tempoExecucao", "tempoExecucao-fatiaTempo"));
 	plugins->newInstance<Attribute>(model, "fatiaTempo");
 
 	decideFatiaTempo->getConnections()->insert(assignExecFatia);
@@ -167,8 +167,8 @@ int OperatingSystem03::main(int argc, char** argv) {
 	// ASSIGN Executa até o final
 	Assign* assignExecAteFinal = plugins->newInstance<Assign>(model);
 	assignExecAteFinal->setDescription("Executa até o final");
-	assignExecAteFinal->getAssignments()->insert(new Assign::Assignment("fatiaTempo", "tempoExecucao"));
-	assignExecAteFinal->getAssignments()->insert(new Assign::Assignment("tempoExecucao", "tempoExecucao - fatiaTempo"));
+	assignExecAteFinal->getAssignments()->insert(new Assignment("fatiaTempo", "tempoExecucao"));
+	assignExecAteFinal->getAssignments()->insert(new Assignment("tempoExecucao", "tempoExecucao - fatiaTempo"));
 
 	decideFatiaTempo->getConnections()->insert(assignExecAteFinal);
 	//

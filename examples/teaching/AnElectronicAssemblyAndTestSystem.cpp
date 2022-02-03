@@ -99,10 +99,10 @@ int AnElectronicAssemblyAndTestSystem::main(int argc, char** argv) {
 	create2->setTimeUnit(Util::TimeUnit::minute);
 	plugins->newInstance<Attribute>(model, "Sealer_Time");
 	plugins->newInstance<Attribute>(model, "Arrive_Time");
-	assign1->getAssignments()->insert(new Assign::Assignment("Sealer_Time", "tria(1,3,4)"));
-	assign1->getAssignments()->insert(new Assign::Assignment("Arrive_Time", "tnow"));
-	assign2->getAssignments()->insert(new Assign::Assignment("Sealer_Time", "weib(2.5, 5.3)"));
-	assign2->getAssignments()->insert(new Assign::Assignment("Arrive_Time", "tnow"));
+	assign1->getAssignments()->insert(new Assignment("Sealer_Time", "tria(1,3,4)"));
+	assign1->getAssignments()->insert(new Assignment("Arrive_Time", "tnow"));
+	assign2->getAssignments()->insert(new Assignment("Sealer_Time", "weib(2.5, 5.3)"));
+	assign2->getAssignments()->insert(new Assignment("Arrive_Time", "tnow"));
 	Resource* prepA = plugins->newInstance<Resource>(model, "PrepA");
 	seize1->getSeizeRequests()->insert(new SeizableItem(prepA, "1"));
 	seize1->setQueueableItem(new QueueableItem(model, "QueuePrepA"));

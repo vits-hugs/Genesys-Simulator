@@ -76,6 +76,9 @@ bool Enter::_loadInstance(std::map<std::string, std::string>* fields) {
 		std::string stationName = LoadField(fields, "station", "");
 		Station* station = dynamic_cast<Station*> (_parentModel->getDataManager()->getDataDefinition(Util::TypeOf<Station>(), stationName));
 		this->_station = station;
+		if (station != nullptr) {
+			_station->setEnterIntoStationComponent(this);
+		}
 	}
 	return res;
 }
@@ -97,10 +100,12 @@ bool Enter::_check(std::string* errorMessage) {
 	if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
 		if (_station == nullptr) {
 			_station = _parentModel->getParentSimulator()->getPlugins()->newInstance<Station>(_parentModel);
-			_station->setEnterIntoStationComponent(this);
 		}
 	}
-	_setAttachedData("Station", _station);
+	if (_station != nullptr) {
+		_station->setEnterIntoStationComponent(this);
+		_setAttachedData("Station", _station);
+	}
 	resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Station>(), _station, "Station", errorMessage);
 	return resultAll;
 }

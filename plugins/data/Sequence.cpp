@@ -58,6 +58,13 @@ bool Sequence::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelDataDefinition::_loadInstance(fields);
 	if (res) {
 		try {
+			unsigned short numSteps = LoadField(fields, "steps", 0);
+			for (unsigned short i = 0; i < numSteps; i++) {
+				SequenceStep* step = new SequenceStep(nullptr);
+				step->setElementManager(_parentModel->getDataManager());
+				step->_loadInstance(fields, i);
+				this->_steps->insert(step);
+			}
 		} catch (...) {
 		}
 	}
@@ -66,6 +73,13 @@ bool Sequence::_loadInstance(std::map<std::string, std::string>* fields) {
 
 std::map<std::string, std::string>* Sequence::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelDataDefinition::_saveInstance(saveDefaultValues); //Util::TypeOf<Sequence>());
+	SaveField(fields, "steps", _steps->size(), 0u, saveDefaultValues);
+	int i = 0;
+	for (SequenceStep* step : *_steps->list()) {
+		std::map<std::string, std::string>* stepfields = step->_saveInstance(i, saveDefaultValues);
+		fields->insert(stepfields->begin(), stepfields->end());
+		i++;
+	}
 	return fields;
 }
 
@@ -96,16 +110,18 @@ SequenceStep::SequenceStep(Model* model, std::string stationName, std::list<Assi
 
 bool SequenceStep::_loadInstance(std::map<std::string, std::string>* fields, unsigned int parentIndex) {
 	bool res = true;
-	std::string num = std::to_string(parentIndex);
+	std::string num = strIndex(parentIndex);
 	std::string destination, expression;
 	try {
-		std::string stationName = LoadField(fields, "station" + num, "");
-		// @TODO _station =
-		unsigned int assignmentsSize = LoadField(fields, "assignmentSize" + num, DEFAULT.assignmentsSize);
+		std::string stationName = LoadField(fields, "stepStation" + num, "");
+		if (_modeldataManager != nullptr) {
+			_station = static_cast<Station*> (_modeldataManager->getDataDefinition(Util::TypeOf<Station>(), stationName));
+		}
+		unsigned int assignmentsSize = LoadField(fields, "stepAssignments" + num, DEFAULT.assignmentsSize);
 		for (unsigned short i = 0; i < assignmentsSize; i++) {
-			destination = LoadField(fields, "destination" + num + "_" + std::to_string(i));
-			expression = LoadField(fields, "expression" + num + "_" + std::to_string(i));
-			_assignments->insert(_assignments->end(), new Assignment(destination, expression));
+			Assignment* assm = new Assignment("", "");
+			assm->loadInstance(fields, i);
+			_assignments->insert(_assignments->end(), assm);
 		}
 	} catch (...) {
 		res = false;
@@ -113,16 +129,15 @@ bool SequenceStep::_loadInstance(std::map<std::string, std::string>* fields, uns
 	return res;
 }
 
-std::map<std::string, std::string>* SequenceStep::_saveInstance(unsigned int parentIndex) {
+std::map<std::string, std::string>* SequenceStep::_saveInstance(unsigned int parentIndex, bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();
-	std::string num = std::to_string(parentIndex);
-	SaveField(fields, "station" + num, _station->getName());
-	//SaveField(fields, "resourceId" + num, _resourceOrSet->getId());
-	SaveField(fields, "assignmentSize" + num, _assignments->size(), DEFAULT.assignmentsSize);
+	std::string num = strIndex(parentIndex);
+	SaveField(fields, "stepStation" + num, _station->getName());
+	SaveField(fields, "stepAssignments" + num, _assignments->size(), DEFAULT.assignmentsSize);
 	unsigned short i = 0;
 	for (Assignment* assm : *_assignments) {
-		SaveField(fields, "destination" + num + "_" + std::to_string(i), assm->getDestination());
-		SaveField(fields, "expression" + num + "_" + std::to_string(i), assm->getExpression());
+		std::map<std::string, std::string>* assmfields = assm->saveInstance(i, saveDefaultValues);
+		fields->insert(assmfields->begin(), assmfields->end());
 		i++;
 	}
 	return fields;
@@ -139,12 +154,10 @@ bool SequenceStep::_loadInstance(std::map<std::string, std::string>* fields) {
 
 std::map<std::string, std::string>* SequenceStep::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();
-	//SaveField(fields, "orderRule", std::to_string(static_cast<int> (this->_orderRule)));
-	//SaveField(fields, "attributeName", "\""+this->_attributeName+"\"");
 	return fields;
 }
 
-std::list<SequenceStep::Assignment*>* SequenceStep::getAssignments() const {
+std::list<Assignment*>* SequenceStep::getAssignments() const {
 	return _assignments;
 }
 
@@ -154,4 +167,8 @@ void SequenceStep::setStation(Station* _station) {
 
 Station* SequenceStep::getStation() const {
 	return _station;
+}
+
+void SequenceStep::setElementManager(ModelDataManager* _modeldataManager) {
+	this->_modeldataManager = _modeldataManager;
 }

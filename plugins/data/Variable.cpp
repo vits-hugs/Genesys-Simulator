@@ -118,15 +118,15 @@ bool Variable::_loadInstance(std::map<std::string, std::string>* fields) {
 		std::string pos;
 		double value;
 		unsigned int nv;
-		nv = LoadField(fields, "numDimensions", 0);
+		nv = LoadField(fields, "dimensions", 0);
 		for (unsigned int i = 0; i < nv; i++) {
-			value = LoadField(fields, "dimension" + std::to_string(i), 0);
+			value = LoadField(fields, "dimension" + strIndex(i), 0);
 			this->_dimensionSizes->insert(value);
 		}
-		nv = LoadField(fields, "numValues", 0);
+		nv = LoadField(fields, "values", 0);
 		for (unsigned int i = 0; i < nv; i++) {
-			pos = LoadField(fields, "pos" + std::to_string(i), 0);
-			value = LoadField(fields, "value" + std::to_string(i), 0);
+			pos = LoadField(fields, "valuePos" + strIndex(i), 0);
+			value = LoadField(fields, "value" + strIndex(i), 0);
 			this->_initialValues->emplace(pos, value);
 		}
 	}
@@ -136,14 +136,14 @@ bool Variable::_loadInstance(std::map<std::string, std::string>* fields) {
 std::map<std::string, std::string>* Variable::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelDataDefinition::_saveInstance(saveDefaultValues); //Util::TypeOf<Variable>());
 	unsigned int i = 0;
-	SaveField(fields, "numDimensions", _dimensionSizes->list()->size(), 0u, saveDefaultValues);
+	SaveField(fields, "dimensions", _dimensionSizes->list()->size(), 0u, saveDefaultValues);
 	for (unsigned int dimension : *_dimensionSizes->list()) {
-		SaveField(fields, "dimension" + std::to_string(i), dimension, 1u, saveDefaultValues);
+		SaveField(fields, "dimension" + strIndex(i), dimension, 1u, saveDefaultValues);
 	}
-	SaveField(fields, "numValues", _initialValues->size(), 0);
+	SaveField(fields, "values", _initialValues->size(), 0);
 	for (std::map<std::string, double>::iterator it = _initialValues->begin(); it != _initialValues->end(); it++, i++) {
-		SaveField(fields, "pos" + std::to_string(i), (*it).first, "0", saveDefaultValues);
-		SaveField(fields, "value" + std::to_string(i), (*it).second, 0.0, saveDefaultValues);
+		SaveField(fields, "valuePos" + strIndex(i), (*it).first, "0", saveDefaultValues);
+		SaveField(fields, "value" + strIndex(i), (*it).second, 0.0, saveDefaultValues);
 	}
 	return fields;
 }

@@ -4,7 +4,7 @@
 59  Station    "s1" 
 64  Station    "s2" 
 69  Station    "s3" 
-71  Sequence   "Sequence_1" 
+71  Sequence   "Sequence_1" stepSize=4 station0="s1" assignmentSize0=0 station1="s2" assignmentSize1=0 station2="s1" assignmentSize2=0 station3="s1" assignmentSize3=0 station4="s3" assignmentSize4=0
 56  Create     "Create_1" EntityType="" timeBetweenCreations="10" nextId=72 
 57  Route      "Route_1" destinationType=1 routeTimeExpression="0.1" nextSize=0 
 58  Enter      "Enter_1" station="s1" nextId=60 

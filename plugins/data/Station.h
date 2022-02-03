@@ -87,7 +87,7 @@ private:
 	ModelComponent* _enterIntoStationComponent;
 private: // inner elements
 	StatisticsCollector* _cstatNumberInStation = nullptr;
-	StatisticsCollector* _cstatTimeInStation;
+	StatisticsCollector* _cstatTimeInStation = nullptr;
 };
 
 #endif /* STATION_H */

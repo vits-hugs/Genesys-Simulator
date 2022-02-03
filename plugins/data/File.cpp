@@ -52,8 +52,9 @@ bool File::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelDataDefinition::_loadInstance(fields);
 	if (res) {
 		try {
-			//this->_attributeName = (*fields->find("attributeName")).second;
-			//this->_orderRule = static_cast<OrderRule> (std::stoi((*fields->find("orderRule")).second));
+			//@TODO not implemented yet
+			//this->attribute = LoadField(fields, "field", DEFAULT.fields);
+			
 		} catch (...) {
 		}
 	}
@@ -62,6 +63,7 @@ bool File::_loadInstance(std::map<std::string, std::string>* fields) {
 
 std::map<std::string, std::string>* File::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelDataDefinition::_saveInstance(saveDefaultValues); //Util::TypeOf<File>());
+	//@TODO not implemented yet
 	//SaveField(fields, "orderRule", std::to_string(static_cast<int> (this->_orderRule)));
 	//SaveField(fields, "attributeName", "\""+this->_attributeName+"\"");
 	return fields;
@@ -69,6 +71,7 @@ std::map<std::string, std::string>* File::_saveInstance(bool saveDefaultValues) 
 
 bool File::_check(std::string* errorMessage) {
 	bool resultAll = true;
+	//@TODO not implemented yet
 	// resultAll |= ...
 	//*errorMessage += "";
 	return resultAll;
@@ -76,6 +79,7 @@ bool File::_check(std::string* errorMessage) {
 
 ParserChangesInformation* File::_getParserChangesInformation() {
 	ParserChangesInformation* changes = new ParserChangesInformation();
+	//@TODO not implemented yet
 	//changes->getProductionToAdd()->insert(...);
 	//changes->getTokensToAdd()->insert(...);
 	return changes;

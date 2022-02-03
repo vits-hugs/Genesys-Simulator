@@ -116,7 +116,7 @@ bool Release::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
 		this->_priority = LoadField(fields, "priority", DEFAULT.priority);
-		unsigned short numRequests = LoadField(fields, "resquestSize", DEFAULT.releaseRequestSize);
+		unsigned short numRequests = LoadField(fields, "resquests", DEFAULT.releaseRequestSize);
 		for (unsigned short i = 0; i < numRequests; i++) {
 			SeizableItem* item = new SeizableItem(nullptr);
 			item->setElementManager(_parentModel->getDataManager());
@@ -130,7 +130,7 @@ bool Release::_loadInstance(std::map<std::string, std::string>* fields) {
 std::map<std::string, std::string>* Release::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues); //Util::TypeOf<Release>());
 	SaveField(fields, "priority", _priority, DEFAULT.priority, saveDefaultValues);
-	SaveField(fields, "resquestSize", _releaseRequests->size(), DEFAULT.releaseRequestSize, saveDefaultValues);
+	SaveField(fields, "resquests", _releaseRequests->size(), DEFAULT.releaseRequestSize, saveDefaultValues);
 	unsigned short i = 0;
 	for (SeizableItem* request : *_releaseRequests->list()) {
 		std::map<std::string, std::string>* seizablefields = request->saveInstance(i, saveDefaultValues);

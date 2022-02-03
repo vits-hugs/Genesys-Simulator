@@ -54,7 +54,6 @@ void Leave::setStationName(std::string stationName) {
 	} else {
 		_station = _parentModel->getParentSimulator()->getPlugins()->newInstance<Station>(_parentModel, stationName);
 	}
-	_station->setEnterIntoStationComponent(this);
 }
 
 Station* Leave::getStation() const {
@@ -68,6 +67,8 @@ void Leave::_onDispatchEvent(Entity* entity) {
 	_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
+//void Leave::_initBetweenReplications() {}
+
 bool Leave::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
@@ -77,8 +78,6 @@ bool Leave::_loadInstance(std::map<std::string, std::string>* fields) {
 	}
 	return res;
 }
-
-//void Leave::_initBetweenReplications() {}
 
 std::map<std::string, std::string>* Leave::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
@@ -92,12 +91,6 @@ std::map<std::string, std::string>* Leave::_saveInstance(bool saveDefaultValues)
 
 bool Leave::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
-		if (_station == nullptr) {
-			_station = _parentModel->getParentSimulator()->getPlugins()->newInstance<Station>(_parentModel);
-			_station->setEnterIntoStationComponent(this);
-		}
-	}
 	_setAttachedData("Station", _station);
 	resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Station>(), _station, "Station", errorMessage);
 	return resultAll;

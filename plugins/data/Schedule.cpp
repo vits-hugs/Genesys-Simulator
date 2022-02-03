@@ -51,6 +51,7 @@ bool Schedule::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelDataDefinition::_loadInstance(fields);
 	if (res) {
 		try {
+			// @TODO: Not implemented
 			//this->_attributeName = LoadField(fields, "attributeName", DEFAULT.attributeName);
 			//this->_orderRule = static_cast<OrderRule> (LoadField(fields, "orderRule", static_cast<int> (DEFAULT.orderRule)));
 		} catch (...) {
@@ -61,12 +62,14 @@ bool Schedule::_loadInstance(std::map<std::string, std::string>* fields) {
 
 std::map<std::string, std::string>* Schedule::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelDataDefinition::_saveInstance(saveDefaultValues); //Util::TypeOf<Queue>());
+	// @TODO: Not implemented
 	//SaveField(fields, "orderRule", static_cast<int> (this->_orderRule), static_cast<int> (DEFAULT.orderRule));
 	//SaveField(fields, "attributeName", this->_attributeName, DEFAULT.attributeName);
 	return fields;
 }
 
 bool Schedule::_check(std::string* errorMessage) {
+	// @TODO: Not implemented
 	//*errorMessage += "";
 	return true;
 }

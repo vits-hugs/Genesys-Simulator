@@ -23,6 +23,7 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QProgressBar>
 #include <QtWidgets/QScrollArea>
+#include <QtWidgets/QSlider>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTextEdit>
@@ -58,12 +59,14 @@ public:
     QVBoxLayout *verticalLayout_4;
     QWidget *tabModelGraphic;
     QVBoxLayout *verticalLayout_6;
-    QScrollArea *scrollArea;
+    QScrollArea *scrollArea_Graphic;
     QWidget *scrollAreaWidgetContents;
     QVBoxLayout *verticalLayout_5;
     QLabel *label_ModelGraphic;
     QHBoxLayout *horizontalLayout;
     QLabel *label_GraphicMsg;
+    QLabel *label_3;
+    QSlider *horizontalSlider_Zoom;
     QCheckBox *checkBox_ShowElements;
     QCheckBox *checkBox_ShowInternals;
     QWidget *tabSimulation;
@@ -202,10 +205,10 @@ public:
         tabModelGraphic->setObjectName(QString::fromUtf8("tabModelGraphic"));
         verticalLayout_6 = new QVBoxLayout(tabModelGraphic);
         verticalLayout_6->setObjectName(QString::fromUtf8("verticalLayout_6"));
-        scrollArea = new QScrollArea(tabModelGraphic);
-        scrollArea->setObjectName(QString::fromUtf8("scrollArea"));
-        scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-        scrollArea->setWidgetResizable(true);
+        scrollArea_Graphic = new QScrollArea(tabModelGraphic);
+        scrollArea_Graphic->setObjectName(QString::fromUtf8("scrollArea_Graphic"));
+        scrollArea_Graphic->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+        scrollArea_Graphic->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
         scrollAreaWidgetContents->setGeometry(QRect(0, 0, 495, 161));
@@ -218,35 +221,45 @@ public:
         sizePolicy.setVerticalStretch(3);
         sizePolicy.setHeightForWidth(label_ModelGraphic->sizePolicy().hasHeightForWidth());
         label_ModelGraphic->setSizePolicy(sizePolicy);
+        label_ModelGraphic->setAutoFillBackground(true);
+        label_ModelGraphic->setFrameShadow(QFrame::Plain);
         label_ModelGraphic->setAlignment(Qt::AlignCenter);
 
         verticalLayout_5->addWidget(label_ModelGraphic);
 
-        scrollArea->setWidget(scrollAreaWidgetContents);
+        scrollArea_Graphic->setWidget(scrollAreaWidgetContents);
 
-        verticalLayout_6->addWidget(scrollArea);
+        verticalLayout_6->addWidget(scrollArea_Graphic);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         label_GraphicMsg = new QLabel(tabModelGraphic);
         label_GraphicMsg->setObjectName(QString::fromUtf8("label_GraphicMsg"));
-        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
-        sizePolicy1.setHorizontalStretch(2);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(label_GraphicMsg->sizePolicy().hasHeightForWidth());
-        label_GraphicMsg->setSizePolicy(sizePolicy1);
 
         horizontalLayout->addWidget(label_GraphicMsg);
 
+        label_3 = new QLabel(tabModelGraphic);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+
+        horizontalLayout->addWidget(label_3);
+
+        horizontalSlider_Zoom = new QSlider(tabModelGraphic);
+        horizontalSlider_Zoom->setObjectName(QString::fromUtf8("horizontalSlider_Zoom"));
+        horizontalSlider_Zoom->setMaximum(100);
+        horizontalSlider_Zoom->setValue(50);
+        horizontalSlider_Zoom->setOrientation(Qt::Horizontal);
+
+        horizontalLayout->addWidget(horizontalSlider_Zoom);
+
         checkBox_ShowElements = new QCheckBox(tabModelGraphic);
         checkBox_ShowElements->setObjectName(QString::fromUtf8("checkBox_ShowElements"));
-        checkBox_ShowElements->setChecked(true);
+        checkBox_ShowElements->setChecked(false);
 
         horizontalLayout->addWidget(checkBox_ShowElements);
 
         checkBox_ShowInternals = new QCheckBox(tabModelGraphic);
         checkBox_ShowInternals->setObjectName(QString::fromUtf8("checkBox_ShowInternals"));
-        checkBox_ShowInternals->setChecked(true);
+        checkBox_ShowInternals->setChecked(false);
 
         horizontalLayout->addWidget(checkBox_ShowInternals);
 
@@ -346,11 +359,11 @@ public:
         MainWindow->addToolBar(Qt::TopToolBarArea, toolBar);
         dockWidgetConsole = new QDockWidget(MainWindow);
         dockWidgetConsole->setObjectName(QString::fromUtf8("dockWidgetConsole"));
-        QSizePolicy sizePolicy2(QSizePolicy::Minimum, QSizePolicy::Minimum);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(dockWidgetConsole->sizePolicy().hasHeightForWidth());
-        dockWidgetConsole->setSizePolicy(sizePolicy2);
+        QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Minimum);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(dockWidgetConsole->sizePolicy().hasHeightForWidth());
+        dockWidgetConsole->setSizePolicy(sizePolicy1);
         dockWidgetConsole->setMinimumSize(QSize(100, 109));
         dockWidgetConsole->setBaseSize(QSize(100, 100));
         dockWidgetConsole->setAutoFillBackground(false);
@@ -371,8 +384,8 @@ public:
         MainWindow->addDockWidget(Qt::BottomDockWidgetArea, dockWidgetConsole);
         dockWidgetPlugins = new QDockWidget(MainWindow);
         dockWidgetPlugins->setObjectName(QString::fromUtf8("dockWidgetPlugins"));
-        sizePolicy2.setHeightForWidth(dockWidgetPlugins->sizePolicy().hasHeightForWidth());
-        dockWidgetPlugins->setSizePolicy(sizePolicy2);
+        sizePolicy1.setHeightForWidth(dockWidgetPlugins->sizePolicy().hasHeightForWidth());
+        dockWidgetPlugins->setSizePolicy(sizePolicy1);
         dockWidgetPlugins->setBaseSize(QSize(100, 100));
         QIcon icon19;
         icon19.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/component.ico"), QSize(), QIcon::Normal, QIcon::Off);
@@ -532,6 +545,7 @@ public:
         tabWidgetModel_2->setTabText(tabWidgetModel_2->indexOf(tabModelText), QCoreApplication::translate("MainWindow", "Text", nullptr));
         label_ModelGraphic->setText(QString());
         label_GraphicMsg->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
+        label_3->setText(QCoreApplication::translate("MainWindow", "  Zoom:", nullptr));
         checkBox_ShowElements->setText(QCoreApplication::translate("MainWindow", "Show elements", nullptr));
         checkBox_ShowInternals->setText(QCoreApplication::translate("MainWindow", "Show internals", nullptr));
         tabWidgetModel_2->setTabText(tabWidgetModel_2->indexOf(tabModelGraphic), QCoreApplication::translate("MainWindow", "Graphic", nullptr));

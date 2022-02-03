@@ -134,9 +134,9 @@ bool Write::_loadInstance(std::map<std::string, std::string>* fields) {
 		//this->_writeToType = static_cast<WriteToType> (std::stoi((*fields->find("writeToType")).second));
 		_writeToType = static_cast<WriteToType> (LoadField(fields, "writeToType", static_cast<int> (DEFAULT.writeToType)));
 		_filename = LoadField(fields, "filename", DEFAULT.filename);
-		unsigned short writesSize = LoadField(fields, "writesSize", 0u); //std::stoi((*fields->find("writesSize")).second);
+		unsigned short writesSize = LoadField(fields, "writes", 0u); //std::stoi((*fields->find("writesSize")).second);
 		for (unsigned short i = 0; i < writesSize; i++) {
-			std::string text = LoadField(fields, "text" + std::to_string(i), "");
+			std::string text = LoadField(fields, "write" + strIndex(i), "");
 			_writeElements->insert(text);
 			i++;
 		}
@@ -148,11 +148,11 @@ std::map<std::string, std::string>* Write::_saveInstance(bool saveDefaultValues)
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
 	SaveField(fields, "writeToType", static_cast<int> (_writeToType), static_cast<int> (DEFAULT.writeToType), saveDefaultValues);
 	SaveField(fields, "filename", _filename, DEFAULT.filename, saveDefaultValues);
-	SaveField(fields, "writesSize", _writeElements->size(), 0u, saveDefaultValues);
+	SaveField(fields, "writes", _writeElements->size(), 0u, saveDefaultValues);
 	unsigned short i = 0;
 	for (std::string text : *_writeElements->list()) {
 		//@ TODO: NEED TO AVOID \N TO BE SAVE AS A REAL NEW LINE. SHOULD SAVE "\n"
-		SaveField(fields, "text" + std::to_string(i), text, "", saveDefaultValues);
+		SaveField(fields, "write" + strIndex(i), text, "", saveDefaultValues);
 		i++;
 	}
 	return fields;
@@ -168,7 +168,7 @@ bool Write::_check(std::string* errorMessage) {
 		msgElem = (*it);
 		i++;
 		if (msgElem->isExpression) {
-			resultAll &= _parentModel->checkExpression(msgElem->text, "writeExpression" + std::to_string(i), errorMessage);
+			resultAll &= _parentModel->checkExpression(msgElem->text, "writeExpression" + strIndex(i), errorMessage);
 		}
 	}
 	 */

@@ -89,18 +89,18 @@ void Record::_onDispatchEvent(Entity* entity) {
 
 std::map<std::string, std::string>* Record::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues); //Util::TypeOf<Record>());
-	SaveField(fields, "expression0", this->_expression, "", saveDefaultValues);
-	SaveField(fields, "expressionName0", this->_expressionName, "", saveDefaultValues);
-	SaveField(fields, "fileName0", this->_filename, "", saveDefaultValues);
+	SaveField(fields, "expression", this->_expression, "", saveDefaultValues);
+	SaveField(fields, "expressionName", this->_expressionName, "", saveDefaultValues);
+	SaveField(fields, "fileName", this->_filename, "", saveDefaultValues);
 	return fields;
 }
 
 bool Record::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
-		this->_expression = LoadField(fields, "expression0", "");
-		this->_expressionName = LoadField(fields, "expressionName0", "");
-		this->_filename = LoadField(fields, "fileName0", "");
+		this->_expression = LoadField(fields, "expression", "");
+		this->_expressionName = LoadField(fields, "expressionName", "");
+		this->_filename = LoadField(fields, "fileName", "");
 	}
 	return res;
 }

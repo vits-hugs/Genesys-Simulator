@@ -18,6 +18,7 @@
 #include "../../kernel/simulator/Model.h"
 #include "../../kernel/simulator/Plugin.h"
 #include "../../kernel/simulator/Attribute.h"
+#include "../data/AssignmentItem.h"
 #include "../data/Variable.h"
 
 /*!
@@ -58,56 +59,6 @@ variable. Does not apply when Type is Entity Type or Entity
 Picture.
  */
 class Assign : public ModelComponent {
-public:
-
-	/*!
-	 * While the assign class allows you to perform multiple assignments, the assignment class defines an assignment itself.
-	 */
-	class Assignment {
-	public:
-		Assignment(Model* model, std::string destination, std::string expression, bool isAttributeNotVariable = true) {
-			this->_destination = destination;
-			this->_expression = expression;
-			this->_isAttributeNotVariable = isAttributeNotVariable;
-			if (isAttributeNotVariable) {
-				if (model->getDataManager()->getDataDefinition(Util::TypeOf<Attribute>(), destination) == nullptr) {
-					model->getDataManager()->insert(Util::TypeOf<Attribute>(), new Attribute(model, destination));
-				}
-				} else {
-				if (model->getDataManager()->getDataDefinition(Util::TypeOf<Variable>(), destination) == nullptr) {
-					model->getDataManager()->insert(Util::TypeOf<Variable>(), new Variable(model, destination));
-				}
-			}
-		}
-		Assignment(std::string destination, std::string expression, bool isAttributeNotVariable = true) {
-			this->_destination = destination;
-			this->_expression = expression;
-			// an assignment is always in the form:
-			// (destinationType) destination = expression
-		};
-		void setDestination(std::string _destination) {
-			this->_destination = _destination;
-		}
-		std::string getDestination() const {
-			return _destination;
-		}
-		void setExpression(std::string _expression) {
-			this->_expression = _expression;
-		}
-		std::string getExpression() const {
-			return _expression;
-		}
-		void setAttributeNotVariable(bool isAttributeNotVariable) {
-			this->_isAttributeNotVariable = isAttributeNotVariable;
-		}
-		bool isAttributeNotVariable() const {
-			return _isAttributeNotVariable;
-		}
-	private:
-		std::string _destination = "";
-		std::string _expression = "";
-		bool _isAttributeNotVariable = true;
-	};
 public:
 	Assign(Model* model, std::string name = "");
 	virtual ~Assign() = default;

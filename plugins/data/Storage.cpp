@@ -32,6 +32,30 @@ std::string Storage::show() {
 			"";
 }
 
+void Storage::setTotalArea(double _totalArea) {
+	this->_totalArea = _totalArea;
+}
+
+double Storage::getTotalArea() const {
+	return _totalArea;
+}
+
+void Storage::setCapacity(unsigned int _capacity) {
+	this->_capacity = _capacity;
+}
+
+unsigned int Storage::getCapacity() const {
+	return _capacity;
+}
+
+void Storage::setUnitsPerArea(double _unitsPerArea) {
+	this->_unitsPerArea = _unitsPerArea;
+}
+
+double Storage::getUnitsPerArea() const {
+	return _unitsPerArea;
+}
+
 PluginInformation* Storage::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Storage>(), &Storage::LoadInstance, &Storage::NewInstance);
 	return info;
@@ -51,8 +75,9 @@ bool Storage::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelDataDefinition::_loadInstance(fields);
 	if (res) {
 		try {
-			//this->_attributeName = (*fields->find("attributeName")).second;
-			//this->_orderRule = static_cast<OrderRule> (std::stoi((*fields->find("orderRule")).second));
+			this->_capacity = LoadField(fields, "capacity", DEFAULT.capacity);
+			this->_totalArea = LoadField(fields, "totalArea", DEFAULT.totalArea);
+			this->_unitsPerArea = LoadField(fields, "unitPerArea", DEFAULT.unitsPerArea);
 		} catch (...) {
 		}
 	}

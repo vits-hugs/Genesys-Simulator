@@ -105,7 +105,7 @@ void Route::_onDispatchEvent(Entity* entity) {
 			assert(seqStep != nullptr);
 		}
 		destinyStation = seqStep->getStation();
-		for (SequenceStep::Assignment* assignment : *seqStep->getAssignments()) {
+		for (Assignment* assignment : *seqStep->getAssignments()) {
 			_parentModel->parseExpression(assignment->getDestination() + "=" + assignment->getExpression());
 		}
 		entity->setAttributeValue("Entity.SequenceStep", step + 1.0);

@@ -56,13 +56,13 @@ private slots:
 
     void on_actionLicence_triggered();
 
-    void on_pushButton_clicked();
-
     void on_tabWidgetModel_2_tabBarClicked(int index);
 
     void on_checkBox_ShowElements_stateChanged(int arg1);
 
     void on_checkBox_ShowInternals_stateChanged(int arg1);
+
+    void on_horizontalSlider_Zoom_valueChanged(int value);
 
 private: // VIEW
 
@@ -94,6 +94,7 @@ private:
     Ui::MainWindow *ui;
     Simulator* simulator;
     bool _textModelHasChanged;
+    QString _modelfilename;
 private:
     CodeEditor* textCodeEdit_Model;
 };

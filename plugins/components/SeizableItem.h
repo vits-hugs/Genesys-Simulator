@@ -82,7 +82,6 @@ private:
 	std::string _quantityExpression;
 	unsigned int _lastMemberSeized = 0;
 private:
-	//ComponentManager* _componentManager;
 	ModelDataManager* _modeldataManager;
 };
 

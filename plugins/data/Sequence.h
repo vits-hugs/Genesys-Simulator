@@ -18,49 +18,25 @@
 #include "../../kernel/simulator/ModelDataManager.h"
 #include "../../kernel/simulator/PluginInformation.h"
 #include "Station.h"
+#include "AssignmentItem.h"
 
 class SequenceStep : public PersistentObject_base {
-public:
-
-	class Assignment {
-	public:
-		Assignment(std::string destination, std::string expression) {
-			this->_destination = destination;
-			this->_expression = expression;
-			// an assignment is always in the form:
-			// (destinationType) destination = expression
-		};
-		void setDestination(std::string _destination) {
-			this->_destination = _destination;
-		}
-		std::string getDestination() const {
-			return _destination;
-		}
-		void setExpression(std::string _expression) {
-			this->_expression = _expression;
-		}
-		std::string getExpression() const {
-			return _expression;
-		}
-	private:
-		std::string _destination = "";
-		std::string _expression = "";
-	};
 public:
 	SequenceStep(Station* station, std::list<Assignment*>* assignments = nullptr);
 	SequenceStep(Model* model, std::string stationName, std::list<Assignment*>* assignments = nullptr);
 public: // virtual
 
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields, unsigned int parentIndex);
-	virtual std::map<std::string, std::string>* _saveInstance(unsigned int parentIndex);
+	virtual std::map<std::string, std::string>* _saveInstance(unsigned int parentIndex, bool saveDefaultValues);
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 
 public:
 
-	std::list<SequenceStep::Assignment*>* getAssignments() const;
+	std::list<Assignment*>* getAssignments() const;
 	void setStation(Station* _station);
 	Station* getStation() const;
+	void setElementManager(ModelDataManager* _modeldataManager);
 private:
 
 	const struct DEFAULT_VALUES {
@@ -68,6 +44,8 @@ private:
 	} DEFAULT;
 	Station* _station = nullptr;
 	std::list<Assignment*>* _assignments = new std::list<Assignment*>();
+private:
+	ModelDataManager* _modeldataManager = nullptr;
 };
 
 /*!

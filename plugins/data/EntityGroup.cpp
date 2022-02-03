@@ -67,22 +67,6 @@ List<Entity*>* EntityGroup::getGroup(unsigned int idKey) {
 	}
 }
 
-PluginInformation * EntityGroup::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<EntityGroup>(), &EntityGroup::LoadInstance, &EntityGroup::NewInstance);
-	info->setDescriptionHelp("//@TODO");
-	return info;
-}
-
-ModelDataDefinition * EntityGroup::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
-	EntityGroup* newElement = new EntityGroup(model);
-	try {
-		newElement->_loadInstance(fields);
-	} catch (const std::exception& e) {
-
-	}
-	return newElement;
-}
-
 bool EntityGroup::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelDataDefinition::_loadInstance(fields);
 	if (res) {
@@ -117,6 +101,25 @@ void EntityGroup::_createInternalData() {
 		if (_cstatNumberInGroup != nullptr) {
 		_removeInternalDatas();
 	}
+}
+
+PluginInformation * EntityGroup::GetPluginInformation() {
+	PluginInformation* info = new PluginInformation(Util::TypeOf<EntityGroup>(), &EntityGroup::LoadInstance, &EntityGroup::NewInstance);
+	std::string text = "Represent entities grouped by an 'Entity.Group' attribute.";
+	text += "An EntityGroup my contain several groups indexed by that attribute.";
+	text += "Grouped entitties may be separated by a 'Separate' like coponent.";
+	info->setDescriptionHelp(text);
+	return info;
+}
+
+ModelDataDefinition * EntityGroup::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
+	EntityGroup* newElement = new EntityGroup(model);
+	try {
+		newElement->_loadInstance(fields);
+	} catch (const std::exception& e) {
+
+	}
+	return newElement;
 }
 
 

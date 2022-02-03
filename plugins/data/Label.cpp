@@ -85,11 +85,9 @@ bool Label::_loadInstance(std::map<std::string, std::string>* fields) {
 	if (res) {
 		try {
 			this->_label = LoadField(fields, "label", "");
-			std::string componentName = LoadField(fields, "enteringLabelComponent", "");
+			std::string componentName = LoadField(fields, "enteringComponentName", "");
 			ModelComponent* comp = _parentModel->getComponents()->find(componentName);
-			if (comp != nullptr) {
-				this->_enteringLabelComponent = comp;
-			}
+			this->_enteringLabelComponent = comp;
 		} catch (...) {
 		}
 	}
@@ -100,7 +98,7 @@ std::map<std::string, std::string>* Label::_saveInstance(bool saveDefaultValues)
 	std::map<std::string, std::string>* fields = ModelDataDefinition::_saveInstance(saveDefaultValues); //Util::TypeOf<Queue>());
 	SaveField(fields, "label", this->_label, "", saveDefaultValues);
 	if (_enteringLabelComponent != nullptr) {
-		SaveField(fields, "enteringLabelComponent", _enteringLabelComponent->getName(), "", saveDefaultValues);
+		SaveField(fields, "enteringComponentName", _enteringLabelComponent->getName(), "", saveDefaultValues);
 	}
 	return fields;
 }

@@ -22,125 +22,123 @@
 #ifdef PLUGINCONNECT_DYNAMIC
 
 extern "C" StaticGetPluginInformation GetPluginInformation() {
-    return &Assign::GetPluginInformation;
+	return &Assign::GetPluginInformation;
 }
 #endif
 
 ModelDataDefinition* Assign::NewInstance(Model* model, std::string name) {
-    return new Assign(model, name);
+	return new Assign(model, name);
 }
 
 Assign::Assign(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Assign>(), name) {
 }
 
 std::string Assign::show() {
-    std::string txt = ModelComponent::show() + ",assignments=[";
-    for (std::list<Assignment*>::iterator it = _assignments->list()->begin(); it != _assignments->list()->end(); it++) {
-        txt += (*it)->getDestination() + "=" + (*it)->getExpression() + ",";
-    }
-    txt = txt.substr(0, txt.length() - 1) + "]";
-    return txt;
+	std::string txt = ModelComponent::show() + ",assignments=[";
+	for (std::list<Assignment*>::iterator it = _assignments->list()->begin(); it != _assignments->list()->end(); it++) {
+		txt += (*it)->getDestination() + "=" + (*it)->getExpression() + ",";
+	}
+	txt = txt.substr(0, txt.length() - 1) + "]";
+	return txt;
 }
 
-List<Assign::Assignment*>* Assign::getAssignments() const {
-    return _assignments;
+List<Assignment*>* Assign::getAssignments() const {
+	return _assignments;
 }
 
 PluginInformation* Assign::GetPluginInformation() {
-    PluginInformation* info = new PluginInformation(Util::TypeOf<Assign>(), &Assign::LoadInstance, &Assign::NewInstance);
-    //info->insertDynamicLibFileDependence("attribute.so");
-    info->insertDynamicLibFileDependence("variable.so");
-    info->setCategory("Discrete Processing");
-    std::string text = "";
-    text += "This module is used for assigning new values to variables, entity attributes, entity types, entity pictures, or other system variables.";
-    text += " Multiple assignments can be made with a single Assign module.";
-    text += " TYPICAL USES: (1) Accumulate the number of subassemblies added to a part;";
-    text += " (2) Change an entity’s type to represent the customer copy of a multi - page form;";
-    text += " (3) Establish a customer’s priority";
-    info->setDescriptionHelp(text);
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Assign>(), &Assign::LoadInstance, &Assign::NewInstance);
+	//info->insertDynamicLibFileDependence("attribute.so");
+	info->insertDynamicLibFileDependence("variable.so");
+	info->setCategory("Discrete Processing");
+	std::string text = "";
+	text += "This module is used for assigning new values to variables, entity attributes, entity types, entity pictures, or other system variables.";
+	text += " Multiple assignments can be made with a single Assign module.";
+	text += " TYPICAL USES: (1) Accumulate the number of subassemblies added to a part;";
+	text += " (2) Change an entity’s type to represent the customer copy of a multi - page form;";
+	text += " (3) Establish a customer’s priority";
+	info->setDescriptionHelp(text);
 
-    return info;
+	return info;
 }
 
 ModelComponent* Assign::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
-    Assign* newComponent = new Assign(model);
-    try {
-        newComponent->_loadInstance(fields);
-    } catch (const std::exception& e) {
+	Assign* newComponent = new Assign(model);
+	try {
+		newComponent->_loadInstance(fields);
+	} catch (const std::exception& e) {
 
-    }
+	}
 
-    return newComponent;
+	return newComponent;
 }
 
 void Assign::_onDispatchEvent(Entity* entity) {
-    Assignment* let;
-    std::list<Assignment*>* lets = this->_assignments->list();
-    for (std::list<Assignment*>::iterator it = lets->begin(); it != lets->end(); it++) {
+	Assignment* let;
+	std::list<Assignment*>* lets = this->_assignments->list();
+	for (std::list<Assignment*>::iterator it = lets->begin(); it != lets->end(); it++) {
 
-        let = (*it);
-        double value = _parentModel->parseExpression(let->getExpression());
-        _parentModel->parseExpression(let->getDestination() + "=" + std::to_string(value));
-        _parentModel->getTracer()->traceSimulation(this, "Let \"" + let->getDestination() + "\" = " + strTruncIfInt(std::to_string(value)) + "  // " + let->getExpression());
-    }
+		let = (*it);
+		double value = _parentModel->parseExpression(let->getExpression());
+		_parentModel->parseExpression(let->getDestination() + "=" + std::to_string(value));
+		_parentModel->getTracer()->traceSimulation(this, "Let \"" + let->getDestination() + "\" = " + strTruncIfInt(std::to_string(value)) + "  // " + let->getExpression());
+	}
 
-    this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
+	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
 //void Assign::_initBetweenReplications() {}
 
 bool Assign::_loadInstance(std::map<std::string, std::string>* fields) {
-    bool res = ModelComponent::_loadInstance(fields);
-    if (res) {
-        unsigned int nv = LoadField(fields, "assignments", DEFAULT.assignmentsSize);
-        for (unsigned int i = 0; i < nv; i++) {
-            std::string dest = LoadField(fields, "destination" + std::to_string(i), "");
-            std::string exp = LoadField(fields, "expression" + std::to_string(i), "");
-            bool isAttr = LoadField(fields, "destinationIsAttribute" + std::to_string(i), true);
-            Assignment* assmt = new Assignment(dest, exp, isAttr);
-            this->_assignments->insert(assmt);
-        }
-    }
-    return res;
+	bool res = ModelComponent::_loadInstance(fields);
+	if (res) {
+		unsigned int nv = LoadField(fields, "assignments", DEFAULT.assignmentsSize);
+		for (unsigned short i = 0; i < nv; i++) {
+			Assignment* item = new Assignment("", "");
+			item->loadInstance(fields, i);
+			this->_assignments->insert(item);
+		}
+	}
+	return res;
 }
 
 std::map<std::string, std::string>* Assign::_saveInstance(bool saveDefaultValues) {
-    std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues); //Util::TypeOf<Assign>());
-    Assignment* let;
-    SaveField(fields, "assignments", _assignments->size(), DEFAULT.assignmentsSize, saveDefaultValues);
-    unsigned short i = 0;
-    for (std::list<Assignment*>::iterator it = _assignments->list()->begin(); it != _assignments->list()->end(); it++, i++) {
-        let = (*it);
-        SaveField(fields, "destination" + std::to_string(i), let->getDestination(), "", saveDefaultValues);
-        SaveField(fields, "expression" + std::to_string(i), let->getExpression(), "", saveDefaultValues);
-        SaveField(fields, "destinationIsAttribute" + std::to_string(i), let->isAttributeNotVariable(), true, saveDefaultValues);
-    }
-    return fields;
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues); //Util::TypeOf<Assign>());
+	Assignment* let;
+	SaveField(fields, "assignments", _assignments->size(), DEFAULT.assignmentsSize, saveDefaultValues);
+	unsigned short i = 0;
+	for (std::list<Assignment*>::iterator it = _assignments->list()->begin(); it != _assignments->list()->end(); it++, i++) {
+		let = (*it);
+		std::map<std::string, std::string>* assignmentfields = let->saveInstance(i, saveDefaultValues);
+		fields->insert(assignmentfields->begin(), assignmentfields->end());
+		i++;
+	}
+	return fields;
 }
 
 bool Assign::_check(std::string* errorMessage) {
-    bool resultAll = true;
-    int i = 0;
-    for (Assignment* let : *_assignments->list()) {
-        ModelDataDefinition* data = nullptr;
-        if (let->isAttributeNotVariable()) {
-            data = _parentModel->getDataManager()->getDataDefinition(Util::TypeOf<Attribute>(), let->getDestination());
-            if (data == nullptr) {
-                data = _parentModel->getParentSimulator()->getPlugins()->newInstance<Attribute>(_parentModel, let->getDestination());
-                _parentModel->getDataManager()->insert(data);
-            }
-        }
-        if (!let->isAttributeNotVariable()) {
-            data = _parentModel->getDataManager()->getDataDefinition(Util::TypeOf<Variable>(), let->getDestination());
-            if (data == nullptr) {
-                data = _parentModel->getParentSimulator()->getPlugins()->newInstance<Variable>(_parentModel, let->getDestination());
-                _parentModel->getDataManager()->insert(data);
-            }
-        }
-        _setAttachedData("Assignment" + std::to_string(i), data);
-        // @TODO: Reimplement it. Since 201910, attributes may have index, just like "atrrib1[2]" or "att[10,1]". Because of that, the string may contain not only the name of the attribute, but also its index and therefore, fails on the test bellow.
-        resultAll &= _parentModel->checkExpression(let->getExpression(), "assignment", errorMessage);
-        i++;
-    }
-    return resultAll;
+	bool resultAll = true;
+	int i = 0;
+	for (Assignment* let : *_assignments->list()) {
+		ModelDataDefinition* data = nullptr;
+		if (let->isAttributeNotVariable()) {
+			data = _parentModel->getDataManager()->getDataDefinition(Util::TypeOf<Attribute>(), let->getDestination());
+			if (data == nullptr) {
+				data = _parentModel->getParentSimulator()->getPlugins()->newInstance<Attribute>(_parentModel, let->getDestination());
+				_parentModel->getDataManager()->insert(data);
+			}
+		}
+		if (!let->isAttributeNotVariable()) {
+			data = _parentModel->getDataManager()->getDataDefinition(Util::TypeOf<Variable>(), let->getDestination());
+			if (data == nullptr) {
+				data = _parentModel->getParentSimulator()->getPlugins()->newInstance<Variable>(_parentModel, let->getDestination());
+				_parentModel->getDataManager()->insert(data);
+			}
+		}
+		_setAttachedData("Assignment" + std::to_string(i), data);
+		// @TODO: Reimplement it. Since 201910, attributes may have index, just like "atrrib1[2]" or "att[10,1]". Because of that, the string may contain not only the name of the attribute, but also its index and therefore, fails on the test bellow.
+		resultAll &= _parentModel->checkExpression(let->getExpression(), "assignment", errorMessage);
+		i++;
+	}
+	return resultAll;
 }

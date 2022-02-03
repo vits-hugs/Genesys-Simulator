@@ -97,6 +97,7 @@ SOURCES += \
     ../../../../../plugins/components/Submodel.cpp \
     ../../../../../plugins/components/Unstore.cpp \
     ../../../../../plugins/components/Write.cpp \
+    ../../../../../plugins/data/AssignmentItem.cpp \
     ../../../../../plugins/data/CppCode.cpp \
     ../../../../../plugins/data/DummyElement.cpp \
     ../../../../../plugins/data/EntityGroup.cpp \
@@ -226,6 +227,7 @@ HEADERS += \
     ../../../../../plugins/components/Submodel.h \
     ../../../../../plugins/components/Unstore.h \
     ../../../../../plugins/components/Write.h \
+    ../../../../../plugins/data/AssignmentItem.h \
     ../../../../../plugins/data/CppCode.h \
     ../../../../../plugins/data/DummyElement.h \
     ../../../../../plugins/data/EntityGroup.h \

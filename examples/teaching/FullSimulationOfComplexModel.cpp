@@ -71,9 +71,9 @@ int FullSimulationOfComplexModel::main(int argc, char** argv) {
 	plugins->newInstance<Variable>(model, "Variable_1");
 
 	Assign* assign1 = plugins->newInstance<Assign>(model);
-	Assign::Assignment* attrib2Assignment = new Assign::Assignment("Variable_1", "Variable_1 + 1");
+	Assignment* attrib2Assignment = new Assignment("Variable_1", "Variable_1 + 1");
 	assign1->getAssignments()->insert(attrib2Assignment);
-	Assign::Assignment* attrib1Assignment = new Assign::Assignment("Attribute_1", "Variable_1");
+	Assignment* attrib1Assignment = new Assignment("Attribute_1", "Variable_1");
 	assign1->getAssignments()->insert(attrib1Assignment);
 
 	Decide* decide1 = plugins->newInstance<Decide>(model);

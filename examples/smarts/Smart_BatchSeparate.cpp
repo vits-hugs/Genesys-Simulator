@@ -35,7 +35,7 @@ int Smart_BatchSeparate::main(int argc, char** argv) {
 	cr->setEntityTypeName("normal");
 	cr->setMaxCreations(50);
 	Assign* as = plugins->newInstance<Assign>(m);
-	as->getAssignments()->insert(new Assign::Assignment(m, "batchNum", "trunc(unif(0,5))"));
+	as->getAssignments()->insert(new Assignment(m, "batchNum", "trunc(unif(0,5))"));
 	Batch* ba = plugins->newInstance<Batch>(m);
 	ba->setBatchSize("4");
 	ba->setRule(Batch::Rule::ByAttribute);

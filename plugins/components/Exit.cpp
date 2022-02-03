@@ -48,6 +48,8 @@ void Exit::_onDispatchEvent(Entity* entity) {
 	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
+//void Exit::_initBetweenReplications() {}
+
 bool Exit::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
@@ -55,8 +57,6 @@ bool Exit::_loadInstance(std::map<std::string, std::string>* fields) {
 	}
 	return res;
 }
-
-//void Exit::_initBetweenReplications() {}
 
 std::map<std::string, std::string>* Exit::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);

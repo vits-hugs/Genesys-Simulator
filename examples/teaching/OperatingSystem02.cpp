@@ -52,8 +52,8 @@ int OperatingSystem02::main(int argc, char** argv) {
 	// ASSIGN Define tempo de execução e memória ocupada
 	Assign* assignProc = plugins->newInstance<Assign>(model);
 	assignProc->setDescription("Define tempo de execução e memória ocupada");
-	assignProc->getAssignments()->insert(new Assign::Assignment("memoriaOcupada", "TRUNC(UNIF(2,32))"));
-	assignProc->getAssignments()->insert(new Assign::Assignment("tempoExecucao", "NORM(5,1) * memoriaOcupada/10"));
+	assignProc->getAssignments()->insert(new Assignment("memoriaOcupada", "TRUNC(UNIF(2,32))"));
+	assignProc->getAssignments()->insert(new Assignment("tempoExecucao", "NORM(5,1) * memoriaOcupada/10"));
 	// atributos (não precisa guardar objetos se não for usar)
 	plugins->newInstance<Attribute>(model, "memoriaOcupada");
 	plugins->newInstance<Attribute>(model, "tempoExecucao");
@@ -104,8 +104,8 @@ int OperatingSystem02::main(int argc, char** argv) {
 	// ASSIGN Define execucao por um quantum de tempo
 	Assign* assignExecFatia = plugins->newInstance<Assign>(model);
 	assignExecFatia->setDescription("Define execucao por um quantum de tempo");
-	assignExecFatia->getAssignments()->insert(new Assign::Assignment("fatiaTempo", "1"));
-	assignExecFatia->getAssignments()->insert(new Assign::Assignment("tempoExecucao", "tempoExecucao-fatiaTempo"));
+	assignExecFatia->getAssignments()->insert(new Assignment("fatiaTempo", "1"));
+	assignExecFatia->getAssignments()->insert(new Assignment("tempoExecucao", "tempoExecucao-fatiaTempo"));
 	plugins->newInstance<Attribute>(model, "fatiaTempo");
 
 	decideFatiaTempo->getConnections()->insert(assignExecFatia);
@@ -113,8 +113,8 @@ int OperatingSystem02::main(int argc, char** argv) {
 	// ASSIGN Executa até o final
 	Assign* assignExecAteFinal = plugins->newInstance<Assign>(model);
 	assignExecAteFinal->setDescription("Executa até o final");
-	assignExecAteFinal->getAssignments()->insert(new Assign::Assignment("fatiaTempo", "tempoExecucao"));
-	assignExecAteFinal->getAssignments()->insert(new Assign::Assignment("tempoExecucao", "tempoExecucao - fatiaTempo"));
+	assignExecAteFinal->getAssignments()->insert(new Assignment("fatiaTempo", "tempoExecucao"));
+	assignExecAteFinal->getAssignments()->insert(new Assignment("tempoExecucao", "tempoExecucao - fatiaTempo"));
 
 	decideFatiaTempo->getConnections()->insert(assignExecAteFinal);
 	//

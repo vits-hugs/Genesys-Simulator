@@ -152,10 +152,6 @@ void Queue::_createInternalData() {
 	} else if (_cstatNumberInQueue != nullptr) {
 		// @TODO: remove
 		_removeInternalDatas();
-		//_internelElements->remove(_cstatNumberInQueue);
-		//_internelElements->remove(_cstatTimeInQueue);
-		//_cstatNumberInQueue->~StatisticsCollector();
-		//_cstatTimeInQueue->~StatisticsCollector();
 	}
 }
 

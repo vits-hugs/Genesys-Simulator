@@ -44,6 +44,12 @@ public: // static
 	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
 	virtual std::string show();
+	void setTotalArea(double _totalArea);
+	double getTotalArea() const;
+    void setCapacity(unsigned int _capacity);
+    unsigned int getCapacity() const;
+    void setUnitsPerArea(double _unitsPerArea);
+    double getUnitsPerArea() const;
 
 protected: // must be overriden by derived classes
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
@@ -51,6 +57,16 @@ protected: // must be overriden by derived classes
 protected: // could be overriden by derived classes
 	virtual bool _check(std::string* errorMessage);
 	virtual ParserChangesInformation* _getParserChangesInformation();
+private:
+
+	const struct DEFAULT_VALUES {
+		double totalArea = 1;
+		unsigned int capacity = 10;
+		double unitsPerArea = 1;
+	} DEFAULT;
+	double _totalArea = DEFAULT.totalArea;
+	unsigned int _capacity = DEFAULT.capacity;
+	double _unitsPerArea = DEFAULT.unitsPerArea;
 };
 #endif /* STORAGE_H */
 

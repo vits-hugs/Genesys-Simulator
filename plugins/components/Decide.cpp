@@ -72,7 +72,7 @@ bool Decide::_loadInstance(std::map<std::string, std::string>* fields) {
 	if (res) {
 		unsigned int nv = LoadField(fields, "conditions", 0);
 		for (unsigned int i = 0; i < nv; i++) {
-			this->_conditions->insert(LoadField(fields, "condition" + std::to_string(i), ""));
+			this->_conditions->insert(LoadField(fields, "condition" + strIndex(i), ""));
 		}
 	}
 	return res;
@@ -83,7 +83,7 @@ std::map<std::string, std::string>* Decide::_saveInstance(bool saveDefaultValues
 	SaveField(fields, "conditions", _conditions->size(), 0u, saveDefaultValues);
 	unsigned short i = 0;
 	for (std::list<std::string>::iterator it = _conditions->list()->begin(); it != _conditions->list()->end(); it++, i++) {
-		SaveField(fields, "condition" + std::to_string(i), (*it), "", saveDefaultValues);
+		SaveField(fields, "condition" + strIndex(i), (*it), "", saveDefaultValues);
 	}
 	return fields;
 }
@@ -102,9 +102,9 @@ void Decide::_createInternalData() {
 	if (_reportStatistics && _numberOuts == nullptr) {
 		_numberOuts = new List<Counter*>();
 		for (unsigned int i = 0; i<this->_connections->size(); i++) {
-			Counter* counter = new Counter(_parentModel, getName() + "." + "CountNumberOut" + std::to_string(i), this);
+			Counter* counter = new Counter(_parentModel, getName() + "." + "CountNumberOut" + strIndex(i), this);
 			_numberOuts->insert(counter);
-			_internalData->insert({"CountNumberOut" + std::to_string(i), counter});
+			_internalData->insert({"CountNumberOut" + strIndex(i), counter});
 		}
 	} else if (!_reportStatistics && _numberOuts != nullptr) {
 		this->_removeInternalDatas();
@@ -116,8 +116,8 @@ void Decide::_createInternalData() {
 PluginInformation* Decide::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Decide>(), &Decide::LoadInstance, &Decide::NewInstance);
 	info->setCategory("Decisions");
-    info->setMinimumOutputs(2);
-    info->setMaximumOutputs(999);
+	info->setMinimumOutputs(2);
+	info->setMaximumOutputs(999);
 	std::string help = "This module allows for decision-making processes in the system.";
 	help += " It includes options to make decisions based on one or more conditions(for example, if entity type is Gold Card) or based on one or more probabilities(for example, 75 %, true; 25 %, false).";
 	help += " Conditions can be based on attribute values(for example, Priority), variable values(for example, Number Denied), the entity type, or an expression(for example, NQ(ProcessA.Queue)).";

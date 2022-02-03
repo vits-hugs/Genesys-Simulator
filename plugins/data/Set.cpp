@@ -65,9 +65,9 @@ bool Set::_loadInstance(std::map<std::string, std::string>* fields) {
 	if (res) {
 		try {
 			_setOfType = LoadField(fields, "type", DEFAULT.setOfType);
-			unsigned int memberSize = LoadField(fields, "memberSize", DEFAULT.membersSize);
+			unsigned int memberSize = LoadField(fields, "members", DEFAULT.membersSize);
 			for (unsigned int i = 0; i < memberSize; i++) {
-				std::string memberName = LoadField(fields, "member" + std::to_string(i));
+				std::string memberName = LoadField(fields, "member" + strIndex(i));
 				ModelDataDefinition* member = _parentModel->getDataManager()->getDataDefinition(_setOfType, memberName);
 				if (member == nullptr) { // not found. That's a problem. Resource not loaded yet (or mismatch name
 					_parentModel->getTracer()->trace("ERROR: Could not found " + _setOfType + " set member named \"" + memberName + "\"", Util::TraceLevel::L1_errorFatal);
@@ -84,10 +84,10 @@ bool Set::_loadInstance(std::map<std::string, std::string>* fields) {
 std::map<std::string, std::string>* Set::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelDataDefinition::_saveInstance(saveDefaultValues); //Util::TypeOf<Set>());
 	SaveField(fields, "type", _setOfType, DEFAULT.setOfType, saveDefaultValues);
-	SaveField(fields, "membersSize", _elementSet->size(), DEFAULT.membersSize, saveDefaultValues);
+	SaveField(fields, "members", _elementSet->size(), DEFAULT.membersSize, saveDefaultValues);
 	unsigned int i = 0;
 	for (ModelDataDefinition* modeldatum : *_elementSet->list()) {
-		SaveField(fields, "member" + std::to_string(i), modeldatum->getName());
+		SaveField(fields, "member" + strIndex(i), modeldatum->getName());
 		i++;
 	}
 	return fields;
@@ -103,6 +103,10 @@ bool Set::_check(std::string* errorMessage) {
 			resultAll = false;
 			*errorMessage += "Set is of type \"" + _setOfType + "\" and first modeldatum is of type \"" + typeOfFirstElement + "\"";
 		}
+	}
+	int i = 0;
+	for (ModelDataDefinition* data : *_elementSet->list()) {
+		this->_setAttachedData("Member" + strIndex(i), data);
 	}
 	//*errorMessage += "";
 	return resultAll;

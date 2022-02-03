@@ -48,8 +48,8 @@ int Smart_AssignWriteSeizes::main(int argc, char** argv) {
 	create1->setTimeUnit(Util::TimeUnit::second);
 	create1->setEntitiesPerCreation(1);
 	Assign* assign1 = plugins->newInstance<Assign>(model);
-	assign1->getAssignments()->insert(new Assign::Assignment(model, "varNextIndex", "varNextIndex + 1", false));
-	assign1->getAssignments()->insert(new Assign::Assignment(model, "index", "varNextIndex", true));
+	assign1->getAssignments()->insert(new Assignment(model, "varNextIndex", "varNextIndex + 1", false));
+	assign1->getAssignments()->insert(new Assignment(model, "index", "varNextIndex", true));
 	Write* write1 = plugins->newInstance<Write>(model);
 	write1->setWriteToType(Write::WriteToType::SCREEN);
 	write1->insertText({"\n", "Atributo index: ", "'index'"});

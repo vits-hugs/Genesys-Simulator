@@ -130,7 +130,7 @@ unsigned int Resource::getNumberBusy() const {
 }
 
 void Resource::addReleaseResourceEventHandler(ResourceEventHandler eventHandler, ModelComponent* component, unsigned int priority) {
-	//if (_resourceEventHandlers->find(eventHandler) != _resourceEventHandlers->list()->end()) {
+	//@TODO: if (_resourceEventHandlers->find(eventHandler) != _resourceEventHandlers->list()->end()) {
 	ModelComponent* compHandler;
 	for (SortedResourceEventHandler* sreh : *_resourceEventHandlers->list()) {
 		compHandler = sreh->first.second;
@@ -194,6 +194,7 @@ std::map<std::string, std::string>* Resource::_saveInstance(bool saveDefaultValu
 }
 
 bool Resource::_check(std::string* errorMessage) {
+	//@TODO
 	//*errorMessage += "";
 	return true;
 }
