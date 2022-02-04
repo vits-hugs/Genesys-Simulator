@@ -1,0 +1,14 @@
+digraph G {
+ subgraph level_0 {  Create_1 [shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=bisque, label="{Create|Create_1}"];
+    Create_1->Process_1[ ];
+  Process_1 [shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=bisque, label="{Process|Process_1}"];
+    Process_1->Process_1_Seize[ ];
+  Process_1_Seize [shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=goldenrod3, label="{Seize|Process_1.Seize}"];
+    Process_1_Seize->Process_1_Delay[ ];
+  Process_1_Delay [shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=goldenrod3, label="{Delay|Process_1.Delay}"];
+    Process_1_Delay->Process_1_Release[ ];
+  Process_1_Release [shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=goldenrod3, label="{Release|Process_1.Release}"];
+    Process_1_Release->Dispose_1[ ];
+  Dispose_1 [shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=bisque, label="{Dispose|Dispose_1}"];
+  }
+}

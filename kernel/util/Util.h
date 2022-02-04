@@ -76,7 +76,14 @@ static inline std::string trim(std::string str) {
 	str.erase(0, str.find_first_not_of(typeOfWhitespaces));
 	return str;
 }
-
+static std::string strReplace(std::string text, std::string searchFor, std::string replaceBy) {
+	unsigned int pos = text.find(searchFor, 0);
+	while (pos < text.length()) {// != std::string::npos) {
+		text = text.replace(pos, searchFor.length(), replaceBy);
+		pos = text.find(searchFor, 0);
+	}
+	return text;
+}
 /// returns a string in the form "[<index>] for array indexes"
 static inline std::string strIndex(int index) {
 	return "[" + std::to_string(index) + "]";
@@ -173,7 +180,6 @@ public: // indentation and string
 	static void IncIndent();
 	static void DecIndent();
 	static void SepKeyVal(std::string str, std::string *key, std::string *value);
-	static std::string StrReplaceAll(std::string text, std::string searchFor, std::string replaceBy);
 	static std::string Indent();
 	static std::string SetW(std::string text, unsigned short width);
 	static std::string StrTimeUnitShort(Util::TimeUnit timeUnit);

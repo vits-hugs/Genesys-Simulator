@@ -68,6 +68,10 @@ private slots:
 
     void on_actionGet_Involved_triggered();
 
+    void on_checkBox_ShowLevels_stateChanged(int arg1);
+
+    void on_pushButton_clicked();
+
 private: // VIEW
 
 private: // trace handlers
@@ -93,6 +97,7 @@ private:
     bool _checkStartSimulation();
     bool _setSimulationModelBasedOnText();
     bool _createModelGraphicPicture();
+    std::string _adjustName(std::string name);
     std::string _recursiveCreateModelGraphicPicture(ModelDataDefinition* componentOrData, std::list<ModelDataDefinition*>* visited);
 private:
     Ui::MainWindow *ui;

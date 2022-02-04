@@ -99,6 +99,19 @@ void Process::_onDispatchEvent(Entity* entity) {
 	this->_parentModel->sendEntityToComponent(entity, _seize, 0.0);
 }
 
+void Process::_adjustConnections() {
+	if (getConnections()->size() > 0 && getConnections()->front() != _seize) {
+		// chance connections so Process is connected to Seize, and Release to the one that Process was connected to
+		Connection* connection = new Connection();
+		connection->first = getConnections()->getFrontConnection()->first;
+		connection->second = getConnections()->getFrontConnection()->second;
+		getConnections()->getFrontConnection()->first = _seize;
+		getConnections()->getFrontConnection()->second = 0;
+		_release->getConnections()->list()->clear();
+		_release->getConnections()->insert(connection);
+	}
+}
+
 void Process::_createInternalData() {
 	if (_seize == nullptr) {
 		PluginManager* plugins = _parentModel->getParentSimulator()->getPlugins();
@@ -106,38 +119,66 @@ void Process::_createInternalData() {
 		_seize = plugins->newInstance<Seize>(_parentModel, getName() + ".Seize");
 		_delay = plugins->newInstance<Delay>(_parentModel, getName() + ".Delay");
 		_release = plugins->newInstance<Release>(_parentModel, getName() + ".Release");
-		_seize->setModelLevel(_id);
-		_delay->setModelLevel(_id);
-		_release->setModelLevel(_id);
+		_seize->setModelLevel(_id); // set level as subcomponent
+		_delay->setModelLevel(_id); // set level as subcomponent
+		_release->setModelLevel(_id); // set level as subcomponent
 		_seize->getConnections()->insert(_delay);
 		_delay->getConnections()->insert(_release);
 		_internalData->insert({"Seize", _seize});
 		_internalData->insert({"Delay", _delay});
 		_internalData->insert({"Release", _release});
 	}
-	_release->getConnections()->list()->clear();
-	if (getConnections()->size() > 0 && getConnections()->front() != _seize) {
-		// chance connections so Process is connected to Seize, and Release to the one Process was connected to
-		_nextComponent = getConnections()->getFrontConnection()->first;
-		_nextInput = getConnections()->getFrontConnection()->second;
-		_release->getConnections()->insert(_nextComponent, _nextInput);
-		getConnections()->getFrontConnection()->first = _seize;
-		getConnections()->getFrontConnection()->second = 0;
-	}
+	_adjustConnections();
 }
 
 bool Process::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
-		// @TODO: not implemented yet
+		_seize->setAllocationType(LoadField(fields, "allocationType", _seize->DEFAULT.allocationType));
+		_seize->setPriority(LoadField(fields, "priority", _seize->DEFAULT.priority));
+		_seize->setSaveAttribute(LoadField(fields, "saveAttribute", _seize->DEFAULT.saveAttribute));
+		QueueableItem* queueableItem = new QueueableItem(nullptr);
+		queueableItem->setElementManager(_parentModel->getDataManager());
+		queueableItem->loadInstance(fields);
+		_seize->setQueueableItem(queueableItem);
+		unsigned short numRequests = LoadField(fields, "resquests", _seize->DEFAULT.seizeRequestSize);
+		for (unsigned short i = 0; i < numRequests; i++) {
+			SeizableItem* item = new SeizableItem(nullptr);
+			item->setElementManager(_parentModel->getDataManager());
+			item->loadInstance(fields, i);
+			_seize->getSeizeRequests()->insert(item);
+		}
+		_delay->setDelayExpression(LoadField(fields, "delayExpression", _delay->DEFAULT.delayExpression));
+		_delay->setDelayTimeUnit(LoadField(fields, "delayExpressionTimeUnit", _delay->DEFAULT.delayTimeUnit));
 	}
 	return res;
 }
 
 std::map<std::string, std::string>* Process::_saveInstance(bool saveDefaultValues) {
-	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
-	// @TODO: not implemented yet. HOW TO AVOID INTERNAL *COMPONENTS* TO BE SAVE BY THEIR OWN??
+	_adjustConnections();
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues); //Util::TypeOf<Assign>());
 	std::map<std::string, std::string>* seizefields = ModelComponent::SaveInstance(_seize);
+	seizefields->erase("id");
+	seizefields->erase("typename");
+	seizefields->erase("name");
+	seizefields->erase("nexts");
+	seizefields->erase("nextId");
+	seizefields->erase("caption");
+	seizefields->erase("reportStatistics");
+	fields->insert(seizefields->begin(), seizefields->end());
+	std::map<std::string, std::string>* delayfields = ModelComponent::SaveInstance(_delay);
+	delayfields->erase("id");
+	delayfields->erase("typename");
+	delayfields->erase("name");
+	delayfields->erase("nexts");
+	delayfields->erase("nextId");
+	delayfields->erase("caption");
+	delayfields->erase("reportStatistics");
+	fields->insert(delayfields->begin(), delayfields->end());
+	std::map<std::string, std::string>* releasefields = ModelComponent::SaveInstance(_release);
+	fields->erase("nextId");
+	std::map<std::string, std::string>::iterator it = releasefields->find("nextId");
+	fields->insert((*it));
 	return fields;
 }
 

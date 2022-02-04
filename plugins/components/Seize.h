@@ -157,14 +157,14 @@ private:
 	void _handlerForResourceEvent(Resource* resource); ///< This method is indirectally invocked (notified) by resource when it's released, since it was added as ResourceEventHandler
 	Resource* _getResourceFromSeizableItem(SeizableItem* seizable, Entity* entity);
 	Queue* _getQueue() const;
-private:
-
+public:
 	const struct DEFAULT_VALUES {
-		unsigned int allocationType = 0; // uint ? enum?
-		unsigned short priority = 0;
-		unsigned int seizeRequestSize = 1;
-		std::string saveAttribute = "";
+		const unsigned int allocationType = 0; // uint ? enum?
+		const unsigned short priority = 0;
+		const unsigned int seizeRequestSize = 1;
+		const std::string saveAttribute = "";
 	} DEFAULT;
+private:
 	unsigned int _allocationType = DEFAULT.allocationType; // uint ? enum?
 	unsigned short _priority = DEFAULT.priority;
 	std::string _saveAttribute = DEFAULT.saveAttribute;

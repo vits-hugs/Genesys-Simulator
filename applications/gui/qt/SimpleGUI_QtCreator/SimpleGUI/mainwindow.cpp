@@ -124,13 +124,29 @@ bool MainWindow::_setSimulationModelBasedOnText() {
 	return simulator->getModels()->current() != nullptr;
 }
 
+std::string MainWindow::_adjustName(std::string name) {
+	return strReplace(name, ".", "_");
+}
+
 std::string MainWindow::_recursiveCreateModelGraphicPicture(ModelDataDefinition* componentOrData, std::list<ModelDataDefinition*>* visited) {
-	//std::string separator = "_";
+
+	const struct DOT_STYLES {
+		std::string nodeComponent = "shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=bisque, ";
+		std::string nodeComponentOtherLevel = "shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=goldenrod3, ";
+		std::string edgeComponent = " ";
+		std::string nodeDataDefInternal = "shape=record, fontsize=8, color=gray55, fontcolor=gray55, ";
+		std::string nodeDataDefAttached = "shape=record, fontsize=9, color=gray50, fontcolor=gray50, style=filled, fillcolor=gray85, ";
+		std::string edgeDataDefInternal = "style=dashed, arrowhead=\"diamond\", color=gray55, fontcolor=gray55, fontsize=7, ";
+		std::string edgeDataDefAttached = "style=dashed, arrowhead=\"ediamond\", color=gray50, fontcolor=gray50, fontsize=7, ";
+	} DOT;
 	std::string result = "";
+	unsigned int modelLevel = 0; //?
 	if (dynamic_cast<ModelComponent*> (componentOrData) != nullptr) {
-		result += "  " + Util::StrReplaceAll(componentOrData->getName(), ".", "_") + " " + "[shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=bisque, label=\"{" + componentOrData->getClassname() + "|" + componentOrData->getName() + "}\"]" + ";\n";
-		//} else {
-		//	result += "  " + Util::StrReplaceAll(componentOrData->getName(), ".", "_") + " " + "[shape=record, fontsize=8, color=gray50, fontcolor=gray50, label=\"{" + componentOrData->getClassname() + "|" + componentOrData->getName() + "}\"]" + ";\n";
+		if (componentOrData->getModelLevel() == modelLevel) {
+			result += "  " + _adjustName(componentOrData->getName()) + " [" + DOT.nodeComponent + "label=\"{" + componentOrData->getClassname() + "|" + componentOrData->getName() + "}\"]" + ";\n";
+		} else {
+			result += "  " + _adjustName(componentOrData->getName()) + " [" + DOT.nodeComponentOtherLevel + "label=\"{" + componentOrData->getClassname() + "|" + componentOrData->getName() + "}\"]" + ";\n";
+		}
 	}
 	visited->insert(visited->end(), componentOrData);
 	std::list<ModelDataDefinition*>::iterator visitedIt;
@@ -138,28 +154,28 @@ std::string MainWindow::_recursiveCreateModelGraphicPicture(ModelDataDefinition*
 	std::string dataname;
 	if (ui->checkBox_ShowInternals->isChecked()) {
 		for (std::pair<std::string, ModelDataDefinition*> dataPair : *componentOrData->getInternalData()) {
-			dataname = Util::StrReplaceAll(dataPair.second->getName(), ".", "_");
+			dataname = _adjustName(dataPair.second->getName());
 			visitedIt = std::find(visited->begin(), visited->end(), dataPair.second);
 			if (visitedIt == visited->end()) {
-				result += "  " + dataname + " " + "[shape=record, fontsize=8, color=gray55, fontcolor=gray55, label=\"{" + dataPair.second->getClassname() + "|" + dataPair.second->getName() + "}\"]" + ";\n";
+				result += "  " + dataname + " [" + DOT.nodeDataDefInternal + "label=\"{" + dataPair.second->getClassname() + "|" + dataPair.second->getName() + "}\"]" + ";\n";
 				if (ui->checkBox_ShowRecursive->isChecked()) {
 					result += _recursiveCreateModelGraphicPicture(dataPair.second, visited);
 				}
 			}
-			result += "    " + dataname + "->" + Util::StrReplaceAll(componentOrData->getName(), ".", "_") + " [style=dashed, arrowhead=\"diamond\", color=gray55, fontcolor=gray55, fontsize=7, label=\"" + dataPair.first + "\"];\n";
+			result += "    " + dataname + "->" + _adjustName(componentOrData->getName()) + " [" + DOT.edgeDataDefInternal + "label=\"" + dataPair.first + "\"];\n";
 		}
 	}
 	if (ui->checkBox_ShowElements->isChecked()) {
 		for (std::pair<std::string, ModelDataDefinition*> dataPair : *componentOrData->getAttachedData()) {
-			dataname = Util::StrReplaceAll(dataPair.second->getName(), ".", "_");
+			dataname = _adjustName(dataPair.second->getName());
 			visitedIt = std::find(visited->begin(), visited->end(), dataPair.second);
 			if (visitedIt == visited->end()) {
-				result += "  " + dataname + " " + "[shape=record, fontsize=9, color=gray50, fontcolor=gray50, style=filled, fillcolor=gray85, label=\"{" + dataPair.second->getClassname() + "|" + dataPair.second->getName() + "}\"]" + ";\n";
+				result += "  " + dataname + " [" + DOT.nodeDataDefAttached + "label=\"{" + dataPair.second->getClassname() + "|" + dataPair.second->getName() + "}\"]" + ";\n";
 				if (ui->checkBox_ShowRecursive->isChecked()) {
 					result += _recursiveCreateModelGraphicPicture(dataPair.second, visited);
 				}
 			}
-			result += "    " + dataname + "->" + Util::StrReplaceAll(componentOrData->getName(), ".", "_") + " [style=dashed, arrowhead=\"ediamond\", color=gray50, fontcolor=gray50, fontsize=7, label=\"" + dataPair.first + "\"];\n";
+			result += "    " + dataname + "->" + _adjustName(componentOrData->getName()) + " [" + DOT.edgeDataDefAttached + "label=\"" + dataPair.first + "\"];\n";
 		}
 	}
 	ModelComponent* component = dynamic_cast<ModelComponent*> (componentOrData);
@@ -167,7 +183,7 @@ std::string MainWindow::_recursiveCreateModelGraphicPicture(ModelDataDefinition*
 		Connection* connection;
 		for (unsigned short i = 0; i < component->getConnections()->size(); i++) {
 			connection = component->getConnections()->getConnectionAtRank(i);
-			result += "    " + component->getName() + "->" + connection->first->getName() + ";\n";
+			result += "    " + _adjustName(component->getName()) + "->" + _adjustName(connection->first->getName()) + "[" + DOT.edgeComponent + "]" + ";\n";
 			visitedIt = std::find(visited->begin(), visited->end(), connection->first);
 			if (visitedIt == visited->end()) {
 				result += _recursiveCreateModelGraphicPicture(connection->first, visited);
@@ -178,9 +194,8 @@ std::string MainWindow::_recursiveCreateModelGraphicPicture(ModelDataDefinition*
 }
 
 bool MainWindow::_createModelGraphicPicture() {
-	ui->label_GraphicMsg->setText("Working...");
 	bool res = this->_setSimulationModelBasedOnText();
-	std::string dot = "digraph G {\n";
+	std::string dot = "digraph G {\n subgraph level_0 {";
 
 	std::list<SourceModelComponent*>* sources = simulator->getModels()->current()->getComponents()->getSourceComponents();
 	std::list<ModelDataDefinition*>* visited = new std::list<ModelDataDefinition*>();
@@ -204,7 +219,7 @@ bool MainWindow::_createModelGraphicPicture() {
 		}
 	}
 	 */
-	dot += "}\n";
+	dot += "  }\n}\n";
 	std::string basefilename = "./_tempGraphicalModelRepresentation";
 	std::string dotfilename = basefilename + ".dot";
 	std::string pngfilename = basefilename + ".png";
@@ -230,20 +245,16 @@ bool MainWindow::_createModelGraphicPicture() {
 			int h = ui->label_ModelGraphic->height();
 			ui->label_ModelGraphic->setPixmap(pm); //.scaled(w, h, Qt::IgnoreAspectRatio));
 			ui->label_ModelGraphic->setScaledContents(false);
-			ui->label_GraphicMsg->setText("Done");
 			try {
-				std::remove(dotfilename.c_str());
+				//std::remove(dotfilename.c_str());
 				std::remove(pngfilename.c_str());
 			} catch (...) {
 
 			}
 			return true;
 		} catch (...) {
-			ui->label_GraphicMsg->setText("Could not generate graph");
 		}
 	} catch (...) {
-
-		ui->label_GraphicMsg->setText("Could not save dor file");
 	}
 	return false;
 }
@@ -794,4 +805,18 @@ void MainWindow::on_checkBox_ShowRecursive_stateChanged(int arg1) {
 
 void MainWindow::on_actionGet_Involved_triggered() {
 	QMessageBox::about(this, "Get Inveolved", "Genesys is a free open-source simulator (and tools) available at 'https://github.com/rlcancian/2019_2022_GenESyS'. Help us by submiting your pull requests containing code improvements.");
+}
+
+void MainWindow::on_checkBox_ShowLevels_stateChanged(int arg1) {
+	bool result = _createModelGraphicPicture();
+}
+
+void MainWindow::on_pushButton_clicked() {
+	QString fileName = QFileDialog::getSaveFileName(this,
+			tr("Save Model"), _modelfilename,
+			tr("Genesys Model (*.gen);;All Files (*)"));
+	if (fileName.isEmpty())
+		return;
+	else {
+	}
 }

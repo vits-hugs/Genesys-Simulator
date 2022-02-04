@@ -54,12 +54,13 @@ protected: // virtual
 	virtual bool _check(std::string* errorMessage);
 	virtual void _createInternalData();
 private: // methods
+	void _adjustConnections();
 private: // attributes 1:1
 	Seize* _seize = nullptr;
 	Delay* _delay = nullptr;
 	Release* _release = nullptr;
-	ModelComponent* _nextComponent = nullptr;
-	unsigned int _nextInput;
+	//ModelComponent* _nextComponent = nullptr;
+	//unsigned int _nextInput;
 private: // attributes 1:n
 };
 
