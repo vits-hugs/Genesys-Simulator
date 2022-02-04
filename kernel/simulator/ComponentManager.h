@@ -30,8 +30,9 @@ public:
 public:
     bool insert(ModelComponent* comp);
     void remove(ModelComponent* comp);
-    ModelComponent* find(std::string name);
-    void clear();
+	ModelComponent* find(std::string name);
+	ModelComponent* find(Util::identification id);
+	void clear();
 public:
     unsigned int getNumberOfComponents();
     std::list<ModelComponent*>::iterator begin();

@@ -46,7 +46,16 @@ ModelComponent* ComponentManager::find(std::string name) {
 	return nullptr;
 }
 
-void ComponentManager::remove(ModelComponent* comp) {
+ModelComponent* ComponentManager::find(Util::identification id) {
+	for (ModelComponent* component : *_components->list()) {
+		if (component->getId() == id) {
+			return component;
+		}
+	}
+	return nullptr;
+}
+
+void ComponentManager::remove(ModelComponent * comp) {
 	_components->remove(comp);
 	_parentModel->getTracer()->trace(Util::TraceLevel::L2_results, "Component \"" + comp->getName() + "\" successfully removed");
 	_hasChanged = true;
@@ -75,11 +84,11 @@ std::list<ModelComponent*>::iterator ComponentManager::end() {
 	return _components->list()->end();
 }
 
-ModelComponent* ComponentManager::front() {
+ModelComponent * ComponentManager::front() {
 	return _components->front();
 }
 
-ModelComponent* ComponentManager::next() {
+ModelComponent * ComponentManager::next() {
 	return _components->next();
 }
 

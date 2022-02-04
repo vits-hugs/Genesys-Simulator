@@ -68,7 +68,7 @@ public:
 	std::map<std::string, ModelDataDefinition*>* getAttachedData() const;
 	//ModelDataDefinition* getInternalData(std::string key) const;
 	bool hasChanged() const;
-	unsigned int getModelLevel() const;
+	unsigned int getLevel() const;
     void setModelLevel(unsigned int _modelLevel);
 protected:
 	void _setInternalData(std::string key, ModelDataDefinition* child);

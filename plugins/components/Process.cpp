@@ -150,6 +150,9 @@ bool Process::_loadInstance(std::map<std::string, std::string>* fields) {
 		}
 		_delay->setDelayExpression(LoadField(fields, "delayExpression", _delay->DEFAULT.delayExpression));
 		_delay->setDelayTimeUnit(LoadField(fields, "delayExpressionTimeUnit", _delay->DEFAULT.delayTimeUnit));
+		_seize->setModelLevel(_id);
+		_delay->setModelLevel(_id);
+		_release->setModelLevel(_id);
 	}
 	return res;
 }

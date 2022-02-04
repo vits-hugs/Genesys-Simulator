@@ -69,7 +69,7 @@ bool ModelPersistenceDefaultImpl1::save(std::string filename) {
 				Util::IncIndent();
 				{
 					for (ModelDataDefinition* data : *infras->list()) {
-						if (data->getModelLevel() == modelLevel) {
+						if (data->getLevel() == modelLevel) {
 							_model->getTracer()->trace(Util::TraceLevel::L9_mostDetailed, "Writing " + thisTypename + " \"" + data->getName() + "\"");
 							fields = data->SaveInstance(data);
 							Util::IncIndent();
@@ -88,7 +88,7 @@ bool ModelPersistenceDefaultImpl1::save(std::string filename) {
 		Util::IncIndent();
 		{
 			for (ModelComponent* component : *_model->getComponents()) {
-				if (component->getModelLevel() == modelLevel) {
+				if (component->getLevel() == modelLevel) {
 					fields = component->SaveInstance(component);
 					Util::IncIndent();
 					modelComponentsToSave->merge(*_adjustFieldsToSave(fields));
