@@ -342,6 +342,10 @@ bool Model::isAutomaticallyCreatesModelDataDefinitions() const {
 	return _automaticallyCreatesModelDataDefinitions;
 }
 
+unsigned int Model::getLevel() const {
+	return _level;
+}
+
 bool Model::hasChanged() const {
 	bool changed = _hasChanged;
 	changed &= this->_componentManager->hasChanged();

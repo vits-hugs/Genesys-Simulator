@@ -82,7 +82,8 @@ public: // gets and sets
 	TraceManager* getTracer() const;
     ModelPersistence_if* getPersistence() const;
 	void setAutomaticallyCreatesModelDataDefinitions(bool _automaticallyCreatesModelDataDefinitions);
-	bool isAutomaticallyCreatesModelDataDefinitions() const; ///< Provides access to the class that performs the trace of simulation and replications.
+	bool isAutomaticallyCreatesModelDataDefinitions() const;
+	unsigned int getLevel() const; ///< Provides access to the class that performs the trace of simulation and replications.
 	/*
 	 * PRIVATE
 	 */

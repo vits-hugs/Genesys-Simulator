@@ -128,98 +128,135 @@ std::string MainWindow::_adjustName(std::string name) {
 	return strReplace(name, ".", "_");
 }
 
-std::string MainWindow::_recursiveCreateModelGraphicPicture(ModelDataDefinition* componentOrData, std::list<ModelDataDefinition*>* visited) {
+void MainWindow::_insertTextInDot(std::string text, unsigned int compLevel, std::map<unsigned int, std::list<std::string>*>* dotmap, bool isNode) {
+	if (dotmap->find(compLevel) == dotmap->end()) {
+		dotmap->insert({compLevel, new std::list<std::string>()});
+	}
+	std::pair<unsigned int, std::list<std::string>*> dotPair = (*dotmap->find(compLevel));
+	if (isNode)
+		dotPair.second->insert(dotPair.second->begin(), text);
+	else
+		dotPair.second->insert(dotPair.second->end(), text);
+}
+
+void MainWindow::_recursiveCreateModelGraphicPicture(ModelDataDefinition* componentOrData, std::list<ModelDataDefinition*>* visited, std::map<unsigned int, std::list<std::string>*>* dotmap) {
 
 	const struct DOT_STYLES {
-		std::string nodeComponent = "shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=bisque, ";
-		std::string nodeComponentOtherLevel = "shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=goldenrod3, ";
+		std::string nodeComponent = "shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=bisque";
+		//std::string nodeComponentOtherLevel = "shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=goldenrod3";
 		std::string edgeComponent = " ";
-		std::string nodeDataDefInternal = "shape=record, fontsize=8, color=gray55, fontcolor=gray55, ";
-		std::string nodeDataDefAttached = "shape=record, fontsize=9, color=gray50, fontcolor=gray50, style=filled, fillcolor=gray85, ";
-		std::string edgeDataDefInternal = "style=dashed, arrowhead=\"diamond\", color=gray55, fontcolor=gray55, fontsize=7, ";
-		std::string edgeDataDefAttached = "style=dashed, arrowhead=\"ediamond\", color=gray50, fontcolor=gray50, fontsize=7, ";
+		std::string nodeDataDefInternal = "shape=record, fontsize=8, color=gray50, fontcolor=gray50";
+		std::string nodeDataDefAttached = "shape=record, fontsize=10, color=gray50, fontcolor=gray50, style=filled, fillcolor=darkolivegreen3";
+		std::string edgeDataDefInternal = "style=dashed, arrowhead=\"diamond\", color=gray55, fontcolor=gray55, fontsize=7";
+		std::string edgeDataDefAttached = "style=dashed, arrowhead=\"ediamond\", color=gray50, fontcolor=gray50, fontsize=7";
 	} DOT;
-	std::string result = "";
-	unsigned int modelLevel = 0; //?
-	if (dynamic_cast<ModelComponent*> (componentOrData) != nullptr) {
-		if (componentOrData->getModelLevel() == modelLevel) {
-			result += "  " + _adjustName(componentOrData->getName()) + " [" + DOT.nodeComponent + "label=\"{" + componentOrData->getClassname() + "|" + componentOrData->getName() + "}\"]" + ";\n";
-		} else {
-			result += "  " + _adjustName(componentOrData->getName()) + " [" + DOT.nodeComponentOtherLevel + "label=\"{" + componentOrData->getClassname() + "|" + componentOrData->getName() + "}\"]" + ";\n";
-		}
-	}
 	visited->insert(visited->end(), componentOrData);
+	std::string text;
+	unsigned int level = componentOrData->getModelLevel();
+	if (dynamic_cast<ModelComponent*> (componentOrData) != nullptr) {
+		text = "  " + _adjustName(componentOrData->getName()) + " [" + DOT.nodeComponent + ", label=\"{" + componentOrData->getClassname() + "|" + componentOrData->getName() + "}\"]" + ";\n";
+		_insertTextInDot(text, level, dotmap, true);
+	}
+	//
+	unsigned int modellevel = simulator->getModels()->current()->getLevel();
 	std::list<ModelDataDefinition*>::iterator visitedIt;
 	ModelDataDefinition* data;
 	std::string dataname;
 	if (ui->checkBox_ShowInternals->isChecked()) {
 		for (std::pair<std::string, ModelDataDefinition*> dataPair : *componentOrData->getInternalData()) {
 			dataname = _adjustName(dataPair.second->getName());
+			level = dataPair.second->getModelLevel();
 			visitedIt = std::find(visited->begin(), visited->end(), dataPair.second);
 			if (visitedIt == visited->end()) {
-				result += "  " + dataname + " [" + DOT.nodeDataDefInternal + "label=\"{" + dataPair.second->getClassname() + "|" + dataPair.second->getName() + "}\"]" + ";\n";
-				if (ui->checkBox_ShowRecursive->isChecked()) {
-					result += _recursiveCreateModelGraphicPicture(dataPair.second, visited);
+				if (dynamic_cast<ModelComponent*> (dataPair.second) == nullptr) {
+					text = "  " + dataname + " [" + DOT.nodeDataDefInternal + ", label=\"{" + dataPair.second->getClassname() + "|" + dataPair.second->getName() + "}\"]" + ";\n";
+					_insertTextInDot(text, level, dotmap, true);
+					if (ui->checkBox_ShowRecursive->isChecked()) {
+						_recursiveCreateModelGraphicPicture(dataPair.second, visited, dotmap);
+					}
 				}
 			}
-			result += "    " + dataname + "->" + _adjustName(componentOrData->getName()) + " [" + DOT.edgeDataDefInternal + "label=\"" + dataPair.first + "\"];\n";
+			text = "    " + dataname + "->" + _adjustName(componentOrData->getName()) + " [" + DOT.edgeDataDefInternal + ", label=\"" + dataPair.first + "\"];\n";
+			_insertTextInDot(text, modellevel, dotmap);
 		}
 	}
 	if (ui->checkBox_ShowElements->isChecked()) {
 		for (std::pair<std::string, ModelDataDefinition*> dataPair : *componentOrData->getAttachedData()) {
 			dataname = _adjustName(dataPair.second->getName());
+			level = dataPair.second->getModelLevel();
 			visitedIt = std::find(visited->begin(), visited->end(), dataPair.second);
 			if (visitedIt == visited->end()) {
-				result += "  " + dataname + " [" + DOT.nodeDataDefAttached + "label=\"{" + dataPair.second->getClassname() + "|" + dataPair.second->getName() + "}\"]" + ";\n";
+				if (dynamic_cast<ModelComponent*> (dataPair.second) == nullptr) {
+					text = "  " + dataname + " [" + DOT.nodeDataDefAttached + ", label=\"{" + dataPair.second->getClassname() + "|" + dataPair.second->getName() + "}\"]" + ";\n";
+					_insertTextInDot(text, level, dotmap, true);
+				} else {
+					std::cout << "OPS" << std::endl;
+				}
 				if (ui->checkBox_ShowRecursive->isChecked()) {
-					result += _recursiveCreateModelGraphicPicture(dataPair.second, visited);
+					_recursiveCreateModelGraphicPicture(dataPair.second, visited, dotmap);
 				}
 			}
-			result += "    " + dataname + "->" + _adjustName(componentOrData->getName()) + " [" + DOT.edgeDataDefAttached + "label=\"" + dataPair.first + "\"];\n";
+			text = "    " + dataname + "->" + _adjustName(componentOrData->getName()) + " [" + DOT.edgeDataDefAttached + ", label=\"" + dataPair.first + "\"];\n";
+			_insertTextInDot(text, modellevel, dotmap);
 		}
 	}
 	ModelComponent* component = dynamic_cast<ModelComponent*> (componentOrData);
 	if (component != nullptr) {
+		level = component->getModelLevel();
 		Connection* connection;
 		for (unsigned short i = 0; i < component->getConnections()->size(); i++) {
 			connection = component->getConnections()->getConnectionAtRank(i);
-			result += "    " + _adjustName(component->getName()) + "->" + _adjustName(connection->first->getName()) + "[" + DOT.edgeComponent + "]" + ";\n";
 			visitedIt = std::find(visited->begin(), visited->end(), connection->first);
 			if (visitedIt == visited->end()) {
-				result += _recursiveCreateModelGraphicPicture(connection->first, visited);
+				_recursiveCreateModelGraphicPicture(connection->first, visited, dotmap);
 			}
+			text = "    " + _adjustName(component->getName()) + "->" + _adjustName(connection->first->getName()) + "[" + DOT.edgeComponent + "];\n";
+			_insertTextInDot(text, modellevel, dotmap);
 		}
 	}
-	return result;
+	visited->clear();
 }
 
 bool MainWindow::_createModelGraphicPicture() {
 	bool res = this->_setSimulationModelBasedOnText();
-	std::string dot = "digraph G {\n subgraph level_0 {";
+	std::string dot = "digraph G {\n";
+	dot += "  compound=true;\n";
+	std::map<unsigned int, std::list<std::string>*>* dotmap = new std::map<unsigned int, std::list<std::string>*>();
 
 	std::list<SourceModelComponent*>* sources = simulator->getModels()->current()->getComponents()->getSourceComponents();
 	std::list<ModelDataDefinition*>* visited = new std::list<ModelDataDefinition*>();
+	std::list<ModelDataDefinition*>::iterator visitedIt;
 	for (SourceModelComponent* source : *sources) {
-		dot += _recursiveCreateModelGraphicPicture(source, visited);
+		visitedIt = std::find(visited->begin(), visited->end(), source);
+		if (visitedIt == visited->end()) {
+			_recursiveCreateModelGraphicPicture(source, visited, dotmap);
+		}
 	}
 	std::list<ModelComponent*>* transfers = simulator->getModels()->current()->getComponents()->getTransferInComponents();
 	for (ModelComponent* transfer : *transfers) {
-		dot += _recursiveCreateModelGraphicPicture(transfer, visited);
-	}
-	/*
-	std::list<ModelDataDefinition*>::iterator visitedIt;
-	for (std::string dataclassname : *simulator->getModels()->current()->getDataManager()->getDataDefinitionClassnames()) {
-		if (dataclassname != Util::TypeOf<Entity>()) {
-			for (ModelDataDefinition* data : *simulator->getModels()->current()->getDataManager()->getDataDefinitionList(dataclassname)->list()) {
-				visitedIt = std::find(visited->begin(), visited->end(), data);
-				if (visitedIt == visited->end()) {
-					dot += _recursiveCreateModelGraphicPicture(data, visited);
-				}
-			}
+		visitedIt = std::find(visited->begin(), visited->end(), transfer);
+		if (visitedIt == visited->end()) {
+			_recursiveCreateModelGraphicPicture(transfer, visited, dotmap);
 		}
 	}
-	 */
-	dot += "  }\n}\n";
+	// combine all level subgraphs
+	unsigned int modelLevel = simulator->getModels()->current()->getLevel();
+	for (std::pair<unsigned int, std::list<std::string>*> dotpair : *dotmap) {
+		if (dotpair.first == modelLevel) {
+			dot += "\n  // model level\n";
+			for (std::string str : *dotpair.second) {
+				dot += str;
+			}
+		} else if (ui->checkBox_ShowLevels->isChecked()) {
+			dot += "\n\n // submodel level  " + std::to_string(dotpair.first) + "\n";
+			dot += " subgraph cluster_level_" + std::to_string(dotpair.first) + " { graph[style=solid];\n";
+			for (std::string str : *dotpair.second) {
+				dot += str;
+			}
+			dot += "\n }\n";
+		}
+	}
+	dot += "}\n";
 	std::string basefilename = "./_tempGraphicalModelRepresentation";
 	std::string dotfilename = basefilename + ".dot";
 	std::string pngfilename = basefilename + ".png";
@@ -247,7 +284,7 @@ bool MainWindow::_createModelGraphicPicture() {
 			ui->label_ModelGraphic->setScaledContents(false);
 			try {
 				//std::remove(dotfilename.c_str());
-				std::remove(pngfilename.c_str());
+				//std::remove(pngfilename.c_str());
 			} catch (...) {
 
 			}
@@ -256,6 +293,7 @@ bool MainWindow::_createModelGraphicPicture() {
 		}
 	} catch (...) {
 	}
+
 	return false;
 }
 
@@ -274,6 +312,7 @@ void MainWindow::_simulatorTraceHandler(TraceEvent e) {
 	else if (e.getTracelevel() == Util::TraceLevel::L4_warning)
 		ui->textEdit_Console->setTextColor(QColor::fromRgb(128, 0, 0));
 	else {
+
 		unsigned short grayVal = 20 * (static_cast<unsigned int> (e.getTracelevel()) - 5);
 		ui->textEdit_Console->setTextColor(QColor::fromRgb(grayVal, grayVal, grayVal));
 	}
@@ -283,6 +322,7 @@ void MainWindow::_simulatorTraceHandler(TraceEvent e) {
 }
 
 void MainWindow::_simulatorTraceErrorHandler(TraceErrorEvent e) {
+
 	std::cout << e.getText() << std::endl;
 	ui->textEdit_Console->setTextColor(QColor::fromRgb(255, 0, 0));
 	ui->textEdit_Console->append(QString::fromStdString(e.getText()));
@@ -294,6 +334,7 @@ void MainWindow::_simulatorTraceSimulationHandler(TraceSimulationEvent e) {
 	if (e.getText().find("Event {time=") != std::string::npos) {
 		ui->textEdit_Simulation->setTextColor(QColor::fromRgb(0, 0, 128));
 	} else {
+
 		unsigned short grayVal = 20 * (static_cast<unsigned int> (e.getTracelevel()) - 5);
 		ui->textEdit_Simulation->setTextColor(QColor::fromRgb(grayVal, grayVal, grayVal));
 	}
@@ -302,6 +343,7 @@ void MainWindow::_simulatorTraceSimulationHandler(TraceSimulationEvent e) {
 }
 
 void MainWindow::_simulatorTraceReportsHandler(TraceEvent e) {
+
 	std::cout << e.getText() << std::endl;
 	ui->textEdit_Reports->append(QString::fromStdString(e.getText()));
 	QCoreApplication::processEvents();
@@ -751,6 +793,7 @@ void MainWindow::on_actionCheck_triggered() {
 }
 
 void MainWindow::on_actionAbout_triggered() {
+
 	QMessageBox::about(this, "About Genesys", "Genesys is a result of teaching and research activities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics and simulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesys development he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of that tool, including its graphical interface. Genesys allowed the inclusion of new simulation components through dynamic link libraries and also the parallel execution of simulation models in a distributed environment. The development of Genesys continued until 2009, when the professor stopped teaching systems simulation classes. Ten years later the professor starts again to teach systems simulation classes and to carry out scientific research in the area. So in 2018 Genesys is reborn, with new language and programming techniques, and even more ambitious goals.");
 }
 
@@ -781,6 +824,7 @@ void MainWindow::on_checkBox_ShowInternals_stateChanged(int arg1) {
 }
 
 void MainWindow::on_horizontalSlider_Zoom_valueChanged(int value) {
+
 	double factor = ((double) value / 100.0)*(2 - 0.5) + 0.5;
 	double scaleFactor = 1.0;
 	Q_ASSERT(ui->label_ModelGraphic->pixmap());
@@ -800,14 +844,17 @@ void MainWindow::on_horizontalSlider_Zoom_valueChanged(int value) {
 }
 
 void MainWindow::on_checkBox_ShowRecursive_stateChanged(int arg1) {
+
 	bool result = _createModelGraphicPicture();
 }
 
 void MainWindow::on_actionGet_Involved_triggered() {
+
 	QMessageBox::about(this, "Get Inveolved", "Genesys is a free open-source simulator (and tools) available at 'https://github.com/rlcancian/2019_2022_GenESyS'. Help us by submiting your pull requests containing code improvements.");
 }
 
 void MainWindow::on_checkBox_ShowLevels_stateChanged(int arg1) {
+
 	bool result = _createModelGraphicPicture();
 }
 
