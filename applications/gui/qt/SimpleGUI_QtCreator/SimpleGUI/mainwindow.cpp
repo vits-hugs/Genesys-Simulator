@@ -128,7 +128,7 @@ std::string MainWindow::_adjustName(std::string name) {
 	return strReplace(name, ".", "_");
 }
 
-void MainWindow::_insertTextInDot(std::string text, unsigned int compLevel, std::map<unsigned int, std::list<std::string>*>* dotmap, bool isNode) {
+void MainWindow::_insertTextInDot(std::string text, unsigned int compLevel, unsigned int compRank, std::map<unsigned int, std::list<std::string>*>* dotmap, bool isNode) {
 	if (dotmap->find(compLevel) == dotmap->end()) {
 		dotmap->insert({compLevel, new std::list<std::string>()});
 	}
@@ -149,6 +149,12 @@ void MainWindow::_recursiveCreateModelGraphicPicture(ModelDataDefinition* compon
 		std::string nodeDataDefAttached = "shape=record, fontsize=10, color=gray50, fontcolor=gray50, style=filled, fillcolor=darkolivegreen3";
 		std::string edgeDataDefInternal = "style=dashed, arrowhead=\"diamond\", color=gray55, fontcolor=gray55, fontsize=7";
 		std::string edgeDataDefAttached = "style=dashed, arrowhead=\"ediamond\", color=gray50, fontcolor=gray50, fontsize=7";
+		unsigned int rankComponent = 1;
+		unsigned int rankComponentOtherLevel = 10;
+		unsigned int rankDataDefInternal = 0;
+		unsigned int rankDataDefAttached = 2;
+		unsigned int rankDataDefRecursive = 3;
+		unsigned int rankEdge = 5;
 	} DOT;
 	visited->insert(visited->end(), componentOrData);
 	std::string text;
@@ -164,11 +170,11 @@ void MainWindow::_recursiveCreateModelGraphicPicture(ModelDataDefinition* compon
 			visitedIt = std::find(visited->begin(), visited->end(), parentComponentSuperLevel);
 			if (visitedIt == visited->end()) {
 				text = "  " + _adjustName(parentComponentSuperLevel->getName()) + " [" + DOT.nodeComponent + ", label=\"" + parentComponentSuperLevel->getClassname() + "|" + parentComponentSuperLevel->getName() + "\"]" + ";\n";
-				_insertTextInDot(text, level, dotmap, true);
+				_insertTextInDot(text, level, DOT.rankComponentOtherLevel, dotmap, true);
 			}
 		} else {
 			text = "  " + _adjustName(componentOrData->getName()) + " [" + DOT.nodeComponent + ", label=\"" + componentOrData->getClassname() + "|" + componentOrData->getName() + "\"]" + ";\n";
-			_insertTextInDot(text, level, dotmap, true);
+			_insertTextInDot(text, level, DOT.rankComponent, dotmap, true);
 		}
 	}
 	//
@@ -187,7 +193,7 @@ void MainWindow::_recursiveCreateModelGraphicPicture(ModelDataDefinition* compon
 			if (visitedIt == visited->end()) {
 				if (dynamic_cast<ModelComponent*> (dataPair.second) == nullptr) {
 					text = "  " + dataname + " [" + DOT.nodeDataDefInternal + ", label=\"" + dataPair.second->getClassname() + "|" + dataPair.second->getName() + "\"]" + ";\n";
-					_insertTextInDot(text, level, dotmap, true);
+					_insertTextInDot(text, level, DOT.rankDataDefInternal, dotmap, true);
 					if (ui->checkBox_ShowRecursive->isChecked()) {
 						_recursiveCreateModelGraphicPicture(dataPair.second, visited, dotmap);
 					}
@@ -195,7 +201,7 @@ void MainWindow::_recursiveCreateModelGraphicPicture(ModelDataDefinition* compon
 			}
 			if (dataPair.second->getLevel() == modellevel || ui->checkBox_ShowLevels->isChecked()) {
 				text = "    " + dataname + "->" + _adjustName(componentName) + " [" + DOT.edgeDataDefInternal + ", label=\"" + dataPair.first + "\"];\n";
-				_insertTextInDot(text, modellevel, dotmap);
+				_insertTextInDot(text, modellevel, DOT.rankEdge, dotmap);
 			}
 		}
 	}
@@ -207,14 +213,14 @@ void MainWindow::_recursiveCreateModelGraphicPicture(ModelDataDefinition* compon
 			if (visitedIt == visited->end()) {
 				if (dynamic_cast<ModelComponent*> (dataPair.second) == nullptr) {
 					text = "  " + dataname + " [" + DOT.nodeDataDefAttached + ", label=\"" + dataPair.second->getClassname() + "|" + dataPair.second->getName() + "\"]" + ";\n";
-					_insertTextInDot(text, level, dotmap, true);
+					_insertTextInDot(text, level, DOT.rankDataDefAttached, dotmap, true);
 				}
 				if (ui->checkBox_ShowRecursive->isChecked()) {
 					_recursiveCreateModelGraphicPicture(dataPair.second, visited, dotmap);
 				}
 			}
 			text = "    " + dataname + "->" + _adjustName(componentName) + " [" + DOT.edgeDataDefAttached + ", label=\"" + dataPair.first + "\"];\n";
-			_insertTextInDot(text, modellevel, dotmap);
+			_insertTextInDot(text, modellevel, DOT.rankEdge, dotmap);
 		}
 	}
 	ModelComponent* component = dynamic_cast<ModelComponent*> (componentOrData);
@@ -228,9 +234,8 @@ void MainWindow::_recursiveCreateModelGraphicPicture(ModelDataDefinition* compon
 				_recursiveCreateModelGraphicPicture(connection->first, visited, dotmap);
 			}
 			if (connection->first->getLevel() == modellevel || ui->checkBox_ShowLevels->isChecked()) {
-				//std::cout << "CONEXAO COM " << connection->first->getName() << " nível " << connection->first->getLevel() << std::endl;
 				text = "    " + _adjustName(componentName) + "->" + _adjustName(connection->first->getName()) + "[" + DOT.edgeComponent + "];\n";
-				_insertTextInDot(text, modellevel, dotmap);
+				_insertTextInDot(text, modellevel, DOT.rankComponent, dotmap);
 			}
 		}
 	}
@@ -239,7 +244,7 @@ void MainWindow::_recursiveCreateModelGraphicPicture(ModelDataDefinition* compon
 bool MainWindow::_createModelGraphicPicture() {
 	bool res = this->_setSimulationModelBasedOnText();
 	std::string dot = "digraph G {\n";
-	dot += "  compound=true; rankdir=LR;\n";
+	dot += "  compound=true; rankdir=LR; \n";
 	std::map<unsigned int, std::list<std::string>*>* dotmap = new std::map<unsigned int, std::list<std::string>*>();
 
 	std::list<SourceModelComponent*>* sources = simulator->getModels()->current()->getComponents()->getSourceComponents();

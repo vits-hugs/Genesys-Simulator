@@ -98,7 +98,7 @@ private:
     bool _setSimulationModelBasedOnText();
     bool _createModelGraphicPicture();
 	std::string _adjustName(std::string name);
-	void _insertTextInDot(std::string text, unsigned int compLevel, std::map<unsigned int, std::list<std::string>*>* dotmap, bool isNode = false);
+	void _insertTextInDot(std::string text, unsigned int compLevel, unsigned int compRank, std::map<unsigned int, std::list<std::string>*>* dotmap, bool isNode = false);
 	void _recursiveCreateModelGraphicPicture(ModelDataDefinition* componentOrData, std::list<ModelDataDefinition*>* visited, std::map<unsigned int, std::list<std::string>*>* dotmap);
 private:
     Ui::MainWindow *ui;
