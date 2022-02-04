@@ -41,6 +41,14 @@ bool ModelDataDefinition::hasChanged() const {
 	return _hasChanged;
 }
 
+unsigned int ModelDataDefinition::getModelLevel() const {
+	return _modelLevel;
+}
+
+void ModelDataDefinition::setModelLevel(unsigned int _modelLevel) {
+	this->_modelLevel = _modelLevel;
+}
+
 //ModelDataDefinition::ModelDataDefinition(const ModelDataDefinition &orig) {
 //this->_parentModel = orig->_parentModel;
 //this->_name = "copy_of_" + orig->_name;

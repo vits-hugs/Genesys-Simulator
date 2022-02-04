@@ -49,6 +49,7 @@ int Smart_Process::main(int argc, char** argv) {
 	process->getConnections()->insert(dispose);
 	// set options, save and simulate step-by-step (but no user interaction required)
 	model->getSimulation()->setReplicationLength(10);
+	model->getSimulation()->setNumberOfReplications(5);
 	model->save("./models/Smart_Process.gen");
 	do {
 		model->getSimulation()->step();

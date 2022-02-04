@@ -29,10 +29,10 @@
 ModelSimulation::ModelSimulation(Model* model) {
 	_model = model;
 	_info = model->getInfos();
-	_statsCountersSimulation->setSortFunc([](const ModelDataDefinition* a, const ModelDataDefinition * b) {
+	_cstatsAndCountersSimulation->setSortFunc([](const ModelDataDefinition* a, const ModelDataDefinition * b) {
 		return a->getId() < b->getId();
 	});
-	_simulationReporter = new TraitsKernel<SimulationReporter_if>::Implementation(this, model, this->_statsCountersSimulation);
+	_simulationReporter = new TraitsKernel<SimulationReporter_if>::Implementation(this, model, this->_cstatsAndCountersSimulation);
 }
 
 std::string ModelSimulation::show() {
@@ -177,61 +177,54 @@ void ModelSimulation::_actualizeSimulationStatistics() {
 	const std::string UtilTypeOfStatisticsCollector = Util::TypeOf<StatisticsCollector>();
 	const std::string UtilTypeOfCounter = Util::TypeOf<Counter>();
 
-	StatisticsCollector *sc, *scSim;
+	StatisticsCollector *cstatModel, *cstatSimulation;
+	// runs over all StatisticCollectors in the model and create the equivalent for the entire simulation
 	List<ModelDataDefinition*>* cstats = _model->getDataManager()->getDataDefinitionList(Util::TypeOf<StatisticsCollector>());
-	for (std::list<ModelDataDefinition*>::iterator itMod = cstats->list()->begin(); itMod != cstats->list()->end(); itMod++) {
-		sc = dynamic_cast<StatisticsCollector*> ((*itMod));
-		scSim = nullptr;
-		for (std::list<ModelDataDefinition*>::iterator itSim = _statsCountersSimulation->list()->begin(); itSim != _statsCountersSimulation->list()->end(); itSim++) {
-			if ((*itSim)->getClassname() == UtilTypeOfStatisticsCollector) {
-				if ((*itSim)->getName() == _cte_stCountSimulNamePrefix + sc->getName() && dynamic_cast<StatisticsCollector*> (*itSim)->getParent() == sc->getParent()) { // found
-					scSim = dynamic_cast<StatisticsCollector*> (*itSim);
-					break;
+	for (ModelDataDefinition* data : *cstats->list()) {
+		cstatModel = dynamic_cast<StatisticsCollector*> (data); // ((*itMod));
+		cstatSimulation = nullptr;
+		//for (std::list<ModelDataDefinition*>::iterator itSim = _statsCountersSimulation->list()->begin(); itSim != _statsCountersSimulation->list()->end(); itSim++) {
+		for (ModelDataDefinition* datasim : *_cstatsAndCountersSimulation->list()) {
+			//if ((*itSim)->getClassname() == UtilTypeOfStatisticsCollector) {
+			if (datasim->getClassname() == UtilTypeOfStatisticsCollector) {
+				//if ((*itSim)->getName() == _cte_stCountSimulNamePrefix + sc->getName() && dynamic_cast<StatisticsCollector*> (*itSim)->getParent() == sc->getParent()) { // found
+				if (datasim->getName() == _cte_stCountSimulNamePrefix + cstatModel->getName()) {
+					if (dynamic_cast<StatisticsCollector*> (datasim)->getParent() == cstatModel->getParent()) { // found
+						cstatSimulation = dynamic_cast<StatisticsCollector*> (datasim); // (*itSim);
+						break;
+					}
 				}
 			}
 		}
-		//scSim = dynamic_cast<StatisticsCollector*> (*(this->_statsCountersSimulation->find((*it))));
-		if (scSim == nullptr) {
-			// this is a cstat created during the last replication
-			//	    scSim = new StatisticsCollector(_model->elements(), sc->name(), sc->getParent());
-			_statsCountersSimulation->insert(scSim);
+		if (cstatSimulation == nullptr) {
+			// this is a new cstat created during the last replication and didn't existed in simulation before
+			cstatSimulation = new StatisticsCollector(_model, _cte_stCountSimulNamePrefix + cstatModel->getName(), cstatModel->getParent(), false);
+			_cstatsAndCountersSimulation->insert(cstatSimulation);
 		}
-		assert(scSim != nullptr);
-		scSim->getStatistics()->getCollector()->addValue(sc->getStatistics()->average());
+		assert(cstatSimulation != nullptr);
+		// actualize simulation cstat statistics by collecting the new value from the model/replication stat
+		cstatSimulation->getStatistics()->getCollector()->addValue(cstatModel->getStatistics()->average());
 	}
-	Counter *cnt; //, *cntSim;
+	// runs over all Counters in the model and create the equivalent for the entire simulation
+	Counter *counterModel; //, *cntSim;
 	List<ModelDataDefinition*>* counters = _model->getDataManager()->getDataDefinitionList(Util::TypeOf<Counter>());
-	for (std::list<ModelDataDefinition*>::iterator itMod = counters->list()->begin(); itMod != counters->list()->end(); itMod++) {
-		cnt = dynamic_cast<Counter*> ((*itMod));
-		//cntSim = nullptr;
-		scSim = nullptr;
-		for (std::list<ModelDataDefinition*>::iterator itSim = _statsCountersSimulation->list()->begin(); itSim != _statsCountersSimulation->list()->end(); itSim++) {
-			if ((*itSim)->getClassname() == UtilTypeOfStatisticsCollector) {
-				//_model->getTraceManager()->trace(Util::TraceLevel::simulation, (*itSim)->getName() + " == "+_cte_stCountSimulNamePrefix + cnt->getName());
-				if ((*itSim)->getName() == _cte_stCountSimulNamePrefix + cnt->getName() && dynamic_cast<StatisticsCollector*> (*itSim)->getParent() == cnt->getParent()) {
-					// found
-					scSim = dynamic_cast<StatisticsCollector*> (*itSim);
-					break;
+	for (ModelDataDefinition* countData : *counters->list()) {
+		counterModel = dynamic_cast<Counter*> (countData);
+		cstatSimulation = nullptr;
+		for (ModelDataDefinition* dataSim : *_cstatsAndCountersSimulation->list()) {
+			if (dataSim->getClassname() == UtilTypeOfStatisticsCollector) {
+				if (dataSim->getName() == _cte_stCountSimulNamePrefix + counterModel->getName()) {
+					if (dynamic_cast<StatisticsCollector*> (dataSim)->getParent() == counterModel->getParent()) {
+						cstatSimulation = dynamic_cast<StatisticsCollector*> (dataSim);
+						break;
+					}
 				}
 			}
-			/*
-			if ((*itSim)->getTypename() == UtilTypeOfCounter) {
-			if ((*itSim)->getName() == _cte_stCountSimulNamePrefix + cnt->getName() && dynamic_cast<Counter*> (*itSim)->getParent() == cnt->getParent()) {
-				// found
-				cntSim = dynamic_cast<Counter*> (*itSim);
-				break;
-			}
-			}
-			 */
 		}
-		/*
-		assert(cntSim != nullptr);
-		cntSim->incCountValue(cnt->getCountValue());
-		 */
-		assert(scSim != nullptr);
-		scSim->getStatistics()->getCollector()->addValue(cnt->getCountValue());
+		assert(cstatSimulation != nullptr);
+		// actualize simulation cstat statistics by collecting the new value from the model/replication stat
+		cstatSimulation->getStatistics()->getCollector()->addValue(counterModel->getCountValue());
 	}
-	//_model->getTracer()->trace(Util::TraceLevel::L2_results, "Simulation stats: " + std::to_string(this->_statsCountersSimulation->size()));
 }
 
 void ModelSimulation::_showSimulationHeader() {
@@ -278,30 +271,28 @@ void ModelSimulation::_initSimulation() {
 	_replicationTimeScaleFactorToBase = Util::TimeUnitConvert(this->_replicationLengthTimeUnit, this->_replicationBaseTimeUnit);
 	// copy all CStats and Counters (used in a replication) to CStats and counters for the whole simulation
 	// @TODO: Should not be CStats and Counters, but any modeldatum that generates report importation
-	this->_statsCountersSimulation->clear();
+	this->_cstatsAndCountersSimulation->clear();
 	StatisticsCollector* cstat;
 	List<ModelDataDefinition*>* cstats = _model->getDataManager()->getDataDefinitionList(Util::TypeOf<StatisticsCollector>());
-	for (std::list<ModelDataDefinition*>::iterator it = cstats->list()->begin(); it != cstats->list()->end(); it++) {
-		cstat = dynamic_cast<StatisticsCollector*> ((*it));
-		// this new CSat should NOT be inserted into the model
-		StatisticsCollector* newCStatSimul = new StatisticsCollector(_model, _cte_stCountSimulNamePrefix + cstat->getName(), cstat->getParent(), false);
-		//_model->elements()->remove(Util::TypeOf<StatisticsCollector>(), newCStatSimul); // remove from model, since it is automatically inserted by the constructor
-		this->_statsCountersSimulation->insert(newCStatSimul);
+	for (ModelDataDefinition* cstatData : *cstats->list()) {
+		cstat = dynamic_cast<StatisticsCollector*> (cstatData);
+		// this new CSat should NOT be inserted into the model (so the false as last argument)
+		StatisticsCollector* newCStatSimulation = new StatisticsCollector(_model, _cte_stCountSimulNamePrefix + cstat->getName(), cstat->getParent(), false);
+		this->_cstatsAndCountersSimulation->insert(newCStatSimulation);
 	}
 	// copy all Counters (used in a replication) to Counters for the whole simulation
 	// @TODO: Counters in replication should be converted into CStats in simulation. Each value counted in a replication should be added in a CStat for Stats.
 	Counter* counter;
 	List<ModelDataDefinition*>* counters = _model->getDataManager()->getDataDefinitionList(Util::TypeOf<Counter>());
-	for (std::list<ModelDataDefinition*>::iterator it = counters->list()->begin(); it != counters->list()->end(); it++) {
-		counter = dynamic_cast<Counter*> ((*it));
-		// adding a counter
-		/*
+	for (ModelDataDefinition* counterData : *counters->list()) {
+		counter = dynamic_cast<Counter*> (counterData);
+		/* // we do NOT add a counter in the simulation. We add a CStat that collect statistics about the Counter
 		Counter* newCountSimul = new Counter(_cte_stCountSimulNamePrefix + counter->getName(), counter->getParent());
 		this->_statsCountersSimulation->insert(newCountSimul);
 		 */
 		// addin a cstat (to stat the counts)
-		StatisticsCollector* newCStatSimul = new StatisticsCollector(_model, _cte_stCountSimulNamePrefix + counter->getName(), counter->getParent(), false);
-		this->_statsCountersSimulation->insert(newCStatSimul);
+		StatisticsCollector* newCStatSimulation = new StatisticsCollector(_model, _cte_stCountSimulNamePrefix + counter->getName(), counter->getParent(), false);
+		this->_cstatsAndCountersSimulation->insert(newCStatSimulation);
 	}
 	_simulationIsInitiated = true; // @TODO Check the uses of _simulationIsInitiated and when it should be set to false
 	_replicationIsInitiaded = false;

@@ -15,8 +15,8 @@ EQ            = =
 CC            = gcc
 CXX           = g++
 DEFINES       = -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
-CFLAGS        = -pipe -g -D_REENTRANT -fPIC $(DEFINES)
-CXXFLAGS      = -pipe -g -D_REENTRANT -fPIC $(DEFINES)
+CFLAGS        = -pipe -g -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
+CXXFLAGS      = -pipe -g -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
 INCPATH       = -Inbproject -I. -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
 QMAKE         = /usr/lib/qt5/bin/qmake
 DEL_FILE      = rm -f
@@ -1629,7 +1629,7 @@ compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
-	g++ -pipe -g -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
+	g++ -pipe -g -Wall -Wextra -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
 compiler_moc_header_make_all: moc_CodeEditor.cpp moc_mainwindow.cpp
 compiler_moc_header_clean:
@@ -1991,6 +1991,7 @@ build/Debug/GNU-Linux/Smart_AssignWriteSeizes.o: examples/smarts/Smart_AssignWri
 		plugins/components/Release.h \
 		plugins/components/Assign.h \
 		kernel/simulator/Attribute.h \
+		plugins/data/AssignmentItem.h \
 		plugins/data/Variable.h \
 		plugins/components/Record.h \
 		plugins/components/Decide.h \
@@ -2045,6 +2046,7 @@ build/Debug/GNU-Linux/Smart_BatchSeparate.o: examples/smarts/Smart_BatchSeparate
 		plugins/components/Dispose.h \
 		kernel/simulator/SinkModelComponent.h \
 		plugins/components/Assign.h \
+		plugins/data/AssignmentItem.h \
 		plugins/data/Variable.h \
 		plugins/components/Batch.h \
 		plugins/data/Queue.h \
@@ -2711,6 +2713,9 @@ build/Debug/GNU-Linux/Smart_RouteStation.o: examples/smarts/Smart_RouteStation.c
 		kernel/simulator/Counter.h \
 		plugins/components/Route.h \
 		plugins/data/Station.h \
+		plugins/data/Sequence.h \
+		plugins/data/Label.h \
+		plugins/data/AssignmentItem.h \
 		plugins/components/Enter.h \
 		plugins/components/Delay.h \
 		plugins/components/Dispose.h \
@@ -2875,6 +2880,9 @@ build/Debug/GNU-Linux/Smart_Sequence.o: examples/smarts/Smart_Sequence.cpp examp
 		kernel/simulator/Counter.h \
 		plugins/components/Route.h \
 		plugins/data/Station.h \
+		plugins/data/Sequence.h \
+		plugins/data/Label.h \
+		plugins/data/AssignmentItem.h \
 		plugins/components/Enter.h \
 		plugins/components/Leave.h \
 		plugins/components/Dispose.h \
@@ -2882,9 +2890,7 @@ build/Debug/GNU-Linux/Smart_Sequence.o: examples/smarts/Smart_Sequence.cpp examp
 		plugins/components/Delay.h \
 		plugins/components/Assign.h \
 		kernel/simulator/Attribute.h \
-		plugins/data/Variable.h \
-		plugins/data/Sequence.h \
-		plugins/data
+		plugins/data/Variable.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Smart_Sequence.o examples/smarts/Smart_Sequence.cpp
 
 build/Debug/GNU-Linux/AnElectronicAssemblyAndTestSystem.o: examples/teaching/AnElectronicAssemblyAndTestSystem.cpp examples/teaching/AnElectronicAssemblyAndTestSystem.h \
@@ -2936,6 +2942,7 @@ build/Debug/GNU-Linux/AnElectronicAssemblyAndTestSystem.o: examples/teaching/AnE
 		kernel/simulator/SinkModelComponent.h \
 		plugins/components/Assign.h \
 		kernel/simulator/Attribute.h \
+		plugins/data/AssignmentItem.h \
 		plugins/data/Variable.h \
 		plugins/components/Record.h \
 		plugins/components/Seize.h \
@@ -3004,6 +3011,7 @@ build/Debug/GNU-Linux/FullSimulationOfComplexModel.o: examples/teaching/FullSimu
 		plugins/components/Release.h \
 		plugins/components/Assign.h \
 		kernel/simulator/Attribute.h \
+		plugins/data/AssignmentItem.h \
 		plugins/data/Variable.h \
 		plugins/components/Record.h \
 		plugins/components/Decide.h
@@ -3066,10 +3074,13 @@ build/Debug/GNU-Linux/OperatingSystem02.o: examples/teaching/OperatingSystem02.c
 		plugins/components/Dispose.h \
 		kernel/simulator/SinkModelComponent.h \
 		plugins/components/Assign.h \
+		plugins/data/AssignmentItem.h \
 		plugins/data/Variable.h \
 		plugins/components/Decide.h \
 		plugins/components/Enter.h \
-		plugins/components/Route.h
+		plugins/components/Route.h \
+		plugins/data/Sequence.h \
+		plugins/data/Label.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/OperatingSystem02.o examples/teaching/OperatingSystem02.cpp
 
 build/Debug/GNU-Linux/OperatingSystem03.o: examples/teaching/OperatingSystem03.cpp examples/teaching/OperatingSystem03.h \
@@ -3129,10 +3140,13 @@ build/Debug/GNU-Linux/OperatingSystem03.o: examples/teaching/OperatingSystem03.c
 		plugins/components/Dispose.h \
 		kernel/simulator/SinkModelComponent.h \
 		plugins/components/Assign.h \
+		plugins/data/AssignmentItem.h \
 		plugins/data/Variable.h \
 		plugins/components/Decide.h \
 		plugins/components/Enter.h \
-		plugins/components/Route.h
+		plugins/components/Route.h \
+		plugins/data/Sequence.h \
+		plugins/data/Label.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/OperatingSystem03.o examples/teaching/OperatingSystem03.cpp
 
 build/Debug/GNU-Linux/Attribute.o: kernel/simulator/Attribute.cpp kernel/simulator/Attribute.h \
@@ -4017,6 +4031,7 @@ build/Debug/GNU-Linux/PluginConnectorDummyImpl1.o: kernel/simulator/PluginConnec
 		kernel/simulator/DefineGetterSetter.h \
 		kernel/simulator/SimulationControl.h \
 		kernel/simulator/Attribute.h \
+		plugins/data/AssignmentItem.h \
 		plugins/data/Variable.h \
 		plugins/components/Batch.h \
 		plugins/data/Queue.h \
@@ -4050,6 +4065,8 @@ build/Debug/GNU-Linux/PluginConnectorDummyImpl1.o: kernel/simulator/PluginConnec
 		plugins/components/Process.h \
 		plugins/components/Record.h \
 		plugins/components/Route.h \
+		plugins/data/Sequence.h \
+		plugins/data/Label.h \
 		plugins/components/Start.h \
 		plugins/components/Search.h \
 		plugins/components/Signal.h \
@@ -4063,10 +4080,7 @@ build/Debug/GNU-Linux/PluginConnectorDummyImpl1.o: kernel/simulator/PluginConnec
 		plugins/data/Formula.h \
 		plugins/data/Failure.h \
 		plugins/data/File.h \
-		plugins/data/Label.h \
 		plugins/data/Schedule.h \
-		plugins/data/Sequence.h \
-		plugins/data \
 		plugins/data/Storage.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/PluginConnectorDummyImpl1.o kernel/simulator/PluginConnectorDummyImpl1.cpp
 
@@ -4856,6 +4870,7 @@ build/Debug/GNU-Linux/Assign.o: plugins/components/Assign.cpp plugins/components
 		kernel/simulator/DefineGetterSetter.h \
 		kernel/simulator/SimulationControl.h \
 		kernel/simulator/Attribute.h \
+		plugins/data/AssignmentItem.h \
 		plugins/data/Variable.h \
 		kernel/simulator/Simulator.h \
 		kernel/simulator/LicenceManager.h \
@@ -5018,6 +5033,7 @@ build/Debug/GNU-Linux/Create.o: plugins/components/Create.cpp plugins/components
 		kernel/simulator/SimulationControl.h \
 		kernel/simulator/Attribute.h \
 		plugins/components/Assign.h \
+		plugins/data/AssignmentItem.h \
 		plugins/data/Variable.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Create.o plugins/components/Create.cpp
 
@@ -5815,8 +5831,11 @@ build/Debug/GNU-Linux/Route.o: plugins/components/Route.cpp plugins/components/R
 		kernel/statistics/Collector_if.h \
 		kernel/simulator/ModelDataManager.h \
 		kernel/simulator/ConnectionManager.h \
-		plugins/data/Station.h \
 		kernel/simulator/Counter.h \
+		plugins/data/Station.h \
+		plugins/data/Sequence.h \
+		plugins/data/Label.h \
+		plugins/data/AssignmentItem.h \
 		kernel/simulator/Model.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/ModelChecker_if.h \
@@ -5841,9 +5860,7 @@ build/Debug/GNU-Linux/Route.o: plugins/components/Route.cpp plugins/components/R
 		kernel/simulator/ModelManager.h \
 		kernel/simulator/ParserManager.h \
 		kernel/simulator/ExperimentManager.h \
-		kernel/simulator/SimulationExperiment.h \
-		plugins/data/Sequence.h \
-		plugins/data
+		kernel/simulator/SimulationExperiment.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Route.o plugins/components/Route.cpp
 
 build/Debug/GNU-Linux/Search.o: plugins/components/Search.cpp plugins/components/Search.h \
@@ -6518,8 +6535,8 @@ build/Debug/GNU-Linux/Sequence.o: plugins/data/Sequence.cpp plugins/data/Sequenc
 		kernel/simulator/StatisticsCollector.h \
 		kernel/statistics/Statistics_if.h \
 		kernel/statistics/Collector_if.h \
-		plugins/data \
-		kernel/simulator/Attribute.h \
+		plugins/data/Label.h \
+		plugins/data/AssignmentItem.h \
 		kernel/simulator/Model.h \
 		kernel/simulator/ModelComponent.h \
 		kernel/simulator/ConnectionManager.h \
@@ -6538,6 +6555,7 @@ build/Debug/GNU-Linux/Sequence.o: plugins/data/Sequence.cpp plugins/data/Sequenc
 		kernel/simulator/SimulationResponse.h \
 		kernel/simulator/DefineGetterSetter.h \
 		kernel/simulator/SimulationControl.h \
+		kernel/simulator/Attribute.h \
 		kernel/simulator/Simulator.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \

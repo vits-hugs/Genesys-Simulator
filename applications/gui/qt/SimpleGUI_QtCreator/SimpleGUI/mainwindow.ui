@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>877</width>
-    <height>606</height>
+    <width>988</width>
+    <height>673</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -54,7 +54,7 @@
            <enum>QTabWidget::East</enum>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tabModelText">
            <attribute name="icon">
@@ -88,8 +88,8 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>505</width>
-                 <height>156</height>
+                 <width>601</width>
+                 <height>221</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -203,18 +203,53 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QTextEdit" name="textEdit_Simulation">
-          <property name="font">
-           <font>
-            <pointsize>10</pointsize>
-           </font>
+         <widget class="QTabWidget" name="tabWidget">
+          <property name="tabPosition">
+           <enum>QTabWidget::East</enum>
           </property>
-          <property name="lineWrapMode">
-           <enum>QTextEdit::NoWrap</enum>
+          <property name="currentIndex">
+           <number>0</number>
           </property>
-          <property name="textInteractionFlags">
-           <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
-          </property>
+          <widget class="QWidget" name="tab_Simulation_Trace">
+           <attribute name="icon">
+            <iconset resource="simpleGUI_resources.qrc">
+             <normaloff>:/icons3/resources/icons/pack3/ico/movie.ico</normaloff>:/icons3/resources/icons/pack3/ico/movie.ico</iconset>
+           </attribute>
+           <attribute name="title">
+            <string>Trace</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <item>
+             <widget class="QTextEdit" name="textEdit_Simulation">
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="lineWrapMode">
+               <enum>QTextEdit::NoWrap</enum>
+              </property>
+              <property name="textInteractionFlags">
+               <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_Simulation_Event">
+           <attribute name="icon">
+            <iconset resource="simpleGUI_resources.qrc">
+             <normaloff>:/icons3/resources/icons/pack3/ico/table.ico</normaloff>:/icons3/resources/icons/pack3/ico/table.ico</iconset>
+           </attribute>
+           <attribute name="title">
+            <string>Event</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_8">
+            <item>
+             <widget class="QTableWidget" name="tableWidget"/>
+            </item>
+           </layout>
+          </widget>
          </widget>
         </item>
         <item>
@@ -288,7 +323,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>877</width>
+     <width>988</width>
      <height>24</height>
     </rect>
    </property>
@@ -326,6 +361,7 @@
     </property>
     <addaction name="actionAbout"/>
     <addaction name="actionLicence"/>
+    <addaction name="actionGet_Involved"/>
    </widget>
    <addaction name="menuModel"/>
    <addaction name="menuSimulation"/>
@@ -660,6 +696,18 @@
    </property>
    <property name="toolTip">
     <string>About Licence</string>
+   </property>
+  </action>
+  <action name="actionGet_Involved">
+   <property name="icon">
+    <iconset resource="simpleGUI_resources.qrc">
+     <normaloff>:/icons3/resources/icons/pack3/ico/user group.ico</normaloff>:/icons3/resources/icons/pack3/ico/user group.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Get Involved</string>
+   </property>
+   <property name="toolTip">
+    <string>Get Involved in Genesys</string>
    </property>
   </action>
  </widget>

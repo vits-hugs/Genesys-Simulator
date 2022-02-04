@@ -206,9 +206,11 @@ bool MainWindow::_createModelGraphicPicture() {
 	 */
 	dot += "}\n";
 	std::string basefilename = "./_tempGraphicalModelRepresentation";
+	std::string dotfilename = basefilename + ".dot";
+	std::string pngfilename = basefilename + ".png";
 	try {
 		std::ofstream savefile;
-		savefile.open(basefilename + ".dot", std::ofstream::out);
+		savefile.open(dotfilename, std::ofstream::out);
 		QString data = QString::fromStdString(dot);
 		QStringList strList = data.split(QRegExp("[\n]"), QString::SkipEmptyParts);
 		for (unsigned int i = 0; i < strList.size(); i++) {
@@ -216,21 +218,22 @@ bool MainWindow::_createModelGraphicPicture() {
 		}
 		savefile.close();
 		try {
-			std::remove(basefilename + ".png");
+			std::remove(pngfilename.c_str());
 		} catch (...) {
 
 		}
 		try {
-			system("dot -Tpng " + basefilename + ".dot -o " + basefilename++".png");
-			QPixmap pm("./_temp.png"); // <- path to image file
+			std::string command = "dot -Tpng " + dotfilename + " -o " + pngfilename;
+			system(command.c_str());
+			QPixmap pm(QString::fromStdString(pngfilename)); // <- path to image file
 			int w = ui->label_ModelGraphic->width();
 			int h = ui->label_ModelGraphic->height();
 			ui->label_ModelGraphic->setPixmap(pm); //.scaled(w, h, Qt::IgnoreAspectRatio));
 			ui->label_ModelGraphic->setScaledContents(false);
 			ui->label_GraphicMsg->setText("Done");
 			try {
-				std::remove(basefilename + ".dot");
-				std::remove(basefilename + ".png");
+				std::remove(dotfilename.c_str());
+				std::remove(pngfilename.c_str());
 			} catch (...) {
 
 			}
@@ -737,7 +740,6 @@ void MainWindow::on_actionCheck_triggered() {
 }
 
 void MainWindow::on_actionAbout_triggered() {
-
 	QMessageBox::about(this, "About Genesys", "Genesys is a result of teaching and research activities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics and simulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesys development he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of that tool, including its graphical interface. Genesys allowed the inclusion of new simulation components through dynamic link libraries and also the parallel execution of simulation models in a distributed environment. The development of Genesys continued until 2009, when the professor stopped teaching systems simulation classes. Ten years later the professor starts again to teach systems simulation classes and to carry out scientific research in the area. So in 2018 Genesys is reborn, with new language and programming techniques, and even more ambitious goals.");
 }
 
@@ -788,4 +790,8 @@ void MainWindow::on_horizontalSlider_Zoom_valueChanged(int value) {
 
 void MainWindow::on_checkBox_ShowRecursive_stateChanged(int arg1) {
 	bool result = _createModelGraphicPicture();
+}
+
+void MainWindow::on_actionGet_Involved_triggered() {
+	QMessageBox::about(this, "Get Inveolved", "Genesys is a free open-source simulator (and tools) available at 'https://github.com/rlcancian/2019_2022_GenESyS'. Help us by submiting your pull requests containing code improvements.");
 }

@@ -273,22 +273,27 @@ bool Seize::_check(std::string* errorMessage) {
 		i++;
 	}
 	// Check QueueableItem
-	if (_queueableItem->getQueueableType() == QueueableItem::QueueableType::QUEUE) {
-		Queue* queue = _queueableItem->getQueue();
-		if (queue == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
-			queue = _parentModel->getParentSimulator()->getPlugins()->newInstance<Queue>(_parentModel);
-			_queueableItem->setQueue(queue);
+	if (_queueableItem == nullptr) {
+		resultAll = false;
+		*errorMessage += "QueueableItem is missing";
+	} else {
+		if (_queueableItem->getQueueableType() == QueueableItem::QueueableType::QUEUE) {
+			Queue* queue = _queueableItem->getQueue();
+			if (queue == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+				queue = _parentModel->getParentSimulator()->getPlugins()->newInstance<Queue>(_parentModel);
+				_queueableItem->setQueue(queue);
+			}
+			_setAttachedData("QueueableItem", queue);
+			resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Queue>(), _queueableItem->getQueue(), "Queueable Queue", errorMessage);
+		} else if (_queueableItem->getQueueableType() == QueueableItem::QueueableType::SET) {
+			Set* set = _queueableItem->getSet();
+			if (set == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+				set = _parentModel->getParentSimulator()->getPlugins()->newInstance<Set>(_parentModel);
+				_queueableItem->setSet(set);
+			}
+			_setAttachedData("QueueableItem", set);
+			resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Set>(), _queueableItem->getSet(), "Queueable Set", errorMessage);
 		}
-		_setAttachedData("QueueableItem", queue);
-		resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Queue>(), _queueableItem->getQueue(), "Queueable Queue", errorMessage);
-	} else if (_queueableItem->getQueueableType() == QueueableItem::QueueableType::SET) {
-		Set* set = _queueableItem->getSet();
-		if (set == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
-			set = _parentModel->getParentSimulator()->getPlugins()->newInstance<Set>(_parentModel);
-			_queueableItem->setSet(set);
-		}
-		_setAttachedData("QueueableItem", set);
-		resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Set>(), _queueableItem->getSet(), "Queueable Set", errorMessage);
 	}
 
 	if (_saveAttribute != "") { // check if saveAttribute is an attribute

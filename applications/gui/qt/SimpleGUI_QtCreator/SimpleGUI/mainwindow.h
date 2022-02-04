@@ -66,6 +66,8 @@ private slots:
 
     void on_checkBox_ShowRecursive_stateChanged(int arg1);
 
+    void on_actionGet_Involved_triggered();
+
 private: // VIEW
 
 private: // trace handlers

@@ -50,26 +50,26 @@ void SimulationReporterDefaultImpl1::showReplicationStatistics() {
 	Util::IncIndent();
 	if (_simulation->isShowSimulationControlsInReport())
 		this->showSimulationControls();
-	// copy the ist of statistics and counters into a single new list
+	// copy the list of statistics and counters into a single new list
 	std::list<ModelDataDefinition*>* statisticsAndCounters = new std::list<ModelDataDefinition*>(*(_model->getDataManager()->getDataDefinitionList(UtilTypeOfStatisticsCollector)->list()));
 	std::list<ModelDataDefinition*>* counters = new std::list<ModelDataDefinition*>(*(_model->getDataManager()->getDataDefinitionList(UtilTypeOfCounter)->list()));
 	statisticsAndCounters->merge(*counters);
+	//statisticsAndCounters->insert(counters->list()->begin(), counters->list()->end());
 	// organizes statistics into a map of maps
 	std::map< std::string, std::map<std::string, std::list<ModelDataDefinition*>*>* >* mapMapTypeStat = new std::map<std::string, std::map<std::string, std::list<ModelDataDefinition*>*>*>();
 
-	for (std::list<ModelDataDefinition*>::iterator it = statisticsAndCounters->begin(); it != statisticsAndCounters->end(); it++) {
+	for (ModelDataDefinition* cstatOrCounter : *statisticsAndCounters) {
 		std::string parentName, parentTypename;
-		ModelDataDefinition* statOrCnt = (*it);
 		//std::cout << statOrCnt->getName() << ": " << statOrCnt->getTypename() << std::endl;
-		if ((*it)->getClassname() == UtilTypeOfStatisticsCollector) {
-			StatisticsCollector* stat = dynamic_cast<StatisticsCollector*> (statOrCnt);
-			parentName = stat->getParent()->getName();
-			parentTypename = stat->getParent()->getClassname();
+		if (cstatOrCounter->getClassname() == UtilTypeOfStatisticsCollector) {
+			StatisticsCollector* cstat = dynamic_cast<StatisticsCollector*> (cstatOrCounter);
+			parentName = cstat->getParent()->getName();
+			parentTypename = cstat->getParent()->getClassname();
 		} else {
-			if ((*it)->getClassname() == UtilTypeOfCounter) {
-				Counter* cnt = dynamic_cast<Counter*> (statOrCnt);
-				parentName = cnt->getParent()->getName();
-				parentTypename = cnt->getParent()->getClassname();
+			if (cstatOrCounter->getClassname() == UtilTypeOfCounter) {
+				Counter* counter = dynamic_cast<Counter*> (cstatOrCounter);
+				parentName = counter->getParent()->getName();
+				parentTypename = counter->getParent()->getClassname();
 
 			}
 		}
@@ -93,9 +93,11 @@ void SimulationReporterDefaultImpl1::showReplicationStatistics() {
 		// get the list and insert the stat in that list
 		std::list<ModelDataDefinition*>* listStatAndCount = (*mapIt).second;
 		assert(listStatAndCount != nullptr);
-		listStatAndCount->insert(listStatAndCount->end(), statOrCnt);
+		listStatAndCount->insert(listStatAndCount->end(), cstatOrCounter);
 		//_model->getTraceManager()->traceReport(parentTypename + " -> " + parentName + " -> " + stat->show());
 	}
+	//
+	//
 	// now runs over that map of maps showing the statistics
 	Util::IncIndent();
 	Util::IncIndent();

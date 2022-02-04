@@ -30,8 +30,9 @@ bool EventCompare(const Event* a, const Event * b) {
 	return a->getTime() < b->getTime();
 }
 
-Model::Model(Simulator* simulator) {
+Model::Model(Simulator* simulator, unsigned int level) {
 	_parentSimulator = simulator; // a simulator is the "parent" of a model
+	_level = level;
 	// 1:1 associations (no Traits)
 	_traceManager = simulator->getTracer(); // every model starts with the same tracer, unless a specific one is set
 	_modelInfo = new ModelInfo();
@@ -154,6 +155,7 @@ void Model::show() {
 }
 
 bool Model::insert(ModelDataDefinition* elemOrComp) {
+	elemOrComp->setModelLevel(_level);
 	ModelComponent* comp = dynamic_cast<ModelComponent*> (elemOrComp);
 	if (comp == nullptr) // it's a ModelDataDefinition
 		return this->getDataManager()->insert(elemOrComp);

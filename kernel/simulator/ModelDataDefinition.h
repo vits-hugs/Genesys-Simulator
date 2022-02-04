@@ -68,6 +68,8 @@ public:
 	std::map<std::string, ModelDataDefinition*>* getAttachedData() const;
 	//ModelDataDefinition* getInternalData(std::string key) const;
 	bool hasChanged() const;
+	unsigned int getModelLevel() const;
+    void setModelLevel(unsigned int _modelLevel);
 protected:
 	void _setInternalData(std::string key, ModelDataDefinition* child);
 	void _removeInternalDatas();
@@ -92,6 +94,7 @@ protected:
 	std::string _typename;
 	bool _reportStatistics;
 	bool _hasChanged;
+	unsigned int _modelLevel = 0; // the ID of parent component (submodel or process, for now) in the "superlevel"
 	Model* _parentModel;
 protected:
 	std::map<std::string, ModelDataDefinition*>* _internalData = new std::map<std::string, ModelDataDefinition*>();

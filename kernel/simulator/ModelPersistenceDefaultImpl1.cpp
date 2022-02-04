@@ -57,22 +57,25 @@ bool ModelPersistenceDefaultImpl1::save(std::string filename) {
 		// @TODO save modelSimulation fields (breakpoints and other stuff included?)
 		fields = _model->getSimulation()->saveInstance(saveDefaults);
 		simulationInfosToSave = _adjustFieldsToSave(fields);
+		unsigned int modelLevel = 0; // @TODO How get the level of the model?  _model->get
 		// save infras
 		modelElementsToSave = new std::list<std::string>();
 		std::list<std::string>* datadefinitionTypenames = _model->getDataManager()->getDataDefinitionClassnames();
 		const std::string UtilTypeOfCounter = Util::TypeOf<Counter>();
-		for (std::list<std::string>::iterator itTypenames = datadefinitionTypenames->begin(); itTypenames != datadefinitionTypenames->end(); itTypenames++) {
-			if ((*itTypenames) != Util::TypeOf<StatisticsCollector>() && (*itTypenames) != UtilTypeOfCounter) { // STATISTICSCOLLECTR and COUNTERs do NOT need to be saved
-				List<ModelDataDefinition*>* infras = _model->getDataManager()->getDataDefinitionList((*itTypenames));
-				_model->getTracer()->trace(Util::TraceLevel::L9_mostDetailed, "Writing elements of type \"" + (*itTypenames) + "\":");
+		for (std::string thisTypename : *datadefinitionTypenames) {
+			if (thisTypename != Util::TypeOf<StatisticsCollector>() && thisTypename != UtilTypeOfCounter) { // STATISTICSCOLLECTR and COUNTERs do NOT need to be saved
+				List<ModelDataDefinition*>* infras = _model->getDataManager()->getDataDefinitionList(thisTypename);
+				_model->getTracer()->trace(Util::TraceLevel::L9_mostDetailed, "Writing elements of type \"" + thisTypename + "\":");
 				Util::IncIndent();
 				{
-					for (std::list<ModelDataDefinition*>::iterator it = infras->list()->begin(); it != infras->list()->end(); it++) {
-						_model->getTracer()->trace(Util::TraceLevel::L9_mostDetailed, "Writing " + (*itTypenames) + " \"" + (*it)->getName() + "\"");
-						fields = (*it)->SaveInstance((*it));
-						Util::IncIndent();
-						modelElementsToSave->merge(*_adjustFieldsToSave(fields));
-						Util::DecIndent();
+					for (ModelDataDefinition* data : *infras->list()) {
+						if (data->getModelLevel() == modelLevel) {
+							_model->getTracer()->trace(Util::TraceLevel::L9_mostDetailed, "Writing " + thisTypename + " \"" + data->getName() + "\"");
+							fields = data->SaveInstance(data);
+							Util::IncIndent();
+							modelElementsToSave->merge(*_adjustFieldsToSave(fields));
+							Util::DecIndent();
+						}
 					}
 				}
 				Util::DecIndent();
@@ -84,11 +87,13 @@ bool ModelPersistenceDefaultImpl1::save(std::string filename) {
 		modelComponentsToSave = new std::list<std::string>();
 		Util::IncIndent();
 		{
-			for (std::list<ModelComponent*>::iterator it = _model->getComponents()->begin(); it != _model->getComponents()->end(); it++) {
-				fields = (*it)->SaveInstance((*it));
-				Util::IncIndent();
-				modelComponentsToSave->merge(*_adjustFieldsToSave(fields));
-				Util::DecIndent();
+			for (ModelComponent* component : *_model->getComponents()) {
+				if (component->getModelLevel() == modelLevel) {
+					fields = component->SaveInstance(component);
+					Util::IncIndent();
+					modelComponentsToSave->merge(*_adjustFieldsToSave(fields));
+					Util::DecIndent();
+				}
 			}
 		}
 		Util::DecIndent();

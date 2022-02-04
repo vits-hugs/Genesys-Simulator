@@ -43,7 +43,7 @@ class Simulator;
  */
 class Model {
 public:
-	Model(Simulator* simulator);
+	Model(Simulator* simulator, unsigned int level = 0);
 	virtual ~Model() = default;
 public: // model control
 	//void showReports();
@@ -99,6 +99,7 @@ private:
 	bool _automaticallyCreatesModelDataDefinitions; // default will come from Traits in the constructor
 private: // read only public access (gets)
 	Util::identification _id;
+	unsigned int _level = 0;
 	Simulator* _parentSimulator; /*! The parente of the model */
 	// 1:1 (associted classes)
 	TraceManager* _traceManager;

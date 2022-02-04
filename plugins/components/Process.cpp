@@ -102,9 +102,13 @@ void Process::_onDispatchEvent(Entity* entity) {
 void Process::_createInternalData() {
 	if (_seize == nullptr) {
 		PluginManager* plugins = _parentModel->getParentSimulator()->getPlugins();
+		// the following components are created into the "_id" model level (a submodel) and therefore will not be saved
 		_seize = plugins->newInstance<Seize>(_parentModel, getName() + ".Seize");
 		_delay = plugins->newInstance<Delay>(_parentModel, getName() + ".Delay");
 		_release = plugins->newInstance<Release>(_parentModel, getName() + ".Release");
+		_seize->setModelLevel(_id);
+		_delay->setModelLevel(_id);
+		_release->setModelLevel(_id);
 		_seize->getConnections()->insert(_delay);
 		_delay->getConnections()->insert(_release);
 		_internalData->insert({"Seize", _seize});
@@ -132,7 +136,7 @@ bool Process::_loadInstance(std::map<std::string, std::string>* fields) {
 
 std::map<std::string, std::string>* Process::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
-	// @TODO: not implemented yet. HOW TO AVOIND INTERNAL *COMPONENTS* TO BE SAVE BY THEIR OWN??
+	// @TODO: not implemented yet. HOW TO AVOID INTERNAL *COMPONENTS* TO BE SAVE BY THEIR OWN??
 	std::map<std::string, std::string>* seizefields = ModelComponent::SaveInstance(_seize);
 	return fields;
 }
