@@ -46,6 +46,21 @@ ModelComponent* Match::LoadInstance(Model* model, std::map<std::string, std::str
 
 void Match::_onDispatchEvent(Entity* entity, unsigned int inputNumber) {
 	Waiting* waiting = new Waiting(entity, _parentModel->getSimulation()->getSimulatedTime(), this);
+	if (_rule == Match::Rule::ByAttribute) {
+		double value = entity->getAttributeValue(_attributeName);
+		// std::map<Queue*, std::map<double, unsigned int>*>*
+		std::pair<Queue*, std::map<double, unsigned int>*> pair1;
+		while (_entitiesByAttrib->find(_queues->getAtRank(inputNumber)) == _entitiesByAttrib->end()) {
+			_entitiesByAttrib->insert({_queues->getAtRank(inputNumber), new std::map<double, unsigned int>()});
+		}
+		pair1 = *(_entitiesByAttrib->find(_queues->getAtRank(inputNumber)));
+		std::pair<double, unsigned int> pair2;
+		while (pair1.second->find(value) == pair1.second->end()) {
+			pair1.second->insert({value, 0});
+		}
+		pair2 = *(pair1.second->find(value));
+		pair2.second++;
+	}
 	_queues->getAtRank(inputNumber)->insertElement(waiting);
 	unsigned int matchSize = _parentModel->parseExpression(_matchSize);
 	unsigned int i = 0;
@@ -69,6 +84,9 @@ void Match::_onDispatchEvent(Entity* entity, unsigned int inputNumber) {
 		}
 	} else {
 		// by attribute
+		bool foundAll = true;
+		while (foundAll && i < _queues->size()) {
+		}
 	}
 }
 
@@ -87,7 +105,7 @@ std::map<std::string, std::string>* Match::_saveInstance(bool saveDefaultValues)
 	SaveField(fields, "rule", static_cast<int> (_rule), static_cast<int> (DEFAULT.rule), saveDefaultValues);
 	SaveField(fields, "matchSize", _matchSize, DEFAULT.matchSize, saveDefaultValues);
 	SaveField(fields, "attributeName", _attributeName, DEFAULT.attributeName, saveDefaultValues);
-	SaveField(fields, "queues", _queues->size(), 0, saveDefaultValues);
+	SaveField(fields, "queues", _queues->size(), 0u, saveDefaultValues);
 	return fields;
 }
 
@@ -133,12 +151,13 @@ bool Match::_check(std::string * errorMessage) {
 void Match::_createInternalData() {
 	while (_queues->size() > _numberOfQueues) {
 		this->_removeInternalData(_queues->last()->getName());
+		_internalData->erase(_queues->last()->getName());
 		_queues->remove(_queues->last());
 	}
 	while (_queues->size() < _numberOfQueues) {
 		Queue* newQueue = _parentModel->getParentSimulator()->getPlugins()->newInstance<Queue>(_parentModel, getName() + ".Queue" + std::to_string(_queues->size()));
-		this->_internalData(newQueue->getName(), newQueue);
 		_queues->insert(newQueue);
+		_internalData->insert({newQueue->getName(), newQueue});
 	}
 }
 

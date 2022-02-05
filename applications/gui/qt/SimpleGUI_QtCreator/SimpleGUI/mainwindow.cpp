@@ -21,8 +21,12 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(textCodeEdit_Model, SIGNAL(textChanged()), this, SLOT(on_textCodeEdit_Model_textChanged()));
 	// simulation trable
 	QStringList headers;
-	headers << tr("Time") << tr("Component") << tr("Entity") << tr("Attributes");
+	headers << tr("Time") << tr("Component") << tr("Entity");
 	ui->tableWidget_Simulation_Event->setHorizontalHeaderLabels(headers);
+	ui->tableWidget_Simulation_Event->setRowCount(0);
+	ui->tableWidget_Simulation_Event->horizontalHeader()->setStretchLastSection(true);
+
+	ui->tableWidget_Simulation_Event->setContentsMargins(1, 0, 1, 0);
 	//ui->treeWidget_Plugins->setVisible(false);
 	simulator = new Simulator();
 	simulator->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
@@ -35,6 +39,7 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 MainWindow::~MainWindow() {
+
 	delete ui;
 }
 
@@ -64,6 +69,7 @@ void MainWindow::_actualizeWidgets() {
 	ui->tabSimulation->setEnabled(opened);
 	ui->tabReport->setEnabled(opened);
 	if (!opened) {
+
 		_clearModelEditors();
 	}
 }
@@ -72,6 +78,7 @@ void MainWindow::_actualizeModelTextHasChanged(bool hasChanged) {
 	if (_textModelHasChanged != hasChanged) {
 		QString text = "Model";
 		if (hasChanged) {
+
 			text += "*";
 		}
 		ui->tabWidgetModel->setTabText(0, text);
@@ -81,6 +88,7 @@ void MainWindow::_actualizeModelTextHasChanged(bool hasChanged) {
 }
 
 void MainWindow::_insertCommandInConsole(std::string text) {
+
 	ui->textEdit_Console->setTextColor(QColor::fromRgb(0, 128, 0));
 	QFont font(ui->textEdit_Console->font());
 	font.setBold(true);
@@ -92,6 +100,7 @@ void MainWindow::_insertCommandInConsole(std::string text) {
 }
 
 void MainWindow::_clearModelEditors() {
+
 	textCodeEdit_Model->clear();
 	ui->textEdit_Simulation->clear();
 	ui->textEdit_Reports->clear();
@@ -102,6 +111,7 @@ bool MainWindow::_checkStartSimulation() {
 	if (res) {
 		ModelSimulation* sim = simulator->getModels()->current()->getSimulation();
 		if (!sim->isPaused() && !sim->isRunning()) {
+
 			ui->textEdit_Simulation->clear();
 			ui->textEdit_Reports->clear();
 		}
@@ -123,6 +133,7 @@ bool MainWindow::_setSimulationModelBasedOnText() {
 		}
 		model = simulator->getModels()->current();
 		if (model != nullptr) {
+
 			_setOnEventHandlers();
 		}
 	}
@@ -130,6 +141,7 @@ bool MainWindow::_setSimulationModelBasedOnText() {
 }
 
 std::string MainWindow::_adjustName(std::string name) {
+
 	return strReplace(name, ".", "_");
 }
 
@@ -145,6 +157,7 @@ void MainWindow::_insertTextInDot(std::string text, unsigned int compLevel, unsi
 	if (isNode) {
 		dotPair2.second->insert(dotPair2.second->begin(), text);
 	} else {
+
 		dotPair2.second->insert(dotPair2.second->end(), text);
 	}
 }
@@ -252,6 +265,7 @@ void MainWindow::_recursiveCreateModelGraphicPicture(ModelDataDefinition* compon
 				_recursiveCreateModelGraphicPicture(connection->first, visited, dotmap);
 			}
 			if (connection->first->getLevel() == modellevel || ui->checkBox_ShowLevels->isChecked()) {
+
 				text = "    " + _adjustName(componentName) + "->" + _adjustName(connection->first->getName()) + "[" + DOT.edgeComponent + "];\n";
 				_insertTextInDot(text, modellevel, DOT.rankEdge, dotmap);
 			}
@@ -407,31 +421,43 @@ void MainWindow::_simulatorTraceSimulationHandler(TraceSimulationEvent e) {
 }
 
 void MainWindow::_simulatorTraceReportsHandler(TraceEvent e) {
+
 	std::cout << e.getText() << std::endl;
 	ui->textEdit_Reports->append(QString::fromStdString(e.getText()));
 	QCoreApplication::processEvents();
 }
 
 void MainWindow::_onReplicationStartHandler(SimulationEvent * re) {
+
 	ModelSimulation* sim = simulator->getModels()->current()->getSimulation();
 	QString text = QString::fromStdString(std::to_string(sim->getCurrentReplicationNumber())) + "/" + QString::fromStdString(std::to_string(sim->getNumberOfReplications()));
 	ui->label_ReplicationNum->setText(text);
+	int row = ui->tableWidget_Simulation_Event->rowCount();
+	ui->tableWidget_Simulation_Event->setRowCount(row + 1);
+	QTableWidgetItem* newItem;
+	newItem = new QTableWidgetItem(QString::fromStdString("Replication " + std::to_string(re->getCurrentReplicationNumber())));
+	ui->tableWidget_Simulation_Event->setItem(row, 2, newItem);
+
 	QCoreApplication::processEvents();
 }
 
 void MainWindow::_onSimulationStartHandler(SimulationEvent * re) {
+
 	_actualizeWidgets();
 	ui->progressBarSimulation->setMaximum(simulator->getModels()->current()->getSimulation()->getReplicationLength());
 	ui->tabWidgetModel->setCurrentIndex(1);
+	ui->tableWidget_Simulation_Event->setRowCount(1);
 	QCoreApplication::processEvents();
 }
 
 void MainWindow::_onSimulationPausedHandler(SimulationEvent * re) {
+
 	_actualizeWidgets();
 	QCoreApplication::processEvents();
 }
 
 void MainWindow::_onSimulationResumeHandler(SimulationEvent * re) {
+
 	_actualizeWidgets();
 	ui->tabWidgetModel->setCurrentIndex(1);
 	QCoreApplication::processEvents();
@@ -441,12 +467,25 @@ void MainWindow::_onSimulationEndHandler(SimulationEvent * re) {
 	_actualizeWidgets();
 	ui->tabWidgetModel->setCurrentIndex(2);
 	for (unsigned int i = 0; i < 10; i++) {
+
 		QCoreApplication::processEvents();
 	}
 }
 
 void MainWindow::_onProcessEventHandler(SimulationEvent * re) {
 	ui->progressBarSimulation->setValue(simulator->getModels()->current()->getSimulation()->getSimulatedTime());
+	int row = ui->tableWidget_Simulation_Event->rowCount();
+
+	if (row > 1)
+		ui->tableWidget_Simulation_Event->setRowCount(row + 1);
+	QTableWidgetItem * newItem;
+	newItem = new QTableWidgetItem(QString::fromStdString(std::to_string(re->getCurrentEvent()->getTime())));
+	ui->tableWidget_Simulation_Event->setItem(row, 0, newItem);
+	newItem = new QTableWidgetItem(QString::fromStdString(re->getCurrentEvent()->getComponent()->getName()));
+	ui->tableWidget_Simulation_Event->setItem(row, 1, newItem);
+	newItem = new QTableWidgetItem(QString::fromStdString(re->getCurrentEvent()->getEntity()->show()));
+	ui->tableWidget_Simulation_Event->setItem(row, 2, newItem);
+	//ui->tableWidget_Simulation_Event
 	QCoreApplication::processEvents();
 }
 
