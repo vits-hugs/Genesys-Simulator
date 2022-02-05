@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "../../../../../kernel/simulator/SinkModelComponent.h"
 #include <string>
 #include <fstream>
 #include <streambuf>
@@ -18,6 +19,10 @@ MainWindow::MainWindow(QWidget *parent)
 	textCodeEdit_Model = new CodeEditor(ui->tabModelText);
 	layout->addWidget(textCodeEdit_Model);
 	connect(textCodeEdit_Model, SIGNAL(textChanged()), this, SLOT(on_textCodeEdit_Model_textChanged()));
+	// simulation trable
+	QStringList headers;
+	headers << tr("Time") << tr("Component") << tr("Entity") << tr("Attributes");
+	ui->tableWidget_Simulation_Event->setHorizontalHeaderLabels(headers);
 	//ui->treeWidget_Plugins->setVisible(false);
 	simulator = new Simulator();
 	simulator->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
@@ -128,33 +133,40 @@ std::string MainWindow::_adjustName(std::string name) {
 	return strReplace(name, ".", "_");
 }
 
-void MainWindow::_insertTextInDot(std::string text, unsigned int compLevel, unsigned int compRank, std::map<unsigned int, std::list<std::string>*>* dotmap, bool isNode) {
+void MainWindow::_insertTextInDot(std::string text, unsigned int compLevel, unsigned int compRank, std::map<unsigned int, std::map<unsigned int, std::list<std::string>*>*>* dotmap, bool isNode) {
 	if (dotmap->find(compLevel) == dotmap->end()) {
-		dotmap->insert({compLevel, new std::list<std::string>()});
+		dotmap->insert({compLevel, new std::map<unsigned int, std::list<std::string>*>()});
 	}
-	std::pair<unsigned int, std::list<std::string>*> dotPair = (*dotmap->find(compLevel));
-	if (isNode)
-		dotPair.second->insert(dotPair.second->begin(), text);
-	else
-		dotPair.second->insert(dotPair.second->end(), text);
+	std::pair<unsigned int, std::map<unsigned int, std::list<std::string>*>*> dotPair = (*dotmap->find(compLevel));
+	if (dotPair.second->find(compRank) == dotPair.second->end()) {
+		dotPair.second->insert({compRank, new std::list<std::string>()});
+	}
+	std::pair<unsigned int, std::list<std::string>*> dotPair2 = *(dotPair.second->find(compRank));
+	if (isNode) {
+		dotPair2.second->insert(dotPair2.second->begin(), text);
+	} else {
+		dotPair2.second->insert(dotPair2.second->end(), text);
+	}
 }
 
-void MainWindow::_recursiveCreateModelGraphicPicture(ModelDataDefinition* componentOrData, std::list<ModelDataDefinition*>* visited, std::map<unsigned int, std::list<std::string>*>* dotmap) {
+void MainWindow::_recursiveCreateModelGraphicPicture(ModelDataDefinition* componentOrData, std::list<ModelDataDefinition*>* visited, std::map<unsigned int, std::map<unsigned int, std::list<std::string>*>*>* dotmap) {
 
 	const struct DOT_STYLES {
 		std::string nodeComponent = "shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=bisque";
 		//std::string nodeComponentOtherLevel = "shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=goldenrod3";
-		std::string edgeComponent = " ";
+		std::string edgeComponent = "style=solid, arrowhead=\"normal\" color=black, fontcolor=black, fontsize=7";
 		std::string nodeDataDefInternal = "shape=record, fontsize=8, color=gray50, fontcolor=gray50";
 		std::string nodeDataDefAttached = "shape=record, fontsize=10, color=gray50, fontcolor=gray50, style=filled, fillcolor=darkolivegreen3";
 		std::string edgeDataDefInternal = "style=dashed, arrowhead=\"diamond\", color=gray55, fontcolor=gray55, fontsize=7";
 		std::string edgeDataDefAttached = "style=dashed, arrowhead=\"ediamond\", color=gray50, fontcolor=gray50, fontsize=7";
-		unsigned int rankComponent = 1;
-		unsigned int rankComponentOtherLevel = 10;
-		unsigned int rankDataDefInternal = 0;
-		unsigned int rankDataDefAttached = 2;
-		unsigned int rankDataDefRecursive = 3;
-		unsigned int rankEdge = 5;
+		unsigned int rankSource = 0;
+		unsigned int rankSink = 1;
+		unsigned int rankComponent = 99;
+		unsigned int rankComponentOtherLevel = 99;
+		unsigned int rankDataDefInternal = 99;
+		unsigned int rankDataDefAttached = 99;
+		unsigned int rankDataDefRecursive = 99;
+		unsigned int rankEdge = 99;
 	} DOT;
 	visited->insert(visited->end(), componentOrData);
 	std::string text;
@@ -174,7 +186,13 @@ void MainWindow::_recursiveCreateModelGraphicPicture(ModelDataDefinition* compon
 			}
 		} else {
 			text = "  " + _adjustName(componentOrData->getName()) + " [" + DOT.nodeComponent + ", label=\"" + componentOrData->getClassname() + "|" + componentOrData->getName() + "\"]" + ";\n";
-			_insertTextInDot(text, level, DOT.rankComponent, dotmap, true);
+			if (dynamic_cast<SourceModelComponent*> (componentOrData) != nullptr) {
+				_insertTextInDot(text, level, DOT.rankSource, dotmap, true);
+			} else if (dynamic_cast<SinkModelComponent*> (componentOrData) != nullptr) {
+				_insertTextInDot(text, level, DOT.rankSink, dotmap, true);
+			} else {
+				_insertTextInDot(text, level, DOT.rankComponent, dotmap, true);
+			}
 		}
 	}
 	//
@@ -235,7 +253,7 @@ void MainWindow::_recursiveCreateModelGraphicPicture(ModelDataDefinition* compon
 			}
 			if (connection->first->getLevel() == modellevel || ui->checkBox_ShowLevels->isChecked()) {
 				text = "    " + _adjustName(componentName) + "->" + _adjustName(connection->first->getName()) + "[" + DOT.edgeComponent + "];\n";
-				_insertTextInDot(text, modellevel, DOT.rankComponent, dotmap);
+				_insertTextInDot(text, modellevel, DOT.rankEdge, dotmap);
 			}
 		}
 	}
@@ -245,7 +263,7 @@ bool MainWindow::_createModelGraphicPicture() {
 	bool res = this->_setSimulationModelBasedOnText();
 	std::string dot = "digraph G {\n";
 	dot += "  compound=true; rankdir=LR; \n";
-	std::map<unsigned int, std::list<std::string>*>* dotmap = new std::map<unsigned int, std::list<std::string>*>();
+	std::map<unsigned int, std::map<unsigned int, std::list<std::string>*>*>* dotmap = new std::map<unsigned int, std::map<unsigned int, std::list<std::string>*>*>();
 
 	std::list<SourceModelComponent*>* sources = simulator->getModels()->current()->getComponents()->getSourceComponents();
 	std::list<ModelDataDefinition*>* visited = new std::list<ModelDataDefinition*>();
@@ -265,18 +283,38 @@ bool MainWindow::_createModelGraphicPicture() {
 	}
 	// combine all level subgraphs
 	unsigned int modelLevel = simulator->getModels()->current()->getLevel();
-	for (std::pair<unsigned int, std::list<std::string>*> dotpair : *dotmap) {
+	for (std::pair<unsigned int, std::map<unsigned int, std::list<std::string>*>*> dotpair : *dotmap) {
 		if (dotpair.first == modelLevel) {
 			dot += "\n  // model level\n";
-			for (std::string str : *dotpair.second) {
-				dot += str;
+			for (std::pair<unsigned int, std::list<std::string>*> dotpair2 : *dotpair.second) {
+				dot += "  {\n";
+				if (dotpair2.first == 0)
+					dot += "     rank=min  // " + std::to_string(dotpair2.first) + "\n";
+				else if (dotpair2.first == 1)
+					dot += "     rank=max  // " + std::to_string(dotpair2.first) + "\n";
+				else if (dotpair2.first < 10)
+					dot += "     rank=same  // " + std::to_string(dotpair2.first) + "\n";
+				for (std::string str : *dotpair2.second) {
+					dot += "   " + str;
+				}
+				dot += "  }\n";
 			}
 		} else if (ui->checkBox_ShowLevels->isChecked()) {
 			dot += "\n\n // submodel level  " + std::to_string(dotpair.first) + "\n";
 			dot += " subgraph cluster_level_" + std::to_string(dotpair.first) + " {\n";
 			dot += "   graph[style=filled; fillcolor=mistyrose2] label=\"" + simulator->getModels()->current()->getComponents()->find(dotpair.first)->getName() + "\";\n";
-			for (std::string str : *dotpair.second) {
-				dot += str;
+			for (std::pair<unsigned int, std::list<std::string>*> dotpair2 : *dotpair.second) {
+				dot += "  {\n";
+				if (dotpair2.first == 0)
+					dot += "     rank=min  // " + std::to_string(dotpair2.first) + "\n";
+				else if (dotpair2.first == 1)
+					dot += "     rank=max  // " + std::to_string(dotpair2.first) + "\n";
+				else if (dotpair2.first < 10)
+					dot += "     rank=same  // " + std::to_string(dotpair2.first) + "\n";
+				for (std::string str : *dotpair2.second) {
+					dot += "   " + str;
+				}
+				dot += "  }\n";
 			}
 			dot += "\n }\n";
 		}
@@ -369,14 +407,12 @@ void MainWindow::_simulatorTraceSimulationHandler(TraceSimulationEvent e) {
 }
 
 void MainWindow::_simulatorTraceReportsHandler(TraceEvent e) {
-
 	std::cout << e.getText() << std::endl;
 	ui->textEdit_Reports->append(QString::fromStdString(e.getText()));
 	QCoreApplication::processEvents();
 }
 
 void MainWindow::_onReplicationStartHandler(SimulationEvent * re) {
-
 	ModelSimulation* sim = simulator->getModels()->current()->getSimulation();
 	QString text = QString::fromStdString(std::to_string(sim->getCurrentReplicationNumber())) + "/" + QString::fromStdString(std::to_string(sim->getNumberOfReplications()));
 	ui->label_ReplicationNum->setText(text);
@@ -384,7 +420,6 @@ void MainWindow::_onReplicationStartHandler(SimulationEvent * re) {
 }
 
 void MainWindow::_onSimulationStartHandler(SimulationEvent * re) {
-
 	_actualizeWidgets();
 	ui->progressBarSimulation->setMaximum(simulator->getModels()->current()->getSimulation()->getReplicationLength());
 	ui->tabWidgetModel->setCurrentIndex(1);
@@ -392,27 +427,25 @@ void MainWindow::_onSimulationStartHandler(SimulationEvent * re) {
 }
 
 void MainWindow::_onSimulationPausedHandler(SimulationEvent * re) {
-
 	_actualizeWidgets();
 	QCoreApplication::processEvents();
 }
 
 void MainWindow::_onSimulationResumeHandler(SimulationEvent * re) {
-
 	_actualizeWidgets();
 	ui->tabWidgetModel->setCurrentIndex(1);
 	QCoreApplication::processEvents();
 }
 
 void MainWindow::_onSimulationEndHandler(SimulationEvent * re) {
-
 	_actualizeWidgets();
 	ui->tabWidgetModel->setCurrentIndex(2);
-	QCoreApplication::processEvents();
+	for (unsigned int i = 0; i < 10; i++) {
+		QCoreApplication::processEvents();
+	}
 }
 
 void MainWindow::_onProcessEventHandler(SimulationEvent * re) {
-
 	ui->progressBarSimulation->setValue(simulator->getModels()->current()->getSimulation()->getSimulatedTime());
 	QCoreApplication::processEvents();
 }

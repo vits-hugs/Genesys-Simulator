@@ -50,7 +50,7 @@ std::string CppForG::getSourceCode() const {
 	return _cppcode->getCode();
 }
 
-void CppForG::_onDispatchEvent(Entity* entity) {
+void CppForG::_onDispatchEvent(Entity* entity, unsigned int inputNumber) {
 	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
 	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }

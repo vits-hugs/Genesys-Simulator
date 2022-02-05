@@ -49,7 +49,7 @@ public: // static
 	void setDescription(std::string _description);
 	std::string getDescription() const;
 protected: // pure virtual methods
-	virtual void _onDispatchEvent(Entity* entity) = 0;
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputNumber) = 0;
 protected: // virtual methods
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);

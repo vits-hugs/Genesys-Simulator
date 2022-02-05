@@ -37,7 +37,7 @@ void ModelComponent::DispatchEvent(Event* event) {
 	component->_parentModel->getTracer()->traceSimulation(component, Util::TraceLevel::L6_arrival, msg);
 	Util::IncIndent();
 	try {
-		component->_onDispatchEvent(entity);
+		component->_onDispatchEvent(entity, inputNumber);
 	} catch (const std::exception& e) {
 		component->_parentModel->getTracer()->traceError(e, "Error executing component " + component->show());
 	}

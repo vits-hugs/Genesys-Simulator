@@ -63,7 +63,7 @@ Station* Enter::getStation() const {
 	return _station;
 }
 
-void Enter::_onDispatchEvent(Entity* entity) {
+void Enter::_onDispatchEvent(Entity* entity, unsigned int inputNumber) {
 	if (_reportStatistics)
 		_numberIn->incCountValue();
 	_station->enter(entity);

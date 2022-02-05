@@ -42,7 +42,7 @@ public: // g&s
 	void setFilename(std::string filename);
 	std::string getFilename() const;
 protected: // virtual
-	virtual void _onDispatchEvent(Entity* entity);
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputNumber);
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 protected: // virtual

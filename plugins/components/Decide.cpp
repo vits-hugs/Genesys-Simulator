@@ -37,7 +37,7 @@ std::string Decide::show() {
 	return ModelComponent::show() + "";
 }
 
-void Decide::_onDispatchEvent(Entity* entity) {
+void Decide::_onDispatchEvent(Entity* entity, unsigned int inputNumber) {
 	double value;
 	unsigned short i = 0;
 	for (std::list<std::string>::iterator it = _conditions->list()->begin(); it != _conditions->list()->end(); it++) {

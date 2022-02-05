@@ -35,7 +35,7 @@ std::string Dispose::show() {
 	return SinkModelComponent::show();
 }
 
-void Dispose::_onDispatchEvent(Entity* entity) {
+void Dispose::_onDispatchEvent(Entity* entity, unsigned int inputNumber) {
 	if (_reportStatistics) {
 		_numberOut->incCountValue();
 		if (entity->getEntityType()->isReportStatistics()) {

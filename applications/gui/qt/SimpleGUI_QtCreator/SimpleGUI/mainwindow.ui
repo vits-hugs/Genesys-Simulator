@@ -33,7 +33,7 @@
        </font>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tabModel">
        <attribute name="icon">
@@ -88,8 +88,8 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>699</width>
-                 <height>226</height>
+                 <width>98</width>
+                 <height>37</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -209,7 +209,7 @@
            <enum>QTabWidget::East</enum>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="tab_Simulation_Trace">
            <attribute name="icon">
@@ -247,7 +247,22 @@
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_8">
             <item>
-             <widget class="QTableWidget" name="tableWidget"/>
+             <widget class="QTableWidget" name="tableWidget_Simulation_Event">
+              <property name="wordWrap">
+               <bool>false</bool>
+              </property>
+              <property name="rowCount">
+               <number>1</number>
+              </property>
+              <property name="columnCount">
+               <number>4</number>
+              </property>
+              <row/>
+              <column/>
+              <column/>
+              <column/>
+              <column/>
+             </widget>
             </item>
            </layout>
           </widget>

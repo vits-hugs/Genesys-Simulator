@@ -95,7 +95,7 @@ ModelComponent* Process::LoadInstance(Model* model, std::map<std::string, std::s
 	return newComponent;
 }
 
-void Process::_onDispatchEvent(Entity* entity) {
+void Process::_onDispatchEvent(Entity* entity, unsigned int inputNumber) {
 	this->_parentModel->sendEntityToComponent(entity, _seize, 0.0);
 }
 

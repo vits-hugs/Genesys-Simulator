@@ -43,7 +43,7 @@ ModelComponent* Start::LoadInstance(Model* model, std::map<std::string, std::str
 	return newComponent;
 }
 
-void Start::_onDispatchEvent(Entity* entity) {
+void Start::_onDispatchEvent(Entity* entity, unsigned int inputNumber) {
 	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
 	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }

@@ -80,7 +80,7 @@ bool MarkovChain::isInitilized() const {
 	return _initilized;
 }
 
-void MarkovChain::_onDispatchEvent(Entity* entity) {
+void MarkovChain::_onDispatchEvent(Entity* entity, unsigned int inputNumber) {
 	//_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
 	unsigned int size;
 	double rnd, sum, value;

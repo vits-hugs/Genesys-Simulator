@@ -15,6 +15,7 @@
 #define MATCH_H
 
 #include "../../kernel/simulator/ModelComponent.h"
+#include "../data/Queue.h"
 
 /*!
 Match module
@@ -45,6 +46,11 @@ Attribute Name Attribute name that is used for identifying an arriving entity’
 match value. Applies only when Type is Based on Attribute.
  */
 class Match : public ModelComponent {
+public:
+
+	enum class Rule : int {
+		Any = 0, ByAttribute = 1
+	};
 public: // constructors
 	Match(Model* model, std::string name = "");
 	virtual ~Match() = default;
@@ -54,16 +60,40 @@ public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
-public:
-	virtual void _onDispatchEvent(Entity* entity);
+public: // virtual
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputNumber);
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+public:
+	void setRule(Match::Rule _rule);
+	Match::Rule getRule() const;
+	void setAttributeName(std::string _attributeName);
+	std::string getAttributeName() const;
+	void setMatchSize(std::string _matchSize);
+	std::string getMatchSize() const;
+	void setNumberOfQueues(unsigned int _numberOfQueues);
+	unsigned int getNumberOfQueues() const;
 protected: // virtual
 	//virtual void _initBetweenReplications();
 	virtual bool _check(std::string* errorMessage);
+	virtual void _createInternalData();
 private: // methods
 private: // attributes 1:1
+
+	const struct DEFAULT_VALUES {
+		Match::Rule rule = Match::Rule::Any;
+		unsigned int numberOfQueues = 2;
+		std::string matchSize = "1";
+		std::string attributeName = "";
+	} DEFAULT;
+	Match::Rule _rule = DEFAULT.rule;
+	unsigned int _numberOfQueues = DEFAULT.numberOfQueues;
+	std::string _matchSize = DEFAULT.matchSize;
+	std::string _attributeName = DEFAULT.attributeName;
+private: // attributes 1:1
+	std::map<Queue*, std::map<double, unsigned int>*>* _entitiesByAttrib = new std::map<Queue*, std::map<double, unsigned int>*>();
 private: // attributes 1:n
+	List<Queue*>* _queues = new List<Queue*>();
 };
 
 

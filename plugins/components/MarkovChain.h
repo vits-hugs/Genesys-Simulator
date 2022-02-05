@@ -38,7 +38,7 @@ public: // get and set
 	bool isInitilized() const;
 	void setCurrentState(Variable* _currentState);
 protected: // virtual
-	virtual void _onDispatchEvent(Entity* entity);
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputNumber);
 	virtual void _initBetweenReplications();
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
