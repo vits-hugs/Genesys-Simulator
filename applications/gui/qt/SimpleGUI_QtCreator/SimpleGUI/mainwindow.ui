@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>988</width>
-    <height>673</height>
+    <width>1366</width>
+    <height>731</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,9 +21,9 @@
    <bool>true</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout_2">
+   <layout class="QVBoxLayout" name="verticalLayout_11">
     <item>
-     <widget class="QTabWidget" name="tabWidgetModel">
+     <widget class="QTabWidget" name="tabWidgetCentral">
       <property name="enabled">
        <bool>false</bool>
       </property>
@@ -33,7 +33,7 @@
        </font>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tabModel">
        <attribute name="icon">
@@ -88,8 +88,8 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>98</width>
-                 <height>37</height>
+                 <width>984</width>
+                 <height>284</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -179,13 +179,142 @@
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton">
+               <widget class="QPushButton" name="pushButton_Export">
                 <property name="text">
                  <string>Export</string>
                 </property>
                </widget>
               </item>
              </layout>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabDebug">
+       <attribute name="title">
+        <string>Debug</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_9">
+        <item>
+         <widget class="QTabWidget" name="tabWidget_Debug">
+          <property name="tabPosition">
+           <enum>QTabWidget::East</enum>
+          </property>
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="tab_Debug_Breakpoints">
+           <attribute name="icon">
+            <iconset resource="simpleGUI_resources.qrc">
+             <normaloff>:/icons3/resources/icons/pack3/ico/abort.ico</normaloff>:/icons3/resources/icons/pack3/ico/abort.ico</iconset>
+           </attribute>
+           <attribute name="title">
+            <string>Breakpoints</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_10">
+            <item>
+             <widget class="QTableWidget" name="tableWidget_Breakpoints">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="columnCount">
+               <number>3</number>
+              </property>
+              <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+               <bool>true</bool>
+              </attribute>
+              <column/>
+              <column/>
+              <column/>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="0,0,0">
+              <item>
+               <widget class="QPushButton" name="pushButton_Breakpoint_Insert">
+                <property name="text">
+                 <string>Insert</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_Breakpoint_Remove">
+                <property name="text">
+                 <string>Remove</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_Debug_Variables">
+           <attribute name="icon">
+            <iconset resource="simpleGUI_resources.qrc">
+             <normaloff>:/icons1/resources/icons/pack1/ico/35.ico</normaloff>:/icons1/resources/icons/pack1/ico/35.ico</iconset>
+           </attribute>
+           <attribute name="title">
+            <string>Variables</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_13">
+            <item>
+             <widget class="QTableWidget" name="tableWidget_Variables">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="columnCount">
+               <number>3</number>
+              </property>
+              <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+               <bool>true</bool>
+              </attribute>
+              <column/>
+              <column/>
+              <column/>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tabDebug_Entities">
+           <attribute name="icon">
+            <iconset resource="simpleGUI_resources.qrc">
+             <normaloff>:/icons3/resources/icons/pack3/ico/yellow pin.ico</normaloff>:/icons3/resources/icons/pack3/ico/yellow pin.ico</iconset>
+           </attribute>
+           <attribute name="title">
+            <string>Entities</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_12">
+            <item>
+             <widget class="QTableWidget" name="tableWidget_Entities">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="columnCount">
+               <number>3</number>
+              </property>
+              <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+               <bool>true</bool>
+              </attribute>
+              <column/>
+              <column/>
+              <column/>
+             </widget>
             </item>
            </layout>
           </widget>
@@ -209,7 +338,7 @@
            <enum>QTabWidget::East</enum>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tab_Simulation_Trace">
            <attribute name="icon">
@@ -342,7 +471,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>988</width>
+     <width>1366</width>
      <height>24</height>
     </rect>
    </property>
@@ -732,7 +861,7 @@
  </widget>
  <tabstops>
   <tabstop>textEdit_Reports</tabstop>
-  <tabstop>tabWidgetModel</tabstop>
+  <tabstop>tabWidgetCentral</tabstop>
  </tabstops>
  <resources>
   <include location="simpleGUI_resources.qrc"/>

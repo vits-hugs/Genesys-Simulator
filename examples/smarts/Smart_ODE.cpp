@@ -34,7 +34,7 @@ int Smart_ODE::main(int argc, char** argv) {
 	Dispose* dispose1 = plugins->newInstance<Dispose>(model);
 	// define variables for the ordinary differential equations
 	Variable* varx = plugins->newInstance<Variable>(model, "x");
-	varx->getDimensionSizes()->insert(2);
+	varx->insertDimentionSize(2);
 	varx->setInitialValue("0", 1.0); //x[0] = 1.0
 	varx->setInitialValue("1", 0.0); //x[1] = 0.0
 	Variable* vart = plugins->newInstance<Variable>(model, "t");

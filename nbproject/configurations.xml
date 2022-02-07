@@ -2367,6 +2367,9 @@
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/CodeEditor.h</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/LineNumberArea.h</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/SimpleGUI.pro</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.cpp</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.h</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.ui</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.cpp</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.h</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.ui</itemPath>
@@ -3170,6 +3173,30 @@
                             perm="755"
                             owner="root"
                             group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
         </packFileList>
         <packInfoList>
           <packInfoListElem name="Package" value="20192022GenESyS" mandatory="true"/>
@@ -3214,6 +3241,21 @@
             flavor2="0">
       </item>
       <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/SimpleGUI.pro"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.ui"
             ex="false"
             tool="3"
             flavor2="0">
@@ -15673,6 +15715,21 @@
             flavor2="0">
       </item>
       <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/SimpleGUI.pro"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.ui"
             ex="false"
             tool="3"
             flavor2="0">

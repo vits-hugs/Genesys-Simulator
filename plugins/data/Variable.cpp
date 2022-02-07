@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   Variable.cpp
  * Author: rafael.luiz.cancian
- * 
+ *
  * Created on 4 de Setembro de 2018, 18:28
  */
 
@@ -98,7 +98,11 @@ void Variable::setInitialValue(std::string index, double value) {
 	}
 }
 
-List<unsigned int>* Variable::getDimensionSizes() const {
+void Variable::insertDimentionSize(unsigned int size) {
+	_dimensionSizes->insert(_dimensionSizes->end(), size);
+}
+
+std::list<unsigned int>* Variable::getDimensionSizes() const {
 	return _dimensionSizes;
 }
 
@@ -121,7 +125,8 @@ bool Variable::_loadInstance(std::map<std::string, std::string>* fields) {
 		nv = LoadField(fields, "dimensions", 0);
 		for (unsigned int i = 0; i < nv; i++) {
 			value = LoadField(fields, "dimension" + strIndex(i), 0);
-			this->_dimensionSizes->insert(value);
+			//this->_dimensionSizes->insert(value);
+			this->insertDimentionSize(value);
 		}
 		nv = LoadField(fields, "values", 0);
 		for (unsigned int i = 0; i < nv; i++) {
@@ -136,8 +141,8 @@ bool Variable::_loadInstance(std::map<std::string, std::string>* fields) {
 std::map<std::string, std::string>* Variable::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelDataDefinition::_saveInstance(saveDefaultValues); //Util::TypeOf<Variable>());
 	unsigned int i = 0;
-	SaveField(fields, "dimensions", _dimensionSizes->list()->size(), 0u, saveDefaultValues);
-	for (unsigned int dimension : *_dimensionSizes->list()) {
+	SaveField(fields, "dimensions", _dimensionSizes->size(), 0u, saveDefaultValues);
+	for (unsigned int dimension : *_dimensionSizes) {
 		SaveField(fields, "dimension" + strIndex(i), dimension, 1u, saveDefaultValues);
 	}
 	SaveField(fields, "values", _initialValues->size(), 0);
@@ -156,4 +161,8 @@ bool Variable::_check(std::string* errorMessage) {
 void Variable::_initBetweenReplications() {
 	this->_values->clear();
 	this->_values = this->_initialValues;
+}
+
+std::map<std::string, double> *Variable::getValues() const {
+	return _values;
 }

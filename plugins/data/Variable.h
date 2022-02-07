@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   Variable.h
  * Author: rafael.luiz.cancian
  *
@@ -85,40 +85,43 @@ replication.
 Initial Values Lists the initial value or values of the variable. You can assign
 new values to the variable at different stages of the model by
 using the Assign module.
-Initial Value Variable value at the start of the simulation. 
+Initial Value Variable value at the start of the simulation.
  */
 class Variable : public ModelDataDefinition {
 public:
-	Variable(Model* model, std::string name = "");
-	virtual ~Variable() = default;
+    Variable(Model* model, std::string name = "");
+    virtual ~Variable() = default;
 public:
-	virtual std::string show();
+    virtual std::string show();
 public: //static
-	static PluginInformation* GetPluginInformation();
-	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+    static PluginInformation* GetPluginInformation();
+    static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
-	double getValue();
-	void setValue(double value);
-	double getValue(std::string index);
-	void setValue(std::string index, double value);
-	double getInitialValue();
-	void setInitialValue(double value);
-	double getInitialValue(std::string index);
-	void setInitialValue(std::string index, double value);
-	List<unsigned int>* getDimensionSizes() const;
+    double getValue();
+    void setValue(double value);
+    double getValue(std::string index);
+    void setValue(std::string index, double value);
+    double getInitialValue();
+    void setInitialValue(double value);
+    double getInitialValue(std::string index);
+    void setInitialValue(std::string index, double value);
+	void insertDimentionSize(unsigned int size);
+	std::list<unsigned int>* getDimensionSizes() const;
+
+    std::map<std::string, double> *getValues() const;
 
 protected:
-	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-	virtual bool _check(std::string* errorMessage);
-	virtual void _initBetweenReplications();
+    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+    virtual bool _check(std::string* errorMessage);
+    virtual void _initBetweenReplications();
 
 private:
-	//const struct DEFAULT_VALUES {	} DEFAULT;
-	List<unsigned int>* _dimensionSizes = new List<unsigned int>();
-	std::map<std::string, double>* _values = new std::map<std::string, double>();
-	std::map<std::string, double>* _initialValues = new std::map<std::string, double>();
+    //const struct DEFAULT_VALUES {	} DEFAULT;
+	std::list<unsigned int>* _dimensionSizes = new std::list<unsigned int>();
+    std::map<std::string, double>* _values = new std::map<std::string, double>();
+    std::map<std::string, double>* _initialValues = new std::map<std::string, double>();
 };
 
 #endif /* VARIABLE_H */

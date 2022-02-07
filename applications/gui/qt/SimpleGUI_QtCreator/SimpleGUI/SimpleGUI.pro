@@ -114,6 +114,7 @@ SOURCES += \
     ../../../../../plugins/data/Storage.cpp \
     ../../../../../plugins/data/Variable.cpp \
     CodeEditor.cpp \
+    dialogBreakpoint.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -245,9 +246,11 @@ HEADERS += \
     ../../../../../plugins/data/Variable.h \
     CodeEditor.h \
     LineNumberArea.h \
+    dialogBreakpoint.h \
     mainwindow.h
 
 FORMS += \
+    dialogBreakpoint.ui \
     mainwindow.ui
 
 TRANSLATIONS += \
