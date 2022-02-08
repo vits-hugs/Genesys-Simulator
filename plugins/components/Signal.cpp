@@ -73,6 +73,7 @@ bool Signal::_check(std::string* errorMessage) {
 
 PluginInformation* Signal::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Signal>(), &Signal::LoadInstance, &Signal::NewInstance);
+	info->setCategory("Decisions");
 	// ...
 	return info;
 }

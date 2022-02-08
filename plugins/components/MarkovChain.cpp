@@ -144,7 +144,7 @@ bool MarkovChain::_check(std::string* errorMessage) {
 
 PluginInformation* MarkovChain::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<MarkovChain>(), &MarkovChain::LoadInstance, &MarkovChain::NewInstance);
-	info->setCategory("Logic");
+	info->setCategory("Discrete Processing");
 	// ...
 	return info;
 }

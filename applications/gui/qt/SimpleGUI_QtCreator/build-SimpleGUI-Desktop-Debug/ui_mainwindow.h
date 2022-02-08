@@ -32,6 +32,7 @@
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolBar>
+#include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -121,8 +122,9 @@ public:
     QTextEdit *textEdit_Console;
     QDockWidget *dockWidgetPlugins;
     QWidget *dockWidgetContentsPlugin;
-    QHBoxLayout *horizontalLayout_5;
+    QHBoxLayout *horizontalLayout_2;
     QListWidget *listWidget_Plugins;
+    QTreeWidget *treeWidget_Plugins;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -245,7 +247,7 @@ public:
         scrollArea_Graphic->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 984, 284));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 722, 284));
         verticalLayout_5 = new QVBoxLayout(scrollAreaWidgetContents);
         verticalLayout_5->setObjectName(QString::fromUtf8("verticalLayout_5"));
         label_ModelGraphic = new QLabel(scrollAreaWidgetContents);
@@ -551,12 +553,22 @@ public:
         dockWidgetPlugins->setAllowedAreas(Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea);
         dockWidgetContentsPlugin = new QWidget();
         dockWidgetContentsPlugin->setObjectName(QString::fromUtf8("dockWidgetContentsPlugin"));
-        horizontalLayout_5 = new QHBoxLayout(dockWidgetContentsPlugin);
-        horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
+        horizontalLayout_2 = new QHBoxLayout(dockWidgetContentsPlugin);
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         listWidget_Plugins = new QListWidget(dockWidgetContentsPlugin);
         listWidget_Plugins->setObjectName(QString::fromUtf8("listWidget_Plugins"));
 
-        horizontalLayout_5->addWidget(listWidget_Plugins);
+        horizontalLayout_2->addWidget(listWidget_Plugins);
+
+        treeWidget_Plugins = new QTreeWidget(dockWidgetContentsPlugin);
+        QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();
+        __qtreewidgetitem->setText(0, QString::fromUtf8("1"));
+        treeWidget_Plugins->setHeaderItem(__qtreewidgetitem);
+        treeWidget_Plugins->setObjectName(QString::fromUtf8("treeWidget_Plugins"));
+        treeWidget_Plugins->header()->setVisible(false);
+        treeWidget_Plugins->header()->setCascadingSectionResizes(false);
+
+        horizontalLayout_2->addWidget(treeWidget_Plugins);
 
         dockWidgetPlugins->setWidget(dockWidgetContentsPlugin);
         MainWindow->addDockWidget(Qt::LeftDockWidgetArea, dockWidgetPlugins);
@@ -607,8 +619,8 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidgetCentral->setCurrentIndex(0);
-        tabWidgetModel_2->setCurrentIndex(0);
+        tabWidgetCentral->setCurrentIndex(3);
+        tabWidgetModel_2->setCurrentIndex(1);
         tabWidget_Debug->setCurrentIndex(0);
         tabWidget->setCurrentIndex(0);
 

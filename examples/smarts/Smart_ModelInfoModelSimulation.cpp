@@ -74,7 +74,7 @@ int Smart_ModelInfoModelSimulation::main(int argc, char** argv) {
 	model->save("./models/Smart_ModelInfoModelSimulation.gen");
 	do {
 		sim->start();
-		std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
+		//std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
 	} while (sim->isPaused());
 	return 0;
 };

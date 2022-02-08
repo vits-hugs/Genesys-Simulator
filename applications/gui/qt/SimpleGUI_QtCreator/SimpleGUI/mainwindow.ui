@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1366</width>
-    <height>731</height>
+    <width>1024</width>
+    <height>539</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -54,7 +54,7 @@
            <enum>QTabWidget::East</enum>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tabModelText">
            <attribute name="icon">
@@ -88,8 +88,8 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>984</width>
-                 <height>284</height>
+                 <width>717</width>
+                 <height>279</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -471,7 +471,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1366</width>
+     <width>1024</width>
      <height>24</height>
     </rect>
    </property>
@@ -629,9 +629,24 @@
     <number>1</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContentsPlugin">
-    <layout class="QHBoxLayout" name="horizontalLayout_5">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
       <widget class="QListWidget" name="listWidget_Plugins"/>
+     </item>
+     <item>
+      <widget class="QTreeWidget" name="treeWidget_Plugins">
+       <attribute name="headerVisible">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="headerCascadingSectionResizes">
+        <bool>false</bool>
+       </attribute>
+       <column>
+        <property name="text">
+         <string notr="true">1</string>
+        </property>
+       </column>
+      </widget>
      </item>
     </layout>
    </widget>

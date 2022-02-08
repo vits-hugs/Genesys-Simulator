@@ -111,7 +111,7 @@ int Smart_OnEvent::main(int argc, char** argv) {
 	do {
 		model->getSimulation()->step();
 		std::cout << "Press ENTER to continue...";
-		std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
+		//std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
 	} while (model->getSimulation()->isPaused());
 	genesys->~Simulator();
 	return 0;

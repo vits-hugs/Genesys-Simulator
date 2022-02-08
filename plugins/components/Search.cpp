@@ -72,6 +72,7 @@ bool Search::_check(std::string* errorMessage) {
 
 PluginInformation* Search::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Search>(), &Search::LoadInstance, &Search::NewInstance);
+	info->setCategory("Decisions");
 	// ...
 	return info;
 }

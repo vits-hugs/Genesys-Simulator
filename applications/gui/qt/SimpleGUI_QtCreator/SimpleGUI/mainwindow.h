@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QListWidget>
+#include <QTreeWidgetItem>
 #include "../../../../../kernel/simulator/Simulator.h"
 #include "../../../../../kernel/simulator/TraceManager.h"
 #include "CodeEditor.h"
@@ -55,6 +56,8 @@ private slots:
     void on_tabWidgetCentral_currentChanged(int index);
 
     void on_tabWidgetCentral_tabBarClicked(int index);
+
+    void on_treeWidget_Plugins_itemDoubleClicked(QTreeWidgetItem *item, int column);
 
 private: // VIEW
 

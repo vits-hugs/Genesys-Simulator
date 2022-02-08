@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
 , ui(new Ui::MainWindow) {
     ui->setupUi(this);
     ui->dockWidgetContentsConsole->setMaximumHeight(150);
-    ui->dockWidgetContentsPlugin->setMaximumWidth(200);
+    ui->dockWidgetContentsPlugin->setMaximumWidth(250);
     ui->listWidget_Plugins->setSortingEnabled(true);
     auto layout = dynamic_cast<QVBoxLayout*> (ui->tabModelText->layout());
     //auto layout = new QVBoxLayout(ui->tabModelGraphic);
@@ -42,6 +42,7 @@ MainWindow::MainWindow(QWidget *parent)
     //ui->tableWidget_Simulation_Event->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget_Simulation_Event->setContentsMargins(1, 0, 1, 0);
     //ui->treeWidget_Plugins->setVisible(false);
+    ui->listWidget_Plugins->setVisible(false);
     simulator = new Simulator();
     simulator->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
     simulator->getTracer()->addTraceHandler<MainWindow>(this, &MainWindow::_simulatorTraceHandler);
@@ -242,7 +243,7 @@ bool MainWindow::_setSimulationModelBasedOnText() {
         model = nullptr;
     }
     if (model == nullptr) { // only model text written in UI
-        QString modelLanguage = textCodeEdit_Model->toPlainText(); // ui->textEdit_Model->toPlainText();
+        QString modelLanguage = textCodeEdit_Model->toPlainText();
         if (!simulator->getModels()->createFromLanguage(modelLanguage.toStdString())) {
             QMessageBox::critical(this, "Check Model", "Error in the model text. See console for more information.");
         }
@@ -672,7 +673,26 @@ void MainWindow::_insertPluginUI(Plugin * plugin) {
             item->setStatusTip(QString::fromStdString(plugin->getPluginInfo()->getLanguageTemplate()));
             ui->listWidget_Plugins->addItem(item);
 
-
+            QTreeWidgetItem *treeItem;
+            QString category;
+            if (plugin->getPluginInfo()->isComponent())
+                category = QString::fromStdString(plugin->getPluginInfo()->getCategory());
+            else
+                category="Data Definition";
+            QList<QTreeWidgetItem*> founds = ui->treeWidget_Plugins->findItems(category,Qt::MatchContains);
+            if (founds.size()==0) {
+                treeItem = new QTreeWidgetItem(ui->treeWidget_Plugins);
+                treeItem->setText(0, category);
+                //treeItem->setIcon(0,QIcon(":/icons3/resources/icons/pack3/ico/loadinv.ico"));
+            } else {
+                treeItem =*founds.begin();
+            }
+            QTreeWidgetItem *treeItemChild = new QTreeWidgetItem();
+            treeItemChild->setText(0, QString::fromStdString(plugin->getPluginInfo()->getPluginTypename()));
+            treeItemChild->setIcon(0, item->icon());
+            treeItemChild->setToolTip(0, item->toolTip());
+            treeItemChild->setStatusTip(0, item->statusTip());
+            treeItem->addChild(treeItemChild);
         }
     }
 }
@@ -781,7 +801,6 @@ void MainWindow::on_actionNew_triggered() {
         simulator->getModels()->remove(m);
     }
     m = simulator->getModels()->newModel();
-    //ui->textEdit_Model->clear();
     textCodeEdit_Model->clear();
     ui->textEdit_Simulation->clear();
     ui->textEdit_Reports->clear();
@@ -797,19 +816,14 @@ void MainWindow::on_actionNew_triggered() {
         std::string line;
         std::ifstream file(tempFilename);
         if (file.is_open()) {
-            //ui->textEdit_Model->append("# Genesys Model File");
             textCodeEdit_Model->appendPlainText("# Genesys Model File");
-            //ui->textEdit_Model->append("# Simulator, ModelInfo and ModelSimulation");
             textCodeEdit_Model->appendPlainText("# Simulator, ModelInfo and ModelSimulation");
             while (std::getline(file, line)) {
-                //ui->textEdit_Model->append(QString::fromStdString(line));
                 textCodeEdit_Model->appendPlainText(QString::fromStdString(line));
             }
             file.close();
-            //ui->textEdit_Model->append("\n# Model Data Definitions");
-            textCodeEdit_Model->appendPlainText("\n# Model Data Definitions");
-            //ui->textEdit_Model->append("\n\n# Model Components\n");
-            textCodeEdit_Model->appendPlainText("\n\n# Model Components\n");
+            //textCodeEdit_Model->appendPlainText("\n# Model Data Definitions");
+            //textCodeEdit_Model->appendPlainText("\n\n# Model Components\n");
             QMessageBox::information(this, "New Model", "Model successfully created");
         } else {
             ui->textEdit_Console->append(QString("Error reading template model file"));
@@ -840,7 +854,7 @@ void MainWindow::on_actionSave_triggered() {
         }
         std::ofstream savefile;
         savefile.open(fileName.toStdString(), std::ofstream::out);
-        QString data = textCodeEdit_Model->toPlainText(); //ui->textEdit_Model->toPlainText();
+        QString data = textCodeEdit_Model->toPlainText();
         QStringList strList = data.split(QRegExp("[\n]"), QString::SkipEmptyParts);
         for (unsigned int i = 0; i < strList.size(); i++) {
 
@@ -928,7 +942,6 @@ void MainWindow::on_actionOpen_triggered() {
         std::ifstream file(fileName.toStdString());
         if (file.is_open()) {
             while (std::getline(file, line)) {
-                //ui->textEdit_Model->append(QString::fromStdString(line));
                 textCodeEdit_Model->appendPlainText(QString::fromStdString(line));
             }
             file.close();
@@ -956,32 +969,26 @@ void MainWindow::on_textCodeEdit_Model_textChanged() {
 }
 
 void MainWindow::on_listWidget_Plugins_itemDoubleClicked(QListWidgetItem * item) {
-    if (textCodeEdit_Model->isEnabled()) { //(ui->textEdit_Model->isEnabled()) {
+    /*
+    if (textCodeEdit_Model->isEnabled()) {
         if (item->toolTip().contains("DataDefinition")) {
             //QTextDocument::FindFlags flag;
-            QTextCursor cursor = textCodeEdit_Model->textCursor(); //ui->textEdit_Model->textCursor();
+            QTextCursor cursor = textCodeEdit_Model->textCursor();
             QTextCursor cursorSaved = cursor;
             cursor.movePosition(QTextCursor::Start);
-            //ui->textEdit_Model->setTextCursor(cursor);
             textCodeEdit_Model->setTextCursor(cursor);
-            //QTextCursor highlightCursor(ui->textEdit_Model->document());
-            if (textCodeEdit_Model->find("# Model Components")) { //(ui->textEdit_Model->find("# Model Components")) {
-                //ui->textEdit_Model->moveCursor(QTextCursor::MoveOperation::Left, QTextCursor::MoveMode::MoveAnchor);
+            if (textCodeEdit_Model->find("# Model Components")) {
                 textCodeEdit_Model->moveCursor(QTextCursor::MoveOperation::Left, QTextCursor::MoveMode::MoveAnchor);
-                //ui->textEdit_Model->moveCursor(QTextCursor::MoveOperation::Up, QTextCursor::MoveMode::MoveAnchor);
                 textCodeEdit_Model->moveCursor(QTextCursor::MoveOperation::Up, QTextCursor::MoveMode::MoveAnchor);
-                //ui->textEdit_Model->insertPlainText(item->statusTip()+"\n");
                 textCodeEdit_Model->insertPlainText(item->statusTip() + "\n");
             } else {
-                //ui->textEdit_Model->append(item->statusTip());
                 textCodeEdit_Model->appendPlainText(item->statusTip());
             }
         } else {
-            //ui->textEdit_Model->append(item->statusTip());
-
             textCodeEdit_Model->appendPlainText(item->statusTip());
         }
     }
+    */
 }
 
 void MainWindow::on_listWidget_Plugins_doubleClicked(const QModelIndex & index) {
@@ -1146,5 +1153,27 @@ void MainWindow::on_tabWidgetCentral_tabBarClicked(int index)
     } else if (index == CONST.TabDebugVarableIndex) {
         this->_actualizeDebugVariables(true);
     }
+    }
+}
+
+void MainWindow::on_treeWidget_Plugins_itemDoubleClicked(QTreeWidgetItem *item, int column)
+{
+    if (textCodeEdit_Model->isEnabled()) {
+        if (item->toolTip(0).contains("DataDefinition")) {
+            //QTextDocument::FindFlags flag;
+            QTextCursor cursor = textCodeEdit_Model->textCursor();
+            QTextCursor cursorSaved = cursor;
+            cursor.movePosition(QTextCursor::Start);
+            textCodeEdit_Model->setTextCursor(cursor);
+            if (textCodeEdit_Model->find("# Model Components")) {
+                textCodeEdit_Model->moveCursor(QTextCursor::MoveOperation::Left, QTextCursor::MoveMode::MoveAnchor);
+                textCodeEdit_Model->moveCursor(QTextCursor::MoveOperation::Up, QTextCursor::MoveMode::MoveAnchor);
+                textCodeEdit_Model->insertPlainText(item->statusTip(0) + "\n");
+            } else {
+                 textCodeEdit_Model->appendPlainText(item->statusTip(0));
+            }
+        } else {
+            textCodeEdit_Model->appendPlainText(item->statusTip(0));
+        }
     }
 }

@@ -82,6 +82,7 @@ ${CND_BUILDDIR}/Debug/%.o: nbproject/qt-${CND_CONF}.mk
 .test-conf:
 	@if [ "${TEST}" = "" ]; \
 	then  \
+	    ${TESTDIR}/TestFiles/f2 || true; \
 	    ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/2019_2022_GenESyS || true; \
 	else  \
 	    ./${TEST} || true; \

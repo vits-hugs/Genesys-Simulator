@@ -1,7 +1,12 @@
-0   SimulatorInfo "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220111 
+# Genesys Simulation Model 
+# Simulator, Model and Simulation infos
+0   Simulator  "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220131 
 0   ModelInfo  "Model 1" analystName="" description="" projectTitle="" version="1.0" 
-0   ModelSimulation "ModelSimulation" replicationLength=60.000000 traceLevel=6 
-56  EntityType "Type_of_Representative_Entity" 
-57  Create     "Create_1" EntityType="Type_of_Representative_Entity" timeBetweenCreations="1.5" nextId=58 
-58  Delay      "Delay_1" nextId=59 
-59  Dispose    "Dispose_1" nextSize=0 
+0   ModelSimulation "" traceLevel=6 
+
+# Model Data Definitions
+
+# Model Components
+1142 Create     "Create_1" entityType="entitytype" nextId=1143 
+1143 Delay      "Delay_1" delayExpression="unif(1,0.2)" nextId=1144 
+1144 Dispose    "Dispose_1" nexts=0 

@@ -73,6 +73,7 @@ bool PickStation::_check(std::string* errorMessage) {
 
 PluginInformation* PickStation::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<PickStation>(), &PickStation::LoadInstance, &PickStation::NewInstance);
+	info->setCategory("Decisions");
 	info->insertDynamicLibFileDependence("station.so");
 	std::string text = "The PickStation module allows an entity to select a station from the multiple stations specified.";
 	text += " This module picks among the group of stations based on the selection logic defined with the module.";

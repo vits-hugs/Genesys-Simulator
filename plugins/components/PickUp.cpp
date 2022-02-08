@@ -73,6 +73,7 @@ bool PickUp::_check(std::string* errorMessage) {
 
 PluginInformation* PickUp::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<PickUp>(), &PickUp::LoadInstance, &PickUp::NewInstance);
+	info->setCategory("Decisions");
 	// ...
 	return info;
 }

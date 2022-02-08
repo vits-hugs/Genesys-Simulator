@@ -72,6 +72,7 @@ bool DropOff::_check(std::string* errorMessage) {
 
 PluginInformation* DropOff::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<DropOff>(), &DropOff::LoadInstance, &DropOff::NewInstance);
+	info->setCategory("Decisions");
 	info->setDescriptionHelp("//@TODO");
 	return info;
 }
