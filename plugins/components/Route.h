@@ -92,7 +92,7 @@ private:
 	const struct DEFAULT_VALUES {
 		std::string routeTimeExpression = "0.0";
 		Util::TimeUnit routeTimeTimeUnit = Util::TimeUnit::second;
-		Route::DestinationType routeDestinationType = DestinationType::Label;
+		Route::DestinationType routeDestinationType = DestinationType::Station;
 	} DEFAULT;
 	std::string _routeTimeExpression = DEFAULT.routeTimeExpression;
 	Util::TimeUnit _routeTimeTimeUnit = DEFAULT.routeTimeTimeUnit;

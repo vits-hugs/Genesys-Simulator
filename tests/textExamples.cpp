@@ -302,7 +302,7 @@ void example_teaching_test4() {
 	}
 }
 
-int _main(int argc, char** argv) {
+int __main(int argc, char** argv) {
 	example_smart_test1();
 	example_smart_test2();
 	example_smart_test3();
@@ -324,9 +324,9 @@ int _main(int argc, char** argv) {
 	example_smart_test19();
 	example_book_test1();
 	example_teaching_test1();
-	example_teaching_test2();
 	example_teaching_test3();
 	example_teaching_test4();
+	example_teaching_test2();
 	return (EXIT_SUCCESS);
 }
 
