@@ -2399,6 +2399,8 @@
         <itemPath>examples/smarts/Smart_AssignWriteSeizes.h</itemPath>
         <itemPath>examples/smarts/Smart_BatchSeparate.cpp</itemPath>
         <itemPath>examples/smarts/Smart_BatchSeparate.h</itemPath>
+        <itemPath>Smart_CellularAutomata1.cpp</itemPath>
+        <itemPath>Smart_CellularAutomata1.h</itemPath>
         <itemPath>examples/smarts/Smart_CppForG.cpp</itemPath>
         <itemPath>examples/smarts/Smart_CppForG.h</itemPath>
         <itemPath>examples/smarts/Smart_Delay.cpp</itemPath>
@@ -3215,6 +3217,12 @@
                             perm="755"
                             owner="root"
                             group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
         </packFileList>
         <packInfoList>
           <packInfoListElem name="Package" value="20192022GenESyS" mandatory="true"/>
@@ -3225,6 +3233,10 @@
         </packInfoList>
       </packaging>
       <item path="Makefile" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Smart_CellularAutomata1.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Smart_CellularAutomata1.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Traits.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -15716,6 +15728,10 @@
         </asmTool>
       </compileType>
       <item path="Makefile" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Smart_CellularAutomata1.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Smart_CellularAutomata1.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Traits.h" ex="false" tool="3" flavor2="0">
       </item>

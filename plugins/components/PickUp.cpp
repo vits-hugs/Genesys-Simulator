@@ -74,7 +74,9 @@ bool PickUp::_check(std::string* errorMessage) {
 PluginInformation* PickUp::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<PickUp>(), &PickUp::LoadInstance, &PickUp::NewInstance);
 	info->setCategory("Decisions");
-	// ...
+	std::string text = "The Pickup module removes a number of consecutive entities from a given queue starting at a specified rank in the queue.";
+	text += "The entities that are picked up are added to the end of the incoming entity’s group.";
+	info->setDescriptionHelp(text);
 	return info;
 }
 
