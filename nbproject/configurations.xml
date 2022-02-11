@@ -2373,6 +2373,8 @@
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.cpp</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.h</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.ui</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/qcustomplot.cpp</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/qcustomplot.h</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/simpleGUI_resources.qrc</itemPath>
             </logicalFolder>
           </logicalFolder>
@@ -2756,7 +2758,7 @@
       <qt>
         <destdir>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/build/Debug/GNU-Linux</destdir>
         <version>220115</version>
-        <modules>core gui widgets</modules>
+        <modules>core gui widgets printsupport</modules>
       </qt>
       <compileType>
         <ccTool>
@@ -2767,6 +2769,12 @@
         <packType>Debian</packType>
         <verbose>false</verbose>
         <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
           <packFileListElem type="File"
                             to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
                             from="${OUTPUT_PATH}"
@@ -3301,6 +3309,16 @@
             flavor2="0">
       </item>
       <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.ui"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/qcustomplot.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/qcustomplot.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -15796,6 +15814,16 @@
             flavor2="0">
       </item>
       <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.ui"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/qcustomplot.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/qcustomplot.h"
             ex="false"
             tool="3"
             flavor2="0">

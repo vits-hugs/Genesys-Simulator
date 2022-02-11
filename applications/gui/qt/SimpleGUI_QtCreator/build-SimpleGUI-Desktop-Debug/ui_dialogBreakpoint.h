@@ -10,6 +10,7 @@
 #define UI_DIALOGBREAKPOINT_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
@@ -49,6 +50,9 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(dialogBreakpoint->sizePolicy().hasHeightForWidth());
         dialogBreakpoint->setSizePolicy(sizePolicy);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/resources/icons/genesysico.gif"), QSize(), QIcon::Normal, QIcon::Off);
+        dialogBreakpoint->setWindowIcon(icon);
         dialogBreakpoint->setModal(true);
         verticalLayout = new QVBoxLayout(dialogBreakpoint);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));

@@ -22,6 +22,10 @@
   <property name="windowTitle">
    <string>Insert Breakpoint</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="simpleGUI_resources.qrc">
+    <normaloff>:/resources/icons/genesysico.gif</normaloff>:/resources/icons/genesysico.gif</iconset>
+  </property>
   <property name="modal">
    <bool>true</bool>
   </property>
@@ -101,7 +105,9 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="simpleGUI_resources.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>buttonBox</sender>

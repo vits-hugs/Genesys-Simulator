@@ -687,4 +687,7 @@
         <file>resources/icons/pack4/iconsMxGraph/zoomin.gif</file>
         <file>resources/icons/pack4/iconsMxGraph/zoomout.gif</file>
     </qresource>
+    <qresource prefix="/">
+        <file>resources/icons/genesysico.gif</file>
+    </qresource>
 </RCC>

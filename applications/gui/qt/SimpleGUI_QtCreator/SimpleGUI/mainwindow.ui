@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1024</width>
-    <height>539</height>
+    <width>1231</width>
+    <height>640</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,14 +15,14 @@
   </property>
   <property name="windowIcon">
    <iconset resource="simpleGUI_resources.qrc">
-    <normaloff>:/icons3/resources/icons/pack3/ico/3d bar chart.ico</normaloff>:/icons3/resources/icons/pack3/ico/3d bar chart.ico</iconset>
+    <normaloff>:/resources/icons/genesysico.gif</normaloff>:/resources/icons/genesysico.gif</iconset>
   </property>
   <property name="dockNestingEnabled">
    <bool>true</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout_11">
-    <item>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidgetCentral">
       <property name="enabled">
        <bool>false</bool>
@@ -49,12 +49,12 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
-         <widget class="QTabWidget" name="tabWidgetModel_2">
+         <widget class="QTabWidget" name="tabWidget_Model">
           <property name="tabPosition">
            <enum>QTabWidget::East</enum>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="tabModelText">
            <attribute name="icon">
@@ -72,7 +72,7 @@
              <normaloff>:/mxgraph/resources/icons/pack4/iconsMxGraph/vertical.png</normaloff>:/mxgraph/resources/icons/pack4/iconsMxGraph/vertical.png</iconset>
            </attribute>
            <attribute name="title">
-            <string>Graphic</string>
+            <string>Image</string>
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_6">
             <item>
@@ -88,8 +88,8 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>717</width>
-                 <height>279</height>
+                 <width>98</width>
+                 <height>37</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -182,6 +182,95 @@
                <widget class="QPushButton" name="pushButton_Export">
                 <property name="text">
                  <string>Export</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tabModelGraphicEdit">
+           <attribute name="icon">
+            <iconset resource="simpleGUI_resources.qrc">
+             <normaloff>:/icons3/resources/icons/pack3/ico/diagram.ico</normaloff>:/icons3/resources/icons/pack3/ico/diagram.ico</iconset>
+           </attribute>
+           <attribute name="title">
+            <string>Graphic</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_14">
+            <item>
+             <widget class="QGraphicsView" name="graphicsView">
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="lineWidth">
+               <number>2</number>
+              </property>
+              <property name="backgroundBrush">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>255</red>
+                 <green>255</green>
+                 <blue>200</blue>
+                </color>
+               </brush>
+              </property>
+              <property name="sceneRect">
+               <rectf>
+                <x>0.000000000000000</x>
+                <y>0.000000000000000</y>
+                <width>1024.000000000000000</width>
+                <height>1024.000000000000000</height>
+               </rectf>
+              </property>
+              <property name="renderHints">
+               <set>QPainter::Antialiasing|QPainter::TextAntialiasing</set>
+              </property>
+              <property name="dragMode">
+               <enum>QGraphicsView::ScrollHandDrag</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_5">
+              <item>
+               <spacer name="horizontalSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QToolButton" name="toolButton_3">
+                <property name="text">
+                 <string>...</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="toolButton_2">
+                <property name="text">
+                 <string>...</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="toolButton">
+                <property name="text">
+                 <string>...</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="toolButton_4">
+                <property name="text">
+                 <string>...</string>
                 </property>
                </widget>
               </item>
@@ -333,7 +422,7 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QTabWidget" name="tabWidget">
+         <widget class="QTabWidget" name="tabWidget_Simulation">
           <property name="tabPosition">
            <enum>QTabWidget::East</enum>
           </property>
@@ -443,21 +532,51 @@
        <attribute name="title">
         <string>Reports</string>
        </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <layout class="QVBoxLayout" name="verticalLayout_11">
         <item>
-         <widget class="QTextEdit" name="textEdit_Reports">
-          <property name="font">
-           <font>
-            <family>Courier 10 Pitch</family>
-            <pointsize>10</pointsize>
-           </font>
+         <widget class="QTabWidget" name="tabWidget_Report">
+          <property name="tabPosition">
+           <enum>QTabWidget::East</enum>
           </property>
-          <property name="lineWrapMode">
-           <enum>QTextEdit::NoWrap</enum>
+          <property name="currentIndex">
+           <number>0</number>
           </property>
-          <property name="textInteractionFlags">
-           <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
-          </property>
+          <widget class="QWidget" name="tabReportTextr">
+           <attribute name="icon">
+            <iconset resource="simpleGUI_resources.qrc">
+             <normaloff>:/icons3/resources/icons/pack3/ico/text.ico</normaloff>:/icons3/resources/icons/pack3/ico/text.ico</iconset>
+           </attribute>
+           <attribute name="title">
+            <string>Text</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_15">
+            <item>
+             <widget class="QTextEdit" name="textEdit_Reports">
+              <property name="font">
+               <font>
+                <family>Courier 10 Pitch</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="lineWrapMode">
+               <enum>QTextEdit::NoWrap</enum>
+              </property>
+              <property name="textInteractionFlags">
+               <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tabReportGraphics">
+           <attribute name="icon">
+            <iconset resource="simpleGUI_resources.qrc">
+             <normaloff>:/icons3/resources/icons/pack3/ico/stock graph.ico</normaloff>:/icons3/resources/icons/pack3/ico/stock graph.ico</iconset>
+           </attribute>
+           <attribute name="title">
+            <string>Graphics</string>
+           </attribute>
+          </widget>
          </widget>
         </item>
        </layout>
@@ -471,7 +590,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1024</width>
+     <width>1231</width>
      <height>24</height>
     </rect>
    </property>
@@ -561,6 +680,12 @@
      <height>109</height>
     </size>
    </property>
+   <property name="maximumSize">
+    <size>
+     <width>524287</width>
+     <height>200</height>
+    </size>
+   </property>
    <property name="baseSize">
     <size>
      <width>100</width>
@@ -631,14 +756,29 @@
    <widget class="QWidget" name="dockWidgetContentsPlugin">
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QListWidget" name="listWidget_Plugins"/>
-     </item>
-     <item>
       <widget class="QTreeWidget" name="treeWidget_Plugins">
-       <attribute name="headerVisible">
+       <property name="dragEnabled">
+        <bool>true</bool>
+       </property>
+       <property name="dragDropMode">
+        <enum>QAbstractItemView::DragOnly</enum>
+       </property>
+       <property name="alternatingRowColors">
+        <bool>true</bool>
+       </property>
+       <property name="indentation">
+        <number>8</number>
+       </property>
+       <property name="sortingEnabled">
+        <bool>true</bool>
+       </property>
+       <property name="animated">
         <bool>false</bool>
-       </attribute>
-       <attribute name="headerCascadingSectionResizes">
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+       <attribute name="headerVisible">
         <bool>false</bool>
        </attribute>
        <column>

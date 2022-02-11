@@ -36,11 +36,7 @@ private slots:
     void on_actionLicence_triggered();
     void on_actionGet_Involved_triggered();
     void on_textCodeEdit_Model_textChanged();
-    void on_listWidget_Plugins_itemClicked(QListWidgetItem *item);
-    void on_listWidget_Plugins_itemDoubleClicked(QListWidgetItem *item);
-    void on_listWidget_Plugins_doubleClicked(const QModelIndex &index);
-    void on_listWidget_Plugins_clicked(const QModelIndex &index);
-    void on_tabWidgetModel_2_tabBarClicked(int index);
+	void on_tabWidget_Model_tabBarClicked(int index);
     void on_tabWidget_Debug_currentChanged(int index);
     void on_horizontalSlider_Zoom_valueChanged(int value);
     void on_checkBox_ShowElements_stateChanged(int arg1);
@@ -50,13 +46,9 @@ private slots:
     void on_pushButton_clicked();
     void on_pushButton_Breakpoint_Insert_clicked();
     void on_pushButton_Breakpoint_Remove_clicked();
-
     void on_tabWidget_Debug_tabBarClicked(int index);
-
     void on_tabWidgetCentral_currentChanged(int index);
-
     void on_tabWidgetCentral_tabBarClicked(int index);
-
     void on_treeWidget_Plugins_itemDoubleClicked(QTreeWidgetItem *item, int column);
 
 private: // VIEW
@@ -102,7 +94,8 @@ private:
     const struct CONST_STRUC {
         const unsigned int TabModelIndex = 0;
         const unsigned int TabModelTextIndex = 0;
-        const unsigned int TabModelGraphcIndex = 1;
+        const unsigned int TabModelImageIndex = 1;
+        const unsigned int TabModelGraphicEditIndex = 2;
         const unsigned int TabDebugIndex = 1;
         const unsigned int TabDebugBreakpointIndex = 0;
         const unsigned int TabDebugVarableIndex = 1;
@@ -111,6 +104,8 @@ private:
         const unsigned int TabSimulationTraceIndex = 0;
         const unsigned int TabSimulationEventsIndex = 1;
         const unsigned int TabReportIndex = 3;
+        const unsigned int TabReporTextIndex = 0;
+        const unsigned int TabReporGraphictIndex = 1;
     } CONST;
     CodeEditor* textCodeEdit_Model;
 };
