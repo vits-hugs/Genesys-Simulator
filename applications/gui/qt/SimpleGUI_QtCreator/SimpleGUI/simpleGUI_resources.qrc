@@ -534,6 +534,12 @@
         <file>resources/icons/pack3/ico/yellow tag.ico</file>
         <file>resources/icons/pack3/ico/yes.ico</file>
         <file>resources/icons/pack3/ico/zoom.ico</file>
+        <file>resources/icons/pack3/ico/calendarred.ico</file>
+        <file>resources/icons/pack3/ico/componentblue.ico</file>
+        <file>resources/icons/pack3/ico/componentpink.ico</file>
+        <file>resources/icons/pack3/ico/componentred.ico</file>
+        <file>resources/icons/pack3/ico/componentyellow.ico</file>
+        <file>resources/icons/pack3/ico/componentblack.ico</file>
     </qresource>
     <qresource prefix="/icons4">
         <file>resources/icons/pack4/add.png</file>

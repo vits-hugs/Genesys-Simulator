@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   Plugin.h
  * Author: rafael.luiz.cancian
  *
@@ -29,25 +29,26 @@ PlugIns are NOT implemented yet
  */
 class Plugin {
 public:
-	Plugin(std::string filename_so_dll);
-	Plugin(StaticGetPluginInformation getInformation); // temporary. Just while compiled together
-	virtual ~Plugin() = default;
+    Plugin(std::string filename_so_dll);
+    Plugin(StaticGetPluginInformation getInformation); // temporary. Just while compiled together
+    virtual ~Plugin() = default;
 public:
-	std::string show();
+    std::string show();
 public:
-	bool isIsValidPlugin() const;
-	PluginInformation* getPluginInfo() const;
+    bool isIsValidPlugin() const;
+    PluginInformation* getPluginInfo() const;
 public:
-	ModelDataDefinition* loadNew(Model* model, std::map<std::string, std::string>* fields); ///< creates a new ModelDataDefinition from fields loaded from a file
-	bool loadAndInsertNew(Model* model, std::map<std::string, std::string>* fields);
+    ModelDataDefinition* loadNew(Model* model, std::map<std::string, std::string>* fields); ///< creates a new ModelDataDefinition from fields loaded from a file
+    bool loadAndInsertNew(Model* model, std::map<std::string, std::string>* fields);
+    ModelDataDefinition* newInstance(Model* model, std::string name="");
 private:
-	ModelComponent* _loadNewComponent(Model* model, std::map<std::string, std::string>* fields);
-	ModelDataDefinition* _loadNewElement(Model* model, std::map<std::string, std::string>* fields);
+    ModelComponent* _loadNewComponent(Model* model, std::map<std::string, std::string>* fields);
+    ModelDataDefinition* _loadNewElement(Model* model, std::map<std::string, std::string>* fields);
 private: // read only
-	bool _isValidPlugin;
-	PluginInformation* _pluginInfo;
+    bool _isValidPlugin;
+    PluginInformation* _pluginInfo;
 private:
-	StaticGetPluginInformation _StatMethodGetInformation;
+    StaticGetPluginInformation _StatMethodGetInformation;
 };
 //namespace\\}
 #endif /* PLUGIN_H */

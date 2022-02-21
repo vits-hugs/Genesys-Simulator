@@ -114,7 +114,14 @@ SOURCES += \
 	../../../../../plugins/data/Station.cpp \
 	../../../../../plugins/data/Storage.cpp \
 	../../../../../plugins/data/Variable.cpp \
+	AnimateExpression.cpp \
 	CodeEditor.cpp \
+	GraphicalComponentPort.cpp \
+	GraphicalConnection.cpp \
+	GraphicalModelComponent.cpp \
+	GraphicalModelDataDefinition.cpp \
+	ModelGraphicsScene.cpp \
+	ModelGraphicsView.cpp \
 	dialogBreakpoint.cpp \
 	main.cpp \
 	mainwindow.cpp \
@@ -246,8 +253,15 @@ HEADERS += \
 	../../../../../plugins/data/Station.h \
 	../../../../../plugins/data/Storage.h \
 	../../../../../plugins/data/Variable.h \
+	AnimateExpression.h \
 	CodeEditor.h \
+	GraphicalComponentPort.h \
+	GraphicalConnection.h \
+	GraphicalModelComponent.h \
+	GraphicalModelDataDefinition.h \
 	LineNumberArea.h \
+	ModelGraphicsScene.h \
+	ModelGraphicsView.h \
 	dialogBreakpoint.h \
 	mainwindow.h \
 	qcustomplot.h

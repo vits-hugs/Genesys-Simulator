@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QListWidget>
 #include <QTreeWidgetItem>
+#include <QGraphicsItem>
+
 #include "../../../../../kernel/simulator/Simulator.h"
 #include "../../../../../kernel/simulator/TraceManager.h"
 #include "CodeEditor.h"
@@ -19,6 +21,9 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+    bool graphicalModelHasChanged() const;
+    void setGraphicalModelHasChanged(bool graphicalModelHasChanged);
 
 private slots:
     void on_actionNew_triggered();
@@ -36,7 +41,7 @@ private slots:
     void on_actionLicence_triggered();
     void on_actionGet_Involved_triggered();
     void on_textCodeEdit_Model_textChanged();
-	void on_tabWidget_Model_tabBarClicked(int index);
+    void on_tabWidget_Model_tabBarClicked(int index);
     void on_tabWidget_Debug_currentChanged(int index);
     void on_horizontalSlider_Zoom_valueChanged(int value);
     void on_checkBox_ShowElements_stateChanged(int arg1);
@@ -50,6 +55,10 @@ private slots:
     void on_tabWidgetCentral_currentChanged(int index);
     void on_tabWidgetCentral_tabBarClicked(int index);
     void on_treeWidget_Plugins_itemDoubleClicked(QTreeWidgetItem *item, int column);
+    void on_graphicsView_rubberBandChanged(const QRect &viewportRect, const QPointF &fromScenePoint, const QPointF &toScenePoint);
+    void on_horizontalSlider_ZoomGraphical_valueChanged(int value);
+    void on_toolButton_triggered(QAction *arg1);
+    void on_actionConnect_triggered();
 
 private: // VIEW
 
@@ -58,7 +67,7 @@ private: // trace handlers
     void _simulatorTraceErrorHandler(TraceErrorEvent e);
     void _simulatorTraceSimulationHandler(TraceSimulationEvent e);
     void _simulatorTraceReportsHandler(TraceEvent e);
-private: // event handlers
+private: // simuletor event handlers
     void _onReplicationStartHandler(SimulationEvent* re);
     void _onSimulationStartHandler(SimulationEvent* re);
     void _onSimulationPausedHandler(SimulationEvent* re);
@@ -67,7 +76,15 @@ private: // event handlers
     void _onProcessEventHandler(SimulationEvent* re);
     void _onEntityCreateHandler(SimulationEvent* re);
     void _onEntityRemoveHandler(SimulationEvent* re);
+private: // mdoel Graphics View hanflers
+    void _onSceneMouseEvent(QGraphicsSceneMouseEvent* mouseEvent);
+private: // QGraphicsScene Slots
+    void sceneChanged(const QList<QRectF> &region);
+    void sceneFocusItemChanged(QGraphicsItem *newFocusItem, QGraphicsItem *oldFocusItem, Qt::FocusReason reason);
+    //void sceneRectChanged(const QRectF &rect);
+    void sceneSelectionChanged();
 private:
+    void _initModelGraphicsView();
     void _setOnEventHandlers();
     void _insertPluginUI(Plugin* plugin);
     void _insertFakePlugins();
@@ -79,6 +96,7 @@ private:
     void _actualizeDebugBreakpoints(bool force);
     void _insertCommandInConsole(std::string text);
     void _clearModelEditors();
+    void _gentle_zoom(double factor);
     //bool _checkStartSimulation();
     bool _setSimulationModelBasedOnText();
     bool _createModelGraphicPicture();
@@ -89,7 +107,9 @@ private:
     Ui::MainWindow *ui;
     Simulator* simulator;
     bool _textModelHasChanged;
+    bool _graphicalModelHasChanged;
     QString _modelfilename;
+    int _zoomValue;
 private:
     const struct CONST_STRUC {
         const unsigned int TabModelIndex = 0;

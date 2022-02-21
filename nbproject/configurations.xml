@@ -2363,13 +2363,28 @@
                 </logicalFolder>
                 <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/software_genesys.gif</itemPath>
               </logicalFolder>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/AnimateExpression.cpp</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/AnimateExpression.h</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/CodeEditor.cpp</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/CodeEditor.h</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalComponentPort.cpp</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalComponentPort.h</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalConnection.cpp</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalConnection.h</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelComponent.cpp</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelComponent.h</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelDataDefinition.cpp</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelDataDefinition.h</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/LineNumberArea.h</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsView.cpp</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsView.h</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/SimpleGUI.pro</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/SimpleGUI.pro.user</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/SimpleGUI_en_US.ts</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.cpp</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.h</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.ui</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/main.cpp</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.cpp</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.h</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.ui</itemPath>
@@ -2739,6 +2754,10 @@
                    kind="TEST_LOGICAL_FOLDER">
     </logicalFolder>
     <itemPath>Makefile</itemPath>
+    <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelComponentGraphicsItem.cpp</itemPath>
+    <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelComponentGraphicsItem.h</itemPath>
+    <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.cpp</itemPath>
+    <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.h</itemPath>
     <itemPath>Traits.h</itemPath>
     <itemPath>main.cpp</itemPath>
   </logicalFolder>
@@ -2769,6 +2788,36 @@
         <packType>Debian</packType>
         <verbose>false</verbose>
         <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
           <packFileListElem type="File"
                             to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
                             from="${OUTPUT_PATH}"
@@ -3263,6 +3312,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/AnimateExpression.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/AnimateExpression.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/CodeEditor.cpp"
             ex="false"
             tool="1"
@@ -3273,12 +3332,92 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalComponentPort.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalComponentPort.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalConnection.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalConnection.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelComponent.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelComponent.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelDataDefinition.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelDataDefinition.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/LineNumberArea.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelComponentGraphicsItem.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelComponentGraphicsItem.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsView.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsView.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/SimpleGUI.pro"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/SimpleGUI.pro.user"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/SimpleGUI_en_US.ts"
             ex="false"
             tool="3"
             flavor2="0">
@@ -3296,6 +3435,11 @@
       <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.ui"
             ex="false"
             tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/main.cpp"
+            ex="false"
+            tool="1"
             flavor2="0">
       </item>
       <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.cpp"
@@ -15768,6 +15912,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/AnimateExpression.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/AnimateExpression.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/CodeEditor.cpp"
             ex="false"
             tool="1"
@@ -15778,12 +15932,92 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalComponentPort.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalComponentPort.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalConnection.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalConnection.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelComponent.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelComponent.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelDataDefinition.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelDataDefinition.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/LineNumberArea.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelComponentGraphicsItem.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelComponentGraphicsItem.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsView.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsView.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/SimpleGUI.pro"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/SimpleGUI.pro.user"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/SimpleGUI_en_US.ts"
             ex="false"
             tool="3"
             flavor2="0">
@@ -15801,6 +16035,11 @@
       <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.ui"
             ex="false"
             tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/main.cpp"
+            ex="false"
+            tool="1"
             flavor2="0">
       </item>
       <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.cpp"
