@@ -28,8 +28,8 @@ ModelDataDefinition* Delay::NewInstance(Model* model, std::string name) {
 
 Delay::Delay(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Delay>(), name) {
 
-	GetterMember getter = DefineGetterMember<Delay>(this, &Delay::delay);
-	SetterMember setter = DefineSetterMember<Delay>(this, &Delay::setDelay);
+	GetterMemberDouble getter = DefineGetterMember<Delay>(this, &Delay::delay);
+	SetterMemberDouble setter = DefineSetterMember<Delay>(this, &Delay::setDelay);
 	model->getControls()->insert(new SimulationControl(Util::TypeOf<Delay>(), getName() + ".Delay", getter, setter));
 
 	//GetterMember getter2 = DefineGetterMember<Delay>(this, &Delay::delayTimeUnit);

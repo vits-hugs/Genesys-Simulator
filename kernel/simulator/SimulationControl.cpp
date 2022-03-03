@@ -15,7 +15,7 @@
 
 //using namespace GenesysKernel;
 
-SimulationControl::SimulationControl(std::string type, std::string name, GetterMember getterMember, SetterMember setterMember, std::string parent) : SimulationResponse(type, name, getterMember, parent) {
+SimulationControl::SimulationControl(std::string type, std::string name, GetterMemberDouble getterMember, SetterMemberDouble setterMember, std::string parent) : SimulationResponse(type, name, getterMember, parent) {
 	this->_setMemberFunction = setterMember;
 }
 

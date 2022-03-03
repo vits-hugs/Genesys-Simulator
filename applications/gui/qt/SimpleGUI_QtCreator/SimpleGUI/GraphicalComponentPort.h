@@ -6,9 +6,9 @@
 #include <QPen>
 #include <QBrush>
 #include "../../../../../kernel/simulator/ModelComponent.h"
-#include "GraphicalModelComponent.h"
 //#include "GraphicalConnection.h"
 
+class  GraphicalModelComponent;
 class GraphicalConnection;
 
 class GraphicalComponentPort : public QGraphicsObject{

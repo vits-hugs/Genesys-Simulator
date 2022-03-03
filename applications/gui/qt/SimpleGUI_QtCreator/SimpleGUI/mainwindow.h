@@ -48,17 +48,18 @@ private slots:
     void on_checkBox_ShowInternals_stateChanged(int arg1);
     void on_checkBox_ShowRecursive_stateChanged(int arg1);
     void on_checkBox_ShowLevels_stateChanged(int arg1);
-    void on_pushButton_clicked();
     void on_pushButton_Breakpoint_Insert_clicked();
     void on_pushButton_Breakpoint_Remove_clicked();
-    void on_tabWidget_Debug_tabBarClicked(int index);
     void on_tabWidgetCentral_currentChanged(int index);
     void on_tabWidgetCentral_tabBarClicked(int index);
     void on_treeWidget_Plugins_itemDoubleClicked(QTreeWidgetItem *item, int column);
     void on_graphicsView_rubberBandChanged(const QRect &viewportRect, const QPointF &fromScenePoint, const QPointF &toScenePoint);
     void on_horizontalSlider_ZoomGraphical_valueChanged(int value);
-    void on_toolButton_triggered(QAction *arg1);
     void on_actionConnect_triggered();
+    void on_pushButton_Export_clicked();
+    void on_tabWidgetModelLanguages_currentChanged(int index);
+    void on_actionComponent_Breakpoint_triggered();
+    void on_treeWidgetComponents_itemSelectionChanged();
 
 private: // VIEW
 
@@ -83,49 +84,53 @@ private: // QGraphicsScene Slots
     void sceneFocusItemChanged(QGraphicsItem *newFocusItem, QGraphicsItem *oldFocusItem, Qt::FocusReason reason);
     //void sceneRectChanged(const QRectF &rect);
     void sceneSelectionChanged();
-private:
-    void _initModelGraphicsView();
+private: // simulator related
     void _setOnEventHandlers();
     void _insertPluginUI(Plugin* plugin);
     void _insertFakePlugins();
+    bool _setSimulationModelBasedOnText();
+    bool _createModelImage();
+    std::string _adjustDotName(std::string name);
+    void _insertTextInDot(std::string text, unsigned int compLevel, unsigned int compRank, std::map<unsigned int, std::map<unsigned int, std::list<std::string>*>*>* dotmap, bool isNode = false);
+    void _recursiveCreateModelGraphicPicture(ModelDataDefinition* componentOrData, std::list<ModelDataDefinition*>* visited, std::map<unsigned int, std::map<unsigned int, std::list<std::string>*>*>* dotmap);
+    void _createCppCodeForModel();
+    std::string _addCppCodeLine(std::string line, unsigned int indent=0);
+private: // view
+    void _initModelGraphicsView();
     void _actualizeWidgets();
+    void _actualizeTextModelBasedOnSimulatorModel();
     void _actualizeModelTextHasChanged(bool hasChanged);
     void _actualizeSimulationEvents(SimulationEvent * re);
     void _actualizeDebugVariables(bool force);
     void _actualizeDebugEntities(bool force);
     void _actualizeDebugBreakpoints(bool force);
+    void _actualizeModelComponents(bool force);
+    void _actualizeGraphicalModel(SimulationEvent * re);
     void _insertCommandInConsole(std::string text);
     void _clearModelEditors();
     void _gentle_zoom(double factor);
     //bool _checkStartSimulation();
-    bool _setSimulationModelBasedOnText();
-    bool _createModelGraphicPicture();
-    std::string _adjustName(std::string name);
-    void _insertTextInDot(std::string text, unsigned int compLevel, unsigned int compRank, std::map<unsigned int, std::map<unsigned int, std::list<std::string>*>*>* dotmap, bool isNode = false);
-    void _recursiveCreateModelGraphicPicture(ModelDataDefinition* componentOrData, std::list<ModelDataDefinition*>* visited, std::map<unsigned int, std::map<unsigned int, std::list<std::string>*>*>* dotmap);
 private:
     Ui::MainWindow *ui;
     Simulator* simulator;
-    bool _textModelHasChanged;
-    bool _graphicalModelHasChanged;
+    bool _textModelHasChanged = false;
+    bool _graphicalModelHasChanged = false;
+    bool _modelWasOpened = false;
     QString _modelfilename;
     int _zoomValue;
 private:
     const struct CONST_STRUC {
-        const unsigned int TabModelIndex = 0;
-        const unsigned int TabModelTextIndex = 0;
-        const unsigned int TabModelImageIndex = 1;
-        const unsigned int TabModelGraphicEditIndex = 2;
-        const unsigned int TabDebugIndex = 1;
-        const unsigned int TabDebugBreakpointIndex = 0;
-        const unsigned int TabDebugVarableIndex = 1;
-        const unsigned int TabDebugEntityIndex = 2;
-        const unsigned int TabSimulationIndex = 2;
-        const unsigned int TabSimulationTraceIndex = 0;
-        const unsigned int TabSimulationEventsIndex = 1;
-        const unsigned int TabReportIndex = 3;
-        const unsigned int TabReporTextIndex = 0;
-        const unsigned int TabReporGraphictIndex = 1;
+        const unsigned int TabModelSimLangIndex = 0;
+        const unsigned int TabModelCppCodeIndex = 1;
+        const unsigned int TabCentralModelLanguages = 0;
+        const unsigned int TabCentralModelViews = 1;
+        const unsigned int TabCentralModelComponents = 2;
+        const unsigned int TabCentralBreakpointIndex = 3;
+        const unsigned int TabCentralVariableIndex = 4;
+        const unsigned int TabCentralEntityIndex = 5;
+        const unsigned int TabCentralTraceIndex = 6;
+        const unsigned int TabCentralEventsIndex = 7;
+        const unsigned int TabCentralReportIndex = 8;
     } CONST;
     CodeEditor* textCodeEdit_Model;
 };

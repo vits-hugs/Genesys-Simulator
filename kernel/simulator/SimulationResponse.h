@@ -24,7 +24,7 @@
  */
 class SimulationResponse {
 public:
-	SimulationResponse(std::string type, std::string name, GetterMember getterMember, std::string parent = "");
+	SimulationResponse(std::string type, std::string name, GetterMemberDouble getterMember, std::string parent = "");
 	virtual ~SimulationResponse() = default;
 public:
 	std::string show();
@@ -38,7 +38,7 @@ protected:
 	std::string _type;
 	std::string _parent;
 	std::string _name;
-	GetterMember _getterMemberFunction;
+	GetterMemberDouble _getterMemberFunction;
 };
 //namespace\\}
 #endif /* SIMULATIONRESPONSE_H */

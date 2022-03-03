@@ -23,7 +23,7 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     Connection* getSource() const;
     Connection* getDestination() const;
-    void updateDimensions();
+    void updateDimensionsAndPosition();
 protected: // virtual
     virtual bool sceneEvent(QEvent *event) override;
     //virtual void	hoverEnterEvent(QGraphicsSceneHoverEvent * event)
@@ -42,7 +42,7 @@ private:
 private:
     qreal _width;
     qreal _height;
-    unsigned int _margin = 4;
+    unsigned int _margin = 2;
     unsigned int _selWidth = 8;
     Connection* _source;
     Connection* _destination;

@@ -1,5 +1,6 @@
 #include "GraphicalComponentPort.h"
 #include "GraphicalConnection.h"
+#include "GraphicalModelComponent.h"
 #include <QPainter>
 
 GraphicalComponentPort::GraphicalComponentPort(GraphicalModelComponent* componentGraph, bool isInputPort, unsigned int portNum, QGraphicsItem *parent)  : QGraphicsObject(parent){
@@ -50,7 +51,7 @@ QVariant GraphicalComponentPort::itemChange(QGraphicsItem::GraphicsItemChange ch
     QVariant res = QGraphicsObject::itemChange(change, value);
     if (change == QGraphicsItem::ItemPositionChange || QGraphicsItem::ItemScenePositionHasChanged) {
         for(GraphicalConnection* graphconnection: *_connections) {
-            graphconnection->updateDimensions();
+            graphconnection->updateDimensionsAndPosition();
             //graphconnection->update();//updateDimensions();
         }
     }
@@ -110,9 +111,10 @@ void GraphicalComponentPort::paint(QPainter *painter, const QStyleOptionGraphics
     path2.lineTo(_margin+_iwidth-_raise,_margin+_iheight-_raise);
     painter->drawPath(path2);
     // fill
-    QColor _color = QColor(0,0,0,225);
+    QColor _color = QColor(0,0,0,25);
+    //brush = QBrush(Qt::NoBrush);
     if (_connections->size()>0) {
-        _color = QColor(255,0,0,225);
+        _color = QColor(0,0,0,225);//QColor(255,0,0,225);
     }
     brush = QBrush(Qt::SolidPattern);
     brush.setColor(_color);
@@ -145,9 +147,10 @@ void GraphicalComponentPort::paint(QPainter *painter, const QStyleOptionGraphics
         path2.lineTo(_margin+_iwidth,_margin+_iheight/2.0);
         painter->drawPath(path2);
         // fill
-        QColor _color = QColor(0,0,0,225);
+        QColor _color = QColor(0,0,0,25);
+        //brush = QBrush(Qt::NoBrush);
         if (_connections->size()>0) {
-            _color = QColor(255,0,0,225);
+            _color = QColor(0,0,0,225); //QColor(255,0,0,225);
         }
         brush = QBrush(Qt::SolidPattern);
         brush.setColor(_color);

@@ -13,7 +13,6 @@
 
 #include "Simulator.h"
 #include "LicenceManager.h"
-//#include "ToolManager.h"
 
 extern "C" GenesysSimulator CreateSimulator2() {
 	return new /*GenesysKernel::*/Simulator();

@@ -9,13 +9,14 @@
 #ifndef UI_MAINWINDOW_H
 #define UI_MAINWINDOW_H
 
+#include <CodeEditor.h>
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QDockWidget>
-#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -27,6 +28,7 @@
 #include <QtWidgets/QScrollArea>
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QSplitter>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTableWidget>
@@ -76,80 +78,71 @@ public:
     QAction *actionEllipse;
     QAction *actionClock;
     QAction *actionVariable;
-    QAction *actionAttribute;
     QAction *actionExpression;
     QAction *actionResource;
     QAction *actionQueue;
     QAction *actionStation;
     QAction *actionConnect;
+    QAction *actionComponent_Breakpoint;
     QWidget *centralwidget;
-    QGridLayout *gridLayout;
+    QVBoxLayout *verticalLayout_7;
+    QSplitter *splitter;
+    ModelGraphicsView *graphicsView;
     QTabWidget *tabWidgetCentral;
-    QWidget *tabModel;
-    QVBoxLayout *verticalLayout_3;
-    QTabWidget *tabWidget_Model;
+    QWidget *tabLanguages;
+    QVBoxLayout *verticalLayout_8;
+    QTabWidget *tabWidgetModelLanguages;
     QWidget *tabModelText;
     QVBoxLayout *verticalLayout_4;
-    QWidget *tabModelGraphic;
-    QVBoxLayout *verticalLayout_6;
+    QWidget *tab;
+    QVBoxLayout *verticalLayout_16;
+    CodeEditor *plainTextEditCppCode;
+    QWidget *tabModelView;
+    QVBoxLayout *verticalLayout_3;
+    QFrame *frame;
+    QVBoxLayout *verticalLayout_11;
     QScrollArea *scrollArea_Graphic;
     QWidget *scrollAreaWidgetContents;
     QVBoxLayout *verticalLayout_5;
     QLabel *label_ModelGraphic;
     QHBoxLayout *horizontalLayout;
-    QLabel *label_Zoom;
-    QSlider *horizontalSlider_Zoom;
     QCheckBox *checkBox_ShowElements;
     QCheckBox *checkBox_ShowInternals;
     QCheckBox *checkBox_ShowLevels;
     QCheckBox *checkBox_ShowRecursive;
+    QSpacerItem *horizontalSpacer;
     QPushButton *pushButton_Export;
-    QWidget *tabModelGraphicEdit;
+    QWidget *tabComponents;
+    QVBoxLayout *verticalLayout_6;
+    QTreeWidget *treeWidgetComponents;
+    QWidget *tabBrekpoints;
     QVBoxLayout *verticalLayout_14;
-    ModelGraphicsView *graphicsView;
-    QHBoxLayout *horizontalLayout_5;
+    QTableWidget *tableWidget_Breakpoints;
+    QWidget *tabVariables;
+    QVBoxLayout *verticalLayout_17;
+    QTableWidget *tableWidget_Variables;
+    QWidget *tabEntities;
+    QVBoxLayout *verticalLayout_18;
+    QTableWidget *tableWidget_Entities;
+    QWidget *tabTraces;
+    QVBoxLayout *verticalLayout_9;
+    QTextEdit *textEdit_Simulation;
+    QWidget *tabEvents;
+    QVBoxLayout *verticalLayout_10;
+    QTableWidget *tableWidget_Simulation_Event;
+    QWidget *tabReports;
+    QVBoxLayout *verticalLayout_2;
+    QTextEdit *textEdit_Reports;
+    QHBoxLayout *horizontalLayoutZoomReplication;
     QLabel *labelMousePos;
-    QSpacerItem *horizontalSpacer_2;
+    QFrame *line;
     QLabel *label_3;
     QSlider *horizontalSlider_ZoomGraphical;
-    QSpacerItem *horizontalSpacer_3;
-    QWidget *tabDebug;
-    QVBoxLayout *verticalLayout_9;
-    QTabWidget *tabWidget_Debug;
-    QWidget *tab_Debug_Breakpoints;
-    QVBoxLayout *verticalLayout_10;
-    QTableWidget *tableWidget_Breakpoints;
-    QHBoxLayout *horizontalLayout_6;
-    QPushButton *pushButton_Breakpoint_Insert;
-    QPushButton *pushButton_Breakpoint_Remove;
-    QSpacerItem *horizontalSpacer;
-    QWidget *tab_Debug_Variables;
-    QVBoxLayout *verticalLayout_13;
-    QTableWidget *tableWidget_Variables;
-    QWidget *tabDebug_Entities;
-    QVBoxLayout *verticalLayout_12;
-    QTableWidget *tableWidget_Entities;
-    QWidget *tabSimulation;
-    QVBoxLayout *verticalLayout_2;
-    QTabWidget *tabWidget_Simulation;
-    QWidget *tab_Simulation_Trace;
-    QVBoxLayout *verticalLayout_7;
-    QTextEdit *textEdit_Simulation;
-    QWidget *tab_Simulation_Event;
-    QVBoxLayout *verticalLayout_8;
-    QTableWidget *tableWidget_Simulation_Event;
-    QHBoxLayout *horizontalLayout_3;
+    QFrame *line_2;
     QLabel *label_2;
     QLabel *label_ReplicationNum;
     QLabel *label;
     QProgressBar *progressBarSimulation;
-    QWidget *tabReport;
-    QVBoxLayout *verticalLayout_11;
-    QTabWidget *tabWidget_Report;
-    QWidget *tabReportTextr;
-    QVBoxLayout *verticalLayout_15;
-    QTextEdit *textEdit_Reports;
-    QWidget *tabReportGraphics;
     QMenuBar *menubar;
     QMenu *menuModel;
     QMenu *menuSimulation;
@@ -178,6 +171,7 @@ public:
     QToolBar *toolBarView;
     QToolBar *toolBarSimulation;
     QToolBar *toolBarAbout;
+    QToolBar *toolBarAnimation;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -211,7 +205,7 @@ public:
         actionExit->setIcon(icon4);
         actionStart = new QAction(MainWindow);
         actionStart->setObjectName(QString::fromUtf8("actionStart"));
-        actionStart->setEnabled(false);
+        actionStart->setEnabled(true);
         QIcon icon5;
         icon5.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/play.ico"), QSize(), QIcon::Normal, QIcon::Off);
         actionStart->setIcon(icon5);
@@ -270,271 +264,286 @@ public:
         actionGrid->setObjectName(QString::fromUtf8("actionGrid"));
         actionGrid->setCheckable(true);
         QIcon icon15;
-        icon15.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/question.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        icon15.addFile(QString::fromUtf8(":/resources/ToolBar/_grade.bmp"), QSize(), QIcon::Normal, QIcon::Off);
         actionGrid->setIcon(icon15);
         actionSnap = new QAction(MainWindow);
         actionSnap->setObjectName(QString::fromUtf8("actionSnap"));
         actionSnap->setCheckable(true);
-        actionSnap->setIcon(icon15);
+        QIcon icon16;
+        icon16.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/question.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        actionSnap->setIcon(icon16);
         actionUndo = new QAction(MainWindow);
         actionUndo->setObjectName(QString::fromUtf8("actionUndo"));
-        QIcon icon16;
-        icon16.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/undo.ico"), QSize(), QIcon::Normal, QIcon::Off);
-        actionUndo->setIcon(icon16);
+        QIcon icon17;
+        icon17.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/undo.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        actionUndo->setIcon(icon17);
         actionRedo = new QAction(MainWindow);
         actionRedo->setObjectName(QString::fromUtf8("actionRedo"));
-        QIcon icon17;
-        icon17.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/redo.ico"), QSize(), QIcon::Normal, QIcon::Off);
-        actionRedo->setIcon(icon17);
+        QIcon icon18;
+        icon18.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/redo.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        actionRedo->setIcon(icon18);
         actionFind = new QAction(MainWindow);
         actionFind->setObjectName(QString::fromUtf8("actionFind"));
-        QIcon icon18;
-        icon18.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/find.ico"), QSize(), QIcon::Normal, QIcon::Off);
-        actionFind->setIcon(icon18);
+        QIcon icon19;
+        icon19.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/find.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        actionFind->setIcon(icon19);
         actionReplace = new QAction(MainWindow);
         actionReplace->setObjectName(QString::fromUtf8("actionReplace"));
-        actionReplace->setIcon(icon18);
+        actionReplace->setIcon(icon19);
         actionCut = new QAction(MainWindow);
         actionCut->setObjectName(QString::fromUtf8("actionCut"));
-        QIcon icon19;
-        icon19.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/cut.ico"), QSize(), QIcon::Normal, QIcon::Off);
-        actionCut->setIcon(icon19);
+        QIcon icon20;
+        icon20.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/cut.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        actionCut->setIcon(icon20);
         actionCopy = new QAction(MainWindow);
         actionCopy->setObjectName(QString::fromUtf8("actionCopy"));
-        QIcon icon20;
-        icon20.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/copy.ico"), QSize(), QIcon::Normal, QIcon::Off);
-        actionCopy->setIcon(icon20);
+        QIcon icon21;
+        icon21.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/copy.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        actionCopy->setIcon(icon21);
         actionPaste = new QAction(MainWindow);
         actionPaste->setObjectName(QString::fromUtf8("actionPaste"));
-        QIcon icon21;
-        icon21.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/paste.ico"), QSize(), QIcon::Normal, QIcon::Off);
-        actionPaste->setIcon(icon21);
+        QIcon icon22;
+        icon22.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/paste.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        actionPaste->setIcon(icon22);
         actionRule = new QAction(MainWindow);
         actionRule->setObjectName(QString::fromUtf8("actionRule"));
         actionRule->setCheckable(true);
-        actionRule->setIcon(icon15);
+        actionRule->setIcon(icon16);
         actionGuides = new QAction(MainWindow);
         actionGuides->setObjectName(QString::fromUtf8("actionGuides"));
         actionGuides->setCheckable(true);
-        actionGuides->setIcon(icon15);
+        actionGuides->setIcon(icon16);
         actionZoom_In = new QAction(MainWindow);
         actionZoom_In->setObjectName(QString::fromUtf8("actionZoom_In"));
-        QIcon icon22;
-        icon22.addFile(QString::fromUtf8(":/icons2/resources/icons/pack2/ico/83.ico"), QSize(), QIcon::Normal, QIcon::Off);
-        actionZoom_In->setIcon(icon22);
+        QIcon icon23;
+        icon23.addFile(QString::fromUtf8(":/icons2/resources/icons/pack2/ico/83.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        actionZoom_In->setIcon(icon23);
         actionZoom_Out = new QAction(MainWindow);
         actionZoom_Out->setObjectName(QString::fromUtf8("actionZoom_Out"));
-        QIcon icon23;
-        icon23.addFile(QString::fromUtf8(":/icons2/resources/icons/pack2/ico/82.ico"), QSize(), QIcon::Normal, QIcon::Off);
-        actionZoom_Out->setIcon(icon23);
+        QIcon icon24;
+        icon24.addFile(QString::fromUtf8(":/icons2/resources/icons/pack2/ico/82.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        actionZoom_Out->setIcon(icon24);
         actionZoom_All = new QAction(MainWindow);
         actionZoom_All->setObjectName(QString::fromUtf8("actionZoom_All"));
-        QIcon icon24;
-        icon24.addFile(QString::fromUtf8(":/icons2/resources/icons/pack2/ico/84.ico"), QSize(), QIcon::Normal, QIcon::Off);
-        actionZoom_All->setIcon(icon24);
+        QIcon icon25;
+        icon25.addFile(QString::fromUtf8(":/icons2/resources/icons/pack2/ico/84.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        actionZoom_All->setIcon(icon25);
         actionLine = new QAction(MainWindow);
         actionLine->setObjectName(QString::fromUtf8("actionLine"));
-        actionLine->setIcon(icon15);
+        QIcon icon26;
+        icon26.addFile(QString::fromUtf8(":/resources/ToolBar/_linha.bmp"), QSize(), QIcon::Normal, QIcon::Off);
+        actionLine->setIcon(icon26);
         actionRectangle = new QAction(MainWindow);
         actionRectangle->setObjectName(QString::fromUtf8("actionRectangle"));
-        actionRectangle->setIcon(icon15);
+        QIcon icon27;
+        icon27.addFile(QString::fromUtf8(":/resources/ToolBar/_retang.bmp"), QSize(), QIcon::Normal, QIcon::Off);
+        actionRectangle->setIcon(icon27);
         actionEllipse = new QAction(MainWindow);
         actionEllipse->setObjectName(QString::fromUtf8("actionEllipse"));
-        actionEllipse->setIcon(icon15);
+        QIcon icon28;
+        icon28.addFile(QString::fromUtf8(":/resources/ToolBar/_elipse.bmp"), QSize(), QIcon::Normal, QIcon::Off);
+        actionEllipse->setIcon(icon28);
         actionClock = new QAction(MainWindow);
         actionClock->setObjectName(QString::fromUtf8("actionClock"));
-        actionClock->setIcon(icon15);
+        QIcon icon29;
+        icon29.addFile(QString::fromUtf8(":/resources/ToolBar/_relogio.bmp"), QSize(), QIcon::Normal, QIcon::Off);
+        actionClock->setIcon(icon29);
         actionVariable = new QAction(MainWindow);
         actionVariable->setObjectName(QString::fromUtf8("actionVariable"));
-        actionVariable->setIcon(icon15);
-        actionAttribute = new QAction(MainWindow);
-        actionAttribute->setObjectName(QString::fromUtf8("actionAttribute"));
-        actionAttribute->setIcon(icon15);
+        QIcon icon30;
+        icon30.addFile(QString::fromUtf8(":/resources/ToolBar/_animvalor.bmp"), QSize(), QIcon::Normal, QIcon::Off);
+        actionVariable->setIcon(icon30);
         actionExpression = new QAction(MainWindow);
         actionExpression->setObjectName(QString::fromUtf8("actionExpression"));
-        actionExpression->setIcon(icon15);
+        actionExpression->setIcon(icon30);
         actionResource = new QAction(MainWindow);
         actionResource->setObjectName(QString::fromUtf8("actionResource"));
-        actionResource->setIcon(icon15);
+        actionResource->setIcon(icon16);
         actionQueue = new QAction(MainWindow);
         actionQueue->setObjectName(QString::fromUtf8("actionQueue"));
-        actionQueue->setIcon(icon15);
+        QIcon icon31;
+        icon31.addFile(QString::fromUtf8(":/resources/ToolBar/_animfila.bmp"), QSize(), QIcon::Normal, QIcon::Off);
+        actionQueue->setIcon(icon31);
         actionStation = new QAction(MainWindow);
         actionStation->setObjectName(QString::fromUtf8("actionStation"));
-        actionStation->setIcon(icon15);
+        actionStation->setIcon(icon16);
         actionConnect = new QAction(MainWindow);
         actionConnect->setObjectName(QString::fromUtf8("actionConnect"));
-        QIcon icon25;
-        icon25.addFile(QString::fromUtf8(":/mxgraph/resources/icons/pack4/iconsMxGraph/vertical.png"), QSize(), QIcon::Normal, QIcon::Off);
-        actionConnect->setIcon(icon25);
+        QIcon icon32;
+        icon32.addFile(QString::fromUtf8(":/mxgraph/resources/icons/pack4/iconsMxGraph/vertical.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionConnect->setIcon(icon32);
+        actionComponent_Breakpoint = new QAction(MainWindow);
+        actionComponent_Breakpoint->setObjectName(QString::fromUtf8("actionComponent_Breakpoint"));
+        QIcon icon33;
+        icon33.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/abort.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        actionComponent_Breakpoint->setIcon(icon33);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
-        gridLayout = new QGridLayout(centralwidget);
-        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
-        tabWidgetCentral = new QTabWidget(centralwidget);
+        verticalLayout_7 = new QVBoxLayout(centralwidget);
+        verticalLayout_7->setObjectName(QString::fromUtf8("verticalLayout_7"));
+        splitter = new QSplitter(centralwidget);
+        splitter->setObjectName(QString::fromUtf8("splitter"));
+        splitter->setOrientation(Qt::Vertical);
+        graphicsView = new ModelGraphicsView(splitter);
+        graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(4);
+        sizePolicy.setHeightForWidth(graphicsView->sizePolicy().hasHeightForWidth());
+        graphicsView->setSizePolicy(sizePolicy);
+        graphicsView->setFrameShape(QFrame::Box);
+        graphicsView->setFrameShadow(QFrame::Sunken);
+        graphicsView->setLineWidth(2);
+        graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+        graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+        splitter->addWidget(graphicsView);
+        tabWidgetCentral = new QTabWidget(splitter);
         tabWidgetCentral->setObjectName(QString::fromUtf8("tabWidgetCentral"));
-        tabWidgetCentral->setEnabled(false);
         QFont font;
-        font.setPointSize(12);
+        font.setPointSize(10);
         tabWidgetCentral->setFont(font);
-        tabModel = new QWidget();
-        tabModel->setObjectName(QString::fromUtf8("tabModel"));
-        verticalLayout_3 = new QVBoxLayout(tabModel);
-        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
-        tabWidget_Model = new QTabWidget(tabModel);
-        tabWidget_Model->setObjectName(QString::fromUtf8("tabWidget_Model"));
-        tabWidget_Model->setTabPosition(QTabWidget::East);
+        tabLanguages = new QWidget();
+        tabLanguages->setObjectName(QString::fromUtf8("tabLanguages"));
+        verticalLayout_8 = new QVBoxLayout(tabLanguages);
+        verticalLayout_8->setObjectName(QString::fromUtf8("verticalLayout_8"));
+        tabWidgetModelLanguages = new QTabWidget(tabLanguages);
+        tabWidgetModelLanguages->setObjectName(QString::fromUtf8("tabWidgetModelLanguages"));
+        QFont font1;
+        font1.setPointSize(8);
+        tabWidgetModelLanguages->setFont(font1);
+        tabWidgetModelLanguages->setAutoFillBackground(true);
+        tabWidgetModelLanguages->setTabPosition(QTabWidget::East);
         tabModelText = new QWidget();
         tabModelText->setObjectName(QString::fromUtf8("tabModelText"));
         verticalLayout_4 = new QVBoxLayout(tabModelText);
         verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
-        QIcon icon26;
-        icon26.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/text.ico"), QSize(), QIcon::Normal, QIcon::Off);
-        tabWidget_Model->addTab(tabModelText, icon26, QString());
-        tabModelGraphic = new QWidget();
-        tabModelGraphic->setObjectName(QString::fromUtf8("tabModelGraphic"));
-        verticalLayout_6 = new QVBoxLayout(tabModelGraphic);
-        verticalLayout_6->setObjectName(QString::fromUtf8("verticalLayout_6"));
-        scrollArea_Graphic = new QScrollArea(tabModelGraphic);
+        QIcon icon34;
+        icon34.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/text.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        tabWidgetModelLanguages->addTab(tabModelText, icon34, QString());
+        tab = new QWidget();
+        tab->setObjectName(QString::fromUtf8("tab"));
+        verticalLayout_16 = new QVBoxLayout(tab);
+        verticalLayout_16->setObjectName(QString::fromUtf8("verticalLayout_16"));
+        plainTextEditCppCode = new CodeEditor(tab);
+        plainTextEditCppCode->setObjectName(QString::fromUtf8("plainTextEditCppCode"));
+        QFont font2;
+        font2.setFamily(QString::fromUtf8("Courier 10 Pitch"));
+        font2.setPointSize(10);
+        plainTextEditCppCode->setFont(font2);
+
+        verticalLayout_16->addWidget(plainTextEditCppCode);
+
+        tabWidgetModelLanguages->addTab(tab, QString());
+
+        verticalLayout_8->addWidget(tabWidgetModelLanguages);
+
+        tabWidgetCentral->addTab(tabLanguages, QString());
+        tabModelView = new QWidget();
+        tabModelView->setObjectName(QString::fromUtf8("tabModelView"));
+        verticalLayout_3 = new QVBoxLayout(tabModelView);
+        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
+        frame = new QFrame(tabModelView);
+        frame->setObjectName(QString::fromUtf8("frame"));
+        frame->setFrameShape(QFrame::StyledPanel);
+        frame->setFrameShadow(QFrame::Raised);
+        verticalLayout_11 = new QVBoxLayout(frame);
+        verticalLayout_11->setObjectName(QString::fromUtf8("verticalLayout_11"));
+        scrollArea_Graphic = new QScrollArea(frame);
         scrollArea_Graphic->setObjectName(QString::fromUtf8("scrollArea_Graphic"));
+        scrollArea_Graphic->setAutoFillBackground(true);
         scrollArea_Graphic->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
         scrollArea_Graphic->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 849, 386));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 880, 161));
         verticalLayout_5 = new QVBoxLayout(scrollAreaWidgetContents);
         verticalLayout_5->setObjectName(QString::fromUtf8("verticalLayout_5"));
         label_ModelGraphic = new QLabel(scrollAreaWidgetContents);
         label_ModelGraphic->setObjectName(QString::fromUtf8("label_ModelGraphic"));
-        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(3);
-        sizePolicy.setHeightForWidth(label_ModelGraphic->sizePolicy().hasHeightForWidth());
-        label_ModelGraphic->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(3);
+        sizePolicy1.setHeightForWidth(label_ModelGraphic->sizePolicy().hasHeightForWidth());
+        label_ModelGraphic->setSizePolicy(sizePolicy1);
         label_ModelGraphic->setAutoFillBackground(true);
         label_ModelGraphic->setFrameShadow(QFrame::Plain);
+        label_ModelGraphic->setAlignment(Qt::AlignCenter);
 
         verticalLayout_5->addWidget(label_ModelGraphic);
 
         scrollArea_Graphic->setWidget(scrollAreaWidgetContents);
 
-        verticalLayout_6->addWidget(scrollArea_Graphic);
+        verticalLayout_11->addWidget(scrollArea_Graphic);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        label_Zoom = new QLabel(tabModelGraphic);
-        label_Zoom->setObjectName(QString::fromUtf8("label_Zoom"));
-
-        horizontalLayout->addWidget(label_Zoom);
-
-        horizontalSlider_Zoom = new QSlider(tabModelGraphic);
-        horizontalSlider_Zoom->setObjectName(QString::fromUtf8("horizontalSlider_Zoom"));
-        horizontalSlider_Zoom->setEnabled(false);
-        horizontalSlider_Zoom->setMaximum(100);
-        horizontalSlider_Zoom->setValue(50);
-        horizontalSlider_Zoom->setOrientation(Qt::Horizontal);
-
-        horizontalLayout->addWidget(horizontalSlider_Zoom);
-
-        checkBox_ShowElements = new QCheckBox(tabModelGraphic);
+        checkBox_ShowElements = new QCheckBox(frame);
         checkBox_ShowElements->setObjectName(QString::fromUtf8("checkBox_ShowElements"));
-        checkBox_ShowElements->setChecked(false);
+        checkBox_ShowElements->setChecked(true);
 
         horizontalLayout->addWidget(checkBox_ShowElements);
 
-        checkBox_ShowInternals = new QCheckBox(tabModelGraphic);
+        checkBox_ShowInternals = new QCheckBox(frame);
         checkBox_ShowInternals->setObjectName(QString::fromUtf8("checkBox_ShowInternals"));
-        checkBox_ShowInternals->setChecked(false);
+        checkBox_ShowInternals->setChecked(true);
 
         horizontalLayout->addWidget(checkBox_ShowInternals);
 
-        checkBox_ShowLevels = new QCheckBox(tabModelGraphic);
+        checkBox_ShowLevels = new QCheckBox(frame);
         checkBox_ShowLevels->setObjectName(QString::fromUtf8("checkBox_ShowLevels"));
+        checkBox_ShowLevels->setChecked(true);
 
         horizontalLayout->addWidget(checkBox_ShowLevels);
 
-        checkBox_ShowRecursive = new QCheckBox(tabModelGraphic);
+        checkBox_ShowRecursive = new QCheckBox(frame);
         checkBox_ShowRecursive->setObjectName(QString::fromUtf8("checkBox_ShowRecursive"));
+        checkBox_ShowRecursive->setChecked(true);
 
         horizontalLayout->addWidget(checkBox_ShowRecursive);
 
-        pushButton_Export = new QPushButton(tabModelGraphic);
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer);
+
+        pushButton_Export = new QPushButton(frame);
         pushButton_Export->setObjectName(QString::fromUtf8("pushButton_Export"));
 
         horizontalLayout->addWidget(pushButton_Export);
 
 
-        verticalLayout_6->addLayout(horizontalLayout);
+        verticalLayout_11->addLayout(horizontalLayout);
 
-        tabWidget_Model->addTab(tabModelGraphic, icon25, QString());
-        tabModelGraphicEdit = new QWidget();
-        tabModelGraphicEdit->setObjectName(QString::fromUtf8("tabModelGraphicEdit"));
-        verticalLayout_14 = new QVBoxLayout(tabModelGraphicEdit);
+
+        verticalLayout_3->addWidget(frame);
+
+        QIcon icon35;
+        icon35.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/text preview.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        tabWidgetCentral->addTab(tabModelView, icon35, QString());
+        tabComponents = new QWidget();
+        tabComponents->setObjectName(QString::fromUtf8("tabComponents"));
+        verticalLayout_6 = new QVBoxLayout(tabComponents);
+        verticalLayout_6->setObjectName(QString::fromUtf8("verticalLayout_6"));
+        treeWidgetComponents = new QTreeWidget(tabComponents);
+        QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();
+        __qtreewidgetitem->setText(3, QString::fromUtf8("4"));
+        __qtreewidgetitem->setText(2, QString::fromUtf8("3"));
+        __qtreewidgetitem->setText(1, QString::fromUtf8("2"));
+        __qtreewidgetitem->setText(0, QString::fromUtf8("1"));
+        treeWidgetComponents->setHeaderItem(__qtreewidgetitem);
+        treeWidgetComponents->setObjectName(QString::fromUtf8("treeWidgetComponents"));
+        treeWidgetComponents->setAutoScrollMargin(8);
+        treeWidgetComponents->setRootIsDecorated(true);
+        treeWidgetComponents->setSortingEnabled(true);
+        treeWidgetComponents->setColumnCount(4);
+
+        verticalLayout_6->addWidget(treeWidgetComponents);
+
+        tabWidgetCentral->addTab(tabComponents, QString());
+        tabBrekpoints = new QWidget();
+        tabBrekpoints->setObjectName(QString::fromUtf8("tabBrekpoints"));
+        verticalLayout_14 = new QVBoxLayout(tabBrekpoints);
         verticalLayout_14->setObjectName(QString::fromUtf8("verticalLayout_14"));
-        graphicsView = new ModelGraphicsView(tabModelGraphicEdit);
-        graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
-        graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-        graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-
-        verticalLayout_14->addWidget(graphicsView);
-
-        horizontalLayout_5 = new QHBoxLayout();
-        horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
-        labelMousePos = new QLabel(tabModelGraphicEdit);
-        labelMousePos->setObjectName(QString::fromUtf8("labelMousePos"));
-        QFont font1;
-        font1.setPointSize(10);
-        labelMousePos->setFont(font1);
-
-        horizontalLayout_5->addWidget(labelMousePos);
-
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_5->addItem(horizontalSpacer_2);
-
-        label_3 = new QLabel(tabModelGraphicEdit);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
-
-        horizontalLayout_5->addWidget(label_3);
-
-        horizontalSlider_ZoomGraphical = new QSlider(tabModelGraphicEdit);
-        horizontalSlider_ZoomGraphical->setObjectName(QString::fromUtf8("horizontalSlider_ZoomGraphical"));
-        horizontalSlider_ZoomGraphical->setMinimum(1);
-        horizontalSlider_ZoomGraphical->setMaximum(1000);
-        horizontalSlider_ZoomGraphical->setSingleStep(1);
-        horizontalSlider_ZoomGraphical->setValue(500);
-        horizontalSlider_ZoomGraphical->setOrientation(Qt::Horizontal);
-
-        horizontalLayout_5->addWidget(horizontalSlider_ZoomGraphical);
-
-        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_5->addItem(horizontalSpacer_3);
-
-
-        verticalLayout_14->addLayout(horizontalLayout_5);
-
-        QIcon icon27;
-        icon27.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/diagram.ico"), QSize(), QIcon::Normal, QIcon::Off);
-        tabWidget_Model->addTab(tabModelGraphicEdit, icon27, QString());
-
-        verticalLayout_3->addWidget(tabWidget_Model);
-
-        QIcon icon28;
-        icon28.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/list.ico"), QSize(), QIcon::Normal, QIcon::On);
-        tabWidgetCentral->addTab(tabModel, icon28, QString());
-        tabDebug = new QWidget();
-        tabDebug->setObjectName(QString::fromUtf8("tabDebug"));
-        verticalLayout_9 = new QVBoxLayout(tabDebug);
-        verticalLayout_9->setObjectName(QString::fromUtf8("verticalLayout_9"));
-        tabWidget_Debug = new QTabWidget(tabDebug);
-        tabWidget_Debug->setObjectName(QString::fromUtf8("tabWidget_Debug"));
-        tabWidget_Debug->setTabPosition(QTabWidget::East);
-        tab_Debug_Breakpoints = new QWidget();
-        tab_Debug_Breakpoints->setObjectName(QString::fromUtf8("tab_Debug_Breakpoints"));
-        verticalLayout_10 = new QVBoxLayout(tab_Debug_Breakpoints);
-        verticalLayout_10->setObjectName(QString::fromUtf8("verticalLayout_10"));
-        tableWidget_Breakpoints = new QTableWidget(tab_Debug_Breakpoints);
+        tableWidget_Breakpoints = new QTableWidget(tabBrekpoints);
         if (tableWidget_Breakpoints->columnCount() < 3)
             tableWidget_Breakpoints->setColumnCount(3);
         tableWidget_Breakpoints->setObjectName(QString::fromUtf8("tableWidget_Breakpoints"));
@@ -542,35 +551,14 @@ public:
         tableWidget_Breakpoints->setColumnCount(3);
         tableWidget_Breakpoints->horizontalHeader()->setProperty("showSortIndicator", QVariant(true));
 
-        verticalLayout_10->addWidget(tableWidget_Breakpoints);
+        verticalLayout_14->addWidget(tableWidget_Breakpoints);
 
-        horizontalLayout_6 = new QHBoxLayout();
-        horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
-        pushButton_Breakpoint_Insert = new QPushButton(tab_Debug_Breakpoints);
-        pushButton_Breakpoint_Insert->setObjectName(QString::fromUtf8("pushButton_Breakpoint_Insert"));
-
-        horizontalLayout_6->addWidget(pushButton_Breakpoint_Insert);
-
-        pushButton_Breakpoint_Remove = new QPushButton(tab_Debug_Breakpoints);
-        pushButton_Breakpoint_Remove->setObjectName(QString::fromUtf8("pushButton_Breakpoint_Remove"));
-
-        horizontalLayout_6->addWidget(pushButton_Breakpoint_Remove);
-
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_6->addItem(horizontalSpacer);
-
-
-        verticalLayout_10->addLayout(horizontalLayout_6);
-
-        QIcon icon29;
-        icon29.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/abort.ico"), QSize(), QIcon::Normal, QIcon::Off);
-        tabWidget_Debug->addTab(tab_Debug_Breakpoints, icon29, QString());
-        tab_Debug_Variables = new QWidget();
-        tab_Debug_Variables->setObjectName(QString::fromUtf8("tab_Debug_Variables"));
-        verticalLayout_13 = new QVBoxLayout(tab_Debug_Variables);
-        verticalLayout_13->setObjectName(QString::fromUtf8("verticalLayout_13"));
-        tableWidget_Variables = new QTableWidget(tab_Debug_Variables);
+        tabWidgetCentral->addTab(tabBrekpoints, icon33, QString());
+        tabVariables = new QWidget();
+        tabVariables->setObjectName(QString::fromUtf8("tabVariables"));
+        verticalLayout_17 = new QVBoxLayout(tabVariables);
+        verticalLayout_17->setObjectName(QString::fromUtf8("verticalLayout_17"));
+        tableWidget_Variables = new QTableWidget(tabVariables);
         if (tableWidget_Variables->columnCount() < 3)
             tableWidget_Variables->setColumnCount(3);
         tableWidget_Variables->setObjectName(QString::fromUtf8("tableWidget_Variables"));
@@ -578,16 +566,16 @@ public:
         tableWidget_Variables->setColumnCount(3);
         tableWidget_Variables->horizontalHeader()->setProperty("showSortIndicator", QVariant(true));
 
-        verticalLayout_13->addWidget(tableWidget_Variables);
+        verticalLayout_17->addWidget(tableWidget_Variables);
 
-        QIcon icon30;
-        icon30.addFile(QString::fromUtf8(":/icons1/resources/icons/pack1/ico/35.ico"), QSize(), QIcon::Normal, QIcon::Off);
-        tabWidget_Debug->addTab(tab_Debug_Variables, icon30, QString());
-        tabDebug_Entities = new QWidget();
-        tabDebug_Entities->setObjectName(QString::fromUtf8("tabDebug_Entities"));
-        verticalLayout_12 = new QVBoxLayout(tabDebug_Entities);
-        verticalLayout_12->setObjectName(QString::fromUtf8("verticalLayout_12"));
-        tableWidget_Entities = new QTableWidget(tabDebug_Entities);
+        QIcon icon36;
+        icon36.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/company.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        tabWidgetCentral->addTab(tabVariables, icon36, QString());
+        tabEntities = new QWidget();
+        tabEntities->setObjectName(QString::fromUtf8("tabEntities"));
+        verticalLayout_18 = new QVBoxLayout(tabEntities);
+        verticalLayout_18->setObjectName(QString::fromUtf8("verticalLayout_18"));
+        tableWidget_Entities = new QTableWidget(tabEntities);
         if (tableWidget_Entities->columnCount() < 3)
             tableWidget_Entities->setColumnCount(3);
         tableWidget_Entities->setObjectName(QString::fromUtf8("tableWidget_Entities"));
@@ -595,123 +583,129 @@ public:
         tableWidget_Entities->setColumnCount(3);
         tableWidget_Entities->horizontalHeader()->setProperty("showSortIndicator", QVariant(true));
 
-        verticalLayout_12->addWidget(tableWidget_Entities);
+        verticalLayout_18->addWidget(tableWidget_Entities);
 
-        QIcon icon31;
-        icon31.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/yellow pin.ico"), QSize(), QIcon::Normal, QIcon::Off);
-        tabWidget_Debug->addTab(tabDebug_Entities, icon31, QString());
-
-        verticalLayout_9->addWidget(tabWidget_Debug);
-
-        tabWidgetCentral->addTab(tabDebug, QString());
-        tabSimulation = new QWidget();
-        tabSimulation->setObjectName(QString::fromUtf8("tabSimulation"));
-        verticalLayout_2 = new QVBoxLayout(tabSimulation);
-        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
-        tabWidget_Simulation = new QTabWidget(tabSimulation);
-        tabWidget_Simulation->setObjectName(QString::fromUtf8("tabWidget_Simulation"));
-        tabWidget_Simulation->setTabPosition(QTabWidget::East);
-        tab_Simulation_Trace = new QWidget();
-        tab_Simulation_Trace->setObjectName(QString::fromUtf8("tab_Simulation_Trace"));
-        verticalLayout_7 = new QVBoxLayout(tab_Simulation_Trace);
-        verticalLayout_7->setObjectName(QString::fromUtf8("verticalLayout_7"));
-        textEdit_Simulation = new QTextEdit(tab_Simulation_Trace);
+        QIcon icon37;
+        icon37.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/coin.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        tabWidgetCentral->addTab(tabEntities, icon37, QString());
+        tabTraces = new QWidget();
+        tabTraces->setObjectName(QString::fromUtf8("tabTraces"));
+        verticalLayout_9 = new QVBoxLayout(tabTraces);
+        verticalLayout_9->setObjectName(QString::fromUtf8("verticalLayout_9"));
+        textEdit_Simulation = new QTextEdit(tabTraces);
         textEdit_Simulation->setObjectName(QString::fromUtf8("textEdit_Simulation"));
-        textEdit_Simulation->setFont(font1);
+        textEdit_Simulation->setFont(font);
         textEdit_Simulation->setLineWrapMode(QTextEdit::NoWrap);
         textEdit_Simulation->setTextInteractionFlags(Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
-        verticalLayout_7->addWidget(textEdit_Simulation);
+        verticalLayout_9->addWidget(textEdit_Simulation);
 
-        QIcon icon32;
-        icon32.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/movie.ico"), QSize(), QIcon::Normal, QIcon::Off);
-        tabWidget_Simulation->addTab(tab_Simulation_Trace, icon32, QString());
-        tab_Simulation_Event = new QWidget();
-        tab_Simulation_Event->setObjectName(QString::fromUtf8("tab_Simulation_Event"));
-        verticalLayout_8 = new QVBoxLayout(tab_Simulation_Event);
-        verticalLayout_8->setObjectName(QString::fromUtf8("verticalLayout_8"));
-        tableWidget_Simulation_Event = new QTableWidget(tab_Simulation_Event);
+        QIcon icon38;
+        icon38.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/blog.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        tabWidgetCentral->addTab(tabTraces, icon38, QString());
+        tabEvents = new QWidget();
+        tabEvents->setObjectName(QString::fromUtf8("tabEvents"));
+        verticalLayout_10 = new QVBoxLayout(tabEvents);
+        verticalLayout_10->setObjectName(QString::fromUtf8("verticalLayout_10"));
+        tableWidget_Simulation_Event = new QTableWidget(tabEvents);
         if (tableWidget_Simulation_Event->columnCount() < 3)
             tableWidget_Simulation_Event->setColumnCount(3);
         tableWidget_Simulation_Event->setObjectName(QString::fromUtf8("tableWidget_Simulation_Event"));
-        tableWidget_Simulation_Event->setFont(font1);
+        tableWidget_Simulation_Event->setFont(font);
         tableWidget_Simulation_Event->setWordWrap(false);
         tableWidget_Simulation_Event->setRowCount(0);
         tableWidget_Simulation_Event->setColumnCount(3);
 
-        verticalLayout_8->addWidget(tableWidget_Simulation_Event);
+        verticalLayout_10->addWidget(tableWidget_Simulation_Event);
 
-        QIcon icon33;
-        icon33.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/table.ico"), QSize(), QIcon::Normal, QIcon::Off);
-        tabWidget_Simulation->addTab(tab_Simulation_Event, icon33, QString());
-
-        verticalLayout_2->addWidget(tabWidget_Simulation);
-
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
-        label_2 = new QLabel(tabSimulation);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
-
-        horizontalLayout_3->addWidget(label_2);
-
-        label_ReplicationNum = new QLabel(tabSimulation);
-        label_ReplicationNum->setObjectName(QString::fromUtf8("label_ReplicationNum"));
-
-        horizontalLayout_3->addWidget(label_ReplicationNum);
-
-        label = new QLabel(tabSimulation);
-        label->setObjectName(QString::fromUtf8("label"));
-
-        horizontalLayout_3->addWidget(label);
-
-        progressBarSimulation = new QProgressBar(tabSimulation);
-        progressBarSimulation->setObjectName(QString::fromUtf8("progressBarSimulation"));
-        progressBarSimulation->setValue(0);
-
-        horizontalLayout_3->addWidget(progressBarSimulation);
-
-
-        verticalLayout_2->addLayout(horizontalLayout_3);
-
-        QIcon icon34;
-        icon34.addFile(QString::fromUtf8(":/icons2/resources/icons/pack2/ico/19.ico"), QSize(), QIcon::Normal, QIcon::On);
-        tabWidgetCentral->addTab(tabSimulation, icon34, QString());
-        tabReport = new QWidget();
-        tabReport->setObjectName(QString::fromUtf8("tabReport"));
-        verticalLayout_11 = new QVBoxLayout(tabReport);
-        verticalLayout_11->setObjectName(QString::fromUtf8("verticalLayout_11"));
-        tabWidget_Report = new QTabWidget(tabReport);
-        tabWidget_Report->setObjectName(QString::fromUtf8("tabWidget_Report"));
-        tabWidget_Report->setTabPosition(QTabWidget::East);
-        tabReportTextr = new QWidget();
-        tabReportTextr->setObjectName(QString::fromUtf8("tabReportTextr"));
-        verticalLayout_15 = new QVBoxLayout(tabReportTextr);
-        verticalLayout_15->setObjectName(QString::fromUtf8("verticalLayout_15"));
-        textEdit_Reports = new QTextEdit(tabReportTextr);
+        QIcon icon39;
+        icon39.addFile(QString::fromUtf8(":/mxgraph/resources/icons/pack4/iconsMxGraph/event_intermediate.png"), QSize(), QIcon::Normal, QIcon::Off);
+        tabWidgetCentral->addTab(tabEvents, icon39, QString());
+        tabReports = new QWidget();
+        tabReports->setObjectName(QString::fromUtf8("tabReports"));
+        verticalLayout_2 = new QVBoxLayout(tabReports);
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        textEdit_Reports = new QTextEdit(tabReports);
         textEdit_Reports->setObjectName(QString::fromUtf8("textEdit_Reports"));
-        QFont font2;
-        font2.setFamily(QString::fromUtf8("Courier 10 Pitch"));
-        font2.setPointSize(10);
         textEdit_Reports->setFont(font2);
         textEdit_Reports->setLineWrapMode(QTextEdit::NoWrap);
         textEdit_Reports->setTextInteractionFlags(Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
-        verticalLayout_15->addWidget(textEdit_Reports);
+        verticalLayout_2->addWidget(textEdit_Reports);
 
-        tabWidget_Report->addTab(tabReportTextr, icon26, QString());
-        tabReportGraphics = new QWidget();
-        tabReportGraphics->setObjectName(QString::fromUtf8("tabReportGraphics"));
-        QIcon icon35;
-        icon35.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/stock graph.ico"), QSize(), QIcon::Normal, QIcon::Off);
-        tabWidget_Report->addTab(tabReportGraphics, icon35, QString());
+        QIcon icon40;
+        icon40.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/report.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        tabWidgetCentral->addTab(tabReports, icon40, QString());
+        splitter->addWidget(tabWidgetCentral);
 
-        verticalLayout_11->addWidget(tabWidget_Report);
+        verticalLayout_7->addWidget(splitter);
 
-        QIcon icon36;
-        icon36.addFile(QString::fromUtf8(":/icons2/resources/icons/pack2/ico/16.ico"), QSize(), QIcon::Normal, QIcon::On);
-        tabWidgetCentral->addTab(tabReport, icon36, QString());
+        horizontalLayoutZoomReplication = new QHBoxLayout();
+        horizontalLayoutZoomReplication->setObjectName(QString::fromUtf8("horizontalLayoutZoomReplication"));
+        labelMousePos = new QLabel(centralwidget);
+        labelMousePos->setObjectName(QString::fromUtf8("labelMousePos"));
+        QFont font3;
+        font3.setPointSize(9);
+        labelMousePos->setFont(font3);
 
-        gridLayout->addWidget(tabWidgetCentral, 0, 0, 1, 1);
+        horizontalLayoutZoomReplication->addWidget(labelMousePos);
+
+        line = new QFrame(centralwidget);
+        line->setObjectName(QString::fromUtf8("line"));
+        line->setFrameShape(QFrame::VLine);
+        line->setFrameShadow(QFrame::Sunken);
+
+        horizontalLayoutZoomReplication->addWidget(line);
+
+        label_3 = new QLabel(centralwidget);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setFont(font3);
+
+        horizontalLayoutZoomReplication->addWidget(label_3);
+
+        horizontalSlider_ZoomGraphical = new QSlider(centralwidget);
+        horizontalSlider_ZoomGraphical->setObjectName(QString::fromUtf8("horizontalSlider_ZoomGraphical"));
+        horizontalSlider_ZoomGraphical->setMinimum(1);
+        horizontalSlider_ZoomGraphical->setMaximum(1000);
+        horizontalSlider_ZoomGraphical->setSingleStep(1);
+        horizontalSlider_ZoomGraphical->setValue(500);
+        horizontalSlider_ZoomGraphical->setOrientation(Qt::Horizontal);
+
+        horizontalLayoutZoomReplication->addWidget(horizontalSlider_ZoomGraphical);
+
+        line_2 = new QFrame(centralwidget);
+        line_2->setObjectName(QString::fromUtf8("line_2"));
+        line_2->setFrameShape(QFrame::VLine);
+        line_2->setFrameShadow(QFrame::Sunken);
+
+        horizontalLayoutZoomReplication->addWidget(line_2);
+
+        label_2 = new QLabel(centralwidget);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setFont(font3);
+
+        horizontalLayoutZoomReplication->addWidget(label_2);
+
+        label_ReplicationNum = new QLabel(centralwidget);
+        label_ReplicationNum->setObjectName(QString::fromUtf8("label_ReplicationNum"));
+        label_ReplicationNum->setFont(font3);
+
+        horizontalLayoutZoomReplication->addWidget(label_ReplicationNum);
+
+        label = new QLabel(centralwidget);
+        label->setObjectName(QString::fromUtf8("label"));
+
+        horizontalLayoutZoomReplication->addWidget(label);
+
+        progressBarSimulation = new QProgressBar(centralwidget);
+        progressBarSimulation->setObjectName(QString::fromUtf8("progressBarSimulation"));
+        progressBarSimulation->setFont(font3);
+        progressBarSimulation->setValue(0);
+
+        horizontalLayoutZoomReplication->addWidget(progressBarSimulation);
+
+
+        verticalLayout_7->addLayout(horizontalLayoutZoomReplication);
 
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
@@ -743,15 +737,9 @@ public:
         MainWindow->addToolBar(Qt::TopToolBarArea, toolBarModel);
         dockWidgetConsole = new QDockWidget(MainWindow);
         dockWidgetConsole->setObjectName(QString::fromUtf8("dockWidgetConsole"));
-        QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Minimum);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(dockWidgetConsole->sizePolicy().hasHeightForWidth());
-        dockWidgetConsole->setSizePolicy(sizePolicy1);
-        dockWidgetConsole->setMinimumSize(QSize(100, 109));
-        dockWidgetConsole->setMaximumSize(QSize(524287, 200));
-        dockWidgetConsole->setBaseSize(QSize(100, 100));
-        dockWidgetConsole->setAutoFillBackground(false);
+        QIcon icon41;
+        icon41.addFile(QString::fromUtf8(":/icons4/resources/icons/pack4/console.png"), QSize(), QIcon::Normal, QIcon::Off);
+        dockWidgetConsole->setWindowIcon(icon41);
         dockWidgetConsole->setFeatures(QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable);
         dockWidgetConsole->setAllowedAreas(Qt::BottomDockWidgetArea|Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea);
         dockWidgetContentsConsole = new QWidget();
@@ -769,12 +757,9 @@ public:
         MainWindow->addDockWidget(Qt::LeftDockWidgetArea, dockWidgetConsole);
         dockWidgetPlugins = new QDockWidget(MainWindow);
         dockWidgetPlugins->setObjectName(QString::fromUtf8("dockWidgetPlugins"));
-        sizePolicy1.setHeightForWidth(dockWidgetPlugins->sizePolicy().hasHeightForWidth());
-        dockWidgetPlugins->setSizePolicy(sizePolicy1);
-        dockWidgetPlugins->setBaseSize(QSize(100, 100));
-        QIcon icon37;
-        icon37.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/component.ico"), QSize(), QIcon::Normal, QIcon::Off);
-        dockWidgetPlugins->setWindowIcon(icon37);
+        QIcon icon42;
+        icon42.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/component.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        dockWidgetPlugins->setWindowIcon(icon42);
         dockWidgetPlugins->setFeatures(QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable);
         dockWidgetPlugins->setAllowedAreas(Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea);
         dockWidgetContentsPlugin = new QWidget();
@@ -782,17 +767,24 @@ public:
         horizontalLayout_2 = new QHBoxLayout(dockWidgetContentsPlugin);
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         treeWidget_Plugins = new QTreeWidget(dockWidgetContentsPlugin);
-        QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();
-        __qtreewidgetitem->setText(0, QString::fromUtf8("1"));
-        treeWidget_Plugins->setHeaderItem(__qtreewidgetitem);
+        QTreeWidgetItem *__qtreewidgetitem1 = new QTreeWidgetItem();
+        __qtreewidgetitem1->setText(0, QString::fromUtf8("1"));
+        treeWidget_Plugins->setHeaderItem(__qtreewidgetitem1);
         treeWidget_Plugins->setObjectName(QString::fromUtf8("treeWidget_Plugins"));
+        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(1);
+        sizePolicy2.setHeightForWidth(treeWidget_Plugins->sizePolicy().hasHeightForWidth());
+        treeWidget_Plugins->setSizePolicy(sizePolicy2);
+        treeWidget_Plugins->setToolTipDuration(-1);
         treeWidget_Plugins->setDragEnabled(true);
         treeWidget_Plugins->setDragDropMode(QAbstractItemView::DragDrop);
         treeWidget_Plugins->setDefaultDropAction(Qt::CopyAction);
         treeWidget_Plugins->setAlternatingRowColors(true);
-        treeWidget_Plugins->setIndentation(6);
+        treeWidget_Plugins->setAutoExpandDelay(8);
+        treeWidget_Plugins->setIndentation(7);
         treeWidget_Plugins->setSortingEnabled(true);
-        treeWidget_Plugins->setAnimated(false);
+        treeWidget_Plugins->setAnimated(true);
         treeWidget_Plugins->setWordWrap(true);
         treeWidget_Plugins->header()->setVisible(false);
 
@@ -802,6 +794,9 @@ public:
         MainWindow->addDockWidget(Qt::LeftDockWidgetArea, dockWidgetPlugins);
         dockWidgetPropertyEditor = new QDockWidget(MainWindow);
         dockWidgetPropertyEditor->setObjectName(QString::fromUtf8("dockWidgetPropertyEditor"));
+        QIcon icon43;
+        icon43.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/table.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        dockWidgetPropertyEditor->setWindowIcon(icon43);
         dockWidgetPropertyEditor->setFloating(false);
         dockWidgetPropertyEditor->setFeatures(QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable);
         dockWidgetPropertyEditor->setAllowedAreas(Qt::BottomDockWidgetArea|Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea);
@@ -811,6 +806,8 @@ public:
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
         treeViewPropertyEditor = new QTreeView(dockWidgetContents);
         treeViewPropertyEditor->setObjectName(QString::fromUtf8("treeViewPropertyEditor"));
+        sizePolicy2.setHeightForWidth(treeViewPropertyEditor->sizePolicy().hasHeightForWidth());
+        treeViewPropertyEditor->setSizePolicy(sizePolicy2);
 
         horizontalLayout_4->addWidget(treeViewPropertyEditor);
 
@@ -821,7 +818,6 @@ public:
         toolBarGraphicalModel->setToolButtonStyle(Qt::ToolButtonIconOnly);
         toolBarGraphicalModel->setFloatable(true);
         MainWindow->addToolBar(Qt::TopToolBarArea, toolBarGraphicalModel);
-        MainWindow->insertToolBarBreak(toolBarGraphicalModel);
         toolBarEdit = new QToolBar(MainWindow);
         toolBarEdit->setObjectName(QString::fromUtf8("toolBarEdit"));
         MainWindow->addToolBar(Qt::TopToolBarArea, toolBarEdit);
@@ -834,7 +830,9 @@ public:
         toolBarAbout = new QToolBar(MainWindow);
         toolBarAbout->setObjectName(QString::fromUtf8("toolBarAbout"));
         MainWindow->addToolBar(Qt::TopToolBarArea, toolBarAbout);
-        QWidget::setTabOrder(textEdit_Reports, tabWidgetCentral);
+        toolBarAnimation = new QToolBar(MainWindow);
+        toolBarAnimation->setObjectName(QString::fromUtf8("toolBarAnimation"));
+        MainWindow->addToolBar(Qt::TopToolBarArea, toolBarAnimation);
 
         menubar->addAction(menuModel->menuAction());
         menubar->addAction(menuEdit->menuAction());
@@ -878,7 +876,6 @@ public:
         menuDraw->addAction(actionEllipse);
         menuAnime->addAction(actionClock);
         menuAnime->addAction(actionVariable);
-        menuAnime->addAction(actionAttribute);
         menuAnime->addAction(actionExpression);
         menuAnime->addAction(actionResource);
         menuAnime->addAction(actionQueue);
@@ -899,22 +896,11 @@ public:
         toolBarModel->addAction(actionCheck);
         toolBarModel->addSeparator();
         toolBarModel->addAction(actionExit);
+        toolBarGraphicalModel->addAction(actionConnect);
+        toolBarGraphicalModel->addAction(actionComponent_Breakpoint);
         toolBarGraphicalModel->addSeparator();
         toolBarGraphicalModel->addAction(actionGrid);
         toolBarGraphicalModel->addAction(actionRule);
-        toolBarGraphicalModel->addAction(actionSnap);
-        toolBarGraphicalModel->addAction(actionGuides);
-        toolBarGraphicalModel->addSeparator();
-        toolBarGraphicalModel->addAction(actionConnect);
-        toolBarGraphicalModel->addSeparator();
-        toolBarGraphicalModel->addAction(actionLine);
-        toolBarGraphicalModel->addAction(actionRectangle);
-        toolBarGraphicalModel->addAction(actionEllipse);
-        toolBarGraphicalModel->addSeparator();
-        toolBarGraphicalModel->addAction(actionClock);
-        toolBarGraphicalModel->addAction(actionVariable);
-        toolBarGraphicalModel->addAction(actionAttribute);
-        toolBarGraphicalModel->addAction(actionExpression);
         toolBarEdit->addAction(actionUndo);
         toolBarEdit->addAction(actionRedo);
         toolBarEdit->addSeparator();
@@ -932,14 +918,18 @@ public:
         toolBarAbout->addAction(actionAbout);
         toolBarAbout->addAction(actionLicence);
         toolBarAbout->addAction(actionGet_Involved);
+        toolBarAnimation->addAction(actionLine);
+        toolBarAnimation->addAction(actionEllipse);
+        toolBarAnimation->addAction(actionRectangle);
+        toolBarAnimation->addSeparator();
+        toolBarAnimation->addAction(actionClock);
+        toolBarAnimation->addAction(actionVariable);
+        toolBarAnimation->addAction(actionExpression);
 
         retranslateUi(MainWindow);
 
-        tabWidgetCentral->setCurrentIndex(0);
-        tabWidget_Model->setCurrentIndex(2);
-        tabWidget_Debug->setCurrentIndex(0);
-        tabWidget_Simulation->setCurrentIndex(0);
-        tabWidget_Report->setCurrentIndex(0);
+        tabWidgetCentral->setCurrentIndex(2);
+        tabWidgetModelLanguages->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1083,43 +1073,37 @@ public:
         actionEllipse->setText(QCoreApplication::translate("MainWindow", "Ellipse", nullptr));
         actionClock->setText(QCoreApplication::translate("MainWindow", "Clock", nullptr));
         actionVariable->setText(QCoreApplication::translate("MainWindow", "Variable", nullptr));
-        actionAttribute->setText(QCoreApplication::translate("MainWindow", "Attribute", nullptr));
         actionExpression->setText(QCoreApplication::translate("MainWindow", "Expression", nullptr));
         actionResource->setText(QCoreApplication::translate("MainWindow", "Resource", nullptr));
         actionQueue->setText(QCoreApplication::translate("MainWindow", "Queue", nullptr));
         actionStation->setText(QCoreApplication::translate("MainWindow", "Station", nullptr));
         actionConnect->setText(QCoreApplication::translate("MainWindow", "Connect", nullptr));
-        tabWidget_Model->setTabText(tabWidget_Model->indexOf(tabModelText), QCoreApplication::translate("MainWindow", "Text", nullptr));
+        actionComponent_Breakpoint->setText(QCoreApplication::translate("MainWindow", "Component Breakpoint", nullptr));
+#if QT_CONFIG(tooltip)
+        actionComponent_Breakpoint->setToolTip(QCoreApplication::translate("MainWindow", "Component Breakpoint", nullptr));
+#endif // QT_CONFIG(tooltip)
+        tabWidgetModelLanguages->setTabText(tabWidgetModelLanguages->indexOf(tabModelText), QCoreApplication::translate("MainWindow", "Simulation", nullptr));
+        tabWidgetModelLanguages->setTabText(tabWidgetModelLanguages->indexOf(tab), QCoreApplication::translate("MainWindow", "C++", nullptr));
+        tabWidgetCentral->setTabText(tabWidgetCentral->indexOf(tabLanguages), QCoreApplication::translate("MainWindow", "Languages", nullptr));
         label_ModelGraphic->setText(QString());
-        label_Zoom->setText(QCoreApplication::translate("MainWindow", "  Zoom:", nullptr));
         checkBox_ShowElements->setText(QCoreApplication::translate("MainWindow", "Show elements", nullptr));
         checkBox_ShowInternals->setText(QCoreApplication::translate("MainWindow", "Show internals", nullptr));
         checkBox_ShowLevels->setText(QCoreApplication::translate("MainWindow", "Show Levels", nullptr));
         checkBox_ShowRecursive->setText(QCoreApplication::translate("MainWindow", "Recursive", nullptr));
         pushButton_Export->setText(QCoreApplication::translate("MainWindow", "Export", nullptr));
-        tabWidget_Model->setTabText(tabWidget_Model->indexOf(tabModelGraphic), QCoreApplication::translate("MainWindow", "Image", nullptr));
+        tabWidgetCentral->setTabText(tabWidgetCentral->indexOf(tabModelView), QCoreApplication::translate("MainWindow", "Views", nullptr));
+        tabWidgetCentral->setTabText(tabWidgetCentral->indexOf(tabComponents), QCoreApplication::translate("MainWindow", "Components", nullptr));
+        tabWidgetCentral->setTabText(tabWidgetCentral->indexOf(tabBrekpoints), QCoreApplication::translate("MainWindow", "Breakpoints", nullptr));
+        tabWidgetCentral->setTabText(tabWidgetCentral->indexOf(tabVariables), QCoreApplication::translate("MainWindow", "Variables", nullptr));
+        tabWidgetCentral->setTabText(tabWidgetCentral->indexOf(tabEntities), QCoreApplication::translate("MainWindow", "Entities", nullptr));
+        tabWidgetCentral->setTabText(tabWidgetCentral->indexOf(tabTraces), QCoreApplication::translate("MainWindow", "Traces", nullptr));
+        tabWidgetCentral->setTabText(tabWidgetCentral->indexOf(tabEvents), QCoreApplication::translate("MainWindow", "Events", nullptr));
+        tabWidgetCentral->setTabText(tabWidgetCentral->indexOf(tabReports), QCoreApplication::translate("MainWindow", "Reports", nullptr));
         labelMousePos->setText(QCoreApplication::translate("MainWindow", "<-,->", nullptr));
         label_3->setText(QCoreApplication::translate("MainWindow", "Zoom:", nullptr));
-        tabWidget_Model->setTabText(tabWidget_Model->indexOf(tabModelGraphicEdit), QCoreApplication::translate("MainWindow", "Graphic", nullptr));
-        tabWidgetCentral->setTabText(tabWidgetCentral->indexOf(tabModel), QCoreApplication::translate("MainWindow", "Model", nullptr));
-#if QT_CONFIG(tooltip)
-        tabWidgetCentral->setTabToolTip(tabWidgetCentral->indexOf(tabModel), QCoreApplication::translate("MainWindow", "Model in Genesys Simulation Language", nullptr));
-#endif // QT_CONFIG(tooltip)
-        pushButton_Breakpoint_Insert->setText(QCoreApplication::translate("MainWindow", "Insert", nullptr));
-        pushButton_Breakpoint_Remove->setText(QCoreApplication::translate("MainWindow", "Remove", nullptr));
-        tabWidget_Debug->setTabText(tabWidget_Debug->indexOf(tab_Debug_Breakpoints), QCoreApplication::translate("MainWindow", "Breakpoints", nullptr));
-        tabWidget_Debug->setTabText(tabWidget_Debug->indexOf(tab_Debug_Variables), QCoreApplication::translate("MainWindow", "Variables", nullptr));
-        tabWidget_Debug->setTabText(tabWidget_Debug->indexOf(tabDebug_Entities), QCoreApplication::translate("MainWindow", "Entities", nullptr));
-        tabWidgetCentral->setTabText(tabWidgetCentral->indexOf(tabDebug), QCoreApplication::translate("MainWindow", "Debug", nullptr));
-        tabWidget_Simulation->setTabText(tabWidget_Simulation->indexOf(tab_Simulation_Trace), QCoreApplication::translate("MainWindow", "Trace", nullptr));
-        tabWidget_Simulation->setTabText(tabWidget_Simulation->indexOf(tab_Simulation_Event), QCoreApplication::translate("MainWindow", "Events", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "Replication ", nullptr));
         label_ReplicationNum->setText(QCoreApplication::translate("MainWindow", "1/1", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", ":", nullptr));
-        tabWidgetCentral->setTabText(tabWidgetCentral->indexOf(tabSimulation), QCoreApplication::translate("MainWindow", "Simulation", nullptr));
-        tabWidget_Report->setTabText(tabWidget_Report->indexOf(tabReportTextr), QCoreApplication::translate("MainWindow", "Text", nullptr));
-        tabWidget_Report->setTabText(tabWidget_Report->indexOf(tabReportGraphics), QCoreApplication::translate("MainWindow", "Graphics", nullptr));
-        tabWidgetCentral->setTabText(tabWidgetCentral->indexOf(tabReport), QCoreApplication::translate("MainWindow", "Reports", nullptr));
         menuModel->setTitle(QCoreApplication::translate("MainWindow", "Model", nullptr));
         menuSimulation->setTitle(QCoreApplication::translate("MainWindow", "Simulation", nullptr));
         menuAbout->setTitle(QCoreApplication::translate("MainWindow", "About", nullptr));
@@ -1137,6 +1121,7 @@ public:
         toolBarView->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar_3", nullptr));
         toolBarSimulation->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar_4", nullptr));
         toolBarAbout->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar_5", nullptr));
+        toolBarAnimation->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
     } // retranslateUi
 
 };

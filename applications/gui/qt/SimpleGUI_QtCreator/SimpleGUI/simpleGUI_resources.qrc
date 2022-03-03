@@ -695,5 +695,46 @@
     </qresource>
     <qresource prefix="/">
         <file>resources/icons/genesysico.gif</file>
+        <file>resources/ToolBar/_abrir.bmp</file>
+        <file>resources/ToolBar/_animfila.bmp</file>
+        <file>resources/ToolBar/_animgraf.bmp</file>
+        <file>resources/ToolBar/_animhisto.bmp</file>
+        <file>resources/ToolBar/_animvalor.bmp</file>
+        <file>resources/ToolBar/_calc.bmp</file>
+        <file>resources/ToolBar/_colar.bmp</file>
+        <file>resources/ToolBar/_conexao.bmp</file>
+        <file>resources/ToolBar/_config.bmp</file>
+        <file>resources/ToolBar/_copiar.bmp</file>
+        <file>resources/ToolBar/_cortextto.bmp</file>
+        <file>resources/ToolBar/_decrease.bmp</file>
+        <file>resources/ToolBar/_elipse.bmp</file>
+        <file>resources/ToolBar/_excluitemplate.bmp</file>
+        <file>resources/ToolBar/_fundomodelo.bmp</file>
+        <file>resources/ToolBar/_grade.bmp</file>
+        <file>resources/ToolBar/_impressao.bmp</file>
+        <file>resources/ToolBar/_incluitemplate.bmp</file>
+        <file>resources/ToolBar/_increase.bmp</file>
+        <file>resources/ToolBar/_lapis.bmp</file>
+        <file>resources/ToolBar/_linha.bmp</file>
+        <file>resources/ToolBar/_linhas.bmp</file>
+        <file>resources/ToolBar/_novo.bmp</file>
+        <file>resources/ToolBar/_pause.bmp</file>
+        <file>resources/ToolBar/_play.bmp</file>
+        <file>resources/ToolBar/_recortar.bmp</file>
+        <file>resources/ToolBar/_redo.bmp</file>
+        <file>resources/ToolBar/_relogio.bmp</file>
+        <file>resources/ToolBar/_retang.bmp</file>
+        <file>resources/ToolBar/_salvar.bmp</file>
+        <file>resources/ToolBar/_stat.bmp</file>
+        <file>resources/ToolBar/_step.bmp</file>
+        <file>resources/ToolBar/_stop.bmp</file>
+        <file>resources/ToolBar/_texto.bmp</file>
+        <file>resources/ToolBar/_toolbda.bmp</file>
+        <file>resources/ToolBar/_toolplugin.bmp</file>
+        <file>resources/ToolBar/_undo.bmp</file>
+        <file>resources/ToolBar/_zoom.bmp</file>
+        <file>resources/ToolBar/_zoomin.bmp</file>
+        <file>resources/ToolBar/_zoomout.bmp</file>
+        <file>resources/ToolBar/_zoomregiao.bmp</file>
     </qresource>
 </RCC>

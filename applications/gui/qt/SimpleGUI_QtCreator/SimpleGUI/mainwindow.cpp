@@ -21,20 +21,27 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
+    // Genesys Simulator
+    simulator = new Simulator();
+    simulator->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
+    simulator->getTracer()->addTraceHandler<MainWindow>(this, &MainWindow::_simulatorTraceHandler);
+    simulator->getTracer()->addTraceErrorHandler<MainWindow>(this, &MainWindow::_simulatorTraceErrorHandler);
+    simulator->getTracer()->addTraceReportHandler<MainWindow>(this, &MainWindow::_simulatorTraceReportsHandler);
+    simulator->getTracer()->addTraceSimulationHandler<MainWindow>(this, &MainWindow::_simulatorTraceSimulationHandler);
+    _insertFakePlugins();
+    simulator->getTracer()->setTraceLevel(Util::TraceLevel::L7_internal);
     // Docks
-    ui->dockWidgetContentsConsole->setMaximumHeight(150);
-    ui->dockWidgetContentsPlugin->setMaximumWidth(220);
+    ui->dockWidgetContentsPlugin->setMinimumHeight(250);
+    ui->dockWidgetContentsPlugin->setMaximumWidth(230);
+    tabifyDockWidget(ui->dockWidgetPropertyEditor,ui->dockWidgetConsole);
     // plugins
     ui->treeWidget_Plugins->sortByColumn(0, Qt::AscendingOrder);
-    // Code Editor
+    // Text Code Editor // @todo No need for programming
     QVBoxLayout* layout = dynamic_cast<QVBoxLayout*> (ui->tabModelText->layout());
     textCodeEdit_Model = new CodeEditor(ui->tabModelText);
     layout->addWidget(textCodeEdit_Model);
     connect(textCodeEdit_Model, SIGNAL(textChanged()), this, SLOT(on_textCodeEdit_Model_textChanged()));
-    // set current tabs
-    ui->tabWidget_Model->setCurrentIndex(CONST.TabModelTextIndex);
-    ui->tabWidgetCentral->setCurrentIndex(CONST.TabModelIndex);
-    // Debug Tables
+    // Tables
     QStringList headers;
     headers << tr("Time") << tr("Component") << tr("Entity");
     ui->tableWidget_Simulation_Event->setHorizontalHeaderLabels(headers);
@@ -52,21 +59,22 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->tableWidget_Entities->setHorizontalHeaderLabels(headers);
     ui->tableWidget_Entities->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tableWidget_Simulation_Event->setContentsMargins(1, 0, 1, 0);
-    // Genesys Simulator
-    simulator = new Simulator();
-    simulator->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
-    simulator->getTracer()->addTraceHandler<MainWindow>(this, &MainWindow::_simulatorTraceHandler);
-    simulator->getTracer()->addTraceErrorHandler<MainWindow>(this, &MainWindow::_simulatorTraceErrorHandler);
-    simulator->getTracer()->addTraceReportHandler<MainWindow>(this, &MainWindow::_simulatorTraceReportsHandler);
-    simulator->getTracer()->addTraceSimulationHandler<MainWindow>(this, &MainWindow::_simulatorTraceSimulationHandler);
-    _insertFakePlugins();
-    simulator->getTracer()->setTraceLevel(Util::TraceLevel::L5_event);
-    // ModelGraphic
-    ui->graphicsView->setParentWidget(ui->tabModelGraphicEdit);
+    // Trees
+    QTreeWidgetItem *treeHeader = ui->treeWidgetComponents->headerItem();
+    treeHeader->setText(0, "Id");
+    treeHeader->setText(1, "Type");
+    treeHeader->setText(2, "Name");
+    treeHeader->setText(3, "Properties");
+    treeHeader->setExpanded(true);
+   // ModelGraphic
+    ui->graphicsView->setParentWidget(ui->centralwidget);
     ui->graphicsView->setSimulator(simulator);
     _zoomValue = ui->horizontalSlider_ZoomGraphical->maximum()/2;
-    //
     _initModelGraphicsView();
+    // set current tabs
+    ui->tabWidgetCentral->setCurrentIndex(CONST.TabCentralModelComponents);
+    //
+    _actualizeWidgets();
     //// FOR TESTS ONLY
     //on_actionNew_triggered();
     //ui->tabWidget_Model->setCurrentIndex(CONST.TabModelGraphicEditIndex);
@@ -89,42 +97,44 @@ void MainWindow::_actualizeWidgets() {
         running = simulator->getModels()->current()->getSimulation()->isRunning();
         paused = simulator->getModels()->current()->getSimulation()->isPaused();
     }
+    //
+    ui->graphicsView->setEnabled(opened);
+    ui->tabWidgetCentral->setEnabled(opened);
+    // model
     ui->actionSave->setEnabled(opened);
     ui->actionClose->setEnabled(opened);
     ui->actionCheck->setEnabled(opened);
     ui->menuSimulation->setEnabled(opened);
+    //edit
+    ui->toolBarEdit->setEnabled(opened);
+    ui->menuEdit->setEnabled(opened);
+    // simulation
     ui->actionStart->setEnabled(opened && !running);
     ui->actionStep->setEnabled(opened && !running);
     ui->actionStop->setEnabled(opened && (running || paused));
     ui->actionPause->setEnabled(opened && running);
     ui->actionResume->setEnabled(opened && paused);
-    ui->tabWidgetCentral->setEnabled(opened);
-    ui->tabWidget_Debug->setEnabled(opened);
-    ui->tabDebug->setEnabled(opened);
-    ui->tabDebug_Entities->setEnabled(opened);
-    ui->tab_Debug_Breakpoints->setEnabled(opened);
-    ui->tab_Debug_Variables->setEnabled(opened);
+    // debug
     ui->tableWidget_Breakpoints->setEnabled(opened);
     ui->tableWidget_Entities->setEnabled(opened);
     ui->tableWidget_Variables->setEnabled(opened);
-    ui->tabSimulation->setEnabled(opened);
-    ui->tabReport->setEnabled(opened);
-    if (!opened) {
-
+    // tool bars
+    ui->toolBarAnimation->setEnabled(opened);
+    ui->toolBarView->setEnabled(opened);
+    ui->toolBarGraphicalModel->setEnabled(opened);
+    if (_modelWasOpened && !opened) {
         _clearModelEditors();
     }
+    if (opened && ui->tabWidgetCentral->currentIndex()==CONST.TabCentralModelViews) {
+        _createModelImage();
+    }
+    _modelWasOpened = opened;
 }
 
 void MainWindow::_actualizeModelTextHasChanged(bool hasChanged) {
     if (_textModelHasChanged != hasChanged) {
-        QString text = "Model";
-        if (hasChanged) {
-            text += "*";
-        }
-        ui->tabWidgetCentral->setTabText(0, text);
     }
     _textModelHasChanged = hasChanged;
-
 }
 
 void MainWindow::_actualizeSimulationEvents(SimulationEvent * re) {
@@ -142,7 +152,7 @@ void MainWindow::_actualizeSimulationEvents(SimulationEvent * re) {
 
 void MainWindow::_actualizeDebugVariables(bool force) {
     QCoreApplication::processEvents();
-    if (force || ui->tabWidgetCentral->currentIndex() == CONST.TabDebugIndex && ui->tabWidget_Debug->currentIndex() == CONST.TabDebugVarableIndex) {
+    if (force || ui->tabWidgetCentral->currentIndex()==CONST.TabCentralVariableIndex) {
         ui->tableWidget_Variables->setRowCount(0);
         List<ModelDataDefinition*>* variables = simulator->getModels()->current()->getDataManager()->getDataDefinitionList(Util::TypeOf<Variable>());
         int row = 0;
@@ -163,8 +173,7 @@ void MainWindow::_actualizeDebugVariables(bool force) {
 
 void MainWindow::_actualizeDebugEntities(bool force) {
     QCoreApplication::processEvents();
-    //std::cout << ui->tabWidgetCentral->currentIndex() << " " << ui->tabWidget_Debug->currentIndex() << std::endl;
-    if (force || ui->tabWidgetCentral->currentIndex() == CONST.TabDebugIndex && ui->tabWidget_Debug->currentIndex() == CONST.TabDebugEntityIndex) {
+    if (force || ui->tabWidgetCentral->currentIndex() == CONST.TabCentralEntityIndex) {
         List<ModelDataDefinition*>* entities = simulator->getModels()->current()->getDataManager()->getDataDefinitionList(Util::TypeOf<Entity>());
         List<ModelDataDefinition*>* attributes = simulator->getModels()->current()->getDataManager()->getDataDefinitionList(Util::TypeOf<Attribute>());
         Entity* entity;
@@ -203,17 +212,20 @@ void MainWindow::_actualizeDebugEntities(bool force) {
 
 void MainWindow::_actualizeDebugBreakpoints(bool force) {
     QCoreApplication::processEvents();
-    if (force || ui->tabWidgetCentral->currentIndex() == CONST.TabDebugIndex && ui->tabWidget_Debug->currentIndex() == CONST.TabDebugBreakpointIndex) {
+    if (force || ui->tabWidgetCentral->currentIndex() == CONST.TabCentralBreakpointIndex) {
         ui->tableWidget_Breakpoints->setRowCount(0);
         ModelSimulation* sim = simulator->getModels()->current()->getSimulation();
         int row = 0;
         for (ModelComponent* comp : *sim->getBreakpointsOnComponent()->list()) {
-            ui->tableWidget_Breakpoints->setRowCount(++row);
+            ui->tableWidget_Breakpoints->setRowCount(row+1);
             QTableWidgetItem* newItem;
+            newItem = new QTableWidgetItem("True");
+            ui->tableWidget_Breakpoints->setItem(row, 0, newItem);
             newItem = new QTableWidgetItem("Component");
             ui->tableWidget_Breakpoints->setItem(row, 1, newItem);
             newItem = new QTableWidgetItem(QString::fromStdString(comp->getName()));
             ui->tableWidget_Breakpoints->setItem(row, 2, newItem);
+            row++;
         }
         for (Entity* entity : *sim->getBreakpointsOnEntity()->list()) {
             ui->tableWidget_Breakpoints->setRowCount(++row);
@@ -235,6 +247,32 @@ void MainWindow::_actualizeDebugBreakpoints(bool force) {
 
 }
 
+
+void MainWindow::_actualizeModelComponents(bool force) {
+    Model* m = simulator->getModels()->current();
+    if (m==nullptr) {
+        ui->treeWidgetComponents->clear();
+        return;
+    }
+    for (ModelComponent* comp : *m->getComponents()->getAllComponents()) {
+        QList<QTreeWidgetItem *> items = ui->treeWidgetComponents->findItems(QString::fromStdString(std::to_string(comp->getId())), Qt::MatchExactly|Qt::MatchRecursive, 0);
+        if (items.size()==0) {
+            QTreeWidgetItem* treeComp = new QTreeWidgetItem(ui->treeWidgetComponents);
+            treeComp->setText(0, QString::fromStdString(std::to_string(comp->getId())));
+            treeComp->setText(1, QString::fromStdString(comp->getClassname()));
+            treeComp->setText(2, QString::fromStdString(comp->getName()));
+            treeComp->setText(3, "...todo...");
+        }
+    }
+}
+
+void MainWindow::_actualizeGraphicalModel(SimulationEvent * re) {
+    Event* event = re->getCurrentEvent();
+    if (event != nullptr) {
+        ui->graphicsView->selectModelComponent(event->getComponent());
+    }
+}
+
 void MainWindow::_insertCommandInConsole(std::string text) {
 
     ui->textEdit_Console->setTextColor(QColor::fromRgb(0, 128, 0));
@@ -247,18 +285,41 @@ void MainWindow::_insertCommandInConsole(std::string text) {
     ui->textEdit_Console->setFont(font);
 }
 
-void MainWindow::_clearModelEditors() {
+void MainWindow::_actualizeTextModelBasedOnSimulatorModel() {
+    Model* m = simulator->getModels()->current();
+    if (m != nullptr) {
+    m->getPersistence()->setOption(ModelPersistence_if::Options::SAVEDEFAULTS, true);
+    std::string tempFilename = "./temp.tmp";
+    m->getPersistence()->setOption(ModelPersistence_if::Options::SAVEDEFAULTS, false);
+    bool res = m->save(tempFilename);
+    std::string line;
+    std::ifstream file(tempFilename);
+    if (file.is_open()) {
+        textCodeEdit_Model->clear();
+        while (std::getline(file, line)) {
+            textCodeEdit_Model->appendPlainText(QString::fromStdString(line));
+        }
+        file.close();
+        _textModelHasChanged = false;
+    }
+    }
+}
 
+void MainWindow::_clearModelEditors() {
     textCodeEdit_Model->clear();
     ui->textEdit_Simulation->clear();
     ui->textEdit_Reports->clear();
+    ui->graphicsView->clear();
+    ui->plainTextEditCppCode->clear();
+    ui->treeWidgetComponents->clear();
 }
 
 bool MainWindow::_setSimulationModelBasedOnText() {
     Model* model = simulator->getModels()->current();
     if (this->_textModelHasChanged) {
-        simulator->getModels()->remove(model);
-        model = nullptr;
+        //@TODO !!!!!!!!!!!!!!
+       // simulator->getModels()->remove(model);
+       // model = nullptr;
     }
     if (model == nullptr) { // only model text written in UI
         QString modelLanguage = textCodeEdit_Model->toPlainText();
@@ -274,9 +335,10 @@ bool MainWindow::_setSimulationModelBasedOnText() {
     return simulator->getModels()->current() != nullptr;
 }
 
-std::string MainWindow::_adjustName(std::string name) {
-
-    return strReplace(name, ".", "_");
+std::string MainWindow::_adjustDotName(std::string name) {
+    std::string text = strReplace(name, "[", "_");
+    text = strReplace(text, "]", "");
+    return strReplace(text, ".", "_");
 }
 
 void MainWindow::_insertTextInDot(std::string text, unsigned int compLevel, unsigned int compRank, std::map<unsigned int, std::map<unsigned int, std::list<std::string>*>*>* dotmap, bool isNode) {
@@ -328,11 +390,11 @@ void MainWindow::_recursiveCreateModelGraphicPicture(ModelDataDefinition* compon
             assert(parentComponentSuperLevel != nullptr);
             visitedIt = std::find(visited->begin(), visited->end(), parentComponentSuperLevel);
             if (visitedIt == visited->end()) {
-                text = "  " + _adjustName(parentComponentSuperLevel->getName()) + " [" + DOT.nodeComponent + ", label=\"" + parentComponentSuperLevel->getClassname() + "|" + parentComponentSuperLevel->getName() + "\"]" + ";\n";
+                text = "  " + _adjustDotName(parentComponentSuperLevel->getName()) + " [" + DOT.nodeComponent + ", label=\"" + parentComponentSuperLevel->getClassname() + "|" + parentComponentSuperLevel->getName() + "\"]" + ";\n";
                 _insertTextInDot(text, level, DOT.rankComponentOtherLevel, dotmap, true);
             }
         } else {
-            text = "  " + _adjustName(componentOrData->getName()) + " [" + DOT.nodeComponent + ", label=\"" + componentOrData->getClassname() + "|" + componentOrData->getName() + "\"]" + ";\n";
+            text = "  " + _adjustDotName(componentOrData->getName()) + " [" + DOT.nodeComponent + ", label=\"" + componentOrData->getClassname() + "|" + componentOrData->getName() + "\"]" + ";\n";
             if (dynamic_cast<SourceModelComponent*> (componentOrData) != nullptr) {
                 _insertTextInDot(text, level, DOT.rankSource, dotmap, true);
             } else if (dynamic_cast<SinkModelComponent*> (componentOrData) != nullptr) {
@@ -352,7 +414,7 @@ void MainWindow::_recursiveCreateModelGraphicPicture(ModelDataDefinition* compon
     }
     if (ui->checkBox_ShowInternals->isChecked()) {
         for (std::pair<std::string, ModelDataDefinition*> dataPair : *componentOrData->getInternalData()) {
-            dataname = _adjustName(dataPair.second->getName());
+            dataname = _adjustDotName(dataPair.second->getName());
             level = dataPair.second->getLevel();
             visitedIt = std::find(visited->begin(), visited->end(), dataPair.second);
             if (visitedIt == visited->end()) {
@@ -365,14 +427,14 @@ void MainWindow::_recursiveCreateModelGraphicPicture(ModelDataDefinition* compon
                 }
             }
             if (dataPair.second->getLevel() == modellevel || ui->checkBox_ShowLevels->isChecked()) {
-                text = "    " + dataname + "->" + _adjustName(componentName) + " [" + DOT.edgeDataDefInternal + ", label=\"" + dataPair.first + "\"];\n";
+                text = "    " + dataname + "->" + _adjustDotName(componentName) + " [" + DOT.edgeDataDefInternal + ", label=\"" + dataPair.first + "\"];\n";
                 _insertTextInDot(text, modellevel, DOT.rankEdge, dotmap);
             }
         }
     }
     if (ui->checkBox_ShowElements->isChecked()) {
         for (std::pair<std::string, ModelDataDefinition*> dataPair : *componentOrData->getAttachedData()) {
-            dataname = _adjustName(dataPair.second->getName());
+            dataname = _adjustDotName(dataPair.second->getName());
             level = dataPair.second->getLevel();
             visitedIt = std::find(visited->begin(), visited->end(), dataPair.second);
             if (visitedIt == visited->end()) {
@@ -384,7 +446,7 @@ void MainWindow::_recursiveCreateModelGraphicPicture(ModelDataDefinition* compon
                     _recursiveCreateModelGraphicPicture(dataPair.second, visited, dotmap);
                 }
             }
-            text = "    " + dataname + "->" + _adjustName(componentName) + " [" + DOT.edgeDataDefAttached + ", label=\"" + dataPair.first + "\"];\n";
+            text = "    " + dataname + "->" + _adjustDotName(componentName) + " [" + DOT.edgeDataDefAttached + ", label=\"" + dataPair.first + "\"];\n";
             _insertTextInDot(text, modellevel, DOT.rankEdge, dotmap);
         }
     }
@@ -400,10 +462,122 @@ void MainWindow::_recursiveCreateModelGraphicPicture(ModelDataDefinition* compon
             }
             if (connection->first->getLevel() == modellevel || ui->checkBox_ShowLevels->isChecked()) {
 
-                text = "    " + _adjustName(componentName) + "->" + _adjustName(connection->first->getName()) + "[" + DOT.edgeComponent + "];\n";
+                text = "    " + _adjustDotName(componentName) + "->" + _adjustDotName(connection->first->getName()) + "[" + DOT.edgeComponent + "];\n";
                 _insertTextInDot(text, modellevel, DOT.rankEdge, dotmap);
             }
         }
+    }
+}
+
+std::string  MainWindow::_addCppCodeLine(std::string line, unsigned int indent){
+    std::string text = "";
+    for (unsigned int i=0; i<indent; i++) {
+        text+="\t";
+    }
+    text += line + "\n";
+    return text;
+}
+
+void MainWindow::_createCppCodeForModel() {
+    Model* m = simulator->getModels()->current();
+    if (m != nullptr) {
+        unsigned short tabs=0;
+        std::string text, text2, name;
+        std::map<std::string, std::string>* code = new std::map<std::string, std::string>();
+        text = _addCppCodeLine("/*");
+        text+= _addCppCodeLine(" * This C++ source cod was automatically generated by Genesys");
+        text+= _addCppCodeLine(" */");
+        code->insert({"1begin",text});
+
+        text= _addCppCodeLine("#include \"kernel/simulator/Simulator.h\"");
+        List<std::string>* included = new List<std::string>();
+        for(ModelComponent* comp: *m->getComponents()->getAllComponents()) {
+            name = comp->getClassname();
+            if (included->find(name) == included->list()->end()) {
+                included->insert(name);
+                text += _addCppCodeLine("#include \"plugins/components/"+name+".h\"");
+            }
+        }
+        for (std::string ddClassname: *m->getDataManager()->getDataDefinitionClassnames()) {
+            text += _addCppCodeLine("#include \"plugins/data/"+ddClassname+".h\"");
+            for (ModelDataDefinition* modeldata: *m->getDataManager()->getDataDefinitionList(ddClassname)->list()) {
+                name = modeldata->getName();
+                if (name.find(".") == std::string::npos) {
+                    if (included->find(name) == included->list()->end()) {
+                        included->insert(ddClassname);
+                        text += _addCppCodeLine("#include \"plugins/data/"+ddClassname+"\"");
+                    }
+                }
+            }
+        }
+        code->insert({"2include",text});
+
+        text= _addCppCodeLine("\nint main(int argc, char** argv) {");
+        tabs++;
+        text+= _addCppCodeLine("Simulator* genesys = new Simulator();", tabs);
+        text+= _addCppCodeLine("Model* model = genesys->getModels()->newModel();", tabs);
+        text+= _addCppCodeLine("PluginManager* plugins = genesys->getPlugins();", tabs);
+        text +=_addCppCodeLine("model->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);", tabs);
+        code->insert({"3main",text});
+
+        text = "";
+        for (std::string ddClassname: *m->getDataManager()->getDataDefinitionClassnames()) {
+            for (ModelDataDefinition* modeldata: *m->getDataManager()->getDataDefinitionList(ddClassname)->list()) {
+                name = modeldata->getName();
+                if (name.find(".") == std::string::npos) {
+                    text += _addCppCodeLine(ddClassname+"* "+name+" = plugins->newInstance<"+ddClassname+">(model, \""+name+"\");", tabs);
+                }
+            }
+        }
+        code->insert({"4datadef",text});
+
+        text = "";
+        for(ModelComponent* comp: *m->getComponents()->getAllComponents()) {
+            name = comp->getName();
+            if (name.find(".") == std::string::npos) {
+                text += _addCppCodeLine(comp->getClassname()+"* "+name+" = plugins->newInstance<"+comp->getClassname()+">(model, \""+name+"\");", tabs);
+            }
+        }
+        code->insert({"5modelcompdef",text});
+
+        text = "";
+        Connection* conn;
+        for(ModelComponent* comp: *m->getComponents()->getAllComponents()) {
+            name = comp->getName();
+            if (name.find(".") == std::string::npos) {
+                for (unsigned int i=0; i<comp->getConnections()->size(); i++) {
+                    conn = comp->getConnections()->getConnectionAtRank(i);
+                    text2 = conn->first->getName();// + conn->second==0?"":","+std::to_string(conn->second);
+                    text += _addCppCodeLine(name + "->getConnections()->insert("+text2+");", tabs);
+                }
+            }
+        }
+        code->insert({"6modelconnect",text});
+
+        ModelSimulation* sim = m->getSimulation();
+        text = _addCppCodeLine("ModelSimulation* sim = model->getSimulation();", tabs);
+        text += _addCppCodeLine("sim->setReplicationLength("+std::to_string(sim->getReplicationLength())+")", tabs);
+        text += _addCppCodeLine("sim->setReplicationLengthTimeUnit(Util::TimeUnit::"+Util::StrTimeUnitLong(sim->getReplicationLengthTimeUnit())+");", tabs);
+        text += _addCppCodeLine("sim->setWarmUpPeriod("+std::to_string(sim->getWarmUpPeriod())+");", tabs);
+        text += _addCppCodeLine("sim->setWarmUpPeriodTimeUnit(Util::TimeUnit::"+Util::StrTimeUnitLong(sim->getWarmUpPeriodTimeUnit())+");", tabs);
+        text += _addCppCodeLine("sim->setReplicationReportBaseTimeUnit(Util::TimeUnit::"+Util::StrTimeUnitLong(sim->getReplicationBaseTimeUnit())+");", tabs);
+        text += _addCppCodeLine("// simulate", tabs);
+        code->insert({"7simulation",text});
+
+        text = _addCppCodeLine("sim->start();", tabs);
+        text += _addCppCodeLine("return 0;", tabs);
+        tabs--;
+        text += _addCppCodeLine("}", tabs);
+        code->insert({"8end",text});
+
+        // Show
+        ui->plainTextEditCppCode->clear();
+        for (std::pair<std::string, std::string> codeSection: *code) {
+            //ui->plainTextEditCppCode->appendPlainText(QString::fromStdString("// " + codeSection.first+"\n"));
+            ui->plainTextEditCppCode->appendPlainText(QString::fromStdString(codeSection.second));
+        }
+    } else {
+
     }
 }
 
@@ -417,7 +591,7 @@ void MainWindow::setGraphicalModelHasChanged(bool graphicalModelHasChanged)
     _graphicalModelHasChanged = graphicalModelHasChanged;
 }
 
-bool MainWindow::_createModelGraphicPicture() {
+bool MainWindow::_createModelImage() {
     bool res = this->_setSimulationModelBasedOnText();
     std::string dot = "digraph G {\n";
     dot += "  compound=true; rankdir=LR; \n";
@@ -437,6 +611,13 @@ bool MainWindow::_createModelGraphicPicture() {
         visitedIt = std::find(visited->begin(), visited->end(), transfer);
         if (visitedIt == visited->end()) {
             _recursiveCreateModelGraphicPicture(transfer, visited, dotmap);
+        }
+    }
+    std::list<ModelComponent*>* allComps= simulator->getModels()->current()->getComponents()->getAllComponents();
+    for (ModelComponent* comp : *allComps) {
+        visitedIt = std::find(visited->begin(), visited->end(), comp);
+        if (visitedIt == visited->end()) {
+            _recursiveCreateModelGraphicPicture(comp, visited, dotmap);
         }
     }
     // combine all level subgraphs
@@ -500,12 +681,12 @@ bool MainWindow::_createModelGraphicPicture() {
             std::string command = "dot -Tpng " + dotfilename + " -o " + pngfilename;
             system(command.c_str());
             QPixmap pm(QString::fromStdString(pngfilename)); // <- path to image file
-            int w = ui->label_ModelGraphic->width();
-            int h = ui->label_ModelGraphic->height();
+            //int w = ui->label_ModelGraphic->width();
+            //int h = ui->label_ModelGraphic->height();
             ui->label_ModelGraphic->setPixmap(pm); //.scaled(w, h, Qt::IgnoreAspectRatio));
             ui->label_ModelGraphic->setScaledContents(false);
             try {
-                std::remove(dotfilename.c_str());
+                //std::remove(dotfilename.c_str());
                 //std::remove(pngfilename.c_str());
             } catch (...) {
 
@@ -588,7 +769,6 @@ void MainWindow::_onReplicationStartHandler(SimulationEvent * re) {
 void MainWindow::_onSimulationStartHandler(SimulationEvent * re) {
     _actualizeWidgets();
     ui->progressBarSimulation->setMaximum(simulator->getModels()->current()->getSimulation()->getReplicationLength());
-    ui->tabWidgetCentral->setCurrentIndex(CONST.TabSimulationIndex);
     ui->tableWidget_Simulation_Event->setRowCount(0);
     ui->tableWidget_Entities->setRowCount(0);
     ui->tableWidget_Variables->setRowCount(0);
@@ -606,13 +786,12 @@ void MainWindow::_onSimulationPausedHandler(SimulationEvent * re) {
 void MainWindow::_onSimulationResumeHandler(SimulationEvent * re) {
 
     _actualizeWidgets();
-    //ui->tabWidgetCentral->setCurrentIndex(CONST.TabSimulationIndex);
     QCoreApplication::processEvents();
 }
 
 void MainWindow::_onSimulationEndHandler(SimulationEvent * re) {
     _actualizeWidgets();
-    ui->tabWidgetCentral->setCurrentIndex(CONST.TabReportIndex);
+    ui->tabWidgetCentral->setCurrentIndex(CONST.TabCentralReportIndex);
     for (unsigned int i = 0; i < 50; i++) {
 
         QCoreApplication::processEvents();
@@ -621,9 +800,10 @@ void MainWindow::_onSimulationEndHandler(SimulationEvent * re) {
 
 void MainWindow::_onProcessEventHandler(SimulationEvent * re) {
     ui->progressBarSimulation->setValue(simulator->getModels()->current()->getSimulation()->getSimulatedTime());
-    this->_actualizeSimulationEvents(re);
-    this->_actualizeDebugEntities(false);
-    this->_actualizeDebugVariables(false);
+    _actualizeSimulationEvents(re);
+    _actualizeDebugEntities(false);
+    _actualizeDebugVariables(false);
+    _actualizeGraphicalModel(re);
     QCoreApplication::processEvents();
 }
 
@@ -638,14 +818,13 @@ void MainWindow::_onEntityRemoveHandler(SimulationEvent* re) {
 
 void MainWindow::_onSceneMouseEvent(QGraphicsSceneMouseEvent* mouseEvent) {
     QPointF pos = mouseEvent->scenePos();
-
     ui->labelMousePos->setText(QString::fromStdString("<" + std::to_string((int) pos.x()) + "," + std::to_string((int) pos.y()) + ">"));
 }
 
 //-----------------------------------------
 
 void MainWindow::sceneChanged(const QList<QRectF> &region) {
-    //int a = 0;
+    _graphicalModelHasChanged = true;
 }
 
 void MainWindow::sceneFocusItemChanged(QGraphicsItem *newFocusItem, QGraphicsItem *oldFocusItem, Qt::FocusReason reason) {
@@ -654,7 +833,7 @@ void MainWindow::sceneFocusItemChanged(QGraphicsItem *newFocusItem, QGraphicsIte
 //void sceneRectChanged(const QRectF &rect){}
 
 void MainWindow::sceneSelectionChanged() {
-    //int a = 0;
+    int a = 0;
 }
 
 //-----------------------------------------
@@ -662,15 +841,10 @@ void MainWindow::sceneSelectionChanged() {
 void MainWindow::_initModelGraphicsView() {
 
     ui->graphicsView->setSceneMouseEventHandler(this, &MainWindow::_onSceneMouseEvent);
-    ui->graphicsView->showGrid();
+    ui->graphicsView->showGrid(); //@TODO not here
     connect(ui->graphicsView->scene(), &QGraphicsScene::changed, this, &MainWindow::sceneChanged);
     connect(ui->graphicsView->scene(), &QGraphicsScene::focusItemChanged, this, &MainWindow::sceneFocusItemChanged);
     connect(ui->graphicsView->scene(), &QGraphicsScene::selectionChanged, this, &MainWindow::sceneSelectionChanged);
-    //connect(ui->graphicsView->scene(), &QGraphicsScene::m)
-    //oid ModelGraphicsScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent) {
-
-    //
-    Model* m = simulator->getModels()->current();
 }
 
 void MainWindow::_setOnEventHandlers() {
@@ -726,7 +900,6 @@ void MainWindow::_insertPluginUI(Plugin * plugin) {
                 treeItemChild->setIcon(0, QIcon(":/icons3/resources/icons/pack3/ico/load.ico"));
             }
             if (plugin->getPluginInfo()->isSendTransfer()) {
-
                 plugtextAdds += ", SendTransfer";
                 treeItemChild->setTextColor(0, Qt::blue);
                 treeItemChild->setIcon(0, QIcon(":/icons3/resources/icons/pack3/ico/loadinv.ico"));
@@ -764,7 +937,7 @@ void MainWindow::_insertPluginUI(Plugin * plugin) {
                 }
                 treeRootItem->setBackground(0, bbackground);
                 treeRootItem->setFont(0, font);
-                treeRootItem->setExpanded(true);
+                treeRootItem->setExpanded(false);//(true);
                 //treeRootItem->sortChildren(0, Qt::AscendingOrder);
             } else {
                 treeRootItem = *founds.begin();
@@ -886,9 +1059,12 @@ void MainWindow::_insertFakePlugins() {
 void MainWindow::on_actionNew_triggered() {
     Model* m;
     if ((m = simulator->getModels()->current()) != nullptr) {
-        QMessageBox::StandardButton reply = QMessageBox::question(this, "New Model", "There is a model oppened already. Do you want to remove it and to create new model?", QMessageBox::Yes | QMessageBox::No);
+        QMessageBox::StandardButton reply = QMessageBox::question(this, "New Model", "There is a model already oppened. Do you want to close it and to create new model?", QMessageBox::Yes | QMessageBox::No);
         if (reply == QMessageBox::No) {
             return;
+        } else {
+            this->on_actionClose_triggered();
+            //return; //@TODO Ceck if needed (since will remove bellow)
         }
     }
     _insertCommandInConsole("new");
@@ -897,8 +1073,6 @@ void MainWindow::on_actionNew_triggered() {
     }
     m = simulator->getModels()->newModel();
     textCodeEdit_Model->clear();
-    ui->tabWidgetCentral->setCurrentIndex(CONST.TabModelIndex);
-    ui->tabWidget_Model->setCurrentIndex(CONST.TabModelTextIndex);
     ui->textEdit_Simulation->clear();
     ui->textEdit_Reports->clear();
     ui->textEdit_Console->moveCursor(QTextCursor::End);
@@ -917,16 +1091,13 @@ void MainWindow::on_actionNew_triggered() {
                 textCodeEdit_Model->appendPlainText(QString::fromStdString(line));
             }
             file.close();
-            //textCodeEdit_Model->appendPlainText("\n# Model Data Definitions");
-            //textCodeEdit_Model->appendPlainText("\n\n# Model Components\n");
-            QMessageBox::information(this, "New Model", "Model successfully created");
+            //QMessageBox::information(this, "New Model", "Model successfully created");
         } else {
             ui->textEdit_Console->append(QString("Error reading template model file"));
         }
         _actualizeModelTextHasChanged(true);
         _setOnEventHandlers();
     } else {
-
         ui->textEdit_Console->append(QString("Error saving template model file"));
     }
     _modelfilename = "";
@@ -967,11 +1138,17 @@ void MainWindow::on_actionSave_triggered() {
 }
 
 void MainWindow::on_actionClose_triggered() {
-
+    if (_textModelHasChanged || simulator->getModels()->current()->hasChanged()) {
+        QMessageBox::StandardButton res = QMessageBox::question(this, "Close ModelSyS", "Model has changed. Do you want to save it?", QMessageBox::Yes | QMessageBox::No);
+        if (res == QMessageBox::Yes) {
+            this->on_actionSave_triggered();
+            return;
+        }
+    }
     _insertCommandInConsole("close");
     simulator->getModels()->remove(simulator->getModels()->current());
     _actualizeWidgets();
-    QMessageBox::information(this, "Close Model", "Model successfully closed");
+    //QMessageBox::information(this, "Close Model", "Model successfully closed");
 }
 
 void MainWindow::on_actionExit_triggered() {
@@ -980,6 +1157,7 @@ void MainWindow::on_actionExit_triggered() {
         res = QMessageBox::question(this, "Exit GenESyS", "Model has changed. Do you want to save it?", QMessageBox::Yes | QMessageBox::No);
         if (res == QMessageBox::Yes) {
             this->on_actionSave_triggered();
+            return;
         }
     }
     res = QMessageBox::question(this, "Exit GenESyS", "Do you want to exit GenESyS?", QMessageBox::Yes | QMessageBox::No);
@@ -1049,8 +1227,6 @@ void MainWindow::on_actionOpen_triggered() {
         _setOnEventHandlers();
         _actualizeModelTextHasChanged(false);
         _actualizeWidgets();
-        ui->tabWidgetCentral->setCurrentIndex(CONST.TabModelIndex);
-        ui->tabWidget_Model->setCurrentIndex(CONST.TabModelTextIndex);
         _modelfilename = fileName;
         QMessageBox::information(this, "Open Model", "Model successfully oppened");
     } else {
@@ -1068,10 +1244,10 @@ void MainWindow::on_textCodeEdit_Model_textChanged() {
 void MainWindow::on_actionCheck_triggered() {
     _insertCommandInConsole("check");
     bool res = simulator->getModels()->current()->check();
+    _actualizeWidgets();
     if (res) {
         QMessageBox::information(this, "Model Check", "Model successfully checked.");
     } else {
-
         QMessageBox::critical(this, "Model Check", "Model has erros. See the console for more information.");
     }
 }
@@ -1091,20 +1267,17 @@ void MainWindow::on_actionLicence_triggered() {
 }
 
 void MainWindow::on_tabWidget_Model_tabBarClicked(int index) {
-    if (index == 1) {
 
-        bool result = _createModelGraphicPicture();
-    }
 }
 
 void MainWindow::on_checkBox_ShowElements_stateChanged(int arg1) {
 
-    bool result = _createModelGraphicPicture();
+    bool result = _createModelImage();
 }
 
 void MainWindow::on_checkBox_ShowInternals_stateChanged(int arg1) {
 
-    bool result = _createModelGraphicPicture();
+    bool result = _createModelImage();
 }
 
 void MainWindow::on_horizontalSlider_Zoom_valueChanged(int value) {
@@ -1129,7 +1302,7 @@ void MainWindow::on_horizontalSlider_Zoom_valueChanged(int value) {
 
 void MainWindow::on_checkBox_ShowRecursive_stateChanged(int arg1) {
 
-    bool result = _createModelGraphicPicture();
+    bool result = _createModelImage();
 }
 
 void MainWindow::on_actionGet_Involved_triggered() {
@@ -1139,21 +1312,11 @@ void MainWindow::on_actionGet_Involved_triggered() {
 
 void MainWindow::on_checkBox_ShowLevels_stateChanged(int arg1) {
 
-    bool result = _createModelGraphicPicture();
-}
-
-void MainWindow::on_pushButton_clicked() {
-    QString fileName = QFileDialog::getSaveFileName(this,
-            tr("Save Model"), _modelfilename,
-            tr("Genesys Model (*.gen);;All Files (*)"));
-    if (fileName.isEmpty())
-        return;
-    else {
-    }
+    bool result = _createModelImage();
 }
 
 void MainWindow::on_tabWidget_Debug_currentChanged(int index) {
-    // actualize the one is visible
+    _actualizeWidgets();
 }
 
 void MainWindow::on_pushButton_Breakpoint_Insert_clicked() {
@@ -1178,53 +1341,30 @@ void MainWindow::on_pushButton_Breakpoint_Insert_clicked() {
 }
 
 void MainWindow::on_pushButton_Breakpoint_Remove_clicked() {
-
     ModelSimulation* sim = simulator->getModels()->current()->getSimulation();
 }
 
-void MainWindow::on_tabWidget_Debug_tabBarClicked(int index) {
-    if (index == CONST.TabDebugBreakpointIndex) {
-        this->_actualizeDebugBreakpoints(true);
-    } else if (index == CONST.TabDebugEntityIndex) {
-        this->_actualizeDebugEntities(true);
-    } else if (index == CONST.TabDebugVarableIndex) {
-
-        this->_actualizeDebugVariables(true);
-    }
-}
-
 void MainWindow::on_tabWidgetCentral_currentChanged(int index) {
-    if (index == CONST.TabDebugIndex) {
-        index = ui->tabWidget_Debug->currentIndex();
-        if (index == CONST.TabDebugBreakpointIndex) {
-            this->_actualizeDebugBreakpoints(true);
-        } else if (index == CONST.TabDebugEntityIndex) {
-            this->_actualizeDebugEntities(true);
-        } else if (index == CONST.TabDebugVarableIndex) {
-
-            this->_actualizeDebugVariables(true);
+        index = ui->tabWidgetCentral->currentIndex();
+        if (index == CONST.TabCentralBreakpointIndex) {
+            _actualizeDebugBreakpoints(true);
+        } else if (index == CONST.TabCentralEntityIndex) {
+            _actualizeDebugEntities(true);
+        } else if (index == CONST.TabCentralVariableIndex) {
+            _actualizeDebugVariables(true);
+        } else if (index == CONST.TabCentralModelComponents) {
+            _actualizeModelComponents(true);
         }
-    }
+    _actualizeWidgets();
+
 }
 
 void MainWindow::on_tabWidgetCentral_tabBarClicked(int index) {
-    if (index == CONST.TabDebugIndex) {
-        index = ui->tabWidget_Debug->currentIndex();
-        if (index == CONST.TabDebugBreakpointIndex) {
-            this->_actualizeDebugBreakpoints(true);
-        } else if (index == CONST.TabDebugEntityIndex) {
-            this->_actualizeDebugEntities(true);
-        } else if (index == CONST.TabDebugVarableIndex) {
-
-            this->_actualizeDebugVariables(true);
-        }
-    }
 }
 
 void MainWindow::on_treeWidget_Plugins_itemDoubleClicked(QTreeWidgetItem *item, int column) {
     if (textCodeEdit_Model->isEnabled()) {
         if (item->toolTip(0).contains("DataDefinition")) {
-            //QTextDocument::FindFlags flag;
             QTextCursor cursor = textCodeEdit_Model->textCursor();
             QTextCursor cursorSaved = cursor;
             cursor.movePosition(QTextCursor::Start);
@@ -1237,8 +1377,16 @@ void MainWindow::on_treeWidget_Plugins_itemDoubleClicked(QTreeWidgetItem *item, 
                 textCodeEdit_Model->appendPlainText(item->statusTip(0));
             }
         } else {
-
             textCodeEdit_Model->appendPlainText(item->statusTip(0));
+        }
+    } else {
+        // treeRoot? Always?
+        for( int i = 0; i < ui->treeWidget_Plugins->topLevelItemCount(); ++i ) {
+            if (ui->treeWidget_Plugins->topLevelItem(i) != item) {
+                ui->treeWidget_Plugins->topLevelItem(i)->setExpanded(false);
+            //} else {
+            //    ui->treeWidget_Plugins->topLevelItem(i)->setExpanded(true);
+            }
         }
     }
 }
@@ -1268,11 +1416,45 @@ void MainWindow::_gentle_zoom(double factor) {
     //emit zoomed();
 }
 
-void MainWindow::on_toolButton_triggered(QAction *arg1)
-{
+void MainWindow::on_actionConnect_triggered() {
+    ((ModelGraphicsView*)ui->graphicsView)->beginConnection();
+}
+
+void MainWindow::on_pushButton_Export_clicked() {
 
 }
 
-void MainWindow::on_actionConnect_triggered() {
-    ((ModelGraphicsView*)ui->graphicsView)->beginConnection();
+
+void MainWindow::on_tabWidgetModelLanguages_currentChanged(int index)
+{
+    if (index == CONST.TabModelSimLangIndex) {
+        if (_graphicalModelHasChanged) {
+            _actualizeTextModelBasedOnSimulatorModel();
+        }
+    } else if (index== CONST.TabModelCppCodeIndex) {
+        _createCppCodeForModel();
+    }
+    _actualizeWidgets();
+
+}
+
+void MainWindow::on_actionComponent_Breakpoint_triggered() {
+    if (ui->graphicsView->selectedItems().size()==1) {
+        QGraphicsItem* gi = ui->graphicsView->selectedItems().at(0);
+        GraphicalModelComponent* gmc = dynamic_cast<GraphicalModelComponent*>(gi);
+        if (gmc != nullptr) {
+            ModelComponent* mc = gmc->getComponent();
+            ModelSimulation* sim = simulator->getModels()->current()->getSimulation();
+            if (sim->getBreakpointsOnComponent()->find(mc)==sim->getBreakpointsOnComponent()->list()->end()) {
+                sim->getBreakpointsOnComponent()->insert(mc);
+            } else {
+                sim->getBreakpointsOnComponent()->remove(mc);
+            }
+        }
+        _actualizeDebugBreakpoints(false);
+    }
+}
+
+void MainWindow::on_treeWidgetComponents_itemSelectionChanged() {
+
 }

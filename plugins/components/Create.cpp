@@ -30,8 +30,8 @@ ModelDataDefinition* Create::NewInstance(Model* model, std::string name) {
 }
 
 Create::Create(Model* model, std::string name) : SourceModelComponent(model, Util::TypeOf<Create>(), name) {
-    GetterMember getter = DefineGetterMember<SourceModelComponent>(this, &Create::getEntitiesPerCreation);
-    SetterMember setter = DefineSetterMember<SourceModelComponent>(this, &Create::setEntitiesPerCreation);
+    GetterMemberDouble getter = DefineGetterMember<SourceModelComponent>(this, &Create::getEntitiesPerCreation);
+    SetterMemberDouble setter = DefineSetterMember<SourceModelComponent>(this, &Create::setEntitiesPerCreation);
     model->getControls()->insert(new SimulationControl(Util::TypeOf<Create>(), getName() + ".EntitiesPerCreation", getter, setter));
     //@TODO: Solve this template mess
     //GetterMember getter2 = DefineGetterMember<SourceModelComponent>(this, &Create::getTimeBetweenCreationsExpression);

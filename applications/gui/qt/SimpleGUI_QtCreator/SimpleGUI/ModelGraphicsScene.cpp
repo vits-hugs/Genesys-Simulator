@@ -42,17 +42,36 @@ ModelGraphicsScene::ModelGraphicsScene(qreal x, qreal y, qreal width, qreal heig
     // grid
     _grid.pen.setWidth(1);
     _grid.pen.setStyle(Qt::DotLine);
+    showGrid();
 }
 
 ModelGraphicsScene::ModelGraphicsScene(const ModelGraphicsScene& orig) {
 }
 
 ModelGraphicsScene::~ModelGraphicsScene() {
+    //
 }
 
 GraphicalModelComponent* ModelGraphicsScene::addModelComponent(Plugin* plugin, ModelComponent* component, qreal x, qreal y, QColor color) {
     GraphicalModelComponent* graphComp = new GraphicalModelComponent(plugin, component, x, y, color);
     addItem(graphComp);
+    if (selectedItems().size()==1 && plugin->getPluginInfo()->getMinimumInputs()>0) { // check if there is selected component and crate a connection between them
+        GraphicalModelComponent* otherGraphComp = dynamic_cast<GraphicalModelComponent*>(selectedItems().at(0));
+        if (otherGraphComp != nullptr) {
+            ModelComponent* otherComp = otherGraphComp->getComponent();
+            unsigned int i=otherComp->getConnections()->size();
+            if (otherGraphComp->getGraphicalOutputPorts().size()>i) {
+                // create connection
+                _sourcePortConnection = ((GraphicalModelComponent*)selectedItems().at(0))->getGraphicalOutputPorts().at(i);
+                GraphicalComponentPort* destport = graphComp->getGraphicalInputPorts().at(0);
+                GraphicalConnection* graphicconnection = new GraphicalConnection(_sourcePortConnection, destport);
+                _sourcePortConnection->addGraphicalConnection(graphicconnection); // to update connection on port position change
+                destport->addGraphicalConnection(graphicconnection);
+                addItem(graphicconnection);
+                //
+            }
+        }
+    }
     return graphComp;
 }
 
@@ -85,7 +104,7 @@ void ModelGraphicsScene::beginConnection(){
 
 void ModelGraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent){
     QGraphicsScene::mousePressEvent(mouseEvent);
-    if (_connectingStep>0){
+    if (_connectingStep>0 && mouseEvent->button()==Qt::LeftButton){
         QGraphicsItem* item = this->itemAt(mouseEvent->scenePos(), QTransform());
         if (item!=nullptr) {
             GraphicalComponentPort* port = dynamic_cast<GraphicalComponentPort*>(item);
@@ -99,7 +118,6 @@ void ModelGraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent){
                     // create connection
                     GraphicalConnection* graphicconnection = new GraphicalConnection(_sourcePortConnection, port);
                     _sourcePortConnection->addGraphicalConnection(graphicconnection); // to update connection on port position change
-                    graphicconnection->setPos(_sourcePortConnection->scenePos());
                     port->addGraphicalConnection(graphicconnection);
                     addItem(graphicconnection);
                     //
@@ -118,6 +136,20 @@ void ModelGraphicsScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
     QGraphicsScene::mouseReleaseEvent(mouseEvent);
 }
 
+void ModelGraphicsScene::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *mouseEvent){
+    QGraphicsScene::mouseDoubleClickEvent(mouseEvent);
+    GraphicalComponentPort* port = dynamic_cast<GraphicalComponentPort*>(this->itemAt(mouseEvent->scenePos(), QTransform()));
+    if (port!=nullptr) {
+        if (!port->isInputPort() && this->_connectingStep==0) {
+            _sourcePortConnection = port;
+            _connectingStep = 2;
+
+        }
+    }
+}
+void ModelGraphicsScene::wheelEvent(QGraphicsSceneWheelEvent *wheelEvent) {
+    QGraphicsScene::wheelEvent(wheelEvent);
+}
 
 void ModelGraphicsScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent) {
     QGraphicsScene::mouseMoveEvent(mouseEvent);
@@ -194,9 +226,18 @@ void ModelGraphicsScene::keyPressEvent(QKeyEvent *keyEvent){
         }
         Model* model = _simulator->getModels()->current();
         for (QGraphicsItem* item: selected) {
-            ModelComponent* component = ((GraphicalModelComponent*)item)->getComponent();
-            model->remove(component);
-            ((GraphicalModelComponent*)item)->~GraphicalModelComponent();
+            removeItem(item);
+            GraphicalModelComponent* gmc = dynamic_cast<GraphicalModelComponent*>(item);
+            if (gmc != nullptr) {
+                ModelComponent* component = gmc->getComponent();
+                model->remove(component);
+                gmc->~GraphicalModelComponent();
+            } else {
+                GraphicalConnection* gc = dynamic_cast<GraphicalConnection*>(item);
+                if (gc != nullptr) {
+                    gc->~GraphicalConnection();
+                }
+            }
         }
     }
 }
@@ -214,14 +255,6 @@ void ModelGraphicsScene::setSimulator(Simulator *simulator){
     _simulator = simulator;
 }
 
-//------------------------
-// Private
-//------------------------
-
-void ModelGraphicsScene::_addModelComponent(Plugin* plugin, QPointF position, QColor color) {
-    ModelComponent* component = (ModelComponent*) plugin->newInstance(_simulator->getModels()->current());
-    this->addModelComponent(plugin, component, position.x(), position.y(), color);
-}
 
 unsigned short ModelGraphicsScene::connectingStep() const
 {
@@ -236,4 +269,24 @@ void ModelGraphicsScene::setConnectingStep(unsigned short connectingStep)
 void ModelGraphicsScene::setParentWidget(QWidget *parentWidget)
 {
     _parentWidget = parentWidget;
+}
+
+QList<GraphicalModelComponent*>* ModelGraphicsScene::graphicalModelMomponentItems(){
+    QList<GraphicalModelComponent*>* list = new QList<GraphicalModelComponent*>();
+    for(QGraphicsItem* item: this->items()) {
+        GraphicalModelComponent* gmc = dynamic_cast<GraphicalModelComponent*>(item);
+        if (gmc != nullptr) {
+            list->append(gmc);
+        }
+    }
+    return list;
+}
+
+//------------------------
+// Private
+//------------------------
+
+void ModelGraphicsScene::_addModelComponent(Plugin* plugin, QPointF position, QColor color) {
+    ModelComponent* component = (ModelComponent*) plugin->newInstance(_simulator->getModels()->current());
+    this->addModelComponent(plugin, component, position.x(), position.y(), color);
 }

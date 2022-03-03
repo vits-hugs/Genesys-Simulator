@@ -30,7 +30,7 @@ ModelDataDefinition* Counter::NewInstance(Model* model, std::string name) {
 
 Counter::Counter(Model* model, std::string name, ModelDataDefinition* parent) : ModelDataDefinition(model, Util::TypeOf<Counter>(), name) {
 	_parent = parent;
-	GetterMember getterMember = DefineGetterMember<Counter>(this, &Counter::getCountValue);
+	GetterMemberDouble getterMember = DefineGetterMember<Counter>(this, &Counter::getCountValue);
 	std::string parentName = "";
 	if (_parent != nullptr)
 		parentName = _parent->getName();

@@ -16,7 +16,7 @@
 
 //using namespace GenesysKernel;
 
-SimulationResponse::SimulationResponse(std::string type, std::string name, GetterMember getterMember, std::string parent) {
+SimulationResponse::SimulationResponse(std::string type, std::string name, GetterMemberDouble getterMember, std::string parent) {
 	_type = type;
 	_parent = parent;
 	_name = name;

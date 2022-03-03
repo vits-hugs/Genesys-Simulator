@@ -37,11 +37,11 @@ StatisticsCollector::StatisticsCollector(Model* model, std::string name, ModelDa
 }
 
 void StatisticsCollector::_addSimulationResponses() {
-	GetterMember getterMemberAverage = DefineGetterMember<StatisticsClass>(static_cast<StatisticsClass*> (this->_statistics), &StatisticsClass::average);
+	GetterMemberDouble getterMemberAverage = DefineGetterMember<StatisticsClass>(static_cast<StatisticsClass*> (this->_statistics), &StatisticsClass::average);
 	SimulationResponse* resp = new SimulationResponse(Util::TypeOf<StatisticsClass>(), getName() + ".average", getterMemberAverage, getName());
 	_parentModel->getResponses()->insert(resp);
 	// add the halfwidth as response
-	GetterMember getterMemberHalfWidth = DefineGetterMember<StatisticsClass>(static_cast<StatisticsClass*> (this->_statistics), &StatisticsClass::halfWidthConfidenceInterval);
+	GetterMemberDouble getterMemberHalfWidth = DefineGetterMember<StatisticsClass>(static_cast<StatisticsClass*> (this->_statistics), &StatisticsClass::halfWidthConfidenceInterval);
 	resp = new SimulationResponse(Util::TypeOf<StatisticsClass>(), /*parentName + ":" + */getName() + ".halfWidth", getterMemberHalfWidth, getName());
 	_parentModel->getResponses()->insert(resp);
 }

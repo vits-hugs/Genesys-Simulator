@@ -49,8 +49,12 @@ public:
 public:
     bool addModelComponent(Plugin* plugin, ModelComponent* component, qreal x, qreal y);
     void showGrid();
+    void clear();
     void beginConnection();
+    void selectModelComponent(ModelComponent* component);
     void setSimulator(Simulator* simulator);
+    void setEnabled(bool enabled);
+    QList<QGraphicsItem*> selectedItems();
 public: // events and notifications
     template<typename Class> void setSceneMouseEventHandler(Class * object, void (Class::*function)(QGraphicsSceneMouseEvent*)) {
         sceneMouseEventHandlerMethod handlerMethod = std::bind(function, object, std::placeholders::_1);
@@ -58,7 +62,6 @@ public: // events and notifications
     }
     void notifySceneMouseEventHandler(QGraphicsSceneMouseEvent* mouseEvent);
     void setParentWidget(QWidget *parentWidget);
-
 protected:// slots:
     void changed(const QList<QRectF> &region);
     void focusItemChanged(QGraphicsItem *newFocusItem, QGraphicsItem *oldFocusItem, Qt::FocusReason reason);

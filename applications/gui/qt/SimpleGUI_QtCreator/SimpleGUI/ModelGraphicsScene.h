@@ -55,21 +55,30 @@ public:
     void setSimulator(Simulator *simulator);
     void setObjectBeingDragged(QTreeWidgetItem* objectBeingDragged);
     void setParentWidget(QWidget *parentWidget);
-
+    QList<GraphicalModelComponent*>* graphicalModelMomponentItems();
+public:
     unsigned short connectingStep() const;
     void setConnectingStep(unsigned short connectingStep);
 
 protected: // virtual functions
-    virtual void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent);
-    virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent);
-    virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent);
-    virtual void dropEvent(QGraphicsSceneDragDropEvent *event);
-    virtual void dragEnterEvent(QGraphicsSceneDragDropEvent *event);
-    virtual void dragLeaveEvent(QGraphicsSceneDragDropEvent *event);
-    virtual void dragMoveEvent(QGraphicsSceneDragDropEvent *event);
-    //virtual void	inputMethodEvent(QInputMethodEvent *event)
-    virtual void keyPressEvent(QKeyEvent *keyEvent);
-    //virtual void keyReleaseEvent(QKeyEvent *keyEvent);
+    //virtual void	contextMenuEvent(QGraphicsSceneContextMenuEvent *contextMenuEvent);
+    virtual void	dragEnterEvent(QGraphicsSceneDragDropEvent *event);
+    virtual void	dragLeaveEvent(QGraphicsSceneDragDropEvent *event);
+    virtual void	dragMoveEvent(QGraphicsSceneDragDropEvent *event);
+    //virtual void	drawBackground(QPainter *painter, const QRectF &rect);
+    //virtual void	drawForeground(QPainter *painter, const QRectF &rect);
+    virtual void	dropEvent(QGraphicsSceneDragDropEvent *event);
+    //virtual void	focusInEvent(QFocusEvent *focusEvent);
+    //virtual void	focusOutEvent(QFocusEvent *focusEvent);
+    //virtual void	helpEvent(QGraphicsSceneHelpEvent *helpEvent);
+    //virtual void	inputMethodEvent(QInputMethodEvent *event);
+    virtual void	keyPressEvent(QKeyEvent *keyEvent);
+    //virtual void	keyReleaseEvent(QKeyEvent *keyEvent);
+    virtual void	mouseDoubleClickEvent(QGraphicsSceneMouseEvent *mouseEvent);
+    virtual void	mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent);
+    virtual void	mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent);
+    virtual void	mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent);
+    virtual void	wheelEvent(QGraphicsSceneWheelEvent *wheelEvent);
 private:
     void _addModelComponent(Plugin* plugin, QPointF position, QColor color=Qt::blue);
 

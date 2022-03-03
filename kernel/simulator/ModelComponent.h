@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   Element.h
  * Author: rafael.luiz.cancian
  *
@@ -33,36 +33,37 @@ class Event;
  */
 class ModelComponent : public ModelDataDefinition {
 public:
-	ModelComponent(Model* model, std::string componentTypename, std::string name = "");
-	virtual ~ModelComponent();
+    ModelComponent(Model* model, std::string componentTypename, std::string name = "");
+    virtual ~ModelComponent();
 public:
-	virtual std::string show();
+    virtual std::string show();
 public:
-	ConnectionManager* getConnections() const; ///< Returns a list of components directly connected to the output. Usually the components have a single output, but they may have none (such as Dispose) or more than one (as Decide). In addition to the component, NextComponents specifies the inputNumber of the next component where the entity will be sent to. Ussually the components have a single input, but they may have none (such as Create) or more than one (as Match).
+    ConnectionManager* getConnections() const; ///< Returns a list of components directly connected to the output. Usually the components have a single output, but they may have none (such as Dispose) or more than one (as Decide). In addition to the component, NextComponents specifies the inputNumber of the next component where the entity will be sent to. Ussually the components have a single input, but they may have none (such as Create) or more than one (as Match).
+    bool hasBreakpointAt();
 public: // static
-	static void DispatchEvent(Event* event); ///< This method triggers the simulation of the behavior of the component. It is invoked when an event (corresponding to this component) is taken from the list of future events or when an entity arrives at this component by connection.
-	//static void InitBetweenReplications(ModelComponent* component);
-	static void CreateInternalData(ModelComponent* component);
-	static bool Check(ModelComponent* component);
-	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-	static std::map<std::string, std::string>* SaveInstance(ModelComponent* component);
-	void setDescription(std::string _description);
-	std::string getDescription() const;
+    static void DispatchEvent(Event* event); ///< This method triggers the simulation of the behavior of the component. It is invoked when an event (corresponding to this component) is taken from the list of future events or when an entity arrives at this component by connection.
+    //static void InitBetweenReplications(ModelComponent* component);
+    static void CreateInternalData(ModelComponent* component);
+    static bool Check(ModelComponent* component);
+    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+    static std::map<std::string, std::string>* SaveInstance(ModelComponent* component);
+    void setDescription(std::string _description);
+    std::string getDescription() const;
 protected: // pure virtual methods
-	virtual void _onDispatchEvent(Entity* entity, unsigned int inputNumber) = 0;
+    virtual void _onDispatchEvent(Entity* entity, unsigned int inputNumber) = 0;
 protected: // virtual methods
-	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	//virtual void _createInternalData(); ///< This method is necessary only for those components that instantiate internal elements that must exist before simulation starts and even before model checking. That's the case of components that have internal StatisticsCollectors, since others components may refer to them as expressions (as in "TVAG(ThisCSTAT)") and therefore the modeldatum must exist when checking such expression
+    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+    //virtual void _createInternalData(); ///< This method is necessary only for those components that instantiate internal elements that must exist before simulation starts and even before model checking. That's the case of components that have internal StatisticsCollectors, since others components may refer to them as expressions (as in "TVAG(ThisCSTAT)") and therefore the modeldatum must exist when checking such expression
 protected:
 
-	const struct DEFAULT_VALUES {
-		unsigned int nextSize = 1;
-		unsigned int nextInputNumber = 0;
-		std::string description = "";
-	} DEFAULT;
-	std::string _description = DEFAULT.description;
-	ConnectionManager* _connections = new ConnectionManager();
+    const struct DEFAULT_VALUES {
+        unsigned int nextSize = 1;
+        unsigned int nextInputNumber = 0;
+        std::string description = "";
+    } DEFAULT;
+    std::string _description = DEFAULT.description;
+    ConnectionManager* _connections = new ConnectionManager();
 };
 //namespace\\}
 #endif /* MODELCOMPONENT_H */

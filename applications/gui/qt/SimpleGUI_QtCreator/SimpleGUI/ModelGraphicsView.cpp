@@ -38,11 +38,7 @@
 
 ModelGraphicsView::ModelGraphicsView(QWidget *parent) : QGraphicsView(parent) {
     setInteractive(true);
-    // background
-    //unsigned int colorVal = 255 * 14.0 / 16.0;
-    QBrush background = QBrush(Qt::lightGray);//QColor(230, 230, 255, 200));
-    background.setStyle(Qt::SolidPattern);
-    setBackgroundBrush(background);
+    setEnabled(false);
     // scene
     ModelGraphicsScene* scene = new ModelGraphicsScene(0, 0, 1024, 1024, this);
     // add scene to view
@@ -65,16 +61,47 @@ void ModelGraphicsView::showGrid() {
     ((ModelGraphicsScene*) scene())->showGrid();
 }
 
+void ModelGraphicsView::clear() {
+    scene()->clear();
+}
+
 void ModelGraphicsView::beginConnection(){
     ((ModelGraphicsScene*) scene())->beginConnection();
 }
 
+void ModelGraphicsView::selectModelComponent(ModelComponent* component) {
+    QList<GraphicalModelComponent*>* list =((ModelGraphicsScene*)scene())->graphicalModelMomponentItems();
+    for (GraphicalModelComponent* gmc: *list) {
+        if (gmc->getComponent()==component) {
+            gmc->setSelected(true);
+            //return;
+        } else {
+            gmc->setSelected(false);
+        }
+    }
+}
 
 void ModelGraphicsView::setSimulator(Simulator* simulator){
     _simulator = simulator;
     ((ModelGraphicsScene*)scene())->setSimulator(simulator);
 }
 
+void ModelGraphicsView::setEnabled(bool enabled){
+    QGraphicsView::setEnabled(enabled);
+    QBrush background ;
+    if (enabled) {
+        // background
+        //unsigned int colorVal1 = 255 * 13.0 / 16.0;
+        //unsigned int colorVal2 = 255 * 15.0 / 16.0;
+        background = QColor(255,255,128, 64);
+    } else {
+        // background
+        background = Qt::lightGray;
+    }
+    background.setStyle(Qt::SolidPattern);
+    setBackgroundBrush(background);
+
+}
 //---------------------------------------------------------
 
 void ModelGraphicsView::notifySceneMouseEventHandler(QGraphicsSceneMouseEvent* mouseEvent) {
@@ -87,7 +114,7 @@ void ModelGraphicsView::notifySceneMouseEventHandler(QGraphicsSceneMouseEvent* m
 void ModelGraphicsView::dragEnterEvent(QDragEnterEvent *event) {
     QGraphicsView::dragEnterEvent(event);
     QString name = event->source()->objectName();
-    std::cout << "View source name: " << name.toStdString()<< std::endl;
+    //std::cout << "View source name: " << name.toStdString()<< std::endl;
     QWidget* widget = dynamic_cast<QWidget*>(event->source());
     if (widget != nullptr) {
         QTreeWidget* tree = dynamic_cast<QTreeWidget*>(widget);
@@ -109,9 +136,12 @@ void ModelGraphicsView::dragEnterEvent(QDragEnterEvent *event) {
     event->setAccepted(false);
 }
 
-void ModelGraphicsView::setParentWidget(QWidget *parentWidget)
-{
+void ModelGraphicsView::setParentWidget(QWidget *parentWidget) {
     _parentWidget = parentWidget;
     ((ModelGraphicsScene*)scene())->setParentWidget(parentWidget);
+}
+
+QList<QGraphicsItem *> ModelGraphicsView::selectedItems() {
+    return ((ModelGraphicsScene*) scene())->selectedItems();
 }
 

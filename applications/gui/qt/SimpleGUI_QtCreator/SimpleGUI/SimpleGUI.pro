@@ -122,6 +122,7 @@ SOURCES += \
 	GraphicalModelDataDefinition.cpp \
 	ModelGraphicsScene.cpp \
 	ModelGraphicsView.cpp \
+	PropertyEditor.cpp \
 	dialogBreakpoint.cpp \
 	main.cpp \
 	mainwindow.cpp \
@@ -262,6 +263,7 @@ HEADERS += \
 	LineNumberArea.h \
 	ModelGraphicsScene.h \
 	ModelGraphicsView.h \
+	PropertyEditor.h \
 	dialogBreakpoint.h \
 	mainwindow.h \
 	qcustomplot.h

@@ -30,11 +30,11 @@ Resource::Resource(Model* model, std::string name) : ModelDataDefinition(model, 
 	_resourceEventHandlers->setSortFunc([](const SortedResourceEventHandler* a, const SortedResourceEventHandler * b) {
 		return a->second < b->second; /// Handlers are sorted by priority
 	});
-	GetterMember getter = DefineGetterMember<Resource>(this, &Resource::getCapacity);
-	SetterMember setter = DefineSetterMember<Resource>(this, &Resource::setCapacity);
+	GetterMemberDouble getter = DefineGetterMember<Resource>(this, &Resource::getCapacity);
+	SetterMemberDouble setter = DefineSetterMember<Resource>(this, &Resource::setCapacity);
 	model->getControls()->insert(new SimulationControl(Util::TypeOf<Resource>(), getName() + ".Capacity", getter, setter));
-	GetterMember getter2 = DefineGetterMember<Resource>(this, &Resource::getCostPerUse);
-	SetterMember setter2 = DefineSetterMember<Resource>(this, &Resource::setCostPerUse);
+	GetterMemberDouble getter2 = DefineGetterMember<Resource>(this, &Resource::getCostPerUse);
+	SetterMemberDouble setter2 = DefineSetterMember<Resource>(this, &Resource::setCostPerUse);
 	model->getControls()->insert(new SimulationControl(Util::TypeOf<Resource>(), getName() + ".CostPerUse", getter2, setter2));
 	// ...
 }

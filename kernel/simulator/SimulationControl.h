@@ -23,14 +23,14 @@
  */
 class SimulationControl : public SimulationResponse {
 public:
-	SimulationControl(std::string type, std::string name, GetterMember getterMember, SetterMember setterMember, std::string parent = "");
+	SimulationControl(std::string type, std::string name, GetterMemberDouble getterMember, SetterMemberDouble setterMember, std::string parent = "");
 	virtual ~SimulationControl() = default;
 public:
 	std::string show();
 public:
 	void setValue(double value);
 private:
-	SetterMember _setMemberFunction;
+	SetterMemberDouble _setMemberFunction;
 	//SetterMemberString  _setMemberStringFunction;
 };
 //namespace\\}
