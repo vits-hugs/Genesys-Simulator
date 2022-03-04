@@ -16,8 +16,6 @@
 
 #include "ExperimetManager_if.h"
 #include "SimulationScenario.h"
-#include "SimulationResponse.h"
-#include "SimulationControl.h"
 
 class ExperimentManagerDefaultImpl1 : public ExperimentManager_if {
 public:

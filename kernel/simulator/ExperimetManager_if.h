@@ -16,8 +16,7 @@
 
 #include "../util/List.h"
 #include "SimulationScenario.h"
-#include "SimulationControl.h"
-#include "SimulationResponse.h"
+#include "Property.h"
 #include "TraceManager.h"
 
 /*!

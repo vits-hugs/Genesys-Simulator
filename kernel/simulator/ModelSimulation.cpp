@@ -20,7 +20,6 @@
 #include "SourceModelComponent.h"
 #include "StatisticsCollector.h"
 #include "Counter.h"
-#include "SimulationControl.h"
 #include "ComponentManager.h"
 #include "Property.h"
 #include "../TraitsKernel.h"

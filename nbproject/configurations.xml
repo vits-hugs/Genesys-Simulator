@@ -2494,7 +2494,6 @@
         <itemPath>kernel/simulator/ConnectionManager.h</itemPath>
         <itemPath>kernel/simulator/Counter.cpp</itemPath>
         <itemPath>kernel/simulator/Counter.h</itemPath>
-        <itemPath>kernel/simulator/DefineGetterSetter.h</itemPath>
         <itemPath>kernel/simulator/Entity.cpp</itemPath>
         <itemPath>kernel/simulator/Entity.h</itemPath>
         <itemPath>kernel/simulator/EntityType.cpp</itemPath>
@@ -2550,15 +2549,11 @@
         <itemPath>kernel/simulator/PluginManager.cpp</itemPath>
         <itemPath>kernel/simulator/PluginManager.h</itemPath>
         <itemPath>kernel/simulator/ScenarioExperiment_if.h</itemPath>
-        <itemPath>kernel/simulator/SimulationControl.cpp</itemPath>
-        <itemPath>kernel/simulator/SimulationControl.h</itemPath>
         <itemPath>kernel/simulator/SimulationExperiment.cpp</itemPath>
         <itemPath>kernel/simulator/SimulationExperiment.h</itemPath>
         <itemPath>kernel/simulator/SimulationReporterDefaultImpl1.cpp</itemPath>
         <itemPath>kernel/simulator/SimulationReporterDefaultImpl1.h</itemPath>
         <itemPath>kernel/simulator/SimulationReporter_if.h</itemPath>
-        <itemPath>kernel/simulator/SimulationResponse.cpp</itemPath>
-        <itemPath>kernel/simulator/SimulationResponse.h</itemPath>
         <itemPath>kernel/simulator/SimulationScenario.cpp</itemPath>
         <itemPath>kernel/simulator/SimulationScenario.h</itemPath>
         <itemPath>kernel/simulator/Simulator.cpp</itemPath>
@@ -2786,6 +2781,12 @@
         <packType>Debian</packType>
         <verbose>false</verbose>
         <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
           <packFileListElem type="File"
                             to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
                             from="${OUTPUT_PATH}"
@@ -15144,11 +15145,6 @@
       </item>
       <item path="kernel/simulator/Counter.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="kernel/simulator/DefineGetterSetter.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="kernel/simulator/Entity.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="kernel/simulator/Entity.h" ex="false" tool="3" flavor2="0">
@@ -15352,16 +15348,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="kernel/simulator/SimulationControl.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="kernel/simulator/SimulationControl.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="kernel/simulator/SimulationExperiment.cpp"
             ex="false"
             tool="1"
@@ -15383,16 +15369,6 @@
             flavor2="0">
       </item>
       <item path="kernel/simulator/SimulationReporter_if.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="kernel/simulator/SimulationResponse.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="kernel/simulator/SimulationResponse.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -27734,11 +27710,6 @@
       </item>
       <item path="kernel/simulator/Counter.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="kernel/simulator/DefineGetterSetter.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="kernel/simulator/Entity.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="kernel/simulator/Entity.h" ex="false" tool="3" flavor2="0">
@@ -27942,16 +27913,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="kernel/simulator/SimulationControl.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="kernel/simulator/SimulationControl.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="kernel/simulator/SimulationExperiment.cpp"
             ex="false"
             tool="1"
@@ -27973,16 +27934,6 @@
             flavor2="0">
       </item>
       <item path="kernel/simulator/SimulationReporter_if.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="kernel/simulator/SimulationResponse.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="kernel/simulator/SimulationResponse.h"
             ex="false"
             tool="3"
             flavor2="0">

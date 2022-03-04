@@ -40,10 +40,8 @@ SOURCES += \
 	../../../../../kernel/simulator/PluginManager.cpp \
 	../../../../../kernel/simulator/Property.cpp \
 	../../../../../kernel/simulator/PropertyManager.cpp \
-	../../../../../kernel/simulator/SimulationControl.cpp \
 	../../../../../kernel/simulator/SimulationExperiment.cpp \
 	../../../../../kernel/simulator/SimulationReporterDefaultImpl1.cpp \
-	../../../../../kernel/simulator/SimulationResponse.cpp \
 	../../../../../kernel/simulator/SimulationScenario.cpp \
 	../../../../../kernel/simulator/Simulator.cpp \
 	../../../../../kernel/simulator/SinkModelComponent.cpp \
@@ -137,7 +135,6 @@ HEADERS += \
 	../../../../../kernel/simulator/ComponentManager.h \
 	../../../../../kernel/simulator/ConnectionManager.h \
 	../../../../../kernel/simulator/Counter.h \
-	../../../../../kernel/simulator/DefineGetterSetter.h \
 	../../../../../kernel/simulator/ModelDataManager.h \
 	../../../../../kernel/simulator/Entity.h \
 	../../../../../kernel/simulator/EntityType.h \
@@ -171,11 +168,9 @@ HEADERS += \
 	../../../../../kernel/simulator/Property.h \
 	../../../../../kernel/simulator/PropertyManager.h \
 	../../../../../kernel/simulator/ScenarioExperiment_if.h \
-	../../../../../kernel/simulator/SimulationControl.h \
 	../../../../../kernel/simulator/SimulationExperiment.h \
 	../../../../../kernel/simulator/SimulationReporterDefaultImpl1.h \
 	../../../../../kernel/simulator/SimulationReporter_if.h \
-	../../../../../kernel/simulator/SimulationResponse.h \
 	../../../../../kernel/simulator/SimulationScenario.h \
 	../../../../../kernel/simulator/Simulator.h \
 	../../../../../kernel/simulator/SinkModelComponent.h \

@@ -12,7 +12,6 @@
  */
 
 #include "Counter.h"
-#include "SimulationResponse.h"
 #include "Model.h"
 
 //using namespace GenesysKernel;

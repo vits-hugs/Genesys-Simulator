@@ -29,8 +29,6 @@
 #include "ModelInfo.h"
 #include "ModelSimulation.h"
 //for PAN
-#include "SimulationResponse.h"
-#include "SimulationControl.h"
 #include "Property.h"
 
 //namespace GenesysKernel {
