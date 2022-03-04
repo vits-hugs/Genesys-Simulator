@@ -1,6 +1,8 @@
 #include "PropertyEditor.h"
 
-PropertyEditor::PropertyEditor()
+
+PropertyEditor::PropertyEditor(QWidget *parent)
+    : QTreeWidget(parent)
 {
 
 }

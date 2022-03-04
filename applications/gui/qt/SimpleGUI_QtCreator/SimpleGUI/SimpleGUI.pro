@@ -38,6 +38,8 @@ SOURCES += \
 	../../../../../kernel/simulator/PluginConnectorDummyImpl1.cpp \
 	../../../../../kernel/simulator/PluginInformation.cpp \
 	../../../../../kernel/simulator/PluginManager.cpp \
+	../../../../../kernel/simulator/Property.cpp \
+	../../../../../kernel/simulator/PropertyManager.cpp \
 	../../../../../kernel/simulator/SimulationControl.cpp \
 	../../../../../kernel/simulator/SimulationExperiment.cpp \
 	../../../../../kernel/simulator/SimulationReporterDefaultImpl1.cpp \
@@ -166,6 +168,8 @@ HEADERS += \
 	../../../../../kernel/simulator/PluginConnector_if.h \
 	../../../../../kernel/simulator/PluginInformation.h \
 	../../../../../kernel/simulator/PluginManager.h \
+	../../../../../kernel/simulator/Property.h \
+	../../../../../kernel/simulator/PropertyManager.h \
 	../../../../../kernel/simulator/ScenarioExperiment_if.h \
 	../../../../../kernel/simulator/SimulationControl.h \
 	../../../../../kernel/simulator/SimulationExperiment.h \

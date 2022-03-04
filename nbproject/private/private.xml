@@ -225,6 +225,8 @@
             <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/statistics/CollectorDatafileDefaultImpl1.cpp</file>
             <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/plugins/elements/Variable.cpp</file>
         </group>
-        <group name="GenESyS"/>
+        <group name="GenESyS">
+            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.h</file>
+        </group>
     </open-files>
 </project-private>

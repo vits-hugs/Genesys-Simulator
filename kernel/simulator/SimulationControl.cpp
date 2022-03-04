@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   SimulationControl.cpp
  * Author: rafael.luiz.cancian
- * 
+ *
  * Created on 10 de Outubro de 2018, 18:01
  */
 
@@ -15,15 +15,16 @@
 
 //using namespace GenesysKernel;
 
+/*
 SimulationControl::SimulationControl(std::string type, std::string name, GetterMemberDouble getterMember, SetterMemberDouble setterMember, std::string parent) : SimulationResponse(type, name, getterMember, parent) {
-	this->_setMemberFunction = setterMember;
+    this->_setMemberFunction = setterMember;
 }
 
 std::string SimulationControl::show() {
-	return "name=" + this->_name + ", type=" + this->_type;
+    return "name=" + this->_name + ", type=" + this->_type;
 }
 
 void SimulationControl::setValue(double value) {
-	this->_setMemberFunction(value);
+    this->_setMemberFunction(value);
 }
-
+*/

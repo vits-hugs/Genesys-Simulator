@@ -7,7 +7,7 @@
 class PropertyEditor : public QTreeWidget
 {
 public:
-    PropertyEditor();
+    PropertyEditor(QWidget *parent = nullptr);
 };
 
 #endif // PROPERTYEDITOR_H

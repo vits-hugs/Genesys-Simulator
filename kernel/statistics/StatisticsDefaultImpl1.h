@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   StatisticsDefaultImpl1.h
  * Author: rafael.luiz.cancian
  *
@@ -27,16 +27,16 @@ public:
 	virtual Collector_if* getCollector();
 	virtual void setCollector(Collector_if* collector);
 public:
-	virtual unsigned int numElements();
-	virtual double min();
-	virtual double max();
-	virtual double average();
-	virtual double variance();
-	virtual double stddeviation();
-	virtual double variationCoef();
-	virtual double halfWidthConfidenceInterval();
+	virtual unsigned int numElements() ;
+	virtual double min() const;
+	virtual double max() const;
+	virtual double average() const;
+	virtual double variance() const;
+	virtual double stddeviation() const;
+	virtual double variationCoef() const;
+	virtual double halfWidthConfidenceInterval() const;
 	virtual unsigned int newSampleSize(double halfWidth);
-	virtual double getConfidenceLevel();
+	virtual double getConfidenceLevel() const;
 	virtual void setConfidenceLevel(double confidencelevel);
 private:
 	void collectorAddHandler(double newValue);

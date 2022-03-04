@@ -57,7 +57,7 @@
         </font>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>9</number>
        </property>
        <widget class="QWidget" name="tabLanguages">
         <attribute name="title">
@@ -454,6 +454,11 @@
          </item>
         </layout>
        </widget>
+       <widget class="QWidget" name="tabResponses">
+        <attribute name="title">
+         <string>Responses</string>
+        </attribute>
+       </widget>
       </widget>
      </widget>
     </item>
@@ -817,7 +822,7 @@
    <widget class="QWidget" name="dockWidgetContents">
     <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
-      <widget class="QTreeView" name="treeViewPropertyEditor">
+      <widget class="PropertyEditor" name="treeViewPropertyEditor">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
          <horstretch>0</horstretch>
@@ -1427,12 +1432,17 @@
   <customwidget>
    <class>ModelGraphicsView</class>
    <extends>QGraphicsView</extends>
-   <header>ModelGraphicsView.h</header>
+   <header location="global">ModelGraphicsView.h</header>
   </customwidget>
   <customwidget>
    <class>CodeEditor</class>
    <extends>QPlainTextEdit</extends>
    <header location="global">CodeEditor.h</header>
+  </customwidget>
+  <customwidget>
+   <class>PropertyEditor</class>
+   <extends>QTreeView</extends>
+   <header location="global">PropertyEditor.h</header>
   </customwidget>
  </customwidgets>
  <resources>

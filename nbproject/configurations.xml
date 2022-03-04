@@ -2376,6 +2376,8 @@
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelDataDefinition.cpp</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelDataDefinition.h</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/LineNumberArea.h</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.cpp</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.h</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsView.cpp</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsView.h</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/SimpleGUI.pro</itemPath>
@@ -2754,8 +2756,6 @@
                    kind="TEST_LOGICAL_FOLDER">
     </logicalFolder>
     <itemPath>Makefile</itemPath>
-    <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.cpp</itemPath>
-    <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.h</itemPath>
     <itemPath>Traits.h</itemPath>
     <itemPath>main.cpp</itemPath>
   </logicalFolder>
@@ -2786,6 +2786,12 @@
         <packType>Debian</packType>
         <verbose>false</verbose>
         <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
           <packFileListElem type="File"
                             to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
                             from="${OUTPUT_PATH}"

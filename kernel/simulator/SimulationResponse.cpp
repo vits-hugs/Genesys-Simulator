@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   SimulationResponse.cpp
  * Author: rafael.luiz.cancian
- * 
+ *
  * Created on 10 de Outubro de 2018, 16:18
  */
 
@@ -16,33 +16,35 @@
 
 //using namespace GenesysKernel;
 
+/*
 SimulationResponse::SimulationResponse(std::string type, std::string name, GetterMemberDouble getterMember, std::string parent) {
-	_type = type;
-	_parent = parent;
-	_name = name;
-	_getterMemberFunction = getterMember;
+    _type = type;
+    _parent = parent;
+    _name = name;
+    _getterMemberFunction = getterMember;
 }
 
 std::string SimulationResponse::show() {
-	return "name=" + this->_name + ", type=" + this->_type;
+    return "name=" + this->_name + ", type=" + this->_type;
 }
 
 std::string SimulationResponse::getName() const {
-	return _name;
+    return _name;
 }
 
 void SimulationResponse::setName(std::string name) {
-	_name = name;
+    _name = name;
 }
 
 std::string SimulationResponse::getType() const {
-	return _type;
+    return _type;
 }
 
 std::string SimulationResponse::getParent() const {
-	return _parent;
+    return _parent;
 }
 
 double SimulationResponse::getValue() {
-	return this->_getterMemberFunction();
+    return this->_getterMemberFunction();
 }
+*/

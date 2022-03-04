@@ -30,13 +30,21 @@ ModelDataDefinition* Create::NewInstance(Model* model, std::string name) {
 }
 
 Create::Create(Model* model, std::string name) : SourceModelComponent(model, Util::TypeOf<Create>(), name) {
-    GetterMemberDouble getter = DefineGetterMember<SourceModelComponent>(this, &Create::getEntitiesPerCreation);
-    SetterMemberDouble setter = DefineSetterMember<SourceModelComponent>(this, &Create::setEntitiesPerCreation);
-    model->getControls()->insert(new SimulationControl(Util::TypeOf<Create>(), getName() + ".EntitiesPerCreation", getter, setter));
-    //@TODO: Solve this template mess
-    //GetterMember getter2 = DefineGetterMember<SourceModelComponent>(this, &Create::getTimeBetweenCreationsExpression);
-    //SetterMember setter2 = DefineSetterMember<SourceModelComponent>(this, &Create::setTimeBetweenCreationsExpression);
-    //model->getControls()->insert(new SimulationControl(Util::TypeOf<Create>(), "Time Between Creations", getter2, setter2));
+    PropertySetterBase* prop1= (PropertySetterBase*)new PropertySetterUInt(Util::TypeOf<Create>(), "Entities Per Creation",
+                                                  DefineGetterUInt<Create>(this, &Create::getEntitiesPerCreation),
+                                                  DefineSetterUInt<Create>(this, &Create::setEntitiesPerCreation));
+    model->getControls()->insert(prop1);
+    _addProperty(prop1);
+    PropertySetterBase* prop2 = (PropertySetterBase*)new PropertySetterString(Util::TypeOf<Create>(), "Time Between Creations",
+                                                    DefineGetterString<Create>(this, &Create::getTimeBetweenCreationsExpression),
+                                                    DefineSetterString<Create>(this, &Create::setTimeBetweenCreationsExpression));
+    model->getControls()->insert(prop2);
+    _addProperty(prop2);
+    PropertySetterBase* prop3 = (PropertySetterBase*)new PropertySetterTimeUnit(Util::TypeOf<Create>(), "Time Unit",
+                                                    DefineGetterTimeUnit<Create>(this, &Create::getTimeUnit),
+                                                    DefineSetterTimeUnit<Create>(this, &Create::setTimeUnit));
+    model->getControls()->insert(prop3);
+    _addProperty(prop3);
 }
 
 std::string Create::show() {

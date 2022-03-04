@@ -10,6 +10,8 @@
 #define UI_MAINWINDOW_H
 
 #include <CodeEditor.h>
+#include <ModelGraphicsView.h>
+#include <PropertyEditor.h>
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QAction>
@@ -34,11 +36,9 @@
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolBar>
-#include <QtWidgets/QTreeView>
 #include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
-#include "ModelGraphicsView.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -133,6 +133,7 @@ public:
     QWidget *tabReports;
     QVBoxLayout *verticalLayout_2;
     QTextEdit *textEdit_Reports;
+    QWidget *tabResponses;
     QHBoxLayout *horizontalLayoutZoomReplication;
     QLabel *labelMousePos;
     QFrame *line;
@@ -165,7 +166,7 @@ public:
     QDockWidget *dockWidgetPropertyEditor;
     QWidget *dockWidgetContents;
     QHBoxLayout *horizontalLayout_4;
-    QTreeView *treeViewPropertyEditor;
+    PropertyEditor *treeViewPropertyEditor;
     QToolBar *toolBarGraphicalModel;
     QToolBar *toolBarEdit;
     QToolBar *toolBarView;
@@ -636,6 +637,9 @@ public:
         QIcon icon40;
         icon40.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/report.ico"), QSize(), QIcon::Normal, QIcon::Off);
         tabWidgetCentral->addTab(tabReports, icon40, QString());
+        tabResponses = new QWidget();
+        tabResponses->setObjectName(QString::fromUtf8("tabResponses"));
+        tabWidgetCentral->addTab(tabResponses, QString());
         splitter->addWidget(tabWidgetCentral);
 
         verticalLayout_7->addWidget(splitter);
@@ -804,7 +808,7 @@ public:
         dockWidgetContents->setObjectName(QString::fromUtf8("dockWidgetContents"));
         horizontalLayout_4 = new QHBoxLayout(dockWidgetContents);
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
-        treeViewPropertyEditor = new QTreeView(dockWidgetContents);
+        treeViewPropertyEditor = new PropertyEditor(dockWidgetContents);
         treeViewPropertyEditor->setObjectName(QString::fromUtf8("treeViewPropertyEditor"));
         sizePolicy2.setHeightForWidth(treeViewPropertyEditor->sizePolicy().hasHeightForWidth());
         treeViewPropertyEditor->setSizePolicy(sizePolicy2);
@@ -928,7 +932,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidgetCentral->setCurrentIndex(2);
+        tabWidgetCentral->setCurrentIndex(9);
         tabWidgetModelLanguages->setCurrentIndex(1);
 
 
@@ -1099,6 +1103,7 @@ public:
         tabWidgetCentral->setTabText(tabWidgetCentral->indexOf(tabTraces), QCoreApplication::translate("MainWindow", "Traces", nullptr));
         tabWidgetCentral->setTabText(tabWidgetCentral->indexOf(tabEvents), QCoreApplication::translate("MainWindow", "Events", nullptr));
         tabWidgetCentral->setTabText(tabWidgetCentral->indexOf(tabReports), QCoreApplication::translate("MainWindow", "Reports", nullptr));
+        tabWidgetCentral->setTabText(tabWidgetCentral->indexOf(tabResponses), QCoreApplication::translate("MainWindow", "Responses", nullptr));
         labelMousePos->setText(QCoreApplication::translate("MainWindow", "<-,->", nullptr));
         label_3->setText(QCoreApplication::translate("MainWindow", "Zoom:", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "Replication ", nullptr));

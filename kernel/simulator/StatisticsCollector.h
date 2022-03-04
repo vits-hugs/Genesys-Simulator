@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   StatisticsCollector.h
  * Author: rafael.luiz.cancian
  *
@@ -42,8 +42,6 @@ protected:
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
-protected:
-	void _addSimulationResponses();
 private:
 	void _initStaticsAndCollector();
 private:

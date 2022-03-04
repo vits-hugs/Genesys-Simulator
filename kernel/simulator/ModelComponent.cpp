@@ -18,6 +18,10 @@
 
 ModelComponent::ModelComponent(Model* model, std::string componentTypename, std::string name) : ModelDataDefinition(model, componentTypename, name, false) {
     model->getComponents()->insert(this);
+    _addProperty((PropertySetterBase*)new PropertySetterString(Util::TypeOf<ModelComponent>(), "description",
+        DefineGetterString<ModelComponent>(this, &ModelComponent::getDescription),
+        DefineSetterString<ModelComponent>(this, &ModelComponent::setDescription)));
+
 }
 
 ModelComponent::~ModelComponent() {
