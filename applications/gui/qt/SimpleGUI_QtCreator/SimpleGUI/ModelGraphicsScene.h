@@ -68,23 +68,30 @@ public:
 	virtual ~ModelGraphicsScene();
 public: // editing graphic model
 	GraphicalModelComponent* addGraphicalModelComponent(Plugin* plugin, ModelComponent* component, QPointF position, QColor color=Qt::blue);
+	void removeModelComponentInModel(GraphicalModelComponent* gmc);
 	void removeGraphicalModelComponent(GraphicalModelComponent* gmc);
 	void addGraphicalConnection(GraphicalComponentPort* sourcePort, GraphicalComponentPort* destinationPort);
+	void removeConnectionInModel(GraphicalConnection* gc);
 	void removeGraphicalConnection(GraphicalConnection* gc);
 	void addDrawing();
 	void removeDrawing();
 	void addAnimation();
 	void removeAnimation();
-	QList<GraphicalModelComponent*>* graphicalModelMomponentItems();
+	//QList<GraphicalModelComponent*>* graphicalModelMomponentItems();
 public:
 	void showGrid();
 	void beginConnection();
 	void setSimulator(Simulator *simulator);
 	void setObjectBeingDragged(QTreeWidgetItem* objectBeingDragged);
 	void setParentWidget(QWidget *parentWidget);
-public:
 	unsigned short connectingStep() const;
 	void setConnectingStep(unsigned short connectingStep);
+public:
+	QList<QGraphicsItem*>*getGraphicalModelComponents() const;
+	QList<QGraphicsItem*>*getGraphicalConnections() const;
+	QList<QGraphicsItem*>*getGraphicalDrawings() const;
+	QList<QGraphicsItem*>*getGraphicalAnimations() const;
+	QList<QGraphicsItem*>*getGraphicalEntities() const;
 
 protected: // virtual functions
 	//virtual void	contextMenuEvent(QGraphicsSceneContextMenuEvent *contextMenuEvent);

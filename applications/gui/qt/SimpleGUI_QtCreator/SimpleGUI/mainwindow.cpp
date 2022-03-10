@@ -66,6 +66,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 	treeHeader->setText(2, "Name");
 	treeHeader->setText(3, "Properties");
 	treeHeader->setExpanded(true);
+	treeHeader = ui->treeWidgetDataDefnitions->headerItem();
+	treeHeader->setText(0, "Id");
+	treeHeader->setText(1, "Type");
+	treeHeader->setText(2, "Name");
+	treeHeader->setText(3, "Properties");
+	treeHeader->setExpanded(true);
    // ModelGraphic
 	ui->graphicsView->setParentWidget(ui->centralwidget);
 	ui->graphicsView->setSimulator(simulator);
@@ -73,7 +79,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 	// set current tabs
 	ui->tabWidgetCentral->setCurrentIndex(CONST.TabCentralModelIndex);
 	ui->tabWidgetModel->setCurrentIndex(CONST.TabModelSimLangIndex);
-	ui->tabWidgetSimulation->setCurrentIndex(CONST.TabDebugBreakpointIndex);
+	ui->tabWidgetSimulation->setCurrentIndex(CONST.TabSimulationBreakpointsIndex);
 	ui->tabWidgetReports->setCurrentIndex(CONST.TabReportReportIndex);
 	//
 	_actualizeActions();
@@ -87,6 +93,38 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 MainWindow::~MainWindow() {
 	delete ui;
 }
+
+
+
+//-----------------------------------------------------------------
+bool MainWindow::_saveGraphicalModel(std::string filename){
+	std::ofstream savefile;
+	savefile.open(filename, std::ofstream::out);
+	savefile << "#Genegys Graphic Model" << std::endl;
+	std::string line;
+	line = "0\tView\t";
+	line+="zoom=" + std::to_string(ui->horizontalSlider_ZoomGraphical->value());
+	line+=", grid=10, rule=0, snap=0, viewpoint=(0,0)";
+	savefile << line << std::endl;
+	ModelGraphicsScene* scene= (ModelGraphicsScene*) (ui->graphicsView->scene());
+	for (QGraphicsItem* item: *scene->getGraphicalModelComponents()) {
+		GraphicalModelComponent* gmc = (GraphicalModelComponent*) item;
+		line = std::to_string(gmc->getComponent()->getId())+"\t"+Util::TypeOf<ModelComponent>()+"\t" +"position=("+std::to_string(gmc->scenePos().x())+","+std::to_string(gmc->scenePos().y())+")";
+		savefile << line << std::endl;
+	}
+	savefile.close();
+	//QString data = QString::fromStdString(dot);
+	//QStringList strList = data.split(QRegExp("[\n]"), QString::SkipEmptyParts);
+	//for (unsigned int i = 0; i < strList.size(); i++) {
+	//	savefile << strList.at(i).toStdString() << std::endl;
+	//}
+
+}
+
+bool MainWindow::_loadGraphicalModel(std::string filename){
+
+}
+//-----------------------------------------------------------------
 
 
 //-----------------
@@ -148,14 +186,16 @@ void MainWindow::_actualizeTabPanes() {
 				_actualizeModelCppCode();
 			} else if (index == CONST.TabModelComponentsIndex) {
 				_actualizeModelComponents(true);
+			} else if (index == CONST.TabModelDataDefinitionsIndex) {
+				_actualizeModelDataDefinitions(true);
 			}
 		} else if (index==CONST.TabCentralModelIndex) {
 			index = ui->tabWidgetSimulation->currentIndex();
-			if (index == CONST.TabDebugBreakpointIndex) {
+			if (index == CONST.TabSimulationBreakpointsIndex) {
 				_actualizeDebugBreakpoints(true);
-			} else if (index == CONST.TabDebugEntityIndex) {
+			} else if (index == CONST.TabSimulationEntitiesIndex) {
 				_actualizeDebugEntities(true);
-			} else if (index == CONST.TabDebugVariableIndex) {
+			} else if (index == CONST.TabSimulationVariablesIndex) {
 				_actualizeDebugVariables(true);
 			}
 		} else if (index==CONST.TabCentralReportsIndex) {
@@ -186,7 +226,7 @@ void MainWindow::_actualizeSimulationEvents(SimulationEvent * re) {
 
 void MainWindow::_actualizeDebugVariables(bool force) {
 	QCoreApplication::processEvents();
-	if (force || ui->tabWidgetSimulation->currentIndex()==CONST.TabDebugVariableIndex) {
+	if (force || ui->tabWidgetSimulation->currentIndex()==CONST.TabSimulationVariablesIndex) {
 		ui->tableWidget_Variables->setRowCount(0);
 		List<ModelDataDefinition*>* variables = simulator->getModels()->current()->getDataManager()->getDataDefinitionList(Util::TypeOf<Variable>());
 		int row = 0;
@@ -207,7 +247,7 @@ void MainWindow::_actualizeDebugVariables(bool force) {
 
 void MainWindow::_actualizeDebugEntities(bool force) {
 	QCoreApplication::processEvents();
-	if (force || ui->tabWidgetSimulation->currentIndex() == CONST.TabDebugEntityIndex) {
+	if (force || ui->tabWidgetSimulation->currentIndex() == CONST.TabSimulationEntitiesIndex) {
 		List<ModelDataDefinition*>* entities = simulator->getModels()->current()->getDataManager()->getDataDefinitionList(Util::TypeOf<Entity>());
 		List<ModelDataDefinition*>* attributes = simulator->getModels()->current()->getDataManager()->getDataDefinitionList(Util::TypeOf<Attribute>());
 		Entity* entity;
@@ -246,7 +286,7 @@ void MainWindow::_actualizeDebugEntities(bool force) {
 
 void MainWindow::_actualizeDebugBreakpoints(bool force) {
 	QCoreApplication::processEvents();
-	if (force || ui->tabWidgetSimulation->currentIndex() == CONST.TabDebugBreakpointIndex) {
+	if (force || ui->tabWidgetSimulation->currentIndex() == CONST.TabSimulationBreakpointsIndex) {
 		ui->tableWidget_Breakpoints->setRowCount(0);
 		ModelSimulation* sim = simulator->getModels()->current()->getSimulation();
 		int row = 0;
@@ -278,14 +318,13 @@ void MainWindow::_actualizeDebugBreakpoints(bool force) {
 			ui->tableWidget_Breakpoints->setItem(row, 2, newItem);
 		}
 	}
-
 }
 
 
 void MainWindow::_actualizeModelComponents(bool force) {
 	Model* m = simulator->getModels()->current();
+	ui->treeWidgetComponents->clear();
 	if (m==nullptr) {
-		ui->treeWidgetComponents->clear();
 		return;
 	}
 	for (ModelComponent* comp : *m->getComponents()->getAllComponents()) {
@@ -295,9 +334,45 @@ void MainWindow::_actualizeModelComponents(bool force) {
 			treeComp->setText(0, QString::fromStdString(std::to_string(comp->getId())));
 			treeComp->setText(1, QString::fromStdString(comp->getClassname()));
 			treeComp->setText(2, QString::fromStdString(comp->getName()));
-			treeComp->setText(3, "...todo...");
+			std::string properties="";
+			for(auto prop: *comp->getProperties()) {
+				properties += prop->getName()+":"+std::to_string(prop->getValue())+", ";
+			}
+			properties = properties.substr(0,properties.length()-2);
+			treeComp->setText(3, QString::fromStdString(properties));
 		}
 	}
+	ui->treeWidgetComponents->resizeColumnToContents(0);
+	ui->treeWidgetComponents->resizeColumnToContents(1);
+	ui->treeWidgetComponents->resizeColumnToContents(2);
+}
+
+void MainWindow::_actualizeModelDataDefinitions(bool force) {
+	Model* m = simulator->getModels()->current();
+	ui->treeWidgetDataDefnitions->clear();
+	if (m==nullptr) {
+		return;
+	}
+	for (std::string dataTypename : *m->getDataManager()->getDataDefinitionClassnames()) {
+		for (ModelDataDefinition* comp : *m->getDataManager()->getDataDefinitionList(dataTypename)->list()) {
+			QList<QTreeWidgetItem *> items = ui->treeWidgetDataDefnitions->findItems(QString::fromStdString(std::to_string(comp->getId())), Qt::MatchExactly|Qt::MatchRecursive, 0);
+			if (items.size()==0) {
+				QTreeWidgetItem* treeComp = new QTreeWidgetItem(ui->treeWidgetDataDefnitions);
+				treeComp->setText(0, QString::fromStdString(std::to_string(comp->getId())));
+				treeComp->setText(1, QString::fromStdString(comp->getClassname()));
+				treeComp->setText(2, QString::fromStdString(comp->getName()));
+				std::string properties="";
+				for(auto prop: *comp->getProperties()) {
+					properties += prop->getName()+":"+std::to_string(prop->getValue())+", ";
+				}
+				properties = properties.substr(0,properties.length()-2);
+				treeComp->setText(3, QString::fromStdString(properties));
+			}
+		}
+	}
+	ui->treeWidgetDataDefnitions->resizeColumnToContents(0);
+	ui->treeWidgetDataDefnitions->resizeColumnToContents(1);
+	ui->treeWidgetDataDefnitions->resizeColumnToContents(2);
 }
 
 void MainWindow::_actualizeGraphicalModel(SimulationEvent * re) {
@@ -346,6 +421,7 @@ void MainWindow::_clearModelEditors() {
 	ui->graphicsView->clear();
 	ui->plainTextEditCppCode->clear();
 	ui->treeWidgetComponents->clear();
+	ui->treeWidgetDataDefnitions->clear();
 }
 
 bool MainWindow::_setSimulationModelBasedOnText() {
@@ -489,7 +565,7 @@ void MainWindow::_recursiveCreateModelGraphicPicture(ModelDataDefinition* compon
 		level = component->getLevel();
 		Connection* connection;
 		for (unsigned short i = 0; i < component->getConnections()->size(); i++) {
-			connection = component->getConnections()->getConnectionAtRank(i);
+			connection = component->getConnections()->getConnectionAtPort(i);
 			visitedIt = std::find(visited->begin(), visited->end(), connection->component);
 			if (visitedIt == visited->end()) {
 				_recursiveCreateModelGraphicPicture(connection->component, visited, dotmap);
@@ -548,13 +624,14 @@ void MainWindow::_actualizeModelCppCode() {
 
 		text= _addCppCodeLine("\nint main(int argc, char** argv) {");
 		tabs++;
+		text+= _addCppCodeLine("// Create simulator, a model and get acess to plugins", tabs);
 		text+= _addCppCodeLine("Simulator* genesys = new Simulator();", tabs);
 		text+= _addCppCodeLine("Model* model = genesys->getModels()->newModel();", tabs);
 		text+= _addCppCodeLine("PluginManager* plugins = genesys->getPlugins();", tabs);
 		text +=_addCppCodeLine("model->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);", tabs);
 		code->insert({"3main",text});
 
-		text = "";
+		text = _addCppCodeLine("// Create model data definitions", tabs);
 		for (std::string ddClassname: *m->getDataManager()->getDataDefinitionClassnames()) {
 			for (ModelDataDefinition* modeldata: *m->getDataManager()->getDataDefinitionList(ddClassname)->list()) {
 				name = modeldata->getName();
@@ -565,7 +642,7 @@ void MainWindow::_actualizeModelCppCode() {
 		}
 		code->insert({"4datadef",text});
 
-		text = "";
+		text = _addCppCodeLine("// Create model components", tabs);
 		for(ModelComponent* comp: *m->getComponents()->getAllComponents()) {
 			name = comp->getName();
 			if (name.find(".") == std::string::npos) {
@@ -574,31 +651,32 @@ void MainWindow::_actualizeModelCppCode() {
 		}
 		code->insert({"5modelcompdef",text});
 
-		text = "";
+		text = _addCppCodeLine("// Connect the components in the model", tabs);
 		Connection* conn;
 		for(ModelComponent* comp: *m->getComponents()->getAllComponents()) {
 			name = comp->getName();
 			if (name.find(".") == std::string::npos) {
-				for (unsigned int i=0; i<comp->getConnections()->size(); i++) {
-					conn = comp->getConnections()->getConnectionAtRank(i);
+				for (std::pair<unsigned int, Connection*> pair: *comp->getConnections()->connections()){//unsigned int i=0; i<comp->getConnections()->size(); i++) {
+					conn = pair.second; //comp->getConnections()->getConnectionAtPort(i);
 					text2 = conn->component->getName();// + conn->second==0?"":","+std::to_string(conn->second);
-					text += _addCppCodeLine(name + "->getConnections()->insert("+text2+");", tabs);
+					text += _addCppCodeLine(name + "->getConnections()->insertAtPort("+std::to_string(pair.first)+","+text2+");", tabs);
 				}
 			}
 		}
 		code->insert({"6modelconnect",text});
 
 		ModelSimulation* sim = m->getSimulation();
-		text = _addCppCodeLine("ModelSimulation* sim = model->getSimulation();", tabs);
+		text = _addCppCodeLine("// Define simulation options", tabs);
+		text += _addCppCodeLine("ModelSimulation* sim = model->getSimulation();", tabs);
 		text += _addCppCodeLine("sim->setReplicationLength("+std::to_string(sim->getReplicationLength())+")", tabs);
 		text += _addCppCodeLine("sim->setReplicationLengthTimeUnit(Util::TimeUnit::"+Util::StrTimeUnitLong(sim->getReplicationLengthTimeUnit())+");", tabs);
 		text += _addCppCodeLine("sim->setWarmUpPeriod("+std::to_string(sim->getWarmUpPeriod())+");", tabs);
 		text += _addCppCodeLine("sim->setWarmUpPeriodTimeUnit(Util::TimeUnit::"+Util::StrTimeUnitLong(sim->getWarmUpPeriodTimeUnit())+");", tabs);
 		text += _addCppCodeLine("sim->setReplicationReportBaseTimeUnit(Util::TimeUnit::"+Util::StrTimeUnitLong(sim->getReplicationBaseTimeUnit())+");", tabs);
-		text += _addCppCodeLine("// simulate", tabs);
 		code->insert({"7simulation",text});
 
-		text = _addCppCodeLine("sim->start();", tabs);
+		text = _addCppCodeLine("// simulate", tabs);
+		text += _addCppCodeLine("sim->start();", tabs);
 		text += _addCppCodeLine("return 0;", tabs);
 		tabs--;
 		text += _addCppCodeLine("}", tabs);
@@ -1155,6 +1233,7 @@ void MainWindow::on_actionNew_triggered() {
 	}
 	_modelfilename = "";
 	_actualizeActions();
+	_actualizeTabPanes();
 }
 
 void MainWindow::on_actionSave_triggered() {
@@ -1180,6 +1259,7 @@ void MainWindow::on_actionSave_triggered() {
 			savefile << strList.at(i).toStdString() << std::endl;
 		}
 		savefile.close();
+		_saveGraphicalModel(fileName.toStdString() +".gui");
 		_modelfilename = fileName;
 		QMessageBox::information(this, "Save Model", "Model successfully saved");
 		// convert text info Model
@@ -1201,6 +1281,7 @@ void MainWindow::on_actionClose_triggered() {
 	_insertCommandInConsole("close");
 	simulator->getModels()->remove(simulator->getModels()->current());
 	_actualizeActions();
+	_actualizeTabPanes();
 	//QMessageBox::information(this, "Close Model", "Model successfully closed");
 }
 
@@ -1222,14 +1303,13 @@ void MainWindow::on_actionExit_triggered() {
 }
 
 void MainWindow::on_actionStop_triggered() {
-
 	_insertCommandInConsole("stop");
 	simulator->getModels()->current()->getSimulation()->stop();
+	_actualizeActions();
 }
 
 void MainWindow::on_actionStart_triggered() {
 	_insertCommandInConsole("start");
-
 	if (_setSimulationModelBasedOnText())
 		simulator->getModels()->current()->getSimulation()->start();
 }
@@ -1287,6 +1367,7 @@ void MainWindow::on_actionOpen_triggered() {
 		QMessageBox::warning(this, "Open Model", "Error while opening model");
 	}
 	_actualizeActions();
+	_actualizeTabPanes();
 }
 
 //void MainWindow::on_ui->TextCodeEditor_textChanged() {
@@ -1297,6 +1378,7 @@ void MainWindow::on_actionCheck_triggered() {
 	_insertCommandInConsole("check");
 	bool res = simulator->getModels()->current()->check();
 	_actualizeActions();
+	_actualizeTabPanes();
 	if (res) {
 		QMessageBox::information(this, "Model Check", "Model successfully checked.");
 	} else {

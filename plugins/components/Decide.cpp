@@ -47,7 +47,7 @@ void Decide::_onDispatchEvent(Entity* entity, unsigned int inputNumber) {
             if (_reportStatistics) {
                 _numberOuts->getAtRank(i)->incCountValue();
             }
-            _parentModel->sendEntityToComponent(entity, this->getConnections()->getConnectionAtRank(i));
+            _parentModel->sendEntityToComponent(entity, this->getConnections()->getConnectionAtPort(i));
             return;
         }
         i++;
@@ -56,7 +56,7 @@ void Decide::_onDispatchEvent(Entity* entity, unsigned int inputNumber) {
     if (_reportStatistics) {
         _numberOuts->getAtRank(i)->incCountValue();
     }
-    _parentModel->sendEntityToComponent(entity, this->getConnections()->getConnectionAtRank(i));
+    _parentModel->sendEntityToComponent(entity, this->getConnections()->getConnectionAtPort(i));
 }
 
 //void Decide::_initBetweenReplications() { // inherited method takes care of it

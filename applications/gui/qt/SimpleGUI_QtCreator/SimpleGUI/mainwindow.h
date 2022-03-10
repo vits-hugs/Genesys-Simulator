@@ -61,15 +61,10 @@ private slots:
 	void on_tabWidgetModelLanguages_currentChanged(int index);
 	void on_actionComponent_Breakpoint_triggered();
 	void on_treeWidgetComponents_itemSelectionChanged();
-
 	void on_treeWidget_Plugins_itemClicked(QTreeWidgetItem *item, int column);
-
 	void on_TextCodeEditor_textChanged();
-
 	void on_tabWidgetModel_currentChanged(int index);
-
 	void on_tabWidgetSimulation_currentChanged(int index);
-
 	void on_tabWidgetReports_currentChanged(int index);
 
 private: // VIEW
@@ -120,11 +115,16 @@ private: // view
 	void _actualizeDebugEntities(bool force);
 	void _actualizeDebugBreakpoints(bool force);
 	void _actualizeModelComponents(bool force);
+	void _actualizeModelDataDefinitions(bool force);
 	void _actualizeGraphicalModel(SimulationEvent * re);
 	void _insertCommandInConsole(std::string text);
 	void _clearModelEditors();
 	void _gentle_zoom(double factor);
 	//bool _checkStartSimulation();
+private:
+	bool _saveGraphicalModel(std::string filename);
+	bool _loadGraphicalModel(std::string filename);
+
 private:
 	Ui::MainWindow *ui;
 	Simulator* simulator;
@@ -135,21 +135,25 @@ private:
 	int _zoomValue;
 private:
 	const struct TABINDEXES_STRUC {
-		const unsigned int TabCentralModelIndex = 0;
-		const unsigned int TabCentralSimulationIndex = 1;
-		const unsigned int TabCentralReportsIndex = 2;
-		const unsigned int TabModelSimLangIndex = 0;
-		const unsigned int TabModelCppCodeIndex = 1;
-		const unsigned int TabModelDiagramIndex = 2;
-		const unsigned int TabModelComponentsIndex = 3;
-		const unsigned int TabDebugBreakpointIndex = 0;
-		const unsigned int TabDebugVariableIndex = 1;
-		const unsigned int TabDebugEntityIndex = 2;
-		const unsigned int TabDebugTraceIndex = 3;
-		const unsigned int TabDebugEventsIndex = 4;
-		const unsigned int TabReportReportIndex = 0;
-		const unsigned int TabReportResultIndex = 1;
-		const unsigned int TabReportPlotIndex = 2;
+		const int TabCentralModelIndex = 0;
+		const int TabCentralSimulationIndex = 1;
+		const int TabCentralReportsIndex = 2;
+		//
+		const int TabModelSimLangIndex = 0;
+		const int TabModelCppCodeIndex = 1;
+		const int TabModelDiagramIndex = 2;
+		const int TabModelComponentsIndex = 3;
+		//
+		const int TabModelDataDefinitionsIndex = 4;
+		const int TabSimulationBreakpointsIndex = 0;
+		const int TabSimulationVariablesIndex = 1;
+		const int TabSimulationEntitiesIndex = 2;
+		const int TabSimulationTracesIndex = 3;
+		const int TabSimulationEventsIndex = 4;
+		//
+		const int TabReportReportIndex = 0;
+		const int TabReportResultIndex = 1;
+		const int TabReportPlotIndex = 2;
 	} CONST;
 	//CodeEditor* textCodeEdit_Model;
 };

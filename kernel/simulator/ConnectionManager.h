@@ -40,12 +40,12 @@ public:
 	//ModelComponent* front(); /*!< DEPRECTED. Use  frontConnection instead */
 	//ModelComponent* atRank(unsigned int rank); /*!< DEPRECTED. Use  getConnectionAtRank instead */
 	Connection* getFrontConnection();
-	Connection* getConnectionAtRank(unsigned int rank);
+	Connection* getConnectionAtPort(unsigned int rank);
 	void insert(ModelComponent* component, unsigned int inputNumber = 0);
 	void insert(Connection* connection);
-	void insertAtRank(unsigned int rank, Connection* connection);
+	void insertAtPort(unsigned int port, Connection* connection);
 	void remove(Connection* connection);
-	void removeAtRank(unsigned int rank);
+	void removeAtPort(unsigned int port);
 	std::map<unsigned int, Connection*>* connections() const;
 	//void setCurrentOutputConnections(unsigned int _currentOutputConnections);
 	unsigned int getCurrentOutputConnectionsSize() const;

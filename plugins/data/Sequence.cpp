@@ -91,7 +91,7 @@ bool Sequence::_check(std::string* errorMessage) {
 		_setAttachedData("StepLabel" + strIndex(i), step->getLabel());
 		i++;
 	}
-	//*errorMessage += "";
+	*errorMessage += "";
 	return true;
 }
 

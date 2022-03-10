@@ -153,7 +153,7 @@ void ModelDataDefinition::_insertNeededAttributes(std::vector<std::string> neede
 }
 
 bool ModelDataDefinition::_check(std::string* errorMessage) {
-	//*errorMessage += "";
+	*errorMessage += "";
 	return true; // if there is no ovveride, return true
 }
 

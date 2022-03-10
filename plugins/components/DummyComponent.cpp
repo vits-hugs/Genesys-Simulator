@@ -66,7 +66,7 @@ std::map<std::string, std::string>* DummyComponent::_saveInstance(bool saveDefau
 //bool DummyComponent::_check(std::string* errorMessage) {
 //	bool resultAll = true;
 //	// @TODO: not implemented yet
-//	//*errorMessage += "";
+//	*errorMessage += "";
 //	return resultAll;
 //}
 

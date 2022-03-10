@@ -66,7 +66,7 @@ std::map<std::string, std::string>* Search::_saveInstance(bool saveDefaultValues
 bool Search::_check(std::string* errorMessage) {
 	bool resultAll = true;
 	// @TODO: not implemented yet
-	//*errorMessage += "";
+	*errorMessage += "";
 	return resultAll;
 }
 

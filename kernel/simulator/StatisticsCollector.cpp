@@ -105,6 +105,6 @@ std::map<std::string, std::string>* StatisticsCollector::_saveInstance(bool save
 
 bool StatisticsCollector::_check(std::string* errorMessage) {
 	// @TODO: To implement!
-	//*errorMessage += "";
+	*errorMessage += "";
 	return true;
 }

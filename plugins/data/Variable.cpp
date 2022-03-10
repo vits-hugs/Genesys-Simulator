@@ -154,7 +154,7 @@ std::map<std::string, std::string>* Variable::_saveInstance(bool saveDefaultValu
 }
 
 bool Variable::_check(std::string* errorMessage) {
-	//*errorMessage += "";
+	*errorMessage += "";
 	return true;
 }
 

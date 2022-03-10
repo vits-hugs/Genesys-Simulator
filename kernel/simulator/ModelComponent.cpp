@@ -136,9 +136,10 @@ std::map<std::string, std::string>* ModelComponent::_saveInstance(bool saveDefau
 	if (true) {//(_connections->size() != 1) { // save nextSize only if it is != 1
 		SaveField(fields, "nexts", _connections->size(), DEFAULT.nextSize, saveDefaultValues);
 	}
-	unsigned short i = 0;
+	unsigned short i;
 	for (std::pair<unsigned int, Connection*> connectionPair : *_connections->connections()) {
-		if (_connections->connections()->size() == 1) {
+		i = connectionPair.first; // output port
+		if (_connections->connections()->size() == 1 && i==0) {
 			SaveField(fields, "nextId", connectionPair.second->component->_id, 0, saveDefaultValues);
 		} else {
 			SaveField(fields, "nextId" + strIndex(i), connectionPair.second->component->_id, 0, saveDefaultValues);
@@ -146,7 +147,6 @@ std::map<std::string, std::string>* ModelComponent::_saveInstance(bool saveDefau
 		if (connectionPair.second->portNum != 0) {//((*it)->second != 0) { // save nextInputNumber only if it is != 0
 			SaveField(fields, "nextInputNumber" + strIndex(i), connectionPair.second->portNum, DEFAULT.nextInputNumber, saveDefaultValues);
 		}
-		i++;
 	}
 	return fields;
 }

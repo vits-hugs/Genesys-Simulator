@@ -70,7 +70,7 @@ std::map<std::string, std::string>* Schedule::_saveInstance(bool saveDefaultValu
 
 bool Schedule::_check(std::string* errorMessage) {
 	// @TODO: Not implemented
-	//*errorMessage += "";
+	*errorMessage += "";
 	return true;
 }
 

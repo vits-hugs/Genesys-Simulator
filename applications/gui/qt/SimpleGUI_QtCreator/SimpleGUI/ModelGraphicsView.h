@@ -57,9 +57,6 @@ public: // editing graphic model
 	//bool addAnimation();
 	//bool removeAnimation();
 public:
-	bool saveGraphicalModel(std::string filename);
-	bool loadGraphicalModel(std::string filename);
-public:
 	void showGrid();
 	void clear();
 	void beginConnection();

@@ -35,6 +35,9 @@
 #include <Qt>
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
+#include <fstream>
+#include <streambuf>
+
 
 ModelGraphicsView::ModelGraphicsView(QWidget *parent) : QGraphicsView(parent) {
 	setInteractive(true);
@@ -58,16 +61,6 @@ bool ModelGraphicsView::addGraphicalModelComponent(Plugin* plugin, ModelComponen
 	return item != nullptr;
 }
 
-//-----------------------------------------------------------------
-bool ModelGraphicsView::saveGraphicalModel(std::string filename){
-
-}
-
-bool ModelGraphicsView::loadGraphicalModel(std::string filename){
-
-}
-//-----------------------------------------------------------------
-
 void ModelGraphicsView::showGrid() {
 	((ModelGraphicsScene*) scene())->showGrid();
 }
@@ -81,8 +74,9 @@ void ModelGraphicsView::beginConnection(){
 }
 
 void ModelGraphicsView::selectModelComponent(ModelComponent* component) {
-	QList<GraphicalModelComponent*>* list =((ModelGraphicsScene*)scene())->graphicalModelMomponentItems();
-	for (GraphicalModelComponent* gmc: *list) {
+	QList<QGraphicsItem*>* list =((ModelGraphicsScene*)scene())->getGraphicalModelComponents();
+	for (QGraphicsItem* item: *list) {
+		GraphicalModelComponent* gmc = (GraphicalModelComponent*) item;
 		if (gmc->getComponent()==component) {
 			gmc->setSelected(true);
 			//return;

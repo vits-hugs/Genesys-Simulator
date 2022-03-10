@@ -65,7 +65,7 @@ std::map<std::string, std::string>* CellularAutomata::_saveInstance(bool saveDef
 
 bool CellularAutomata::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	//*errorMessage += "";
+	*errorMessage += "";
 	// @TODO: not implemented yet
 	return resultAll;
 }

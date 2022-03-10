@@ -144,7 +144,7 @@ unsigned int Match::getNumberOfQueues() const {
 bool Match::_check(std::string * errorMessage) {
     bool resultAll = true;
     // @TODO: not implemented yet
-    //*errorMessage += "";
+    *errorMessage += "";
     return resultAll;
 }
 

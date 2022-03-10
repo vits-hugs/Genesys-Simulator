@@ -117,7 +117,7 @@ std::map<std::string, std::string>* Station::_saveInstance(bool saveDefaultValue
 
 bool Station::_check(std::string* errorMessage) {
 	_insertNeededAttributes({"Entity.Station", "Entity.ArrivalAt" + this->getName()});
-	//*errorMessage += "";
+	*errorMessage += "";
 	return true;
 }
 

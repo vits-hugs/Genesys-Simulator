@@ -183,7 +183,7 @@ bool LSODE::_check(std::string* errorMessage) {
 	bool resultAll = true;
 	std::ofstream savefile;
 	// @TODO: not implemented yet
-	//*errorMessage += "";
+	*errorMessage += "";
 	if (resultAll) {
 		if (_filename != "") {
 			try {

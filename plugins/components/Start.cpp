@@ -67,7 +67,7 @@ std::map<std::string, std::string>* Start::_saveInstance(bool saveDefaultValues)
 bool Start::_check(std::string* errorMessage) {
 	bool resultAll = true;
 	// @TODO: not implemented yet
-	//*errorMessage += "";
+	*errorMessage += "";
 	return resultAll;
 }
 

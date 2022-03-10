@@ -23,10 +23,10 @@ unsigned int ConnectionManager::size() {
 }
 
 Connection* ConnectionManager::getFrontConnection() {
-	return getConnectionAtRank(0);
+	return getConnectionAtPort(0);
 }
 
-Connection* ConnectionManager::getConnectionAtRank(unsigned int rank) {
+Connection* ConnectionManager::getConnectionAtPort(unsigned int rank) {
 	std::map<unsigned int, Connection*>::iterator it = _nextConnections->find(rank);
 	if (it ==_nextConnections->end()) {
 		return nullptr;
@@ -41,11 +41,11 @@ void ConnectionManager::insert(ModelComponent* component, unsigned int inputNumb
 
 void ConnectionManager::insert(Connection* connection) {
 	unsigned int rank = _nextConnections->size();
-	insertAtRank(rank, connection);
+	insertAtPort(rank, connection);
 }
 
-void ConnectionManager::insertAtRank(unsigned int rank, Connection* connection) {
-	_nextConnections->insert({rank, connection});
+void ConnectionManager::insertAtPort(unsigned int port, Connection* connection) {
+	_nextConnections->insert({port, connection});
 }
 
 void ConnectionManager::remove(Connection* connection){
@@ -57,8 +57,8 @@ void ConnectionManager::remove(Connection* connection){
 	}
 }
 
-void ConnectionManager::removeAtRank(unsigned int rank){
-	_nextConnections->erase(rank);
+void ConnectionManager::removeAtPort(unsigned int port){
+	_nextConnections->erase(port);
 }
 
 //------------------

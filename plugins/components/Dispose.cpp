@@ -63,7 +63,7 @@ std::map<std::string, std::string>* Dispose::_saveInstance(bool saveDefaultValue
 bool Dispose::_check(std::string* errorMessage) {
 	//SinkModelComponent::_check(errorMessage);
 	this->_insertNeededAttributes({"Entity.ArrivalTime"});
-	//*errorMessage += "";
+	*errorMessage += "";
 	return true;
 }
 

@@ -73,7 +73,7 @@ bool File::_check(std::string* errorMessage) {
 	bool resultAll = true;
 	//@TODO not implemented yet
 	// resultAll |= ...
-	//*errorMessage += "";
+	*errorMessage += "";
 	return resultAll;
 }
 

@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   Storage.cpp
  * Author: rlcancian
- * 
+ *
  * Created on 20 de Storageembro de 2019, 20:06
  */
 
@@ -94,7 +94,7 @@ std::map<std::string, std::string>* Storage::_saveInstance(bool saveDefaultValue
 bool Storage::_check(std::string* errorMessage) {
 	bool resultAll = true;
 	// resultAll |= ...
-	//*errorMessage += "";
+	*errorMessage += "";
 	return resultAll;
 }
 

@@ -1,5 +1,6 @@
 #include "Property.h"
 
+/*
 PropertyGetterBase::PropertyGetterBase(std::string classname, std::string name, std::string parentName){
 	_classename = classname;
 	_name = name;
@@ -162,3 +163,4 @@ void PropertyBase::setName(const std::string&name)
 {
 	_name = name;
 }
+*/

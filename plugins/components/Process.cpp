@@ -195,7 +195,7 @@ bool Process::_check(std::string* errorMessage) {
 	resultAll &= ModelComponent::Check(_seize);
 	resultAll &= ModelComponent::Check(_delay);
 	resultAll &= ModelComponent::Check(_release);
-	//*errorMessage += "";
+	*errorMessage += "";
 	return resultAll;
 }
 

@@ -2,9 +2,12 @@
 #define PROPERTY_H
 
 #include "../util/Util.h"
+//#include "../util/List.h"
 #include <string>
 #include <functional>
 
+class SeizableItem;
+class QueueableItem;
 
 //---------------------------------------------------------------------------
 
@@ -22,10 +25,11 @@ public:
 	std::string getParentName() const{return _parentname;};
 	std::string getName() const{return _name;};
 	std::string getType() const{return _type;};
-	void setName(const std::string&name);
+	void setName(const std::string&name) {_name=name;}
 public: // hate it
-	double getValue(){return -1;};
+	double getValue() const {return -1;};
 	void setValue(double value){};
+	//virtual std::string getStringValue() const=0;
 protected:
 	std::string _name;
 	std::string _parentname;
@@ -58,13 +62,54 @@ public:
 	};
 public:
 	T getValue() {return _getter();};
-	void setValue(T value){_setter(value);};
+	void setValue(T value);
+	//virtual std::string getStringValue() const override;
 protected:
 	typename Getter<T>::Member _getter;
 	typename Setter<T>::Member _setter;
 	const std::string _type = Util::TypeOf<T>();
 };
 
+//template<typename T> std::string PropertyT<T>::getStringValue() const {return std::to_string(_getter());}
+//template<> std::string PropertyT<std::string>::getStringValue() const {return _getter();}
+//template<> std::string PropertyT<Util::TimeUnit>::getStringValue() const {return Util::StrTimeUnitLong(_getter());}
+//template<> std::string PropertyT<List<SeizableItem*>>::getStringValue() const {return "[]size:"+std::to_string(_getter().size());}
+//template<> std::string PropertyT<List<QueueableItem*>>::getStringValue() const {return "[]size:"+std::to_string(_getter().size());}
+
+/*
+template<>
+class PropertyT<std::string>: public PropertyBase {
+public:
+	PropertyT(std::string classname, std::string name, typename Getter<std::string>::Member getter, typename Setter<std::string>::Member setter, std::string parentName=""):PropertyBase(classname,name, parentName) {
+		_getter = getter;
+		_setter = setter;
+	};
+public:
+	std::string getValue() {return _getter();};
+	void setValue(std::string value){_setter(value);};
+	virtual std::string getStringValue() const {return _getter();};
+protected:
+	typename Getter<std::string>::Member _getter;
+	typename Setter<std::string>::Member _setter;
+	const std::string _type = Util::TypeOf<std::string>();
+};
+template<>
+class PropertyT<Util::TimeUnit>: public PropertyBase {
+public:
+	PropertyT(std::string classname, std::string name, typename Getter<Util::TimeUnit>::Member getter, typename Setter<Util::TimeUnit>::Member setter, std::string parentName=""):PropertyBase(classname,name, parentName) {
+		_getter = getter;
+		_setter = setter;
+	};
+public:
+	Util::TimeUnit getValue() {return _getter();};
+	void setValue(Util::TimeUnit value){_setter(value);};
+	virtual std::string getStringValue() const {return Util::StrTimeUnitLong(_getter()); };
+protected:
+	typename Getter<Util::TimeUnit>::Member _getter;
+	typename Setter<Util::TimeUnit>::Member _setter;
+	const std::string _type = Util::TypeOf<Util::TimeUnit>();
+};
+*/
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
@@ -97,7 +142,7 @@ protected:
 
 
 
-
+/*
 
 
 class PropertyGetterBase {
@@ -112,7 +157,6 @@ public:
 	std::string getType() const;
 public:
 	double getValue();
-
 protected:
 	std::string _name;
 	std::string _parentname;
@@ -141,6 +185,7 @@ public:
 	PropertyGetterUInt(std::string classname, std::string name, GetterUInt getter, std::string parentName="");
 public:
 	unsigned int getValue();
+
 protected:
 	GetterUInt _getter;
 	const std::string _type = "unsigned int";
@@ -295,6 +340,6 @@ protected:
 };
 
 
-
+*/
 
 #endif // PROPERTY_H

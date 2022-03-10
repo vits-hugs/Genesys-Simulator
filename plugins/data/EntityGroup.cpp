@@ -87,7 +87,7 @@ bool EntityGroup::_check(std::string * errorMessage) {
 	if (_parentModel->getDataManager()->getDataDefinition(Util::TypeOf<Attribute>(), newNeededAttributeName) == nullptr) {
 		new Attribute(_parentModel, newNeededAttributeName);
 	}
-	//*errorMessage += "";
+	*errorMessage += "";
 	return true;
 }
 

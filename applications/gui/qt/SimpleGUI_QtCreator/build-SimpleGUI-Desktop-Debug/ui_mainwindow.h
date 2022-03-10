@@ -116,6 +116,9 @@ public:
     QWidget *tabModelComponents;
     QVBoxLayout *verticalLayout_3;
     QTreeWidget *treeWidgetComponents;
+    QWidget *tabModelDataDefinitions;
+    QVBoxLayout *verticalLayout_2;
+    QTreeWidget *treeWidgetDataDefnitions;
     QWidget *tabCentralSimulation;
     QVBoxLayout *verticalLayout_6;
     QTabWidget *tabWidgetSimulation;
@@ -546,6 +549,26 @@ public:
         verticalLayout_3->addWidget(treeWidgetComponents);
 
         tabWidgetModel->addTab(tabModelComponents, QString());
+        tabModelDataDefinitions = new QWidget();
+        tabModelDataDefinitions->setObjectName(QString::fromUtf8("tabModelDataDefinitions"));
+        verticalLayout_2 = new QVBoxLayout(tabModelDataDefinitions);
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        treeWidgetDataDefnitions = new QTreeWidget(tabModelDataDefinitions);
+        QTreeWidgetItem *__qtreewidgetitem1 = new QTreeWidgetItem();
+        __qtreewidgetitem1->setText(3, QString::fromUtf8("4"));
+        __qtreewidgetitem1->setText(2, QString::fromUtf8("3"));
+        __qtreewidgetitem1->setText(1, QString::fromUtf8("2"));
+        __qtreewidgetitem1->setText(0, QString::fromUtf8("1"));
+        treeWidgetDataDefnitions->setHeaderItem(__qtreewidgetitem1);
+        treeWidgetDataDefnitions->setObjectName(QString::fromUtf8("treeWidgetDataDefnitions"));
+        treeWidgetDataDefnitions->setAutoScrollMargin(8);
+        treeWidgetDataDefnitions->setRootIsDecorated(true);
+        treeWidgetDataDefnitions->setSortingEnabled(true);
+        treeWidgetDataDefnitions->setColumnCount(4);
+
+        verticalLayout_2->addWidget(treeWidgetDataDefnitions);
+
+        tabWidgetModel->addTab(tabModelDataDefinitions, QString());
 
         verticalLayout_12->addWidget(tabWidgetModel);
 
@@ -801,9 +824,9 @@ public:
         horizontalLayout_2 = new QHBoxLayout(dockWidgetContentsPlugin);
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         treeWidget_Plugins = new QTreeWidget(dockWidgetContentsPlugin);
-        QTreeWidgetItem *__qtreewidgetitem1 = new QTreeWidgetItem();
-        __qtreewidgetitem1->setText(0, QString::fromUtf8("1"));
-        treeWidget_Plugins->setHeaderItem(__qtreewidgetitem1);
+        QTreeWidgetItem *__qtreewidgetitem2 = new QTreeWidgetItem();
+        __qtreewidgetitem2->setText(0, QString::fromUtf8("1"));
+        treeWidget_Plugins->setHeaderItem(__qtreewidgetitem2);
         treeWidget_Plugins->setObjectName(QString::fromUtf8("treeWidget_Plugins"));
         QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy2.setHorizontalStretch(0);
@@ -962,10 +985,10 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidgetCentral->setCurrentIndex(2);
-        tabWidgetModel->setCurrentIndex(1);
+        tabWidgetCentral->setCurrentIndex(0);
+        tabWidgetModel->setCurrentIndex(4);
         tabWidgetSimulation->setCurrentIndex(0);
-        tabWidgetReports->setCurrentIndex(0);
+        tabWidgetReports->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1118,7 +1141,7 @@ public:
 #if QT_CONFIG(tooltip)
         actionComponent_Breakpoint->setToolTip(QCoreApplication::translate("MainWindow", "Component Breakpoint", nullptr));
 #endif // QT_CONFIG(tooltip)
-        tabWidgetModel->setTabText(tabWidgetModel->indexOf(tabModelSimLanguage), QCoreApplication::translate("MainWindow", "SimLanguage", nullptr));
+        tabWidgetModel->setTabText(tabWidgetModel->indexOf(tabModelSimLanguage), QCoreApplication::translate("MainWindow", "SimulLang", nullptr));
         tabWidgetModel->setTabText(tabWidgetModel->indexOf(tabModelCpp), QCoreApplication::translate("MainWindow", "C++", nullptr));
         label_ModelGraphic->setText(QString());
         checkBox_ShowElements->setText(QCoreApplication::translate("MainWindow", "Show elements", nullptr));
@@ -1128,6 +1151,7 @@ public:
         pushButton_Export->setText(QCoreApplication::translate("MainWindow", "Export", nullptr));
         tabWidgetModel->setTabText(tabWidgetModel->indexOf(tabModelDiagram), QCoreApplication::translate("MainWindow", "Diagram", nullptr));
         tabWidgetModel->setTabText(tabWidgetModel->indexOf(tabModelComponents), QCoreApplication::translate("MainWindow", "Components", nullptr));
+        tabWidgetModel->setTabText(tabWidgetModel->indexOf(tabModelDataDefinitions), QCoreApplication::translate("MainWindow", "DataDefinitions", nullptr));
         tabWidgetCentral->setTabText(tabWidgetCentral->indexOf(tabCentralModel), QCoreApplication::translate("MainWindow", "Model", nullptr));
         tabWidgetSimulation->setTabText(tabWidgetSimulation->indexOf(tabDebugBreakpoints), QCoreApplication::translate("MainWindow", "Breakpoints", nullptr));
         tabWidgetSimulation->setTabText(tabWidgetSimulation->indexOf(tabDebugVariables), QCoreApplication::translate("MainWindow", "Variables", nullptr));
