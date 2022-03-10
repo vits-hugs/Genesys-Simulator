@@ -63,10 +63,25 @@ GraphicalModelComponent* ModelGraphicsScene::addGraphicalModelComponent(Plugin* 
 		GraphicalModelComponent* otherGraphComp = dynamic_cast<GraphicalModelComponent*>(selectedItems().at(0));
 		if (otherGraphComp != nullptr) { // a component is selected
 			ModelComponent* otherComp = otherGraphComp->getComponent();
-			unsigned int i=otherComp->getConnections()->size();
-			if (otherGraphComp->getGraphicalOutputPorts().size()>i) {
-				// create connection (both model and grapically, since model is being built
+			unsigned int i=0;
+			bool connCreated = false;
+			while (i<otherComp->getConnections()->size() && !connCreated) {
+				if (otherComp->getConnections()->getConnectionAtRank(i) == nullptr) {
+					// create connection (both model and grapically, since model is being built
+					// model
+					otherGraphComp->getComponent()->getConnections()->insertAtRank(i, new Connection({component,0}));
+					//graphically
+					_sourceGraphicalComponentPort = ((GraphicalModelComponent*)selectedItems().at(0))->getGraphicalOutputPorts().at(i);
+					GraphicalComponentPort* destport = graphComp->getGraphicalInputPorts().at(0);
+					addGraphicalConnection(_sourceGraphicalComponentPort, destport);
+					connCreated = true;
+				}
+				i++;
+			}
+			if (!connCreated) {
+				// create connection (both model and grapically, since model is being built (ALMOST REPEATED CODE -- REFACTOR)
 				// model
+				i = otherComp->getConnections()->size();
 				otherGraphComp->getComponent()->getConnections()->insertAtRank(i, new Connection({component,0}));
 				//graphically
 				_sourceGraphicalComponentPort = ((GraphicalModelComponent*)selectedItems().at(0))->getGraphicalOutputPorts().at(i);
@@ -76,16 +91,18 @@ GraphicalModelComponent* ModelGraphicsScene::addGraphicalModelComponent(Plugin* 
 		} else {
 			GraphicalComponentPort* sourceGraphPort = dynamic_cast<GraphicalComponentPort*>(selectedItems().at(0));
 			if (sourceGraphPort != nullptr) { // a specific output port of a component is selected.
-				// create connection (both model and grapically, since model is being built
-				otherGraphComp = sourceGraphPort->graphicalComponent();
-				ModelComponent* otherComp = otherGraphComp->getComponent();
-				// create connection (both model and grapically, since model is being built (ALMOST REPEATED CODE -- REFACTOR)
-				// model
-				otherGraphComp->getComponent()->getConnections()->insertAtRank(sourceGraphPort->portNum(), new Connection({component,0}));
-				//graphically
-				_sourceGraphicalComponentPort = sourceGraphPort;
-				GraphicalComponentPort* destport = graphComp->getGraphicalInputPorts().at(0);
-				addGraphicalConnection(_sourceGraphicalComponentPort, destport);
+				if (sourceGraphPort->getConnections()->size()==0) {
+					// create connection (both model and grapically, since model is being built
+					otherGraphComp = sourceGraphPort->graphicalComponent();
+					ModelComponent* otherComp = otherGraphComp->getComponent();
+					// create connection (both model and grapically, since model is being built (ALMOST REPEATED CODE -- REFACTOR)
+					// model
+					otherGraphComp->getComponent()->getConnections()->insertAtRank(sourceGraphPort->portNum(), new Connection({component,0}));
+					//graphically
+					_sourceGraphicalComponentPort = sourceGraphPort;
+					GraphicalComponentPort* destport = graphComp->getGraphicalInputPorts().at(0);
+					addGraphicalConnection(_sourceGraphicalComponentPort, destport);
+				}
 			}
 		}
 	}
@@ -137,8 +154,8 @@ void ModelGraphicsScene::removeGraphicalModelComponent(GraphicalModelComponent* 
 }
 void ModelGraphicsScene::removeGraphicalConnection(GraphicalConnection* gc){
 	// remove in model
-	ModelComponent* sourceComp = gc->getSource()->first;
-	sourceComp->getConnections()->removeAtRank(gc->getSource()->second);
+	ModelComponent* sourceComp = gc->getSource()->component;
+	sourceComp->getConnections()->removeAtRank(gc->getSource()->portNum);
 	// remove graphically
 	removeItem(gc);
 	_graphicalConnections->removeOne(gc);

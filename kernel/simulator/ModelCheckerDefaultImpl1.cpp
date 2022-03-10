@@ -59,8 +59,8 @@ void ModelCheckerDefaultImpl1::_recursiveConnectedTo(PluginManager* pluginManage
 			*drenoFound = false;
 		} else {
 			ModelComponent* nextComp;
-			for (std::list<Connection*>::iterator it = comp->getConnections()->list()->begin(); it != comp->getConnections()->list()->end(); it++) {
-				nextComp = (*it)->first;
+			for (std::map<unsigned int, Connection*>::iterator it = comp->getConnections()->connections()->begin(); it != comp->getConnections()->connections()->end(); it++) {
+				nextComp = (*it).second->component;
 				if (visited->find(nextComp) == visited->list()->end()) { // not visited yet
 					*drenoFound = false;
 					Util::IncIndent();

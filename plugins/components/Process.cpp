@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   Process.cpp
  * Author: rafael.luiz.cancian
- * 
+ *
  * Created on 22 de Maio de 2019, 18:41
  */
 
@@ -100,14 +100,14 @@ void Process::_onDispatchEvent(Entity* entity, unsigned int inputNumber) {
 }
 
 void Process::_adjustConnections() {
-	if (getConnections()->size() > 0 && getConnections()->front() != _seize) {
+	if (getConnections()->size() > 0 && getConnections()->getFrontConnection()->component != _seize) {
 		// chance connections so Process is connected to Seize, and Release to the one that Process was connected to
 		Connection* connection = new Connection();
-		connection->first = getConnections()->getFrontConnection()->first;
-		connection->second = getConnections()->getFrontConnection()->second;
-		getConnections()->getFrontConnection()->first = _seize;
-		getConnections()->getFrontConnection()->second = 0;
-		_release->getConnections()->list()->clear();
+		connection->component = getConnections()->getFrontConnection()->component;
+		connection->portNum = getConnections()->getFrontConnection()->portNum;
+		getConnections()->getFrontConnection()->component = _seize;
+		getConnections()->getFrontConnection()->portNum = 0;
+		_release->getConnections()->connections()->clear();
 		_release->getConnections()->insert(connection);
 	}
 }

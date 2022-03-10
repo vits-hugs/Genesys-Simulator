@@ -81,7 +81,7 @@ Model::Model(Simulator* simulator, unsigned int level) {
 }
 
 void Model::sendEntityToComponent(Entity* entity, Connection* connection, double timeDelay) {
-	this->sendEntityToComponent(entity, connection->first, timeDelay, connection->second);
+	this->sendEntityToComponent(entity, connection->component, timeDelay, connection->portNum);
 }
 
 void Model::sendEntityToComponent(Entity* entity, ModelComponent* component, double timeDelay, unsigned int componentInputNumber) {

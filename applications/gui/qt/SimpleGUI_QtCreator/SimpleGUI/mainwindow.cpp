@@ -490,13 +490,13 @@ void MainWindow::_recursiveCreateModelGraphicPicture(ModelDataDefinition* compon
 		Connection* connection;
 		for (unsigned short i = 0; i < component->getConnections()->size(); i++) {
 			connection = component->getConnections()->getConnectionAtRank(i);
-			visitedIt = std::find(visited->begin(), visited->end(), connection->first);
+			visitedIt = std::find(visited->begin(), visited->end(), connection->component);
 			if (visitedIt == visited->end()) {
-				_recursiveCreateModelGraphicPicture(connection->first, visited, dotmap);
+				_recursiveCreateModelGraphicPicture(connection->component, visited, dotmap);
 			}
-			if (connection->first->getLevel() == modellevel || ui->checkBox_ShowLevels->isChecked()) {
+			if (connection->component->getLevel() == modellevel || ui->checkBox_ShowLevels->isChecked()) {
 
-				text = "    " + _adjustDotName(componentName) + "->" + _adjustDotName(connection->first->getName()) + "[" + DOT.edgeComponent + "];\n";
+				text = "    " + _adjustDotName(componentName) + "->" + _adjustDotName(connection->component->getName()) + "[" + DOT.edgeComponent + "];\n";
 				_insertTextInDot(text, modellevel, DOT.rankEdge, dotmap);
 			}
 		}
@@ -581,7 +581,7 @@ void MainWindow::_actualizeModelCppCode() {
 			if (name.find(".") == std::string::npos) {
 				for (unsigned int i=0; i<comp->getConnections()->size(); i++) {
 					conn = comp->getConnections()->getConnectionAtRank(i);
-					text2 = conn->first->getName();// + conn->second==0?"":","+std::to_string(conn->second);
+					text2 = conn->component->getName();// + conn->second==0?"":","+std::to_string(conn->second);
 					text += _addCppCodeLine(name + "->getConnections()->insert("+text2+");", tabs);
 				}
 			}

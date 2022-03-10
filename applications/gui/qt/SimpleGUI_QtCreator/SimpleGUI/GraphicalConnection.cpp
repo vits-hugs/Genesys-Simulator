@@ -31,7 +31,7 @@ GraphicalConnection::GraphicalConnection(const GraphicalConnection& orig){
 }
 
 GraphicalConnection::~GraphicalConnection(){
-	_sourceConnection->first->getConnections()->remove(_destinationConnection);
+	_sourceConnection->component->getConnections()->remove(_destinationConnection);
 	_sourceGraphicalPort->removeGraphicalConnection(this);
 	_destinationGraphicalPort->removeGraphicalConnection(this);
 }

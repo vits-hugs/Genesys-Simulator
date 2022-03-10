@@ -137,14 +137,14 @@ std::map<std::string, std::string>* ModelComponent::_saveInstance(bool saveDefau
 		SaveField(fields, "nexts", _connections->size(), DEFAULT.nextSize, saveDefaultValues);
 	}
 	unsigned short i = 0;
-	for (Connection* connection : *_connections->list()) {
-		if (_connections->list()->size() == 1) {
-			SaveField(fields, "nextId", connection->first->_id, 0, saveDefaultValues);
+	for (std::pair<unsigned int, Connection*> connectionPair : *_connections->connections()) {
+		if (_connections->connections()->size() == 1) {
+			SaveField(fields, "nextId", connectionPair.second->component->_id, 0, saveDefaultValues);
 		} else {
-			SaveField(fields, "nextId" + strIndex(i), connection->first->_id, 0, saveDefaultValues);
+			SaveField(fields, "nextId" + strIndex(i), connectionPair.second->component->_id, 0, saveDefaultValues);
 		}
-		if (connection->second != 0) {//((*it)->second != 0) { // save nextInputNumber only if it is != 0
-			SaveField(fields, "nextInputNumber" + strIndex(i), connection->second, DEFAULT.nextInputNumber, saveDefaultValues);
+		if (connectionPair.second->portNum != 0) {//((*it)->second != 0) { // save nextInputNumber only if it is != 0
+			SaveField(fields, "nextInputNumber" + strIndex(i), connectionPair.second->portNum, DEFAULT.nextInputNumber, saveDefaultValues);
 		}
 		i++;
 	}

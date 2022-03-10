@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   Event.cpp
  * Author: rafael.luiz.cancian
- * 
+ *
  * Created on 21 de Junho de 2018, 19:41
  */
 
@@ -25,8 +25,8 @@ Event::Event(double time, Entity* entity, ModelComponent* component, unsigned in
 Event::Event(double time, Entity* entity, Connection* connection) {
 	_time = time;
 	_entity = entity;
-	_component = connection->first;
-	_componentInputNumber = connection->second;
+	_component = connection->component;
+	_componentInputNumber = connection->portNum;
 }
 
 std::string Event::show() {
