@@ -5253,7 +5253,13 @@ ModelGraphicsView.o: ../SimpleGUI/ModelGraphicsView.cpp ../SimpleGUI/ModelGraphi
 		../SimpleGUI/GraphicalComponentPort.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ModelGraphicsView.o ../SimpleGUI/ModelGraphicsView.cpp
 
-PropertyEditor.o: ../SimpleGUI/PropertyEditor.cpp ../SimpleGUI/PropertyEditor.h
+PropertyEditor.o: ../SimpleGUI/PropertyEditor.cpp ../SimpleGUI/PropertyEditor.h \
+		/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/simulator/ModelDataDefinition.h \
+		/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/util/Util.h \
+		/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/simulator/ParserChangesInformation.h \
+		/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/simulator/PersistentObject_base.h \
+		/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/simulator/PluginInformation.h \
+		/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/simulator/Property.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o PropertyEditor.o ../SimpleGUI/PropertyEditor.cpp
 
 dialogBreakpoint.o: ../SimpleGUI/dialogBreakpoint.cpp ../SimpleGUI/dialogBreakpoint.h \
@@ -5379,8 +5385,6 @@ mainwindow.o: ../SimpleGUI/mainwindow.cpp ../SimpleGUI/mainwindow.h \
 		/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/simulator/SimulationExperiment.h \
 		../SimpleGUI/CodeEditor.h \
 		ui_mainwindow.h \
-		../SimpleGUI/ModelGraphicsView.h \
-		../SimpleGUI/PropertyEditor.h \
 		../SimpleGUI/dialogBreakpoint.h \
 		ui_dialogBreakpoint.h \
 		/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/2019_2022_GenESyS/kernel/simulator/SinkModelComponent.h \

@@ -4,10 +4,12 @@
 #include <QTreeWidget>
 #include <QObject>
 
-class PropertyEditor : public QTreeWidget
-{
+class ModelDataDefinition;
+class PropertyEditor : public QTreeWidget{
 public:
-    PropertyEditor(QWidget *parent = nullptr);
+	PropertyEditor(QWidget *parent = nullptr);
+public:
+	void setModelBlock(ModelDataDefinition* modelblock);
 };
 
 #endif // PROPERTYEDITOR_H

@@ -208,3 +208,8 @@ GraphicalModelComponent *GraphicalComponentPort::graphicalComponent() const
 {
     return _componentGraph;
 }
+
+QList<GraphicalConnection*>*GraphicalComponentPort::getConnections() const
+{
+    return _connections;
+}

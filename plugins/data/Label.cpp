@@ -3,10 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/cppFiles/class.cc to edit this template
  */
 
-/* 
+/*
  * File:   Label.cpp
  * Author: rlcancian
- * 
+ *
  * Created on 15 de janeiro de 2022, 10:13
  */
 
@@ -25,9 +25,12 @@ ModelDataDefinition* Label::NewInstance(Model* model, std::string name) {
 }
 
 Label::Label(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<Label>(), name) {
+	_addProperty(new PropertyT<std::string>(Util::TypeOf<Label>(), "Label",
+			DefineGetter<Label,std::string>(this, &Label::getLabel),
+			DefineSetter<Label,std::string>(this, &Label::setLabel)));
 }
 
-// static 
+// static
 
 ModelDataDefinition* Label::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
 	Label* newElement = new Label(model);

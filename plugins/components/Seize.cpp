@@ -30,6 +30,21 @@ ModelDataDefinition* Seize::NewInstance(Model* model, std::string name) {
 }
 
 Seize::Seize(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Seize>(), name) {
+	// properties
+	_addProperty(new PropertyT<unsigned short>(Util::TypeOf<Seize>(), "Priority",
+				 DefineGetter<Seize,unsigned short>(this, &Seize::getPriority),
+				 DefineSetter<Seize,unsigned short>(this, &Seize::setPriority)));
+	_addProperty(new PropertyT<std::string>(Util::TypeOf<Seize>(), "Save Attribute",
+				 DefineGetter<Seize,std::string>(this, &Seize::getSaveAttribute),
+				 DefineSetter<Seize,std::string>(this, &Seize::setSaveAttribute)));
+	//unsigned int _allocationType = DEFAULT.allocationType; // uint ? enum?
+	_addProperty(new PropertyT<QueueableItem*>(Util::TypeOf<Seize>(), "Queueable Item",
+				 DefineGetter<Seize,QueueableItem*>(this, &Seize::getQueueableItem),
+				 DefineSetter<Seize,QueueableItem*>(this, &Seize::setQueueableItem)));
+	//List<SeizableItem*>* _seizeRequests = new List<SeizableItem*>();
+	_addProperty(new PropertyT<List<SeizableItem*>*>(Util::TypeOf<Seize>(), "Seize Requests",
+				 DefineGetter<Seize,List<SeizableItem*>*>(this, &Seize::getSeizeRequests),
+				 nullptr));
 }
 
 std::string Seize::show() {

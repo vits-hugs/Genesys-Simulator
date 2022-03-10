@@ -54,11 +54,16 @@ OBJECTS_DIR   = build/Debug/GNU-Linux/
 
 SOURCES       = Smart_CellularAutomata1.cpp \
 		applications/BaseConsoleGenesysApplication.cpp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/AnimateExpression.cpp \
 		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/CodeEditor.cpp \
-		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelComponentGraphicsItem.cpp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalComponentPort.cpp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalConnection.cpp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelComponent.cpp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelDataDefinition.cpp \
 		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.cpp \
 		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsView.cpp \
 		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.cpp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/main.cpp \
 		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.cpp \
 		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/qcustomplot.cpp \
 		applications/gui/qt/SimpleQtGUI.cpp \
@@ -114,10 +119,8 @@ SOURCES       = Smart_CellularAutomata1.cpp \
 		kernel/simulator/PluginConnectorDummyImpl1.cpp \
 		kernel/simulator/PluginInformation.cpp \
 		kernel/simulator/PluginManager.cpp \
-		kernel/simulator/SimulationControl.cpp \
 		kernel/simulator/SimulationExperiment.cpp \
 		kernel/simulator/SimulationReporterDefaultImpl1.cpp \
-		kernel/simulator/SimulationResponse.cpp \
 		kernel/simulator/SimulationScenario.cpp \
 		kernel/simulator/Simulator.cpp \
 		kernel/simulator/SinkModelComponent.cpp \
@@ -201,11 +204,16 @@ SOURCES       = Smart_CellularAutomata1.cpp \
 		moc_qcustomplot.cpp
 OBJECTS       = build/Debug/GNU-Linux/Smart_CellularAutomata1.o \
 		build/Debug/GNU-Linux/BaseConsoleGenesysApplication.o \
+		build/Debug/GNU-Linux/AnimateExpression.o \
 		build/Debug/GNU-Linux/CodeEditor.o \
-		build/Debug/GNU-Linux/ModelComponentGraphicsItem.o \
+		build/Debug/GNU-Linux/GraphicalComponentPort.o \
+		build/Debug/GNU-Linux/GraphicalConnection.o \
+		build/Debug/GNU-Linux/GraphicalModelComponent.o \
+		build/Debug/GNU-Linux/GraphicalModelDataDefinition.o \
 		build/Debug/GNU-Linux/ModelGraphicsScene.o \
 		build/Debug/GNU-Linux/ModelGraphicsView.o \
 		build/Debug/GNU-Linux/dialogBreakpoint.o \
+		build/Debug/GNU-Linux/main.o \
 		build/Debug/GNU-Linux/mainwindow.o \
 		build/Debug/GNU-Linux/qcustomplot.o \
 		build/Debug/GNU-Linux/SimpleQtGUI.o \
@@ -261,10 +269,8 @@ OBJECTS       = build/Debug/GNU-Linux/Smart_CellularAutomata1.o \
 		build/Debug/GNU-Linux/PluginConnectorDummyImpl1.o \
 		build/Debug/GNU-Linux/PluginInformation.o \
 		build/Debug/GNU-Linux/PluginManager.o \
-		build/Debug/GNU-Linux/SimulationControl.o \
 		build/Debug/GNU-Linux/SimulationExperiment.o \
 		build/Debug/GNU-Linux/SimulationReporterDefaultImpl1.o \
-		build/Debug/GNU-Linux/SimulationResponse.o \
 		build/Debug/GNU-Linux/SimulationScenario.o \
 		build/Debug/GNU-Linux/Simulator.o \
 		build/Debug/GNU-Linux/SinkModelComponent.o \
@@ -438,9 +444,13 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		Traits.h \
 		applications/BaseConsoleGenesysApplication.h \
 		applications/GenesysApplication_if.h \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/AnimateExpression.h \
 		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/CodeEditor.h \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalComponentPort.h \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalConnection.h \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelComponent.h \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelDataDefinition.h \
 		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/LineNumberArea.h \
-		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelComponentGraphicsItem.h \
 		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.h \
 		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsView.h \
 		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.h \
@@ -477,7 +487,6 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		kernel/simulator/ComponentManager.h \
 		kernel/simulator/ConnectionManager.h \
 		kernel/simulator/Counter.h \
-		kernel/simulator/DefineGetterSetter.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/Event.h \
@@ -509,11 +518,9 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		kernel/simulator/PluginInformation.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/ScenarioExperiment_if.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/SimulationExperiment.h \
 		kernel/simulator/SimulationReporterDefaultImpl1.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
 		kernel/simulator/SimulationScenario.h \
 		kernel/simulator/Simulator.h \
 		kernel/simulator/SinkModelComponent.h \
@@ -597,11 +604,16 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		tools/SolverDefaultImpl1.h \
 		tools/solver_if.h Smart_CellularAutomata1.cpp \
 		applications/BaseConsoleGenesysApplication.cpp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/AnimateExpression.cpp \
 		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/CodeEditor.cpp \
-		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelComponentGraphicsItem.cpp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalComponentPort.cpp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalConnection.cpp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelComponent.cpp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelDataDefinition.cpp \
 		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.cpp \
 		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsView.cpp \
 		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.cpp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/main.cpp \
 		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.cpp \
 		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/qcustomplot.cpp \
 		applications/gui/qt/SimpleQtGUI.cpp \
@@ -657,10 +669,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		kernel/simulator/PluginConnectorDummyImpl1.cpp \
 		kernel/simulator/PluginInformation.cpp \
 		kernel/simulator/PluginManager.cpp \
-		kernel/simulator/SimulationControl.cpp \
 		kernel/simulator/SimulationExperiment.cpp \
 		kernel/simulator/SimulationReporterDefaultImpl1.cpp \
-		kernel/simulator/SimulationResponse.cpp \
 		kernel/simulator/SimulationScenario.cpp \
 		kernel/simulator/Simulator.cpp \
 		kernel/simulator/SinkModelComponent.cpp \
@@ -945,8 +955,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/simpleGUI_resources.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents Smart_CellularAutomata1.h Traits.h applications/BaseConsoleGenesysApplication.h applications/GenesysApplication_if.h applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/CodeEditor.h applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/LineNumberArea.h applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelComponentGraphicsItem.h applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.h applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsView.h applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.h applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.h applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/qcustomplot.h applications/gui/qt/SimpleQtGUI.h applications/terminal/GenesysShell_if.h applications/terminal/GenesysTerminalApp.h examples/book/Book_Cap02_Example01.h examples/smarts/Smart_AssignWriteSeizes.h examples/smarts/Smart_BatchSeparate.h examples/smarts/Smart_CppForG.h examples/smarts/Smart_Delay.h examples/smarts/Smart_Dummy.h examples/smarts/Smart_HoldSignal.h examples/smarts/Smart_ModelInfoModelSimulation.h examples/smarts/Smart_ODE.h examples/smarts/Smart_OnEvent.h examples/smarts/Smart_Parser.h examples/smarts/Smart_ParserModelFunctions.h examples/smarts/Smart_Plugin.h examples/smarts/Smart_Process.h examples/smarts/Smart_ProcessSet.h examples/smarts/Smart_RouteStation.h examples/smarts/Smart_SeizeDelayRelease.h examples/smarts/Smart_SeizeDelayReleaseMany.h examples/smarts/Smart_Sequence.h examples/teaching/AnElectronicAssemblyAndTestSystem.h examples/teaching/FullSimulationOfComplexModel.h examples/teaching/OperatingSystem02.h examples/teaching/OperatingSystem03.h kernel/TraitsKernel.h kernel/simulator/Attribute.h kernel/simulator/ComponentManager.h kernel/simulator/ConnectionManager.h kernel/simulator/Counter.h kernel/simulator/DefineGetterSetter.h kernel/simulator/Entity.h kernel/simulator/EntityType.h kernel/simulator/Event.h kernel/simulator/ExperimentManager.h kernel/simulator/ExperimentManagerDefaultImpl1.h kernel/simulator/ExperimetManager_if.h kernel/simulator/LicenceManager.h kernel/simulator/Model.h kernel/simulator/ModelCheckerDefaultImpl1.h kernel/simulator/ModelChecker_if.h kernel/simulator/ModelComponent.h kernel/simulator/ModelDataDefinition.h kernel/simulator/ModelDataManager.h kernel/simulator/ModelInfo.h kernel/simulator/ModelManager.h kernel/simulator/ModelPersistenceDefaultImpl1.h kernel/simulator/ModelPersistence_if.h kernel/simulator/ModelSimulation.h kernel/simulator/OnEventManager.h kernel/simulator/ParserChangesInformation.h kernel/simulator/ParserDefaultImpl1.h kernel/simulator/ParserDefaultImpl2.h kernel/simulator/ParserManager.h kernel/simulator/Parser_if.h kernel/simulator/PersistentObject_base.h kernel/simulator/Plugin.h kernel/simulator/PluginConnectorDummyImpl1.h kernel/simulator/PluginConnector_if.h kernel/simulator/PluginInformation.h kernel/simulator/PluginManager.h kernel/simulator/ScenarioExperiment_if.h kernel/simulator/SimulationControl.h kernel/simulator/SimulationExperiment.h kernel/simulator/SimulationReporterDefaultImpl1.h kernel/simulator/SimulationReporter_if.h kernel/simulator/SimulationResponse.h kernel/simulator/SimulationScenario.h kernel/simulator/Simulator.h kernel/simulator/SinkModelComponent.h kernel/simulator/SourceModelComponent.h kernel/simulator/StatisticsCollector.h kernel/simulator/TraceManager.h kernel/simulator/parserBisonFlex/Genesys++-driver.h kernel/simulator/parserBisonFlex/GenesysParser.h kernel/simulator/parserBisonFlex/obj_t.h kernel/statistics/CollectorDatafileDefaultImpl1.h kernel/statistics/CollectorDatafile_if.h kernel/statistics/CollectorDefaultImpl1.h kernel/statistics/Collector_if.h kernel/statistics/SamplerDefaultImpl1.h kernel/statistics/Sampler_if.h kernel/statistics/SorttFile.h kernel/statistics/StatisticsDataFileDefaultImpl.h kernel/statistics/StatisticsDataFile_if.h kernel/statistics/StatisticsDefaultImpl1.h kernel/statistics/Statistics_if.h kernel/util/Exact.h kernel/util/List.h kernel/util/Util.h plugins/components/Access.h plugins/components/Assign.h plugins/components/Batch.h plugins/components/CellularAutomata.h plugins/components/CppForG.h plugins/components/Create.h plugins/components/Decide.h plugins/components/Delay.h plugins/components/Dispose.h plugins/components/DropOff.h plugins/components/DummyComponent.h plugins/components/Enter.h plugins/components/Exit.h plugins/components/Hold.h plugins/components/LSODE.h plugins/components/Leave.h plugins/components/MarkovChain.h plugins/components/Match.h plugins/components/OLD_ODEelement.h plugins/components/PickStation.h plugins/components/PickUp.h plugins/components/Process.h plugins/components/QueueableItem.h plugins/components/Record.h plugins/components/Release.h plugins/components/Remove.h plugins/components/Route.h plugins/components/Search.h plugins/components/SeizableItem.h plugins/components/Seize.h plugins/components/Separate.h plugins/components/Signal.h plugins/components/Start.h plugins/components/Stop.h plugins/components/Store.h plugins/components/Submodel.h plugins/components/Unstore.h plugins/components/Write.h plugins/data/AssignmentItem.h plugins/data/CppCode.h plugins/data/DummyElement.h plugins/data/EntityGroup.h plugins/data/Failure.h plugins/data/File.h plugins/data/Formula.h plugins/data/Label.h plugins/data/Queue.h plugins/data/Resource.h plugins/data/Schedule.h plugins/data/Sequence.h plugins/data/Set.h plugins/data/Station.h plugins/data/Storage.h plugins/data/Variable.h tools/HypothesisTesterDefaultImpl1.h tools/HypothesisTester_if.h tools/ProbabilityDistribution.h tools/SolverDefaultImpl1.h tools/solver_if.h $(DISTDIR)/
-	$(COPY_FILE) --parents Smart_CellularAutomata1.cpp applications/BaseConsoleGenesysApplication.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/CodeEditor.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelComponentGraphicsItem.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsView.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/qcustomplot.cpp applications/gui/qt/SimpleQtGUI.cpp applications/terminal/GenesysTerminalApp.cpp examples/book/Book_Cap02_Example01.cpp examples/smarts/Smart_AssignWriteSeizes.cpp examples/smarts/Smart_BatchSeparate.cpp examples/smarts/Smart_CppForG.cpp examples/smarts/Smart_Delay.cpp examples/smarts/Smart_Dummy.cpp examples/smarts/Smart_HoldSignal.cpp examples/smarts/Smart_ModelInfoModelSimulation.cpp examples/smarts/Smart_ODE.cpp examples/smarts/Smart_OnEvent.cpp examples/smarts/Smart_Parser.cpp examples/smarts/Smart_ParserModelFunctions.cpp examples/smarts/Smart_Plugin.cpp examples/smarts/Smart_Process.cpp examples/smarts/Smart_ProcessSet.cpp examples/smarts/Smart_RouteStation.cpp examples/smarts/Smart_SeizeDelayRelease.cpp examples/smarts/Smart_SeizeDelayReleaseMany.cpp examples/smarts/Smart_Sequence.cpp examples/teaching/AnElectronicAssemblyAndTestSystem.cpp examples/teaching/FullSimulationOfComplexModel.cpp examples/teaching/OperatingSystem02.cpp examples/teaching/OperatingSystem03.cpp kernel/simulator/Attribute.cpp kernel/simulator/ComponentManager.cpp kernel/simulator/ConnectionManager.cpp kernel/simulator/Counter.cpp kernel/simulator/Entity.cpp kernel/simulator/EntityType.cpp kernel/simulator/Event.cpp kernel/simulator/ExperimentManager.cpp kernel/simulator/ExperimentManagerDefaultImpl1.cpp kernel/simulator/LicenceManager.cpp kernel/simulator/Model.cpp kernel/simulator/ModelCheckerDefaultImpl1.cpp kernel/simulator/ModelComponent.cpp kernel/simulator/ModelDataDefinition.cpp kernel/simulator/ModelDataManager.cpp kernel/simulator/ModelInfo.cpp kernel/simulator/ModelManager.cpp kernel/simulator/ModelPersistenceDefaultImpl1.cpp kernel/simulator/ModelSimulation.cpp kernel/simulator/OnEventManager.cpp kernel/simulator/ParserChangesInformation.cpp kernel/simulator/ParserDefaultImpl1.cpp kernel/simulator/ParserDefaultImpl2.cpp kernel/simulator/ParserManager.cpp kernel/simulator/Plugin.cpp kernel/simulator/PluginConnectorDummyImpl1.cpp kernel/simulator/PluginInformation.cpp kernel/simulator/PluginManager.cpp kernel/simulator/SimulationControl.cpp kernel/simulator/SimulationExperiment.cpp kernel/simulator/SimulationReporterDefaultImpl1.cpp kernel/simulator/SimulationResponse.cpp kernel/simulator/SimulationScenario.cpp kernel/simulator/Simulator.cpp kernel/simulator/SinkModelComponent.cpp kernel/simulator/SourceModelComponent.cpp kernel/simulator/StatisticsCollector.cpp kernel/simulator/TraceManager.cpp kernel/simulator/parserBisonFlex/Genesys++-driver.cpp kernel/simulator/parserBisonFlex/Genesys++-scanner.cpp kernel/simulator/parserBisonFlex/GenesysParser.cpp kernel/simulator/parserBisonFlex/obj_t.cpp kernel/statistics/CollectorDatafileDefaultImpl1.cpp kernel/statistics/CollectorDefaultImpl1.cpp kernel/statistics/SamplerDefaultImpl1.cpp kernel/statistics/SorttFile.cpp kernel/statistics/StatisticsDataFileDefaultImpl.cpp kernel/statistics/StatisticsDefaultImpl1.cpp kernel/util/Util.cpp main.cpp plugins/components/Access.cpp plugins/components/Assign.cpp plugins/components/Batch.cpp plugins/components/CellularAutomata.cpp plugins/components/CppForG.cpp plugins/components/Create.cpp plugins/components/Decide.cpp plugins/components/Delay.cpp plugins/components/Dispose.cpp plugins/components/DropOff.cpp plugins/components/DummyComponent.cpp plugins/components/Enter.cpp plugins/components/Exit.cpp plugins/components/Hold.cpp plugins/components/LSODE.cpp plugins/components/Leave.cpp plugins/components/MarkovChain.cpp plugins/components/Match.cpp plugins/components/OLD_ODEelement.cpp plugins/components/PickStation.cpp plugins/components/PickUp.cpp plugins/components/Process.cpp plugins/components/QueueableItem.cpp plugins/components/Record.cpp plugins/components/Release.cpp plugins/components/Remove.cpp plugins/components/Route.cpp plugins/components/Search.cpp plugins/components/SeizableItem.cpp plugins/components/Seize.cpp plugins/components/Separate.cpp plugins/components/Signal.cpp plugins/components/Start.cpp plugins/components/Stop.cpp plugins/components/Store.cpp plugins/components/Submodel.cpp plugins/components/Unstore.cpp plugins/components/Write.cpp plugins/data/AssignmentItem.cpp plugins/data/CppCode.cpp plugins/data/DummyElement.cpp plugins/data/EntityGroup.cpp plugins/data/Failure.cpp plugins/data/File.cpp plugins/data/Formula.cpp plugins/data/Label.cpp plugins/data/Queue.cpp plugins/data/Resource.cpp plugins/data/Schedule.cpp plugins/data/Sequence.cpp plugins/data/Set.cpp plugins/data/Station.cpp plugins/data/Storage.cpp plugins/data/Variable.cpp tests/testProbabilityDistribution.cpp tests/textExamples.cpp tools/HypothesisTesterDefaultImpl1.cpp tools/ProbabilityDistribution.cpp tools/SolverDefaultImpl1.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents Smart_CellularAutomata1.h Traits.h applications/BaseConsoleGenesysApplication.h applications/GenesysApplication_if.h applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/AnimateExpression.h applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/CodeEditor.h applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalComponentPort.h applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalConnection.h applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelComponent.h applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelDataDefinition.h applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/LineNumberArea.h applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.h applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsView.h applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.h applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.h applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/qcustomplot.h applications/gui/qt/SimpleQtGUI.h applications/terminal/GenesysShell_if.h applications/terminal/GenesysTerminalApp.h examples/book/Book_Cap02_Example01.h examples/smarts/Smart_AssignWriteSeizes.h examples/smarts/Smart_BatchSeparate.h examples/smarts/Smart_CppForG.h examples/smarts/Smart_Delay.h examples/smarts/Smart_Dummy.h examples/smarts/Smart_HoldSignal.h examples/smarts/Smart_ModelInfoModelSimulation.h examples/smarts/Smart_ODE.h examples/smarts/Smart_OnEvent.h examples/smarts/Smart_Parser.h examples/smarts/Smart_ParserModelFunctions.h examples/smarts/Smart_Plugin.h examples/smarts/Smart_Process.h examples/smarts/Smart_ProcessSet.h examples/smarts/Smart_RouteStation.h examples/smarts/Smart_SeizeDelayRelease.h examples/smarts/Smart_SeizeDelayReleaseMany.h examples/smarts/Smart_Sequence.h examples/teaching/AnElectronicAssemblyAndTestSystem.h examples/teaching/FullSimulationOfComplexModel.h examples/teaching/OperatingSystem02.h examples/teaching/OperatingSystem03.h kernel/TraitsKernel.h kernel/simulator/Attribute.h kernel/simulator/ComponentManager.h kernel/simulator/ConnectionManager.h kernel/simulator/Counter.h kernel/simulator/Entity.h kernel/simulator/EntityType.h kernel/simulator/Event.h kernel/simulator/ExperimentManager.h kernel/simulator/ExperimentManagerDefaultImpl1.h kernel/simulator/ExperimetManager_if.h kernel/simulator/LicenceManager.h kernel/simulator/Model.h kernel/simulator/ModelCheckerDefaultImpl1.h kernel/simulator/ModelChecker_if.h kernel/simulator/ModelComponent.h kernel/simulator/ModelDataDefinition.h kernel/simulator/ModelDataManager.h kernel/simulator/ModelInfo.h kernel/simulator/ModelManager.h kernel/simulator/ModelPersistenceDefaultImpl1.h kernel/simulator/ModelPersistence_if.h kernel/simulator/ModelSimulation.h kernel/simulator/OnEventManager.h kernel/simulator/ParserChangesInformation.h kernel/simulator/ParserDefaultImpl1.h kernel/simulator/ParserDefaultImpl2.h kernel/simulator/ParserManager.h kernel/simulator/Parser_if.h kernel/simulator/PersistentObject_base.h kernel/simulator/Plugin.h kernel/simulator/PluginConnectorDummyImpl1.h kernel/simulator/PluginConnector_if.h kernel/simulator/PluginInformation.h kernel/simulator/PluginManager.h kernel/simulator/ScenarioExperiment_if.h kernel/simulator/SimulationExperiment.h kernel/simulator/SimulationReporterDefaultImpl1.h kernel/simulator/SimulationReporter_if.h kernel/simulator/SimulationScenario.h kernel/simulator/Simulator.h kernel/simulator/SinkModelComponent.h kernel/simulator/SourceModelComponent.h kernel/simulator/StatisticsCollector.h kernel/simulator/TraceManager.h kernel/simulator/parserBisonFlex/Genesys++-driver.h kernel/simulator/parserBisonFlex/GenesysParser.h kernel/simulator/parserBisonFlex/obj_t.h kernel/statistics/CollectorDatafileDefaultImpl1.h kernel/statistics/CollectorDatafile_if.h kernel/statistics/CollectorDefaultImpl1.h kernel/statistics/Collector_if.h kernel/statistics/SamplerDefaultImpl1.h kernel/statistics/Sampler_if.h kernel/statistics/SorttFile.h kernel/statistics/StatisticsDataFileDefaultImpl.h kernel/statistics/StatisticsDataFile_if.h kernel/statistics/StatisticsDefaultImpl1.h kernel/statistics/Statistics_if.h kernel/util/Exact.h kernel/util/List.h kernel/util/Util.h plugins/components/Access.h plugins/components/Assign.h plugins/components/Batch.h plugins/components/CellularAutomata.h plugins/components/CppForG.h plugins/components/Create.h plugins/components/Decide.h plugins/components/Delay.h plugins/components/Dispose.h plugins/components/DropOff.h plugins/components/DummyComponent.h plugins/components/Enter.h plugins/components/Exit.h plugins/components/Hold.h plugins/components/LSODE.h plugins/components/Leave.h plugins/components/MarkovChain.h plugins/components/Match.h plugins/components/OLD_ODEelement.h plugins/components/PickStation.h plugins/components/PickUp.h plugins/components/Process.h plugins/components/QueueableItem.h plugins/components/Record.h plugins/components/Release.h plugins/components/Remove.h plugins/components/Route.h plugins/components/Search.h plugins/components/SeizableItem.h plugins/components/Seize.h plugins/components/Separate.h plugins/components/Signal.h plugins/components/Start.h plugins/components/Stop.h plugins/components/Store.h plugins/components/Submodel.h plugins/components/Unstore.h plugins/components/Write.h plugins/data/AssignmentItem.h plugins/data/CppCode.h plugins/data/DummyElement.h plugins/data/EntityGroup.h plugins/data/Failure.h plugins/data/File.h plugins/data/Formula.h plugins/data/Label.h plugins/data/Queue.h plugins/data/Resource.h plugins/data/Schedule.h plugins/data/Sequence.h plugins/data/Set.h plugins/data/Station.h plugins/data/Storage.h plugins/data/Variable.h tools/HypothesisTesterDefaultImpl1.h tools/HypothesisTester_if.h tools/ProbabilityDistribution.h tools/SolverDefaultImpl1.h tools/solver_if.h $(DISTDIR)/
+	$(COPY_FILE) --parents Smart_CellularAutomata1.cpp applications/BaseConsoleGenesysApplication.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/AnimateExpression.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/CodeEditor.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalComponentPort.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalConnection.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelComponent.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelDataDefinition.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsView.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/main.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/qcustomplot.cpp applications/gui/qt/SimpleQtGUI.cpp applications/terminal/GenesysTerminalApp.cpp examples/book/Book_Cap02_Example01.cpp examples/smarts/Smart_AssignWriteSeizes.cpp examples/smarts/Smart_BatchSeparate.cpp examples/smarts/Smart_CppForG.cpp examples/smarts/Smart_Delay.cpp examples/smarts/Smart_Dummy.cpp examples/smarts/Smart_HoldSignal.cpp examples/smarts/Smart_ModelInfoModelSimulation.cpp examples/smarts/Smart_ODE.cpp examples/smarts/Smart_OnEvent.cpp examples/smarts/Smart_Parser.cpp examples/smarts/Smart_ParserModelFunctions.cpp examples/smarts/Smart_Plugin.cpp examples/smarts/Smart_Process.cpp examples/smarts/Smart_ProcessSet.cpp examples/smarts/Smart_RouteStation.cpp examples/smarts/Smart_SeizeDelayRelease.cpp examples/smarts/Smart_SeizeDelayReleaseMany.cpp examples/smarts/Smart_Sequence.cpp examples/teaching/AnElectronicAssemblyAndTestSystem.cpp examples/teaching/FullSimulationOfComplexModel.cpp examples/teaching/OperatingSystem02.cpp examples/teaching/OperatingSystem03.cpp kernel/simulator/Attribute.cpp kernel/simulator/ComponentManager.cpp kernel/simulator/ConnectionManager.cpp kernel/simulator/Counter.cpp kernel/simulator/Entity.cpp kernel/simulator/EntityType.cpp kernel/simulator/Event.cpp kernel/simulator/ExperimentManager.cpp kernel/simulator/ExperimentManagerDefaultImpl1.cpp kernel/simulator/LicenceManager.cpp kernel/simulator/Model.cpp kernel/simulator/ModelCheckerDefaultImpl1.cpp kernel/simulator/ModelComponent.cpp kernel/simulator/ModelDataDefinition.cpp kernel/simulator/ModelDataManager.cpp kernel/simulator/ModelInfo.cpp kernel/simulator/ModelManager.cpp kernel/simulator/ModelPersistenceDefaultImpl1.cpp kernel/simulator/ModelSimulation.cpp kernel/simulator/OnEventManager.cpp kernel/simulator/ParserChangesInformation.cpp kernel/simulator/ParserDefaultImpl1.cpp kernel/simulator/ParserDefaultImpl2.cpp kernel/simulator/ParserManager.cpp kernel/simulator/Plugin.cpp kernel/simulator/PluginConnectorDummyImpl1.cpp kernel/simulator/PluginInformation.cpp kernel/simulator/PluginManager.cpp kernel/simulator/SimulationExperiment.cpp kernel/simulator/SimulationReporterDefaultImpl1.cpp kernel/simulator/SimulationScenario.cpp kernel/simulator/Simulator.cpp kernel/simulator/SinkModelComponent.cpp kernel/simulator/SourceModelComponent.cpp kernel/simulator/StatisticsCollector.cpp kernel/simulator/TraceManager.cpp kernel/simulator/parserBisonFlex/Genesys++-driver.cpp kernel/simulator/parserBisonFlex/Genesys++-scanner.cpp kernel/simulator/parserBisonFlex/GenesysParser.cpp kernel/simulator/parserBisonFlex/obj_t.cpp kernel/statistics/CollectorDatafileDefaultImpl1.cpp kernel/statistics/CollectorDefaultImpl1.cpp kernel/statistics/SamplerDefaultImpl1.cpp kernel/statistics/SorttFile.cpp kernel/statistics/StatisticsDataFileDefaultImpl.cpp kernel/statistics/StatisticsDefaultImpl1.cpp kernel/util/Util.cpp main.cpp plugins/components/Access.cpp plugins/components/Assign.cpp plugins/components/Batch.cpp plugins/components/CellularAutomata.cpp plugins/components/CppForG.cpp plugins/components/Create.cpp plugins/components/Decide.cpp plugins/components/Delay.cpp plugins/components/Dispose.cpp plugins/components/DropOff.cpp plugins/components/DummyComponent.cpp plugins/components/Enter.cpp plugins/components/Exit.cpp plugins/components/Hold.cpp plugins/components/LSODE.cpp plugins/components/Leave.cpp plugins/components/MarkovChain.cpp plugins/components/Match.cpp plugins/components/OLD_ODEelement.cpp plugins/components/PickStation.cpp plugins/components/PickUp.cpp plugins/components/Process.cpp plugins/components/QueueableItem.cpp plugins/components/Record.cpp plugins/components/Release.cpp plugins/components/Remove.cpp plugins/components/Route.cpp plugins/components/Search.cpp plugins/components/SeizableItem.cpp plugins/components/Seize.cpp plugins/components/Separate.cpp plugins/components/Signal.cpp plugins/components/Start.cpp plugins/components/Stop.cpp plugins/components/Store.cpp plugins/components/Submodel.cpp plugins/components/Unstore.cpp plugins/components/Write.cpp plugins/data/AssignmentItem.cpp plugins/data/CppCode.cpp plugins/data/DummyElement.cpp plugins/data/EntityGroup.cpp plugins/data/Failure.cpp plugins/data/File.cpp plugins/data/Formula.cpp plugins/data/Label.cpp plugins/data/Queue.cpp plugins/data/Resource.cpp plugins/data/Schedule.cpp plugins/data/Sequence.cpp plugins/data/Set.cpp plugins/data/Station.cpp plugins/data/Storage.cpp plugins/data/Variable.cpp tests/testProbabilityDistribution.cpp tests/textExamples.cpp tools/HypothesisTesterDefaultImpl1.cpp tools/ProbabilityDistribution.cpp tools/SolverDefaultImpl1.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.ui applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.ui $(DISTDIR)/
 
 
@@ -1356,6 +1366,47 @@ qrc_simpleGUI_resources.cpp: applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/s
 		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/toolbox.ico \
 		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/euro.ico \
 		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack3/ico/print.ico \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_relogio.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_step.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_zoomin.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_zoomregiao.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_play.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_elipse.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_recortar.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_retang.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_pause.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_incluitemplate.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_conexao.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_animfila.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_colar.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_impressao.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_abrir.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_texto.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_animgraf.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_grade.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_undo.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_config.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_salvar.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_linhas.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_stat.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_linha.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_animhisto.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_copiar.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_increase.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_stop.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_toolbda.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_lapis.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_zoomout.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_decrease.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_novo.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_excluitemplate.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_redo.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_zoom.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_animvalor.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_cortextto.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_toolplugin.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_fundomodelo.bmp \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/ToolBar/_calc.bmp \
 		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/genesysico.gif \
 		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/34.ico \
 		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/icons/pack2/ico/40.ico \
@@ -1687,6 +1738,7 @@ moc_dialogBreakpoint.cpp: applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dial
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelComponent.h \
 		kernel/simulator/Plugin.h \
 		kernel/simulator/Entity.h \
@@ -1708,9 +1760,6 @@ moc_dialogBreakpoint.cpp: applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dial
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -1731,6 +1780,7 @@ moc_mainwindow.cpp: applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelComponent.h \
 		kernel/simulator/Plugin.h \
 		kernel/simulator/Entity.h \
@@ -1752,9 +1802,6 @@ moc_mainwindow.cpp: applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -1809,6 +1856,7 @@ build/Debug/GNU-Linux/BaseConsoleGenesysApplication.o: applications/BaseConsoleG
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -1831,9 +1879,6 @@ build/Debug/GNU-Linux/BaseConsoleGenesysApplication.o: applications/BaseConsoleG
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -1843,14 +1888,14 @@ build/Debug/GNU-Linux/BaseConsoleGenesysApplication.o: applications/BaseConsoleG
 		kernel/simulator/SimulationExperiment.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/BaseConsoleGenesysApplication.o applications/BaseConsoleGenesysApplication.cpp
 
+build/Debug/GNU-Linux/AnimateExpression.o: applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/AnimateExpression.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/AnimateExpression.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/AnimateExpression.o applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/AnimateExpression.cpp
+
 build/Debug/GNU-Linux/CodeEditor.o: applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/CodeEditor.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/CodeEditor.h \
 		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/LineNumberArea.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/CodeEditor.o applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/CodeEditor.cpp
 
-build/Debug/GNU-Linux/ModelComponentGraphicsItem.o: applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelComponentGraphicsItem.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelComponentGraphicsItem.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/ModelComponentGraphicsItem.o applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelComponentGraphicsItem.cpp
-
-build/Debug/GNU-Linux/ModelGraphicsScene.o: applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.h \
+build/Debug/GNU-Linux/GraphicalComponentPort.o: applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalComponentPort.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalComponentPort.h \
 		kernel/simulator/ModelComponent.h \
 		kernel/simulator/Plugin.h \
 		kernel/util/Util.h \
@@ -1859,13 +1904,121 @@ build/Debug/GNU-Linux/ModelGraphicsScene.o: applications/gui/qt/SimpleGUI_QtCrea
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
 		kernel/statistics/Statistics_if.h \
 		kernel/statistics/Collector_if.h \
 		kernel/simulator/ModelDataManager.h \
-		kernel/simulator/ConnectionManager.h
+		kernel/simulator/ConnectionManager.h \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalConnection.h \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelComponent.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/GraphicalComponentPort.o applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalComponentPort.cpp
+
+build/Debug/GNU-Linux/GraphicalConnection.o: applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalConnection.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalConnection.h \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalComponentPort.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/Plugin.h \
+		kernel/util/Util.h \
+		kernel/simulator/PluginInformation.h \
+		kernel/util/List.h \
+		kernel/simulator/ModelDataDefinition.h \
+		kernel/simulator/ParserChangesInformation.h \
+		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
+		kernel/simulator/Entity.h \
+		kernel/simulator/EntityType.h \
+		kernel/simulator/StatisticsCollector.h \
+		kernel/statistics/Statistics_if.h \
+		kernel/statistics/Collector_if.h \
+		kernel/simulator/ModelDataManager.h \
+		kernel/simulator/ConnectionManager.h \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelComponent.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/GraphicalConnection.o applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalConnection.cpp
+
+build/Debug/GNU-Linux/GraphicalModelComponent.o: applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelComponent.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelComponent.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/Plugin.h \
+		kernel/util/Util.h \
+		kernel/simulator/PluginInformation.h \
+		kernel/util/List.h \
+		kernel/simulator/ModelDataDefinition.h \
+		kernel/simulator/ParserChangesInformation.h \
+		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
+		kernel/simulator/Entity.h \
+		kernel/simulator/EntityType.h \
+		kernel/simulator/StatisticsCollector.h \
+		kernel/statistics/Statistics_if.h \
+		kernel/statistics/Collector_if.h \
+		kernel/simulator/ModelDataManager.h \
+		kernel/simulator/ConnectionManager.h \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalComponentPort.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/GraphicalModelComponent.o applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelComponent.cpp
+
+build/Debug/GNU-Linux/GraphicalModelDataDefinition.o: applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelDataDefinition.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelDataDefinition.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/Plugin.h \
+		kernel/util/Util.h \
+		kernel/simulator/PluginInformation.h \
+		kernel/util/List.h \
+		kernel/simulator/ModelDataDefinition.h \
+		kernel/simulator/ParserChangesInformation.h \
+		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
+		kernel/simulator/Entity.h \
+		kernel/simulator/EntityType.h \
+		kernel/simulator/StatisticsCollector.h \
+		kernel/statistics/Statistics_if.h \
+		kernel/statistics/Collector_if.h \
+		kernel/simulator/ModelDataManager.h \
+		kernel/simulator/ConnectionManager.h \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalComponentPort.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/GraphicalModelDataDefinition.o applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelDataDefinition.cpp
+
+build/Debug/GNU-Linux/ModelGraphicsScene.o: applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.h \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelComponent.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/Plugin.h \
+		kernel/util/Util.h \
+		kernel/simulator/PluginInformation.h \
+		kernel/util/List.h \
+		kernel/simulator/ModelDataDefinition.h \
+		kernel/simulator/ParserChangesInformation.h \
+		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
+		kernel/simulator/Entity.h \
+		kernel/simulator/EntityType.h \
+		kernel/simulator/StatisticsCollector.h \
+		kernel/statistics/Statistics_if.h \
+		kernel/statistics/Collector_if.h \
+		kernel/simulator/ModelDataManager.h \
+		kernel/simulator/ConnectionManager.h \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalComponentPort.h \
+		kernel/simulator/Simulator.h \
+		kernel/simulator/Model.h \
+		kernel/simulator/Event.h \
+		kernel/simulator/ModelChecker_if.h \
+		kernel/simulator/Parser_if.h \
+		kernel/statistics/Sampler_if.h \
+		kernel/simulator/ModelPersistence_if.h \
+		kernel/simulator/ComponentManager.h \
+		kernel/simulator/SourceModelComponent.h \
+		kernel/simulator/TraceManager.h \
+		kernel/simulator/OnEventManager.h \
+		kernel/simulator/ModelInfo.h \
+		kernel/simulator/ModelSimulation.h \
+		kernel/simulator/SimulationReporter_if.h \
+		kernel/simulator/LicenceManager.h \
+		kernel/simulator/PluginManager.h \
+		kernel/simulator/PluginConnector_if.h \
+		kernel/simulator/ModelManager.h \
+		kernel/simulator/ParserManager.h \
+		kernel/simulator/ExperimentManager.h \
+		kernel/simulator/SimulationExperiment.h \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsView.h \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalConnection.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/ModelGraphicsScene.o applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.cpp
 
 build/Debug/GNU-Linux/ModelGraphicsView.o: applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsView.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsView.h \
@@ -1877,6 +2030,7 @@ build/Debug/GNU-Linux/ModelGraphicsView.o: applications/gui/qt/SimpleGUI_QtCreat
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -1884,7 +2038,30 @@ build/Debug/GNU-Linux/ModelGraphicsView.o: applications/gui/qt/SimpleGUI_QtCreat
 		kernel/statistics/Collector_if.h \
 		kernel/simulator/ModelDataManager.h \
 		kernel/simulator/ConnectionManager.h \
-		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.h
+		kernel/simulator/Simulator.h \
+		kernel/simulator/Model.h \
+		kernel/simulator/Event.h \
+		kernel/simulator/ModelChecker_if.h \
+		kernel/simulator/Parser_if.h \
+		kernel/statistics/Sampler_if.h \
+		kernel/simulator/ModelPersistence_if.h \
+		kernel/simulator/ComponentManager.h \
+		kernel/simulator/SourceModelComponent.h \
+		kernel/simulator/TraceManager.h \
+		kernel/simulator/OnEventManager.h \
+		kernel/simulator/ModelInfo.h \
+		kernel/simulator/ModelSimulation.h \
+		kernel/simulator/SimulationReporter_if.h \
+		kernel/simulator/LicenceManager.h \
+		kernel/simulator/PluginManager.h \
+		kernel/simulator/PluginConnector_if.h \
+		kernel/simulator/ModelManager.h \
+		kernel/simulator/ParserManager.h \
+		kernel/simulator/ExperimentManager.h \
+		kernel/simulator/SimulationExperiment.h \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.h \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelComponent.h \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalComponentPort.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/ModelGraphicsView.o applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsView.cpp
 
 build/Debug/GNU-Linux/dialogBreakpoint.o: applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.h \
@@ -1897,6 +2074,7 @@ build/Debug/GNU-Linux/dialogBreakpoint.o: applications/gui/qt/SimpleGUI_QtCreato
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelComponent.h \
 		kernel/simulator/Plugin.h \
 		kernel/simulator/Entity.h \
@@ -1918,9 +2096,6 @@ build/Debug/GNU-Linux/dialogBreakpoint.o: applications/gui/qt/SimpleGUI_QtCreato
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -1931,7 +2106,7 @@ build/Debug/GNU-Linux/dialogBreakpoint.o: applications/gui/qt/SimpleGUI_QtCreato
 		plugins/components/Access.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/dialogBreakpoint.o applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.cpp
 
-build/Debug/GNU-Linux/mainwindow.o: applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.h \
+build/Debug/GNU-Linux/main.o: applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/main.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.h \
 		kernel/simulator/Simulator.h \
 		kernel/simulator/Model.h \
 		kernel/util/List.h \
@@ -1940,6 +2115,7 @@ build/Debug/GNU-Linux/mainwindow.o: applications/gui/qt/SimpleGUI_QtCreator/Simp
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelComponent.h \
 		kernel/simulator/Plugin.h \
 		kernel/simulator/Entity.h \
@@ -1961,9 +2137,47 @@ build/Debug/GNU-Linux/mainwindow.o: applications/gui/qt/SimpleGUI_QtCreator/Simp
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
+		kernel/simulator/LicenceManager.h \
+		kernel/simulator/PluginManager.h \
+		kernel/simulator/PluginConnector_if.h \
+		kernel/simulator/ModelManager.h \
+		kernel/simulator/ParserManager.h \
+		kernel/simulator/ExperimentManager.h \
+		kernel/simulator/SimulationExperiment.h \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/CodeEditor.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/main.o applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/main.cpp
+
+build/Debug/GNU-Linux/mainwindow.o: applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.cpp applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.h \
+		kernel/simulator/Simulator.h \
+		kernel/simulator/Model.h \
+		kernel/util/List.h \
+		kernel/util/Util.h \
+		kernel/simulator/ModelDataDefinition.h \
+		kernel/simulator/ParserChangesInformation.h \
+		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
+		kernel/simulator/ModelComponent.h \
+		kernel/simulator/Plugin.h \
+		kernel/simulator/Entity.h \
+		kernel/simulator/EntityType.h \
+		kernel/simulator/StatisticsCollector.h \
+		kernel/statistics/Statistics_if.h \
+		kernel/statistics/Collector_if.h \
+		kernel/simulator/ModelDataManager.h \
+		kernel/simulator/ConnectionManager.h \
+		kernel/simulator/Event.h \
+		kernel/simulator/ModelChecker_if.h \
+		kernel/simulator/Parser_if.h \
+		kernel/statistics/Sampler_if.h \
+		kernel/simulator/ModelPersistence_if.h \
+		kernel/simulator/ComponentManager.h \
+		kernel/simulator/SourceModelComponent.h \
+		kernel/simulator/TraceManager.h \
+		kernel/simulator/OnEventManager.h \
+		kernel/simulator/ModelInfo.h \
+		kernel/simulator/ModelSimulation.h \
+		kernel/simulator/SimulationReporter_if.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -1979,6 +2193,8 @@ build/Debug/GNU-Linux/mainwindow.o: applications/gui/qt/SimpleGUI_QtCreator/Simp
 		kernel/simulator/SinkModelComponent.h \
 		kernel/simulator/Attribute.h \
 		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.h \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelComponent.h \
+		applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalComponentPort.h \
 		plugins/components/Create.h \
 		kernel/simulator/Counter.h \
 		plugins/components/Delay.h \
@@ -1998,6 +2214,7 @@ build/Debug/GNU-Linux/SimpleQtGUI.o: applications/gui/qt/SimpleQtGUI.cpp applica
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -2021,9 +2238,6 @@ build/Debug/GNU-Linux/SimpleQtGUI.o: applications/gui/qt/SimpleQtGUI.cpp applica
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -2044,6 +2258,7 @@ build/Debug/GNU-Linux/GenesysTerminalApp.o: applications/terminal/GenesysTermina
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -2066,9 +2281,6 @@ build/Debug/GNU-Linux/GenesysTerminalApp.o: applications/terminal/GenesysTermina
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -2088,6 +2300,7 @@ build/Debug/GNU-Linux/Book_Cap02_Example01.o: examples/book/Book_Cap02_Example01
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -2110,9 +2323,6 @@ build/Debug/GNU-Linux/Book_Cap02_Example01.o: examples/book/Book_Cap02_Example01
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -2137,6 +2347,7 @@ build/Debug/GNU-Linux/Smart_AssignWriteSeizes.o: examples/smarts/Smart_AssignWri
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -2159,9 +2370,6 @@ build/Debug/GNU-Linux/Smart_AssignWriteSeizes.o: examples/smarts/Smart_AssignWri
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -2200,6 +2408,7 @@ build/Debug/GNU-Linux/Smart_BatchSeparate.o: examples/smarts/Smart_BatchSeparate
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -2222,9 +2431,6 @@ build/Debug/GNU-Linux/Smart_BatchSeparate.o: examples/smarts/Smart_BatchSeparate
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -2257,6 +2463,7 @@ build/Debug/GNU-Linux/Smart_CppForG.o: examples/smarts/Smart_CppForG.cpp example
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -2279,9 +2486,6 @@ build/Debug/GNU-Linux/Smart_CppForG.o: examples/smarts/Smart_CppForG.cpp example
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -2307,6 +2511,7 @@ build/Debug/GNU-Linux/Smart_Delay.o: examples/smarts/Smart_Delay.cpp examples/sm
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -2329,9 +2534,6 @@ build/Debug/GNU-Linux/Smart_Delay.o: examples/smarts/Smart_Delay.cpp examples/sm
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -2356,6 +2558,7 @@ build/Debug/GNU-Linux/Smart_Dummy.o: examples/smarts/Smart_Dummy.cpp examples/sm
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -2378,9 +2581,6 @@ build/Debug/GNU-Linux/Smart_Dummy.o: examples/smarts/Smart_Dummy.cpp examples/sm
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -2405,6 +2605,7 @@ build/Debug/GNU-Linux/Smart_HoldSignal.o: examples/smarts/Smart_HoldSignal.cpp e
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -2427,9 +2628,6 @@ build/Debug/GNU-Linux/Smart_HoldSignal.o: examples/smarts/Smart_HoldSignal.cpp e
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -2455,6 +2653,7 @@ build/Debug/GNU-Linux/Smart_ModelInfoModelSimulation.o: examples/smarts/Smart_Mo
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -2477,9 +2676,6 @@ build/Debug/GNU-Linux/Smart_ModelInfoModelSimulation.o: examples/smarts/Smart_Mo
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -2504,6 +2700,7 @@ build/Debug/GNU-Linux/Smart_ODE.o: examples/smarts/Smart_ODE.cpp examples/smarts
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -2526,9 +2723,6 @@ build/Debug/GNU-Linux/Smart_ODE.o: examples/smarts/Smart_ODE.cpp examples/smarts
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -2555,6 +2749,7 @@ build/Debug/GNU-Linux/Smart_OnEvent.o: examples/smarts/Smart_OnEvent.cpp example
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -2577,9 +2772,6 @@ build/Debug/GNU-Linux/Smart_OnEvent.o: examples/smarts/Smart_OnEvent.cpp example
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -2604,6 +2796,7 @@ build/Debug/GNU-Linux/Smart_Parser.o: examples/smarts/Smart_Parser.cpp examples/
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -2626,9 +2819,6 @@ build/Debug/GNU-Linux/Smart_Parser.o: examples/smarts/Smart_Parser.cpp examples/
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -2652,6 +2842,7 @@ build/Debug/GNU-Linux/Smart_ParserModelFunctions.o: examples/smarts/Smart_Parser
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -2674,9 +2865,6 @@ build/Debug/GNU-Linux/Smart_ParserModelFunctions.o: examples/smarts/Smart_Parser
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -2711,6 +2899,7 @@ build/Debug/GNU-Linux/Smart_Plugin.o: examples/smarts/Smart_Plugin.cpp examples/
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -2733,9 +2922,6 @@ build/Debug/GNU-Linux/Smart_Plugin.o: examples/smarts/Smart_Plugin.cpp examples/
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -2755,6 +2941,7 @@ build/Debug/GNU-Linux/Smart_Process.o: examples/smarts/Smart_Process.cpp example
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -2777,9 +2964,6 @@ build/Debug/GNU-Linux/Smart_Process.o: examples/smarts/Smart_Process.cpp example
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -2812,6 +2996,7 @@ build/Debug/GNU-Linux/Smart_ProcessSet.o: examples/smarts/Smart_ProcessSet.cpp e
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -2834,9 +3019,6 @@ build/Debug/GNU-Linux/Smart_ProcessSet.o: examples/smarts/Smart_ProcessSet.cpp e
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -2869,6 +3051,7 @@ build/Debug/GNU-Linux/Smart_RouteStation.o: examples/smarts/Smart_RouteStation.c
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -2891,9 +3074,6 @@ build/Debug/GNU-Linux/Smart_RouteStation.o: examples/smarts/Smart_RouteStation.c
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -2924,6 +3104,7 @@ build/Debug/GNU-Linux/Smart_SeizeDelayRelease.o: examples/smarts/Smart_SeizeDela
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -2946,9 +3127,6 @@ build/Debug/GNU-Linux/Smart_SeizeDelayRelease.o: examples/smarts/Smart_SeizeDela
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -2980,6 +3158,7 @@ build/Debug/GNU-Linux/Smart_SeizeDelayReleaseMany.o: examples/smarts/Smart_Seize
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -3002,9 +3181,6 @@ build/Debug/GNU-Linux/Smart_SeizeDelayReleaseMany.o: examples/smarts/Smart_Seize
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -3036,6 +3212,7 @@ build/Debug/GNU-Linux/Smart_Sequence.o: examples/smarts/Smart_Sequence.cpp examp
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -3058,9 +3235,6 @@ build/Debug/GNU-Linux/Smart_Sequence.o: examples/smarts/Smart_Sequence.cpp examp
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -3095,6 +3269,7 @@ build/Debug/GNU-Linux/AnElectronicAssemblyAndTestSystem.o: examples/teaching/AnE
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -3117,9 +3292,6 @@ build/Debug/GNU-Linux/AnElectronicAssemblyAndTestSystem.o: examples/teaching/AnE
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -3157,6 +3329,7 @@ build/Debug/GNU-Linux/FullSimulationOfComplexModel.o: examples/teaching/FullSimu
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -3179,9 +3352,6 @@ build/Debug/GNU-Linux/FullSimulationOfComplexModel.o: examples/teaching/FullSimu
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -3219,6 +3389,7 @@ build/Debug/GNU-Linux/OperatingSystem02.o: examples/teaching/OperatingSystem02.c
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -3241,9 +3412,6 @@ build/Debug/GNU-Linux/OperatingSystem02.o: examples/teaching/OperatingSystem02.c
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -3285,6 +3453,7 @@ build/Debug/GNU-Linux/OperatingSystem03.o: examples/teaching/OperatingSystem03.c
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -3307,9 +3476,6 @@ build/Debug/GNU-Linux/OperatingSystem03.o: examples/teaching/OperatingSystem03.c
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -3348,6 +3514,7 @@ build/Debug/GNU-Linux/Attribute.o: kernel/simulator/Attribute.cpp kernel/simulat
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelDataManager.h \
 		kernel/simulator/Plugin.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Attribute.o kernel/simulator/Attribute.cpp
@@ -3361,6 +3528,7 @@ build/Debug/GNU-Linux/ComponentManager.o: kernel/simulator/ComponentManager.cpp 
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -3380,9 +3548,6 @@ build/Debug/GNU-Linux/ComponentManager.o: kernel/simulator/ComponentManager.cpp 
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/Simulator.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
@@ -3399,7 +3564,8 @@ build/Debug/GNU-Linux/ConnectionManager.o: kernel/simulator/ConnectionManager.cp
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
-		kernel/simulator/PluginInformation.h
+		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/ConnectionManager.o kernel/simulator/ConnectionManager.cpp
 
 build/Debug/GNU-Linux/Counter.o: kernel/simulator/Counter.cpp kernel/simulator/Counter.h \
@@ -3408,11 +3574,10 @@ build/Debug/GNU-Linux/Counter.o: kernel/simulator/Counter.cpp kernel/simulator/C
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelDataManager.h \
 		kernel/util/List.h \
 		kernel/simulator/Plugin.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
 		kernel/simulator/Model.h \
 		kernel/simulator/ModelComponent.h \
 		kernel/simulator/Entity.h \
@@ -3432,8 +3597,7 @@ build/Debug/GNU-Linux/Counter.o: kernel/simulator/Counter.cpp kernel/simulator/C
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Counter.o kernel/simulator/Counter.cpp
 
 build/Debug/GNU-Linux/Entity.o: kernel/simulator/Entity.cpp kernel/simulator/Entity.h \
@@ -3443,6 +3607,7 @@ build/Debug/GNU-Linux/Entity.o: kernel/simulator/Entity.cpp kernel/simulator/Ent
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
 		kernel/statistics/Statistics_if.h \
@@ -3464,10 +3629,7 @@ build/Debug/GNU-Linux/Entity.o: kernel/simulator/Entity.cpp kernel/simulator/Ent
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Entity.o kernel/simulator/Entity.cpp
 
 build/Debug/GNU-Linux/EntityType.o: kernel/simulator/EntityType.cpp kernel/simulator/EntityType.h \
@@ -3476,6 +3638,7 @@ build/Debug/GNU-Linux/EntityType.o: kernel/simulator/EntityType.cpp kernel/simul
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/StatisticsCollector.h \
 		kernel/statistics/Statistics_if.h \
 		kernel/statistics/Collector_if.h \
@@ -3497,10 +3660,7 @@ build/Debug/GNU-Linux/EntityType.o: kernel/simulator/EntityType.cpp kernel/simul
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/EntityType.o kernel/simulator/EntityType.cpp
 
 build/Debug/GNU-Linux/Event.o: kernel/simulator/Event.cpp kernel/simulator/Event.h \
@@ -3509,6 +3669,7 @@ build/Debug/GNU-Linux/Event.o: kernel/simulator/Event.cpp kernel/simulator/Event
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/util/List.h \
 		kernel/simulator/EntityType.h \
@@ -3529,6 +3690,7 @@ build/Debug/GNU-Linux/ExperimentManager.o: kernel/simulator/ExperimentManager.cp
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Simulator.h \
 		kernel/simulator/Model.h \
 		kernel/simulator/ModelComponent.h \
@@ -3552,9 +3714,6 @@ build/Debug/GNU-Linux/ExperimentManager.o: kernel/simulator/ExperimentManager.cp
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -3570,6 +3729,7 @@ build/Debug/GNU-Linux/ExperimentManagerDefaultImpl1.o: kernel/simulator/Experime
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/SimulationScenario.h \
 		kernel/simulator/Simulator.h \
 		kernel/simulator/Model.h \
@@ -3594,9 +3754,6 @@ build/Debug/GNU-Linux/ExperimentManagerDefaultImpl1.o: kernel/simulator/Experime
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -3616,6 +3773,7 @@ build/Debug/GNU-Linux/Model.o: kernel/simulator/Model.cpp kernel/simulator/Model
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelComponent.h \
 		kernel/simulator/Plugin.h \
 		kernel/simulator/Entity.h \
@@ -3637,9 +3795,6 @@ build/Debug/GNU-Linux/Model.o: kernel/simulator/Model.cpp kernel/simulator/Model
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/Simulator.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
@@ -3684,6 +3839,7 @@ build/Debug/GNU-Linux/ModelCheckerDefaultImpl1.o: kernel/simulator/ModelCheckerD
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelComponent.h \
 		kernel/simulator/Plugin.h \
 		kernel/simulator/Entity.h \
@@ -3704,9 +3860,6 @@ build/Debug/GNU-Linux/ModelCheckerDefaultImpl1.o: kernel/simulator/ModelCheckerD
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
 		kernel/simulator/SinkModelComponent.h \
@@ -3726,6 +3879,7 @@ build/Debug/GNU-Linux/ModelComponent.o: kernel/simulator/ModelComponent.cpp kern
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -3746,9 +3900,6 @@ build/Debug/GNU-Linux/ModelComponent.o: kernel/simulator/ModelComponent.cpp kern
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/TraitsKernel.h \
 		kernel/simulator/ModelPersistenceDefaultImpl1.h \
 		kernel/simulator/SimulationReporterDefaultImpl1.h \
@@ -3783,6 +3934,7 @@ build/Debug/GNU-Linux/ModelDataDefinition.o: kernel/simulator/ModelDataDefinitio
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Model.h \
 		kernel/util/List.h \
 		kernel/simulator/ModelComponent.h \
@@ -3806,9 +3958,6 @@ build/Debug/GNU-Linux/ModelDataDefinition.o: kernel/simulator/ModelDataDefinitio
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/TraitsKernel.h \
 		kernel/simulator/ModelPersistenceDefaultImpl1.h \
 		kernel/simulator/SimulationReporterDefaultImpl1.h \
@@ -3845,6 +3994,7 @@ build/Debug/GNU-Linux/ModelDataManager.o: kernel/simulator/ModelDataManager.cpp 
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Model.h \
 		kernel/simulator/ModelComponent.h \
 		kernel/simulator/Plugin.h \
@@ -3865,10 +4015,7 @@ build/Debug/GNU-Linux/ModelDataManager.o: kernel/simulator/ModelDataManager.cpp 
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/ModelDataManager.o kernel/simulator/ModelDataManager.cpp
 
 build/Debug/GNU-Linux/ModelInfo.o: kernel/simulator/ModelInfo.cpp kernel/simulator/ModelInfo.h \
@@ -3879,6 +4026,7 @@ build/Debug/GNU-Linux/ModelInfo.o: kernel/simulator/ModelInfo.cpp kernel/simulat
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelComponent.h \
 		kernel/simulator/Plugin.h \
 		kernel/simulator/Entity.h \
@@ -3898,10 +4046,7 @@ build/Debug/GNU-Linux/ModelInfo.o: kernel/simulator/ModelInfo.cpp kernel/simulat
 		kernel/simulator/TraceManager.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/ModelInfo.o kernel/simulator/ModelInfo.cpp
 
 build/Debug/GNU-Linux/ModelManager.o: kernel/simulator/ModelManager.cpp kernel/simulator/ModelManager.h \
@@ -3912,6 +4057,7 @@ build/Debug/GNU-Linux/ModelManager.o: kernel/simulator/ModelManager.cpp kernel/s
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelComponent.h \
 		kernel/simulator/Plugin.h \
 		kernel/simulator/Entity.h \
@@ -3933,9 +4079,6 @@ build/Debug/GNU-Linux/ModelManager.o: kernel/simulator/ModelManager.cpp kernel/s
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/Simulator.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
@@ -3954,6 +4097,7 @@ build/Debug/GNU-Linux/ModelPersistenceDefaultImpl1.o: kernel/simulator/ModelPers
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelComponent.h \
 		kernel/simulator/Plugin.h \
 		kernel/simulator/Entity.h \
@@ -3974,9 +4118,6 @@ build/Debug/GNU-Linux/ModelPersistenceDefaultImpl1.o: kernel/simulator/ModelPers
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/Simulator.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
@@ -4018,6 +4159,7 @@ build/Debug/GNU-Linux/ModelSimulation.o: kernel/simulator/ModelSimulation.cpp ke
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/util/List.h \
 		kernel/simulator/EntityType.h \
@@ -4039,9 +4181,6 @@ build/Debug/GNU-Linux/ModelSimulation.o: kernel/simulator/ModelSimulation.cpp ke
 		kernel/simulator/ComponentManager.h \
 		kernel/simulator/SourceModelComponent.h \
 		kernel/simulator/TraceManager.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/Simulator.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
@@ -4084,6 +4223,7 @@ build/Debug/GNU-Linux/OnEventManager.o: kernel/simulator/OnEventManager.cpp kern
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
@@ -4114,6 +4254,7 @@ build/Debug/GNU-Linux/ParserDefaultImpl2.o: kernel/simulator/ParserDefaultImpl2.
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelComponent.h \
 		kernel/simulator/Plugin.h \
 		kernel/simulator/Entity.h \
@@ -4133,9 +4274,6 @@ build/Debug/GNU-Linux/ParserDefaultImpl2.o: kernel/simulator/ParserDefaultImpl2.
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/parserBisonFlex/Genesys++-driver.h \
 		kernel/simulator/parserBisonFlex/GenesysParser.h \
 		kernel/simulator/parserBisonFlex/obj_t.h \
@@ -4161,6 +4299,7 @@ build/Debug/GNU-Linux/Plugin.o: kernel/simulator/Plugin.cpp kernel/simulator/Plu
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelComponent.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
@@ -4181,9 +4320,6 @@ build/Debug/GNU-Linux/Plugin.o: kernel/simulator/Plugin.cpp kernel/simulator/Plu
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/SinkModelComponent.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Plugin.o kernel/simulator/Plugin.cpp
 
@@ -4198,6 +4334,7 @@ build/Debug/GNU-Linux/PluginConnectorDummyImpl1.o: kernel/simulator/PluginConnec
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -4219,9 +4356,6 @@ build/Debug/GNU-Linux/PluginConnectorDummyImpl1.o: kernel/simulator/PluginConnec
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/Attribute.h \
 		plugins/data/AssignmentItem.h \
 		plugins/data/Variable.h \
@@ -4286,6 +4420,7 @@ build/Debug/GNU-Linux/PluginManager.o: kernel/simulator/PluginManager.cpp kernel
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Plugin.h \
 		kernel/simulator/PluginConnector_if.h \
 		kernel/simulator/Simulator.h \
@@ -4310,9 +4445,6 @@ build/Debug/GNU-Linux/PluginManager.o: kernel/simulator/PluginManager.cpp kernel
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/ModelManager.h \
 		kernel/simulator/ParserManager.h \
@@ -4345,12 +4477,6 @@ build/Debug/GNU-Linux/PluginManager.o: kernel/simulator/PluginManager.cpp kernel
 		kernel/statistics/SamplerDefaultImpl1.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/PluginManager.o kernel/simulator/PluginManager.cpp
 
-build/Debug/GNU-Linux/SimulationControl.o: kernel/simulator/SimulationControl.cpp kernel/simulator/SimulationControl.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/util/Util.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/SimulationControl.o kernel/simulator/SimulationControl.cpp
-
 build/Debug/GNU-Linux/SimulationExperiment.o: kernel/simulator/SimulationExperiment.cpp kernel/simulator/SimulationExperiment.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/SimulationExperiment.o kernel/simulator/SimulationExperiment.cpp
 
@@ -4362,6 +4488,7 @@ build/Debug/GNU-Linux/SimulationReporterDefaultImpl1.o: kernel/simulator/Simulat
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -4383,16 +4510,8 @@ build/Debug/GNU-Linux/SimulationReporterDefaultImpl1.o: kernel/simulator/Simulat
 		kernel/simulator/ComponentManager.h \
 		kernel/simulator/SourceModelComponent.h \
 		kernel/simulator/TraceManager.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/Counter.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/SimulationReporterDefaultImpl1.o kernel/simulator/SimulationReporterDefaultImpl1.cpp
-
-build/Debug/GNU-Linux/SimulationResponse.o: kernel/simulator/SimulationResponse.cpp kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/util/Util.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/SimulationResponse.o kernel/simulator/SimulationResponse.cpp
 
 build/Debug/GNU-Linux/SimulationScenario.o: kernel/simulator/SimulationScenario.cpp kernel/simulator/SimulationScenario.h \
 		kernel/simulator/Simulator.h \
@@ -4403,6 +4522,7 @@ build/Debug/GNU-Linux/SimulationScenario.o: kernel/simulator/SimulationScenario.
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelComponent.h \
 		kernel/simulator/Plugin.h \
 		kernel/simulator/Entity.h \
@@ -4424,9 +4544,6 @@ build/Debug/GNU-Linux/SimulationScenario.o: kernel/simulator/SimulationScenario.
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -4444,6 +4561,7 @@ build/Debug/GNU-Linux/Simulator.o: kernel/simulator/Simulator.cpp kernel/simulat
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelComponent.h \
 		kernel/simulator/Plugin.h \
 		kernel/simulator/Entity.h \
@@ -4465,9 +4583,6 @@ build/Debug/GNU-Linux/Simulator.o: kernel/simulator/Simulator.cpp kernel/simulat
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -4486,6 +4601,7 @@ build/Debug/GNU-Linux/SinkModelComponent.o: kernel/simulator/SinkModelComponent.
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -4504,6 +4620,7 @@ build/Debug/GNU-Linux/SourceModelComponent.o: kernel/simulator/SourceModelCompon
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -4523,9 +4640,6 @@ build/Debug/GNU-Linux/SourceModelComponent.o: kernel/simulator/SourceModelCompon
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/Attribute.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/SourceModelComponent.o kernel/simulator/SourceModelComponent.cpp
 
@@ -4535,6 +4649,7 @@ build/Debug/GNU-Linux/StatisticsCollector.o: kernel/simulator/StatisticsCollecto
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/statistics/Statistics_if.h \
 		kernel/statistics/Collector_if.h \
 		kernel/simulator/ModelDataManager.h \
@@ -4559,9 +4674,6 @@ build/Debug/GNU-Linux/StatisticsCollector.o: kernel/simulator/StatisticsCollecto
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/SimulationReporterDefaultImpl1.h \
 		kernel/simulator/Counter.h \
 		kernel/simulator/ModelCheckerDefaultImpl1.h \
@@ -4596,6 +4708,7 @@ build/Debug/GNU-Linux/TraceManager.o: kernel/simulator/TraceManager.cpp kernel/s
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/TraitsKernel.h \
 		kernel/simulator/ModelPersistenceDefaultImpl1.h \
 		kernel/simulator/ModelPersistence_if.h \
@@ -4619,9 +4732,6 @@ build/Debug/GNU-Linux/TraceManager.o: kernel/simulator/TraceManager.cpp kernel/s
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/SimulationReporterDefaultImpl1.h \
 		kernel/simulator/Counter.h \
 		kernel/simulator/ModelCheckerDefaultImpl1.h \
@@ -4659,6 +4769,7 @@ build/Debug/GNU-Linux/Genesys++-driver.o: kernel/simulator/parserBisonFlex/Genes
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelDataManager.h \
 		kernel/simulator/Plugin.h \
 		plugins/data/Variable.h \
@@ -4687,10 +4798,7 @@ build/Debug/GNU-Linux/Genesys++-driver.o: kernel/simulator/parserBisonFlex/Genes
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Genesys++-driver.o kernel/simulator/parserBisonFlex/Genesys++-driver.cpp
 
 build/Debug/GNU-Linux/Genesys++-scanner.o: kernel/simulator/parserBisonFlex/Genesys++-scanner.cpp kernel/simulator/parserBisonFlex/Genesys++-driver.h \
@@ -4703,6 +4811,7 @@ build/Debug/GNU-Linux/Genesys++-scanner.o: kernel/simulator/parserBisonFlex/Gene
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelDataManager.h \
 		kernel/simulator/Plugin.h \
 		plugins/data/Variable.h \
@@ -4731,10 +4840,7 @@ build/Debug/GNU-Linux/Genesys++-scanner.o: kernel/simulator/parserBisonFlex/Gene
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Genesys++-scanner.o kernel/simulator/parserBisonFlex/Genesys++-scanner.cpp
 
 build/Debug/GNU-Linux/GenesysParser.o: kernel/simulator/parserBisonFlex/GenesysParser.cpp kernel/simulator/parserBisonFlex/GenesysParser.h \
@@ -4746,6 +4852,7 @@ build/Debug/GNU-Linux/GenesysParser.o: kernel/simulator/parserBisonFlex/GenesysP
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelDataManager.h \
 		kernel/simulator/Plugin.h \
 		plugins/data/Variable.h \
@@ -4775,10 +4882,7 @@ build/Debug/GNU-Linux/GenesysParser.o: kernel/simulator/parserBisonFlex/GenesysP
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/GenesysParser.o kernel/simulator/parserBisonFlex/GenesysParser.cpp
 
 build/Debug/GNU-Linux/obj_t.o: kernel/simulator/parserBisonFlex/obj_t.cpp kernel/simulator/parserBisonFlex/obj_t.h
@@ -4816,6 +4920,7 @@ build/Debug/GNU-Linux/StatisticsDataFileDefaultImpl.o: kernel/statistics/Statist
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelComponent.h \
 		kernel/simulator/Plugin.h \
 		kernel/simulator/Entity.h \
@@ -4834,9 +4939,6 @@ build/Debug/GNU-Linux/StatisticsDataFileDefaultImpl.o: kernel/statistics/Statist
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/SimulationReporterDefaultImpl1.h \
 		kernel/simulator/Counter.h \
 		kernel/simulator/ModelCheckerDefaultImpl1.h \
@@ -4873,6 +4975,7 @@ build/Debug/GNU-Linux/StatisticsDefaultImpl1.o: kernel/statistics/StatisticsDefa
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelComponent.h \
 		kernel/simulator/Plugin.h \
 		kernel/simulator/Entity.h \
@@ -4891,9 +4994,6 @@ build/Debug/GNU-Linux/StatisticsDefaultImpl1.o: kernel/statistics/StatisticsDefa
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/SimulationReporterDefaultImpl1.h \
 		kernel/simulator/Counter.h \
 		kernel/simulator/ModelCheckerDefaultImpl1.h \
@@ -4934,6 +5034,7 @@ build/Debug/GNU-Linux/main.o: main.cpp Traits.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -4956,9 +5057,6 @@ build/Debug/GNU-Linux/main.o: main.cpp Traits.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -5004,6 +5102,7 @@ build/Debug/GNU-Linux/Access.o: plugins/components/Access.cpp plugins/components
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -5023,10 +5122,7 @@ build/Debug/GNU-Linux/Access.o: plugins/components/Access.cpp plugins/components
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Access.o plugins/components/Access.cpp
 
 build/Debug/GNU-Linux/Assign.o: plugins/components/Assign.cpp plugins/components/Assign.h \
@@ -5038,6 +5134,7 @@ build/Debug/GNU-Linux/Assign.o: plugins/components/Assign.cpp plugins/components
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -5058,9 +5155,6 @@ build/Debug/GNU-Linux/Assign.o: plugins/components/Assign.cpp plugins/components
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/Attribute.h \
 		plugins/data/AssignmentItem.h \
 		plugins/data/Variable.h \
@@ -5085,6 +5179,7 @@ build/Debug/GNU-Linux/Batch.o: plugins/components/Batch.cpp plugins/components/B
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -5107,9 +5202,6 @@ build/Debug/GNU-Linux/Batch.o: plugins/components/Batch.cpp plugins/components/B
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/Attribute.h \
 		kernel/simulator/Simulator.h \
 		kernel/simulator/LicenceManager.h \
@@ -5130,6 +5222,7 @@ build/Debug/GNU-Linux/CellularAutomata.o: plugins/components/CellularAutomata.cp
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -5149,10 +5242,7 @@ build/Debug/GNU-Linux/CellularAutomata.o: plugins/components/CellularAutomata.cp
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/CellularAutomata.o plugins/components/CellularAutomata.cpp
 
 build/Debug/GNU-Linux/CppForG.o: plugins/components/CppForG.cpp plugins/components/CppForG.h \
@@ -5164,6 +5254,7 @@ build/Debug/GNU-Linux/CppForG.o: plugins/components/CppForG.cpp plugins/componen
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -5184,10 +5275,7 @@ build/Debug/GNU-Linux/CppForG.o: plugins/components/CppForG.cpp plugins/componen
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/CppForG.o plugins/components/CppForG.cpp
 
 build/Debug/GNU-Linux/Create.o: plugins/components/Create.cpp plugins/components/Create.h \
@@ -5200,6 +5288,7 @@ build/Debug/GNU-Linux/Create.o: plugins/components/Create.cpp plugins/components
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -5220,9 +5309,6 @@ build/Debug/GNU-Linux/Create.o: plugins/components/Create.cpp plugins/components
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/Attribute.h \
 		plugins/components/Assign.h \
 		plugins/data/AssignmentItem.h \
@@ -5238,6 +5324,7 @@ build/Debug/GNU-Linux/Decide.o: plugins/components/Decide.cpp plugins/components
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -5258,10 +5345,7 @@ build/Debug/GNU-Linux/Decide.o: plugins/components/Decide.cpp plugins/components
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Decide.o plugins/components/Decide.cpp
 
 build/Debug/GNU-Linux/Delay.o: plugins/components/Delay.cpp plugins/components/Delay.h \
@@ -5273,6 +5357,7 @@ build/Debug/GNU-Linux/Delay.o: plugins/components/Delay.cpp plugins/components/D
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -5293,9 +5378,6 @@ build/Debug/GNU-Linux/Delay.o: plugins/components/Delay.cpp plugins/components/D
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/Attribute.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Delay.o plugins/components/Delay.cpp
 
@@ -5309,6 +5391,7 @@ build/Debug/GNU-Linux/Dispose.o: plugins/components/Dispose.cpp plugins/componen
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -5329,10 +5412,7 @@ build/Debug/GNU-Linux/Dispose.o: plugins/components/Dispose.cpp plugins/componen
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Dispose.o plugins/components/Dispose.cpp
 
 build/Debug/GNU-Linux/DropOff.o: plugins/components/DropOff.cpp plugins/components/DropOff.h \
@@ -5344,6 +5424,7 @@ build/Debug/GNU-Linux/DropOff.o: plugins/components/DropOff.cpp plugins/componen
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -5363,10 +5444,7 @@ build/Debug/GNU-Linux/DropOff.o: plugins/components/DropOff.cpp plugins/componen
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/DropOff.o plugins/components/DropOff.cpp
 
 build/Debug/GNU-Linux/DummyComponent.o: plugins/components/DummyComponent.cpp plugins/components/DummyComponent.h \
@@ -5378,6 +5456,7 @@ build/Debug/GNU-Linux/DummyComponent.o: plugins/components/DummyComponent.cpp pl
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -5397,10 +5476,7 @@ build/Debug/GNU-Linux/DummyComponent.o: plugins/components/DummyComponent.cpp pl
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/DummyComponent.o plugins/components/DummyComponent.cpp
 
 build/Debug/GNU-Linux/Enter.o: plugins/components/Enter.cpp plugins/components/Enter.h \
@@ -5412,6 +5488,7 @@ build/Debug/GNU-Linux/Enter.o: plugins/components/Enter.cpp plugins/components/E
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -5434,9 +5511,6 @@ build/Debug/GNU-Linux/Enter.o: plugins/components/Enter.cpp plugins/components/E
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/Simulator.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
@@ -5456,6 +5530,7 @@ build/Debug/GNU-Linux/Exit.o: plugins/components/Exit.cpp plugins/components/Exi
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -5475,10 +5550,7 @@ build/Debug/GNU-Linux/Exit.o: plugins/components/Exit.cpp plugins/components/Exi
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Exit.o plugins/components/Exit.cpp
 
 build/Debug/GNU-Linux/Hold.o: plugins/components/Hold.cpp plugins/components/Hold.h \
@@ -5490,6 +5562,7 @@ build/Debug/GNU-Linux/Hold.o: plugins/components/Hold.cpp plugins/components/Hol
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -5509,10 +5582,7 @@ build/Debug/GNU-Linux/Hold.o: plugins/components/Hold.cpp plugins/components/Hol
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Hold.o plugins/components/Hold.cpp
 
 build/Debug/GNU-Linux/LSODE.o: plugins/components/LSODE.cpp plugins/components/LSODE.h \
@@ -5524,6 +5594,7 @@ build/Debug/GNU-Linux/LSODE.o: plugins/components/LSODE.cpp plugins/components/L
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -5545,10 +5616,7 @@ build/Debug/GNU-Linux/LSODE.o: plugins/components/LSODE.cpp plugins/components/L
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/LSODE.o plugins/components/LSODE.cpp
 
 build/Debug/GNU-Linux/Leave.o: plugins/components/Leave.cpp plugins/components/Leave.h \
@@ -5560,6 +5628,7 @@ build/Debug/GNU-Linux/Leave.o: plugins/components/Leave.cpp plugins/components/L
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -5582,9 +5651,6 @@ build/Debug/GNU-Linux/Leave.o: plugins/components/Leave.cpp plugins/components/L
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/Simulator.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
@@ -5604,6 +5670,7 @@ build/Debug/GNU-Linux/MarkovChain.o: plugins/components/MarkovChain.cpp plugins/
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -5625,9 +5692,6 @@ build/Debug/GNU-Linux/MarkovChain.o: plugins/components/MarkovChain.cpp plugins/
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/Simulator.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
@@ -5671,6 +5735,7 @@ build/Debug/GNU-Linux/Match.o: plugins/components/Match.cpp plugins/components/M
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -5692,9 +5757,6 @@ build/Debug/GNU-Linux/Match.o: plugins/components/Match.cpp plugins/components/M
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/Simulator.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
@@ -5711,6 +5773,7 @@ build/Debug/GNU-Linux/OLD_ODEelement.o: plugins/components/OLD_ODEelement.cpp pl
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelDataManager.h \
 		kernel/util/List.h \
 		kernel/simulator/Plugin.h \
@@ -5733,10 +5796,7 @@ build/Debug/GNU-Linux/OLD_ODEelement.o: plugins/components/OLD_ODEelement.cpp pl
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/OLD_ODEelement.o plugins/components/OLD_ODEelement.cpp
 
 build/Debug/GNU-Linux/PickStation.o: plugins/components/PickStation.cpp plugins/components/PickStation.h \
@@ -5748,6 +5808,7 @@ build/Debug/GNU-Linux/PickStation.o: plugins/components/PickStation.cpp plugins/
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -5767,10 +5828,7 @@ build/Debug/GNU-Linux/PickStation.o: plugins/components/PickStation.cpp plugins/
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/PickStation.o plugins/components/PickStation.cpp
 
 build/Debug/GNU-Linux/PickUp.o: plugins/components/PickUp.cpp plugins/components/PickUp.h \
@@ -5782,6 +5840,7 @@ build/Debug/GNU-Linux/PickUp.o: plugins/components/PickUp.cpp plugins/components
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -5801,10 +5860,7 @@ build/Debug/GNU-Linux/PickUp.o: plugins/components/PickUp.cpp plugins/components
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/PickUp.o plugins/components/PickUp.cpp
 
 build/Debug/GNU-Linux/Process.o: plugins/components/Process.cpp plugins/components/Process.h \
@@ -5816,6 +5872,7 @@ build/Debug/GNU-Linux/Process.o: plugins/components/Process.cpp plugins/componen
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -5837,9 +5894,6 @@ build/Debug/GNU-Linux/Process.o: plugins/components/Process.cpp plugins/componen
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		plugins/data/Resource.h \
 		kernel/simulator/Counter.h \
 		plugins/data/Queue.h \
@@ -5865,6 +5919,7 @@ build/Debug/GNU-Linux/QueueableItem.o: plugins/components/QueueableItem.cpp plug
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/util/List.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
@@ -5889,9 +5944,6 @@ build/Debug/GNU-Linux/QueueableItem.o: plugins/components/QueueableItem.cpp plug
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/Simulator.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
@@ -5911,6 +5963,7 @@ build/Debug/GNU-Linux/Record.o: plugins/components/Record.cpp plugins/components
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -5930,10 +5983,7 @@ build/Debug/GNU-Linux/Record.o: plugins/components/Record.cpp plugins/components
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Record.o plugins/components/Record.cpp
 
 build/Debug/GNU-Linux/Release.o: plugins/components/Release.cpp plugins/components/Release.h \
@@ -5945,6 +5995,7 @@ build/Debug/GNU-Linux/Release.o: plugins/components/Release.cpp plugins/componen
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -5969,9 +6020,6 @@ build/Debug/GNU-Linux/Release.o: plugins/components/Release.cpp plugins/componen
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/Simulator.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
@@ -5991,6 +6039,7 @@ build/Debug/GNU-Linux/Remove.o: plugins/components/Remove.cpp plugins/components
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -6010,10 +6059,7 @@ build/Debug/GNU-Linux/Remove.o: plugins/components/Remove.cpp plugins/components
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Remove.o plugins/components/Remove.cpp
 
 build/Debug/GNU-Linux/Route.o: plugins/components/Route.cpp plugins/components/Route.h \
@@ -6025,6 +6071,7 @@ build/Debug/GNU-Linux/Route.o: plugins/components/Route.cpp plugins/components/R
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -6050,9 +6097,6 @@ build/Debug/GNU-Linux/Route.o: plugins/components/Route.cpp plugins/components/R
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/Attribute.h \
 		kernel/simulator/Simulator.h \
 		kernel/simulator/LicenceManager.h \
@@ -6073,6 +6117,7 @@ build/Debug/GNU-Linux/Search.o: plugins/components/Search.cpp plugins/components
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -6092,10 +6137,7 @@ build/Debug/GNU-Linux/Search.o: plugins/components/Search.cpp plugins/components
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Search.o plugins/components/Search.cpp
 
 build/Debug/GNU-Linux/SeizableItem.o: plugins/components/SeizableItem.cpp plugins/components/SeizableItem.h \
@@ -6105,6 +6147,7 @@ build/Debug/GNU-Linux/SeizableItem.o: plugins/components/SeizableItem.cpp plugin
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/StatisticsCollector.h \
 		kernel/statistics/Statistics_if.h \
 		kernel/statistics/Collector_if.h \
@@ -6130,9 +6173,6 @@ build/Debug/GNU-Linux/SeizableItem.o: plugins/components/SeizableItem.cpp plugin
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/Simulator.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
@@ -6152,6 +6192,7 @@ build/Debug/GNU-Linux/Seize.o: plugins/components/Seize.cpp plugins/components/S
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -6172,9 +6213,6 @@ build/Debug/GNU-Linux/Seize.o: plugins/components/Seize.cpp plugins/components/S
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		plugins/data/Resource.h \
 		kernel/simulator/Counter.h \
 		plugins/data/Queue.h \
@@ -6201,6 +6239,7 @@ build/Debug/GNU-Linux/Separate.o: plugins/components/Separate.cpp plugins/compon
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -6221,9 +6260,6 @@ build/Debug/GNU-Linux/Separate.o: plugins/components/Separate.cpp plugins/compon
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/Attribute.h \
 		plugins/data/EntityGroup.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Separate.o plugins/components/Separate.cpp
@@ -6237,6 +6273,7 @@ build/Debug/GNU-Linux/Signal.o: plugins/components/Signal.cpp plugins/components
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -6256,10 +6293,7 @@ build/Debug/GNU-Linux/Signal.o: plugins/components/Signal.cpp plugins/components
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Signal.o plugins/components/Signal.cpp
 
 build/Debug/GNU-Linux/Start.o: plugins/components/Start.cpp plugins/components/Start.h \
@@ -6271,6 +6305,7 @@ build/Debug/GNU-Linux/Start.o: plugins/components/Start.cpp plugins/components/S
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -6290,10 +6325,7 @@ build/Debug/GNU-Linux/Start.o: plugins/components/Start.cpp plugins/components/S
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Start.o plugins/components/Start.cpp
 
 build/Debug/GNU-Linux/Stop.o: plugins/components/Stop.cpp plugins/components/Stop.h \
@@ -6305,6 +6337,7 @@ build/Debug/GNU-Linux/Stop.o: plugins/components/Stop.cpp plugins/components/Sto
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -6324,10 +6357,7 @@ build/Debug/GNU-Linux/Stop.o: plugins/components/Stop.cpp plugins/components/Sto
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Stop.o plugins/components/Stop.cpp
 
 build/Debug/GNU-Linux/Store.o: plugins/components/Store.cpp plugins/components/Store.h \
@@ -6339,6 +6369,7 @@ build/Debug/GNU-Linux/Store.o: plugins/components/Store.cpp plugins/components/S
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -6358,10 +6389,7 @@ build/Debug/GNU-Linux/Store.o: plugins/components/Store.cpp plugins/components/S
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Store.o plugins/components/Store.cpp
 
 build/Debug/GNU-Linux/Submodel.o: plugins/components/Submodel.cpp plugins/components/Submodel.h \
@@ -6373,6 +6401,7 @@ build/Debug/GNU-Linux/Submodel.o: plugins/components/Submodel.cpp plugins/compon
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -6392,10 +6421,7 @@ build/Debug/GNU-Linux/Submodel.o: plugins/components/Submodel.cpp plugins/compon
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Submodel.o plugins/components/Submodel.cpp
 
 build/Debug/GNU-Linux/Unstore.o: plugins/components/Unstore.cpp plugins/components/Unstore.h \
@@ -6407,6 +6433,7 @@ build/Debug/GNU-Linux/Unstore.o: plugins/components/Unstore.cpp plugins/componen
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -6426,10 +6453,7 @@ build/Debug/GNU-Linux/Unstore.o: plugins/components/Unstore.cpp plugins/componen
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Unstore.o plugins/components/Unstore.cpp
 
 build/Debug/GNU-Linux/Write.o: plugins/components/Write.cpp plugins/components/Write.h \
@@ -6441,6 +6465,7 @@ build/Debug/GNU-Linux/Write.o: plugins/components/Write.cpp plugins/components/W
 		kernel/simulator/ModelDataDefinition.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
 		kernel/simulator/StatisticsCollector.h \
@@ -6460,10 +6485,7 @@ build/Debug/GNU-Linux/Write.o: plugins/components/Write.cpp plugins/components/W
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Write.o plugins/components/Write.cpp
 
 build/Debug/GNU-Linux/AssignmentItem.o: plugins/data/AssignmentItem.cpp plugins/data/AssignmentItem.h \
@@ -6474,6 +6496,7 @@ build/Debug/GNU-Linux/AssignmentItem.o: plugins/data/AssignmentItem.cpp plugins/
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelComponent.h \
 		kernel/simulator/Plugin.h \
 		kernel/simulator/Entity.h \
@@ -6495,9 +6518,6 @@ build/Debug/GNU-Linux/AssignmentItem.o: plugins/data/AssignmentItem.cpp plugins/
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/Attribute.h \
 		plugins/data/Variable.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/AssignmentItem.o plugins/data/AssignmentItem.cpp
@@ -6507,7 +6527,8 @@ build/Debug/GNU-Linux/CppCode.o: plugins/data/CppCode.cpp plugins/data/CppCode.h
 		kernel/util/Util.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
-		kernel/simulator/PluginInformation.h
+		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/CppCode.o plugins/data/CppCode.cpp
 
 build/Debug/GNU-Linux/DummyElement.o: plugins/data/DummyElement.cpp plugins/data/DummyElement.h \
@@ -6515,7 +6536,8 @@ build/Debug/GNU-Linux/DummyElement.o: plugins/data/DummyElement.cpp plugins/data
 		kernel/util/Util.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
-		kernel/simulator/PluginInformation.h
+		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/DummyElement.o plugins/data/DummyElement.cpp
 
 build/Debug/GNU-Linux/EntityGroup.o: plugins/data/EntityGroup.cpp plugins/data/EntityGroup.h \
@@ -6524,6 +6546,7 @@ build/Debug/GNU-Linux/EntityGroup.o: plugins/data/EntityGroup.cpp plugins/data/E
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/util/List.h \
 		kernel/simulator/EntityType.h \
@@ -6547,9 +6570,6 @@ build/Debug/GNU-Linux/EntityGroup.o: plugins/data/EntityGroup.cpp plugins/data/E
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/Attribute.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/EntityGroup.o plugins/data/EntityGroup.cpp
 
@@ -6559,6 +6579,7 @@ build/Debug/GNU-Linux/Failure.o: plugins/data/Failure.cpp plugins/data/Failure.h
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelDataManager.h \
 		kernel/util/List.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Failure.o plugins/data/Failure.cpp
@@ -6569,6 +6590,7 @@ build/Debug/GNU-Linux/File.o: plugins/data/File.cpp plugins/data/File.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelDataManager.h \
 		kernel/util/List.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/File.o plugins/data/File.cpp
@@ -6579,6 +6601,7 @@ build/Debug/GNU-Linux/Formula.o: plugins/data/Formula.cpp plugins/data/Formula.h
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelDataManager.h \
 		kernel/util/List.h \
 		kernel/simulator/Plugin.h \
@@ -6601,10 +6624,7 @@ build/Debug/GNU-Linux/Formula.o: plugins/data/Formula.cpp plugins/data/Formula.h
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Formula.o plugins/data/Formula.cpp
 
 build/Debug/GNU-Linux/Label.o: plugins/data/Label.cpp plugins/data/Label.h \
@@ -6613,6 +6633,7 @@ build/Debug/GNU-Linux/Label.o: plugins/data/Label.cpp plugins/data/Label.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/Entity.h \
 		kernel/util/List.h \
 		kernel/simulator/EntityType.h \
@@ -6635,10 +6656,7 @@ build/Debug/GNU-Linux/Label.o: plugins/data/Label.cpp plugins/data/Label.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Label.o plugins/data/Label.cpp
 
 build/Debug/GNU-Linux/Queue.o: plugins/data/Queue.cpp plugins/data/Queue.h \
@@ -6647,6 +6665,7 @@ build/Debug/GNU-Linux/Queue.o: plugins/data/Queue.cpp plugins/data/Queue.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/util/List.h \
 		kernel/simulator/Entity.h \
 		kernel/simulator/EntityType.h \
@@ -6670,9 +6689,6 @@ build/Debug/GNU-Linux/Queue.o: plugins/data/Queue.cpp plugins/data/Queue.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/Attribute.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Queue.o plugins/data/Queue.cpp
 
@@ -6682,6 +6698,7 @@ build/Debug/GNU-Linux/Resource.o: plugins/data/Resource.cpp plugins/data/Resourc
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/StatisticsCollector.h \
 		kernel/statistics/Statistics_if.h \
 		kernel/statistics/Collector_if.h \
@@ -6705,10 +6722,7 @@ build/Debug/GNU-Linux/Resource.o: plugins/data/Resource.cpp plugins/data/Resourc
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Resource.o plugins/data/Resource.cpp
 
 build/Debug/GNU-Linux/Schedule.o: plugins/data/Schedule.cpp plugins/data/Schedule.h \
@@ -6717,6 +6731,7 @@ build/Debug/GNU-Linux/Schedule.o: plugins/data/Schedule.cpp plugins/data/Schedul
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelDataManager.h \
 		kernel/util/List.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Schedule.o plugins/data/Schedule.cpp
@@ -6727,6 +6742,7 @@ build/Debug/GNU-Linux/Sequence.o: plugins/data/Sequence.cpp plugins/data/Sequenc
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelDataManager.h \
 		kernel/util/List.h \
 		plugins/data/Station.h \
@@ -6753,9 +6769,6 @@ build/Debug/GNU-Linux/Sequence.o: plugins/data/Sequence.cpp plugins/data/Sequenc
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/Attribute.h \
 		kernel/simulator/Simulator.h \
 		kernel/simulator/LicenceManager.h \
@@ -6773,6 +6786,7 @@ build/Debug/GNU-Linux/Set.o: plugins/data/Set.cpp plugins/data/Set.h \
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelDataManager.h \
 		kernel/util/List.h \
 		kernel/simulator/EntityType.h \
@@ -6795,10 +6809,7 @@ build/Debug/GNU-Linux/Set.o: plugins/data/Set.cpp plugins/data/Set.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
-		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h
+		kernel/simulator/SimulationReporter_if.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Set.o plugins/data/Set.cpp
 
 build/Debug/GNU-Linux/Station.o: plugins/data/Station.cpp plugins/data/Station.h \
@@ -6807,6 +6818,7 @@ build/Debug/GNU-Linux/Station.o: plugins/data/Station.cpp plugins/data/Station.h
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelDataManager.h \
 		kernel/util/List.h \
 		kernel/simulator/Plugin.h \
@@ -6830,9 +6842,6 @@ build/Debug/GNU-Linux/Station.o: plugins/data/Station.cpp plugins/data/Station.h
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/Attribute.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Station.o plugins/data/Station.cpp
 
@@ -6842,6 +6851,7 @@ build/Debug/GNU-Linux/Storage.o: plugins/data/Storage.cpp plugins/data/Storage.h
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelDataManager.h \
 		kernel/util/List.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/GNU-Linux/Storage.o plugins/data/Storage.cpp
@@ -6852,6 +6862,7 @@ build/Debug/GNU-Linux/Variable.o: plugins/data/Variable.cpp plugins/data/Variabl
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelDataManager.h \
 		kernel/util/List.h \
 		kernel/simulator/Plugin.h
@@ -6880,6 +6891,7 @@ build/Debug/GNU-Linux/testProbabilityDistribution.o: tests/testProbabilityDistri
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -6899,9 +6911,6 @@ build/Debug/GNU-Linux/testProbabilityDistribution.o: tests/testProbabilityDistri
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \
@@ -6946,6 +6955,7 @@ build/Debug/GNU-Linux/textExamples.o: tests/textExamples.cpp examples/smarts/Sma
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -6999,6 +7009,7 @@ build/Debug/GNU-Linux/HypothesisTesterDefaultImpl1.o: tools/HypothesisTesterDefa
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/ModelComponent.h \
 		kernel/simulator/Plugin.h \
 		kernel/simulator/Entity.h \
@@ -7017,9 +7028,6 @@ build/Debug/GNU-Linux/HypothesisTesterDefaultImpl1.o: tools/HypothesisTesterDefa
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/SimulationReporterDefaultImpl1.h \
 		kernel/simulator/Counter.h \
 		kernel/simulator/ModelCheckerDefaultImpl1.h \
@@ -7058,6 +7066,7 @@ build/Debug/GNU-Linux/ProbabilityDistribution.o: tools/ProbabilityDistribution.c
 		kernel/simulator/ParserChangesInformation.h \
 		kernel/simulator/PersistentObject_base.h \
 		kernel/simulator/PluginInformation.h \
+		kernel/simulator/Property.h \
 		kernel/simulator/OnEventManager.h \
 		kernel/simulator/Event.h \
 		kernel/simulator/Entity.h \
@@ -7080,9 +7089,6 @@ build/Debug/GNU-Linux/ProbabilityDistribution.o: tools/ProbabilityDistribution.c
 		kernel/simulator/ModelInfo.h \
 		kernel/simulator/ModelSimulation.h \
 		kernel/simulator/SimulationReporter_if.h \
-		kernel/simulator/SimulationResponse.h \
-		kernel/simulator/DefineGetterSetter.h \
-		kernel/simulator/SimulationControl.h \
 		kernel/simulator/LicenceManager.h \
 		kernel/simulator/PluginManager.h \
 		kernel/simulator/PluginConnector_if.h \

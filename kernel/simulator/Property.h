@@ -5,21 +5,119 @@
 #include <string>
 #include <functional>
 
+
+//---------------------------------------------------------------------------
+
+class PropertyBase {
+public:
+	PropertyBase(std::string classname, std::string name, std::string parentName=""){
+		_classename = classname;
+		_name = name;
+		_parentname = parentName;
+	}
+	virtual ~PropertyBase() = default;
+public:
+	std::string show() const{return "classname="+_classename+", name="+_name+", parentname="+_parentname;};
+	std::string getClassname() const{return _classename;};
+	std::string getParentName() const{return _parentname;};
+	std::string getName() const{return _name;};
+	std::string getType() const{return _type;};
+	void setName(const std::string&name);
+public: // hate it
+	double getValue(){return -1;};
+	void setValue(double value){};
+protected:
+	std::string _name;
+	std::string _parentname;
+	std::string _classename;
+	std::string _type = "none";
+};
+
+template<typename T>
+struct Getter{
+	typedef std::function<T()> Member;
+};
+template<typename Class, typename T>
+typename Getter<T>::Member DefineGetter(Class * object, T (Class::*function)() const) {
+	return std::bind(function, object);
+}
+template<typename T>
+struct Setter{
+	typedef std::function<void(T)> Member;
+};
+template<typename Class, typename T>
+typename Setter<T>::Member DefineSetter(Class * object, void (Class::*function)(T)) {
+	return std::bind(function, object, std::placeholders::_1);
+}
+template<typename T>
+class PropertyT: public PropertyBase {
+public:
+	PropertyT(std::string classname, std::string name, typename Getter<T>::Member getter, typename Setter<T>::Member setter, std::string parentName=""):PropertyBase(classname,name, parentName) {
+		_getter = getter;
+		_setter = setter;
+	};
+public:
+	T getValue() {return _getter();};
+	void setValue(T value){_setter(value);};
+protected:
+	typename Getter<T>::Member _getter;
+	typename Setter<T>::Member _setter;
+	const std::string _type = Util::TypeOf<T>();
+};
+
+//---------------------------------------------------------------------------
+//---------------------------------------------------------------------------
+//---------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class PropertyGetterBase {
 public:
 	PropertyGetterBase(std::string classname, std::string name, std::string parentName="");
 public:
 	std::string show() const;
-	std::string getType() const;
+	std::string getClassname() const;
 	std::string getParentName() const;
 	std::string getName() const;
 	void setName(const std::string &name);
+	std::string getType() const;
 public:
 	double getValue();
+
 protected:
 	std::string _name;
 	std::string _parentname;
 	std::string _classename;
+	const std::string _type = "void";
 };
 
 class PropertySetterBase: public PropertyGetterBase {
@@ -28,6 +126,7 @@ public:
 public:
 	void setValue(double value);
 };
+
 
 //
 // unsigned int
@@ -44,6 +143,7 @@ public:
 	unsigned int getValue();
 protected:
 	GetterUInt _getter;
+	const std::string _type = "unsigned int";
 };
 
 typedef std::function<void(unsigned int) > SetterUInt;
@@ -75,6 +175,7 @@ public:
 	double getValue();
 protected:
 	GetterDouble _getter;
+	const std::string _type = "double";
 };
 
 typedef std::function<void(double) > SetterDouble;
@@ -107,6 +208,7 @@ public:
 	std::string getValue();
 protected:
 	GetterString _getter;
+	const std::string _type = "string";
 };
 
 typedef std::function<void(std::string) > SetterString;
@@ -140,6 +242,7 @@ public:
 	Util::TimeUnit getValue();
 protected:
 	GetterTimeUnit _getter;
+	const std::string _type = "TimeUnit";
 };
 
 typedef std::function<void(Util::TimeUnit) > SetterTimeUnit;
@@ -174,6 +277,7 @@ public:
 	bool getValue();
 protected:
 	GetterBool _getter;
+	const std::string _type = "bool";
 };
 
 typedef std::function<void(bool) > SetterBool;
@@ -189,6 +293,7 @@ public:
 protected:
 	SetterBool _setter;
 };
+
 
 
 
