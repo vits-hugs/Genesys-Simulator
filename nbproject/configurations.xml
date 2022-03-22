@@ -2400,13 +2400,13 @@
         </logicalFolder>
       </logicalFolder>
       <logicalFolder name="terminal" displayName="terminal" projectFiles="true">
+        <itemPath>applications/BaseConsoleGenesysApplication.cpp</itemPath>
+        <itemPath>applications/BaseConsoleGenesysApplication.h</itemPath>
+        <itemPath>applications/GenesysApplication_if.h</itemPath>
         <itemPath>applications/terminal/GenesysShell_if.h</itemPath>
         <itemPath>applications/terminal/GenesysTerminalApp.cpp</itemPath>
         <itemPath>applications/terminal/GenesysTerminalApp.h</itemPath>
       </logicalFolder>
-      <itemPath>applications/BaseConsoleGenesysApplication.cpp</itemPath>
-      <itemPath>applications/BaseConsoleGenesysApplication.h</itemPath>
-      <itemPath>applications/GenesysApplication_if.h</itemPath>
     </logicalFolder>
     <logicalFolder name="f2" displayName="examples" projectFiles="true">
       <logicalFolder name="f2" displayName="book" projectFiles="true">
@@ -2739,6 +2739,12 @@
                      kind="TEST">
         <itemPath>tests/testProbabilityDistribution.cpp</itemPath>
       </logicalFolder>
+      <logicalFolder name="f3"
+                     displayName="testtestHyphotesisTester"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/testtestHyphotesisTester.cpp</itemPath>
+      </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Arquivos Importantes"
@@ -2768,7 +2774,6 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <qt>
-        <destdir>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/build/Debug/GNU-Linux</destdir>
         <version>220115</version>
         <modules>core gui widgets printsupport</modules>
       </qt>
@@ -2781,6 +2786,24 @@
         <packType>Debian</packType>
         <verbose>false</verbose>
         <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
           <packFileListElem type="File"
                             to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
                             from="${OUTPUT_PATH}"
@@ -15115,6 +15138,21 @@
           <output>${TESTDIR}/TestFiles/f2</output>
         </linkerTool>
       </folder>
+      <folder path="TestFiles/f3">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f3</output>
+        </linkerTool>
+      </folder>
       <item path="kernel/TraitsKernel.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="kernel/simulator/Attribute.cpp" ex="false" tool="1" flavor2="0">
@@ -15815,6 +15853,8 @@
             ex="false"
             tool="1"
             flavor2="0">
+      </item>
+      <item path="tests/testtestHyphotesisTester.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/textExamples.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -27680,6 +27720,21 @@
           <output>${TESTDIR}/TestFiles/f2</output>
         </linkerTool>
       </folder>
+      <folder path="TestFiles/f3">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f3</output>
+        </linkerTool>
+      </folder>
       <item path="kernel/TraitsKernel.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="kernel/simulator/Attribute.cpp" ex="false" tool="1" flavor2="0">
@@ -28380,6 +28435,8 @@
             ex="false"
             tool="1"
             flavor2="0">
+      </item>
+      <item path="tests/testtestHyphotesisTester.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/textExamples.cpp" ex="false" tool="1" flavor2="0">
       </item>

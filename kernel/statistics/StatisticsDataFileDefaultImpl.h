@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   StatisticsDataFileDefaultImpl.h
  * Author: rafael.luiz.cancian
  *

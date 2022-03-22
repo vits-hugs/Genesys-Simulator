@@ -4,16 +4,16 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   StatisticsDataFileDummyImpl.cpp
  * Author: rafael.luiz.cancian
- * 
+ *
  * Created on 22 de Novembro de 2018, 01:24
  */
 
 #include "StatisticsDataFileDefaultImpl.h"
 #include "../TraitsKernel.h"
-#include <math.h> 
+#include <math.h>
 
 StatisticsDatafileDefaultImpl1::StatisticsDatafileDefaultImpl1() {
 	_collector = new TraitsKernel<StatisticsDatafile_if>::CollectorImplementation();

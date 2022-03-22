@@ -45,6 +45,10 @@ template<typename Class, typename T>
 typename Getter<T>::Member DefineGetter(Class * object, T (Class::*function)() const) {
 	return std::bind(function, object);
 }
+template<typename Class, typename T>
+typename Getter<T>::Member DefineGetter(Class * object, T (Class::*function)() ) {
+	return std::bind(function, object);
+}
 template<typename T>
 struct Setter{
 	typedef std::function<void(T)> Member;

@@ -84,6 +84,7 @@ ${CND_BUILDDIR}/Release/%.o: nbproject/qt-${CND_CONF}.mk
 	then  \
 	    ${TESTDIR}/TestFiles/f2 || true; \
 	    ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/2019_2022_GenESyS || true; \
+	    ${TESTDIR}/TestFiles/f3 || true; \
 	else  \
 	    ./${TEST} || true; \
 	fi

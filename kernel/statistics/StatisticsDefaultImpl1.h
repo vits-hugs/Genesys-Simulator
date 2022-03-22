@@ -28,15 +28,15 @@ public:
 	virtual void setCollector(Collector_if* collector);
 public:
 	virtual unsigned int numElements() ;
-	virtual double min() const;
-	virtual double max() const;
-	virtual double average() const;
-	virtual double variance() const;
-	virtual double stddeviation() const;
-	virtual double variationCoef() const;
-	virtual double halfWidthConfidenceInterval() const;
+	virtual double min();
+	virtual double max();
+	virtual double average();
+	virtual double variance();
+	virtual double stddeviation();
+	virtual double variationCoef();
+	virtual double halfWidthConfidenceInterval();
 	virtual unsigned int newSampleSize(double halfWidth);
-	virtual double getConfidenceLevel() const;
+	virtual double getConfidenceLevel();
 	virtual void setConfidenceLevel(double confidencelevel);
 private:
 	void collectorAddHandler(double newValue);

@@ -114,6 +114,11 @@ SOURCES += \
 	../../../../../plugins/data/Station.cpp \
 	../../../../../plugins/data/Storage.cpp \
 	../../../../../plugins/data/Variable.cpp \
+	../../../../../tests/testHyphotesisTester.cpp \
+	../../../../../tests/testProbabilityDistribution.cpp \
+	../../../../../tools/HypothesisTesterDefaultImpl1.cpp \
+	../../../../../tools/ProbabilityDistribution.cpp \
+	../../../../../tools/SolverDefaultImpl1.cpp \
 	AnimateExpression.cpp \
 	CodeEditor.cpp \
 	GraphicalComponentPort.cpp \
@@ -253,6 +258,11 @@ HEADERS += \
 	../../../../../plugins/data/Station.h \
 	../../../../../plugins/data/Storage.h \
 	../../../../../plugins/data/Variable.h \
+	../../../../../tools/HypothesisTesterDefaultImpl1.h \
+	../../../../../tools/HypothesisTester_if.h \
+	../../../../../tools/ProbabilityDistribution.h \
+	../../../../../tools/SolverDefaultImpl1.h \
+	../../../../../tools/solver_if.h \
 	AnimateExpression.h \
 	CodeEditor.h \
 	GraphicalComponentPort.h \

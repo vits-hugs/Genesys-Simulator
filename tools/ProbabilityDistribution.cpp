@@ -3,16 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/cppFiles/class.cc to edit this template
  */
 
-/* 
+/*
  * File:   ProbabilityDistribution.cpp
  * Author: rlcancian
- * 
+ *
  * Created on 22 de novembro de 2021, 17:24
  */
 
 #include "ProbabilityDistribution.h"
 #include "../Traits.h"
-#include <math.h> 
+#include <math.h>
 #include <cassert>
 
 std::map<std::string, double>* ProbabilityDistribution::memory = new std::map<std::string, double>();
@@ -270,7 +270,11 @@ double ProbabilityDistribution::_gammaFunction(double x) {
 }
 
 double ProbabilityDistribution::_betaFunction(double x, double y) {
-	return std::beta(x, y); ///TODO: Implement by myself
+	//return std::beta(x, y);
+	double x1, x2;
+	x1 = _gammaFunction(x) * _gammaFunction(y);
+	x2 = _gammaFunction(x + y);
+	return x1 / x2;
 }
 
 double ProbabilityDistribution::_factorial(double x) {
