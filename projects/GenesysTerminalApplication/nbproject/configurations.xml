@@ -1,6 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configurationDescriptor version="100">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="documentation"
+                   displayName="documentation"
+                   projectFiles="true">
+      <itemPath>../../documentation/DoxyfileDeveloper</itemPath>
+      <itemPath>../../documentation/DoxyfileUser</itemPath>
+      <itemPath>../../documentation/developer.pdf</itemPath>
+      <itemPath>../../documentation/user.pdf</itemPath>
+    </logicalFolder>
+    <logicalFolder name="models" displayName="models" projectFiles="true">
+      <itemPath>../../models/.directory</itemPath>
+      <itemPath>../../models/AssignWrite3Seizes.gen</itemPath>
+      <itemPath>../../models/SistemaOperacional02.gen</itemPath>
+      <itemPath>../../models/SistemaOperacional03.gen</itemPath>
+      <itemPath>../../models/Smart_AnElectronicAssemblyAndTestSystem.gen</itemPath>
+      <itemPath>../../models/Smart_AssignWriteSeizes.gen</itemPath>
+      <itemPath>../../models/Smart_BatchSeparate.gen</itemPath>
+      <itemPath>../../models/Smart_Delay.gen</itemPath>
+      <itemPath>../../models/Smart_Dummy.gen</itemPath>
+      <itemPath>../../models/Smart_HoldSignal.gen</itemPath>
+      <itemPath>../../models/Smart_ModelInfoModelSimulation.gen</itemPath>
+      <itemPath>../../models/Smart_ODE.gen</itemPath>
+      <itemPath>../../models/Smart_OnEvent.gen</itemPath>
+      <itemPath>../../models/Smart_Process.gen</itemPath>
+      <itemPath>../../models/Smart_ProcessSet.gen</itemPath>
+      <itemPath>../../models/Smart_RouteStation.gen</itemPath>
+      <itemPath>../../models/Smart_SeizeDelayRelease.gen</itemPath>
+      <itemPath>../../models/Smart_SeizeDelayReleaseMany.gen</itemPath>
+      <itemPath>../../models/Smart_Sequence.gen</itemPath>
+      <itemPath>../../models/Smart_SourceCode.gen</itemPath>
+    </logicalFolder>
+    <logicalFolder name="projects" displayName="projects" projectFiles="true">
+      <logicalFolder name="GenesysParser"
+                     displayName="GenesysParser"
+                     projectFiles="true">
+        <itemPath>../GenesysParser/Makefile</itemPath>
+      </logicalFolder>
+      <logicalFolder name="GenesysPlugin"
+                     displayName="GenesysPlugin"
+                     projectFiles="true">
+      </logicalFolder>
+      <logicalFolder name="GenesysQtGUI"
+                     displayName="GenesysQtGUI"
+                     projectFiles="true">
+      </logicalFolder>
+      <logicalFolder name="GenesysTerminalApplication"
+                     displayName="GenesysTerminalApplication"
+                     projectFiles="true">
+        <logicalFolder name="dist" displayName="dist" projectFiles="true">
+          <logicalFolder name="Debug" displayName="Debug" projectFiles="true">
+            <logicalFolder name="GNU-Linux" displayName="GNU-Linux" projectFiles="true">
+              <itemPath>dist/Debug/GNU-Linux/genesysterminalapplication</itemPath>
+            </logicalFolder>
+          </logicalFolder>
+        </logicalFolder>
+        <itemPath>.dep.inc</itemPath>
+        <itemPath>Makefile</itemPath>
+      </logicalFolder>
+      <logicalFolder name="GenesysTools"
+                     displayName="GenesysTools"
+                     projectFiles="true">
+      </logicalFolder>
+    </logicalFolder>
     <logicalFolder name="source" displayName="source" projectFiles="true">
       <logicalFolder name="applications"
                      displayName="applications"
@@ -339,6 +401,10 @@
         <itemPath>../../source/tools/solver_if.h</itemPath>
       </logicalFolder>
     </logicalFolder>
+    <logicalFolder name="tests" displayName="tests" projectFiles="true">
+      <itemPath>../../tests/testHyphotesisTester.cpp</itemPath>
+      <itemPath>../../tests/testProbabilityDistribution.cpp</itemPath>
+    </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Arquivos de Teste"
                    projectFiles="false"
@@ -354,6 +420,10 @@
   </logicalFolder>
   <sourceRootList>
     <Elem>../../source</Elem>
+    <Elem>../../documentation</Elem>
+    <Elem>../../models</Elem>
+    <Elem>..</Elem>
+    <Elem>../../tests</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -365,6 +435,87 @@
       </toolsSet>
       <compileType>
       </compileType>
+      <item path="../../documentation/DoxyfileDeveloper"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../documentation/DoxyfileUser" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../documentation/developer.pdf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../documentation/user.pdf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../models/.directory" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../models/AssignWrite3Seizes.gen"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../models/SistemaOperacional02.gen"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../models/SistemaOperacional03.gen"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../models/Smart_AnElectronicAssemblyAndTestSystem.gen"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../models/Smart_AssignWriteSeizes.gen"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../models/Smart_BatchSeparate.gen"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../models/Smart_Delay.gen" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../models/Smart_Dummy.gen" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../models/Smart_HoldSignal.gen" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../models/Smart_ModelInfoModelSimulation.gen"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../models/Smart_ODE.gen" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../models/Smart_OnEvent.gen" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../models/Smart_Process.gen" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../models/Smart_ProcessSet.gen" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../models/Smart_RouteStation.gen"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../models/Smart_SeizeDelayRelease.gen"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../models/Smart_SeizeDelayReleaseMany.gen"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../models/Smart_Sequence.gen" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../models/Smart_SourceCode.gen" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="../../source/applications/BaseGenesysTerminalApplication.cpp"
             ex="false"
             tool="1"
@@ -1800,6 +1951,27 @@
       <item path="../../source/tools/TraitsTools.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="../../source/tools/solver_if.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../tests/testHyphotesisTester.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../tests/testProbabilityDistribution.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../GenesysParser/Makefile" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path=".dep.inc" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Makefile" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="dist/Debug/GNU-Linux/genesysterminalapplication"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1824,6 +1996,87 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="../../documentation/DoxyfileDeveloper"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../documentation/DoxyfileUser" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../documentation/developer.pdf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../documentation/user.pdf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../models/.directory" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../models/AssignWrite3Seizes.gen"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../models/SistemaOperacional02.gen"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../models/SistemaOperacional03.gen"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../models/Smart_AnElectronicAssemblyAndTestSystem.gen"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../models/Smart_AssignWriteSeizes.gen"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../models/Smart_BatchSeparate.gen"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../models/Smart_Delay.gen" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../models/Smart_Dummy.gen" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../models/Smart_HoldSignal.gen" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../models/Smart_ModelInfoModelSimulation.gen"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../models/Smart_ODE.gen" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../models/Smart_OnEvent.gen" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../models/Smart_Process.gen" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../models/Smart_ProcessSet.gen" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../models/Smart_RouteStation.gen"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../models/Smart_SeizeDelayRelease.gen"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../models/Smart_SeizeDelayReleaseMany.gen"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../models/Smart_Sequence.gen" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../models/Smart_SourceCode.gen" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="../../source/applications/BaseGenesysTerminalApplication.cpp"
             ex="false"
             tool="1"
@@ -3259,6 +3512,27 @@
       <item path="../../source/tools/TraitsTools.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="../../source/tools/solver_if.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../tests/testHyphotesisTester.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../tests/testProbabilityDistribution.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../GenesysParser/Makefile" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path=".dep.inc" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Makefile" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="dist/Debug/GNU-Linux/genesysterminalapplication"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
