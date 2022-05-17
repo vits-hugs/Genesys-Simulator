@@ -4,10 +4,8 @@
     <logicalFolder name="documentation"
                    displayName="documentation"
                    projectFiles="true">
-      <itemPath>../../documentation/DoxyfileDeveloper</itemPath>
-      <itemPath>../../documentation/DoxyfileUser</itemPath>
-      <itemPath>../../documentation/developer.pdf</itemPath>
-      <itemPath>../../documentation/user.pdf</itemPath>
+      <itemPath>../../documentation/GenESyS_Developer_Documentation.pdf</itemPath>
+      <itemPath>../../documentation/GenESyS_User_Documentation.pdf</itemPath>
     </logicalFolder>
     <logicalFolder name="models" displayName="models" projectFiles="true">
       <itemPath>../../models/.directory</itemPath>
@@ -439,16 +437,15 @@
       </toolsSet>
       <compileType>
       </compileType>
-      <item path="../../documentation/DoxyfileDeveloper"
+      <item path="../../documentation/GenESyS_Developer_Documentation.pdf"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../documentation/DoxyfileUser" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="../../documentation/developer.pdf" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="../../documentation/user.pdf" ex="false" tool="3" flavor2="0">
+      <item path="../../documentation/GenESyS_User_Documentation.pdf"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="../../models/.directory" ex="false" tool="3" flavor2="0">
       </item>
@@ -2017,16 +2014,15 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="../../documentation/DoxyfileDeveloper"
+      <item path="../../documentation/GenESyS_Developer_Documentation.pdf"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../documentation/DoxyfileUser" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="../../documentation/developer.pdf" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="../../documentation/user.pdf" ex="false" tool="3" flavor2="0">
+      <item path="../../documentation/GenESyS_User_Documentation.pdf"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="../../models/.directory" ex="false" tool="3" flavor2="0">
       </item>
