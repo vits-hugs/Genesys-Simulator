@@ -74,32 +74,6 @@
       </logicalFolder>
       <logicalFolder name="kernel" displayName="kernel" projectFiles="true">
         <logicalFolder name="simulator" displayName="simulator" projectFiles="true">
-          <logicalFolder name="parserBisonFlex"
-                         displayName="parserBisonFlex"
-                         projectFiles="true">
-            <logicalFolder name="parser" displayName="parser" projectFiles="true">
-              <itemPath>../../source/kernel/simulator/parserBisonFlex/parser/.Genesys++-parser.yy.swp</itemPath>
-              <itemPath>../../source/kernel/simulator/parserBisonFlex/parser/Makefile</itemPath>
-              <itemPath>../../source/kernel/simulator/parserBisonFlex/parser/bisonparser.dot</itemPath>
-              <itemPath>../../source/kernel/simulator/parserBisonFlex/parser/bisonparser.report</itemPath>
-              <itemPath>../../source/kernel/simulator/parserBisonFlex/parser/bisonparser.xml</itemPath>
-              <itemPath>../../source/kernel/simulator/parserBisonFlex/parser/bisonparser.yy</itemPath>
-              <itemPath>../../source/kernel/simulator/parserBisonFlex/parser/bisonreport.xml</itemPath>
-              <itemPath>../../source/kernel/simulator/parserBisonFlex/parser/lexerparser.ll</itemPath>
-            </logicalFolder>
-            <itemPath>../../source/kernel/simulator/parserBisonFlex/Genesys++-driver.cpp</itemPath>
-            <itemPath>../../source/kernel/simulator/parserBisonFlex/Genesys++-driver.h</itemPath>
-            <itemPath>../../source/kernel/simulator/parserBisonFlex/Genesys++-scanner.cpp</itemPath>
-            <itemPath>../../source/kernel/simulator/parserBisonFlex/GenesysParser.cpp</itemPath>
-            <itemPath>../../source/kernel/simulator/parserBisonFlex/GenesysParser.gv</itemPath>
-            <itemPath>../../source/kernel/simulator/parserBisonFlex/GenesysParser.h</itemPath>
-            <itemPath>../../source/kernel/simulator/parserBisonFlex/GenesysParser.output</itemPath>
-            <itemPath>../../source/kernel/simulator/parserBisonFlex/location.hh</itemPath>
-            <itemPath>../../source/kernel/simulator/parserBisonFlex/obj_t.cpp</itemPath>
-            <itemPath>../../source/kernel/simulator/parserBisonFlex/obj_t.h</itemPath>
-            <itemPath>../../source/kernel/simulator/parserBisonFlex/position.hh</itemPath>
-            <itemPath>../../source/kernel/simulator/parserBisonFlex/stack.hh</itemPath>
-          </logicalFolder>
           <itemPath>../../source/kernel/simulator/Attribute.cpp</itemPath>
           <itemPath>../../source/kernel/simulator/Attribute.h</itemPath>
           <itemPath>../../source/kernel/simulator/ComponentManager.cpp</itemPath>
@@ -214,6 +188,28 @@
           <itemPath>../../source/kernel/util/Util.h</itemPath>
         </logicalFolder>
         <itemPath>../../source/kernel/TraitsKernel.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="parser" displayName="parser" projectFiles="true">
+        <logicalFolder name="parserBisonFlex"
+                       displayName="parserBisonFlex"
+                       projectFiles="true">
+          <itemPath>../../source/parser/parserBisonFlex/Makefile</itemPath>
+          <itemPath>../../source/parser/parserBisonFlex/bisonparser.dot</itemPath>
+          <itemPath>../../source/parser/parserBisonFlex/bisonparser.xml</itemPath>
+          <itemPath>../../source/parser/parserBisonFlex/bisonparser.yy</itemPath>
+          <itemPath>../../source/parser/parserBisonFlex/lexerparser.ll</itemPath>
+        </logicalFolder>
+        <itemPath>../../source/parser/Genesys++-driver.cpp</itemPath>
+        <itemPath>../../source/parser/Genesys++-driver.h</itemPath>
+        <itemPath>../../source/parser/Genesys++-scanner.cpp</itemPath>
+        <itemPath>../../source/parser/GenesysParser.cpp</itemPath>
+        <itemPath>../../source/parser/GenesysParser.h</itemPath>
+        <itemPath>../../source/parser/GenesysParser.output</itemPath>
+        <itemPath>../../source/parser/location.hh</itemPath>
+        <itemPath>../../source/parser/obj_t.cpp</itemPath>
+        <itemPath>../../source/parser/obj_t.h</itemPath>
+        <itemPath>../../source/parser/position.hh</itemPath>
+        <itemPath>../../source/parser/stack.hh</itemPath>
       </logicalFolder>
       <logicalFolder name="plugins" displayName="plugins" projectFiles="true">
         <logicalFolder name="components" displayName="components" projectFiles="true">
@@ -341,6 +337,11 @@
         <itemPath>../../source/tools/solver_if.h</itemPath>
       </logicalFolder>
     </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Arquivos de Teste"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Arquivos Importantes"
                    projectFiles="false"
@@ -351,10 +352,6 @@
   </logicalFolder>
   <sourceRootList>
     <Elem>../../source</Elem>
-    <Elem>../../documentation</Elem>
-    <Elem>../../models</Elem>
-    <Elem>..</Elem>
-    <Elem>../../temp</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -1068,106 +1065,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/Genesys++-driver.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/Genesys++-driver.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/Genesys++-scanner.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/GenesysParser.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/GenesysParser.gv"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/GenesysParser.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/GenesysParser.output"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/location.hh"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/obj_t.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/obj_t.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/parser/.Genesys++-parser.yy.swp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/parser/Makefile"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/parser/bisonparser.dot"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/parser/bisonparser.report"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/parser/bisonparser.xml"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/parser/bisonparser.yy"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/parser/bisonreport.xml"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/parser/lexerparser.ll"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/position.hh"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/stack.hh"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="../../source/kernel/statistics/CollectorDatafileDefaultImpl1.cpp"
             ex="false"
             tool="1"
@@ -1275,6 +1172,71 @@
       <item path="../../source/kernel/util/Util.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../source/kernel/util/Util.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../source/parser/Genesys++-driver.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/parser/Genesys++-driver.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/parser/Genesys++-scanner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/parser/GenesysParser.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/parser/GenesysParser.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/parser/GenesysParser.output"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/parser/location.hh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../source/parser/obj_t.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../source/parser/obj_t.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../source/parser/parserBisonFlex/Makefile"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/parser/parserBisonFlex/bisonparser.dot"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/parser/parserBisonFlex/bisonparser.xml"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/parser/parserBisonFlex/bisonparser.yy"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/parser/parserBisonFlex/lexerparser.ll"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/parser/position.hh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../source/parser/stack.hh" ex="false" tool="3" flavor2="0">
       </item>
       <item path="../../source/plugins/components/Access.cpp"
             ex="false"
@@ -2562,106 +2524,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/Genesys++-driver.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/Genesys++-driver.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/Genesys++-scanner.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/GenesysParser.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/GenesysParser.gv"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/GenesysParser.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/GenesysParser.output"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/location.hh"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/obj_t.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/obj_t.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/parser/.Genesys++-parser.yy.swp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/parser/Makefile"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/parser/bisonparser.dot"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/parser/bisonparser.report"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/parser/bisonparser.xml"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/parser/bisonparser.yy"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/parser/bisonreport.xml"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/parser/lexerparser.ll"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/position.hh"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/parserBisonFlex/stack.hh"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="../../source/kernel/statistics/CollectorDatafileDefaultImpl1.cpp"
             ex="false"
             tool="1"
@@ -2769,6 +2631,71 @@
       <item path="../../source/kernel/util/Util.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../source/kernel/util/Util.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../source/parser/Genesys++-driver.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/parser/Genesys++-driver.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/parser/Genesys++-scanner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/parser/GenesysParser.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/parser/GenesysParser.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/parser/GenesysParser.output"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/parser/location.hh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../source/parser/obj_t.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../source/parser/obj_t.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../source/parser/parserBisonFlex/Makefile"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/parser/parserBisonFlex/bisonparser.dot"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/parser/parserBisonFlex/bisonparser.xml"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/parser/parserBisonFlex/bisonparser.yy"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/parser/parserBisonFlex/lexerparser.ll"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/parser/position.hh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../source/parser/stack.hh" ex="false" tool="3" flavor2="0">
       </item>
       <item path="../../source/plugins/components/Access.cpp"
             ex="false"

@@ -11,10 +11,6 @@
             <make-dep-projects/>
             <sourceRootList>
                 <sourceRootElem>../../source</sourceRootElem>
-                <sourceRootElem>../../documentation</sourceRootElem>
-                <sourceRootElem>../../models</sourceRootElem>
-                <sourceRootElem>..</sourceRootElem>
-                <sourceRootElem>../../temp</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

@@ -17,7 +17,7 @@
 #include <string>
 #include "Parser_if.h"
 #include "Model.h"
-#include "parserBisonFlex/Genesys++-driver.h"
+#include "../../parser/Genesys++-driver.h"
 
 
 //namespace GenesysKernel {
