@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-#include "../../GenesysQtGUIQtCr/build-GenesysQtGUIQtCr-Desktop-Debug/ui_mainwindow.h" // "ui_MainWindow.h"
+#include "ui_mainwindow.h"
 #include "dialogBreakpoint.h"
 #include "../../../../kernel/simulator/SinkModelComponent.h"
 #include "../../../../kernel/simulator/Attribute.h"
