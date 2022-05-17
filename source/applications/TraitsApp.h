@@ -11,40 +11,40 @@
  * Created on 14 de Agosto de 2018, 19:36
  */
 
-#ifndef TRAITS_H
-#define TRAITS_H
+#ifndef TRAITSAPP_H
+#define TRAITSAPP_H
 
 #include "../kernel/util/Util.h"
 // TERMINAL USER INTERFACES
-#include "terminal/GenesysTerminalApp.h"
+#include "terminal/GenesysShell/GenesysTerminalApp.h"
 //
 // EXAMPLES
 //
 // book
-#include "../examples/book/Book_Cap02_Example01.h"
+#include "terminal/examples/book/Book_Cap02_Example01.h"
 // smarts
-#include "../examples/smarts/Smart_AssignWriteSeizes.h"
-#include "../examples/smarts/Smart_BatchSeparate.h"
-#include "../examples/smarts/Smart_Delay.h"
-#include "../examples/smarts/Smart_Dummy.h"
-#include "../examples/smarts/Smart_HoldSignal.h"
-#include "../examples/smarts/Smart_ModelInfoModelSimulation.h"
-#include "../examples/smarts/Smart_ODE.h"
-#include "../examples/smarts/Smart_OnEvent.h"
-#include "../examples/smarts/Smart_Parser.h"
-#include "../examples/smarts/Smart_ParserModelFunctions.h"
-#include "../examples/smarts/Smart_Plugin.h"
-#include "../examples/smarts/Smart_Process.h"
-#include "../examples/smarts/Smart_ProcessSet.h"
-#include "../examples/smarts/Smart_RouteStation.h"
-#include "../examples/smarts/Smart_SeizeDelayRelease.h"
-#include "../examples/smarts/Smart_SeizeDelayReleaseMany.h"
-#include "../examples/smarts/Smart_Sequence.h"
-#include "../examples/smarts/Smart_CppForG.h"
+#include "terminal/examples/smarts/Smart_AssignWriteSeizes.h"
+#include "terminal/examples/smarts/Smart_BatchSeparate.h"
+#include "terminal/examples/smarts/Smart_Delay.h"
+#include "terminal/examples/smarts/Smart_Dummy.h"
+#include "terminal/examples/smarts/Smart_HoldSignal.h"
+#include "terminal/examples/smarts/Smart_ModelInfoModelSimulation.h"
+#include "terminal/examples/smarts/Smart_ODE.h"
+#include "terminal/examples/smarts/Smart_OnEvent.h"
+#include "terminal/examples/smarts/Smart_Parser.h"
+#include "terminal/examples/smarts/Smart_ParserModelFunctions.h"
+#include "terminal/examples/smarts/Smart_Plugin.h"
+#include "terminal/examples/smarts/Smart_Process.h"
+#include "terminal/examples/smarts/Smart_ProcessSet.h"
+#include "terminal/examples/smarts/Smart_RouteStation.h"
+#include "terminal/examples/smarts/Smart_SeizeDelayRelease.h"
+#include "terminal/examples/smarts/Smart_SeizeDelayReleaseMany.h"
+#include "terminal/examples/smarts/Smart_Sequence.h"
+#include "terminal/examples/smarts/Smart_CppForG.h"
 // teachng
-#include "../examples/teaching/AnElectronicAssemblyAndTestSystem.h"
-#include "../examples/teaching/OperatingSystem02.h"
-#include "../examples/teaching/OperatingSystem03.h"
+#include "terminal/examples/teaching/AnElectronicAssemblyAndTestSystem.h"
+#include "terminal/examples/teaching/OperatingSystem02.h"
+#include "terminal/examples/teaching/OperatingSystem03.h"
 
 template <typename T>
 struct TraitsApp {
@@ -84,5 +84,5 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef GenesysTerminalApp Application;
 };
 
-#endif /* TRAITS_H */
+#endif /* TRAITSAPP_H */
 

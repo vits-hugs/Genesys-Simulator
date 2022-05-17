@@ -6,71 +6,73 @@
                      displayName="applications"
                      projectFiles="true">
         <logicalFolder name="terminal" displayName="terminal" projectFiles="true">
-          <itemPath>../../source/applications/terminal/GenesysShell_if.h</itemPath>
-          <itemPath>../../source/applications/terminal/GenesysTerminalApp.cpp</itemPath>
-          <itemPath>../../source/applications/terminal/GenesysTerminalApp.h</itemPath>
-          <itemPath>../../source/applications/terminal/TraitsTerminalApplications.h</itemPath>
+          <logicalFolder name="examples" displayName="examples" projectFiles="true">
+            <logicalFolder name="book" displayName="book" projectFiles="true">
+              <itemPath>../../source/applications/terminal/examples/book/Book_Cap02_Example01.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/book/Book_Cap02_Example01.h</itemPath>
+            </logicalFolder>
+            <logicalFolder name="smarts" displayName="smarts" projectFiles="true">
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_AssignWriteSeizes.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_AssignWriteSeizes.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_BatchSeparate.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_BatchSeparate.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_CellularAutomata1.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_CellularAutomata1.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_CppForG.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_CppForG.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_Delay.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_Delay.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_Dummy.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_Dummy.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_HoldSignal.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_HoldSignal.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_ModelInfoModelSimulation.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_ModelInfoModelSimulation.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_ODE.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_ODE.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_OnEvent.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_OnEvent.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_Parser.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_Parser.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_ParserModelFunctions.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_ParserModelFunctions.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_Plugin.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_Plugin.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_Process.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_Process.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_ProcessSet.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_ProcessSet.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_RouteStation.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_RouteStation.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_SeizeDelayRelease.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_SeizeDelayRelease.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_SeizeDelayReleaseMany.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_SeizeDelayReleaseMany.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_Sequence.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_Sequence.h</itemPath>
+            </logicalFolder>
+            <logicalFolder name="teaching" displayName="teaching" projectFiles="true">
+              <itemPath>../../source/applications/terminal/examples/teaching/AnElectronicAssemblyAndTestSystem.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/teaching/AnElectronicAssemblyAndTestSystem.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/teaching/FullSimulationOfComplexModel.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/teaching/FullSimulationOfComplexModel.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/teaching/OperatingSystem02.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/teaching/OperatingSystem02.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/teaching/OperatingSystem03.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/teaching/OperatingSystem03.h</itemPath>
+            </logicalFolder>
+          </logicalFolder>
+          <logicalFolder name="f1" displayName="GenesysShell" projectFiles="true">
+            <itemPath>../../source/applications/terminal/GenesysShell/GenesysShell_if.h</itemPath>
+            <itemPath>../../source/applications/terminal/GenesysShell/GenesysTerminalApp.cpp</itemPath>
+            <itemPath>../../source/applications/terminal/GenesysShell/GenesysTerminalApp.h</itemPath>
+          </logicalFolder>
+          <itemPath>../../source/applications/terminal/GenesysShell/TraitsTerminalApplications.h</itemPath>
         </logicalFolder>
-        <itemPath>../../source/applications/BaseConsoleGenesysApplication.cpp</itemPath>
-        <itemPath>../../source/applications/BaseConsoleGenesysApplication.h</itemPath>
+        <itemPath>../../source/applications/BaseGenesysTerminalApplication.cpp</itemPath>
+        <itemPath>../../source/applications/BaseGenesysTerminalApplication.h</itemPath>
         <itemPath>../../source/applications/GenesysApplication_if.h</itemPath>
         <itemPath>../../source/applications/TraitsApp.h</itemPath>
-      </logicalFolder>
-      <logicalFolder name="examples" displayName="examples" projectFiles="true">
-        <logicalFolder name="book" displayName="book" projectFiles="true">
-          <itemPath>../../source/examples/book/Book_Cap02_Example01.cpp</itemPath>
-          <itemPath>../../source/examples/book/Book_Cap02_Example01.h</itemPath>
-        </logicalFolder>
-        <logicalFolder name="smarts" displayName="smarts" projectFiles="true">
-          <itemPath>../../source/examples/smarts/Smart_AssignWriteSeizes.cpp</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_AssignWriteSeizes.h</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_BatchSeparate.cpp</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_BatchSeparate.h</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_CellularAutomata1.cpp</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_CellularAutomata1.h</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_CppForG.cpp</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_CppForG.h</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_Delay.cpp</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_Delay.h</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_Dummy.cpp</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_Dummy.h</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_HoldSignal.cpp</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_HoldSignal.h</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_ModelInfoModelSimulation.cpp</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_ModelInfoModelSimulation.h</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_ODE.cpp</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_ODE.h</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_OnEvent.cpp</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_OnEvent.h</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_Parser.cpp</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_Parser.h</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_ParserModelFunctions.cpp</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_ParserModelFunctions.h</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_Plugin.cpp</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_Plugin.h</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_Process.cpp</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_Process.h</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_ProcessSet.cpp</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_ProcessSet.h</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_RouteStation.cpp</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_RouteStation.h</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_SeizeDelayRelease.cpp</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_SeizeDelayRelease.h</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_SeizeDelayReleaseMany.cpp</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_SeizeDelayReleaseMany.h</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_Sequence.cpp</itemPath>
-          <itemPath>../../source/examples/smarts/Smart_Sequence.h</itemPath>
-        </logicalFolder>
-        <logicalFolder name="teaching" displayName="teaching" projectFiles="true">
-          <itemPath>../../source/examples/teaching/AnElectronicAssemblyAndTestSystem.cpp</itemPath>
-          <itemPath>../../source/examples/teaching/AnElectronicAssemblyAndTestSystem.h</itemPath>
-          <itemPath>../../source/examples/teaching/FullSimulationOfComplexModel.cpp</itemPath>
-          <itemPath>../../source/examples/teaching/FullSimulationOfComplexModel.h</itemPath>
-          <itemPath>../../source/examples/teaching/OperatingSystem02.cpp</itemPath>
-          <itemPath>../../source/examples/teaching/OperatingSystem02.h</itemPath>
-          <itemPath>../../source/examples/teaching/OperatingSystem03.cpp</itemPath>
-          <itemPath>../../source/examples/teaching/OperatingSystem03.h</itemPath>
-        </logicalFolder>
       </logicalFolder>
       <logicalFolder name="kernel" displayName="kernel" projectFiles="true">
         <logicalFolder name="simulator" displayName="simulator" projectFiles="true">
@@ -363,12 +365,12 @@
       </toolsSet>
       <compileType>
       </compileType>
-      <item path="../../source/applications/BaseConsoleGenesysApplication.cpp"
+      <item path="../../source/applications/BaseGenesysTerminalApplication.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/applications/BaseConsoleGenesysApplication.h"
+      <item path="../../source/applications/BaseGenesysTerminalApplication.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -383,262 +385,262 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/applications/terminal/GenesysShell_if.h"
+      <item path="../../source/applications/terminal/GenesysShell/GenesysShell_if.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/applications/terminal/GenesysTerminalApp.cpp"
+      <item path="../../source/applications/terminal/GenesysShell/GenesysTerminalApp.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/applications/terminal/GenesysTerminalApp.h"
+      <item path="../../source/applications/terminal/GenesysShell/GenesysTerminalApp.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/applications/terminal/TraitsTerminalApplications.h"
+      <item path="../../source/applications/terminal/GenesysShell/TraitsTerminalApplications.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/book/Book_Cap02_Example01.cpp"
+      <item path="../../source/applications/terminal/examples/book/Book_Cap02_Example01.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/book/Book_Cap02_Example01.h"
+      <item path="../../source/applications/terminal/examples/book/Book_Cap02_Example01.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_AssignWriteSeizes.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_AssignWriteSeizes.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_AssignWriteSeizes.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_AssignWriteSeizes.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_BatchSeparate.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_BatchSeparate.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_BatchSeparate.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_BatchSeparate.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_CellularAutomata1.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_CellularAutomata1.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_CellularAutomata1.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_CellularAutomata1.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_CppForG.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_CppForG.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_CppForG.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_CppForG.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_Delay.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Delay.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_Delay.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Delay.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_Dummy.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Dummy.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_Dummy.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Dummy.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_HoldSignal.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_HoldSignal.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_HoldSignal.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_HoldSignal.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_ModelInfoModelSimulation.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ModelInfoModelSimulation.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_ModelInfoModelSimulation.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ModelInfoModelSimulation.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_ODE.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ODE.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_ODE.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ODE.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_OnEvent.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_OnEvent.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_OnEvent.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_OnEvent.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_Parser.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Parser.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_Parser.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Parser.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_ParserModelFunctions.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ParserModelFunctions.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_ParserModelFunctions.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ParserModelFunctions.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_Plugin.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Plugin.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_Plugin.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Plugin.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_Process.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Process.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_Process.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Process.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_ProcessSet.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ProcessSet.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_ProcessSet.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ProcessSet.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_RouteStation.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_RouteStation.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_RouteStation.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_RouteStation.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_SeizeDelayRelease.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_SeizeDelayRelease.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_SeizeDelayRelease.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_SeizeDelayRelease.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_SeizeDelayReleaseMany.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_SeizeDelayReleaseMany.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_SeizeDelayReleaseMany.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_SeizeDelayReleaseMany.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_Sequence.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Sequence.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_Sequence.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Sequence.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/teaching/AnElectronicAssemblyAndTestSystem.cpp"
+      <item path="../../source/applications/terminal/examples/teaching/AnElectronicAssemblyAndTestSystem.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/teaching/AnElectronicAssemblyAndTestSystem.h"
+      <item path="../../source/applications/terminal/examples/teaching/AnElectronicAssemblyAndTestSystem.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/teaching/FullSimulationOfComplexModel.cpp"
+      <item path="../../source/applications/terminal/examples/teaching/FullSimulationOfComplexModel.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/teaching/FullSimulationOfComplexModel.h"
+      <item path="../../source/applications/terminal/examples/teaching/FullSimulationOfComplexModel.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/teaching/OperatingSystem02.cpp"
+      <item path="../../source/applications/terminal/examples/teaching/OperatingSystem02.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/teaching/OperatingSystem02.h"
+      <item path="../../source/applications/terminal/examples/teaching/OperatingSystem02.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/teaching/OperatingSystem03.cpp"
+      <item path="../../source/applications/terminal/examples/teaching/OperatingSystem03.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/teaching/OperatingSystem03.h"
+      <item path="../../source/applications/terminal/examples/teaching/OperatingSystem03.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -1822,12 +1824,12 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="../../source/applications/BaseConsoleGenesysApplication.cpp"
+      <item path="../../source/applications/BaseGenesysTerminalApplication.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/applications/BaseConsoleGenesysApplication.h"
+      <item path="../../source/applications/BaseGenesysTerminalApplication.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -1842,262 +1844,262 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/applications/terminal/GenesysShell_if.h"
+      <item path="../../source/applications/terminal/GenesysShell/GenesysShell_if.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/applications/terminal/GenesysTerminalApp.cpp"
+      <item path="../../source/applications/terminal/GenesysShell/GenesysTerminalApp.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/applications/terminal/GenesysTerminalApp.h"
+      <item path="../../source/applications/terminal/GenesysShell/GenesysTerminalApp.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/applications/terminal/TraitsTerminalApplications.h"
+      <item path="../../source/applications/terminal/GenesysShell/TraitsTerminalApplications.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/book/Book_Cap02_Example01.cpp"
+      <item path="../../source/applications/terminal/examples/book/Book_Cap02_Example01.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/book/Book_Cap02_Example01.h"
+      <item path="../../source/applications/terminal/examples/book/Book_Cap02_Example01.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_AssignWriteSeizes.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_AssignWriteSeizes.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_AssignWriteSeizes.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_AssignWriteSeizes.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_BatchSeparate.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_BatchSeparate.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_BatchSeparate.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_BatchSeparate.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_CellularAutomata1.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_CellularAutomata1.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_CellularAutomata1.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_CellularAutomata1.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_CppForG.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_CppForG.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_CppForG.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_CppForG.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_Delay.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Delay.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_Delay.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Delay.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_Dummy.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Dummy.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_Dummy.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Dummy.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_HoldSignal.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_HoldSignal.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_HoldSignal.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_HoldSignal.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_ModelInfoModelSimulation.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ModelInfoModelSimulation.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_ModelInfoModelSimulation.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ModelInfoModelSimulation.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_ODE.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ODE.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_ODE.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ODE.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_OnEvent.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_OnEvent.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_OnEvent.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_OnEvent.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_Parser.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Parser.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_Parser.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Parser.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_ParserModelFunctions.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ParserModelFunctions.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_ParserModelFunctions.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ParserModelFunctions.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_Plugin.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Plugin.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_Plugin.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Plugin.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_Process.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Process.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_Process.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Process.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_ProcessSet.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ProcessSet.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_ProcessSet.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ProcessSet.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_RouteStation.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_RouteStation.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_RouteStation.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_RouteStation.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_SeizeDelayRelease.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_SeizeDelayRelease.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_SeizeDelayRelease.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_SeizeDelayRelease.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_SeizeDelayReleaseMany.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_SeizeDelayReleaseMany.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_SeizeDelayReleaseMany.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_SeizeDelayReleaseMany.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_Sequence.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Sequence.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/smarts/Smart_Sequence.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Sequence.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/teaching/AnElectronicAssemblyAndTestSystem.cpp"
+      <item path="../../source/applications/terminal/examples/teaching/AnElectronicAssemblyAndTestSystem.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/teaching/AnElectronicAssemblyAndTestSystem.h"
+      <item path="../../source/applications/terminal/examples/teaching/AnElectronicAssemblyAndTestSystem.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/teaching/FullSimulationOfComplexModel.cpp"
+      <item path="../../source/applications/terminal/examples/teaching/FullSimulationOfComplexModel.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/teaching/FullSimulationOfComplexModel.h"
+      <item path="../../source/applications/terminal/examples/teaching/FullSimulationOfComplexModel.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/teaching/OperatingSystem02.cpp"
+      <item path="../../source/applications/terminal/examples/teaching/OperatingSystem02.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/teaching/OperatingSystem02.h"
+      <item path="../../source/applications/terminal/examples/teaching/OperatingSystem02.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/examples/teaching/OperatingSystem03.cpp"
+      <item path="../../source/applications/terminal/examples/teaching/OperatingSystem03.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/examples/teaching/OperatingSystem03.h"
+      <item path="../../source/applications/terminal/examples/teaching/OperatingSystem03.h"
             ex="false"
             tool="3"
             flavor2="0">

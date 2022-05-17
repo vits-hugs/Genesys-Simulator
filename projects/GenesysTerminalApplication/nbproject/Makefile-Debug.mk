@@ -35,32 +35,32 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/_ext/6bf258f7/BaseConsoleGenesysApplication.o \
-	${OBJECTDIR}/_ext/c834c094/GenesysTerminalApp.o \
-	${OBJECTDIR}/_ext/c84b7b9b/Book_Cap02_Example01.o \
-	${OBJECTDIR}/_ext/3afffc/Smart_AssignWriteSeizes.o \
-	${OBJECTDIR}/_ext/3afffc/Smart_BatchSeparate.o \
-	${OBJECTDIR}/_ext/3afffc/Smart_CellularAutomata1.o \
-	${OBJECTDIR}/_ext/3afffc/Smart_CppForG.o \
-	${OBJECTDIR}/_ext/3afffc/Smart_Delay.o \
-	${OBJECTDIR}/_ext/3afffc/Smart_Dummy.o \
-	${OBJECTDIR}/_ext/3afffc/Smart_HoldSignal.o \
-	${OBJECTDIR}/_ext/3afffc/Smart_ModelInfoModelSimulation.o \
-	${OBJECTDIR}/_ext/3afffc/Smart_ODE.o \
-	${OBJECTDIR}/_ext/3afffc/Smart_OnEvent.o \
-	${OBJECTDIR}/_ext/3afffc/Smart_Parser.o \
-	${OBJECTDIR}/_ext/3afffc/Smart_ParserModelFunctions.o \
-	${OBJECTDIR}/_ext/3afffc/Smart_Plugin.o \
-	${OBJECTDIR}/_ext/3afffc/Smart_Process.o \
-	${OBJECTDIR}/_ext/3afffc/Smart_ProcessSet.o \
-	${OBJECTDIR}/_ext/3afffc/Smart_RouteStation.o \
-	${OBJECTDIR}/_ext/3afffc/Smart_SeizeDelayRelease.o \
-	${OBJECTDIR}/_ext/3afffc/Smart_SeizeDelayReleaseMany.o \
-	${OBJECTDIR}/_ext/3afffc/Smart_Sequence.o \
-	${OBJECTDIR}/_ext/9d5156ff/AnElectronicAssemblyAndTestSystem.o \
-	${OBJECTDIR}/_ext/9d5156ff/FullSimulationOfComplexModel.o \
-	${OBJECTDIR}/_ext/9d5156ff/OperatingSystem02.o \
-	${OBJECTDIR}/_ext/9d5156ff/OperatingSystem03.o \
+	${OBJECTDIR}/_ext/6bf258f7/BaseGenesysTerminalApplication.o \
+	${OBJECTDIR}/_ext/acd0b333/GenesysTerminalApp.o \
+	${OBJECTDIR}/_ext/d120e6b4/Book_Cap02_Example01.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_AssignWriteSeizes.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_BatchSeparate.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_CellularAutomata1.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_CppForG.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_Delay.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_Dummy.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_HoldSignal.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_ModelInfoModelSimulation.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_ODE.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_OnEvent.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_Parser.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_ParserModelFunctions.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_Plugin.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_Process.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_ProcessSet.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_RouteStation.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_SeizeDelayRelease.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_SeizeDelayReleaseMany.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_Sequence.o \
+	${OBJECTDIR}/_ext/18d98d98/AnElectronicAssemblyAndTestSystem.o \
+	${OBJECTDIR}/_ext/18d98d98/FullSimulationOfComplexModel.o \
+	${OBJECTDIR}/_ext/18d98d98/OperatingSystem02.o \
+	${OBJECTDIR}/_ext/18d98d98/OperatingSystem03.o \
 	${OBJECTDIR}/_ext/113d9686/Attribute.o \
 	${OBJECTDIR}/_ext/113d9686/ComponentManager.o \
 	${OBJECTDIR}/_ext/113d9686/ConnectionManager.o \
@@ -195,135 +195,135 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/genesysterminalapplication: ${OBJECTF
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/genesysterminalapplication ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/_ext/6bf258f7/BaseConsoleGenesysApplication.o: ../../source/applications/BaseConsoleGenesysApplication.cpp nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/6bf258f7/BaseGenesysTerminalApplication.o: ../../source/applications/BaseGenesysTerminalApplication.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/6bf258f7
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/6bf258f7/BaseConsoleGenesysApplication.o ../../source/applications/BaseConsoleGenesysApplication.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/6bf258f7/BaseGenesysTerminalApplication.o ../../source/applications/BaseGenesysTerminalApplication.cpp
 
-${OBJECTDIR}/_ext/c834c094/GenesysTerminalApp.o: ../../source/applications/terminal/GenesysTerminalApp.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/c834c094
+${OBJECTDIR}/_ext/acd0b333/GenesysTerminalApp.o: ../../source/applications/terminal/GenesysShell/GenesysTerminalApp.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/acd0b333
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/c834c094/GenesysTerminalApp.o ../../source/applications/terminal/GenesysTerminalApp.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/acd0b333/GenesysTerminalApp.o ../../source/applications/terminal/GenesysShell/GenesysTerminalApp.cpp
 
-${OBJECTDIR}/_ext/c84b7b9b/Book_Cap02_Example01.o: ../../source/examples/book/Book_Cap02_Example01.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/c84b7b9b
+${OBJECTDIR}/_ext/d120e6b4/Book_Cap02_Example01.o: ../../source/applications/terminal/examples/book/Book_Cap02_Example01.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/d120e6b4
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/c84b7b9b/Book_Cap02_Example01.o ../../source/examples/book/Book_Cap02_Example01.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/d120e6b4/Book_Cap02_Example01.o ../../source/applications/terminal/examples/book/Book_Cap02_Example01.cpp
 
-${OBJECTDIR}/_ext/3afffc/Smart_AssignWriteSeizes.o: ../../source/examples/smarts/Smart_AssignWriteSeizes.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/3afffc
+${OBJECTDIR}/_ext/296208d5/Smart_AssignWriteSeizes.o: ../../source/applications/terminal/examples/smarts/Smart_AssignWriteSeizes.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/3afffc/Smart_AssignWriteSeizes.o ../../source/examples/smarts/Smart_AssignWriteSeizes.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_AssignWriteSeizes.o ../../source/applications/terminal/examples/smarts/Smart_AssignWriteSeizes.cpp
 
-${OBJECTDIR}/_ext/3afffc/Smart_BatchSeparate.o: ../../source/examples/smarts/Smart_BatchSeparate.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/3afffc
+${OBJECTDIR}/_ext/296208d5/Smart_BatchSeparate.o: ../../source/applications/terminal/examples/smarts/Smart_BatchSeparate.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/3afffc/Smart_BatchSeparate.o ../../source/examples/smarts/Smart_BatchSeparate.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_BatchSeparate.o ../../source/applications/terminal/examples/smarts/Smart_BatchSeparate.cpp
 
-${OBJECTDIR}/_ext/3afffc/Smart_CellularAutomata1.o: ../../source/examples/smarts/Smart_CellularAutomata1.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/3afffc
+${OBJECTDIR}/_ext/296208d5/Smart_CellularAutomata1.o: ../../source/applications/terminal/examples/smarts/Smart_CellularAutomata1.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/3afffc/Smart_CellularAutomata1.o ../../source/examples/smarts/Smart_CellularAutomata1.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_CellularAutomata1.o ../../source/applications/terminal/examples/smarts/Smart_CellularAutomata1.cpp
 
-${OBJECTDIR}/_ext/3afffc/Smart_CppForG.o: ../../source/examples/smarts/Smart_CppForG.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/3afffc
+${OBJECTDIR}/_ext/296208d5/Smart_CppForG.o: ../../source/applications/terminal/examples/smarts/Smart_CppForG.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/3afffc/Smart_CppForG.o ../../source/examples/smarts/Smart_CppForG.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_CppForG.o ../../source/applications/terminal/examples/smarts/Smart_CppForG.cpp
 
-${OBJECTDIR}/_ext/3afffc/Smart_Delay.o: ../../source/examples/smarts/Smart_Delay.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/3afffc
+${OBJECTDIR}/_ext/296208d5/Smart_Delay.o: ../../source/applications/terminal/examples/smarts/Smart_Delay.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/3afffc/Smart_Delay.o ../../source/examples/smarts/Smart_Delay.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_Delay.o ../../source/applications/terminal/examples/smarts/Smart_Delay.cpp
 
-${OBJECTDIR}/_ext/3afffc/Smart_Dummy.o: ../../source/examples/smarts/Smart_Dummy.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/3afffc
+${OBJECTDIR}/_ext/296208d5/Smart_Dummy.o: ../../source/applications/terminal/examples/smarts/Smart_Dummy.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/3afffc/Smart_Dummy.o ../../source/examples/smarts/Smart_Dummy.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_Dummy.o ../../source/applications/terminal/examples/smarts/Smart_Dummy.cpp
 
-${OBJECTDIR}/_ext/3afffc/Smart_HoldSignal.o: ../../source/examples/smarts/Smart_HoldSignal.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/3afffc
+${OBJECTDIR}/_ext/296208d5/Smart_HoldSignal.o: ../../source/applications/terminal/examples/smarts/Smart_HoldSignal.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/3afffc/Smart_HoldSignal.o ../../source/examples/smarts/Smart_HoldSignal.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_HoldSignal.o ../../source/applications/terminal/examples/smarts/Smart_HoldSignal.cpp
 
-${OBJECTDIR}/_ext/3afffc/Smart_ModelInfoModelSimulation.o: ../../source/examples/smarts/Smart_ModelInfoModelSimulation.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/3afffc
+${OBJECTDIR}/_ext/296208d5/Smart_ModelInfoModelSimulation.o: ../../source/applications/terminal/examples/smarts/Smart_ModelInfoModelSimulation.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/3afffc/Smart_ModelInfoModelSimulation.o ../../source/examples/smarts/Smart_ModelInfoModelSimulation.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_ModelInfoModelSimulation.o ../../source/applications/terminal/examples/smarts/Smart_ModelInfoModelSimulation.cpp
 
-${OBJECTDIR}/_ext/3afffc/Smart_ODE.o: ../../source/examples/smarts/Smart_ODE.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/3afffc
+${OBJECTDIR}/_ext/296208d5/Smart_ODE.o: ../../source/applications/terminal/examples/smarts/Smart_ODE.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/3afffc/Smart_ODE.o ../../source/examples/smarts/Smart_ODE.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_ODE.o ../../source/applications/terminal/examples/smarts/Smart_ODE.cpp
 
-${OBJECTDIR}/_ext/3afffc/Smart_OnEvent.o: ../../source/examples/smarts/Smart_OnEvent.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/3afffc
+${OBJECTDIR}/_ext/296208d5/Smart_OnEvent.o: ../../source/applications/terminal/examples/smarts/Smart_OnEvent.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/3afffc/Smart_OnEvent.o ../../source/examples/smarts/Smart_OnEvent.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_OnEvent.o ../../source/applications/terminal/examples/smarts/Smart_OnEvent.cpp
 
-${OBJECTDIR}/_ext/3afffc/Smart_Parser.o: ../../source/examples/smarts/Smart_Parser.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/3afffc
+${OBJECTDIR}/_ext/296208d5/Smart_Parser.o: ../../source/applications/terminal/examples/smarts/Smart_Parser.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/3afffc/Smart_Parser.o ../../source/examples/smarts/Smart_Parser.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_Parser.o ../../source/applications/terminal/examples/smarts/Smart_Parser.cpp
 
-${OBJECTDIR}/_ext/3afffc/Smart_ParserModelFunctions.o: ../../source/examples/smarts/Smart_ParserModelFunctions.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/3afffc
+${OBJECTDIR}/_ext/296208d5/Smart_ParserModelFunctions.o: ../../source/applications/terminal/examples/smarts/Smart_ParserModelFunctions.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/3afffc/Smart_ParserModelFunctions.o ../../source/examples/smarts/Smart_ParserModelFunctions.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_ParserModelFunctions.o ../../source/applications/terminal/examples/smarts/Smart_ParserModelFunctions.cpp
 
-${OBJECTDIR}/_ext/3afffc/Smart_Plugin.o: ../../source/examples/smarts/Smart_Plugin.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/3afffc
+${OBJECTDIR}/_ext/296208d5/Smart_Plugin.o: ../../source/applications/terminal/examples/smarts/Smart_Plugin.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/3afffc/Smart_Plugin.o ../../source/examples/smarts/Smart_Plugin.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_Plugin.o ../../source/applications/terminal/examples/smarts/Smart_Plugin.cpp
 
-${OBJECTDIR}/_ext/3afffc/Smart_Process.o: ../../source/examples/smarts/Smart_Process.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/3afffc
+${OBJECTDIR}/_ext/296208d5/Smart_Process.o: ../../source/applications/terminal/examples/smarts/Smart_Process.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/3afffc/Smart_Process.o ../../source/examples/smarts/Smart_Process.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_Process.o ../../source/applications/terminal/examples/smarts/Smart_Process.cpp
 
-${OBJECTDIR}/_ext/3afffc/Smart_ProcessSet.o: ../../source/examples/smarts/Smart_ProcessSet.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/3afffc
+${OBJECTDIR}/_ext/296208d5/Smart_ProcessSet.o: ../../source/applications/terminal/examples/smarts/Smart_ProcessSet.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/3afffc/Smart_ProcessSet.o ../../source/examples/smarts/Smart_ProcessSet.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_ProcessSet.o ../../source/applications/terminal/examples/smarts/Smart_ProcessSet.cpp
 
-${OBJECTDIR}/_ext/3afffc/Smart_RouteStation.o: ../../source/examples/smarts/Smart_RouteStation.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/3afffc
+${OBJECTDIR}/_ext/296208d5/Smart_RouteStation.o: ../../source/applications/terminal/examples/smarts/Smart_RouteStation.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/3afffc/Smart_RouteStation.o ../../source/examples/smarts/Smart_RouteStation.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_RouteStation.o ../../source/applications/terminal/examples/smarts/Smart_RouteStation.cpp
 
-${OBJECTDIR}/_ext/3afffc/Smart_SeizeDelayRelease.o: ../../source/examples/smarts/Smart_SeizeDelayRelease.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/3afffc
+${OBJECTDIR}/_ext/296208d5/Smart_SeizeDelayRelease.o: ../../source/applications/terminal/examples/smarts/Smart_SeizeDelayRelease.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/3afffc/Smart_SeizeDelayRelease.o ../../source/examples/smarts/Smart_SeizeDelayRelease.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_SeizeDelayRelease.o ../../source/applications/terminal/examples/smarts/Smart_SeizeDelayRelease.cpp
 
-${OBJECTDIR}/_ext/3afffc/Smart_SeizeDelayReleaseMany.o: ../../source/examples/smarts/Smart_SeizeDelayReleaseMany.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/3afffc
+${OBJECTDIR}/_ext/296208d5/Smart_SeizeDelayReleaseMany.o: ../../source/applications/terminal/examples/smarts/Smart_SeizeDelayReleaseMany.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/3afffc/Smart_SeizeDelayReleaseMany.o ../../source/examples/smarts/Smart_SeizeDelayReleaseMany.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_SeizeDelayReleaseMany.o ../../source/applications/terminal/examples/smarts/Smart_SeizeDelayReleaseMany.cpp
 
-${OBJECTDIR}/_ext/3afffc/Smart_Sequence.o: ../../source/examples/smarts/Smart_Sequence.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/3afffc
+${OBJECTDIR}/_ext/296208d5/Smart_Sequence.o: ../../source/applications/terminal/examples/smarts/Smart_Sequence.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/3afffc/Smart_Sequence.o ../../source/examples/smarts/Smart_Sequence.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_Sequence.o ../../source/applications/terminal/examples/smarts/Smart_Sequence.cpp
 
-${OBJECTDIR}/_ext/9d5156ff/AnElectronicAssemblyAndTestSystem.o: ../../source/examples/teaching/AnElectronicAssemblyAndTestSystem.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/9d5156ff
+${OBJECTDIR}/_ext/18d98d98/AnElectronicAssemblyAndTestSystem.o: ../../source/applications/terminal/examples/teaching/AnElectronicAssemblyAndTestSystem.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/18d98d98
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/9d5156ff/AnElectronicAssemblyAndTestSystem.o ../../source/examples/teaching/AnElectronicAssemblyAndTestSystem.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/18d98d98/AnElectronicAssemblyAndTestSystem.o ../../source/applications/terminal/examples/teaching/AnElectronicAssemblyAndTestSystem.cpp
 
-${OBJECTDIR}/_ext/9d5156ff/FullSimulationOfComplexModel.o: ../../source/examples/teaching/FullSimulationOfComplexModel.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/9d5156ff
+${OBJECTDIR}/_ext/18d98d98/FullSimulationOfComplexModel.o: ../../source/applications/terminal/examples/teaching/FullSimulationOfComplexModel.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/18d98d98
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/9d5156ff/FullSimulationOfComplexModel.o ../../source/examples/teaching/FullSimulationOfComplexModel.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/18d98d98/FullSimulationOfComplexModel.o ../../source/applications/terminal/examples/teaching/FullSimulationOfComplexModel.cpp
 
-${OBJECTDIR}/_ext/9d5156ff/OperatingSystem02.o: ../../source/examples/teaching/OperatingSystem02.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/9d5156ff
+${OBJECTDIR}/_ext/18d98d98/OperatingSystem02.o: ../../source/applications/terminal/examples/teaching/OperatingSystem02.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/18d98d98
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/9d5156ff/OperatingSystem02.o ../../source/examples/teaching/OperatingSystem02.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/18d98d98/OperatingSystem02.o ../../source/applications/terminal/examples/teaching/OperatingSystem02.cpp
 
-${OBJECTDIR}/_ext/9d5156ff/OperatingSystem03.o: ../../source/examples/teaching/OperatingSystem03.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/9d5156ff
+${OBJECTDIR}/_ext/18d98d98/OperatingSystem03.o: ../../source/applications/terminal/examples/teaching/OperatingSystem03.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/18d98d98
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/9d5156ff/OperatingSystem03.o ../../source/examples/teaching/OperatingSystem03.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/18d98d98/OperatingSystem03.o ../../source/applications/terminal/examples/teaching/OperatingSystem03.cpp
 
 ${OBJECTDIR}/_ext/113d9686/Attribute.o: ../../source/kernel/simulator/Attribute.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
