@@ -165,6 +165,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/ccae408d/Station.o \
 	${OBJECTDIR}/_ext/ccae408d/Storage.o \
 	${OBJECTDIR}/_ext/ccae408d/Variable.o \
+	${OBJECTDIR}/_ext/d18efc87/FitterDummyImpl.o \
 	${OBJECTDIR}/_ext/d18efc87/HypothesisTesterDefaultImpl1.o \
 	${OBJECTDIR}/_ext/d18efc87/ProbabilityDistribution.o \
 	${OBJECTDIR}/_ext/d18efc87/SolverDefaultImpl1.o \
@@ -846,6 +847,11 @@ ${OBJECTDIR}/_ext/ccae408d/Variable.o: ../../source/plugins/data/Variable.cpp nb
 	${MKDIR} -p ${OBJECTDIR}/_ext/ccae408d
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/Variable.o ../../source/plugins/data/Variable.cpp
+
+${OBJECTDIR}/_ext/d18efc87/FitterDummyImpl.o: ../../source/tools/FitterDummyImpl.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/d18efc87
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/d18efc87/FitterDummyImpl.o ../../source/tools/FitterDummyImpl.cpp
 
 ${OBJECTDIR}/_ext/d18efc87/HypothesisTesterDefaultImpl1.o: ../../source/tools/HypothesisTesterDefaultImpl1.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/d18efc87

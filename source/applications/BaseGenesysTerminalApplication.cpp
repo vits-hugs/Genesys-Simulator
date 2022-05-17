@@ -5,7 +5,7 @@
  */
 
 /* 
- * File:   BaseConsoleGenesysApplication.cpp
+ * File:   BaseGenesysTerminalApplication.cpp
  * Author: rlcancian
  * 
  * Created on 3 de Setembro de 2019, 16:25
@@ -16,102 +16,102 @@
 
 #include "../kernel/simulator/Simulator.h"
 
-BaseConsoleGenesysApplication::BaseConsoleGenesysApplication() {
+BaseGenesysTerminalApplication::BaseGenesysTerminalApplication() {
 }
 
 
 // default Trace Handlers
 
-void BaseConsoleGenesysApplication::traceHandler(TraceEvent e) {
+void BaseGenesysTerminalApplication::traceHandler(TraceEvent e) {
 	std::cout << e.getText() << std::endl;
 }
 
-void BaseConsoleGenesysApplication::traceErrorHandler(TraceErrorEvent e) {
+void BaseGenesysTerminalApplication::traceErrorHandler(TraceErrorEvent e) {
 	std::cout << e.getText() << std::endl;
 }
 
-void BaseConsoleGenesysApplication::traceReportHandler(TraceEvent e) {
+void BaseGenesysTerminalApplication::traceReportHandler(TraceEvent e) {
 	std::cout << "" << e.getText() << "" << std::endl;
 }
 
-void BaseConsoleGenesysApplication::traceSimulationHandler(TraceSimulationEvent e) {
+void BaseGenesysTerminalApplication::traceSimulationHandler(TraceSimulationEvent e) {
 	std::cout << e.getText() << std::endl;
 }
 
 
 // default Event Handlers
 
-void BaseConsoleGenesysApplication::onBreakpointHandler(SimulationEvent* re) {
+void BaseGenesysTerminalApplication::onBreakpointHandler(SimulationEvent* re) {
 	std::cout << "(Event Handler) " << "Breakpoint occured at time " << std::to_string(re->getSimulatedTime()) << std::endl;
 }
 
-void BaseConsoleGenesysApplication::onEntityCreateHandler(SimulationEvent* re) {
+void BaseGenesysTerminalApplication::onEntityCreateHandler(SimulationEvent* re) {
 	std::cout << "(Event Handler) " << "Entity " << re->getEntityCreated()->getName() << " was created." << std::endl;
 }
 
-void BaseConsoleGenesysApplication::onEntityMoveHandler(SimulationEvent* re) {
+void BaseGenesysTerminalApplication::onEntityMoveHandler(SimulationEvent* re) {
 	std::cout << "(Event Handler) " << "Entity " << re->getCurrentEvent()->getEntity()->getName() << " was moved to component" << re->getDestinationComponent()->getName() << std::endl;
 }
 
-void BaseConsoleGenesysApplication::onEntityRemoveHandler(SimulationEvent* re) {
+void BaseGenesysTerminalApplication::onEntityRemoveHandler(SimulationEvent* re) {
 	std::cout << "(Event Handler) " << "Entity " << re->getCurrentEvent()->getEntity()->getName() << " was removed." << std::endl;
 }
 
-void BaseConsoleGenesysApplication::onProcessEventHandler(SimulationEvent* re) {
+void BaseGenesysTerminalApplication::onProcessEventHandler(SimulationEvent* re) {
 	std::cout << "(Event Handler) " << "Processing event " << re->getCurrentEvent()->show() << std::endl;
 }
 
-void BaseConsoleGenesysApplication::onReplicationEndHandler(SimulationEvent* re) {
+void BaseGenesysTerminalApplication::onReplicationEndHandler(SimulationEvent* re) {
 	std::cout << "(Event Handler) " << "Replication " << re->getCurrentReplicationNumber() << " ending." << std::endl;
 }
 
-void BaseConsoleGenesysApplication::onReplicationStartHandler(SimulationEvent* re) {
+void BaseGenesysTerminalApplication::onReplicationStartHandler(SimulationEvent* re) {
 	std::cout << "(Event Handler) " << "Replication " << re->getCurrentReplicationNumber() << " starting." << std::endl;
 }
 
-void BaseConsoleGenesysApplication::onReplicationStepHandler(SimulationEvent* re) {
+void BaseGenesysTerminalApplication::onReplicationStepHandler(SimulationEvent* re) {
 	std::cout << "(Event Handler) " << "Replication step at time " << std::to_string(re->getSimulatedTime()) << std::endl;
 }
 
-void BaseConsoleGenesysApplication::onSimulationStartHandler(SimulationEvent* re) {
+void BaseGenesysTerminalApplication::onSimulationStartHandler(SimulationEvent* re) {
 	std::cout << "(Event Handler) " << "Simulation is starting" << std::endl;
 }
 
-void BaseConsoleGenesysApplication::onSimulationEndHandler(SimulationEvent* re) {
+void BaseGenesysTerminalApplication::onSimulationEndHandler(SimulationEvent* re) {
 	std::cout << "Event (Handler) " << "Replication " << re->getCurrentReplicationNumber() << " ending." << std::endl;
 }
 
-void BaseConsoleGenesysApplication::onSimulationPausedHandler(SimulationEvent* re) {
+void BaseGenesysTerminalApplication::onSimulationPausedHandler(SimulationEvent* re) {
 	std::cout << "(Event Handler) " << "Simulation was paused at time " << std::to_string(re->getSimulatedTime()) << std::endl;
 }
 
-void BaseConsoleGenesysApplication::onSimulationResumeHandler(SimulationEvent* re) {
+void BaseGenesysTerminalApplication::onSimulationResumeHandler(SimulationEvent* re) {
 	std::cout << "(Event Handler) " << "Simulation was resumed." << std::endl;
 }
 
-void BaseConsoleGenesysApplication::setDefaultEventHandlers(OnEventManager* oem) {
-	oem->addOnBreakpointHandler(this, &BaseConsoleGenesysApplication::onBreakpointHandler);
-	oem->addOnEntityCreateHandler(this, &BaseConsoleGenesysApplication::onEntityCreateHandler);
-	oem->addOnEntityMoveHandler(this, &BaseConsoleGenesysApplication::onEntityMoveHandler);
-	oem->addOnEntityRemoveHandler(this, &BaseConsoleGenesysApplication::onEntityRemoveHandler);
-	oem->addOnProcessEventHandler(this, &BaseConsoleGenesysApplication::onProcessEventHandler);
-	oem->addOnReplicationEndHandler(this, &BaseConsoleGenesysApplication::onReplicationEndHandler);
-	oem->addOnReplicationStartHandler(this, &BaseConsoleGenesysApplication::onReplicationStartHandler);
-	oem->addOnReplicationStepHandler(this, &BaseConsoleGenesysApplication::onReplicationStepHandler);
-	oem->addOnSimulationEndHandler(this, &BaseConsoleGenesysApplication::onSimulationEndHandler);
-	oem->addOnSimulationPausedHandler(this, &BaseConsoleGenesysApplication::onSimulationPausedHandler);
-	oem->addOnSimulationResumeHandler(this, &BaseConsoleGenesysApplication::onSimulationResumeHandler);
-	oem->addOnSimulationStartHandler(this, &BaseConsoleGenesysApplication::onSimulationStartHandler);
+void BaseGenesysTerminalApplication::setDefaultEventHandlers(OnEventManager* oem) {
+	oem->addOnBreakpointHandler(this, &BaseGenesysTerminalApplication::onBreakpointHandler);
+	oem->addOnEntityCreateHandler(this, &BaseGenesysTerminalApplication::onEntityCreateHandler);
+	oem->addOnEntityMoveHandler(this, &BaseGenesysTerminalApplication::onEntityMoveHandler);
+	oem->addOnEntityRemoveHandler(this, &BaseGenesysTerminalApplication::onEntityRemoveHandler);
+	oem->addOnProcessEventHandler(this, &BaseGenesysTerminalApplication::onProcessEventHandler);
+	oem->addOnReplicationEndHandler(this, &BaseGenesysTerminalApplication::onReplicationEndHandler);
+	oem->addOnReplicationStartHandler(this, &BaseGenesysTerminalApplication::onReplicationStartHandler);
+	oem->addOnReplicationStepHandler(this, &BaseGenesysTerminalApplication::onReplicationStepHandler);
+	oem->addOnSimulationEndHandler(this, &BaseGenesysTerminalApplication::onSimulationEndHandler);
+	oem->addOnSimulationPausedHandler(this, &BaseGenesysTerminalApplication::onSimulationPausedHandler);
+	oem->addOnSimulationResumeHandler(this, &BaseGenesysTerminalApplication::onSimulationResumeHandler);
+	oem->addOnSimulationStartHandler(this, &BaseGenesysTerminalApplication::onSimulationStartHandler);
 }
 
-void BaseConsoleGenesysApplication::setDefaultTraceHandlers(TraceManager* tm) {
-	tm->addTraceHandler<BaseConsoleGenesysApplication>(this, &BaseConsoleGenesysApplication::traceHandler);
-	tm->addTraceErrorHandler<BaseConsoleGenesysApplication>(this, &BaseConsoleGenesysApplication::traceErrorHandler);
-	tm->addTraceReportHandler<BaseConsoleGenesysApplication>(this, &BaseConsoleGenesysApplication::traceReportHandler);
-	tm->addTraceSimulationHandler<BaseConsoleGenesysApplication>(this, &BaseConsoleGenesysApplication::traceSimulationHandler);
+void BaseGenesysTerminalApplication::setDefaultTraceHandlers(TraceManager* tm) {
+	tm->addTraceHandler<BaseGenesysTerminalApplication>(this, &BaseGenesysTerminalApplication::traceHandler);
+	tm->addTraceErrorHandler<BaseGenesysTerminalApplication>(this, &BaseGenesysTerminalApplication::traceErrorHandler);
+	tm->addTraceReportHandler<BaseGenesysTerminalApplication>(this, &BaseGenesysTerminalApplication::traceReportHandler);
+	tm->addTraceSimulationHandler<BaseGenesysTerminalApplication>(this, &BaseGenesysTerminalApplication::traceSimulationHandler);
 }
 
-void BaseConsoleGenesysApplication::insertFakePluginsByHand(Simulator* simulator) {
+void BaseGenesysTerminalApplication::insertFakePluginsByHand(Simulator* simulator) {
 	PluginManager* pm = simulator->getPlugins();
 	// TRYING SOME NEW ORGANIZATION (BASED ON ARENA 16..20)
 

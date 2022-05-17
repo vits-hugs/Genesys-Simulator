@@ -17,14 +17,14 @@
  * Simple C++ Test Suite
  */
 
-#include "../tools/ProbabilityDistribution.h"
-#include "../tools/solver_if.h"
-#include "../tools/SolverDefaultImpl1.h"
-#include "../kernel/statistics/SamplerDefaultImpl1.h"
-#include "../kernel/statistics/CollectorDatafileDefaultImpl1.h"
-#include "../kernel/statistics/StatisticsDataFileDefaultImpl.h"
-#include "../Traits.h"
-#include "../tools/HypothesisTester_if.h"
+#include "../source/tools/ProbabilityDistribution.h"
+#include "../source/tools/solver_if.h"
+#include "../source/tools/SolverDefaultImpl1.h"
+#include "../source/kernel/statistics/SamplerDefaultImpl1.h"
+#include "../source/kernel/statistics/CollectorDatafileDefaultImpl1.h"
+#include "../source/kernel/statistics/StatisticsDataFileDefaultImpl.h"
+#include "../source/tools/TraitsTools.h"
+#include "../source/tools/HypothesisTester_if.h"
 
 void pd_test1() {
 	//std::cout << "testProbabilityDistribution test 1" << std::endl;
@@ -74,7 +74,7 @@ void pd_test3() {
 }
 
 void tpd_est4() {
-	HypothesisTester_if* ht = new Traits<HypothesisTester_if>::Implementation();
+	HypothesisTester_if* ht = new TraitsTools<HypothesisTester_if>::Implementation();
 	HypothesisTester_if::ConfidenceInterval ic = ht->averageConfidenceInterval(100, 10, 200, 0.95);
 	double x;
 	x = ProbabilityDistribution::inverseFFisherSnedecor(0.05, 7, 16);
@@ -86,9 +86,9 @@ void tpd_est4() {
 }
 
 void pd_test5() {
-	HypothesisTester_if* ht = new Traits<HypothesisTester_if>::Implementation();
+	HypothesisTester_if* ht = new TraitsTools<HypothesisTester_if>::Implementation();
 	HypothesisTester_if::TestResult result = ht->testAverage(90.0, 10.0, 25, 84.0, 0.95, HypothesisTester_if::H1Comparition::LESS_THAN);
-	std::cout << result.errorTypeI() << result.pValue() << result.rejectH0() << std::endl;
+	std::cout << result.acceptanceInferiorLimit() << result.acceptanceSuperiorLimit() << result.pValue() << result.rejectH0() << std::endl;
 }
 
 int pd_main(int argc, char** argv) {

@@ -14,7 +14,7 @@
 
 #include "../../../BaseGenesysTerminalApplication.h"
 
-class Smart_CppForG : public BaseConsoleGenesysApplication {
+class Smart_CppForG : public BaseGenesysTerminalApplication {
 public:
 	Smart_CppForG();
 public:

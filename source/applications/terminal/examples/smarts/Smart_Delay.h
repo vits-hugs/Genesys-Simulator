@@ -16,7 +16,7 @@
 
 #include "../../../BaseGenesysTerminalApplication.h"
 
-class Smart_Delay : public BaseConsoleGenesysApplication {
+class Smart_Delay : public BaseGenesysTerminalApplication {
 public:
 	Smart_Delay();
 public:

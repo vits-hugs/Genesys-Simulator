@@ -16,7 +16,7 @@
 
 #include "../../../BaseGenesysTerminalApplication.h"
 
-class Smart_SeizeDelayReleaseMany : public BaseConsoleGenesysApplication {
+class Smart_SeizeDelayReleaseMany : public BaseGenesysTerminalApplication {
 public:
 	Smart_SeizeDelayReleaseMany();
 public:

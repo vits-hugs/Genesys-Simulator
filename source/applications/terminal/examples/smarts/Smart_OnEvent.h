@@ -16,7 +16,7 @@
 
 #include "../../../BaseGenesysTerminalApplication.h"
 
-class Smart_OnEvent : public BaseConsoleGenesysApplication {
+class Smart_OnEvent : public BaseGenesysTerminalApplication {
 public:
 	Smart_OnEvent();
 public:

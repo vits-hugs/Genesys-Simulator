@@ -16,7 +16,7 @@
 
 #include "../../../BaseGenesysTerminalApplication.h"
 
-class Smart_AssignWriteSeizes : public BaseConsoleGenesysApplication {
+class Smart_AssignWriteSeizes : public BaseGenesysTerminalApplication {
 public:
 	Smart_AssignWriteSeizes();
 public:

@@ -15,7 +15,7 @@
 
 #include "../../../BaseGenesysTerminalApplication.h"
 
-class Smart_Plugin : public BaseConsoleGenesysApplication {
+class Smart_Plugin : public BaseGenesysTerminalApplication {
 public:
 	Smart_Plugin();
 public:

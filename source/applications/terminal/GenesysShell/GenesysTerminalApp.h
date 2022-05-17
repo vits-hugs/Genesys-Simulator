@@ -21,7 +21,7 @@
 #include <fstream>
 #include <assert.h>
 
-class GenesysTerminalApp : public BaseConsoleGenesysApplication {
+class GenesysTerminalApp : public BaseGenesysTerminalApplication {
 private:
 	typedef std::function<void() > ExecuterMember;
 	template<typename Class>

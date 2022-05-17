@@ -16,7 +16,7 @@
 
 #include "../../../BaseGenesysTerminalApplication.h"
 
-class Smart_Dummy : public BaseConsoleGenesysApplication {
+class Smart_Dummy : public BaseGenesysTerminalApplication {
 public:
 	Smart_Dummy();
 public:

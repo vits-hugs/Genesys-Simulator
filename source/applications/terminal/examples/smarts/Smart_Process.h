@@ -16,7 +16,7 @@
 
 #include "../../../BaseGenesysTerminalApplication.h"
 
-class Smart_Process : public BaseConsoleGenesysApplication {
+class Smart_Process : public BaseGenesysTerminalApplication {
 public:
 	Smart_Process();
 public:

@@ -16,7 +16,7 @@
 
 #include "../../../BaseGenesysTerminalApplication.h"
 
-class FullSimulationOfComplexModel : public BaseConsoleGenesysApplication {
+class FullSimulationOfComplexModel : public BaseGenesysTerminalApplication {
 public:
 	FullSimulationOfComplexModel();
 public:

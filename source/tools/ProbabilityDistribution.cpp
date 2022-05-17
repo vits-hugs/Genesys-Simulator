@@ -17,7 +17,7 @@
 #include <cassert>
 
 std::map<std::string, double>* ProbabilityDistribution::memory = new std::map<std::string, double>();
-Solver_if* ProbabilityDistribution::integrator = new Traits<Solver_if>::Implementation(Traits<Solver_if>::Precision, Traits<Solver_if>::MaxSteps);
+Solver_if* ProbabilityDistribution::integrator = new TraitsTools<Solver_if>::Implementation(TraitsTools<Solver_if>::Precision, TraitsTools<Solver_if>::MaxSteps);
 
 double ProbabilityDistribution::beta(double x, double alpha, double beta) {
 	double x1 = _gammaFunction(alpha + beta) / (_gammaFunction(alpha) * _gammaFunction(beta));

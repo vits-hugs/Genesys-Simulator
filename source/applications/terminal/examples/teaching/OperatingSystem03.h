@@ -16,7 +16,7 @@
 
 #include "../../../BaseGenesysTerminalApplication.h"
 
-class OperatingSystem03 : public BaseConsoleGenesysApplication {
+class OperatingSystem03 : public BaseGenesysTerminalApplication {
 public:
 	OperatingSystem03();
 public:

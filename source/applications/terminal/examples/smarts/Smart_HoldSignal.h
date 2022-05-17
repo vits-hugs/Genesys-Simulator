@@ -16,7 +16,7 @@
 
 #include "../../../BaseGenesysTerminalApplication.h"
 
-class Smart_HoldSignal : public BaseConsoleGenesysApplication {
+class Smart_HoldSignal : public BaseGenesysTerminalApplication {
 public:
 	Smart_HoldSignal();
 public:

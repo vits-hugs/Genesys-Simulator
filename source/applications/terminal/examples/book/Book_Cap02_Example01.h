@@ -15,7 +15,7 @@
 
 #include "../../../BaseGenesysTerminalApplication.h"
 
-class Book_Cap02_Example01 : public BaseConsoleGenesysApplication {
+class Book_Cap02_Example01 : public BaseGenesysTerminalApplication {
 public:
 	Book_Cap02_Example01();
 	virtual int main(int argc, char** argv);

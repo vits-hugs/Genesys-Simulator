@@ -16,7 +16,7 @@
 
 #include "../../../BaseGenesysTerminalApplication.h"
 
-class Smart_ModelInfoModelSimulation : public BaseConsoleGenesysApplication {
+class Smart_ModelInfoModelSimulation : public BaseGenesysTerminalApplication {
 public:
 	Smart_ModelInfoModelSimulation();
 public:

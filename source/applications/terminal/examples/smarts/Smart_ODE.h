@@ -16,7 +16,7 @@
 
 #include "../../../BaseGenesysTerminalApplication.h"
 
-class Smart_ODE : public BaseConsoleGenesysApplication {
+class Smart_ODE : public BaseGenesysTerminalApplication {
 public:
 	Smart_ODE();
 public:

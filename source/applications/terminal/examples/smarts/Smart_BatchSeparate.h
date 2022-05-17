@@ -15,7 +15,7 @@
 
 #include "../../../BaseGenesysTerminalApplication.h"
 
-class Smart_BatchSeparate : public BaseConsoleGenesysApplication {
+class Smart_BatchSeparate : public BaseGenesysTerminalApplication {
 public:
 	Smart_BatchSeparate();
 public:

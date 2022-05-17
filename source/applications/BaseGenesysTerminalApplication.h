@@ -5,23 +5,23 @@
  */
 
 /* 
- * File:   BaseConsoleGenesysApplication.h
+ * File:   BaseGenesysTerminalApplication.h
  * Author: rlcancian
  *
  * Created on 3 de Setembro de 2019, 16:25
  */
 
-#ifndef BASECONSOLEGENESYSAPPLICATION_H
-#define BASECONSOLEGENESYSAPPLICATION_H
+#ifndef BaseGenesysTerminalApplication_H
+#define BaseGenesysTerminalApplication_H
 
 #include "GenesysApplication_if.h"
 #include "../kernel/simulator/TraceManager.h"
 #include "../kernel/simulator/OnEventManager.h"
 
-class BaseConsoleGenesysApplication : public GenesysApplication_if {
+class BaseGenesysTerminalApplication : public GenesysApplication_if {
 public:
-	BaseConsoleGenesysApplication();
-	virtual ~BaseConsoleGenesysApplication() = default;
+	BaseGenesysTerminalApplication();
+	virtual ~BaseGenesysTerminalApplication() = default;
 public:
 	virtual int main(int argc, char** argv) = 0;
 public:
@@ -51,5 +51,5 @@ private:
 
 };
 
-#endif /* BASECONSOLEGENESYSAPPLICATION_H */
+#endif /* BaseGenesysTerminalApplication_H */
 

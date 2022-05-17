@@ -1438,7 +1438,7 @@ void MainWindow::on_checkBox_ShowRecursive_stateChanged(int arg1) {
 
 void MainWindow::on_actionGet_Involved_triggered() {
 
-	QMessageBox::about(this, "Get Inveolved", "Genesys is a free open-source simulator (and tools) available at 'https://github.com/rlcancian/2019_2022_GenESyS'. Help us by submiting your pull requests containing code improvements.");
+	QMessageBox::about(this, "Get Inveolved", "Genesys is a free open-source simulator (and tools) available at 'https://github.com/rlcancian/Genesys-Simulator'. Help us by submiting your pull requests containing code improvements.");
 }
 
 void MainWindow::on_checkBox_ShowLevels_stateChanged(int arg1) {

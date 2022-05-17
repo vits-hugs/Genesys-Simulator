@@ -19,3 +19,6 @@ lexer:
 	flex --full -o \
 	../../source/parser/Genesys++-scanner.cpp \
 	../../source/parser/parserBisonFlex/lexerparser.ll
+
+generateDynLib:
+	

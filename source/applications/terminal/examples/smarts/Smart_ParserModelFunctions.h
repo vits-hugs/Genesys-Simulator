@@ -16,7 +16,7 @@
 
 #include "../../../BaseGenesysTerminalApplication.h"
 
-class Smart_ParserModelFunctions : public BaseConsoleGenesysApplication {
+class Smart_ParserModelFunctions : public BaseGenesysTerminalApplication {
 public:
 	Smart_ParserModelFunctions();
 public:

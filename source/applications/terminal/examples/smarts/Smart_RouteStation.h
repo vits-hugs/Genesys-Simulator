@@ -16,7 +16,7 @@
 
 #include "../../../BaseGenesysTerminalApplication.h"
 
-class Smart_RouteStation : public BaseConsoleGenesysApplication {
+class Smart_RouteStation : public BaseGenesysTerminalApplication {
 public:
 	Smart_RouteStation();
 public:

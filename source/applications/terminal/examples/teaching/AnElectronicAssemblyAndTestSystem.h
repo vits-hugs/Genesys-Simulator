@@ -15,7 +15,7 @@
 
 #include "../../../BaseGenesysTerminalApplication.h"
 
-class AnElectronicAssemblyAndTestSystem : public BaseConsoleGenesysApplication {
+class AnElectronicAssemblyAndTestSystem : public BaseGenesysTerminalApplication {
 public:
 	AnElectronicAssemblyAndTestSystem();
 public:
