@@ -40,7 +40,6 @@ int Smart_Parser::main(int argc, char** argv) {
 		"-3 + 2*0.25 +0xc/4 -1.34e-3 *(-1*-1)-2^5",
 		"sin(0.3) - cos(1.75)",
 		"trunc(12.99) + round(12.99) + frac(45.009)",
-		"sin(0.3) - cos(1.75)",
 		"exp(1) -ln(exp(1)) + log(10) + sqrt(81) - mod(15,8)",
 		"not false and (3 nand (0 xor false))",
 		"norm(0,1) + expo(10) + unif(2,5) + weib(2,1) + logn(10,1) + erla(2,1) + beta(6,2,1,1) + tria(1,4,5)",

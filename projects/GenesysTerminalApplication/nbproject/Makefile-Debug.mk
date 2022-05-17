@@ -36,25 +36,6 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/_ext/6bf258f7/BaseConsoleGenesysApplication.o \
-	${OBJECTDIR}/_ext/eea60200/AnimateExpression.o \
-	${OBJECTDIR}/_ext/eea60200/CodeEditor.o \
-	${OBJECTDIR}/_ext/eea60200/GraphicalComponentPort.o \
-	${OBJECTDIR}/_ext/eea60200/GraphicalConnection.o \
-	${OBJECTDIR}/_ext/eea60200/GraphicalModelComponent.o \
-	${OBJECTDIR}/_ext/eea60200/GraphicalModelDataDefinition.o \
-	${OBJECTDIR}/_ext/eea60200/ModelGraphicsScene.o \
-	${OBJECTDIR}/_ext/eea60200/ModelGraphicsView.o \
-	${OBJECTDIR}/_ext/eea60200/PropertyEditor.o \
-	${OBJECTDIR}/_ext/eea60200/SimpleQtGUI.o \
-	${OBJECTDIR}/_ext/eea60200/dialogBreakpoint.o \
-	${OBJECTDIR}/_ext/eea60200/main.o \
-	${OBJECTDIR}/_ext/eea60200/mainwindow.o \
-	${OBJECTDIR}/_ext/eea60200/qcustomplot.o \
-	${OBJECTDIR}/_ext/967ee023/moc_CodeEditor.o \
-	${OBJECTDIR}/_ext/967ee023/moc_dialogBreakpoint.o \
-	${OBJECTDIR}/_ext/967ee023/moc_mainwindow.o \
-	${OBJECTDIR}/_ext/967ee023/moc_qcustomplot.o \
-	${OBJECTDIR}/_ext/967ee023/qrc_simpleGUI_resources.o \
 	${OBJECTDIR}/_ext/c834c094/GenesysTerminalApp.o \
 	${OBJECTDIR}/_ext/c84b7b9b/Book_Cap02_Example01.o \
 	${OBJECTDIR}/_ext/3afffc/Smart_AssignWriteSeizes.o \
@@ -187,14 +168,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/d18efc87/HypothesisTesterDefaultImpl1.o \
 	${OBJECTDIR}/_ext/d18efc87/ProbabilityDistribution.o \
 	${OBJECTDIR}/_ext/d18efc87/SolverDefaultImpl1.o \
-	${OBJECTDIR}/_ext/f126fe0/main.o \
-	${OBJECTDIR}/_ext/2daa9ab4/moc_MainWindow.o \
-	${OBJECTDIR}/_ext/10fd7c84/main.o \
-	${OBJECTDIR}/_ext/10fd7c84/moc_CodeEditor.o \
-	${OBJECTDIR}/_ext/10fd7c84/moc_dialogBreakpoint.o \
-	${OBJECTDIR}/_ext/10fd7c84/moc_mainwindow.o \
-	${OBJECTDIR}/_ext/10fd7c84/moc_qcustomplot.o \
-	${OBJECTDIR}/_ext/10fd7c84/qrc_simpleGUI_resources.o \
 	${OBJECTDIR}/main.o
 
 
@@ -226,101 +199,6 @@ ${OBJECTDIR}/_ext/6bf258f7/BaseConsoleGenesysApplication.o: ../../source/applica
 	${MKDIR} -p ${OBJECTDIR}/_ext/6bf258f7
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/6bf258f7/BaseConsoleGenesysApplication.o ../../source/applications/BaseConsoleGenesysApplication.cpp
-
-${OBJECTDIR}/_ext/eea60200/AnimateExpression.o: ../../source/applications/gui/qt/GenesysQtGUI/AnimateExpression.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/eea60200
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/eea60200/AnimateExpression.o ../../source/applications/gui/qt/GenesysQtGUI/AnimateExpression.cpp
-
-${OBJECTDIR}/_ext/eea60200/CodeEditor.o: ../../source/applications/gui/qt/GenesysQtGUI/CodeEditor.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/eea60200
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/eea60200/CodeEditor.o ../../source/applications/gui/qt/GenesysQtGUI/CodeEditor.cpp
-
-${OBJECTDIR}/_ext/eea60200/GraphicalComponentPort.o: ../../source/applications/gui/qt/GenesysQtGUI/GraphicalComponentPort.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/eea60200
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/eea60200/GraphicalComponentPort.o ../../source/applications/gui/qt/GenesysQtGUI/GraphicalComponentPort.cpp
-
-${OBJECTDIR}/_ext/eea60200/GraphicalConnection.o: ../../source/applications/gui/qt/GenesysQtGUI/GraphicalConnection.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/eea60200
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/eea60200/GraphicalConnection.o ../../source/applications/gui/qt/GenesysQtGUI/GraphicalConnection.cpp
-
-${OBJECTDIR}/_ext/eea60200/GraphicalModelComponent.o: ../../source/applications/gui/qt/GenesysQtGUI/GraphicalModelComponent.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/eea60200
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/eea60200/GraphicalModelComponent.o ../../source/applications/gui/qt/GenesysQtGUI/GraphicalModelComponent.cpp
-
-${OBJECTDIR}/_ext/eea60200/GraphicalModelDataDefinition.o: ../../source/applications/gui/qt/GenesysQtGUI/GraphicalModelDataDefinition.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/eea60200
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/eea60200/GraphicalModelDataDefinition.o ../../source/applications/gui/qt/GenesysQtGUI/GraphicalModelDataDefinition.cpp
-
-${OBJECTDIR}/_ext/eea60200/ModelGraphicsScene.o: ../../source/applications/gui/qt/GenesysQtGUI/ModelGraphicsScene.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/eea60200
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/eea60200/ModelGraphicsScene.o ../../source/applications/gui/qt/GenesysQtGUI/ModelGraphicsScene.cpp
-
-${OBJECTDIR}/_ext/eea60200/ModelGraphicsView.o: ../../source/applications/gui/qt/GenesysQtGUI/ModelGraphicsView.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/eea60200
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/eea60200/ModelGraphicsView.o ../../source/applications/gui/qt/GenesysQtGUI/ModelGraphicsView.cpp
-
-${OBJECTDIR}/_ext/eea60200/PropertyEditor.o: ../../source/applications/gui/qt/GenesysQtGUI/PropertyEditor.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/eea60200
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/eea60200/PropertyEditor.o ../../source/applications/gui/qt/GenesysQtGUI/PropertyEditor.cpp
-
-${OBJECTDIR}/_ext/eea60200/SimpleQtGUI.o: ../../source/applications/gui/qt/GenesysQtGUI/SimpleQtGUI.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/eea60200
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/eea60200/SimpleQtGUI.o ../../source/applications/gui/qt/GenesysQtGUI/SimpleQtGUI.cpp
-
-${OBJECTDIR}/_ext/eea60200/dialogBreakpoint.o: ../../source/applications/gui/qt/GenesysQtGUI/dialogBreakpoint.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/eea60200
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/eea60200/dialogBreakpoint.o ../../source/applications/gui/qt/GenesysQtGUI/dialogBreakpoint.cpp
-
-${OBJECTDIR}/_ext/eea60200/main.o: ../../source/applications/gui/qt/GenesysQtGUI/main.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/eea60200
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/eea60200/main.o ../../source/applications/gui/qt/GenesysQtGUI/main.cpp
-
-${OBJECTDIR}/_ext/eea60200/mainwindow.o: ../../source/applications/gui/qt/GenesysQtGUI/mainwindow.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/eea60200
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/eea60200/mainwindow.o ../../source/applications/gui/qt/GenesysQtGUI/mainwindow.cpp
-
-${OBJECTDIR}/_ext/eea60200/qcustomplot.o: ../../source/applications/gui/qt/GenesysQtGUI/qcustomplot.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/eea60200
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/eea60200/qcustomplot.o ../../source/applications/gui/qt/GenesysQtGUI/qcustomplot.cpp
-
-${OBJECTDIR}/_ext/967ee023/moc_CodeEditor.o: ../../source/applications/gui/qt/SimpleGUI_QtCreator/build-SimpleGUI-Desktop-Debug/moc_CodeEditor.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/967ee023
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/967ee023/moc_CodeEditor.o ../../source/applications/gui/qt/SimpleGUI_QtCreator/build-SimpleGUI-Desktop-Debug/moc_CodeEditor.cpp
-
-${OBJECTDIR}/_ext/967ee023/moc_dialogBreakpoint.o: ../../source/applications/gui/qt/SimpleGUI_QtCreator/build-SimpleGUI-Desktop-Debug/moc_dialogBreakpoint.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/967ee023
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/967ee023/moc_dialogBreakpoint.o ../../source/applications/gui/qt/SimpleGUI_QtCreator/build-SimpleGUI-Desktop-Debug/moc_dialogBreakpoint.cpp
-
-${OBJECTDIR}/_ext/967ee023/moc_mainwindow.o: ../../source/applications/gui/qt/SimpleGUI_QtCreator/build-SimpleGUI-Desktop-Debug/moc_mainwindow.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/967ee023
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/967ee023/moc_mainwindow.o ../../source/applications/gui/qt/SimpleGUI_QtCreator/build-SimpleGUI-Desktop-Debug/moc_mainwindow.cpp
-
-${OBJECTDIR}/_ext/967ee023/moc_qcustomplot.o: ../../source/applications/gui/qt/SimpleGUI_QtCreator/build-SimpleGUI-Desktop-Debug/moc_qcustomplot.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/967ee023
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/967ee023/moc_qcustomplot.o ../../source/applications/gui/qt/SimpleGUI_QtCreator/build-SimpleGUI-Desktop-Debug/moc_qcustomplot.cpp
-
-${OBJECTDIR}/_ext/967ee023/qrc_simpleGUI_resources.o: ../../source/applications/gui/qt/SimpleGUI_QtCreator/build-SimpleGUI-Desktop-Debug/qrc_simpleGUI_resources.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/967ee023
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/967ee023/qrc_simpleGUI_resources.o ../../source/applications/gui/qt/SimpleGUI_QtCreator/build-SimpleGUI-Desktop-Debug/qrc_simpleGUI_resources.cpp
 
 ${OBJECTDIR}/_ext/c834c094/GenesysTerminalApp.o: ../../source/applications/terminal/GenesysTerminalApp.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/c834c094
@@ -981,46 +859,6 @@ ${OBJECTDIR}/_ext/d18efc87/SolverDefaultImpl1.o: ../../source/tools/SolverDefaul
 	${MKDIR} -p ${OBJECTDIR}/_ext/d18efc87
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/d18efc87/SolverDefaultImpl1.o ../../source/tools/SolverDefaultImpl1.cpp
-
-${OBJECTDIR}/_ext/f126fe0/main.o: ../GenesysQtGUIQtCr/GenesysQtGUIQtCr/main.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/f126fe0
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f126fe0/main.o ../GenesysQtGUIQtCr/GenesysQtGUIQtCr/main.cpp
-
-${OBJECTDIR}/_ext/2daa9ab4/moc_MainWindow.o: ../GenesysQtGUIQtCr/build-GenesysQtGUIQtCr-Desktop-Debug/moc_MainWindow.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/2daa9ab4
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/2daa9ab4/moc_MainWindow.o ../GenesysQtGUIQtCr/build-GenesysQtGUIQtCr-Desktop-Debug/moc_MainWindow.cpp
-
-${OBJECTDIR}/_ext/10fd7c84/main.o: ../GenesysQtGUI_NB/main.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/10fd7c84
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/10fd7c84/main.o ../GenesysQtGUI_NB/main.cpp
-
-${OBJECTDIR}/_ext/10fd7c84/moc_CodeEditor.o: ../GenesysQtGUI_NB/moc_CodeEditor.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/10fd7c84
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/10fd7c84/moc_CodeEditor.o ../GenesysQtGUI_NB/moc_CodeEditor.cpp
-
-${OBJECTDIR}/_ext/10fd7c84/moc_dialogBreakpoint.o: ../GenesysQtGUI_NB/moc_dialogBreakpoint.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/10fd7c84
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/10fd7c84/moc_dialogBreakpoint.o ../GenesysQtGUI_NB/moc_dialogBreakpoint.cpp
-
-${OBJECTDIR}/_ext/10fd7c84/moc_mainwindow.o: ../GenesysQtGUI_NB/moc_mainwindow.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/10fd7c84
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/10fd7c84/moc_mainwindow.o ../GenesysQtGUI_NB/moc_mainwindow.cpp
-
-${OBJECTDIR}/_ext/10fd7c84/moc_qcustomplot.o: ../GenesysQtGUI_NB/moc_qcustomplot.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/10fd7c84
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/10fd7c84/moc_qcustomplot.o ../GenesysQtGUI_NB/moc_qcustomplot.cpp
-
-${OBJECTDIR}/_ext/10fd7c84/qrc_simpleGUI_resources.o: ../GenesysQtGUI_NB/qrc_simpleGUI_resources.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/10fd7c84
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/10fd7c84/qrc_simpleGUI_resources.o ../GenesysQtGUI_NB/qrc_simpleGUI_resources.cpp
 
 ${OBJECTDIR}/main.o: main.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}

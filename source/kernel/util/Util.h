@@ -69,7 +69,7 @@ static inline std::string trim(std::string str) {
     str.erase(0, str.find_first_not_of(typeOfWhitespaces));
     return str;
 }
-static std::string strReplace(std::string text, std::string searchFor, std::string replaceBy) {
+static inline std::string strReplace(std::string text, std::string searchFor, std::string replaceBy) {
     unsigned int pos = text.find(searchFor, 0);
     while (pos < text.length()) {// != std::string::npos) {
         text = text.replace(pos, searchFor.length(), replaceBy);

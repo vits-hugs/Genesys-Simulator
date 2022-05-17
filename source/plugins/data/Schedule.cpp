@@ -28,6 +28,7 @@ Schedule::Schedule(Model* model, std::string name) : ModelDataDefinition(model, 
 }
 
 std::string Schedule::show() {
+	return ModelDataDefinition::show();
 }
 
 PluginInformation* Schedule::GetPluginInformation() {

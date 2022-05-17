@@ -84,6 +84,7 @@ bool Assignment::loadInstance(std::map<std::string, std::string>* fields, unsign
 	_destination = LoadField(fields, "assignDest" + strIndex(parentIndex), "");
 	_expression = LoadField(fields, "assignExpr" + strIndex(parentIndex), "");
 	_isAttributeNotVariable = LoadField(fields, "assignIsAttrib" + strIndex(parentIndex), true);
+	return true; /////
 }
 
 std::map<std::string, std::string>* Assignment::saveInstance(unsigned int parentIndex, bool saveDefaultValues) {

@@ -92,17 +92,17 @@ void CppCode::_createInternalData() {
 }
 
 CppCode::CodeResult CppCode::compile() {
-	CppCode::CodeResult result();
+	CppCode::CodeResult result;
 	return result;
 }
 
 CppCode::CodeResult CppCode::loadLibrary() {
-	CppCode::CodeResult result();
+	CppCode::CodeResult result;
 	return result;
 }
 
 CppCode::CodeResult CppCode::unloadLibrary() {
-	CppCode::CodeResult result();
+	CppCode::CodeResult result;
 	return result;
 }
 

@@ -155,10 +155,16 @@ double SolverDefaultImpl1::derivate(double initPoint, double initValue, double (
 }
 
 double SolverDefaultImpl1::derivate(double initPoint, double initValue, double (*f)(double, double, double), double p2, double p3) {
+	/*  @TODO: +-: not implemented yet */
+	return 0.0;
 }
 
 double SolverDefaultImpl1::derivate(double initPoint, double initValue, double (*f)(double, double, double, double), double p2, double p3, double p4) {
+	/*  @TODO: +-: not implemented yet */
+	return 0.0;
 }
 
 double SolverDefaultImpl1::derivate(double initPoint, double initValue, double (*f)(double, double, double, double, double), double p2, double p3, double p4, double p5) {
+	/*  @TODO: +-: not implemented yet */
+	return 0.0;
 }

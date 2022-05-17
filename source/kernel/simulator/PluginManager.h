@@ -54,9 +54,10 @@ public:
                 StaticConstructorDataDefinitionInstance constructor = plugin->getPluginInfo()->getDataDefinitionConstructor();
                 instance = static_cast<T*> (constructor(model, name));
                 return instance;
-            }
-        }
-        _simulator->getTracer()->traceError(Util::TraceLevel::L1_errorFatal, "Error: Could not find any plugin with Typename \"" + pluginTypename + "\"");
+			}
+		}
+		/// innvalid use of incomplete class
+		///_simulator->getTracer()->traceError(Util::TraceLevel::L1_errorFatal, "Error: Could not find any plugin with Typename \"" + pluginTypename + "\"");
         return nullptr;
     }
 private:
