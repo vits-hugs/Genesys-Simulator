@@ -34,13 +34,14 @@ FullSimulationOfComplexModel::FullSimulationOfComplexModel() {
  */
 int FullSimulationOfComplexModel::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	// Handle traces and simulation events to output them
-	TraceManager* tm = model->getTracer();
-	this->setDefaultTraceHandlers(tm);
 	// insert "fake plugins" since plugins based on dynamic loaded library are not implemented yet
 	this->insertFakePluginsByHand(genesys);
 	// creates an empty model
 	Model* model = genesys->getModels()->newModel();
+	// Handle traces and simulation events to output them
+	TraceManager* tm = model->getTracer();
+	this->setDefaultTraceHandlers(tm);
+	//
 	PluginManager* plugins = genesys->getPlugins();
 	// get easy access to classes used to insert components and elements into a model
 	ComponentManager* components = model->getComponents();
