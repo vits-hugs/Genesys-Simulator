@@ -33,6 +33,10 @@ extern "C" void DestroySimulator(/*GenesysKernel::*/Simulator* p) {
 
 //using namespace GenesysKernel;
 
+/*!
+ * Simulator constructor basically constructs inner classes (managers) and shows basic information on the console. 
+ * This is the only method on the entire simulator thats directlly plots something to the output
+ */
 Simulator::Simulator() {
 	// This is the ONLY method in the entire software where std::cout is allowed.
 	std::cout << "STARTING " << _name << ", version " << getVersion() << std::endl;

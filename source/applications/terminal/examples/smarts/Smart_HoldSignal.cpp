@@ -35,8 +35,8 @@ Smart_HoldSignal::Smart_HoldSignal() {
  */
 int Smart_HoldSignal::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	this->insertFakePluginsByHand(genesys);
 	this->setDefaultTraceHandlers(genesys->getTracer());
+	this->insertFakePluginsByHand(genesys);
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
 	Model* model = genesys->getModels()->newModel();
 	PluginManager* plugins = genesys->getPlugins();

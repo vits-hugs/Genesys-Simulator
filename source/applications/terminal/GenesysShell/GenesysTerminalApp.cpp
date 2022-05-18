@@ -28,7 +28,7 @@ void GenesysTerminalApp::Trace(std::string message) {
 
 void GenesysTerminalApp::run(List<std::string>* commandlineArgs) {
 	Trace("Genesys Shell is running. Type your command. For help, type the command \"help\".");
-	//this->insertFakePluginsByHand(_simulator);
+	this->insertFakePluginsByHand(_simulator);
 	std::string inputText; //, shortPrefix, longPrefix, separator; //,longPrefix, separator;
 	while (true) {
 		if (!commandlineArgs->empty()) {

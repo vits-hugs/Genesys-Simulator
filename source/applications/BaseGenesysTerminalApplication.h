@@ -26,8 +26,8 @@ public:
 	virtual int main(int argc, char** argv) = 0;
 public:
 	void setDefaultTraceHandlers(TraceManager* tm);
-	void setDefaultEventHandlers(OnEventManager* oem);
-	void insertFakePluginsByHand(Simulator* simulator);
+	void setDefaultEventHandlers(OnEventManager* oem); /*!< Add default method to handle simulator events so information is plotted to output screen */
+	void insertFakePluginsByHand(Simulator* simulator); /*!< Used to connect plugins that are NOT dynamic libraries, but are compiled whitin the kernel*/
 protected:
 	// default Trace Handlers
 	virtual void traceHandler(TraceEvent e);

@@ -85,7 +85,7 @@ Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilen
 	std::string fn = getFileName(dynamicLibraryFilename);
 	StaticGetPluginInformation GetInfo = nullptr;
 	Plugin* pluginResult = nullptr;
-	// ODO: Remove this mostruosity and and trully dynamically loaded libraries    
+	// @TODO: Dummy connections basically does nothing but give access to PluginInformation alreaady compiled 
 
 	// Model data definitions
 

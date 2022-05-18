@@ -34,8 +34,8 @@ Smart_RouteStation::Smart_RouteStation() {
  */
 int Smart_RouteStation::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	this->insertFakePluginsByHand(genesys);
 	this->setDefaultTraceHandlers(genesys->getTracer());
+	this->insertFakePluginsByHand(genesys);
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
 	// create model
 	Model* model = genesys->getModels()->newModel();

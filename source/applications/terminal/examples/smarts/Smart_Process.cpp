@@ -32,8 +32,8 @@ Smart_Process::Smart_Process() {
  */
 int Smart_Process::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	this->insertFakePluginsByHand(genesys);
 	this->setDefaultTraceHandlers(genesys->getTracer());
+	this->insertFakePluginsByHand(genesys);
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
 	// crete model
 	Model* model = genesys->getModels()->newModel();

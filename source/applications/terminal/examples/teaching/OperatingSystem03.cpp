@@ -38,8 +38,8 @@ OperatingSystem03::OperatingSystem03() {
 
 int OperatingSystem03::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	this->insertFakePluginsByHand(genesys);
 	this->setDefaultTraceHandlers(genesys->getTracer());
+	this->insertFakePluginsByHand(genesys);
 	Model* model = genesys->getModels()->newModel();
 	PluginManager* plugins = genesys->getPlugins();
 	//

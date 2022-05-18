@@ -23,8 +23,8 @@ Smart_ODE::Smart_ODE() {
 
 int Smart_ODE::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	this->insertFakePluginsByHand(genesys);
 	this->setDefaultTraceHandlers(genesys->getTracer());
+	this->insertFakePluginsByHand(genesys);
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L5_event);
 	// create model
 	Model* model = genesys->getModels()->newModel();

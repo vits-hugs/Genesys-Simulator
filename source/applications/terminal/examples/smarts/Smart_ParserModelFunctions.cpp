@@ -37,8 +37,8 @@ Smart_ParserModelFunctions::Smart_ParserModelFunctions() {
  */
 int Smart_ParserModelFunctions::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	this->insertFakePluginsByHand(genesys);
 	this->setDefaultTraceHandlers(genesys->getTracer());
+	this->insertFakePluginsByHand(genesys);
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L5_event);
 	// create model
 	Model* m = genesys->getModels()->newModel();

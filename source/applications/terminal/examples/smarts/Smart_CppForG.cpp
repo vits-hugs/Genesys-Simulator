@@ -23,8 +23,8 @@ Smart_CppForG::Smart_CppForG() {
 
 int Smart_CppForG::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	this->insertFakePluginsByHand(genesys);
 	this->setDefaultTraceHandlers(genesys->getTracer());
+	this->insertFakePluginsByHand(genesys);
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
 	// crete model
 	Model* m = genesys->getModels()->newModel();

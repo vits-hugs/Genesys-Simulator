@@ -31,8 +31,8 @@ Smart_Sequence::Smart_Sequence() {
 
 int Smart_Sequence::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	this->insertFakePluginsByHand(genesys);
 	this->setDefaultTraceHandlers(genesys->getTracer());
+	this->insertFakePluginsByHand(genesys);
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
 	// create model
 	Model* m = genesys->getModels()->newModel();

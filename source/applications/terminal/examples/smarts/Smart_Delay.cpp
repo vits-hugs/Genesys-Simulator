@@ -32,8 +32,8 @@ Smart_Delay::Smart_Delay() {
  */
 int Smart_Delay::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	this->insertFakePluginsByHand(genesys);
 	this->setDefaultTraceHandlers(genesys->getTracer());
+	this->insertFakePluginsByHand(genesys);
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L6_arrival);
 	// create model
 	Model* model = genesys->getModels()->newModel();

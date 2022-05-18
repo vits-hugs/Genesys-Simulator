@@ -31,8 +31,8 @@ Smart_Parser::Smart_Parser() {
  */
 int Smart_Parser::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	this->insertFakePluginsByHand(genesys);
 	this->setDefaultTraceHandlers(genesys->getTracer());
+	this->insertFakePluginsByHand(genesys);
 	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
 	// Just parser evaluating different expressions 
 	// (arithmetic, trigonometric, matemathic, logic, statistic and conditional)
