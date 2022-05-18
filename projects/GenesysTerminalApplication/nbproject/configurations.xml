@@ -46,14 +46,6 @@
       <logicalFolder name="GenesysTerminalApplication"
                      displayName="GenesysTerminalApplication"
                      projectFiles="true">
-        <logicalFolder name="dist" displayName="dist" projectFiles="true">
-          <logicalFolder name="Debug" displayName="Debug" projectFiles="true">
-            <logicalFolder name="GNU-Linux" displayName="GNU-Linux" projectFiles="true">
-              <itemPath>dist/Debug/GNU-Linux/genesysterminalapplication</itemPath>
-            </logicalFolder>
-          </logicalFolder>
-        </logicalFolder>
-        <itemPath>.dep.inc</itemPath>
         <itemPath>Makefile</itemPath>
       </logicalFolder>
       <logicalFolder name="GenesysTools"
@@ -1982,14 +1974,7 @@
       </item>
       <item path="../GenesysParser/Makefile" ex="false" tool="3" flavor2="0">
       </item>
-      <item path=".dep.inc" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Makefile" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="dist/Debug/GNU-Linux/genesysterminalapplication"
-            ex="false"
-            tool="3"
-            flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -3559,14 +3544,7 @@
       </item>
       <item path="../GenesysParser/Makefile" ex="false" tool="3" flavor2="0">
       </item>
-      <item path=".dep.inc" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Makefile" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="dist/Debug/GNU-Linux/genesysterminalapplication"
-            ex="false"
-            tool="3"
-            flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

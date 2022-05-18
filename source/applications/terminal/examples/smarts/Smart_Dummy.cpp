@@ -20,7 +20,7 @@
 
 // Model Components
 #include "../../../../plugins/components/Create.h"
-#include "../../../../plugins/components/Delay.h"
+#include "../../../../plugins/components/DummyComponent.h"
 #include "../../../../plugins/components/Dispose.h"
 
 Smart_Dummy::Smart_Dummy() {
@@ -38,11 +38,11 @@ int Smart_Dummy::main(int argc, char** argv) {
 	Model* model = genesys->getModels()->newModel();
 	PluginManager* plugins = genesys->getPlugins();
 	Create* create1 = plugins->newInstance<Create>(model);
-	Delay* delay1 = plugins->newInstance<Delay>(model);
+	DummyComponent* dummy1 = plugins->newInstance<DummyComponent>(model);
 	Dispose* dispose1 = plugins->newInstance<Dispose>(model);
 	// connect model components to create a "workflow"
-	create1->getConnections()->insert(delay1);
-	delay1->getConnections()->insert(dispose1);
+	create1->getConnections()->insert(dummy1);
+	dummy1->getConnections()->insert(dispose1);
 	// set options, save and simulate
 	model->getSimulation()->setReplicationLength(60);
 	model->save("./models/Smart_Dummy.gen");
