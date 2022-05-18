@@ -21,12 +21,12 @@ LicenceManager::LicenceManager(Simulator* simulator) {
 }
 
 void LicenceManager::setDefaultLicenceAndLimits() {
-	_licence = "LICENCE: Academic Mode."
-			+ " In academic mode this software has full functionality and executing training-size simulation models. "
-			+ " This software may be duplicated and used for educational purposes only;"
-			+ " All changes and improvements must be submitted to the git repository using pull requests."
-			+ " Any commercial application is a violation of the license agreement."
-			+ " Designed and developed by prof. Dr. Ing Rafael Luiz Cancian, 2019-2022";
+	_licence = "LICENCE: Academic Mode.";
+	_licence += " In academic mode this software has full functionality and executing training-size simulation models. ";
+	_licence += " This software may be duplicated and used for educational purposes only;";
+	_licence += " All changes and improvements must be submitted to the git repository using pull requests.";
+	_licence += " Any commercial application is a violation of the license agreement.";
+	_licence += " Designed and developed by prof. Dr. Ing Rafael Luiz Cancian, 2019-2022";
 	_activationCode = "";
 	_components = 50;
 	_datadefinitions = 100;
