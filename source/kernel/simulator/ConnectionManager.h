@@ -22,10 +22,15 @@
 
 class ModelComponent;
 
-//typedef std::pair<ModelComponent*, unsigned int> Connection;
+typedef unsigned int ConnectionPort; /*< actually a port is only a uint, but it could be more complex, including type, presence or absence of data, etc */
+/*!
+ * Defines a connection between two or more ModelComponents. 
+ * A (receiver) component's inputPort may receive connection from one or more (sender) components' outputPorts.
+ * A (sender) component's outputPort is connected to one and only one (receiver) component's inputPort.
+ */
 struct Connection {
 	ModelComponent* component;
-	unsigned int portNum;
+	ConnectionPort port;
 };
 
 /*!
@@ -41,7 +46,7 @@ public:
 	//ModelComponent* atRank(unsigned int rank); /*!< DEPRECTED. Use  getConnectionAtRank instead */
 	Connection* getFrontConnection();
 	Connection* getConnectionAtPort(unsigned int rank);
-	void insert(ModelComponent* component, unsigned int inputNumber = 0);
+	void insert(ModelComponent* component, unsigned int inputPortNumber = 0); /*!< Insert a new connection by specifying the destnation component and optionally an input port, if not 0*/
 	void insert(Connection* connection);
 	void insertAtPort(unsigned int port, Connection* connection);
 	void remove(Connection* connection);

@@ -81,15 +81,15 @@ Model::Model(Simulator* simulator, unsigned int level) {
 }
 
 void Model::sendEntityToComponent(Entity* entity, Connection* connection, double timeDelay) {
-	this->sendEntityToComponent(entity, connection->component, timeDelay, connection->portNum);
+	this->sendEntityToComponent(entity, connection->component, timeDelay, connection->port);
 }
 
-void Model::sendEntityToComponent(Entity* entity, ModelComponent* component, double timeDelay, unsigned int componentInputNumber) {
+void Model::sendEntityToComponent(Entity* entity, ModelComponent* component, double timeDelay, unsigned int componentinputPortNumber) {
 	SimulationEvent* se = _simulation->_createSimulationEvent();
 	se->setDestinationComponent(component);
 	se->setEntityMoveTimeDelay(timeDelay);
 	this->getOnEvents()->NotifyEntityMoveHandlers(se); // it's my friend
-	Event* newEvent = new Event(this->getSimulation()->getSimulatedTime() + timeDelay, entity, component, componentInputNumber);
+	Event* newEvent = new Event(this->getSimulation()->getSimulatedTime() + timeDelay, entity, component, componentinputPortNumber);
 	this->getFutureEvents()->insert(newEvent);
 }
 

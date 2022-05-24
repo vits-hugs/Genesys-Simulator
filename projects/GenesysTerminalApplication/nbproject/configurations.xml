@@ -100,6 +100,8 @@
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_SeizeDelayRelease.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_SeizeDelayReleaseMany.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_SeizeDelayReleaseMany.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_SeizeDelayReleaseNoDataDefs.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_SeizeDelayReleaseNoDataDefs.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_Sequence.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_Sequence.h</itemPath>
             </logicalFolder>
@@ -735,6 +737,16 @@
             flavor2="0">
       </item>
       <item path="../../source/applications/terminal/examples/smarts/Smart_SeizeDelayReleaseMany.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_SeizeDelayReleaseNoDataDefs.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_SeizeDelayReleaseNoDataDefs.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2305,6 +2317,16 @@
             flavor2="0">
       </item>
       <item path="../../source/applications/terminal/examples/smarts/Smart_SeizeDelayReleaseMany.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_SeizeDelayReleaseNoDataDefs.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_SeizeDelayReleaseNoDataDefs.h"
             ex="false"
             tool="3"
             flavor2="0">

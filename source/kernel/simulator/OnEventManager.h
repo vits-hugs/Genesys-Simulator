@@ -77,11 +77,11 @@ public:
 	Event* getCurrentEvent() const {
 		return currentEvent;
 	}
-	//void setCurrentInputNumber(unsigned int currentInputNumber) {
-	//	this->currentInputNumber = currentInputNumber;
+	//void setCurrentinputPortNumber(unsigned int currentinputPortNumber) {
+	//	this->currentinputPortNumber = currentinputPortNumber;
 	//}
-	//unsigned int getCurrentInputNumber() const {
-	//	return currentInputNumber;
+	//unsigned int getCurrentinputPortNumber() const {
+	//	return currentinputPortNumber;
 	//}
 	//void setCurrentComponent(ModelComponent* currentComponent) {
 	//	this->currentComponent = currentComponent;
@@ -125,7 +125,7 @@ private:
 	Entity* entityCreated = nullptr;
 	Event* currentEvent = nullptr;
 	//Entity* currentEntity = nullptr;
-	//unsigned int currentInputNumber = 0;
+	//unsigned int currentinputPortNumber = 0;
 	//ModelComponent* currentComponent = nullptr;
 	ModelComponent* destinationComponent = nullptr;
 	void* customObject = nullptr;

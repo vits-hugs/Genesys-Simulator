@@ -61,9 +61,14 @@ private:
 	const struct DEFAULT_VALUES {
 		std::string code = "";
 		std::string tempDir = ".temp/";
+		std::string compiler = "g++";
+		std::string flags = "";
 	} DEFAULT;
 	std::string _code = DEFAULT.code;
 	std::string _tempDir = DEFAULT.tempDir;
+	std::string _compiler = DEFAULT.compiler;
+	std::string _flags = DEFAULT.flags;
+
 	bool libraryLoaded = false;
 };
 

@@ -44,10 +44,11 @@ std::string ModelSimulation::show() {
 
 bool ModelSimulation::_isReplicationEndCondition() {
 	bool finish = _model->getFutureEvents()->size() == 0;
-	finish |= _model->parseExpression(_terminatingCondition) != 0.0;
-	if (_model->getFutureEvents()->size() > 0 && !finish) {
-		// replication length has not been achieve (sor far), but next event will happen after that, so it's just fine to set tnow as the replicationLength
-		finish |= _model->getFutureEvents()->front()->getTime() > _replicationLength * _replicationTimeScaleFactorToBase;
+	if (!finish) {
+		finish = _model->getFutureEvents()->front()->getTime() > _replicationLength * _replicationTimeScaleFactorToBase;
+		if (!finish && _terminatingCondition != "") {
+			finish = _model->parseExpression(_terminatingCondition) != 0.0;
+		}
 	}
 	return finish;
 }
@@ -73,7 +74,7 @@ SimulationEvent* ModelSimulation::_createSimulationEvent(void* thiscustomObject)
 	//	se->currentComponent = _currentComponent;
 	//	se->currentEntity = _currentEntity;
 	se->currentEvent = _currentEvent;
-	//	se->currentInputNumber = _currentInputNumber;
+	//	se->currentinputPortNumber = _currentinputPortNumber;
 	se->currentReplicationNumber = _currentReplicationNumber;
 	se->customObject = thiscustomObject;
 	se->_isPaused = this->_isPaused;
@@ -538,8 +539,8 @@ SimulationReporter_if* ModelSimulation::getReporter() const {
 	//_currentEvent->
 }
 
-//unsigned int ModelSimulation::getCurrentInputNumber() const {
-//	return _currentInputNumber;
+//unsigned int ModelSimulation::getCurrentinputPortNumber() const {
+//	return _currentinputPortNumber;
 //}
 
 void ModelSimulation::setShowReportsAfterReplication(bool showReportsAfterReplication) {

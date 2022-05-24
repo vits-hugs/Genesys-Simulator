@@ -30,7 +30,7 @@ PlugIns are NOT implemented yet
 class Plugin {
 public:
     Plugin(std::string filename_so_dll);
-    Plugin(StaticGetPluginInformation getInformation); // temporary. Just while compiled together
+	Plugin(StaticGetPluginInformation getInformation); // @TODO: temporary. Just while compiled together
     virtual ~Plugin() = default;
 public:
     std::string show();

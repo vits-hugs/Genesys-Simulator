@@ -78,7 +78,7 @@ public: // gets
 	List<SeizableItem*>* getReleaseRequests() const;
 
 protected:
-	virtual void _onDispatchEvent(Entity* entity, unsigned int inputNumber);
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual void _initBetweenReplications();
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);

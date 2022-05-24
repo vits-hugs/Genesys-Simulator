@@ -212,3 +212,10 @@ bool ModelCheckerDefaultImpl1::checkLimits() {
 	Util::DecIndent();
 	return res;
 }
+
+bool ModelCheckerDefaultImpl1::checkOrphaned() {
+	_model->getTracer()->trace(Util::TraceLevel::L7_internal, "Checking orphaned DataDefinitions");
+	Util::IncIndent();
+	{
+	}
+}

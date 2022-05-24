@@ -1,0 +1,16 @@
+# Genesys Simulation Model 
+# Simulator, Model and Simulation infos
+0   Simulator  "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220517 
+0   ModelInfo  "Model 1" analystName="" description="" projectTitle="" version="1.0" 
+0   ModelSimulation "" traceLevel=7 
+
+# Model Data Definitions
+0               
+62  Attribute  "Entity.ArrivalTime" 
+63  EntityType "entitytype" 
+64  Attribute  "Entity.TotalWaitTime" 
+
+# Model Components
+56  Create     "Create_1" entityType="entitytype" nextId=57 
+57  Delay      "Delay_1" nextId=58 
+58  Dispose    "Dispose_1" nexts=0 

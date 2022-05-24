@@ -28,13 +28,13 @@ ModelDataDefinition* Delay::NewInstance(Model* model, std::string name) {
 
 Delay::Delay(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Delay>(), name) {
 	PropertyT<std::string>* prop1 = new PropertyT<std::string>(Util::TypeOf<Delay>(), "Delay Expression",
-				DefineGetter<Delay,std::string>(this, &Delay::delayExpression),
-				DefineSetter<Delay,std::string>(this, &Delay::setDelayExpression));
+			DefineGetter<Delay, std::string>(this, &Delay::delayExpression),
+			DefineSetter<Delay, std::string>(this, &Delay::setDelayExpression));
 	model->getControls()->insert(prop1);
 	_addProperty(prop1);
 	PropertyT<Util::TimeUnit>* prop2 = new PropertyT<Util::TimeUnit>(Util::TypeOf<Delay>(), "Delay Time Unit",
-				DefineGetter<Delay,Util::TimeUnit>(this, &Delay::delayTimeUnit),
-				DefineSetter<Delay,Util::TimeUnit>(this, &Delay::setDelayTimeUnit));
+			DefineGetter<Delay, Util::TimeUnit>(this, &Delay::delayTimeUnit),
+			DefineSetter<Delay, Util::TimeUnit>(this, &Delay::setDelayTimeUnit));
 	model->getControls()->insert(prop2);
 	_addProperty(prop2);
 }
@@ -53,16 +53,6 @@ std::string Delay::show() {
 			",timeUnit=" + std::to_string(static_cast<int> (this->_delayTimeUnit));
 }
 
-ModelComponent* Delay::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
-	Delay* newComponent = new Delay(model);
-	try {
-		newComponent->_loadInstance(fields);
-	} catch (const std::exception& e) {
-
-	}
-	return newComponent;
-}
-
 void Delay::setDelayExpression(std::string _delayExpression) {
 	this->_delayExpression = _delayExpression;
 }
@@ -79,7 +69,7 @@ Util::TimeUnit Delay::delayTimeUnit() const {
 	return _delayTimeUnit;
 }
 
-void Delay::_onDispatchEvent(Entity* entity, unsigned int inputNumber) {
+void Delay::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 	double waitTime = _parentModel->parseExpression(_delayExpression);
 	Util::TimeUnit stu = _parentModel->getSimulation()->getReplicationBaseTimeUnit(); //getReplicationLengthTimeUnit();
 	waitTime *= Util::TimeUnitConvert(_delayTimeUnit, stu);
@@ -94,6 +84,16 @@ void Delay::_onDispatchEvent(Entity* entity, unsigned int inputNumber) {
 	Event* newEvent = new Event(delayEndTime, entity, this->getConnections()->getFrontConnection());
 	_parentModel->getFutureEvents()->insert(newEvent);
 	_parentModel->getTracer()->traceSimulation(this, "End of delay of "/*entity " + std::to_string(entity->entityNumber())*/ + entity->getName() + " scheduled to time " + std::to_string(delayEndTime) + Util::StrTimeUnitShort(stu) + " (wait time " + std::to_string(waitTime) + Util::StrTimeUnitShort(stu) + ") // " + _delayExpression);
+}
+
+ModelComponent* Delay::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
+	Delay* newComponent = new Delay(model);
+	try {
+		newComponent->_loadInstance(fields);
+	} catch (const std::exception& e) {
+
+	}
+	return newComponent;
 }
 
 bool Delay::_loadInstance(std::map<std::string, std::string>* fields) {

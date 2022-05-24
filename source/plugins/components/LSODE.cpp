@@ -135,7 +135,7 @@ bool LSODE::_doStep() {
 	return res;
 }
 
-void LSODE::_onDispatchEvent(Entity* entity, unsigned int inputNumber) {
+void LSODE::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 	// open file
 	std::ofstream savefile;
 	if (_filename != "") {

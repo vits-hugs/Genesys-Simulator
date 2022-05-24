@@ -22,8 +22,8 @@ ModelComponent::ModelComponent(Model* model, std::string componentTypename, std:
 	//		DefineGetterString<ModelComponent>(this, &ModelComponent::getDescription),
 	//		DefineSetterString<ModelComponent>(this, &ModelComponent::setDescription));
 	PropertyT<std::string>* prop1_ = new PropertyT<std::string>(Util::TypeOf<ModelComponent>(), "Description",
-	DefineGetter<ModelComponent, std::string>(this, &ModelComponent::getDescription),
-	DefineSetter<ModelComponent, std::string>(this, &ModelComponent::setDescription));
+			DefineGetter<ModelComponent, std::string>(this, &ModelComponent::getDescription),
+			DefineSetter<ModelComponent, std::string>(this, &ModelComponent::setDescription));
 	_addProperty(prop1_);
 
 }
@@ -35,17 +35,16 @@ ModelComponent::~ModelComponent() {
 void ModelComponent::DispatchEvent(Event* event) {
 	Entity* entity = event->getEntity();
 	ModelComponent* component = event->getComponent();
-	unsigned int inputNumber = event->getComponentInputNumber();
+	unsigned int inputPortNumber = event->getComponentinputPortNumber();
 	std::string msg = /*"Entity " +std::to_string(entity->entityNumber())*/ entity->getName() + " has arrived at component \"" + component->getName() + "\"";
 	if (component->getDescription() != "")
 		msg += ": " + component->getDescription();
-	// @TODO: How can I know the number of inputs?
-	if (inputNumber > 0)
-		msg += " by input " + std::to_string(inputNumber);
+	if (inputPortNumber > 0)
+		msg += " by input " + std::to_string(inputPortNumber);
 	component->_parentModel->getTracer()->traceSimulation(component, Util::TraceLevel::L6_arrival, msg);
 	Util::IncIndent();
 	try {
-		component->_onDispatchEvent(entity, inputNumber);
+		component->_onDispatchEvent(entity, inputPortNumber);
 	} catch (const std::exception& e) {
 		component->_parentModel->getTracer()->traceError(e, "Error executing component " + component->show());
 	}
@@ -139,13 +138,13 @@ std::map<std::string, std::string>* ModelComponent::_saveInstance(bool saveDefau
 	unsigned short i;
 	for (std::pair<unsigned int, Connection*> connectionPair : *_connections->connections()) {
 		i = connectionPair.first; // output port
-		if (_connections->connections()->size() == 1 && i==0) {
+		if (_connections->connections()->size() == 1 && i == 0) {
 			SaveField(fields, "nextId", connectionPair.second->component->_id, 0, saveDefaultValues);
 		} else {
 			SaveField(fields, "nextId" + strIndex(i), connectionPair.second->component->_id, 0, saveDefaultValues);
 		}
-		if (connectionPair.second->portNum != 0) {//((*it)->second != 0) { // save nextInputNumber only if it is != 0
-			SaveField(fields, "nextInputNumber" + strIndex(i), connectionPair.second->portNum, DEFAULT.nextInputNumber, saveDefaultValues);
+		if (connectionPair.second->port != 0) {//((*it)->second != 0) { // save nextinputPortNumber only if it is != 0
+			SaveField(fields, "nextinputPortNumber" + strIndex(i), connectionPair.second->port, DEFAULT.nextinputPortNumber, saveDefaultValues);
 		}
 	}
 	return fields;

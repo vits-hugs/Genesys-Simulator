@@ -44,16 +44,16 @@ ModelComponent* Match::LoadInstance(Model* model, std::map<std::string, std::str
     return newComponent;
 }
 
-void Match::_onDispatchEvent(Entity* entity, unsigned int inputNumber) {
+void Match::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
     Waiting* waiting = new Waiting(entity, _parentModel->getSimulation()->getSimulatedTime(), this);
     if (_rule == Match::Rule::ByAttribute) {
         double value = entity->getAttributeValue(_attributeName);
         // std::map<Queue*, std::map<double, unsigned int>*>*
         std::pair<Queue*, std::map<double, unsigned int>*> pair1;
-        while (_entitiesByAttrib->find(_queues->getAtRank(inputNumber)) == _entitiesByAttrib->end()) {
-            _entitiesByAttrib->insert({_queues->getAtRank(inputNumber), new std::map<double, unsigned int>()});
+        while (_entitiesByAttrib->find(_queues->getAtRank(inputPortNumber)) == _entitiesByAttrib->end()) {
+            _entitiesByAttrib->insert({_queues->getAtRank(inputPortNumber), new std::map<double, unsigned int>()});
         }
-        pair1 = *(_entitiesByAttrib->find(_queues->getAtRank(inputNumber)));
+        pair1 = *(_entitiesByAttrib->find(_queues->getAtRank(inputPortNumber)));
         std::pair<double, unsigned int> pair2;
         while (pair1.second->find(value) == pair1.second->end()) {
             pair1.second->insert({value, 0});
@@ -61,7 +61,7 @@ void Match::_onDispatchEvent(Entity* entity, unsigned int inputNumber) {
         pair2 = *(pair1.second->find(value));
         pair2.second++;
     }
-    _queues->getAtRank(inputNumber)->insertElement(waiting);
+    _queues->getAtRank(inputPortNumber)->insertElement(waiting);
     unsigned int matchSize = _parentModel->parseExpression(_matchSize);
     unsigned int i = 0;
     if (_rule == Match::Rule::Any) {

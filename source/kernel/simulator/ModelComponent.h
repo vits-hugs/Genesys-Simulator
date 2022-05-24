@@ -38,7 +38,7 @@ public:
 public:
     virtual std::string show();
 public:
-    ConnectionManager* getConnections() const; ///< Returns a list of components directly connected to the output. Usually the components have a single output, but they may have none (such as Dispose) or more than one (as Decide). In addition to the component, NextComponents specifies the inputNumber of the next component where the entity will be sent to. Ussually the components have a single input, but they may have none (such as Create) or more than one (as Match).
+    ConnectionManager* getConnections() const; ///< Returns a list of components directly connected to the output. Usually the components have a single output, but they may have none (such as Dispose) or more than one (as Decide). In addition to the component, NextComponents specifies the inputPortNumber of the next component where the entity will be sent to. Ussually the components have a single input, but they may have none (such as Create) or more than one (as Match).
     bool hasBreakpointAt();
 public: // static
     static void DispatchEvent(Event* event); ///< This method triggers the simulation of the behavior of the component. It is invoked when an event (corresponding to this component) is taken from the list of future events or when an entity arrives at this component by connection.
@@ -50,7 +50,7 @@ public: // static
     void setDescription(std::string _description);
     std::string getDescription() const;
 protected: // pure virtual methods
-    virtual void _onDispatchEvent(Entity* entity, unsigned int inputNumber) = 0;
+    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber) = 0;
 protected: // virtual methods
     virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
     virtual bool _loadInstance(std::map<std::string, std::string>* fields);
@@ -59,7 +59,7 @@ protected:
 
     const struct DEFAULT_VALUES {
         unsigned int nextSize = 1;
-        unsigned int nextInputNumber = 0;
+        unsigned int nextinputPortNumber = 0;
         std::string description = "";
     } DEFAULT;
     std::string _description = DEFAULT.description;

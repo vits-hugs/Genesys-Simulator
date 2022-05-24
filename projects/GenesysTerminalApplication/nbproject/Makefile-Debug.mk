@@ -56,6 +56,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/296208d5/Smart_RouteStation.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_SeizeDelayRelease.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_SeizeDelayReleaseMany.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_SeizeDelayReleaseNoDataDefs.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_Sequence.o \
 	${OBJECTDIR}/_ext/18d98d98/AnElectronicAssemblyAndTestSystem.o \
 	${OBJECTDIR}/_ext/18d98d98/FullSimulationOfComplexModel.o \
@@ -302,6 +303,11 @@ ${OBJECTDIR}/_ext/296208d5/Smart_SeizeDelayReleaseMany.o: ../../source/applicati
 	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_SeizeDelayReleaseMany.o ../../source/applications/terminal/examples/smarts/Smart_SeizeDelayReleaseMany.cpp
+
+${OBJECTDIR}/_ext/296208d5/Smart_SeizeDelayReleaseNoDataDefs.o: ../../source/applications/terminal/examples/smarts/Smart_SeizeDelayReleaseNoDataDefs.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_SeizeDelayReleaseNoDataDefs.o ../../source/applications/terminal/examples/smarts/Smart_SeizeDelayReleaseNoDataDefs.cpp
 
 ${OBJECTDIR}/_ext/296208d5/Smart_Sequence.o: ../../source/applications/terminal/examples/smarts/Smart_Sequence.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5

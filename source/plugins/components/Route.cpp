@@ -101,7 +101,7 @@ Label* Route::getLabel() const {
 	return _label;
 }
 
-void Route::_onDispatchEvent(Entity* entity, unsigned int inputNumber) {
+void Route::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 	Station* destinyStation = _station;
 	Label* destinyLabel = _label;
 	if (_routeDestinationType == Route::DestinationType::Sequence) {

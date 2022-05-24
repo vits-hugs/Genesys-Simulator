@@ -28,6 +28,13 @@
 
 //namespace GenesysKernel {
 
+/* https://www.doxygen.nl/manual/commands.html
+ * Bried description \class \implements
+ *
+ * Detailed description
+ * \param \return
+ */
+
 /*!
  * The main class of the Genesys KERNEL simulation. It gives access to simulation models and tools.
  * Simulation is the top level class and is supossed to be available to application as a dynamic linked library.

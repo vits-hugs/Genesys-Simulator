@@ -117,9 +117,10 @@ public:
 public: // to implement SIMAN functions
 	double sumAttributesFromWaiting(Util::identification attributeID); // use to implement SIMAN SAQUE function
 	double getAttributeFromWaitingRank(unsigned int rank, Util::identification attributeID);
-public:
-	void initBetweenReplications();
+	//public:
+	//	void initBetweenReplications();
 protected:
+	virtual void _initBetweenReplications();
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);

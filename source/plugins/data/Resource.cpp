@@ -38,9 +38,9 @@ Resource::Resource(Model* model, std::string name) : ModelDataDefinition(model, 
 	//SetterMemberDouble setter2 = DefineSetterMember<Resource>(this, &Resource::setCostPerUse);
 	//model->getControls()->insert(new SimulationControl(Util::TypeOf<Resource>(), getName() + ".CostPerUse", getter2, setter2));
 	// ...
-	PropertyT<unsigned int>* prop1= new PropertyT<unsigned int>(Util::TypeOf<Resource>(), "Capacity",
-			DefineGetter<Resource,unsigned int>(this, &Resource::getCapacity),
-			DefineSetter<Resource,unsigned int>(this, &Resource::setCapacity));
+	PropertyT<unsigned int>* prop1 = new PropertyT<unsigned int>(Util::TypeOf<Resource>(), "Capacity",
+			DefineGetter<Resource, unsigned int>(this, &Resource::getCapacity),
+			DefineSetter<Resource, unsigned int>(this, &Resource::setCapacity));
 	_parentModel->getControls()->insert(prop1);
 	_addProperty(prop1);
 }
@@ -160,6 +160,7 @@ void Resource::_notifyReleaseEventHandlers() {
 
 PluginInformation* Resource::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Resource>(), &Resource::LoadInstance, &Resource::NewInstance);
+	//info->set...
 	return info;
 }
 

@@ -30,18 +30,19 @@
 #include "statistics/StatisticsDataFileDefaultImpl.h"
 #include "statistics/SamplerDefaultImpl1.h"
 
-
-
 //namespace GenesysKernel {
 
 template <typename T>
 struct TraitsKernel {
-	static const Util::TraceLevel traceLevel = Util::TraceLevel::L2_results;
 };
 
 /*
  *  Simulation and Simulation Parts
  */
+
+template <> struct TraitsKernel<Simulator> {
+	static const Util::TraceLevel traceLevel = Util::TraceLevel::L9_mostDetailed;
+};
 
 template <> struct TraitsKernel<SimulationReporter_if> {
 	typedef SimulationReporterDefaultImpl1 Implementation;
@@ -52,6 +53,7 @@ template <> struct TraitsKernel<SimulationReporter_if> {
 
 template <> struct TraitsKernel<PluginConnector_if> {
 	typedef PluginConnectorDummyImpl1 Implementation;
+	//typedef PluginConnectorDynamicLibraryLoader Implementation;
 	static const Util::TraceLevel traceLevel = Util::TraceLevel::L4_warning;
 };
 

@@ -46,7 +46,7 @@ public:
 	Write::WriteToType writeToType() const;
 
 protected: // virtual
-	virtual void _onDispatchEvent(Entity* entity, unsigned int inputNumber);
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
 	virtual void _initBetweenReplications();
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);

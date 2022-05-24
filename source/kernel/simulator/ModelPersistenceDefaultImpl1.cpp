@@ -320,15 +320,15 @@ bool ModelPersistenceDefaultImpl1::load(std::string filename) {
                     } else {
                         nextId = std::stoi((*fields->find("nextId" + strIndex(i))).second);
                     }
-                    unsigned short nextInputNumber = 0; // default value if it is not found bellow
-                    if (fields->find("nextInputNumber" + std::to_string(i)) != fields->end())
-                        nextInputNumber = std::stoi((*fields->find("nextInputNumber" + std::to_string(i))).second);
+                    unsigned short nextinputPortNumber = 0; // default value if it is not found bellow
+                    if (fields->find("nextinputPortNumber" + std::to_string(i)) != fields->end())
+                        nextinputPortNumber = std::stoi((*fields->find("nextinputPortNumber" + std::to_string(i))).second);
                     ModelComponent* nextComponent = nullptr;
                     for (std::list<ModelComponent*>::iterator itcomp = cm->begin(); itcomp != cm->end(); itcomp++) {// connect the components
                         if ((*itcomp)->getId() == nextId) { // connect the components
                             nextComponent = (*itcomp);
-                            thisComponent->getConnections()->insert(nextComponent, nextInputNumber);
-                            _model->getTracer()->trace(Util::TraceLevel::L8_detailed, thisComponent->getName() + "<" + std::to_string(i) + ">" + " --> " + nextComponent->getName() + "<" + std::to_string(nextInputNumber) + ">");
+                            thisComponent->getConnections()->insert(nextComponent, nextinputPortNumber);
+                            _model->getTracer()->trace(Util::TraceLevel::L8_detailed, thisComponent->getName() + "<" + std::to_string(i) + ">" + " --> " + nextComponent->getName() + "<" + std::to_string(nextinputPortNumber) + ">");
                             break;
                         }
                     }
@@ -406,7 +406,7 @@ std::list<std::string>* ModelPersistenceDefaultImpl1::_adjustFieldsToSave(std::m
             nameV2003 = (*it).second; //_convertLineseparatorToLineseparatorReplacement((*it).second);
         else if ((*it).first.find("nextId", 0) != std::string::npos)
             nextIDV2004 += (*it).first + "=" + (*it).second + _fieldseparator;
-        else if ((*it).first.find("nextInputNumber", 0) != std::string::npos)
+        else if ((*it).first.find("nextinputPortNumber", 0) != std::string::npos)
             nextIDV2004 += (*it).first + "=" + (*it).second + _fieldseparator;
         else if ((*it).first.find("nexts", 0) != std::string::npos)
             nextIDV2004 = (*it).first + "=" + (*it).second + _fieldseparator + nextIDV2004;

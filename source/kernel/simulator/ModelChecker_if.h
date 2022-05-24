@@ -30,7 +30,7 @@ public:
 	virtual bool checkSymbols() = 0; /*! Checks if user-defined strings for symbols required by components, usually expressions or functions, are valid or references existing and valid elements. */
 	virtual bool checkActivationCode() = 0; /*! Checks if the installed version has acquired a valid activation code for commercial use */
 	virtual bool checkLimits() = 0; /*! Checks if the model (its components and elements) fits the limits based on the activation code */
-
+	virtual bool checkOrphaned() = 0; /*! Checks if there are ModelDataDefinitions not referred by any ModelComponent, which means they are orphan ModelDataDefinitions */
 	//virtual bool verifySymbol(std::string componentName, std::string expressionName, std::string expression, std::string expressionResult, bool mandatory) = 0;
 };
 

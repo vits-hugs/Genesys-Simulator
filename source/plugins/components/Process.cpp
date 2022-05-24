@@ -95,7 +95,7 @@ ModelComponent* Process::LoadInstance(Model* model, std::map<std::string, std::s
 	return newComponent;
 }
 
-void Process::_onDispatchEvent(Entity* entity, unsigned int inputNumber) {
+void Process::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 	this->_parentModel->sendEntityToComponent(entity, _seize, 0.0);
 }
 
@@ -104,9 +104,9 @@ void Process::_adjustConnections() {
 		// chance connections so Process is connected to Seize, and Release to the one that Process was connected to
 		Connection* connection = new Connection();
 		connection->component = getConnections()->getFrontConnection()->component;
-		connection->portNum = getConnections()->getFrontConnection()->portNum;
+		connection->port = getConnections()->getFrontConnection()->port;
 		getConnections()->getFrontConnection()->component = _seize;
-		getConnections()->getFrontConnection()->portNum = 0;
+		getConnections()->getFrontConnection()->port = 0;
 		_release->getConnections()->connections()->clear();
 		_release->getConnections()->insert(connection);
 	}

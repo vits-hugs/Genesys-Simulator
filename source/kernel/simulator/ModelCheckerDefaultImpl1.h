@@ -30,6 +30,7 @@ public:
 	virtual bool checkSymbols();
 	virtual bool checkActivationCode();
 	virtual bool checkLimits();
+	virtual bool checkOrphaned();
 	//virtual bool verifySymbol(std::string componentName, std::string expressionName, std::string expression, std::string expressionResult, bool mandatory);
 private:
 	void _recursiveConnectedTo(PluginManager* pluginManager, ModelComponent* comp, List<ModelComponent*>* visited, List<ModelComponent*>* unconnected, bool* drenoFound);

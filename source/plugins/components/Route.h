@@ -80,7 +80,7 @@ public:
 	void setLabel(Label* _label);
 	Label* getLabel() const;
 protected:
-	virtual void _onDispatchEvent(Entity* entity, unsigned int inputNumber);
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 protected:

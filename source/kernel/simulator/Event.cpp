@@ -15,32 +15,32 @@
 
 //using namespace GenesysKernel;
 
-Event::Event(double time, Entity* entity, ModelComponent* component, unsigned int componentInputNumber) {
+Event::Event(double time, Entity* entity, ModelComponent* component, unsigned int componentinputPortNumber) {
 	_time = time;
 	_entity = entity;
 	_component = component;
-	_componentInputNumber = componentInputNumber;
+	_componentinputPortNumber = componentinputPortNumber;
 }
 
 Event::Event(double time, Entity* entity, Connection* connection) {
 	_time = time;
 	_entity = entity;
 	_component = connection->component;
-	_componentInputNumber = connection->portNum;
+	_componentinputPortNumber = connection->port;
 }
 
 std::string Event::show() {
 	std::string message = "time=" + std::to_string(_time) + //Util::StrTimeUnit(???)+
 			",entity=" + _entity->getName() + //std::to_string(_entity->entityNumber()) +
 			",component=\"" + _component->getName() + "\""; //+std::to_string(_component->getId())+"}";
-	if (this->_componentInputNumber > 0) {
-		message += ",input=" + std::to_string(this->_componentInputNumber);
+	if (this->_componentinputPortNumber > 0) {
+		message += ",input=" + std::to_string(this->_componentinputPortNumber);
 	}
 	return message;
 }
 
-unsigned int Event::getComponentInputNumber() const {
-	return _componentInputNumber;
+unsigned int Event::getComponentinputPortNumber() const {
+	return _componentinputPortNumber;
 }
 
 double Event::getTime() const {

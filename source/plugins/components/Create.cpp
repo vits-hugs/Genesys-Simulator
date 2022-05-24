@@ -30,19 +30,19 @@ ModelDataDefinition* Create::NewInstance(Model* model, std::string name) {
 }
 
 Create::Create(Model* model, std::string name) : SourceModelComponent(model, Util::TypeOf<Create>(), name) {
-	PropertyT<unsigned int>* prop1= new PropertyT<unsigned int>(Util::TypeOf<Create>(), "Entities Per Creation",
-			DefineGetter<Create,unsigned int>(this, &Create::getEntitiesPerCreation),
-			DefineSetter<Create,unsigned int>(this, &Create::setEntitiesPerCreation));
+	PropertyT<unsigned int>* prop1 = new PropertyT<unsigned int>(Util::TypeOf<Create>(), "Entities Per Creation",
+			DefineGetter<Create, unsigned int>(this, &Create::getEntitiesPerCreation),
+			DefineSetter<Create, unsigned int>(this, &Create::setEntitiesPerCreation));
 	model->getControls()->insert(prop1);
 	_addProperty(prop1);
 	PropertyT<std::string>* prop2 = new PropertyT<std::string>(Util::TypeOf<Create>(), "Time Between Creations",
-			DefineGetter<Create,std::string>(this, &Create::getTimeBetweenCreationsExpression),
-			DefineSetter<Create,std::string>(this, &Create::setTimeBetweenCreationsExpression));
+			DefineGetter<Create, std::string>(this, &Create::getTimeBetweenCreationsExpression),
+			DefineSetter<Create, std::string>(this, &Create::setTimeBetweenCreationsExpression));
 	model->getControls()->insert(prop2);
 	_addProperty(prop2);
 	PropertyT<Util::TimeUnit>* prop3 = new PropertyT<Util::TimeUnit>(Util::TypeOf<Create>(), "Time Unit",
-			DefineGetter<Create,Util::TimeUnit>(this, &Create::getTimeUnit),
-			DefineSetter<Create,Util::TimeUnit>(this, &Create::setTimeUnit));
+			DefineGetter<Create, Util::TimeUnit>(this, &Create::getTimeUnit),
+			DefineSetter<Create, Util::TimeUnit>(this, &Create::setTimeUnit));
 	model->getControls()->insert(prop3);
 	_addProperty(prop3);
 }
@@ -51,7 +51,7 @@ std::string Create::show() {
 	return SourceModelComponent::show();
 }
 
-void Create::_onDispatchEvent(Entity* entity, unsigned int inputNumber) {
+void Create::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 	_parentModel->getDataManager()->insert(entity->getClassname(), entity);
 	double tnow = _parentModel->getSimulation()->getSimulatedTime();
 	entity->setAttributeValue("Entity.ArrivalTime", tnow); // ->find("Entity.ArrivalTime")->second->setValue(tnow);
@@ -95,7 +95,6 @@ PluginInformation* Create::GetPluginInformation() {
 	//info->insertDynamicLibFileDependence("attribute.so");
 	//info->insertDynamicLibFileDependence("entitytype.so");
 	//info->insertDynamicLibFileDependence("statisticscollector.so");
-
 	return info;
 }
 
@@ -111,12 +110,10 @@ ModelComponent* Create::LoadInstance(Model* model, std::map<std::string, std::st
 }
 
 bool Create::_loadInstance(std::map<std::string, std::string>* fields) {
-
 	return SourceModelComponent::_loadInstance(fields);
 }
 
 void Create::_initBetweenReplications() {
-
 	SourceModelComponent::_initBetweenReplications();
 }
 
@@ -128,7 +125,6 @@ std::map<std::string, std::string>* Create::_saveInstance(bool saveDefaultValues
 
 bool Create::_check(std::string* errorMessage) {
 	bool resultAll = SourceModelComponent::_check(errorMessage);
-
 	return resultAll;
 }
 

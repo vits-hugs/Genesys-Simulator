@@ -18,7 +18,8 @@
 
 TraceManager::TraceManager(Simulator* simulator) {//(Model* model) {
 	_simulator = simulator;
-	_traceLevel = TraitsKernel<Model>::traceLevel;
+	_traceLevel = TraitsKernel<Simulator>::traceLevel;
+	//@TODO: Tracelevels should be based on the tracelevel of each "class" 
 }
 
 void TraceManager::setTraceLevel(Util::TraceLevel _traceLevel) {

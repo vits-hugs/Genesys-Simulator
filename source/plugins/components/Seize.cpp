@@ -32,19 +32,19 @@ ModelDataDefinition* Seize::NewInstance(Model* model, std::string name) {
 Seize::Seize(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Seize>(), name) {
 	// properties
 	_addProperty(new PropertyT<unsigned short>(Util::TypeOf<Seize>(), "Priority",
-				 DefineGetter<Seize,unsigned short>(this, &Seize::getPriority),
-				 DefineSetter<Seize,unsigned short>(this, &Seize::setPriority)));
+			DefineGetter<Seize, unsigned short>(this, &Seize::getPriority),
+			DefineSetter<Seize, unsigned short>(this, &Seize::setPriority)));
 	_addProperty(new PropertyT<std::string>(Util::TypeOf<Seize>(), "Save Attribute",
-				 DefineGetter<Seize,std::string>(this, &Seize::getSaveAttribute),
-				 DefineSetter<Seize,std::string>(this, &Seize::setSaveAttribute)));
+			DefineGetter<Seize, std::string>(this, &Seize::getSaveAttribute),
+			DefineSetter<Seize, std::string>(this, &Seize::setSaveAttribute)));
 	//unsigned int _allocationType = DEFAULT.allocationType; // uint ? enum?
 	_addProperty(new PropertyT<QueueableItem*>(Util::TypeOf<Seize>(), "Queueable Item",
-				 DefineGetter<Seize,QueueableItem*>(this, &Seize::getQueueableItem),
-				 DefineSetter<Seize,QueueableItem*>(this, &Seize::setQueueableItem)));
+			DefineGetter<Seize, QueueableItem*>(this, &Seize::getQueueableItem),
+			DefineSetter<Seize, QueueableItem*>(this, &Seize::setQueueableItem)));
 	//List<SeizableItem*>* _seizeRequests = new List<SeizableItem*>();
 	_addProperty(new PropertyT<List<SeizableItem*>*>(Util::TypeOf<Seize>(), "Seize Requests",
-				 DefineGetter<Seize,List<SeizableItem*>*>(this, &Seize::getSeizeRequests),
-				 nullptr));
+			DefineGetter<Seize, List<SeizableItem*>*>(this, &Seize::getSeizeRequests),
+			nullptr));
 }
 
 std::string Seize::show() {
@@ -89,7 +89,7 @@ Queue* Seize::_getQueue() const {
 	}
 }
 
-void Seize::_handlerForResourceEvent(Resource* resource) { //TODO Resource is useless now
+void Seize::_handlerForResourceEvent(Resource* resource) { //@TODO Resource is useless now
 	Queue* queue = _getQueue();
 	Waiting* first = queue->first();
 	if (first != nullptr) { // there are entities waiting in the queue
@@ -182,7 +182,7 @@ Resource* Seize::_getResourceFromSeizableItem(SeizableItem* seizable, Entity* en
 	return resource;
 }
 
-void Seize::_onDispatchEvent(Entity* entity, unsigned int inputNumber) {
+void Seize::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 	for (SeizableItem* seizable : *_seizeRequests->list()) {
 		Resource* resource = _getResourceFromSeizableItem(seizable, entity);
 		unsigned int quantity = _parentModel->parseExpression(seizable->getQuantityExpression());
@@ -209,7 +209,7 @@ void Seize::_onDispatchEvent(Entity* entity, unsigned int inputNumber) {
 }
 
 void Seize::_initBetweenReplications() {
-	// @TODO CHeck why commented
+	// @TODO CHeck why commented (seizableItems are NOT ModelDataDefinition, therefore they are NOT iniatilized by ModelSimulation
 	//ModelDataDefinition::InitBetweenReplications(_queueableItem->getQueueable());
 	//for (std::list<SeizableItem*>::iterator it = _seizeRequests->list()->begin(); it != _seizeRequests->list()->end(); it++) {
 	//	(*it)->setLastMemberSeized(0);
