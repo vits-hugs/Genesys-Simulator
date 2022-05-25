@@ -49,15 +49,15 @@ int Smart_HoldSignal::main(int argc, char** argv) {
 	c3->setTimeBetweenCreationsExpression("unif(5,6)");
 	Hold* h1 = plugins->newInstance<Hold>(model);
 	Hold* h2 = plugins->newInstance<Hold>(model);
-	//Signal s3 = plugins->newInstance<Signal>(model);
+	Signal* s3 = plugins->newInstance<Signal>(model);
 	Dispose* d1 = plugins->newInstance<Dispose>(model);
 	//
 	c1->getConnections()->insert(h1);
 	h1->getConnections()->insert(d1);
 	c2->getConnections()->insert(h2);
 	h2->getConnections()->insert(d1);
-	//c3->getConnections()->insert(s3);
-	//s3->getConnections()->insert(d1);
+	c3->getConnections()->insert(s3);
+	s3->getConnections()->insert(d1);
 	//
 	model->save("./models/Smart_HoldSignal.gen");
 	do {

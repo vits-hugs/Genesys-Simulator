@@ -40,22 +40,29 @@ void Dispose::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 		_numberOut->incCountValue();
 		if (entity->getEntityType()->isReportStatistics()) {
 			double timeInSystem = _parentModel->getSimulation()->getSimulatedTime() - entity->getAttributeValue("Entity.ArrivalTime");
-			entity->getEntityType()->addGetStatisticsCollector(entity->getEntityTypeName() + "." + "TotalTimeInSystem")->getStatistics()->getCollector()->addValue(timeInSystem);
+			//entity->getEntityType()->addGetStatisticsCollector(entity->getEntityTypeName() + "." + "TotalTimeInSystem")->getStatistics()->getCollector()->addValue(timeInSystem);
+			std::string cstatName = entity->getEntityTypeName() + "." + "TotalTimeInSystem";
+			StatisticsCollector* cstat = entity->getEntityType()->addGetStatisticsCollector(cstatName);
+			cstat->getStatistics()->getCollector()->addValue(timeInSystem);
+			//StatisticsCollector* cstat = static_cast<StatisticsCollector*> (entity->getEntityType()->getInternalData(cstatName)); //@TODO:Implement
 		}
 	}
 	_parentModel->removeEntity(entity); //, _reportStatistics);
 }
 
 bool Dispose::_loadInstance(std::map<std::string, std::string>* fields) {
+
 	return ModelComponent::_loadInstance(fields);
 }
 
 void Dispose::_initBetweenReplications() {
+
 	SinkModelComponent::_initBetweenReplications();
 }
 
 std::map<std::string, std::string>* Dispose::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
+
 	return fields;
 
 }
@@ -63,6 +70,7 @@ std::map<std::string, std::string>* Dispose::_saveInstance(bool saveDefaultValue
 bool Dispose::_check(std::string* errorMessage) {
 	//SinkModelComponent::_check(errorMessage);
 	*errorMessage += "";
+
 	return true;
 }
 
@@ -79,6 +87,7 @@ void Dispose::_createInternalAndAttachedData() {
 				static_cast<EntityType*> (modeldatum)->addGetStatisticsCollector(modeldatum->getName() + "." + "TotalTimeInSystem"); // force create this CStat before model checking
 		}
 	} else if (!_reportStatistics && _numberOut != nullptr) {
+
 		_internalDataClear();
 	}
 }
@@ -93,6 +102,7 @@ PluginInformation* Dispose::GetPluginInformation() {
 	text += " Animation showing the number of entities disposed is displayed when the module is placed.";
 	text += " TYPICAL USES: (1) Parts leaving the modeled facility; (2) The termination of a business process; (3) Customers departing from the store";
 	info->setDescriptionHelp(text);
+
 	return info;
 }
 

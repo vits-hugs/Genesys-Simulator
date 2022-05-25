@@ -230,6 +230,16 @@ std::string ModelDataDefinition::show() {
 	return "id=" + std::to_string(_id) + ",name=\"" + _name + "\"" + internel;
 }
 
+ModelDataDefinition* ModelDataDefinition::getInternalData(std::string name) const {
+	//@ TODO!!
+	//std::pair<std::string, ModelDataDefinition*>* pair = _internalData->find(name);
+	//if (pair == _internalData->end()) {
+	//	return nullptr;
+	//} else {
+	//	return pair->second;
+	//}
+}
+
 std::map<std::string, ModelDataDefinition*>* ModelDataDefinition::getInternalData() const {
 	return _internalData;
 }

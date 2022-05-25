@@ -70,14 +70,14 @@ Model::Model(Simulator* simulator, unsigned int level) {
 	_controlsNew = new List<PropertyBase*>();
 	// insert NEW controls
 	_controlsNew->insert(new PropertyT<unsigned int>("ModelSimulation", "NumberOfReplications",
-			DefineGetter<ModelSimulation,unsigned int>(this->_simulation, &ModelSimulation::getNumberOfReplications),
-			DefineSetter<ModelSimulation,unsigned int>(this->_simulation, &ModelSimulation::setNumberOfReplications)) );
+			DefineGetter<ModelSimulation, unsigned int>(this->_simulation, &ModelSimulation::getNumberOfReplications),
+			DefineSetter<ModelSimulation, unsigned int>(this->_simulation, &ModelSimulation::setNumberOfReplications)));
 	_controlsNew->insert(new PropertyT<double>("ModelSimulation", "ReplicationLength",
-			DefineGetter<ModelSimulation,double>(this->_simulation, &ModelSimulation::getReplicationLength),
-			DefineSetter<ModelSimulation,double>(this->_simulation, &ModelSimulation::setReplicationLength)) );
+			DefineGetter<ModelSimulation, double>(this->_simulation, &ModelSimulation::getReplicationLength),
+			DefineSetter<ModelSimulation, double>(this->_simulation, &ModelSimulation::setReplicationLength)));
 	_controlsNew->insert(new PropertyT<double>("ModelSimulation", "WarmupPeriod",
-			DefineGetter<ModelSimulation,double>(this->_simulation, &ModelSimulation::getWarmUpPeriod),
-			DefineSetter<ModelSimulation,double>(this->_simulation, &ModelSimulation::setWarmUpPeriod)) );
+			DefineGetter<ModelSimulation, double>(this->_simulation, &ModelSimulation::getWarmUpPeriod),
+			DefineSetter<ModelSimulation, double>(this->_simulation, &ModelSimulation::setWarmUpPeriod)));
 }
 
 void Model::sendEntityToComponent(Entity* entity, Connection* connection, double timeDelay) {
@@ -182,7 +182,7 @@ void Model::remove(ModelDataDefinition* elemOrComp) {
 }
 
 void Model::_showElements() const {
-	getTracer()->trace(Util::TraceLevel::L2_results, "Elements:");
+	getTracer()->trace(Util::TraceLevel::L2_results, "DataDefinitions:");
 	Util::IncIndent();
 	{
 		std::string elementType;
@@ -212,8 +212,8 @@ void Model::_showConnections() const {
 void Model::_showComponents() const {
 	getTracer()->trace(Util::TraceLevel::L2_results, "Components:");
 	Util::IncIndent();
-	for (std::list<ModelComponent*>::iterator it = getComponents()->begin(); it != getComponents()->end(); it++) {
-		getTracer()->trace(Util::TraceLevel::L2_results, (*it)->show()); ////
+	for (ModelComponent* component : *getComponents()) {
+		getTracer()->trace(Util::TraceLevel::L2_results, component->show()); ////
 	}
 	Util::DecIndent();
 }
@@ -230,7 +230,7 @@ void Model::_showSimulationControls() const {
 void Model::_showSimulationResponses() const {
 	getTracer()->trace(Util::TraceLevel::L2_results, "Simulation Responses:");
 	Util::IncIndent();
-	for (PropertyBase* response: *_responsesNew->list()) {
+	for (PropertyBase* response : *_responsesNew->list()) {
 		getTracer()->trace(Util::TraceLevel::L2_results, response->show()); ////
 	}
 	Util::DecIndent();
@@ -290,13 +290,11 @@ void Model::_createModelInternalElements() {
 	Util::DecIndent();
 }
 
-List<PropertyBase *> *Model::getControls() const
-{
+List<PropertyBase *> *Model::getControls() const {
 	return _controlsNew;
 }
 
-List<PropertyBase *> *Model::getResponses() const
-{
+List<PropertyBase *> *Model::getResponses() const {
 	return _responsesNew;
 }
 

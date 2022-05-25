@@ -21,9 +21,12 @@ SourceModelComponent::SourceModelComponent(Model* model, std::string componentTy
 }
 
 std::string SourceModelComponent::show() {
-	std::string text = ModelComponent::show() +
-			",entityType=\"" + _entityType->getName() + "\"" +
-			",firstCreation=" + std::to_string(_firstCreation);
+	std::string text = ModelComponent::show();
+	if (_entityType != nullptr)
+		text += ",entityType=\"" + _entityType->getName() + "\"";
+	else
+		text += ",entityType=NULL";
+	text += ",firstCreation=" + std::to_string(_firstCreation);
 	return text;
 }
 

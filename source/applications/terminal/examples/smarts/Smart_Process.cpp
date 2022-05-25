@@ -12,7 +12,7 @@
  */
 
 #include "Smart_Process.h"
-
+#include <thread>
 // you have to included need libs
 
 // GEnSyS Simulator
@@ -50,11 +50,16 @@ int Smart_Process::main(int argc, char** argv) {
 	// set options, save and simulate step-by-step (but no user interaction required)
 	model->getSimulation()->setReplicationLength(10);
 	model->getSimulation()->setNumberOfReplications(5);
-	//model->check();
 	model->save("./models/Smart_Process.gen");
+	// para E1
+	model->show();
+	model->getSimulation()->step();
+	model->show();
+	//
 	do {
 		model->getSimulation()->step();
 	} while (model->getSimulation()->isPaused());
+	for (int i = 0; i < 1e9; i++); // give UI some time to finish std::cout
 	genesys->~Simulator();
 	return 0;
 };

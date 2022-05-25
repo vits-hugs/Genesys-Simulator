@@ -65,6 +65,7 @@ public: // static
 public:
 	virtual std::string show();
 	/*! Returns a list of keys (names) of internal ModelDatas, cuch as Counters, StatisticsCollectors and others. ChildrenElements are ModelDatas used by this ModelDataDefinition thar are needed before model checking */
+	ModelDataDefinition* getInternalData(std::string name) const;
 	std::map<std::string, ModelDataDefinition*>* getInternalData() const;
 	std::map<std::string, ModelDataDefinition*>* getAttachedData() const;
 	//ModelDataDefinition* getInternalData(std::string key) const;

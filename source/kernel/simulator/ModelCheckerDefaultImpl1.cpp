@@ -254,10 +254,13 @@ bool ModelCheckerDefaultImpl1::checkOrphaned() {
 		}
 		// every one in orphaned list now is really orphaned
 		if (orphaned->size() > 0) {
-			_model->getTracer()->trace(Util::TraceLevel::L7_internal, "Orphaned DataDefinitions:");
+			_model->getTracer()->trace(Util::TraceLevel::L7_internal, "Orphaned DataDefinitions found and removed:");
 			for (ModelDataDefinition* orphanElem : *orphaned) {
 				_model->getTracer()->trace(Util::TraceLevel::L8_detailed, "(" + orphanElem->getClassname() + ") " + orphanElem->getName() + "(id=" + std::to_string(orphanElem->getId()) + ")");
+				_model->getDataManager()->remove(orphanElem);
 			}
+			// inoke again, recursivelly (removing some datadefinitions may create some other orphans)
+			checkOrphaned();
 		} else {
 			_model->getTracer()->trace(Util::TraceLevel::L7_internal, "No orphaned DataDefinitions found.");
 		}

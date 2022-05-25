@@ -121,7 +121,6 @@
             <itemPath>../../source/applications/terminal/GenesysShell/GenesysTerminalApp.cpp</itemPath>
             <itemPath>../../source/applications/terminal/GenesysShell/GenesysTerminalApp.h</itemPath>
           </logicalFolder>
-          <itemPath>../../source/applications/terminal/GenesysShell/TraitsTerminalApplications.h</itemPath>
         </logicalFolder>
         <itemPath>../../source/applications/BaseGenesysTerminalApplication.cpp</itemPath>
         <itemPath>../../source/applications/BaseGenesysTerminalApplication.h</itemPath>
@@ -549,11 +548,6 @@
             flavor2="0">
       </item>
       <item path="../../source/applications/terminal/GenesysShell/GenesysTerminalApp.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/applications/terminal/GenesysShell/TraitsTerminalApplications.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2134,11 +2128,6 @@
             flavor2="0">
       </item>
       <item path="../../source/applications/terminal/GenesysShell/GenesysTerminalApp.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/applications/terminal/GenesysShell/TraitsTerminalApplications.h"
             ex="false"
             tool="3"
             flavor2="0">

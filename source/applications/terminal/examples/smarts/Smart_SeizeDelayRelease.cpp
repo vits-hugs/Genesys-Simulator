@@ -62,7 +62,7 @@ int Smart_SeizeDelayRelease::main(int argc, char** argv) {
 	// connect model components to create a "workflow"
 	create1->getConnections()->insert(seize1);
 	seize1->getConnections()->insert(delay1);
-	delay1->getConnections()->insert(release1);
+	delay1->getConnections()->insert(dispose1);
 	release1->getConnections()->insert(dispose1);
 	// set options, save and simulate
 	ModelSimulation* sim = model->getSimulation();
