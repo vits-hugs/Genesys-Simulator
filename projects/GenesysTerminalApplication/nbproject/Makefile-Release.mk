@@ -172,6 +172,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/d18efc87/SolverDefaultImpl1.o \
 	${OBJECTDIR}/_ext/61759c81/testHyphotesisTester.o \
 	${OBJECTDIR}/_ext/61759c81/testProbabilityDistribution.o \
+	${OBJECTDIR}/_ext/61759c81/testTerminalApplications.o \
 	${OBJECTDIR}/main.o
 
 
@@ -883,6 +884,11 @@ ${OBJECTDIR}/_ext/61759c81/testProbabilityDistribution.o: ../../tests/testProbab
 	${MKDIR} -p ${OBJECTDIR}/_ext/61759c81
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/61759c81/testProbabilityDistribution.o ../../tests/testProbabilityDistribution.cpp
+
+${OBJECTDIR}/_ext/61759c81/testTerminalApplications.o: ../../tests/testTerminalApplications.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/61759c81
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/61759c81/testTerminalApplications.o ../../tests/testTerminalApplications.cpp
 
 ${OBJECTDIR}/main.o: main.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}

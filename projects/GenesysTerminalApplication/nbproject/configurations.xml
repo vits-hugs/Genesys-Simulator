@@ -400,6 +400,7 @@
     <logicalFolder name="tests" displayName="tests" projectFiles="true">
       <itemPath>../../tests/testHyphotesisTester.cpp</itemPath>
       <itemPath>../../tests/testProbabilityDistribution.cpp</itemPath>
+      <itemPath>../../tests/testTerminalApplications.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Arquivos de Teste"
@@ -1990,6 +1991,11 @@
             tool="1"
             flavor2="0">
       </item>
+      <item path="../../tests/testTerminalApplications.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="../GenesysParser/Makefile" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Makefile" ex="false" tool="3" flavor2="0">
@@ -3566,6 +3572,11 @@
             flavor2="0">
       </item>
       <item path="../../tests/testProbabilityDistribution.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../tests/testTerminalApplications.cpp"
             ex="false"
             tool="1"
             flavor2="0">

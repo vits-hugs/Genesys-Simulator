@@ -140,6 +140,26 @@ std::map<std::string, std::string>* Release::_saveInstance(bool saveDefaultValue
 	return fields;
 }
 
+void Release::_createInternalAndAttachedData() {
+	int i = 0;
+	for (SeizableItem* seizable : * _releaseRequests->list()) {
+		if (seizable->getSeizableType() == SeizableItem::SeizableType::RESOURCE) {
+			Resource* resource = seizable->getResource();
+			if (resource == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+				resource = _parentModel->getParentSimulator()->getPlugins()->newInstance<Resource>(_parentModel);
+			}
+			_attachedDataInsert("SeizableItem" + strIndex(i), resource);
+		} else if (seizable->getSeizableType() == SeizableItem::SeizableType::SET) {
+			Set* set = seizable->getSet();
+			if (set == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+				set = _parentModel->getParentSimulator()->getPlugins()->newInstance<Set>(_parentModel);
+			}
+			_attachedDataInsert("SeizableItem" + strIndex(i), set);
+		}
+		i++;
+	}
+}
+
 bool Release::_check(std::string* errorMessage) {
 	bool resultAll = true;
 	int i = 0;
@@ -147,17 +167,9 @@ bool Release::_check(std::string* errorMessage) {
 		resultAll &= _parentModel->checkExpression(seizable->getQuantityExpression(), "quantity", errorMessage);
 		if (seizable->getSeizableType() == SeizableItem::SeizableType::RESOURCE) {
 			Resource* resource = seizable->getResource();
-			if (resource == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
-				resource = _parentModel->getParentSimulator()->getPlugins()->newInstance<Resource>(_parentModel);
-			}
-			_attachedDataInsert("SeizableItem" + strIndex(i), resource);
 			resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Resource>(), seizable->getResource(), "Resource", errorMessage);
 		} else if (seizable->getSeizableType() == SeizableItem::SeizableType::SET) {
 			Set* set = seizable->getSet();
-			if (set == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
-				set = _parentModel->getParentSimulator()->getPlugins()->newInstance<Set>(_parentModel);
-			}
-			_attachedDataInsert("SeizableItem" + strIndex(i), set);
 			resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Set>(), seizable->getSet(), "Set", errorMessage);
 		}
 		i++;
