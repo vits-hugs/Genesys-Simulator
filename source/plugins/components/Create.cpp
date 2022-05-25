@@ -128,15 +128,13 @@ bool Create::_check(std::string* errorMessage) {
 	return resultAll;
 }
 
-void Create::_createInternalData() {
-	SourceModelComponent::_createInternalData();
+void Create::_createInternalAndAttachedData() {
+	SourceModelComponent::_createInternalAndAttachedData();
 	if (_reportStatistics && _numberOut == nullptr) {
 		_numberOut = new Counter(_parentModel, getName() + "." + "CountNumberOut", this);
-		_internalData->insert({"CountNumberOut", _numberOut});
+		_internalDataInsert("CountNumberOut", _numberOut);
 	} else if (!_reportStatistics && _numberOut != nullptr) {
-		this->_removeInternalDatas();
-		// @TODO _internelElements->remove("Count_number_in");
-		//_numberOut->~Counter();
+		this->_internalDataClear();
 		_numberOut = nullptr;
 	}
 }

@@ -88,7 +88,7 @@ bool CppCode::_check(std::string* errorMessage) {
 
 //void CppCode::_initBetweenReplications() {}
 
-void CppCode::_createInternalData() {
+void CppCode::_createInternalAndAttachedData() {
 }
 
 CppCode::CodeResult CppCode::compile() {

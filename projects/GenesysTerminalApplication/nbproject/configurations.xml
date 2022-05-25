@@ -430,6 +430,12 @@
         <rebuildPropChanged>true</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <cTool>
+          <standard>10</standard>
+        </cTool>
+        <ccTool>
+          <standard>11</standard>
+        </ccTool>
       </compileType>
       <item path="../../documentation/GenESyS_Developer_Documentation.pdf"
             ex="false"

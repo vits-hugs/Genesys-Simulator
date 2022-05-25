@@ -80,7 +80,7 @@ protected:
 	virtual void _initBetweenReplications();
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
-	virtual void _createInternalData();
+	virtual void _createInternalAndAttachedData();
 private:
 	Counter* _numberOut = nullptr; // internel modeldatum
 	double _lastArrival = -1.0;

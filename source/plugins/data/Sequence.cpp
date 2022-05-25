@@ -84,11 +84,11 @@ std::map<std::string, std::string>* Sequence::_saveInstance(bool saveDefaultValu
 }
 
 bool Sequence::_check(std::string* errorMessage) {
-	_insertNeededAttributes({"Entity.Sequence", "Entity.SequenceStep"});
+	_attachedAttributesInsert({"Entity.Sequence", "Entity.SequenceStep"});
 	int i = 0;
 	for (SequenceStep* step : *_steps->list()) {
-		_setAttachedData("StepStation" + strIndex(i), step->getStation());
-		_setAttachedData("StepLabel" + strIndex(i), step->getLabel());
+		_attachedDataInsert("StepStation" + strIndex(i), step->getStation());
+		_attachedDataInsert("StepLabel" + strIndex(i), step->getLabel());
 		i++;
 	}
 	*errorMessage += "";

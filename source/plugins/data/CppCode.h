@@ -55,7 +55,7 @@ protected: // could be overriden by derived classes
 	virtual bool _check(std::string* errorMessage);
 	// virtual ParserChangesInformation* _getParserChangesInformation();
 	//virtual void _initBetweenReplications();
-	virtual void _createInternalData();
+	virtual void _createInternalAndAttachedData();
 private:
 
 	const struct DEFAULT_VALUES {

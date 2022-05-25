@@ -89,13 +89,6 @@ std::map<std::string, std::string>* Leave::_saveInstance(bool saveDefaultValues)
 	return fields;
 }
 
-bool Leave::_check(std::string* errorMessage) {
-	bool resultAll = true;
-	_setAttachedData("Station", _station);
-	resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Station>(), _station, "Station", errorMessage);
-	return resultAll;
-}
-
 PluginInformation* Leave::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Leave>(), &Leave::LoadInstance, &Leave::NewInstance);
 	info->insertDynamicLibFileDependence("station.so");
@@ -103,15 +96,21 @@ PluginInformation* Leave::GetPluginInformation() {
 	return info;
 }
 
-void Leave::_createInternalData() {
+void Leave::_createInternalAndAttachedData() {
 	if (_reportStatistics) {
 		if (_numberIn == nullptr) {
 			_numberIn = new Counter(_parentModel, getName() + "." + "CountNumberIn", this);
-			_internalData->insert({"CountNumberIn", _numberIn});
+			_internalDataInsert("CountNumberIn", _numberIn);
 		} else
 			if (_numberIn != nullptr) {
-			_removeInternalDatas();
+			_internalDataClear();
 		}
 	}
+	_attachedDataInsert("Station", _station);
 }
 
+bool Leave::_check(std::string* errorMessage) {
+	bool resultAll = true;
+	resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Station>(), _station, "Station", errorMessage);
+	return resultAll;
+}

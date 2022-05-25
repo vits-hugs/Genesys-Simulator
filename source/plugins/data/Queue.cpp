@@ -146,17 +146,16 @@ bool Queue::_check(std::string* errorMessage) {
 	return _parentModel->getDataManager()->check(Util::TypeOf<Attribute>(), _attributeName, "AttributeName", false, errorMessage);
 }
 
-void Queue::_createInternalData() {
+void Queue::_createInternalAndAttachedData() {
 	if (_reportStatistics) {
 		if (_cstatNumberInQueue == nullptr) {
 			_cstatNumberInQueue = new StatisticsCollector(_parentModel, getName() + "." + "NumberInQueue", this); /* @TODO: ++ WHY THIS INSERT "DISPOSE" AND "10ENTITYTYPE" STATCOLL ?? */
 			_cstatTimeInQueue = new StatisticsCollector(_parentModel, getName() + "." + "TimeInQueue", this);
-			_internalData->insert({"NumberInQueue", _cstatNumberInQueue});
-			_internalData->insert({"TimeInQueue", _cstatTimeInQueue});
+			_internalDataInsert("NumberInQueue", _cstatNumberInQueue);
+			_internalDataInsert("TimeInQueue", _cstatTimeInQueue);
 		}
 	} else if (_cstatNumberInQueue != nullptr) {
-		// @TODO: remove
-		_removeInternalDatas();
+		_internalDataClear();
 	}
 }
 

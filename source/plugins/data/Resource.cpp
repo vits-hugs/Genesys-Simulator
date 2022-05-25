@@ -203,17 +203,17 @@ bool Resource::_check(std::string* errorMessage) {
 	return true;
 }
 
-void Resource::_createInternalData() {
+void Resource::_createInternalAndAttachedData() {
 	if (_reportStatistics && _cstatTimeSeized == nullptr) {
 		_cstatTimeSeized = new StatisticsCollector(_parentModel, getName() + "." + "TimeSeized", this);
 		_totalTimeSeized = new Counter(_parentModel, getName() + "." + "TotalTimeSeized", this);
 		_numSeizes = new Counter(_parentModel, getName() + "." + "Seizes", this);
 		_numReleases = new Counter(_parentModel, getName() + "." + "Releases", this);
-		_internalData->insert({"TimeSeized", _cstatTimeSeized});
-		_internalData->insert({"TotalTimeSeized", _totalTimeSeized});
-		_internalData->insert({"Seizes", _numSeizes});
-		_internalData->insert({"Releases", _numReleases});
+		_internalDataInsert("TimeSeized", _cstatTimeSeized);
+		_internalDataInsert("TotalTimeSeized", _totalTimeSeized);
+		_internalDataInsert("Seizes", _numSeizes);
+		_internalDataInsert("Releases", _numReleases);
 	} else if (!_reportStatistics && _cstatTimeSeized != nullptr) {
-		_removeInternalDatas();
+		_internalDataClear();
 	}
 }

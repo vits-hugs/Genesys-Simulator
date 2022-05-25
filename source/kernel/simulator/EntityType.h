@@ -55,7 +55,7 @@ protected: // must be overriden by derived classes
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
 	virtual void _initBetweenReplications();
-	virtual void _createInternalData();
+	virtual void _createInternalAndAttachedData();
 private:
 	void _initCostsAndStatistics();
 private:

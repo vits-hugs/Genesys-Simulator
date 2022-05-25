@@ -54,7 +54,7 @@ protected: // pure virtual methods
 protected: // virtual methods
     virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
     virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    //virtual void _createInternalData(); ///< This method is necessary only for those components that instantiate internal elements that must exist before simulation starts and even before model checking. That's the case of components that have internal StatisticsCollectors, since others components may refer to them as expressions (as in "TVAG(ThisCSTAT)") and therefore the modeldatum must exist when checking such expression
+	//virtual void _createInternalAndAttachedData(); ///< This method is necessary only for those components that instantiate internal elements that must exist before simulation starts and even before model checking. That's the case of components that have internal StatisticsCollectors, since others components may refer to them as expressions (as in "TVAG(ThisCSTAT)") and therefore the modeldatum must exist when checking such expression
 protected:
 
     const struct DEFAULT_VALUES {

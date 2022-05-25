@@ -106,7 +106,7 @@ bool Set::_check(std::string* errorMessage) {
 	}
 	int i = 0;
 	for (ModelDataDefinition* data : *_elementSet->list()) {
-		this->_setAttachedData("Member" + strIndex(i), data);
+		this->_attachedDataInsert("Member" + strIndex(i), data);
 	}
 	*errorMessage += "";
 	return resultAll;

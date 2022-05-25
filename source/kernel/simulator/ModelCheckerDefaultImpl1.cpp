@@ -27,11 +27,9 @@ ModelCheckerDefaultImpl1::ModelCheckerDefaultImpl1(Model* model) {
 
 bool ModelCheckerDefaultImpl1::checkAll() {
 	bool res = true;
-	res &= checkSymbols();
-	//if (res)
-	//   res &= checkAndAddInternalLiterals();
-	//if (res)
-	//   res &= checkActivationCode();
+	res = checkOrphaned();
+	if (res)
+		res &= checkSymbols();
 	if (res)
 		res &= checkLimits();
 	if (res)
@@ -217,5 +215,52 @@ bool ModelCheckerDefaultImpl1::checkOrphaned() {
 	_model->getTracer()->trace(Util::TraceLevel::L7_internal, "Checking orphaned DataDefinitions");
 	Util::IncIndent();
 	{
+		std::list<ModelDataDefinition*>* orphaned = new std::list<ModelDataDefinition*>();
+		// Start by including all elements as orphaned
+		for (std::string ddtypename : *_model->getDataManager()->getDataDefinitionClassnames()) {
+			for (ModelDataDefinition* element : *_model->getDataManager()->getDataDefinitionList(ddtypename)->list()) {
+				orphaned->insert(orphaned->end(), element);
+			}
+		}
+		// now exclude all those are refered by someone.
+		ModelDataDefinition* mdd;
+		// ... by someone (ModelDataDefinition).
+		for (std::string ddtypename : *_model->getDataManager()->getDataDefinitionClassnames()) {
+			for (ModelDataDefinition* element : *_model->getDataManager()->getDataDefinitionList(ddtypename)->list()) {
+				for (std::pair<std::string, ModelDataDefinition*> pairInternal : *element->getInternalData()) {
+					mdd = pairInternal.second;
+					orphaned->remove(mdd);
+					_model->getTracer()->trace(Util::TraceLevel::L8_detailed, "(" + element->getClassname() + ") " + element->getName() + " <#>--> " + "(" + mdd->getClassname() + ") " + mdd->getName());
+				}
+				for (std::pair<std::string, ModelDataDefinition*> pairAttached : *element->getAttachedData()) {
+					mdd = pairAttached.second;
+					orphaned->remove(mdd);
+					_model->getTracer()->trace(Util::TraceLevel::L8_detailed, "(" + element->getClassname() + ") " + element->getName() + " < >--> " + "(" + mdd->getClassname() + ") " + mdd->getName());
+				}
+			}
+		}
+		// ... by someone (ModelComponent).
+		for (ModelComponent* component : *_model->getComponents()->getAllComponents()) {
+			for (std::pair<std::string, ModelDataDefinition*> pairInternal : *component->getInternalData()) {
+				mdd = pairInternal.second;
+				orphaned->remove(mdd);
+				_model->getTracer()->trace(Util::TraceLevel::L8_detailed, "(" + component->getClassname() + ") " + component->getName() + " <#>--> " + "(" + mdd->getClassname() + ") " + mdd->getName());
+			}
+			for (std::pair<std::string, ModelDataDefinition*> pairAttached : *component->getAttachedData()) {
+				mdd = pairAttached.second;
+				orphaned->remove(mdd);
+				_model->getTracer()->trace(Util::TraceLevel::L8_detailed, "(" + component->getClassname() + ") " + component->getName() + " < >--> " + "(" + mdd->getClassname() + ") " + mdd->getName());
+			}
+		}
+		// every one in orphaned list now is really orphaned
+		if (orphaned->size() > 0) {
+			_model->getTracer()->trace(Util::TraceLevel::L7_internal, "Orphaned DataDefinitions:");
+			for (ModelDataDefinition* orphanElem : *orphaned) {
+				_model->getTracer()->trace(Util::TraceLevel::L8_detailed, "(" + orphanElem->getClassname() + ") " + orphanElem->getName() + "(id=" + std::to_string(orphanElem->getId()) + ")");
+			}
+		} else {
+			_model->getTracer()->trace(Util::TraceLevel::L7_internal, "No orphaned DataDefinitions found.");
+		}
 	}
+	Util::DecIndent();
 }

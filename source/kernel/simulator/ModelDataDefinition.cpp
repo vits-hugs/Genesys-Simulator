@@ -42,13 +42,13 @@ ModelDataDefinition::ModelDataDefinition(Model* model, std::string thistypename,
 	_addProperty(new PropertySetterBool(Util::TypeOf<ModelDataDefinition>(), "report statistics",
 		DefineGetterBool<ModelDataDefinition>(this, &ModelDataDefinition::isReportStatistics),
 		DefineSetterBool<ModelDataDefinition>(this, &ModelDataDefinition::setReportStatistics)));
-		*/
+	 */
 	_addProperty(new PropertyT<std::string>(Util::TypeOf<ModelDataDefinition>(), "Name",
-		DefineGetter<ModelDataDefinition,std::string>(this, &ModelDataDefinition::getName),
-		DefineSetter<ModelDataDefinition,std::string>(this, &ModelDataDefinition::setName)));
+			DefineGetter<ModelDataDefinition, std::string>(this, &ModelDataDefinition::getName),
+			DefineSetter<ModelDataDefinition, std::string>(this, &ModelDataDefinition::setName)));
 	_addProperty(new PropertyT<bool>(Util::TypeOf<ModelDataDefinition>(), "Report Statistics",
-		DefineGetter<ModelDataDefinition,bool>(this, &ModelDataDefinition::isReportStatistics),
-		DefineSetter<ModelDataDefinition,bool>(this, &ModelDataDefinition::setReportStatistics)));
+			DefineGetter<ModelDataDefinition, bool>(this, &ModelDataDefinition::isReportStatistics),
+			DefineSetter<ModelDataDefinition, bool>(this, &ModelDataDefinition::setReportStatistics)));
 }
 
 bool ModelDataDefinition::hasChanged() const {
@@ -71,38 +71,95 @@ void ModelDataDefinition::setModelLevel(unsigned int _modelLevel) {
 
 ModelDataDefinition::~ModelDataDefinition() {
 	////_parentModel->getTracer()->trace(Util::TraceLevel::L9_mostDetailed, "Removing Element \"" + this->_name + "\" from the model");
-	_removeInternalDatas();
+	_internalDataClear();
 	_parentModel->getDataManager()->remove(this);
 }
 
-void ModelDataDefinition::_removeInternalDatas() {
-	Util::IncIndent();
-	{
-		for (std::map<std::string, ModelDataDefinition*>::iterator it = _internalData->begin(); it != _internalData->end(); it++) {
-			this->_parentModel->getDataManager()->remove((*it).second);
-			(*it).second->~ModelDataDefinition();
-		}
-		_internalData->clear();
+void ModelDataDefinition::_internalDataClear() {
+	for (std::map<std::string, ModelDataDefinition*>::iterator it = _internalData->begin(); it != _internalData->end(); it++) {
+		this->_parentModel->getDataManager()->remove((*it).second);
+		(*it).second->~ModelDataDefinition();
 	}
-	Util::DecIndent();
-
+	_internalData->clear();
 }
 
-void ModelDataDefinition::_removeInternalData(std::string key) {
-	Util::IncIndent();
-	{
-		//for (std::map<std::string, ModelDataDefinition*>::iterator it = _internelElements->begin(); it != _internelElements->end(); it++) {
-		std::map<std::string, ModelDataDefinition*>::iterator it = _internalData->begin();
-		while (it != _internalData->end()) {
-			if ((*it).first == key) {
-				this->_parentModel->getDataManager()->remove((*it).second);
-				(*it).second->~ModelDataDefinition();
+void ModelDataDefinition::_internalDataInsert(std::string key, ModelDataDefinition* data) {
+	if (data == nullptr)
+		return;
+	std::map<std::string, ModelDataDefinition*>::iterator it = _internalData->find(key);
+	if (data == nullptr) {
+		if (it != _internalData->end()) {
+			_internalData->erase(it);
+		}
+	} else {
+		if (it == _internalData->end()) {
+			_internalData->insert({key, data});
+		} else {
+			if ((*it).second != data) {
 				_internalData->erase(it);
-				it = _internalData->begin();
+				_internalData->insert({key, data});
 			}
 		}
 	}
-	Util::DecIndent();
+}
+
+void ModelDataDefinition::_internalDataRemove(std::string key) {
+	std::map<std::string, ModelDataDefinition*>::iterator it = _internalData->begin();
+	while (it != _internalData->end()) {
+		if ((*it).first == key) {
+			this->_parentModel->getDataManager()->remove((*it).second);
+			(*it).second->~ModelDataDefinition();
+			_internalData->erase(it);
+			it = _internalData->begin();
+		}
+	}
+}
+
+void ModelDataDefinition::_attachedAttributesInsert(std::vector<std::string> neededNames) {
+	/* include attributes needed */
+	ModelDataManager* elements = _parentModel->getDataManager();
+	std::string neededName;
+	for (unsigned int i = 0; i < neededNames.size(); i++) {
+		neededName = neededNames[i];
+		ModelDataDefinition* attr1 = elements->getDataDefinition(Util::TypeOf<Attribute>(), neededName);
+		if (attr1 == nullptr) {
+			attr1 = new Attribute(_parentModel, neededName);
+		}
+		_attachedDataInsert(neededName, attr1);
+	}
+}
+
+void ModelDataDefinition::_attachedDataInsert(std::string key, ModelDataDefinition* data) {
+	if (data == nullptr)
+		return;
+	std::map<std::string, ModelDataDefinition*>::iterator it = _attachedData->find(key);
+	if (data == nullptr) {
+		if (it != _attachedData->end()) {
+			_attachedData->erase(it);
+		}
+	} else {
+		if (it == _attachedData->end()) {
+			_attachedData->insert({key, data});
+		} else {
+			if ((*it).second != data) {
+				_attachedData->erase(it);
+				_attachedData->insert({key, data});
+			}
+		}
+	}
+}
+
+void ModelDataDefinition::_attachedDataRemove(std::string key) {
+	//for (std::map<std::string, ModelDataDefinition*>::iterator it = _internelElements->begin(); it != _internelElements->end(); it++) {
+	std::map<std::string, ModelDataDefinition*>::iterator it = _internalData->begin();
+	while (it != _attachedData->end()) {
+		if ((*it).first == key) {
+			this->_parentModel->getDataManager()->remove((*it).second);
+			(*it).second->~ModelDataDefinition();
+			_attachedData->erase(it);
+			it = _attachedData->begin();
+		}
+	}
 }
 
 bool ModelDataDefinition::_getSaveDefaultsOption() {
@@ -136,20 +193,6 @@ std::map<std::string, std::string>* ModelDataDefinition::_saveInstance(bool save
 	SaveField(fields, "name", _name);
 	SaveField(fields, "reportStatistics", _reportStatistics, TraitsKernel<ModelDataDefinition>::reportStatistics, saveDefaultValues);
 	return fields;
-}
-
-void ModelDataDefinition::_insertNeededAttributes(std::vector<std::string> neededNames) {
-	/* include attributes needed */
-	ModelDataManager* elements = _parentModel->getDataManager();
-	std::string neededName;
-	for (unsigned int i = 0; i < neededNames.size(); i++) {
-		neededName = neededNames[i];
-		ModelDataDefinition* attr1 = elements->getDataDefinition(Util::TypeOf<Attribute>(), neededName);
-		if (attr1 == nullptr) {
-			attr1 = new Attribute(_parentModel, neededName);
-		}
-		_setAttachedData(neededName, attr1);
-	}
 }
 
 bool ModelDataDefinition::_check(std::string* errorMessage) {
@@ -315,43 +358,23 @@ bool ModelDataDefinition::Check(ModelDataDefinition* modeldatum, std::string* er
 void ModelDataDefinition::CreateInternalData(ModelDataDefinition* modeldatum) {
 	try {
 		Util::IncIndent();
-		modeldatum->_createInternalData();
+		modeldatum->_createInternalAndAttachedData();
 		Util::DecIndent();
 	} catch (const std::exception& e) {
 		//modeldatum->...->_model->getTraceManager()->traceError(e, "Error creating elements of modeldatum " + modeldatum->show());
 	};
 }
 
-void ModelDataDefinition::_createInternalData() {
+void ModelDataDefinition::_createInternalAndAttachedData() {
 
 }
 
-void ModelDataDefinition::_addProperty(PropertyBase* property)
-{
+void ModelDataDefinition::_addProperty(PropertyBase* property) {
 	_properties->insert(_properties->end(), property);
 }
 
-std::list<PropertyBase *> *ModelDataDefinition::getProperties() const
-{
+std::list<PropertyBase *> *ModelDataDefinition::getProperties() const {
 	return _properties;
-}
-
-void ModelDataDefinition::_setAttachedData(std::string key, ModelDataDefinition* data) {
-	std::map<std::string, ModelDataDefinition*>::iterator it = _attachedData->find(key);
-	if (data == nullptr) {
-		if (it != _attachedData->end()) {
-			_attachedData->erase(it);
-		}
-	} else {
-		if (it == _attachedData->end()) {
-			_attachedData->insert({key, data});
-		} else {
-			if ((*it).second != data) {
-				_attachedData->erase(it);
-				_attachedData->insert({key, data});
-			}
-		}
-	}
 }
 
 void ModelDataDefinition::setReportStatistics(bool reportStatistics) {

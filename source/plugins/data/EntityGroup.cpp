@@ -28,7 +28,7 @@ ModelDataDefinition* EntityGroup::NewInstance(Model* model, std::string name) {
 
 EntityGroup::EntityGroup(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<EntityGroup>(), name) {
 	// it is invoked in the constructor since EntityGroups are creted runtime by Components such as Batch
-	this->_createInternalData();
+	this->_createInternalAndAttachedData();
 }
 
 EntityGroup::~EntityGroup() {
@@ -82,27 +82,6 @@ std::map<std::string, std::string>* EntityGroup::_saveInstance(bool saveDefaultV
 	return fields;
 }
 
-bool EntityGroup::_check(std::string * errorMessage) {
-	std::string newNeededAttributeName = "Entity.Group";
-	if (_parentModel->getDataManager()->getDataDefinition(Util::TypeOf<Attribute>(), newNeededAttributeName) == nullptr) {
-		new Attribute(_parentModel, newNeededAttributeName);
-	}
-	*errorMessage += "";
-	return true;
-}
-
-void EntityGroup::_createInternalData() {
-	if (_reportStatistics) {
-		if (_cstatNumberInGroup == nullptr) {
-			_cstatNumberInGroup = new StatisticsCollector(_parentModel, "NumberInGroup", this);
-			_internalData->insert({"NumberInGroup", _cstatNumberInGroup});
-		}
-	} else
-		if (_cstatNumberInGroup != nullptr) {
-		_removeInternalDatas();
-	}
-}
-
 PluginInformation * EntityGroup::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<EntityGroup>(), &EntityGroup::LoadInstance, &EntityGroup::NewInstance);
 	std::string text = "Represent entities grouped by an 'Entity.Group' attribute.";
@@ -122,4 +101,20 @@ ModelDataDefinition * EntityGroup::LoadInstance(Model* model, std::map<std::stri
 	return newElement;
 }
 
+void EntityGroup::_createInternalAndAttachedData() {
+	this->_attachedAttributesInsert({"Entity.Group"});
+	if (_reportStatistics) {
+		if (_cstatNumberInGroup == nullptr) {
+			_cstatNumberInGroup = new StatisticsCollector(_parentModel, "NumberInGroup", this);
+			_internalDataInsert("NumberInGroup", _cstatNumberInGroup);
+		}
+	} else
+		if (_cstatNumberInGroup != nullptr) {
+		_internalDataClear();
+	}
+}
 
+bool EntityGroup::_check(std::string * errorMessage) {
+	*errorMessage += "";
+	return true;
+}

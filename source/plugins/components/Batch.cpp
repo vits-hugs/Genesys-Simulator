@@ -234,32 +234,36 @@ std::map<std::string, std::string>* Batch::_saveInstance(bool saveDefaultValues)
 
 //void Batch::_initBetweenReplications() {}
 
-void Batch::_createInternalData() {
-	if (_queue == nullptr) {
-		PluginManager* plugins = _parentModel->getParentSimulator()->getPlugins();
-		_queue = plugins->newInstance<Queue>(_parentModel, this->getName() + ".Queue");
-		_internalData->insert({"EntityQueue", _queue});
-		_entityGroup = new EntityGroup(_parentModel, this->getName() + ".EntiyGroup");
-		_internalData->insert({"EntityGroup", _entityGroup});
+void Batch::_createInternalAndAttachedData() {
+	_attachedAttributesInsert({"Entity.Group"});
+	if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+		_attachedDataInsert("GroupdEntityType", _groupedEntityType);
+		if (_queue == nullptr) {
+			PluginManager* plugins = _parentModel->getParentSimulator()->getPlugins();
+			_queue = plugins->newInstance<Queue>(_parentModel, this->getName() + ".Queue");
+			_internalDataInsert("EntityQueue", _queue);
+			_entityGroup = plugins->newInstance<EntityGroup>(_parentModel, this->getName() + ".EntiyGroup");
+			_internalDataInsert("EntityGroup", _entityGroup);
+		}
+		if (_attributeName != "") {
+			ModelDataManager* elements = _parentModel->getDataManager();
+			ModelDataDefinition* attribute = elements->getDataDefinition(Util::TypeOf<Attribute>(), _attributeName);
+			_attachedDataInsert("AttributeName", attribute);
+		}
 	}
 }
 
 bool Batch::_check(std::string * errorMessage) {
 	bool resultAll = true;
-	_insertNeededAttributes({"Entity.Group"});
 	ModelDataManager* elements = _parentModel->getDataManager();
-	if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
-		if (_attributeName != "" && elements->getDataDefinition(Util::TypeOf<Attribute>(), _attributeName) == nullptr) {
-			new Attribute(_parentModel, _attributeName);
-		}
+	if (_attributeName != "") {
+		resultAll &= elements->getDataDefinition(Util::TypeOf<Attribute>(), _attributeName) == nullptr;
 	}
 	if (_groupedEntityType != nullptr) {
-		_setAttachedData("GroupdEntityType", _groupedEntityType);
 		resultAll += elements->check(Util::TypeOf<EntityType>(), _groupedEntityType, "Grouped Entity Type", errorMessage);
 	}
 	if (_attributeName != "") {
 		ModelDataDefinition* attribute = elements->getDataDefinition(Util::TypeOf<Attribute>(), _attributeName);
-		_setAttachedData("AttributeName", attribute);
 		resultAll &= attribute == nullptr;
 	}
 	resultAll += _parentModel->checkExpression(_batchSize, "Batch Size", errorMessage);

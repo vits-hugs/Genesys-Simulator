@@ -81,7 +81,7 @@ std::map<std::string, std::string>* Separate::_saveInstance(bool saveDefaultValu
 
 bool Separate::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	_insertNeededAttributes({"Entity.Group"});
+	_attachedAttributesInsert({"Entity.Group"});
 	return resultAll;
 }
 

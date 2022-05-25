@@ -67,22 +67,19 @@ std::map<std::string, std::string>* SourceModelComponent::_saveInstance(bool sav
 
 bool SourceModelComponent::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	_insertNeededAttributes({"Entity.ArrivalTime"});
-	if (this->_entityType == nullptr) {
-		if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
-			_entityType = new EntityType(_parentModel, DEFAULT.entityTypename);
-		} else {
-			resultAll &= false;
-			*errorMessage += "Error: EntityType do not exist";
-		}
-	}
-	_attachedData->insert({"EntityType", _entityType});
 	resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<EntityType>(), _entityType, "entitytype", errorMessage);
 	resultAll &= _parentModel->checkExpression(this->_timeBetweenCreationsExpression, "time between creations", errorMessage);
 	return resultAll;
 }
 
-void SourceModelComponent::_createInternalData() {
+void SourceModelComponent::_createInternalAndAttachedData() {
+	_attachedAttributesInsert({"Entity.ArrivalTime"});
+	if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+		if (this->_entityType == nullptr) {
+			_entityType = new EntityType(_parentModel, DEFAULT.entityTypename);
+		}
+	}
+	_attachedDataInsert("EntityType", _entityType);
 }
 
 void SourceModelComponent::setFirstCreation(double _firstCreation) {

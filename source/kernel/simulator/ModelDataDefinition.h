@@ -73,13 +73,15 @@ public:
 	void setModelLevel(unsigned int _modelLevel);
 	std::list<PropertyBase *> *getProperties() const;
 
+protected: // methods to be called inside the _createInternalAndAttachedData() method
+	void _internalDataClear();
+	void _internalDataInsert(std::string key, ModelDataDefinition* child);
+	void _internalDataRemove(std::string key);
+	void _attachedDataInsert(std::string key, ModelDataDefinition* data);
+	void _attachedDataRemove(std::string key);
+	void _attachedAttributesInsert(std::vector<std::string> neededNames);
 protected:
-	void _setInternalData(std::string key, ModelDataDefinition* child);
-	void _removeInternalDatas();
-	void _removeInternalData(std::string key);
-	void _setAttachedData(std::string key, ModelDataDefinition* data);
 	bool _getSaveDefaultsOption();
-	void _insertNeededAttributes(std::vector<std::string> neededNames);
 protected: // must be overriden by derived classes
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
@@ -89,10 +91,13 @@ protected: // could be overriden by derived classes
 	virtual ParserChangesInformation* _getParserChangesInformation();
 	virtual void _initBetweenReplications();
 	/*! This method is necessary only for those components that instantiate internal elements that must exist before simulation starts and even before model checking. That's the case of components that have internal StatisticsCollectors, since others components may refer to them as expressions (as in "TVAG(ThisCSTAT)") and therefore the modeldatum must exist before checking such expression */
-	virtual void _createInternalData();
+	virtual void _createInternalAndAttachedData(); /*< A ModelDataDefinition or ModelComponent that includes (internal) ou refers to (attach) other ModelDataDefinition must register them inside this method. */
 	virtual void _addProperty(PropertyBase* property);
 private: // name is now private. So changes in name must be throught setName, wich gives oportunity to rename internelElements, SimulationControls and SimulationResponses
 	std::string _name;
+private:
+	std::map<std::string, ModelDataDefinition*>* _internalData = new std::map<std::string, ModelDataDefinition*>();
+	std::map<std::string, ModelDataDefinition*>* _attachedData = new std::map<std::string, ModelDataDefinition*>();
 protected:
 	Util::identification _id;
 	std::string _typename;
@@ -101,8 +106,6 @@ protected:
 	unsigned int _modelLevel = 0; // the ID of parent component (submodel or process, for now) in the "superlevel"
 	Model* _parentModel;
 protected:
-	std::map<std::string, ModelDataDefinition*>* _internalData = new std::map<std::string, ModelDataDefinition*>();
-	std::map<std::string, ModelDataDefinition*>* _attachedData = new std::map<std::string, ModelDataDefinition*>();
 	std::list<PropertyBase*>* _properties = new std::list<PropertyBase*>();
 };
 //namespace\\}

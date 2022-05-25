@@ -115,14 +115,14 @@ std::map<std::string, std::string>* Delay::_saveInstance(bool saveDefaultValues)
 }
 
 bool Delay::_check(std::string* errorMessage) {
-	_insertNeededAttributes({"Entity.TotalWaitTime"});
+	_attachedAttributesInsert({"Entity.TotalWaitTime"});
 	return _parentModel->checkExpression(_delayExpression, "Delay expression", errorMessage);
 }
 
-void Delay::_createInternalData() {
+void Delay::_createInternalAndAttachedData() {
 	if (_reportStatistics && _cstatWaitTime == nullptr) {
 		_cstatWaitTime = new StatisticsCollector(_parentModel, getName() + "." + "WaitTime", this);
-		_internalData->insert({"WaitTime", _cstatWaitTime});
+		_internalDataInsert("WaitTime", _cstatWaitTime);
 		// include StatisticsCollector needed in EntityType
 		ModelDataManager* elements = _parentModel->getDataManager();
 		std::list<ModelDataDefinition*>* enttypes = elements->getDataDefinitionList(Util::TypeOf<EntityType>())->list();
@@ -132,7 +132,7 @@ void Delay::_createInternalData() {
 				enttype->addGetStatisticsCollector(enttype->getName() + ".WaitTime"); // force create this CStat before simulation starts
 		}
 	} else {
-		_removeInternalDatas();
+		_internalDataClear();
 		// @TODO remove StatisticsCollector needed in EntityType
 	}
 }

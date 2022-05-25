@@ -88,7 +88,7 @@ public:
 	Batch::GroupedAttribs getGroupedAttributes() const;
 protected: // virtual should
 	//virtual void _initBetweenReplications();
-	virtual void _createInternalData();
+	virtual void _createInternalAndAttachedData();
 	virtual bool _check(std::string* errorMessage);
 protected: // virtual must
 	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);

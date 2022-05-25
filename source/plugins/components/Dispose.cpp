@@ -62,16 +62,16 @@ std::map<std::string, std::string>* Dispose::_saveInstance(bool saveDefaultValue
 
 bool Dispose::_check(std::string* errorMessage) {
 	//SinkModelComponent::_check(errorMessage);
-	this->_insertNeededAttributes({"Entity.ArrivalTime"});
 	*errorMessage += "";
 	return true;
 }
 
-void Dispose::_createInternalData() {
+void Dispose::_createInternalAndAttachedData() {
+	_attachedAttributesInsert({"Entity.ArrivalTime"});
 	if (_reportStatistics && _numberOut == nullptr) {
 		// creates the counter (and then the CStats)
 		_numberOut = new Counter(_parentModel, getName() + "." + "CountNumberIn", this);
-		_internalData->insert({"CountNumberIn", _numberOut});
+		_internalDataInsert("CountNumberIn", _numberOut);
 		// include StatisticsCollector needed for each EntityType
 		std::list<ModelDataDefinition*>* enttypes = _parentModel->getDataManager()->getDataDefinitionList(Util::TypeOf<EntityType>())->list();
 		for (ModelDataDefinition* modeldatum : *enttypes) {
@@ -79,7 +79,7 @@ void Dispose::_createInternalData() {
 				static_cast<EntityType*> (modeldatum)->addGetStatisticsCollector(modeldatum->getName() + "." + "TotalTimeInSystem"); // force create this CStat before model checking
 		}
 	} else if (!_reportStatistics && _numberOut != nullptr) {
-		_removeInternalDatas();
+		_internalDataClear();
 	}
 }
 

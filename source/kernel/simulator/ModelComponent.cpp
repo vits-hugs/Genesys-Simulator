@@ -54,7 +54,7 @@ void ModelComponent::DispatchEvent(Event* event) {
 void ModelComponent::CreateInternalData(ModelComponent* component) {
 	//component->_model->getTraceManager()->trace(Util::TraceLevel::blockArrival, "Writing component \"" + component->_name + "\""); //std::to_string(component->_id));
 	try {
-		component->_createInternalData();
+		component->_createInternalAndAttachedData();
 	} catch (const std::exception& e) {
 		component->_parentModel->getTracer()->traceError(e, "Error creating elements of component " + component->show());
 	};

@@ -116,18 +116,18 @@ std::map<std::string, std::string>* Station::_saveInstance(bool saveDefaultValue
 }
 
 bool Station::_check(std::string* errorMessage) {
-	_insertNeededAttributes({"Entity.Station", "Entity.ArrivalAt" + this->getName()});
+	_attachedAttributesInsert({"Entity.Station", "Entity.ArrivalAt" + this->getName()});
 	*errorMessage += "";
 	return true;
 }
 
-void Station::_createInternalData() {
+void Station::_createInternalAndAttachedData() {
 	if (_reportStatistics) {
 		if (_cstatNumberInStation == nullptr) {
 			_cstatNumberInStation = new StatisticsCollector(_parentModel, getName() + "." + "NumberInStation", this);
 			_cstatTimeInStation = new StatisticsCollector(_parentModel, getName() + "." + "TimeInStation", this);
-			_internalData->insert({"NumberInStation", _cstatNumberInStation});
-			_internalData->insert({"TimeInStation", _cstatTimeInStation});
+			_internalDataInsert("NumberInStation", _cstatNumberInStation);
+			_internalDataInsert("TimeInStation", _cstatTimeInStation);
 			//
 			// include StatisticsCollector needed in EntityType
 			std::list<ModelDataDefinition*>* enttypes = _parentModel->getDataManager()->getDataDefinitionList(Util::TypeOf<EntityType>())->list();
@@ -139,6 +139,6 @@ void Station::_createInternalData() {
 		}
 	} else
 		if (_cstatNumberInStation != nullptr) {
-		_removeInternalDatas();
+		_internalDataClear();
 	}
 }

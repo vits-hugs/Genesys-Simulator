@@ -186,8 +186,35 @@ std::map<std::string, std::string>* Route::_saveInstance(bool saveDefaultValues)
 	return fields;
 }
 
-bool Route::_check(std::string* errorMessage) {
-	_insertNeededAttributes({"Entity.TotalTransferTime", "Entity.Station", "Entity.Sequence", "Entity.SequenceStep"});
+PluginInformation* Route::GetPluginInformation() {
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Route>(), &Route::LoadInstance, &Route::NewInstance);
+	info->setSendTransfer(true);
+	info->setCategory("Material Handling");
+	info->insertDynamicLibFileDependence("station.so");
+	info->insertDynamicLibFileDependence("sequence.so");
+	info->insertDynamicLibFileDependence("label.so");
+	std::string help = "The Route module transfers an entity to a specified station or the next station in the station visitation sequence defined for the entity.";
+	help += " A delay time to transfer to the next station may be defined.";
+	help += " When an entity enters the Route module, its Station attribute (Entity.Station) is set to the destination station.";
+	help += " The entity is then sent to the destination station, using the route time specified.";
+	help += " If the station destination is entered as By Sequence, the next station is determined by the entity’s sequence and step within the set (defined by special-purpose attributes Entity.Sequence and Entity.Jobstep, respectively).";
+	help += " TYPICAL USES: (1) Send a part to its next processing station based on its routing slip;";
+	help += " (2) Send an account balance call to an account agent; (3) Send restaurant customers to a specific table";
+	info->setDescriptionHelp(help);
+	return info;
+}
+
+void Route::_createInternalAndAttachedData() {
+	if (_reportStatistics) {
+		if (_numberIn == nullptr) {
+			_numberIn = new Counter(_parentModel, getName() + "." + "CountNumberIn", this);
+			_internalDataInsert("CountNumberIn", _numberIn);
+		}
+	} else
+		if (_numberIn != nullptr) {
+		_internalDataClear();
+	}
+	_attachedAttributesInsert({"Entity.TotalTransferTime", "Entity.Station", "Entity.Sequence", "Entity.SequenceStep"});
 	if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
 		if (_station == nullptr && this->_routeDestinationType == Route::DestinationType::Station) {
 			_station = _parentModel->getParentSimulator()->getPlugins()->newInstance<Station>(_parentModel);
@@ -196,8 +223,11 @@ bool Route::_check(std::string* errorMessage) {
 			_label = _parentModel->getParentSimulator()->getPlugins()->newInstance<Label>(_parentModel);
 		}
 	}
-	this->_setAttachedData("Station", _station);
-	this->_setAttachedData("Label", _label);
+	this->_attachedDataInsert("Station", _station);
+	this->_attachedDataInsert("Label", _label);
+}
+
+bool Route::_check(std::string* errorMessage) {
 	// include StatisticsCollector needed in EntityType
 	std::list<ModelDataDefinition*>* enttypes = _parentModel->getDataManager()->getDataDefinitionList(Util::TypeOf<EntityType>())->list();
 	for (ModelDataDefinition* modeldatum : *enttypes) {
@@ -225,34 +255,4 @@ bool Route::_check(std::string* errorMessage) {
 		}
 	}
 	return resultAll;
-}
-
-PluginInformation* Route::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Route>(), &Route::LoadInstance, &Route::NewInstance);
-	info->setSendTransfer(true);
-	info->setCategory("Material Handling");
-	info->insertDynamicLibFileDependence("station.so");
-	info->insertDynamicLibFileDependence("sequence.so");
-	info->insertDynamicLibFileDependence("label.so");
-	std::string help = "The Route module transfers an entity to a specified station or the next station in the station visitation sequence defined for the entity.";
-	help += " A delay time to transfer to the next station may be defined.";
-	help += " When an entity enters the Route module, its Station attribute (Entity.Station) is set to the destination station.";
-	help += " The entity is then sent to the destination station, using the route time specified.";
-	help += " If the station destination is entered as By Sequence, the next station is determined by the entity’s sequence and step within the set (defined by special-purpose attributes Entity.Sequence and Entity.Jobstep, respectively).";
-	help += " TYPICAL USES: (1) Send a part to its next processing station based on its routing slip;";
-	help += " (2) Send an account balance call to an account agent; (3) Send restaurant customers to a specific table";
-	info->setDescriptionHelp(help);
-	return info;
-}
-
-void Route::_createInternalData() {
-	if (_reportStatistics) {
-		if (_numberIn == nullptr) {
-			_numberIn = new Counter(_parentModel, getName() + "." + "CountNumberIn", this);
-			_internalData->insert({"CountNumberIn", _numberIn});
-		}
-	} else
-		if (_numberIn != nullptr) {
-		_removeInternalDatas();
-	}
 }

@@ -52,7 +52,7 @@ protected: // virtual
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
-	virtual void _createInternalData();
+	virtual void _createInternalAndAttachedData();
 private: // methods
 	void _adjustConnections();
 private: // attributes 1:1

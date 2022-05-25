@@ -256,20 +256,16 @@ std::map<std::string, std::string>* Seize::_saveInstance(bool saveDefaultValues)
 	return fields;
 }
 
-bool Seize::_check(std::string* errorMessage) {
-	bool resultAll = true;
-	// Check SeizableItems
+void Seize::_createInternalAndAttachedData() {
 	int i = 0;
 	for (SeizableItem* seizable : *_seizeRequests->list()) {
-		resultAll &= _parentModel->checkExpression(seizable->getQuantityExpression(), "quantity", errorMessage);
 		if (seizable->getSeizableType() == SeizableItem::SeizableType::RESOURCE) {
 			Resource* resource = seizable->getResource();
 			if (resource == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
 				resource = _parentModel->getParentSimulator()->getPlugins()->newInstance<Resource>(_parentModel);
 				seizable->setResource(resource);
 			}
-			_setAttachedData("SeizableItem" + strIndex(i), resource);
-			resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Resource>(), seizable->getResource(), "Resource", errorMessage);
+			_attachedDataInsert("SeizableItem" + strIndex(i), resource);
 			Resource::ResourceEventHandler handler = Resource::SetResourceEventHandler<Seize>(&Seize::_handlerForResourceEvent, this);
 			resource->addReleaseResourceEventHandler(handler, this, _priority);
 		} else if (seizable->getSeizableType() == SeizableItem::SeizableType::SET) {
@@ -277,8 +273,7 @@ bool Seize::_check(std::string* errorMessage) {
 			if (set == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
 				set = _parentModel->getParentSimulator()->getPlugins()->newInstance<Set>(_parentModel);
 			}
-			_setAttachedData("SeizableItem" + strIndex(i), set);
-			resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Set>(), seizable->getSet(), "Set", errorMessage);
+			_attachedDataInsert("SeizableItem" + strIndex(i), set);
 			Resource* rec;
 			for (ModelDataDefinition* datum : *seizable->getSet()->getElementSet()->list()) {
 				rec = static_cast<Resource*> (datum);
@@ -289,8 +284,7 @@ bool Seize::_check(std::string* errorMessage) {
 	}
 	// Check QueueableItem
 	if (_queueableItem == nullptr) {
-		resultAll = false;
-		*errorMessage += "QueueableItem is missing";
+		//* @TODO: Implement. 
 	} else {
 		if (_queueableItem->getQueueableType() == QueueableItem::QueueableType::QUEUE) {
 			Queue* queue = _queueableItem->getQueue();
@@ -298,16 +292,14 @@ bool Seize::_check(std::string* errorMessage) {
 				queue = _parentModel->getParentSimulator()->getPlugins()->newInstance<Queue>(_parentModel);
 				_queueableItem->setQueue(queue);
 			}
-			_setAttachedData("QueueableItem", queue);
-			resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Queue>(), _queueableItem->getQueue(), "Queueable Queue", errorMessage);
+			_attachedDataInsert("QueueableItem", queue);
 		} else if (_queueableItem->getQueueableType() == QueueableItem::QueueableType::SET) {
 			Set* set = _queueableItem->getSet();
 			if (set == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
 				set = _parentModel->getParentSimulator()->getPlugins()->newInstance<Set>(_parentModel);
 				_queueableItem->setSet(set);
 			}
-			_setAttachedData("QueueableItem", set);
-			resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Set>(), _queueableItem->getSet(), "Queueable Set", errorMessage);
+			_attachedDataInsert("QueueableItem", set);
 		}
 	}
 
@@ -316,7 +308,41 @@ bool Seize::_check(std::string* errorMessage) {
 		if (saveAttr == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
 			saveAttr = _parentModel->getParentSimulator()->getPlugins()->newInstance<Attribute>(_parentModel);
 		}
-		_setAttachedData("SaveAttribute", saveAttr);
+		_attachedDataInsert("SaveAttribute", saveAttr);
+	}
+}
+
+bool Seize::_check(std::string* errorMessage) {
+	bool resultAll = true;
+	// Check SeizableItems
+	int i = 0;
+	for (SeizableItem* seizable : *_seizeRequests->list()) {
+		resultAll &= _parentModel->checkExpression(seizable->getQuantityExpression(), "quantity", errorMessage);
+		if (seizable->getSeizableType() == SeizableItem::SeizableType::RESOURCE) {
+			Resource* resource = seizable->getResource();
+			resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Resource>(), seizable->getResource(), "Resource", errorMessage);
+		} else if (seizable->getSeizableType() == SeizableItem::SeizableType::SET) {
+			Set* set = seizable->getSet();
+			resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Set>(), seizable->getSet(), "Set", errorMessage);
+		}
+		i++;
+	}
+	// Check QueueableItem
+	if (_queueableItem == nullptr) {
+		resultAll = false;
+		*errorMessage += "QueueableItem is missing";
+	} else {
+		if (_queueableItem->getQueueableType() == QueueableItem::QueueableType::QUEUE) {
+			Queue* queue = _queueableItem->getQueue();
+			resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Queue>(), _queueableItem->getQueue(), "Queueable Queue", errorMessage);
+		} else if (_queueableItem->getQueueableType() == QueueableItem::QueueableType::SET) {
+			Set* set = _queueableItem->getSet();
+			resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Set>(), _queueableItem->getSet(), "Queueable Set", errorMessage);
+		}
+	}
+
+	if (_saveAttribute != "") { // check if saveAttribute is an attribute
+		ModelDataDefinition* saveAttr = _parentModel->getDataManager()->getDataDefinition(Util::TypeOf<Attribute>(), _saveAttribute);
 		resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Attribute>(), _saveAttribute, "Save Attribute", true, errorMessage);
 	}
 	return resultAll;

@@ -112,7 +112,7 @@ protected:
 protected:
 	//virtual void _initBetweenReplications();
 	virtual bool _check(std::string* errorMessage);
-	virtual void _createInternalData();
+	virtual void _createInternalAndAttachedData();
 private: // association
     Station* _station = nullptr;
 private: // internel elements

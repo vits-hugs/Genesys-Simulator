@@ -25,7 +25,7 @@ ModelDataDefinition* CppForG::NewInstance(Model* model, std::string name) {
 }
 
 CppForG::CppForG(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<CppForG>(), name) {
-	_createInternalData();
+	_createInternalAndAttachedData();
 }
 
 std::string CppForG::show() {
@@ -92,10 +92,12 @@ bool CppForG::_check(std::string* errorMessage) {
 	return resultAll;
 }
 
-void CppForG::_createInternalData() {
-	if (_cppcode == nullptr) {
-		_cppcode = new CppCode(_parentModel, getName() + ".CppCode");
-		_internalData->insert({"CppCode", _cppcode});
+void CppForG::_createInternalAndAttachedData() {
+	if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+		if (_cppcode == nullptr) {
+			_cppcode = new CppCode(_parentModel, getName() + ".CppCode");
+			_internalDataInsert("CppCode", _cppcode);
+		}
 	}
 }
 

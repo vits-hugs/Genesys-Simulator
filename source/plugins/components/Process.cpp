@@ -26,7 +26,7 @@ ModelDataDefinition* Process::NewInstance(Model* model, std::string name) {
 }
 
 Process::Process(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Process>(), name) {
-	_createInternalData(); // its's called by the constructor because internal components can be accessed by process' public methods, so they must exist ever since
+	_createInternalAndAttachedData(); // its's called by the constructor because internal components can be accessed by process' public methods, so they must exist ever since
 }
 
 std::string Process::show() {
@@ -112,25 +112,6 @@ void Process::_adjustConnections() {
 	}
 }
 
-void Process::_createInternalData() {
-	if (_seize == nullptr) {
-		PluginManager* plugins = _parentModel->getParentSimulator()->getPlugins();
-		// the following components are created into the "_id" model level (a submodel) and therefore will not be saved
-		_seize = plugins->newInstance<Seize>(_parentModel, getName() + ".Seize");
-		_delay = plugins->newInstance<Delay>(_parentModel, getName() + ".Delay");
-		_release = plugins->newInstance<Release>(_parentModel, getName() + ".Release");
-		_seize->setModelLevel(_id); // set level as subcomponent
-		_delay->setModelLevel(_id); // set level as subcomponent
-		_release->setModelLevel(_id); // set level as subcomponent
-		_seize->getConnections()->insert(_delay);
-		_delay->getConnections()->insert(_release);
-		_internalData->insert({"Seize", _seize});
-		_internalData->insert({"Delay", _delay});
-		_internalData->insert({"Release", _release});
-	}
-	_adjustConnections();
-}
-
 bool Process::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
@@ -185,6 +166,33 @@ std::map<std::string, std::string>* Process::_saveInstance(bool saveDefaultValue
 	return fields;
 }
 
+PluginInformation* Process::GetPluginInformation() {
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Process>(), &Process::LoadInstance, &Process::NewInstance);
+	info->insertDynamicLibFileDependence("seize.so");
+	info->insertDynamicLibFileDependence("delay.so");
+	info->insertDynamicLibFileDependence("release.so");
+	return info;
+}
+
+void Process::_createInternalAndAttachedData() {
+	if (_seize == nullptr) {
+		PluginManager* plugins = _parentModel->getParentSimulator()->getPlugins();
+		// the following components are created into the "_id" model level (a submodel) and therefore will not be saved
+		_seize = plugins->newInstance<Seize>(_parentModel, getName() + ".Seize");
+		_delay = plugins->newInstance<Delay>(_parentModel, getName() + ".Delay");
+		_release = plugins->newInstance<Release>(_parentModel, getName() + ".Release");
+		_seize->setModelLevel(_id); // set level as subcomponent
+		_delay->setModelLevel(_id); // set level as subcomponent
+		_release->setModelLevel(_id); // set level as subcomponent
+		_seize->getConnections()->insert(_delay);
+		_delay->getConnections()->insert(_release);
+		_internalDataInsert("Seize", _seize);
+		_internalDataInsert("Delay", _delay);
+		_internalDataInsert("Release", _release);
+	}
+	_adjustConnections();
+}
+
 bool Process::_check(std::string* errorMessage) {
 	bool resultAll = true;
 	// garantee that release releases exactlly what seize seizes
@@ -197,12 +205,4 @@ bool Process::_check(std::string* errorMessage) {
 	resultAll &= ModelComponent::Check(_release);
 	*errorMessage += "";
 	return resultAll;
-}
-
-PluginInformation* Process::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Process>(), &Process::LoadInstance, &Process::NewInstance);
-	info->insertDynamicLibFileDependence("seize.so");
-	info->insertDynamicLibFileDependence("delay.so");
-	info->insertDynamicLibFileDependence("release.so");
-	return info;
 }

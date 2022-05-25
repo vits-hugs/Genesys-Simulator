@@ -95,21 +95,6 @@ std::map<std::string, std::string>* Enter::_saveInstance(bool saveDefaultValues)
 	return fields;
 }
 
-bool Enter::_check(std::string* errorMessage) {
-	bool resultAll = true;
-	if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
-		if (_station == nullptr) {
-			_station = _parentModel->getParentSimulator()->getPlugins()->newInstance<Station>(_parentModel);
-		}
-	}
-	if (_station != nullptr) {
-		_station->setEnterIntoStationComponent(this);
-		_setAttachedData("Station", _station);
-	}
-	resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Station>(), _station, "Station", errorMessage);
-	return resultAll;
-}
-
 PluginInformation* Enter::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Enter>(), &Enter::LoadInstance, &Enter::NewInstance);
 	info->setReceiveTransfer(true);
@@ -119,14 +104,30 @@ PluginInformation* Enter::GetPluginInformation() {
 	return info;
 }
 
-void Enter::_createInternalData() {
+void Enter::_createInternalAndAttachedData() {
 	if (_reportStatistics) {
 		if (_numberIn == nullptr) {
 			_numberIn = new Counter(_parentModel, getName() + "." + "CountNumberIn", this);
-			_internalData->insert({"CountNumberIn", _numberIn});
+			_internalDataInsert("CountNumberIn", _numberIn);
 		}
 	} else
 		if (_numberIn != nullptr) {
-		_removeInternalDatas();
+		_internalDataClear();
 	}
+	if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+		if (_station == nullptr) {
+			_station = _parentModel->getParentSimulator()->getPlugins()->newInstance<Station>(_parentModel);
+		}
+	}
+	_attachedDataInsert("Station", _station);
+
+}
+
+bool Enter::_check(std::string* errorMessage) {
+	bool resultAll = true;
+	if (_station != nullptr) {
+		_station->setEnterIntoStationComponent(this);
+	}
+	resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Station>(), _station, "Station", errorMessage);
+	return resultAll;
 }

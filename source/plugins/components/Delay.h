@@ -62,7 +62,7 @@ protected:
 protected:
 	//virtual void _initBetweenReplications();
 	virtual bool _check(std::string* errorMessage);
-	virtual void _createInternalData();
+	virtual void _createInternalAndAttachedData();
 public:
 	const struct DEFAULT_VALUES {
 		const std::string delayExpression = "1.0";
