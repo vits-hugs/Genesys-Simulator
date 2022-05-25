@@ -82,13 +82,15 @@ public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
-protected: // virtual
-	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+protected: // must be overriden by derived classes
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-protected: // virtual
-	//virtual void _initBetweenReplications();
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+protected: // could be overriden by derived classes.
 	virtual bool _check(std::string* errorMessage);
+	virtual void _initBetweenReplications();
+	virtual void _createInternalData();
+	//virtual ParserChangesInformation* _getParserChangesInformation();
 private: // methods
 private: // attributes 1:1
 private: // attributes 1:n

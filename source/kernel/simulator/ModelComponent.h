@@ -49,12 +49,16 @@ public: // static
     static std::map<std::string, std::string>* SaveInstance(ModelComponent* component);
     void setDescription(std::string _description);
     std::string getDescription() const;
-protected: // pure virtual methods
-    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber) = 0;
-protected: // virtual methods
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+protected: // must be overriden by derived classes
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
     virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	//virtual void _createInternalAndAttachedData(); ///< This method is necessary only for those components that instantiate internal elements that must exist before simulation starts and even before model checking. That's the case of components that have internal StatisticsCollectors, since others components may refer to them as expressions (as in "TVAG(ThisCSTAT)") and therefore the modeldatum must exist when checking such expression
+	// new virtual methods
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber) = 0;
+protected: // could be overriden by derived classes.
+	//virtual bool _check(std::string* errorMessage);
+	//virtual void _initBetweenReplications();
+	//virtual void _createInternalData();
+	//virtual ParserChangesInformation* _getParserChangesInformation();
 protected:
 
     const struct DEFAULT_VALUES {

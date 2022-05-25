@@ -42,6 +42,12 @@ ModelComponent* Hold::LoadInstance(Model* model, std::map<std::string, std::stri
 	return newComponent;
 }
 
+PluginInformation* Hold::GetPluginInformation() {
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Hold>(), &Hold::LoadInstance, &Hold::NewInstance);
+	info->setCategory("Decisions");
+	return info;
+}
+
 void Hold::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
 	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
@@ -70,9 +76,10 @@ bool Hold::_check(std::string* errorMessage) {
 	return resultAll;
 }
 
-PluginInformation* Hold::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Hold>(), &Hold::LoadInstance, &Hold::NewInstance);
-	info->setCategory("Decisions");
-	return info;
+void Hold::_createInternalData() {
+
 }
 
+void Hold::_initBetweenReplications() {
+
+}

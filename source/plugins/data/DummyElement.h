@@ -29,11 +29,18 @@ protected: // must be overriden by derived classes
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 protected: // could be overriden by derived classes.
-	//virtual bool _check(std::string* errorMessage);
+	virtual bool _check(std::string* errorMessage);
+	virtual void _initBetweenReplications();
+	virtual void _createInternalData();
 	//virtual ParserChangesInformation* _getParserChangesInformation();
-	//virtual void _initBetweenReplications();
-	//virtual void _createInternalData();
 private:
+
+	const struct DEFAULT_VALUES {
+		std::string someString = "Test";
+		unsigned int someUint = 1;
+	} DEFAULT;
+	std::string _someString = DEFAULT.someString;
+	unsigned int _someUint = DEFAULT.someUint;
 };
 
 #endif /* DUMMYELEMENT_H */

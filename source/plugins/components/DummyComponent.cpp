@@ -32,6 +32,8 @@ std::string DummyComponent::show() {
 	return ModelComponent::show() + "";
 }
 
+// public static 
+
 ModelComponent* DummyComponent::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
 	DummyComponent* newComponent = new DummyComponent(model);
 	try {
@@ -41,6 +43,14 @@ ModelComponent* DummyComponent::LoadInstance(Model* model, std::map<std::string,
 	}
 	return newComponent;
 }
+
+PluginInformation* DummyComponent::GetPluginInformation() {
+	PluginInformation* info = new PluginInformation(Util::TypeOf<DummyComponent>(), &DummyComponent::LoadInstance, &DummyComponent::NewInstance);
+	info->setDescriptionHelp("//@TODO");
+	return info;
+}
+
+// protected virtual -- must be overriden
 
 void DummyComponent::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
@@ -55,25 +65,36 @@ bool DummyComponent::_loadInstance(std::map<std::string, std::string>* fields) {
 	return res;
 }
 
-//void DummyComponent::_initBetweenReplications() {}
-
 std::map<std::string, std::string>* DummyComponent::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
 	// @TODO: not implemented yet
 	return fields;
 }
 
-//bool DummyComponent::_check(std::string* errorMessage) {
-//	bool resultAll = true;
-//	// @TODO: not implemented yet
-//	*errorMessage += "";
-//	return resultAll;
-//}
 
-//void DummyComponent::_createInternalData() {}
+// protected virtual -- could be overriden 
 
-PluginInformation* DummyComponent::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<DummyComponent>(), &DummyComponent::LoadInstance, &DummyComponent::NewInstance);
-	info->setDescriptionHelp("//@TODO");
-	return info;
+//ParserChangesInformation* DummyElement::_getParserChangesInformation() {}
+
+bool DummyComponent::_check(std::string* errorMessage) {
+	bool resultAll = true;
+	resultAll &= _someString != "";
+	resultAll &= _someUint > 0;
+	return resultAll;
+}
+
+void DummyComponent::_initBetweenReplications() {
+	_someString = "Test";
+	_someUint = 1;
+}
+
+void DummyComponent::_createInternalData() {
+	if (_reportStatistics) {
+		//if (_internal == nullptr) {
+		//	_internal = new StatisticsCollector(_parentModel, getName() + "." + "NumberInQueue", this); /* @TODO: ++ WHY THIS INSERT "DISPOSE" AND "10ENTITYTYPE" STATCOLL ?? */
+		//	_internelElementsInsert("NumberInQueue", _cstatNumberInQueue);
+		//}
+	} else { //if (_cstatNumberInQueue != nullptr) {
+		this->_internalDataClear();
+	}
 }

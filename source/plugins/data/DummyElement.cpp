@@ -26,7 +26,7 @@ ModelDataDefinition* DummyElement::NewInstance(Model* model, std::string name) {
 DummyElement::DummyElement(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<DummyElement>(), name) {
 }
 
-// static 
+// public static 
 
 ModelDataDefinition* DummyElement::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
 	DummyElement* newElement = new DummyElement(model);
@@ -56,14 +56,14 @@ std::string DummyElement::show() {
 	return ModelDataDefinition::show();
 }
 
-// must be overriden by derived classes
+// protected virtual -- must be overriden by derived classes
 
 bool DummyElement::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelDataDefinition::_loadInstance(fields);
 	if (res) {
 		try {
-			//this->_attributeName = LoadField(fields, "attributeName", DEFAULT.attributeName);
-			//this->_orderRule = static_cast<OrderRule> (LoadField(fields, "orderRule", static_cast<int> (DEFAULT.orderRule)));
+			this->_someString = LoadField(fields, "someString", DEFAULT.someString);
+			this->_someUint = LoadField(fields, "someUint", DEFAULT.someUint);
 		} catch (...) {
 		}
 	}
@@ -72,30 +72,35 @@ bool DummyElement::_loadInstance(std::map<std::string, std::string>* fields) {
 
 std::map<std::string, std::string>* DummyElement::_saveInstance(bool saveDefaultValues) {
 	std::map<std::string, std::string>* fields = ModelDataDefinition::_saveInstance(saveDefaultValues); //Util::TypeOf<Queue>());
-	//SaveField(fields, "orderRule", static_cast<int> (this->_orderRule), static_cast<int> (DEFAULT.orderRule));
-	//SaveField(fields, "attributeName", this->_attributeName, DEFAULT.attributeName);
+	SaveField(fields, "someUint", _someUint, DEFAULT.someUint);
+	SaveField(fields, "someString", _someString, DEFAULT.someString);
 	return fields;
 }
 
-// could be overriden by derived classes
-
-//bool DummyElement::_check(std::string* errorMessage) {
-//	bool resultAll = true;
-//	//resultAll &= _parentModel->getDataDefinition()->check(Util::TypeOf<Station>(), _station, "Station", errorMessage);
-//	return resultAll;
-//}
+// protected virtual -- could be overriden by derived classes
 
 //ParserChangesInformation* DummyElement::_getParserChangesInformation() {}
 
-//void DummyElement::_initBetweenReplications() {}
+bool DummyElement::_check(std::string* errorMessage) {
+	bool resultAll = true;
+	resultAll &= _someString != "";
+	resultAll &= _someUint > 0;
+	return resultAll;
+}
 
-//void DummyElement::_createInternalData() {
-//if (_reportStatistics) {
-//if (_cstatNumberInQueue == nullptr) {
-//	_cstatNumberInQueue = new StatisticsCollector(_parentModel, getName() + "." + "NumberInQueue", this); /* @TODO: ++ WHY THIS INSERT "DISPOSE" AND "10ENTITYTYPE" STATCOLL ?? */
-//	_internelElements->insert({"NumberInQueue", _cstatNumberInQueue});
-//}
-//} else { //if (_cstatNumberInQueue != nullptr) {
-//_removeChildrenElements();
-//}
-//}
+void DummyElement::_initBetweenReplications() {
+	_someString = "Test";
+	_someUint = 1;
+}
+
+void DummyElement::_createInternalData() {
+	if (_reportStatistics) {
+		//if (_internal == nullptr) {
+		//	_internal = new StatisticsCollector(_parentModel, getName() + "." + "NumberInQueue", this); /* @TODO: ++ WHY THIS INSERT "DISPOSE" AND "10ENTITYTYPE" STATCOLL ?? */
+		//	_internelElementsInsert("NumberInQueue", _cstatNumberInQueue);
+		//}
+	} else { //if (_cstatNumberInQueue != nullptr) {
+		this->_internalDataClear();
+	}
+}
+

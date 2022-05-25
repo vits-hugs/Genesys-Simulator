@@ -29,16 +29,25 @@ public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
-protected: // virtual (must be overrided)
-	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+protected: // must be overriden by derived classes
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-protected: // virtual (may be overrided)
-	//virtual void _initBetweenReplications();
-	//virtual bool _check(std::string* errorMessage);
-	//virtual void _createInternalData();
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+protected: // could be overriden by derived classes.
+	virtual bool _check(std::string* errorMessage);
+	virtual void _initBetweenReplications();
+	virtual void _createInternalData();
+	//virtual ParserChangesInformation* _getParserChangesInformation();
 private: // methods
 private: // attributes 1:1
+
+	const struct DEFAULT_VALUES {
+		std::string someString = "Test";
+		unsigned int someUint = 1;
+	} DEFAULT;
+	std::string _someString = DEFAULT.someString;
+	unsigned int _someUint = DEFAULT.someUint;
+
 private: // attributes 1:n
 };
 
