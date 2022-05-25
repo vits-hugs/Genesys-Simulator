@@ -40,7 +40,7 @@ using namespace std;
  */
 //int maintestTerminalApplications(int argc, char** argv) {
 
-int main(int argc, char** argv) {
+int __main(int argc, char** argv) {
 	GenesysApplication_if* app;
 	app = new Smart_AssignWriteSeizes();
 	app->main(argc, argv);
