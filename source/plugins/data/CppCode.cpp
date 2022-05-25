@@ -62,7 +62,7 @@ void CppCode::setCode(std::string _code) {
 std::string CppCode::getCode() const {
 	return _code;
 }
-// must be overriden by derived classes
+// must be overriden 
 
 bool CppCode::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelDataDefinition::_loadInstance(fields);
@@ -78,7 +78,7 @@ std::map<std::string, std::string>* CppCode::_saveInstance(bool saveDefaultValue
 	return fields;
 }
 
-// could be overriden by derived classes
+// could be overriden 
 
 bool CppCode::_check(std::string* errorMessage) {
 	return true;

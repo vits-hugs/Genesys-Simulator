@@ -81,7 +81,7 @@ void Label::sendEntityToLabelComponent(Entity* entity, double timeDelay) {
 	_parentModel->sendEntityToComponent(entity, _enteringLabelComponent, timeDelay);
 }
 
-// must be overriden by derived classes
+// must be overriden 
 
 bool Label::_loadInstance(std::map<std::string, std::string>* fields) {
 	bool res = ModelDataDefinition::_loadInstance(fields);
@@ -106,7 +106,7 @@ std::map<std::string, std::string>* Label::_saveInstance(bool saveDefaultValues)
 	return fields;
 }
 
-// could be overriden by derived classes
+// could be overriden 
 
 bool Label::_check(std::string* errorMessage) {
 	bool resultAll = true;

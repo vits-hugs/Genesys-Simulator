@@ -47,7 +47,7 @@ public:
 	void setEndTime(double _endTime);
 	double getEndTime() const;
 	List<ODEfunction*>* getODEfunctions() const;
-protected: // must be overriden by derived classes
+protected: // must be overriden 
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
