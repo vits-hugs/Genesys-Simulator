@@ -163,6 +163,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/ccae408d/Schedule.o \
 	${OBJECTDIR}/_ext/ccae408d/Sequence.o \
 	${OBJECTDIR}/_ext/ccae408d/Set.o \
+	${OBJECTDIR}/_ext/ccae408d/SignalData.o \
 	${OBJECTDIR}/_ext/ccae408d/Station.o \
 	${OBJECTDIR}/_ext/ccae408d/Storage.o \
 	${OBJECTDIR}/_ext/ccae408d/Variable.o \
@@ -839,6 +840,11 @@ ${OBJECTDIR}/_ext/ccae408d/Set.o: ../../source/plugins/data/Set.cpp nbproject/Ma
 	${MKDIR} -p ${OBJECTDIR}/_ext/ccae408d
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/Set.o ../../source/plugins/data/Set.cpp
+
+${OBJECTDIR}/_ext/ccae408d/SignalData.o: ../../source/plugins/data/SignalData.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/ccae408d
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/SignalData.o ../../source/plugins/data/SignalData.cpp
 
 ${OBJECTDIR}/_ext/ccae408d/Station.o: ../../source/plugins/data/Station.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/ccae408d

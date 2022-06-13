@@ -83,7 +83,7 @@ int Smart_OnEvent::main(int argc, char** argv) {
 	this->insertFakePluginsByHand(genesys);
 	Model* model = genesys->getModels()->newModel();
 	PluginManager* plugins = genesys->getPlugins();
-	model->getTracer()->setTraceLevel(Util::TraceLevel::L0_noTraces); // NO TRACES. Genesys will show anything!
+	model->getTracer()->setTraceLevel(TraceManager::Level::L0_noTraces); // NO TRACES. Genesys will show anything!
 	// set event handler to the previous methods. All outputs will come from these handlers
 	OnEventManager* oem = model->getOnEvents();
 	oem->addOnBreakpointHandler(this, &Smart_OnEvent::onBreakpointHandler);

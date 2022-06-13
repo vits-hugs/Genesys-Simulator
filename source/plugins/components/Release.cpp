@@ -91,7 +91,7 @@ void Release::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 					index = _parentModel->parseExpression(seizable->getIndex());
 					break;
 			}
-			_parentModel->getTracer()->traceSimulation(this, "Member of set " + set->getName() + " chosen index " + std::to_string(index), Util::TraceLevel::L8_detailed);
+			_parentModel->getTracer()->traceSimulation(this, "Member of set " + set->getName() + " chosen index " + std::to_string(index), TraceManager::Level::L8_detailed);
 			resource = static_cast<Resource*> (set->getElementSet()->getAtRank(index));
 			assert(resource != nullptr);
 		}

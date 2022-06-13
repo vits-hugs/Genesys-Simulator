@@ -36,7 +36,7 @@ Smart_AssignWriteSeizes::Smart_AssignWriteSeizes() {
 
 int Smart_AssignWriteSeizes::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L4_warning);
+	genesys->getTracer()->setTraceLevel(TraceManager::Level::L4_warning);
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	this->insertFakePluginsByHand(genesys);
 	// create model

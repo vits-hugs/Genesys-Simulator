@@ -15,6 +15,7 @@
 #define DUMMYCOMPONENT_H
 
 #include "../../kernel/simulator/ModelComponent.h"
+#include "../data/DummyElement.h"
 
 /*!
  This component ...
@@ -36,7 +37,7 @@ protected: // must be overriden
 protected: // could be overriden .
 	virtual bool _check(std::string* errorMessage);
 	virtual void _initBetweenReplications();
-	virtual void _createInternalData();
+	virtual void _createInternalAndAttachedData();
 	//virtual ParserChangesInformation* _getParserChangesInformation();
 private: // methods
 private: // attributes 1:1
@@ -47,7 +48,7 @@ private: // attributes 1:1
 	} DEFAULT;
 	std::string _someString = DEFAULT.someString;
 	unsigned int _someUint = DEFAULT.someUint;
-
+	DummyElement* _internalDataDefinition = nullptr;
 private: // attributes 1:n
 };
 

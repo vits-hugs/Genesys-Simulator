@@ -22,11 +22,11 @@ TraceManager::TraceManager(Simulator* simulator) {//(Model* model) {
 	//@TODO: Tracelevels should be based on the tracelevel of each "class" 
 }
 
-void TraceManager::setTraceLevel(Util::TraceLevel _traceLevel) {
+void TraceManager::setTraceLevel(TraceManager::Level _traceLevel) {
 	this->_traceLevel = _traceLevel;
 }
 
-Util::TraceLevel TraceManager::getTraceLevel() const {
+TraceManager::Level TraceManager::getTraceLevel() const {
 	return _traceLevel;
 }
 
@@ -64,11 +64,11 @@ void TraceManager::addTraceSimulationExceptionRuleModelData(void* thisobject) {
 	}
 }
 
-void TraceManager::trace(Util::TraceLevel level, std::string text) {
+void TraceManager::trace(TraceManager::Level level, std::string text) {
 	trace(text, level);
 }
 
-void TraceManager::trace(std::string text, Util::TraceLevel level) {
+void TraceManager::trace(std::string text, TraceManager::Level level) {
 	if (_traceConditionPassed(level)) {
 		text = Util::Indent() + text;
 		//text = "L" + std::to_string(static_cast<int> (level)) + "    " + Util::Indent() + text;
@@ -87,11 +87,11 @@ void TraceManager::traceError(std::exception e, std::string text) {
 	traceError(text, e);
 }
 
-void TraceManager::traceError(Util::TraceLevel level, std::string text) {
+void TraceManager::traceError(TraceManager::Level level, std::string text) {
 	traceError(text, level);
 }
 
-void TraceManager::traceError(std::string text, Util::TraceLevel level) {
+void TraceManager::traceError(std::string text, TraceManager::Level level) {
 	std::exception e;
 	traceError(text, e);
 }
@@ -108,11 +108,11 @@ void TraceManager::traceError(std::string text, std::exception e) {
 	}
 }
 
-void TraceManager::traceSimulation(void* thisobject, Util::TraceLevel level, std::string text) {
+void TraceManager::traceSimulation(void* thisobject, TraceManager::Level level, std::string text) {
 	traceSimulation(thisobject, text, level);
 }
 
-void TraceManager::traceSimulation(void* thisobject, std::string text, Util::TraceLevel level) {
+void TraceManager::traceSimulation(void* thisobject, std::string text, TraceManager::Level level) {
 	if (_traceSimulationConditionPassed(level, thisobject)) {
 		text = Util::Indent() + text;
 		//text = "L" + std::to_string(static_cast<int> (level)) + "    " + Util::Indent() + text;
@@ -127,11 +127,11 @@ void TraceManager::traceSimulation(void* thisobject, std::string text, Util::Tra
 	}
 }
 
-void TraceManager::traceSimulation(void* thisobject, Util::TraceLevel level, double time, Entity* entity, ModelComponent* component, std::string text) {
+void TraceManager::traceSimulation(void* thisobject, TraceManager::Level level, double time, Entity* entity, ModelComponent* component, std::string text) {
 	traceSimulation(thisobject, time, entity, component, text, level);
 }
 
-void TraceManager::traceSimulation(void* thisobject, double time, Entity* entity, ModelComponent* component, std::string text, Util::TraceLevel level) {
+void TraceManager::traceSimulation(void* thisobject, double time, Entity* entity, ModelComponent* component, std::string text, TraceManager::Level level) {
 	if (_traceSimulationConditionPassed(level, thisobject)) {
 		text = Util::Indent() + text;
 		TraceSimulationEvent e = TraceSimulationEvent(level, time, entity, component, text);
@@ -144,11 +144,11 @@ void TraceManager::traceSimulation(void* thisobject, double time, Entity* entity
 	}
 }
 
-void TraceManager::traceReport(Util::TraceLevel level, std::string text) {
+void TraceManager::traceReport(TraceManager::Level level, std::string text) {
 	traceReport(text, level);
 }
 
-void TraceManager::traceReport(std::string text, Util::TraceLevel level) {
+void TraceManager::traceReport(std::string text, TraceManager::Level level) {
 	if (_traceConditionPassed(level)) {
 		text = Util::Indent() + text;
 		TraceEvent e = TraceEvent(text, level);
@@ -165,11 +165,11 @@ List<std::string>* TraceManager::errorMessages() const {
 	return _errorMessages;
 }
 
-bool TraceManager::_traceConditionPassed(Util::TraceLevel level) {
+bool TraceManager::_traceConditionPassed(TraceManager::Level level) {
 	return /*this->_debugged &&*/ static_cast<int> (this->_traceLevel) >= static_cast<int> (level);
 }
 
-bool TraceManager::_traceSimulationConditionPassed(Util::TraceLevel level, void* thisobject) {
+bool TraceManager::_traceSimulationConditionPassed(TraceManager::Level level, void* thisobject) {
 	bool result = _traceConditionPassed(level);
 	bool isException = false;
 	if (result) {

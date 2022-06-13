@@ -149,7 +149,7 @@ bool Queue::_check(std::string* errorMessage) {
 void Queue::_createInternalAndAttachedData() {
 	if (_reportStatistics) {
 		if (_cstatNumberInQueue == nullptr) {
-			_cstatNumberInQueue = new StatisticsCollector(_parentModel, getName() + "." + "NumberInQueue", this); /* @TODO: ++ WHY THIS INSERT "DISPOSE" AND "10ENTITYTYPE" STATCOLL ?? */
+			_cstatNumberInQueue = new StatisticsCollector(_parentModel, getName() + "." + "NumberInQueue", this); 
 			_cstatTimeInQueue = new StatisticsCollector(_parentModel, getName() + "." + "TimeInQueue", this);
 			_internalDataInsert("NumberInQueue", _cstatNumberInQueue);
 			_internalDataInsert("TimeInQueue", _cstatTimeInQueue);

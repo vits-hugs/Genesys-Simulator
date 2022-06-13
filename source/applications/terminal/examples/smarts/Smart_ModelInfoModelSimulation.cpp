@@ -31,7 +31,7 @@ Smart_ModelInfoModelSimulation::Smart_ModelInfoModelSimulation() {
  */
 int Smart_ModelInfoModelSimulation::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L6_arrival);
+	genesys->getTracer()->setTraceLevel(TraceManager::Level::L6_arrival);
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	this->insertFakePluginsByHand(genesys);
 	//

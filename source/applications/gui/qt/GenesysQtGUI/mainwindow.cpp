@@ -23,13 +23,13 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 	ui->setupUi(this);
 	// Genesys Simulator
 	simulator = new Simulator();
-	simulator->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
+	simulator->getTracer()->setTraceLevel(TraceManager::Level::L9_mostDetailed);
 	simulator->getTracer()->addTraceHandler<MainWindow>(this, &MainWindow::_simulatorTraceHandler);
 	simulator->getTracer()->addTraceErrorHandler<MainWindow>(this, &MainWindow::_simulatorTraceErrorHandler);
 	simulator->getTracer()->addTraceReportHandler<MainWindow>(this, &MainWindow::_simulatorTraceReportsHandler);
 	simulator->getTracer()->addTraceSimulationHandler<MainWindow>(this, &MainWindow::_simulatorTraceSimulationHandler);
 	_insertFakePlugins();
-	simulator->getTracer()->setTraceLevel(Util::TraceLevel::L7_internal);
+	simulator->getTracer()->setTraceLevel(TraceManager::Level::L7_internal);
 	// Docks
 	//ui->dockWidgetContentsPlugin->setMinimumHeight(250);
 	//ui->dockWidgetContentsPlugin->setMaximumWidth(230);
@@ -627,7 +627,7 @@ void MainWindow::_actualizeModelCppCode() {
 		text += _addCppCodeLine("Simulator* genesys = new Simulator();", tabs);
 		text += _addCppCodeLine("Model* model = genesys->getModels()->newModel();", tabs);
 		text += _addCppCodeLine("PluginManager* plugins = genesys->getPlugins();", tabs);
-		text += _addCppCodeLine("model->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);", tabs);
+		text += _addCppCodeLine("model->getTracer()->setTraceLevel(TraceManager::TraceLevel::L9_mostDetailed);", tabs);
 		code->insert({"3main", text});
 
 		text = _addCppCodeLine("// Create model data definitions", tabs);
@@ -816,13 +816,13 @@ bool MainWindow::_createModelImage() {
 
 void MainWindow::_simulatorTraceHandler(TraceEvent e) {
 	std::cout << e.getText() << std::endl;
-	if (e.getTracelevel() == Util::TraceLevel::L1_errorFatal)
+	if (e.getTracelevel() == TraceManager::Level::L1_errorFatal)
 		ui->textEdit_Console->setTextColor(QColor::fromRgb(255, 0, 0));
-	else if (e.getTracelevel() == Util::TraceLevel::L2_results)
+	else if (e.getTracelevel() == TraceManager::Level::L2_results)
 		ui->textEdit_Console->setTextColor(QColor::fromRgb(0, 0, 255));
-	else if (e.getTracelevel() == Util::TraceLevel::L3_errorRecover)
+	else if (e.getTracelevel() == TraceManager::Level::L3_errorRecover)
 		ui->textEdit_Console->setTextColor(QColor::fromRgb(223, 0, 0));
-	else if (e.getTracelevel() == Util::TraceLevel::L4_warning)
+	else if (e.getTracelevel() == TraceManager::Level::L4_warning)
 		ui->textEdit_Console->setTextColor(QColor::fromRgb(128, 0, 0));
 	else {
 

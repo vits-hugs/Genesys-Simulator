@@ -19,11 +19,19 @@ extern "C" StaticGetPluginInformation GetPluginInformation() {
 }
 #endif
 
+// constructors
+
 ModelDataDefinition* DummyElement::NewInstance(Model* model, std::string name) {
 	return new DummyElement(model, name);
 }
 
 DummyElement::DummyElement(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<DummyElement>(), name) {
+}
+
+//public
+
+std::string DummyElement::show() {
+	return ModelDataDefinition::show();
 }
 
 // public static 
@@ -48,12 +56,6 @@ PluginInformation* DummyElement::GetPluginInformation() {
 	//info->setFields();
 	// ...
 	return info;
-}
-
-//
-
-std::string DummyElement::show() {
-	return ModelDataDefinition::show();
 }
 
 // protected virtual -- must be overriden 
@@ -93,14 +95,15 @@ void DummyElement::_initBetweenReplications() {
 	_someUint = 1;
 }
 
-void DummyElement::_createInternalData() {
+void DummyElement::_createInternalAndAttachedData() {
 	if (_reportStatistics) {
 		//if (_internal == nullptr) {
-		//	_internal = new StatisticsCollector(_parentModel, getName() + "." + "NumberInQueue", this); /* @TODO: ++ WHY THIS INSERT "DISPOSE" AND "10ENTITYTYPE" STATCOLL ?? */
-		//	_internelElementsInsert("NumberInQueue", _cstatNumberInQueue);
+		//	_internal = new StatisticsCollector(_parentModel, getName() + "." + "NumberInQueue", this); 
+		//	_internelElementsInsert("NumberInQueue", _internal);
 		//}
 	} else { //if (_cstatNumberInQueue != nullptr) {
 		this->_internalDataClear();
 	}
 }
 
+// private

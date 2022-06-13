@@ -121,4 +121,4 @@ bool Label::_check(std::string* errorMessage) {
 
 //void Label::_initBetweenReplications() {}
 
-//void Label::_createInternalData() {}
+//void Label::_createInternalAndAttachedData() {}

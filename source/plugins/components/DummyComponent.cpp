@@ -13,6 +13,8 @@
 
 #include "DummyComponent.h"
 #include "../../kernel/simulator/Model.h"
+#include "../../kernel/simulator/Simulator.h"
+#include "../../kernel/simulator/PluginManager.h"
 
 #ifdef PLUGINCONNECT_DYNAMIC
 
@@ -88,13 +90,10 @@ void DummyComponent::_initBetweenReplications() {
 	_someUint = 1;
 }
 
-void DummyComponent::_createInternalData() {
-	if (_reportStatistics) {
-		//if (_internal == nullptr) {
-		//	_internal = new StatisticsCollector(_parentModel, getName() + "." + "NumberInQueue", this); /* @TODO: ++ WHY THIS INSERT "DISPOSE" AND "10ENTITYTYPE" STATCOLL ?? */
-		//	_internelElementsInsert("NumberInQueue", _cstatNumberInQueue);
-		//}
-	} else { //if (_cstatNumberInQueue != nullptr) {
-		this->_internalDataClear();
+void DummyComponent::_createInternalAndAttachedData() {
+	if (_internalDataDefinition == nullptr) {
+		PluginManager* pm = _parentModel->getParentSimulator()->getPlugins();
+		_internalDataDefinition = pm->newInstance<DummyElement>(_parentModel, getName() + "." + "JustaDummy");
+		_internalDataInsert("JustaDummy", _internalDataDefinition);
 	}
 }

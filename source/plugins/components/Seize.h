@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   Seize.h
  * Author: rafael.luiz.cancian
  *
@@ -25,7 +25,7 @@
 
 class WaitingResource : public Waiting {
 public:
-	WaitingResource(Entity* entity, double timeStartedWaiting, unsigned int quantity, ModelComponent* component) : Waiting(entity, timeStartedWaiting, component) {
+	WaitingResource(Entity* entity, double timeStartedWaiting, unsigned int quantity, ModelComponent* thisComponent, unsigned int thisComponentOutputPort = 0) : Waiting(entity, timeStartedWaiting, thisComponent, thisComponentOutputPort) {
 		_quantity = quantity;
 	}
 	WaitingResource(const WaitingResource& orig) : Waiting(orig) {

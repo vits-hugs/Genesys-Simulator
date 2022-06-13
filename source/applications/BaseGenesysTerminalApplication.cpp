@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   BaseGenesysTerminalApplication.cpp
  * Author: rlcancian
- * 
+ *
  * Created on 3 de Setembro de 2019, 16:25
  */
 
@@ -130,7 +130,7 @@ void BaseGenesysTerminalApplication::insertFakePluginsByHand(Simulator* simulato
 
 	//-----------------------------------------------------
 
-	// OLD ORGANIZATION 
+	// OLD ORGANIZATION
 
 	// model components
 	// arena basic process
@@ -163,6 +163,7 @@ void BaseGenesysTerminalApplication::insertFakePluginsByHand(Simulator* simulato
 	pm->insert("seize.so");
 	pm->insert("search.so");
 	pm->insert("signal.so");
+	pm->insert("signaldata.so");
 	pm->insert("store.so");
 	pm->insert("unstore.so");
 	pm->insert("expression.so");

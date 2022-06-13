@@ -96,10 +96,10 @@ void Model::sendEntityToComponent(Entity* entity, ModelComponent* component, dou
 bool Model::save(std::string filename) {
 	bool res = this->_modelPersistence->save(filename);
 	if (res) {
-		this->_traceManager->trace(Util::TraceLevel::L2_results, "Model successfully saved");
+		this->_traceManager->trace(TraceManager::Level::L2_results, "Model successfully saved");
 		//@TODO Create a onModelSave event handler
 	} else {
-		this->_traceManager->trace(Util::TraceLevel::L2_results, "Model could not be saved");
+		this->_traceManager->trace(TraceManager::Level::L2_results, "Model could not be saved");
 
 	}
 	return res;
@@ -109,10 +109,10 @@ bool Model::load(std::string filename) {
 	this->clear();
 	bool res = this->_modelPersistence->load(filename);
 	if (res)
-		this->_traceManager->trace(Util::TraceLevel::L2_results, "Model successfully loaded");
+		this->_traceManager->trace(TraceManager::Level::L2_results, "Model successfully loaded");
 		//@TODO Create a onModelLoad event handler
 	else
-		this->_traceManager->trace(Util::TraceLevel::L2_results, "Model could not be loaded");
+		this->_traceManager->trace(TraceManager::Level::L2_results, "Model could not be loaded");
 	return res;
 }
 
@@ -127,7 +127,7 @@ double Model::parseExpression(const std::string expression) {
 
 bool Model::checkExpression(const std::string expression, const std::string expressionName, std::string* errorMessage) {
 	bool result;
-	getTracer()->trace("Checking expression \"" + expression + "\"", Util::TraceLevel::L8_detailed);
+	getTracer()->trace("Checking expression \"" + expression + "\"", TraceManager::Level::L8_detailed);
 	try {
 		parseExpression(expression, &result, errorMessage);
 	} catch (...) {
@@ -135,7 +135,7 @@ bool Model::checkExpression(const std::string expression, const std::string expr
 	}
 	if (!result) {
 		std::string msg = "Expression \"" + expression + "\" for '" + expressionName + "' is incorrect. ";
-		this->_traceManager->trace(msg, Util::TraceLevel::L3_errorRecover);
+		this->_traceManager->trace(msg, TraceManager::Level::L3_errorRecover);
 		errorMessage->append(msg);
 	}
 	return result;
@@ -147,12 +147,12 @@ double Model::parseExpression(const std::string expression, bool* success, std::
 }
 
 void Model::show() {
-	getTracer()->trace(Util::TraceLevel::L2_results, "Simulation Model:");
+	getTracer()->trace(TraceManager::Level::L2_results, "Simulation Model:");
 	Util::IncIndent();
 	{
-		getTracer()->trace(Util::TraceLevel::L2_results, "Information:");
+		getTracer()->trace(TraceManager::Level::L2_results, "Information:");
 		Util::IncIndent();
-		getTracer()->trace(Util::TraceLevel::L2_results, this->getInfos()->show());
+		getTracer()->trace(TraceManager::Level::L2_results, this->getInfos()->show());
 		Util::DecIndent();
 		_showConnections();
 		_showComponents();
@@ -161,7 +161,7 @@ void Model::show() {
 		_showSimulationResponses();
 	}
 	Util::DecIndent();
-	getTracer()->trace(Util::TraceLevel::L2_results, "End of Simulation Model");
+	getTracer()->trace(TraceManager::Level::L2_results, "End of Simulation Model");
 }
 
 bool Model::insert(ModelDataDefinition* elemOrComp) {
@@ -182,7 +182,7 @@ void Model::remove(ModelDataDefinition* elemOrComp) {
 }
 
 void Model::_showElements() const {
-	getTracer()->trace(Util::TraceLevel::L2_results, "DataDefinitions:");
+	getTracer()->trace(TraceManager::Level::L2_results, "DataDefinitions:");
 	Util::IncIndent();
 	{
 		std::string elementType;
@@ -191,12 +191,12 @@ void Model::_showElements() const {
 		for (std::list<std::string>::iterator typeIt = elementTypes->begin(); typeIt != elementTypes->end(); typeIt++) {
 			elementType = (*typeIt);
 			List<ModelDataDefinition*>* em = getDataManager()->getDataDefinitionList(elementType);
-			getTracer()->trace(Util::TraceLevel::L2_results, elementType + ":");
+			getTracer()->trace(TraceManager::Level::L2_results, elementType + ":");
 			Util::IncIndent();
 			{
 				for (std::list<ModelDataDefinition*>::iterator it = em->list()->begin(); it != em->list()->end(); it++) {
 					modeldatum = (*it);
-					getTracer()->trace(Util::TraceLevel::L2_results, modeldatum->show());
+					getTracer()->trace(TraceManager::Level::L2_results, modeldatum->show());
 				}
 			}
 			Util::DecIndent();
@@ -210,28 +210,28 @@ void Model::_showConnections() const {
 }
 
 void Model::_showComponents() const {
-	getTracer()->trace(Util::TraceLevel::L2_results, "Components:");
+	getTracer()->trace(TraceManager::Level::L2_results, "Components:");
 	Util::IncIndent();
 	for (ModelComponent* component : *getComponents()) {
-		getTracer()->trace(Util::TraceLevel::L2_results, component->show()); ////
+		getTracer()->trace(TraceManager::Level::L2_results, component->show()); ////
 	}
 	Util::DecIndent();
 }
 
 void Model::_showSimulationControls() const {
-	getTracer()->trace(Util::TraceLevel::L2_results, "Simulation Controls:");
+	getTracer()->trace(TraceManager::Level::L2_results, "Simulation Controls:");
 	Util::IncIndent();
 	for (PropertyBase* control : *_controlsNew->list()) {
-		getTracer()->trace(Util::TraceLevel::L2_results, control->show()); ////
+		getTracer()->trace(TraceManager::Level::L2_results, control->show()); ////
 	}
 	Util::DecIndent();
 }
 
 void Model::_showSimulationResponses() const {
-	getTracer()->trace(Util::TraceLevel::L2_results, "Simulation Responses:");
+	getTracer()->trace(TraceManager::Level::L2_results, "Simulation Responses:");
 	Util::IncIndent();
 	for (PropertyBase* response : *_responsesNew->list()) {
-		getTracer()->trace(Util::TraceLevel::L2_results, response->show()); ////
+		getTracer()->trace(TraceManager::Level::L2_results, response->show()); ////
 	}
 	Util::DecIndent();
 }
@@ -247,11 +247,11 @@ void Model::clear() {
 }
 
 void Model::_createModelInternalElements() {
-	getTracer()->trace(Util::TraceLevel::L7_internal, "Creating internal elements");
+	getTracer()->trace(TraceManager::Level::L7_internal, "Creating internal elements");
 	Util::IncIndent();
 
 	for (ModelComponent* component : *_componentManager) {
-		getTracer()->trace(Util::TraceLevel::L8_detailed, "Internals for " + component->getClassname() + " \"" + component->getName() + "\"");
+		getTracer()->trace(TraceManager::Level::L8_detailed, "Internals for " + component->getClassname() + " \"" + component->getName() + "\"");
 		Util::IncIndent();
 		ModelComponent::CreateInternalData(component);
 		Util::DecIndent();
@@ -269,10 +269,10 @@ void Model::_createModelInternalElements() {
 		// ops. Sorted list has changed and iteration fails. Starts iterating again
 		//	itty = elements()->elementClassnames()->begin();
 		//	modelElements = elements()->elementList((*itty))->list();
-		//	tracer()->trace(Util::TraceLevel::L7_internal, "Creating internal elements");
+		//	tracer()->trace(TraceManager::TraceLevel::L7_internal, "Creating internal elements");
 		//}
 		for (std::list<ModelDataDefinition*>::iterator itel = modelElements->begin(); itel != modelElements->end(); itel++) {
-			getTracer()->trace(Util::TraceLevel::L8_detailed, "Internals for " + (*itel)->getClassname() + " \"" + (*itel)->getName() + "\""); // (" + std::to_string(pos) + "/" + std::to_string(originalSize) + ")");
+			getTracer()->trace(TraceManager::Level::L8_detailed, "Internals for " + (*itel)->getClassname() + " \"" + (*itel)->getName() + "\""); // (" + std::to_string(pos) + "/" + std::to_string(originalSize) + ")");
 			Util::IncIndent();
 			ModelDataDefinition::CreateInternalData((*itel));
 			Util::DecIndent();
@@ -284,7 +284,7 @@ void Model::_createModelInternalElements() {
 			originalSize = getDataManager()->getDataDefinitionClassnames()->size();
 			itty = getDataManager()->getDataDefinitionClassnames()->begin();
 			pos = 1;
-			getTracer()->trace(Util::TraceLevel::L7_internal, "Restarting to create internal elements (due to previous creations)");
+			getTracer()->trace(TraceManager::Level::L7_internal, "Restarting to create internal elements (due to previous creations)");
 		}
 	}
 	Util::DecIndent();
@@ -299,18 +299,18 @@ List<PropertyBase *> *Model::getResponses() const {
 }
 
 bool Model::check() {
-	getTracer()->trace(Util::TraceLevel::L7_internal, "Checking model consistency");
+	getTracer()->trace(TraceManager::Level::L7_internal, "Checking model consistency");
 	Util::IncIndent();
 	// before checking the model, creates all necessary internal ModelDatas
 	_createModelInternalElements();
 	bool res = this->_modelChecker->checkAll();
 	Util::DecIndent();
 	if (res) {
-		getTracer()->trace(Util::TraceLevel::L2_results, "End of Model checking: Success");
+		getTracer()->trace(TraceManager::Level::L2_results, "End of Model checking: Success");
 	} else {
 		//std::exception e = new std::exception();
 		//getTrace()->traceError() ;
-		getTracer()->trace(Util::TraceLevel::L2_results, "End of Model checking: Failed");
+		getTracer()->trace(TraceManager::Level::L2_results, "End of Model checking: Failed");
 	}
 	return res;
 }

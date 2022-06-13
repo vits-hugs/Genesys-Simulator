@@ -107,7 +107,7 @@ void Batch::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 			for (unsigned int i = 0; i < _queue->size(); i++) {
 				entitiesToGroup->insert(entitiesToGroup->end(), _queue->getAtRank(i));
 			}
-			_parentModel->getTracer()->traceSimulation(this, Util::TraceLevel::L7_internal, "Queue has " + std::to_string(_queue->size()) + " elements and a group with " + std::to_string(batchSize) + " elements will be created");
+			_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L7_internal, "Queue has " + std::to_string(_queue->size()) + " elements and a group with " + std::to_string(batchSize) + " elements will be created");
 
 		} else {
 			_parentModel->getTracer()->traceSimulation(this, "Queue has " + std::to_string(_queue->size()) + " elements, not enought to form a group with " + std::to_string(batchSize));
@@ -133,7 +133,7 @@ void Batch::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 						entitiesToGroup->insert(entitiesToGroup->end(), we);
 					}
 				}
-				_parentModel->getTracer()->traceSimulation(this, Util::TraceLevel::L7_internal, "Found " + std::to_string(entitiesToGroup->size()) + " elements in queue with the same value (" + std::to_string(value) + ") for attribute \"" + _attributeName + "\", and a group will be created");
+				_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L7_internal, "Found " + std::to_string(entitiesToGroup->size()) + " elements in queue with the same value (" + std::to_string(value) + ") for attribute \"" + _attributeName + "\", and a group will be created");
 				break;
 				exit; //breake? //next?
 			}
@@ -188,9 +188,9 @@ void Batch::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 		}
 		txtEntsInGroup = txtEntsInGroup.substr(0, txtEntsInGroup.length() - 2);
 		if (_batchType == Batch::BatchType::Temporary) {
-			_parentModel->getTracer()->traceSimulation(this, Util::TraceLevel::L7_internal, "Group key " + std::to_string(groupIdKey) + " was created containing entities: " + txtEntsInGroup + " and representative entity wih attribute 'Entity.Group'=" + std::to_string(_entityGroup->getId()));
+			_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L7_internal, "Group key " + std::to_string(groupIdKey) + " was created containing entities: " + txtEntsInGroup + " and representative entity wih attribute 'Entity.Group'=" + std::to_string(_entityGroup->getId()));
 		} else {
-			_parentModel->getTracer()->traceSimulation(this, Util::TraceLevel::L7_internal, "Entity \"" + representativeEnt->getName() + "\" id=" + std::to_string(groupIdKey) + " now represented the removed entities: " + txtEntsInGroup);
+			_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L7_internal, "Entity \"" + representativeEnt->getName() + "\" id=" + std::to_string(groupIdKey) + " now represented the removed entities: " + txtEntsInGroup);
 		}
 		this->_parentModel->sendEntityToComponent(representativeEnt, this->getConnections()->getFrontConnection());
 	} else {

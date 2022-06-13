@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   Genesys.cpp
  * Author: rafael.luiz.cancian
- * 
+ *
  * Created on 21 de Junho de 2018, 12:48
  */
 
@@ -34,7 +34,7 @@ extern "C" void DestroySimulator(/*GenesysKernel::*/Simulator* p) {
 //using namespace GenesysKernel;
 
 /*!
- * Simulator constructor basically constructs inner classes (managers) and shows basic information on the console. 
+ * Simulator constructor basically constructs inner classes (managers) and shows basic information on the console.
  * This is the only method on the entire simulator thats directlly plots something to the output
  */
 Simulator::Simulator() {
@@ -87,10 +87,10 @@ LicenceManager* Simulator::getLicenceManager() const {
 }
 
 bool Simulator::_completePluginsFieldsAndTemplate() {
-	Util::TraceLevel savedTraceLevel = _traceManager->getTraceLevel();
+	TraceManager::Level savedTraceLevel = _traceManager->getTraceLevel();
 	// this crap stuff should not been shown
-	_traceManager->trace("Completing plugins and templates", Util::TraceLevel::L8_detailed);
-	_traceManager->setTraceLevel(Util::TraceLevel::L0_noTraces); // this crap stuff should not been shown
+	_traceManager->trace("Completing plugins and templates", TraceManager::Level::L8_detailed);
+	_traceManager->setTraceLevel(TraceManager::Level::L0_noTraces); // this crap stuff should not been shown
 	Model* tempModel = new Model(this);
 	tempModel->getPersistence()->setOption(ModelPersistence_if::Options::SAVEDEFAULTS, true);
 	Plugin* plugin;

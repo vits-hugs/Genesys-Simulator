@@ -35,7 +35,7 @@ int Smart_SeizeDelayReleaseNoDataDefs::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	this->insertFakePluginsByHand(genesys);
-	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
+	genesys->getTracer()->setTraceLevel(TraceManager::Level::L9_mostDetailed);
 	// crete model
 	Model* model = genesys->getModels()->newModel();
 	PluginManager* plugins = genesys->getPlugins();

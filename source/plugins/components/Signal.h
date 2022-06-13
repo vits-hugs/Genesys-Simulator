@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   Signal.h
  * Author: rlcancian
  *
@@ -15,6 +15,7 @@
 #define SIGNAL_H
 
 #include "../../kernel/simulator/ModelComponent.h"
+#include "../data/SignalData.h"
 
 /*!
 Signal module
@@ -41,20 +42,35 @@ public: // constructors
 	virtual ~Signal() = default;
 public: // virtual
 	virtual std::string show();
+public:
+	void setSignalData(SignalData* signal);
+	const std::string&limitExpression() const;
+	void setLimitExpression(const std::string&newLimitExpression);
 public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
-protected: // virtual
-	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+
+protected: // must be overriden
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-protected: // virtual
-	//virtual void _initBetweenReplications();
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+protected: // could be overriden .
 	virtual bool _check(std::string* errorMessage);
+	virtual void _initBetweenReplications();
+	virtual void _createInternalAndAttachedData();
+	//virtual ParserChangesInformation* _getParserChangesInformation();
 private: // methods
 private: // attributes 1:1
+	const struct DEFAULT_VALUES {
+		std::string limitExpression = "1";
+	} DEFAULT;
+	std::string _limitExpression = DEFAULT.limitExpression;
+	unsigned int _signalsTriggered = 0;
 private: // attributes 1:n
+private: // attached
+	SignalData* _signalData = nullptr;
+
 };
 
 

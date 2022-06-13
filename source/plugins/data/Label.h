@@ -36,7 +36,7 @@ protected: // could be overriden
 	virtual bool _check(std::string* errorMessage);
 	//virtual ParserChangesInformation* _getParserChangesInformation();
 	//virtual void _initBetweenReplications();
-	//virtual void _createInternalData();
+	//virtual void _createInternalAndAttachedData();
 private:
 	std::string _label;
 	ModelComponent* _enteringLabelComponent = nullptr;

@@ -25,6 +25,8 @@ extern "C" StaticGetPluginInformation GetPluginInformation() {
 }
 #endif
 
+// constructors
+
 ModelDataDefinition* Seize::NewInstance(Model* model, std::string name) {
 	return new Seize(model, name);
 }
@@ -46,6 +48,8 @@ Seize::Seize(Model* model, std::string name) : ModelComponent(model, Util::TypeO
 			DefineGetter<Seize, List<SeizableItem*>*>(this, &Seize::getSeizeRequests),
 			nullptr));
 }
+
+// public 
 
 std::string Seize::show() {
 	std::string txt = ModelComponent::show() +
@@ -79,53 +83,6 @@ void Seize::setQueue(Queue* queue) {
 	setQueueableItem(new QueueableItem(queue));
 }
 
-Queue* Seize::_getQueue() const {
-	if (_queueableItem->getQueueableType() == QueueableItem::QueueableType::QUEUE) {
-		return _queueableItem->getQueue();
-	} else {
-		//assume it is a SET
-		unsigned int index = _parentModel->parseExpression(_queueableItem->getIndex());
-		return static_cast<Queue*> (_queueableItem->getSet()->getElementSet()->getAtRank(index));
-	}
-}
-
-void Seize::_handlerForResourceEvent(Resource* resource) { //@TODO Resource is useless now
-	Queue* queue = _getQueue();
-	Waiting* first = queue->first();
-	if (first != nullptr) { // there are entities waiting in the queue
-		// check if all Seize requests can be seized by the entity in the queue
-		bool canSeizeAll = true;
-		unsigned int quantityRequested, quantityAvailable;
-		for (SeizableItem* seizable : *_seizeRequests->list()) {
-			Resource* resource = _getResourceFromSeizableItem(seizable, first->getEntity());
-			quantityRequested = _parentModel->parseExpression(seizable->getQuantityExpression());
-			quantityAvailable = resource->getCapacity() - resource->getNumberBusy();
-			if (quantityAvailable < quantityRequested) {
-				canSeizeAll = false;
-				break;
-			}
-		}
-		if (canSeizeAll) {
-			queue->removeElement(first);
-			//_parentModel->getTracer()->traceSimulation(this, tnow, first->getEntity(), this, "Waiting entity " + first->getEntity()->getName() + " removed from queue and will try to seize the resources");// now seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\"");
-			_parentModel->getTracer()->trace("Waiting entity " + first->getEntity()->getName() + " removed from queue and will try to seize the resources"); // now seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\"");
-			_parentModel->sendEntityToComponent(first->getEntity(), this); // move waiting entity from queue to this component
-		}
-		/*
-		if (request->getResource() == resource) {
-			unsigned int quantity = _parentModel->parseExpression(request->getQuantityExpression());
-			if ((resource->getCapacity() - resource->getNumberBusy()) >= quantity) { //enought quantity to seize
-				double tnow = _parentModel->getSimulation()->getSimulatedTime();
-				resource->seize(quantity, tnow);
-				_parentModel->getFutureEvents()->insert(new Event(tnow, first->getEntity(), this->getNextComponents()->getFrontConnection()));
-				queue->removeElement(first);
-				_parentModel->getTracer()->traceSimulation(this, tnow, first->getEntity(), this, "Waiting entity " + first->getEntity()->getName() + " removed from queue and now seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\"");
-			}
-		}
-		 */
-	}
-}
-
 List<SeizableItem*>* Seize::getSeizeRequests() const {
 	return _seizeRequests;
 }
@@ -146,41 +103,35 @@ std::string Seize::getSaveAttribute() const {
 	return _saveAttribute;
 }
 
-Resource* Seize::_getResourceFromSeizableItem(SeizableItem* seizable, Entity* entity) {
-	Resource* resource;
-	if (seizable->getSeizableType() == SeizableItem::SeizableType::RESOURCE) {
-		resource = seizable->getResource();
-	} else { // assume SET
-		SeizableItem::SelectionRule rule = seizable->getSelectionRule();
-		Set* set = seizable->getSet();
-		unsigned int index = 0;
-		switch (rule) {
-			case SeizableItem::SelectionRule::CYCLICAL:
-				index = (seizable->getLastMemberSeized() + 1) % _seizeRequests->list()->size();
-				break;
-			case SeizableItem::SelectionRule::LARGESTREMAININGCAPACITY:
-				// @TODO
-				break;
-			case SeizableItem::SelectionRule::RANDOM:
-				// @TODO: RANDOM IS REALLY A PROBLEM!!! NOW IT MAY CAUSE AN ERROR (DEQUEUE AN ENTITY BECAUSE IT CAN SEIZE ALL REQUESTS, BUT ANOTHER RANDOM REQUEST MY BE SELECTED AFTER, IT IT MAY BE BUSY
-				index = std::trunc(rand() * _seizeRequests->list()->size());
-				break;
-			case SeizableItem::SelectionRule::SMALLESTNUMBERBUSY:
-				// @TODO
-				break;
-			case SeizableItem::SelectionRule::SPECIFICMEMBER:
-				index = _parentModel->parseExpression(seizable->getIndex());
-				break;
-		}
-		if (_saveAttribute != "") {
-			entity->setAttributeValue(_saveAttribute, index);
-		}
-		_parentModel->getTracer()->trace("Member of set " + set->getName() + " chosen index " + std::to_string(index), Util::TraceLevel::L8_detailed);
-		resource = static_cast<Resource*> (set->getElementSet()->getAtRank(index));
-		assert(resource != nullptr);
-	}
-	return resource;
+// public static
+
+PluginInformation* Seize::GetPluginInformation() {
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Seize>(), &Seize::LoadInstance, &Seize::NewInstance);
+	info->insertDynamicLibFileDependence("queue.so");
+	info->insertDynamicLibFileDependence("resource.so");
+	std::string help = "The Seize module allocates units of one or more resources to an entity.";
+	help += " The Seize module may be used to seize units of a resource, a member of a resource set, or a resource as defined by an alternative method, such as an attribute or expression.";
+	help += " When an entity enters this module, it waits in a queue (if specified) until all specified resources are available simultaneously.";
+	help += " Allocation type for resource usage is also specified.";
+	help += " An animated queue is displayed above the module when the module is placed.";
+	help += " TYPICAL USES: (1) Beginning a customer order (seize the operator); (2) Starting a tax return (seize the accountant);";
+	help += " (3) Being admitted to hospital (seize the hospital room, nurse, doctor)";
+	info->setDescriptionHelp(help);
+
+	return info;
 }
+
+ModelComponent* Seize::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
+	Seize* newComponent = new Seize(model);
+	try {
+		newComponent->_loadInstance(fields);
+	} catch (const std::exception& e) {
+
+	}
+	return newComponent;
+}
+
+// protected must override
 
 void Seize::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 	for (SeizableItem* seizable : *_seizeRequests->list()) {
@@ -194,7 +145,7 @@ void Seize::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 			} else { // assume SET
 				Set* set = _queueableItem->getSet();
 				unsigned int index = _parentModel->parseExpression(_queueableItem->getIndex());
-				_parentModel->getTracer()->traceSimulation(this, "Member of set " + set->getName() + " chosen index " + std::to_string(index), Util::TraceLevel::L8_detailed);
+				_parentModel->getTracer()->traceSimulation(this, "Member of set " + set->getName() + " chosen index " + std::to_string(index), TraceManager::Level::L8_detailed);
 				queue = static_cast<Queue*> (set->getElementSet()->getAtRank(index));
 			}
 			queue->insertElement(waitingRec); // ->list()->insert(waitingRec);
@@ -206,15 +157,6 @@ void Seize::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 		}
 	}
 	_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
-}
-
-void Seize::_initBetweenReplications() {
-	// @TODO CHeck why commented (seizableItems are NOT ModelDataDefinition, therefore they are NOT iniatilized by ModelSimulation
-	//ModelDataDefinition::InitBetweenReplications(_queueableItem->getQueueable());
-	//for (std::list<SeizableItem*>::iterator it = _seizeRequests->list()->begin(); it != _seizeRequests->list()->end(); it++) {
-	//	(*it)->setLastMemberSeized(0);
-	//	ModelDataDefinition::InitBetweenReplications((*it)->getSeizable());
-	//}
 }
 
 bool Seize::_loadInstance(std::map<std::string, std::string>* fields) {
@@ -254,6 +196,17 @@ std::map<std::string, std::string>* Seize::_saveInstance(bool saveDefaultValues)
 		i++;
 	}
 	return fields;
+}
+
+// protected could override
+
+void Seize::_initBetweenReplications() {
+	// @TODO CHeck why commented (seizableItems are NOT ModelDataDefinition, therefore they are NOT iniatilized by ModelSimulation
+	//ModelDataDefinition::InitBetweenReplications(_queueableItem->getQueueable());
+	//for (std::list<SeizableItem*>::iterator it = _seizeRequests->list()->begin(); it != _seizeRequests->list()->end(); it++) {
+	//	(*it)->setLastMemberSeized(0);
+	//	ModelDataDefinition::InitBetweenReplications((*it)->getSeizable());
+	//}
 }
 
 void Seize::_createInternalAndAttachedData() {
@@ -348,29 +301,88 @@ bool Seize::_check(std::string* errorMessage) {
 	return resultAll;
 }
 
-PluginInformation* Seize::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Seize>(), &Seize::LoadInstance, &Seize::NewInstance);
-	info->insertDynamicLibFileDependence("queue.so");
-	info->insertDynamicLibFileDependence("resource.so");
-	std::string help = "The Seize module allocates units of one or more resources to an entity.";
-	help += " The Seize module may be used to seize units of a resource, a member of a resource set, or a resource as defined by an alternative method, such as an attribute or expression.";
-	help += " When an entity enters this module, it waits in a queue (if specified) until all specified resources are available simultaneously.";
-	help += " Allocation type for resource usage is also specified.";
-	help += " An animated queue is displayed above the module when the module is placed.";
-	help += " TYPICAL USES: (1) Beginning a customer order (seize the operator); (2) Starting a tax return (seize the accountant);";
-	help += " (3) Being admitted to hospital (seize the hospital room, nurse, doctor)";
-	info->setDescriptionHelp(help);
 
-	return info;
-}
+// private
 
-ModelComponent* Seize::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
-	Seize* newComponent = new Seize(model);
-	try {
-		newComponent->_loadInstance(fields);
-	} catch (const std::exception& e) {
-
+Queue* Seize::_getQueue() const {
+	if (_queueableItem->getQueueableType() == QueueableItem::QueueableType::QUEUE) {
+		return _queueableItem->getQueue();
+	} else {
+		//assume it is a SET
+		unsigned int index = _parentModel->parseExpression(_queueableItem->getIndex());
+		return static_cast<Queue*> (_queueableItem->getSet()->getElementSet()->getAtRank(index));
 	}
-	return newComponent;
 }
 
+void Seize::_handlerForResourceEvent(Resource* resource) { //@TODO Resource is useless now
+	Queue* queue = _getQueue();
+	Waiting* first = queue->first();
+	if (first != nullptr) { // there are entities waiting in the queue
+		// check if all Seize requests can be seized by the entity in the queue
+		bool canSeizeAll = true;
+		unsigned int quantityRequested, quantityAvailable;
+		for (SeizableItem* seizable : *_seizeRequests->list()) {
+			Resource* resource = _getResourceFromSeizableItem(seizable, first->getEntity());
+			quantityRequested = _parentModel->parseExpression(seizable->getQuantityExpression());
+			quantityAvailable = resource->getCapacity() - resource->getNumberBusy();
+			if (quantityAvailable < quantityRequested) {
+				canSeizeAll = false;
+				break;
+			}
+		}
+		if (canSeizeAll) {
+			queue->removeElement(first);
+			//_parentModel->getTracer()->traceSimulation(this, tnow, first->getEntity(), this, "Waiting entity " + first->getEntity()->getName() + " removed from queue and will try to seize the resources");// now seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\"");
+			_parentModel->getTracer()->trace("Waiting entity " + first->getEntity()->getName() + " removed from queue and will try to seize the resources"); // now seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\"");
+			_parentModel->sendEntityToComponent(first->getEntity(), this); // move waiting entity from queue to this component
+		}
+		/*
+		if (request->getResource() == resource) {
+			unsigned int quantity = _parentModel->parseExpression(request->getQuantityExpression());
+			if ((resource->getCapacity() - resource->getNumberBusy()) >= quantity) { //enought quantity to seize
+				double tnow = _parentModel->getSimulation()->getSimulatedTime();
+				resource->seize(quantity, tnow);
+				_parentModel->getFutureEvents()->insert(new Event(tnow, first->getEntity(), this->getNextComponents()->getFrontConnection()));
+				queue->removeElement(first);
+				_parentModel->getTracer()->traceSimulation(this, tnow, first->getEntity(), this, "Waiting entity " + first->getEntity()->getName() + " removed from queue and now seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\"");
+			}
+		}
+		 */
+	}
+}
+
+Resource* Seize::_getResourceFromSeizableItem(SeizableItem* seizable, Entity* entity) {
+	Resource* resource;
+	if (seizable->getSeizableType() == SeizableItem::SeizableType::RESOURCE) {
+		resource = seizable->getResource();
+	} else { // assume SET
+		SeizableItem::SelectionRule rule = seizable->getSelectionRule();
+		Set* set = seizable->getSet();
+		unsigned int index = 0;
+		switch (rule) {
+			case SeizableItem::SelectionRule::CYCLICAL:
+				index = (seizable->getLastMemberSeized() + 1) % _seizeRequests->list()->size();
+				break;
+			case SeizableItem::SelectionRule::LARGESTREMAININGCAPACITY:
+				// @TODO
+				break;
+			case SeizableItem::SelectionRule::RANDOM:
+				// @TODO: RANDOM IS REALLY A PROBLEM!!! NOW IT MAY CAUSE AN ERROR (DEQUEUE AN ENTITY BECAUSE IT CAN SEIZE ALL REQUESTS, BUT ANOTHER RANDOM REQUEST MY BE SELECTED AFTER, IT IT MAY BE BUSY
+				index = std::trunc(rand() * _seizeRequests->list()->size());
+				break;
+			case SeizableItem::SelectionRule::SMALLESTNUMBERBUSY:
+				// @TODO
+				break;
+			case SeizableItem::SelectionRule::SPECIFICMEMBER:
+				index = _parentModel->parseExpression(seizable->getIndex());
+				break;
+		}
+		if (_saveAttribute != "") {
+			entity->setAttributeValue(_saveAttribute, index);
+		}
+		_parentModel->getTracer()->trace("Member of set " + set->getName() + " chosen index " + std::to_string(index), TraceManager::Level::L8_detailed);
+		resource = static_cast<Resource*> (set->getElementSet()->getAtRank(index));
+		assert(resource != nullptr);
+	}
+	return resource;
+}

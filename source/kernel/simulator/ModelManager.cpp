@@ -35,7 +35,7 @@ Model* ModelManager::newModel() {
 void ModelManager::insert(Model* model) {
     _models->insert(model);
     this->_currentModel = model;
-    _simulator->getTracer()->trace(Util::TraceLevel::L2_results, "Model successfully inserted");
+    _simulator->getTracer()->trace(TraceManager::Level::L2_results, "Model successfully inserted");
 }
 
 void ModelManager::remove(Model* model) {
@@ -45,7 +45,7 @@ void ModelManager::remove(Model* model) {
         _currentModel = this->front();
     }
     model->~Model();
-    _simulator->getTracer()->trace(Util::TraceLevel::L2_results, "Model successfully removed");
+    _simulator->getTracer()->trace(TraceManager::Level::L2_results, "Model successfully removed");
 }
 
 unsigned int ModelManager::size() {
@@ -63,10 +63,10 @@ bool ModelManager::loadModel(std::string filename) {
     bool res = model->load(filename);
     if (res) {
         this->insert(model);
-        _simulator->getTracer()->trace(Util::TraceLevel::L2_results, "Model successfully loaded");
+        _simulator->getTracer()->trace(TraceManager::Level::L2_results, "Model successfully loaded");
     } else {
         model->~Model();
-        _simulator->getTracer()->trace(Util::TraceLevel::L2_results, "Model coud not be loaded");
+        _simulator->getTracer()->trace(TraceManager::Level::L2_results, "Model coud not be loaded");
     }
     return res;
 }

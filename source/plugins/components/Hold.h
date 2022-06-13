@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   Hold.h
  * Author: rlcancian
  *
@@ -15,6 +15,8 @@
 #define HOLD_H
 
 #include "../../kernel/simulator/ModelComponent.h"
+#include "../data/Queue.h"
+#include "../data/SignalData.h"
 
 /*!
 Hold module
@@ -25,7 +27,7 @@ Remove module).
 If the entity is holding for a signal, the Signal module is used elsewhere in the model
 to allow the entity to move on to the next module. If the entity is holding for a given
 condition to be true, the entity will remain at the module (either in a defined or
-internal queue) until the condition(s) becomes true. When the entity is in an infinite 
+internal queue) until the condition(s) becomes true. When the entity is in an infinite
 hold, the Remove module is used elsewhere in the model to allow the entity to
 continue processing.
 TYPICAL USES
@@ -73,26 +75,43 @@ expression entered in this field will be evaluated to indicate
 which queue is to be used.
  */
 class Hold : public ModelComponent {
+public:
+	enum class HoldType : int {
+		WaitForSignal = 1, InfiniteHold = 2, ScanForCondition = 3
+	};
 public: // constructors
 	Hold(Model* model, std::string name = "");
 	virtual ~Hold() = default;
 public: // virtual
 	virtual std::string show();
+public: //
+	void setSignalData(SignalData* signal);
 public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
-protected: // must be overriden 
+protected: // must be overriden
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
 protected: // could be overriden .
 	virtual bool _check(std::string* errorMessage);
 	virtual void _initBetweenReplications();
-	virtual void _createInternalData();
+	virtual void _createInternalAndAttachedData();
 	//virtual ParserChangesInformation* _getParserChangesInformation();
 private: // methods
+	unsigned int _handlerForSignalDataEvent(SignalData* signalData);
 private: // attributes 1:1
+	const struct DEFAULT_VALUES {
+		HoldType holdType = Hold::HoldType::WaitForSignal;
+		std::string condition = "";
+	} DEFAULT;
+	HoldType _holdType = DEFAULT.holdType;
+	std::string _condition = DEFAULT.condition;
+private: // internal
+	Queue *_queue = nullptr;
+private: // attached
+	SignalData* _signalData = nullptr;
 private: // attributes 1:n
 };
 

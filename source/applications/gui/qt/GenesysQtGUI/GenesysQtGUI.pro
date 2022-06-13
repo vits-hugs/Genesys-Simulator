@@ -111,6 +111,7 @@ SOURCES += \
 	../../../../plugins/data/Schedule.cpp \
 	../../../../plugins/data/Sequence.cpp \
 	../../../../plugins/data/Set.cpp \
+	../../../../plugins/data/SignalData.cpp \
 	../../../../plugins/data/Station.cpp \
 	../../../../plugins/data/Storage.cpp \
 	../../../../plugins/data/Variable.cpp \
@@ -280,6 +281,7 @@ HEADERS += \
 	../../../../plugins/data/Schedule.h \
 	../../../../plugins/data/Sequence.h \
 	../../../../plugins/data/Set.h \
+	../../../../plugins/data/SignalData.h \
 	../../../../plugins/data/Station.h \
 	../../../../plugins/data/Storage.h \
 	../../../../plugins/data/Variable.h \

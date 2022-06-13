@@ -54,14 +54,14 @@ struct TraitsApp {
  *  Configure the Genesys Application to be compiled and executed
  */
 template <> struct TraitsApp<GenesysApplication_if> {
-	static const Util::TraceLevel traceLevel = Util::TraceLevel::L9_mostDetailed;
+	static const TraceManager::Level traceLevel = TraceManager::Level::L9_mostDetailed;
 
 	//// SMART SMART_S ALPHA SORTED
 	//typedef Smart_AssignWriteSeizes Application;
 	//typedef Smart_BatchSeparate Application;
 	//typedef Smart_Delay Application;
-	typedef Smart_Dummy Application;
-	//typedef Smart_HoldSignal Application;
+	//typedef Smart_Dummy Application;
+	typedef Smart_HoldSignal Application;
 	//typedef Smart_ModelInfoModelSimulation Application;
 	//typedef Smart_ODE Application;
 	//typedef Smart_OnEvent Application;

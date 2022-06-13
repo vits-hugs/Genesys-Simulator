@@ -57,7 +57,7 @@ int FullSimulationOfComplexModel::main(int argc, char** argv) {
 	sim->setReplicationLength(1e4);
 	sim->setReplicationLengthTimeUnit(Util::TimeUnit::minute);
 	sim->setNumberOfReplications(30);
-	tm->setTraceLevel(Util::TraceLevel::L2_results);
+	tm->setTraceLevel(TraceManager::Level::L2_results);
 
 	//EntityType* entityType1 = plugins->newInstance<EntityType>(model, "Representative_EntityType");
 

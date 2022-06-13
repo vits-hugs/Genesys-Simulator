@@ -57,7 +57,7 @@ protected: // must be overriden by derived classes
 protected: // could be overriden by derived classes.
 	//virtual bool _check(std::string* errorMessage);
 	//virtual void _initBetweenReplications();
-	//virtual void _createInternalData();
+	//virtual void _createInternalAndAttachedData();
 	//virtual ParserChangesInformation* _getParserChangesInformation();
 protected:
 

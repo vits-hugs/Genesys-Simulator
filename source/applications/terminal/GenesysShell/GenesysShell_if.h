@@ -27,7 +27,7 @@ public:
 	virtual void listHosts() = 0;
 	virtual void listPlugins() = 0;
 	virtual void deleteTraceFiles() = 0;
-	virtual void traceLevel(Util::TraceLevel tracelevel) = 0;
+	virtual void traceLevel(TraceManager::TraceLevel tracelevel) = 0;
 	virtual void addPlugin(std::string filename) = 0;
 	virtual void addFromFile(std::string filename) = 0;
 	virtual void readCommandsFromFile(std::string filename) = 0;

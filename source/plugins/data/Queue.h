@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   Queue.h
  * Author: rafael.luiz.cancian
  *
@@ -24,11 +24,11 @@
 
 class Waiting {
 public:
-	Waiting(Entity* entity, double timeStartedWaiting, ModelComponent* component, unsigned int componentOutputNumber = 0) {
+	Waiting(Entity* entity, double timeStartedWaiting, ModelComponent* thisComponent, unsigned int thisComponentOutputPort = 0) {
 		_entity = entity;
-		_component = component;
+		_thisComponent = thisComponent;
 		_timeStartedWaiting = timeStartedWaiting;
-		_componentOutputNumber = componentOutputNumber;
+		_thisComponentOutputPort = thisComponentOutputPort;
 	}
 
 	virtual ~Waiting() = default;
@@ -36,27 +36,28 @@ public:
 	virtual std::string show() {
 		return //ModelDataDefinition::show()+
 		",entity=" + std::to_string(_entity->getId()) +
-				",component=\"" + _component->getName() + "\"" +
+				",component=\"" + _thisComponent->getName() + "\"" +
+				",inputPort=\"" + std::to_string(_thisComponentOutputPort) + "\"" +
 				",timeStatedWaiting=" + std::to_string(_timeStartedWaiting);
 	}
 public:
 	double getTimeStartedWaiting() const {
 		return _timeStartedWaiting;
 	}
-	ModelComponent* getComponent() const {
-		return _component;
+	ModelComponent* geComponent() const {
+		return _thisComponent;
 	}
 	Entity* getEntity() const {
 		return _entity;
 	}
-	unsigned int getComponentOutputNumber() const {
-		return _componentOutputNumber;
+	unsigned int geComponentOutputPort() const {
+		return _thisComponentOutputPort;
 	}
 private:
 	Entity* _entity;
-	ModelComponent* _component;
+	ModelComponent* _thisComponent;
 	double _timeStartedWaiting;
-	unsigned int _componentOutputNumber;
+	unsigned int _thisComponentOutputPort;
 };
 
 /*!
@@ -119,11 +120,12 @@ public: // to implement SIMAN functions
 	double getAttributeFromWaitingRank(unsigned int rank, Util::identification attributeID);
 	//public:
 	//	void initBetweenReplications();
-protected:
-	virtual void _initBetweenReplications();
+protected: // must be overriden
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+protected: // could be overriden
 	virtual bool _check(std::string* errorMessage);
+	virtual void _initBetweenReplications();
 	virtual void _createInternalAndAttachedData();
 	virtual ParserChangesInformation* _getParserChangesInformation();
 

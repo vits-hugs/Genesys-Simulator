@@ -5292,7 +5292,7 @@ YY_RULE_SETUP
 	//Will not fail because of regex
 	//std::string text("Found Hexadecimal: ");
 	//text += yytext;
-	//driver.getModel()->getTraceManager()->trace(Util::TraceLevel::L9_mostDetailed, text);
+	//driver.getModel()->getTraceManager()->trace(TraceManager::TraceLevel::L9_mostDetailed, text);
 	return yy::genesyspp_parser::make_NUMH(obj_t(atof(yytext), std::string("Hexadecimal")),loc);
       }
 	YY_BREAK
@@ -5304,7 +5304,7 @@ YY_RULE_SETUP
        //Will not fail because of regex
        //std::string text("Found Float: ");
        //text += yytext;
-       //driver.getModel()->getTraceManager()->trace(Util::TraceLevel::L9_mostDetailed, text);
+       //driver.getModel()->getTraceManager()->trace(TraceManager::TraceLevel::L9_mostDetailed, text);
        return yy::genesyspp_parser::make_NUMD(obj_t(atof(yytext),std::string("Float")), loc);
      }
 	YY_BREAK
@@ -5316,7 +5316,7 @@ YY_RULE_SETUP
        //Will not fail because of regex
        //std::string text("Found Decimal: ");
        //text += yytext;
-       //driver.getModel()->getTraceManager()->trace(Util::TraceLevel::L9_mostDetailed, text);
+       //driver.getModel()->getTraceManager()->trace(TraceManager::TraceLevel::L9_mostDetailed, text);
        return yy::genesyspp_parser::make_NUMD(obj_t(atof(yytext),std::string("Decimal")), loc);
       }
 	YY_BREAK

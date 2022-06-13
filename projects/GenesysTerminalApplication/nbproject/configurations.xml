@@ -372,6 +372,8 @@
           <itemPath>../../source/plugins/data/Sequence.h</itemPath>
           <itemPath>../../source/plugins/data/Set.cpp</itemPath>
           <itemPath>../../source/plugins/data/Set.h</itemPath>
+          <itemPath>../../source/plugins/data/SignalData.cpp</itemPath>
+          <itemPath>../../source/plugins/data/SignalData.h</itemPath>
           <itemPath>../../source/plugins/data/Station.cpp</itemPath>
           <itemPath>../../source/plugins/data/Station.h</itemPath>
           <itemPath>../../source/plugins/data/Storage.cpp</itemPath>
@@ -1888,6 +1890,16 @@
       <item path="../../source/plugins/data/Set.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../source/plugins/data/Set.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../source/plugins/data/SignalData.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/plugins/data/SignalData.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="../../source/plugins/data/Station.cpp"
             ex="false"
@@ -3468,6 +3480,16 @@
       <item path="../../source/plugins/data/Set.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../source/plugins/data/Set.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../source/plugins/data/SignalData.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/plugins/data/SignalData.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="../../source/plugins/data/Station.cpp"
             ex="false"

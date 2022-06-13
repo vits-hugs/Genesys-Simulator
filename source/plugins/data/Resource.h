@@ -97,7 +97,7 @@ public:
 	virtual ~Resource() = default;
 public:
 	virtual std::string show();
-public:
+public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
@@ -120,13 +120,14 @@ public: // gets
 public:
 	void addReleaseResourceEventHandler(ResourceEventHandler eventHandler, ModelComponent* component, unsigned int priority);
 	double getLastTimeSeized() const;
-protected:
+protected: // protected must override
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+protected: // protected could override
 	virtual bool _check(std::string* errorMessage);
 	virtual void _createInternalAndAttachedData();
 	virtual void _initBetweenReplications();
-private:
+private: //methods
 	void _notifyReleaseEventHandlers(); ///< Notify observer classes that some of the resource capacity has been released. It is useful for allocation components (such as Seize) to know when an entity waiting into a queue can try to seize the resource again
 	//private:
 	//    ElementManager* _elems;

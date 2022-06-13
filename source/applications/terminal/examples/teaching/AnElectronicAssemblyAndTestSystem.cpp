@@ -41,7 +41,7 @@ int AnElectronicAssemblyAndTestSystem::main(int argc, char** argv) {
 	ModelInfo* infos = model->getInfos();
 	infos->setName("An Electronic Assembly And Test System");
 	infos->setDescription("Example 4.1 from chapter 4 \"Modeling Basic Operations and Inputs\" of the Book \"...\"");
-	model->getTracer()->setTraceLevel(Util::TraceLevel::L9_mostDetailed);
+	model->getTracer()->setTraceLevel(TraceManager::Level::L9_mostDetailed);
 	Create* create1 = plugins->newInstance<Create>(model, "Part A Arrive");
 	Create* create2 = plugins->newInstance<Create>(model, "Part B Arrive");
 	Assign* assign1 = plugins->newInstance<Assign>(model, "Assign Part A Sealer and Arrivel Time");

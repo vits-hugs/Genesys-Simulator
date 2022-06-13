@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   ModelCheckerDefaultImpl1.h
  * Author: rafael.luiz.cancian
  *
@@ -33,6 +33,7 @@ public:
 	virtual bool checkOrphaned();
 private:
 	void _recursiveConnectedTo(PluginManager* pluginManager, ModelComponent* comp, List<ModelComponent*>* visited, List<ModelComponent*>* unconnected, bool* drenoFound);
+	void _showResult(bool result, std::string checking);
 private:
 	Model* _model;
 };

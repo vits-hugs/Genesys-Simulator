@@ -41,7 +41,7 @@ void ModelComponent::DispatchEvent(Event* event) {
 		msg += ": " + component->getDescription();
 	if (inputPortNumber > 0)
 		msg += " by input " + std::to_string(inputPortNumber);
-	component->_parentModel->getTracer()->traceSimulation(component, Util::TraceLevel::L6_arrival, msg);
+	component->_parentModel->getTracer()->traceSimulation(component, TraceManager::Level::L6_arrival, msg);
 	Util::IncIndent();
 	try {
 		component->_onDispatchEvent(entity, inputPortNumber);
@@ -52,7 +52,7 @@ void ModelComponent::DispatchEvent(Event* event) {
 }
 
 void ModelComponent::CreateInternalData(ModelComponent* component) {
-	//component->_model->getTraceManager()->trace(Util::TraceLevel::blockArrival, "Writing component \"" + component->_name + "\""); //std::to_string(component->_id));
+	//component->_model->getTraceManager()->trace(TraceManager::TraceLevel::blockArrival, "Writing component \"" + component->_name + "\""); //std::to_string(component->_id));
 	try {
 		component->_createInternalAndAttachedData();
 	} catch (const std::exception& e) {
@@ -61,7 +61,7 @@ void ModelComponent::CreateInternalData(ModelComponent* component) {
 }
 
 std::map<std::string, std::string>* ModelComponent::SaveInstance(ModelComponent* component) {
-	component->_parentModel->getTracer()->trace(Util::TraceLevel::L9_mostDetailed, "Writing component \"" + component->getName() + "\""); //std::to_string(component->_id));
+	component->_parentModel->getTracer()->trace(TraceManager::Level::L9_mostDetailed, "Writing component \"" + component->getName() + "\""); //std::to_string(component->_id));
 	std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();
 	try {
 		fields = component->_saveInstance(component->_getSaveDefaultsOption());
@@ -83,7 +83,7 @@ std::string ModelComponent::getDescription() const {
 }
 
 bool ModelComponent::Check(ModelComponent* component) {
-	component->_parentModel->getTracer()->trace(Util::TraceLevel::L8_detailed, "Checking " + component->_typename + ": \"" + component->getName() + "\""); //std::to_string(component->_id));
+	component->_parentModel->getTracer()->trace(TraceManager::Level::L8_detailed, "Checking " + component->_typename + ": \"" + component->getName() + "\""); //std::to_string(component->_id));
 	bool res = false;
 	std::string* errorMessage = new std::string();
 	Util::IncIndent();
@@ -91,7 +91,7 @@ bool ModelComponent::Check(ModelComponent* component) {
 		try {
 			res = component->_check(errorMessage);
 			if (!res) {
-				component->_parentModel->getTracer()->traceError(Util::TraceLevel::L1_errorFatal, "Error: Checking has failed with message '" + *errorMessage + "'");
+				component->_parentModel->getTracer()->traceError(TraceManager::Level::L1_errorFatal, "Error: Checking has failed with message '" + *errorMessage + "'");
 			}
 		} catch (const std::exception& e) {
 			component->_parentModel->getTracer()->traceError(e, "Error verifying component " + component->show());
@@ -150,4 +150,4 @@ std::map<std::string, std::string>* ModelComponent::_saveInstance(bool saveDefau
 	return fields;
 }
 
-//void ModelComponent::_createInternalData() {}
+//void ModelComponent::_createInternalAndAttachedData() {}

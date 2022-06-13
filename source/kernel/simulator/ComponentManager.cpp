@@ -29,11 +29,11 @@ ComponentManager::ComponentManager(Model* model) {
 bool ComponentManager::insert(ModelComponent* comp) {
     if (_components->find(comp) == _components->list()->end()) {
         _components->insert(comp);
-        _parentModel->getTracer()->trace(Util::TraceLevel::L2_results, "Component \"" + comp->getName() + "\" successfully inserted");
+        _parentModel->getTracer()->trace(TraceManager::Level::L2_results, "Component \"" + comp->getName() + "\" successfully inserted");
         _hasChanged = true;
         return true;
     }
-    _parentModel->getTracer()->trace(Util::TraceLevel::L2_results, "Component \"" + comp->getName() + "\" could not be inserted");
+    _parentModel->getTracer()->trace(TraceManager::Level::L2_results, "Component \"" + comp->getName() + "\" could not be inserted");
     return false;
 }
 
@@ -58,7 +58,7 @@ ModelComponent* ComponentManager::find(Util::identification id) {
 void ComponentManager::remove(ModelComponent * comp) {
     std::string name = comp->getName();
     _components->remove(comp);
-    _parentModel->getTracer()->trace(Util::TraceLevel::L2_results, "Component \"" + name + "\" successfully removed");
+    _parentModel->getTracer()->trace(TraceManager::Level::L2_results, "Component \"" + name + "\" successfully removed");
     _hasChanged = true;
 }
 

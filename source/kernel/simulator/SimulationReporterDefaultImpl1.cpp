@@ -115,7 +115,7 @@ void SimulationReporterDefaultImpl1::showReplicationStatistics() {
 					for (ModelDataDefinition * const item : *(mapItem.second)) {
 						if (item->getClassname() == UtilTypeOfStatisticsCollector) {
 							Statistics_if* stat = dynamic_cast<StatisticsCollector*> (item)->getStatistics();
-							_model->getTracer()->traceReport(Util::TraceLevel::L2_results,
+							_model->getTracer()->traceReport(TraceManager::Level::L2_results,
 									Util::SetW(item->getName() + std::string(_nameW, '.'), _nameW - 1) + " " +
 									Util::SetW(std::to_string(stat->numElements()), _w) +
 									Util::SetW(std::to_string(stat->min()), _w) +
@@ -130,7 +130,7 @@ void SimulationReporterDefaultImpl1::showReplicationStatistics() {
 						} else {
 							if (item->getClassname() == UtilTypeOfCounter) {
 								Counter* count = dynamic_cast<Counter*> (item);
-								_model->getTracer()->traceReport(Util::TraceLevel::L2_results,
+								_model->getTracer()->traceReport(TraceManager::Level::L2_results,
 										Util::SetW(count->getName() + std::string(_nameW, '.'), _nameW - 1) + " " +
 										Util::SetW(std::to_string(count->getCountValue()), _w)
 										);
@@ -230,7 +230,7 @@ void SimulationReporterDefaultImpl1::showSimulationStatistics() {//List<Statisti
 					for (ModelDataDefinition * const item : *(mapItem.second)) {
 						if (item->getClassname() == UtilTypeOfStatisticsCollector) {
 							Statistics_if* stat = dynamic_cast<StatisticsCollector*> (item)->getStatistics();
-							_model->getTracer()->traceReport(Util::TraceLevel::L2_results,
+							_model->getTracer()->traceReport(TraceManager::Level::L2_results,
 									Util::SetW(item->getName() + std::string(_nameW, '.'), _nameW - 1) + " " +
 									Util::SetW(std::to_string(stat->numElements()), _w) +
 									Util::SetW(std::to_string(stat->min()), _w) +
@@ -245,7 +245,7 @@ void SimulationReporterDefaultImpl1::showSimulationStatistics() {//List<Statisti
 						} else {
 							if (item->getClassname() == UtilTypeOfCounter) {
 								Counter* cnt = dynamic_cast<Counter*> (item);
-								_model->getTracer()->traceReport(Util::TraceLevel::L2_results,
+								_model->getTracer()->traceReport(TraceManager::Level::L2_results,
 										Util::SetW(cnt->getName() + std::string(_nameW, '.'), _nameW - 1) + " " +
 										Util::SetW(std::to_string(cnt->getCountValue()), _w)
 										);

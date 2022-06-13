@@ -41,20 +41,20 @@ struct TraitsKernel {
  */
 
 template <> struct TraitsKernel<Simulator> {
-	static const Util::TraceLevel traceLevel = Util::TraceLevel::L9_mostDetailed;
+	static const TraceManager::Level traceLevel = TraceManager::Level::L9_mostDetailed;
 };
 
 template <> struct TraitsKernel<SimulationReporter_if> {
 	typedef SimulationReporterDefaultImpl1 Implementation;
 	typedef Counter CounterImplementation;
 	static constexpr bool showSimulationResponses = false;
-	static const Util::TraceLevel traceLevel = Util::TraceLevel::L2_results;
+	static const TraceManager::Level traceLevel = TraceManager::Level::L2_results;
 };
 
 template <> struct TraitsKernel<PluginConnector_if> {
 	typedef PluginConnectorDummyImpl1 Implementation;
 	//typedef PluginConnectorDynamicLibraryLoader Implementation;
-	static const Util::TraceLevel traceLevel = Util::TraceLevel::L4_warning;
+	static const TraceManager::Level traceLevel = TraceManager::Level::L4_warning;
 };
 
 template <> struct TraitsKernel<Parser_if> {
@@ -69,27 +69,27 @@ template <> struct TraitsKernel<Model> {
 	typedef StatisticsDefaultImpl1 StatisticsCollector_StatisticsImplementation;
 	typedef CollectorDefaultImpl1 StatisticsCollector_CollectorImplementation;
 	static constexpr bool automaticallyCreatesModelDatas = true; //@TODO: Need to be supported by every component
-	static const Util::TraceLevel traceLevel = Util::TraceLevel::L5_event;
+	static const TraceManager::Level traceLevel = TraceManager::Level::L5_event;
 };
 
 template <> struct TraitsKernel<ModelComponent> {
 	static constexpr bool reportStatistics = true;
-	static const Util::TraceLevel traceLevel = Util::TraceLevel::L2_results;
+	static const TraceManager::Level traceLevel = TraceManager::Level::L2_results;
 };
 
 template <> struct TraitsKernel<ModelDataDefinition> {
 	static constexpr bool reportStatistics = true;
-	static const Util::TraceLevel traceLevel = Util::TraceLevel::L2_results;
+	static const TraceManager::Level traceLevel = TraceManager::Level::L2_results;
 };
 
 template <> struct TraitsKernel<ModelChecker_if> {
 	typedef ModelCheckerDefaultImpl1 Implementation;
-	static const Util::TraceLevel traceLevel = Util::TraceLevel::L2_results;
+	static const TraceManager::Level traceLevel = TraceManager::Level::L2_results;
 };
 
 template <> struct TraitsKernel<ModelPersistence_if> {
 	typedef ModelPersistenceDefaultImpl1 Implementation;
-	static const Util::TraceLevel traceLevel = Util::TraceLevel::L2_results;
+	static const TraceManager::Level traceLevel = TraceManager::Level::L2_results;
 };
 
 /*

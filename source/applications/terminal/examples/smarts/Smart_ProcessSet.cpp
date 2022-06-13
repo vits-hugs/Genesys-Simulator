@@ -34,7 +34,7 @@ int Smart_ProcessSet::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	this->insertFakePluginsByHand(genesys);
-	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L8_detailed);
+	genesys->getTracer()->setTraceLevel(TraceManager::Level::L8_detailed);
 	// create model
 	Model* model = genesys->getModels()->newModel();
 	PluginManager* plugins = genesys->getPlugins();

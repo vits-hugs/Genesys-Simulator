@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   PluginConnectorDummyImpl1.cpp
  * Author: rlcancian
- * 
+ *
  * Created on 9 de Setembro de 2019, 19:24
  */
 
@@ -61,6 +61,7 @@
 #include "../../plugins/data/Schedule.h"
 #include "../../plugins/data/Sequence.h"
 #include "../../plugins/data/Set.h"
+#include "../../plugins/data/SignalData.h"
 #include "../../plugins/data/Station.h"
 #include "../../plugins/data/Storage.h"
 #include "../../plugins/data/Variable.h"
@@ -85,7 +86,7 @@ Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilen
 	std::string fn = getFileName(dynamicLibraryFilename);
 	StaticGetPluginInformation GetInfo = nullptr;
 	Plugin* pluginResult = nullptr;
-	// @TODO: Dummy connections basically does nothing but give access to PluginInformation alreaady compiled 
+	// @TODO: Dummy connections basically does nothing but give access to PluginInformation alreaady compiled
 
 	// Model data definitions
 
@@ -165,6 +166,8 @@ Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilen
 		GetInfo = &Search::GetPluginInformation;
 	else if (fn == "signal.so")
 		GetInfo = &Signal::GetPluginInformation;
+	else if (fn == "signaldata.so")
+		GetInfo = &SignalData::GetPluginInformation;
 	else if (fn == "store.so")
 		GetInfo = &Store::GetPluginInformation;
 	else if (fn == "cppforg.so")

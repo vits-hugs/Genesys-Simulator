@@ -146,7 +146,7 @@ void LSODE::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 		for (unsigned int i = 0; i < _variable->getDimensionSizes()->front(); i++) {
 			message += " ," + _variable->getName() + "[" + std::to_string(i) + "]=" + std::to_string(_variable->getValue(std::to_string(i)));
 		}
-		_parentModel->getTracer()->traceSimulation(this, message, Util::TraceLevel::L8_detailed);
+		_parentModel->getTracer()->traceSimulation(this, message, TraceManager::Level::L8_detailed);
 		if (_filename != "") {
 			message = std::to_string(_timeVariable->getValue());
 			for (unsigned int i = 0; i < _variable->getDimensionSizes()->front(); i++) {

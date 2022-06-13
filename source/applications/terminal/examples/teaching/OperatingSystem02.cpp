@@ -181,7 +181,7 @@ int OperatingSystem02::main(int argc, char** argv) {
 	sim->setNumberOfReplications(30);
 	sim->setPauseOnReplication(true);
 	// AJUSTA NÍVEL DE TRACE
-	genesys->getTracer()->setTraceLevel(Util::TraceLevel::L2_results);
+	genesys->getTracer()->setTraceLevel(TraceManager::Level::L2_results);
 	// SALVA MODELO
 	model->save("./models/SistemaOperacional02.gen");
 	// EXECUTA CADA REPLICAÇÃO, RECOMEÇANDO APÓS CADA PAUSA
