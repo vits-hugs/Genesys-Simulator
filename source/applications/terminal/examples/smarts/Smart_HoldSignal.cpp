@@ -20,7 +20,7 @@
 
 // Model Components
 #include "../../../../plugins/components/Create.h"
-#include "../../../../plugins/components/Hold.h"
+#include "../../../../plugins/components/Wait.h"
 #include "../../../../plugins/components/Signal.h"
 #include "../../../../plugins/data/SignalData.h"
 #include "../../../../plugins/components/Dispose.h"
@@ -52,9 +52,9 @@ int Smart_HoldSignal::main(int argc, char** argv) {
 
 	SignalData* sigdata1 = plugins->newInstance<SignalData>(model, "sinalD1");
 	SignalData* sigdata2 = plugins->newInstance<SignalData>(model, "sinalD2");
-	Hold* hold1 = plugins->newInstance<Hold>(model);
+	Wait* hold1 = plugins->newInstance<Wait>(model);
 	hold1->setSignalData(sigdata1);
-	Hold* hold2 = plugins->newInstance<Hold>(model);
+	Wait* hold2 = plugins->newInstance<Wait>(model);
 	hold2->setSignalData(sigdata2);
 	Signal* signal1 = plugins->newInstance<Signal>(model);
 	signal1->setSignalData(sigdata1);

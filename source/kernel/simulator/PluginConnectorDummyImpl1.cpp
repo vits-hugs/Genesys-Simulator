@@ -27,7 +27,7 @@
 #include "../../plugins/components/DummyComponent.h"
 #include "../../plugins/components/Enter.h"
 #include "../../plugins/components/Exit.h"
-#include "../../plugins/components/Hold.h"
+#include "../../plugins/components/Wait.h"
 #include "../../plugins/components/Leave.h"
 #include "../../plugins/components/Match.h"
 #include "../../plugins/components/MarkovChain.h"
@@ -143,7 +143,7 @@ Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilen
 	else if (fn == "markovchain.so")
 		GetInfo = &MarkovChain::GetPluginInformation;
 	else if (fn == "hold.so")
-		GetInfo = &Hold::GetPluginInformation;
+		GetInfo = &Wait::GetPluginInformation;
 	else if (fn == "schedule.so")
 		GetInfo = &Schedule::GetPluginInformation;
 	else if (fn == "dropoff.so")

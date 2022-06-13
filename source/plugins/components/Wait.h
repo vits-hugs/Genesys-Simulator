@@ -5,21 +5,21 @@
  */
 
 /*
- * File:   Hold.h
+ * File:   Wait.h
  * Author: rlcancian
  *
  * Created on 03 de Junho de 2019, 15:20
  */
 
-#ifndef HOLD_H
-#define HOLD_H
+#ifndef WAIT_H
+#define WAIT_H
 
 #include "../../kernel/simulator/ModelComponent.h"
 #include "../data/Queue.h"
 #include "../data/SignalData.h"
 
 /*!
-Hold module
+Wait module
 DESCRIPTION
 This module will hold an entity in a queue to wait for a signal, wait for a specified
 condition to become true (scan), or be held infinitely (to be removed later with the
@@ -31,9 +31,9 @@ internal queue) until the condition(s) becomes true. When the entity is in an in
 hold, the Remove module is used elsewhere in the model to allow the entity to
 continue processing.
 TYPICAL USES
-* Waiting for a traffic light to turn green
-* Holding a part for authorization
-* Checking the status of a machine or operator to continue a process
+ * Waiting for a traffic light to turn green
+ * Holding a part for authorization
+ * Checking the status of a machine or operator to continue a process
 PROMPTS
 Prompt Description
 Name Unique module identifier displayed on the module shape.
@@ -41,7 +41,7 @@ Type Indicates the reasoning for holding the entity within a specified
 or internal queue. Wait for Signal will hold the entity until a
 signal of the same value is received. Scan for Condition will hold
 the entity until the specified condition becomes true. Infinite
-Hold will hold the entity until it is removed from the queue by a
+Wait will hold the entity until it is removed from the queue by a
 Remove module.
 Wait for Value Signal code for the waiting entity. Applies only when Type is
 Wait for Signal.
@@ -74,14 +74,15 @@ Expression This field is visible only if Queue Type is Expression. The
 expression entered in this field will be evaluated to indicate
 which queue is to be used.
  */
-class Hold : public ModelComponent {
+class Wait : public ModelComponent {
 public:
-	enum class HoldType : int {
+
+	enum class WaitType : int {
 		WaitForSignal = 1, InfiniteHold = 2, ScanForCondition = 3
 	};
 public: // constructors
-	Hold(Model* model, std::string name = "");
-	virtual ~Hold() = default;
+	Wait(Model* model, std::string name = "");
+	virtual ~Wait() = default;
 public: // virtual
 	virtual std::string show();
 public: //
@@ -103,10 +104,10 @@ private: // methods
 	unsigned int _handlerForSignalDataEvent(SignalData* signalData);
 private: // attributes 1:1
 	const struct DEFAULT_VALUES {
-		HoldType holdType = Hold::HoldType::WaitForSignal;
+		WaitType holdType = Wait::WaitType::WaitForSignal;
 		std::string condition = "";
 	} DEFAULT;
-	HoldType _holdType = DEFAULT.holdType;
+	WaitType _holdType = DEFAULT.holdType;
 	std::string _condition = DEFAULT.condition;
 private: // internal
 	Queue *_queue = nullptr;
@@ -116,5 +117,5 @@ private: // attributes 1:n
 };
 
 
-#endif /* HOLD_H */
+#endif /* WAIT_H */
 

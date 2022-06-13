@@ -125,7 +125,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/f13e5db9/DummyComponent.o \
 	${OBJECTDIR}/_ext/f13e5db9/Enter.o \
 	${OBJECTDIR}/_ext/f13e5db9/Exit.o \
-	${OBJECTDIR}/_ext/f13e5db9/Hold.o \
 	${OBJECTDIR}/_ext/f13e5db9/LSODE.o \
 	${OBJECTDIR}/_ext/f13e5db9/Leave.o \
 	${OBJECTDIR}/_ext/f13e5db9/MarkovChain.o \
@@ -149,6 +148,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/f13e5db9/Store.o \
 	${OBJECTDIR}/_ext/f13e5db9/Submodel.o \
 	${OBJECTDIR}/_ext/f13e5db9/Unstore.o \
+	${OBJECTDIR}/_ext/f13e5db9/Wait.o \
 	${OBJECTDIR}/_ext/f13e5db9/Write.o \
 	${OBJECTDIR}/_ext/ccae408d/AssignmentItem.o \
 	${OBJECTDIR}/_ext/ccae408d/CppCode.o \
@@ -651,11 +651,6 @@ ${OBJECTDIR}/_ext/f13e5db9/Exit.o: ../../source/plugins/components/Exit.cpp nbpr
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f13e5db9/Exit.o ../../source/plugins/components/Exit.cpp
 
-${OBJECTDIR}/_ext/f13e5db9/Hold.o: ../../source/plugins/components/Hold.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f13e5db9/Hold.o ../../source/plugins/components/Hold.cpp
-
 ${OBJECTDIR}/_ext/f13e5db9/LSODE.o: ../../source/plugins/components/LSODE.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
 	${RM} "$@.d"
@@ -770,6 +765,11 @@ ${OBJECTDIR}/_ext/f13e5db9/Unstore.o: ../../source/plugins/components/Unstore.cp
 	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f13e5db9/Unstore.o ../../source/plugins/components/Unstore.cpp
+
+${OBJECTDIR}/_ext/f13e5db9/Wait.o: ../../source/plugins/components/Wait.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f13e5db9/Wait.o ../../source/plugins/components/Wait.cpp
 
 ${OBJECTDIR}/_ext/f13e5db9/Write.o: ../../source/plugins/components/Write.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9

@@ -294,8 +294,6 @@
           <itemPath>../../source/plugins/components/Enter.h</itemPath>
           <itemPath>../../source/plugins/components/Exit.cpp</itemPath>
           <itemPath>../../source/plugins/components/Exit.h</itemPath>
-          <itemPath>../../source/plugins/components/Hold.cpp</itemPath>
-          <itemPath>../../source/plugins/components/Hold.h</itemPath>
           <itemPath>../../source/plugins/components/LSODE.cpp</itemPath>
           <itemPath>../../source/plugins/components/LSODE.h</itemPath>
           <itemPath>../../source/plugins/components/Leave.cpp</itemPath>
@@ -342,6 +340,8 @@
           <itemPath>../../source/plugins/components/Submodel.h</itemPath>
           <itemPath>../../source/plugins/components/Unstore.cpp</itemPath>
           <itemPath>../../source/plugins/components/Unstore.h</itemPath>
+          <itemPath>../../source/plugins/components/Wait.cpp</itemPath>
+          <itemPath>../../source/plugins/components/Wait.h</itemPath>
           <itemPath>../../source/plugins/components/Write.cpp</itemPath>
           <itemPath>../../source/plugins/components/Write.h</itemPath>
         </logicalFolder>
@@ -1529,16 +1529,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/plugins/components/Hold.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/plugins/components/Hold.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="../../source/plugins/components/LSODE.cpp"
             ex="false"
             tool="1"
@@ -1765,6 +1755,16 @@
             flavor2="0">
       </item>
       <item path="../../source/plugins/components/Unstore.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/plugins/components/Wait.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/plugins/components/Wait.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -3119,16 +3119,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/plugins/components/Hold.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/plugins/components/Hold.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="../../source/plugins/components/LSODE.cpp"
             ex="false"
             tool="1"
@@ -3355,6 +3345,16 @@
             flavor2="0">
       </item>
       <item path="../../source/plugins/components/Unstore.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/plugins/components/Wait.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/plugins/components/Wait.h"
             ex="false"
             tool="3"
             flavor2="0">
