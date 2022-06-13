@@ -18,7 +18,7 @@
 #include "../source/applications/terminal/examples/smarts/Smart_CppForG.h"
 #include "../source/applications/terminal/examples/smarts/Smart_Delay.h"
 #include "../source/applications/terminal/examples/smarts/Smart_Dummy.h"
-#include "../source/applications/terminal/examples/smarts/Smart_HoldSignal.h"
+#include "../source/applications/terminal/examples/smarts/Smart_WaitSignal.h"
 #include "../source/applications/terminal/examples/smarts/Smart_ModelInfoModelSimulation.h"
 #include "../source/applications/terminal/examples/smarts/Smart_ODE.h"
 #include "../source/applications/terminal/examples/smarts/Smart_OnEvent.h"
@@ -54,7 +54,7 @@ int __main(int argc, char** argv) {
 	app->main(argc, argv);
 	app = new Smart_Dummy();
 	app->main(argc, argv);
-	app = new Smart_HoldSignal();
+	app = new Smart_WaitSignal();
 	app->main(argc, argv);
 	app = new Smart_ModelInfoModelSimulation();
 	app->main(argc, argv);

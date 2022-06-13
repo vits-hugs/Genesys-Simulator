@@ -5,23 +5,23 @@
  */
 
 /* 
- * File:   Smart_HoldSignal.h
+ * File:   Smart_WaitSignal.h
  * Author: rlcancian
  *
  * Created on 3 de Setembro de 2019, 18:34
  */
 
-#ifndef SMART_HOLDSIGNAL_H
-#define SMART_HOLDSIGNAL_H
+#ifndef SMART_WAITSIGNAL_H
+#define SMART_WAITSIGNAL_H
 
 #include "../../../BaseGenesysTerminalApplication.h"
 
-class Smart_HoldSignal : public BaseGenesysTerminalApplication {
+class Smart_WaitSignal : public BaseGenesysTerminalApplication {
 public:
-	Smart_HoldSignal();
+	Smart_WaitSignal();
 public:
 	virtual int main(int argc, char** argv);
 };
 
-#endif /* SMART_HOLDSIGNAL_H */
+#endif /* SMART_WAITSIGNAL_H */
 

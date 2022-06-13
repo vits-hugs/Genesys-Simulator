@@ -5,13 +5,13 @@
  */
 
 /*
- * File:   Smart_HoldSignal.cpp
+ * File:   Smart_WaitSignal.cpp
  * Author: rlcancian
  *
  * Created on 3 de Setembro de 2019, 18:34
  */
 
-#include "Smart_HoldSignal.h"
+#include "Smart_WaitSignal.h"
 
 // you have to included need libs
 
@@ -27,14 +27,14 @@
 
 // Model data definitions
 
-Smart_HoldSignal::Smart_HoldSignal() {
+Smart_WaitSignal::Smart_HoldSignal() {
 }
 
 /**
  * This is the main function of the application.
  * It instanciates the simulator, builds a simulation model and then simulate that model.
  */
-int Smart_HoldSignal::main(int argc, char** argv) {
+int Smart_WaitSignal::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	this->insertFakePluginsByHand(genesys);

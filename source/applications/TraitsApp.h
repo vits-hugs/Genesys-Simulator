@@ -27,7 +27,7 @@
 #include "terminal/examples/smarts/Smart_BatchSeparate.h"
 #include "terminal/examples/smarts/Smart_Delay.h"
 #include "terminal/examples/smarts/Smart_Dummy.h"
-#include "terminal/examples/smarts/Smart_HoldSignal.h"
+#include "terminal/examples/smarts/Smart_WaitSignal.h"
 #include "terminal/examples/smarts/Smart_ModelInfoModelSimulation.h"
 #include "terminal/examples/smarts/Smart_ODE.h"
 #include "terminal/examples/smarts/Smart_OnEvent.h"
@@ -61,7 +61,7 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Smart_BatchSeparate Application;
 	//typedef Smart_Delay Application;
 	//typedef Smart_Dummy Application;
-	typedef Smart_HoldSignal Application;
+	typedef Smart_WaitSignal Application;
 	//typedef Smart_ModelInfoModelSimulation Application;
 	//typedef Smart_ODE Application;
 	//typedef Smart_OnEvent Application;
