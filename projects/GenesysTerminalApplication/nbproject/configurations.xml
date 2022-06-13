@@ -76,8 +76,6 @@
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_Delay.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_Dummy.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_Dummy.h</itemPath>
-              <itemPath>../../source/applications/terminal/examples/smarts/Smart_HoldSignal.cpp</itemPath>
-              <itemPath>../../source/applications/terminal/examples/smarts/Smart_HoldSignal.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_ModelInfoModelSimulation.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_ModelInfoModelSimulation.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_ODE.cpp</itemPath>
@@ -104,6 +102,8 @@
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_SeizeDelayReleaseNoDataDefs.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_Sequence.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_Sequence.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_WaitSignal.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_WaitSignal.h</itemPath>
             </logicalFolder>
             <logicalFolder name="teaching" displayName="teaching" projectFiles="true">
               <itemPath>../../source/applications/terminal/examples/teaching/AnElectronicAssemblyAndTestSystem.cpp</itemPath>
@@ -624,16 +624,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/applications/terminal/examples/smarts/Smart_HoldSignal.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/applications/terminal/examples/smarts/Smart_HoldSignal.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="../../source/applications/terminal/examples/smarts/Smart_ModelInfoModelSimulation.cpp"
             ex="false"
             tool="1"
@@ -760,6 +750,16 @@
             flavor2="0">
       </item>
       <item path="../../source/applications/terminal/examples/smarts/Smart_Sequence.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_WaitSignal.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_WaitSignal.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2214,16 +2214,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/applications/terminal/examples/smarts/Smart_HoldSignal.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/applications/terminal/examples/smarts/Smart_HoldSignal.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="../../source/applications/terminal/examples/smarts/Smart_ModelInfoModelSimulation.cpp"
             ex="false"
             tool="1"
@@ -2350,6 +2340,16 @@
             flavor2="0">
       </item>
       <item path="../../source/applications/terminal/examples/smarts/Smart_Sequence.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_WaitSignal.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_WaitSignal.h"
             ex="false"
             tool="3"
             flavor2="0">

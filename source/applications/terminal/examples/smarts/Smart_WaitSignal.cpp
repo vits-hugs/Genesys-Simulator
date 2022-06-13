@@ -27,7 +27,7 @@
 
 // Model data definitions
 
-Smart_WaitSignal::Smart_HoldSignal() {
+Smart_WaitSignal::Smart_WaitSignal() {
 }
 
 /**
@@ -49,6 +49,9 @@ int Smart_WaitSignal::main(int argc, char** argv) {
 	Create* create3 = plugins->newInstance<Create>(model);
 	create3->setTimeBetweenCreationsExpression("5");
 	create3->setFirstCreation(5);
+	Create* create4 = plugins->newInstance<Create>(model);
+	create4->setTimeBetweenCreationsExpression("15");
+	create4->setFirstCreation(15);
 
 	SignalData* sigdata1 = plugins->newInstance<SignalData>(model, "sinalD1");
 	SignalData* sigdata2 = plugins->newInstance<SignalData>(model, "sinalD2");
@@ -58,7 +61,10 @@ int Smart_WaitSignal::main(int argc, char** argv) {
 	hold2->setSignalData(sigdata2);
 	Signal* signal1 = plugins->newInstance<Signal>(model);
 	signal1->setSignalData(sigdata1);
-	signal1->setLimitExpression("1e6");
+	signal1->setLimitExpression("3");
+	Signal* signal2 = plugins->newInstance<Signal>(model);
+	signal2->setSignalData(sigdata2);
+	signal2->setLimitExpression("1e3");
 	Dispose* dispose1 = plugins->newInstance<Dispose>(model);
 	Dispose* dispose2 = plugins->newInstance<Dispose>(model);
 	//
@@ -68,6 +74,8 @@ int Smart_WaitSignal::main(int argc, char** argv) {
 	hold2->getConnections()->insert(dispose1);
 	create3->getConnections()->insert(signal1);
 	signal1->getConnections()->insert(dispose2);
+	create4->getConnections()->insert(signal2);
+	signal2->getConnections()->insert(dispose2);
 	//
 	ModelSimulation* simulation = model->getSimulation();
 	simulation->setReplicationLength(20);
