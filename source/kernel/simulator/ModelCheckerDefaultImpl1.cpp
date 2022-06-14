@@ -42,19 +42,19 @@ bool ModelCheckerDefaultImpl1::checkAll() {
 //    return true;
 //}
 
-void ModelCheckerDefaultImpl1::_showResult(bool result, std::string checking){
+void ModelCheckerDefaultImpl1::_showResult(bool result, std::string checking) {
 	std::string msgResult;
 	if (result) {
-		msgResult = checking+" successfully.";
+		msgResult = checking + " successfully.";
 	} else {
-		msgResult = checking+" failed.";
+		msgResult = checking + " failed.";
 	}
 	_model->getTracer()->trace(TraceManager::Level::L8_detailed, msgResult);
 }
 
 void ModelCheckerDefaultImpl1::_recursiveConnectedTo(PluginManager* pluginManager, ModelComponent* comp, List<ModelComponent*>* visited, List<ModelComponent*>* unconnected, bool* drenoFound) {
 	visited->insert(comp);
-	_model->getTracer()->trace(TraceManager::Level::L8_detailed, "Connected to component \"" + comp->getName() + "\"");
+	_model->getTracer()->trace(TraceManager::Level::L8_detailed, "Connected to \"" + comp->getName() + "\"");
 	Plugin* plugin = pluginManager->find(comp->getClassname());
 	assert(plugin != nullptr);
 	if (plugin->getPluginInfo()->isSink() || (plugin->getPluginInfo()->isSendTransfer() && comp->getConnections()->size() == 0)) {//(dynamic_cast<SinkModelComponent*> (comp) != nullptr) {
@@ -104,6 +104,8 @@ bool ModelCheckerDefaultImpl1::checkConnected() {
 				// it is a source component OR it can receive enetities from transfer
 				bool drenoFound = false;
 				_recursiveConnectedTo(pluginManager, comp, visited, unconnected, &drenoFound);
+				if (!drenoFound)
+					resultAll = false;
 			}
 		}
 		// check if any component remais unconnected
@@ -116,7 +118,7 @@ bool ModelCheckerDefaultImpl1::checkConnected() {
 		}
 
 	}
-	_showResult(resultAll,"Checking connected");
+	_showResult(resultAll, "Checking connected");
 	Util::DecIndent();
 	return resultAll;
 }
@@ -173,7 +175,7 @@ bool ModelCheckerDefaultImpl1::checkSymbols() {
 			Util::DecIndent();
 		}
 	}
-	_showResult(res,"Checking symbols");
+	_showResult(res, "Checking symbols");
 	Util::DecIndent();
 
 	return res;
@@ -186,7 +188,7 @@ bool ModelCheckerDefaultImpl1::checkActivationCode() {
 	{
 
 	}
-	_showResult(true,"Checking activation code");
+	_showResult(true, "Checking activation code");
 	Util::DecIndent();
 	return true;
 }
@@ -220,7 +222,7 @@ bool ModelCheckerDefaultImpl1::checkLimits() {
 			_model->getTracer()->traceError(TraceManager::Level::L1_errorFatal, "Error: Checking has failed with message '" + text + "'");
 		}
 	}
-	_showResult(res,"Checking limits");
+	_showResult(res, "Checking limits");
 	Util::DecIndent();
 	return res;
 }
@@ -281,7 +283,7 @@ bool ModelCheckerDefaultImpl1::checkOrphaned() {
 			res = true;
 		}
 	}
-	_showResult(res,"Checking Orphaned");
+	_showResult(res, "Checking Orphaned");
 	Util::DecIndent();
 	return res;
 }
