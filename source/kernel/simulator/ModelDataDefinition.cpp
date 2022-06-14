@@ -151,13 +151,15 @@ void ModelDataDefinition::_attachedDataInsert(std::string key, ModelDataDefiniti
 
 void ModelDataDefinition::_attachedDataRemove(std::string key) {
 	//for (std::map<std::string, ModelDataDefinition*>::iterator it = _internelElements->begin(); it != _internelElements->end(); it++) {
-	std::map<std::string, ModelDataDefinition*>::iterator it = _internalData->begin();
+	std::map<std::string, ModelDataDefinition*>::iterator it = _attachedData->begin();
 	while (it != _attachedData->end()) {
 		if ((*it).first == key) {
 			this->_parentModel->getDataManager()->remove((*it).second);
 			(*it).second->~ModelDataDefinition();
 			_attachedData->erase(it);
 			it = _attachedData->begin();
+		} else {
+			it++;
 		}
 	}
 }
