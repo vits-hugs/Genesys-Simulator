@@ -241,7 +241,7 @@ void ModelSimulation::_showSimulationHeader() {
 	tm->traceReport("Number of Replications: " + std::to_string(_numberOfReplications));
 	tm->traceReport("Replication Length: " + std::to_string(_replicationLength) + " " + Util::StrTimeUnitLong(_replicationLengthTimeUnit));
 	tm->traceReport("Replication/Report Base TimeUnit: " + Util::StrTimeUnitLong(_replicationBaseTimeUnit));
-	//tm->traceReport(TraceManager::TraceLevel::simulation, "");
+	//tm->traceReport(TraceManager::Level::simulation, "");
 	// model controls and responses
 	std::string controls;
 	for (PropertyBase* control : * _model->getControls()->list()) {

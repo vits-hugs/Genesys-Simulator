@@ -46,7 +46,7 @@ int Smart_WaitScanCondition::main(int argc, char** argv) {
 	create2->setTimeBetweenCreationsExpression("2");
 	Wait* wait1 = plugins->newInstance<Wait>(model);
 	wait1->setWaitType(Wait::WaitType::ScanForCondition);
-	wait1->setCondition("var1=3");
+	wait1->setCondition("mod(var1,3)==0");
 	Assign* assign1 = plugins->newInstance<Assign>(model);
 	assign1->getAssignments()->insert(new Assignment(model, "att1", "var1", true));
 	assign1->getAssignments()->insert(new Assignment(model, "var1", "var1+1", false));
@@ -54,7 +54,7 @@ int Smart_WaitScanCondition::main(int argc, char** argv) {
 	//
 	create1->getConnections()->insert(wait1);
 	wait1->getConnections()->insert(dispose1);
-	create1->getConnections()->insert(assign1);
+	create2->getConnections()->insert(assign1);
 	assign1->getConnections()->insert(dispose1);
 	//
 	ModelSimulation* simulation = model->getSimulation();

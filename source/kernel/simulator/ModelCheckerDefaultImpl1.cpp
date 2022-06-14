@@ -207,7 +207,7 @@ bool ModelCheckerDefaultImpl1::checkLimits() {
 		_model->getTracer()->trace("Model has " + std::to_string(value) + "/" + std::to_string(limit) + " components");
 		if (!res) {
 			text = "Model has " + std::to_string(_model->getComponents()->getNumberOfComponents()) + " components, exceding the limit of " + std::to_string(licence->getModelComponentsLimit()) + " components imposed by the current activation code";
-			//_model->getTraceManager()->trace(TraceManager::TraceLevel::errors, text);
+			//_model->getTraceManager()->trace(TraceManager::Level::errors, text);
 		} else {
 			value = _model->getDataManager()->getNumberOfDataDefinitions();
 			limit = licence->getModelDatasLimit();
@@ -215,7 +215,7 @@ bool ModelCheckerDefaultImpl1::checkLimits() {
 			_model->getTracer()->trace("Model has " + std::to_string(value) + "/" + std::to_string(limit) + " elements");
 			if (!res) {
 				text = "Model has " + std::to_string(_model->getDataManager()->getNumberOfDataDefinitions()) + " elements, exceding the limit of " + std::to_string(licence->getModelDatasLimit()) + " elements imposed by the current activation code";
-				//_model->getTraceManager()->trace(TraceManager::TraceLevel::errors, text);
+				//_model->getTraceManager()->trace(TraceManager::Level::errors, text);
 			}
 		}
 		if (!res) {

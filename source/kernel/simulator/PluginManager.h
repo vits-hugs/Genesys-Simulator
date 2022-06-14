@@ -58,7 +58,7 @@ public:
 			}
 		}
 		/// innvalid use of incomplete class
-		///_simulator->getTracer()->traceError(TraceManager::TraceLevel::L1_errorFatal, "Error: Could not find any plugin with Typename \"" + pluginTypename + "\"");
+		///_simulator->getTracer()->traceError(TraceManager::Level::L1_errorFatal, "Error: Could not find any plugin with Typename \"" + pluginTypename + "\"");
 		return nullptr;
 	}
 private:

@@ -169,7 +169,17 @@ unsigned int Wait::_handlerForSignalDataEvent(SignalData* signalData) {
 
 void Wait::_handlerForAfterProcessEventEvent(SimulationEvent* event) {
 	double result = _parentModel->parseExpression(_condition);
+	//std::string message = "Condition \"" + _condition + "\" evaluates to " + std::to_string(result);
+	//_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L7_internal, _parentModel->getSimulation()->getSimulatedTime(), event->getCurrentEvent()->getEntity(), this, message);
 	if (result) { // condition is true. Remove entities from the queue
+		while (_queue->size() > 0) {
+			Waiting* w = _queue->getAtRank(0);
+			_queue->removeElement(w);
+			Entity* ent = w->getEntity();
+			std::string message = getName() + " evaluated condition " + _condition + " as true. " + ent->getName() + " removed from " + _queue->getName();
+			_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L8_detailed, _parentModel->getSimulation()->getSimulatedTime(), ent, this, message);
+			_parentModel->sendEntityToComponent(w->getEntity(), w->geComponent()->getConnections()->getFrontConnection());
+		}
 
 	}
 }

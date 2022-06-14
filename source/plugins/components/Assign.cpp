@@ -142,3 +142,22 @@ bool Assign::_check(std::string* errorMessage) {
 	}
 	return resultAll;
 }
+
+void Assign::_createInternalAndAttachedData() {
+	ModelDataManager* elems = _parentModel->getDataManager();
+	for (Assignment* ass : *_assignments->list()) {
+		ModelDataDefinition* elem;
+		std::string name;
+		if (ass->isAttributeNotVariable()) {
+			name = "Attribute";
+			elem = elems->getDataDefinition(Util::TypeOf<Attribute>(), ass->getDestination());
+		} else {
+			name = "Variable";
+			elem = elems->getDataDefinition(Util::TypeOf<Variable>(), ass->getDestination());
+		}
+		//assert elem != nullptr
+		if (elem != nullptr) {
+			this->_attachedDataInsert(name + "_" + ass->getDestination(), elem);
+		}
+	}
+}

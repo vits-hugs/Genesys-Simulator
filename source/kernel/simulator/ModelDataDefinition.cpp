@@ -70,7 +70,7 @@ void ModelDataDefinition::setModelLevel(unsigned int _modelLevel) {
 //}
 
 ModelDataDefinition::~ModelDataDefinition() {
-	////_parentModel->getTracer()->trace(TraceManager::TraceLevel::L9_mostDetailed, "Removing Element \"" + this->_name + "\" from the model");
+	////_parentModel->getTracer()->trace(TraceManager::Level::L9_mostDetailed, "Removing Element \"" + this->_name + "\" from the model");
 	_internalDataClear();
 	_parentModel->getDataManager()->remove(this);
 }
@@ -350,14 +350,14 @@ std::map<std::string, std::string>* ModelDataDefinition::SaveInstance(ModelDataD
 }
 
 bool ModelDataDefinition::Check(ModelDataDefinition* modeldatum, std::string* errorMessage) {
-	//    modeldatum->_model->getTraceManager()->trace(TraceManager::TraceLevel::L9_mostDetailed, "Checking " + modeldatum->_typename + ": " + modeldatum->_name); //std::to_string(modeldatum->_id));
+	//    modeldatum->_model->getTraceManager()->trace(TraceManager::Level::L9_mostDetailed, "Checking " + modeldatum->_typename + ": " + modeldatum->_name); //std::to_string(modeldatum->_id));
 	bool res = false;
 	Util::IncIndent();
 	{
 		try {
 			res = modeldatum->_check(errorMessage);
 			if (!res) {
-				//                modeldatum->_model->getTraceManager()->traceError(TraceManager::TraceLevel::errors, "Error: Checking has failed with message '" + *errorMessage + "'");
+				//                modeldatum->_model->getTraceManager()->traceError(TraceManager::Level::errors, "Error: Checking has failed with message '" + *errorMessage + "'");
 			}
 		} catch (const std::exception& e) {
 			//            modeldatum->_model->getTraceManager()->traceError(e, "Error verifying modeldatum " + modeldatum->show());

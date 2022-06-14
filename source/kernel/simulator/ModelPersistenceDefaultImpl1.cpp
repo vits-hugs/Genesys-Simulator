@@ -238,7 +238,7 @@ bool ModelPersistenceDefaultImpl1::_loadFields(std::string line) {
                     res = false;
                 }
                 //} else {
-                //	_model->getTracer()->traceError(TraceManager::TraceLevel::L1_errorFatal, "Error loading file: Could not identity typename \"" + thistypename + "\"");
+                //	_model->getTracer()->traceError(TraceManager::Level::L1_errorFatal, "Error loading file: Could not identity typename \"" + thistypename + "\"");
                 //	res = false;
                 //}
             }

@@ -116,7 +116,7 @@ private:
 private:
 	Simulator* _simulator;
 private:
-	TraceManager::Level _traceLevel; // = TraceManager::TraceLevel::L9_mostDetailed;
+	TraceManager::Level _traceLevel; // = TraceManager::Level::L9_mostDetailed;
 	double _lastTimeTraceSimulation = -1.0;
 	Util::identification _lastEntityTraceSimulation = 0;
 	Util::identification _lastModuleTraceSimulation = 0;

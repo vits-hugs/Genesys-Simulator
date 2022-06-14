@@ -52,7 +52,7 @@ void ModelComponent::DispatchEvent(Event* event) {
 }
 
 void ModelComponent::CreateInternalData(ModelComponent* component) {
-	//component->_model->getTraceManager()->trace(TraceManager::TraceLevel::blockArrival, "Writing component \"" + component->_name + "\""); //std::to_string(component->_id));
+	//component->_model->getTraceManager()->trace(TraceManager::Level::blockArrival, "Writing component \"" + component->_name + "\""); //std::to_string(component->_id));
 	try {
 		component->_createInternalAndAttachedData();
 	} catch (const std::exception& e) {

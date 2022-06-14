@@ -269,7 +269,7 @@ void Model::_createModelInternalElements() {
 		// ops. Sorted list has changed and iteration fails. Starts iterating again
 		//	itty = elements()->elementClassnames()->begin();
 		//	modelElements = elements()->elementList((*itty))->list();
-		//	tracer()->trace(TraceManager::TraceLevel::L7_internal, "Creating internal elements");
+		//	tracer()->trace(TraceManager::Level::L7_internal, "Creating internal elements");
 		//}
 		for (std::list<ModelDataDefinition*>::iterator itel = modelElements->begin(); itel != modelElements->end(); itel++) {
 			getTracer()->trace(TraceManager::Level::L8_detailed, "Internals for " + (*itel)->getClassname() + " \"" + (*itel)->getName() + "\""); // (" + std::to_string(pos) + "/" + std::to_string(originalSize) + ")");
