@@ -155,6 +155,7 @@ public: // event listeners (handlers)
 	void addOnReplicationStepHandler(simulationEventHandler EventHandler);
 	void addOnReplicationEndHandler(simulationEventHandler EventHandler);
 	void addOnProcessEventHandler(simulationEventHandler EventHandler);
+	void addOnAfterProcessEventHandler(simulationEventHandler EventHandler);
 	void addOnEntityCreateHandler(simulationEventHandler EventHandler);
 	void addOnEntityMoveHandler(simulationEventHandler EventHandler);
 	void addOnEntityRemoveHandler(simulationEventHandler EventHandler);
@@ -169,6 +170,7 @@ public: // event listeners (method handlers)
 	template<typename Class> void addOnReplicationStepHandler(Class * object, void (Class::*function)(SimulationEvent*));
 	template<typename Class> void addOnReplicationEndHandler(Class * object, void (Class::*function)(SimulationEvent*));
 	template<typename Class> void addOnProcessEventHandler(Class * object, void (Class::*function)(SimulationEvent*));
+	template<typename Class> void addOnAfterProcessEventHandler(Class * object, void (Class::*function)(SimulationEvent*));
 	template<typename Class> void addOnEntityCreateHandler(Class * object, void (Class::*function)(SimulationEvent*));
 	template<typename Class> void addOnEntityMoveHandler(Class * object, void (Class::*function)(SimulationEvent*));
 	template<typename Class> void addOnEntityRemoveHandler(Class * object, void (Class::*function)(SimulationEvent*));
@@ -182,6 +184,7 @@ public:
 	void NotifyReplicationStepHandlers(SimulationEvent* se);
 	void NotifyReplicationEndHandlers(SimulationEvent* se);
 	void NotifyProcessEventHandlers(SimulationEvent* se);
+	void NotifyAfterProcessEventHandlers(SimulationEvent* se);
 	void NotifyEntityCreateHandlers(SimulationEvent* se);
 	void NotifyEntityMoveHandlers(SimulationEvent* se);
 	void NotifyEntityRemoveHandlers(SimulationEvent* se);
@@ -199,6 +202,7 @@ private: // events listener
 	List<simulationEventHandler>* _onReplicationStepHandlers = new List<simulationEventHandler>();
 	List<simulationEventHandler>* _onReplicationEndHandlers = new List<simulationEventHandler>();
 	List<simulationEventHandler>* _onProcessEventHandlers = new List<simulationEventHandler>();
+	List<simulationEventHandler>* _onAfterProcessEventHandlers = new List<simulationEventHandler>();
 	List<simulationEventHandler>* _onEntityCreateHandlers = new List<simulationEventHandler>();
 	List<simulationEventHandler>* _onEntityMoveHandlers = new List<simulationEventHandler>();
 	List<simulationEventHandler>* _onEntityRemoveHandlers = new List<simulationEventHandler>();
@@ -212,6 +216,7 @@ private: // events listener for handlers that are class members (methods)
 	List<simulationEventHandlerMethod>* _onReplicationStepHandlerMethods = new List<simulationEventHandlerMethod>();
 	List<simulationEventHandlerMethod>* _onReplicationEndHandlerMethods = new List<simulationEventHandlerMethod>();
 	List<simulationEventHandlerMethod>* _onProcessEventHandlerMethods = new List<simulationEventHandlerMethod>();
+	List<simulationEventHandlerMethod>* _onAfterProcessEventHandlerMethods = new List<simulationEventHandlerMethod>();
 	List<simulationEventHandlerMethod>* _onEntityCreateHandlerMethods = new List<simulationEventHandlerMethod>();
 	List<simulationEventHandlerMethod>* _onEntityMoveHandlerMethods = new List<simulationEventHandlerMethod>();
 	List<simulationEventHandlerMethod>* _onEntityRemoveHandlerMethods = new List<simulationEventHandlerMethod>();
@@ -246,6 +251,10 @@ template<typename Class> void OnEventManager::addOnReplicationEndHandler(Class *
 template<typename Class> void OnEventManager::addOnProcessEventHandler(Class * object, void (Class::*function)(SimulationEvent*)) {
 	simulationEventHandlerMethod handlerMethod = std::bind(function, object, std::placeholders::_1);
 	this->_onProcessEventHandlerMethods->insert(handlerMethod);
+}
+template<typename Class> void OnEventManager::addOnAfterProcessEventHandler(Class * object, void (Class::*function)(SimulationEvent*)) {
+	simulationEventHandlerMethod handlerMethod = std::bind(function, object, std::placeholders::_1);
+	this->_onAfterProcessEventHandlerMethods->insert(handlerMethod);
 }
 template<typename Class> void OnEventManager::addOnEntityCreateHandler(Class * object, void (Class::*function)(SimulationEvent*)) {
 	simulationEventHandlerMethod handlerMethod = std::bind(function, object, std::placeholders::_1);

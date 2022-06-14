@@ -32,7 +32,7 @@
 
 
 /**
- ** \file ../../source/parser/GenesysParser.h
+ ** \file ../GenesysParser.h
  ** Define the yy::parser class.
  */
 
@@ -42,10 +42,10 @@
 // especially those whose name start with YY_ or yy_.  They are
 // private implementation details that can be changed or removed.
 
-#ifndef YY_YY_SOURCE_PARSER_GENESYSPARSER_H_INCLUDED
-# define YY_YY_SOURCE_PARSER_GENESYSPARSER_H_INCLUDED
+#ifndef YY_YY_GENESYSPARSER_H_INCLUDED
+# define YY_YY_GENESYSPARSER_H_INCLUDED
 // "%code requires" blocks.
-#line 9 "../../source/parser/parserBisonFlex/bisonparser.yy"
+#line 9 "bisonparser.yy"
 
 	#include <string>
 	#include <cmath>
@@ -79,7 +79,7 @@
 
 	class genesyspp_driver;
 
-#line 83 "../../source/parser/GenesysParser.h"
+#line 83 "../GenesysParser.h"
 
 # include <cassert>
 # include <cstdlib> // std::abort
@@ -219,7 +219,7 @@
 #endif
 
 namespace yy {
-#line 223 "../../source/parser/GenesysParser.h"
+#line 223 "../GenesysParser.h"
 
 
 
@@ -3263,9 +3263,9 @@ switch (yykind)
 
 
 } // yy
-#line 3267 "../../source/parser/GenesysParser.h"
+#line 3267 "../GenesysParser.h"
 
 
 
 
-#endif // !YY_YY_SOURCE_PARSER_GENESYSPARSER_H_INCLUDED
+#endif // !YY_YY_GENESYSPARSER_H_INCLUDED

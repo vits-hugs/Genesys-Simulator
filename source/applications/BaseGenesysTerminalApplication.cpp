@@ -41,6 +41,10 @@ void BaseGenesysTerminalApplication::traceSimulationHandler(TraceSimulationEvent
 
 // default Event Handlers
 
+void BaseGenesysTerminalApplication::onAfterProcessEventHandler(SimulationEvent* re) {
+	std::cout << "(Event Handler) " << "Event processed" << re->getCurrentEvent()->show() << std::endl;
+}
+
 void BaseGenesysTerminalApplication::onBreakpointHandler(SimulationEvent* re) {
 	std::cout << "(Event Handler) " << "Breakpoint occured at time " << std::to_string(re->getSimulatedTime()) << std::endl;
 }

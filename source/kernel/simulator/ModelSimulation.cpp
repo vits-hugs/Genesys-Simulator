@@ -381,7 +381,9 @@ void ModelSimulation::_checkWarmUpTime(Event* nextEvent) {
 }
 
 void ModelSimulation::_stepSimulation() {
-	// "onReplicationStep" is before taking the event from the calendar and "onProcessEvent" is after the event is removed and turned into the current one
+	// "onReplicationStep" event is triggered before taking the event from the calendar, and 
+	// "onProcessEvent" is after the event is removed and turned into the current one, and
+	// "onAfterProcessEvent" is after the event is processes
 	_model->getOnEvents()->NotifyReplicationStepHandlers(_createSimulationEvent());
 	Event* nextEvent = _model->getFutureEvents()->front();
 	_model->getFutureEvents()->pop_front();
@@ -407,6 +409,7 @@ void ModelSimulation::_stepSimulation() {
 			} catch (std::exception *e) {
 				_model->getTracer()->traceError(*e, "Error on processing event (" + nextEvent->show() + ")");
 			}
+			_model->getOnEvents()->NotifyAfterProcessEventHandlers(_createSimulationEvent());
 			if (_pauseOnEvent) {
 				_pauseRequested = true;
 			}
@@ -461,12 +464,10 @@ bool ModelSimulation::_checkBreakpointAt(Event* event) {
 }
 
 void ModelSimulation::pause() {
-
 	_pauseRequested = true;
 }
 
 void ModelSimulation::step() {
-
 	bool savedPauseRequest = _pauseRequested;
 	_pauseRequested = true;
 	this->start();
@@ -474,72 +475,58 @@ void ModelSimulation::step() {
 }
 
 void ModelSimulation::stop() {
-
 	this->_stopRequested = true;
 }
 
 void ModelSimulation::setPauseOnEvent(bool _pauseOnEvent) {
-
 	this->_pauseOnEvent = _pauseOnEvent;
 }
 
 bool ModelSimulation::isPauseOnEvent() const {
-
 	return _pauseOnEvent;
 }
 
 void ModelSimulation::setInitializeStatistics(bool _initializeStatistics) {
-
 	this->_initializeStatisticsBetweenReplications = _initializeStatistics;
 }
 
 bool ModelSimulation::isInitializeStatistics() const {
-
 	return _initializeStatisticsBetweenReplications;
 }
 
 void ModelSimulation::setInitializeSystem(bool _initializeSystem) {
-
 	this->_initializeSystem = _initializeSystem;
 }
 
 bool ModelSimulation::isInitializeSystem() const {
-
 	return _initializeSystem;
 }
 
 void ModelSimulation::setStepByStep(bool _stepByStep) {
-
 	this->_stepByStep = _stepByStep;
 }
 
 bool ModelSimulation::isStepByStep() const {
-
 	return _stepByStep;
 }
 
 void ModelSimulation::setPauseOnReplication(bool _pauseOnReplication) {
-
 	this->_pauseOnReplication = _pauseOnReplication;
 }
 
 bool ModelSimulation::isPauseOnReplication() const {
-
 	return _pauseOnReplication;
 }
 
 double ModelSimulation::getSimulatedTime() const {
-
 	return _simulatedTime;
 }
 
 bool ModelSimulation::isRunning() const {
-
 	return _isRunning;
 }
 
 unsigned int ModelSimulation::getCurrentReplicationNumber() const {
-
 	return _currentReplicationNumber;
 }
 
@@ -552,128 +539,100 @@ unsigned int ModelSimulation::getCurrentReplicationNumber() const {
 //}
 
 void ModelSimulation::setReporter(SimulationReporter_if* _simulationReporter) {
-
 	this->_simulationReporter = _simulationReporter;
 }
 
 SimulationReporter_if* ModelSimulation::getReporter() const {
-
 	return _simulationReporter;
-	//_currentEvent->
 }
 
-//unsigned int ModelSimulation::getCurrentinputPortNumber() const {
-//	return _currentinputPortNumber;
-//}
-
 void ModelSimulation::setShowReportsAfterReplication(bool showReportsAfterReplication) {
-
 	this->_showReportsAfterReplication = showReportsAfterReplication;
 }
 
 bool ModelSimulation::isShowReportsAfterReplication() const {
-
 	return _showReportsAfterReplication;
 }
 
 void ModelSimulation::setShowReportsAfterSimulation(bool showReportsAfterSimulation) {
-
 	this->_showReportsAfterSimulation = showReportsAfterSimulation;
 }
 
 bool ModelSimulation::isShowReportsAfterSimulation() const {
-
 	return _showReportsAfterSimulation;
 }
 
 List<double>* ModelSimulation::getBreakpointsOnTime() const {
-
 	return _breakpointsOnTime;
 }
 
 List<Entity*>* ModelSimulation::getBreakpointsOnEntity() const {
-
 	return _breakpointsOnEntity;
 }
 
 List<ModelComponent*>* ModelSimulation::getBreakpointsOnComponent() const {
-
 	return _breakpointsOnComponent;
 }
 
 bool ModelSimulation::isPaused() const {
-
 	return _isPaused;
 }
 
 void ModelSimulation::setNumberOfReplications(unsigned int _numberOfReplications) {
-
 	this->_numberOfReplications = _numberOfReplications;
 	_hasChanged = true;
 }
 
 unsigned int ModelSimulation::getNumberOfReplications() const {
-
 	return _numberOfReplications;
 }
 
 void ModelSimulation::setReplicationLength(double _replicationLength) {
-
 	this->_replicationLength = _replicationLength;
 	_hasChanged = true;
 }
 
 double ModelSimulation::getReplicationLength() const {
-
 	return _replicationLength;
 }
 
 void ModelSimulation::setReplicationLengthTimeUnit(Util::TimeUnit _replicationLengthTimeUnit) {
-
 	this->_replicationLengthTimeUnit = _replicationLengthTimeUnit;
 	_hasChanged = true;
 }
 
 Util::TimeUnit ModelSimulation::getReplicationLengthTimeUnit() const {
-
 	return _replicationLengthTimeUnit;
 }
 
 void ModelSimulation::setWarmUpPeriod(double _warmUpPeriod) {
-
 	this->_warmUpPeriod = _warmUpPeriod;
 	_hasChanged = true;
 }
 
 double ModelSimulation::getWarmUpPeriod() const {
-
 	return _warmUpPeriod;
 }
 
 void ModelSimulation::setWarmUpPeriodTimeUnit(Util::TimeUnit _warmUpPeriodTimeUnit) {
-
 	this->_warmUpPeriodTimeUnit = _warmUpPeriodTimeUnit;
 	_hasChanged = true;
 }
 
 Util::TimeUnit ModelSimulation::getWarmUpPeriodTimeUnit() const {
-
 	return _warmUpPeriodTimeUnit;
 }
 
 void ModelSimulation::setTerminatingCondition(std::string _terminatingCondition) {
-
 	this->_terminatingCondition = _terminatingCondition;
 	_hasChanged = true;
 }
 
 std::string ModelSimulation::getTerminatingCondition() const {
-
 	return _terminatingCondition;
 }
 
 void ModelSimulation::loadInstance(std::map<std::string, std::string>* fields) {
-
 	this->_numberOfReplications = LoadField(fields, "numberOfReplications", DEFAULT.numberOfReplications);
 	this->_replicationLength = LoadField(fields, "replicationLength", DEFAULT.replicationLength);
 	this->_replicationLengthTimeUnit = LoadField(fields, "replicationLengthTimeUnit", DEFAULT.replicationLengthTimeUnit);
@@ -716,32 +675,26 @@ std::map<std::string, std::string>* ModelSimulation::saveInstance(bool saveDefau
 }
 
 Event* ModelSimulation::getCurrentEvent() const {
-
 	return _currentEvent;
 }
 
 void ModelSimulation::setShowSimulationResposesInReport(bool _showSimulationResposesInReport) {
-
 	this->_showSimulationResposesInReport = _showSimulationResposesInReport;
 }
 
 bool ModelSimulation::isShowSimulationResposesInReport() const {
-
 	return _showSimulationResposesInReport;
 }
 
 void ModelSimulation::setShowSimulationControlsInReport(bool _showSimulationControlsInReport) {
-
 	this->_showSimulationControlsInReport = _showSimulationControlsInReport;
 }
 
 bool ModelSimulation::isShowSimulationControlsInReport() const {
-
 	return _showSimulationControlsInReport;
 }
 
 void ModelSimulation::setReplicationReportBaseTimeUnit(Util::TimeUnit _replicationReportBaseTimeUnit) {
-
 	this->_replicationBaseTimeUnit = _replicationReportBaseTimeUnit;
 }
 

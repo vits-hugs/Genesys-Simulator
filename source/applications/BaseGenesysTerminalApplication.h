@@ -35,6 +35,7 @@ protected:
 	virtual void traceReportHandler(TraceEvent e);
 	virtual void traceSimulationHandler(TraceSimulationEvent e);
 	// default Event Handlers
+	virtual void onAfterProcessEventHandler(SimulationEvent* re);
 	virtual void onBreakpointHandler(SimulationEvent* re);
 	virtual void onEntityCreateHandler(SimulationEvent* re);
 	virtual void onEntityMoveHandler(SimulationEvent* re);

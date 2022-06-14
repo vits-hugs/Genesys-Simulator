@@ -43,6 +43,21 @@ void Wait::setSignalData(SignalData* signal) {
 	_signalData = signal;
 }
 
+void Wait::setCondition(std::string _condition) {
+	this->_condition = _condition;
+}
+
+std::string Wait::getCondition() const {
+	return _condition;
+}
+
+void Wait::setWaitType(WaitType _watType) {
+	this->_waitType = _watType;
+}
+
+Wait::WaitType Wait::getWaitType() const {
+	return _waitType;
+}
 
 //public static
 
@@ -68,11 +83,11 @@ PluginInformation* Wait::GetPluginInformation() {
 
 void Wait::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 	std::string message = "Entity is waiting in the queue \"" + _queue->getName() + "\"";
-	if (_holdType == Wait::WaitType::WaitForSignal) {
+	if (_waitType == Wait::WaitType::WaitForSignal) {
 		message += " for signal \"" + _signalData->getName() + "\"";
-	} else if (_holdType == Wait::WaitType::ScanForCondition) {
+	} else if (_waitType == Wait::WaitType::ScanForCondition) {
 		message += " until codition \"" + _condition + "\" is true";
-	} else if (_holdType == Wait::WaitType::ScanForCondition) {
+	} else if (_waitType == Wait::WaitType::ScanForCondition) {
 		message += " indefinitely";
 	}
 	_parentModel->getTracer()->traceSimulation(this, _parentModel->getSimulation()->getSimulatedTime(), entity, this, message);
@@ -100,8 +115,11 @@ std::map<std::string, std::string>* Wait::_saveInstance(bool saveDefaultValues) 
 
 bool Wait::_check(std::string * errorMessage) {
 	bool resultAll = true;
-	if (_holdType == Wait::WaitType::ScanForCondition) {
+	if (_waitType == Wait::WaitType::ScanForCondition) {
 		resultAll = _parentModel->checkExpression(_condition, "Condition", errorMessage);
+		if (resultAll) { // add handler to event AfterProcessEvent 
+			_parentModel->getOnEvents()->addOnAfterProcessEventHandler(this, &Wait::_handlerForAfterProcessEventEvent);
+		}
 	}
 	return resultAll;
 }
@@ -114,7 +132,7 @@ void Wait::_createInternalAndAttachedData() {
 		_internalDataInsert("Queue", _queue);
 	}
 	//attached
-	if (_holdType == Wait::WaitType::WaitForSignal) {
+	if (_waitType == Wait::WaitType::WaitForSignal) {
 		if (_signalData == nullptr) {
 			if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
 				_signalData = pm->newInstance<SignalData>(_parentModel);
@@ -142,9 +160,16 @@ unsigned int Wait::_handlerForSignalDataEvent(SignalData* signalData) {
 		freed++;
 		signalData->decreaseRemainLimit();
 		Entity* ent = w->getEntity();
-		std::string message = "Received " + signalData->getName() + ". " + ent->getName() + " removed from " + _queue->getName() + ". " + std::to_string(freed) + " freed, " + std::to_string(signalData->remainsToLimit()) + " remaining";
+		std::string message = getName() + " received " + signalData->getName() + ". " + ent->getName() + " removed from " + _queue->getName() + ". " + std::to_string(freed) + " freed, " + std::to_string(signalData->remainsToLimit()) + " remaining";
 		_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L8_detailed, _parentModel->getSimulation()->getSimulatedTime(), ent, this, message);
 		_parentModel->sendEntityToComponent(w->getEntity(), w->geComponent()->getConnections()->getFrontConnection());
 	}
 	return freed;
+}
+
+void Wait::_handlerForAfterProcessEventEvent(SimulationEvent* event) {
+	double result = _parentModel->parseExpression(_condition);
+	if (result) { // condition is true. Remove entities from the queue
+
+	}
 }

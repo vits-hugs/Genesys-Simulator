@@ -17,6 +17,7 @@
 #include "../../kernel/simulator/ModelComponent.h"
 #include "../data/Queue.h"
 #include "../data/SignalData.h"
+#include "../../kernel/simulator/OnEventManager.h"
 
 /*!
 Wait module
@@ -87,6 +88,10 @@ public: // virtual
 	virtual std::string show();
 public: //
 	void setSignalData(SignalData* signal);
+	void setWaitType(WaitType _watType);
+	Wait::WaitType getWaitType() const;
+	void setCondition(std::string _condition);
+	std::string getCondition() const;
 public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
@@ -102,12 +107,13 @@ protected: // could be overriden .
 	//virtual ParserChangesInformation* _getParserChangesInformation();
 private: // methods
 	unsigned int _handlerForSignalDataEvent(SignalData* signalData);
+	void _handlerForAfterProcessEventEvent(SimulationEvent* event);
 private: // attributes 1:1
 	const struct DEFAULT_VALUES {
-		WaitType holdType = Wait::WaitType::WaitForSignal;
+		WaitType waitType = Wait::WaitType::WaitForSignal;
 		std::string condition = "";
 	} DEFAULT;
-	WaitType _holdType = DEFAULT.holdType;
+	WaitType _waitType = DEFAULT.waitType;
 	std::string _condition = DEFAULT.condition;
 private: // internal
 	Queue *_queue = nullptr;

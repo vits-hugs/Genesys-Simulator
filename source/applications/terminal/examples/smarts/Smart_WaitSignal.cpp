@@ -38,7 +38,7 @@ int Smart_WaitSignal::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	this->insertFakePluginsByHand(genesys);
-	genesys->getTracer()->setTraceLevel(TraceManager::Level::L9_mostDetailed);
+	genesys->getTracer()->setTraceLevel(TraceManager::Level::L7_internal);
 	Model* model = genesys->getModels()->newModel();
 	PluginManager* plugins = genesys->getPlugins();
 	//
@@ -55,10 +55,10 @@ int Smart_WaitSignal::main(int argc, char** argv) {
 
 	SignalData* sigdata1 = plugins->newInstance<SignalData>(model, "sinalD1");
 	SignalData* sigdata2 = plugins->newInstance<SignalData>(model, "sinalD2");
-	Wait* hold1 = plugins->newInstance<Wait>(model);
-	hold1->setSignalData(sigdata1);
-	Wait* hold2 = plugins->newInstance<Wait>(model);
-	hold2->setSignalData(sigdata2);
+	Wait* wait1 = plugins->newInstance<Wait>(model);
+	wait1->setSignalData(sigdata1);
+	Wait* wait2 = plugins->newInstance<Wait>(model);
+	wait2->setSignalData(sigdata2);
 	Signal* signal1 = plugins->newInstance<Signal>(model);
 	signal1->setSignalData(sigdata1);
 	signal1->setLimitExpression("3");
@@ -68,10 +68,10 @@ int Smart_WaitSignal::main(int argc, char** argv) {
 	Dispose* dispose1 = plugins->newInstance<Dispose>(model);
 	Dispose* dispose2 = plugins->newInstance<Dispose>(model);
 	//
-	create1->getConnections()->insert(hold1);
-	hold1->getConnections()->insert(dispose1);
-	create2->getConnections()->insert(hold2);
-	hold2->getConnections()->insert(dispose1);
+	create1->getConnections()->insert(wait1);
+	wait1->getConnections()->insert(dispose1);
+	create2->getConnections()->insert(wait2);
+	wait2->getConnections()->insert(dispose1);
 	create3->getConnections()->insert(signal1);
 	signal1->getConnections()->insert(dispose2);
 	create4->getConnections()->insert(signal2);
@@ -81,7 +81,7 @@ int Smart_WaitSignal::main(int argc, char** argv) {
 	simulation->setReplicationLength(20);
 	//
 	model->getTracer()->setTraceLevel(TraceManager::Level::L8_detailed);
-	model->save("./models/Smart_HoldSignal.gen");
+	model->save("./models/Smart_WaitSignal.gen");
 	do {
 		simulation->start();
 		//std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');

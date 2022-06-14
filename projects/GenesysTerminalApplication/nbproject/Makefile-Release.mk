@@ -57,6 +57,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/296208d5/Smart_SeizeDelayReleaseMany.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_SeizeDelayReleaseNoDataDefs.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_Sequence.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_WaitScanCondition.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_WaitSignal.o \
 	${OBJECTDIR}/_ext/18d98d98/AnElectronicAssemblyAndTestSystem.o \
 	${OBJECTDIR}/_ext/18d98d98/FullSimulationOfComplexModel.o \
@@ -310,6 +311,11 @@ ${OBJECTDIR}/_ext/296208d5/Smart_Sequence.o: ../../source/applications/terminal/
 	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_Sequence.o ../../source/applications/terminal/examples/smarts/Smart_Sequence.cpp
+
+${OBJECTDIR}/_ext/296208d5/Smart_WaitScanCondition.o: ../../source/applications/terminal/examples/smarts/Smart_WaitScanCondition.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_WaitScanCondition.o ../../source/applications/terminal/examples/smarts/Smart_WaitScanCondition.cpp
 
 ${OBJECTDIR}/_ext/296208d5/Smart_WaitSignal.o: ../../source/applications/terminal/examples/smarts/Smart_WaitSignal.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
