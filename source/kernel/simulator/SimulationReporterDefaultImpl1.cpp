@@ -118,22 +118,22 @@ void SimulationReporterDefaultImpl1::showReplicationStatistics() {
 							Statistics_if* stat = dynamic_cast<StatisticsCollector*> (item)->getStatistics();
 							_model->getTracer()->traceReport(TraceManager::Level::L2_results,
 									Util::SetW(item->getName() + std::string(_nameW, '.'), _nameW - 1) + " " +
-									Util::SetW(std::to_string(stat->numElements()), _w1) + " " +
-									Util::SetW(std::to_string(stat->min()), _w1) + " " +
-									Util::SetW(std::to_string(stat->max()), _w1) + " " +
-									Util::SetW(std::to_string(stat->average()), _w1) + " " +
-									Util::SetW(std::to_string(stat->variance()), _w1) + " " +
-									Util::SetW(std::to_string(stat->stddeviation()), _w1) + " " +
-									Util::SetW(std::to_string(stat->variationCoef()), _w1) + " " +
-									Util::SetW(std::to_string(stat->halfWidthConfidenceInterval()), _w1) + " " +
-									Util::SetW(std::to_string(stat->getConfidenceLevel()), _w)
+									Util::SetW(strTruncIfInt(stat->numElements()), _w1) + " " +
+									Util::SetW(strTruncIfInt(stat->min()), _w1) + " " +
+									Util::SetW(strTruncIfInt(stat->max()), _w1) + " " +
+									Util::SetW(strTruncIfInt(stat->average()), _w1) + " " +
+									Util::SetW(strTruncIfInt(stat->variance()), _w1) + " " +
+									Util::SetW(strTruncIfInt(stat->stddeviation()), _w1) + " " +
+									Util::SetW(strTruncIfInt(stat->variationCoef()), _w1) + " " +
+									Util::SetW(strTruncIfInt(stat->halfWidthConfidenceInterval()), _w1) + " " +
+									Util::SetW(strTruncIfInt(stat->getConfidenceLevel()), _w)
 									);
 						} else {
 							if (item->getClassname() == UtilTypeOfCounter) {
 								Counter* count = dynamic_cast<Counter*> (item);
 								_model->getTracer()->traceReport(TraceManager::Level::L2_results,
 										Util::SetW(count->getName() + std::string(_nameW, '.'), _nameW - 1) + " " +
-										Util::SetW(std::to_string(count->getCountValue()), _w)
+										Util::SetW(strTruncIfInt(count->getCountValue()), _w)
 										);
 							}
 						}
@@ -148,7 +148,6 @@ void SimulationReporterDefaultImpl1::showReplicationStatistics() {
 		this->showSimulationResponses();
 	Util::DecIndent();
 	_model->getTracer()->traceReport("End of Report for replication " + std::to_string(_simulation->getCurrentReplicationNumber()) + " of " + std::to_string(_model->getSimulation()->getNumberOfReplications()));
-	//_model->getTracer()->traceReport("-------------------------------------");
 }
 
 void SimulationReporterDefaultImpl1::showSimulationResponses() {
@@ -234,22 +233,22 @@ void SimulationReporterDefaultImpl1::showSimulationStatistics() {//List<Statisti
 							Statistics_if* stat = dynamic_cast<StatisticsCollector*> (item)->getStatistics();
 							_model->getTracer()->traceReport(TraceManager::Level::L2_results,
 									Util::SetW(item->getName() + std::string(_nameW, '.'), _nameW - 1) + " " +
-									Util::SetW(std::to_string(stat->numElements()), _w1) + " " +
-									Util::SetW(std::to_string(stat->min()), _w1) + " " +
-									Util::SetW(std::to_string(stat->max()), _w1) + " " +
-									Util::SetW(std::to_string(stat->average()), _w1) + " " +
-									Util::SetW(std::to_string(stat->variance()), _w1) + " " +
-									Util::SetW(std::to_string(stat->stddeviation()), _w1) + " " +
-									Util::SetW(std::to_string(stat->variationCoef()), _w1) + " " +
-									Util::SetW(std::to_string(stat->halfWidthConfidenceInterval()), _w1) + " " +
-									Util::SetW(std::to_string(stat->getConfidenceLevel()), _w)
+									Util::SetW(strTruncIfInt(stat->numElements()), _w1) + " " +
+									Util::SetW(strTruncIfInt(stat->min()), _w1) + " " +
+									Util::SetW(strTruncIfInt(stat->max()), _w1) + " " +
+									Util::SetW(strTruncIfInt(stat->average()), _w1) + " " +
+									Util::SetW(strTruncIfInt(stat->variance()), _w1) + " " +
+									Util::SetW(strTruncIfInt(stat->stddeviation()), _w1) + " " +
+									Util::SetW(strTruncIfInt(stat->variationCoef()), _w1) + " " +
+									Util::SetW(strTruncIfInt(stat->halfWidthConfidenceInterval()), _w1) + " " +
+									Util::SetW(strTruncIfInt(stat->getConfidenceLevel()), _w)
 									);
 						} else {
 							if (item->getClassname() == UtilTypeOfCounter) {
 								Counter* cnt = dynamic_cast<Counter*> (item);
 								_model->getTracer()->traceReport(TraceManager::Level::L2_results,
 										Util::SetW(cnt->getName() + std::string(_nameW, '.'), _nameW - 1) + " " +
-										Util::SetW(std::to_string(cnt->getCountValue()), _w)
+										Util::SetW(strTruncIfInt(cnt->getCountValue()), _w)
 										);
 							}
 						}
@@ -260,7 +259,6 @@ void SimulationReporterDefaultImpl1::showSimulationStatistics() {//List<Statisti
 		}
 		Util::DecIndent();
 	}
-
 	Util::DecIndent();
 	_model->getTracer()->traceReport("End of Report for Simulation");
 }

@@ -57,6 +57,14 @@ static inline void trim(std::string &s) {
 }
  */
 
+static inline std::string strTruncIfInt(double value) {
+	int intvalue = static_cast<int> (value);
+	if (intvalue == value)
+		return std::to_string(intvalue) + ".0";
+	else
+		return std::to_string(value);
+}
+
 static inline std::string strTruncIfInt(std::string strValue) {
 	if (strValue.length() > 7 && strValue.substr(strValue.length() - 7, 7) == ".000000")
 		return strValue.substr(0, strValue.length() - 7);
@@ -164,6 +172,7 @@ public:
 	typedef unsigned long identification;
 	typedef unsigned int rank;
 
+	//@TODO: Should be insde ModelSimulation, where time goes on
 	enum class TimeUnit : int {
 		picosecond = 1,
 		nanosecond = 2,
