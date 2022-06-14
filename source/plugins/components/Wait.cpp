@@ -142,7 +142,7 @@ unsigned int Wait::_handlerForSignalDataEvent(SignalData* signalData) {
 		freed++;
 		signalData->decreaseRemainLimit();
 		Entity* ent = w->getEntity();
-		std::string message = "Received signal \"" + signalData->getName() + "\". Entity \"" + ent->getName() + "\" removed from queue \"" + _queue->getName() + "\". " + std::to_string(freed) + " freed entities, limit remaining " + std::to_string(signalData->remainsToLimit());
+		std::string message = "Received " + signalData->getName() + ". " + ent->getName() + " removed from " + _queue->getName() + ". " + std::to_string(freed) + " freed, " + std::to_string(signalData->remainsToLimit()) + " remaining";
 		_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L8_detailed, _parentModel->getSimulation()->getSimulatedTime(), ent, this, message);
 		_parentModel->sendEntityToComponent(w->getEntity(), w->geComponent()->getConnections()->getFrontConnection());
 	}

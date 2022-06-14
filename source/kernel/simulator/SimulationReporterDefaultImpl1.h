@@ -38,8 +38,8 @@ private:
 private:
 	List<ModelDataDefinition*>* _statsCountersSimulation;
 private:
-	const unsigned short _w = 12;
-	const unsigned short _nameW = 40;
+	const unsigned short _w = 9;
+	const unsigned short _nameW = 36;
 };
 //namespace\\}
 #endif /* SIMULATIONREPORTERDEFAULTIMPL1_H */

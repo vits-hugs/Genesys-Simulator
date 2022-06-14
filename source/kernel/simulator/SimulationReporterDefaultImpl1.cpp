@@ -29,7 +29,7 @@ void SimulationReporterDefaultImpl1::showSimulationControls() {
 	_model->getTracer()->traceReport("Simulation Controls:");
 	Util::IncIndent();
 	{
-		for (PropertyBase* control: *_model->getControls()->list()) {
+		for (PropertyBase* control : *_model->getControls()->list()) {
 			_model->getTracer()->traceReport(control->getName() + ": " + std::to_string(control->getValue()));
 		}
 	}
@@ -103,6 +103,7 @@ void SimulationReporterDefaultImpl1::showReplicationStatistics() {
 	_model->getTracer()->traceReport(Util::SetW("name", _nameW) + Util::SetW("elems", _w) + Util::SetW("min", _w) + Util::SetW("max", _w) + Util::SetW("average", _w) + Util::SetW("variance", _w) + Util::SetW("stddev", _w) + Util::SetW("varCoef", _w) + Util::SetW("confInterv", _w) + Util::SetW("confLevel", _w));
 	Util::DecIndent();
 	Util::DecIndent();
+	const unsigned short _w1 = _w - 1;
 	for (auto const mapmapItem : *mapMapTypeStat) {
 		_model->getTracer()->traceReport("Statistics for " + mapmapItem.first + ":");
 		Util::IncIndent();
@@ -117,14 +118,14 @@ void SimulationReporterDefaultImpl1::showReplicationStatistics() {
 							Statistics_if* stat = dynamic_cast<StatisticsCollector*> (item)->getStatistics();
 							_model->getTracer()->traceReport(TraceManager::Level::L2_results,
 									Util::SetW(item->getName() + std::string(_nameW, '.'), _nameW - 1) + " " +
-									Util::SetW(std::to_string(stat->numElements()), _w) +
-									Util::SetW(std::to_string(stat->min()), _w) +
-									Util::SetW(std::to_string(stat->max()), _w) +
-									Util::SetW(std::to_string(stat->average()), _w) +
-									Util::SetW(std::to_string(stat->variance()), _w) +
-									Util::SetW(std::to_string(stat->stddeviation()), _w) +
-									Util::SetW(std::to_string(stat->variationCoef()), _w) +
-									Util::SetW(std::to_string(stat->halfWidthConfidenceInterval()), _w) +
+									Util::SetW(std::to_string(stat->numElements()), _w1) + " " +
+									Util::SetW(std::to_string(stat->min()), _w1) + " " +
+									Util::SetW(std::to_string(stat->max()), _w1) + " " +
+									Util::SetW(std::to_string(stat->average()), _w1) + " " +
+									Util::SetW(std::to_string(stat->variance()), _w1) + " " +
+									Util::SetW(std::to_string(stat->stddeviation()), _w1) + " " +
+									Util::SetW(std::to_string(stat->variationCoef()), _w1) + " " +
+									Util::SetW(std::to_string(stat->halfWidthConfidenceInterval()), _w1) + " " +
 									Util::SetW(std::to_string(stat->getConfidenceLevel()), _w)
 									);
 						} else {
@@ -147,14 +148,14 @@ void SimulationReporterDefaultImpl1::showReplicationStatistics() {
 		this->showSimulationResponses();
 	Util::DecIndent();
 	_model->getTracer()->traceReport("End of Report for replication " + std::to_string(_simulation->getCurrentReplicationNumber()) + " of " + std::to_string(_model->getSimulation()->getNumberOfReplications()));
-	_model->getTracer()->traceReport("-------------------------------------");
+	//_model->getTracer()->traceReport("-------------------------------------");
 }
 
 void SimulationReporterDefaultImpl1::showSimulationResponses() {
 	_model->getTracer()->traceReport("Simulation Responses:");
 	Util::IncIndent();
 	{
-		for (PropertyBase* response: *_model->getResponses()->list()) {
+		for (PropertyBase* response : *_model->getResponses()->list()) {
 			_model->getTracer()->traceReport(response->getName() + ": " + std::to_string(response->getValue()));
 		}
 	}
@@ -218,7 +219,8 @@ void SimulationReporterDefaultImpl1::showSimulationStatistics() {//List<Statisti
 	_model->getTracer()->traceReport(Util::SetW("name", _nameW) + Util::SetW("elems", _w) + Util::SetW("min", _w) + Util::SetW("max", _w) + Util::SetW("average", _w) + Util::SetW("variance", _w) + Util::SetW("stddev", _w) + Util::SetW("varCoef", _w) + Util::SetW("confInterv", _w) + Util::SetW("confLevel", _w));
 	Util::DecIndent();
 	Util::DecIndent();
-	/// TODO: USE REFERENCE TO MAPITEM TO AVOID COPY
+	/// @TODO: USE REFERENCE TO MAPITEM TO AVOID COPY
+	const unsigned short _w1 = _w - 1;
 	for (auto const mapmapItem : *mapMapTypeStat) {
 		_model->getTracer()->traceReport("Statistics for " + mapmapItem.first + ":");
 		Util::IncIndent();
@@ -232,14 +234,14 @@ void SimulationReporterDefaultImpl1::showSimulationStatistics() {//List<Statisti
 							Statistics_if* stat = dynamic_cast<StatisticsCollector*> (item)->getStatistics();
 							_model->getTracer()->traceReport(TraceManager::Level::L2_results,
 									Util::SetW(item->getName() + std::string(_nameW, '.'), _nameW - 1) + " " +
-									Util::SetW(std::to_string(stat->numElements()), _w) +
-									Util::SetW(std::to_string(stat->min()), _w) +
-									Util::SetW(std::to_string(stat->max()), _w) +
-									Util::SetW(std::to_string(stat->average()), _w) +
-									Util::SetW(std::to_string(stat->variance()), _w) +
-									Util::SetW(std::to_string(stat->stddeviation()), _w) +
-									Util::SetW(std::to_string(stat->variationCoef()), _w) +
-									Util::SetW(std::to_string(stat->halfWidthConfidenceInterval()), _w) +
+									Util::SetW(std::to_string(stat->numElements()), _w1) + " " +
+									Util::SetW(std::to_string(stat->min()), _w1) + " " +
+									Util::SetW(std::to_string(stat->max()), _w1) + " " +
+									Util::SetW(std::to_string(stat->average()), _w1) + " " +
+									Util::SetW(std::to_string(stat->variance()), _w1) + " " +
+									Util::SetW(std::to_string(stat->stddeviation()), _w1) + " " +
+									Util::SetW(std::to_string(stat->variationCoef()), _w1) + " " +
+									Util::SetW(std::to_string(stat->halfWidthConfidenceInterval()), _w1) + " " +
 									Util::SetW(std::to_string(stat->getConfidenceLevel()), _w)
 									);
 						} else {

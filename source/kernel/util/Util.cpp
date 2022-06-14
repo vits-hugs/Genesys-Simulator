@@ -58,7 +58,7 @@ void Util::SepKeyVal(std::string str, std::string *key, std::string *value) {
 std::string Util::Indent() {
 	std::string spaces = "";
 	for (unsigned int i = 0; i < Util::_S_indentation; i++) {
-		spaces += "  ";
+		spaces += "|  ";
 	}
 	return spaces;
 }

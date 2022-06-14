@@ -21,7 +21,7 @@ int mainTerminalApp(int argc, char *argv[]) {
 }
 
 int main(int argc, char *argv[]) {
-	bool runGUI = false;
+	bool runGUI = true;
 	if (runGUI) {
 		return mainGraphicQtApp(argc, argv);
 	} else {

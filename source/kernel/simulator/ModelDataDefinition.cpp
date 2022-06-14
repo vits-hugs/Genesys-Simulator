@@ -306,7 +306,7 @@ std::string ModelDataDefinition::getClassname() const {
 }
 
 void ModelDataDefinition::InitBetweenReplications(ModelDataDefinition* modeldatum) {
-	modeldatum->_parentModel->getTracer()->trace("Initing " + modeldatum->getClassname() + " \"" + modeldatum->getName() + "\"", TraceManager::Level::L8_detailed); //std::to_string(component->_id));
+	modeldatum->_parentModel->getTracer()->trace("Initing " + modeldatum->getClassname() + " \"" + modeldatum->getName() + "\"", TraceManager::Level::L9_mostDetailed); //std::to_string(component->_id));
 	try {
 		modeldatum->_initBetweenReplications();
 	} catch (const std::exception& e) {

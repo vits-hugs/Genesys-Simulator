@@ -39,10 +39,12 @@ bool ModelDataManager::insert(std::string datadefinitionTypename, ModelDataDefin
 		//	} else {
 		//		text = anElement->getClassname() + " \"" + anElement->getName() + "\" already exists.";
 	}
-	if (_parentModel->getSimulation()->isRunning()) {
-		_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L8_detailed, text);
-	} else {
-		_parentModel->getTracer()->trace(TraceManager::Level::L8_detailed, text);
+	if (result) {
+		if (_parentModel->getSimulation()->isRunning()) {
+			_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L8_detailed, text);
+		} else {
+			_parentModel->getTracer()->trace(TraceManager::Level::L8_detailed, text);
+		}
 	}
 	return result;
 }

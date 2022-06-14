@@ -73,7 +73,7 @@ SOURCES += \
 	../../../../plugins/components/DummyComponent.cpp \
 	../../../../plugins/components/Enter.cpp \
 	../../../../plugins/components/Exit.cpp \
-	../../../../plugins/components/Hold.cpp \
+	../../../../plugins/components/Wait.cpp \
 	../../../../plugins/components/LSODE.cpp \
 	../../../../plugins/components/Leave.cpp \
 	../../../../plugins/components/MarkovChain.cpp \
@@ -127,7 +127,7 @@ SOURCES += \
 	../../../terminal/examples/smarts/Smart_CppForG.cpp \
 	../../../terminal/examples/smarts/Smart_Delay.cpp \
 	../../../terminal/examples/smarts/Smart_Dummy.cpp \
-	../../../terminal/examples/smarts/Smart_HoldSignal.cpp \
+	../../../terminal/examples/smarts/Smart_WaitSignal.cpp \
 	../../../terminal/examples/smarts/Smart_ModelInfoModelSimulation.cpp \
 	../../../terminal/examples/smarts/Smart_ODE.cpp \
 	../../../terminal/examples/smarts/Smart_OnEvent.cpp \
@@ -243,7 +243,7 @@ HEADERS += \
 	../../../../plugins/components/DummyComponent.h \
 	../../../../plugins/components/Enter.h \
 	../../../../plugins/components/Exit.h \
-	../../../../plugins/components/Hold.h \
+	../../../../plugins/components/Wait.h \
 	../../../../plugins/components/LSODE.h \
 	../../../../plugins/components/Leave.h \
 	../../../../plugins/components/MarkovChain.h \
@@ -305,7 +305,7 @@ HEADERS += \
 	../../../terminal/examples/smarts/Smart_CppForG.h \
 	../../../terminal/examples/smarts/Smart_Delay.h \
 	../../../terminal/examples/smarts/Smart_Dummy.h \
-	../../../terminal/examples/smarts/Smart_HoldSignal.h \
+	../../../terminal/examples/smarts/Smart_WaitSignal.h \
 	../../../terminal/examples/smarts/Smart_ModelInfoModelSimulation.h \
 	../../../terminal/examples/smarts/Smart_ODE.h \
 	../../../terminal/examples/smarts/Smart_OnEvent.h \
