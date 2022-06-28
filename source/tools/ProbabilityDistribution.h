@@ -37,6 +37,7 @@ public:
 	static double inverseFFisherSnedecor(double cumulativeProbability, double d1, double d2);
 	static double inverseNormal(double cumulativeProbability, double mean, double stddev);
 	static double inverseTStudent(double cumulativeProbability, double mean, double stddev, double degreeFreedom);
+    static double inverseAnything(); //@TODO
 private:
 	static double _findInverseChi2(double a, double fa, double b, double fb, unsigned int recursions, double cumulativeProbability, double degreeFreedom);
 	static double _findInverseFFisherSnedecor(double a, double fa, double b, double fb, unsigned int recursions, double cumulativeProbability, double d1, double d2);

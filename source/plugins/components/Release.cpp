@@ -166,10 +166,10 @@ bool Release::_check(std::string* errorMessage) {
 	for (SeizableItem* seizable : * _releaseRequests->list()) {
 		resultAll &= _parentModel->checkExpression(seizable->getQuantityExpression(), "quantity", errorMessage);
 		if (seizable->getSeizableType() == SeizableItem::SeizableType::RESOURCE) {
-			Resource* resource = seizable->getResource();
+			// Resource* resource = seizable->getResource();
 			resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Resource>(), seizable->getResource(), "Resource", errorMessage);
 		} else if (seizable->getSeizableType() == SeizableItem::SeizableType::SET) {
-			Set* set = seizable->getSet();
+			// Set* set = seizable->getSet();
 			resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Set>(), seizable->getSet(), "Set", errorMessage);
 		}
 		i++;

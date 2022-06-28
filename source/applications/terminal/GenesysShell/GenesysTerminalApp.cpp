@@ -54,12 +54,8 @@ void GenesysTerminalApp::tryExecuteCommand(std::string inputText, std::string sh
 	} else {
 		_parameter = "";
 	}
-	ShellCommand* command;
-	bool found;
 	std::transform(typedCommandStr.begin(), typedCommandStr.end(), typedCommandStr.begin(), ::tolower);
 	if (typedCommandStr.substr(0, 1) != "#") {
-		found = true;
-
 		//if (!found) {
 		//	Trace("Command \"" + typedCommandStr + "\" not found. Type \"h\" or \"help\" for help.");
 		//}

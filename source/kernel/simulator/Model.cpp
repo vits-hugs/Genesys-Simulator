@@ -11,12 +11,12 @@
  * Created on 21 de Junho de 2018, 15:01
  */
 
+#include "Model.h"
 #include <typeinfo>
 #include <iostream>
 #include <algorithm>
 #include <string>
 
-#include "Model.h"
 #include "SourceModelComponent.h"
 #include "Simulator.h"
 #include "OnEventManager.h"

@@ -14,7 +14,6 @@
                 <sourceRootElem>../../documentation</sourceRootElem>
                 <sourceRootElem>../../models</sourceRootElem>
                 <sourceRootElem>..</sourceRootElem>
-                <sourceRootElem>../../tests</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

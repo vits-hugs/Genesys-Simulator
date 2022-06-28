@@ -10,22 +10,7 @@ digraph G {
      Dispose_1 [shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=bisque, label="Dispose|Dispose_1"];
   }
   {
-     Dispose_1_CountNumberIn [shape=record, fontsize=8, color=gray50, fontcolor=gray50, label="Counter|Dispose_1.CountNumberIn"];
-     Entity_TotalWaitTime [shape=record, fontsize=10, color=gray50, fontcolor=gray50, style=filled, fillcolor=darkolivegreen3, label="Attribute|Entity.TotalWaitTime"];
      Delay_1 [shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=bisque, label="Delay|Delay_1"];
-     entitytype_WaitTime [shape=record, fontsize=8, color=gray50, fontcolor=gray50, label="StatisticsCollector|entitytype.WaitTime"];
-     entitytype_TotalTimeInSystem [shape=record, fontsize=8, color=gray50, fontcolor=gray50, label="StatisticsCollector|entitytype.TotalTimeInSystem"];
-     entitytype [shape=record, fontsize=10, color=gray50, fontcolor=gray50, style=filled, fillcolor=darkolivegreen3, label="EntityType|entitytype"];
-     Entity_ArrivalTime [shape=record, fontsize=10, color=gray50, fontcolor=gray50, style=filled, fillcolor=darkolivegreen3, label="Attribute|Entity.ArrivalTime"];
-     Create_1_CountNumberOut [shape=record, fontsize=8, color=gray50, fontcolor=gray50, label="Counter|Create_1.CountNumberOut"];
-       Create_1_CountNumberOut->Create_1 [style=dashed, arrowhead="diamond", color=gray55, fontcolor=gray55, fontsize=7, label="CountNumberOut"];
-       Entity_ArrivalTime->Create_1 [style=dashed, arrowhead="ediamond", color=gray50, fontcolor=gray50, fontsize=7, label="Entity.ArrivalTime"];
-       entitytype_TotalTimeInSystem->entitytype [style=dashed, arrowhead="diamond", color=gray55, fontcolor=gray55, fontsize=7, label="entitytype.TotalTimeInSystem"];
-       entitytype_WaitTime->entitytype [style=dashed, arrowhead="diamond", color=gray55, fontcolor=gray55, fontsize=7, label="entitytype.WaitTime"];
-       entitytype->Create_1 [style=dashed, arrowhead="ediamond", color=gray50, fontcolor=gray50, fontsize=7, label="EntityType"];
-       Entity_TotalWaitTime->Delay_1 [style=dashed, arrowhead="ediamond", color=gray50, fontcolor=gray50, fontsize=7, label="Entity.TotalWaitTime"];
-       Dispose_1_CountNumberIn->Dispose_1 [style=dashed, arrowhead="diamond", color=gray55, fontcolor=gray55, fontsize=7, label="CountNumberIn"];
-       Entity_ArrivalTime->Dispose_1 [style=dashed, arrowhead="ediamond", color=gray50, fontcolor=gray50, fontsize=7, label="Entity.ArrivalTime"];
        Delay_1->Dispose_1[style=solid, arrowhead="normal" color=black, fontcolor=black, fontsize=7];
        Create_1->Delay_1[style=solid, arrowhead="normal" color=black, fontcolor=black, fontsize=7];
   }

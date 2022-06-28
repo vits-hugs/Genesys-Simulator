@@ -41,7 +41,7 @@ void ModelComponent::DispatchEvent(Event* event) {
 		msg += ": " + component->getDescription();
 	if (inputPortNumber > 0)
 		msg += " by input " + std::to_string(inputPortNumber);
-	component->_parentModel->getTracer()->traceSimulation(component, TraceManager::Level::L6_arrival, msg);
+	component->_parentModel->getTracer()->traceSimulation(component, TraceManager::Level::L7_internal, msg); //:L6_arrival
 	Util::IncIndent();
 	try {
 		component->_onDispatchEvent(entity, inputPortNumber);

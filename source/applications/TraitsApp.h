@@ -62,7 +62,7 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Smart_BatchSeparate Application;
 	//typedef Smart_CppForG Application;
 	//typedef Smart_Delay Application;
-	//typedef Smart_Dummy Application;
+	typedef Smart_Dummy Application;
 	//typedef Smart_ModelInfoModelSimulation Application;
 	//typedef Smart_ODE Application;
 	//typedef Smart_OnEvent Application;
@@ -76,7 +76,7 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Smart_SeizeDelayReleaseNoDataDefs Application;
 	//typedef Smart_SeizeDelayReleaseMany Application; 
 	//typedef Smart_Sequence Application;
-	typedef Smart_WaitScanCondition Application;
+	//typedef Smart_WaitScanCondition Application;
 	//typedef Smart_WaitSignal Application;
 
 	//// TEACHING

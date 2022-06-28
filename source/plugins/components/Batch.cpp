@@ -134,8 +134,8 @@ void Batch::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 					}
 				}
 				_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L7_internal, "Found " + std::to_string(entitiesToGroup->size()) + " elements in queue with the same value (" + std::to_string(value) + ") for attribute \"" + _attributeName + "\", and a group will be created");
-				break;
-				exit; //breake? //next?
+				break; //@TODO
+				exit; //breake? //next? 
 			}
 		}
 	} else { // BY EntityType

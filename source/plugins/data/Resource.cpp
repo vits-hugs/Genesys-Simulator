@@ -187,7 +187,7 @@ bool Resource::_loadInstance(std::map<std::string, std::string>* fields) {
 }
 
 std::map<std::string, std::string>* Resource::_saveInstance(bool saveDefaultValues) {
-	bool saveDefaults = _getSaveDefaultsOption();
+	// bool saveDefaults = _getSaveDefaultsOption();
 	std::map<std::string, std::string>* fields = ModelDataDefinition::_saveInstance(saveDefaultValues); //Util::TypeOf<Resource>());
 	SaveField(fields, "capacity", _capacity, DEFAULT.capacity, saveDefaultValues);
 	SaveField(fields, "costBusyHour", _costBusyHour, DEFAULT.cost, saveDefaultValues);

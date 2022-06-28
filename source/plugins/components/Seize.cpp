@@ -272,10 +272,10 @@ bool Seize::_check(std::string* errorMessage) {
 	for (SeizableItem* seizable : *_seizeRequests->list()) {
 		resultAll &= _parentModel->checkExpression(seizable->getQuantityExpression(), "quantity", errorMessage);
 		if (seizable->getSeizableType() == SeizableItem::SeizableType::RESOURCE) {
-			Resource* resource = seizable->getResource();
+			// Resource* resource = seizable->getResource();
 			resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Resource>(), seizable->getResource(), "Resource", errorMessage);
 		} else if (seizable->getSeizableType() == SeizableItem::SeizableType::SET) {
-			Set* set = seizable->getSet();
+			// Set* set = seizable->getSet();
 			resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Set>(), seizable->getSet(), "Set", errorMessage);
 		}
 		i++;
@@ -286,16 +286,16 @@ bool Seize::_check(std::string* errorMessage) {
 		*errorMessage += "QueueableItem is missing";
 	} else {
 		if (_queueableItem->getQueueableType() == QueueableItem::QueueableType::QUEUE) {
-			Queue* queue = _queueableItem->getQueue();
+			// Queue* queue = _queueableItem->getQueue();
 			resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Queue>(), _queueableItem->getQueue(), "Queueable Queue", errorMessage);
 		} else if (_queueableItem->getQueueableType() == QueueableItem::QueueableType::SET) {
-			Set* set = _queueableItem->getSet();
+			// Set* set = _queueableItem->getSet();
 			resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Set>(), _queueableItem->getSet(), "Queueable Set", errorMessage);
 		}
 	}
 
 	if (_saveAttribute != "") { // check if saveAttribute is an attribute
-		ModelDataDefinition* saveAttr = _parentModel->getDataManager()->getDataDefinition(Util::TypeOf<Attribute>(), _saveAttribute);
+		// ModelDataDefinition* saveAttr = _parentModel->getDataManager()->getDataDefinition(Util::TypeOf<Attribute>(), _saveAttribute);
 		resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Attribute>(), _saveAttribute, "Save Attribute", true, errorMessage);
 	}
 	return resultAll;
