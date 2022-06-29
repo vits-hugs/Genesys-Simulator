@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   SamplerDefaultImpl1.cpp
  * Author: rafael.luiz.cancian
- * 
+ *
  * Created on 2 de Agosto de 2018, 01:10
  * 22/10/2019 old genesys code reinserted
  */
@@ -52,11 +52,11 @@ double SamplerDefaultImpl1::sampleUniform(double min, double max) {
 	return min + (max - min) * random();
 }
 
-double SamplerDefaultImpl1::sampleExponential(double mean) {
-	return mean * (-std::log(random()));
+double SamplerDefaultImpl1::sampleExponential(double mean, double offset) {
+	return offset + mean * (-std::log(random()));
 }
 
-double SamplerDefaultImpl1::sampleErlang(double mean, int M) {
+double SamplerDefaultImpl1::sampleErlang(double mean, int M, double offset) {
 	int i;
 	double P;
 	assert((mean >= 0.0) && (M > 0));
@@ -64,7 +64,7 @@ double SamplerDefaultImpl1::sampleErlang(double mean, int M) {
 	for (i = 1; i <= M; i++) {
 		P *= random();
 	}
-	return (mean / M) * (-log(P));
+	return offset + (mean / M) * (-log(P));
 }
 
 double SamplerDefaultImpl1::sampleNormal(double mean, double stddev) {
@@ -80,12 +80,12 @@ double SamplerDefaultImpl1::sampleNormal(double mean, double stddev) {
 	return mean + stddev*z;
 }
 
-double SamplerDefaultImpl1::sampleLogNormal(double mean, double stddev) {
+double SamplerDefaultImpl1::sampleLogNormal(double mean, double stddev, double offset) {
 	double meanNorm, DispNorm;
 	//assert(!((mean <= 0.0) || (stddev <= 0.0)));
 	DispNorm = log((stddev * stddev) / (mean * mean) + 1.0);
 	meanNorm = log(mean) - 0.5 * DispNorm;
-	return exp(sampleNormal(meanNorm, sqrt(DispNorm)));
+	return offset + exp(sampleNormal(meanNorm, sqrt(DispNorm)));
 }
 
 double SamplerDefaultImpl1::sampleTriangular(double min, double mode, double max) {
@@ -171,7 +171,7 @@ double SamplerDefaultImpl1::sampleGamma(double mean, double alpha) {
 }
  */
 
-double SamplerDefaultImpl1::sampleGamma(double alpha, double beta) {
+double SamplerDefaultImpl1::sampleGamma(double alpha, double beta, double offset) {
 	double u, v, w, delta;
 	double eps;
 	double nt;
@@ -199,7 +199,7 @@ double SamplerDefaultImpl1::sampleGamma(double alpha, double beta) {
 		gamma_n += log(random());
 	}
 	double gamma = beta * (eps - gamma_n);
-	return gamma;
+	return offset+ gamma;
 }
 
 double SamplerDefaultImpl1::sampleBeta(double alpha, double beta, double infLimit, double supLimit) {

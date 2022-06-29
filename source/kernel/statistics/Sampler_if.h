@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   Sampler_if.h
  * Author: rafael.luiz.cancian
  *
@@ -31,16 +31,18 @@ public: // RNG
 public: // continuous probability distributions
 	virtual double sampleBeta(double alpha, double beta, double infLimit, double supLimit) = 0;
 	virtual double sampleBeta(double alpha, double beta) = 0;
-	virtual double sampleErlang(double mean, int M) = 0;
-	virtual double sampleExponential(double mean) = 0;
-	virtual double sampleGamma(double mean, double alpha) = 0;
+	virtual double sampleErlang(double mean, int M, double offset=0.0) = 0;
+	virtual double sampleExponential(double mean, double offset=0.0) = 0;
+	//virtual double sampleGamma(double mean, double alpha, double offset=0.0) = 0;
+	virtual double sampleGamma(double alpha, double beta, double offset=0.0) = 0;
 	virtual double sampleGumbell(double mode, double scale) = 0;
-	virtual double sampleLogNormal(double mean, double stddev) = 0;
+	virtual double sampleLogNormal(double mean, double stddev, double offset=0.0) = 0;
 	virtual double sampleNormal(double mean, double stddev) = 0;
 	virtual double sampleTriangular(double min, double mode, double max) = 0;
 	virtual double sampleUniform(double min, double max) = 0;
 	virtual double sampleWeibull(double alpha, double scale) = 0;
-public: // discrete probability distributions    
+public: // discrete probability distributions
+	//TODO: Poisson, si vous plait!!!!
 	virtual double sampleBinomial(int trials, double p) = 0;
 	virtual double sampleBernoulli(double p) = 0;
 	virtual double sampleDiscrete(double prob, double value, ...) = 0;

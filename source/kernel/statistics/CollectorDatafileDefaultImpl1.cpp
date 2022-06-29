@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   CollectorDatafileDefaultImpl11.cpp
  * Author: rafael.luiz.cancian
- * 
+ *
  * Created on 1 de Agosto de 2018, 20:58
  */
 
@@ -17,6 +17,7 @@
 #include <iomanip>
 #include <limits>
 #include <sstream>
+#include <string>
 
 CollectorDatafileDefaultImpl1::CollectorDatafileDefaultImpl1() {
 }
@@ -41,7 +42,9 @@ void CollectorDatafileDefaultImpl1::addValue(double value) {
 		} else {
 			file.open(_filename, std::ofstream::out | std::ofstream::trunc);
 		}
-		file.write(reinterpret_cast<char*> (&value), sizeof (double));
+		//std::string strValue = std::to_string(value);
+		//file.write(reinterpret_cast<char*> (&strValue), strValue.length());
+		file.write(reinterpret_cast<char*> (&value), sizeof(double));
 		file.close();
 	} catch (const std::exception& e) {
 		throw "ERROR - can't open the file ";

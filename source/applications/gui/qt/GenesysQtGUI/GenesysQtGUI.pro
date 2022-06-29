@@ -115,6 +115,7 @@ SOURCES += \
 	../../../../plugins/data/Station.cpp \
 	../../../../plugins/data/Storage.cpp \
 	../../../../plugins/data/Variable.cpp \
+	../../../../tests/Tests.cpp \
 	../../../../tools/HypothesisTesterDefaultImpl1.cpp \
 	../../../../tools/ProbabilityDistribution.cpp \
 	../../../../tools/SolverDefaultImpl1.cpp \
@@ -286,6 +287,7 @@ HEADERS += \
 	../../../../plugins/data/Station.h \
 	../../../../plugins/data/Storage.h \
 	../../../../plugins/data/Variable.h \
+	../../../../tests/Tests.h \
 	../../../../tools/DataAnalyser_if.h \
 	../../../../tools/HypothesisTesterDefaultImpl1.h \
 	../../../../tools/HypothesisTester_if.h \

@@ -15,6 +15,10 @@
 #define TRAITSAPP_H
 
 #include "../kernel/util/Util.h"
+
+// TEMPORARY TESTS
+#include "../tests/Tests.h"
+
 // TERMINAL USER INTERFACES
 #include "terminal/GenesysShell/GenesysTerminalApp.h"
 //
@@ -55,14 +59,15 @@ struct TraitsApp {
  *  Configure the Genesys Application to be compiled and executed
  */
 template <> struct TraitsApp<GenesysApplication_if> {
-	static const TraceManager::Level traceLevel = TraceManager::Level::L9_mostDetailed;
-
-	//// SMART SMARTs ALPHA SORTED
+    static const TraceManager::Level traceLevel = TraceManager::Level::L9_mostDetailed;
+	//// TESTS
+    typedef Tests Application;
+    //// SMART SMARTs ALPHA SORTED
 	//typedef Smart_AssignWriteSeizes Application;
 	//typedef Smart_BatchSeparate Application;
 	//typedef Smart_CppForG Application;
 	//typedef Smart_Delay Application;
-	typedef Smart_Dummy Application;
+	//typedef Smart_Dummy Application;
 	//typedef Smart_ModelInfoModelSimulation Application;
 	//typedef Smart_ODE Application;
 	//typedef Smart_OnEvent Application;
