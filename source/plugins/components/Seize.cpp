@@ -137,7 +137,7 @@ void Seize::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 	for (SeizableItem* seizable : *_seizeRequests->list()) {
 		Resource* resource = _getResourceFromSeizableItem(seizable, entity);
 		unsigned int quantity = _parentModel->parseExpression(seizable->getQuantityExpression());
-		if (resource->getCapacity() - resource->getNumberBusy() < quantity) { // not enought free quantity to allocate. Entity goes to the queue
+		if (!resource->seize(quantity)) { // not enought free quantity to allocate. Entity goes to the queue
 			WaitingResource* waitingRec = new WaitingResource(entity, _parentModel->getSimulation()->getSimulatedTime(), quantity, this);
 			Queue* queue;
 			if (_queueableItem->getQueueableType() == QueueableItem::QueueableType::QUEUE) {
@@ -152,7 +152,6 @@ void Seize::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 			_parentModel->getTracer()->traceSimulation(this, _parentModel->getSimulation()->getSimulatedTime(), entity, this, "Entity starts to wait for resource in queue \"" + queue->getName() + "\" with " + std::to_string(queue->size()) + " elements");
 			return;
 		} else { // alocate the resource
-			resource->seize(quantity);
 			_parentModel->getTracer()->traceSimulation(this, _parentModel->getSimulation()->getSimulatedTime(), entity, this, entity->getName() + " seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\" (capacity:" + std::to_string(resource->getCapacity()) + ", numberbusy:" + std::to_string(resource->getNumberBusy()) + ")");
 		}
 	}

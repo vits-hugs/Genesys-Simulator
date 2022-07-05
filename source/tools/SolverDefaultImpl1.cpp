@@ -68,7 +68,7 @@ double SolverDefaultImpl1::integrate(double min, double max, double (*f)(double,
 	}
 	double x, c; // x is the point being evaluated, c is the weight
 	double sum = 0.0;
-	for (int i = 0; i <= steps; i++) {
+	for (unsigned int i = 0; i <= steps; i++) {
 		if (i == 0 || i == steps)
 			c = 1;
 		else if (i % 2 == 0)

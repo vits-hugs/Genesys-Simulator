@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   Smart_Process.cpp
  * Author: rlcancian
- * 
+ *
  * Created on 3 de Setembro de 2019, 18:34
  */
 
@@ -27,7 +27,7 @@ Smart_Process::Smart_Process() {
 }
 
 /**
- * This is the main function of the application. 
+ * This is the main function of the application.
  * It instanciates the simulator, builds a simulation model and then simulate that model.
  */
 int Smart_Process::main(int argc, char** argv) {
@@ -51,11 +51,7 @@ int Smart_Process::main(int argc, char** argv) {
 	model->getSimulation()->setReplicationLength(10);
 	model->getSimulation()->setNumberOfReplications(5);
 	model->save("./models/Smart_Process.gen");
-	// para E1
-	model->show();
-	model->getSimulation()->step();
-	model->show();
-	//
+	// execute the simulation
 	do {
 		model->getSimulation()->step();
 	} while (model->getSimulation()->isPaused());

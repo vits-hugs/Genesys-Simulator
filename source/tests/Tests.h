@@ -42,7 +42,7 @@ public:
 	}
 	void testSamplerRandom() {
 		std::cout << "Start testSamplerRandom" << std::endl;
-		double error = 1.0;
+		//double error = 1.0;
 		Sampler_if* sampler = new SamplerDefaultImpl1();
 		StatisticsDatafile_if *stat = new StatisticsDatafileDefaultImpl1();
 		CollectorDatafile_if *collector = static_cast<CollectorDatafile_if*> (stat->getCollector());
@@ -58,6 +58,7 @@ public:
 	virtual int main(int argc, char** argv){
 		std::cout << "Start TestSuite" << std::endl;
 		testTools();
+        return 0;
 	}
 
 private:

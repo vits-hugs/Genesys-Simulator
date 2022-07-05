@@ -44,6 +44,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/296208d5/Smart_CppForG.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_Delay.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_Dummy.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_Failures.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_ModelInfoModelSimulation.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_ODE.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_OnEvent.o \
@@ -258,6 +259,11 @@ ${OBJECTDIR}/_ext/296208d5/Smart_Dummy.o: ../../source/applications/terminal/exa
 	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_Dummy.o ../../source/applications/terminal/examples/smarts/Smart_Dummy.cpp
+
+${OBJECTDIR}/_ext/296208d5/Smart_Failures.o: ../../source/applications/terminal/examples/smarts/Smart_Failures.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_Failures.o ../../source/applications/terminal/examples/smarts/Smart_Failures.cpp
 
 ${OBJECTDIR}/_ext/296208d5/Smart_ModelInfoModelSimulation.o: ../../source/applications/terminal/examples/smarts/Smart_ModelInfoModelSimulation.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
@@ -1058,6 +1064,19 @@ ${OBJECTDIR}/_ext/296208d5/Smart_Dummy_nomain.o: ${OBJECTDIR}/_ext/296208d5/Smar
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_Dummy_nomain.o ../../source/applications/terminal/examples/smarts/Smart_Dummy.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/296208d5/Smart_Dummy.o ${OBJECTDIR}/_ext/296208d5/Smart_Dummy_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/296208d5/Smart_Failures_nomain.o: ${OBJECTDIR}/_ext/296208d5/Smart_Failures.o ../../source/applications/terminal/examples/smarts/Smart_Failures.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/296208d5/Smart_Failures.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_Failures_nomain.o ../../source/applications/terminal/examples/smarts/Smart_Failures.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/296208d5/Smart_Failures.o ${OBJECTDIR}/_ext/296208d5/Smart_Failures_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/296208d5/Smart_ModelInfoModelSimulation_nomain.o: ${OBJECTDIR}/_ext/296208d5/Smart_ModelInfoModelSimulation.o ../../source/applications/terminal/examples/smarts/Smart_ModelInfoModelSimulation.cpp 

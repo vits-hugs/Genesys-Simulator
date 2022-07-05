@@ -41,11 +41,6 @@
         </group>
         <group>
             <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/applications/TraitsApp.h</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/kernel/TraitsKernel.h</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/tests/Tests.cpp</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/plugins/components/Release.cpp</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/projects/GenesysTerminalApplication/main.cpp</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/tests/Tests.h</file>
         </group>
     </open-files>
 </project-private>

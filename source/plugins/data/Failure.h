@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   Failure.h
  * Author: rlcancian
  *
@@ -17,8 +17,9 @@
 
 #include "../../kernel/simulator/ModelDataDefinition.h"
 #include "../../kernel/simulator/ModelDataManager.h"
-//#include "ParserChangesInformation.h"
 #include "../../kernel/simulator/PluginInformation.h"
+
+class Resource;
 
 /*!
 Failure module
@@ -28,9 +29,9 @@ entire resource (regardless of its capacity) is failed. Failures are designed to
 with single-capacity resources or with multiple-capacity resources whose individual
 resource units all fail at the same time.
 TYPICAL USES
-* Breakdown information for a machine
-* Cash register tape refill every “x” customers
-* Random computer shutdowns or restarts
+ * Breakdown information for a machine
+ * Cash register tape refill every “x” customers
+ * Random computer shutdowns or restarts
 PROMPTS
 Recordset Name of the recordset in the specified file from which to read
 values. This field is available only if you specify a File Name
@@ -66,22 +67,69 @@ time that a resource is busy, not simulated clock time.
  */
 class Failure : public ModelDataDefinition {
 public:
-	Failure(Model* model, std::string name = "");
-	virtual ~Failure() = default;
-public: // static
-	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-	static PluginInformation* GetPluginInformation();
-	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+
+    enum class FailureType : int {
+        COUNT = 1, TIME = 2
+    };
+
+	enum class FailureRule : int {
+		IGNORE = 1, PREEMPT = 2, WAIT = 3
+	};
+
 public:
-	virtual std::string show();
+    Failure(Model* model, std::string name = "");
+    virtual ~Failure() = default;
+public: // static
+    static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+    static PluginInformation* GetPluginInformation();
+    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+public: 
+    virtual std::string show();
+    bool isGoingToFailOnCount(Resource* resource);
+public: // gets & sets
+    void setFailureType(FailureType _failureType);
+    Failure::FailureType getFailureType() const;
+    void setCountExpression(std::string countExpression);
+    std::string getCountExpression() const;
+    void setDownTimeTimeUnit(Util::TimeUnit downTimeTimeUnit);
+    Util::TimeUnit getDownTimeTimeUnit() const;
+    void setDownTimeExpression(std::string downTimeExpression);
+    std::string getDownTimeExpression() const;
+    void setUpTimeTimeUnit(Util::TimeUnit upTimeTimeUnit);
+    Util::TimeUnit getUpTimeTimeUnit() const;
+    void setUpTimeExpression(std::string upTimeExpression);
+    std::string getUpTimeExpression() const;
+    void setFailureRule(FailureRule _failureRule);
+    FailureRule getFailureRule() const;
 
-protected: // must be overriden 
-	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-protected: // could be overriden 
-	virtual bool _check(std::string* errorMessage);
-	virtual ParserChangesInformation* _getParserChangesInformation();
+protected: // must be overriden
+    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+protected: // could be overriden .
+    virtual bool _check(std::string* errorMessage);
+    virtual void _initBetweenReplications();
+    //virtual void _createInternalAndAttachedData();
+    //virtual ParserChangesInformation* _getParserChangesInformation();
+private:
 
+    const struct DEFAULT_VALUES {
+        FailureType failureType = FailureType::TIME;
+        FailureRule failureRule = FailureRule::IGNORE;
+        std::string countExpression = "";
+        std::string upTimeExpression = "";
+        Util::TimeUnit upTimeTimeUnit = Util::TimeUnit::second;
+        std::string downTimeExpression = "";
+        Util::TimeUnit downTimeTimeUnit = Util::TimeUnit::second;
+    } DEFAULT;
+    FailureType _failureType = DEFAULT.failureType;
+    FailureRule _failureRule = DEFAULT.failureRule;
+    std::string countExpression = DEFAULT.countExpression;
+    std::string upTimeExpression = DEFAULT.upTimeExpression;
+    Util::TimeUnit upTimeTimeUnit = DEFAULT.upTimeTimeUnit;
+    std::string downTimeExpression = DEFAULT.downTimeExpression;
+    Util::TimeUnit downTimeTimeUnit = DEFAULT.downTimeTimeUnit;
+private:
+    std::map<Resource*, unsigned int>* _releaseCounts = new std::map<Resource*, unsigned int>();
 };
 
 #endif /* FAILURE_H */

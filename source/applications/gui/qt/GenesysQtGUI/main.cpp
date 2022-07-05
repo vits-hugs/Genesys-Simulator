@@ -14,8 +14,7 @@ int mainGraphicQtApp(int argc, char *argv[]) {
 
 int mainTerminalApp(int argc, char *argv[]) {
 	GenesysApplication_if *app = new TraitsApp<GenesysApplication_if>::Application();
-	int res = app->main(argc, argv);
-	return res;
+	return app->main(argc, argv);
 }
 
 int main(int argc, char *argv[]) {

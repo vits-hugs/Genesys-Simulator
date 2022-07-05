@@ -128,6 +128,7 @@ SOURCES += \
 	../../../terminal/examples/smarts/Smart_CppForG.cpp \
 	../../../terminal/examples/smarts/Smart_Delay.cpp \
 	../../../terminal/examples/smarts/Smart_Dummy.cpp \
+	../../../terminal/examples/smarts/Smart_Failures.cpp \
 	../../../terminal/examples/smarts/Smart_WaitScanCondition.cpp \
 	../../../terminal/examples/smarts/Smart_WaitSignal.cpp \
 	../../../terminal/examples/smarts/Smart_ModelInfoModelSimulation.cpp \
@@ -308,6 +309,7 @@ HEADERS += \
 	../../../terminal/examples/smarts/Smart_CppForG.h \
 	../../../terminal/examples/smarts/Smart_Delay.h \
 	../../../terminal/examples/smarts/Smart_Dummy.h \
+	../../../terminal/examples/smarts/Smart_Failures.h \
 	../../../terminal/examples/smarts/Smart_WaitScanCondition.h \
 	../../../terminal/examples/smarts/Smart_WaitSignal.h \
 	../../../terminal/examples/smarts/Smart_ModelInfoModelSimulation.h \

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   Resource.h
  * Author: rafael.luiz.cancian
  *
@@ -19,6 +19,7 @@
 #include "../../kernel/simulator/ModelDataManager.h"
 #include "../../kernel/simulator/Counter.h"
 #include "../../kernel/simulator/Plugin.h"
+#include "Failure.h"
 
 class SeizableItem;
 
@@ -102,7 +103,7 @@ public: // static
 	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
 	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
-	void seize(unsigned int quantity);
+	bool seize(unsigned int quantity);
 	void release(unsigned int quantity);
 public: // g&s
 	void setResourceState(ResourceState _resourceState);
@@ -120,6 +121,7 @@ public: // gets
 public:
 	void addReleaseResourceEventHandler(ResourceEventHandler eventHandler, ModelComponent* component, unsigned int priority);
 	double getLastTimeSeized() const;
+    List<Failure*>* getFailures() const;
 protected: // protected must override
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
@@ -152,8 +154,7 @@ private: // not gets nor sets
 	//double _whenSeized; // same as last? check
 private: //1::n
 	List<SortedResourceEventHandler*>* _resourceEventHandlers = new List<SortedResourceEventHandler*>();
-	//aFailures:	TStringList;
-	//std::list<Failure*>* _failures;
+	List<Failure*>* _failures = new List<Failure*>();
 private: // inner internel elements
 	StatisticsCollector* _cstatTimeSeized = nullptr;
 	Counter* _totalTimeSeized;

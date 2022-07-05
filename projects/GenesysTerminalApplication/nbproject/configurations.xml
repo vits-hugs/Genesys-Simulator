@@ -76,6 +76,8 @@
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_Delay.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_Dummy.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_Dummy.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_Failures.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_Failures.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_ModelInfoModelSimulation.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_ModelInfoModelSimulation.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_ODE.cpp</itemPath>
@@ -647,6 +649,16 @@
             flavor2="0">
       </item>
       <item path="../../source/applications/terminal/examples/smarts/Smart_Dummy.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Failures.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Failures.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2393,6 +2405,16 @@
             flavor2="0">
       </item>
       <item path="../../source/applications/terminal/examples/smarts/Smart_Dummy.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Failures.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Failures.h"
             ex="false"
             tool="3"
             flavor2="0">
