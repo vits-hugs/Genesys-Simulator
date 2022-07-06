@@ -327,26 +327,6 @@ void ModelSimulation::_initReplication() {
 		//}
 		Util::ResetIdOfType(Util::TypeOf<Entity>());
 		Util::ResetIdOfType(Util::TypeOf<Event>());
-		// insert first creation events
-		SourceModelComponent *source;
-		Entity *newEntity;
-		Event *newEvent;
-		double creationTime;
-		unsigned int numToCreate;
-		for (std::list<ModelComponent*>::iterator it = _model->getComponents()->begin(); it != _model->getComponents()->end(); it++) {
-			source = dynamic_cast<SourceModelComponent*> (*it);
-			if (source != nullptr) {
-				creationTime = source->getFirstCreation();
-				numToCreate = source->getEntitiesPerCreation();
-				for (unsigned int i = 1; i <= numToCreate; i++) {
-					newEntity = _model->createEntity(source->getEntityType()->getName() + "_%", false);
-					newEntity->setEntityType(source->getEntityType());
-					newEvent = new Event(creationTime, newEntity, (*it));
-					_model->getFutureEvents()->insert(newEvent);
-				}
-				source->setEntitiesCreated(numToCreate);
-			}
-		}
 		if (this->_initializeStatisticsBetweenReplications) {
 			_clearStatistics();
 		}
@@ -381,7 +361,7 @@ void ModelSimulation::_checkWarmUpTime(Event* nextEvent) {
 }
 
 void ModelSimulation::_stepSimulation() {
-	// "onReplicationStep" event is triggered before taking the event from the calendar, and 
+	// "onReplicationStep" event is triggered before taking the event from the calendar, and
 	// "onProcessEvent" is after the event is removed and turned into the current one, and
 	// "onAfterProcessEvent" is after the event is processes
 	_model->getOnEvents()->NotifyReplicationStepHandlers(_createSimulationEvent());
@@ -397,7 +377,6 @@ void ModelSimulation::_stepSimulation() {
 				_model->getTracer()->traceSimulation(this, TraceManager::Level::L8_detailed, "");
 			_model->getTracer()->traceSimulation(this, TraceManager::Level::L5_event, "Event {" + nextEvent->show() + "}");
 			Util::IncIndent();
-			_model->getTracer()->traceSimulation(this, TraceManager::Level::L9_mostDetailed, "Entity " + nextEvent->getEntity()->show());
 			this->_currentEvent = nextEvent;
 			//assert(_simulatedTime <= event->getTime()); // _simulatedTime only goes forward (futureEvents is chronologically sorted
 			if (nextEvent->getTime() >= _simulatedTime) { // the philosophycal approach taken is: if the next event is in the past, lets just assume it's happening rigth now...
@@ -405,7 +384,7 @@ void ModelSimulation::_stepSimulation() {
 			}
 			_model->getOnEvents()->NotifyProcessEventHandlers(_createSimulationEvent());
 			try {
-				ModelComponent::DispatchEvent(nextEvent);
+				_dispatchEvent(nextEvent);
 			} catch (std::exception *e) {
 				_model->getTracer()->traceError(*e, "Error on processing event (" + nextEvent->show() + ")");
 			}
@@ -421,28 +400,48 @@ void ModelSimulation::_stepSimulation() {
 	}
 }
 
+void ModelSimulation::_dispatchEvent(Event* event) {
+	InternalEvent* intEvent = dynamic_cast<InternalEvent*>(event);
+	if (intEvent == nullptr) {
+		_model->getTracer()->traceSimulation(this, TraceManager::Level::L9_mostDetailed, "Entity " + event->getEntity()->show());
+		try {
+			ModelComponent::DispatchEvent(event);//->_onDispatchEvent(entity, inputPortNumber);
+		} catch (const std::exception& e) {
+			_model->getTracer()->traceError(e, "Error executing component " + event->getComponent()->show());
+		}
+	} else { // ohh, this is brand new (2022/07/05). An "Internal Event", wich is unrelated to an entity or to a component
+		ModelDataDefinition* df = static_cast<ModelDataDefinition*>(intEvent->object());
+		std::string msg = "Event \""+intEvent->description()+"\" handled by \""+df->getName()+"\"";
+		_model->getTracer()->traceSimulation(intEvent->object(), TraceManager::Level::L7_internal, msg);
+		intEvent->dispatchEvent();
+		//intEvent->eventHandler()(intEvent->parameter());
+	}
+}
+
 bool ModelSimulation::_checkBreakpointAt(Event* event) {
 	bool res = false;
 	SimulationEvent* se = _createSimulationEvent();
-	if (_breakpointsOnComponent->find(event->getComponent()) != _breakpointsOnComponent->list()->end()) {
-		if (_justTriggeredBreakpointsOnComponent == event->getComponent()) {
-			_justTriggeredBreakpointsOnComponent = nullptr;
-		} else {
-			_justTriggeredBreakpointsOnComponent = event->getComponent();
-			_model->getOnEvents()->NotifyBreakpointHandlers(se);
-			_model->getTracer()->trace("Breakpoint found at component '" + event->getComponent()->getName() + "'. Replication is paused.", TraceManager::Level::L5_event);
+	if (static_cast<InternalEvent*>(event)==nullptr) {
+		if (_breakpointsOnComponent->find(event->getComponent()) != _breakpointsOnComponent->list()->end()) {
+			if (_justTriggeredBreakpointsOnComponent == event->getComponent()) {
+				_justTriggeredBreakpointsOnComponent = nullptr;
+			} else {
+				_justTriggeredBreakpointsOnComponent = event->getComponent();
+				_model->getOnEvents()->NotifyBreakpointHandlers(se);
+				_model->getTracer()->trace("Breakpoint found at component '" + event->getComponent()->getName() + "'. Replication is paused.", TraceManager::Level::L5_event);
 
-			res = true;
+				res = true;
+			}
 		}
-	}
-	if (_breakpointsOnEntity->find(event->getEntity()) != _breakpointsOnEntity->list()->end()) {
-		if (_justTriggeredBreakpointsOnEntity == event->getEntity()) {
-			_justTriggeredBreakpointsOnEntity = nullptr;
-		} else {
-			_justTriggeredBreakpointsOnEntity = event->getEntity();
-			_model->getTracer()->trace("Breakpoint found at entity '" + event->getEntity()->getName() + "'. Replication is paused.", TraceManager::Level::L5_event);
-			_model->getOnEvents()->NotifyBreakpointHandlers(se);
-			res = true;
+		if (_breakpointsOnEntity->find(event->getEntity()) != _breakpointsOnEntity->list()->end()) {
+			if (_justTriggeredBreakpointsOnEntity == event->getEntity()) {
+				_justTriggeredBreakpointsOnEntity = nullptr;
+			} else {
+				_justTriggeredBreakpointsOnEntity = event->getEntity();
+				_model->getTracer()->trace("Breakpoint found at entity '" + event->getEntity()->getName() + "'. Replication is paused.", TraceManager::Level::L5_event);
+				_model->getOnEvents()->NotifyBreakpointHandlers(se);
+				res = true;
+			}
 		}
 	}
 	double time;

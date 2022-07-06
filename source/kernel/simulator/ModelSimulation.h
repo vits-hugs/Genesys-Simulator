@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   ModelSimulation.h
  * Author: rafael.luiz.cancian
  *
@@ -27,7 +27,7 @@
 class Model;
 
 /*!
- * The ModelSimulation controls the simulation of a model, alowing to start, pause, resume e stop a simulation, composed by 
+ * The ModelSimulation controls the simulation of a model, alowing to start, pause, resume e stop a simulation, composed by
  * a set of replications.
  */
 class ModelSimulation { // 202104 to be subjected to SimulationScenario
@@ -67,7 +67,7 @@ public: // gets and sets
 	bool isInitializeSystem() const;
 	void setPauseOnReplication(bool _pauseBetweenReplications);
 	bool isPauseOnReplication() const;
-public: // gets and sets ModelSubParts 
+public: // gets and sets ModelSubParts
 	void setReporter(SimulationReporter_if* _simulationReporter);
 	SimulationReporter_if* getReporter() const;
 public: // only gets
@@ -102,6 +102,7 @@ private: // simulation control
 	void _replicationEnded(); ///<
 	void _simulationEnded(); ///<
 private:
+	void _dispatchEvent(Event* event);
 	bool _checkBreakpointAt(Event* event); ///<
 	bool _isReplicationEndCondition(); ///<
 	void _actualizeSimulationStatistics(); ///<
@@ -136,11 +137,11 @@ private:
 
 	const struct DEFAULT_VALUES {
 		unsigned int numberOfReplications = 1;
-        double replicationLength = 60.0; // by default, 60s = 1min
+		double replicationLength = 60.0; // by default, 60s = 1min
 		Util::TimeUnit replicationLengthTimeUnit = Util::TimeUnit::second;
 		Util::TimeUnit replicationBeseTimeUnit = Util::TimeUnit::second;
 		Util::TimeUnit replicationReportBaseTimeUnit = Util::TimeUnit::second;
-        double warmUpPeriod = 0.0;
+		double warmUpPeriod = 0.0;
 		Util::TimeUnit warmUpPeriodTimeUnit = Util::TimeUnit::second;
 		std::string terminatingCondition = "";
 		bool initializeStatisticsBetweenReplications = true;

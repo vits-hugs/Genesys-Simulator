@@ -121,7 +121,9 @@ public: // gets
 public:
 	void addReleaseResourceEventHandler(ResourceEventHandler eventHandler, ModelComponent* component, unsigned int priority);
 	double getLastTimeSeized() const;
-    List<Failure*>* getFailures() const;
+	void insertFailure(Failure* failure);
+	void removeFailure(Failure* failure);
+	//List<Failure*>* getFailures() const;
 protected: // protected must override
 	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
@@ -131,8 +133,11 @@ protected: // protected could override
 	virtual void _initBetweenReplications();
 private: //methods
 	void _notifyReleaseEventHandlers(); ///< Notify observer classes that some of the resource capacity has been released. It is useful for allocation components (such as Seize) to know when an entity waiting into a queue can try to seize the resource again
-	//private:
-	//    ElementManager* _elems;
+	void _fail();
+	void _active();
+	void _checkFailByCount();
+	friend class Failure;
+
 private:
 
 	const struct DEFAULT_VALUES {
@@ -150,8 +155,7 @@ private: // only gets
 	//unsigned int _numberOut = 0;
 	double _lastTimeSeized = 0.0; // @TODO: It won't work for resources with capacity>1, when not all capacity is seized and them some more are seized. Seized time of first units will be lost. I don't have a solution so far
 private: // not gets nor sets
-	//unsigned int _seizes = 0;
-	//double _whenSeized; // same as last? check
+	unsigned int _originalCapacity; // used for failing purposes, when _capacity changes to 0
 private: //1::n
 	List<SortedResourceEventHandler*>* _resourceEventHandlers = new List<SortedResourceEventHandler*>();
 	List<Failure*>* _failures = new List<Failure*>();

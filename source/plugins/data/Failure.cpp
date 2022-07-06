@@ -13,140 +13,198 @@
 
 #include "Failure.h"
 #include "../../kernel/simulator/Model.h"
+#include "../data/Resource.h"
 
 #ifdef PLUGINCONNECT_DYNAMIC
 
 extern "C" StaticGetPluginInformation GetPluginInformation() {
-    return &Failure::GetPluginInformation;
+	return &Failure::GetPluginInformation;
 }
 #endif
 
 ModelDataDefinition* Failure::NewInstance(Model* model, std::string name) {
-    return new Failure(model, name);
+	return new Failure(model, name);
 }
 
 Failure::Failure(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<Failure>(), name) {
 }
 
 std::string Failure::show() {
-    return ModelDataDefinition::show() +
-            "";
+	return ModelDataDefinition::show() +
+			"";
 }
 
-bool Failure::isGoingToFailOnCount(Resource* resource) {
-    std::map<Resource*, unsigned int>::iterator it;
-    it = _releaseCounts->find(resource);
-    if (it == _releaseCounts->end()) {
-        _releaseCounts->insert({resource, 0});
-        it = _releaseCounts->find(resource);
-    }
-    it->second++;
-    unsigned int count = _parentModel->parseExpression(countExpression);
-    return it->second >= count;
+void Failure::checkIsGoingToFailByCount(Resource* resource) {
+	std::map<Resource*, unsigned int>::iterator it;
+	it = _releaseCounts->find(resource);
+	if (it == _releaseCounts->end()) {
+		_releaseCounts->insert({resource, 0});
+		it = _releaseCounts->find(resource);
+	}
+	it->second++;
+	unsigned int countReleased = it->second;
+	double countLimit = _parentModel->parseExpression(_countExpression);
+	if (countReleased >= countLimit) { // is going to fail
+		resource->_fail();
+		it->second = 0;
+		_scheduleActivation(it->first);
+	}
+}
+
+void Failure::_scheduleActivation(Resource* resource) {
+	double time = _parentModel->parseExpression(_downTimeExpression);
+	double timeScale = Util::TimeUnitConvert(_downTimeTimeUnit, _parentModel->getSimulation()->getReplicationBaseTimeUnit());
+	time *=timeScale;
+	time += _parentModel->getSimulation()->getSimulatedTime();
+	InternalEvent* intEvent = new InternalEvent(time, "Resource Activated");//, res);
+	intEvent->setEventHandler<Failure>(this, &Failure::_onFailureActiveEventHandler, resource);
+	_parentModel->getFutureEvents()->insert(intEvent);
+	_parentModel->getTracer()->traceSimulation(this,"Activation of Resource \""+resource->getName()+"\" schedule to "+std::to_string(time), TraceManager::Level::L8_detailed);
 }
 
 void Failure::setFailureType(FailureType _failureType) {
-    this->_failureType = _failureType;
+	this->_failureType = _failureType;
 }
 
 Failure::FailureType Failure::getFailureType() const {
-    return _failureType;
+	return _failureType;
 }
 
 void Failure::setCountExpression(std::string countExpression) {
-    this->countExpression = countExpression;
+	_countExpression = countExpression;
 }
 
 std::string Failure::getCountExpression() const {
-    return countExpression;
+	_countExpression;
 }
 
 void Failure::setDownTimeTimeUnit(Util::TimeUnit downTimeTimeUnit) {
-    this->downTimeTimeUnit = downTimeTimeUnit;
+	_downTimeTimeUnit = downTimeTimeUnit;
 }
 
 Util::TimeUnit Failure::getDownTimeTimeUnit() const {
-    return downTimeTimeUnit;
+	_downTimeTimeUnit;
 }
 
 void Failure::setDownTimeExpression(std::string downTimeExpression) {
-    this->downTimeExpression = downTimeExpression;
+	_downTimeExpression = downTimeExpression;
 }
 
 std::string Failure::getDownTimeExpression() const {
-    return downTimeExpression;
+	return _downTimeExpression;
 }
 
 void Failure::setUpTimeTimeUnit(Util::TimeUnit upTimeTimeUnit) {
-    this->upTimeTimeUnit = upTimeTimeUnit;
+	_upTimeTimeUnit = upTimeTimeUnit;
 }
 
 Util::TimeUnit Failure::getUpTimeTimeUnit() const {
-    return upTimeTimeUnit;
+	return _upTimeTimeUnit;
 }
 
 void Failure::setUpTimeExpression(std::string upTimeExpression) {
-    this->upTimeExpression = upTimeExpression;
+	_upTimeExpression = upTimeExpression;
 }
 
 std::string Failure::getUpTimeExpression() const {
-    return upTimeExpression;
+	return _upTimeExpression;
 }
 
 void Failure::setFailureRule(FailureRule _failureRule) {
-    this->_failureRule = _failureRule;
+	this->_failureRule = _failureRule;
 }
 
 Failure::FailureRule Failure::getFailureRule() const {
-    return _failureRule;
+	return _failureRule;
 }
 
 PluginInformation* Failure::GetPluginInformation() {
-    //@TODO not implemented yet
-    PluginInformation* info = new PluginInformation(Util::TypeOf<Failure>(), &Failure::LoadInstance, &Failure::NewInstance);
-    //info->insertDynamicLibFileDependence("resource.so"); -- Circular dependence!! Do not add it
-    return info;
+	//@TODO not implemented yet
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Failure>(), &Failure::LoadInstance, &Failure::NewInstance);
+	//info->insertDynamicLibFileDependence("resource.so"); -- Circular dependence!! Do not add it
+	return info;
 }
 
 ModelDataDefinition* Failure::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
-    Failure* newElement = new Failure(model);
-    try {
-        newElement->_loadInstance(fields);
-    } catch (const std::exception& e) {
+	Failure* newElement = new Failure(model);
+	try {
+		newElement->_loadInstance(fields);
+	} catch (const std::exception& e) {
 
-    }
-    return newElement;
+	}
+	return newElement;
 }
 
 bool Failure::_loadInstance(std::map<std::string, std::string>* fields) {
-    bool res = ModelDataDefinition::_loadInstance(fields);
-    if (res) {
-        try {
-            //@TODO not implemented yet
-            //this->attribute = LoadField(fields, "field", DEFAULT.fields);
+	bool res = ModelDataDefinition::_loadInstance(fields);
+	if (res) {
+		try {
+			//@TODO not implemented yet
+			//this->attribute = LoadField(fields, "field", DEFAULT.fields);
 
-        } catch (...) {
-        }
-    }
-    return res;
+		} catch (...) {
+		}
+	}
+	return res;
 }
 
 std::map<std::string, std::string>* Failure::_saveInstance(bool saveDefaultValues) {
-    std::map<std::string, std::string>* fields = ModelDataDefinition::_saveInstance(saveDefaultValues); //Util::TypeOf<Failure>());
-    //@TODO not implemented yet
-    //SaveField(fields, "orderRule", std::to_string(static_cast<int> (this->_orderRule)));
-    //SaveField(fields, "attributeName", "\""+this->_attributeName+"\"");
-    return fields;
+	std::map<std::string, std::string>* fields = ModelDataDefinition::_saveInstance(saveDefaultValues); //Util::TypeOf<Failure>());
+	//@TODO not implemented yet
+	//SaveField(fields, "orderRule", std::to_string(static_cast<int> (this->_orderRule)));
+	//SaveField(fields, "attributeName", "\""+this->_attributeName+"\"");
+	return fields;
 }
 
 bool Failure::_check(std::string* errorMessage) {
-    bool resultAll = true;
-    //@TODO not implemented yet
-    // resultAll |= ...
-    *errorMessage += "";
-    return resultAll;
+	bool resultAll = true;
+	//@TODO not implemented yet
+	// resultAll |= ...
+	*errorMessage += "";
+	return resultAll;
 }
 
 void Failure::_initBetweenReplications() {
-    _releaseCounts->clear();
+	_releaseCounts->clear(); //TODO: really needed?
+	if (_failureType==FailureType::TIME) {
+		double time, timeScale;
+		for (Resource* res: *_falingResources->list()) {
+			time = _parentModel->parseExpression(_upTimeExpression);
+			timeScale = Util::TimeUnitConvert(_upTimeTimeUnit, _parentModel->getSimulation()->getReplicationBaseTimeUnit());
+			time *=timeScale;
+			InternalEvent* intEvent = new InternalEvent(time, "Resource Failed");//, res);
+			intEvent->setEventHandler<Failure>(this, &Failure::_onFailureFailEventHandler, res);
+			_parentModel->getFutureEvents()->insert(intEvent);
+		}
+	}
 }
+
+List<Resource*>*Failure::falingResources() const{
+	return _falingResources;
+}
+
+// private (internal!!) simulation event handlers
+
+void Failure::_onFailureActiveEventHandler(void* resourcePtr){
+	Resource* resource = static_cast<Resource*>(resourcePtr);
+	resource->_active();
+	if (_failureType==FailureType::TIME) {
+		// schedule next resource fail
+		double time = _parentModel->parseExpression(_upTimeExpression);
+		double timeScale = Util::TimeUnitConvert(_upTimeTimeUnit, _parentModel->getSimulation()->getReplicationBaseTimeUnit());
+		time *=timeScale;
+		time += _parentModel->getSimulation()->getSimulatedTime();
+		InternalEvent* intEvent = new InternalEvent(time, "Resource Failed");//, res);
+		intEvent->setEventHandler<Failure>(this, &Failure::_onFailureFailEventHandler, resource);
+		_parentModel->getFutureEvents()->insert(intEvent);
+	}
+}
+
+void Failure::_onFailureFailEventHandler(void* resourcePtr){
+	Resource* resource = static_cast<Resource*>(resourcePtr);
+	resource->_fail();
+	// schedule next resource activation
+	_scheduleActivation(resource);
+}
+
+

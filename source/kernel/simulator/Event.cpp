@@ -54,4 +54,3 @@ ModelComponent* Event::getComponent() const {
 Entity* Event::getEntity() const {
 	return _entity;
 }
-

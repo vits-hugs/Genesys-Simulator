@@ -50,7 +50,13 @@ bool SourceModelComponent::_loadInstance(std::map<std::string, std::string>* fie
 }
 
 void SourceModelComponent::_initBetweenReplications() {
-	this->_entitiesCreatedSoFar = 0;
+	for (unsigned int i=0; i<this->_entitiesPerCreation; i++) {
+		Entity* newEntity = _parentModel->createEntity(_entityType->getName() + "_%", false);
+		newEntity->setEntityType(_entityType);
+		Event* newEvent = new Event(_firstCreation, newEntity, this);
+		_parentModel->getFutureEvents()->insert(newEvent);
+	}
+	_entitiesCreatedSoFar = _entitiesPerCreation;
 }
 
 std::map<std::string, std::string>* SourceModelComponent::_saveInstance(bool saveDefaultValues) {
