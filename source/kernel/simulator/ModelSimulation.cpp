@@ -421,7 +421,7 @@ void ModelSimulation::_dispatchEvent(Event* event) {
 bool ModelSimulation::_checkBreakpointAt(Event* event) {
 	bool res = false;
 	SimulationEvent* se = _createSimulationEvent();
-	if (static_cast<InternalEvent*>(event)==nullptr) {
+	if (dynamic_cast<InternalEvent*>(event)==nullptr) {
 		if (_breakpointsOnComponent->find(event->getComponent()) != _breakpointsOnComponent->list()->end()) {
 			if (_justTriggeredBreakpointsOnComponent == event->getComponent()) {
 				_justTriggeredBreakpointsOnComponent = nullptr;
