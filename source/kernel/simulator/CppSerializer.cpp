@@ -129,13 +129,16 @@ bool CppSerializer::dump(std::ostream& output) {
 	output << indent(1) << "sim->setReplicationReportBaseTimeUnit(Util::TimeUnit::" + Util::StrTimeUnitLong(sim->getReplicationBaseTimeUnit()) + ");\n";
 	output << indent(1) << "\n";
 
-	output << indent(1) << "// serialize mod&sim state\n";
-	output << indent(1) << "model->save(\"model.gen\");\n";
-	output << indent(1) << "\n";
+	//output << indent(1) << "// serialize mod&sim state\n";
+	//output << indent(1) << "model->save(\"model.gen\");\n";
+	//output << indent(1) << "\n";
 
 	output << indent(1) << "// run the simulation\n";
 	output << indent(1) << "sim->start();\n";
-	output << indent(1) << "genesys->~Simulator();\n";
+	output << indent(1) << "\n";
+
+	output << indent(1) << "// free memory\n";
+	output << indent(1) << "delete genesys;\n";
 	output << indent(1) << "\n";
 
 	output << indent(1) << "return 0;\n";
