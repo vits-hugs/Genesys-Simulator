@@ -56,49 +56,50 @@
 template <typename T>
 struct TraitsApp {
 };
+
 /*!
  *  Configure the Genesys Application to be compiled and executed
  */
 template <> struct TraitsApp<GenesysApplication_if> {
-	//static const bool runTests = false;
-	static const TraceManager::Level traceLevel = TraceManager::Level::L9_mostDetailed;
+    //static const bool runTests = false;
+    static const TraceManager::Level traceLevel = TraceManager::Level::L9_mostDetailed;
 
-	//// TESTS
-	typedef Tests Application;
+    //// TESTS @TODO: To be replaced by googletest
+    // typedef Tests Application;
 
-	//// SMART SMARTs ALPHA SORTED
-	//typedef Smart_AssignWriteSeizes Application;
-	//typedef Smart_BatchSeparate Application;
-	//typedef Smart_CppForG Application;
-	//typedef Smart_Delay Application;
-	//typedef Smart_Dummy Application;
-	//typedef Smart_ModelInfoModelSimulation Application;
-	//typedef Smart_ODE Application;
-	//typedef Smart_OnEvent Application;
-	//typedef Smart_Parser Application;
-	//typedef Smart_ParserModelFunctions Application;
-	//typedef Smart_Plugin Application;
-	//typedef Smart_Process Application;
-	//typedef Smart_ProcessSet Application;
-	//typedef Smart_RouteStation Application;
-	//typedef Smart_SeizeDelayRelease Application;
-	//typedef Smart_Failures Application;
-	//typedef Smart_SeizeDelayReleaseNoDataDefs Application;
-	//typedef Smart_SeizeDelayReleaseMany Application;
-	//typedef Smart_Sequence Application;
-	//typedef Smart_WaitScanCondition Application;
-	//typedef Smart_WaitSignal Application;
+    //// SMART SMARTs ALPHA SORTED
+    //typedef Smart_AssignWriteSeizes Application;
+    //typedef Smart_BatchSeparate Application;
+    //typedef Smart_CppForG Application;
+    //typedef Smart_Delay Application;
+    typedef Smart_Dummy Application;
+    //typedef Smart_ModelInfoModelSimulation Application;
+    //typedef Smart_ODE Application;
+    //typedef Smart_OnEvent Application;
+    //typedef Smart_Parser Application;
+    //typedef Smart_ParserModelFunctions Application;
+    //typedef Smart_Plugin Application;
+    //typedef Smart_Process Application;
+    //typedef Smart_ProcessSet Application;
+    //typedef Smart_RouteStation Application;
+    //typedef Smart_SeizeDelayRelease Application;
+    //typedef Smart_Failures Application;
+    //typedef Smart_SeizeDelayReleaseNoDataDefs Application;
+    //typedef Smart_SeizeDelayReleaseMany Application;
+    //typedef Smart_Sequence Application;
+    //typedef Smart_WaitScanCondition Application;
+    //typedef Smart_WaitSignal Application;
 
-	//// TEACHING
-	//typedef AnElectronicAssemblyAndTestSystem Application;
-	//typedef OperatingSystem02 Application;
-	//typedef OperatingSystem03 Application;
+    //// TEACHING
+    //typedef AnElectronicAssemblyAndTestSystem Application;
+    //typedef OperatingSystem02 Application;
+    //typedef OperatingSystem03 Application;
 
-	//// BOOK
-	//typedef Book_Cap02_Example01 Application;
+    //// BOOK
+    //typedef Book_Cap02_Example01 Application;
 
-	//// TERMINAL APPLICATIONS
-	//typedef GenesysTerminalApp Application;
+    //// TERMINAL APPLICATIONS
+    //typedef GenesysTerminalApp Application;
 };
 
 #endif /* TRAITSAPP_H */

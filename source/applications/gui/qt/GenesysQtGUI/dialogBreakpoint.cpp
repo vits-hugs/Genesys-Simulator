@@ -35,57 +35,57 @@
 #include "../../../../kernel/util/List.h"
 
 dialogBreakpoint::dialogBreakpoint() {
-	widget.setupUi(this);
+    widget.setupUi(this);
 }
 
 dialogBreakpoint::~dialogBreakpoint() {
 }
 
 void dialogBreakpoint::setMVCModel(Simulator* simulator) {
-	this->simulator = simulator;
-	QStringList breakTypes;
-	breakTypes << tr("Time") << tr("Component") << tr("Entity");
-	widget.comboBox_Type->addItems(breakTypes);
-	widget.comboBox_On->setEnabled(false);
+    this->simulator = simulator;
+    QStringList breakTypes;
+    breakTypes << tr("Time") << tr("Component") << tr("Entity");
+    widget.comboBox_Type->addItems(breakTypes);
+    widget.comboBox_On->setEnabled(false);
 }
 
 dialogBreakpoint::MVCResult* dialogBreakpoint::getMVCResult() {
-	std::string breaktype, breakon;
-	breaktype = widget.comboBox_Type->currentText().toStdString();
-	if (breaktype == "Time")
-		breakon = std::to_string(widget.doubleSpinBox_OnTme->value());
-	else
-		breakon = widget.comboBox_On->currentText().toStdString();
-	return new dialogBreakpoint::MVCResult(breaktype, breakon);
+    std::string breaktype, breakon;
+    breaktype = widget.comboBox_Type->currentText().toStdString();
+    if (breaktype == "Time")
+        breakon = std::to_string(widget.doubleSpinBox_OnTme->value());
+    else
+        breakon = widget.comboBox_On->currentText().toStdString();
+    return new dialogBreakpoint::MVCResult(breaktype, breakon);
 }
 
 void dialogBreakpoint::on_comboBox_Type_activated(const QString &arg1) {
-	bool isOnTime = arg1 == "Time";
-	widget.comboBox_On->setVisible(!isOnTime);
-	widget.comboBox_On->setEnabled(true);
-	widget.doubleSpinBox_OnTme->setVisible(isOnTime);
-	Model* model = simulator->getModels()->current();
-	ModelSimulation* sim = model->getSimulation();
-	widget.doubleSpinBox_OnTme->setMaximum(sim->getReplicationLength());
-	widget.doubleSpinBox_OnTme->setSingleStep(sim->getReplicationLength() / 200.0);
-	if (!isOnTime) {
-		widget.comboBox_On->clear();
-		List<ModelDataDefinition*>* datadefs;
-		if (arg1 == "Entity") {
-			datadefs = model->getDataManager()->getDataDefinitionList(Util::TypeOf<Entity>());
-		} else if (arg1 == "Component") {
-			datadefs = model->getDataManager()->getDataDefinitionList(Util::TypeOf<Entity>());
-		}
-		for (ModelDataDefinition* dataDef : *datadefs->list()) {
-			widget.comboBox_On->addItem(QString::fromStdString(dataDef->getName()));
-		}
-	}
+    bool isOnTime = arg1 == "Time";
+    widget.comboBox_On->setVisible(!isOnTime);
+    widget.comboBox_On->setEnabled(true);
+    widget.doubleSpinBox_OnTme->setVisible(isOnTime);
+    Model* model = simulator->getModels()->current();
+    ModelSimulation* sim = model->getSimulation();
+    widget.doubleSpinBox_OnTme->setMaximum(sim->getReplicationLength());
+    widget.doubleSpinBox_OnTme->setSingleStep(sim->getReplicationLength() / 200.0);
+    if (!isOnTime) {
+        widget.comboBox_On->clear();
+        List<ModelDataDefinition*>* datadefs;
+        if (arg1 == "Entity") {
+            datadefs = model->getDataManager()->getDataDefinitionList(Util::TypeOf<Entity>());
+        } else if (arg1 == "Component") {
+            datadefs = model->getDataManager()->getDataDefinitionList(Util::TypeOf<Entity>());
+        }
+        for (ModelDataDefinition* dataDef : *datadefs->list()) {
+            widget.comboBox_On->addItem(QString::fromStdString(dataDef->getName()));
+        }
+    }
 }
 
 void dialogBreakpoint::on_comboBox_On_activated(const QString &arg1) {
-	//
+    //
 }
 
 void dialogBreakpoint::on_buttonBox_accepted() {
-	//
+    //
 }

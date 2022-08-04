@@ -19,22 +19,22 @@ SinkModelComponent::SinkModelComponent(Model* model, std::string componentTypena
 }
 
 bool SinkModelComponent::_loadInstance(std::map<std::string, std::string>* fields) {
-	bool res = ModelComponent::_loadInstance(fields);
-	if (res) {
-		//this->_reportStatistics = std::stoi((*fields->find("collectStatistics")).second) != 0;
-	}
-	return res;
+    bool res = ModelComponent::_loadInstance(fields);
+    if (res) {
+        //this->_reportStatistics = std::stoi((*fields->find("collectStatistics")).second) != 0;
+    }
+    return res;
 }
 
 //void SinkModelComponent::_initBetweenReplications() {}
 
 std::map<std::string, std::string>* SinkModelComponent::_saveInstance(bool saveDefaultValues) {
-	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
-	return fields;
+    std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
+    return fields;
 }
 
 bool SinkModelComponent::_check(std::string* errorMessage) {
-	// @TODO: To implement!
-	*errorMessage += "";
-	return true;
+    // @TODO: To implement!
+    *errorMessage += "";
+    return true;
 }

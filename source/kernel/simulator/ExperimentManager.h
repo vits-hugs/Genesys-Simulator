@@ -26,55 +26,55 @@ class Simulator;
 class ExperimentManager {// : PersistentObject_base {
 public:
 
-	/*	class ModelSimulationInsOuts {
-		public:
-			ModelSimulationInsOuts() = default;
-			struct ControlResponseInfos {
-				std::string type;
-				std::string parent;
-				std::string name;
-				double defaultValue;
-			};
+    /*	class ModelSimulationInsOuts {
+            public:
+                    ModelSimulationInsOuts() = default;
+                    struct ControlResponseInfos {
+                            std::string type;
+                            std::string parent;
+                            std::string name;
+                            double defaultValue;
+                    };
 
-			List<ControlResponseInfos*>* getResponsesInfos() const {
-				return _responsesInfos;
-			}
+                    List<ControlResponseInfos*>* getResponsesInfos() const {
+                            return _responsesInfos;
+                    }
 
-			std::string getModelfilename() const {
-				return _experimentfilename;
-			}
+                    std::string getModelfilename() const {
+                            return _experimentfilename;
+                    }
 
-			List<ControlResponseInfos*>* getControlInfos() const {
-				return _controlInfos;
-			}
-		private:
-			std::string _modelfilename;
-			List<ControlResponseInfos*>* _responsesInfos = new List<ControlResponseInfos*>();
-			List<ControlResponseInfos*>* _controlInfos = new List<ControlResponseInfos*>();
-		}; */
-
-public:
-	ExperimentManager(Simulator* simulator);
+                    List<ControlResponseInfos*>* getControlInfos() const {
+                            return _controlInfos;
+                    }
+            private:
+                    std::string _modelfilename;
+                    List<ControlResponseInfos*>* _responsesInfos = new List<ControlResponseInfos*>();
+                    List<ControlResponseInfos*>* _controlInfos = new List<ControlResponseInfos*>();
+            }; */
 
 public:
-	SimulationExperiment* newSimulationExperiment();
-	void insert(SimulationExperiment* experiment);
-	void remove(SimulationExperiment* experiment);
-	void setCurrent(SimulationExperiment* experiment);
-	bool saveSimulationExperiment(std::string filename);
-	bool loadSimulationExperiment(std::string filename);
-	unsigned int size();
+    ExperimentManager(Simulator* simulator);
+
 public:
-	SimulationExperiment* front();
-	SimulationExperiment* current();
-	SimulationExperiment* next();
-	//SimulationExperiment* end();
+    SimulationExperiment* newSimulationExperiment();
+    void insert(SimulationExperiment* experiment);
+    void remove(SimulationExperiment* experiment);
+    void setCurrent(SimulationExperiment* experiment);
+    bool saveSimulationExperiment(std::string filename);
+    bool loadSimulationExperiment(std::string filename);
+    unsigned int size();
 public:
-	List<SimulationExperiment*>* getExperiments() const;
+    SimulationExperiment* front();
+    SimulationExperiment* current();
+    SimulationExperiment* next();
+    //SimulationExperiment* end();
+public:
+    List<SimulationExperiment*>* getExperiments() const;
 private:
-	Simulator* _simulator;
-	SimulationExperiment* _currentSimulationExperiment;
-	List<SimulationExperiment*>* _experiments = new List<SimulationExperiment*>();
+    Simulator* _simulator;
+    SimulationExperiment* _currentSimulationExperiment;
+    List<SimulationExperiment*>* _experiments = new List<SimulationExperiment*>();
 
 };
 

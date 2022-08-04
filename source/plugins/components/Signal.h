@@ -27,8 +27,8 @@ is sent. At this time, entities at Hold modules that are waiting for the same si
 removed from their queues. The entity sending the signal continues processing until it
 encounters a delay, enters a queue, or is disposed.
 TYPICAL USES
-* Analyzing traffic patterns at an intersection (signal when the light turns green)
-* Signaling an operator to complete an order that was waiting for a component part
+ * Analyzing traffic patterns at an intersection (signal when the light turns green)
+ * Signaling an operator to complete an order that was waiting for a component part
 PROMPTS
 Prompt Description
 Name Unique module identifier displayed on the module shape.
@@ -38,38 +38,39 @@ Hold modules when the signal is received.
  */
 class Signal : public ModelComponent {
 public: // constructors
-	Signal(Model* model, std::string name = "");
-	virtual ~Signal() = default;
+    Signal(Model* model, std::string name = "");
+    virtual ~Signal() = default;
 public: // virtual
-	virtual std::string show();
+    virtual std::string show();
 public:
-	void setSignalData(SignalData* signal);
-	const std::string&limitExpression() const;
-	void setLimitExpression(const std::string&newLimitExpression);
+    void setSignalData(SignalData* signal);
+    const std::string&limitExpression() const;
+    void setLimitExpression(const std::string&newLimitExpression);
 public: // static
-	static PluginInformation* GetPluginInformation();
-	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+    static PluginInformation* GetPluginInformation();
+    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 
 protected: // must be overriden
-	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
 protected: // could be overriden .
-	virtual bool _check(std::string* errorMessage);
-	virtual void _initBetweenReplications();
-	virtual void _createInternalAndAttachedData();
-	//virtual ParserChangesInformation* _getParserChangesInformation();
+    virtual bool _check(std::string* errorMessage);
+    virtual void _initBetweenReplications();
+    virtual void _createInternalAndAttachedData();
+    //virtual ParserChangesInformation* _getParserChangesInformation();
 private: // methods
 private: // attributes 1:1
-	const struct DEFAULT_VALUES {
-		std::string limitExpression = "1";
-	} DEFAULT;
-	std::string _limitExpression = DEFAULT.limitExpression;
-	unsigned int _signalsTriggered = 0;
+
+    const struct DEFAULT_VALUES {
+        std::string limitExpression = "1";
+    } DEFAULT;
+    std::string _limitExpression = DEFAULT.limitExpression;
+    unsigned int _signalsTriggered = 0;
 private: // attributes 1:n
 private: // attached
-	SignalData* _signalData = nullptr;
+    SignalData* _signalData = nullptr;
 
 };
 

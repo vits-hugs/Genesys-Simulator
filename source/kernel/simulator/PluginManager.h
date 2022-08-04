@@ -24,50 +24,51 @@ class Simulator;
 
 class PluginManager {
 public:
-	PluginManager(Simulator* simulator);
-	virtual ~PluginManager() = default;
+    PluginManager(Simulator* simulator);
+    virtual ~PluginManager() = default;
 public:
-	std::string show();
+    std::string show();
 public:
-	bool completePluginsFieldsAndTemplates();
+    bool completePluginsFieldsAndTemplates();
 public:
-	bool check(const std::string dynamicLibraryFilename);
-	Plugin* insert(const std::string dynamicLibraryFilename);
-	bool remove(const std::string dynamicLibraryFilename);
-	bool remove(Plugin* plugin);
-	Plugin* find(std::string pluginTypeName);
+    bool check(const std::string dynamicLibraryFilename);
+    Plugin* insert(const std::string dynamicLibraryFilename);
+    bool remove(const std::string dynamicLibraryFilename);
+    bool remove(Plugin* plugin);
+    Plugin* find(std::string pluginTypeName);
 public:
-	Plugin* front();
-	Plugin* next();
-	Plugin* last();
-	unsigned int size();
-	Plugin* getAtRank(unsigned int rank);
+    Plugin* front();
+    Plugin* next();
+    Plugin* last();
+    unsigned int size();
+    Plugin* getAtRank(unsigned int rank);
 public:
-	ModelDataDefinition* newInstance(std::string pluginTypename, Model* model, std::string name = "");
-	template <typename T>T* newInstance(Model* model, std::string name = "") {
-		Plugin* plugin;
-		std::string pluginTypename = Util::TypeOf<T>();
-		//@TODO: Use Find method??
-		for (unsigned short i = 0; i < _plugins->size(); i++) {
-			plugin = _plugins->getAtRank(i);
-			if (plugin->getPluginInfo()->getPluginTypename() == pluginTypename) {
-				T* instance;
-				StaticConstructorDataDefinitionInstance constructor = plugin->getPluginInfo()->getDataDefinitionConstructor();
-				instance = static_cast<T*> (constructor(model, name));
-				return instance;
-			}
-		}
-		/// innvalid use of incomplete class
-		///_simulator->getTracer()->traceError(TraceManager::Level::L1_errorFatal, "Error: Could not find any plugin with Typename \"" + pluginTypename + "\"");
-		return nullptr;
-	}
+    ModelDataDefinition* newInstance(std::string pluginTypename, Model* model, std::string name = "");
+
+    template <typename T>T* newInstance(Model* model, std::string name = "") {
+        Plugin* plugin;
+        std::string pluginTypename = Util::TypeOf<T>();
+        //@TODO: Use Find method??
+        for (unsigned short i = 0; i < _plugins->size(); i++) {
+            plugin = _plugins->getAtRank(i);
+            if (plugin->getPluginInfo()->getPluginTypename() == pluginTypename) {
+                T* instance;
+                StaticConstructorDataDefinitionInstance constructor = plugin->getPluginInfo()->getDataDefinitionConstructor();
+                instance = static_cast<T*> (constructor(model, name));
+                return instance;
+            }
+        }
+        /// innvalid use of incomplete class
+        ///_simulator->getTracer()->traceError(TraceManager::Level::L1_errorFatal, "Error: Could not find any plugin with Typename \"" + pluginTypename + "\"");
+        return nullptr;
+    }
 private:
-	bool _insert(Plugin* plugin);
-	void _insertDefaultKernelElements();
+    bool _insert(Plugin* plugin);
+    void _insertDefaultKernelElements();
 private:
-	List<Plugin*>* _plugins = new List<Plugin*>();
-	Simulator* _simulator;
-	PluginConnector_if* _pluginConnector;
+    List<Plugin*>* _plugins = new List<Plugin*>();
+    Simulator* _simulator;
+    PluginConnector_if* _pluginConnector;
 };
 //namespace\\}
 #endif /* PLUGINMANAGER_H */

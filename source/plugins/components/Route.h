@@ -33,9 +33,9 @@ If the station destination is entered as By Sequence, the next station is determ
 the entity’s sequence and step within the set (defined by special-purpose attributes
 Entity.Sequence and Entity.Jobstep, respectively).
 TYPICAL USES
-* Send a part to its next processing station based on its routing slip
-* Send an account balance call to an account agent
-* Send restaurant customers to a specific table
+ * Send a part to its next processing station based on its routing slip
+ * Send an account balance call to an account agent
+ * Send restaurant customers to a specific table
 PROMPTS
 Prompt Description
 Name Unique name of the module that will be displayed in the
@@ -55,53 +55,53 @@ will route.
 class Route : public ModelComponent {
 public:
 
-	enum class DestinationType : int {
-		Station = 0, Sequence = 1, Label = 2
-	};
+    enum class DestinationType : int {
+        Station = 0, Sequence = 1, Label = 2
+    };
 public:
-	Route(Model* model, std::string name = "");
-	virtual ~Route() = default;
+    Route(Model* model, std::string name = "");
+    virtual ~Route() = default;
 public:
-	virtual std::string show();
+    virtual std::string show();
 public:
-	static PluginInformation* GetPluginInformation();
-	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+    static PluginInformation* GetPluginInformation();
+    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
-	void setStation(Station* _station);
-	void setStationName(std::string stationName);
-	Station* getStation() const;
-	void setRouteTimeExpression(std::string _routeTimeExpression);
-	std::string getRouteTimeExpression() const;
-	void setRouteTimeTimeUnit(Util::TimeUnit _routeTimeTimeUnit);
-	Util::TimeUnit getRouteTimeTimeUnit() const;
-	void setRouteDestinationType(DestinationType _routeDestinationType);
-	Route::DestinationType getRouteDestinationType() const;
-	void setLabel(Label* _label);
-	Label* getLabel() const;
+    void setStation(Station* _station);
+    void setStationName(std::string stationName);
+    Station* getStation() const;
+    void setRouteTimeExpression(std::string _routeTimeExpression);
+    std::string getRouteTimeExpression() const;
+    void setRouteTimeTimeUnit(Util::TimeUnit _routeTimeTimeUnit);
+    Util::TimeUnit getRouteTimeTimeUnit() const;
+    void setRouteDestinationType(DestinationType _routeDestinationType);
+    Route::DestinationType getRouteDestinationType() const;
+    void setLabel(Label* _label);
+    Label* getLabel() const;
 protected:
-	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
-	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 protected:
-	//virtual void _initBetweenReplications();
-	virtual bool _check(std::string* errorMessage);
-	virtual void _createInternalAndAttachedData();
+    //virtual void _initBetweenReplications();
+    virtual bool _check(std::string* errorMessage);
+    virtual void _createInternalAndAttachedData();
 private:
 
-	const struct DEFAULT_VALUES {
-		std::string routeTimeExpression = "0.0";
-		Util::TimeUnit routeTimeTimeUnit = Util::TimeUnit::second;
-		Route::DestinationType routeDestinationType = DestinationType::Station;
-	} DEFAULT;
-	std::string _routeTimeExpression = DEFAULT.routeTimeExpression;
-	Util::TimeUnit _routeTimeTimeUnit = DEFAULT.routeTimeTimeUnit;
-	Route::DestinationType _routeDestinationType = DEFAULT.routeDestinationType;
+    const struct DEFAULT_VALUES {
+        std::string routeTimeExpression = "0.0";
+        Util::TimeUnit routeTimeTimeUnit = Util::TimeUnit::second;
+        Route::DestinationType routeDestinationType = DestinationType::Station;
+    } DEFAULT;
+    std::string _routeTimeExpression = DEFAULT.routeTimeExpression;
+    Util::TimeUnit _routeTimeTimeUnit = DEFAULT.routeTimeTimeUnit;
+    Route::DestinationType _routeDestinationType = DEFAULT.routeDestinationType;
 private: // association
-	Station* _station = nullptr;
-	Label* _label = nullptr;
+    Station* _station = nullptr;
+    Label* _label = nullptr;
 private: // internel elements
-	Counter* _numberIn = nullptr;
+    Counter* _numberIn = nullptr;
 };
 
 #endif /* ROUTE_H */

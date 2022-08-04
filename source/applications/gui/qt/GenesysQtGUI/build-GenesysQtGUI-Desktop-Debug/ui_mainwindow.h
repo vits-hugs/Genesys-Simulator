@@ -1,10 +1,10 @@
 /********************************************************************************
-** Form generated from reading UI file 'mainwindow.ui'
-**
-** Created by: Qt User Interface Compiler version 5.15.3
-**
-** WARNING! All changes made in this file will be lost when recompiling UI file!
-********************************************************************************/
+ ** Form generated from reading UI file 'mainwindow.ui'
+ **
+ ** Created by: Qt User Interface Compiler version 5.15.3
+ **
+ ** WARNING! All changes made in this file will be lost when recompiling UI file!
+ ********************************************************************************/
 
 #ifndef UI_MAINWINDOW_H
 #define UI_MAINWINDOW_H
@@ -42,8 +42,7 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_MainWindow
-{
+class Ui_MainWindow {
 public:
     QAction *actionNew;
     QAction *actionOpen;
@@ -185,8 +184,7 @@ public:
     QToolBar *toolBarAbout;
     QToolBar *toolBarAnimation;
 
-    void setupUi(QMainWindow *MainWindow)
-    {
+    void setupUi(QMainWindow *MainWindow) {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(1231, 640);
@@ -635,7 +633,7 @@ public:
         textEdit_Simulation->setObjectName(QString::fromUtf8("textEdit_Simulation"));
         textEdit_Simulation->setFont(font);
         textEdit_Simulation->setLineWrapMode(QTextEdit::NoWrap);
-        textEdit_Simulation->setTextInteractionFlags(Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
+        textEdit_Simulation->setTextInteractionFlags(Qt::TextSelectableByKeyboard | Qt::TextSelectableByMouse);
 
         verticalLayout_17->addWidget(textEdit_Simulation);
 
@@ -676,7 +674,7 @@ public:
         textEdit_Reports->setObjectName(QString::fromUtf8("textEdit_Reports"));
         textEdit_Reports->setFont(font1);
         textEdit_Reports->setLineWrapMode(QTextEdit::NoWrap);
-        textEdit_Reports->setTextInteractionFlags(Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
+        textEdit_Reports->setTextInteractionFlags(Qt::TextSelectableByKeyboard | Qt::TextSelectableByMouse);
 
         verticalLayout_18->addWidget(textEdit_Reports);
 
@@ -795,8 +793,8 @@ public:
         QIcon icon34;
         icon34.addFile(QString::fromUtf8(":/icons4/resources/icons/pack4/console.png"), QSize(), QIcon::Normal, QIcon::Off);
         dockWidgetConsole->setWindowIcon(icon34);
-        dockWidgetConsole->setFeatures(QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable);
-        dockWidgetConsole->setAllowedAreas(Qt::BottomDockWidgetArea|Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea);
+        dockWidgetConsole->setFeatures(QDockWidget::DockWidgetFloatable | QDockWidget::DockWidgetMovable);
+        dockWidgetConsole->setAllowedAreas(Qt::BottomDockWidgetArea | Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
         dockWidgetContentsConsole = new QWidget();
         dockWidgetContentsConsole->setObjectName(QString::fromUtf8("dockWidgetContentsConsole"));
         verticalLayout = new QVBoxLayout(dockWidgetContentsConsole);
@@ -806,7 +804,7 @@ public:
         QFont font3;
         font3.setPointSize(8);
         textEdit_Console->setFont(font3);
-        textEdit_Console->setTextInteractionFlags(Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
+        textEdit_Console->setTextInteractionFlags(Qt::TextSelectableByKeyboard | Qt::TextSelectableByMouse);
 
         verticalLayout->addWidget(textEdit_Console);
 
@@ -817,8 +815,8 @@ public:
         QIcon icon35;
         icon35.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/component.ico"), QSize(), QIcon::Normal, QIcon::Off);
         dockWidgetPlugins->setWindowIcon(icon35);
-        dockWidgetPlugins->setFeatures(QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable);
-        dockWidgetPlugins->setAllowedAreas(Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea);
+        dockWidgetPlugins->setFeatures(QDockWidget::DockWidgetFloatable | QDockWidget::DockWidgetMovable);
+        dockWidgetPlugins->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
         dockWidgetContentsPlugin = new QWidget();
         dockWidgetContentsPlugin->setObjectName(QString::fromUtf8("dockWidgetContentsPlugin"));
         horizontalLayout_2 = new QHBoxLayout(dockWidgetContentsPlugin);
@@ -855,8 +853,8 @@ public:
         icon36.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/table.ico"), QSize(), QIcon::Normal, QIcon::Off);
         dockWidgetPropertyEditor->setWindowIcon(icon36);
         dockWidgetPropertyEditor->setFloating(false);
-        dockWidgetPropertyEditor->setFeatures(QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable);
-        dockWidgetPropertyEditor->setAllowedAreas(Qt::BottomDockWidgetArea|Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea);
+        dockWidgetPropertyEditor->setFeatures(QDockWidget::DockWidgetFloatable | QDockWidget::DockWidgetMovable);
+        dockWidgetPropertyEditor->setAllowedAreas(Qt::BottomDockWidgetArea | Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
         dockWidgetContents = new QWidget();
         dockWidgetContents->setObjectName(QString::fromUtf8("dockWidgetContents"));
         horizontalLayout_4 = new QHBoxLayout(dockWidgetContents);
@@ -994,8 +992,7 @@ public:
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
 
-    void retranslateUi(QMainWindow *MainWindow)
-    {
+    void retranslateUi(QMainWindow *MainWindow) {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "GenESyS - Generic and Expansible System Simulator", nullptr));
         actionNew->setText(QCoreApplication::translate("MainWindow", "New", nullptr));
 #if QT_CONFIG(tooltip)
@@ -1179,10 +1176,10 @@ public:
         toolBarModel->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
         dockWidgetConsole->setWindowTitle(QCoreApplication::translate("MainWindow", "Console", nullptr));
         textEdit_Console->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'DejaVu LGC Sans'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Console</p></body></html>", nullptr));
+                "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                "p, li { white-space: pre-wrap; }\n"
+                "</style></head><body style=\" font-family:'DejaVu LGC Sans'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
+                "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Console</p></body></html>", nullptr));
         dockWidgetPlugins->setWindowTitle(QCoreApplication::translate("MainWindow", "Plugins", nullptr));
         dockWidgetPropertyEditor->setWindowTitle(QCoreApplication::translate("MainWindow", "Property Editor", nullptr));
         toolBarGraphicalModel->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBarGraphicalModel", nullptr));
@@ -1196,7 +1193,9 @@ public:
 };
 
 namespace Ui {
-    class MainWindow: public Ui_MainWindow {};
+
+    class MainWindow : public Ui_MainWindow {
+    };
 } // namespace Ui
 
 QT_END_NAMESPACE

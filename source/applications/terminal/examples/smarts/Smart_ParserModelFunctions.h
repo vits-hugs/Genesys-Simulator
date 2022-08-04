@@ -18,9 +18,9 @@
 
 class Smart_ParserModelFunctions : public BaseGenesysTerminalApplication {
 public:
-	Smart_ParserModelFunctions();
+    Smart_ParserModelFunctions();
 public:
-	virtual int main(int argc, char** argv);
+    virtual int main(int argc, char** argv);
 };
 
 #endif /* SMART_PARSERMODELFUNCTIONS_H */

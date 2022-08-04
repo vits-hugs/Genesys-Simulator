@@ -24,8 +24,8 @@ conveyor may have been deactivated from either the Stop module or by initially
 being set to inactive at the start of the simulation. The velocity of the conveyor may
 be changed permanently when the conveyor is started.
 TYPICAL USES
-* Start a bottling conveyor after scheduled maintenance
-* Start a baggage claim conveyor when bags have arrived
+ * Start a bottling conveyor after scheduled maintenance
+ * Start a baggage claim conveyor when bags have arrived
 PROMPTS
 Prompt Description
 Name Unique name of the module that will be displayed in the
@@ -38,21 +38,21 @@ Units Velocity time units.
  */
 class Start : public ModelComponent {
 public: // constructors
-	Start(Model* model, std::string name = "");
-	virtual ~Start() = default;
+    Start(Model* model, std::string name = "");
+    virtual ~Start() = default;
 public: // virtual
-	virtual std::string show();
+    virtual std::string show();
 public: // static
-	static PluginInformation* GetPluginInformation();
-	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+    static PluginInformation* GetPluginInformation();
+    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 protected: // virtual
-	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
-	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 protected: // virtual
-	//virtual void _initBetweenReplications();
-	virtual bool _check(std::string* errorMessage);
+    //virtual void _initBetweenReplications();
+    virtual bool _check(std::string* errorMessage);
 private: // methods
 private: // attributes 1:1
 private: // attributes 1:n

@@ -24,26 +24,26 @@ class Simulator;
  */
 class LicenceManager {
 public:
-	LicenceManager(Simulator* simulator);
-	virtual ~LicenceManager() = default;
-	const std::string showLicence() const;
-	const std::string showLimits() const;
-	const std::string showActivationCode() const;
-	bool lookforActivationCode();
-	bool insertActivationCode();
-	void removeActivationCode();
-	unsigned int getModelComponentsLimit();
-	unsigned int getModelDatasLimit();
-	unsigned int getEntityLimit();
-	unsigned int getHostsLimit();
-	unsigned int getThreadsLimit();
+    LicenceManager(Simulator* simulator);
+    virtual ~LicenceManager() = default;
+    const std::string showLicence() const;
+    const std::string showLimits() const;
+    const std::string showActivationCode() const;
+    bool lookforActivationCode();
+    bool insertActivationCode();
+    void removeActivationCode();
+    unsigned int getModelComponentsLimit();
+    unsigned int getModelDatasLimit();
+    unsigned int getEntityLimit();
+    unsigned int getHostsLimit();
+    unsigned int getThreadsLimit();
 private:
-	void setDefaultLicenceAndLimits();
+    void setDefaultLicenceAndLimits();
 private:
-	Simulator* _simulator;
-	std::string _licence;
-	std::string _activationCode;
-	unsigned int _components, _datadefinitions, _entities, _hosts, _threads;
+    Simulator* _simulator;
+    std::string _licence;
+    std::string _activationCode;
+    unsigned int _components, _datadefinitions, _entities, _hosts, _threads;
 };
 //namespace\\}
 #endif /* LICENCEMANAGER_H */

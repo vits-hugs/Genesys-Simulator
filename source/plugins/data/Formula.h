@@ -21,29 +21,29 @@
 
 class Formula : public ModelDataDefinition {
 public:
-	Formula(Model* model, std::string name = "");
-	virtual ~Formula() = default;
+    Formula(Model* model, std::string name = "");
+    virtual ~Formula() = default;
 public: // virtual
-	virtual std::string show();
+    virtual std::string show();
 public:
-	unsigned int size();
-	void setExpression(std::string index, std::string formulaExpression);
-	void setExpression(std::string formulaExpression);
-	std::string expression(std::string index);
-	std::string expression();
-	double value();
-	double value(std::string index);
+    unsigned int size();
+    void setExpression(std::string index, std::string formulaExpression);
+    void setExpression(std::string formulaExpression);
+    std::string expression(std::string index);
+    std::string expression();
+    double value();
+    double value(std::string index);
 public: // statics
-	static PluginInformation* GetPluginInformation();
-	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+    static PluginInformation* GetPluginInformation();
+    static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 protected: // must be overriden 
-	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-	virtual bool _check(std::string* errorMessage);
+    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+    virtual bool _check(std::string* errorMessage);
 private:
 private:
-	std::map<std::string, std::string>* _formulaExpressions = new std::map<std::string, std::string>(); // map<index,formula>
+    std::map<std::string, std::string>* _formulaExpressions = new std::map<std::string, std::string>(); // map<index,formula>
 };
 
 #endif /* FORMULA_H */

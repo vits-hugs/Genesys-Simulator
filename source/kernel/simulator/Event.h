@@ -29,77 +29,78 @@
 
 class Event {//: public ModelDataDefinition {
 public:
-	Event(double time, Entity* entity, ModelComponent* component, unsigned int componentinputPortNumber = 0);
-	Event(double time, Entity* entity, Connection* connection);
-	virtual ~Event() = default;
+    Event(double time, Entity* entity, ModelComponent* component, unsigned int componentinputPortNumber = 0);
+    Event(double time, Entity* entity, Connection* connection);
+    virtual ~Event() = default;
 public:
-	double getTime() const;
-	ModelComponent* getComponent() const;
-	Entity* getEntity() const;
-	unsigned int getComponentinputPortNumber() const;
+    double getTime() const;
+    ModelComponent* getComponent() const;
+    Entity* getEntity() const;
+    unsigned int getComponentinputPortNumber() const;
 public:
-	virtual std::string show();
+    virtual std::string show();
 protected:
-	double _time;
+    double _time;
 private:
-	Entity* _entity;
-	ModelComponent* _component;
-	unsigned int _componentinputPortNumber;
+    Entity* _entity;
+    ModelComponent* _component;
+    unsigned int _componentinputPortNumber;
 };
 
 //***************************************************** 2022/07/05
 
 typedef std::function<void(void*) > InternalEventHandler;
 
-class InternalEvent: public Event { // BAD SW ENGINEERING //@TODO Fix it
+class InternalEvent : public Event { // BAD SW ENGINEERING //@TODO Fix it
 public:
-	InternalEvent(double time, std::string description): Event(time, nullptr, nullptr, 0){
-		_description = description;
-		_time = time;
-	}
-	virtual ~InternalEvent() = default;
 
-	template<typename Class>
-	void setEventHandler(Class* object, void (Class::*function)(void*), void* parameter) {
-		_object = object;
-		_handler= std::bind(function, object, std::placeholders::_1);
-		_parameter = parameter;
-	}
+    InternalEvent(double time, std::string description) : Event(time, nullptr, nullptr, 0) {
+        _description = description;
+        _time = time;
+    }
+    virtual ~InternalEvent() = default;
 
-	virtual std::string show() override {
-		std::string dataDefinitionName = static_cast<ModelDataDefinition*>(_object)->getName();
-		std::string message = "time=" + std::to_string(_time) + //Util::StrTimeUnit(???)+
-				",description=\"" + _description+"\""+
-				",block=\"" + dataDefinitionName+"\"";
-		return message;
-	}
+    template<typename Class>
+    void setEventHandler(Class* object, void (Class::*function)(void*), void* parameter) {
+        _object = object;
+        _handler = std::bind(function, object, std::placeholders::_1);
+        _parameter = parameter;
+    }
 
-	const InternalEventHandler& eventHandler() const {
-		return _handler;
-	}
+    virtual std::string show() override {
+        std::string dataDefinitionName = static_cast<ModelDataDefinition*> (_object)->getName();
+        std::string message = "time=" + std::to_string(_time) + //Util::StrTimeUnit(???)+
+                ",description=\"" + _description + "\"" +
+                ",block=\"" + dataDefinitionName + "\"";
+        return message;
+    }
 
-	const std::string& description() const {
-		return _description;
-	}
+    const InternalEventHandler& eventHandler() const {
+        return _handler;
+    }
 
-	const void dispatchEvent() const {
-		_handler(_parameter);
-	}
+    const std::string& description() const {
+        return _description;
+    }
 
-	void* object() const {
-		return _object;
-	}
+    const void dispatchEvent() const {
+        _handler(_parameter);
+    }
 
-	void* parameter() const {
-		return _parameter;
-	}
+    void* object() const {
+        return _object;
+    }
+
+    void* parameter() const {
+        return _parameter;
+    }
 
 
 private:
-	InternalEventHandler _handler;
-	std::string _description;
-	void* _parameter;
-	void* _object;
+    InternalEventHandler _handler;
+    std::string _description;
+    void* _parameter;
+    void* _object;
 };
 
 //namespace\\}

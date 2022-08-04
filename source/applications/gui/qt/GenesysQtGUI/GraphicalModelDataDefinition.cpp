@@ -46,8 +46,8 @@ GraphicalModelDataDefinition::GraphicalModelDataDefinition(Plugin* plugin, Model
     setSelected(false);
     setToolTip(QString::fromStdString(component->getName()));
     GraphicalComponentPort* port;
-    qreal px, py=0;
-    qreal step = (double)_height / (double)(plugin->getPluginInfo()->getMinimumInputs()+1);
+    qreal px, py = 0;
+    qreal step = (double) _height / (double) (plugin->getPluginInfo()->getMinimumInputs() + 1);
     /*
     for (unsigned int i=0; i< plugin->getPluginInfo()->getMinimumInputs(); i++) {
         port= new GraphicalComponentPort(this, true, i, parent);
@@ -65,7 +65,7 @@ GraphicalModelDataDefinition::GraphicalModelDataDefinition(Plugin* plugin, Model
         port->setY(py-port->height()/2);
         port->setParentItem(this);
     }
-    */
+     */
 }
 
 GraphicalModelDataDefinition::GraphicalModelDataDefinition(const GraphicalModelDataDefinition& orig) {
@@ -154,7 +154,7 @@ void GraphicalModelDataDefinition::paint(QPainter *painter, const QStyleOptionGr
         rect = QRect(_width -_selWidth, _height-_selWidth,_selWidth,_selWidth);
         painter->drawRect(rect);
     }
-    */
+     */
 }
 
 ModelComponent* GraphicalModelDataDefinition::getComponent() const {
@@ -176,4 +176,4 @@ void ModelComponentGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent * event
 void ModelComponentGraphicsItem::mousePressEvent(QGraphicsSceneMouseEvent * event){
 
 }
-*/
+ */

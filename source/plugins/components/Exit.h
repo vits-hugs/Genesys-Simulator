@@ -23,9 +23,9 @@ The Exit module releases the entity’s cells on the specified conveyor. If anot
 is waiting in queue for the conveyor at the same station when the cells are released, it
 will then access the conveyor.
 TYPICAL USES
-* Cases exit a conveyor for packing
-* Bad parts are removed from the conveyor and disposed
-* Passengers remove luggage from the baggage claim conveyor
+ * Cases exit a conveyor for packing
+ * Bad parts are removed from the conveyor and disposed
+ * Passengers remove luggage from the baggage claim conveyor
 PROMPTS
 Prompt Description
 Name Unique name of the module that will be displayed in the
@@ -36,21 +36,21 @@ the previously accessed conveyor is assumed.
  */
 class Exit : public ModelComponent {
 public: // constructors
-	Exit(Model* model, std::string name = "");
-	virtual ~Exit() = default;
+    Exit(Model* model, std::string name = "");
+    virtual ~Exit() = default;
 public: // virtual
-	virtual std::string show();
+    virtual std::string show();
 public: // static
-	static PluginInformation* GetPluginInformation();
-	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+    static PluginInformation* GetPluginInformation();
+    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 protected: // virtual
-	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
-	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 protected: // virtual
-	//virtual void _initBetweenReplications();
-	virtual bool _check(std::string* errorMessage);
+    //virtual void _initBetweenReplications();
+    virtual bool _check(std::string* errorMessage);
 private: // methods
 private: // attributes 1:1
 private: // attributes 1:n

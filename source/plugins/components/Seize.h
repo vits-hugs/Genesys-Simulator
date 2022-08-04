@@ -25,24 +25,28 @@
 
 class WaitingResource : public Waiting {
 public:
-	WaitingResource(Entity* entity, double timeStartedWaiting, unsigned int quantity, ModelComponent* thisComponent, unsigned int thisComponentOutputPort = 0) : Waiting(entity, timeStartedWaiting, thisComponent, thisComponentOutputPort) {
-		_quantity = quantity;
-	}
-	WaitingResource(const WaitingResource& orig) : Waiting(orig) {
-	}
 
-	virtual ~WaitingResource() = default;
+    WaitingResource(Entity* entity, double timeStartedWaiting, unsigned int quantity, ModelComponent* thisComponent, unsigned int thisComponentOutputPort = 0) : Waiting(entity, timeStartedWaiting, thisComponent, thisComponentOutputPort) {
+        _quantity = quantity;
+    }
+
+    WaitingResource(const WaitingResource& orig) : Waiting(orig) {
+    }
+
+    virtual ~WaitingResource() = default;
 public:
-	virtual std::string show() {
-		return Waiting::show() +
-				",quantity=" + std::to_string(this->_quantity);
-	}
+
+    virtual std::string show() {
+        return Waiting::show() +
+                ",quantity=" + std::to_string(this->_quantity);
+    }
 public:
-	unsigned int getQuantity() const {
-		return _quantity;
-	}
+
+    unsigned int getQuantity() const {
+        return _quantity;
+    }
 private:
-	unsigned int _quantity;
+    unsigned int _quantity;
 };
 
 /*!
@@ -56,9 +60,9 @@ When an entity enters this module, it waits in a queue (if specified) until all 
 resources are available simultaneously. Allocation type for resource usage is also
 specified.
 TYPICAL USES
-* Beginning a customer order (seize the operator)
-* Starting a tax return (seize the accountant)
-* Being admitted to hospital (seize the hospital room, nurse, doctor)
+ * Beginning a customer order (seize the operator)
+ * Starting a tax return (seize the accountant)
+ * Being admitted to hospital (seize the hospital room, nurse, doctor)
 PROMPTS
 Prompt Description
 Name Unique module identifier displayed on the module shape.
@@ -121,55 +125,56 @@ which queue is to be used.
  */
 class Seize : public ModelComponent {
 public:
-	Seize(Model* model, std::string name = "");
-	virtual ~Seize() = default;
+    Seize(Model* model, std::string name = "");
+    virtual ~Seize() = default;
 public:
-	virtual std::string show();
+    virtual std::string show();
 public:
-	static PluginInformation* GetPluginInformation();
-	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+    static PluginInformation* GetPluginInformation();
+    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public: // get & set
-	void setPriority(unsigned short _priority);
-	unsigned short getPriority() const;
-	void setAllocationType(unsigned int _allocationType);
-	unsigned int getAllocationType() const;
-	// indirect access to Queue* and Resource*
-	//void setResourceName(std::string _resourceName) throw ();
-	//std::string getResourceName() const;
-	//void setQueueName(std::string queueName) throw ();
-	//std::string getQueueName() const;
-	void setQueue(Queue* queue); ///< Deprected
-	//Queue* getQueue() const;
-	List<SeizableItem*>* getSeizeRequests() const;
-	void setQueueableItem(QueueableItem* _queueableItem);
-	QueueableItem* getQueueableItem() const;
-	void setSaveAttribute(std::string _saveAttribute);
-	std::string getSaveAttribute() const;
+    void setPriority(unsigned short _priority);
+    unsigned short getPriority() const;
+    void setAllocationType(unsigned int _allocationType);
+    unsigned int getAllocationType() const;
+    // indirect access to Queue* and Resource*
+    //void setResourceName(std::string _resourceName) throw ();
+    //std::string getResourceName() const;
+    //void setQueueName(std::string queueName) throw ();
+    //std::string getQueueName() const;
+    void setQueue(Queue* queue); ///< Deprected
+    //Queue* getQueue() const;
+    List<SeizableItem*>* getSeizeRequests() const;
+    void setQueueableItem(QueueableItem* _queueableItem);
+    QueueableItem* getQueueableItem() const;
+    void setSaveAttribute(std::string _saveAttribute);
+    std::string getSaveAttribute() const;
 protected:
-	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
-	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual void _initBetweenReplications();
-	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-	virtual bool _check(std::string* errorMessage);
-	virtual void _createInternalAndAttachedData();
+    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+    virtual void _initBetweenReplications();
+    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+    virtual bool _check(std::string* errorMessage);
+    virtual void _createInternalAndAttachedData();
 private:
-	void _handlerForResourceEvent(Resource* resource); ///< This method is indirectally invocked (notified) by resource when it's released, since it was added as ResourceEventHandler
-	Resource* _getResourceFromSeizableItem(SeizableItem* seizable, Entity* entity);
-	Queue* _getQueue() const;
+    void _handlerForResourceEvent(Resource* resource); ///< This method is indirectally invocked (notified) by resource when it's released, since it was added as ResourceEventHandler
+    Resource* _getResourceFromSeizableItem(SeizableItem* seizable, Entity* entity);
+    Queue* _getQueue() const;
 public:
-	const struct DEFAULT_VALUES {
-		const unsigned int allocationType = 0; // uint ? enum?
-		const unsigned short priority = 0;
-		const unsigned int seizeRequestSize = 1;
-		const std::string saveAttribute = "";
-	} DEFAULT;
+
+    const struct DEFAULT_VALUES {
+        const unsigned int allocationType = 0; // uint ? enum?
+        const unsigned short priority = 0;
+        const unsigned int seizeRequestSize = 1;
+        const std::string saveAttribute = "";
+    } DEFAULT;
 private:
-	unsigned int _allocationType = DEFAULT.allocationType; // uint ? enum?
-	unsigned short _priority = DEFAULT.priority;
-	std::string _saveAttribute = DEFAULT.saveAttribute;
-	QueueableItem* _queueableItem = nullptr; // usually has a queue, but not always (it could be a hold or a set)
-	List<SeizableItem*>* _seizeRequests = new List<SeizableItem*>();
+    unsigned int _allocationType = DEFAULT.allocationType; // uint ? enum?
+    unsigned short _priority = DEFAULT.priority;
+    std::string _saveAttribute = DEFAULT.saveAttribute;
+    QueueableItem* _queueableItem = nullptr; // usually has a queue, but not always (it could be a hold or a set)
+    List<SeizableItem*>* _seizeRequests = new List<SeizableItem*>();
 };
 
 #endif /* SEIZE_H */

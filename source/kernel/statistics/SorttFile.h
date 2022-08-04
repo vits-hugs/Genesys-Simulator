@@ -17,20 +17,20 @@
 
 class SortFile {
 public:
-	SortFile();
-	~SortFile() = default;
+    SortFile();
+    ~SortFile() = default;
 public:
-	bool sort();
-	void setDataFilename(std::string filename);
+    bool sort();
+    void setDataFilename(std::string filename);
 private:
-	void run(int start, int end);
-	void swap(int position1, int position2);
-	int partition(int start, int end);
-	void addValue(double value, int position);
-	double getValue(unsigned long position);
+    void run(int start, int end);
+    void swap(int position1, int position2);
+    int partition(int start, int end);
+    void addValue(double value, int position);
+    double getValue(unsigned long position);
 private:
-	std::string _filename;
-	double _numElements = 0;
+    std::string _filename;
+    double _numElements = 0;
 };
 
 #endif /* SORTTFILE_H */

@@ -102,7 +102,7 @@ bool PluginManager::_insert(Plugin * plugin) {
     } else {
         Util::IncIndent();
         this->_simulator->getTracer()->trace(TraceManager::Level::L2_results, "Plugin could not be inserted");
-        delete plugin;//->~Plugin(); // destroy the invalid plugin
+        delete plugin; //->~Plugin(); // destroy the invalid plugin
         Util::DecIndent();
         return false;
     }

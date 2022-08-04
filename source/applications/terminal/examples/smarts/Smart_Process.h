@@ -18,9 +18,9 @@
 
 class Smart_Process : public BaseGenesysTerminalApplication {
 public:
-	Smart_Process();
+    Smart_Process();
 public:
-	virtual int main(int argc, char** argv);
+    virtual int main(int argc, char** argv);
 };
 
 #endif /* SMART_PROCESS_H */

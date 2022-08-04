@@ -30,9 +30,9 @@ is used to report all times and costs accrued by the entities in this station. T
 Activity Area’s name is the same as the station. If a parent Activity Area is defined,
 then it also accrues any times and costs by the entities in this station.
 TYPICAL USES
-* The start of a part’s production in a series of parallel processes where the part’s
+ * The start of a part’s production in a series of parallel processes where the part’s
 forklift needs to be released
-* The start of a document’s processing after the document has been created where
+ * The start of a document’s processing after the document has been created where
 the mail clerk resource needs to be released
 PROMPTS
 Prompt Description
@@ -98,30 +98,30 @@ resource to release.
  */
 class Enter : public ModelComponent {
 public:
-	Enter(Model* model, std::string name = "");
-	virtual ~Enter() = default;
+    Enter(Model* model, std::string name = "");
+    virtual ~Enter() = default;
 public:
-	virtual std::string show();
+    virtual std::string show();
 public:
-	static PluginInformation* GetPluginInformation();
-	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+    static PluginInformation* GetPluginInformation();
+    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
-	void setStation(Station* _station);
-	void setStationName(std::string stationName);
-	Station* getStation() const;
+    void setStation(Station* _station);
+    void setStationName(std::string stationName);
+    Station* getStation() const;
 protected:
-	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
-	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 protected:
-	//virtual void _initBetweenReplications();
-	virtual bool _check(std::string* errorMessage);
-	virtual void _createInternalAndAttachedData();
+    //virtual void _initBetweenReplications();
+    virtual bool _check(std::string* errorMessage);
+    virtual void _createInternalAndAttachedData();
 private: // association
     Station* _station = nullptr;
 private: // internel elements
-	Counter* _numberIn = nullptr;
+    Counter* _numberIn = nullptr;
 };
 
 #endif /* ENTER_H */

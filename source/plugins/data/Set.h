@@ -30,10 +30,10 @@ panels). Counter and Tally sets can be used in the Record module. Queue sets can
 used with the Seize, Hold, Access, Request, Leave, and Allocate modules of the
 Advanced Process and Advanced Transfer panels.
 TYPICAL USES
-* Machines that can perform the same operations in a manufacturing facility
-* Supervisors, check-out clerks in a store
-* Shipping clerks, receptionists in an office
-* Set of pictures corresponding to a set of entity types
+ * Machines that can perform the same operations in a manufacturing facility
+ * Supervisors, check-out clerks in a store
+ * Shipping clerks, receptionists in an office
+ * Set of pictures corresponding to a set of entity types
 PROMPTS
 Prompt Description
 Name The unique name of the set being defined.
@@ -55,34 +55,34 @@ Type is Entity Picture.
  */
 class Set : public ModelDataDefinition {
 public:
-	Set(Model* model, std::string name = "");
-	virtual ~Set() = default;
+    Set(Model* model, std::string name = "");
+    virtual ~Set() = default;
 public: // static
-	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-	static PluginInformation* GetPluginInformation();
-	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+    static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+    static PluginInformation* GetPluginInformation();
+    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
-	virtual std::string show();
+    virtual std::string show();
 public:
-	void setSetOfType(std::string _setOfType);
-	std::string getSetOfType() const;
-	List<ModelDataDefinition*>* getElementSet() const;
+    void setSetOfType(std::string _setOfType);
+    std::string getSetOfType() const;
+    List<ModelDataDefinition*>* getElementSet() const;
 
 protected: // must be overriden 
-	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 protected: // could be overriden 
-	virtual bool _check(std::string* errorMessage);
-	virtual ParserChangesInformation* _getParserChangesInformation();
+    virtual bool _check(std::string* errorMessage);
+    virtual ParserChangesInformation* _getParserChangesInformation();
 private:
-	//ElementManager* _elems;
+    //ElementManager* _elems;
 
-	const struct DEFAULT_VALUES {
-		unsigned int membersSize = 0;
-		std::string setOfType = Util::TypeOf<EntityType>();
-	} DEFAULT;
-	List<ModelDataDefinition*>* _elementSet = new List<ModelDataDefinition*>();
-	std::string _setOfType = DEFAULT.setOfType;
+    const struct DEFAULT_VALUES {
+        unsigned int membersSize = 0;
+        std::string setOfType = Util::TypeOf<EntityType>();
+    } DEFAULT;
+    List<ModelDataDefinition*>* _elementSet = new List<ModelDataDefinition*>();
+    std::string _setOfType = DEFAULT.setOfType;
 };
 
 #endif /* SET_H */

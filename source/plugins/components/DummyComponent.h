@@ -22,33 +22,33 @@
  */
 class DummyComponent : public ModelComponent {
 public: // constructors
-	DummyComponent(Model* model, std::string name = "");
-	virtual ~DummyComponent() = default;
+    DummyComponent(Model* model, std::string name = "");
+    virtual ~DummyComponent() = default;
 public: // virtual
-	virtual std::string show();
+    virtual std::string show();
 public: // static
-	static PluginInformation* GetPluginInformation();
-	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+    static PluginInformation* GetPluginInformation();
+    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 protected: // must be overriden 
-	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
 protected: // could be overriden .
-	virtual bool _check(std::string* errorMessage);
-	virtual void _initBetweenReplications();
-	virtual void _createInternalAndAttachedData();
-	//virtual ParserChangesInformation* _getParserChangesInformation();
+    virtual bool _check(std::string* errorMessage);
+    virtual void _initBetweenReplications();
+    virtual void _createInternalAndAttachedData();
+    //virtual ParserChangesInformation* _getParserChangesInformation();
 private: // methods
 private: // attributes 1:1
 
-	const struct DEFAULT_VALUES {
-		std::string someString = "Test";
-		unsigned int someUint = 1;
-	} DEFAULT;
-	std::string _someString = DEFAULT.someString;
-	unsigned int _someUint = DEFAULT.someUint;
-	DummyElement* _internalDataDefinition = nullptr;
+    const struct DEFAULT_VALUES {
+        std::string someString = "Test";
+        unsigned int someUint = 1;
+    } DEFAULT;
+    std::string _someString = DEFAULT.someString;
+    unsigned int _someUint = DEFAULT.someUint;
+    DummyElement* _internalDataDefinition = nullptr;
 private: // attributes 1:n
 };
 

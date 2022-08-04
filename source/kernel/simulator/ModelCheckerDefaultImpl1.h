@@ -22,20 +22,20 @@
 
 class ModelCheckerDefaultImpl1 : public ModelChecker_if {
 public:
-	ModelCheckerDefaultImpl1(Model* model);
-	virtual ~ModelCheckerDefaultImpl1() = default;
+    ModelCheckerDefaultImpl1(Model* model);
+    virtual ~ModelCheckerDefaultImpl1() = default;
 public:
-	virtual bool checkAll();
-	virtual bool checkConnected();
-	virtual bool checkSymbols();
-	virtual bool checkActivationCode();
-	virtual bool checkLimits();
-	virtual bool checkOrphaned();
+    virtual bool checkAll();
+    virtual bool checkConnected();
+    virtual bool checkSymbols();
+    virtual bool checkActivationCode();
+    virtual bool checkLimits();
+    virtual bool checkOrphaned();
 private:
-	void _recursiveConnectedTo(PluginManager* pluginManager, ModelComponent* comp, List<ModelComponent*>* visited, List<ModelComponent*>* unconnected, bool* drenoFound);
-	void _showResult(bool result, std::string checking);
+    void _recursiveConnectedTo(PluginManager* pluginManager, ModelComponent* comp, List<ModelComponent*>* visited, List<ModelComponent*>* unconnected, bool* drenoFound);
+    void _showResult(bool result, std::string checking);
 private:
-	Model* _model;
+    Model* _model;
 };
 //namespace\\}
 #endif /* MODELCHECKERDEFAULTIMPL1_H */

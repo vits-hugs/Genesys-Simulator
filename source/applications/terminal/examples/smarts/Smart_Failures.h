@@ -5,9 +5,9 @@
 
 class Smart_Failures : public BaseGenesysTerminalApplication {
 public:
-	Smart_Failures();
+    Smart_Failures();
 public:
-	virtual int main(int argc, char** argv);
+    virtual int main(int argc, char** argv);
 };
 
 #endif // SMART_FAILURES_H

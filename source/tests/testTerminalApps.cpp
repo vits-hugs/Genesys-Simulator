@@ -27,14 +27,12 @@ using namespace std;
 TEST(TerminalApplication, Smarts) {
     BaseGenesysTerminalApplication *app;
     app = new Smart_AssignWriteSeizes();
-    EXPECT_EQ(app->main(0, nullptr),0);
+    EXPECT_EQ(app->main(0, nullptr), 0);
     app = new Smart_BatchSeparate();
-    EXPECT_EQ(app->main(0, nullptr),0);
+    EXPECT_EQ(app->main(0, nullptr), 0);
 }
 
-
-int main (int argc, char** argv)
-{
-  ::testing::InitGoogleTest (&argc, argv);
-  return RUN_ALL_TESTS();
+int main(int argc, char** argv) {
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }
