@@ -20,34 +20,34 @@
 
 class BaseGenesysTerminalApplication : public GenesysApplication_if {
 public:
-	BaseGenesysTerminalApplication();
-	virtual ~BaseGenesysTerminalApplication() = default;
+    BaseGenesysTerminalApplication();
+    virtual ~BaseGenesysTerminalApplication() = default;
 public:
-	virtual int main(int argc, char** argv) = 0;
+    virtual int main(int argc, char** argv) = 0;
 public:
-	void setDefaultTraceHandlers(TraceManager* tm);
-	void setDefaultEventHandlers(OnEventManager* oem); /*!< Add default method to handle simulator events so information is plotted to output screen */
-	void insertFakePluginsByHand(Simulator* simulator); /*!< Used to connect plugins that are NOT dynamic libraries, but are compiled whitin the kernel*/
+    void setDefaultTraceHandlers(TraceManager* tm);
+    void setDefaultEventHandlers(OnEventManager* oem); /*!< Add default method to handle simulator events so information is plotted to output screen */
+    void insertFakePluginsByHand(Simulator* simulator); /*!< Used to connect plugins that are NOT dynamic libraries, but are compiled whitin the kernel*/
 protected:
-	// default Trace Handlers
-	virtual void traceHandler(TraceEvent e);
-	virtual void traceErrorHandler(TraceErrorEvent e);
-	virtual void traceReportHandler(TraceEvent e);
-	virtual void traceSimulationHandler(TraceSimulationEvent e);
-	// default Event Handlers
-	virtual void onAfterProcessEventHandler(SimulationEvent* re);
-	virtual void onBreakpointHandler(SimulationEvent* re);
-	virtual void onEntityCreateHandler(SimulationEvent* re);
-	virtual void onEntityMoveHandler(SimulationEvent* re);
-	virtual void onSimulationStartHandler(SimulationEvent* re);
-	virtual void onReplicationStepHandler(SimulationEvent* re);
-	virtual void onReplicationStartHandler(SimulationEvent* re);
-	virtual void onProcessEventHandler(SimulationEvent* re);
-	virtual void onReplicationEndHandler(SimulationEvent* re);
-	virtual void onSimulationEndHandler(SimulationEvent* re);
-	virtual void onSimulationPausedHandler(SimulationEvent* re);
-	virtual void onSimulationResumeHandler(SimulationEvent* re);
-	virtual void onEntityRemoveHandler(SimulationEvent* re);
+    // default Trace Handlers
+    virtual void traceHandler(TraceEvent e);
+    virtual void traceErrorHandler(TraceErrorEvent e);
+    virtual void traceReportHandler(TraceEvent e);
+    virtual void traceSimulationHandler(TraceSimulationEvent e);
+    // default Event Handlers
+    virtual void onAfterProcessEventHandler(SimulationEvent* re);
+    virtual void onBreakpointHandler(SimulationEvent* re);
+    virtual void onEntityCreateHandler(SimulationEvent* re);
+    virtual void onEntityMoveHandler(SimulationEvent* re);
+    virtual void onSimulationStartHandler(SimulationEvent* re);
+    virtual void onReplicationStepHandler(SimulationEvent* re);
+    virtual void onReplicationStartHandler(SimulationEvent* re);
+    virtual void onProcessEventHandler(SimulationEvent* re);
+    virtual void onReplicationEndHandler(SimulationEvent* re);
+    virtual void onSimulationEndHandler(SimulationEvent* re);
+    virtual void onSimulationPausedHandler(SimulationEvent* re);
+    virtual void onSimulationResumeHandler(SimulationEvent* re);
+    virtual void onEntityRemoveHandler(SimulationEvent* re);
 private:
 
 };

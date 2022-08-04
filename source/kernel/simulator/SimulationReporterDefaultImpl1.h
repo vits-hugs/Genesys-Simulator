@@ -25,21 +25,21 @@
  */
 class SimulationReporterDefaultImpl1 : public SimulationReporter_if {
 public:
-	SimulationReporterDefaultImpl1(ModelSimulation* simulation, Model* model, List<ModelDataDefinition*>* statsCountersSimulation);
-	virtual ~SimulationReporterDefaultImpl1() = default;
+    SimulationReporterDefaultImpl1(ModelSimulation* simulation, Model* model, List<ModelDataDefinition*>* statsCountersSimulation);
+    virtual ~SimulationReporterDefaultImpl1() = default;
 public:
-	virtual void showReplicationStatistics();
-	virtual void showSimulationStatistics();
-	virtual void showSimulationResponses();
-	virtual void showSimulationControls();
+    virtual void showReplicationStatistics();
+    virtual void showSimulationStatistics();
+    virtual void showSimulationResponses();
+    virtual void showSimulationControls();
 private:
-	ModelSimulation* _simulation;
-	Model* _model;
+    ModelSimulation* _simulation;
+    Model* _model;
 private:
-	List<ModelDataDefinition*>* _statsCountersSimulation;
+    List<ModelDataDefinition*>* _statsCountersSimulation;
 private:
-	const unsigned short _w = 9;
-	const unsigned short _nameW = 36;
+    const unsigned short _w = 9;
+    const unsigned short _nameW = 36;
 };
 //namespace\\}
 #endif /* SIMULATIONREPORTERDEFAULTIMPL1_H */

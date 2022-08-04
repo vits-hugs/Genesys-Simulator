@@ -26,51 +26,51 @@
  */
 class SourceModelComponent : public ModelComponent {
 public:
-	SourceModelComponent(Model* model, std::string componentTypename, std::string name = "");
-	virtual ~SourceModelComponent() = default;
+    SourceModelComponent(Model* model, std::string componentTypename, std::string name = "");
+    virtual ~SourceModelComponent() = default;
 public: // get & set
-	void setFirstCreation(double _firstCreation);
-	double getFirstCreation() const;
-	void setEntityType(EntityType* _entityType);
-	void setEntityTypeName(std::string entityTypeName);
-	EntityType* getEntityType() const;
-	void setTimeUnit(Util::TimeUnit _timeUnit);
-	Util::TimeUnit getTimeUnit() const;
-	void setTimeBetweenCreationsExpression(std::string _timeBetweenCreations);
-	std::string getTimeBetweenCreationsExpression() const;
-	void setMaxCreations(unsigned long _maxCreations);
-	void setMaxCreations(std::string _maxCreationsExpression);
-	std::string getMaxCreations() const;
-	unsigned int getEntitiesCreated() const;
-	void setEntitiesCreated(unsigned int _entitiesCreated);
-	void setEntitiesPerCreation(unsigned int _entitiesPerCreation);
-	unsigned int getEntitiesPerCreation() const;
+    void setFirstCreation(double _firstCreation);
+    double getFirstCreation() const;
+    void setEntityType(EntityType* _entityType);
+    void setEntityTypeName(std::string entityTypeName);
+    EntityType* getEntityType() const;
+    void setTimeUnit(Util::TimeUnit _timeUnit);
+    Util::TimeUnit getTimeUnit() const;
+    void setTimeBetweenCreationsExpression(std::string _timeBetweenCreations);
+    std::string getTimeBetweenCreationsExpression() const;
+    void setMaxCreations(unsigned long _maxCreations);
+    void setMaxCreations(std::string _maxCreationsExpression);
+    std::string getMaxCreations() const;
+    unsigned int getEntitiesCreated() const;
+    void setEntitiesCreated(unsigned int _entitiesCreated);
+    void setEntitiesPerCreation(unsigned int _entitiesPerCreation);
+    unsigned int getEntitiesPerCreation() const;
 public:
-	virtual std::string show();
+    virtual std::string show();
 protected:
-	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual void _initBetweenReplications();
-	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-	virtual bool _check(std::string* errorMessage);
-	virtual void _createInternalAndAttachedData();
+    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+    virtual void _initBetweenReplications();
+    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+    virtual bool _check(std::string* errorMessage);
+    virtual void _createInternalAndAttachedData();
 protected: // get & set
-	EntityType* _entityType = nullptr;
+    EntityType* _entityType = nullptr;
 
-	const struct DEFAULT_VALUES {
-		const double firstCreation = 0.0;
-		const unsigned int entitiesPerCreation = 1;
-		const std::string maxCreationsExpression = std::to_string(std::numeric_limits<unsigned int>::max());
-		const std::string timeBetweenCreationsExpression = "EXPO(1.0)";
-		const Util::TimeUnit timeBetweenCreationsTimeUnit = Util::TimeUnit::second;
-		//
-		const std::string entityTypename = "entitytype";
-	} DEFAULT;
-	double _firstCreation = DEFAULT.firstCreation;
-	unsigned int _entitiesPerCreation = DEFAULT.entitiesPerCreation;
-	std::string _maxCreationsExpression = DEFAULT.maxCreationsExpression;
-	std::string _timeBetweenCreationsExpression = DEFAULT.timeBetweenCreationsExpression;
-	Util::TimeUnit _timeBetweenCreationsTimeUnit = DEFAULT.timeBetweenCreationsTimeUnit;
-	unsigned int _entitiesCreatedSoFar = 0;
+    const struct DEFAULT_VALUES {
+        const double firstCreation = 0.0;
+        const unsigned int entitiesPerCreation = 1;
+        const std::string maxCreationsExpression = std::to_string(std::numeric_limits<unsigned int>::max());
+        const std::string timeBetweenCreationsExpression = "EXPO(1.0)";
+        const Util::TimeUnit timeBetweenCreationsTimeUnit = Util::TimeUnit::second;
+        //
+        const std::string entityTypename = "entitytype";
+    } DEFAULT;
+    double _firstCreation = DEFAULT.firstCreation;
+    unsigned int _entitiesPerCreation = DEFAULT.entitiesPerCreation;
+    std::string _maxCreationsExpression = DEFAULT.maxCreationsExpression;
+    std::string _timeBetweenCreationsExpression = DEFAULT.timeBetweenCreationsExpression;
+    Util::TimeUnit _timeBetweenCreationsTimeUnit = DEFAULT.timeBetweenCreationsTimeUnit;
+    unsigned int _entitiesCreatedSoFar = 0;
 };
 //namespace\\}
 #endif /* SOURCEMODELCOMPONENT_H */

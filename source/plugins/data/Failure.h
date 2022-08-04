@@ -68,77 +68,77 @@ time that a resource is busy, not simulated clock time.
 class Failure : public ModelDataDefinition {
 public:
 
-	enum class FailureType : int {
-		COUNT = 1, TIME = 2
-	};
+    enum class FailureType : int {
+        COUNT = 1, TIME = 2
+    };
 
-	enum class FailureRule : int {
-		IGNORE = 1, PREEMPT = 2, WAIT = 3
-	};
+    enum class FailureRule : int {
+        IGNORE = 1, PREEMPT = 2, WAIT = 3
+    };
 
 public:
-	Failure(Model* model, std::string name = "");
-	virtual ~Failure() = default;
+    Failure(Model* model, std::string name = "");
+    virtual ~Failure() = default;
 public: // static
-	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-	static PluginInformation* GetPluginInformation();
-	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+    static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+    static PluginInformation* GetPluginInformation();
+    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
-	virtual std::string show();
-	void checkIsGoingToFailByCount(Resource* resource);
+    virtual std::string show();
+    void checkIsGoingToFailByCount(Resource* resource);
 public: // gets & sets
-	void setFailureType(FailureType _failureType);
-	Failure::FailureType getFailureType() const;
-	void setCountExpression(std::string countExpression);
-	std::string getCountExpression() const;
-	void setDownTimeTimeUnit(Util::TimeUnit downTimeTimeUnit);
-	Util::TimeUnit getDownTimeTimeUnit() const;
-	void setDownTimeExpression(std::string downTimeExpression);
-	std::string getDownTimeExpression() const;
-	void setUpTimeTimeUnit(Util::TimeUnit upTimeTimeUnit);
-	Util::TimeUnit getUpTimeTimeUnit() const;
-	void setUpTimeExpression(std::string upTimeExpression);
-	std::string getUpTimeExpression() const;
-	void setFailureRule(FailureRule _failureRule);
-	FailureRule getFailureRule() const;
+    void setFailureType(FailureType _failureType);
+    Failure::FailureType getFailureType() const;
+    void setCountExpression(std::string countExpression);
+    std::string getCountExpression() const;
+    void setDownTimeTimeUnit(Util::TimeUnit downTimeTimeUnit);
+    Util::TimeUnit getDownTimeTimeUnit() const;
+    void setDownTimeExpression(std::string downTimeExpression);
+    std::string getDownTimeExpression() const;
+    void setUpTimeTimeUnit(Util::TimeUnit upTimeTimeUnit);
+    Util::TimeUnit getUpTimeTimeUnit() const;
+    void setUpTimeExpression(std::string upTimeExpression);
+    std::string getUpTimeExpression() const;
+    void setFailureRule(FailureRule _failureRule);
+    FailureRule getFailureRule() const;
 
-	List<Resource*>*falingResources() const;
+    List<Resource*>*falingResources() const;
 
 protected: // must be overriden
-	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 protected: // could be overriden .
-	virtual bool _check(std::string* errorMessage);
-	virtual void _initBetweenReplications();
-	//virtual void _createInternalAndAttachedData();
-	//virtual ParserChangesInformation* _getParserChangesInformation();
+    virtual bool _check(std::string* errorMessage);
+    virtual void _initBetweenReplications();
+    //virtual void _createInternalAndAttachedData();
+    //virtual ParserChangesInformation* _getParserChangesInformation();
 
 private: // simulation internal event handlers
-	void _onFailureActiveEventHandler(void* resourcePtr);
-	void _onFailureFailEventHandler(void* resourcePtr);
+    void _onFailureActiveEventHandler(void* resourcePtr);
+    void _onFailureFailEventHandler(void* resourcePtr);
 private:
-	void _scheduleActivation(Resource* resource);
+    void _scheduleActivation(Resource* resource);
 private:
 
-	const struct DEFAULT_VALUES {
-		FailureType failureType = FailureType::TIME;
-		FailureRule failureRule = FailureRule::IGNORE;
-		std::string countExpression = "";
-		std::string upTimeExpression = "";
-		Util::TimeUnit upTimeTimeUnit = Util::TimeUnit::second;
-		std::string downTimeExpression = "";
-		Util::TimeUnit downTimeTimeUnit = Util::TimeUnit::second;
-	} DEFAULT;
-	FailureType _failureType = DEFAULT.failureType;
-	FailureRule _failureRule = DEFAULT.failureRule;
-	std::string _countExpression = DEFAULT.countExpression;
-	std::string _upTimeExpression = DEFAULT.upTimeExpression;
-	Util::TimeUnit _upTimeTimeUnit = DEFAULT.upTimeTimeUnit;
-	std::string _downTimeExpression = DEFAULT.downTimeExpression;
-	Util::TimeUnit _downTimeTimeUnit = DEFAULT.downTimeTimeUnit;
+    const struct DEFAULT_VALUES {
+        FailureType failureType = FailureType::TIME;
+        FailureRule failureRule = FailureRule::IGNORE;
+        std::string countExpression = "";
+        std::string upTimeExpression = "";
+        Util::TimeUnit upTimeTimeUnit = Util::TimeUnit::second;
+        std::string downTimeExpression = "";
+        Util::TimeUnit downTimeTimeUnit = Util::TimeUnit::second;
+    } DEFAULT;
+    FailureType _failureType = DEFAULT.failureType;
+    FailureRule _failureRule = DEFAULT.failureRule;
+    std::string _countExpression = DEFAULT.countExpression;
+    std::string _upTimeExpression = DEFAULT.upTimeExpression;
+    Util::TimeUnit _upTimeTimeUnit = DEFAULT.upTimeTimeUnit;
+    std::string _downTimeExpression = DEFAULT.downTimeExpression;
+    Util::TimeUnit _downTimeTimeUnit = DEFAULT.downTimeTimeUnit;
 private:
-	std::map<Resource*, unsigned int>* _releaseCounts = new std::map<Resource*, unsigned int>();
-	List<Resource*>* _falingResources = new List<Resource*>();
+    std::map<Resource*, unsigned int>* _releaseCounts = new std::map<Resource*, unsigned int>();
+    List<Resource*>* _falingResources = new List<Resource*>();
 };
 
 #endif /* FAILURE_H */

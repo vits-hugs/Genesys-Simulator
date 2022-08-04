@@ -44,7 +44,7 @@ void ModelManager::remove(Model* model) {
         //Util::ResetAllIds(); // @TODO!!!! Util::ResetAllIds() should be MODEL BASED!!!
         _currentModel = this->front();
     }
-    delete model;//->~Model();
+    delete model; //->~Model();
     _simulator->getTracer()->trace(TraceManager::Level::L2_results, "Model successfully removed");
 }
 
@@ -65,7 +65,7 @@ bool ModelManager::loadModel(std::string filename) {
         this->insert(model);
         _simulator->getTracer()->trace(TraceManager::Level::L2_results, "Model successfully loaded");
     } else {
-        delete model;//->~Model();
+        delete model; //->~Model();
         _simulator->getTracer()->trace(TraceManager::Level::L2_results, "Model coud not be loaded");
     }
     return res;
@@ -81,7 +81,7 @@ bool ModelManager::createFromLanguage(std::string modelSpecification) {
     for (unsigned short i = 0; i < 16; i++) {
         randomTempFilename += alphanum[rand() % stringLength];
     }
-    randomTempFilename ="__TEMPFILEMODELO.GEN"; //@TODO: Remove this line
+    randomTempFilename = "__TEMPFILEMODELO.GEN"; //@TODO: Remove this line
     std::ofstream savefile;
     savefile.open(randomTempFilename, std::ofstream::out);
     savefile << modelSpecification;

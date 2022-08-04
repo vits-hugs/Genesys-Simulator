@@ -17,6 +17,7 @@
 #include "../../kernel/simulator/ModelComponent.h"
 #include "../../plugins/data/Queue.h"
 #include "../../plugins/data/EntityGroup.h"
+
 /*!
 Batch module
 DESCRIPTION
@@ -28,9 +29,9 @@ matched together based on an attribute. Entities arriving at the Batch module ar
 placed in a queue until the required number of entities has accumulated. Once
 accumulated, a new representative entity is created.
 TYPICAL USES
-* Collect a number of parts before starting processing
-* Reassemble previously separated copies of a form
-* Bring together a patient and his record before commencing an appointment
+ * Collect a number of parts before starting processing
+ * Reassemble previously separated copies of a form
+ * Bring together a patient and his record before commencing an appointment
 PROMPTS
 Prompt Description
 Name Unique module identifier displayed on the module shape.
@@ -54,65 +55,65 @@ Representative Entity The entity type for the representative entity.
 class Batch : public ModelComponent {
 public:
 
-	enum class BatchType : int {
-		Temporary = 0, Permanent = 1
-	};
+    enum class BatchType : int {
+        Temporary = 0, Permanent = 1
+    };
 
-	enum class Rule : int {
-		Any = 0, ByAttribute = 1
-	};
+    enum class Rule : int {
+        Any = 0, ByAttribute = 1
+    };
 
-	enum class GroupedAttribs : int {
-		FirstEntity = 0, LastEntity = 1, SumAttributes = 2
-	};
+    enum class GroupedAttribs : int {
+        FirstEntity = 0, LastEntity = 1, SumAttributes = 2
+    };
 public: // constructors
-	Batch(Model* model, std::string name = "");
-	virtual ~Batch() = default;
+    Batch(Model* model, std::string name = "");
+    virtual ~Batch() = default;
 public: // virtual
-	virtual std::string show();
+    virtual std::string show();
 public: // static
-	static PluginInformation* GetPluginInformation();
-	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+    static PluginInformation* GetPluginInformation();
+    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
-	void setGroupedEntityType(EntityType* groupedEntityType);
-	void setGroupedEntityTypeName(std::string groupedEntityTypeName);
-	EntityType* getGroupedEntityType() const;
-	void setAttributeName(std::string attributeName);
+    void setGroupedEntityType(EntityType* groupedEntityType);
+    void setGroupedEntityTypeName(std::string groupedEntityTypeName);
+    EntityType* getGroupedEntityType() const;
+    void setAttributeName(std::string attributeName);
     std::string getAttributeName() const;
-	void setBatchSize(std::string batchSize);
+    void setBatchSize(std::string batchSize);
     std::string getBatchSize() const;
     void setRule(Batch::Rule _rule);
     Batch::Rule getRule() const;
     void setGroupedAttributes(Batch::GroupedAttribs _groupedAttributes);
-	Batch::GroupedAttribs getGroupedAttributes() const;
+    Batch::GroupedAttribs getGroupedAttributes() const;
 protected: // virtual should
-	//virtual void _initBetweenReplications();
-	virtual void _createInternalAndAttachedData();
-	virtual bool _check(std::string* errorMessage);
+    //virtual void _initBetweenReplications();
+    virtual void _createInternalAndAttachedData();
+    virtual bool _check(std::string* errorMessage);
 protected: // virtual must
-	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
-	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 private: // methods
 private: // attributes 1:1
 
-	const struct DEFAULT_VALUES {
-		Batch::BatchType batchType = Batch::BatchType::Temporary;
-		Batch::Rule rule = Batch::Rule::Any;
-		Batch::GroupedAttribs groupedAttributes = Batch::GroupedAttribs::FirstEntity;
-		std::string batchSize = "2";
-		std::string attributeName = "";
-	} DEFAULT;
-	Batch::BatchType _batchType = DEFAULT.batchType;
-	Batch::Rule _rule = DEFAULT.rule;
-	Batch::GroupedAttribs _groupedAttributes = DEFAULT.groupedAttributes;
-	std::string _batchSize = DEFAULT.batchSize;
-	std::string _attributeName = DEFAULT.attributeName;
+    const struct DEFAULT_VALUES {
+        Batch::BatchType batchType = Batch::BatchType::Temporary;
+        Batch::Rule rule = Batch::Rule::Any;
+        Batch::GroupedAttribs groupedAttributes = Batch::GroupedAttribs::FirstEntity;
+        std::string batchSize = "2";
+        std::string attributeName = "";
+    } DEFAULT;
+    Batch::BatchType _batchType = DEFAULT.batchType;
+    Batch::Rule _rule = DEFAULT.rule;
+    Batch::GroupedAttribs _groupedAttributes = DEFAULT.groupedAttributes;
+    std::string _batchSize = DEFAULT.batchSize;
+    std::string _attributeName = DEFAULT.attributeName;
 private: // attributes 1:1
-	EntityType* _groupedEntityType = nullptr;
-	EntityGroup* _entityGroup = nullptr;
-	Queue* _queue = nullptr;
+    EntityType* _groupedEntityType = nullptr;
+    EntityGroup* _entityGroup = nullptr;
+    Queue* _queue = nullptr;
 private: // attributes 1:n
 };
 

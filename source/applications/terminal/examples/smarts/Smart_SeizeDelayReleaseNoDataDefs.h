@@ -17,9 +17,9 @@
 
 class Smart_SeizeDelayReleaseNoDataDefs : public BaseGenesysTerminalApplication {
 public:
-	Smart_SeizeDelayReleaseNoDataDefs();
+    Smart_SeizeDelayReleaseNoDataDefs();
 public:
-	virtual int main(int argc, char** argv);
+    virtual int main(int argc, char** argv);
 };
 
 #endif /* SMART_SEIZEDELAYRELEASENODATADEFS_H */

@@ -37,69 +37,74 @@
 
 namespace testing {
 
-using internal::GetUnitTestImpl;
+    using internal::GetUnitTestImpl;
 
-// Gets the summary of the failure message by omitting the stack trace
-// in it.
-std::string TestPartResult::ExtractSummary(const char* message) {
-  const char* const stack_trace = strstr(message, internal::kStackTraceMarker);
-  return stack_trace == nullptr ? message : std::string(message, stack_trace);
-}
+    // Gets the summary of the failure message by omitting the stack trace
+    // in it.
 
-// Prints a TestPartResult object.
-std::ostream& operator<<(std::ostream& os, const TestPartResult& result) {
-  return os << internal::FormatFileLocation(result.file_name(),
-                                            result.line_number())
-            << " "
-            << (result.type() == TestPartResult::kSuccess ? "Success"
-                : result.type() == TestPartResult::kSkip  ? "Skipped"
+    std::string TestPartResult::ExtractSummary(const char* message) {
+        const char* const stack_trace = strstr(message, internal::kStackTraceMarker);
+        return stack_trace == nullptr ? message : std::string(message, stack_trace);
+    }
+
+    // Prints a TestPartResult object.
+
+    std::ostream& operator<<(std::ostream& os, const TestPartResult& result) {
+        return os << internal::FormatFileLocation(result.file_name(),
+                result.line_number())
+                << " "
+                << (result.type() == TestPartResult::kSuccess ? "Success"
+                : result.type() == TestPartResult::kSkip ? "Skipped"
                 : result.type() == TestPartResult::kFatalFailure
-                    ? "Fatal failure"
-                    : "Non-fatal failure")
-            << ":\n"
-            << result.message() << std::endl;
-}
+                ? "Fatal failure"
+                : "Non-fatal failure")
+                << ":\n"
+                << result.message() << std::endl;
+    }
 
-// Appends a TestPartResult to the array.
-void TestPartResultArray::Append(const TestPartResult& result) {
-  array_.push_back(result);
-}
+    // Appends a TestPartResult to the array.
 
-// Returns the TestPartResult at the given index (0-based).
-const TestPartResult& TestPartResultArray::GetTestPartResult(int index) const {
-  if (index < 0 || index >= size()) {
-    printf("\nInvalid index (%d) into TestPartResultArray.\n", index);
-    internal::posix::Abort();
-  }
+    void TestPartResultArray::Append(const TestPartResult& result) {
+        array_.push_back(result);
+    }
 
-  return array_[static_cast<size_t>(index)];
-}
+    // Returns the TestPartResult at the given index (0-based).
 
-// Returns the number of TestPartResult objects in the array.
-int TestPartResultArray::size() const {
-  return static_cast<int>(array_.size());
-}
+    const TestPartResult& TestPartResultArray::GetTestPartResult(int index) const {
+        if (index < 0 || index >= size()) {
+            printf("\nInvalid index (%d) into TestPartResultArray.\n", index);
+            internal::posix::Abort();
+        }
 
-namespace internal {
+        return array_[static_cast<size_t> (index)];
+    }
 
-HasNewFatalFailureHelper::HasNewFatalFailureHelper()
-    : has_new_fatal_failure_(false),
-      original_reporter_(
-          GetUnitTestImpl()->GetTestPartResultReporterForCurrentThread()) {
-  GetUnitTestImpl()->SetTestPartResultReporterForCurrentThread(this);
-}
+    // Returns the number of TestPartResult objects in the array.
 
-HasNewFatalFailureHelper::~HasNewFatalFailureHelper() {
-  GetUnitTestImpl()->SetTestPartResultReporterForCurrentThread(
-      original_reporter_);
-}
+    int TestPartResultArray::size() const {
+        return static_cast<int> (array_.size());
+    }
 
-void HasNewFatalFailureHelper::ReportTestPartResult(
-    const TestPartResult& result) {
-  if (result.fatally_failed()) has_new_fatal_failure_ = true;
-  original_reporter_->ReportTestPartResult(result);
-}
+    namespace internal {
 
-}  // namespace internal
+        HasNewFatalFailureHelper::HasNewFatalFailureHelper()
+        : has_new_fatal_failure_(false),
+        original_reporter_(
+        GetUnitTestImpl()->GetTestPartResultReporterForCurrentThread()) {
+            GetUnitTestImpl()->SetTestPartResultReporterForCurrentThread(this);
+        }
 
-}  // namespace testing
+        HasNewFatalFailureHelper::~HasNewFatalFailureHelper() {
+            GetUnitTestImpl()->SetTestPartResultReporterForCurrentThread(
+                    original_reporter_);
+        }
+
+        void HasNewFatalFailureHelper::ReportTestPartResult(
+                const TestPartResult& result) {
+            if (result.fatally_failed()) has_new_fatal_failure_ = true;
+            original_reporter_->ReportTestPartResult(result);
+        }
+
+    } // namespace internal
+
+} // namespace testing

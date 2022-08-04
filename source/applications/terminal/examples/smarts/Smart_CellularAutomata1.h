@@ -34,9 +34,9 @@
 
 class Smart_CellularAutomata1 {
 public:
-	Smart_CellularAutomata1();
-	Smart_CellularAutomata1(const Smart_CellularAutomata1& orig);
-	virtual ~Smart_CellularAutomata1();
+    Smart_CellularAutomata1();
+    Smart_CellularAutomata1(const Smart_CellularAutomata1& orig);
+    virtual ~Smart_CellularAutomata1();
 private:
 
 };

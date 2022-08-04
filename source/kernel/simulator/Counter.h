@@ -24,27 +24,27 @@
  */
 class Counter : public ModelDataDefinition {
 public:
-	Counter(Model* model, std::string name = "", ModelDataDefinition* parent = nullptr);
-	virtual ~Counter() = default;
+    Counter(Model* model, std::string name = "", ModelDataDefinition* parent = nullptr);
+    virtual ~Counter() = default;
 public:
-	virtual std::string show();
+    virtual std::string show();
 public:
-	static PluginInformation* GetPluginInformation();
-	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+    static PluginInformation* GetPluginInformation();
+    static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
-	void clear();
-	void incCountValue(/*int*/double value = 1.0);
-	double /*unsigned long*/ getCountValue() const;
-	ModelDataDefinition* getParent() const;
+    void clear();
+    void incCountValue(/*int*/double value = 1.0);
+    double /*unsigned long*/ getCountValue() const;
+    ModelDataDefinition* getParent() const;
 protected: // from ModelDataDefinition
-	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-	virtual bool _check(std::string* errorMessage);
-	virtual void _initBetweenReplications();
+    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+    virtual bool _check(std::string* errorMessage);
+    virtual void _initBetweenReplications();
 private:
-	ModelDataDefinition* _parent;
-	double /*unsigned long*/ _count = 0;
+    ModelDataDefinition* _parent;
+    double /*unsigned long*/ _count = 0;
 };
 //namespace\\}
 #endif /* COUNTERDEFAULTIMPL1_H */

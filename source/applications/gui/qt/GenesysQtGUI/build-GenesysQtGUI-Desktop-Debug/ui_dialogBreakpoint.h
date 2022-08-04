@@ -1,10 +1,10 @@
 /********************************************************************************
-** Form generated from reading UI file 'dialogBreakpoint.ui'
-**
-** Created by: Qt User Interface Compiler version 5.15.3
-**
-** WARNING! All changes made in this file will be lost when recompiling UI file!
-********************************************************************************/
+ ** Form generated from reading UI file 'dialogBreakpoint.ui'
+ **
+ ** Created by: Qt User Interface Compiler version 5.15.3
+ **
+ ** WARNING! All changes made in this file will be lost when recompiling UI file!
+ ********************************************************************************/
 
 #ifndef UI_DIALOGBREAKPOINT_H
 #define UI_DIALOGBREAKPOINT_H
@@ -23,8 +23,7 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_dialogBreakpoint
-{
+class Ui_dialogBreakpoint {
 public:
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
@@ -39,8 +38,7 @@ public:
     QSpacerItem *horizontalSpacer;
     QDialogButtonBox *buttonBox;
 
-    void setupUi(QDialog *dialogBreakpoint)
-    {
+    void setupUi(QDialog *dialogBreakpoint) {
         if (dialogBreakpoint->objectName().isEmpty())
             dialogBreakpoint->setObjectName(QString::fromUtf8("dialogBreakpoint"));
         dialogBreakpoint->setWindowModality(Qt::ApplicationModal);
@@ -107,7 +105,7 @@ public:
         buttonBox = new QDialogButtonBox(dialogBreakpoint);
         buttonBox->setObjectName(QString::fromUtf8("buttonBox"));
         buttonBox->setOrientation(Qt::Horizontal);
-        buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
+        buttonBox->setStandardButtons(QDialogButtonBox::Cancel | QDialogButtonBox::Ok);
 
         horizontalLayout_3->addWidget(buttonBox);
 
@@ -122,8 +120,7 @@ public:
         QMetaObject::connectSlotsByName(dialogBreakpoint);
     } // setupUi
 
-    void retranslateUi(QDialog *dialogBreakpoint)
-    {
+    void retranslateUi(QDialog *dialogBreakpoint) {
         dialogBreakpoint->setWindowTitle(QCoreApplication::translate("dialogBreakpoint", "Insert Breakpoint", nullptr));
         label->setText(QCoreApplication::translate("dialogBreakpoint", "Breakpoint Type: ", nullptr));
         label_2->setText(QCoreApplication::translate("dialogBreakpoint", "Breakpoint On  ", nullptr));
@@ -133,7 +130,9 @@ public:
 };
 
 namespace Ui {
-    class dialogBreakpoint: public Ui_dialogBreakpoint {};
+
+    class dialogBreakpoint : public Ui_dialogBreakpoint {
+    };
 } // namespace Ui
 
 QT_END_NAMESPACE

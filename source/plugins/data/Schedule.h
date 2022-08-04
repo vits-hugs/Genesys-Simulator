@@ -24,10 +24,10 @@ operating schedule for a resource or with the Create module to define an arrival
 schedule. Additionally, a schedule may be used and referenced to factor time delays
 based on the simulation time.
 TYPICAL USES
-* Work schedule for staff, including breaks
-* Breakdown patterns for equipment
-* Volume of customers arriving at a store
-* Learning-curve factors for new workers
+ * Work schedule for staff, including breaks
+ * Breakdown patterns for equipment
+ * Volume of customers arriving at a store
+ * Learning-curve factors for new workers
 PROMPTS
 File Read Time Specifies when to read the values from the file into the variable.
 If you select PreCheck, the values for the variable are read while
@@ -71,19 +71,19 @@ Duration Time duration for which a specified Value will be valid.
 
 class Schedule : public ModelDataDefinition {
 public: // constructors
-	Schedule(Model* model, std::string name = "");
-	virtual ~Schedule() = default;
+    Schedule(Model* model, std::string name = "");
+    virtual ~Schedule() = default;
 public: // virtual
-	virtual std::string show();
+    virtual std::string show();
 public: // static 
-	static PluginInformation* GetPluginInformation();
-	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+    static PluginInformation* GetPluginInformation();
+    static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
 protected:
-	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-	virtual bool _check(std::string* errorMessage);
+    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+    virtual bool _check(std::string* errorMessage);
 private:
 };
 

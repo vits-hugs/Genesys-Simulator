@@ -27,9 +27,9 @@ Use the File module to access external files for the ReadWrite module, Variable
 module, and Expression module. The File module identifies the system file name and
 defines the access type and operational characteristics of the file.
 TYPICAL USES
-* File containing predefined airline flight data
-* File specifying customer order times and relevant information
-* File to write user model configuration data from menu input
+ * File containing predefined airline flight data
+ * File specifying customer order times and relevant information
+ * File to write user model configuration data from menu input
 PROMPTS 
 Prompt Description
 Name The name of the file whose characteristics are being defined.
@@ -63,21 +63,21 @@ recordset refers.
  */
 class File : public ModelDataDefinition {
 public:
-	File(Model* model, std::string name = "");
-	virtual ~File() = default;
+    File(Model* model, std::string name = "");
+    virtual ~File() = default;
 public: // static
-	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-	static PluginInformation* GetPluginInformation();
-	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+    static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+    static PluginInformation* GetPluginInformation();
+    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
-	virtual std::string show();
+    virtual std::string show();
 
 protected: // must be overriden 
-	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 protected: // could be overriden 
-	virtual bool _check(std::string* errorMessage);
-	virtual ParserChangesInformation* _getParserChangesInformation();
+    virtual bool _check(std::string* errorMessage);
+    virtual ParserChangesInformation* _getParserChangesInformation();
 
 };
 

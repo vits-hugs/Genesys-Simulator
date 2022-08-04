@@ -18,64 +18,64 @@
 #ifdef PLUGINCONNECT_DYNAMIC 
 
 extern "C" StaticGetPluginInformation GetPluginInformation() {
-	return &Submodel::GetPluginInformation;
+    return &Submodel::GetPluginInformation;
 }
 #endif
 
 ModelDataDefinition* Submodel::NewInstance(Model* model, std::string name) {
-	return new Submodel(model, name);
+    return new Submodel(model, name);
 }
 
 Submodel::Submodel(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Submodel>(), name) {
 }
 
 std::string Submodel::show() {
-	return ModelComponent::show() + "";
+    return ModelComponent::show() + "";
 }
 
 ModelComponent* Submodel::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
-	Submodel* newComponent = new Submodel(model);
-	try {
-		newComponent->_loadInstance(fields);
-	} catch (const std::exception& e) {
+    Submodel* newComponent = new Submodel(model);
+    try {
+        newComponent->_loadInstance(fields);
+    } catch (const std::exception& e) {
 
-	}
-	return newComponent;
+    }
+    return newComponent;
 }
 
 void Submodel::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
-	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
-	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
+    _parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
+    this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
 bool Submodel::_loadInstance(std::map<std::string, std::string>* fields) {
-	bool res = ModelComponent::_loadInstance(fields);
-	if (res) {
-		// @TODO: not implemented yet
-	}
-	return res;
+    bool res = ModelComponent::_loadInstance(fields);
+    if (res) {
+        // @TODO: not implemented yet
+    }
+    return res;
 }
 
 //void Submodel::_initBetweenReplications() {}
 
 std::map<std::string, std::string>* Submodel::_saveInstance(bool saveDefaultValues) {
-	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
-	// @TODO: not implemented yet
-	return fields;
+    std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
+    // @TODO: not implemented yet
+    return fields;
 }
 
 bool Submodel::_check(std::string* errorMessage) {
-	bool resultAll = true;
-	// @TODO: not implemented yet
-	*errorMessage += "";
-	return resultAll;
+    bool resultAll = true;
+    // @TODO: not implemented yet
+    *errorMessage += "";
+    return resultAll;
 }
 
 PluginInformation* Submodel::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Submodel>(), &Submodel::LoadInstance, &Submodel::NewInstance);
-	info->setCategory("Logic");
-	// ...
-	return info;
+    PluginInformation* info = new PluginInformation(Util::TypeOf<Submodel>(), &Submodel::LoadInstance, &Submodel::NewInstance);
+    info->setCategory("Logic");
+    // ...
+    return info;
 }
 
 

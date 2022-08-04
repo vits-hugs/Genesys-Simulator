@@ -18,9 +18,9 @@
 
 class Smart_Delay : public BaseGenesysTerminalApplication {
 public:
-	Smart_Delay();
+    Smart_Delay();
 public:
-	virtual int main(int argc, char** argv);
+    virtual int main(int argc, char** argv);
 };
 
 #endif /* SMART_DELAY_H */

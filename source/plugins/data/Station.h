@@ -30,9 +30,9 @@ is used to report all times and costs accrued by the entities in this station. T
 Activity Area’s name is the same as the station. If a parent Activity Area is defined,
 then it also accrues any times and costs by the entities in this station.
 TYPICAL USES
-* Defining a lathe area
-* Defining a set of toll booths
-* Defining a food preparation area
+ * Defining a lathe area
+ * Defining a set of toll booths
+ * Defining a food preparation area
 PROMPTS
 Prompt Description
 Name Unique name of the module that will be displayed in the
@@ -63,31 +63,31 @@ its corresponding activity area.
  */
 class Station : public ModelDataDefinition {
 public:
-	Station(Model* model, std::string name = "");
-	virtual ~Station();
+    Station(Model* model, std::string name = "");
+    virtual ~Station();
 public:
-	virtual std::string show();
+    virtual std::string show();
 public: // static 
-	static PluginInformation* GetPluginInformation();
-	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+    static PluginInformation* GetPluginInformation();
+    static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
-	void initBetweenReplications();
-	void enter(Entity* entity);
-	void leave(Entity* entity);
-	void setEnterIntoStationComponent(ModelComponent* _enterIntoStationComponent);
-	ModelComponent* getEnterIntoStationComponent() const;
+    void initBetweenReplications();
+    void enter(Entity* entity);
+    void leave(Entity* entity);
+    void setEnterIntoStationComponent(ModelComponent* _enterIntoStationComponent);
+    ModelComponent* getEnterIntoStationComponent() const;
 protected:
-	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-	virtual bool _check(std::string* errorMessage);
-	virtual void _createInternalAndAttachedData();
+    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+    virtual bool _check(std::string* errorMessage);
+    virtual void _createInternalAndAttachedData();
 private:
-	unsigned int _numberInStation = 0;
-	ModelComponent* _enterIntoStationComponent;
+    unsigned int _numberInStation = 0;
+    ModelComponent* _enterIntoStationComponent;
 private: // inner elements
-	StatisticsCollector* _cstatNumberInStation = nullptr;
-	StatisticsCollector* _cstatTimeInStation = nullptr;
+    StatisticsCollector* _cstatNumberInStation = nullptr;
+    StatisticsCollector* _cstatTimeInStation = nullptr;
 };
 
 #endif /* STATION_H */

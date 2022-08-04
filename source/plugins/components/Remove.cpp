@@ -17,64 +17,64 @@
 #ifdef PLUGINCONNECT_DYNAMIC
 
 extern "C" StaticGetPluginInformation GetPluginInformation() {
-	return &Remove::GetPluginInformation;
+    return &Remove::GetPluginInformation;
 }
 #endif
 
 ModelDataDefinition* Remove::NewInstance(Model* model, std::string name) {
-	return new Remove(model, name);
+    return new Remove(model, name);
 }
 
 Remove::Remove(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Remove>(), name) {
 }
 
 std::string Remove::show() {
-	return ModelComponent::show() + "";
+    return ModelComponent::show() + "";
 }
 
 ModelComponent* Remove::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
-	Remove* newComponent = new Remove(model);
-	try {
-		newComponent->_loadInstance(fields);
-	} catch (const std::exception& e) {
+    Remove* newComponent = new Remove(model);
+    try {
+        newComponent->_loadInstance(fields);
+    } catch (const std::exception& e) {
 
-	}
-	return newComponent;
+    }
+    return newComponent;
 }
 
 void Remove::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
-	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
-	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
+    _parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
+    this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
 bool Remove::_loadInstance(std::map<std::string, std::string>* fields) {
-	bool res = ModelComponent::_loadInstance(fields);
-	if (res) {
-		// @TODO: not implemented yet
-	}
-	return res;
+    bool res = ModelComponent::_loadInstance(fields);
+    if (res) {
+        // @TODO: not implemented yet
+    }
+    return res;
 }
 
 //void Remove::_initBetweenReplications() {}
 
 std::map<std::string, std::string>* Remove::_saveInstance(bool saveDefaultValues) {
-	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
-	// @TODO: not implemented yet
-	return fields;
+    std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
+    // @TODO: not implemented yet
+    return fields;
 }
 
 bool Remove::_check(std::string* errorMessage) {
-	bool resultAll = true;
-	// @TODO: not implemented yet
-	*errorMessage += "";
-	return resultAll;
+    bool resultAll = true;
+    // @TODO: not implemented yet
+    *errorMessage += "";
+    return resultAll;
 }
 
 PluginInformation* Remove::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Remove>(), &Remove::LoadInstance, &Remove::NewInstance);
-	info->setCategory("Decisions");
-	// ...
-	return info;
+    PluginInformation* info = new PluginInformation(Util::TypeOf<Remove>(), &Remove::LoadInstance, &Remove::NewInstance);
+    info->setCategory("Decisions");
+    // ...
+    return info;
 }
 
 

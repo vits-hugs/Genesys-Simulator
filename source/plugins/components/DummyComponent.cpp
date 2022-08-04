@@ -19,58 +19,58 @@
 #ifdef PLUGINCONNECT_DYNAMIC
 
 extern "C" StaticGetPluginInformation GetPluginInformation() {
-	return &DummyComponent::GetPluginInformation;
+    return &DummyComponent::GetPluginInformation;
 }
 #endif
 
 ModelDataDefinition* DummyComponent::NewInstance(Model* model, std::string name) {
-	return new DummyComponent(model, name);
+    return new DummyComponent(model, name);
 }
 
 DummyComponent::DummyComponent(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<DummyComponent>(), name) {
 }
 
 std::string DummyComponent::show() {
-	return ModelComponent::show() + "";
+    return ModelComponent::show() + "";
 }
 
 // public static 
 
 ModelComponent* DummyComponent::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
-	DummyComponent* newComponent = new DummyComponent(model);
-	try {
-		newComponent->_loadInstance(fields);
-	} catch (const std::exception& e) {
+    DummyComponent* newComponent = new DummyComponent(model);
+    try {
+        newComponent->_loadInstance(fields);
+    } catch (const std::exception& e) {
 
-	}
-	return newComponent;
+    }
+    return newComponent;
 }
 
 PluginInformation* DummyComponent::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<DummyComponent>(), &DummyComponent::LoadInstance, &DummyComponent::NewInstance);
-	info->setDescriptionHelp("//@TODO");
-	return info;
+    PluginInformation* info = new PluginInformation(Util::TypeOf<DummyComponent>(), &DummyComponent::LoadInstance, &DummyComponent::NewInstance);
+    info->setDescriptionHelp("//@TODO");
+    return info;
 }
 
 // protected virtual -- must be overriden
 
 void DummyComponent::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
-	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
-	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
+    _parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
+    this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
 bool DummyComponent::_loadInstance(std::map<std::string, std::string>* fields) {
-	bool res = ModelComponent::_loadInstance(fields);
-	if (res) {
-		// @TODO: not implemented yet
-	}
-	return res;
+    bool res = ModelComponent::_loadInstance(fields);
+    if (res) {
+        // @TODO: not implemented yet
+    }
+    return res;
 }
 
 std::map<std::string, std::string>* DummyComponent::_saveInstance(bool saveDefaultValues) {
-	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
-	// @TODO: not implemented yet
-	return fields;
+    std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
+    // @TODO: not implemented yet
+    return fields;
 }
 
 
@@ -79,21 +79,21 @@ std::map<std::string, std::string>* DummyComponent::_saveInstance(bool saveDefau
 //ParserChangesInformation* DummyElement::_getParserChangesInformation() {}
 
 bool DummyComponent::_check(std::string* errorMessage) {
-	bool resultAll = true;
-	resultAll &= _someString != "";
-	resultAll &= _someUint > 0;
-	return resultAll;
+    bool resultAll = true;
+    resultAll &= _someString != "";
+    resultAll &= _someUint > 0;
+    return resultAll;
 }
 
 void DummyComponent::_initBetweenReplications() {
-	_someString = "Test";
-	_someUint = 1;
+    _someString = "Test";
+    _someUint = 1;
 }
 
 void DummyComponent::_createInternalAndAttachedData() {
-	if (_internalDataDefinition == nullptr) {
-		PluginManager* pm = _parentModel->getParentSimulator()->getPlugins();
-		_internalDataDefinition = pm->newInstance<DummyElement>(_parentModel, getName() + "." + "JustaDummy");
-		_internalDataInsert("JustaDummy", _internalDataDefinition);
-	}
+    if (_internalDataDefinition == nullptr) {
+        PluginManager* pm = _parentModel->getParentSimulator()->getPlugins();
+        _internalDataDefinition = pm->newInstance<DummyElement>(_parentModel, getName() + "." + "JustaDummy");
+        _internalDataInsert("JustaDummy", _internalDataDefinition);
+    }
 }

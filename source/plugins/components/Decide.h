@@ -34,9 +34,9 @@ single “else” exit. The number of entities that exit from each type (true/fa
 displayed for
 2-way by Chance or by Condition modules only.
 TYPICAL USES
-* Dispatching a faulty part for rework
-* Branching accepted vs. rejected checks
-* Sending priority customers to a dedicated process
+ * Dispatching a faulty part for rework
+ * Branching accepted vs. rejected checks
+ * Sending priority customers to a dedicated process
 Prompt Description
 Name Unique module identifier displayed on the module shape.
 Type Indicates whether the decision is based on a condition (if X>Y)
@@ -73,28 +73,28 @@ evaluator (for example, Color<>Red).
  */
 class Decide : public ModelComponent {
 public:
-	Decide(Model* model, std::string name = "");
-	virtual ~Decide() = default;
+    Decide(Model* model, std::string name = "");
+    virtual ~Decide() = default;
 public:
-	List<std::string>* getConditions() const;
+    List<std::string>* getConditions() const;
 
 public:
-	virtual std::string show();
+    virtual std::string show();
 public:
-	static PluginInformation* GetPluginInformation();
-	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+    static PluginInformation* GetPluginInformation();
+    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 protected:
-	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
-	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 protected:
-	//virtual void _initBetweenReplications();
-	virtual bool _check(std::string* errorMessage);
-	virtual void _createInternalAndAttachedData();
+    //virtual void _initBetweenReplications();
+    virtual bool _check(std::string* errorMessage);
+    virtual void _createInternalAndAttachedData();
 private:
-	List<std::string>* _conditions = new List<std::string>();
-	List<Counter*>* _numberOuts = nullptr;
+    List<std::string>* _conditions = new List<std::string>();
+    List<Counter*>* _numberOuts = nullptr;
 private:
 
 };

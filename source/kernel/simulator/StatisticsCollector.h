@@ -26,27 +26,27 @@
  */
 class StatisticsCollector : public ModelDataDefinition {//, public Statistics_if {
 public:
-	StatisticsCollector(Model* model, std::string name = "", ModelDataDefinition* parent = nullptr, bool insertIntoModel = true);
-	virtual ~StatisticsCollector() = default;
+    StatisticsCollector(Model* model, std::string name = "", ModelDataDefinition* parent = nullptr, bool insertIntoModel = true);
+    virtual ~StatisticsCollector() = default;
 public:
-	virtual std::string show();
+    virtual std::string show();
 public:
-	static PluginInformation* GetPluginInformation();
-	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+    static PluginInformation* GetPluginInformation();
+    static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
-	ModelDataDefinition* getParent() const;
-	Statistics_if* getStatistics() const;
+    ModelDataDefinition* getParent() const;
+    Statistics_if* getStatistics() const;
 
 protected:
-	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-	virtual bool _check(std::string* errorMessage);
+    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+    virtual bool _check(std::string* errorMessage);
 private:
-	void _initStaticsAndCollector();
+    void _initStaticsAndCollector();
 private:
-	ModelDataDefinition* _parent;
-	Statistics_if* _statistics;
+    ModelDataDefinition* _parent;
+    Statistics_if* _statistics;
 };
 //namespace\\}
 #endif /* STATISTICSCOLLECTOR_H */

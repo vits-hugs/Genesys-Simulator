@@ -23,34 +23,34 @@
 
 class SequenceStep : public PersistentObject_base {
 public:
-	SequenceStep(Station* station, std::list<Assignment*>* assignments = nullptr);
-	SequenceStep(Label* label, std::list<Assignment*>* assignments = nullptr);
-	SequenceStep(Model* model, std::string stationOrLabelName, bool isStation = true, std::list<Assignment*>* assignments = nullptr);
+    SequenceStep(Station* station, std::list<Assignment*>* assignments = nullptr);
+    SequenceStep(Label* label, std::list<Assignment*>* assignments = nullptr);
+    SequenceStep(Model* model, std::string stationOrLabelName, bool isStation = true, std::list<Assignment*>* assignments = nullptr);
 public: // virtual
 
-	virtual bool _loadInstance(std::map<std::string, std::string>* fields, unsigned int parentIndex);
-	virtual std::map<std::string, std::string>* _saveInstance(unsigned int parentIndex, bool saveDefaultValues);
-	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+    virtual bool _loadInstance(std::map<std::string, std::string>* fields, unsigned int parentIndex);
+    virtual std::map<std::string, std::string>* _saveInstance(unsigned int parentIndex, bool saveDefaultValues);
+    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 
 public:
 
-	std::list<Assignment*>* getAssignments() const;
-	void setStation(Station* _station);
-	Station* getStation() const;
-	void setElementManager(ModelDataManager* _modeldataManager);
+    std::list<Assignment*>* getAssignments() const;
+    void setStation(Station* _station);
+    Station* getStation() const;
+    void setElementManager(ModelDataManager* _modeldataManager);
     void setLabel(Label* _label);
     Label* getLabel() const;
 private:
 
-	const struct DEFAULT_VALUES {
-		const unsigned int assignmentsSize = 0;
-	} DEFAULT;
-	Station* _station = nullptr;
-	Label* _label = nullptr;
-	std::list<Assignment*>* _assignments = new std::list<Assignment*>();
+    const struct DEFAULT_VALUES {
+        const unsigned int assignmentsSize = 0;
+    } DEFAULT;
+    Station* _station = nullptr;
+    Label* _label = nullptr;
+    std::list<Assignment*>* _assignments = new std::list<Assignment*>();
 private:
-	ModelDataManager* _modeldataManager = nullptr;
+    ModelDataManager* _modeldataManager = nullptr;
 };
 
 /*!
@@ -75,30 +75,30 @@ It is automatically updated whenever Entity.Sequence or Entity.JobStep changes, 
 whenever the entity enters a station.
 Jobstep names must be globally unique.
 TYPICAL USES
-* Define a routing path for part processing
-* Define a sequence of steps patients must take upon arrival at an emergency room
+ * Define a routing path for part processing
+ * Define a sequence of steps patients must take upon arrival at an emergency room
  */
 class Sequence : public ModelDataDefinition {
 public:
 
 
 public:
-	Sequence(Model* model, std::string name = "");
-	virtual ~Sequence() = default;
+    Sequence(Model* model, std::string name = "");
+    virtual ~Sequence() = default;
 public:
-	virtual std::string show();
+    virtual std::string show();
 public: // static 
-	static PluginInformation* GetPluginInformation();
-	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+    static PluginInformation* GetPluginInformation();
+    static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
-	List<SequenceStep*>* getSteps() const;
+    List<SequenceStep*>* getSteps() const;
 protected:
-	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-	virtual bool _check(std::string* errorMessage);
+    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+    virtual bool _check(std::string* errorMessage);
 private:
-	List<SequenceStep*>* _steps = new List<SequenceStep*>();
+    List<SequenceStep*>* _steps = new List<SequenceStep*>();
 };
 
 #endif /* SEQUENCE_H */

@@ -39,9 +39,9 @@ public:
         std::cout << "Start testDataAnalyser" << std::endl;
         testSampler();
     }
-    
+
     void testProbabilityDistribution() {
-        
+
     }
 
     void testSampler() {

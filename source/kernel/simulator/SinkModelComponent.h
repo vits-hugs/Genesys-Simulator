@@ -24,15 +24,15 @@
  */
 class SinkModelComponent : public ModelComponent {
 public:
-	SinkModelComponent(Model* model, std::string componentTypename, std::string name = "");
-	virtual ~SinkModelComponent() = default;
+    SinkModelComponent(Model* model, std::string componentTypename, std::string name = "");
+    virtual ~SinkModelComponent() = default;
 public:
 protected:
-	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 protected:
-	//virtual void _initBetweenReplications();
-	virtual bool _check(std::string* errorMessage);
+    //virtual void _initBetweenReplications();
+    virtual bool _check(std::string* errorMessage);
 private:
 };
 //namespace\\}

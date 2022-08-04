@@ -19,49 +19,49 @@ SamplerBoostImpl::SamplerBoostImpl() {
 }
 
 double SamplerBoostImpl::random() {
-	//uniform_int_distribution<> dist(0.0, 1.0);
-	return 0.0; // dist(_gen);
+    //uniform_int_distribution<> dist(0.0, 1.0);
+    return 0.0; // dist(_gen);
 }
 
 double SamplerBoostImpl::sampleBeta(double alpha, double beta, double infLimit, double supLimit) {
-	return 0.0; // \todo: not implemented yet (dummy impl)
+    return 0.0; // \todo: not implemented yet (dummy impl)
 }
 
 double SamplerBoostImpl::sampleDiscrete(double acumProb, double value, ...) {
-	return 0.0; // \todo: not implemented yet (dummy impl)
+    return 0.0; // \todo: not implemented yet (dummy impl)
 }
 
 double SamplerBoostImpl::sampleErlang(double mean, int M) {
-	return 0.0; // \todo: not implemented yet (dummy impl)
+    return 0.0; // \todo: not implemented yet (dummy impl)
 }
 
 double SamplerBoostImpl::sampleExponential(double mean) {
-	return 0.0; // \todo: not implemented yet (dummy impl)
+    return 0.0; // \todo: not implemented yet (dummy impl)
 }
 
 double SamplerBoostImpl::sampleGamma(double mean, double alpha) {
-	return 0.0; // \todo: not implemented yet (dummy impl)
+    return 0.0; // \todo: not implemented yet (dummy impl)
 }
 
 double SamplerBoostImpl::sampleLogNormal(double mean, double stddev) {
-	return 0.0; // \todo: not implemented yet (dummy impl)
+    return 0.0; // \todo: not implemented yet (dummy impl)
 }
 
 double SamplerBoostImpl::sampleNormal(double mean, double stddev) {
-	return 0.0; // \todo: not implemented yet (dummy impl)
+    return 0.0; // \todo: not implemented yet (dummy impl)
 }
 
 double SamplerBoostImpl::sampleTriangular(double min, double mode, double max) {
-	return 0.0; // \todo: not implemented yet (dummy impl)
+    return 0.0; // \todo: not implemented yet (dummy impl)
 }
 
 double SamplerBoostImpl::sampleUniform(double min, double max) {
-	//uniform_int_distribution<> dist(min, max);
-	return 0.0; //dist(_gen);
+    //uniform_int_distribution<> dist(min, max);
+    return 0.0; //dist(_gen);
 }
 
 double SamplerBoostImpl::sampleWeibull(double alpha, double scale) {
-	return 0.0; // \todo: not implemented yet (dummy impl)
+    return 0.0; // \todo: not implemented yet (dummy impl)
 }
 
 void SamplerBoostImpl::setRNGparameters(Sampler_if::RNG_Parameters* param) {
@@ -69,5 +69,5 @@ void SamplerBoostImpl::setRNGparameters(Sampler_if::RNG_Parameters* param) {
 }
 
 Sampler_if::RNG_Parameters* SamplerBoostImpl::getRNGparameters() const {
-	// \todo: toimplement
+    // \todo: toimplement
 }

@@ -18,7 +18,6 @@
 std::map<std::string, double>* ProbabilityDistribution::memory = new std::map<std::string, double>();
 Solver_if* ProbabilityDistribution::integrator = new TraitsTools<Solver_if>::Implementation(TraitsTools<Solver_if>::Precision, TraitsTools<Solver_if>::MaxSteps);
 
-
 double ProbabilityDistribution::inverseFFisherSnedecor(double cumulativeProbability, double d1, double d2) {
     std::string key = "fisher(" + std::to_string(d1) + "," + std::to_string(d2) + ")" + std::to_string(cumulativeProbability);
     auto search = ProbabilityDistribution::memory->find(key);

@@ -17,84 +17,84 @@
 //using namespace GenesysKernel;
 
 ModelInfo::ModelInfo() {
-	_name = "Model " + std::to_string(Util::GenerateNewIdOfType<Model>());
+    _name = "Model " + std::to_string(Util::GenerateNewIdOfType<Model>());
 }
 
 std::string ModelInfo::show() {
-	return "analystName=\"" + this->_analystName + "\"" +
-			",description=\"" + this->_description + "\"" +
-			",name=\"" + this->_name + "\"" +
-			",version=" + this->_version;
+    return "analystName=\"" + this->_analystName + "\"" +
+            ",description=\"" + this->_description + "\"" +
+            ",name=\"" + this->_name + "\"" +
+            ",version=" + this->_version;
 }
 
 void ModelInfo::setName(std::string _name) {
-	this->_name = _name;
-	_hasChanged = true;
+    this->_name = _name;
+    _hasChanged = true;
 }
 
 std::string ModelInfo::getName() const {
-	return _name;
+    return _name;
 }
 
 void ModelInfo::setAnalystName(std::string _analystName) {
-	this->_analystName = _analystName;
-	_hasChanged = true;
+    this->_analystName = _analystName;
+    _hasChanged = true;
 }
 
 std::string ModelInfo::getAnalystName() const {
-	return _analystName;
+    return _analystName;
 }
 
 void ModelInfo::setDescription(std::string _description) {
-	this->_description = _description;
-	_hasChanged = true;
+    this->_description = _description;
+    _hasChanged = true;
 }
 
 std::string ModelInfo::getDescription() const {
-	return _description;
+    return _description;
 }
 
 void ModelInfo::setProjectTitle(std::string _projectTitle) {
-	this->_projectTitle = _projectTitle;
-	_hasChanged = true;
+    this->_projectTitle = _projectTitle;
+    _hasChanged = true;
 }
 
 std::string ModelInfo::getProjectTitle() const {
-	return _projectTitle;
+    return _projectTitle;
 }
 
 void ModelInfo::setVersion(std::string _version) {
-	this->_version = _version;
-	_hasChanged = true;
+    this->_version = _version;
+    _hasChanged = true;
 }
 
 std::string ModelInfo::getVersion() const {
-	return _version;
+    return _version;
 }
 
 void ModelInfo::loadInstance(std::map<std::string, std::string>* fields) {
-	this->_analystName = LoadField(fields, "analystName");
-	this->_description = LoadField(fields, "description");
-	this->_name = LoadField(fields, "name");
-	this->_projectTitle = LoadField(fields, "projectTitle");
-	this->_version = LoadField(fields, "version");
-	_hasChanged = false;
+    this->_analystName = LoadField(fields, "analystName");
+    this->_description = LoadField(fields, "description");
+    this->_name = LoadField(fields, "name");
+    this->_projectTitle = LoadField(fields, "projectTitle");
+    this->_version = LoadField(fields, "version");
+    _hasChanged = false;
 }
 
 // @TODO:!: implement check method (to check things like terminating condition)
 
 std::map<std::string, std::string>* ModelInfo::saveInstance() {
-	std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();
-	SaveField(fields, "typename", "ModelInfo");
-	SaveField(fields, "analystName", _analystName);
-	SaveField(fields, "description", _description);
-	SaveField(fields, "name", this->getName());
-	SaveField(fields, "projectTitle", _projectTitle);
-	SaveField(fields, "version", _version); // , "1.0");
-	_hasChanged = false;
-	return fields;
+    std::map<std::string, std::string>* fields = new std::map<std::string, std::string>();
+    SaveField(fields, "typename", "ModelInfo");
+    SaveField(fields, "analystName", _analystName);
+    SaveField(fields, "description", _description);
+    SaveField(fields, "name", this->getName());
+    SaveField(fields, "projectTitle", _projectTitle);
+    SaveField(fields, "version", _version); // , "1.0");
+    _hasChanged = false;
+    return fields;
 }
 
 bool ModelInfo::hasChanged() const {
-	return _hasChanged;
+    return _hasChanged;
 }

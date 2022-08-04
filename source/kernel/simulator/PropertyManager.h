@@ -3,7 +3,7 @@
 
 #include "Property.h"
 
-class PropertyManager{
+class PropertyManager {
 public:
     PropertyManager();
 public:
