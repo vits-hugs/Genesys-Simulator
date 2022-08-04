@@ -20,7 +20,7 @@
 #include "../tests/Tests.h"
 
 // TERMINAL USER INTERFACES
-#include "terminal/GenesysShell/GenesysTerminalApp.h"
+#include "terminal/GenesysShell/GenesysShell.h"
 //
 // EXAMPLES
 //

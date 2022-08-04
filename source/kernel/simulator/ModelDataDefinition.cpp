@@ -78,7 +78,7 @@ ModelDataDefinition::~ModelDataDefinition() {
 void ModelDataDefinition::_internalDataClear() {
 	for (std::map<std::string, ModelDataDefinition*>::iterator it = _internalData->begin(); it != _internalData->end(); it++) {
 		this->_parentModel->getDataManager()->remove((*it).second);
-		(*it).second->~ModelDataDefinition();
+		delete ((*it).second);//->~ModelDataDefinition();
 	}
 	_internalData->clear();
 }
@@ -108,7 +108,7 @@ void ModelDataDefinition::_internalDataRemove(std::string key) {
 	while (it != _internalData->end()) {
 		if ((*it).first == key) {
 			this->_parentModel->getDataManager()->remove((*it).second);
-			(*it).second->~ModelDataDefinition();
+			delete ((*it).second); //->~ModelDataDefinition();
 			_internalData->erase(it);
 			it = _internalData->begin();
 		}
@@ -155,7 +155,7 @@ void ModelDataDefinition::_attachedDataRemove(std::string key) {
 	while (it != _attachedData->end()) {
 		if ((*it).first == key) {
 			this->_parentModel->getDataManager()->remove((*it).second);
-			(*it).second->~ModelDataDefinition();
+			delete ((*it).second);//->~ModelDataDefinition();
 			_attachedData->erase(it);
 			it = _attachedData->begin();
 		} else {

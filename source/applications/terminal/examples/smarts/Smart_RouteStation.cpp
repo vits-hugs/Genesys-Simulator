@@ -77,7 +77,7 @@ int Smart_RouteStation::main(int argc, char** argv) {
 	} while (model->getSimulation()->isPaused());
 	 */
 	model->getSimulation()->start();
-	genesys->~Simulator();
+	delete genesys;
 	return 0;
 };
 

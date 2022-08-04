@@ -41,7 +41,6 @@ PluginInformation* Attribute::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Attribute>(), &Attribute::LoadInstance, &Attribute::NewInstance);
 	info->setDescriptionHelp("//@TODO");
 	return info;
-
 }
 
 ModelDataDefinition* Attribute::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {

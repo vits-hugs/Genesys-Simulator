@@ -72,5 +72,6 @@ int Smart_SeizeDelayRelease::main(int argc, char** argv) {
 	model->save("./models/Smart_SeizeDelayRelease.gen");
 	// execute the simulation
 	sim->start();
+        delete genesys;
 	return 0;
 };

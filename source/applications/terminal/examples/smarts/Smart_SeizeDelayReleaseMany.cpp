@@ -78,6 +78,6 @@ int Smart_SeizeDelayReleaseMany::main(int argc, char** argv) {
 		sim->start(); //step();
 		//std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
 	} while (sim->isPaused());
-	genesys->~Simulator();
+	delete genesys;
 	return 0;
 };

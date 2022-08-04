@@ -47,7 +47,7 @@ int Smart_Dummy::main(int argc, char** argv) {
 	model->getSimulation()->setReplicationLength(60);
 	model->save("./models/Smart_Dummy.gen");
 	model->getSimulation()->start();
-	genesys->~Simulator();
+	delete genesys;
 	return 0;
 };
 

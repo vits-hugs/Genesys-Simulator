@@ -149,5 +149,6 @@ int AnElectronicAssemblyAndTestSystem::main(int argc, char** argv) {
 	model->save("./models/Smart_AnElectronicAssemblyAndTestSystem.gen");
 	//simulating the model
 	sim->start();
+        delete genesys;
 	return 0;
 }

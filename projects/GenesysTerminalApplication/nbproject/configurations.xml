@@ -121,9 +121,9 @@
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f1" displayName="GenesysShell" projectFiles="true">
+            <itemPath>../../source/applications/terminal/GenesysShell/GenesysShell.cpp</itemPath>
+            <itemPath>../../source/applications/terminal/GenesysShell/GenesysShell.h</itemPath>
             <itemPath>../../source/applications/terminal/GenesysShell/GenesysShell_if.h</itemPath>
-            <itemPath>../../source/applications/terminal/GenesysShell/GenesysTerminalApp.cpp</itemPath>
-            <itemPath>../../source/applications/terminal/GenesysShell/GenesysTerminalApp.h</itemPath>
           </logicalFolder>
         </logicalFolder>
         <itemPath>../../source/applications/BaseGenesysTerminalApplication.cpp</itemPath>
@@ -417,7 +417,7 @@
                      projectFiles="true"
                      kind="TEST">
         <itemPath>../../source/gtest/src/gtest-all.cc</itemPath>
-        <itemPath>../../source/tests/testKernel.cpp</itemPath>
+        <itemPath>../../source/tests/testTerminalApps.cpp</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
@@ -563,17 +563,17 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/applications/terminal/GenesysShell/GenesysShell_if.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/applications/terminal/GenesysShell/GenesysTerminalApp.cpp"
+      <item path="../../source/applications/terminal/GenesysShell/GenesysShell.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/applications/terminal/GenesysShell/GenesysTerminalApp.h"
+      <item path="../../source/applications/terminal/GenesysShell/GenesysShell.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/GenesysShell/GenesysShell_if.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -1984,7 +1984,10 @@
       </item>
       <item path="../../source/tests/Tests.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../../source/tests/testKernel.cpp" ex="false" tool="1" flavor2="0">
+      <item path="../../source/tests/testTerminalApps.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
       <item path="../../source/tools/DataAnalyser_if.h"
             ex="false"
@@ -2202,17 +2205,17 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/applications/terminal/GenesysShell/GenesysShell_if.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/applications/terminal/GenesysShell/GenesysTerminalApp.cpp"
+      <item path="../../source/applications/terminal/GenesysShell/GenesysShell.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/applications/terminal/GenesysShell/GenesysTerminalApp.h"
+      <item path="../../source/applications/terminal/GenesysShell/GenesysShell.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/GenesysShell/GenesysShell_if.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -3623,7 +3626,10 @@
       </item>
       <item path="../../source/tests/Tests.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../../source/tests/testKernel.cpp" ex="false" tool="1" flavor2="0">
+      <item path="../../source/tests/testTerminalApps.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
       <item path="../../source/tools/DataAnalyser_if.h"
             ex="false"

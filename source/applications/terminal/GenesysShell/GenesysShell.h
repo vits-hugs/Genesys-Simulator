@@ -11,8 +11,8 @@
  * Created on 23 de Maio de 2019, 13:02
  */
 
-#ifndef GENESYSTERMINALAPP_H
-#define GENESYSTERMINALAPP_H
+#ifndef GENESYSSHELL_H
+#define GENESYSSHELL_H
 
 #include "../../BaseGenesysTerminalApplication.h"
 #include "../../../kernel/simulator/Simulator.h"
@@ -21,7 +21,7 @@
 #include <fstream>
 #include <assert.h>
 
-class GenesysTerminalApp : public BaseGenesysTerminalApplication {
+class GenesysShell : public BaseGenesysTerminalApplication {
 private:
 	typedef std::function<void() > ExecuterMember;
 	template<typename Class>
@@ -45,9 +45,9 @@ private:
 		ExecuterMember executer;
 	};
 public:
-	GenesysTerminalApp();
-	GenesysTerminalApp(const GenesysTerminalApp& orig);
-	virtual ~GenesysTerminalApp() = default;
+	GenesysShell();
+	GenesysShell(const GenesysShell& orig);
+	virtual ~GenesysShell() = default;
 public:
 	virtual int main(int argc, char** argv);
 public: // commands
@@ -75,5 +75,5 @@ private:
 	List<ShellCommand*>* _commands = new List<ShellCommand*>();
 	std::string _prompt = "$ReGenesys> ";
 };
-#endif /* GENESYSTERMINALAPP_H */
+#endif /* GENESYSSHELL_H */
 

@@ -4,7 +4,7 @@
  */
 
 /* 
- * File:   testKernel.cpp
+ * File:   testTerminalApps.cpp
  * Author: rlcancian
  *
  * Created on 3 de agosto de 2022, 21:27
@@ -18,20 +18,23 @@
 #include <stdlib.h>
 #include <iostream>
 #include "../../source/gtest/gtest/gtest.h"
-#include "Tests.h"
+
+#include "../applications/terminal/examples/smarts/Smart_AssignWriteSeizes.h"
+#include "../applications/terminal/examples/smarts/Smart_BatchSeparate.h"
+#include "../applications/BaseGenesysTerminalApplication.h"
 using namespace std;
 
-TEST(TestKernel, testModel) {
-    EXPECT_EQ(0,0);
+TEST(TerminalApplication, Smarts) {
+    BaseGenesysTerminalApplication *app;
+    app = new Smart_AssignWriteSeizes();
+    EXPECT_EQ(app->main(0, nullptr),0);
+    app = new Smart_BatchSeparate();
+    EXPECT_EQ(app->main(0, nullptr),0);
 }
 
-TEST(TerminalApplication, SmartAssign) {
-    EXPECT_EQ(2,2);
-}
 
 int main (int argc, char** argv)
 {
-  cout << "TESTING KERNEL" << endl;
   ::testing::InitGoogleTest (&argc, argv);
   return RUN_ALL_TESTS();
 }

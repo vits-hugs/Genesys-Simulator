@@ -30,52 +30,53 @@ Smart_ModelInfoModelSimulation::Smart_ModelInfoModelSimulation() {
  * It instanciates the simulator, builds a simulation model and then simulate that model.
  */
 int Smart_ModelInfoModelSimulation::main(int argc, char** argv) {
-	Simulator* genesys = new Simulator();
-	genesys->getTracer()->setTraceLevel(TraceManager::Level::L6_arrival);
-	this->setDefaultTraceHandlers(genesys->getTracer());
-	this->insertFakePluginsByHand(genesys);
-	//
-	Model* model = genesys->getModels()->newModel();
-	PluginManager* plugins = genesys->getPlugins();
-	// set general info about the model
-	ModelInfo* infos = model->getInfos();
-	infos->setAnalystName("Your name");
-	infos->setProjectTitle("The title of the project");
-	infos->setDescription("This simulation model tests one of the most basic models possible.");
-	infos->setVersion("1.0");
-	// create model
-	Create* create1 = plugins->newInstance<Create>(model);
-	create1->setTimeUnit(Util::TimeUnit::minute);
-	Delay* delay1 = plugins->newInstance<Delay>(model);
-	delay1->setDelayExpression("NORM(1,0.2)");
-	delay1->setDelayTimeUnit(Util::TimeUnit::minute);
-	Dispose* dispose1 = plugins->newInstance<Dispose>(model);
-	// connect model components to create a "workflow"
-	create1->getConnections()->insert(delay1);
-	delay1->getConnections()->insert(dispose1);
-	// set model simulation
-	ModelSimulation* sim = model->getSimulation();
-	sim->setReplicationLength(15);
-	sim->setReplicationLengthTimeUnit(Util::TimeUnit::minute); // each replication will last 15 minutes (simulated time)
-	sim->setNumberOfReplications(2); // replicates the simulation 2 times
-	sim->setReplicationReportBaseTimeUnit(Util::TimeUnit::minute);
-	sim->setWarmUpPeriod(1);
-	sim->setWarmUpPeriodTimeUnit(Util::TimeUnit::minute);
-	sim->setPauseOnReplication(true);
-	sim->setPauseOnEvent(false);
-	sim->setShowReportsAfterReplication(false);
-	sim->setShowReportsAfterSimulation(true);
-	sim->setStepByStep(true);
-	sim ->setTerminatingCondition("");
-	sim->getBreakpointsOnComponent()->insert(delay1);
-	sim->getBreakpointsOnTime()->insert(6.5);
-	sim->getBreakpointsOnTime()->insert(14.0);
-	// save and simulate. Several pauses will occour due to previous settings
-	model->save("./models/Smart_ModelInfoModelSimulation.gen");
-	do {
-		sim->start();
-		//std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
-	} while (sim->isPaused());
-	return 0;
+    Simulator* genesys = new Simulator();
+    genesys->getTracer()->setTraceLevel(TraceManager::Level::L6_arrival);
+    this->setDefaultTraceHandlers(genesys->getTracer());
+    this->insertFakePluginsByHand(genesys);
+    //
+    Model* model = genesys->getModels()->newModel();
+    PluginManager* plugins = genesys->getPlugins();
+    // set general info about the model
+    ModelInfo* infos = model->getInfos();
+    infos->setAnalystName("Your name");
+    infos->setProjectTitle("The title of the project");
+    infos->setDescription("This simulation model tests one of the most basic models possible.");
+    infos->setVersion("1.0");
+    // create model
+    Create* create1 = plugins->newInstance<Create>(model);
+    create1->setTimeUnit(Util::TimeUnit::minute);
+    Delay* delay1 = plugins->newInstance<Delay>(model);
+    delay1->setDelayExpression("NORM(1,0.2)");
+    delay1->setDelayTimeUnit(Util::TimeUnit::minute);
+    Dispose* dispose1 = plugins->newInstance<Dispose>(model);
+    // connect model components to create a "workflow"
+    create1->getConnections()->insert(delay1);
+    delay1->getConnections()->insert(dispose1);
+    // set model simulation
+    ModelSimulation* sim = model->getSimulation();
+    sim->setReplicationLength(15);
+    sim->setReplicationLengthTimeUnit(Util::TimeUnit::minute); // each replication will last 15 minutes (simulated time)
+    sim->setNumberOfReplications(2); // replicates the simulation 2 times
+    sim->setReplicationReportBaseTimeUnit(Util::TimeUnit::minute);
+    sim->setWarmUpPeriod(1);
+    sim->setWarmUpPeriodTimeUnit(Util::TimeUnit::minute);
+    sim->setPauseOnReplication(true);
+    sim->setPauseOnEvent(false);
+    sim->setShowReportsAfterReplication(false);
+    sim->setShowReportsAfterSimulation(true);
+    sim->setStepByStep(true);
+    sim ->setTerminatingCondition("");
+    sim->getBreakpointsOnComponent()->insert(delay1);
+    sim->getBreakpointsOnTime()->insert(6.5);
+    sim->getBreakpointsOnTime()->insert(14.0);
+    // save and simulate. Several pauses will occour due to previous settings
+    model->save("./models/Smart_ModelInfoModelSimulation.gen");
+    do {
+        sim->start();
+        //std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
+    } while (sim->isPaused());
+    delete genesys;
+    return 0;
 };
 

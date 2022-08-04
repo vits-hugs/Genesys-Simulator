@@ -61,5 +61,6 @@ int Smart_Failures::main(int argc, char** argv) {
 	model->save("./models/Smart_Failures.gen");
 	// execute the simulation
 	sim->start();
+        delete genesys;
 	return 0;
 };

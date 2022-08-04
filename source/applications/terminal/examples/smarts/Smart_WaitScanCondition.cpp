@@ -63,6 +63,7 @@ int Smart_WaitScanCondition::main(int argc, char** argv) {
 	model->getTracer()->setTraceLevel(TraceManager::Level::L8_detailed);
 	model->save("./models/Smart_WaitScanCondition.gen");
 	simulation->start();
+        delete genesys;
 	return 0;
 };
 

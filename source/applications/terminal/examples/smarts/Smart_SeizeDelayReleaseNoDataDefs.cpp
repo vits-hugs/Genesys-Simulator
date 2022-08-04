@@ -71,6 +71,7 @@ int Smart_SeizeDelayReleaseNoDataDefs::main(int argc, char** argv) {
 	model->save("./models/Smart_SeizeDelayReleaseNoDataDefs.gen");
 	// execute the simulation
 	sim->start();
+        delete genesys;
 	return 0;
 };
 

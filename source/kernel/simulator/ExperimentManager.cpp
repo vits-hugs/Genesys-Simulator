@@ -39,7 +39,7 @@ void ExperimentManager::remove(SimulationExperiment* experiment) {
 	if (_currentSimulationExperiment == experiment) {
 		_currentSimulationExperiment = this->front();
 	}
-	experiment->~SimulationExperiment();
+	delete experiment;//->~SimulationExperiment();
 	_simulator->getTracer()->trace(TraceManager::Level::L2_results, "Experiment successfully removed");
 }
 
@@ -65,7 +65,7 @@ bool ExperimentManager::loadSimulationExperiment(std::string filename) {
 		this->insert(experiment);
 		_simulator->getTracer()->trace(TraceManager::Level::L2_results, "Experiment successfully loaded");
 	} else {
-		experiment->~SimulationExperiment();
+		delete experiment;//->~SimulationExperiment();
 		_simulator->getTracer()->trace(TraceManager::Level::L2_results, "Experiment coud not be loaded");
 	}
 	return res;

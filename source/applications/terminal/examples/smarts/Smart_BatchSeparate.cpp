@@ -64,5 +64,6 @@ int Smart_BatchSeparate::main(int argc, char** argv) {
 	m->getTracer()->addTraceSimulationExceptionRuleModelData(sim);
 	m->save("./models/Smart_BatchSeparate.gen");
 	sim->start();
+        delete genesys;
 	return 0;
 }

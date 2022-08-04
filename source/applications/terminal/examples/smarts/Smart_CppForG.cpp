@@ -42,6 +42,7 @@ int Smart_CppForG::main(int argc, char** argv) {
 	s->setShowReportsAfterSimulation(false);
 	m->save("./models/Smart_SourceCode.gen");
 	s->start();
+        delete genesys;
 	return 0;
 }
 

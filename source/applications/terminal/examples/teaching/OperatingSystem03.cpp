@@ -252,6 +252,7 @@ int OperatingSystem03::main(int argc, char** argv) {
 			std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
 		}
 	} while (sim->isPaused());
+        delete genesys;
 	return 0;
 }
 

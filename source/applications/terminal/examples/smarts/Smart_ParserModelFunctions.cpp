@@ -75,7 +75,7 @@ int Smart_ParserModelFunctions::main(int argc, char** argv) {
 	m->getSimulation()->setShowReportsAfterReplication(false);
 	m->getSimulation()->setShowReportsAfterSimulation(false);
 	m->getSimulation()->start();
-	genesys->~Simulator();
+	delete genesys;
 	return 0;
 
 	/*

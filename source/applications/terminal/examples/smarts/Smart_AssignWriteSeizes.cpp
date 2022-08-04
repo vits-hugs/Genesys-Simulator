@@ -122,7 +122,7 @@ int Smart_AssignWriteSeizes::main(int argc, char** argv) {
 	sim->setReplicationLength(100);
 	model->save("./models/Smart_AssignWriteSeizes.gen");
 	sim->start();
-	genesys->~Simulator();
+        delete genesys;
 	return 0;
 }
 

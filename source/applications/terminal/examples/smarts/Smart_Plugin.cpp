@@ -24,5 +24,6 @@ int Smart_Plugin::main(int argc, char** argv) {
 	for (unsigned int i = 0; i < simulator->getPlugins()->size(); i++) {
 		std::cout << std::endl << simulator->getPlugins()->getAtRank(i)->show() << std::endl;
 	}
+        delete simulator;
 	return 0;
 }

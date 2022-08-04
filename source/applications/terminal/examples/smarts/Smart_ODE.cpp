@@ -54,7 +54,7 @@ int Smart_ODE::main(int argc, char** argv) {
 	model->getSimulation()->setShowReportsAfterSimulation(false);
 	model->save("./models/Smart_ODE.gen");
 	model->getSimulation()->start();
-	genesys->~Simulator();
+	delete genesys;
 	return 0;
 
 }

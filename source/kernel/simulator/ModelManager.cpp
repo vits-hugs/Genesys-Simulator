@@ -44,7 +44,7 @@ void ModelManager::remove(Model* model) {
         //Util::ResetAllIds(); // @TODO!!!! Util::ResetAllIds() should be MODEL BASED!!!
         _currentModel = this->front();
     }
-    model->~Model();
+    delete model;//->~Model();
     _simulator->getTracer()->trace(TraceManager::Level::L2_results, "Model successfully removed");
 }
 
@@ -65,7 +65,7 @@ bool ModelManager::loadModel(std::string filename) {
         this->insert(model);
         _simulator->getTracer()->trace(TraceManager::Level::L2_results, "Model successfully loaded");
     } else {
-        model->~Model();
+        delete model;//->~Model();
         _simulator->getTracer()->trace(TraceManager::Level::L2_results, "Model coud not be loaded");
     }
     return res;

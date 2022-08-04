@@ -188,5 +188,6 @@ int OperatingSystem02::main(int argc, char** argv) {
 	do {
 		sim->start();
 	} while (sim->isPaused());
+        delete genesys;
 	return 0;
 }

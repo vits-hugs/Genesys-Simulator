@@ -62,7 +62,7 @@ int Smart_ProcessSet::main(int argc, char** argv) {
 	do {
 		model->getSimulation()->step();
 	} while (model->getSimulation()->isPaused());
-	genesys->~Simulator();
+	delete genesys;
 	return 0;
 };
 

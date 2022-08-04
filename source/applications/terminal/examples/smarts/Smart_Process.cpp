@@ -56,7 +56,7 @@ int Smart_Process::main(int argc, char** argv) {
 		model->getSimulation()->step();
 	} while (model->getSimulation()->isPaused());
 	for (int i = 0; i < 1e9; i++); // give UI some time to finish std::cout
-	genesys->~Simulator();
+	delete genesys;
 	return 0;
 };
 

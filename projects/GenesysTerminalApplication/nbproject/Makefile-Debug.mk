@@ -36,7 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/_ext/6bf258f7/BaseGenesysTerminalApplication.o \
-	${OBJECTDIR}/_ext/acd0b333/GenesysTerminalApp.o \
+	${OBJECTDIR}/_ext/acd0b333/GenesysShell.o \
 	${OBJECTDIR}/_ext/d120e6b4/Book_Cap02_Example01.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_AssignWriteSeizes.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_BatchSeparate.o \
@@ -187,7 +187,7 @@ TESTFILES= \
 # Test Object Files
 TESTOBJECTFILES= \
 	${TESTDIR}/_ext/bc246cfa/gtest-all.o \
-	${TESTDIR}/_ext/d18a80cd/testKernel.o
+	${TESTDIR}/_ext/d18a80cd/testTerminalApps.o
 
 # C Compiler Flags
 CFLAGS=
@@ -218,10 +218,10 @@ ${OBJECTDIR}/_ext/6bf258f7/BaseGenesysTerminalApplication.o: ../../source/applic
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/6bf258f7/BaseGenesysTerminalApplication.o ../../source/applications/BaseGenesysTerminalApplication.cpp
 
-${OBJECTDIR}/_ext/acd0b333/GenesysTerminalApp.o: ../../source/applications/terminal/GenesysShell/GenesysTerminalApp.cpp
+${OBJECTDIR}/_ext/acd0b333/GenesysShell.o: ../../source/applications/terminal/GenesysShell/GenesysShell.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/acd0b333
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/acd0b333/GenesysTerminalApp.o ../../source/applications/terminal/GenesysShell/GenesysTerminalApp.cpp
+	$(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/acd0b333/GenesysShell.o ../../source/applications/terminal/GenesysShell/GenesysShell.cpp
 
 ${OBJECTDIR}/_ext/d120e6b4/Book_Cap02_Example01.o: ../../source/applications/terminal/examples/book/Book_Cap02_Example01.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/d120e6b4
@@ -925,7 +925,7 @@ ${OBJECTDIR}/main.o: main.cpp
 .build-tests-conf: .build-tests-subprojects .build-conf ${TESTFILES}
 .build-tests-subprojects:
 
-${TESTDIR}/TestFiles/f1: ${TESTDIR}/_ext/bc246cfa/gtest-all.o ${TESTDIR}/_ext/d18a80cd/testKernel.o ${OBJECTFILES:%.o=%_nomain.o}
+${TESTDIR}/TestFiles/f1: ${TESTDIR}/_ext/bc246cfa/gtest-all.o ${TESTDIR}/_ext/d18a80cd/testTerminalApps.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc} -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS}   
 
@@ -936,10 +936,10 @@ ${TESTDIR}/_ext/bc246cfa/gtest-all.o: ../../source/gtest/src/gtest-all.cc
 	$(COMPILE.cc) -g -Wall -I../../source/gtest -I../../source/gtest -I. -I../../source/gtest/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${TESTDIR}/_ext/bc246cfa/gtest-all.o ../../source/gtest/src/gtest-all.cc
 
 
-${TESTDIR}/_ext/d18a80cd/testKernel.o: ../../source/tests/testKernel.cpp 
+${TESTDIR}/_ext/d18a80cd/testTerminalApps.o: ../../source/tests/testTerminalApps.cpp 
 	${MKDIR} -p ${TESTDIR}/_ext/d18a80cd
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Wall -I../../source/gtest -I../../source/gtest -I. -I../../source/gtest/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${TESTDIR}/_ext/d18a80cd/testKernel.o ../../source/tests/testKernel.cpp
+	$(COMPILE.cc) -g -Wall -I../../source/gtest -I../../source/gtest -I. -I../../source/gtest/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${TESTDIR}/_ext/d18a80cd/testTerminalApps.o ../../source/tests/testTerminalApps.cpp
 
 
 ${OBJECTDIR}/_ext/6bf258f7/BaseGenesysTerminalApplication_nomain.o: ${OBJECTDIR}/_ext/6bf258f7/BaseGenesysTerminalApplication.o ../../source/applications/BaseGenesysTerminalApplication.cpp 
@@ -955,17 +955,17 @@ ${OBJECTDIR}/_ext/6bf258f7/BaseGenesysTerminalApplication_nomain.o: ${OBJECTDIR}
 	    ${CP} ${OBJECTDIR}/_ext/6bf258f7/BaseGenesysTerminalApplication.o ${OBJECTDIR}/_ext/6bf258f7/BaseGenesysTerminalApplication_nomain.o;\
 	fi
 
-${OBJECTDIR}/_ext/acd0b333/GenesysTerminalApp_nomain.o: ${OBJECTDIR}/_ext/acd0b333/GenesysTerminalApp.o ../../source/applications/terminal/GenesysShell/GenesysTerminalApp.cpp 
+${OBJECTDIR}/_ext/acd0b333/GenesysShell_nomain.o: ${OBJECTDIR}/_ext/acd0b333/GenesysShell.o ../../source/applications/terminal/GenesysShell/GenesysShell.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/acd0b333
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/acd0b333/GenesysTerminalApp.o`; \
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/acd0b333/GenesysShell.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/acd0b333/GenesysTerminalApp_nomain.o ../../source/applications/terminal/GenesysShell/GenesysTerminalApp.cpp;\
+	    $(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/acd0b333/GenesysShell_nomain.o ../../source/applications/terminal/GenesysShell/GenesysShell.cpp;\
 	else  \
-	    ${CP} ${OBJECTDIR}/_ext/acd0b333/GenesysTerminalApp.o ${OBJECTDIR}/_ext/acd0b333/GenesysTerminalApp_nomain.o;\
+	    ${CP} ${OBJECTDIR}/_ext/acd0b333/GenesysShell.o ${OBJECTDIR}/_ext/acd0b333/GenesysShell_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/d120e6b4/Book_Cap02_Example01_nomain.o: ${OBJECTDIR}/_ext/d120e6b4/Book_Cap02_Example01.o ../../source/applications/terminal/examples/book/Book_Cap02_Example01.cpp 

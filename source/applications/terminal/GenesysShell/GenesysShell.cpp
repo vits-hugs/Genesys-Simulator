@@ -11,7 +11,7 @@
  * Created on 23 de Maio de 2019, 13:02
  */
 
-#include "GenesysTerminalApp.h"
+#include "GenesysShell.h"
 #include "../../../kernel/simulator/Simulator.h"
 #include <regex>
 #include <fstream>
@@ -19,14 +19,14 @@
 
 //#include "ProbDistribDefaultImpl1.h"
 
-GenesysTerminalApp::GenesysTerminalApp() {
+GenesysShell::GenesysShell() {
 }
 
-void GenesysTerminalApp::Trace(std::string message) {
+void GenesysShell::Trace(std::string message) {
 	std::cout << message << std::endl;
 }
 
-void GenesysTerminalApp::run(List<std::string>* commandlineArgs) {
+void GenesysShell::run(List<std::string>* commandlineArgs) {
 	Trace("Genesys Shell is running. Type your command. For help, type the command \"help\".");
 	this->insertFakePluginsByHand(_simulator);
 	std::string inputText; //, shortPrefix, longPrefix, separator; //,longPrefix, separator;
@@ -43,7 +43,7 @@ void GenesysTerminalApp::run(List<std::string>* commandlineArgs) {
 	}
 }
 
-void GenesysTerminalApp::tryExecuteCommand(std::string inputText, std::string shortPrefix, std::string longPrefix, std::string separator) {
+void GenesysShell::tryExecuteCommand(std::string inputText, std::string shortPrefix, std::string longPrefix, std::string separator) {
 	std::regex regex{R"([\s]+)"}; // split on space R"([\s]+)"
 	std::sregex_token_iterator it{inputText.begin(), inputText.end(), regex, -1};
 	std::vector<std::string> fields{it,{}};
@@ -63,12 +63,13 @@ void GenesysTerminalApp::tryExecuteCommand(std::string inputText, std::string sh
 
 }
 
-int GenesysTerminalApp::main(int argc, char** argv) {
+int GenesysShell::main(int argc, char** argv) {
 	List<std::string>* commandlineArgs = new List<std::string>();
 	for (unsigned short i = 1; i < argc; i++) {
 		std::string arg = argv[i];
 		commandlineArgs->insert(arg);
 	}
 	this->run(commandlineArgs);
+        delete commandlineArgs;
 	return 0;
 }

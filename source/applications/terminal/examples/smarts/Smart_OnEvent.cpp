@@ -113,7 +113,7 @@ int Smart_OnEvent::main(int argc, char** argv) {
 		std::cout << "Press ENTER to continue...";
 		//std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
 	} while (model->getSimulation()->isPaused());
-	genesys->~Simulator();
+	delete genesys;
 	return 0;
 };
 

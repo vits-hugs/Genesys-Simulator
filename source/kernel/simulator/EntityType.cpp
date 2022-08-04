@@ -156,7 +156,7 @@ void EntityType::_createInternalAndAttachedData() {
 	} else {
 		while (_statisticsCollectors->size() > 0) {
 			_parentModel->getDataManager()->remove(_statisticsCollectors->front());
-			_statisticsCollectors->front()->~StatisticsCollector();
+			delete _statisticsCollectors->front();//->~StatisticsCollector();
 			_statisticsCollectors->pop_front();
 		}
 	}

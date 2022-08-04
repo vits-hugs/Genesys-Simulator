@@ -51,6 +51,7 @@ int Smart_Parser::main(int argc, char** argv) {
 	for (unsigned int i = 0; i < expressions.size(); i++) {
 		std::cout << "\"" << expressions[i] << "\" = " << model->parseExpression(expressions[i]) << std::endl;
 	}
+        delete genesys;
 	return 0;
 };
 

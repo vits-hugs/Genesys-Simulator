@@ -37,6 +37,7 @@ int Book_Cap02_Example01::main(int argc, char** argv) {
 	model->getSimulation()->setReplicationLength(30);
 	model->getSimulation()->setNumberOfReplications(100);
 	model->getSimulation()->start();
+        delete genesys;
 	return 0;
 }
 

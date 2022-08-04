@@ -95,5 +95,6 @@ int Smart_Sequence::main(int argc, char** argv) {
 	do {
 		sim->start();
 	} while (sim->isPaused());
+        delete genesys;
 	return 0;
 }
