@@ -1,12 +1,14 @@
-0   SimulatorInfo "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220111 
+# Genesys Simulation Model 
+# Simulator, Model and Simulation infos
+0   Simulator  "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220131 
 0   ModelInfo  "Model 1" analystName="" description="" projectTitle="" version="1.0" 
-0   ModelSimulation "ModelSimulation" replicationLength=10.000000 traceLevel=9 
-57  EntityType "Client" 
-62  Resource   "Resource_1" 
-63  Queue      "Queue_1" 
-56  Create     "Create_1" EntityType="Client" timeBetweenCreations="1" nextId=58 
-58  Process    "Process_1" nextId=64 
-59  Seize      "Process_1.Seize" queueId=63 queueable="Queue_1" seizable0="Resource_1" nextId=60 
-60  Delay      "Process_1.Delay" delayExpression="unif(0.8,1.2)" nextId=61 
-61  Release    "Process_1.Release" resquestSize=0 nextSize=0 
-64  Dispose    "Dispose_1" nextSize=0 
+0   ModelSimulation "" numberOfReplications=5 replicationLength=10.000000 traceLevel=9 
+
+# Model Data Definitions
+1980 Resource   "Resource_1" 
+1981 Queue      "Queue_1" 
+
+# Model Components
+1975 Create     "Create_1" entityType="entitytype" nextId=1976 
+1976 Process    "Process_1" delayExpression="unif(0.7,1.5)" queueable="Queue_1" requestSeizable[0]="Resource_1" nextId=1982 
+1982 Dispose    "Dispose_1" nexts=0 

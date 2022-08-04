@@ -17,16 +17,16 @@
  * Simple C++ Test Suite
  */
 
-#include "../tools/ProbabilityDistribution.h"
-#include "../tools/solver_if.h"
-#include "../tools/SolverDefaultImpl1.h"
-#include "../kernel/statistics/SamplerDefaultImpl1.h"
-#include "../kernel/statistics/CollectorDatafileDefaultImpl1.h"
-#include "../kernel/statistics/StatisticsDataFileDefaultImpl.h"
-#include "../Traits.h"
-#include "../tools/HypothesisTester_if.h"
+#include "../source/tools/ProbabilityDistribution.h"
+#include "../source/tools/solver_if.h"
+#include "../source/tools/SolverDefaultImpl1.h"
+#include "../source/kernel/statistics/SamplerDefaultImpl1.h"
+#include "../source/kernel/statistics/CollectorDatafileDefaultImpl1.h"
+#include "../source/kernel/statistics/StatisticsDataFileDefaultImpl.h"
+#include "../source/tools/TraitsTools.h"
+#include "../source/tools/HypothesisTester_if.h"
 
-void test1() {
+void pd_test1() {
 	//std::cout << "testProbabilityDistribution test 1" << std::endl;
 
 	Sampler_if* sampler = new SamplerDefaultImpl1();
@@ -53,7 +53,7 @@ void test1() {
 	}
 }
 
-void test2() {
+void pd_test2() {
 	//std::cout << "testProbabilityDistribution test 2" << std::endl;
 	//std::cout << "%TEST_FAILED% time=0 testname=test2 (testProbabilityDistribution) message=error message sample" << std::endl;
 	Solver_if* integr = new SolverDefaultImpl1(1e-6, 1e3);
@@ -61,7 +61,7 @@ void test2() {
 	std::cout << x << std::endl;
 }
 
-void test3() {
+void pd_test3() {
 	double x = ProbabilityDistribution::inverseNormal(0.975, 0.0, 1.0);
 	std::cout << x << std::endl;
 	x = ProbabilityDistribution::inverseTStudent(0.975, 0.0, 1.0, 18);
@@ -73,8 +73,8 @@ void test3() {
 	std::cout << x << std::endl;
 }
 
-void test4() {
-	HypothesisTester_if* ht = new Traits<HypothesisTester_if>::Implementation();
+void tpd_est4() {
+	HypothesisTester_if* ht = new TraitsTools<HypothesisTester_if>::Implementation();
 	HypothesisTester_if::ConfidenceInterval ic = ht->averageConfidenceInterval(100, 10, 200, 0.95);
 	double x;
 	x = ProbabilityDistribution::inverseFFisherSnedecor(0.05, 7, 16);
@@ -85,21 +85,21 @@ void test4() {
 	std::cout << "[" << ic.inferiorLimit() << "," << ic.superiorLimit() << "]" << std::endl;
 }
 
-void test5() {
-	HypothesisTester_if* ht = new Traits<HypothesisTester_if>::Implementation();
+void pd_test5() {
+	HypothesisTester_if* ht = new TraitsTools<HypothesisTester_if>::Implementation();
 	HypothesisTester_if::TestResult result = ht->testAverage(90.0, 10.0, 25, 84.0, 0.95, HypothesisTester_if::H1Comparition::LESS_THAN);
-	std::cout << result.errorTypeI() << result.pValue() << result.rejectH0() << std::endl;
+	std::cout << result.acceptanceInferiorLimit() << result.acceptanceSuperiorLimit() << result.pValue() << result.rejectH0() << std::endl;
 }
 
-int mainn(int argc, char** argv) {
+int pd_main(int argc, char** argv) {
 	std::cout << "%SUITE_STARTING% testProbabilityDistribution" << std::endl;
 	std::cout << "%SUITE_STARTED%" << std::endl;
 
-	//test1();
-	//test2();
-	//test3();
-	//test4();
-	test5();
+	//pd_test1();
+	//pd_test2();
+	//pd_test3();
+	//pd_test4();
+	pd_test5();
 	// std::cout << "%SUITE_FINISHED% time=0" << std::endl;
 
 	return (EXIT_SUCCESS);

@@ -2363,10 +2363,35 @@
                 </logicalFolder>
                 <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/resources/software_genesys.gif</itemPath>
               </logicalFolder>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/AnimateExpression.cpp</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/AnimateExpression.h</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/CodeEditor.cpp</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/CodeEditor.h</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalComponentPort.cpp</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalComponentPort.h</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalConnection.cpp</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalConnection.h</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelComponent.cpp</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelComponent.h</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelDataDefinition.cpp</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelDataDefinition.h</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/LineNumberArea.h</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.cpp</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.h</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsView.cpp</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsView.h</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/SimpleGUI.pro</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/SimpleGUI.pro.user</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/SimpleGUI_en_US.ts</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.cpp</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.h</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.ui</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/main.cpp</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.cpp</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.h</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.ui</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/qcustomplot.cpp</itemPath>
+              <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/qcustomplot.h</itemPath>
               <itemPath>applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/simpleGUI_resources.qrc</itemPath>
             </logicalFolder>
           </logicalFolder>
@@ -2375,13 +2400,13 @@
         </logicalFolder>
       </logicalFolder>
       <logicalFolder name="terminal" displayName="terminal" projectFiles="true">
+        <itemPath>applications/BaseConsoleGenesysApplication.cpp</itemPath>
+        <itemPath>applications/BaseConsoleGenesysApplication.h</itemPath>
+        <itemPath>applications/GenesysApplication_if.h</itemPath>
         <itemPath>applications/terminal/GenesysShell_if.h</itemPath>
         <itemPath>applications/terminal/GenesysTerminalApp.cpp</itemPath>
         <itemPath>applications/terminal/GenesysTerminalApp.h</itemPath>
       </logicalFolder>
-      <itemPath>applications/BaseConsoleGenesysApplication.cpp</itemPath>
-      <itemPath>applications/BaseConsoleGenesysApplication.h</itemPath>
-      <itemPath>applications/GenesysApplication_if.h</itemPath>
     </logicalFolder>
     <logicalFolder name="f2" displayName="examples" projectFiles="true">
       <logicalFolder name="f2" displayName="book" projectFiles="true">
@@ -2393,6 +2418,8 @@
         <itemPath>examples/smarts/Smart_AssignWriteSeizes.h</itemPath>
         <itemPath>examples/smarts/Smart_BatchSeparate.cpp</itemPath>
         <itemPath>examples/smarts/Smart_BatchSeparate.h</itemPath>
+        <itemPath>Smart_CellularAutomata1.cpp</itemPath>
+        <itemPath>Smart_CellularAutomata1.h</itemPath>
         <itemPath>examples/smarts/Smart_CppForG.cpp</itemPath>
         <itemPath>examples/smarts/Smart_CppForG.h</itemPath>
         <itemPath>examples/smarts/Smart_Delay.cpp</itemPath>
@@ -2467,7 +2494,6 @@
         <itemPath>kernel/simulator/ConnectionManager.h</itemPath>
         <itemPath>kernel/simulator/Counter.cpp</itemPath>
         <itemPath>kernel/simulator/Counter.h</itemPath>
-        <itemPath>kernel/simulator/DefineGetterSetter.h</itemPath>
         <itemPath>kernel/simulator/Entity.cpp</itemPath>
         <itemPath>kernel/simulator/Entity.h</itemPath>
         <itemPath>kernel/simulator/EntityType.cpp</itemPath>
@@ -2523,15 +2549,11 @@
         <itemPath>kernel/simulator/PluginManager.cpp</itemPath>
         <itemPath>kernel/simulator/PluginManager.h</itemPath>
         <itemPath>kernel/simulator/ScenarioExperiment_if.h</itemPath>
-        <itemPath>kernel/simulator/SimulationControl.cpp</itemPath>
-        <itemPath>kernel/simulator/SimulationControl.h</itemPath>
         <itemPath>kernel/simulator/SimulationExperiment.cpp</itemPath>
         <itemPath>kernel/simulator/SimulationExperiment.h</itemPath>
         <itemPath>kernel/simulator/SimulationReporterDefaultImpl1.cpp</itemPath>
         <itemPath>kernel/simulator/SimulationReporterDefaultImpl1.h</itemPath>
         <itemPath>kernel/simulator/SimulationReporter_if.h</itemPath>
-        <itemPath>kernel/simulator/SimulationResponse.cpp</itemPath>
-        <itemPath>kernel/simulator/SimulationResponse.h</itemPath>
         <itemPath>kernel/simulator/SimulationScenario.cpp</itemPath>
         <itemPath>kernel/simulator/SimulationScenario.h</itemPath>
         <itemPath>kernel/simulator/Simulator.cpp</itemPath>
@@ -2652,6 +2674,8 @@
         <itemPath>plugins/components/Write.h</itemPath>
       </logicalFolder>
       <logicalFolder name="data" displayName="data" projectFiles="true">
+        <itemPath>plugins/data/AssignmentItem.cpp</itemPath>
+        <itemPath>plugins/data/AssignmentItem.h</itemPath>
         <itemPath>plugins/data/CppCode.cpp</itemPath>
         <itemPath>plugins/data/CppCode.h</itemPath>
         <itemPath>plugins/data/DummyElement.cpp</itemPath>
@@ -2703,16 +2727,23 @@
                    displayName="Arquivos de Teste"
                    projectFiles="false"
                    kind="TEST_LOGICAL_FOLDER">
+      <logicalFolder name="f2"
+                     displayName="testExamples"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/textExamples.cpp</itemPath>
+      </logicalFolder>
       <logicalFolder name="f1"
                      displayName="testProbabilityDistribution"
                      projectFiles="true"
                      kind="TEST">
         <itemPath>tests/testProbabilityDistribution.cpp</itemPath>
       </logicalFolder>
-      <logicalFolder name="f2"
-                     displayName="testProbabilityDistribution"
+      <logicalFolder name="f3"
+                     displayName="testtestHyphotesisTester"
                      projectFiles="true"
                      kind="TEST">
+        <itemPath>tests/testtestHyphotesisTester.cpp</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
@@ -2724,16 +2755,6 @@
                    displayName="Arquivos de Teste"
                    projectFiles="false"
                    kind="TEST_LOGICAL_FOLDER">
-      <logicalFolder name="f1"
-                     displayName="testProbabilityDistribution"
-                     projectFiles="true"
-                     kind="TEST">
-      </logicalFolder>
-      <logicalFolder name="f2"
-                     displayName="testProbabilityDistribution"
-                     projectFiles="true"
-                     kind="TEST">
-      </logicalFolder>
     </logicalFolder>
     <itemPath>Makefile</itemPath>
     <itemPath>Traits.h</itemPath>
@@ -2753,9 +2774,8 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <qt>
-        <destdir>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/build/Debug/GNU-Linux</destdir>
         <version>220115</version>
-        <modules>core gui widgets</modules>
+        <modules>core gui widgets printsupport</modules>
       </qt>
       <compileType>
         <ccTool>
@@ -2766,6 +2786,198 @@
         <packType>Debian</packType>
         <verbose>false</verbose>
         <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
           <packFileListElem type="File"
                             to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
                             from="${OUTPUT_PATH}"
@@ -3113,6 +3325,10 @@
       </packaging>
       <item path="Makefile" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Smart_CellularAutomata1.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Smart_CellularAutomata1.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Traits.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="applications/BaseConsoleGenesysApplication.cpp"
@@ -3130,9 +3346,124 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/AnimateExpression.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/AnimateExpression.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/CodeEditor.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/CodeEditor.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalComponentPort.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalComponentPort.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalConnection.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalConnection.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelComponent.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelComponent.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelDataDefinition.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelDataDefinition.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/LineNumberArea.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsView.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsView.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/SimpleGUI.pro"
             ex="false"
             tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/SimpleGUI.pro.user"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/SimpleGUI_en_US.ts"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.ui"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/main.cpp"
+            ex="false"
+            tool="1"
             flavor2="0">
       </item>
       <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.cpp"
@@ -3146,6 +3477,16 @@
             flavor2="0">
       </item>
       <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.ui"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/qcustomplot.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/qcustomplot.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -14782,26 +15123,34 @@
             tool="3"
             flavor2="0">
       </item>
-      <folder path="TestFiles/f1">
-        <linkerTool>
-          <output>${TESTDIR}/TestFiles/f1</output>
-          <linkerLibItems>
-            <linkerOptionItem>-lcunit</linkerOptionItem>
-          </linkerLibItems>
-        </linkerTool>
-      </folder>
       <folder path="TestFiles/f2">
         <cTool>
-          <commandLine>`cppunit-config --cflags`</commandLine>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
         </cTool>
         <ccTool>
-          <commandLine>`cppunit-config --cflags`</commandLine>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
         </ccTool>
         <linkerTool>
           <output>${TESTDIR}/TestFiles/f2</output>
-          <linkerLibItems>
-            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
-          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f3">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f3</output>
         </linkerTool>
       </folder>
       <item path="kernel/TraitsKernel.h" ex="false" tool="3" flavor2="0">
@@ -14833,11 +15182,6 @@
       <item path="kernel/simulator/Counter.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="kernel/simulator/Counter.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="kernel/simulator/DefineGetterSetter.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
       </item>
       <item path="kernel/simulator/Entity.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -15042,16 +15386,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="kernel/simulator/SimulationControl.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="kernel/simulator/SimulationControl.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="kernel/simulator/SimulationExperiment.cpp"
             ex="false"
             tool="1"
@@ -15073,16 +15407,6 @@
             flavor2="0">
       </item>
       <item path="kernel/simulator/SimulationReporter_if.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="kernel/simulator/SimulationResponse.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="kernel/simulator/SimulationResponse.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -15461,6 +15785,10 @@
       </item>
       <item path="plugins/components/Write.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="plugins/data/AssignmentItem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/data/AssignmentItem.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="plugins/data/CppCode.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="plugins/data/CppCode.h" ex="false" tool="3" flavor2="0">
@@ -15525,6 +15853,10 @@
             ex="false"
             tool="1"
             flavor2="0">
+      </item>
+      <item path="tests/testtestHyphotesisTester.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/textExamples.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tools/HypothesisTesterDefaultImpl1.cpp"
             ex="false"
@@ -15575,6 +15907,10 @@
       </compileType>
       <item path="Makefile" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Smart_CellularAutomata1.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Smart_CellularAutomata1.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Traits.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="applications/BaseConsoleGenesysApplication.cpp"
@@ -15592,9 +15928,124 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/AnimateExpression.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/AnimateExpression.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/CodeEditor.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/CodeEditor.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalComponentPort.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalComponentPort.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalConnection.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalConnection.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelComponent.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelComponent.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelDataDefinition.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/GraphicalModelDataDefinition.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/LineNumberArea.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsScene.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsView.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/ModelGraphicsView.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/SimpleGUI.pro"
             ex="false"
             tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/SimpleGUI.pro.user"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/SimpleGUI_en_US.ts"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/dialogBreakpoint.ui"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/main.cpp"
+            ex="false"
+            tool="1"
             flavor2="0">
       </item>
       <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.cpp"
@@ -15608,6 +16059,16 @@
             flavor2="0">
       </item>
       <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/mainwindow.ui"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/qcustomplot.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="applications/gui/qt/SimpleGUI_QtCreator/SimpleGUI/qcustomplot.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -27244,26 +27705,34 @@
             tool="3"
             flavor2="0">
       </item>
-      <folder path="TestFiles/f1">
-        <linkerTool>
-          <output>${TESTDIR}/TestFiles/f1</output>
-          <linkerLibItems>
-            <linkerOptionItem>-lcunit</linkerOptionItem>
-          </linkerLibItems>
-        </linkerTool>
-      </folder>
       <folder path="TestFiles/f2">
         <cTool>
-          <commandLine>`cppunit-config --cflags`</commandLine>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
         </cTool>
         <ccTool>
-          <commandLine>`cppunit-config --cflags`</commandLine>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
         </ccTool>
         <linkerTool>
           <output>${TESTDIR}/TestFiles/f2</output>
-          <linkerLibItems>
-            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
-          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f3">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f3</output>
         </linkerTool>
       </folder>
       <item path="kernel/TraitsKernel.h" ex="false" tool="3" flavor2="0">
@@ -27295,11 +27764,6 @@
       <item path="kernel/simulator/Counter.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="kernel/simulator/Counter.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="kernel/simulator/DefineGetterSetter.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
       </item>
       <item path="kernel/simulator/Entity.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -27504,16 +27968,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="kernel/simulator/SimulationControl.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="kernel/simulator/SimulationControl.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="kernel/simulator/SimulationExperiment.cpp"
             ex="false"
             tool="1"
@@ -27535,16 +27989,6 @@
             flavor2="0">
       </item>
       <item path="kernel/simulator/SimulationReporter_if.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="kernel/simulator/SimulationResponse.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="kernel/simulator/SimulationResponse.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -27923,6 +28367,10 @@
       </item>
       <item path="plugins/components/Write.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="plugins/data/AssignmentItem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="plugins/data/AssignmentItem.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="plugins/data/CppCode.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="plugins/data/CppCode.h" ex="false" tool="3" flavor2="0">
@@ -27987,6 +28435,10 @@
             ex="false"
             tool="1"
             flavor2="0">
+      </item>
+      <item path="tests/testtestHyphotesisTester.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/textExamples.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tools/HypothesisTesterDefaultImpl1.cpp"
             ex="false"

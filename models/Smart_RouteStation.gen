@@ -1,16 +1,22 @@
-0   SimulatorInfo "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220111 
+# Genesys Simulation Model 
+# Simulator, Model and Simulation infos
+0   Simulator  "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220131 
 0   ModelInfo  "Model 1" analystName="" description="" projectTitle="" version="1.0" 
-0   ModelSimulation "ModelSimulation" replicationLength=20.000000 traceLevel=9 
-58  Station    "station1" 
-62  Station    "station2" 
-66  Station    "station3" 
-56  Create     "Create_1" EntityType="" timeBetweenCreations="4.0" nextId=57 
-57  Route      "Route_1" routeTimeExpression="0.1" station="station1" nextSize=0 
-59  Enter      "Enter_1" station="station1" nextId=60 
-60  Delay      "Delay_1" nextId=61 
-61  Route      "Route_2" routeTimeExpression="0.2" station="station2" nextSize=0 
-63  Enter      "Enter_2" station="station2" nextId=64 
-64  Delay      "Delay_2" nextId=65 
-65  Route      "Route_3" routeTimeExpression="0.3" station="station3" nextSize=0 
-67  Enter      "Enter_3" station="station3" nextId=68 
-68  Dispose    "Dispose_1" nextSize=0 
+0   ModelSimulation "" replicationLength=20.000000 traceLevel=9 
+
+# Model Data Definitions
+2267 Station    "station1" 
+2271 Station    "station2" 
+2275 Station    "station3" 
+
+# Model Components
+2265 Create     "Create_1" entityType="entitytype" timeBetweenCreations="4.0" nextId=2266 
+2266 Route      "Route_1" routeTimeExpression="0.1" station="station1" nexts=0 
+2268 Enter      "Enter_1" station="station1" nextId=2269 
+2269 Delay      "Delay_1" nextId=2270 
+2270 Route      "Route_2" routeTimeExpression="0.2" station="station2" nexts=0 
+2272 Enter      "Enter_2" station="station2" nextId=2273 
+2273 Delay      "Delay_2" nextId=2274 
+2274 Route      "Route_3" routeTimeExpression="0.3" station="station3" nexts=0 
+2276 Enter      "Enter_3" station="station3" nextId=2277 
+2277 Dispose    "Dispose_1" nexts=0 

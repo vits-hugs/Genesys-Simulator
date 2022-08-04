@@ -1,15 +1,20 @@
-0   SimulatorInfo "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220111 
+# Genesys Simulation Model 
+# Simulator, Model and Simulation infos
+0   Simulator  "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220131 
 0   ModelInfo  "Model 1" analystName="" description="" projectTitle="" version="1.0" 
-0   ModelSimulation "ModelSimulation" numberOfReplications=3 replicationLength=10.000000 traceLevel=9 
-56  EntityType "Customer" 
-58  Resource   "Resource_1" 
-59  Resource   "Resource_2" 
-60  Resource   "Resource_3" 
-61  Resource   "Resource_4" 
-62  Resource   "Resource_5" 
-63  Queue      "Queue_1" 
-57  Create     "Create_1" EntityType="Customer" timeBetweenCreations="1" nextId=64 
-64  Seize      "Seize_1" queueId=63 queueable="Queue_1" resquestSize=5 seizable0="Resource_1" seizable1="Resource_2" seizable2="Resource_3" seizable3="Resource_4" seizable4="Resource_5" nextId=65 
-65  Delay      "Delay_1" delayExpression="unif(0.8,1.2)" nextId=66 
-66  Release    "Release_1" resquestSize=5 seizable0="Resource_1" seizable1="Resource_2" seizable2="Resource_3" seizable3="Resource_4" seizable4="Resource_5" nextId=67 
-67  Dispose    "Dispose_1" nextSize=0 
+0   ModelSimulation "" numberOfReplications=3 replicationLength=10.000000 traceLevel=9 
+
+# Model Data Definitions
+2490 Resource   "Resource_1" 
+2491 Resource   "Resource_2" 
+2492 Resource   "Resource_3" 
+2493 Resource   "Resource_4" 
+2494 Resource   "Resource_5" 
+2495 Queue      "Queue_1" 
+
+# Model Components
+2489 Create     "Create_1" entityType="entitytype" nextId=2496 
+2496 Seize      "Seize_1" queueable="Queue_1" requestSeizable[0]="Resource_1" requestSeizable[1]="Resource_2" requestSeizable[2]="Resource_3" requestSeizable[3]="Resource_4" requestSeizable[4]="Resource_5" resquests=5 nextId=2497 
+2497 Delay      "Delay_1" delayExpression="unif(0.6,1.5)" nextId=2498 
+2498 Release    "Release_1" requestSeizable[0]="Resource_1" requestSeizable[1]="Resource_2" requestSeizable[2]="Resource_3" requestSeizable[3]="Resource_4" requestSeizable[4]="Resource_5" resquests=5 nextId=2499 
+2499 Dispose    "Dispose_1" nexts=0 
