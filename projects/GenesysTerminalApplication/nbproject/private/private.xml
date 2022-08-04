@@ -40,15 +40,7 @@
             <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/projects/GenesysTerminalApplication/main.cpp</file>
         </group>
         <group>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/applications/terminal/examples/smarts/Smart_Failures.cpp</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/plugins/data/Failure.cpp</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/plugins/components/Seize.cpp</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/tools/SolverDefaultImpl1.cpp</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/applications/TraitsApp.h</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/plugins/data/Resource.cpp</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/plugins/data/Resource.h</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/projects/GenesysTerminalApplication/main.cpp</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/tests/Tests.h</file>
+            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/tests/testKernel.cpp</file>
         </group>
     </open-files>
 </project-private>

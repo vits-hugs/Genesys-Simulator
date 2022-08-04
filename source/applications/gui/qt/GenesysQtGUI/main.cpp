@@ -1,9 +1,13 @@
 #include "mainwindow.h"
 #include <QApplication>
 
-
 #include "../../../GenesysApplication_if.h"
 #include "../../../TraitsApp.h"
+
+//***************************
+bool runGUI = false;
+//***************************
+
 
 int mainGraphicQtApp(int argc, char *argv[]) {
 	QApplication a(argc, argv);
@@ -18,7 +22,6 @@ int mainTerminalApp(int argc, char *argv[]) {
 }
 
 int main(int argc, char *argv[]) {
-	bool runGUI = false;
 	if (runGUI) {
 		return mainGraphicQtApp(argc, argv);
 	} else {

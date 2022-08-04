@@ -3,26 +3,21 @@
     <type>org.netbeans.modules.cnd.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>GenesysTerminalApplication</name>
+            <name>GoogleTestsStaticLibrary</name>
             <c-extensions/>
-            <cpp-extensions>cc,cpp</cpp-extensions>
-            <header-extensions>h,hh</header-extensions>
+            <cpp-extensions>cc</cpp-extensions>
+            <header-extensions/>
             <sourceEncoding>UTF-8</sourceEncoding>
             <make-dep-projects/>
-            <sourceRootList>
-                <sourceRootElem>../../source</sourceRootElem>
-                <sourceRootElem>../../documentation</sourceRootElem>
-                <sourceRootElem>../../models</sourceRootElem>
-                <sourceRootElem>..</sourceRootElem>
-            </sourceRootList>
+            <sourceRootList/>
             <confList>
                 <confElem>
                     <name>Debug</name>
-                    <type>1</type>
+                    <type>3</type>
                 </confElem>
                 <confElem>
                     <name>Release</name>
-                    <type>1</type>
+                    <type>3</type>
                 </confElem>
             </confList>
             <formatting>

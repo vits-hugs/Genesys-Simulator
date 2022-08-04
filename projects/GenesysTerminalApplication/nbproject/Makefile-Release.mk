@@ -181,15 +181,12 @@ TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 
 # Test Files
 TESTFILES= \
-	${TESTDIR}/TestFiles/f4 \
-	${TESTDIR}/TestFiles/f2 \
-	${TESTDIR}/TestFiles/f3 \
-	${TESTDIR}/TestFiles/f5 \
 	${TESTDIR}/TestFiles/f1
 
 # Test Object Files
 TESTOBJECTFILES= \
-	${TESTDIR}/_ext/cc16e5bb/testDataAnalyser.o
+	${TESTDIR}/_ext/bc246cfa/gtest-all.o \
+	${TESTDIR}/_ext/d18a80cd/testKernel.o
 
 # C Compiler Flags
 CFLAGS=
@@ -922,31 +919,21 @@ ${OBJECTDIR}/main.o: main.cpp nbproject/Makefile-${CND_CONF}.mk
 .build-tests-conf: .build-tests-subprojects .build-conf ${TESTFILES}
 .build-tests-subprojects:
 
-${TESTDIR}/TestFiles/f4: ${OBJECTFILES:%.o=%_nomain.o}
-	${MKDIR} -p ${TESTDIR}/TestFiles
-	${LINK.cc} -o ${TESTDIR}/TestFiles/f4 $^ ${LDLIBSOPTIONS}   
-
-${TESTDIR}/TestFiles/f2: ${OBJECTFILES:%.o=%_nomain.o}
-	${MKDIR} -p ${TESTDIR}/TestFiles
-	${LINK.cc} -o ${TESTDIR}/TestFiles/f2 $^ ${LDLIBSOPTIONS}   
-
-${TESTDIR}/TestFiles/f3: ${OBJECTFILES:%.o=%_nomain.o}
-	${MKDIR} -p ${TESTDIR}/TestFiles
-	${LINK.cc} -o ${TESTDIR}/TestFiles/f3 $^ ${LDLIBSOPTIONS}   
-
-${TESTDIR}/TestFiles/f5: ${OBJECTFILES:%.o=%_nomain.o}
-	${MKDIR} -p ${TESTDIR}/TestFiles
-	${LINK.cc} -o ${TESTDIR}/TestFiles/f5 $^ ${LDLIBSOPTIONS}   
-
-${TESTDIR}/TestFiles/f1: ${TESTDIR}/_ext/cc16e5bb/testDataAnalyser.o ${OBJECTFILES:%.o=%_nomain.o}
+${TESTDIR}/TestFiles/f1: ${TESTDIR}/_ext/bc246cfa/gtest-all.o ${TESTDIR}/_ext/d18a80cd/testKernel.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc} -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS}   
 
 
-${TESTDIR}/_ext/cc16e5bb/testDataAnalyser.o: ../../source/testDataAnalyser.cpp 
-	${MKDIR} -p ${TESTDIR}/_ext/cc16e5bb
+${TESTDIR}/_ext/bc246cfa/gtest-all.o: ../../source/gtest/src/gtest-all.cc 
+	${MKDIR} -p ${TESTDIR}/_ext/bc246cfa
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/_ext/cc16e5bb/testDataAnalyser.o ../../source/testDataAnalyser.cpp
+	$(COMPILE.cc) -O2 -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/_ext/bc246cfa/gtest-all.o ../../source/gtest/src/gtest-all.cc
+
+
+${TESTDIR}/_ext/d18a80cd/testKernel.o: ../../source/tests/testKernel.cpp 
+	${MKDIR} -p ${TESTDIR}/_ext/d18a80cd
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/_ext/d18a80cd/testKernel.o ../../source/tests/testKernel.cpp
 
 
 ${OBJECTDIR}/_ext/6bf258f7/BaseGenesysTerminalApplication_nomain.o: ${OBJECTDIR}/_ext/6bf258f7/BaseGenesysTerminalApplication.o ../../source/applications/BaseGenesysTerminalApplication.cpp 
@@ -2773,10 +2760,6 @@ ${OBJECTDIR}/main_nomain.o: ${OBJECTDIR}/main.o main.cpp
 .test-conf:
 	@if [ "${TEST}" = "" ]; \
 	then  \
-	    ${TESTDIR}/TestFiles/f4 || true; \
-	    ${TESTDIR}/TestFiles/f2 || true; \
-	    ${TESTDIR}/TestFiles/f3 || true; \
-	    ${TESTDIR}/TestFiles/f5 || true; \
 	    ${TESTDIR}/TestFiles/f1 || true; \
 	else  \
 	    ./${TEST} || true; \

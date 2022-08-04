@@ -410,31 +410,12 @@
                    displayName="Arquivos de Teste"
                    projectFiles="false"
                    kind="TEST_LOGICAL_FOLDER">
-      <logicalFolder name="f4"
-                     displayName="TestApplications"
-                     projectFiles="true"
-                     kind="TEST">
-      </logicalFolder>
-      <logicalFolder name="f2"
-                     displayName="TestKernel"
-                     projectFiles="true"
-                     kind="TEST">
-      </logicalFolder>
-      <logicalFolder name="f3"
-                     displayName="TestParser"
-                     projectFiles="true"
-                     kind="TEST">
-      </logicalFolder>
-      <logicalFolder name="f5"
-                     displayName="TestPlugins"
-                     projectFiles="true"
-                     kind="TEST">
-      </logicalFolder>
       <logicalFolder name="f1"
-                     displayName="TestTools"
+                     displayName="Test Kernel"
                      projectFiles="true"
                      kind="TEST">
-        <itemPath>../../source/testDataAnalyser.cpp</itemPath>
+        <itemPath>../../source/gtest/src/gtest-all.cc</itemPath>
+        <itemPath>../../source/tests/testKernel.cpp</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
@@ -445,6 +426,7 @@
     </logicalFolder>
     <itemPath>main.cpp</itemPath>
   </logicalFolder>
+  <sourceFolderFilter>^(nbproject|build)$</sourceFolderFilter>
   <sourceRootList>
     <Elem>../../source</Elem>
     <Elem>../../documentation</Elem>
@@ -465,8 +447,19 @@
         </cTool>
         <ccTool>
           <standard>11</standard>
+          <incDir>
+            <pElem>../../source/gtest</pElem>
+          </incDir>
           <warningLevel>2</warningLevel>
         </ccTool>
+        <asmTool>
+          <warningLevel>2</warningLevel>
+        </asmTool>
+        <linkerTool>
+          <linkerAddLib>
+            <pElem>../GoogleTestsStaticLibrary/dist/Debug/GNU-Linux</pElem>
+          </linkerAddLib>
+        </linkerTool>
       </compileType>
       <item path="../../documentation/GenESyS_Developer_Documentation.pdf"
             ex="false"
@@ -851,6 +844,11 @@
       <item path="../../source/applications/terminal/examples/teaching/OperatingSystem03.h"
             ex="false"
             tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/gtest/src/gtest-all.cc"
+            ex="false"
+            tool="1"
             flavor2="0">
       </item>
       <item path="../../source/kernel/TraitsKernel.h" ex="false" tool="3" flavor2="0">
@@ -1980,11 +1978,11 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/testDataAnalyser.cpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="../../source/tests/Tests.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../source/tests/Tests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../source/tests/testKernel.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../source/tools/DataAnalyser_if.h"
             ex="false"
@@ -2046,6 +2044,13 @@
       </item>
       <item path="Makefile" ex="false" tool="3" flavor2="0">
       </item>
+      <folder path="TestFiles">
+        <ccTool>
+          <incDir>
+            <pElem>../../source/gtest</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
       <folder path="TestFiles/f1">
         <cTool>
           <incDir>
@@ -2055,150 +2060,10 @@
         <ccTool>
           <incDir>
             <pElem>.</pElem>
-            <pElem>../../source/googletest</pElem>
-            <pElem>../../source/googletest/include</pElem>
           </incDir>
         </ccTool>
         <linkerTool>
           <output>${TESTDIR}/TestFiles/f1</output>
-          <linkerLibItems>
-            <linkerLibProjectItem>
-              <makeArtifact PL="../GoogleTest"
-                            CT="3"
-                            CN="Debug"
-                            AC="true"
-                            BL="true"
-                            WD="../GoogleTest"
-                            BC="${MAKE}  -f Makefile CONF=Debug"
-                            CC="${MAKE}  -f Makefile CONF=Debug clean"
-                            OP="${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libgoogletest.a">
-              </makeArtifact>
-            </linkerLibProjectItem>
-          </linkerLibItems>
-        </linkerTool>
-      </folder>
-      <folder path="TestFiles/f2">
-        <cTool>
-          <incDir>
-            <pElem>.</pElem>
-          </incDir>
-        </cTool>
-        <ccTool>
-          <incDir>
-            <pElem>.</pElem>
-            <pElem>../../source/googletest</pElem>
-            <pElem>../../source/googletest/include</pElem>
-          </incDir>
-        </ccTool>
-        <linkerTool>
-          <output>${TESTDIR}/TestFiles/f2</output>
-          <linkerLibItems>
-            <linkerLibProjectItem>
-              <makeArtifact PL="../GoogleTest"
-                            CT="3"
-                            CN="Debug"
-                            AC="true"
-                            BL="true"
-                            WD="../GoogleTest"
-                            BC="${MAKE}  -f Makefile CONF=Debug"
-                            CC="${MAKE}  -f Makefile CONF=Debug clean"
-                            OP="${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libgoogletest.a">
-              </makeArtifact>
-            </linkerLibProjectItem>
-          </linkerLibItems>
-        </linkerTool>
-      </folder>
-      <folder path="TestFiles/f3">
-        <cTool>
-          <incDir>
-            <pElem>.</pElem>
-          </incDir>
-        </cTool>
-        <ccTool>
-          <incDir>
-            <pElem>.</pElem>
-            <pElem>../../source/googletest</pElem>
-            <pElem>../../source/googletest/include</pElem>
-          </incDir>
-        </ccTool>
-        <linkerTool>
-          <output>${TESTDIR}/TestFiles/f3</output>
-          <linkerLibItems>
-            <linkerLibProjectItem>
-              <makeArtifact PL="../GoogleTest"
-                            CT="3"
-                            CN="Debug"
-                            AC="true"
-                            BL="true"
-                            WD="../GoogleTest"
-                            BC="${MAKE}  -f Makefile CONF=Debug"
-                            CC="${MAKE}  -f Makefile CONF=Debug clean"
-                            OP="${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libgoogletest.a">
-              </makeArtifact>
-            </linkerLibProjectItem>
-          </linkerLibItems>
-        </linkerTool>
-      </folder>
-      <folder path="TestFiles/f4">
-        <cTool>
-          <incDir>
-            <pElem>.</pElem>
-          </incDir>
-        </cTool>
-        <ccTool>
-          <incDir>
-            <pElem>.</pElem>
-            <pElem>../../source/googletest</pElem>
-            <pElem>../../source/googletest/include</pElem>
-          </incDir>
-        </ccTool>
-        <linkerTool>
-          <output>${TESTDIR}/TestFiles/f4</output>
-          <linkerLibItems>
-            <linkerLibProjectItem>
-              <makeArtifact PL="../GoogleTest"
-                            CT="3"
-                            CN="Debug"
-                            AC="true"
-                            BL="true"
-                            WD="../GoogleTest"
-                            BC="${MAKE}  -f Makefile CONF=Debug"
-                            CC="${MAKE}  -f Makefile CONF=Debug clean"
-                            OP="${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libgoogletest.a">
-              </makeArtifact>
-            </linkerLibProjectItem>
-          </linkerLibItems>
-        </linkerTool>
-      </folder>
-      <folder path="TestFiles/f5">
-        <cTool>
-          <incDir>
-            <pElem>.</pElem>
-          </incDir>
-        </cTool>
-        <ccTool>
-          <incDir>
-            <pElem>.</pElem>
-            <pElem>../../source/googletest</pElem>
-            <pElem>../../source/googletest/include</pElem>
-          </incDir>
-        </ccTool>
-        <linkerTool>
-          <output>${TESTDIR}/TestFiles/f5</output>
-          <linkerLibItems>
-            <linkerLibProjectItem>
-              <makeArtifact PL="../GoogleTest"
-                            CT="3"
-                            CN="Debug"
-                            AC="true"
-                            BL="true"
-                            WD="../GoogleTest"
-                            BC="${MAKE}  -f Makefile CONF=Debug"
-                            CC="${MAKE}  -f Makefile CONF=Debug clean"
-                            OP="${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libgoogletest.a">
-              </makeArtifact>
-            </linkerLibProjectItem>
-          </linkerLibItems>
         </linkerTool>
       </folder>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
@@ -2609,6 +2474,11 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../../source/gtest/src/gtest-all.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="../../source/kernel/TraitsKernel.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="../../source/kernel/simulator/Attribute.cpp"
@@ -3736,11 +3606,11 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/testDataAnalyser.cpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="../../source/tests/Tests.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../source/tests/Tests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../source/tests/testKernel.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../source/tools/DataAnalyser_if.h"
             ex="false"
@@ -3815,66 +3685,6 @@
         </ccTool>
         <linkerTool>
           <output>${TESTDIR}/TestFiles/f1</output>
-        </linkerTool>
-      </folder>
-      <folder path="TestFiles/f2">
-        <cTool>
-          <incDir>
-            <pElem>.</pElem>
-          </incDir>
-        </cTool>
-        <ccTool>
-          <incDir>
-            <pElem>.</pElem>
-          </incDir>
-        </ccTool>
-        <linkerTool>
-          <output>${TESTDIR}/TestFiles/f2</output>
-        </linkerTool>
-      </folder>
-      <folder path="TestFiles/f3">
-        <cTool>
-          <incDir>
-            <pElem>.</pElem>
-          </incDir>
-        </cTool>
-        <ccTool>
-          <incDir>
-            <pElem>.</pElem>
-          </incDir>
-        </ccTool>
-        <linkerTool>
-          <output>${TESTDIR}/TestFiles/f3</output>
-        </linkerTool>
-      </folder>
-      <folder path="TestFiles/f4">
-        <cTool>
-          <incDir>
-            <pElem>.</pElem>
-          </incDir>
-        </cTool>
-        <ccTool>
-          <incDir>
-            <pElem>.</pElem>
-          </incDir>
-        </ccTool>
-        <linkerTool>
-          <output>${TESTDIR}/TestFiles/f4</output>
-        </linkerTool>
-      </folder>
-      <folder path="TestFiles/f5">
-        <cTool>
-          <incDir>
-            <pElem>.</pElem>
-          </incDir>
-        </cTool>
-        <ccTool>
-          <incDir>
-            <pElem>.</pElem>
-          </incDir>
-        </ccTool>
-        <linkerTool>
-          <output>${TESTDIR}/TestFiles/f5</output>
         </linkerTool>
       </folder>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">

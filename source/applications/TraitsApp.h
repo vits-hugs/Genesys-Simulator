@@ -64,7 +64,7 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	static const TraceManager::Level traceLevel = TraceManager::Level::L9_mostDetailed;
 
 	//// TESTS
-	//typedef Tests Application;
+	typedef Tests Application;
 
 	//// SMART SMARTs ALPHA SORTED
 	//typedef Smart_AssignWriteSeizes Application;
@@ -82,7 +82,7 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Smart_ProcessSet Application;
 	//typedef Smart_RouteStation Application;
 	//typedef Smart_SeizeDelayRelease Application;
-	typedef Smart_Failures Application;
+	//typedef Smart_Failures Application;
 	//typedef Smart_SeizeDelayReleaseNoDataDefs Application;
 	//typedef Smart_SeizeDelayReleaseMany Application;
 	//typedef Smart_Sequence Application;
