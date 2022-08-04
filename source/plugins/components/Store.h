@@ -27,9 +27,9 @@ Storages are useful for displaying entity animation while an entity undergoes
 processing in other modules. Additionally, statistics may be kept on the number of
 entities in storage.
 TYPICAL USES
- * Animating a part through a number of delay operations (load, setup, process,
+* Animating a part through a number of delay operations (load, setup, process,
 unload)
- * Tracking the number of customers within a grocery store (place in storage upon
+* Tracking the number of customers within a grocery store (place in storage upon
 entry)
 PROMPTS
 Prompt Description
@@ -49,21 +49,21 @@ is placed. Applies only when the Type is Expression.
  */
 class Store : public ModelComponent {
 public: // constructors
-    Store(Model* model, std::string name = "");
-    virtual ~Store() = default;
+	Store(Model* model, std::string name = "");
+	virtual ~Store() = default;
 public: // virtual
-    virtual std::string show();
+	virtual std::string show();
 public: // static
-    static PluginInformation* GetPluginInformation();
-    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+	static PluginInformation* GetPluginInformation();
+	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 protected: // virtual
-    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 protected: // virtual
-    //virtual void _initBetweenReplications();
-    virtual bool _check(std::string* errorMessage);
+	//virtual void _initBetweenReplications();
+	virtual bool _check(std::string* errorMessage);
 private: // methods
 private: // attributes 1:1
 private: // attributes 1:n

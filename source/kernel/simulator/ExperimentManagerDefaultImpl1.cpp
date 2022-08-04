@@ -26,18 +26,18 @@ List<SimulationScenario*>* ExperimentManagerDefaultImpl1::getScenarios() const {
 //}
 
 //List<SimulationResponse*>* ExperimentManagerDefaultImpl1::getResponses() const {
-// @TODO: implement
+    // @TODO: implement
 //	return nullptr;
 //}
 
 //List<SimulationControl*>* ExperimentManagerDefaultImpl1::extractControlsFromModel(std::string modelFilename) const {
-// @TODO: implement
+    // @TODO: implement
 //	modelFilename = ""; //just to use it
 //	return nullptr;
 //}
 
 //List<SimulationResponse*>* ExperimentManagerDefaultImpl1::extractResponsesFromModel(std::string modelFilename) const {
-// @TODO: implement
+    // @TODO: implement
 //	modelFilename = ""; // juts to use it
 //	return nullptr;
 //}

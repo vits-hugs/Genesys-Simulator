@@ -45,188 +45,146 @@ GTEST_DISABLE_MSC_WARNINGS_PUSH_(4251 \
 
 namespace testing {
 
-    // A copyable object representing the result of a test part (i.e. an
-    // assertion or an explicit FAIL(), ADD_FAILURE(), or SUCCESS()).
-    //
-    // Don't inherit from TestPartResult as its destructor is not virtual.
+// A copyable object representing the result of a test part (i.e. an
+// assertion or an explicit FAIL(), ADD_FAILURE(), or SUCCESS()).
+//
+// Don't inherit from TestPartResult as its destructor is not virtual.
+class GTEST_API_ TestPartResult {
+ public:
+  // The possible outcomes of a test part (i.e. an assertion or an
+  // explicit SUCCEED(), FAIL(), or ADD_FAILURE()).
+  enum Type {
+    kSuccess,          // Succeeded.
+    kNonFatalFailure,  // Failed but the test can continue.
+    kFatalFailure,     // Failed and the test should be terminated.
+    kSkip              // Skipped.
+  };
 
-    class GTEST_API_ TestPartResult {
-    public:
-        // The possible outcomes of a test part (i.e. an assertion or an
-        // explicit SUCCEED(), FAIL(), or ADD_FAILURE()).
-
-        enum Type {
-            kSuccess, // Succeeded.
-            kNonFatalFailure, // Failed but the test can continue.
-            kFatalFailure, // Failed and the test should be terminated.
-            kSkip // Skipped.
-        };
-
-        // C'tor.  TestPartResult does NOT have a default constructor.
-        // Always use this constructor (with parameters) to create a
-        // TestPartResult object.
-
-        TestPartResult(Type a_type, const char* a_file_name, int a_line_number,
-                const char* a_message)
-        : type_(a_type),
+  // C'tor.  TestPartResult does NOT have a default constructor.
+  // Always use this constructor (with parameters) to create a
+  // TestPartResult object.
+  TestPartResult(Type a_type, const char* a_file_name, int a_line_number,
+                 const char* a_message)
+      : type_(a_type),
         file_name_(a_file_name == nullptr ? "" : a_file_name),
         line_number_(a_line_number),
         summary_(ExtractSummary(a_message)),
-        message_(a_message) {
-        }
+        message_(a_message) {}
 
-        // Gets the outcome of the test part.
+  // Gets the outcome of the test part.
+  Type type() const { return type_; }
 
-        Type type() const {
-            return type_;
-        }
+  // Gets the name of the source file where the test part took place, or
+  // NULL if it's unknown.
+  const char* file_name() const {
+    return file_name_.empty() ? nullptr : file_name_.c_str();
+  }
 
-        // Gets the name of the source file where the test part took place, or
-        // NULL if it's unknown.
+  // Gets the line in the source file where the test part took place,
+  // or -1 if it's unknown.
+  int line_number() const { return line_number_; }
 
-        const char* file_name() const {
-            return file_name_.empty() ? nullptr : file_name_.c_str();
-        }
+  // Gets the summary of the failure message.
+  const char* summary() const { return summary_.c_str(); }
 
-        // Gets the line in the source file where the test part took place,
-        // or -1 if it's unknown.
+  // Gets the message associated with the test part.
+  const char* message() const { return message_.c_str(); }
 
-        int line_number() const {
-            return line_number_;
-        }
+  // Returns true if and only if the test part was skipped.
+  bool skipped() const { return type_ == kSkip; }
 
-        // Gets the summary of the failure message.
+  // Returns true if and only if the test part passed.
+  bool passed() const { return type_ == kSuccess; }
 
-        const char* summary() const {
-            return summary_.c_str();
-        }
+  // Returns true if and only if the test part non-fatally failed.
+  bool nonfatally_failed() const { return type_ == kNonFatalFailure; }
 
-        // Gets the message associated with the test part.
+  // Returns true if and only if the test part fatally failed.
+  bool fatally_failed() const { return type_ == kFatalFailure; }
 
-        const char* message() const {
-            return message_.c_str();
-        }
+  // Returns true if and only if the test part failed.
+  bool failed() const { return fatally_failed() || nonfatally_failed(); }
 
-        // Returns true if and only if the test part was skipped.
+ private:
+  Type type_;
 
-        bool skipped() const {
-            return type_ == kSkip;
-        }
+  // Gets the summary of the failure message by omitting the stack
+  // trace in it.
+  static std::string ExtractSummary(const char* message);
 
-        // Returns true if and only if the test part passed.
+  // The name of the source file where the test part took place, or
+  // "" if the source file is unknown.
+  std::string file_name_;
+  // The line in the source file where the test part took place, or -1
+  // if the line number is unknown.
+  int line_number_;
+  std::string summary_;  // The test failure summary.
+  std::string message_;  // The test failure message.
+};
 
-        bool passed() const {
-            return type_ == kSuccess;
-        }
+// Prints a TestPartResult object.
+std::ostream& operator<<(std::ostream& os, const TestPartResult& result);
 
-        // Returns true if and only if the test part non-fatally failed.
+// An array of TestPartResult objects.
+//
+// Don't inherit from TestPartResultArray as its destructor is not
+// virtual.
+class GTEST_API_ TestPartResultArray {
+ public:
+  TestPartResultArray() {}
 
-        bool nonfatally_failed() const {
-            return type_ == kNonFatalFailure;
-        }
+  // Appends the given TestPartResult to the array.
+  void Append(const TestPartResult& result);
 
-        // Returns true if and only if the test part fatally failed.
+  // Returns the TestPartResult at the given index (0-based).
+  const TestPartResult& GetTestPartResult(int index) const;
 
-        bool fatally_failed() const {
-            return type_ == kFatalFailure;
-        }
+  // Returns the number of TestPartResult objects in the array.
+  int size() const;
 
-        // Returns true if and only if the test part failed.
+ private:
+  std::vector<TestPartResult> array_;
 
-        bool failed() const {
-            return fatally_failed() || nonfatally_failed();
-        }
+  TestPartResultArray(const TestPartResultArray&) = delete;
+  TestPartResultArray& operator=(const TestPartResultArray&) = delete;
+};
 
-    private:
-        Type type_;
+// This interface knows how to report a test part result.
+class GTEST_API_ TestPartResultReporterInterface {
+ public:
+  virtual ~TestPartResultReporterInterface() {}
 
-        // Gets the summary of the failure message by omitting the stack
-        // trace in it.
-        static std::string ExtractSummary(const char* message);
+  virtual void ReportTestPartResult(const TestPartResult& result) = 0;
+};
 
-        // The name of the source file where the test part took place, or
-        // "" if the source file is unknown.
-        std::string file_name_;
-        // The line in the source file where the test part took place, or -1
-        // if the line number is unknown.
-        int line_number_;
-        std::string summary_; // The test failure summary.
-        std::string message_; // The test failure message.
-    };
+namespace internal {
 
-    // Prints a TestPartResult object.
-    std::ostream& operator<<(std::ostream& os, const TestPartResult& result);
+// This helper class is used by {ASSERT|EXPECT}_NO_FATAL_FAILURE to check if a
+// statement generates new fatal failures. To do so it registers itself as the
+// current test part result reporter. Besides checking if fatal failures were
+// reported, it only delegates the reporting to the former result reporter.
+// The original result reporter is restored in the destructor.
+// INTERNAL IMPLEMENTATION - DO NOT USE IN A USER PROGRAM.
+class GTEST_API_ HasNewFatalFailureHelper
+    : public TestPartResultReporterInterface {
+ public:
+  HasNewFatalFailureHelper();
+  ~HasNewFatalFailureHelper() override;
+  void ReportTestPartResult(const TestPartResult& result) override;
+  bool has_new_fatal_failure() const { return has_new_fatal_failure_; }
 
-    // An array of TestPartResult objects.
-    //
-    // Don't inherit from TestPartResultArray as its destructor is not
-    // virtual.
+ private:
+  bool has_new_fatal_failure_;
+  TestPartResultReporterInterface* original_reporter_;
 
-    class GTEST_API_ TestPartResultArray {
-    public:
+  HasNewFatalFailureHelper(const HasNewFatalFailureHelper&) = delete;
+  HasNewFatalFailureHelper& operator=(const HasNewFatalFailureHelper&) = delete;
+};
 
-        TestPartResultArray() {
-        }
+}  // namespace internal
 
-        // Appends the given TestPartResult to the array.
-        void Append(const TestPartResult& result);
+}  // namespace testing
 
-        // Returns the TestPartResult at the given index (0-based).
-        const TestPartResult& GetTestPartResult(int index) const;
-
-        // Returns the number of TestPartResult objects in the array.
-        int size() const;
-
-    private:
-        std::vector<TestPartResult> array_;
-
-        TestPartResultArray(const TestPartResultArray&) = delete;
-        TestPartResultArray& operator=(const TestPartResultArray&) = delete;
-    };
-
-    // This interface knows how to report a test part result.
-
-    class GTEST_API_ TestPartResultReporterInterface {
-    public:
-
-        virtual ~TestPartResultReporterInterface() {
-        }
-
-        virtual void ReportTestPartResult(const TestPartResult& result) = 0;
-    };
-
-    namespace internal {
-
-        // This helper class is used by {ASSERT|EXPECT}_NO_FATAL_FAILURE to check if a
-        // statement generates new fatal failures. To do so it registers itself as the
-        // current test part result reporter. Besides checking if fatal failures were
-        // reported, it only delegates the reporting to the former result reporter.
-        // The original result reporter is restored in the destructor.
-        // INTERNAL IMPLEMENTATION - DO NOT USE IN A USER PROGRAM.
-
-        class GTEST_API_ HasNewFatalFailureHelper
-        : public TestPartResultReporterInterface {
-        public:
-            HasNewFatalFailureHelper();
-            ~HasNewFatalFailureHelper() override;
-            void ReportTestPartResult(const TestPartResult& result) override;
-
-            bool has_new_fatal_failure() const {
-                return has_new_fatal_failure_;
-            }
-
-        private:
-            bool has_new_fatal_failure_;
-            TestPartResultReporterInterface* original_reporter_;
-
-            HasNewFatalFailureHelper(const HasNewFatalFailureHelper&) = delete;
-            HasNewFatalFailureHelper& operator=(const HasNewFatalFailureHelper&) = delete;
-        };
-
-    } // namespace internal
-
-} // namespace testing
-
-GTEST_DISABLE_MSC_WARNINGS_POP_() //  4251
+GTEST_DISABLE_MSC_WARNINGS_POP_()  //  4251
 
 #endif  // GOOGLETEST_INCLUDE_GTEST_GTEST_TEST_PART_H_

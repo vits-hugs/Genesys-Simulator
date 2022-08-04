@@ -30,9 +30,9 @@ added to the batch.
 When duplicating entities, the specified number of copies is made and sent from the
 module. The original incoming entity also leaves the module.
 TYPICAL USES
- * Send individual entities to represent boxes removed from a container
- * Send an order both to fulfillment and billing for parallel processing
- * Separate a previously batched set of documents
+* Send individual entities to represent boxes removed from a container
+* Send an order both to fulfillment and billing for parallel processing
+* Separate a previously batched set of documents
 PROMPTS
 Prompt Description
 Name Unique module identifier displayed on the module shape.
@@ -64,21 +64,21 @@ Attributes is Take Specific Representative Values.
  */
 class Separate : public ModelComponent {
 public: // constructors
-    Separate(Model* model, std::string name = "");
-    virtual ~Separate() = default;
+	Separate(Model* model, std::string name = "");
+	virtual ~Separate() = default;
 public: // virtual
-    virtual std::string show();
+	virtual std::string show();
 public: // static
-    static PluginInformation* GetPluginInformation();
-    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+	static PluginInformation* GetPluginInformation();
+	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 protected: // virtual
-    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 protected: // virtual
-    //virtual void _initBetweenReplications();
-    virtual bool _check(std::string* errorMessage);
+	//virtual void _initBetweenReplications();
+	virtual bool _check(std::string* errorMessage);
 private: // methods
 private: // attributes 1:1
 private: // attributes 1:n

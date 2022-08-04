@@ -20,29 +20,29 @@
  */
 class CppForG : public ModelComponent {
 public: // constructors
-    CppForG(Model* model, std::string name = "");
-    virtual ~CppForG() = default;
+	CppForG(Model* model, std::string name = "");
+	virtual ~CppForG() = default;
 public: // virtual
-    virtual std::string show();
+	virtual std::string show();
 public: // static
-    static PluginInformation* GetPluginInformation();
-    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+	static PluginInformation* GetPluginInformation();
+	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
-    void setSourceCode(std::string _sourceCode);
-    std::string getSourceCode() const;
+	void setSourceCode(std::string _sourceCode);
+	std::string getSourceCode() const;
 protected: // virtual
-    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 protected: // virtual
-    //virtual void _initBetweenReplications();
-    virtual bool _check(std::string* errorMessage);
-    virtual void _createInternalAndAttachedData();
+	//virtual void _initBetweenReplications();
+	virtual bool _check(std::string* errorMessage);
+	virtual void _createInternalAndAttachedData();
 private: // methods
 private: // attributes 1:1
-    // internel
-    CppCode* _cppcode = nullptr;
+	// internel
+	CppCode* _cppcode = nullptr;
 private: // attributes 1:n
 };
 

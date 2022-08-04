@@ -24,43 +24,43 @@
  */
 class Process : public ModelComponent {
 public: // constructors
-    Process(Model* model, std::string name = "");
-    virtual ~Process() = default;
+	Process(Model* model, std::string name = "");
+	virtual ~Process() = default;
 public: // virtual
-    virtual std::string show();
+	virtual std::string show();
 public: // static
-    static PluginInformation* GetPluginInformation();
-    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+	static PluginInformation* GetPluginInformation();
+	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
-    void setPriority(unsigned short _priority);
-    unsigned short getPriority() const;
-    void setAllocationType(unsigned int _allocationType);
-    unsigned int getAllocationType() const;
-    List<SeizableItem*>* getSeizeRequests() const;
-    void setQueueableItem(QueueableItem* _queueableItem);
-    QueueableItem* getQueueableItem() const;
-    void setSaveAttribute(std::string _saveAttribute);
-    std::string getSaveAttribute() const;
-    void setDelayExpression(std::string _delayExpression);
-    std::string delayExpression() const;
-    void setDelayTimeUnit(Util::TimeUnit _delayTimeUnit);
-    Util::TimeUnit delayTimeUnit() const;
+	void setPriority(unsigned short _priority);
+	unsigned short getPriority() const;
+	void setAllocationType(unsigned int _allocationType);
+	unsigned int getAllocationType() const;
+	List<SeizableItem*>* getSeizeRequests() const;
+	void setQueueableItem(QueueableItem* _queueableItem);
+	QueueableItem* getQueueableItem() const;
+	void setSaveAttribute(std::string _saveAttribute);
+	std::string getSaveAttribute() const;
+	void setDelayExpression(std::string _delayExpression);
+	std::string delayExpression() const;
+	void setDelayTimeUnit(Util::TimeUnit _delayTimeUnit);
+	Util::TimeUnit delayTimeUnit() const;
 protected: // virtual
-    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
-    // virtual void _initBetweenReplications();
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-    virtual bool _check(std::string* errorMessage);
-    virtual void _createInternalAndAttachedData();
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+	// virtual void _initBetweenReplications();
+	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+	virtual bool _check(std::string* errorMessage);
+	virtual void _createInternalAndAttachedData();
 private: // methods
-    void _adjustConnections();
+	void _adjustConnections();
 private: // attributes 1:1
-    Seize* _seize = nullptr;
-    Delay* _delay = nullptr;
-    Release* _release = nullptr;
-    //ModelComponent* _nextComponent = nullptr;
-    //unsigned int _nextInput;
+	Seize* _seize = nullptr;
+	Delay* _delay = nullptr;
+	Release* _release = nullptr;
+	//ModelComponent* _nextComponent = nullptr;
+	//unsigned int _nextInput;
 private: // attributes 1:n
 };
 

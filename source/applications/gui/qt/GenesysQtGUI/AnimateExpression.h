@@ -3,7 +3,8 @@
 
 #include <QGraphicsObject>
 
-class AnimateExpression : public QGraphicsObject {
+class AnimateExpression: public QGraphicsObject
+{
 public:
     AnimateExpression();
 };

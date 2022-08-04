@@ -30,9 +30,9 @@ This data module defines the various entity types and their initial picture valu
 simulation. Initial costing information and holding costs are also defined for the
 entity.
 TYPICAL USES
- * Items being produced or assembled (parts, pallets)
- * Documents (forms, e-mails, faxes, reports)
- * People moving through a process (customers, callers)
+* Items being produced or assembled (parts, pallets)
+* Documents (forms, e-mails, faxes, reports)
+* People moving through a process (customers, callers)
 PROMPTS
 Prompt Description
 Name The unique name of the attribute being defined.
@@ -75,36 +75,36 @@ and stored in the report database for this entity type.
  */
 class Entity : public ModelDataDefinition {
 private: // no one can create or destry entities directlly. This can be done one throught friend class Model
-    Entity(Model* model, std::string name = "", bool insertIntoModel = true);
-    virtual ~Entity() = default;
-    // friend Entity* Model::createEntity(std::string name, bool insertIntoModel); // It would be better, but Model is not known at this point of compilaton
-    friend class Model;
+	Entity(Model* model, std::string name = "", bool insertIntoModel = true);
+	virtual ~Entity() = default;
+	// friend Entity* Model::createEntity(std::string name, bool insertIntoModel); // It would be better, but Model is not known at this point of compilaton
+	friend class Model;
 public:
-    virtual std::string show();
+	virtual std::string show();
 
 public: // g & s
-    void setEntityTypeName(std::string entityTypeName); //*!< indirect access to EntityType
-    std::string getEntityTypeName() const;
-    void setEntityType(EntityType* entityType); //*!< direct access to EntityType
-    EntityType* getEntityType() const;
+	void setEntityTypeName(std::string entityTypeName); //*!< indirect access to EntityType
+	std::string getEntityTypeName() const;
+	void setEntityType(EntityType* entityType); //*!< direct access to EntityType
+	EntityType* getEntityType() const;
 public:
-    double getAttributeValue(std::string attributeName);
-    double getAttributeValue(std::string index, std::string attributeName);
-    double getAttributeValue(Util::identification attributeID);
-    double getAttributeValue(std::string index, Util::identification attributeID);
-    void setAttributeValue(std::string attributeName, double value);
-    void setAttributeValue(std::string index, std::string attributeName, double value);
-    void setAttributeValue(Util::identification attributeID, double value);
-    void setAttributeValue(std::string index, Util::identification attributeID, double value);
-    Util::identification entityNumber() const;
+	double getAttributeValue(std::string attributeName);
+	double getAttributeValue(std::string index, std::string attributeName);
+	double getAttributeValue(Util::identification attributeID);
+	double getAttributeValue(std::string index, Util::identification attributeID);
+	void setAttributeValue(std::string attributeName, double value);
+	void setAttributeValue(std::string index, std::string attributeName, double value);
+	void setAttributeValue(Util::identification attributeID, double value);
+	void setAttributeValue(std::string index, Util::identification attributeID, double value);
+	Util::identification entityNumber() const;
 protected:
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-    virtual bool _check(std::string* errorMessage);
+	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+	virtual bool _check(std::string* errorMessage);
 private:
-    Util::identification _entityNumber;
-    EntityType* _entityType = nullptr;
-    List< std::map<std::string, double>* >* _attributeValues = new List<std::map<std::string, double>*>();
+	Util::identification _entityNumber;
+	EntityType* _entityType = nullptr;
+	List< std::map<std::string, double>* >* _attributeValues = new List<std::map<std::string, double>*>();
 };
 //namespace\\}
 #endif /* ENTITY_H */

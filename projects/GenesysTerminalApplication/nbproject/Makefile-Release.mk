@@ -68,14 +68,11 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/113d9686/ComponentManager.o \
 	${OBJECTDIR}/_ext/113d9686/ConnectionManager.o \
 	${OBJECTDIR}/_ext/113d9686/Counter.o \
-	${OBJECTDIR}/_ext/113d9686/CppSerializer.o \
 	${OBJECTDIR}/_ext/113d9686/Entity.o \
 	${OBJECTDIR}/_ext/113d9686/EntityType.o \
 	${OBJECTDIR}/_ext/113d9686/Event.o \
 	${OBJECTDIR}/_ext/113d9686/ExperimentManager.o \
 	${OBJECTDIR}/_ext/113d9686/ExperimentManagerDefaultImpl1.o \
-	${OBJECTDIR}/_ext/113d9686/GenSerializer.o \
-	${OBJECTDIR}/_ext/113d9686/JsonSerializer.o \
 	${OBJECTDIR}/_ext/113d9686/LicenceManager.o \
 	${OBJECTDIR}/_ext/113d9686/Model.o \
 	${OBJECTDIR}/_ext/113d9686/ModelCheckerDefaultImpl1.o \
@@ -85,15 +82,12 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/113d9686/ModelInfo.o \
 	${OBJECTDIR}/_ext/113d9686/ModelManager.o \
 	${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl1.o \
-	${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl2.o \
-	${OBJECTDIR}/_ext/113d9686/ModelSerializer.o \
 	${OBJECTDIR}/_ext/113d9686/ModelSimulation.o \
 	${OBJECTDIR}/_ext/113d9686/OnEventManager.o \
 	${OBJECTDIR}/_ext/113d9686/ParserChangesInformation.o \
 	${OBJECTDIR}/_ext/113d9686/ParserDefaultImpl1.o \
 	${OBJECTDIR}/_ext/113d9686/ParserDefaultImpl2.o \
 	${OBJECTDIR}/_ext/113d9686/ParserManager.o \
-	${OBJECTDIR}/_ext/113d9686/Persistence.o \
 	${OBJECTDIR}/_ext/113d9686/Plugin.o \
 	${OBJECTDIR}/_ext/113d9686/PluginConnectorDummyImpl1.o \
 	${OBJECTDIR}/_ext/113d9686/PluginInformation.o \
@@ -108,7 +102,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/113d9686/SourceModelComponent.o \
 	${OBJECTDIR}/_ext/113d9686/StatisticsCollector.o \
 	${OBJECTDIR}/_ext/113d9686/TraceManager.o \
-	${OBJECTDIR}/_ext/113d9686/XmlSerializer.o \
 	${OBJECTDIR}/_ext/5dd0aee1/CollectorDatafileDefaultImpl1.o \
 	${OBJECTDIR}/_ext/5dd0aee1/CollectorDefaultImpl1.o \
 	${OBJECTDIR}/_ext/5dd0aee1/SamplerBoostImpl.o \
@@ -385,11 +378,6 @@ ${OBJECTDIR}/_ext/113d9686/Counter.o: ../../source/kernel/simulator/Counter.cpp 
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/Counter.o ../../source/kernel/simulator/Counter.cpp
 
-${OBJECTDIR}/_ext/113d9686/CppSerializer.o: ../../source/kernel/simulator/CppSerializer.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/CppSerializer.o ../../source/kernel/simulator/CppSerializer.cpp
-
 ${OBJECTDIR}/_ext/113d9686/Entity.o: ../../source/kernel/simulator/Entity.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
 	${RM} "$@.d"
@@ -414,16 +402,6 @@ ${OBJECTDIR}/_ext/113d9686/ExperimentManagerDefaultImpl1.o: ../../source/kernel/
 	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/ExperimentManagerDefaultImpl1.o ../../source/kernel/simulator/ExperimentManagerDefaultImpl1.cpp
-
-${OBJECTDIR}/_ext/113d9686/GenSerializer.o: ../../source/kernel/simulator/GenSerializer.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/GenSerializer.o ../../source/kernel/simulator/GenSerializer.cpp
-
-${OBJECTDIR}/_ext/113d9686/JsonSerializer.o: ../../source/kernel/simulator/JsonSerializer.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/JsonSerializer.o ../../source/kernel/simulator/JsonSerializer.cpp
 
 ${OBJECTDIR}/_ext/113d9686/LicenceManager.o: ../../source/kernel/simulator/LicenceManager.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
@@ -470,16 +448,6 @@ ${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl1.o: ../../source/kernel/s
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl1.o ../../source/kernel/simulator/ModelPersistenceDefaultImpl1.cpp
 
-${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl2.o: ../../source/kernel/simulator/ModelPersistenceDefaultImpl2.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl2.o ../../source/kernel/simulator/ModelPersistenceDefaultImpl2.cpp
-
-${OBJECTDIR}/_ext/113d9686/ModelSerializer.o: ../../source/kernel/simulator/ModelSerializer.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/ModelSerializer.o ../../source/kernel/simulator/ModelSerializer.cpp
-
 ${OBJECTDIR}/_ext/113d9686/ModelSimulation.o: ../../source/kernel/simulator/ModelSimulation.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
 	${RM} "$@.d"
@@ -509,11 +477,6 @@ ${OBJECTDIR}/_ext/113d9686/ParserManager.o: ../../source/kernel/simulator/Parser
 	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/ParserManager.o ../../source/kernel/simulator/ParserManager.cpp
-
-${OBJECTDIR}/_ext/113d9686/Persistence.o: ../../source/kernel/simulator/Persistence.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/Persistence.o ../../source/kernel/simulator/Persistence.cpp
 
 ${OBJECTDIR}/_ext/113d9686/Plugin.o: ../../source/kernel/simulator/Plugin.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
@@ -584,11 +547,6 @@ ${OBJECTDIR}/_ext/113d9686/TraceManager.o: ../../source/kernel/simulator/TraceMa
 	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/TraceManager.o ../../source/kernel/simulator/TraceManager.cpp
-
-${OBJECTDIR}/_ext/113d9686/XmlSerializer.o: ../../source/kernel/simulator/XmlSerializer.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/XmlSerializer.o ../../source/kernel/simulator/XmlSerializer.cpp
 
 ${OBJECTDIR}/_ext/5dd0aee1/CollectorDatafileDefaultImpl1.o: ../../source/kernel/statistics/CollectorDatafileDefaultImpl1.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/5dd0aee1
@@ -1413,19 +1371,6 @@ ${OBJECTDIR}/_ext/113d9686/Counter_nomain.o: ${OBJECTDIR}/_ext/113d9686/Counter.
 	    ${CP} ${OBJECTDIR}/_ext/113d9686/Counter.o ${OBJECTDIR}/_ext/113d9686/Counter_nomain.o;\
 	fi
 
-${OBJECTDIR}/_ext/113d9686/CppSerializer_nomain.o: ${OBJECTDIR}/_ext/113d9686/CppSerializer.o ../../source/kernel/simulator/CppSerializer.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/113d9686/CppSerializer.o`; \
-	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
-	then  \
-	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/CppSerializer_nomain.o ../../source/kernel/simulator/CppSerializer.cpp;\
-	else  \
-	    ${CP} ${OBJECTDIR}/_ext/113d9686/CppSerializer.o ${OBJECTDIR}/_ext/113d9686/CppSerializer_nomain.o;\
-	fi
-
 ${OBJECTDIR}/_ext/113d9686/Entity_nomain.o: ${OBJECTDIR}/_ext/113d9686/Entity.o ../../source/kernel/simulator/Entity.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/113d9686/Entity.o`; \
@@ -1489,32 +1434,6 @@ ${OBJECTDIR}/_ext/113d9686/ExperimentManagerDefaultImpl1_nomain.o: ${OBJECTDIR}/
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/ExperimentManagerDefaultImpl1_nomain.o ../../source/kernel/simulator/ExperimentManagerDefaultImpl1.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/113d9686/ExperimentManagerDefaultImpl1.o ${OBJECTDIR}/_ext/113d9686/ExperimentManagerDefaultImpl1_nomain.o;\
-	fi
-
-${OBJECTDIR}/_ext/113d9686/GenSerializer_nomain.o: ${OBJECTDIR}/_ext/113d9686/GenSerializer.o ../../source/kernel/simulator/GenSerializer.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/113d9686/GenSerializer.o`; \
-	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
-	then  \
-	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/GenSerializer_nomain.o ../../source/kernel/simulator/GenSerializer.cpp;\
-	else  \
-	    ${CP} ${OBJECTDIR}/_ext/113d9686/GenSerializer.o ${OBJECTDIR}/_ext/113d9686/GenSerializer_nomain.o;\
-	fi
-
-${OBJECTDIR}/_ext/113d9686/JsonSerializer_nomain.o: ${OBJECTDIR}/_ext/113d9686/JsonSerializer.o ../../source/kernel/simulator/JsonSerializer.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/113d9686/JsonSerializer.o`; \
-	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
-	then  \
-	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/JsonSerializer_nomain.o ../../source/kernel/simulator/JsonSerializer.cpp;\
-	else  \
-	    ${CP} ${OBJECTDIR}/_ext/113d9686/JsonSerializer.o ${OBJECTDIR}/_ext/113d9686/JsonSerializer_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/113d9686/LicenceManager_nomain.o: ${OBJECTDIR}/_ext/113d9686/LicenceManager.o ../../source/kernel/simulator/LicenceManager.cpp 
@@ -1634,32 +1553,6 @@ ${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl1_nomain.o: ${OBJECTDIR}/_
 	    ${CP} ${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl1.o ${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl1_nomain.o;\
 	fi
 
-${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl2_nomain.o: ${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl2.o ../../source/kernel/simulator/ModelPersistenceDefaultImpl2.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl2.o`; \
-	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
-	then  \
-	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl2_nomain.o ../../source/kernel/simulator/ModelPersistenceDefaultImpl2.cpp;\
-	else  \
-	    ${CP} ${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl2.o ${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl2_nomain.o;\
-	fi
-
-${OBJECTDIR}/_ext/113d9686/ModelSerializer_nomain.o: ${OBJECTDIR}/_ext/113d9686/ModelSerializer.o ../../source/kernel/simulator/ModelSerializer.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/113d9686/ModelSerializer.o`; \
-	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
-	then  \
-	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/ModelSerializer_nomain.o ../../source/kernel/simulator/ModelSerializer.cpp;\
-	else  \
-	    ${CP} ${OBJECTDIR}/_ext/113d9686/ModelSerializer.o ${OBJECTDIR}/_ext/113d9686/ModelSerializer_nomain.o;\
-	fi
-
 ${OBJECTDIR}/_ext/113d9686/ModelSimulation_nomain.o: ${OBJECTDIR}/_ext/113d9686/ModelSimulation.o ../../source/kernel/simulator/ModelSimulation.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/113d9686/ModelSimulation.o`; \
@@ -1736,19 +1629,6 @@ ${OBJECTDIR}/_ext/113d9686/ParserManager_nomain.o: ${OBJECTDIR}/_ext/113d9686/Pa
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/ParserManager_nomain.o ../../source/kernel/simulator/ParserManager.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/113d9686/ParserManager.o ${OBJECTDIR}/_ext/113d9686/ParserManager_nomain.o;\
-	fi
-
-${OBJECTDIR}/_ext/113d9686/Persistence_nomain.o: ${OBJECTDIR}/_ext/113d9686/Persistence.o ../../source/kernel/simulator/Persistence.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/113d9686/Persistence.o`; \
-	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
-	then  \
-	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/Persistence_nomain.o ../../source/kernel/simulator/Persistence.cpp;\
-	else  \
-	    ${CP} ${OBJECTDIR}/_ext/113d9686/Persistence.o ${OBJECTDIR}/_ext/113d9686/Persistence_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/113d9686/Plugin_nomain.o: ${OBJECTDIR}/_ext/113d9686/Plugin.o ../../source/kernel/simulator/Plugin.cpp 
@@ -1931,19 +1811,6 @@ ${OBJECTDIR}/_ext/113d9686/TraceManager_nomain.o: ${OBJECTDIR}/_ext/113d9686/Tra
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/TraceManager_nomain.o ../../source/kernel/simulator/TraceManager.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/113d9686/TraceManager.o ${OBJECTDIR}/_ext/113d9686/TraceManager_nomain.o;\
-	fi
-
-${OBJECTDIR}/_ext/113d9686/XmlSerializer_nomain.o: ${OBJECTDIR}/_ext/113d9686/XmlSerializer.o ../../source/kernel/simulator/XmlSerializer.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/113d9686/XmlSerializer.o`; \
-	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
-	then  \
-	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/XmlSerializer_nomain.o ../../source/kernel/simulator/XmlSerializer.cpp;\
-	else  \
-	    ${CP} ${OBJECTDIR}/_ext/113d9686/XmlSerializer.o ${OBJECTDIR}/_ext/113d9686/XmlSerializer_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/5dd0aee1/CollectorDatafileDefaultImpl1_nomain.o: ${OBJECTDIR}/_ext/5dd0aee1/CollectorDatafileDefaultImpl1.o ../../source/kernel/statistics/CollectorDatafileDefaultImpl1.cpp 

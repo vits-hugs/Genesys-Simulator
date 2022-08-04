@@ -26,8 +26,8 @@ When an entity arrives at an Access module, it will wait until the appropriate n
 of contiguous cells on the conveyor are empty and aligned with the entity’s station
 location.
 TYPICAL USES
- * Parts accessing a conveyor to be sent to a paint booth
- * Glass accessing a conveyor to be transferred to a cutting station
+* Parts accessing a conveyor to be sent to a paint booth
+* Glass accessing a conveyor to be transferred to a cutting station
 PROMPTS
 Prompt Description
 Name Unique name of the module that will be displayed in the
@@ -52,21 +52,21 @@ which entities will reside.
  */
 class Access : public ModelComponent {
 public: // constructors
-    Access(Model* model, std::string name = "");
-    virtual ~Access() = default;
+	Access(Model* model, std::string name = "");
+	virtual ~Access() = default;
 public: // virtual
-    virtual std::string show();
+	virtual std::string show();
 public: // static
-    static PluginInformation* GetPluginInformation();
-    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+	static PluginInformation* GetPluginInformation();
+	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 protected: // virtual
-    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 protected: // virtual
-    //virtual void _initBetweenReplications();
-    virtual bool _check(std::string* errorMessage);
+	//virtual void _initBetweenReplications();
+	virtual bool _check(std::string* errorMessage);
 private: // methods
 private: // attributes 1:1
 private: // attributes 1:n

@@ -28,7 +28,7 @@ by any module that references the storage so that this module is seldom needed. 
 only time this module is needed is when a storage is defined as a member of a storage
 set or specified using an attribute or expression.
 TYPICAL USES
- * Defining an animate storage for a set of storages
+* Defining an animate storage for a set of storages
 PROMPTS
 Prompt Description
 Name The name of the storage set being defined. This name must be
@@ -36,37 +36,37 @@ unique.
  */
 class Storage : public ModelDataDefinition {
 public:
-    Storage(Model* model, std::string name = "");
-    virtual ~Storage() = default;
+	Storage(Model* model, std::string name = "");
+	virtual ~Storage() = default;
 public: // static
-    static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-    static PluginInformation* GetPluginInformation();
-    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static PluginInformation* GetPluginInformation();
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
-    virtual std::string show();
-    void setTotalArea(double _totalArea);
-    double getTotalArea() const;
+	virtual std::string show();
+	void setTotalArea(double _totalArea);
+	double getTotalArea() const;
     void setCapacity(unsigned int _capacity);
     unsigned int getCapacity() const;
     void setUnitsPerArea(double _unitsPerArea);
     double getUnitsPerArea() const;
 
 protected: // must be overriden 
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 protected: // could be overriden 
-    virtual bool _check(std::string* errorMessage);
-    virtual ParserChangesInformation* _getParserChangesInformation();
+	virtual bool _check(std::string* errorMessage);
+	virtual ParserChangesInformation* _getParserChangesInformation();
 private:
 
-    const struct DEFAULT_VALUES {
-        double totalArea = 1;
-        unsigned int capacity = 10;
-        double unitsPerArea = 1;
-    } DEFAULT;
-    double _totalArea = DEFAULT.totalArea;
-    unsigned int _capacity = DEFAULT.capacity;
-    double _unitsPerArea = DEFAULT.unitsPerArea;
+	const struct DEFAULT_VALUES {
+		double totalArea = 1;
+		unsigned int capacity = 10;
+		double unitsPerArea = 1;
+	} DEFAULT;
+	double _totalArea = DEFAULT.totalArea;
+	unsigned int _capacity = DEFAULT.capacity;
+	double _unitsPerArea = DEFAULT.unitsPerArea;
 };
 #endif /* STORAGE_H */
 

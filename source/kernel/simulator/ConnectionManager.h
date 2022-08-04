@@ -23,15 +23,14 @@
 class ModelComponent;
 
 typedef unsigned int ConnectionPort; /*< actually a port is only a uint, but it could be more complex, including type, presence or absence of data, etc */
-
 /*!
  * Defines a connection between two or more ModelComponents. 
  * A (receiver) component's inputPort may receive connection from one or more (sender) components' outputPorts.
  * A (sender) component's outputPort is connected to one and only one (receiver) component's inputPort.
  */
 struct Connection {
-    ModelComponent* component;
-    ConnectionPort port;
+	ModelComponent* component;
+	ConnectionPort port;
 };
 
 /*!
@@ -39,39 +38,39 @@ struct Connection {
  */
 class ConnectionManager {
 public:
-    ConnectionManager();
-    virtual ~ConnectionManager() = default;
+	ConnectionManager();
+	virtual ~ConnectionManager() = default;
 public:
-    unsigned int size();
-    //ModelComponent* front(); /*!< DEPRECTED. Use  frontConnection instead */
-    //ModelComponent* atRank(unsigned int rank); /*!< DEPRECTED. Use  getConnectionAtRank instead */
-    Connection* getFrontConnection();
-    Connection* getConnectionAtPort(unsigned int rank);
-    void insert(ModelComponent* component, unsigned int inputPortNumber = 0); /*!< Insert a new connection by specifying the destnation component and optionally an input port, if not 0*/
-    void insert(Connection* connection);
-    void insertAtPort(unsigned int port, Connection* connection);
-    void remove(Connection* connection);
-    void removeAtPort(unsigned int port);
-    std::map<unsigned int, Connection*>* connections() const;
-    //void setCurrentOutputConnections(unsigned int _currentOutputConnections);
-    unsigned int getCurrentOutputConnectionsSize() const;
-    void setMaxOutputConnections(unsigned int _maxOutputConnections);
-    unsigned int getMaxOutputConnections() const;
-    void setMinOutputConnections(unsigned int _minOutputConnections);
-    unsigned int getMinOutputConnections() const;
-    //void setCurrentInputConnections(unsigned int _currentInputConnections);
-    unsigned int getCurrentInputConnectionsSize() const;
-    void setMaxInputConnections(unsigned int _maxInputConnections);
-    unsigned int getMaxInputConnections() const;
-    void setMinInputConnections(unsigned int _minInputConnections);
-    unsigned int getMinInputConnections() const;
+	unsigned int size();
+	//ModelComponent* front(); /*!< DEPRECTED. Use  frontConnection instead */
+	//ModelComponent* atRank(unsigned int rank); /*!< DEPRECTED. Use  getConnectionAtRank instead */
+	Connection* getFrontConnection();
+	Connection* getConnectionAtPort(unsigned int rank);
+	void insert(ModelComponent* component, unsigned int inputPortNumber = 0); /*!< Insert a new connection by specifying the destnation component and optionally an input port, if not 0*/
+	void insert(Connection* connection);
+	void insertAtPort(unsigned int port, Connection* connection);
+	void remove(Connection* connection);
+	void removeAtPort(unsigned int port);
+	std::map<unsigned int, Connection*>* connections() const;
+	//void setCurrentOutputConnections(unsigned int _currentOutputConnections);
+	unsigned int getCurrentOutputConnectionsSize() const;
+	void setMaxOutputConnections(unsigned int _maxOutputConnections);
+	unsigned int getMaxOutputConnections() const;
+	void setMinOutputConnections(unsigned int _minOutputConnections);
+	unsigned int getMinOutputConnections() const;
+	//void setCurrentInputConnections(unsigned int _currentInputConnections);
+	unsigned int getCurrentInputConnectionsSize() const;
+	void setMaxInputConnections(unsigned int _maxInputConnections);
+	unsigned int getMaxInputConnections() const;
+	void setMinInputConnections(unsigned int _minInputConnections);
+	unsigned int getMinInputConnections() const;
 private:
-    std::map<unsigned int, Connection*>* _nextConnections = new std::map<unsigned int, Connection*>();
-    unsigned int _minInputConnections = 1;
-    unsigned int _maxInputConnections = 1;
-    unsigned int _currentInputConnections = 1;
-    unsigned int _minOutputConnections = 1;
-    unsigned int _maxOutputConnections = 1;
+	std::map<unsigned int, Connection*>* _nextConnections = new std::map<unsigned int, Connection*>();
+	unsigned int _minInputConnections = 1;
+	unsigned int _maxInputConnections = 1;
+	unsigned int _currentInputConnections = 1;
+	unsigned int _minOutputConnections = 1;
+	unsigned int _maxOutputConnections = 1;
 };
 //namespace\\}
 #endif /* CONNECTIONMANAGER_H */

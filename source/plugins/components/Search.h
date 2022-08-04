@@ -34,9 +34,9 @@ decreased and the condition is rechecked. This process repeats until the search
 condition is satisfied or the ending value is reached. If the condition is not met or
 there are no entities in the queue or group, J is set equal to 0.
 TYPICAL USES
- * Looking for a particular order number in a queue
- * Searching a group for a certain part type
- * Determining which process to enter based on availability of resources (search an
+* Looking for a particular order number in a queue
+* Searching a group for a certain part type
+* Determining which process to enter based on availability of resources (search an
 expression)
  Prompt Description
 Name Unique module identifier displayed on the module shape.
@@ -54,21 +54,21 @@ containing an attribute name(s) for searching queues or batches.
  */
 class Search : public ModelComponent {
 public: // constructors
-    Search(Model* model, std::string name = "");
-    virtual ~Search() = default;
+	Search(Model* model, std::string name = "");
+	virtual ~Search() = default;
 public: // virtual
-    virtual std::string show();
+	virtual std::string show();
 public: // static
-    static PluginInformation* GetPluginInformation();
-    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+	static PluginInformation* GetPluginInformation();
+	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 protected: // virtual
-    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
 protected: // virtual
-    //virtual void _initBetweenReplications();
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-    virtual bool _check(std::string* errorMessage);
+	//virtual void _initBetweenReplications();
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+	virtual bool _check(std::string* errorMessage);
 private: // methods
 private: // attributes 1:1
 private: // attributes 1:n

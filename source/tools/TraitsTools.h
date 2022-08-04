@@ -23,29 +23,26 @@
 template <typename T>
 struct TraitsTools {
 };
-
 /*!
  *  Configure the Solver to be used
  */
 template <> struct TraitsTools<Solver_if> {
-    typedef SolverDefaultImpl1 Implementation;
-    static constexpr double Precision = 1e-5;
-    static constexpr unsigned int MaxSteps = 1e2;
+	typedef SolverDefaultImpl1 Implementation;
+	static constexpr double Precision = 1e-5;
+	static constexpr unsigned int MaxSteps = 1e2;
 };
-
 /*!
  *  Configure the Hypothesis Tester to be used
  */
 template <> struct TraitsTools<HypothesisTester_if> {
-    typedef HypothesisTesterDefaultImpl1 Implementation;
-    static constexpr unsigned int ConfidenceLevel = 95;
+	typedef HypothesisTesterDefaultImpl1 Implementation;
+	static constexpr unsigned int ConfidenceLevel = 95;
 };
-
 /*!
  *  Configure the Fitter to be used
  */
 template <> struct TraitsTools<Fitter_if> {
-    typedef FitterDummyImpl Implementation;
+	typedef FitterDummyImpl Implementation;
 };
 
 #endif /* TRAITSTOOLS_H */

@@ -1,5 +1,6 @@
 #include "AnimateExpression.h"
 
-AnimateExpression::AnimateExpression() {
+AnimateExpression::AnimateExpression()
+{
 
 }

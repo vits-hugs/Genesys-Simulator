@@ -40,88 +40,85 @@ GTEST_DISABLE_MSC_WARNINGS_PUSH_(4251 \
 
 namespace testing {
 
-    // This helper class can be used to mock out Google Test failure reporting
-    // so that we can test Google Test or code that builds on Google Test.
-    //
-    // An object of this class appends a TestPartResult object to the
-    // TestPartResultArray object given in the constructor whenever a Google Test
-    // failure is reported. It can either intercept only failures that are
-    // generated in the same thread that created this object or it can intercept
-    // all generated failures. The scope of this mock object can be controlled with
-    // the second argument to the two arguments constructor.
-
-    class GTEST_API_ ScopedFakeTestPartResultReporter
+// This helper class can be used to mock out Google Test failure reporting
+// so that we can test Google Test or code that builds on Google Test.
+//
+// An object of this class appends a TestPartResult object to the
+// TestPartResultArray object given in the constructor whenever a Google Test
+// failure is reported. It can either intercept only failures that are
+// generated in the same thread that created this object or it can intercept
+// all generated failures. The scope of this mock object can be controlled with
+// the second argument to the two arguments constructor.
+class GTEST_API_ ScopedFakeTestPartResultReporter
     : public TestPartResultReporterInterface {
-    public:
-        // The two possible mocking modes of this object.
+ public:
+  // The two possible mocking modes of this object.
+  enum InterceptMode {
+    INTERCEPT_ONLY_CURRENT_THREAD,  // Intercepts only thread local failures.
+    INTERCEPT_ALL_THREADS           // Intercepts all failures.
+  };
 
-        enum InterceptMode {
-            INTERCEPT_ONLY_CURRENT_THREAD, // Intercepts only thread local failures.
-            INTERCEPT_ALL_THREADS // Intercepts all failures.
-        };
+  // The c'tor sets this object as the test part result reporter used
+  // by Google Test.  The 'result' parameter specifies where to report the
+  // results. This reporter will only catch failures generated in the current
+  // thread. DEPRECATED
+  explicit ScopedFakeTestPartResultReporter(TestPartResultArray* result);
 
-        // The c'tor sets this object as the test part result reporter used
-        // by Google Test.  The 'result' parameter specifies where to report the
-        // results. This reporter will only catch failures generated in the current
-        // thread. DEPRECATED
-        explicit ScopedFakeTestPartResultReporter(TestPartResultArray* result);
+  // Same as above, but you can choose the interception scope of this object.
+  ScopedFakeTestPartResultReporter(InterceptMode intercept_mode,
+                                   TestPartResultArray* result);
 
-        // Same as above, but you can choose the interception scope of this object.
-        ScopedFakeTestPartResultReporter(InterceptMode intercept_mode,
-                TestPartResultArray* result);
+  // The d'tor restores the previous test part result reporter.
+  ~ScopedFakeTestPartResultReporter() override;
 
-        // The d'tor restores the previous test part result reporter.
-        ~ScopedFakeTestPartResultReporter() override;
+  // Appends the TestPartResult object to the TestPartResultArray
+  // received in the constructor.
+  //
+  // This method is from the TestPartResultReporterInterface
+  // interface.
+  void ReportTestPartResult(const TestPartResult& result) override;
 
-        // Appends the TestPartResult object to the TestPartResultArray
-        // received in the constructor.
-        //
-        // This method is from the TestPartResultReporterInterface
-        // interface.
-        void ReportTestPartResult(const TestPartResult& result) override;
+ private:
+  void Init();
 
-    private:
-        void Init();
+  const InterceptMode intercept_mode_;
+  TestPartResultReporterInterface* old_reporter_;
+  TestPartResultArray* const result_;
 
-        const InterceptMode intercept_mode_;
-        TestPartResultReporterInterface* old_reporter_;
-        TestPartResultArray * const result_;
+  ScopedFakeTestPartResultReporter(const ScopedFakeTestPartResultReporter&) =
+      delete;
+  ScopedFakeTestPartResultReporter& operator=(
+      const ScopedFakeTestPartResultReporter&) = delete;
+};
 
-        ScopedFakeTestPartResultReporter(const ScopedFakeTestPartResultReporter&) =
-        delete;
-        ScopedFakeTestPartResultReporter& operator=(
-                const ScopedFakeTestPartResultReporter&) = delete;
-    };
+namespace internal {
 
-    namespace internal {
+// A helper class for implementing EXPECT_FATAL_FAILURE() and
+// EXPECT_NONFATAL_FAILURE().  Its destructor verifies that the given
+// TestPartResultArray contains exactly one failure that has the given
+// type and contains the given substring.  If that's not the case, a
+// non-fatal failure will be generated.
+class GTEST_API_ SingleFailureChecker {
+ public:
+  // The constructor remembers the arguments.
+  SingleFailureChecker(const TestPartResultArray* results,
+                       TestPartResult::Type type, const std::string& substr);
+  ~SingleFailureChecker();
 
-        // A helper class for implementing EXPECT_FATAL_FAILURE() and
-        // EXPECT_NONFATAL_FAILURE().  Its destructor verifies that the given
-        // TestPartResultArray contains exactly one failure that has the given
-        // type and contains the given substring.  If that's not the case, a
-        // non-fatal failure will be generated.
+ private:
+  const TestPartResultArray* const results_;
+  const TestPartResult::Type type_;
+  const std::string substr_;
 
-        class GTEST_API_ SingleFailureChecker {
-        public:
-            // The constructor remembers the arguments.
-            SingleFailureChecker(const TestPartResultArray* results,
-                    TestPartResult::Type type, const std::string& substr);
-            ~SingleFailureChecker();
+  SingleFailureChecker(const SingleFailureChecker&) = delete;
+  SingleFailureChecker& operator=(const SingleFailureChecker&) = delete;
+};
 
-        private:
-            const TestPartResultArray * const results_;
-            const TestPartResult::Type type_;
-            const std::string substr_;
+}  // namespace internal
 
-            SingleFailureChecker(const SingleFailureChecker&) = delete;
-            SingleFailureChecker& operator=(const SingleFailureChecker&) = delete;
-        };
+}  // namespace testing
 
-    } // namespace internal
-
-} // namespace testing
-
-GTEST_DISABLE_MSC_WARNINGS_POP_() //  4251
+GTEST_DISABLE_MSC_WARNINGS_POP_()  //  4251
 
 // A set of macros for testing Google Test assertions or code that's expected
 // to generate Google Test fatal failures (e.g. a failure from an ASSERT_EQ, but

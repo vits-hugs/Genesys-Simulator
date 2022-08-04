@@ -17,29 +17,29 @@
 
 class Label : public ModelDataDefinition {
 public:
-    Label(Model* model, std::string name = "");
-    virtual ~Label() = default;
+	Label(Model* model, std::string name = "");
+	virtual ~Label() = default;
 public: // static
-    static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-    static PluginInformation* GetPluginInformation();
-    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static PluginInformation* GetPluginInformation();
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
-    virtual std::string show();
-    void setLabel(std::string _label);
-    std::string getLabel() const;
-    ModelComponent* getEnterIntoLabelComponent() const;
-    void sendEntityToLabelComponent(Entity* entity, double timeDelay);
+	virtual std::string show();
+	void setLabel(std::string _label);
+	std::string getLabel() const;
+	ModelComponent* getEnterIntoLabelComponent() const;
+	void sendEntityToLabelComponent(Entity* entity, double timeDelay);
 protected: // must be overriden 
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 protected: // could be overriden 
-    virtual bool _check(std::string* errorMessage);
-    //virtual ParserChangesInformation* _getParserChangesInformation();
-    //virtual void _initBetweenReplications();
-    //virtual void _createInternalAndAttachedData();
+	virtual bool _check(std::string* errorMessage);
+	//virtual ParserChangesInformation* _getParserChangesInformation();
+	//virtual void _initBetweenReplications();
+	//virtual void _createInternalAndAttachedData();
 private:
-    std::string _label;
-    ModelComponent* _enteringLabelComponent = nullptr;
+	std::string _label;
+	ModelComponent* _enteringLabelComponent = nullptr;
 };
 
 #endif /* LABEL_H */

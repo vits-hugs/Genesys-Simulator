@@ -18,9 +18,9 @@
 
 class Smart_RouteStation : public BaseGenesysTerminalApplication {
 public:
-    Smart_RouteStation();
+	Smart_RouteStation();
 public:
-    virtual int main(int argc, char** argv);
+	virtual int main(int argc, char** argv);
 };
 
 #endif /* SMART_ROUTESTATION_H */

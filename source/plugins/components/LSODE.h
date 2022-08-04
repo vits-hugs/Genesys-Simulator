@@ -23,44 +23,44 @@
  */
 class LSODE : public ModelComponent {
 public: // constructors
-    LSODE(Model* model, std::string name = "");
-    virtual ~LSODE() = default;
+	LSODE(Model* model, std::string name = "");
+	virtual ~LSODE() = default;
 public: // virtual
-    virtual std::string show();
+	virtual std::string show();
 public: // static
-    static PluginInformation* GetPluginInformation();
-    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+	static PluginInformation* GetPluginInformation();
+	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public: // g&s
-    void setTimeVariable(Variable* _timeVariable);
-    Variable* getTimeVariable() const;
-    void setStep(double _step);
-    double getStep() const;
-    void setVariable(Variable* _variables);
-    Variable* getVariable() const;
-    List<std::string>* getDiffEquations() const;
-    void setFilename(std::string filename);
-    std::string getFilename() const;
+	void setTimeVariable(Variable* _timeVariable);
+	Variable* getTimeVariable() const;
+	void setStep(double _step);
+	double getStep() const;
+	void setVariable(Variable* _variables);
+	Variable* getVariable() const;
+	List<std::string>* getDiffEquations() const;
+	void setFilename(std::string filename);
+	std::string getFilename() const;
 protected: // virtual
-    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 protected: // virtual
-    //virtual void _initBetweenReplications();
-    virtual bool _check(std::string* errorMessage);
-    //virtual void _createInternalAndAttachedData();
+	//virtual void _initBetweenReplications();
+	virtual bool _check(std::string* errorMessage);
+	//virtual void _createInternalAndAttachedData();
 private: // methods
-    bool _doStep();
+	bool _doStep();
 private: // attributes 1:1
 
-    const struct DEFAULT_VALUES {
-        std::string filename = "";
-    } DEFAULT;
-    List<std::string>* _diffEquations = new List<std::string>();
-    Variable* _variable;
-    Variable* _timeVariable;
-    std::string _filename = DEFAULT.filename;
-    double _step;
+	const struct DEFAULT_VALUES {
+		std::string filename = "";
+	} DEFAULT;
+	List<std::string>* _diffEquations = new List<std::string>();
+	Variable* _variable;
+	Variable* _timeVariable;
+	std::string _filename = DEFAULT.filename;
+	double _step;
 private: // attributes 1:n
 };
 

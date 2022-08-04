@@ -38,12 +38,13 @@
 #include <fstream>
 #include <streambuf>
 
+
 ModelGraphicsView::ModelGraphicsView(QWidget *parent) : QGraphicsView(parent) {
-    setInteractive(true);
-    setEnabled(false);
-    // scene
-    ModelGraphicsScene* scene = new ModelGraphicsScene(-1024, -1024, 1024 * 2, 1024 * 2, this);
-    setScene(scene);
+	setInteractive(true);
+	setEnabled(false);
+	// scene
+	ModelGraphicsScene* scene = new ModelGraphicsScene(-1024, -1024, 1024*2, 1024*2, this);
+	setScene(scene);
 }
 
 ModelGraphicsView::ModelGraphicsView(const ModelGraphicsView& orig) {
@@ -56,120 +57,120 @@ ModelGraphicsView::~ModelGraphicsView() {
 //------------------------------------------------------------------
 
 bool ModelGraphicsView::addGraphicalModelComponent(Plugin* plugin, ModelComponent* component, QPointF position) {
-    GraphicalModelComponent* item = ((ModelGraphicsScene*) scene())->addGraphicalModelComponent(plugin, component, position);
-    return item != nullptr;
+	GraphicalModelComponent* item = ((ModelGraphicsScene*) scene())->addGraphicalModelComponent(plugin, component, position);
+	return item != nullptr;
 }
 
 void ModelGraphicsView::showGrid() {
-    ((ModelGraphicsScene*) scene())->showGrid();
+	((ModelGraphicsScene*) scene())->showGrid();
 }
 
 void ModelGraphicsView::clear() {
-    scene()->clear();
+	scene()->clear();
 }
 
-void ModelGraphicsView::beginConnection() {
-    ((ModelGraphicsScene*) scene())->beginConnection();
+void ModelGraphicsView::beginConnection(){
+	((ModelGraphicsScene*) scene())->beginConnection();
 }
 
 void ModelGraphicsView::selectModelComponent(ModelComponent* component) {
-    QList<QGraphicsItem*>* list = ((ModelGraphicsScene*) scene())->getGraphicalModelComponents();
-    for (QGraphicsItem* item : *list) {
-        GraphicalModelComponent* gmc = (GraphicalModelComponent*) item;
-        if (gmc->getComponent() == component) {
-            gmc->setSelected(true);
-            //return;
-        } else {
-            gmc->setSelected(false);
-        }
-    }
+	QList<QGraphicsItem*>* list =((ModelGraphicsScene*)scene())->getGraphicalModelComponents();
+	for (QGraphicsItem* item: *list) {
+		GraphicalModelComponent* gmc = (GraphicalModelComponent*) item;
+		if (gmc->getComponent()==component) {
+			gmc->setSelected(true);
+			//return;
+		} else {
+			gmc->setSelected(false);
+		}
+	}
 }
 
-void ModelGraphicsView::setSimulator(Simulator* simulator) {
-    _simulator = simulator;
-    ((ModelGraphicsScene*) scene())->setSimulator(simulator);
+void ModelGraphicsView::setSimulator(Simulator* simulator){
+	_simulator = simulator;
+	((ModelGraphicsScene*)scene())->setSimulator(simulator);
 }
 
-void ModelGraphicsView::setEnabled(bool enabled) {
-    QGraphicsView::setEnabled(enabled);
-    QBrush background;
-    if (enabled) {
-        // background
-        //unsigned int colorVal1 = 255 * 13.0 / 16.0;
-        //unsigned int colorVal2 = 255 * 15.0 / 16.0;
-        background = QColor(255, 255, 128, 64);
-    } else {
-        // background
-        background = Qt::lightGray;
-    }
-    background.setStyle(Qt::SolidPattern);
-    setBackgroundBrush(background);
+void ModelGraphicsView::setEnabled(bool enabled){
+	QGraphicsView::setEnabled(enabled);
+	QBrush background ;
+	if (enabled) {
+		// background
+		//unsigned int colorVal1 = 255 * 13.0 / 16.0;
+		//unsigned int colorVal2 = 255 * 15.0 / 16.0;
+		background = QColor(255,255,128, 64);
+	} else {
+		// background
+		background = Qt::lightGray;
+	}
+	background.setStyle(Qt::SolidPattern);
+	setBackgroundBrush(background);
 
 }
 //---------------------------------------------------------
 
 void ModelGraphicsView::notifySceneMouseEventHandler(QGraphicsSceneMouseEvent* mouseEvent) {
-    this->_sceneMouseEventHandler(mouseEvent);
+	this->_sceneMouseEventHandler(mouseEvent);
 }
 
-void ModelGraphicsView::notifySceneGraphicalModelEventHandler(GraphicalModelEvent* modelGraphicsEvent) {
-    this->_sceneGraphicalModelEventHandler(modelGraphicsEvent);
+void  ModelGraphicsView::notifySceneGraphicalModelEventHandler(GraphicalModelEvent* modelGraphicsEvent) {
+	this->_sceneGraphicalModelEventHandler(modelGraphicsEvent);
 }
 
 
 //---------------------------------------------------------
 
 void ModelGraphicsView::dragEnterEvent(QDragEnterEvent *event) {
-    QGraphicsView::dragEnterEvent(event);
-    QString name = event->source()->objectName();
-    //std::cout << "View source name: " << name.toStdString()<< std::endl;
-    QWidget* widget = dynamic_cast<QWidget*> (event->source());
-    if (widget != nullptr) {
-        QTreeWidget* tree = dynamic_cast<QTreeWidget*> (widget);
-        if (tree != nullptr) {
-            if (tree->selectedItems().size() == 1) {
-                QTreeWidgetItem* treeItem = tree->selectedItems().at(0);
-                QString name = treeItem->whatsThis(0);
-                //std::cout << "Drop name: " << name.toStdString() << std::endl;
-                Plugin* plugin = _simulator->getPlugins()->find(name.toStdString());
-                if (plugin != nullptr) {
-                    event->setDropAction(Qt::CopyAction);
-                    event->accept();
-                    ((ModelGraphicsScene*) scene())->setObjectBeingDragged(treeItem);
-                    return;
-                }
-            }
-        }
-    }
-    event->setAccepted(false);
+	QGraphicsView::dragEnterEvent(event);
+	QString name = event->source()->objectName();
+	//std::cout << "View source name: " << name.toStdString()<< std::endl;
+	QWidget* widget = dynamic_cast<QWidget*>(event->source());
+	if (widget != nullptr) {
+		QTreeWidget* tree = dynamic_cast<QTreeWidget*>(widget);
+		if (tree != nullptr) {
+			if (tree->selectedItems().size()==1) {
+				QTreeWidgetItem* treeItem = tree->selectedItems().at(0);
+				QString name = treeItem->whatsThis(0);
+				//std::cout << "Drop name: " << name.toStdString() << std::endl;
+				Plugin* plugin = _simulator->getPlugins()->find(name.toStdString());
+				if(plugin != nullptr) {
+					event->setDropAction(Qt::CopyAction);
+					event->accept();
+					((ModelGraphicsScene*)scene())->setObjectBeingDragged(treeItem);
+					return;
+				}
+			}
+		}
+	}
+	event->setAccepted(false);
 }
 
 void ModelGraphicsView::setParentWidget(QWidget *parentWidget) {
-    _parentWidget = parentWidget;
-    ((ModelGraphicsScene*) scene())->setParentWidget(parentWidget);
+	_parentWidget = parentWidget;
+	((ModelGraphicsScene*)scene())->setParentWidget(parentWidget);
 }
 
 //------------------------------------------------------
 
-void ModelGraphicsView::changed(const QList<QRectF> &region) {
-    int i = 0;
+void ModelGraphicsView::changed(const QList<QRectF> &region){
+	int i=0;
 }
 
-void ModelGraphicsView::focusItemChanged(QGraphicsItem *newFocusItem, QGraphicsItem *oldFocusItem, Qt::FocusReason reason) {
-    int i = 0;
+void ModelGraphicsView::focusItemChanged(QGraphicsItem *newFocusItem, QGraphicsItem *oldFocusItem, Qt::FocusReason reason){
+	int i=0;
 }
 
-void ModelGraphicsView::sceneRectChanged(const QRectF &rect) {
-    int i = 0;
+void ModelGraphicsView::sceneRectChanged(const QRectF &rect){
+	int i=0;
 }
 
-void ModelGraphicsView::selectionChanged() {
-    int i = 0;
+void ModelGraphicsView::selectionChanged(){
+	int i=0;
 }
 
 //------------------------------------------------------
 
 QList<QGraphicsItem *> ModelGraphicsView::selectedItems() {
-    return ((ModelGraphicsScene*) scene())->selectedItems();
+	return ((ModelGraphicsScene*) scene())->selectedItems();
 }
 

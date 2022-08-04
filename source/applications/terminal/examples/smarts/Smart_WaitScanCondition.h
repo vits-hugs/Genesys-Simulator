@@ -17,9 +17,9 @@
 
 class Smart_WaitScanCondition : public BaseGenesysTerminalApplication {
 public:
-    Smart_WaitScanCondition();
+	Smart_WaitScanCondition();
 public:
-    virtual int main(int argc, char** argv);
+	virtual int main(int argc, char** argv);
 };
 
 #endif /* SMART_WAITSCANCONDITION_H */

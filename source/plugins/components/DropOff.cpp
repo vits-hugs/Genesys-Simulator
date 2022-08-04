@@ -17,63 +17,63 @@
 #ifdef PLUGINCONNECT_DYNAMIC
 
 extern "C" StaticGetPluginInformation GetPluginInformation() {
-    return &DropOff::GetPluginInformation;
+	return &DropOff::GetPluginInformation;
 }
 #endif
 
 ModelDataDefinition* DropOff::NewInstance(Model* model, std::string name) {
-    return new DropOff(model, name);
+	return new DropOff(model, name);
 }
 
 DropOff::DropOff(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<DropOff>(), name) {
 }
 
 std::string DropOff::show() {
-    return ModelComponent::show() + "";
+	return ModelComponent::show() + "";
 }
 
 ModelComponent* DropOff::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
-    DropOff* newComponent = new DropOff(model);
-    try {
-        newComponent->_loadInstance(fields);
-    } catch (const std::exception& e) {
+	DropOff* newComponent = new DropOff(model);
+	try {
+		newComponent->_loadInstance(fields);
+	} catch (const std::exception& e) {
 
-    }
-    return newComponent;
+	}
+	return newComponent;
 }
 
 void DropOff::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
-    _parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
-    this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
+	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
+	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
 bool DropOff::_loadInstance(std::map<std::string, std::string>* fields) {
-    bool res = ModelComponent::_loadInstance(fields);
-    if (res) {
-        // @TODO: not implemented yet
-    }
-    return res;
+	bool res = ModelComponent::_loadInstance(fields);
+	if (res) {
+		// @TODO: not implemented yet
+	}
+	return res;
 }
 
 //void DropOff::_initBetweenReplications() {}
 
 std::map<std::string, std::string>* DropOff::_saveInstance(bool saveDefaultValues) {
-    std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
-    // @TODO: not implemented yet
-    return fields;
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
+	// @TODO: not implemented yet
+	return fields;
 }
 
 bool DropOff::_check(std::string* errorMessage) {
-    bool resultAll = true;
-    // @TODO: not implemented yet
-    *errorMessage += "";
-    return resultAll;
+	bool resultAll = true;
+	// @TODO: not implemented yet
+	*errorMessage += "";
+	return resultAll;
 }
 
 PluginInformation* DropOff::GetPluginInformation() {
-    PluginInformation* info = new PluginInformation(Util::TypeOf<DropOff>(), &DropOff::LoadInstance, &DropOff::NewInstance);
-    info->setCategory("Decisions");
-    info->setDescriptionHelp("//@TODO");
-    return info;
+	PluginInformation* info = new PluginInformation(Util::TypeOf<DropOff>(), &DropOff::LoadInstance, &DropOff::NewInstance);
+	info->setCategory("Decisions");
+	info->setDescriptionHelp("//@TODO");
+	return info;
 }
 

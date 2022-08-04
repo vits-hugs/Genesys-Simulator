@@ -18,42 +18,41 @@
 
 class SignalData : public ModelDataDefinition {
 public:
-    typedef std::function<unsigned int(SignalData*) > SignalDataEventHandler; //< Returns the total number of freed entities.
-    typedef std::pair<SignalDataEventHandler, ModelComponent*> PairSignalDataEventHandler;
-
-    template<typename Class>
-    static SignalDataEventHandler SetSignalDataEventHandler(unsigned int (Class::*function)(SignalData*), Class * object) {
-        return std::bind(function, object, std::placeholders::_1);
-    }
+	typedef std::function<unsigned int(SignalData*) > SignalDataEventHandler; //< Returns the total number of freed entities.
+	typedef std::pair<SignalDataEventHandler, ModelComponent*> PairSignalDataEventHandler;
+	template<typename Class>
+	static SignalDataEventHandler SetSignalDataEventHandler(unsigned int (Class::*function)(SignalData*), Class * object) {
+		return std::bind(function, object, std::placeholders::_1);
+	}
 public:
-    SignalData(Model* model, std::string name = "");
-    virtual ~SignalData() = default;
+	SignalData(Model* model, std::string name = "");
+	virtual ~SignalData() = default;
 public: // static
-    static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-    static PluginInformation* GetPluginInformation();
-    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+	static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static PluginInformation* GetPluginInformation();
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public: //virtual
-    virtual std::string show();
+	virtual std::string show();
 public:
-    unsigned int generateSignal(double signalValue, unsigned int limit);
-    void addSignalDataEventHandler(SignalDataEventHandler eventHandler, ModelComponent* component);
-    unsigned int remainsToLimit() const;
-    void decreaseRemainLimit();
+	unsigned int generateSignal(double signalValue, unsigned int limit);
+	void addSignalDataEventHandler(SignalDataEventHandler eventHandler, ModelComponent* component);
+	unsigned int remainsToLimit() const;
+	void decreaseRemainLimit();
 
 protected: // must be overriden
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
 protected: // could be overriden .
-    virtual bool _check(std::string* errorMessage);
-    virtual void _initBetweenReplications();
-    //virtual void _createInternalAndAttachedData();
-    //virtual ParserChangesInformation* _getParserChangesInformation();
+	virtual bool _check(std::string* errorMessage);
+	virtual void _initBetweenReplications();
+	//virtual void _createInternalAndAttachedData();
+	//virtual ParserChangesInformation* _getParserChangesInformation();
 private: // methods
-    unsigned int _notifySignalDataEventHandlers(); ///< Notify observer classes that some of the resource capacity has been released. It is useful for allocation components (such as Seize) to know when an entity waiting into a queue can try to seize the resource again
+	unsigned int  _notifySignalDataEventHandlers(); ///< Notify observer classes that some of the resource capacity has been released. It is useful for allocation components (such as Seize) to know when an entity waiting into a queue can try to seize the resource again
 private: //1::1
-    unsigned int _remainsToLimit;
+	unsigned int _remainsToLimit;
 private: //1::n
-    List<PairSignalDataEventHandler*>* _signalDataEventHandlers = new List<PairSignalDataEventHandler*>();
+	List<PairSignalDataEventHandler*>* _signalDataEventHandlers = new List<PairSignalDataEventHandler*>();
 };
 
 #endif /* SIGNALDATA_H */

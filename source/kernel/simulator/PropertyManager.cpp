@@ -1,5 +1,6 @@
 #include "PropertyManager.h"
 
-PropertyManager::PropertyManager() {
+PropertyManager::PropertyManager()
+{
 
 }

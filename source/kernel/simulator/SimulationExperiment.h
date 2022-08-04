@@ -16,8 +16,8 @@
 
 class SimulationExperiment {
 public:
-    SimulationExperiment();
-    virtual ~SimulationExperiment() = default;
+	SimulationExperiment();
+	virtual ~SimulationExperiment() = default;
 private:
 
 };

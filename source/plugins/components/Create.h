@@ -30,10 +30,10 @@ Entities are created using a schedule or based on a time between arrivals. Entit
 then leave the module to begin processing through the system. The entity type is
 specified in this module.
 TYPICAL USES
- * The start of a part’s production in a manufacturing line
- * A document’s arrival (for example, order, check, application) into a business
+* The start of a part’s production in a manufacturing line
+* A document’s arrival (for example, order, check, application) into a business
 process
- * A customer’s arrival at a service process (for example, retail store, restaurant,
+* A customer’s arrival at a service process (for example, retail store, restaurant,
 information desk)
 PROMPTS
 Prompt Description
@@ -66,24 +66,24 @@ not apply when Type is Schedule.
  */
 class Create : public SourceModelComponent {
 public:
-    Create(Model* model, std::string name = "");
-    virtual ~Create() = default;
+	Create(Model* model, std::string name = "");
+	virtual ~Create() = default;
 public:
-    virtual std::string show();
+	virtual std::string show();
 public:
-    static PluginInformation* GetPluginInformation();
-    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+	static PluginInformation* GetPluginInformation();
+	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 protected:
-    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual void _initBetweenReplications();
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-    virtual bool _check(std::string* errorMessage);
-    virtual void _createInternalAndAttachedData();
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+	virtual void _initBetweenReplications();
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+	virtual bool _check(std::string* errorMessage);
+	virtual void _createInternalAndAttachedData();
 private:
-    Counter* _numberOut = nullptr; // internel modeldatum
-    double _lastArrival = -1.0;
+	Counter* _numberOut = nullptr; // internel modeldatum
+	double _lastArrival = -1.0;
 };
 
 #endif /* CREATE_H */

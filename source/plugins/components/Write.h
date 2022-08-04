@@ -23,45 +23,44 @@
 class Write : public ModelComponent {
 public:
 
-    enum class WriteToType : int {
-        SCREEN = 1, FILE = 2
-    };
+	enum class WriteToType : int {
+		SCREEN = 1, FILE = 2
+	};
 
 
 
 public: // constructors
-    Write(Model* model, std::string name = "");
-    virtual ~Write() = default;
+	Write(Model* model, std::string name = "");
+	virtual ~Write() = default;
 public: // virtual
-    virtual std::string show();
+	virtual std::string show();
 public: // static
-    static PluginInformation* GetPluginInformation();
-    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+	static PluginInformation* GetPluginInformation();
+	static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
-    void insertText(std::list<std::string> texts);
-    void setFilename(std::string _filename);
-    std::string filename() const;
-    void setWriteToType(WriteToType _writeToType);
-    Write::WriteToType writeToType() const;
+	void insertText(std::list<std::string> texts);
+	void setFilename(std::string _filename);
+	std::string filename() const;
+	void setWriteToType(WriteToType _writeToType);
+	Write::WriteToType writeToType() const;
 
 protected: // virtual
-    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
-    virtual void _initBetweenReplications();
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-    virtual bool _check(std::string* errorMessage);
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+	virtual void _initBetweenReplications();
+	virtual bool _loadInstance(std::map<std::string, std::string>* fields);
+	virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+	virtual bool _check(std::string* errorMessage);
 private: // methods
 private: // attributes 1:1
-
-    const struct DEFAULT_VALUES {
-        WriteToType writeToType = Write::WriteToType::SCREEN;
-        std::string filename = "";
-    } DEFAULT;
-    WriteToType _writeToType = DEFAULT.writeToType;
-    std::string _filename = DEFAULT.filename;
+	const struct DEFAULT_VALUES {
+		WriteToType writeToType = Write::WriteToType::SCREEN;
+		std::string filename = "";
+	} DEFAULT;
+	WriteToType _writeToType = DEFAULT.writeToType;
+	std::string _filename = DEFAULT.filename;
 private: // attributes 1:n
-    List<std::string>* _writeElements = new List<std::string>();
+	List<std::string>* _writeElements = new List<std::string>();
 };
 
 

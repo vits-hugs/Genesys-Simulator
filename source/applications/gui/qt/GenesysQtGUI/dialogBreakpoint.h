@@ -36,32 +36,30 @@
 #include "../../../../kernel/simulator/Simulator.h"
 
 class dialogBreakpoint : public QDialog {
-
-    Q_OBJECT
+Q_OBJECT
 public:
-    class MVCResult {
-    public:
-
-        MVCResult(std::string type, std::string on) {
-            this->type = type;
-            this->on = on;
-        }
-        std::string type;
-        std::string on;
-    };
+	class MVCResult {
+	public:
+		MVCResult(std::string type, std::string on) {
+			this->type = type;
+			this->on = on;
+		}
+		std::string type;
+		std::string on;
+	};
 public:
-    dialogBreakpoint();
+	dialogBreakpoint();
     virtual ~dialogBreakpoint();
 public:
-    void setMVCModel(Simulator* simulator);
-    dialogBreakpoint::MVCResult* getMVCResult();
+	void setMVCModel(Simulator* simulator);
+	dialogBreakpoint::MVCResult* getMVCResult();
 private slots:
     void on_comboBox_Type_activated(const QString &arg1);
-    void on_comboBox_On_activated(const QString &arg1);
-    void on_buttonBox_accepted();
+	void on_comboBox_On_activated(const QString &arg1);
+	void on_buttonBox_accepted();
 private:
-    Ui::dialogBreakpoint widget;
-    Simulator* simulator;
+	Ui::dialogBreakpoint widget;
+	Simulator* simulator;
 };
 
 #endif /* _DIALOGBREAKPOINT_H */

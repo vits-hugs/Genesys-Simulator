@@ -33,37 +33,37 @@ Smart_WaitScanCondition::Smart_WaitScanCondition() {
  * It instanciates the simulator, builds a simulation model and then simulate that model.
  */
 int Smart_WaitScanCondition::main(int argc, char** argv) {
-    Simulator* genesys = new Simulator();
-    this->setDefaultTraceHandlers(genesys->getTracer());
-    this->insertFakePluginsByHand(genesys);
-    genesys->getTracer()->setTraceLevel(TraceManager::Level::L6_arrival);
-    Model* model = genesys->getModels()->newModel();
-    PluginManager* plugins = genesys->getPlugins();
-    //
-    Create* create1 = plugins->newInstance<Create>(model);
-    create1->setTimeBetweenCreationsExpression("1");
-    Create* create2 = plugins->newInstance<Create>(model);
-    create2->setTimeBetweenCreationsExpression("2");
-    Wait* wait1 = plugins->newInstance<Wait>(model);
-    wait1->setWaitType(Wait::WaitType::ScanForCondition);
-    wait1->setCondition("mod(var1,3)==0");
-    Assign* assign1 = plugins->newInstance<Assign>(model);
-    assign1->getAssignments()->insert(new Assignment(model, "att1", "var1", true));
-    assign1->getAssignments()->insert(new Assignment(model, "var1", "var1+1", false));
-    Dispose* dispose1 = plugins->newInstance<Dispose>(model);
-    //
-    create1->getConnections()->insert(wait1);
-    wait1->getConnections()->insert(dispose1);
-    create2->getConnections()->insert(assign1);
-    assign1->getConnections()->insert(dispose1);
-    //
-    ModelSimulation* simulation = model->getSimulation();
-    simulation->setReplicationLength(20);
-    //
-    model->getTracer()->setTraceLevel(TraceManager::Level::L8_detailed);
-    model->save("./models/Smart_WaitScanCondition.gen");
-    simulation->start();
-    delete genesys;
-    return 0;
+	Simulator* genesys = new Simulator();
+	this->setDefaultTraceHandlers(genesys->getTracer());
+	this->insertFakePluginsByHand(genesys);
+	genesys->getTracer()->setTraceLevel(TraceManager::Level::L6_arrival);
+	Model* model = genesys->getModels()->newModel();
+	PluginManager* plugins = genesys->getPlugins();
+	//
+	Create* create1 = plugins->newInstance<Create>(model);
+	create1->setTimeBetweenCreationsExpression("1");
+	Create* create2 = plugins->newInstance<Create>(model);
+	create2->setTimeBetweenCreationsExpression("2");
+	Wait* wait1 = plugins->newInstance<Wait>(model);
+	wait1->setWaitType(Wait::WaitType::ScanForCondition);
+	wait1->setCondition("mod(var1,3)==0");
+	Assign* assign1 = plugins->newInstance<Assign>(model);
+	assign1->getAssignments()->insert(new Assignment(model, "att1", "var1", true));
+	assign1->getAssignments()->insert(new Assignment(model, "var1", "var1+1", false));
+	Dispose* dispose1 = plugins->newInstance<Dispose>(model);
+	//
+	create1->getConnections()->insert(wait1);
+	wait1->getConnections()->insert(dispose1);
+	create2->getConnections()->insert(assign1);
+	assign1->getConnections()->insert(dispose1);
+	//
+	ModelSimulation* simulation = model->getSimulation();
+	simulation->setReplicationLength(20);
+	//
+	model->getTracer()->setTraceLevel(TraceManager::Level::L8_detailed);
+	model->save("./models/Smart_WaitScanCondition.gen");
+	simulation->start();
+        delete genesys;
+	return 0;
 };
 

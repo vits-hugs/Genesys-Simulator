@@ -16,96 +16,96 @@
 #ifdef PLUGINCONNECT_DYNAMIC
 
 extern "C" StaticGetPluginInformation GetPluginInformation() {
-    return &CppForG::GetPluginInformation;
+	return &CppForG::GetPluginInformation;
 }
 #endif
 
 ModelDataDefinition* CppForG::NewInstance(Model* model, std::string name) {
-    return new CppForG(model, name);
+	return new CppForG(model, name);
 }
 
 CppForG::CppForG(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<CppForG>(), name) {
-    _createInternalAndAttachedData();
+	_createInternalAndAttachedData();
 }
 
 std::string CppForG::show() {
-    return ModelComponent::show() + "";
+	return ModelComponent::show() + "";
 }
 
 ModelComponent* CppForG::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
-    CppForG* newComponent = new CppForG(model);
-    try {
-        newComponent->_loadInstance(fields);
-    } catch (const std::exception& e) {
+	CppForG* newComponent = new CppForG(model);
+	try {
+		newComponent->_loadInstance(fields);
+	} catch (const std::exception& e) {
 
-    }
-    return newComponent;
+	}
+	return newComponent;
 }
 
 void CppForG::setSourceCode(std::string _sourceCode) {
-    this->_cppcode->setCode(_sourceCode);
+	this->_cppcode->setCode(_sourceCode);
 }
 
 std::string CppForG::getSourceCode() const {
-    return _cppcode->getCode();
+	return _cppcode->getCode();
 }
 
 void CppForG::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
-    _parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
-    this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
+	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
+	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
 bool CppForG::_loadInstance(std::map<std::string, std::string>* fields) {
-    bool res = ModelComponent::_loadInstance(fields);
-    if (res) {
-        // @TODO: not implemented yet
-    }
-    return res;
+	bool res = ModelComponent::_loadInstance(fields);
+	if (res) {
+		// @TODO: not implemented yet
+	}
+	return res;
 }
 
 //void CppForG::_initBetweenReplications() {}
 
 std::map<std::string, std::string>* CppForG::_saveInstance(bool saveDefaultValues) {
-    std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
-    // @TODO: not implemented yet
-    return fields;
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
+	// @TODO: not implemented yet
+	return fields;
 }
 
 bool CppForG::_check(std::string* errorMessage) {
-    bool resultAll = true;
-    CppCode::CodeResult result;
-    if (_cppcode->IsLibraryLoaded()) {
-        result = _cppcode->unloadLibrary();
-        resultAll = result.success;
-    }
-    if (resultAll) {
-        result = _cppcode->compile();
-        resultAll = result.success;
-        if (resultAll) {
-            result = _cppcode->loadLibrary();
-            resultAll = result.success;
-        }
-    }
-    if (!resultAll) {
-        *errorMessage += result.generalMessage;
-    }
-    return resultAll;
+	bool resultAll = true;
+	CppCode::CodeResult result;
+	if (_cppcode->IsLibraryLoaded()) {
+		result = _cppcode->unloadLibrary();
+		resultAll = result.success;
+	}
+	if (resultAll) {
+		result = _cppcode->compile();
+		resultAll = result.success;
+		if (resultAll) {
+			result = _cppcode->loadLibrary();
+			resultAll = result.success;
+		}
+	}
+	if (!resultAll) {
+		*errorMessage += result.generalMessage;
+	}
+	return resultAll;
 }
 
 void CppForG::_createInternalAndAttachedData() {
-    if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
-        if (_cppcode == nullptr) {
-            _cppcode = new CppCode(_parentModel, getName() + ".CppCode");
-            _internalDataInsert("CppCode", _cppcode);
-        }
-    }
+	if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+		if (_cppcode == nullptr) {
+			_cppcode = new CppCode(_parentModel, getName() + ".CppCode");
+			_internalDataInsert("CppCode", _cppcode);
+		}
+	}
 }
 
 PluginInformation* CppForG::GetPluginInformation() {
-    PluginInformation* info = new PluginInformation(Util::TypeOf<CppForG>(), &CppForG::LoadInstance, &CppForG::NewInstance);
-    info->setCategory("Logic");
-    info->insertDynamicLibFileDependence("cppcode.so");
-    info->setDescriptionHelp("//@TODO");
-    return info;
+	PluginInformation* info = new PluginInformation(Util::TypeOf<CppForG>(), &CppForG::LoadInstance, &CppForG::NewInstance);
+	info->setCategory("Logic");
+	info->insertDynamicLibFileDependence("cppcode.so");
+	info->setDescriptionHelp("//@TODO");
+	return info;
 }
 

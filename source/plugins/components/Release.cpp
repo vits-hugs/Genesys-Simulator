@@ -22,39 +22,39 @@
 #ifdef PLUGINCONNECT_DYNAMIC
 
 extern "C" StaticGetPluginInformation GetPluginInformation() {
-    return &Release::GetPluginInformation;
+	return &Release::GetPluginInformation;
 }
 #endif
 
 ModelDataDefinition* Release::NewInstance(Model* model, std::string name) {
-    return new Release(model, name);
+	return new Release(model, name);
 }
 
 Release::Release(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Release>(), name) {
 }
 
 std::string Release::show() {
-    std::string txt = ModelComponent::show() +
-            "priority=" + std::to_string(_priority) +
-            "releaseRequests={";
-    unsigned short i = 0;
-    for (SeizableItem* item : *_releaseRequests->list()) {
-        txt += "request" + std::to_string(i++) + "=[" + item->show() + "],";
-    }
-    txt = txt.substr(0, txt.length() - 1) + "}";
-    return txt;
+	std::string txt = ModelComponent::show() +
+			"priority=" + std::to_string(_priority) +
+			"releaseRequests={";
+	unsigned short i = 0;
+	for (SeizableItem* item : *_releaseRequests->list()) {
+		txt += "request" + std::to_string(i++) + "=[" + item->show() + "],";
+	}
+	txt = txt.substr(0, txt.length() - 1) + "}";
+	return txt;
 }
 
 void Release::setPriority(unsigned short _priority) {
-    this->_priority = _priority;
+	this->_priority = _priority;
 }
 
 unsigned short Release::priority() const {
-    return _priority;
+	return _priority;
 }
 
 List<SeizableItem*>* Release::getReleaseRequests() const {
-    return _releaseRequests;
+	return _releaseRequests;
 }
 
 //void Release::setResource(Resource* _resource) {
@@ -66,138 +66,138 @@ List<SeizableItem*>* Release::getReleaseRequests() const {
 //}
 
 void Release::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
-    for (SeizableItem* seizable : *_releaseRequests->list()) {
-        Resource* resource;
-        if (seizable->getSeizableType() == SeizableItem::SeizableType::RESOURCE) {
-            resource = seizable->getResource();
-        } else { // assume SET
-            SeizableItem::SelectionRule rule = seizable->getSelectionRule();
-            Set* set = seizable->getSet();
-            unsigned int index = 0;
-            switch (rule) { // @TODO: Rules for release are DIFFERENT (least and first member seized)
-                case SeizableItem::SelectionRule::CYCLICAL:
-                    index = (seizable->getLastMemberSeized() + 1) % _releaseRequests->list()->size();
-                    break;
-                case SeizableItem::SelectionRule::LARGESTREMAININGCAPACITY:
-                    // @TODO
-                    break;
-                case SeizableItem::SelectionRule::RANDOM:
-                    index = trunc(rand() * _releaseRequests->list()->size());
-                    break;
-                case SeizableItem::SelectionRule::SMALLESTNUMBERBUSY:
-                    // @TODO
-                    break;
-                case SeizableItem::SelectionRule::SPECIFICMEMBER:
-                    index = _parentModel->parseExpression(seizable->getIndex());
-                    break;
-            }
-            _parentModel->getTracer()->traceSimulation(this, "Member of set " + set->getName() + " chosen index " + std::to_string(index), TraceManager::Level::L8_detailed);
-            resource = static_cast<Resource*> (set->getElementSet()->getAtRank(index));
-            assert(resource != nullptr);
-        }
-        unsigned int quantity = _parentModel->parseExpression(seizable->getQuantityExpression());
-        assert(resource->getNumberBusy() >= quantity); // 202104 ops. maybe not anymore
-        _parentModel->getTracer()->traceSimulation(this, _parentModel->getSimulation()->getSimulatedTime(), entity, this, entity->getName() + " releases " + std::to_string(quantity) + " units of resource \"" + resource->getName() + "\" seized on time " + std::to_string(resource->getLastTimeSeized()));
-        resource->release(quantity); //{releases and sets the 'LastTimeSeized'property}
-    }
-    _parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
+	for (SeizableItem* seizable : *_releaseRequests->list()) {
+		Resource* resource;
+		if (seizable->getSeizableType() == SeizableItem::SeizableType::RESOURCE) {
+			resource = seizable->getResource();
+		} else { // assume SET
+			SeizableItem::SelectionRule rule = seizable->getSelectionRule();
+			Set* set = seizable->getSet();
+			unsigned int index = 0;
+			switch (rule) { // @TODO: Rules for release are DIFFERENT (least and first member seized)
+				case SeizableItem::SelectionRule::CYCLICAL:
+					index = (seizable->getLastMemberSeized() + 1) % _releaseRequests->list()->size();
+					break;
+				case SeizableItem::SelectionRule::LARGESTREMAININGCAPACITY:
+					// @TODO
+					break;
+				case SeizableItem::SelectionRule::RANDOM:
+					index = trunc(rand() * _releaseRequests->list()->size());
+					break;
+				case SeizableItem::SelectionRule::SMALLESTNUMBERBUSY:
+					// @TODO
+					break;
+				case SeizableItem::SelectionRule::SPECIFICMEMBER:
+					index = _parentModel->parseExpression(seizable->getIndex());
+					break;
+			}
+			_parentModel->getTracer()->traceSimulation(this, "Member of set " + set->getName() + " chosen index " + std::to_string(index), TraceManager::Level::L8_detailed);
+			resource = static_cast<Resource*> (set->getElementSet()->getAtRank(index));
+			assert(resource != nullptr);
+		}
+		unsigned int quantity = _parentModel->parseExpression(seizable->getQuantityExpression());
+		assert(resource->getNumberBusy() >= quantity); // 202104 ops. maybe not anymore
+		_parentModel->getTracer()->traceSimulation(this, _parentModel->getSimulation()->getSimulatedTime(), entity, this, entity->getName() + " releases " + std::to_string(quantity) + " units of resource \"" + resource->getName() + "\" seized on time " + std::to_string(resource->getLastTimeSeized()));
+		resource->release(quantity); //{releases and sets the 'LastTimeSeized'property}
+	}
+	_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
 void Release::_initBetweenReplications() {
-    //for (SeizableItem* seizable : *_releaseRequests->list()) {
-    //	if (seizable->getSeizableType() == SeizableItem::SeizableType::RESOURCE)
-    //		seizable->getResource()->initBetweenReplications();
-    //	else if (seizable->getSeizableType() == SeizableItem::SeizableType::SET)
-    //		seizable->getSet()->initBetweenReplications();
-    //}
+	//for (SeizableItem* seizable : *_releaseRequests->list()) {
+	//	if (seizable->getSeizableType() == SeizableItem::SeizableType::RESOURCE)
+	//		seizable->getResource()->initBetweenReplications();
+	//	else if (seizable->getSeizableType() == SeizableItem::SeizableType::SET)
+	//		seizable->getSet()->initBetweenReplications();
+	//}
 }
 
 bool Release::_loadInstance(std::map<std::string, std::string>* fields) {
-    bool res = ModelComponent::_loadInstance(fields);
-    if (res) {
-        this->_priority = LoadField(fields, "priority", DEFAULT.priority);
-        unsigned short numRequests = LoadField(fields, "resquests", DEFAULT.releaseRequestSize);
-        for (unsigned short i = 0; i < numRequests; i++) {
-            SeizableItem* item = new SeizableItem(nullptr);
-            item->setElementManager(_parentModel->getDataManager());
-            item->loadInstance(fields, i);
-            this->_releaseRequests->insert(item);
-        }
-    }
-    return res;
+	bool res = ModelComponent::_loadInstance(fields);
+	if (res) {
+		this->_priority = LoadField(fields, "priority", DEFAULT.priority);
+		unsigned short numRequests = LoadField(fields, "resquests", DEFAULT.releaseRequestSize);
+		for (unsigned short i = 0; i < numRequests; i++) {
+			SeizableItem* item = new SeizableItem(nullptr);
+			item->setElementManager(_parentModel->getDataManager());
+			item->loadInstance(fields, i);
+			this->_releaseRequests->insert(item);
+		}
+	}
+	return res;
 }
 
 std::map<std::string, std::string>* Release::_saveInstance(bool saveDefaultValues) {
-    std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues); //Util::TypeOf<Release>());
-    SaveField(fields, "priority", _priority, DEFAULT.priority, saveDefaultValues);
-    SaveField(fields, "resquests", _releaseRequests->size(), DEFAULT.releaseRequestSize, saveDefaultValues);
-    unsigned short i = 0;
-    for (SeizableItem* request : *_releaseRequests->list()) {
-        std::map<std::string, std::string>* seizablefields = request->saveInstance(i, saveDefaultValues);
-        fields->insert(seizablefields->begin(), seizablefields->end());
-        i++;
-    }
-    return fields;
+	std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues); //Util::TypeOf<Release>());
+	SaveField(fields, "priority", _priority, DEFAULT.priority, saveDefaultValues);
+	SaveField(fields, "resquests", _releaseRequests->size(), DEFAULT.releaseRequestSize, saveDefaultValues);
+	unsigned short i = 0;
+	for (SeizableItem* request : *_releaseRequests->list()) {
+		std::map<std::string, std::string>* seizablefields = request->saveInstance(i, saveDefaultValues);
+		fields->insert(seizablefields->begin(), seizablefields->end());
+		i++;
+	}
+	return fields;
 }
 
 void Release::_createInternalAndAttachedData() {
-    int i = 0;
-    for (SeizableItem* seizable : * _releaseRequests->list()) {
-        if (seizable->getSeizableType() == SeizableItem::SeizableType::RESOURCE) {
-            Resource* resource = seizable->getResource();
-            if (resource == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
-                resource = _parentModel->getParentSimulator()->getPlugins()->newInstance<Resource>(_parentModel);
-            }
-            _attachedDataInsert("SeizableItem" + strIndex(i), resource);
-        } else if (seizable->getSeizableType() == SeizableItem::SeizableType::SET) {
-            Set* set = seizable->getSet();
-            if (set == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
-                set = _parentModel->getParentSimulator()->getPlugins()->newInstance<Set>(_parentModel);
-            }
-            _attachedDataInsert("SeizableItem" + strIndex(i), set);
-        }
-        i++;
-    }
+	int i = 0;
+	for (SeizableItem* seizable : * _releaseRequests->list()) {
+		if (seizable->getSeizableType() == SeizableItem::SeizableType::RESOURCE) {
+			Resource* resource = seizable->getResource();
+			if (resource == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+				resource = _parentModel->getParentSimulator()->getPlugins()->newInstance<Resource>(_parentModel);
+			}
+			_attachedDataInsert("SeizableItem" + strIndex(i), resource);
+		} else if (seizable->getSeizableType() == SeizableItem::SeizableType::SET) {
+			Set* set = seizable->getSet();
+			if (set == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+				set = _parentModel->getParentSimulator()->getPlugins()->newInstance<Set>(_parentModel);
+			}
+			_attachedDataInsert("SeizableItem" + strIndex(i), set);
+		}
+		i++;
+	}
 }
 
 bool Release::_check(std::string* errorMessage) {
-    bool resultAll = true;
-    int i = 0;
-    for (SeizableItem* seizable : * _releaseRequests->list()) {
-        resultAll &= _parentModel->checkExpression(seizable->getQuantityExpression(), "quantity", errorMessage);
-        if (seizable->getSeizableType() == SeizableItem::SeizableType::RESOURCE) {
-            // Resource* resource = seizable->getResource();
-            resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Resource>(), seizable->getResource(), "Resource", errorMessage);
-        } else if (seizable->getSeizableType() == SeizableItem::SeizableType::SET) {
-            // Set* set = seizable->getSet();
-            resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Set>(), seizable->getSet(), "Set", errorMessage);
-        }
-        i++;
-    }
-    return resultAll;
+	bool resultAll = true;
+	int i = 0;
+	for (SeizableItem* seizable : * _releaseRequests->list()) {
+		resultAll &= _parentModel->checkExpression(seizable->getQuantityExpression(), "quantity", errorMessage);
+		if (seizable->getSeizableType() == SeizableItem::SeizableType::RESOURCE) {
+			// Resource* resource = seizable->getResource();
+			resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Resource>(), seizable->getResource(), "Resource", errorMessage);
+		} else if (seizable->getSeizableType() == SeizableItem::SeizableType::SET) {
+			// Set* set = seizable->getSet();
+			resultAll &= _parentModel->getDataManager()->check(Util::TypeOf<Set>(), seizable->getSet(), "Set", errorMessage);
+		}
+		i++;
+	}
+	return resultAll;
 }
 
 PluginInformation* Release::GetPluginInformation() {
-    PluginInformation* info = new PluginInformation(Util::TypeOf<Release>(), &Release::LoadInstance, &Release::NewInstance);
-    info->insertDynamicLibFileDependence("resource.so");
-    std::string help = "The Release module is used to release units of a resource that an entity previously has seized.";
-    help += " This module may be used to release individual resources or may be used to release resources within a set.";
-    help += " For each resource to be released, the name and quantity to release are specified.";
-    help += " When the entity enters the Release module, it gives up control of the specified resource(s).";
-    help += " Any entities waiting in queues for those resources will gain control of the resources immediately.";
-    help += " TYPICAL USES: (1) Finishing a customer order (release the operator); (2) Completing a tax return (release the accountant);";
-    help += " (3) Leaving the hospital (release the doctor, nurse, hospital room)";
-    info->setDescriptionHelp(help);
-    return info;
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Release>(), &Release::LoadInstance, &Release::NewInstance);
+	info->insertDynamicLibFileDependence("resource.so");
+	std::string help = "The Release module is used to release units of a resource that an entity previously has seized.";
+	help += " This module may be used to release individual resources or may be used to release resources within a set.";
+	help += " For each resource to be released, the name and quantity to release are specified.";
+	help += " When the entity enters the Release module, it gives up control of the specified resource(s).";
+	help += " Any entities waiting in queues for those resources will gain control of the resources immediately.";
+	help += " TYPICAL USES: (1) Finishing a customer order (release the operator); (2) Completing a tax return (release the accountant);";
+	help += " (3) Leaving the hospital (release the doctor, nurse, hospital room)";
+	info->setDescriptionHelp(help);
+	return info;
 }
 
 ModelComponent* Release::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
-    Release* newComponent = new Release(model);
-    try {
-        newComponent->_loadInstance(fields);
-    } catch (const std::exception& e) {
+	Release* newComponent = new Release(model);
+	try {
+		newComponent->_loadInstance(fields);
+	} catch (const std::exception& e) {
 
-    }
-    return newComponent;
+	}
+	return newComponent;
 
 }

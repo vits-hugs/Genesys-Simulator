@@ -30,7 +30,7 @@ PlugIns are NOT implemented yet
 class Plugin {
 public:
     Plugin(std::string filename_so_dll);
-    Plugin(StaticGetPluginInformation getInformation); // @TODO: temporary. Just while compiled together
+	Plugin(StaticGetPluginInformation getInformation); // @TODO: temporary. Just while compiled together
     virtual ~Plugin() = default;
 public:
     std::string show();
@@ -40,7 +40,7 @@ public:
 public:
     ModelDataDefinition* loadNew(Model* model, std::map<std::string, std::string>* fields); ///< creates a new ModelDataDefinition from fields loaded from a file
     bool loadAndInsertNew(Model* model, std::map<std::string, std::string>* fields);
-    ModelDataDefinition* newInstance(Model* model, std::string name = "");
+    ModelDataDefinition* newInstance(Model* model, std::string name="");
 private:
     ModelComponent* _loadNewComponent(Model* model, std::map<std::string, std::string>* fields);
     ModelDataDefinition* _loadNewElement(Model* model, std::map<std::string, std::string>* fields);
