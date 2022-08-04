@@ -78,48 +78,47 @@ which queue is to be used.
 class Wait : public ModelComponent {
 public:
 
-    enum class WaitType : int {
-        WaitForSignal = 1, InfiniteHold = 2, ScanForCondition = 3
-    };
+	enum class WaitType : int {
+		WaitForSignal = 1, InfiniteHold = 2, ScanForCondition = 3
+	};
 public: // constructors
-    Wait(Model* model, std::string name = "");
-    virtual ~Wait() = default;
+	Wait(Model* model, std::string name = "");
+	virtual ~Wait() = default;
 public: // virtual
-    virtual std::string show();
+	virtual std::string show();
 public: //
-    void setSignalData(SignalData* signal);
-    void setWaitType(WaitType _watType);
-    Wait::WaitType getWaitType() const;
-    void setCondition(std::string _condition);
-    std::string getCondition() const;
+	void setSignalData(SignalData* signal);
+	void setWaitType(WaitType _watType);
+	Wait::WaitType getWaitType() const;
+	void setCondition(std::string _condition);
+	std::string getCondition() const;
 public: // static
-    static PluginInformation* GetPluginInformation();
-    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+	static PluginInformation* GetPluginInformation();
+	static ModelComponent* LoadInstance(Model* model, PersistenceRecord *fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 protected: // must be overriden
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+	virtual bool _loadInstance(PersistenceRecord *fields);
+	virtual void _saveInstance(PersistenceRecord *fields, bool saveDefaultValues);
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
 protected: // could be overriden .
-    virtual bool _check(std::string* errorMessage);
-    virtual void _initBetweenReplications();
-    virtual void _createInternalAndAttachedData();
-    //virtual ParserChangesInformation* _getParserChangesInformation();
+	virtual bool _check(std::string* errorMessage);
+	virtual void _initBetweenReplications();
+	virtual void _createInternalAndAttachedData();
+	//virtual ParserChangesInformation* _getParserChangesInformation();
 private: // methods
-    unsigned int _handlerForSignalDataEvent(SignalData* signalData);
-    void _handlerForAfterProcessEventEvent(SimulationEvent* event);
+	unsigned int _handlerForSignalDataEvent(SignalData* signalData);
+	void _handlerForAfterProcessEventEvent(SimulationEvent* event);
 private: // attributes 1:1
-
-    const struct DEFAULT_VALUES {
-        WaitType waitType = Wait::WaitType::WaitForSignal;
-        std::string condition = "";
-    } DEFAULT;
-    WaitType _waitType = DEFAULT.waitType;
-    std::string _condition = DEFAULT.condition;
+	const struct DEFAULT_VALUES {
+		WaitType waitType = Wait::WaitType::WaitForSignal;
+		std::string condition = "";
+	} DEFAULT;
+	WaitType _waitType = DEFAULT.waitType;
+	std::string _condition = DEFAULT.condition;
 private: // internal
-    Queue *_queue = nullptr;
+	Queue *_queue = nullptr;
 private: // attached
-    SignalData* _signalData = nullptr;
+	SignalData* _signalData = nullptr;
 private: // attributes 1:n
 };
 

@@ -18,9 +18,9 @@
 
 class OperatingSystem02 : public BaseGenesysTerminalApplication {
 public:
-    OperatingSystem02();
+	OperatingSystem02();
 public:
-    virtual int main(int argc, char** argv);
+	virtual int main(int argc, char** argv);
 };
 
 #endif /* OPERATINGSYSTEMSS02_H */

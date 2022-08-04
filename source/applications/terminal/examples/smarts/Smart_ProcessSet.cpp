@@ -31,38 +31,38 @@ Smart_ProcessSet::Smart_ProcessSet() {
  * It instanciates the simulator, builds a simulation model and then simulate that model.
  */
 int Smart_ProcessSet::main(int argc, char** argv) {
-    Simulator* genesys = new Simulator();
-    this->setDefaultTraceHandlers(genesys->getTracer());
-    this->insertFakePluginsByHand(genesys);
-    genesys->getTracer()->setTraceLevel(TraceManager::Level::L8_detailed);
-    // create model
-    Model* model = genesys->getModels()->newModel();
-    PluginManager* plugins = genesys->getPlugins();
-    Create *create = plugins->newInstance<Create>(model);
-    create->setEntityTypeName("Client");
-    create->setTimeBetweenCreationsExpression("1");
-    Dispose* dispose = plugins->newInstance<Dispose>(model);
-    Set* set = plugins->newInstance<Set>(model);
-    set->setSetOfType("Resource");
-    set->getElementSet()->insert(plugins->newInstance<Resource>(model));
-    set->getElementSet()->insert(plugins->newInstance<Resource>(model));
-    set->getElementSet()->insert(plugins->newInstance<Resource>(model));
-    set->getElementSet()->insert(plugins->newInstance<Resource>(model));
-    set->getElementSet()->insert(plugins->newInstance<Resource>(model));
-    Process* process = plugins->newInstance<Process>(model);
-    process->getSeizeRequests()->insert(new SeizableItem(set));
-    process->setQueueableItem(new QueueableItem(model, "myqueue"));
-    process->setDelayExpression("unif(0.6,1.4)");
-    // connect model components to create a "workflow"
-    create->getConnections()->insert(process);
-    process->getConnections()->insert(dispose);
-    // set options, save and simulate step-by-step (but no user interaction required)
-    model->getSimulation()->setReplicationLength(10);
-    model->save("./models/Smart_ProcessSet.gen");
-    do {
-        model->getSimulation()->step();
-    } while (model->getSimulation()->isPaused());
-    delete genesys;
-    return 0;
+	Simulator* genesys = new Simulator();
+	this->setDefaultTraceHandlers(genesys->getTracer());
+	this->insertFakePluginsByHand(genesys);
+	genesys->getTracer()->setTraceLevel(TraceManager::Level::L8_detailed);
+	// create model
+	Model* model = genesys->getModels()->newModel();
+	PluginManager* plugins = genesys->getPlugins();
+	Create *create = plugins->newInstance<Create>(model);
+	create->setEntityTypeName("Client");
+	create->setTimeBetweenCreationsExpression("1");
+	Dispose* dispose = plugins->newInstance<Dispose>(model);
+	Set* set = plugins->newInstance<Set>(model);
+	set->setSetOfType("Resource");
+	set->getElementSet()->insert(plugins->newInstance<Resource>(model));
+	set->getElementSet()->insert(plugins->newInstance<Resource>(model));
+	set->getElementSet()->insert(plugins->newInstance<Resource>(model));
+	set->getElementSet()->insert(plugins->newInstance<Resource>(model));
+	set->getElementSet()->insert(plugins->newInstance<Resource>(model));
+	Process* process = plugins->newInstance<Process>(model);
+	process->getSeizeRequests()->insert(new SeizableItem(set));
+	process->setQueueableItem(new QueueableItem(model, "myqueue"));
+	process->setDelayExpression("unif(0.6,1.4)");
+	// connect model components to create a "workflow"
+	create->getConnections()->insert(process);
+	process->getConnections()->insert(dispose);
+	// set options, save and simulate step-by-step (but no user interaction required)
+	model->getSimulation()->setReplicationLength(10);
+	model->save("./models/Smart_ProcessSet.gen");
+	do {
+		model->getSimulation()->step();
+	} while (model->getSimulation()->isPaused());
+	delete genesys;
+	return 0;
 };
 

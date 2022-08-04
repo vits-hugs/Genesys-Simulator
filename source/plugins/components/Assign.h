@@ -28,9 +28,9 @@ This module is used for assigning new values to variables, entity attributes, en
 types, entity pictures, or other system variables. Multiple assignments can be made
 with a single Assign module.
 TYPICAL USES
- * Accumulate the number of subassemblies added to a part
- * Change an entity’s type to represent the customer copy of a multi-page form
- * Establish a customer’s priority
+* Accumulate the number of subassemblies added to a part
+* Change an entity’s type to represent the customer copy of a multi-page form
+* Establish a customer’s priority
 PROMPTS
  Prompt Description
 Name Unique module identifier displayed on the module shape.
@@ -60,30 +60,30 @@ Picture.
  */
 class Assign : public ModelComponent {
 public:
-    Assign(Model* model, std::string name = "");
-    virtual ~Assign() = default;
+	Assign(Model* model, std::string name = "");
+	virtual ~Assign() = default;
 public:
-    virtual std::string show();
+	virtual std::string show();
 public:
-    static PluginInformation* GetPluginInformation();
-    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+	static PluginInformation* GetPluginInformation();
+	static ModelComponent* LoadInstance(Model* model, PersistenceRecord *fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
-    List<Assignment*>* getAssignments() const;
+	List<Assignment*>* getAssignments() const;
 protected:
-    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-    //virtual void _initBetweenReplications();
-    virtual bool _check(std::string* errorMessage);
-    virtual void _createInternalAndAttachedData();
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+	virtual bool _loadInstance(PersistenceRecord *fields);
+	virtual void _saveInstance(PersistenceRecord *fields, bool saveDefaultValues);
+	//virtual void _initBetweenReplications();
+	virtual bool _check(std::string* errorMessage);
+	virtual void _createInternalAndAttachedData();
 private:
 private:
 
-    const struct DEFAULT_VALUES {
-        unsigned int assignmentsSize = 1;
-    } DEFAULT;
-    List<Assignment*>* _assignments = new List<Assignment*>();
+	const struct DEFAULT_VALUES {
+		unsigned int assignmentsSize = 1;
+	} DEFAULT;
+	List<Assignment*>* _assignments = new List<Assignment*>();
 };
 
 #endif /* ASSIGN_H */

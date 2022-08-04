@@ -18,9 +18,9 @@
 
 class FullSimulationOfComplexModel : public BaseGenesysTerminalApplication {
 public:
-    FullSimulationOfComplexModel();
+	FullSimulationOfComplexModel();
 public:
-    virtual int main(int argc, char** argv);
+	virtual int main(int argc, char** argv);
 };
 
 #endif /* COMPLEXMODEL01_H */

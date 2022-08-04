@@ -27,10 +27,10 @@ selected station is assigned to an entity attribute. The station selection proce
 based on the minimum or maximum value of a variety of system variables and
 expressions.
 TYPICAL USES
- * A part sent to a processing station based on machine’s availability at each station
- * A loan application sent to a set of loan officers based on the number sent to each
+* A part sent to a processing station based on machine’s availability at each station
+* A loan application sent to a set of loan officers based on the number sent to each
 officer
- * A customer selecting among cashier lines based on the least number waiting in
+* A customer selecting among cashier lines based on the least number waiting in
 each line
 PROMPTS
 Prompt Description
@@ -61,21 +61,21 @@ Units Time units for route-time parameters.
  */
 class PickStation : public ModelComponent {
 public: // constructors
-    PickStation(Model* model, std::string name = "");
-    virtual ~PickStation() = default;
+	PickStation(Model* model, std::string name = "");
+	virtual ~PickStation() = default;
 public: // virtual
-    virtual std::string show();
+	virtual std::string show();
 public: // static
-    static PluginInformation* GetPluginInformation();
-    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+	static PluginInformation* GetPluginInformation();
+	static ModelComponent* LoadInstance(Model* model, PersistenceRecord *fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 protected: // virtual
-    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+	virtual bool _loadInstance(PersistenceRecord *fields);
+	virtual void _saveInstance(PersistenceRecord *fields, bool saveDefaultValues);
 protected: // virtual
-    //virtual void _initBetweenReplications();
-    virtual bool _check(std::string* errorMessage);
+	//virtual void _initBetweenReplications();
+	virtual bool _check(std::string* errorMessage);
 private: // methods
 private: // attributes 1:1
 private: // attributes 1:n

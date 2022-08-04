@@ -24,46 +24,40 @@
 
 class Waiting {
 public:
+	Waiting(Entity* entity, double timeStartedWaiting, ModelComponent* thisComponent, unsigned int thisComponentOutputPort = 0) {
+		_entity = entity;
+		_thisComponent = thisComponent;
+		_timeStartedWaiting = timeStartedWaiting;
+		_thisComponentOutputPort = thisComponentOutputPort;
+	}
 
-    Waiting(Entity* entity, double timeStartedWaiting, ModelComponent* thisComponent, unsigned int thisComponentOutputPort = 0) {
-        _entity = entity;
-        _thisComponent = thisComponent;
-        _timeStartedWaiting = timeStartedWaiting;
-        _thisComponentOutputPort = thisComponentOutputPort;
-    }
-
-    virtual ~Waiting() = default;
+	virtual ~Waiting() = default;
 public:
-
-    virtual std::string show() {
-        return //ModelDataDefinition::show()+
-        ",entity=" + std::to_string(_entity->getId()) +
-                ",component=\"" + _thisComponent->getName() + "\"" +
-                ",inputPort=\"" + std::to_string(_thisComponentOutputPort) + "\"" +
-                ",timeStatedWaiting=" + std::to_string(_timeStartedWaiting);
-    }
+	virtual std::string show() {
+		return //ModelDataDefinition::show()+
+		",entity=" + std::to_string(_entity->getId()) +
+				",component=\"" + _thisComponent->getName() + "\"" +
+				",inputPort=\"" + std::to_string(_thisComponentOutputPort) + "\"" +
+				",timeStatedWaiting=" + std::to_string(_timeStartedWaiting);
+	}
 public:
-
-    double getTimeStartedWaiting() const {
-        return _timeStartedWaiting;
-    }
-
-    ModelComponent* geComponent() const {
-        return _thisComponent;
-    }
-
-    Entity* getEntity() const {
-        return _entity;
-    }
-
-    unsigned int geComponentOutputPort() const {
-        return _thisComponentOutputPort;
-    }
+	double getTimeStartedWaiting() const {
+		return _timeStartedWaiting;
+	}
+	ModelComponent* geComponent() const {
+		return _thisComponent;
+	}
+	Entity* getEntity() const {
+		return _entity;
+	}
+	unsigned int geComponentOutputPort() const {
+		return _thisComponentOutputPort;
+	}
 private:
-    Entity* _entity;
-    ModelComponent* _thisComponent;
-    double _timeStartedWaiting;
-    unsigned int _thisComponentOutputPort;
+	Entity* _entity;
+	ModelComponent* _thisComponent;
+	double _timeStartedWaiting;
+	unsigned int _thisComponentOutputPort;
 };
 
 /*!
@@ -74,8 +68,8 @@ The default ranking rule for all queues is First In, First Out unless otherwise 
 in this module. There is an additional field that allows the queue to be defined as
 shared.
 TYPICAL USES
- * Stack of work waiting for a resource at a Process module
- * Holding area for documents waiting to be collated at a Batch module
+* Stack of work waiting for a resource at a Process module
+* Holding area for documents waiting to be collated at a Batch module
 Prompt Description
 Name The name of the queue whose characteristics are being defined.
 This name must be unique.
@@ -98,58 +92,58 @@ and stored in the report database for this queue.
 class Queue : public ModelDataDefinition {
 public:
 
-    enum class OrderRule : int {
-        FIFO = 1, LIFO = 2, HIGHESTVALUE = 3, SMALLESTVALUE = 4
-    };
+	enum class OrderRule : int {
+		FIFO = 1, LIFO = 2, HIGHESTVALUE = 3, SMALLESTVALUE = 4
+	};
 
 public:
-    Queue(Model* model, std::string name = "");
-    virtual ~Queue();
+	Queue(Model* model, std::string name = "");
+	virtual ~Queue();
 public:
-    virtual std::string show();
+	virtual std::string show();
 public: // static
-    static PluginInformation* GetPluginInformation();
-    static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+	static PluginInformation* GetPluginInformation();
+	static ModelDataDefinition* LoadInstance(Model* model, PersistenceRecord *fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
-    void insertElement(Waiting* modeldatum);
-    void removeElement(Waiting* modeldatum);
-    unsigned int size();
-    Waiting* first();
-    Waiting* getAtRank(unsigned int rank);
-    void setAttributeName(std::string _attributeName);
-    std::string getAttributeName() const;
-    void setOrderRule(OrderRule _orderRule);
-    Queue::OrderRule getOrderRule() const;
+	void insertElement(Waiting* modeldatum);
+	void removeElement(Waiting* modeldatum);
+	unsigned int size();
+	Waiting* first();
+	Waiting* getAtRank(unsigned int rank);
+	void setAttributeName(std::string _attributeName);
+	std::string getAttributeName() const;
+	void setOrderRule(OrderRule _orderRule);
+	Queue::OrderRule getOrderRule() const;
 public: // to implement SIMAN functions
-    double sumAttributesFromWaiting(Util::identification attributeID); // use to implement SIMAN SAQUE function
-    double getAttributeFromWaitingRank(unsigned int rank, Util::identification attributeID);
-    //public:
-    //	void initBetweenReplications();
+	double sumAttributesFromWaiting(Util::identification attributeID); // use to implement SIMAN SAQUE function
+	double getAttributeFromWaitingRank(unsigned int rank, Util::identification attributeID);
+	//public:
+	//	void initBetweenReplications();
 protected: // must be overriden
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+	virtual bool _loadInstance(PersistenceRecord *fields);
+	virtual void _saveInstance(PersistenceRecord *fields, bool saveDefaultValues);
 protected: // could be overriden
-    virtual bool _check(std::string* errorMessage);
-    virtual void _initBetweenReplications();
-    virtual void _createInternalAndAttachedData();
-    virtual ParserChangesInformation* _getParserChangesInformation();
+	virtual bool _check(std::string* errorMessage);
+	virtual void _initBetweenReplications();
+	virtual void _createInternalAndAttachedData();
+	virtual ParserChangesInformation* _getParserChangesInformation();
 
 private:
-    void _initCStats();
+	void _initCStats();
 private: //1::n
-    List<Waiting*>* _list = new List<Waiting*>();
+	List<Waiting*>* _list = new List<Waiting*>();
 private: //1::1
 
-    const struct DEFAULT_VALUES {
-        OrderRule orderRule = OrderRule::FIFO;
-        std::string attributeName = "";
-    } DEFAULT;
-    OrderRule _orderRule = DEFAULT.orderRule;
-    std::string _attributeName = DEFAULT.attributeName;
+	const struct DEFAULT_VALUES {
+		OrderRule orderRule = OrderRule::FIFO;
+		std::string attributeName = "";
+	} DEFAULT;
+	OrderRule _orderRule = DEFAULT.orderRule;
+	std::string _attributeName = DEFAULT.attributeName;
 private: // inner internel elements
-    StatisticsCollector* _cstatNumberInQueue = nullptr;
-    StatisticsCollector* _cstatTimeInQueue;
+	StatisticsCollector* _cstatNumberInQueue = nullptr;
+	StatisticsCollector* _cstatTimeInQueue;
 };
 
 #endif /* QUEUE_H */

@@ -45,9 +45,9 @@ assigned are assumed to have the last entered value.
  Using the two-dimensional (2-D) spreadsheet interface. In the module
 spreadsheet, click on the Initial Values cell.
 TYPICAL USES
- * Due date of an order (entity)
- * Priority of an order (entity)
- * Color of a part (entity)
+* Due date of an order (entity)
+* Priority of an order (entity)
+* Color of a part (entity)
  PROMPTS
  Prompt Description
 Name The unique name of the attribute being defined.
@@ -62,20 +62,20 @@ system.
  */
 class Attribute : public ModelDataDefinition {
 public:
-    Attribute(Model* model, std::string name = "");
-    virtual ~Attribute() = default;
+	Attribute(Model* model, std::string name = "");
+	virtual ~Attribute() = default;
 public:
-    virtual std::string show();
+	virtual std::string show();
 public: //static
-    static PluginInformation* GetPluginInformation();
-    static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+	static PluginInformation* GetPluginInformation();
+	static ModelDataDefinition* LoadInstance(Model* model, PersistenceRecord *fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 protected:
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-    virtual bool _check(std::string* errorMessage);
+	virtual bool _loadInstance(PersistenceRecord *fields);
+	virtual void _saveInstance(PersistenceRecord *fields, bool saveDefaultValues);
+	virtual bool _check(std::string* errorMessage);
 private:
-    //List<unsigned int>* _dimensionSizes = new List<unsigned int>();
+	//List<unsigned int>* _dimensionSizes = new List<unsigned int>();
 };
 //namespace\\}
 #endif /* ATTRIBUTE_H */

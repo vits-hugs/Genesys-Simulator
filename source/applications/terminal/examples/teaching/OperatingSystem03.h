@@ -18,9 +18,9 @@
 
 class OperatingSystem03 : public BaseGenesysTerminalApplication {
 public:
-    OperatingSystem03();
+	OperatingSystem03();
 public:
-    virtual int main(int argc, char** argv);
+	virtual int main(int argc, char** argv);
 private:
 
 };

@@ -44,57 +44,57 @@
 
 class ModelGraphicsView : public QGraphicsView {
 public:
-    ModelGraphicsView(QWidget *parent = nullptr);
-    ModelGraphicsView(const ModelGraphicsView& orig);
-    virtual ~ModelGraphicsView();
+	ModelGraphicsView(QWidget *parent = nullptr);
+	ModelGraphicsView(const ModelGraphicsView& orig);
+	virtual ~ModelGraphicsView();
 public: // editing graphic model
-    bool addGraphicalModelComponent(Plugin* plugin, ModelComponent* component, QPointF position);
-    //bool removeGraphicalModelComponent(GraphicalModelComponent* gmc);
-    //bool addGraphicalConnection(GraphicalComponentPort* sourcePort, GraphicalComponentPort* destinationPort);
-    //bool removeGraphicalConnection(GraphicalConnection* gc);
-    //bool addDrawing();
-    //bool removeDrawing();
-    //bool addAnimation();
-    //bool removeAnimation();
+	bool addGraphicalModelComponent(Plugin* plugin, ModelComponent* component, QPointF position);
+	//bool removeGraphicalModelComponent(GraphicalModelComponent* gmc);
+	//bool addGraphicalConnection(GraphicalComponentPort* sourcePort, GraphicalComponentPort* destinationPort);
+	//bool removeGraphicalConnection(GraphicalConnection* gc);
+	//bool addDrawing();
+	//bool removeDrawing();
+	//bool addAnimation();
+	//bool removeAnimation();
 public:
-    void showGrid();
-    void clear();
-    void beginConnection();
-    void selectModelComponent(ModelComponent* component);
-    void setSimulator(Simulator* simulator);
-    void setEnabled(bool enabled);
-    QList<QGraphicsItem*> selectedItems();
+	void showGrid();
+	void clear();
+	void beginConnection();
+	void selectModelComponent(ModelComponent* component);
+	void setSimulator(Simulator* simulator);
+	void setEnabled(bool enabled);
+	QList<QGraphicsItem*> selectedItems();
 public: // events and notifications
 
-    template<typename Class> void setSceneMouseEventHandler(Class * object, void (Class::*function)(QGraphicsSceneMouseEvent*)) {
-        sceneMouseEventHandlerMethod handlerMethod = std::bind(function, object, std::placeholders::_1);
-        this->_sceneMouseEventHandler = handlerMethod;
-    }
+	template<typename Class> void setSceneMouseEventHandler(Class * object, void (Class::*function)(QGraphicsSceneMouseEvent*)) {
+		sceneMouseEventHandlerMethod handlerMethod = std::bind(function, object, std::placeholders::_1);
+		this->_sceneMouseEventHandler = handlerMethod;
+	}
 
-    template<typename Class> void setGraphicalModelEventHandler(Class * object, void (Class::*function)(GraphicalModelEvent*)) {
-        sceneGraphicalModelEventHandlerMethod handlerMethod = std::bind(function, object, std::placeholders::_1);
-        this->_sceneGraphicalModelEventHandler = handlerMethod;
-    }
-    void notifySceneMouseEventHandler(QGraphicsSceneMouseEvent* mouseEvent);
-    void notifySceneGraphicalModelEventHandler(GraphicalModelEvent* modelGraphicsEvent);
-    void setParentWidget(QWidget *parentWidget);
+	template<typename Class> void setGraphicalModelEventHandler(Class * object, void (Class::*function)(GraphicalModelEvent*)) {
+		sceneGraphicalModelEventHandlerMethod handlerMethod = std::bind(function, object, std::placeholders::_1);
+		this->_sceneGraphicalModelEventHandler = handlerMethod;
+	}
+	void notifySceneMouseEventHandler(QGraphicsSceneMouseEvent* mouseEvent);
+	void notifySceneGraphicalModelEventHandler(GraphicalModelEvent* modelGraphicsEvent);
+	void setParentWidget(QWidget *parentWidget);
 protected:// slots:
-    void changed(const QList<QRectF> &region);
-    void focusItemChanged(QGraphicsItem *newFocusItem, QGraphicsItem *oldFocusItem, Qt::FocusReason reason);
-    void sceneRectChanged(const QRectF &rect);
-    void selectionChanged();
+	void changed(const QList<QRectF> &region);
+	void focusItemChanged(QGraphicsItem *newFocusItem, QGraphicsItem *oldFocusItem, Qt::FocusReason reason);
+	void sceneRectChanged(const QRectF &rect);
+	void selectionChanged();
 protected: // virtual functions
-    virtual void dragEnterEvent(QDragEnterEvent *event) override;
-    //virtual void dropEvent(QDropEvent *event) override;
-    //virtual void dragLeaveEvent(QDragLeaveEvent *event) override;
-    //virtual void dragMoveEvent(QDragMoveEvent *event) override;
+	virtual void dragEnterEvent(QDragEnterEvent *event) override;
+	//virtual void dropEvent(QDropEvent *event) override;
+	//virtual void dragLeaveEvent(QDragLeaveEvent *event) override;
+	//virtual void dragMoveEvent(QDragMoveEvent *event) override;
 private:
-    typedef std::function<void(QGraphicsSceneMouseEvent*) > sceneMouseEventHandlerMethod;
-    typedef std::function<void(GraphicalModelEvent*) > sceneGraphicalModelEventHandlerMethod;
-    sceneMouseEventHandlerMethod _sceneMouseEventHandler;
-    sceneGraphicalModelEventHandlerMethod _sceneGraphicalModelEventHandler;
-    Simulator* _simulator = nullptr;
-    QWidget* _parentWidget;
+	typedef std::function<void(QGraphicsSceneMouseEvent*) > sceneMouseEventHandlerMethod;
+	typedef std::function<void(GraphicalModelEvent*) > sceneGraphicalModelEventHandlerMethod;
+	sceneMouseEventHandlerMethod _sceneMouseEventHandler;
+	sceneGraphicalModelEventHandlerMethod _sceneGraphicalModelEventHandler;
+	Simulator* _simulator = nullptr;
+	QWidget* _parentWidget;
 };
 
 #endif /* QMODELGRAPHICVIEW_H */

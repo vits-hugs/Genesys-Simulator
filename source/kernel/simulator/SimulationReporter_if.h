@@ -19,11 +19,11 @@
 
 class SimulationReporter_if {
 public:
-    virtual void showReplicationStatistics() = 0;
-    virtual void showSimulationStatistics() = 0;
-    virtual void showSimulationResponses() = 0;
-    virtual void showSimulationControls() = 0;
-    //virtual void setFormat(std::string format)=0;
+	virtual void showReplicationStatistics() = 0;
+	virtual void showSimulationStatistics() = 0;
+	virtual void showSimulationResponses() = 0;
+	virtual void showSimulationControls() = 0;
+	//virtual void setFormat(std::string format)=0;
 };
 
 #endif /* SIMULATIONREPORTER_IF_H */

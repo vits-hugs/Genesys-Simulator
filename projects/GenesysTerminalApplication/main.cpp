@@ -19,8 +19,8 @@
  * This file should NOT be changed. Configure the application to be executed using TraitsApp<GenesysApplication_if>
  */
 int main(int argc, char** argv) {
-    // do not change it. Set you own application in Traits file => TraitsApp<GenesysApplication_if>::Application
-    GenesysApplication_if *app = new TraitsApp<GenesysApplication_if>::Application();
-    int res = app->main(argc, argv);
-    return res;
+	// do not change it. Set you own application in Traits file => TraitsApp<GenesysApplication_if>::Application
+	GenesysApplication_if *app = new TraitsApp<GenesysApplication_if>::Application();
+	int res = app->main(argc, argv);
+	return res;
 }

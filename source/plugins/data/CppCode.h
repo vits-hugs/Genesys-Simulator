@@ -19,58 +19,57 @@
 class CppCode : public ModelDataDefinition {
 public:
 
-    class CodeResult {
-    public:
-
-        CodeResult(bool success = true, std::string generalMessage = "", unsigned int lineNumber = 1) {
-            this->success = success;
-            this->generalMessage = generalMessage;
-            this->lineNumber = lineNumber;
-        }
-        bool success;
-        std::string generalMessage;
-        unsigned int lineNumber;
-    };
+	class CodeResult {
+	public:
+		CodeResult(bool success = true, std::string generalMessage = "", unsigned int lineNumber = 1) {
+			this->success = success;
+			this->generalMessage = generalMessage;
+			this->lineNumber = lineNumber;
+		}
+		bool success;
+		std::string generalMessage;
+		unsigned int lineNumber;
+	};
 
 public:
-    CppCode(Model* model, std::string name = "");
-    virtual ~CppCode() = default;
+	CppCode(Model* model, std::string name = "");
+	virtual ~CppCode() = default;
 public: // static
-    static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-    static PluginInformation* GetPluginInformation();
-    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+	static ModelDataDefinition* LoadInstance(Model* model, PersistenceRecord *fields);
+	static PluginInformation* GetPluginInformation();
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
-    virtual std::string show();
+	virtual std::string show();
 public: // gets & sets
-    void setCode(std::string _code);
-    std::string getCode() const;
-    bool IsLibraryLoaded() const;
+	void setCode(std::string _code);
+	std::string getCode() const;
+	bool IsLibraryLoaded() const;
 public: // new methods
-    CodeResult compile();
-    CodeResult loadLibrary();
-    CodeResult unloadLibrary();
+	CodeResult compile();
+	CodeResult loadLibrary();
+	CodeResult unloadLibrary();
 protected: // must be overriden 
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+	virtual bool _loadInstance(PersistenceRecord *fields);
+	virtual void _saveInstance(PersistenceRecord *fields, bool saveDefaultValues);
 protected: // could be overriden 
-    virtual bool _check(std::string* errorMessage);
-    // virtual ParserChangesInformation* _getParserChangesInformation();
-    //virtual void _initBetweenReplications();
-    virtual void _createInternalAndAttachedData();
+	virtual bool _check(std::string* errorMessage);
+	// virtual ParserChangesInformation* _getParserChangesInformation();
+	//virtual void _initBetweenReplications();
+	virtual void _createInternalAndAttachedData();
 private:
 
-    const struct DEFAULT_VALUES {
-        std::string code = "";
-        std::string tempDir = ".temp/";
-        std::string compiler = "g++";
-        std::string flags = "";
-    } DEFAULT;
-    std::string _code = DEFAULT.code;
-    std::string _tempDir = DEFAULT.tempDir;
-    std::string _compiler = DEFAULT.compiler;
-    std::string _flags = DEFAULT.flags;
+	const struct DEFAULT_VALUES {
+		std::string code = "";
+		std::string tempDir = ".temp/";
+		std::string compiler = "g++";
+		std::string flags = "";
+	} DEFAULT;
+	std::string _code = DEFAULT.code;
+	std::string _tempDir = DEFAULT.tempDir;
+	std::string _compiler = DEFAULT.compiler;
+	std::string _flags = DEFAULT.flags;
 
-    bool libraryLoaded = false;
+	bool libraryLoaded = false;
 };
 
 #endif /* CPPCODE_H */

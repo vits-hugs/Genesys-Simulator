@@ -26,9 +26,9 @@ queue and sends it to the connected module. The rank of the entity signifies the
 location of the entity within the queue. The entity that caused the removal proceeds to
 the next module specified and is processed before the removed entity.
 TYPICAL USES
- * Removing an order from a queue that is due to be completed next
- * Calling a patient from a waiting room for an examination
- * Retrieving the next order to be processed from a pile of documents
+* Removing an order from a queue that is due to be completed next
+* Calling a patient from a waiting room for an examination
+* Retrieving the next order to be processed from a pile of documents
 Prompt Description
 Name Unique module identifier displayed on the module shape.
 Queue Name Name of the queue from which the entity will be removed.
@@ -36,21 +36,21 @@ Rank of Entity Rank of the entity to remove from within the queue.
  */
 class Remove : public ModelComponent {
 public: // constructors
-    Remove(Model* model, std::string name = "");
-    virtual ~Remove() = default;
+	Remove(Model* model, std::string name = "");
+	virtual ~Remove() = default;
 public: // virtual
-    virtual std::string show();
+	virtual std::string show();
 public: // static
-    static PluginInformation* GetPluginInformation();
-    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+	static PluginInformation* GetPluginInformation();
+	static ModelComponent* LoadInstance(Model* model, PersistenceRecord *fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 protected: // virtual
-    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+	virtual bool _loadInstance(PersistenceRecord *fields);
+	virtual void _saveInstance(PersistenceRecord *fields, bool saveDefaultValues);
 protected: // virtual
-    //virtual void _initBetweenReplications();
-    virtual bool _check(std::string* errorMessage);
+	//virtual void _initBetweenReplications();
+	virtual bool _check(std::string* errorMessage);
 private: // methods
 private: // attributes 1:1
 private: // attributes 1:n

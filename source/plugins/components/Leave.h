@@ -30,7 +30,7 @@ transporter, or conveyor). When the transfer device has been obtained, the entit
 experience a loading delay. Finally, the entity is transferred from this module to a
 destination module or station.
 TYPICAL USES
- * The end of a part’s production in a series of parallel processes where the part
+* The end of a part’s production in a series of parallel processes where the part
 needs a forklift to be transferred to shipping
 PROMPTS
 Prompt Description
@@ -93,30 +93,30 @@ Expression The expression that will be evaluated to indicate the station.
  */
 class Leave : public ModelComponent {
 public:
-    Leave(Model* model, std::string name = "");
-    virtual ~Leave() = default;
+	Leave(Model* model, std::string name = "");
+	virtual ~Leave() = default;
 public:
-    virtual std::string show();
+	virtual std::string show();
 public:
-    static PluginInformation* GetPluginInformation();
-    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+	static PluginInformation* GetPluginInformation();
+	static ModelComponent* LoadInstance(Model* model, PersistenceRecord *fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
-    void setStation(Station* _station);
-    void setStationName(std::string stationName);
-    Station* getStation() const;
+	void setStation(Station* _station);
+	void setStationName(std::string stationName);
+	Station* getStation() const;
 protected:
-    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+	virtual bool _loadInstance(PersistenceRecord *fields);
+	virtual void _saveInstance(PersistenceRecord *fields, bool saveDefaultValues);
 protected:
-    //virtual void _initBetweenReplications();
-    virtual bool _check(std::string* errorMessage);
-    virtual void _createInternalAndAttachedData();
+	//virtual void _initBetweenReplications();
+	virtual bool _check(std::string* errorMessage);
+	virtual void _createInternalAndAttachedData();
 private: // association
     Station* _station = nullptr;
 private: // internel elements
-    Counter* _numberIn = nullptr;
+	Counter* _numberIn = nullptr;
 };
 
 #endif /* LEAVE_H */

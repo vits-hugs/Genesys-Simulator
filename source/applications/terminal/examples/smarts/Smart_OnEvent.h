@@ -18,22 +18,22 @@
 
 class Smart_OnEvent : public BaseGenesysTerminalApplication {
 public:
-    Smart_OnEvent();
+	Smart_OnEvent();
 public:
-    virtual int main(int argc, char** argv);
+	virtual int main(int argc, char** argv);
 public:
-    void onBreakpointHandler(SimulationEvent* re);
-    void onEntityCreateHandler(SimulationEvent* re);
-    void onEntityMoveHandler(SimulationEvent* re);
-    void onSimulationStartHandler(SimulationEvent* re);
-    void onReplicationStartHandler(SimulationEvent* re);
-    void onReplicationStepHandler(SimulationEvent* re);
-    void onProcessEventHandler(SimulationEvent* re);
-    void onReplicationEndHandler(SimulationEvent* re);
-    void onSimulationEndHandler(SimulationEvent* re);
-    void onSimulationPausedHandler(SimulationEvent* re);
-    void onSimulationResumeHandler(SimulationEvent* re);
-    void onEntityRemoveHandler(SimulationEvent* re);
+	void onBreakpointHandler(SimulationEvent* re);
+	void onEntityCreateHandler(SimulationEvent* re);
+	void onEntityMoveHandler(SimulationEvent* re);
+	void onSimulationStartHandler(SimulationEvent* re);
+	void onReplicationStartHandler(SimulationEvent* re);
+	void onReplicationStepHandler(SimulationEvent* re);
+	void onProcessEventHandler(SimulationEvent* re);
+	void onReplicationEndHandler(SimulationEvent* re);
+	void onSimulationEndHandler(SimulationEvent* re);
+	void onSimulationPausedHandler(SimulationEvent* re);
+	void onSimulationResumeHandler(SimulationEvent* re);
+	void onEntityRemoveHandler(SimulationEvent* re);
 };
 
 #endif /* SMART_ONEVENT_H */

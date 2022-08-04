@@ -18,9 +18,9 @@
 
 class Smart_Dummy : public BaseGenesysTerminalApplication {
 public:
-    Smart_Dummy();
+	Smart_Dummy();
 public:
-    virtual int main(int argc, char** argv);
+	virtual int main(int argc, char** argv);
 };
 
 #endif /* SMART_DUMMY_H */

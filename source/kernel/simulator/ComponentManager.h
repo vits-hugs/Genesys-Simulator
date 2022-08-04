@@ -25,31 +25,31 @@
  */
 class ComponentManager {
 public:
-    ComponentManager(Model* model);
-    virtual ~ComponentManager() = default;
+	ComponentManager(Model* model);
+	virtual ~ComponentManager() = default;
 public:
-    bool insert(ModelComponent* comp);
-    void remove(ModelComponent* comp);
-    ModelComponent* find(std::string name);
-    ModelComponent* find(Util::identification id);
-    void clear();
+	bool insert(ModelComponent* comp);
+	void remove(ModelComponent* comp);
+	ModelComponent* find(std::string name);
+	ModelComponent* find(Util::identification id);
+	void clear();
 public:
-    unsigned int getNumberOfComponents();
-    std::list<ModelComponent*>::iterator begin();
-    std::list<ModelComponent*>::iterator end();
-    ModelComponent* front();
-    ModelComponent* next();
-    bool hasChanged() const;
-    void setHasChanged(bool _hasChanged);
+	unsigned int getNumberOfComponents();
+	std::list<ModelComponent*>::iterator begin();
+	std::list<ModelComponent*>::iterator end();
+	ModelComponent* front();
+	ModelComponent* next();
+	bool hasChanged() const;
+	void setHasChanged(bool _hasChanged);
 public:
-    std::list<SourceModelComponent*>* getSourceComponents();
-    std::list<ModelComponent*>* getTransferInComponents();
-    std::list<ModelComponent*>* getAllComponents() const;
+	std::list<SourceModelComponent*>* getSourceComponents();
+	std::list<ModelComponent*>* getTransferInComponents();
+	std::list<ModelComponent*>* getAllComponents() const;
 private:
-    List<ModelComponent*>* _components;
-    Model* _parentModel;
-    bool _hasChanged = false;
-    std::list<ModelComponent*>::iterator _componentIterator;
+	List<ModelComponent*>* _components;
+	Model* _parentModel;
+	bool _hasChanged = false;
+	std::list<ModelComponent*>::iterator _componentIterator;
 };
 //namespace\\}
 #endif /* COMPONENTMANAGER_H */

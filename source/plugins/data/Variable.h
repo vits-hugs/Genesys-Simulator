@@ -30,20 +30,20 @@ are read at different times, depending on the options you specify, including the
 Read Time, the Clear Option, and the replication parameters you specify in the Run
 Setup dialog box. For more information, see the online Help.
 There are three methods for manually editing the Initial Values of a Variable module:
- * Using the standard spreadsheet interface. In the module spreadsheet, right-click
+* Using the standard spreadsheet interface. In the module spreadsheet, right-click
 on the Initial Values cell and select the Edit via spreadsheet menu item. The
 values for two-dimensional arrays should be entered one column at a time. Array
 elements not explicitly assigned are assumed to have the last entered value.
- * Using the module dialog box. In the module spreadsheet, right-click on any cell
+* Using the module dialog box. In the module spreadsheet, right-click on any cell
 and select the Edit via dialog menu item. The values for two-dimensional arrays
 should be entered one column at a time. Array elements not explicitly assigned
 are assumed to have the last entered value.
- * Using the two-dimensional (2-D) spreadsheet interface. In the module
+* Using the two-dimensional (2-D) spreadsheet interface. In the module
 spreadsheet, click on the Initial Values cell.
 TYPICAL USES
- * Number of documents processed per hour
- * Serial number to assign to parts for unique identification
- * Space available in a facility
+* Number of documents processed per hour
+* Serial number to assign to parts for unique identification
+* Space available in a facility
 PROMPTS
 Prompt Description
 Name The unique name of the variable being defined.
@@ -95,7 +95,7 @@ public:
     virtual std::string show();
 public: //static
     static PluginInformation* GetPluginInformation();
-    static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
+    static ModelDataDefinition* LoadInstance(Model* model, PersistenceRecord *fields);
     static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
     double getValue();
@@ -106,20 +106,20 @@ public:
     void setInitialValue(double value);
     double getInitialValue(std::string index);
     void setInitialValue(std::string index, double value);
-    void insertDimentionSize(unsigned int size);
-    std::list<unsigned int>* getDimensionSizes() const;
+	void insertDimentionSize(unsigned int size);
+	std::list<unsigned int>* getDimensionSizes() const;
 
     std::map<std::string, double> *getValues() const;
 
 protected:
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+    virtual bool _loadInstance(PersistenceRecord *fields);
+    virtual void _saveInstance(PersistenceRecord *fields, bool saveDefaultValues);
     virtual bool _check(std::string* errorMessage);
     virtual void _initBetweenReplications();
 
 private:
     //const struct DEFAULT_VALUES {	} DEFAULT;
-    std::list<unsigned int>* _dimensionSizes = new std::list<unsigned int>();
+	std::list<unsigned int>* _dimensionSizes = new std::list<unsigned int>();
     std::map<std::string, double>* _values = new std::map<std::string, double>();
     std::map<std::string, double>* _initialValues = new std::map<std::string, double>();
 };

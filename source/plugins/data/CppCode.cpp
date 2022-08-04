@@ -15,12 +15,12 @@
 #ifdef PLUGINCONNECT_DYNAMIC
 
 extern "C" StaticGetPluginInformation GetPluginInformation() {
-    return &CppCode::GetPluginInformation;
+	return &CppCode::GetPluginInformation;
 }
 #endif
 
 ModelDataDefinition* CppCode::NewInstance(Model* model, std::string name) {
-    return new CppCode(model, name);
+	return new CppCode(model, name);
 }
 
 CppCode::CppCode(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<CppCode>(), name) {
@@ -28,85 +28,80 @@ CppCode::CppCode(Model* model, std::string name) : ModelDataDefinition(model, Ut
 
 // static 
 
-ModelDataDefinition* CppCode::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
-    CppCode* newElement = new CppCode(model);
-    try {
-        newElement->_loadInstance(fields);
-    } catch (const std::exception& e) {
+ModelDataDefinition* CppCode::LoadInstance(Model* model, PersistenceRecord *fields) {
+	CppCode* newElement = new CppCode(model);
+	try {
+		newElement->_loadInstance(fields);
+	} catch (const std::exception& e) {
 
-    }
-    return newElement;
+	}
+	return newElement;
 }
 
 PluginInformation* CppCode::GetPluginInformation() {
-    PluginInformation* info = new PluginInformation(Util::TypeOf<CppCode>(), &CppCode::LoadInstance, &CppCode::NewInstance);
-    info->setDescriptionHelp("//@TODO");
-    //info->setObservation("");
-    //info->setMinimumOutputs();
-    //info->setDynamicLibFilenameDependencies();
-    //info->setFields();
-    // ...
-    return info;
+	PluginInformation* info = new PluginInformation(Util::TypeOf<CppCode>(), &CppCode::LoadInstance, &CppCode::NewInstance);
+	info->setDescriptionHelp("//@TODO");
+	//info->setObservation("");
+	//info->setMinimumOutputs();
+	//info->setDynamicLibFilenameDependencies();
+	//info->setFields();
+	// ...
+	return info;
 }
 
 //
 
 std::string CppCode::show() {
-    return ModelDataDefinition::show();
+	return ModelDataDefinition::show();
 }
 
 void CppCode::setCode(std::string _code) {
-    this->_code = _code;
+	this->_code = _code;
 }
 
 std::string CppCode::getCode() const {
-    return _code;
+	return _code;
 }
 // must be overriden 
 
-bool CppCode::_loadInstance(std::map<std::string, std::string>* fields) {
-    bool res = ModelDataDefinition::_loadInstance(fields);
-    if (res) {
-        // @TODO: not implemented yet
-    }
-    return res;
+bool CppCode::_loadInstance(PersistenceRecord *fields) {
+	bool res = ModelDataDefinition::_loadInstance(fields);
+	if (res) {
+		// @TODO: not implemented yet
+	}
+	return res;
 }
 
-std::map<std::string, std::string>* CppCode::_saveInstance(bool saveDefaultValues) {
-    std::map<std::string, std::string>* fields = ModelDataDefinition::_saveInstance(saveDefaultValues);
-    // @TODO: not implemented yet
-    return fields;
+void CppCode::_saveInstance(PersistenceRecord *fields, bool saveDefaultValues) {
+	ModelDataDefinition::_saveInstance(fields, saveDefaultValues);
+	// @TODO: not implemented yet
 }
 
 // could be overriden 
 
 bool CppCode::_check(std::string* errorMessage) {
-    return true;
+	return true;
 }
-
-//ParserChangesInformation* CppCode::_getParserChangesInformation() {}
-
-//void CppCode::_initBetweenReplications() {}
 
 void CppCode::_createInternalAndAttachedData() {
 }
 
 CppCode::CodeResult CppCode::compile() {
-    CppCode::CodeResult result;
-    return result;
+	CppCode::CodeResult result;
+	return result;
 }
 
 CppCode::CodeResult CppCode::loadLibrary() {
-    CppCode::CodeResult result;
-    return result;
+	CppCode::CodeResult result;
+	return result;
 }
 
 CppCode::CodeResult CppCode::unloadLibrary() {
-    CppCode::CodeResult result;
-    return result;
+	CppCode::CodeResult result;
+	return result;
 }
 
 bool CppCode::IsLibraryLoaded() const {
-    return libraryLoaded;
+	return libraryLoaded;
 }
 
