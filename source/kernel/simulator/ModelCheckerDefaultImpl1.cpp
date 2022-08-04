@@ -116,7 +116,8 @@ bool ModelCheckerDefaultImpl1::checkConnected() {
                 _model->getTracer()->traceError(TraceManager::Level::L1_errorFatal, "Component \"" + comp->getName() + "\" is unconnected.");
             }
         }
-
+        delete visited;
+        delete unconnected;
     }
     _showResult(resultAll, "Checking connected");
     Util::DecIndent();
@@ -171,6 +172,7 @@ bool ModelCheckerDefaultImpl1::checkSymbols() {
                         Util::DecIndent();
                     }
                 }
+                delete errorMessage;
             }
             Util::DecIndent();
         }
@@ -282,6 +284,7 @@ bool ModelCheckerDefaultImpl1::checkOrphaned() {
             _model->getTracer()->trace(TraceManager::Level::L7_internal, "No orphaned DataDefinitions found.");
             res = true;
         }
+        delete orphaned;
     }
     _showResult(res, "Checking Orphaned");
     Util::DecIndent();

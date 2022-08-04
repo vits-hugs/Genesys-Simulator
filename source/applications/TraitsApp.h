@@ -64,8 +64,8 @@ template <> struct TraitsApp<GenesysApplication_if> {
     //static const bool runTests = false;
     static const TraceManager::Level traceLevel = TraceManager::Level::L9_mostDetailed;
 
-    //// TESTS
-    typedef Tests Application;
+    //// TESTS @TODO: To be replaced by GoogleTests
+    //typedef Tests Application;
 
     //// SMART SMARTs ALPHA SORTED
     //typedef Smart_AssignWriteSeizes Application;
@@ -93,7 +93,7 @@ template <> struct TraitsApp<GenesysApplication_if> {
     //// TEACHING
     //typedef AnElectronicAssemblyAndTestSystem Application;
     //typedef OperatingSystem02 Application;
-    //typedef OperatingSystem03 Application;
+    typedef OperatingSystem03 Application;
 
     //// BOOK
     //typedef Book_Cap02_Example01 Application;

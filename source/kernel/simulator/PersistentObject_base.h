@@ -14,8 +14,9 @@
 #ifndef PERSISTENTOBJECT_BASE_H
 #define PERSISTENTOBJECT_BASE_H
 
-#include <map>
 #include <string>
+#include <utility>
+#include <map>
 
 class PersistentObject_base {
 public:
@@ -27,6 +28,7 @@ protected: // must be overriden by derived classes
     virtual bool _loadInstance(std::map<std::string, std::string>* fields) = 0;
     virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues) = 0;
 };
+
 
 #endif /* PERSISTENTOBJECT_BASE_H */
 

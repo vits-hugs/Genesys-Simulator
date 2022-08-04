@@ -21,7 +21,8 @@
 #include "../util/Util.h"
 
 #include "ParserChangesInformation.h"
-#include "PersistentObject_base.h"
+//#include "PersistentObject_base.h"
+#include "Persistence.h"
 #include "PluginInformation.h"
 #include "Property.h"
 
