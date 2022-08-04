@@ -173,6 +173,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/d18efc87/FitterDummyImpl.o \
 	${OBJECTDIR}/_ext/d18efc87/HypothesisTesterDefaultImpl1.o \
 	${OBJECTDIR}/_ext/d18efc87/ProbabilityDistribution.o \
+	${OBJECTDIR}/_ext/d18efc87/ProbabilityDistributionBase.o \
 	${OBJECTDIR}/_ext/d18efc87/SolverDefaultImpl1.o \
 	${OBJECTDIR}/main.o
 
@@ -901,6 +902,11 @@ ${OBJECTDIR}/_ext/d18efc87/ProbabilityDistribution.o: ../../source/tools/Probabi
 	${MKDIR} -p ${OBJECTDIR}/_ext/d18efc87
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/d18efc87/ProbabilityDistribution.o ../../source/tools/ProbabilityDistribution.cpp
+
+${OBJECTDIR}/_ext/d18efc87/ProbabilityDistributionBase.o: ../../source/tools/ProbabilityDistributionBase.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/d18efc87
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/d18efc87/ProbabilityDistributionBase.o ../../source/tools/ProbabilityDistributionBase.cpp
 
 ${OBJECTDIR}/_ext/d18efc87/SolverDefaultImpl1.o: ../../source/tools/SolverDefaultImpl1.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/d18efc87
@@ -2728,6 +2734,19 @@ ${OBJECTDIR}/_ext/d18efc87/ProbabilityDistribution_nomain.o: ${OBJECTDIR}/_ext/d
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/d18efc87/ProbabilityDistribution_nomain.o ../../source/tools/ProbabilityDistribution.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/d18efc87/ProbabilityDistribution.o ${OBJECTDIR}/_ext/d18efc87/ProbabilityDistribution_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/d18efc87/ProbabilityDistributionBase_nomain.o: ${OBJECTDIR}/_ext/d18efc87/ProbabilityDistributionBase.o ../../source/tools/ProbabilityDistributionBase.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/d18efc87
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/d18efc87/ProbabilityDistributionBase.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/d18efc87/ProbabilityDistributionBase_nomain.o ../../source/tools/ProbabilityDistributionBase.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/d18efc87/ProbabilityDistributionBase.o ${OBJECTDIR}/_ext/d18efc87/ProbabilityDistributionBase_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/d18efc87/SolverDefaultImpl1_nomain.o: ${OBJECTDIR}/_ext/d18efc87/SolverDefaultImpl1.o ../../source/tools/SolverDefaultImpl1.cpp 

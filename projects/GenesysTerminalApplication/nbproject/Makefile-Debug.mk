@@ -173,6 +173,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/d18efc87/FitterDummyImpl.o \
 	${OBJECTDIR}/_ext/d18efc87/HypothesisTesterDefaultImpl1.o \
 	${OBJECTDIR}/_ext/d18efc87/ProbabilityDistribution.o \
+	${OBJECTDIR}/_ext/d18efc87/ProbabilityDistributionBase.o \
 	${OBJECTDIR}/_ext/d18efc87/SolverDefaultImpl1.o \
 	${OBJECTDIR}/main.o
 
@@ -902,6 +903,11 @@ ${OBJECTDIR}/_ext/d18efc87/ProbabilityDistribution.o: ../../source/tools/Probabi
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/d18efc87/ProbabilityDistribution.o ../../source/tools/ProbabilityDistribution.cpp
 
+${OBJECTDIR}/_ext/d18efc87/ProbabilityDistributionBase.o: ../../source/tools/ProbabilityDistributionBase.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/d18efc87
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/d18efc87/ProbabilityDistributionBase.o ../../source/tools/ProbabilityDistributionBase.cpp
+
 ${OBJECTDIR}/_ext/d18efc87/SolverDefaultImpl1.o: ../../source/tools/SolverDefaultImpl1.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/d18efc87
 	${RM} "$@.d"
@@ -927,13 +933,13 @@ ${TESTDIR}/TestFiles/f1: ${TESTDIR}/_ext/bc246cfa/gtest-all.o ${TESTDIR}/_ext/d1
 ${TESTDIR}/_ext/bc246cfa/gtest-all.o: ../../source/gtest/src/gtest-all.cc 
 	${MKDIR} -p ${TESTDIR}/_ext/bc246cfa
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Wall -I../../source/gtest -I../../source/gtest -I. -std=c++14 -MMD -MP -MF "$@.d" -o ${TESTDIR}/_ext/bc246cfa/gtest-all.o ../../source/gtest/src/gtest-all.cc
+	$(COMPILE.cc) -g -Wall -I../../source/gtest -I../../source/gtest -I. -I../../source/gtest/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${TESTDIR}/_ext/bc246cfa/gtest-all.o ../../source/gtest/src/gtest-all.cc
 
 
 ${TESTDIR}/_ext/d18a80cd/testKernel.o: ../../source/tests/testKernel.cpp 
 	${MKDIR} -p ${TESTDIR}/_ext/d18a80cd
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Wall -I../../source/gtest -I../../source/gtest -I. -std=c++14 -MMD -MP -MF "$@.d" -o ${TESTDIR}/_ext/d18a80cd/testKernel.o ../../source/tests/testKernel.cpp
+	$(COMPILE.cc) -g -Wall -I../../source/gtest -I../../source/gtest -I. -I../../source/gtest/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${TESTDIR}/_ext/d18a80cd/testKernel.o ../../source/tests/testKernel.cpp
 
 
 ${OBJECTDIR}/_ext/6bf258f7/BaseGenesysTerminalApplication_nomain.o: ${OBJECTDIR}/_ext/6bf258f7/BaseGenesysTerminalApplication.o ../../source/applications/BaseGenesysTerminalApplication.cpp 
@@ -2728,6 +2734,19 @@ ${OBJECTDIR}/_ext/d18efc87/ProbabilityDistribution_nomain.o: ${OBJECTDIR}/_ext/d
 	    $(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/d18efc87/ProbabilityDistribution_nomain.o ../../source/tools/ProbabilityDistribution.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/d18efc87/ProbabilityDistribution.o ${OBJECTDIR}/_ext/d18efc87/ProbabilityDistribution_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/d18efc87/ProbabilityDistributionBase_nomain.o: ${OBJECTDIR}/_ext/d18efc87/ProbabilityDistributionBase.o ../../source/tools/ProbabilityDistributionBase.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/d18efc87
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/d18efc87/ProbabilityDistributionBase.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/d18efc87/ProbabilityDistributionBase_nomain.o ../../source/tools/ProbabilityDistributionBase.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/d18efc87/ProbabilityDistributionBase.o ${OBJECTDIR}/_ext/d18efc87/ProbabilityDistributionBase_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/d18efc87/SolverDefaultImpl1_nomain.o: ${OBJECTDIR}/_ext/d18efc87/SolverDefaultImpl1.o ../../source/tools/SolverDefaultImpl1.cpp 

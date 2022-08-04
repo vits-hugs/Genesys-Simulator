@@ -13,7 +13,7 @@
 #ifndef SOLVERDEFAULTIMPL1_IF_H
 #define SOLVERDEFAULTIMPL1_IF_H
 
-#include "solver_if.h"
+#include "Solver_if.h"
 
 class SolverDefaultImpl1 : public Solver_if {
 public:

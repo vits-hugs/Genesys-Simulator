@@ -400,10 +400,12 @@
         <itemPath>../../source/tools/HypothesisTester_if.h</itemPath>
         <itemPath>../../source/tools/ProbabilityDistribution.cpp</itemPath>
         <itemPath>../../source/tools/ProbabilityDistribution.h</itemPath>
+        <itemPath>../../source/tools/ProbabilityDistributionBase.cpp</itemPath>
+        <itemPath>../../source/tools/ProbabilityDistributionBase.h</itemPath>
         <itemPath>../../source/tools/SolverDefaultImpl1.cpp</itemPath>
         <itemPath>../../source/tools/SolverDefaultImpl1.h</itemPath>
+        <itemPath>../../source/tools/Solver_if.h</itemPath>
         <itemPath>../../source/tools/TraitsTools.h</itemPath>
-        <itemPath>../../source/tools/solver_if.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -411,7 +413,7 @@
                    projectFiles="false"
                    kind="TEST_LOGICAL_FOLDER">
       <logicalFolder name="f1"
-                     displayName="Test Kernel"
+                     displayName="Google tests"
                      projectFiles="true"
                      kind="TEST">
         <itemPath>../../source/gtest/src/gtest-all.cc</itemPath>
@@ -2026,6 +2028,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../../source/tools/ProbabilityDistributionBase.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/tools/ProbabilityDistributionBase.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../../source/tools/SolverDefaultImpl1.cpp"
             ex="false"
             tool="1"
@@ -2036,9 +2048,9 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/tools/TraitsTools.h" ex="false" tool="3" flavor2="0">
+      <item path="../../source/tools/Solver_if.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../../source/tools/solver_if.h" ex="false" tool="3" flavor2="0">
+      <item path="../../source/tools/TraitsTools.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="../GenesysParser/Makefile" ex="false" tool="3" flavor2="0">
       </item>
@@ -2060,6 +2072,7 @@
         <ccTool>
           <incDir>
             <pElem>.</pElem>
+            <pElem>../../source/gtest/gtest</pElem>
           </incDir>
         </ccTool>
         <linkerTool>
@@ -3654,6 +3667,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../../source/tools/ProbabilityDistributionBase.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/tools/ProbabilityDistributionBase.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../../source/tools/SolverDefaultImpl1.cpp"
             ex="false"
             tool="1"
@@ -3664,9 +3687,9 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/tools/TraitsTools.h" ex="false" tool="3" flavor2="0">
+      <item path="../../source/tools/Solver_if.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../../source/tools/solver_if.h" ex="false" tool="3" flavor2="0">
+      <item path="../../source/tools/TraitsTools.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="../GenesysParser/Makefile" ex="false" tool="3" flavor2="0">
       </item>
