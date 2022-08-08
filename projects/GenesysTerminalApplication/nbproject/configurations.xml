@@ -78,6 +78,8 @@
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_Dummy.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_Failures.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_Failures.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_FinitStateMachine.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_FinitStateMachine.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_ModelInfoModelSimulation.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_ModelInfoModelSimulation.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_ODE.cpp</itemPath>
@@ -309,6 +311,8 @@
           <itemPath>../../source/plugins/components/Enter.h</itemPath>
           <itemPath>../../source/plugins/components/Exit.cpp</itemPath>
           <itemPath>../../source/plugins/components/Exit.h</itemPath>
+          <itemPath>../../source/plugins/components/FiniteStateMachine.cpp</itemPath>
+          <itemPath>../../source/plugins/components/FiniteStateMachine.h</itemPath>
           <itemPath>../../source/plugins/components/LSODE.cpp</itemPath>
           <itemPath>../../source/plugins/components/LSODE.h</itemPath>
           <itemPath>../../source/plugins/components/Leave.cpp</itemPath>
@@ -369,6 +373,8 @@
           <itemPath>../../source/plugins/data/DummyElement.h</itemPath>
           <itemPath>../../source/plugins/data/EntityGroup.cpp</itemPath>
           <itemPath>../../source/plugins/data/EntityGroup.h</itemPath>
+          <itemPath>../../source/plugins/data/ExFiStatMac.cpp</itemPath>
+          <itemPath>../../source/plugins/data/ExFiStatMac.h</itemPath>
           <itemPath>../../source/plugins/data/Failure.cpp</itemPath>
           <itemPath>../../source/plugins/data/Failure.h</itemPath>
           <itemPath>../../source/plugins/data/File.cpp</itemPath>
@@ -665,6 +671,16 @@
             flavor2="0">
       </item>
       <item path="../../source/applications/terminal/examples/smarts/Smart_Failures.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_FinitStateMachine.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_FinitStateMachine.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -1644,6 +1660,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../../source/plugins/components/FiniteStateMachine.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/plugins/components/FiniteStateMachine.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../../source/plugins/components/LSODE.cpp"
             ex="false"
             tool="1"
@@ -1930,6 +1956,16 @@
             flavor2="0">
       </item>
       <item path="../../source/plugins/data/EntityGroup.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/plugins/data/ExFiStatMac.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/plugins/data/ExFiStatMac.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2366,6 +2402,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_FinitStateMachine.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_FinitStateMachine.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../../source/applications/terminal/examples/smarts/Smart_ModelInfoModelSimulation.cpp"
             ex="false"
             tool="1"
@@ -3341,6 +3387,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../../source/plugins/components/FiniteStateMachine.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/plugins/components/FiniteStateMachine.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../../source/plugins/components/LSODE.cpp"
             ex="false"
             tool="1"
@@ -3627,6 +3683,16 @@
             flavor2="0">
       </item>
       <item path="../../source/plugins/data/EntityGroup.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/plugins/data/ExFiStatMac.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/plugins/data/ExFiStatMac.h"
             ex="false"
             tool="3"
             flavor2="0">

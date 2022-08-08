@@ -45,6 +45,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/296208d5/Smart_Delay.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_Dummy.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_Failures.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_FinitStateMachine.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_ModelInfoModelSimulation.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_ODE.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_OnEvent.o \
@@ -133,6 +134,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/f13e5db9/DummyComponent.o \
 	${OBJECTDIR}/_ext/f13e5db9/Enter.o \
 	${OBJECTDIR}/_ext/f13e5db9/Exit.o \
+	${OBJECTDIR}/_ext/f13e5db9/FiniteStateMachine.o \
 	${OBJECTDIR}/_ext/f13e5db9/LSODE.o \
 	${OBJECTDIR}/_ext/f13e5db9/Leave.o \
 	${OBJECTDIR}/_ext/f13e5db9/MarkovChain.o \
@@ -162,6 +164,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/ccae408d/CppCode.o \
 	${OBJECTDIR}/_ext/ccae408d/DummyElement.o \
 	${OBJECTDIR}/_ext/ccae408d/EntityGroup.o \
+	${OBJECTDIR}/_ext/ccae408d/ExFiStatMac.o \
 	${OBJECTDIR}/_ext/ccae408d/Failure.o \
 	${OBJECTDIR}/_ext/ccae408d/File.o \
 	${OBJECTDIR}/_ext/ccae408d/Formula.o \
@@ -268,6 +271,11 @@ ${OBJECTDIR}/_ext/296208d5/Smart_Failures.o: ../../source/applications/terminal/
 	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_Failures.o ../../source/applications/terminal/examples/smarts/Smart_Failures.cpp
+
+${OBJECTDIR}/_ext/296208d5/Smart_FinitStateMachine.o: ../../source/applications/terminal/examples/smarts/Smart_FinitStateMachine.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_FinitStateMachine.o ../../source/applications/terminal/examples/smarts/Smart_FinitStateMachine.cpp
 
 ${OBJECTDIR}/_ext/296208d5/Smart_ModelInfoModelSimulation.o: ../../source/applications/terminal/examples/smarts/Smart_ModelInfoModelSimulation.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
@@ -709,6 +717,11 @@ ${OBJECTDIR}/_ext/f13e5db9/Exit.o: ../../source/plugins/components/Exit.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f13e5db9/Exit.o ../../source/plugins/components/Exit.cpp
 
+${OBJECTDIR}/_ext/f13e5db9/FiniteStateMachine.o: ../../source/plugins/components/FiniteStateMachine.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f13e5db9/FiniteStateMachine.o ../../source/plugins/components/FiniteStateMachine.cpp
+
 ${OBJECTDIR}/_ext/f13e5db9/LSODE.o: ../../source/plugins/components/LSODE.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
 	${RM} "$@.d"
@@ -853,6 +866,11 @@ ${OBJECTDIR}/_ext/ccae408d/EntityGroup.o: ../../source/plugins/data/EntityGroup.
 	${MKDIR} -p ${OBJECTDIR}/_ext/ccae408d
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/EntityGroup.o ../../source/plugins/data/EntityGroup.cpp
+
+${OBJECTDIR}/_ext/ccae408d/ExFiStatMac.o: ../../source/plugins/data/ExFiStatMac.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/ccae408d
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/ExFiStatMac.o ../../source/plugins/data/ExFiStatMac.cpp
 
 ${OBJECTDIR}/_ext/ccae408d/Failure.o: ../../source/plugins/data/Failure.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/ccae408d
@@ -1106,6 +1124,19 @@ ${OBJECTDIR}/_ext/296208d5/Smart_Failures_nomain.o: ${OBJECTDIR}/_ext/296208d5/S
 	    $(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_Failures_nomain.o ../../source/applications/terminal/examples/smarts/Smart_Failures.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/296208d5/Smart_Failures.o ${OBJECTDIR}/_ext/296208d5/Smart_Failures_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/296208d5/Smart_FinitStateMachine_nomain.o: ${OBJECTDIR}/_ext/296208d5/Smart_FinitStateMachine.o ../../source/applications/terminal/examples/smarts/Smart_FinitStateMachine.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/296208d5/Smart_FinitStateMachine.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_FinitStateMachine_nomain.o ../../source/applications/terminal/examples/smarts/Smart_FinitStateMachine.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/296208d5/Smart_FinitStateMachine.o ${OBJECTDIR}/_ext/296208d5/Smart_FinitStateMachine_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/296208d5/Smart_ModelInfoModelSimulation_nomain.o: ${OBJECTDIR}/_ext/296208d5/Smart_ModelInfoModelSimulation.o ../../source/applications/terminal/examples/smarts/Smart_ModelInfoModelSimulation.cpp 
@@ -2252,6 +2283,19 @@ ${OBJECTDIR}/_ext/f13e5db9/Exit_nomain.o: ${OBJECTDIR}/_ext/f13e5db9/Exit.o ../.
 	    ${CP} ${OBJECTDIR}/_ext/f13e5db9/Exit.o ${OBJECTDIR}/_ext/f13e5db9/Exit_nomain.o;\
 	fi
 
+${OBJECTDIR}/_ext/f13e5db9/FiniteStateMachine_nomain.o: ${OBJECTDIR}/_ext/f13e5db9/FiniteStateMachine.o ../../source/plugins/components/FiniteStateMachine.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/f13e5db9/FiniteStateMachine.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f13e5db9/FiniteStateMachine_nomain.o ../../source/plugins/components/FiniteStateMachine.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/f13e5db9/FiniteStateMachine.o ${OBJECTDIR}/_ext/f13e5db9/FiniteStateMachine_nomain.o;\
+	fi
+
 ${OBJECTDIR}/_ext/f13e5db9/LSODE_nomain.o: ${OBJECTDIR}/_ext/f13e5db9/LSODE.o ../../source/plugins/components/LSODE.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/f13e5db9/LSODE.o`; \
@@ -2627,6 +2671,19 @@ ${OBJECTDIR}/_ext/ccae408d/EntityGroup_nomain.o: ${OBJECTDIR}/_ext/ccae408d/Enti
 	    $(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/EntityGroup_nomain.o ../../source/plugins/data/EntityGroup.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/ccae408d/EntityGroup.o ${OBJECTDIR}/_ext/ccae408d/EntityGroup_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/ccae408d/ExFiStatMac_nomain.o: ${OBJECTDIR}/_ext/ccae408d/ExFiStatMac.o ../../source/plugins/data/ExFiStatMac.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/ccae408d
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/ccae408d/ExFiStatMac.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/ExFiStatMac_nomain.o ../../source/plugins/data/ExFiStatMac.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/ccae408d/ExFiStatMac.o ${OBJECTDIR}/_ext/ccae408d/ExFiStatMac_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/ccae408d/Failure_nomain.o: ${OBJECTDIR}/_ext/ccae408d/Failure.o ../../source/plugins/data/Failure.cpp 

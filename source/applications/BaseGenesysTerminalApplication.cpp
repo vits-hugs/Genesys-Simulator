@@ -206,6 +206,8 @@ void BaseGenesysTerminalApplication::insertFakePluginsByHand(Simulator* simulato
 	pm->insert("markovchain.so");
 	pm->insert("cellularautomata.so");
 	pm->insert("cppforg.so");
+	pm->insert("efsm.so");
+	pm->insert("efsmData.so");
 	// now complete the information
 	simulator->getPlugins()->completePluginsFieldsAndTemplates();
 }

@@ -50,6 +50,7 @@
 #include "../../plugins/components/Unstore.h"
 #include "../../plugins/components/Write.h"
 #include "../../plugins/components/LSODE.h"
+#include "../../plugins/components/FiniteStateMachine.h"
 
 
 // Model data definitions
@@ -65,6 +66,7 @@
 #include "../../plugins/data/Station.h"
 #include "../../plugins/data/Storage.h"
 #include "../../plugins/data/Variable.h"
+#include "../../plugins/data/ExFiStatMac.h"
 //#include "../../plugins/data/Expression.h"
 //#include "../../plugins/data/Conveyor.h"
 //#include "../../plugins/data/Segment.h"
@@ -196,7 +198,10 @@ Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilen
 		GetInfo = &Stop::GetPluginInformation;
 	else if (fn == "cppcode.so")
 		GetInfo = &CppCode::GetPluginInformation;
-	//else if (fn == "conveyour.so")
+	else if (fn == "efsm.so")
+		GetInfo = &FiniteStateMachine::GetPluginInformation;
+	else if (fn == "efsmData.so")
+		GetInfo = &ExFiStatMac::GetPluginInformation;
 	//    GetInfo = &Conveyour::GetPluginInformation;
 	//else if (fn == "segment.so")
 	//    GetInfo = &Segment::GetPluginInformation;
