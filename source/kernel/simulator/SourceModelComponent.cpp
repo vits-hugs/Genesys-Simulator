@@ -127,6 +127,11 @@ void SourceModelComponent::setTimeBetweenCreationsExpression(std::string _timeBe
 	this->_timeBetweenCreationsExpression = _timeBetweenCreations;
 }
 
+void SourceModelComponent::setTimeBetweenCreationsExpression(std::string _timeBetweenCreations, Util::TimeUnit _timeUnit) {
+	this->_timeBetweenCreationsExpression = _timeBetweenCreations;
+	this->_timeBetweenCreationsTimeUnit = _timeUnit;
+}
+
 std::string SourceModelComponent::getTimeBetweenCreationsExpression() const {
 	return _timeBetweenCreationsExpression;
 }

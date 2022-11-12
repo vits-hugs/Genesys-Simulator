@@ -39,8 +39,6 @@
         <itemPath>../../source/kernel/simulator/ModelInfo.h</itemPath>
         <itemPath>../../source/kernel/simulator/ModelManager.cpp</itemPath>
         <itemPath>../../source/kernel/simulator/ModelManager.h</itemPath>
-        <itemPath>../../source/kernel/simulator/ModelPersistenceDefaultImpl1.cpp</itemPath>
-        <itemPath>../../source/kernel/simulator/ModelPersistenceDefaultImpl1.h</itemPath>
         <itemPath>../../source/kernel/simulator/ModelPersistence_if.h</itemPath>
         <itemPath>../../source/kernel/simulator/ModelSimulation.cpp</itemPath>
         <itemPath>../../source/kernel/simulator/ModelSimulation.h</itemPath>
@@ -55,7 +53,6 @@
         <itemPath>../../source/kernel/simulator/ParserManager.cpp</itemPath>
         <itemPath>../../source/kernel/simulator/ParserManager.h</itemPath>
         <itemPath>../../source/kernel/simulator/Parser_if.h</itemPath>
-        <itemPath>../../source/kernel/simulator/PersistentObject_base.h</itemPath>
         <itemPath>../../source/kernel/simulator/Plugin.cpp</itemPath>
         <itemPath>../../source/kernel/simulator/Plugin.h</itemPath>
         <itemPath>../../source/kernel/simulator/PluginConnectorDummyImpl1.cpp</itemPath>
@@ -327,16 +324,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/kernel/simulator/ModelPersistenceDefaultImpl1.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/ModelPersistenceDefaultImpl1.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="../../source/kernel/simulator/ModelPersistence_if.h"
             ex="false"
             tool="3"
@@ -403,11 +390,6 @@
             flavor2="0">
       </item>
       <item path="../../source/kernel/simulator/Parser_if.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/PersistentObject_base.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -880,16 +862,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/kernel/simulator/ModelPersistenceDefaultImpl1.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/ModelPersistenceDefaultImpl1.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="../../source/kernel/simulator/ModelPersistence_if.h"
             ex="false"
             tool="3"
@@ -956,11 +928,6 @@
             flavor2="0">
       </item>
       <item path="../../source/kernel/simulator/Parser_if.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/PersistentObject_base.h"
             ex="false"
             tool="3"
             flavor2="0">

@@ -33,6 +33,7 @@ public:
 	using CompFunct = std::function<bool(const T, const T) >;
 public:
 	List();
+	List(List<T> &origin);
 	virtual ~List() = default;
 public: // direct access to list
 	unsigned int size();
@@ -76,6 +77,12 @@ List<T>::List() {
 	//_map = new std::map<Util::identitifcation, T>();
 	_list = new std::list<T>();
 	_it = _list->begin();
+}
+
+template <typename T>
+List<T>::List(List<T> &origin) {
+	_list = new std::list<T>(origin);
+	_it = _list->begin(); // todo: check. end()? 2210
 }
 
 template <typename T>
@@ -185,7 +192,7 @@ T List<T>::next() {
 }
 
 template <typename T>
-typename std::list<T>::iterator List<T>::find(T element) {
+typename std::list<T>::iterator List<T>::find(const T element) {
 	for (typename std::list<T>::iterator it = _list->begin(); it != _list->end(); it++) {
 		if ((*it) == element) {
 			return it;

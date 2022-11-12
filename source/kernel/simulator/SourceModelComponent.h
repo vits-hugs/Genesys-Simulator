@@ -37,6 +37,7 @@ public: // get & set
 	void setTimeUnit(Util::TimeUnit _timeUnit);
 	Util::TimeUnit getTimeUnit() const;
 	void setTimeBetweenCreationsExpression(std::string _timeBetweenCreations);
+	void setTimeBetweenCreationsExpression(std::string _timeBetweenCreations, Util::TimeUnit _timeUnit);
 	std::string getTimeBetweenCreationsExpression() const;
 	void setMaxCreations(unsigned long _maxCreations);
 	void setMaxCreations(std::string _maxCreationsExpression);

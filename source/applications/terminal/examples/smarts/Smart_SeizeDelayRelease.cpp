@@ -54,8 +54,7 @@ int Smart_SeizeDelayRelease::main(int argc, char** argv) {
 	seize1->getSeizeRequests()->insert(new SeizableItem(machine1, "1"));
 	seize1->setQueue(queueSeize1);
 	Delay* delay1 = plugins->newInstance<Delay>(model);
-	delay1->setDelayExpression("unif(15,30)");
-	delay1->setDelayTimeUnit(Util::TimeUnit::second);
+	delay1->setDelayExpression("unif(15,30)", Util::TimeUnit::second);
 	Release* release1 = plugins->newInstance<Release>(model);
 	release1->getReleaseRequests()->insert(new SeizableItem(machine1, "1"));
 	Dispose* dispose1 = plugins->newInstance<Dispose>(model);
@@ -66,8 +65,7 @@ int Smart_SeizeDelayRelease::main(int argc, char** argv) {
 	release1->getConnections()->insert(dispose1);
 	// set options, save and simulate
 	ModelSimulation* sim = model->getSimulation();
-	sim->setReplicationLength(120);
-	sim->setReplicationLengthTimeUnit(Util::TimeUnit::second);
+	sim->setReplicationLength(120, Util::TimeUnit::second);
 	sim->setNumberOfReplications(2);
 	model->save("./models/Smart_SeizeDelayRelease.gen");
 	// execute the simulation

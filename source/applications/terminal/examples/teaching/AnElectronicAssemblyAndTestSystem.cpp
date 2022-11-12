@@ -92,8 +92,7 @@ int AnElectronicAssemblyAndTestSystem::main(int argc, char** argv) {
 	record3->getConnections()->insert(dispose3);
 	// filling component settings
 	create1->setEntityTypeName("Part_A");
-	create1->setTimeBetweenCreationsExpression("expo(5)");
-	create1->setTimeUnit(Util::TimeUnit::minute);
+	create1->setTimeBetweenCreationsExpression("expo(5)", Util::TimeUnit::minute);
 	create2->setEntityTypeName("Part_B");
 	create2->setTimeBetweenCreationsExpression("expo(30)");
 	create2->setTimeUnit(Util::TimeUnit::minute);
@@ -112,14 +111,12 @@ int AnElectronicAssemblyAndTestSystem::main(int argc, char** argv) {
 	Resource* prepB = plugins->newInstance<Resource>(model, "PrepB");
 	seize2->getSeizeRequests()->insert(new SeizableItem(prepB, "1"));
 	seize2->setQueueableItem(new QueueableItem(model, "QueuePrepB"));
-	delay2->setDelayExpression("tria(3,5,10)");
-	delay2->setDelayTimeUnit(Util::TimeUnit::minute);
+	delay2->setDelayExpression("tria(3,5,10)", Util::TimeUnit::minute);
 	release2->getReleaseRequests()->insert(new SeizableItem(prepB, "1"));
 	Resource* sealer = plugins->newInstance<Resource>(model, "Sealer");
 	seize3->getSeizeRequests()->insert(new SeizableItem(sealer, "1"));
 	seize3->setQueueableItem(new QueueableItem(model, "QueueSealer"));
-	delay3->setDelayExpression("Sealer_Time");
-	delay3->setDelayTimeUnit(Util::TimeUnit::minute);
+	delay3->setDelayExpression("Sealer_Time", Util::TimeUnit::minute);
 	release3->getReleaseRequests()->insert(new SeizableItem(sealer, "1"));
 	decide1->getConditions()->insert("unif(0,1)<0.09");
 	Resource* rework = plugins->newInstance<Resource>(model, "Rework");

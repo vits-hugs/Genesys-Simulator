@@ -277,7 +277,11 @@ bool ModelCheckerDefaultImpl1::checkOrphaned() {
 				_model->getDataManager()->remove(orphanElem);
 			}
 			// inoke again, recursivelly (removing some datadefinitions may create some other orphans)
-			res = checkOrphaned();
+			Util::IncIndent();
+			{
+				res = checkOrphaned();
+			}
+			Util::DecIndent();
 		} else {
 			_model->getTracer()->trace(TraceManager::Level::L7_internal, "No orphaned DataDefinitions found.");
 			res = true;

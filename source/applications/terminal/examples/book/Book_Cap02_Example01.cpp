@@ -34,7 +34,7 @@ int Book_Cap02_Example01::main(int argc, char** argv) {
 	Dispose* dispose1 = plugins->newInstance<Dispose>(model);
 	create1->getConnections()->insert(delay1);
 	delay1->getConnections()->insert(dispose1);
-	model->getSimulation()->setReplicationLength(30);
+	model->getSimulation()->setReplicationLength(30, Util::TimeUnit::second);
 	model->getSimulation()->setNumberOfReplications(100);
 	model->getSimulation()->start();
 	delete genesys;

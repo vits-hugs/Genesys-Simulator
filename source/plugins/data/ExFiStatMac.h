@@ -71,7 +71,7 @@ public:
 		bool isdefault = false;
 		bool nondeterministic = false;
 		bool immediatbe = false;
-		bool preemptivbe = false;
+		bool preemptive = false;
 		bool history = false;
 		bool error = false;
 		bool termination = false;

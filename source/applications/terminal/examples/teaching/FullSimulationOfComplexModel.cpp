@@ -63,8 +63,7 @@ int FullSimulationOfComplexModel::main(int argc, char** argv) {
 
 	Create* create1 = plugins->newInstance<Create>(model);
 	//create1->setEntityType(entityType1);
-	create1->setTimeBetweenCreationsExpression("EXPO(5)");
-	create1->setTimeUnit(Util::TimeUnit::minute);
+	create1->setTimeBetweenCreationsExpression("EXPO(5)", Util::TimeUnit::minute);
 	create1->setEntitiesPerCreation(1);
 	components->insert(create1);
 
@@ -91,8 +90,7 @@ int FullSimulationOfComplexModel::main(int argc, char** argv) {
 	seize1->setQueue(filaSeize1);
 
 	Delay* delay1 = plugins->newInstance<Delay>(model);
-	delay1->setDelayExpression("NORM(5, 3)");
-	delay1->setDelayTimeUnit(Util::TimeUnit::minute);
+	delay1->setDelayExpression("NORM(5, 3)", Util::TimeUnit::minute);
 
 	Release* release1 = plugins->newInstance<Release>(model);
 	release1->getReleaseRequests()->insert(new SeizableItem(maquina1));

@@ -591,6 +591,12 @@ void ModelSimulation::setReplicationLength(double _replicationLength) {
 	_hasChanged = true;
 }
 
+void ModelSimulation::setReplicationLength(double replicationLength, Util::TimeUnit replicationLengthTimeUnit) {
+	this->_replicationLength = replicationLength;
+	this->_replicationLengthTimeUnit = replicationLengthTimeUnit;
+	_hasChanged = true;
+}
+
 double ModelSimulation::getReplicationLength() const {
 	return _replicationLength;
 }

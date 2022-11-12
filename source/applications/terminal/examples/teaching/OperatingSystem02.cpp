@@ -176,8 +176,7 @@ int OperatingSystem02::main(int argc, char** argv) {
 	//
 	// AJUSTA EXPERIMENTO (MODEL SIMULATION)
 	ModelSimulation* sim = model->getSimulation();
-	sim->setReplicationLength(1e3);
-	sim->setReplicationLengthTimeUnit(Util::TimeUnit::milisecond);
+	sim->setReplicationLength(1e3, Util::TimeUnit::milisecond);
 	sim->setNumberOfReplications(30);
 	sim->setPauseOnReplication(true);
 	// AJUSTA NÍVEL DE TRACE

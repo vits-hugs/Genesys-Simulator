@@ -57,6 +57,11 @@ void Delay::setDelayExpression(std::string _delayExpression) {
 	this->_delayExpression = _delayExpression;
 }
 
+void Delay::setDelayExpression(std::string _delayExpression, Util::TimeUnit _delayTimeUnit) {
+	this->_delayExpression = _delayExpression;
+	this->_delayTimeUnit = _delayTimeUnit;
+}
+
 std::string Delay::delayExpression() const {
 	return _delayExpression;
 }

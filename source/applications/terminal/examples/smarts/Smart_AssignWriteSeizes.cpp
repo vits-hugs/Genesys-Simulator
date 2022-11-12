@@ -44,8 +44,7 @@ int Smart_AssignWriteSeizes::main(int argc, char** argv) {
 	PluginManager* plugins = genesys->getPlugins();
 	Create* create1 = plugins->newInstance<Create>(model);
 	create1->setEntityTypeName("Part");
-	create1->setTimeBetweenCreationsExpression("norm(1.5,0.5)");
-	create1->setTimeUnit(Util::TimeUnit::second);
+	create1->setTimeBetweenCreationsExpression("norm(1.5,0.5)", Util::TimeUnit::second);
 	create1->setEntitiesPerCreation(1);
 	Assign* assign1 = plugins->newInstance<Assign>(model);
 	assign1->getAssignments()->insert(new Assignment(model, "varNextIndex", "varNextIndex + 1", false));
@@ -85,8 +84,7 @@ int Smart_AssignWriteSeizes::main(int argc, char** argv) {
 	seize2->getSeizeRequests()->insert(new SeizableItem(machine2));
 	seize2->setQueue(queueSeize2);
 	Delay* delay2 = plugins->newInstance<Delay>(model);
-	delay2->setDelayExpression("norm(15,1)");
-	delay2->setDelayTimeUnit(Util::TimeUnit::second);
+	delay2->setDelayExpression("norm(15,1)", Util::TimeUnit::second);
 	Release* release2 = plugins->newInstance<Release>(model);
 	release2->getReleaseRequests()->insert(new SeizableItem(machine2));
 	Queue* queueSeize3 = plugins->newInstance<Queue>(model, "Queue_Seize_3");
@@ -95,8 +93,7 @@ int Smart_AssignWriteSeizes::main(int argc, char** argv) {
 	seize3->getSeizeRequests()->insert(new SeizableItem(machine3));
 	seize3->setQueue(queueSeize3);
 	Delay* delay3 = plugins->newInstance<Delay>(model);
-	delay3->setDelayExpression("norm(15,1)");
-	delay3->setDelayTimeUnit(Util::TimeUnit::second);
+	delay3->setDelayExpression("norm(15,1)", Util::TimeUnit::second);
 	Release* release3 = plugins->newInstance<Release>(model);
 	release3->getReleaseRequests()->insert(new SeizableItem(machine3));
 	Dispose* dispose1 = plugins->newInstance<Dispose>(model);

@@ -48,8 +48,7 @@ int OperatingSystem03::main(int argc, char** argv) {
 	Create* createProc = plugins->newInstance<Create>(model);
 	createProc->setDescription("Processo é criado no computador");
 	createProc->setEntityTypeName("processo"); //(et);
-	createProc->setTimeBetweenCreationsExpression("expo(4)");
-	createProc->setTimeUnit(Util::TimeUnit::milisecond);
+	createProc->setTimeBetweenCreationsExpression("expo(4)", Util::TimeUnit::milisecond);
 	//
 	// ASSIGN Define informacoes do processo
 	Assign* assignProc = plugins->newInstance<Assign>(model);
@@ -175,8 +174,7 @@ int OperatingSystem03::main(int argc, char** argv) {
 	// DELAY Processo executa no nucleo de execucao
 	Delay* delayProcExecNucleo = plugins->newInstance<Delay>(model);
 	delayProcExecNucleo->setDescription("Processo executa no nucleo de execucao");
-	delayProcExecNucleo->setDelayExpression("fatiaTempo");
-	delayProcExecNucleo->setDelayTimeUnit(Util::TimeUnit::milisecond);
+	delayProcExecNucleo->setDelayExpression("fatiaTempo", Util::TimeUnit::milisecond);
 
 	assignExecFatia->getConnections()->insert(delayProcExecNucleo);
 	assignExecAteFinal->getConnections()->insert(delayProcExecNucleo);
@@ -230,8 +228,7 @@ int OperatingSystem03::main(int argc, char** argv) {
 	//
 	// AJUSTA EXPERIMENTO (MODEL SIMULATION)
 	ModelSimulation* sim = model->getSimulation();
-	sim->setReplicationLength(2);
-	sim->setReplicationLengthTimeUnit(Util::TimeUnit::second);
+	sim->setReplicationLength(2, Util::TimeUnit::second);
 	sim->setReplicationReportBaseTimeUnit(Util::TimeUnit::milisecond);
 	sim->setNumberOfReplications(200);
 	sim->setWarmUpPeriod(0.02);
@@ -243,6 +240,7 @@ int OperatingSystem03::main(int argc, char** argv) {
 	//sim->getBreakpointsOnComponent()->insert(assignDefNucleo1);
 	//sim->getBreakpointsOnComponent()->insert(assignDefNucleo2);
 	//sim->getBreakpointsOnComponent()->insert(assignDefNucleo3);
+	model->getTracer()->setTraceLevel(TraceManager::Level::L7_internal);
 	model->save("./models/SistemaOperacional03.cpp");
 	//genesys->getTracer()->setTraceLevel(TraceManager::Level::L2_results); // :L9_mostDetailed);
 	do {

@@ -56,7 +56,7 @@ int Smart_Failures::main(int argc, char** argv) {
 	release1->getConnections()->insert(dispose1);
 	// set options, save and simulate
 	ModelSimulation* sim = model->getSimulation();
-	sim->setReplicationLength(1000);
+	sim->setReplicationLength(1000, Util::TimeUnit::second);
 	model->save("./models/Smart_Failures.gen");
 	// execute the simulation
 	sim->start();

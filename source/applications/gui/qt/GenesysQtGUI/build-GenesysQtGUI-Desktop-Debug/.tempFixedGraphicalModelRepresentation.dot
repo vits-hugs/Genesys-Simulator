@@ -10,8 +10,35 @@ digraph G {
      Dispose_1 [shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=bisque, label="Dispose|Dispose_1"];
   }
   {
+     Assign_3 [shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=bisque, label="Assign|Assign_3"];
+     Route_3 [shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=bisque, label="Route|Route_3"];
+     Route_2 [shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=bisque, label="Route|Route_2"];
+     Decide_2 [shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=bisque, label="Decide|Decide_2"];
+     Release_1 [shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=bisque, label="Release|Release_1"];
      Delay_1 [shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=bisque, label="Delay|Delay_1"];
-       Delay_1->Dispose_1[style=solid, arrowhead="normal" color=black, fontcolor=black, fontsize=7];
-       Create_1->Delay_1[style=solid, arrowhead="normal" color=black, fontcolor=black, fontsize=7];
+     Assign_2 [shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=bisque, label="Assign|Assign_2"];
+     Decide_1 [shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=bisque, label="Decide|Decide_1"];
+     Seize_2 [shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=bisque, label="Seize|Seize_2"];
+     Enter_1 [shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=bisque, label="Enter|Enter_1"];
+     Release_2 [shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=bisque, label="Release|Release_2"];
+     Enter_2 [shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=bisque, label="Enter|Enter_2"];
+     Route_1 [shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=bisque, label="Route|Route_1"];
+     Seize_1 [shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=bisque, label="Seize|Seize_1"];
+     Assign_1 [shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=bisque, label="Assign|Assign_1"];
+       Seize_1->Route_1[style=solid, arrowhead="normal" color=black, fontcolor=black, fontsize=7];
+       Assign_1->Seize_1[style=solid, arrowhead="normal" color=black, fontcolor=black, fontsize=7];
+       Create_1->Assign_1[style=solid, arrowhead="normal" color=black, fontcolor=black, fontsize=7];
+       Release_2->Dispose_1[style=solid, arrowhead="normal" color=black, fontcolor=black, fontsize=7];
+       Enter_2->Release_2[style=solid, arrowhead="normal" color=black, fontcolor=black, fontsize=7];
+       Decide_2->Route_2[style=solid, arrowhead="normal" color=black, fontcolor=black, fontsize=7];
+       Decide_2->Route_3[style=solid, arrowhead="normal" color=black, fontcolor=black, fontsize=7];
+       Release_1->Decide_2[style=solid, arrowhead="normal" color=black, fontcolor=black, fontsize=7];
+       Delay_1->Release_1[style=solid, arrowhead="normal" color=black, fontcolor=black, fontsize=7];
+       Assign_2->Delay_1[style=solid, arrowhead="normal" color=black, fontcolor=black, fontsize=7];
+       Decide_1->Assign_2[style=solid, arrowhead="normal" color=black, fontcolor=black, fontsize=7];
+       Assign_3->Delay_1[style=solid, arrowhead="normal" color=black, fontcolor=black, fontsize=7];
+       Decide_1->Assign_3[style=solid, arrowhead="normal" color=black, fontcolor=black, fontsize=7];
+       Seize_2->Decide_1[style=solid, arrowhead="normal" color=black, fontcolor=black, fontsize=7];
+       Enter_1->Seize_2[style=solid, arrowhead="normal" color=black, fontcolor=black, fontsize=7];
   }
 }

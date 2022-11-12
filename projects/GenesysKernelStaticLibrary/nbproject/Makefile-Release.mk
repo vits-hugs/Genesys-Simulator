@@ -52,7 +52,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/113d9686/ModelDataManager.o \
 	${OBJECTDIR}/_ext/113d9686/ModelInfo.o \
 	${OBJECTDIR}/_ext/113d9686/ModelManager.o \
-	${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl1.o \
 	${OBJECTDIR}/_ext/113d9686/ModelSimulation.o \
 	${OBJECTDIR}/_ext/113d9686/OnEventManager.o \
 	${OBJECTDIR}/_ext/113d9686/ParserChangesInformation.o \
@@ -193,11 +192,6 @@ ${OBJECTDIR}/_ext/113d9686/ModelManager.o: ../../source/kernel/simulator/ModelMa
 	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/ModelManager.o ../../source/kernel/simulator/ModelManager.cpp
-
-${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl1.o: ../../source/kernel/simulator/ModelPersistenceDefaultImpl1.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl1.o ../../source/kernel/simulator/ModelPersistenceDefaultImpl1.cpp
 
 ${OBJECTDIR}/_ext/113d9686/ModelSimulation.o: ../../source/kernel/simulator/ModelSimulation.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686

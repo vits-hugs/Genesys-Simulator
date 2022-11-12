@@ -70,7 +70,7 @@ void Create::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 				newEntity->setEntityType(entity->getEntityType());
 				Event* newEvent = new Event(newArrivalTime, newEntity, this);
 				_parentModel->getFutureEvents()->insert(newEvent);
-				_parentModel->getTracer()->traceSimulation(this, "Arrival of "/*entity " + std::to_string(newEntity->entityNumber())*/ + newEntity->getName() + " schedule for time " + std::to_string(newArrivalTime) + Util::StrTimeUnitShort(_parentModel->getSimulation()->getReplicationBaseTimeUnit()));
+				_parentModel->getTracer()->traceSimulation(this, "Arrival of "/*entity " + std::to_string(newEntity->entityNumber())*/ + newEntity->getName() + " scheduled for time " + std::to_string(newArrivalTime) + Util::StrTimeUnitShort(_parentModel->getSimulation()->getReplicationBaseTimeUnit()));
 			}
 		}
 	}

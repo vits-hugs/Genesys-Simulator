@@ -163,7 +163,7 @@ void ModelGraphicsScene::removeGraphicalModelComponent(GraphicalModelComponent* 
 
 void ModelGraphicsScene::removeConnectionInModel(GraphicalConnection* gc) {
 	ModelComponent* sourceComp = gc->getSource()->component;
-	sourceComp->getConnections()->removeAtPort(gc->getSource()->port);
+	sourceComp->getConnections()->removeAtPort(gc->getSource()->channel.portNumber);
 }
 
 void ModelGraphicsScene::removeGraphicalConnection(GraphicalConnection* gc) {

@@ -14,11 +14,14 @@ SOURCES += \
 	../../../../kernel/simulator/ComponentManager.cpp \
 	../../../../kernel/simulator/ConnectionManager.cpp \
 	../../../../kernel/simulator/Counter.cpp \
+	../../../../kernel/simulator/CppSerializer.cpp \
 	../../../../kernel/simulator/Entity.cpp \
 	../../../../kernel/simulator/EntityType.cpp \
 	../../../../kernel/simulator/Event.cpp \
 	../../../../kernel/simulator/ExperimentManager.cpp \
 	../../../../kernel/simulator/ExperimentManagerDefaultImpl1.cpp \
+	../../../../kernel/simulator/GenSerializer.cpp \
+	../../../../kernel/simulator/JsonSerializer.cpp \
 	../../../../kernel/simulator/LicenceManager.cpp \
 	../../../../kernel/simulator/Model.cpp \
 	../../../../kernel/simulator/ModelCheckerDefaultImpl1.cpp \
@@ -27,13 +30,15 @@ SOURCES += \
 	../../../../kernel/simulator/ModelDataManager.cpp \
 	../../../../kernel/simulator/ModelInfo.cpp \
 	../../../../kernel/simulator/ModelManager.cpp \
-	../../../../kernel/simulator/ModelPersistenceDefaultImpl1.cpp \
+	../../../../kernel/simulator/ModelPersistenceDefaultImpl2.cpp \
+	../../../../kernel/simulator/ModelSerializer.cpp \
 	../../../../kernel/simulator/ModelSimulation.cpp \
 	../../../../kernel/simulator/OnEventManager.cpp \
 	../../../../kernel/simulator/ParserChangesInformation.cpp \
 	../../../../kernel/simulator/ParserDefaultImpl1.cpp \
 	../../../../kernel/simulator/ParserDefaultImpl2.cpp \
 	../../../../kernel/simulator/ParserManager.cpp \
+	../../../../kernel/simulator/Persistence.cpp \
 	../../../../kernel/simulator/Plugin.cpp \
 	../../../../kernel/simulator/PluginConnectorDummyImpl1.cpp \
 	../../../../kernel/simulator/PluginInformation.cpp \
@@ -48,6 +53,7 @@ SOURCES += \
 	../../../../kernel/simulator/SourceModelComponent.cpp \
 	../../../../kernel/simulator/StatisticsCollector.cpp \
 	../../../../kernel/simulator/TraceManager.cpp \
+	../../../../kernel/simulator/XmlSerializer.cpp \
 	../../../../kernel/statistics/CollectorDatafileDefaultImpl1.cpp \
 	../../../../kernel/statistics/CollectorDefaultImpl1.cpp \
 	../../../../kernel/statistics/SamplerBoostImpl.cpp \
@@ -73,6 +79,7 @@ SOURCES += \
 	../../../../plugins/components/DummyComponent.cpp \
 	../../../../plugins/components/Enter.cpp \
 	../../../../plugins/components/Exit.cpp \
+	../../../../plugins/components/FiniteStateMachine.cpp \
 	../../../../plugins/components/Wait.cpp \
 	../../../../plugins/components/LSODE.cpp \
 	../../../../plugins/components/Leave.cpp \
@@ -102,6 +109,7 @@ SOURCES += \
 	../../../../plugins/data/CppCode.cpp \
 	../../../../plugins/data/DummyElement.cpp \
 	../../../../plugins/data/EntityGroup.cpp \
+	../../../../plugins/data/ExFiStatMac.cpp \
 	../../../../plugins/data/Failure.cpp \
 	../../../../plugins/data/File.cpp \
 	../../../../plugins/data/Formula.cpp \
@@ -118,9 +126,9 @@ SOURCES += \
 	../../../../tests/Tests.cpp \
 	../../../../tools/HypothesisTesterDefaultImpl1.cpp \
 	../../../../tools/ProbabilityDistribution.cpp \
+	../../../../tools/ProbabilityDistributionBase.cpp \
 	../../../../tools/SolverDefaultImpl1.cpp \
 	../../../BaseGenesysTerminalApplication.cpp \
-	../../../terminal/GenesysShell/GenesysTerminalApp.cpp \
 	../../../terminal/examples/book/Book_Cap02_Example01.cpp \
 	../../../terminal/examples/smarts/Smart_AssignWriteSeizes.cpp \
 	../../../terminal/examples/smarts/Smart_BatchSeparate.cpp \
@@ -167,12 +175,15 @@ HEADERS += \
 	../../../../kernel/simulator/ComponentManager.h \
 	../../../../kernel/simulator/ConnectionManager.h \
 	../../../../kernel/simulator/Counter.h \
+	../../../../kernel/simulator/CppSerializer.h \
 	../../../../kernel/simulator/Entity.h \
 	../../../../kernel/simulator/EntityType.h \
 	../../../../kernel/simulator/Event.h \
 	../../../../kernel/simulator/ExperimentManager.h \
 	../../../../kernel/simulator/ExperimentManagerDefaultImpl1.h \
 	../../../../kernel/simulator/ExperimetManager_if.h \
+	../../../../kernel/simulator/GenSerializer.h \
+	../../../../kernel/simulator/JsonSerializer.h \
 	../../../../kernel/simulator/LicenceManager.h \
 	../../../../kernel/simulator/Model.h \
 	../../../../kernel/simulator/ModelCheckerDefaultImpl1.h \
@@ -182,8 +193,8 @@ HEADERS += \
 	../../../../kernel/simulator/ModelDataManager.h \
 	../../../../kernel/simulator/ModelInfo.h \
 	../../../../kernel/simulator/ModelManager.h \
-	../../../../kernel/simulator/ModelPersistenceDefaultImpl1.h \
-	../../../../kernel/simulator/ModelPersistence_if.h \
+	../../../../kernel/simulator/ModelPersistenceDefaultImpl2.h \
+	../../../../kernel/simulator/ModelSerializer.h \
 	../../../../kernel/simulator/ModelSimulation.h \
 	../../../../kernel/simulator/OnEventManager.h \
 	../../../../kernel/simulator/ParserChangesInformation.h \
@@ -191,7 +202,7 @@ HEADERS += \
 	../../../../kernel/simulator/ParserDefaultImpl2.h \
 	../../../../kernel/simulator/ParserManager.h \
 	../../../../kernel/simulator/Parser_if.h \
-	../../../../kernel/simulator/PersistentObject_base.h \
+	../../../../kernel/simulator/Persistence.h \
 	../../../../kernel/simulator/Plugin.h \
 	../../../../kernel/simulator/PluginConnectorDummyImpl1.h \
 	../../../../kernel/simulator/PluginConnector_if.h \
@@ -209,6 +220,7 @@ HEADERS += \
 	../../../../kernel/simulator/SourceModelComponent.h \
 	../../../../kernel/simulator/StatisticsCollector.h \
 	../../../../kernel/simulator/TraceManager.h \
+	../../../../kernel/simulator/XmlSerializer.h \
 	../../../../kernel/statistics/CollectorDatafileDefaultImpl1.h \
 	../../../../kernel/statistics/CollectorDatafile_if.h \
 	../../../../kernel/statistics/CollectorDefaultImpl1.h \
@@ -246,6 +258,7 @@ HEADERS += \
 	../../../../plugins/components/DummyComponent.h \
 	../../../../plugins/components/Enter.h \
 	../../../../plugins/components/Exit.h \
+	../../../../plugins/components/FiniteStateMachine.h \
 	../../../../plugins/components/Wait.h \
 	../../../../plugins/components/LSODE.h \
 	../../../../plugins/components/Leave.h \
@@ -275,6 +288,7 @@ HEADERS += \
 	../../../../plugins/data/CppCode.h \
 	../../../../plugins/data/DummyElement.h \
 	../../../../plugins/data/EntityGroup.h \
+	../../../../plugins/data/ExFiStatMac.h \
 	../../../../plugins/data/Failure.h \
 	../../../../plugins/data/File.h \
 	../../../../plugins/data/Formula.h \
@@ -293,6 +307,7 @@ HEADERS += \
 	../../../../tools/HypothesisTesterDefaultImpl1.h \
 	../../../../tools/HypothesisTester_if.h \
 	../../../../tools/ProbabilityDistribution.h \
+	../../../../tools/ProbabilityDistributionBase.h \
 	../../../../tools/SolverDefaultImpl1.h \
 	../../../../tools/TraitsTools.h \
 	../../../../tools/solver_if.h \
@@ -300,7 +315,6 @@ HEADERS += \
 	../../../GenesysApplication_if.h \
 	../../../TraitsApp.h \
 	../../../terminal/GenesysShell/GenesysShell_if.h \
-	../../../terminal/GenesysShell/GenesysTerminalApp.h \
 	../../../terminal/GenesysShell/TraitsTerminalApplications.h \
 	../../../terminal/examples/book/Book_Cap02_Example01.h \
 	../../../terminal/examples/smarts/Smart_AssignWriteSeizes.h \
