@@ -73,7 +73,7 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Smart_BatchSeparate Application;
 	//typedef Smart_CppForG Application;
 	//typedef Smart_Delay Application;
-	//typedef Smart_Dummy Application;
+	typedef Smart_Dummy Application;
 	//typedef Smart_Failures Application;
 	//typedef Smart_FinitStateMachine Application;
 	//typedef Smart_ModelInfoModelSimulation Application;
@@ -94,8 +94,9 @@ template <> struct TraitsApp<GenesysApplication_if> {
 
 	//// TEACHING
 	//typedef AnElectronicAssemblyAndTestSystem Application;
+	//typedef OperatingSystem01 Application;
 	//typedef OperatingSystem02 Application;
-	typedef OperatingSystem03 Application;
+	//typedef OperatingSystem03 Application;
 
 	//// BOOK
 	//typedef Book_Cap02_Example01 Application;

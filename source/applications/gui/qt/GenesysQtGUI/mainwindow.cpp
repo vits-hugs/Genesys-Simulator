@@ -100,31 +100,37 @@ MainWindow::~MainWindow() {
 
 bool MainWindow::_saveGraphicalModel(std::string filename) {
 	std::ofstream savefile;
-	savefile.open(filename, std::ofstream::out);
-	savefile << "#Genegys Graphic Model" << std::endl;
-	std::string line;
-	line = "0\tView\t";
-	line += "zoom=" + std::to_string(ui->horizontalSlider_ZoomGraphical->value());
-	line += ", grid=10, rule=0, snap=0, viewpoint=(0,0)";
-	savefile << line << std::endl;
-	ModelGraphicsScene* scene = (ModelGraphicsScene*) (ui->graphicsView->scene());
-	for (QGraphicsItem* item : *scene->getGraphicalModelComponents()) {
-		GraphicalModelComponent* gmc = (GraphicalModelComponent*) item;
-		line = std::to_string(gmc->getComponent()->getId()) + "\t" + Util::TypeOf<ModelComponent>() + "\t" + "position=(" + std::to_string(gmc->scenePos().x()) + "," + std::to_string(gmc->scenePos().y()) + ")";
+	try {
+		savefile.open(filename, std::ofstream::out);
+		savefile << "#Genegys Graphic Model" << std::endl;
+		std::string line;
+		line = "0\tView\t";
+		line += "zoom=" + std::to_string(ui->horizontalSlider_ZoomGraphical->value());
+		line += ", grid=10, rule=0, snap=0, viewpoint=(0,0)";
 		savefile << line << std::endl;
+		ModelGraphicsScene* scene = (ModelGraphicsScene*) (ui->graphicsView->scene());
+		for (QGraphicsItem* item : *scene->getGraphicalModelComponents()) {
+			GraphicalModelComponent* gmc = (GraphicalModelComponent*) item;
+			line = std::to_string(gmc->getComponent()->getId()) + "\t" + Util::TypeOf<ModelComponent>() + "\t" + "position=(" + std::to_string(gmc->scenePos().x()) + "," + std::to_string(gmc->scenePos().y()) + ")";
+			savefile << line << std::endl;
+		}
+		savefile.close();
+		return true;
+	} catch (const std::exception& e) {
+		return false;
 	}
-	savefile.close();
+
 	//QString data = QString::fromStdString(dot);
 	//QStringList strList = data.split(QRegExp("[\n]"), QString::SkipEmptyParts);
 	//for (unsigned int i = 0; i < strList.size(); i++) {
 	//	savefile << strList.at(i).toStdString() << std::endl;
 	//}
-
 }
 
 bool MainWindow::_loadGraphicalModel(std::string filename) {
-
+	return false;
 }
+
 //-----------------------------------------------------------------
 
 
@@ -176,7 +182,7 @@ void MainWindow::_actualizeActions() {
 void MainWindow::_actualizeTabPanes() {
 	bool opened = simulator->getModels()->current() != nullptr;
 	if (opened) {
-		unsigned int index = ui->tabWidgetCentral->currentIndex();
+		int index = ui->tabWidgetCentral->currentIndex();
 		if (index == CONST.TabCentralModelIndex) {
 			index = ui->tabWidgetModel->currentIndex();
 			if (ui->tabWidgetModel->currentIndex() == CONST.TabModelDiagramIndex) {
@@ -382,7 +388,6 @@ void MainWindow::_actualizeGraphicalModel(SimulationEvent * re) {
 }
 
 void MainWindow::_insertCommandInConsole(std::string text) {
-
 	ui->textEdit_Console->setTextColor(QColor::fromRgb(0, 128, 0));
 	QFont font(ui->textEdit_Console->font());
 	font.setBold(true);
@@ -976,7 +981,6 @@ void MainWindow::_initModelGraphicsView() {
 }
 
 void MainWindow::_setOnEventHandlers() {
-
 	simulator->getModels()->current()->getOnEvents()->addOnReplicationStartHandler(this, &MainWindow::_onReplicationStartHandler);
 	simulator->getModels()->current()->getOnEvents()->addOnSimulationStartHandler(this, &MainWindow::_onSimulationStartHandler);
 	simulator->getModels()->current()->getOnEvents()->addOnSimulationEndHandler(this, &MainWindow::_onSimulationEndHandler);
@@ -985,6 +989,7 @@ void MainWindow::_setOnEventHandlers() {
 	simulator->getModels()->current()->getOnEvents()->addOnProcessEventHandler(this, &MainWindow::_onProcessEventHandler);
 	simulator->getModels()->current()->getOnEvents()->addOnEntityCreateHandler(this, &MainWindow::_onEntityCreateHandler);
 	simulator->getModels()->current()->getOnEvents()->addOnEntityRemoveHandler(this, &MainWindow::_onEntityRemoveHandler);
+	//@Todo: Check for new events that were created later
 }
 
 //-------------------------
@@ -1102,7 +1107,6 @@ void MainWindow::_insertFakePlugins() {
 	//-----------------------------------------------------
 
 	// OLD ORGANIZATION
-
 	// model components
 	// arena basic process
 	(pm->insert("create.so"));
@@ -1384,12 +1388,10 @@ void MainWindow::on_actionCheck_triggered() {
 }
 
 void MainWindow::on_actionAbout_triggered() {
-
 	QMessageBox::about(this, "About Genesys", "Genesys is a result of teaching and research activities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics and simulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesys development he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of that tool, including its graphical interface. Genesys allowed the inclusion of new simulation components through dynamic link libraries and also the parallel execution of simulation models in a distributed environment. The development of Genesys continued until 2009, when the professor stopped teaching systems simulation classes. Ten years later the professor starts again to teach systems simulation classes and to carry out scientific research in the area. So in 2019 Genesys is reborn, with new language and programming techniques, and even more ambitious goals.");
 }
 
 void MainWindow::on_actionLicence_triggered() {
-
 	LicenceManager* licman = simulator->getLicenceManager();
 	std::string text = licman->showLicence() + "\n";
 	text += licman->showLimits() + "\n";
@@ -1402,23 +1404,19 @@ void MainWindow::on_tabWidget_Model_tabBarClicked(int index) {
 }
 
 void MainWindow::on_checkBox_ShowElements_stateChanged(int arg1) {
-
 	bool result = _createModelImage();
 }
 
 void MainWindow::on_checkBox_ShowInternals_stateChanged(int arg1) {
-
 	bool result = _createModelImage();
 }
 
 void MainWindow::on_horizontalSlider_Zoom_valueChanged(int value) {
-
 	double factor = ((double) value / 100.0)*(2 - 0.5) + 0.5;
 	double scaleFactor = 1.0;
 	Q_ASSERT(ui->label_ModelGraphic->pixmap());
 	scaleFactor *= factor;
 	ui->label_ModelGraphic->resize(scaleFactor * ui->label_ModelGraphic->pixmap()->size());
-
 	//adjustScrollBar(ui->scrollArea_Graphic->horizontalScrollBar(), factor);
 	//adjustScrollBar(ui->scrollArea_Graphic->verticalScrollBar(), factor);
 
@@ -1432,17 +1430,14 @@ void MainWindow::on_horizontalSlider_Zoom_valueChanged(int value) {
 }
 
 void MainWindow::on_checkBox_ShowRecursive_stateChanged(int arg1) {
-
 	bool result = _createModelImage();
 }
 
 void MainWindow::on_actionGet_Involved_triggered() {
-
-	QMessageBox::about(this, "Get Inveolved", "Genesys is a free open-source simulator (and tools) available at 'https://github.com/rlcancian/Genesys-Simulator'. Help us by submiting your pull requests containing code improvements.");
+	QMessageBox::about(this, "Get Inveolved", "Genesys is a free open-source simulator (and tools) available at 'https://github.com/rlcancian/Genesys-Simulator'. Help us by submiting your pull requests containing code improvements. Contact: rafael.cancian@ufsc.br");
 }
 
 void MainWindow::on_checkBox_ShowLevels_stateChanged(int arg1) {
-
 	bool result = _createModelImage();
 }
 
@@ -1517,7 +1512,7 @@ void MainWindow::on_treeWidget_Plugins_itemDoubleClicked(QTreeWidgetItem *item, 
 }
 
 void MainWindow::on_graphicsView_rubberBandChanged(const QRect &viewportRect, const QPointF &fromScenePoint, const QPointF &toScenePoint) {
-
+	showMessageNotImplemented();
 }
 
 void MainWindow::on_horizontalSlider_ZoomGraphical_valueChanged(int value) {
@@ -1540,12 +1535,16 @@ void MainWindow::_gentle_zoom(double factor) {
 	//emit zoomed();
 }
 
+void MainWindow::showMessageNotImplemented(){
+	QMessageBox::warning(this, "Ops...", "Sorry. This functionalitty was not implemented yet. Genesys is a free open-source simulator (and tools) available at 'https://github.com/rlcancian/Genesys-Simulator'. Help us by submiting your pull requests containing code improvements.");
+}
+
 void MainWindow::on_actionConnect_triggered() {
 	((ModelGraphicsView*) ui->graphicsView)->beginConnection();
 }
 
 void MainWindow::on_pushButton_Export_clicked() {
-
+	showMessageNotImplemented();
 }
 
 void MainWindow::on_tabWidgetModelLanguages_currentChanged(int index) {
@@ -1578,11 +1577,11 @@ void MainWindow::on_actionComponent_Breakpoint_triggered() {
 }
 
 void MainWindow::on_treeWidgetComponents_itemSelectionChanged() {
-
+	showMessageNotImplemented();
 }
 
 void MainWindow::on_treeWidget_Plugins_itemClicked(QTreeWidgetItem *item, int column) {
-
+	//showMessageNotImplemented();
 }
 
 void MainWindow::on_TextCodeEditor_textChanged() {
@@ -1600,3 +1599,108 @@ void MainWindow::on_tabWidgetSimulation_currentChanged(int index) {
 void MainWindow::on_tabWidgetReports_currentChanged(int index) {
 	_actualizeTabPanes();
 }
+
+void MainWindow::on_actionUndo_triggered() {
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionRedo_triggered() {
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionFind_triggered() {
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionReplace_triggered() {
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionCut_triggered() {
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionCopy_triggered() {
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionPaste_triggered() {
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionRule_triggered() {
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionGuides_triggered() {
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionZoom_In_triggered() {
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionZoom_Out_triggered() {
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionZoom_All_triggered() {
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionLine_triggered() {
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionRectangle_triggered() {
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionEllipse_triggered() {
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionClock_triggered() {
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionVariable_triggered() {
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionExpression_triggered() {
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionResource_triggered() {
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionQueue_triggered() {
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionStation_triggered() {
+	showMessageNotImplemented();
+}
+

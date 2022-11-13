@@ -4,9 +4,10 @@
 #include "../../../GenesysApplication_if.h"
 #include "../../../TraitsApp.h"
 
-//***************************
+//*************************************************************
+// Configure the app: GUI (true) or TerminalApplication (false)
 bool runGUI = false;
-//***************************
+//*************************************************************
 
 int mainGraphicQtApp(int argc, char *argv[]) {
 	QApplication a(argc, argv);

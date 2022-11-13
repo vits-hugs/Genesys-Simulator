@@ -69,6 +69,48 @@ private slots:
 	void on_tabWidgetSimulation_currentChanged(int index);
 	void on_tabWidgetReports_currentChanged(int index);
 
+	void on_actionUndo_triggered();
+
+	void on_actionRedo_triggered();
+
+	void on_actionFind_triggered();
+
+	void on_actionReplace_triggered();
+
+	void on_actionCut_triggered();
+
+	void on_actionCopy_triggered();
+
+	void on_actionPaste_triggered();
+
+	void on_actionRule_triggered();
+
+	void on_actionGuides_triggered();
+
+	void on_actionZoom_In_triggered();
+
+	void on_actionZoom_Out_triggered();
+
+	void on_actionZoom_All_triggered();
+
+	void on_actionLine_triggered();
+
+	void on_actionRectangle_triggered();
+
+	void on_actionEllipse_triggered();
+
+	void on_actionClock_triggered();
+
+	void on_actionVariable_triggered();
+
+	void on_actionExpression_triggered();
+
+	void on_actionResource_triggered();
+
+	void on_actionQueue_triggered();
+
+	void on_actionStation_triggered();
+
 private: // VIEW
 
 private: // trace handlers
@@ -122,6 +164,7 @@ private: // view
 	void _insertCommandInConsole(std::string text);
 	void _clearModelEditors();
 	void _gentle_zoom(double factor);
+	void showMessageNotImplemented();
 	//bool _checkStartSimulation();
 private:
 	bool _saveGraphicalModel(std::string filename);
