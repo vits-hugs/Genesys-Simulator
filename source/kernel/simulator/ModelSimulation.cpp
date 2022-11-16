@@ -313,6 +313,8 @@ void ModelSimulation::_initReplication() {
 	tm->traceSimulation(this, TraceManager::Level::L8_detailed, "Initing Replication");
 	Util::IncIndent();
 	{
+		Util::ResetIdOfType(Util::TypeOf<Entity>());
+		Util::ResetIdOfType(Util::TypeOf<Event>());
 		for (std::list<ModelComponent*>::iterator it = _model->getComponents()->begin(); it != _model->getComponents()->end(); it++) {
 			ModelComponent::InitBetweenReplications((*it));
 		}
@@ -325,8 +327,6 @@ void ModelSimulation::_initReplication() {
 			}
 		}
 		//}
-		Util::ResetIdOfType(Util::TypeOf<Entity>());
-		Util::ResetIdOfType(Util::TypeOf<Event>());
 		if (this->_initializeStatisticsBetweenReplications) {
 			_clearStatistics();
 		}
