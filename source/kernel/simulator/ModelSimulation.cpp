@@ -362,8 +362,8 @@ void ModelSimulation::_checkWarmUpTime(Event* nextEvent) {
 
 void ModelSimulation::_stepSimulation() {
 	// "onReplicationStep" event is triggered before taking the event from the calendar, and
-	// "onProcessEvent" is after the event is removed and turned into the current one, and
-	// "onAfterProcessEvent" is after the event is processes
+	// "onProcessEvent" is triggered after the event is removed and turned into the current one, but before it is processed, and
+	// "onAfterProcessEvent" is triggered after the event is processed
 	_model->getOnEvents()->NotifyReplicationStepHandlers(_createSimulationEvent());
 	Event* nextEvent = _model->getFutureEvents()->front();
 	_model->getFutureEvents()->pop_front();

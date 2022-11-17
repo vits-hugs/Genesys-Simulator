@@ -4,6 +4,7 @@
 #include <string>
 #include <utility>
 #include <unordered_map>
+#include<memory>
 
 #include "../util/Util.h"
 #include "ModelPersistence_if.h"

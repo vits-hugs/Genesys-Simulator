@@ -40,6 +40,16 @@
             <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/projects/GenesysTerminalApplication/main.cpp</file>
         </group>
         <group>
+            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/kernel/simulator/SourceModelComponent.cpp</file>
+            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/kernel/simulator/ComponentManager.h</file>
+            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/kernel/simulator/Entity.cpp</file>
+            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/kernel/simulator/ModelCheckerDefaultImpl1.cpp</file>
+            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/kernel/simulator/ModelSimulation.h</file>
+            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/plugins/components/Create.cpp</file>
+            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/kernel/simulator/ModelComponent.cpp</file>
+            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/kernel/simulator/ComponentManager.cpp</file>
+            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/kernel/simulator/ModelSimulation.cpp</file>
+            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/kernel/simulator/Model.cpp</file>
             <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/projects/GenesysTerminalApplication/main.cpp</file>
         </group>
     </open-files>

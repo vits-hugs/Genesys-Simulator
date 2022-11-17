@@ -6,15 +6,6 @@
     </data>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/kernel/simulator/Entity.cpp</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/kernel/simulator/ModelCheckerDefaultImpl1.cpp</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/kernel/simulator/PluginManager.cpp</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/kernel/simulator/GenSerializer.h</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/kernel/simulator/PluginConnectorDummyImpl1.cpp</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/kernel/simulator/ModelDataDefinition.cpp</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/kernel/simulator/ConnectionManager.h</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/RebornedGenESyS/Genesys-Simulator/source/kernel/simulator/Model.cpp</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
