@@ -47,6 +47,7 @@ int Smart_Delay::main(int argc, char** argv) {
 	delay1->getConnections()->insert(dispose1);
 	// set options, save and simulate
 	model->getSimulation()->setReplicationLength(60);
+	model->getSimulation()->setTerminatingCondition("");
 	model->save("./models/Smart_Delay.gen");
 	model->getSimulation()->start();
 	delete genesys;

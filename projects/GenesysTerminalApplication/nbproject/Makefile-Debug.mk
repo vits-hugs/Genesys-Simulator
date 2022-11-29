@@ -59,6 +59,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/296208d5/Smart_SeizeDelayReleaseMany.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_SeizeDelayReleaseNoDataDefs.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_Sequence.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_ValueAdded.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_WaitScanCondition.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_WaitSignal.o \
 	${OBJECTDIR}/_ext/18d98d98/AnElectronicAssemblyAndTestSystem.o \
@@ -341,6 +342,11 @@ ${OBJECTDIR}/_ext/296208d5/Smart_Sequence.o: ../../source/applications/terminal/
 	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_Sequence.o ../../source/applications/terminal/examples/smarts/Smart_Sequence.cpp
+
+${OBJECTDIR}/_ext/296208d5/Smart_ValueAdded.o: ../../source/applications/terminal/examples/smarts/Smart_ValueAdded.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_ValueAdded.o ../../source/applications/terminal/examples/smarts/Smart_ValueAdded.cpp
 
 ${OBJECTDIR}/_ext/296208d5/Smart_WaitScanCondition.o: ../../source/applications/terminal/examples/smarts/Smart_WaitScanCondition.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
@@ -1306,6 +1312,19 @@ ${OBJECTDIR}/_ext/296208d5/Smart_Sequence_nomain.o: ${OBJECTDIR}/_ext/296208d5/S
 	    $(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_Sequence_nomain.o ../../source/applications/terminal/examples/smarts/Smart_Sequence.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/296208d5/Smart_Sequence.o ${OBJECTDIR}/_ext/296208d5/Smart_Sequence_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/296208d5/Smart_ValueAdded_nomain.o: ${OBJECTDIR}/_ext/296208d5/Smart_ValueAdded.o ../../source/applications/terminal/examples/smarts/Smart_ValueAdded.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/296208d5/Smart_ValueAdded.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_ValueAdded_nomain.o ../../source/applications/terminal/examples/smarts/Smart_ValueAdded.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/296208d5/Smart_ValueAdded.o ${OBJECTDIR}/_ext/296208d5/Smart_ValueAdded_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/296208d5/Smart_WaitScanCondition_nomain.o: ${OBJECTDIR}/_ext/296208d5/Smart_WaitScanCondition.o ../../source/applications/terminal/examples/smarts/Smart_WaitScanCondition.cpp 

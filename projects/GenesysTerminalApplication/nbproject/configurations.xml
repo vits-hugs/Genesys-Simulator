@@ -106,6 +106,8 @@
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_SeizeDelayReleaseNoDataDefs.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_Sequence.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_Sequence.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_ValueAdded.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_ValueAdded.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_WaitScanCondition.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_WaitScanCondition.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_WaitSignal.cpp</itemPath>
@@ -811,6 +813,16 @@
             flavor2="0">
       </item>
       <item path="../../source/applications/terminal/examples/smarts/Smart_Sequence.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ValueAdded.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ValueAdded.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2538,6 +2550,16 @@
             flavor2="0">
       </item>
       <item path="../../source/applications/terminal/examples/smarts/Smart_Sequence.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ValueAdded.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ValueAdded.h"
             ex="false"
             tool="3"
             flavor2="0">

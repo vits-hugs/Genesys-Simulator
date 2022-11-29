@@ -39,7 +39,6 @@ int Smart_ParserModelFunctions::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	this->insertFakePluginsByHand(genesys);
-	genesys->getTracer()->setTraceLevel(TraceManager::Level::L5_event);
 	// create model
 	Model* m = genesys->getModels()->newModel();
 	PluginManager* plugins = genesys->getPlugins();
@@ -69,11 +68,17 @@ int Smart_ParserModelFunctions::main(int argc, char** argv) {
 	w->insertText({"Resouce_2 NR=", "@nr(Resource_2)", ", MR=", "@mr(Resource_2)", ", STATE=", "@state(Resource_2)"}); //, ", RESSEIZES=", "@ressizes(Resource_2)"});
 	w->insertText({"Queue_1 NQ=", "@nq(Queue_1)", ", FIRSTINQ=", "@firstinq(Queue_1)", ", LASTINQ=", "@lastinq(Queue_1)", ", SAQUE=", "@saque(Queue_1, att1)"});
 	w->insertText({"Set_1 NUMSET=", "@numset(Set_1)"});
-	w->insertText({"StatCollector TAVG=", "@tavg(EntityType_1.TotalTimeInSystem.average)"});
+	w->insertText({"StatCollector TAVG=", "@tavg(entitytype.TotalTimeInSystem)"});
+	w->insertText({"Resource.Counter COUNT=","@count(Resource_1.CountNumberIn)"});
+	w->insertText({"Dispose.Counter COUNT=","@count(Dispose_1.Seizes)"});
+	w->insertText({"----------------","\n"});
 	// set options, save and simulate
 	m->getSimulation()->setReplicationLength(5);
 	m->getSimulation()->setShowReportsAfterReplication(false);
 	m->getSimulation()->setShowReportsAfterSimulation(false);
+	genesys->getTracer()->setTraceLevel(TraceManager::Level::L9_mostDetailed);
+	m->check();
+	genesys->getTracer()->setTraceLevel(TraceManager::Level::L4_warning);
 	m->getSimulation()->start();
 	delete genesys;
 	return 0;
