@@ -59,6 +59,15 @@ Wait::WaitType Wait::getWaitType() const {
 	return _waitType;
 }
 
+Queue* Wait::getQueue() const {
+	return _queue;
+}
+
+void Wait::setQueue(Queue* queue) {
+	_queue = queue;
+}
+
+	
 //public static
 
 ModelComponent* Wait::LoadInstance(Model* model, PersistenceRecord *fields) {

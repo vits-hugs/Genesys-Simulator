@@ -59,6 +59,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/296208d5/Smart_SeizeDelayReleaseMany.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_SeizeDelayReleaseNoDataDefs.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_Sequence.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_SimulationControlResponse.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_ValueAdded.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_WaitScanCondition.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_WaitSignal.o \
@@ -342,6 +343,11 @@ ${OBJECTDIR}/_ext/296208d5/Smart_Sequence.o: ../../source/applications/terminal/
 	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_Sequence.o ../../source/applications/terminal/examples/smarts/Smart_Sequence.cpp
+
+${OBJECTDIR}/_ext/296208d5/Smart_SimulationControlResponse.o: ../../source/applications/terminal/examples/smarts/Smart_SimulationControlResponse.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_SimulationControlResponse.o ../../source/applications/terminal/examples/smarts/Smart_SimulationControlResponse.cpp
 
 ${OBJECTDIR}/_ext/296208d5/Smart_ValueAdded.o: ../../source/applications/terminal/examples/smarts/Smart_ValueAdded.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
@@ -1312,6 +1318,19 @@ ${OBJECTDIR}/_ext/296208d5/Smart_Sequence_nomain.o: ${OBJECTDIR}/_ext/296208d5/S
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_Sequence_nomain.o ../../source/applications/terminal/examples/smarts/Smart_Sequence.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/296208d5/Smart_Sequence.o ${OBJECTDIR}/_ext/296208d5/Smart_Sequence_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/296208d5/Smart_SimulationControlResponse_nomain.o: ${OBJECTDIR}/_ext/296208d5/Smart_SimulationControlResponse.o ../../source/applications/terminal/examples/smarts/Smart_SimulationControlResponse.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/296208d5/Smart_SimulationControlResponse.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_SimulationControlResponse_nomain.o ../../source/applications/terminal/examples/smarts/Smart_SimulationControlResponse.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/296208d5/Smart_SimulationControlResponse.o ${OBJECTDIR}/_ext/296208d5/Smart_SimulationControlResponse_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/296208d5/Smart_ValueAdded_nomain.o: ${OBJECTDIR}/_ext/296208d5/Smart_ValueAdded.o ../../source/applications/terminal/examples/smarts/Smart_ValueAdded.cpp 

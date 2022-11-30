@@ -92,6 +92,8 @@ public: //
 	Wait::WaitType getWaitType() const;
 	void setCondition(std::string _condition);
 	std::string getCondition() const;
+	Queue* getQueue() const;
+	void setQueue(Queue* queue);
 public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, PersistenceRecord *fields);
