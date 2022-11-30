@@ -70,6 +70,8 @@
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_BatchSeparate.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_CellularAutomata1.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_CellularAutomata1.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_Clone.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_Clone.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_CppForG.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_CppForG.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_Delay.cpp</itemPath>
@@ -297,6 +299,8 @@
           <itemPath>../../source/plugins/components/Batch.h</itemPath>
           <itemPath>../../source/plugins/components/CellularAutomata.cpp</itemPath>
           <itemPath>../../source/plugins/components/CellularAutomata.h</itemPath>
+          <itemPath>../../source/plugins/components/Clone.cpp</itemPath>
+          <itemPath>../../source/plugins/components/Clone.h</itemPath>
           <itemPath>../../source/plugins/components/CppForG.cpp</itemPath>
           <itemPath>../../source/plugins/components/CppForG.h</itemPath>
           <itemPath>../../source/plugins/components/Create.cpp</itemPath>
@@ -635,6 +639,16 @@
             flavor2="0">
       </item>
       <item path="../../source/applications/terminal/examples/smarts/Smart_CellularAutomata1.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Clone.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Clone.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -1590,6 +1604,16 @@
             flavor2="0">
       </item>
       <item path="../../source/plugins/components/CellularAutomata.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/plugins/components/Clone.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/plugins/components/Clone.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2386,6 +2410,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Clone.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_Clone.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../../source/applications/terminal/examples/smarts/Smart_CppForG.cpp"
             ex="false"
             tool="1"
@@ -3337,6 +3371,16 @@
             flavor2="0">
       </item>
       <item path="../../source/plugins/components/CellularAutomata.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/plugins/components/Clone.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/plugins/components/Clone.h"
             ex="false"
             tool="3"
             flavor2="0">

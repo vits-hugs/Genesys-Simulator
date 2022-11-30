@@ -18,6 +18,7 @@
 #include "../../plugins/components/Access.h"
 #include "../../plugins/components/Assign.h"
 #include "../../plugins/components/Batch.h"
+#include "../../plugins/components/Clone.h"
 #include "../../plugins/components/CppForG.h"
 #include "../../plugins/components/Create.h"
 #include "../../plugins/components/Decide.h"
@@ -156,6 +157,8 @@ Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilen
 		GetInfo = &Separate::GetPluginInformation;
 		//else if (fn == "submodel.so")
 		//    GetInfo = &Submodel::GetPluginInformation;
+	else if (fn == "clone.so")
+		GetInfo = &Clone::GetPluginInformation;
 	else if (fn == "match.so")
 		GetInfo = &Match::GetPluginInformation;
 	else if (fn == "pickup.so")

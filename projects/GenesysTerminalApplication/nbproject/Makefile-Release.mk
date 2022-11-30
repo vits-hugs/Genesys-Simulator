@@ -41,6 +41,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/296208d5/Smart_AssignWriteSeizes.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_BatchSeparate.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_CellularAutomata1.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_Clone.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_CppForG.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_Delay.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_Dummy.o \
@@ -127,6 +128,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/f13e5db9/Assign.o \
 	${OBJECTDIR}/_ext/f13e5db9/Batch.o \
 	${OBJECTDIR}/_ext/f13e5db9/CellularAutomata.o \
+	${OBJECTDIR}/_ext/f13e5db9/Clone.o \
 	${OBJECTDIR}/_ext/f13e5db9/CppForG.o \
 	${OBJECTDIR}/_ext/f13e5db9/Create.o \
 	${OBJECTDIR}/_ext/f13e5db9/Decide.o \
@@ -253,6 +255,11 @@ ${OBJECTDIR}/_ext/296208d5/Smart_CellularAutomata1.o: ../../source/applications/
 	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_CellularAutomata1.o ../../source/applications/terminal/examples/smarts/Smart_CellularAutomata1.cpp
+
+${OBJECTDIR}/_ext/296208d5/Smart_Clone.o: ../../source/applications/terminal/examples/smarts/Smart_Clone.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_Clone.o ../../source/applications/terminal/examples/smarts/Smart_Clone.cpp
 
 ${OBJECTDIR}/_ext/296208d5/Smart_CppForG.o: ../../source/applications/terminal/examples/smarts/Smart_CppForG.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
@@ -684,6 +691,11 @@ ${OBJECTDIR}/_ext/f13e5db9/CellularAutomata.o: ../../source/plugins/components/C
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f13e5db9/CellularAutomata.o ../../source/plugins/components/CellularAutomata.cpp
 
+${OBJECTDIR}/_ext/f13e5db9/Clone.o: ../../source/plugins/components/Clone.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f13e5db9/Clone.o ../../source/plugins/components/Clone.cpp
+
 ${OBJECTDIR}/_ext/f13e5db9/CppForG.o: ../../source/plugins/components/CppForG.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
 	${RM} "$@.d"
@@ -1084,6 +1096,19 @@ ${OBJECTDIR}/_ext/296208d5/Smart_CellularAutomata1_nomain.o: ${OBJECTDIR}/_ext/2
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_CellularAutomata1_nomain.o ../../source/applications/terminal/examples/smarts/Smart_CellularAutomata1.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/296208d5/Smart_CellularAutomata1.o ${OBJECTDIR}/_ext/296208d5/Smart_CellularAutomata1_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/296208d5/Smart_Clone_nomain.o: ${OBJECTDIR}/_ext/296208d5/Smart_Clone.o ../../source/applications/terminal/examples/smarts/Smart_Clone.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/296208d5/Smart_Clone.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_Clone_nomain.o ../../source/applications/terminal/examples/smarts/Smart_Clone.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/296208d5/Smart_Clone.o ${OBJECTDIR}/_ext/296208d5/Smart_Clone_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/296208d5/Smart_CppForG_nomain.o: ${OBJECTDIR}/_ext/296208d5/Smart_CppForG.o ../../source/applications/terminal/examples/smarts/Smart_CppForG.cpp 
@@ -2202,6 +2227,19 @@ ${OBJECTDIR}/_ext/f13e5db9/CellularAutomata_nomain.o: ${OBJECTDIR}/_ext/f13e5db9
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f13e5db9/CellularAutomata_nomain.o ../../source/plugins/components/CellularAutomata.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/f13e5db9/CellularAutomata.o ${OBJECTDIR}/_ext/f13e5db9/CellularAutomata_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/f13e5db9/Clone_nomain.o: ${OBJECTDIR}/_ext/f13e5db9/Clone.o ../../source/plugins/components/Clone.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/f13e5db9/Clone.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f13e5db9/Clone_nomain.o ../../source/plugins/components/Clone.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/f13e5db9/Clone.o ${OBJECTDIR}/_ext/f13e5db9/Clone_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/f13e5db9/CppForG_nomain.o: ${OBJECTDIR}/_ext/f13e5db9/CppForG.o ../../source/plugins/components/CppForG.cpp 

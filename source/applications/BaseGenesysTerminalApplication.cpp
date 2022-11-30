@@ -143,6 +143,7 @@ void BaseGenesysTerminalApplication::insertFakePluginsByHand(Simulator* simulato
 	pm->insert("decide.so");
 	pm->insert("batch.so");
 	pm->insert("separate.so");
+	pm->insert("clone.so");
 	pm->insert("assign.so");
 	pm->insert("record.so");
 	pm->insert("process.so");
