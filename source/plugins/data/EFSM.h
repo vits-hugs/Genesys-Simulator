@@ -97,10 +97,10 @@ private:
 	List<std::string*>* _setActions = new List<std::string*>();
 };
 
-class ExFiStatMac : public ModelDataDefinition {
+class ExtendedFSM : public ModelDataDefinition {
 public:
-	ExFiStatMac(Model* model, std::string name = "");
-	virtual ~ExFiStatMac() = default;
+	ExtendedFSM(Model* model, std::string name = "");
+	virtual ~ExtendedFSM() = default;
 public: // static
 	static ModelDataDefinition* LoadInstance(Model* model, PersistenceRecord *fields);
 	static PluginInformation* GetPluginInformation();

@@ -10,7 +10,7 @@
  * Created on 7 de agosto de 2022, 12:26
  */
 
-#include "Smart_FinitStateMachine.h"
+#include "Smart_FiniteStateMachine.h"
 
 
 // you have to included need libs
@@ -23,14 +23,14 @@
 #include "../../../../plugins/components/FiniteStateMachine.h"
 #include "../../../../plugins/components/Dispose.h"
 
-Smart_FinitStateMachine::Smart_FinitStateMachine() {
+Smart_FiniteStateMachine::Smart_FiniteStateMachine() {
 }
 
 /**
  * This is the main function of the application. 
  * It instanciates the simulator, builds a simulation model and then simulate that model.
  */
-int Smart_FinitStateMachine::main(int argc, char** argv) {
+int Smart_FiniteStateMachine::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	this->insertFakePluginsByHand(genesys);

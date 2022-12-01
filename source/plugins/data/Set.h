@@ -74,6 +74,7 @@ protected: // must be overriden
 protected: // could be overriden 
 	virtual bool _check(std::string* errorMessage);
 	virtual ParserChangesInformation* _getParserChangesInformation();
+    	virtual void _createInternalAndAttachedData(); 
 private:
 	//ElementManager* _elems;
 

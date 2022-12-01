@@ -10,34 +10,34 @@
  * Created on 7 de agosto de 2022, 12:14
  */
 
-#include "ExFiStatMac.h"
+#include "EFSM.h"
 
 #ifdef PLUGINCONNECT_DYNAMIC
 
 extern "C" StaticGetPluginInformation GetPluginInformation() {
-	return &ExFiStatMac::GetPluginInformation;
+	return &ExtendedFSM::GetPluginInformation;
 }
 #endif
 
 // constructors
 
-ModelDataDefinition* ExFiStatMac::NewInstance(Model* model, std::string name) {
-	return new ExFiStatMac(model, name);
+ModelDataDefinition* ExtendedFSM::NewInstance(Model* model, std::string name) {
+	return new ExtendedFSM(model, name);
 }
 
-ExFiStatMac::ExFiStatMac(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<ExFiStatMac>(), name) {
+ExtendedFSM::ExtendedFSM(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<ExtendedFSM>(), name) {
 }
 
 //public
 
-std::string ExFiStatMac::show() {
+std::string ExtendedFSM::show() {
 	return ModelDataDefinition::show();
 }
 
 // public static 
 
-ModelDataDefinition* ExFiStatMac::LoadInstance(Model* model, PersistenceRecord *fields) {
-	ExFiStatMac* newElement = new ExFiStatMac(model);
+ModelDataDefinition* ExtendedFSM::LoadInstance(Model* model, PersistenceRecord *fields) {
+	ExtendedFSM* newElement = new ExtendedFSM(model);
 	try {
 		newElement->_loadInstance(fields);
 	} catch (const std::exception& e) {
@@ -46,8 +46,8 @@ ModelDataDefinition* ExFiStatMac::LoadInstance(Model* model, PersistenceRecord *
 	return newElement;
 }
 
-PluginInformation* ExFiStatMac::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<ExFiStatMac>(), &ExFiStatMac::LoadInstance, &ExFiStatMac::NewInstance);
+PluginInformation* ExtendedFSM::GetPluginInformation() {
+	PluginInformation* info = new PluginInformation(Util::TypeOf<ExtendedFSM>(), &ExtendedFSM::LoadInstance, &ExtendedFSM::NewInstance);
 	info->setDescriptionHelp("//@TODO");
 	//info->setDescriptionHelp("");
 	//info->setObservation("");
@@ -60,7 +60,7 @@ PluginInformation* ExFiStatMac::GetPluginInformation() {
 
 // protected virtual -- must be overriden 
 
-bool ExFiStatMac::_loadInstance(PersistenceRecord *fields) {
+bool ExtendedFSM::_loadInstance(PersistenceRecord *fields) {
 	bool res = ModelDataDefinition::_loadInstance(fields);
 	if (res) {
 		try {
@@ -72,7 +72,7 @@ bool ExFiStatMac::_loadInstance(PersistenceRecord *fields) {
 	return res;
 }
 
-void ExFiStatMac::_saveInstance(PersistenceRecord *fields, bool saveDefaultValues) {
+void ExtendedFSM::_saveInstance(PersistenceRecord *fields, bool saveDefaultValues) {
 	ModelDataDefinition::_saveInstance(fields, saveDefaultValues);
 	fields->saveField("someUint", _someUint, DEFAULT.someUint);
 	fields->saveField("someString", _someString, DEFAULT.someString);
@@ -82,19 +82,19 @@ void ExFiStatMac::_saveInstance(PersistenceRecord *fields, bool saveDefaultValue
 
 //ParserChangesInformation* ExFiStatMac::_getParserChangesInformation() {}
 
-bool ExFiStatMac::_check(std::string* errorMessage) {
+bool ExtendedFSM::_check(std::string* errorMessage) {
 	bool resultAll = true;
 	resultAll &= _someString != "";
 	resultAll &= _someUint > 0;
 	return resultAll;
 }
 
-void ExFiStatMac::_initBetweenReplications() {
+void ExtendedFSM::_initBetweenReplications() {
 	_someString = "Test";
 	_someUint = 1;
 }
 
-void ExFiStatMac::_createInternalAndAttachedData() {
+void ExtendedFSM::_createInternalAndAttachedData() {
 	if (_reportStatistics) {
 		//if (_internal == nullptr) {
 		//	_internal = new StatisticsCollector(_parentModel, getName() + "." + "NumberInQueue", this); 

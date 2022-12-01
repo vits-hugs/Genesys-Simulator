@@ -54,11 +54,14 @@ protected: // must be overriden by derived classes
 	virtual bool _loadInstance(PersistenceRecord *fields);
 	// new virtual methods
 	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber) = 0;
-protected: // could be overriden by derived classes.
+protected: // could be overriden by derived classes
 	//virtual bool _check(std::string* errorMessage);
-	//virtual void _initBetweenReplications();
-	//virtual void _createInternalAndAttachedData();
+	/*! This method returns all changes in the parser that are needed by plugins of this ModelDatas. When connecting a new plugin, ParserChangesInformation are used to change parser source code, whch is after compiled and dinamically linked to to simulator kernel to reflect the changes */
 	//virtual ParserChangesInformation* _getParserChangesInformation();
+	//virtual void _initBetweenReplications();
+	/*! This method is necessary only for those components that instantiate internal elements that must exist before simulation starts and even before model checking. That's the case of components that have internal StatisticsCollectors, since others components may refer to them as expressions (as in "TVAG(ThisCSTAT)") and therefore the modeldatum must exist before checking such expression */
+	//virtual void _createInternalAndAttachedData(); /*< A ModelDataDefinition or ModelComponent that includes (internal) ou refers to (attach) other ModelDataDefinition must register them inside this method. */
+	//virtual void _addProperty(PropertyBase* property);
 protected:
 
 	const struct DEFAULT_VALUES {

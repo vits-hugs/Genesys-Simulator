@@ -118,3 +118,9 @@ ParserChangesInformation* Set::_getParserChangesInformation() {
 	return changes;
 }
 
+void Set::_createInternalAndAttachedData() {
+	for(ModelDataDefinition* dd: *_elementSet->list()) {
+		_attachedDataInsert(getName()+"."+dd->getName(), dd);
+	}	
+}
+

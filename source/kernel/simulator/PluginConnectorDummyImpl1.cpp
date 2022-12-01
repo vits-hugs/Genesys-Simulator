@@ -28,16 +28,16 @@
 #include "../../plugins/components/DummyComponent.h"
 #include "../../plugins/components/Enter.h"
 #include "../../plugins/components/Exit.h"
-#include "../../plugins/components/Wait.h"
+#include "../../plugins/components/FiniteStateMachine.h"
 #include "../../plugins/components/Leave.h"
 #include "../../plugins/components/Match.h"
 #include "../../plugins/components/MarkovChain.h"
+#include "../../plugins/components/PickStation.h"
 #include "../../plugins/components/PickUp.h"
 #include "../../plugins/components/Seize.h"
 //#include "../../plugins/components/Read.h"
 #include "../../plugins/components/Release.h"
 #include "../../plugins/components/Remove.h"
-#include "../../plugins/components/PickStation.h"
 #include "../../plugins/components/Process.h"
 #include "../../plugins/components/Record.h"
 #include "../../plugins/components/Route.h"
@@ -49,9 +49,9 @@
 #include "../../plugins/components/Separate.h"
 #include "../../plugins/components/Submodel.h"
 #include "../../plugins/components/Unstore.h"
+#include "../../plugins/components/Wait.h"
 #include "../../plugins/components/Write.h"
 #include "../../plugins/components/LSODE.h"
-#include "../../plugins/components/FiniteStateMachine.h"
 
 
 // Model data definitions
@@ -67,7 +67,7 @@
 #include "../../plugins/data/Station.h"
 #include "../../plugins/data/Storage.h"
 #include "../../plugins/data/Variable.h"
-#include "../../plugins/data/ExFiStatMac.h"
+#include "../../plugins/data/EFSM.h"
 //#include "../../plugins/data/Expression.h"
 //#include "../../plugins/data/Conveyor.h"
 //#include "../../plugins/data/Segment.h"
@@ -204,7 +204,7 @@ Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilen
 	else if (fn == "efsm.so")
 		GetInfo = &FiniteStateMachine::GetPluginInformation;
 	else if (fn == "efsmData.so")
-		GetInfo = &ExFiStatMac::GetPluginInformation;
+		GetInfo = &ExtendedFSM::GetPluginInformation;
 	//    GetInfo = &Conveyour::GetPluginInformation;
 	//else if (fn == "segment.so")
 	//    GetInfo = &Segment::GetPluginInformation;

@@ -84,6 +84,14 @@ bool DummyComponent::_check(std::string* errorMessage) {
 	return resultAll;
 }
 
+ParserChangesInformation* DummyComponent::_getParserChangesInformation() {
+	ParserChangesInformation* changes = new ParserChangesInformation();
+	//@TODO not implemented yet
+	//changes->getProductionToAdd()->insert(...);
+	//changes->getTokensToAdd()->insert(...);
+	return changes;
+}
+
 void DummyComponent::_initBetweenReplications() {
 	_someString = "Test";
 	_someUint = 1;
@@ -95,4 +103,8 @@ void DummyComponent::_createInternalAndAttachedData() {
 		_internalDataDefinition = pm->newInstance<DummyElement>(_parentModel, getName() + "." + "JustaDummy");
 		_internalDataInsert("JustaDummy", _internalDataDefinition);
 	}
+}
+
+void DummyComponent::_addProperty(PropertyBase* property) {
+
 }

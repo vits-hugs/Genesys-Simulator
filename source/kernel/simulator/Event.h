@@ -37,7 +37,8 @@ public:
 	ModelComponent* getComponent() const;
 	Entity* getEntity() const;
 	unsigned int getComponentinputPortNumber() const;
-public:
+    void setEntity(Entity* _entity);
+public: // virtual
 	virtual std::string show();
 protected:
 	double _time;

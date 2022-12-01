@@ -105,4 +105,16 @@ void DummyElement::_createInternalAndAttachedData() {
 	}
 }
 
+ParserChangesInformation* DummyElement::_getParserChangesInformation() {
+	ParserChangesInformation* changes = new ParserChangesInformation();
+	//@TODO not implemented yet
+	//changes->getProductionToAdd()->insert(...);
+	//changes->getTokensToAdd()->insert(...);
+	return changes;
+}
+
+void DummyElement::_addProperty(PropertyBase* property) {
+
+}
+
 // private

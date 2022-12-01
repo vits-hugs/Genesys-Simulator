@@ -15,9 +15,9 @@
 
 #include "../../../BaseGenesysTerminalApplication.h"
 
-class Smart_FinitStateMachine : public BaseGenesysTerminalApplication {
+class Smart_FiniteStateMachine : public BaseGenesysTerminalApplication {
 public:
-	Smart_FinitStateMachine();
+	Smart_FiniteStateMachine();
 public:
 	virtual int main(int argc, char** argv);
 };

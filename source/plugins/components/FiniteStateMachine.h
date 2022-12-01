@@ -14,7 +14,7 @@
 #define FINITESTATEMACHINE_H
 
 #include "../../kernel/simulator/ModelComponent.h"
-#include "../data/ExFiStatMac.h"
+#include "../data/EFSM.h"
 
 /*!
  This component ...
@@ -47,7 +47,7 @@ private: // attributes 1:1
 	} DEFAULT;
 	std::string _someString = DEFAULT.someString;
 	unsigned int _someUint = DEFAULT.someUint;
-	ExFiStatMac* _internalDataDefinition = nullptr;
+	ExtendedFSM* _internalDataDefinition = nullptr;
 private: // attributes 1:n
 };
 

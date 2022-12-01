@@ -92,7 +92,7 @@ void FiniteStateMachine::_initBetweenReplications() {
 void FiniteStateMachine::_createInternalAndAttachedData() {
 	if (_internalDataDefinition == nullptr) {
 		PluginManager* pm = _parentModel->getParentSimulator()->getPlugins();
-		_internalDataDefinition = pm->newInstance<ExFiStatMac>(_parentModel, getName() + "." + "JustaDummy");
+		_internalDataDefinition = pm->newInstance<ExtendedFSM>(_parentModel, getName() + "." + "JustaDummy");
 		_internalDataInsert("JustaDummy", _internalDataDefinition);
 	}
 }
