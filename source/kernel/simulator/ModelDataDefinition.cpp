@@ -164,6 +164,10 @@ void ModelDataDefinition::_attachedDataRemove(std::string key) {
 	}
 }
 
+void ModelDataDefinition::_attachedDataClear() {
+	_attachedData->clear();
+}
+
 bool ModelDataDefinition::_getSaveDefaultsOption() {
 	return _parentModel->getPersistence()->getOption(ModelPersistence_if::Options::SAVEDEFAULTS);
 }

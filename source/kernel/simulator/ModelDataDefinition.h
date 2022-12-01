@@ -80,6 +80,7 @@ protected: // methods to be called inside the _createInternalAndAttachedData() m
 	void _internalDataRemove(std::string key);
 	void _attachedDataInsert(std::string key, ModelDataDefinition* data);
 	void _attachedDataRemove(std::string key);
+	void _attachedDataClear();
 	void _attachedAttributesInsert(std::vector<std::string> neededNames);
 protected:
 	bool _getSaveDefaultsOption();

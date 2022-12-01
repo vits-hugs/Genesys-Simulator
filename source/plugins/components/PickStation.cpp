@@ -164,6 +164,18 @@ void PickStation::_initBetweenReplications() {
 }
 
 void PickStation::_createInternalAndAttachedData() {
+	unsigned int i =0;
+	_attachedDataClear();
+	for (PickableStationItem* item : *_pickableStationItens->list()) {
+		_attachedDataInsert("Station"+std::to_string(i), item->getStation());
+		if (item->getResource() != nullptr) {
+			_attachedDataInsert("Resource"+std::to_string(i), item->getResource());			
+		}
+		if (item->getQueue() != nullptr) {
+			_attachedDataInsert("Queue"+std::to_string(i), item->getQueue());			
+		}
+		i++;
+	}
 	//if (_internalDataDefinition == nullptr) {
 	//	PluginManager* pm = _parentModel->getParentSimulator()->getPlugins();
 	//	_internalDataDefinition = pm->newInstance<DummyElement>(_parentModel, getName() + "." + "JustaDummy");
