@@ -6,14 +6,15 @@
 
 /* 
  * File:   PickStation.cpp
- * Author: rlcancian
+ * Author: rafael.luiz.cancian
  * 
  * Created on 11 de Setembro de 2019, 13:08
  */
 
 #include "PickStation.h"
-
 #include "../../kernel/simulator/Model.h"
+#include "../../kernel/simulator/Simulator.h"
+#include "../../kernel/simulator/PluginManager.h"
 
 #ifdef PLUGINCONNECT_DYNAMIC
 
@@ -22,8 +23,38 @@ extern "C" StaticGetPluginInformation GetPluginInformation() {
 }
 #endif
 
+//******************************************
+
 ModelDataDefinition* PickStation::NewInstance(Model* model, std::string name) {
 	return new PickStation(model, name);
+}
+
+void PickStation::setPickCondition(PickStation::PickCondition _pickCondition) {
+	this->_pickCondition = _pickCondition;
+}
+
+PickStation::PickCondition PickStation::getPickCondition() const {
+	return _pickCondition;
+}
+
+void PickStation::setTestCondition(PickStation::TestCondition _testCondition) {
+	this->_testCondition = _testCondition;
+}
+
+PickStation::TestCondition PickStation::getTestCondition() const {
+	return _testCondition;
+}
+
+void PickStation::setSaveAttribute(std::string _saveAttribute) {
+	this->_saveAttribute = _saveAttribute;
+}
+
+std::string PickStation::getSaveAttribute() const {
+	return _saveAttribute;
+}
+
+List<PickableStationItem*>* PickStation::getPickableStationItens() const {
+	return _pickableStationItens;
 }
 
 PickStation::PickStation(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<PickStation>(), name) {
@@ -32,6 +63,8 @@ PickStation::PickStation(Model* model, std::string name) : ModelComponent(model,
 std::string PickStation::show() {
 	return ModelComponent::show() + "";
 }
+
+// public static 
 
 ModelComponent* PickStation::LoadInstance(Model* model, PersistenceRecord *fields) {
 	PickStation* newComponent = new PickStation(model);
@@ -43,8 +76,52 @@ ModelComponent* PickStation::LoadInstance(Model* model, PersistenceRecord *field
 	return newComponent;
 }
 
+PluginInformation* PickStation::GetPluginInformation() {
+	PluginInformation* info = new PluginInformation(Util::TypeOf<PickStation>(), &PickStation::LoadInstance, &PickStation::NewInstance);
+	info->setCategory("Decisions");
+	info->insertDynamicLibFileDependence("station.so");
+	info->insertDynamicLibFileDependence("resource.so");
+	info->insertDynamicLibFileDependence("queue.so");
+	std::string text = "The PickStation module allows an entity to select a station from the multiple stations specified.";
+	text += " This module picks among the group of stations based on the selection logic defined with the module.";
+	text += " The entity may then route, transport, convey, or connect to the station specified.";
+	text += " If the method chosen is connect, the selected station is assigned to an entity attribute.";
+	text += " The station selection process is based on the minimum or maximum value of a variety of system variables and expressions.";
+	text += " TYPICAL USES: (1) A part sent to a processing station based on machine’s availability at each station;";
+	text += " (2) A loan application sent to a set of loan officers based on the number sent to each officer;";
+	text += " (3) A customer selecting among cashier lines based on the least number waiting in each line";
+	info->setDescriptionHelp(text);
+	return info;
+}
+
+// protected virtual -- must be overriden
+
 void PickStation::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
-	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
+	double value, bestValue;
+	Station* bestStation = nullptr;
+	if (_testCondition == TestCondition::MAXIMUM) {
+		bestValue = std::numeric_limits<double>::min();
+	} else {
+		bestValue = std::numeric_limits<double>::max();		
+	}
+	for (PickableStationItem* item: *_pickableStationItens->list()) {
+		if (_pickCondition == PickCondition::EXPRESSION) {
+			value = _parentModel->parseExpression(item->getExpression());
+		} else if (_pickCondition == PickCondition::NUMBER_IN_QUEUE) {
+			if (item->getQueue() != nullptr) {
+				value = item->getQueue()->size();
+			}
+		}else if (_pickCondition == PickCondition::NUMBER_BUSY_RESOURCE) {
+			if (item->getResource() != nullptr) {
+				value = item->getResource()->getNumberBusy();
+			}
+		}
+		if ((_testCondition == TestCondition::MAXIMUM && value > bestValue) || (_testCondition == TestCondition::MINIMUM && value < bestValue)) {
+			bestValue = value;
+			bestStation = item->getStation();
+		} 
+	}
+	entity->setAttributeValue(_saveAttribute, bestStation->getId());
 	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
@@ -61,26 +138,42 @@ void PickStation::_saveInstance(PersistenceRecord *fields, bool saveDefaultValue
 	// @TODO: not implemented yet
 }
 
+
+// protected virtual -- could be overriden 
+
+//ParserChangesInformation* DummyElement::_getParserChangesInformation() {}
+
 bool PickStation::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	// @TODO: not implemented yet
-	*errorMessage += "";
+	//resultAll &= _someString != "";
+	//resultAll &= _someUint > 0;
 	return resultAll;
 }
 
-PluginInformation* PickStation::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<PickStation>(), &PickStation::LoadInstance, &PickStation::NewInstance);
-	info->setCategory("Decisions");
-	info->insertDynamicLibFileDependence("station.so");
-	std::string text = "The PickStation module allows an entity to select a station from the multiple stations specified.";
-	text += " This module picks among the group of stations based on the selection logic defined with the module.";
-	text += " The entity may then route, transport, convey, or connect to the station specified.";
-	text += " If the method chosen is connect, the selected station is assigned to an entity attribute.";
-	text += " The station selection process is based on the minimum or maximum value of a variety of system variables and expressions.";
-	text += " TYPICAL USES: (1) A part sent to a processing station based on machine’s availability at each station;";
-	text += " (2) A loan application sent to a set of loan officers based on the number sent to each officer;";
-	text += " (3) A customer selecting among cashier lines based on the least number waiting in each line";
-	info->setDescriptionHelp(text);
-	return info;
+ParserChangesInformation* PickStation::_getParserChangesInformation() {
+	ParserChangesInformation* changes = new ParserChangesInformation();
+	//@TODO not implemented yet
+	//changes->getProductionToAdd()->insert(...);
+	//changes->getTokensToAdd()->insert(...);
+	return changes;
 }
+
+void PickStation::_initBetweenReplications() {
+	//_someString = "Test";
+	//_someUint = 1;
+}
+
+void PickStation::_createInternalAndAttachedData() {
+	//if (_internalDataDefinition == nullptr) {
+	//	PluginManager* pm = _parentModel->getParentSimulator()->getPlugins();
+	//	_internalDataDefinition = pm->newInstance<DummyElement>(_parentModel, getName() + "." + "JustaDummy");
+	//	_internalDataInsert("JustaDummy", _internalDataDefinition);
+	//}
+}
+
+void PickStation::_addProperty(PropertyBase* property) {
+
+}
+
+
 

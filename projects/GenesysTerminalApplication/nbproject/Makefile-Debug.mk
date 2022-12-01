@@ -147,6 +147,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/f13e5db9/OLD_ODEelement.o \
 	${OBJECTDIR}/_ext/f13e5db9/PickStation.o \
 	${OBJECTDIR}/_ext/f13e5db9/PickUp.o \
+	${OBJECTDIR}/_ext/f13e5db9/PickableStationItem.o \
 	${OBJECTDIR}/_ext/f13e5db9/Process.o \
 	${OBJECTDIR}/_ext/f13e5db9/QueueableItem.o \
 	${OBJECTDIR}/_ext/f13e5db9/Record.o \
@@ -786,6 +787,11 @@ ${OBJECTDIR}/_ext/f13e5db9/PickUp.o: ../../source/plugins/components/PickUp.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f13e5db9/PickUp.o ../../source/plugins/components/PickUp.cpp
+
+${OBJECTDIR}/_ext/f13e5db9/PickableStationItem.o: ../../source/plugins/components/PickableStationItem.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f13e5db9/PickableStationItem.o ../../source/plugins/components/PickableStationItem.cpp
 
 ${OBJECTDIR}/_ext/f13e5db9/Process.o: ../../source/plugins/components/Process.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
@@ -2480,6 +2486,19 @@ ${OBJECTDIR}/_ext/f13e5db9/PickUp_nomain.o: ${OBJECTDIR}/_ext/f13e5db9/PickUp.o 
 	    $(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f13e5db9/PickUp_nomain.o ../../source/plugins/components/PickUp.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/f13e5db9/PickUp.o ${OBJECTDIR}/_ext/f13e5db9/PickUp_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/f13e5db9/PickableStationItem_nomain.o: ${OBJECTDIR}/_ext/f13e5db9/PickableStationItem.o ../../source/plugins/components/PickableStationItem.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/f13e5db9/PickableStationItem.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f13e5db9/PickableStationItem_nomain.o ../../source/plugins/components/PickableStationItem.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/f13e5db9/PickableStationItem.o ${OBJECTDIR}/_ext/f13e5db9/PickableStationItem_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/f13e5db9/Process_nomain.o: ${OBJECTDIR}/_ext/f13e5db9/Process.o ../../source/plugins/components/Process.cpp 

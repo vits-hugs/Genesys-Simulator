@@ -15,6 +15,12 @@
 #define PICKSTATION_H
 
 #include "../../kernel/simulator/ModelComponent.h"
+#include "../../kernel/simulator/ModelDataDefinition.h"
+#include "../../kernel/util/List.h"
+#include "../../plugins/data/Queue.h"
+#include "../../plugins/data/Resource.h"
+
+#include "PickableStationItem.h"
 
 /*!
  PickStation module
@@ -27,10 +33,10 @@ selected station is assigned to an entity attribute. The station selection proce
 based on the minimum or maximum value of a variety of system variables and
 expressions.
 TYPICAL USES
-* A part sent to a processing station based on machine’s availability at each station
-* A loan application sent to a set of loan officers based on the number sent to each
+ * A part sent to a processing station based on machine’s availability at each station
+ * A loan application sent to a set of loan officers based on the number sent to each
 officer
-* A customer selecting among cashier lines based on the least number waiting in
+ * A customer selecting among cashier lines based on the least number waiting in
 each line
 PROMPTS
 Prompt Description
@@ -60,25 +66,61 @@ determined through this module.
 Units Time units for route-time parameters.
  */
 class PickStation : public ModelComponent {
+public:
+
+	enum class TestCondition : int {
+		MINIMUM = 1, MAXIMUM = 2
+	};
+
+	enum class PickCondition : int {
+		NUMBER_BUSY_RESOURCE = 1, NUMBER_IN_QUEUE = 2, EXPRESSION = 3
+	};
+
 public: // constructors
 	PickStation(Model* model, std::string name = "");
 	virtual ~PickStation() = default;
 public: // virtual
 	virtual std::string show();
+public:
+    void setPickCondition(PickStation::PickCondition _pickCondition);
+    PickStation::PickCondition getPickCondition() const;
+    void setTestCondition(PickStation::TestCondition _testCondition);
+    PickStation::TestCondition getTestCondition() const;
+    void setSaveAttribute(std::string _saveAttribute);
+    std::string getSaveAttribute() const;
+	List<PickableStationItem*>* getPickableStationItens() const;
 public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, PersistenceRecord *fields);
 	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
-protected: // virtual
-	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+	
+protected: // must be overriden 
 	virtual bool _loadInstance(PersistenceRecord *fields);
 	virtual void _saveInstance(PersistenceRecord *fields, bool saveDefaultValues);
-protected: // virtual
-	//virtual void _initBetweenReplications();
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+protected: // could be overriden by derived classes
 	virtual bool _check(std::string* errorMessage);
+	/*! This method returns all changes in the parser that are needed by plugins of this ModelDatas. When connecting a new plugin, ParserChangesInformation are used to change parser source code, whch is after compiled and dinamically linked to to simulator kernel to reflect the changes */
+	virtual ParserChangesInformation* _getParserChangesInformation();
+	virtual void _initBetweenReplications();
+	/*! This method is necessary only for those components that instantiate internal elements that must exist before simulation starts and even before model checking. That's the case of components that have internal StatisticsCollectors, since others components may refer to them as expressions (as in "TVAG(ThisCSTAT)") and therefore the modeldatum must exist before checking such expression */
+	virtual void _createInternalAndAttachedData(); /*< A ModelDataDefinition or ModelComponent that includes (internal) ou refers to (attach) other ModelDataDefinition must register them inside this method. */
+	virtual void _addProperty(PropertyBase* property);
+
 private: // methods
 private: // attributes 1:1
+
+	const struct DEFAULT_VALUES {
+		std::string saveAttribute = "";
+		PickStation::TestCondition testCondition = TestCondition::MINIMUM;
+		PickStation::PickCondition pickCondition = PickCondition::NUMBER_BUSY_RESOURCE;
+	} DEFAULT;
+	std::string _saveAttribute = DEFAULT.saveAttribute;
+	PickStation::TestCondition _testCondition = DEFAULT.testCondition; 
+	PickStation::PickCondition _pickCondition = DEFAULT.pickCondition;
+	//DummyElement* _internalDataDefinition = nullptr;
 private: // attributes 1:n
+	List<PickableStationItem*>* _pickableStationItens = new List<PickableStationItem*>();
 };
 
 

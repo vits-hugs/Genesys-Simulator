@@ -337,6 +337,8 @@
           <itemPath>../../source/plugins/components/PickStation.h</itemPath>
           <itemPath>../../source/plugins/components/PickUp.cpp</itemPath>
           <itemPath>../../source/plugins/components/PickUp.h</itemPath>
+          <itemPath>../../source/plugins/components/PickableStationItem.cpp</itemPath>
+          <itemPath>../../source/plugins/components/PickableStationItem.h</itemPath>
           <itemPath>../../source/plugins/components/Process.cpp</itemPath>
           <itemPath>../../source/plugins/components/Process.h</itemPath>
           <itemPath>../../source/plugins/components/QueueableItem.cpp</itemPath>
@@ -1796,6 +1798,16 @@
             flavor2="0">
       </item>
       <item path="../../source/plugins/components/PickUp.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/plugins/components/PickableStationItem.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/plugins/components/PickableStationItem.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -3567,6 +3579,16 @@
             flavor2="0">
       </item>
       <item path="../../source/plugins/components/PickUp.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/plugins/components/PickableStationItem.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/plugins/components/PickableStationItem.h"
             ex="false"
             tool="3"
             flavor2="0">
