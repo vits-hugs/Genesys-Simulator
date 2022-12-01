@@ -467,24 +467,33 @@ atributo:
 	/**begin_ExpressionProdution:Formula**/
 	// \todo: THERE IS A SERIOUS PROBLEM WITH FORMULA: TO EVALUATE THE FORMULA EXPRESSION, PARSER IS REINVOKED, AND THEN IT CRASHES (NO REENTRACE?)
 	formula     : FORM	    { 
-					std::string expression = ((Formula*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), $1.id)))->getExpression("");
-					std::cout << "Formula[]=" << expression << std::endl;
-					$$.valor = 0.0;} 
+					std::string index = "";
+					Formula* formula = dynamic_cast<Formula*>(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), $1.id));
+					std::string expression = formula->getExpression(index);
+					std::cout << "Formula["<< index <<"]="<< expression << std::endl;
+					double value = 0.0; //@TODO: Can't parse the epression!  //formula->getValue(index);
+					$$.valor = value;}
 				| FORM LBRACKET expression RBRACKET {
 					std::string index = std::to_string(static_cast<unsigned int>($3.valor));
-					std::string expression = ((Formula*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), $1.id)))->getExpression(index);
+					Formula* formula = dynamic_cast<Formula*>(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), $1.id));
+					std::string expression = formula->getExpression(index);
 					std::cout << "Formula["<< index <<"]="<< expression << std::endl;
-					$$.valor = 0.0;}
+					double value = 0.0; //@TODO: Can't parse the epression!  //formula->getValue(index);
+					$$.valor = value;}
 				| FORM LBRACKET expression "," expression RBRACKET {
 					std::string index = std::to_string(static_cast<unsigned int>($3.valor)) +","+std::to_string(static_cast<unsigned int>($5.valor));
-					std::string expression = ((Formula*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), $1.id)))->getExpression(index);
+					Formula* formula = dynamic_cast<Formula*>(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), $1.id));
+					std::string expression = formula->getExpression(index);
 					std::cout << "Formula["<< index <<"]="<< expression << std::endl;
-					$$.valor = 0.0;}
+					double value = 0.0; //@TODO: Can't parse the epression!  //formula->getValue(index);
+					$$.valor = value;}
 				| FORM LBRACKET expression "," expression "," expression RBRACKET {
 					std::string index = std::to_string(static_cast<unsigned int>($3.valor)) +","+std::to_string(static_cast<unsigned int>($5.valor))+","+std::to_string(static_cast<unsigned int>($7.valor));
-					std::string expression = ((Formula*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), $1.id)))->getExpression(index);
+					Formula* formula = dynamic_cast<Formula*>(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), $1.id));
+					std::string expression = formula->getExpression(index);
 					std::cout << "Formula["<< index <<"]="<< expression << std::endl;
-					$$.valor = 0.0;}
+					double value = 0.0; //@TODO: Can't parse the epression!  //formula->getValue(index);
+					$$.valor = value;}
 				;
 	/**end_ExpressionProdution:Formula**/
 	/****end_ExpressionProdution_plugins****/
