@@ -13,6 +13,9 @@
 
 #include "Remove.h"
 #include "../../kernel/simulator/Model.h"
+#include "../../kernel/simulator/Simulator.h"
+#include "../../plugins/data/EntityGroup.h"
+#include "../../plugins/data/Queue.h"
 
 #ifdef PLUGINCONNECT_DYNAMIC
 
@@ -23,6 +26,30 @@ extern "C" StaticGetPluginInformation GetPluginInformation() {
 
 ModelDataDefinition* Remove::NewInstance(Model* model, std::string name) {
 	return new Remove(model, name);
+}
+
+void Remove::setRemoveFromRank(std::string _removeFromRank) {
+	this->_removeFromRank = _removeFromRank;
+}
+
+std::string Remove::getRemoveFromRank() const {
+	return _removeFromRank;
+}
+
+void Remove::setRemoveFromType(Remove::RemoveFromType _removeFromType) {
+	this->_removeFromType = _removeFromType;
+}
+
+Remove::RemoveFromType Remove::getRemoveFromType() const {
+	return _removeFromType;
+}
+
+void Remove::setRemoveFrom(ModelDataDefinition* _removeFrom) {
+	this->_removeFrom = _removeFrom;
+}
+
+ModelDataDefinition* Remove::getRemoveFrom() const {
+	return _removeFrom;
 }
 
 Remove::Remove(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Remove>(), name) {
@@ -43,8 +70,24 @@ ModelComponent* Remove::LoadInstance(Model* model, PersistenceRecord *fields) {
 }
 
 void Remove::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
-	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
-	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
+	if (_removeFromType == RemoveFromType::QUEUE) {
+		Queue* queue = dynamic_cast<Queue*> (_removeFrom);
+		unsigned int rank = _parentModel->parseExpression(_removeFromRank);
+		_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L7_internal, "Removing entity from queue \"" + queue->getName() + "\" at rank " + std::to_string(rank)+"  // "+_removeFromRank);
+		Waiting* waiting = queue->getAtRank(rank);
+		if (waiting != nullptr) {
+			queue->removeElement(waiting);
+			Entity* removedEntity = waiting->getEntity();
+			_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L8_detailed, "Entity \""+removedEntity->getName()+"\" was from queue \"" + queue->getName() + "\"");
+			_parentModel->sendEntityToComponent(removedEntity, this->getConnections()->getConnectionAtPort(1)); // port 1 is the removed entities output
+		} else {
+			_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L8_detailed, "Could not remove entity from queue \"" + queue->getName() + "\" at rank " + std::to_string(rank));
+		}
+	}
+	if (_removeFromType == RemoveFromType::ENTITYGROUP) {
+		//@TODO
+	}
+	_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
 bool Remove::_loadInstance(PersistenceRecord *fields) {
@@ -62,14 +105,40 @@ void Remove::_saveInstance(PersistenceRecord *fields, bool saveDefaultValues) {
 
 bool Remove::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	// @TODO: not implemented yet
-	*errorMessage += "";
+	resultAll = _removeFrom != nullptr;
+	if (!resultAll) {
+		*errorMessage += "RemoveFrom was not defined.";
+	}
+	if (resultAll) {
+		resultAll &= (_removeFrom->getClassname() == Util::TypeOf<Queue>() && _removeFromType == RemoveFromType::QUEUE) ||
+				(_removeFrom->getClassname() == Util::TypeOf<EntityGroup>() && _removeFromType == RemoveFromType::ENTITYGROUP);
+		if (!resultAll) {
+			*errorMessage += "RemoveFromType differs from what RemoveFrom actually is.";
+		}
+	}
 	return resultAll;
+}
+
+void Remove::_createInternalAndAttachedData() {
+	PluginManager* plugins = _parentModel->getParentSimulator()->getPlugins();
+	if (_removeFromType == Remove::RemoveFromType::QUEUE) {
+		if (_removeFrom == nullptr) {
+			_removeFrom = plugins->newInstance<Queue>(_parentModel, getName() + ".Queue");
+		}
+		_attachedDataInsert("Queue", _removeFrom);
+	}
+	if (_removeFromType == Remove::RemoveFromType::ENTITYGROUP) {
+		//@TODO
+	}
 }
 
 PluginInformation* Remove::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Remove>(), &Remove::LoadInstance, &Remove::NewInstance);
 	info->setCategory("Decisions");
+	info->insertDynamicLibFileDependence("queue.so");
+	info->insertDynamicLibFileDependence("entitygroup.so");
+	info->setMinimumOutputs(2);
+	info->setMaximumOutputs(2);
 	// ...
 	return info;
 }

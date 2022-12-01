@@ -26,33 +26,60 @@ queue and sends it to the connected module. The rank of the entity signifies the
 location of the entity within the queue. The entity that caused the removal proceeds to
 the next module specified and is processed before the removed entity.
 TYPICAL USES
-* Removing an order from a queue that is due to be completed next
-* Calling a patient from a waiting room for an examination
-* Retrieving the next order to be processed from a pile of documents
+ * Removing an order from a queue that is due to be completed next
+ * Calling a patient from a waiting room for an examination
+ * Retrieving the next order to be processed from a pile of documents
 Prompt Description
 Name Unique module identifier displayed on the module shape.
 Queue Name Name of the queue from which the entity will be removed.
 Rank of Entity Rank of the entity to remove from within the queue.
  */
 class Remove : public ModelComponent {
+public:
+
+	enum class RemoveFromType : int {
+		QUEUE = 1, ENTITYGROUP = 2
+	};
 public: // constructors
 	Remove(Model* model, std::string name = "");
 	virtual ~Remove() = default;
 public: // virtual
 	virtual std::string show();
+public:
+	void setRemoveFromRank(std::string _removeFromRank);
+	std::string getRemoveFromRank() const;
+	void setRemoveFromType(Remove::RemoveFromType _removeFromType);
+	Remove::RemoveFromType getRemoveFromType() const;
+	void setRemoveFrom(ModelDataDefinition* _removeFrom);
+	ModelDataDefinition* getRemoveFrom() const;
+
 public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, PersistenceRecord *fields);
 	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
-protected: // virtual
-	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+protected: // must be overriden 
 	virtual bool _loadInstance(PersistenceRecord *fields);
 	virtual void _saveInstance(PersistenceRecord *fields, bool saveDefaultValues);
-protected: // virtual
-	//virtual void _initBetweenReplications();
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+protected: // could be overriden by derived classes
 	virtual bool _check(std::string* errorMessage);
+	/*! This method returns all changes in the parser that are needed by plugins of this ModelDatas. When connecting a new plugin, ParserChangesInformation are used to change parser source code, whch is after compiled and dinamically linked to to simulator kernel to reflect the changes */
+	//virtual ParserChangesInformation* _getParserChangesInformation();
+	//virtual void _initBetweenReplications();
+	/*! This method is necessary only for those components that instantiate internal elements that must exist before simulation starts and even before model checking. That's the case of components that have internal StatisticsCollectors, since others components may refer to them as expressions (as in "TVAG(ThisCSTAT)") and therefore the modeldatum must exist before checking such expression */
+	virtual void _createInternalAndAttachedData(); /*< A ModelDataDefinition or ModelComponent that includes (internal) ou refers to (attach) other ModelDataDefinition must register them inside this method. */
+	//virtual void _addProperty(PropertyBase* property);
 private: // methods
 private: // attributes 1:1
+
+	const struct DEFAULT_VALUES {
+		Remove::RemoveFromType removeFromType = Remove::RemoveFromType::QUEUE;
+		std::string removeFromRank = "";
+	} DEFAULT;
+	ModelDataDefinition* _removeFrom = nullptr;
+	Remove::RemoveFromType _removeFromType = DEFAULT.removeFromType;
+	std::string _removeFromRank = DEFAULT.removeFromRank;
+
 private: // attributes 1:n
 };
 

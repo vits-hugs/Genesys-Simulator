@@ -57,6 +57,8 @@ int Smart_HoldSearchRemove::main(int argc, char** argv) {
 	search1->setStartRank("2");
 	search1->setEndRank("NQ(HoldQueue)-1");
 	Remove* remove1 = plugins->newInstance<Remove>(model);
+	remove1->setRemoveFrom(queue1);
+	remove1->setRemoveFromRank("rankFound");
 	Dispose* dispose1 = plugins->newInstance<Dispose>(model);
 	Dispose* dispose2 = plugins->newInstance<Dispose>(model);
 	Dispose* dispose3 = plugins->newInstance<Dispose>(model, "No entity will ever arrive here");
@@ -65,6 +67,7 @@ int Smart_HoldSearchRemove::main(int argc, char** argv) {
 	assign1->getConnections()->insert(hold1);
 	hold1->getConnections()->insert(dispose3); // just because "Wait" is not a SinkComponent
 	create2->getConnections()->insert(search1);
+	search1->getConnections()->insert(dispose1);
 	search1->getConnections()->insert(remove1);
 	remove1->getConnections()->insert(dispose1);
 	remove1->getConnections()->insert(dispose2);
