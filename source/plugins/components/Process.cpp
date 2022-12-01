@@ -108,9 +108,9 @@ void Process::_adjustConnections() {
 		// chance connections so Process is connected to Seize, and Release to the one that Process was connected to
 		Connection* connection = new Connection();
 		connection->component = getConnections()->getFrontConnection()->component;
-		connection->port = getConnections()->getFrontConnection()->port;
+		connection->channel.portNumber = getConnections()->getFrontConnection()->channel.portNumber;
 		getConnections()->getFrontConnection()->component = _seize;
-		getConnections()->getFrontConnection()->port = 0;
+		getConnections()->getFrontConnection()->channel.portNumber = 0;
 		_release->getConnections()->connections()->clear();
 		_release->getConnections()->insert(connection);
 	}

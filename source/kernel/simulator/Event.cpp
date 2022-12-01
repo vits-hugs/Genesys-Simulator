@@ -26,7 +26,7 @@ Event::Event(double time, Entity* entity, Connection* connection) {
 	_time = time;
 	_entity = entity;
 	_component = connection->component;
-	_componentinputPortNumber = connection->port;
+	_componentinputPortNumber = connection->channel.portNumber;
 }
 
 std::string Event::show() {
@@ -37,6 +37,10 @@ std::string Event::show() {
 		message += ",input=" + std::to_string(this->_componentinputPortNumber);
 	}
 	return message;
+}
+
+void Event::setEntity(Entity* _entity) {
+	this->_entity = _entity;
 }
 
 unsigned int Event::getComponentinputPortNumber() const {

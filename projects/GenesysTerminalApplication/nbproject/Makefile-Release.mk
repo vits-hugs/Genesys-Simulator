@@ -46,7 +46,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/296208d5/Smart_Delay.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_Dummy.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_Failures.o \
-	${OBJECTDIR}/_ext/296208d5/Smart_FinitStateMachine.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_FiniteStateMachine.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_HoldSearchRemove.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_ModelInfoModelSimulation.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_ODE.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_OnEvent.o \
@@ -167,8 +168,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/ccae408d/AssignmentItem.o \
 	${OBJECTDIR}/_ext/ccae408d/CppCode.o \
 	${OBJECTDIR}/_ext/ccae408d/DummyElement.o \
+	${OBJECTDIR}/_ext/ccae408d/EFSM.o \
 	${OBJECTDIR}/_ext/ccae408d/EntityGroup.o \
-	${OBJECTDIR}/_ext/ccae408d/ExFiStatMac.o \
 	${OBJECTDIR}/_ext/ccae408d/Failure.o \
 	${OBJECTDIR}/_ext/ccae408d/File.o \
 	${OBJECTDIR}/_ext/ccae408d/Formula.o \
@@ -281,10 +282,15 @@ ${OBJECTDIR}/_ext/296208d5/Smart_Failures.o: ../../source/applications/terminal/
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_Failures.o ../../source/applications/terminal/examples/smarts/Smart_Failures.cpp
 
-${OBJECTDIR}/_ext/296208d5/Smart_FinitStateMachine.o: ../../source/applications/terminal/examples/smarts/Smart_FinitStateMachine.cpp nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/296208d5/Smart_FiniteStateMachine.o: ../../source/applications/terminal/examples/smarts/Smart_FiniteStateMachine.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_FinitStateMachine.o ../../source/applications/terminal/examples/smarts/Smart_FinitStateMachine.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_FiniteStateMachine.o ../../source/applications/terminal/examples/smarts/Smart_FiniteStateMachine.cpp
+
+${OBJECTDIR}/_ext/296208d5/Smart_HoldSearchRemove.o: ../../source/applications/terminal/examples/smarts/Smart_HoldSearchRemove.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_HoldSearchRemove.o ../../source/applications/terminal/examples/smarts/Smart_HoldSearchRemove.cpp
 
 ${OBJECTDIR}/_ext/296208d5/Smart_ModelInfoModelSimulation.o: ../../source/applications/terminal/examples/smarts/Smart_ModelInfoModelSimulation.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
@@ -886,15 +892,15 @@ ${OBJECTDIR}/_ext/ccae408d/DummyElement.o: ../../source/plugins/data/DummyElemen
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/DummyElement.o ../../source/plugins/data/DummyElement.cpp
 
+${OBJECTDIR}/_ext/ccae408d/EFSM.o: ../../source/plugins/data/EFSM.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/ccae408d
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/EFSM.o ../../source/plugins/data/EFSM.cpp
+
 ${OBJECTDIR}/_ext/ccae408d/EntityGroup.o: ../../source/plugins/data/EntityGroup.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/ccae408d
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/EntityGroup.o ../../source/plugins/data/EntityGroup.cpp
-
-${OBJECTDIR}/_ext/ccae408d/ExFiStatMac.o: ../../source/plugins/data/ExFiStatMac.cpp nbproject/Makefile-${CND_CONF}.mk
-	${MKDIR} -p ${OBJECTDIR}/_ext/ccae408d
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/ExFiStatMac.o ../../source/plugins/data/ExFiStatMac.cpp
 
 ${OBJECTDIR}/_ext/ccae408d/Failure.o: ../../source/plugins/data/Failure.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/ccae408d
@@ -1163,17 +1169,30 @@ ${OBJECTDIR}/_ext/296208d5/Smart_Failures_nomain.o: ${OBJECTDIR}/_ext/296208d5/S
 	    ${CP} ${OBJECTDIR}/_ext/296208d5/Smart_Failures.o ${OBJECTDIR}/_ext/296208d5/Smart_Failures_nomain.o;\
 	fi
 
-${OBJECTDIR}/_ext/296208d5/Smart_FinitStateMachine_nomain.o: ${OBJECTDIR}/_ext/296208d5/Smart_FinitStateMachine.o ../../source/applications/terminal/examples/smarts/Smart_FinitStateMachine.cpp 
+${OBJECTDIR}/_ext/296208d5/Smart_FiniteStateMachine_nomain.o: ${OBJECTDIR}/_ext/296208d5/Smart_FiniteStateMachine.o ../../source/applications/terminal/examples/smarts/Smart_FiniteStateMachine.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/296208d5/Smart_FinitStateMachine.o`; \
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/296208d5/Smart_FiniteStateMachine.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_FinitStateMachine_nomain.o ../../source/applications/terminal/examples/smarts/Smart_FinitStateMachine.cpp;\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_FiniteStateMachine_nomain.o ../../source/applications/terminal/examples/smarts/Smart_FiniteStateMachine.cpp;\
 	else  \
-	    ${CP} ${OBJECTDIR}/_ext/296208d5/Smart_FinitStateMachine.o ${OBJECTDIR}/_ext/296208d5/Smart_FinitStateMachine_nomain.o;\
+	    ${CP} ${OBJECTDIR}/_ext/296208d5/Smart_FiniteStateMachine.o ${OBJECTDIR}/_ext/296208d5/Smart_FiniteStateMachine_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/296208d5/Smart_HoldSearchRemove_nomain.o: ${OBJECTDIR}/_ext/296208d5/Smart_HoldSearchRemove.o ../../source/applications/terminal/examples/smarts/Smart_HoldSearchRemove.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/296208d5/Smart_HoldSearchRemove.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_HoldSearchRemove_nomain.o ../../source/applications/terminal/examples/smarts/Smart_HoldSearchRemove.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/296208d5/Smart_HoldSearchRemove.o ${OBJECTDIR}/_ext/296208d5/Smart_HoldSearchRemove_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/296208d5/Smart_ModelInfoModelSimulation_nomain.o: ${OBJECTDIR}/_ext/296208d5/Smart_ModelInfoModelSimulation.o ../../source/applications/terminal/examples/smarts/Smart_ModelInfoModelSimulation.cpp 
@@ -2736,6 +2755,19 @@ ${OBJECTDIR}/_ext/ccae408d/DummyElement_nomain.o: ${OBJECTDIR}/_ext/ccae408d/Dum
 	    ${CP} ${OBJECTDIR}/_ext/ccae408d/DummyElement.o ${OBJECTDIR}/_ext/ccae408d/DummyElement_nomain.o;\
 	fi
 
+${OBJECTDIR}/_ext/ccae408d/EFSM_nomain.o: ${OBJECTDIR}/_ext/ccae408d/EFSM.o ../../source/plugins/data/EFSM.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/ccae408d
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/ccae408d/EFSM.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/EFSM_nomain.o ../../source/plugins/data/EFSM.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/ccae408d/EFSM.o ${OBJECTDIR}/_ext/ccae408d/EFSM_nomain.o;\
+	fi
+
 ${OBJECTDIR}/_ext/ccae408d/EntityGroup_nomain.o: ${OBJECTDIR}/_ext/ccae408d/EntityGroup.o ../../source/plugins/data/EntityGroup.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/ccae408d
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/ccae408d/EntityGroup.o`; \
@@ -2747,19 +2779,6 @@ ${OBJECTDIR}/_ext/ccae408d/EntityGroup_nomain.o: ${OBJECTDIR}/_ext/ccae408d/Enti
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/EntityGroup_nomain.o ../../source/plugins/data/EntityGroup.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/ccae408d/EntityGroup.o ${OBJECTDIR}/_ext/ccae408d/EntityGroup_nomain.o;\
-	fi
-
-${OBJECTDIR}/_ext/ccae408d/ExFiStatMac_nomain.o: ${OBJECTDIR}/_ext/ccae408d/ExFiStatMac.o ../../source/plugins/data/ExFiStatMac.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/ccae408d
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/ccae408d/ExFiStatMac.o`; \
-	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
-	then  \
-	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/ExFiStatMac_nomain.o ../../source/plugins/data/ExFiStatMac.cpp;\
-	else  \
-	    ${CP} ${OBJECTDIR}/_ext/ccae408d/ExFiStatMac.o ${OBJECTDIR}/_ext/ccae408d/ExFiStatMac_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/ccae408d/Failure_nomain.o: ${OBJECTDIR}/_ext/ccae408d/Failure.o ../../source/plugins/data/Failure.cpp 

@@ -34,9 +34,9 @@ decreased and the condition is rechecked. This process repeats until the search
 condition is satisfied or the ending value is reached. If the condition is not met or
 there are no entities in the queue or group, J is set equal to 0.
 TYPICAL USES
-* Looking for a particular order number in a queue
-* Searching a group for a certain part type
-* Determining which process to enter based on availability of resources (search an
+ * Looking for a particular order number in a queue
+ * Searching a group for a certain part type
+ * Determining which process to enter based on availability of resources (search an
 expression)
  Prompt Description
 Name Unique module identifier displayed on the module shape.
@@ -53,24 +53,65 @@ Search Condition Condition containing the index J for searching expressions or
 containing an attribute name(s) for searching queues or batches.
  */
 class Search : public ModelComponent {
+public:
+	enum class SearchInType : int {
+		QUEUE = 1, ENTITYGROUP = 2
+	};
+
 public: // constructors
 	Search(Model* model, std::string name = "");
 	virtual ~Search() = default;
 public: // virtual
 	virtual std::string show();
+public:
+	void setSaveFounRankAttribute(std::string _saveFounRankAttribute);
+	std::string getSaveFounRankAttribute() const;
+	void setSearchCondition(std::string _searchCondition);
+	std::string getSearchCondition() const;
+	void setEndRank(std::string _endRank);
+	std::string getEndRank() const;
+	void setStartRank(std::string _startRank);
+	std::string getStartRank() const;
+	void setSearchInName(std::string searchInName);
+	std::string getSearchInName() const;
+    void setSearchIn(ModelDataDefinition* _searchIn);
+    ModelDataDefinition* getSearchIn() const;
+    void setSearchInType(Search::SearchInType _searchInType);
+    Search::SearchInType getSearchInType() const;
 public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, PersistenceRecord *fields);
 	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
-protected: // virtual
-	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+
+protected: // must be overriden 
 	virtual bool _loadInstance(PersistenceRecord *fields);
-protected: // virtual
-	//virtual void _initBetweenReplications();
 	virtual void _saveInstance(PersistenceRecord *fields, bool saveDefaultValues);
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+protected: // could be overriden by derived classes
 	virtual bool _check(std::string* errorMessage);
+	/*! This method returns all changes in the parser that are needed by plugins of this ModelDatas. When connecting a new plugin, ParserChangesInformation are used to change parser source code, whch is after compiled and dinamically linked to to simulator kernel to reflect the changes */
+	//virtual ParserChangesInformation* _getParserChangesInformation();
+	//virtual void _initBetweenReplications();
+	/*! This method is necessary only for those components that instantiate internal elements that must exist before simulation starts and even before model checking. That's the case of components that have internal StatisticsCollectors, since others components may refer to them as expressions (as in "TVAG(ThisCSTAT)") and therefore the modeldatum must exist before checking such expression */
+	virtual void _createInternalAndAttachedData(); /*< A ModelDataDefinition or ModelComponent that includes (internal) ou refers to (attach) other ModelDataDefinition must register them inside this method. */
+	//virtual void _addProperty(PropertyBase* property);
 private: // methods
 private: // attributes 1:1
+
+	const struct DEFAULT_VALUES {
+		SearchInType searchInType = SearchInType::QUEUE; 		
+		std::string startRank = "";
+		std::string endRank = "";
+		std::string searchCondition = "";
+		std::string saveFounRankAttribute = "";
+	} DEFAULT;
+	ModelDataDefinition* _searchIn = nullptr;
+	Search::SearchInType _searchInType = DEFAULT.searchInType;
+	std::string _startRank = DEFAULT.startRank;
+	std::string _endRank = DEFAULT.endRank;
+	std::string _searchCondition = DEFAULT.searchCondition;
+	std::string _saveFounRankAttribute = DEFAULT.saveFounRankAttribute;
+
 private: // attributes 1:n
 };
 

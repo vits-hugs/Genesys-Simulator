@@ -36,12 +36,15 @@ void ModelComponent::DispatchEvent(Event* event) {
 	Entity* entity = event->getEntity();
 	ModelComponent* component = event->getComponent();
 	unsigned int inputPortNumber = event->getComponentinputPortNumber();
-	std::string msg = /*"Entity " +std::to_string(entity->entityNumber())*/ entity->getName() + " has arrived at component \"" + component->getName() + "\"";
+	/*
+	//"Entity " +std::to_string(entity->entityNumber())
+	std::string msg =  entity->getName() + " has arrived at component \"" + component->getName() + "\"";
 	if (component->getDescription() != "")
 		msg += ": " + component->getDescription();
 	if (inputPortNumber > 0)
 		msg += " by input " + std::to_string(inputPortNumber);
 	component->_parentModel->getTracer()->traceSimulation(component, TraceManager::Level::L7_internal, msg); //:L6_arrival
+	*/
 	Util::IncIndent();
 	try {
 		component->_onDispatchEvent(entity, inputPortNumber);
@@ -134,8 +137,8 @@ void ModelComponent::_saveInstance(PersistenceRecord *fields, bool saveDefaultVa
 		} else {
 			fields->saveField("nextId" + strIndex(i), connectionPair.second->component->_id, 0, saveDefaultValues);
 		}
-		if (connectionPair.second->port != 0) {//((*it)->second != 0) { // save nextinputPortNumber only if it is != 0
-			fields->saveField("nextinputPortNumber" + strIndex(i), connectionPair.second->port, DEFAULT.nextinputPortNumber, saveDefaultValues);
+		if (connectionPair.second->channel.portNumber != 0) {//((*it)->second != 0) { // save nextinputPortNumber only if it is != 0
+			fields->saveField("nextinputPortNumber" + strIndex(i), connectionPair.second->channel.portNumber, DEFAULT.nextinputPortNumber, saveDefaultValues);
 		}
 	}
 }

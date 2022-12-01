@@ -49,7 +49,6 @@ Attribute Name Name of the attribute whose value must match the value of the
 other incoming entities in order for a group to be made. Applies
 only when Rule is By Attribute.
 Representative Entity The entity type for the representative entity. 
-
  */
 class Batch : public ModelComponent {
 public:

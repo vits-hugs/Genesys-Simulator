@@ -80,8 +80,10 @@
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_Dummy.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_Failures.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_Failures.h</itemPath>
-              <itemPath>../../source/applications/terminal/examples/smarts/Smart_FinitStateMachine.cpp</itemPath>
-              <itemPath>../../source/applications/terminal/examples/smarts/Smart_FinitStateMachine.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_FiniteStateMachine.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_FiniteStateMachine.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_HoldSearchRemove.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_HoldSearchRemove.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_ModelInfoModelSimulation.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_ModelInfoModelSimulation.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_ODE.cpp</itemPath>
@@ -379,10 +381,10 @@
           <itemPath>../../source/plugins/data/CppCode.h</itemPath>
           <itemPath>../../source/plugins/data/DummyElement.cpp</itemPath>
           <itemPath>../../source/plugins/data/DummyElement.h</itemPath>
+          <itemPath>../../source/plugins/data/EFSM.cpp</itemPath>
+          <itemPath>../../source/plugins/data/EFSM.h</itemPath>
           <itemPath>../../source/plugins/data/EntityGroup.cpp</itemPath>
           <itemPath>../../source/plugins/data/EntityGroup.h</itemPath>
-          <itemPath>../../source/plugins/data/ExFiStatMac.cpp</itemPath>
-          <itemPath>../../source/plugins/data/ExFiStatMac.h</itemPath>
           <itemPath>../../source/plugins/data/Failure.cpp</itemPath>
           <itemPath>../../source/plugins/data/Failure.h</itemPath>
           <itemPath>../../source/plugins/data/File.cpp</itemPath>
@@ -693,12 +695,22 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/applications/terminal/examples/smarts/Smart_FinitStateMachine.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_FiniteStateMachine.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/applications/terminal/examples/smarts/Smart_FinitStateMachine.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_FiniteStateMachine.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_HoldSearchRemove.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_HoldSearchRemove.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -1998,22 +2010,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../../source/plugins/data/EFSM.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../source/plugins/data/EFSM.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="../../source/plugins/data/EntityGroup.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
       <item path="../../source/plugins/data/EntityGroup.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/plugins/data/ExFiStatMac.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/plugins/data/ExFiStatMac.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2460,12 +2466,22 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/applications/terminal/examples/smarts/Smart_FinitStateMachine.cpp"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_FiniteStateMachine.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/applications/terminal/examples/smarts/Smart_FinitStateMachine.h"
+      <item path="../../source/applications/terminal/examples/smarts/Smart_FiniteStateMachine.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_HoldSearchRemove.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_HoldSearchRemove.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -3765,22 +3781,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../../source/plugins/data/EFSM.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../source/plugins/data/EFSM.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="../../source/plugins/data/EntityGroup.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
       <item path="../../source/plugins/data/EntityGroup.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/plugins/data/ExFiStatMac.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/plugins/data/ExFiStatMac.h"
             ex="false"
             tool="3"
             flavor2="0">

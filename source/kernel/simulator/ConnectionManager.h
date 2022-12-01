@@ -22,7 +22,12 @@
 
 class ModelComponent;
 
-typedef unsigned int ConnectionPort; /*< actually a port is only a uint, but it could be more complex, including type, presence or absence of data, etc */
+//typedef unsigned int ConnectionPort; 
+struct ConnectionChannel { /*< actually a port is only a uint, but it could be more complex, including type, presence or absence of data, etc */
+	unsigned int portNumber = 0;
+	std::string portDescription = "";
+};
+
 
 /*!
  * Defines a connection between two or more ModelComponents. 
@@ -31,7 +36,7 @@ typedef unsigned int ConnectionPort; /*< actually a port is only a uint, but it 
  */
 struct Connection {
 	ModelComponent* component;
-	ConnectionPort port;
+	ConnectionChannel channel;
 };
 
 /*!

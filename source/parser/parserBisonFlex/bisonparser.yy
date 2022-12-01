@@ -12,6 +12,7 @@
 	#include "obj_t.h"
 	#include "../kernel/util/Util.h"
 	#include "../kernel/simulator/Attribute.h"
+	#include "../kernel/simulator/Counter.h"
 
 	/****begin_Includes_plugins****/
 
@@ -62,20 +63,24 @@
 %token <obj_t> NUMD
 %token <obj_t> NUMH
 %token <obj_t> CTEZERO
+
 // relational operators
 %token <obj_t> oLE
 %token <obj_t> oGE
 %token <obj_t> oEQ
 %token <obj_t> oNE
+
 // logic operators
 %token <obj_t> oAND
 %token <obj_t> oOR
 %token <obj_t> oNAND
 %token <obj_t> oXOR
 %token <obj_t> oNOT
+
 // trigonometric functions
 %token <obj_t> fSIN
 %token <obj_t> fCOS
+
 // math functions
 %token <obj_t> fROUND
 %token <obj_t> fMOD
@@ -85,10 +90,12 @@
 %token <obj_t> fSQRT
 %token <obj_t> fLOG
 %token <obj_t> fLN
+
 // string functions
 %token <obj_t> fVAL
 %token <obj_t> fEVAL
 %token <obj_t> fLENG
+
 // probability distributionsformulaValue
 %token <obj_t> fRND1
 %token <obj_t> fEXPO
@@ -101,22 +108,31 @@
 %token <obj_t> fTRIA
 %token <obj_t> fBETA
 %token <obj_t> fDISC
+
 // simulation infos
 %token <obj_t> fTNOW
 %token <obj_t> fTFIN
 %token <obj_t> fMAXREP
 %token <obj_t> fNUMREP
 %token <obj_t> fIDENT
+
 // algoritmic functions
 %token <obj_t> cIF
 %token <obj_t> cELSE
 %token <obj_t> cFOR
 %token <obj_t> cTO
 %token <obj_t> cDO
+
 // kernel elements
 %token <obj_t> ATRIB
 %token <obj_t> CSTAT
+%token <obj_t> COUNTER
+
+// kernel elements' functions
 %token <obj_t> fTAVG
+%token <obj_t> fCOUNT
+
+// not found, wrong, illegal
 %token <obj_t> ILLEGAL     /* illegal token */
 
 /****begin_Tokens_plugins****/
@@ -195,6 +211,7 @@
 %type <obj_t> probFunction
 %type <obj_t> pluginFunction
 %type <obj_t> userFunction
+%type <obj_t> elementFunction
 %type <obj_t> listaparm
 %type <obj_t> illegal
 
@@ -302,6 +319,7 @@ function:
     | trigonFunction     { $$.valor = $1.valor; }
     | probFunction       { $$.valor = $1.valor; }
     | kernelFunction     { $$.valor = $1.valor; }
+    | elementFunction    { $$.valor = $1.valor; }
     | pluginFunction     { $$.valor = $1.valor; }
     | userFunction       { $$.valor = $1.valor; }
     ;
@@ -312,12 +330,19 @@ kernelFunction:
     | fMAXREP    { $$.valor = driver.getModel()->getSimulation()->getNumberOfReplications();}
     | fNUMREP    { $$.valor = driver.getModel()->getSimulation()->getCurrentReplicationNumber();}
     | fIDENT     { $$.valor = driver.getModel()->getSimulation()->getCurrentEvent()->getEntity()->getId();}
-    | CSTAT		 { $$.valor = 0; }
+	;
+
+elementFunction:
+    //| CSTAT		 { $$.valor = 0; }
     | fTAVG  "(" CSTAT ")"     {
                     StatisticsCollector* cstat = ((StatisticsCollector*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<StatisticsCollector>(), $3.id)));
                     double value = cstat->getStatistics()->average();
                     $$.valor = value; }
-    ;
+	| fCOUNT "(" COUNTER ")" {
+					Counter* counter = ((Counter*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Counter>(), $3.id)));
+                    double value = counter->getCountValue();
+                    $$.valor = value; }
+   ;
 
 trigonFunction:
       fSIN   "(" expression ")"   { $$.valor = sin($3.valor); }
@@ -512,12 +537,12 @@ pluginFunction  :
                     $$.valor = 0;
                 } }
     | fSAQUE "(" QUEUE "," ATRIB ")"   {   
-                Util::identification queueID = $3.id;
+                //Util::identification queueID = $3.id;
                 Util::identification attrID = $5.id;
                 double sum = ((Queue*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Queue>(), $3.id)))->sumAttributesFromWaiting(attrID);
                 $$.valor = sum; }
     | fAQUE "(" QUEUE "," NUMD "," ATRIB ")" {
-                Util::identification queueID = $3.id;
+                //Util::identification queueID = $3.id;
                 Util::identification attrID = $7.id;
                 double value = ((Queue*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Queue>(), $3.id)))->getAttributeFromWaitingRank($5.valor-1, attrID); // rank starts on 0 in genesys
                 $$.valor = value; }
