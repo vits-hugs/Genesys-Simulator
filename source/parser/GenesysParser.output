@@ -197,9 +197,9 @@ Gramática
    40         | trigonFunction
    41         | probFunction
    42         | kernelFunction
-   43         | pluginFunction
-   44         | userFunction
-   45         | elementFunction
+   43         | elementFunction
+   44         | pluginFunction
+   45         | userFunction
 
    46 kernelFunction: fTNOW
    47               | fTFIN
@@ -413,7 +413,7 @@ Não terminais com as regras onde eles aparecem
         à direita: 42
     elementFunction <obj_t> (104)
         à esquerda: 51 52 53
-        à direita: 45
+        à direita: 43
     trigonFunction <obj_t> (105)
         à esquerda: 54 55
         à direita: 40
@@ -425,7 +425,7 @@ Não terminais com as regras onde eles aparecem
         à direita: 41
     userFunction <obj_t> (108)
         à esquerda: 75
-        à direita: 44
+        à direita: 45
     listaparm <obj_t> (109)
         à esquerda: 76 77
         à direita: 74 76
@@ -443,7 +443,7 @@ Não terminais com as regras onde eles aparecem
         à direita: 6 37 38
     pluginFunction <obj_t> (114)
         à esquerda: 98 99 100 101 102 103 104 105 106 107 108 109 110
-        à direita: 43
+        à direita: 44
 
 
 Estado 0
@@ -1509,9 +1509,9 @@ Estado 64
 
 Estado 65
 
-   45 function: elementFunction •
+   43 function: elementFunction •
 
-    $padrão  reduzir usando a regra 45 (function)
+    $padrão  reduzir usando a regra 43 (function)
 
 
 Estado 66
@@ -1537,9 +1537,9 @@ Estado 68
 
 Estado 69
 
-   44 function: userFunction •
+   45 function: userFunction •
 
-    $padrão  reduzir usando a regra 44 (function)
+    $padrão  reduzir usando a regra 45 (function)
 
 
 Estado 70
@@ -1572,9 +1572,9 @@ Estado 73
 
 Estado 74
 
-   43 function: pluginFunction •
+   44 function: pluginFunction •
 
-    $padrão  reduzir usando a regra 43 (function)
+    $padrão  reduzir usando a regra 44 (function)
 
 
 Estado 75

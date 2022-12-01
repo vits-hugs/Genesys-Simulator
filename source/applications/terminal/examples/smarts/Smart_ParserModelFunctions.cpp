@@ -24,6 +24,7 @@
 #include "../../../../plugins/components/Write.h"
 #include "../../../../plugins/components/Dispose.h"
 #include "../../../../plugins/data/Set.h"
+#include "../../../../plugins/data/Formula.h"
 
 // Model data definitions
 #include "../../../../kernel/simulator/Attribute.h"
@@ -53,9 +54,15 @@ int Smart_ParserModelFunctions::main(int argc, char** argv) {
 	p1->setQueueableItem(new QueueableItem(plugins->newInstance<Queue>(m)));
 	Dispose* d1 = plugins->newInstance<Dispose>(m);
 	// other part to write parser expressions 
+	Formula* formula1 = plugins->newInstance<Formula>(m, "FormulaChegada");
+	formula1->setExpression("NORM(10,1)", "1,1");
+	formula1->setExpression("EXP(10)", "1,2");
+	formula1->setExpression("TRIA(8,10,12)", "2,1");
+	formula1->setExpression("UNIF(8,12)", "2,2");
 	Create * c2 = plugins->newInstance<Create>(m);
 	c2->setEntityTypeName("control"); //(plugins->newInstance<EntityType>(m, "control"));
-	c2->setTimeBetweenCreationsExpression("1");
+	c2->setTimeBetweenCreationsExpression("FormulaChegada[2,1]");
+
 	Write* w = plugins->newInstance<Write>(m);
 	Dispose* d2 = plugins->newInstance<Dispose>(m);
 	// connect model components to create a "workflow"
@@ -69,9 +76,9 @@ int Smart_ParserModelFunctions::main(int argc, char** argv) {
 	w->insertText({"Queue_1 NQ=", "@nq(Queue_1)", ", FIRSTINQ=", "@firstinq(Queue_1)", ", LASTINQ=", "@lastinq(Queue_1)", ", SAQUE=", "@saque(Queue_1, att1)"});
 	w->insertText({"Set_1 NUMSET=", "@numset(Set_1)"});
 	w->insertText({"StatCollector TAVG=", "@tavg(entitytype.TotalTimeInSystem)"});
-	w->insertText({"Resource.Counter COUNT=","@count(Resource_1.CountNumberIn)"});
-	w->insertText({"Dispose.Counter COUNT=","@count(Dispose_1.Seizes)"});
-	w->insertText({"----------------","\n"});
+	w->insertText({"Resource.Counter COUNT=", "@count(Resource_1.CountNumberIn)"});
+	w->insertText({"Dispose.Counter COUNT=", "@count(Dispose_1.Seizes)"});
+	w->insertText({"----------------", "\n"});
 	// set options, save and simulate
 	m->getSimulation()->setReplicationLength(5);
 	m->getSimulation()->setShowReportsAfterReplication(false);

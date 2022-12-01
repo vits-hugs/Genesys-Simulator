@@ -465,18 +465,26 @@ atributo:
 	/**end_ExpressionProdution:Variable**/
 
 	/**begin_ExpressionProdution:Formula**/
-	// \todo: THERE IS A PROBLEM WITH FORMULA: TO EVALUATE THE FORMULA EXPRESSION, PARSER IS REINVOKED, AND THEN IT CRASHES (NO REENTRACE?)
+	// \todo: THERE IS A SERIOUS PROBLEM WITH FORMULA: TO EVALUATE THE FORMULA EXPRESSION, PARSER IS REINVOKED, AND THEN IT CRASHES (NO REENTRACE?)
 	formula     : FORM	    { 
-					$$.valor = ((Formula*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), $1.id)))->value();} 
+					std::string expression = ((Formula*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), $1.id)))->getExpression("");
+					std::cout << "Formula[]=" << expression << std::endl;
+					$$.valor = 0.0;} 
 				| FORM LBRACKET expression RBRACKET {
 					std::string index = std::to_string(static_cast<unsigned int>($3.valor));
-					$$.valor = ((Formula*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), $1.id)))->value(index);}
+					std::string expression = ((Formula*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), $1.id)))->getExpression(index);
+					std::cout << "Formula["<< index <<"]="<< expression << std::endl;
+					$$.valor = 0.0;}
 				| FORM LBRACKET expression "," expression RBRACKET {
 					std::string index = std::to_string(static_cast<unsigned int>($3.valor)) +","+std::to_string(static_cast<unsigned int>($5.valor));
-					$$.valor = ((Formula*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), $1.id)))->value(index);}
+					std::string expression = ((Formula*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), $1.id)))->getExpression(index);
+					std::cout << "Formula["<< index <<"]="<< expression << std::endl;
+					$$.valor = 0.0;}
 				| FORM LBRACKET expression "," expression "," expression RBRACKET {
 					std::string index = std::to_string(static_cast<unsigned int>($3.valor)) +","+std::to_string(static_cast<unsigned int>($5.valor))+","+std::to_string(static_cast<unsigned int>($7.valor));
-					$$.valor = ((Formula*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), $1.id)))->value(index);}
+					std::string expression = ((Formula*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), $1.id)))->getExpression(index);
+					std::cout << "Formula["<< index <<"]="<< expression << std::endl;
+					$$.valor = 0.0;}
 				;
 	/**end_ExpressionProdution:Formula**/
 	/****end_ExpressionProdution_plugins****/

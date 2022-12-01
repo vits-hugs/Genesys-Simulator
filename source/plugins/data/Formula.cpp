@@ -15,6 +15,7 @@
 #include <iostream>
 #include "../../kernel/simulator/ModelDataManager.h"
 #include "../../kernel/simulator/Model.h"
+#include "../../kernel/TraitsKernel.h"
 
 #ifdef PLUGINCONNECT_DYNAMIC
 
@@ -23,12 +24,14 @@ extern "C" StaticGetPluginInformation GetPluginInformation() {
 }
 #endif
 
+//Parser_if* Formula::_myPrivateParser = new TraitsKernel<Parser_if>::Implementation(model, sampler);
+
 ModelDataDefinition* Formula::NewInstance(Model* model, std::string name) {
 	return new Formula(model, name);
 }
 
 Formula::Formula(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<Formula>(), name) {
-	//_myPrivateParser = new Traits<Parser_if>::Implementation(_parentModel);
+	//_myPrivateParser = new TraitsKernel<Parser_if>::Implementation(_parentModel, new TraitsKernel<Sampler_if>::Implementation()); //@TODO: !! Really, really BAD. 
 }
 
 std::string Formula::show() {
@@ -44,7 +47,7 @@ unsigned int Formula::size() {
 	return _formulaExpressions->size();
 }
 
-void Formula::setExpression(std::string index, std::string formulaExpression) {
+void Formula::setExpression(std::string formulaExpression, std::string index) {
 	std::map<std::string, std::string>::iterator mapIt = _formulaExpressions->find(index);
 	if (mapIt != _formulaExpressions->end()) {//found
 		(*mapIt).second = formulaExpression;
@@ -53,7 +56,7 @@ void Formula::setExpression(std::string index, std::string formulaExpression) {
 	}
 }
 
-std::string Formula::expression(std::string index) {
+std::string Formula::getExpression(std::string index) {
 	std::map<std::string, std::string>::iterator it = _formulaExpressions->find(index);
 	if (it == _formulaExpressions->end()) {
 		return ""; // index does not exist. No formula expressions returned. @TODO: Should it be traced?.
@@ -62,27 +65,16 @@ std::string Formula::expression(std::string index) {
 	}
 }
 
-void Formula::setExpression(std::string formulaExpression) {
-	setExpression("", formulaExpression);
-}
-
-std::string Formula::expression() {
-	return expression("");
-}
-
-double Formula::value(std::string index) {
-	std::string strexpression = this->expression(index);
+double Formula::getValue(std::string index) {
+	std::string strexpression = this->getExpression(index);
 	double value = 0.0;
 	try {
 		value = _parentModel->parseExpression(strexpression);
+		//value = this->_myPrivateParser->parse(strexpression); // @TODO: must create another wrapper / driver
 	} catch (const std::exception& e) {
 		_parentModel->getTracer()->traceError(e, "Error parsing formula \"" + strexpression + "\"");
 	}
 	return value;
-}
-
-double Formula::value() {
-	return value("");
 }
 
 PluginInformation* Formula::GetPluginInformation() {
@@ -119,4 +111,8 @@ bool Formula::_check(std::string* errorMessage) {
 		resAll &= res;
 	}
 	return resAll;
+}
+
+void Formula::_createInternalAndAttachedData() {
+	this->_attachedDataInsert("Itself", this); // @TODO: Self reference to avoid it to be excluded during orphan checking, since no comonent knows its expression may have a formula
 }

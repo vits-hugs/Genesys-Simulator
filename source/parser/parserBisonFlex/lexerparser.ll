@@ -256,7 +256,7 @@ T
         datadef = driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), std::string(yytext));
         if (datadef != nullptr) { // it is a FORMULA
             Formula* form = static_cast<Formula*>(datadef);
-            //double formulaValue = form->getValue(); // return only formula ID
+            // return only formula ID. NEVER should call getValue in LL
 			//std::cout << "Found FORMULA " << form->getName() <<" ID " << form->getId() << std::endl;
             return yy::genesyspp_parser::make_FORM(obj_t(0, Util::TypeOf<Formula>(), form->getId()),loc);
         }

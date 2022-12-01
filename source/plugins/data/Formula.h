@@ -17,7 +17,7 @@
 #include "../../kernel/simulator/ModelDataDefinition.h"
 #include "../../kernel/simulator/ModelDataManager.h"
 #include "../../kernel/simulator/Plugin.h"
-#include "../../kernel/simulator/Parser_if.h"
+//#include "../../kernel/simulator/Parser_if.h"
 
 class Formula : public ModelDataDefinition {
 public:
@@ -27,23 +27,31 @@ public: // virtual
 	virtual std::string show();
 public:
 	unsigned int size();
-	void setExpression(std::string index, std::string formulaExpression);
-	void setExpression(std::string formulaExpression);
-	std::string expression(std::string index);
-	std::string expression();
-	double value();
-	double value(std::string index);
+	void setExpression(std::string formulaExpression, std::string index = "");
+	//void setExpression(std::string formulaExpression);
+	std::string getExpression(std::string index = "");
+	//std::string getExpression();
+	//double getValue();
+	double getValue(std::string index);
 public: // statics
 	static PluginInformation* GetPluginInformation();
 	static ModelDataDefinition* LoadInstance(Model* model, PersistenceRecord *fields);
 	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
-protected: // must be overriden 
+protected: // must be overriden by derived classes
 	virtual bool _loadInstance(PersistenceRecord *fields);
 	virtual void _saveInstance(PersistenceRecord *fields, bool saveDefaultValues);
+protected: // could be overriden by derived classes
 	virtual bool _check(std::string* errorMessage);
-private:
+	/*! This method returns all changes in the parser that are needed by plugins of this ModelDatas. When connecting a new plugin, ParserChangesInformation are used to change parser source code, whch is after compiled and dinamically linked to to simulator kernel to reflect the changes */
+	//virtual ParserChangesInformation* _getParserChangesInformation();
+	//virtual void _initBetweenReplications();
+	/*! This method is necessary only for those components that instantiate internal elements that must exist before simulation starts and even before model checking. That's the case of components that have internal StatisticsCollectors, since others components may refer to them as expressions (as in "TVAG(ThisCSTAT)") and therefore the modeldatum must exist before checking such expression */
+	virtual void _createInternalAndAttachedData(); /*< A ModelDataDefinition or ModelComponent that includes (internal) ou refers to (attach) other ModelDataDefinition must register them inside this method. */
+	//virtual void _addProperty(PropertyBase* property);
 private:
 	std::map<std::string, std::string>* _formulaExpressions = new std::map<std::string, std::string>(); // map<index,formula>
+private:
+	///*static*/ Parser_if* _myPrivateParser;
 };
 
 #endif /* FORMULA_H */

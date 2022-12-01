@@ -323,19 +323,19 @@
       <rule number="43" usefulness="useful">
         <lhs>function</lhs>
         <rhs>
-          <symbol>pluginFunction</symbol>
+          <symbol>elementFunction</symbol>
         </rhs>
       </rule>
       <rule number="44" usefulness="useful">
         <lhs>function</lhs>
         <rhs>
-          <symbol>userFunction</symbol>
+          <symbol>pluginFunction</symbol>
         </rhs>
       </rule>
       <rule number="45" usefulness="useful">
         <lhs>function</lhs>
         <rhs>
-          <symbol>elementFunction</symbol>
+          <symbol>userFunction</symbol>
         </rhs>
       </rule>
       <rule number="46" usefulness="useful">
@@ -3640,13 +3640,13 @@
 
     <state number="65">
       <itemset>
-        <item rule-number="45" dot="1"/>
+        <item rule-number="43" dot="1"/>
       </itemset>
       <actions>
         <transitions/>
         <errors/>
         <reductions>
-          <reduction symbol="$default" rule="45" enabled="true"/>
+          <reduction symbol="$default" rule="43" enabled="true"/>
         </reductions>
       </actions>
       <solved-conflicts/>
@@ -3696,13 +3696,13 @@
 
     <state number="69">
       <itemset>
-        <item rule-number="44" dot="1"/>
+        <item rule-number="45" dot="1"/>
       </itemset>
       <actions>
         <transitions/>
         <errors/>
         <reductions>
-          <reduction symbol="$default" rule="44" enabled="true"/>
+          <reduction symbol="$default" rule="45" enabled="true"/>
         </reductions>
       </actions>
       <solved-conflicts/>
@@ -3766,13 +3766,13 @@
 
     <state number="74">
       <itemset>
-        <item rule-number="43" dot="1"/>
+        <item rule-number="44" dot="1"/>
       </itemset>
       <actions>
         <transitions/>
         <errors/>
         <reductions>
-          <reduction symbol="$default" rule="43" enabled="true"/>
+          <reduction symbol="$default" rule="44" enabled="true"/>
         </reductions>
       </actions>
       <solved-conflicts/>

@@ -59,6 +59,7 @@
 #include "../../plugins/data/EntityGroup.h"
 #include "../../plugins/data/Failure.h"
 #include "../../plugins/data/File.h"
+#include "../../plugins/data/Formula.h"
 #include "../../plugins/data/Label.h"
 #include "../../plugins/data/Schedule.h"
 #include "../../plugins/data/Sequence.h"
@@ -179,8 +180,8 @@ Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilen
 		GetInfo = &CppForG::GetPluginInformation;
 	else if (fn == "unstore.so")
 		GetInfo = &Unstore::GetPluginInformation;
-		//else if (fn == "expression.so")
-		//	GetInfo = &Expression::GetPluginInformation;
+	else if (fn == "formula.so")
+		GetInfo = &Formula::GetPluginInformation;
 	else if (fn == "failure.so")
 		GetInfo = &Failure::GetPluginInformation;
 	else if (fn == "file.so")

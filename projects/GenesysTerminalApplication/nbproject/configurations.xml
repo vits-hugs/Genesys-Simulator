@@ -274,8 +274,6 @@
                        displayName="parserBisonFlex"
                        projectFiles="true">
           <itemPath>../../source/parser/parserBisonFlex/Makefile</itemPath>
-          <itemPath>../../source/parser/parserBisonFlex/bisonparser.dot</itemPath>
-          <itemPath>../../source/parser/parserBisonFlex/bisonparser.xml</itemPath>
           <itemPath>../../source/parser/parserBisonFlex/bisonparser.yy</itemPath>
           <itemPath>../../source/parser/parserBisonFlex/lexerparser.ll</itemPath>
         </logicalFolder>
@@ -1554,16 +1552,6 @@
       <item path="../../source/parser/obj_t.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="../../source/parser/parserBisonFlex/Makefile"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/parser/parserBisonFlex/bisonparser.dot"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/parser/parserBisonFlex/bisonparser.xml"
             ex="false"
             tool="3"
             flavor2="0">
@@ -3335,16 +3323,6 @@
       <item path="../../source/parser/obj_t.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="../../source/parser/parserBisonFlex/Makefile"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/parser/parserBisonFlex/bisonparser.dot"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/parser/parserBisonFlex/bisonparser.xml"
             ex="false"
             tool="3"
             flavor2="0">

@@ -172,6 +172,7 @@ void BaseGenesysTerminalApplication::insertFakePluginsByHand(Simulator* simulato
 	pm->insert("store.so");
 	pm->insert("unstore.so");
 	pm->insert("expression.so");
+	pm->insert("formula.so");
 	pm->insert("failure.so");
 	pm->insert("file.so");
 	pm->insert("storage.so");
