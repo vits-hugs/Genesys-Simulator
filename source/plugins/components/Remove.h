@@ -46,9 +46,10 @@ public: // constructors
 public: // virtual
 	virtual std::string show();
 public:
-	void setRemoveFromRank(std::string _removeFromRank);
-	std::string getRemoveFromRank() const;
-	void setRemoveFromType(Remove::RemoveFromType _removeFromType);
+	void setRemoveStartRank(std::string _removeFromRank);
+	std::string getRemoveStartRank() const;
+    void setRemoveEndRank(std::string _removeEndRank);
+    std::string getRemoveEndRank() const;	void setRemoveFromType(Remove::RemoveFromType _removeFromType);
 	Remove::RemoveFromType getRemoveFromType() const;
 	void setRemoveFrom(ModelDataDefinition* _removeFrom);
 	ModelDataDefinition* getRemoveFrom() const;
@@ -74,11 +75,14 @@ private: // attributes 1:1
 
 	const struct DEFAULT_VALUES {
 		Remove::RemoveFromType removeFromType = Remove::RemoveFromType::QUEUE;
-		std::string removeFromRank = "";
+		std::string removeStartRank = "";
+		std::string removeEndRank = "";
 	} DEFAULT;
 	ModelDataDefinition* _removeFrom = nullptr;
 	Remove::RemoveFromType _removeFromType = DEFAULT.removeFromType;
-	std::string _removeFromRank = DEFAULT.removeFromRank;
+	std::string _removeStartRank = DEFAULT.removeStartRank;
+	std::string _removeEndRank = DEFAULT.removeStartRank;
+	//std::string _removeFromRank = DEFAULT.removeFromRank;
 
 private: // attributes 1:n
 };

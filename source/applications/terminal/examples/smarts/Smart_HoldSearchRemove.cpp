@@ -58,7 +58,7 @@ int Smart_HoldSearchRemove::main(int argc, char** argv) {
 	search1->setEndRank("NQ(HoldQueue)-1");
 	Remove* remove1 = plugins->newInstance<Remove>(model);
 	remove1->setRemoveFrom(queue1);
-	remove1->setRemoveFromRank("rankFound");
+	remove1->setRemoveStartRank("rankFound");
 	Dispose* dispose1 = plugins->newInstance<Dispose>(model);
 	Dispose* dispose2 = plugins->newInstance<Dispose>(model);
 	Dispose* dispose3 = plugins->newInstance<Dispose>(model, "No entity will ever arrive here");
