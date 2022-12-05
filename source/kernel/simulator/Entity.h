@@ -92,8 +92,8 @@ public:
 	double getAttributeValue(std::string index, std::string attributeName);
 	double getAttributeValue(Util::identification attributeID);
 	double getAttributeValue(std::string index, Util::identification attributeID);
-	void setAttributeValue(std::string attributeName, double value);
-	void setAttributeValue(std::string index, std::string attributeName, double value);
+	void setAttributeValue(std::string attributeName, double value, bool createIfNotFound = false);
+	void setAttributeValue(std::string index, std::string attributeName, double value, bool createIfNotFound=false);
 	void setAttributeValue(Util::identification attributeID, double value);
 	void setAttributeValue(std::string index, Util::identification attributeID, double value);
 	Util::identification entityNumber() const;

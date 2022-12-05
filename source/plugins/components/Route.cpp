@@ -143,9 +143,10 @@ void Route::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 		_numberIn->incCountValue();
 	// adds the route time to the TransferTime statistics / attribute related to the Entitys
 	double routeTime = _parentModel->parseExpression(_routeTimeExpression) * Util::TimeUnitConvert(_routeTimeTimeUnit, _parentModel->getSimulation()->getReplicationBaseTimeUnit());
-	if (entity->getEntityType()->isReportStatistics())
+	if (entity->getEntityType()->isReportStatistics()) {
 		entity->getEntityType()->addGetStatisticsCollector(entity->getEntityTypeName() + ".TransferTime")->getStatistics()->getCollector()->addValue(routeTime);
-	entity->setAttributeValue("Entity.TotalTransferTime", entity->getAttributeValue("Entity.TotalTransferTime") + routeTime);
+		entity->setAttributeValue("Entity.TotalTransferTime", entity->getAttributeValue("Entity.TotalTransferTime") + routeTime, true);
+	}
 	if (routeTime > 0.0) {
 		// calculates when this Entity will reach the end of this route and schedule this Event
 		double routeEndTime = _parentModel->getSimulation()->getSimulatedTime() + routeTime;

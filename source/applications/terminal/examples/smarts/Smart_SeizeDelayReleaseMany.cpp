@@ -55,8 +55,10 @@ int Smart_SeizeDelayReleaseMany::main(int argc, char** argv) {
 	seize1->getSeizeRequests()->insert(new SeizableItem(machine4));
 	seize1->getSeizeRequests()->insert(new SeizableItem(machine5));
 	seize1->setQueue(queueSeize1);
+	seize1->setAllocationType(Util::AllocationType::Others);
 	Delay* delay1 = plugins->newInstance<Delay>(m);
 	delay1->setDelayExpression("unif(0.6,1.5)");
+	delay1->setAllocation(Util::AllocationType::ValueAdded);
 	Release* release1 = plugins->newInstance<Release>(m);
 	release1->getReleaseRequests()->insert(new SeizableItem(machine1));
 	release1->getReleaseRequests()->insert(new SeizableItem(machine2));
@@ -78,6 +80,7 @@ int Smart_SeizeDelayReleaseMany::main(int argc, char** argv) {
 		sim->start(); //step();
 		//std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
 	} while (sim->isPaused());
+	for(int i=0;i<1e6;i++);
 	delete genesys;
 	return 0;
 };

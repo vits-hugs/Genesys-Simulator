@@ -132,8 +132,8 @@ public:
 public: // get & set
 	void setPriority(unsigned short _priority);
 	unsigned short getPriority() const;
-	void setAllocationType(unsigned int _allocationType);
-	unsigned int getAllocationType() const;
+	void setAllocationType(Util::AllocationType _allocationType);
+	Util::AllocationType getAllocationType() const;
 	// indirect access to Queue* and Resource*
 	//void setResourceName(std::string _resourceName) throw ();
 	//std::string getResourceName() const;
@@ -159,13 +159,13 @@ private:
 	Queue* _getQueue() const;
 public:
 	const struct DEFAULT_VALUES {
-		const unsigned int allocationType = 0; // uint ? enum?
+		const Util::AllocationType allocationType = Util::AllocationType::Others;
 		const unsigned short priority = 0;
 		const unsigned int seizeRequestSize = 1;
 		const std::string saveAttribute = "";
 	} DEFAULT;
 private:
-	unsigned int _allocationType = DEFAULT.allocationType; // uint ? enum?
+	Util::AllocationType _allocationType = DEFAULT.allocationType; // uint ? enum?
 	unsigned short _priority = DEFAULT.priority;
 	std::string _saveAttribute = DEFAULT.saveAttribute;
 	QueueableItem* _queueableItem = nullptr; // usually has a queue, but not always (it could be a hold or a set)

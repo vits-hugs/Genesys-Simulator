@@ -61,8 +61,8 @@ private:
 private:
 
 	const struct DEFAULT_VALUES {
-		std::string initialPicture = "report";
-		double initialCost = 0.0;
+		const std::string initialPicture = "report";
+		const double initialCost = 0.0;
 	} DEFAULT;
 	std::string _initialPicture = DEFAULT.initialPicture;
 	double _initialVACost = DEFAULT.initialCost;

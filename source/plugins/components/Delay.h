@@ -50,6 +50,8 @@ public:
 	double delay() const;
 	void setDelayTimeUnit(Util::TimeUnit _delayTimeUnit);
 	Util::TimeUnit delayTimeUnit() const;
+    void setAllocation(Util::AllocationType allocation);
+    Util::AllocationType getAllocation() const;
 public:
 	virtual std::string show();
 public:
@@ -68,11 +70,13 @@ public:
 	const struct DEFAULT_VALUES {
 		const std::string delayExpression = "1.0";
 		const Util::TimeUnit delayTimeUnit = Util::TimeUnit::second;
+		const Util::AllocationType allocation = Util::AllocationType::Wait; 
 		
 	} DEFAULT;
 private:
 	std::string _delayExpression = DEFAULT.delayExpression;
 	Util::TimeUnit _delayTimeUnit = DEFAULT.delayTimeUnit;
+	Util::AllocationType _allocation = DEFAULT.allocation;
 private: // inner internel elements
 	StatisticsCollector* _cstatWaitTime = nullptr;
 };

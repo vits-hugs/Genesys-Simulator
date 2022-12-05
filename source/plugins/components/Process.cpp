@@ -45,11 +45,11 @@ unsigned short Process::getPriority() const {
 	return _seize->getPriority();
 }
 
-void Process::setAllocationType(EntityType::AllocationType _allocationType) {
+void Process::setAllocationType(Util::AllocationType _allocationType) {
 	_seize->setAllocationType(_allocationType);
 }
 
-EntityType::AllocationType Process::getAllocationType() const {
+Util::AllocationType Process::getAllocationType() const {
 	return _seize->getAllocationType();
 }
 
@@ -119,7 +119,7 @@ void Process::_adjustConnections() {
 bool Process::_loadInstance(PersistenceRecord *fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
-		_seize->setAllocationType(static_cast<EntityType::AllocationType>(fields->loadField("allocationType", static_cast<int>(_seize->DEFAULT.allocationType))));
+		_seize->setAllocationType(static_cast<Util::AllocationType>(fields->loadField("allocationType", static_cast<int>(_seize->DEFAULT.allocationType))));
 		_seize->setPriority(fields->loadField("priority", _seize->DEFAULT.priority));
 		_seize->setSaveAttribute(fields->loadField("saveAttribute", _seize->DEFAULT.saveAttribute));
 		QueueableItem* queueableItem = new QueueableItem(nullptr);

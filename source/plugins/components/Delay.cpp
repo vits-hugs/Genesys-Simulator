@@ -26,6 +26,14 @@ ModelDataDefinition* Delay::NewInstance(Model* model, std::string name) {
 	return new Delay(model, name);
 }
 
+void Delay::setAllocation(Util::AllocationType allocation) {
+	_allocation = allocation;
+}
+
+Util::AllocationType Delay::getAllocation() const {
+	return _allocation;
+}
+
 Delay::Delay(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Delay>(), name) {
 	PropertyT<std::string>* prop1 = new PropertyT<std::string>(Util::TypeOf<Delay>(), "Delay Expression",
 			DefineGetter<Delay, std::string>(this, &Delay::delayExpression),
@@ -79,12 +87,13 @@ void Delay::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 	Util::TimeUnit stu = _parentModel->getSimulation()->getReplicationBaseTimeUnit(); //getReplicationLengthTimeUnit();
 	waitTime *= Util::TimeUnitConvert(_delayTimeUnit, stu);
 	if (_reportStatistics) {
+		std::string allocationCategory = Util::StrAllocation(_allocation);
 		_cstatWaitTime->getStatistics()->getCollector()->addValue(waitTime);
 		if (entity->getEntityType()->isReportStatistics())
-			entity->getEntityType()->addGetStatisticsCollector(entity->getEntityTypeName() + ".WaitTime")->getStatistics()->getCollector()->addValue(waitTime);
+			entity->getEntityType()->addGetStatisticsCollector(entity->getEntityTypeName() + "." + allocationCategory+ "Time")->getStatistics()->getCollector()->addValue(waitTime);
+		double totalWaitTime = entity->getAttributeValue("Entity.Total" + allocationCategory + "Time");
+		entity->setAttributeValue("Entity.Total" + allocationCategory + "Time", totalWaitTime + waitTime, true);
 	}
-	double totalWaitTime = entity->getAttributeValue("Entity.TotalWaitTime");
-	entity->setAttributeValue("Entity.TotalWaitTime", totalWaitTime + waitTime);
 	double delayEndTime = _parentModel->getSimulation()->getSimulatedTime() + waitTime;
 	Event* newEvent = new Event(delayEndTime, entity, this->getConnections()->getFrontConnection());
 	_parentModel->getFutureEvents()->insert(newEvent);
@@ -106,6 +115,7 @@ bool Delay::_loadInstance(PersistenceRecord *fields) {
 	if (res) {
 		this->_delayExpression = fields->loadField("delayExpression", DEFAULT.delayExpression);
 		this->_delayTimeUnit = fields->loadField("delayExpressionTimeUnit", DEFAULT.delayTimeUnit);
+		this->_allocation = static_cast<Util::AllocationType> (fields->loadField("allocation", static_cast<int> (DEFAULT.allocation)));
 	}
 	return res;
 }
@@ -114,25 +124,26 @@ void Delay::_saveInstance(PersistenceRecord *fields, bool saveDefaultValues) {
 	ModelComponent::_saveInstance(fields, saveDefaultValues);
 	fields->saveField("delayExpression", this->_delayExpression, DEFAULT.delayExpression, saveDefaultValues);
 	fields->saveField("delayExpressionTimeUnit", _delayTimeUnit, DEFAULT.delayTimeUnit, saveDefaultValues);
+	fields->saveField("allocation", static_cast<int> (_allocation), static_cast<int> (DEFAULT.allocation), saveDefaultValues);
 }
 
 bool Delay::_check(std::string* errorMessage) {
-	_attachedAttributesInsert({"Entity.TotalWaitTime"});
 	return _parentModel->checkExpression(_delayExpression, "Delay expression", errorMessage);
 }
 
 void Delay::_createInternalAndAttachedData() {
 	if (_reportStatistics && _cstatWaitTime == nullptr) {
-		_cstatWaitTime = new StatisticsCollector(_parentModel, getName() + "." + "WaitTime", this);
-		_internalDataInsert("WaitTime", _cstatWaitTime);
+		_attachedAttributesInsert({"Entity.Total" + Util::StrAllocation(_allocation)+"Time"});
+		_cstatWaitTime = new StatisticsCollector(_parentModel, getName() + "." + "DelayTime", this);
+		_internalDataInsert("DelayTime", _cstatWaitTime);
 		// include StatisticsCollector needed in EntityType
 		ModelDataManager* elements = _parentModel->getDataManager();
 		std::list<ModelDataDefinition*>* enttypes = elements->getDataDefinitionList(Util::TypeOf<EntityType>())->list();
-		for (ModelDataDefinition* modeldatum : *enttypes) {
-			EntityType* enttype = static_cast<EntityType*> (modeldatum);
-			if (modeldatum->isReportStatistics())
-				enttype->addGetStatisticsCollector(enttype->getName() + ".WaitTime"); // force create this CStat before simulation starts
-		}
+		//for (ModelDataDefinition* modeldatum : *enttypes) {
+		//	EntityType* enttype = static_cast<EntityType*> (modeldatum);
+		//	if (modeldatum->isReportStatistics())
+		//		enttype->addGetStatisticsCollector(enttype->getName() + ".DelayTime");
+		//}
 	} else {
 		_internalDataClear();
 		// @TODO remove StatisticsCollector needed in EntityType

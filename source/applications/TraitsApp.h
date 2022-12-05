@@ -53,7 +53,7 @@
 #include "terminal/examples/smarts/Smart_WaitSignal.h"
 #include "terminal/examples/smarts/Smart_CppForG.h"
 // Smarts from ModelSim students 2022-2
-//#include "terminal/examples/smarts/Smart_ValueAdded.h"
+#include "terminal/examples/smarts/Smart_ValueAdded.h"
 
 
 // teachng
@@ -84,7 +84,7 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Smart_Dummy Application;
 	//typedef Smart_Failures Application;
 	//typedef Smart_FiniteStateMachine Application;
-	typedef Smart_HoldSearchRemove Application;
+	//typedef Smart_HoldSearchRemove Application;
 	//typedef Smart_ModelInfoModelSimulation Application;
 	//typedef Smart_ODE Application;
 	//typedef Smart_OnEvent Application;
@@ -96,7 +96,7 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Smart_RouteStation Application;
 	//typedef Smart_SeizeDelayRelease Application;
 	//typedef Smart_SeizeDelayReleaseNoDataDefs Application;
-	//typedef Smart_SeizeDelayReleaseMany Application;
+	typedef Smart_SeizeDelayReleaseMany Application;
 	//typedef Smart_Sequence Application;
 	//typedef Smart_SimulationControlResponse Application;
 	//typedef Smart_ValueAdded Application;

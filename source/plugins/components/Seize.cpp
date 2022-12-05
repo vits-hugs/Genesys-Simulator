@@ -71,11 +71,11 @@ unsigned short Seize::getPriority() const {
 	return _priority;
 }
 
-void Seize::setAllocationType(unsigned int _allocationType) {
+void Seize::setAllocationType(Util::AllocationType _allocationType) {
 	this->_allocationType = _allocationType;
 }
 
-unsigned int Seize::getAllocationType() const {
+Util::AllocationType Seize::getAllocationType() const {
 	return _allocationType;
 }
 
@@ -152,6 +152,7 @@ void Seize::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 			_parentModel->getTracer()->traceSimulation(this, _parentModel->getSimulation()->getSimulatedTime(), entity, this, "Entity starts to wait for resource in queue \"" + queue->getName() + "\" with " + std::to_string(queue->size()) + " elements");
 			return;
 		} else { // alocate the resource
+			entity->setAttributeValue("Entity.Allocation."+resource->getName(), static_cast<int>(this->_allocationType), true);
 			_parentModel->getTracer()->traceSimulation(this, _parentModel->getSimulation()->getSimulatedTime(), entity, this, entity->getName() + " seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\" (capacity:" + std::to_string(resource->getCapacity()) + ", numberbusy:" + std::to_string(resource->getNumberBusy()) + ")");
 		}
 	}
@@ -161,7 +162,7 @@ void Seize::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 bool Seize::_loadInstance(PersistenceRecord *fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
-		this->_allocationType = fields->loadField("allocationType", DEFAULT.allocationType);
+		this->_allocationType = static_cast<Util::AllocationType>(fields->loadField("allocationType", static_cast<int>(DEFAULT.allocationType)));
 		this->_priority = fields->loadField("priority", DEFAULT.priority);
 		this->_saveAttribute = fields->loadField("saveAttribute", DEFAULT.saveAttribute);
 		_queueableItem = new QueueableItem(nullptr);
@@ -180,7 +181,7 @@ bool Seize::_loadInstance(PersistenceRecord *fields) {
 
 void Seize::_saveInstance(PersistenceRecord *fields, bool saveDefaultValues) {
 	ModelComponent::_saveInstance(fields, saveDefaultValues);
-	fields->saveField("allocationType", _allocationType, DEFAULT.allocationType, saveDefaultValues);
+	fields->saveField("allocationType", static_cast<int>(_allocationType), static_cast<int>(DEFAULT.allocationType), saveDefaultValues);
 	fields->saveField("priority=", _priority, DEFAULT.priority, saveDefaultValues);
 	fields->saveField("saveAttribute=", _saveAttribute, DEFAULT.saveAttribute, saveDefaultValues);
 	if (_queueableItem != nullptr) {
@@ -206,6 +207,7 @@ void Seize::_initBetweenReplications() {
 }
 
 void Seize::_createInternalAndAttachedData() {
+	//_attachedAttributesInsert({"Entity.Allocation"});
 	int i = 0;
 	for (SeizableItem* seizable : *_seizeRequests->list()) {
 		if (seizable->getSeizableType() == SeizableItem::SeizableType::RESOURCE) {

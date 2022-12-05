@@ -192,7 +192,13 @@ public:
 		day = 8,
 		week = 9
 	};
-	//static std::string ToStrTimeUnit(TimeUnit tu);
+	static std::string StrTimeUnitShort(Util::TimeUnit timeUnit);
+	static std::string StrTimeUnitLong(Util::TimeUnit timeUnit);
+
+	enum class AllocationType : int {
+		ValueAdded = 1, NonValueAdded = 2, Transfer = 3, Wait = 4, Others = 5
+	};
+	static std::string StrAllocation(Util::AllocationType allocation);
 
 private:
 	static unsigned int _S_indentation;
@@ -207,8 +213,6 @@ public: // indentation and string
 	static void SepKeyVal(std::string str, std::string *key, std::string *value);
 	static std::string Indent();
 	static std::string SetW(std::string text, unsigned short width);
-	static std::string StrTimeUnitShort(Util::TimeUnit timeUnit);
-	static std::string StrTimeUnitLong(Util::TimeUnit timeUnit);
 public: // identitification //@TODO: CHECK ALL, since some should be private and available to FRIEND classes in the kernel
 	static Util::identification GenerateNewId();
 	static Util::identification GenerateNewIdOfType(std::string objtype);

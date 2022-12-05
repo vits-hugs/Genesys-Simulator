@@ -100,6 +100,23 @@ std::string Util::StrTimeUnitLong(Util::TimeUnit timeUnit) {
 	return "";
 }
 
+std::string Util::StrAllocation(Util::AllocationType allocation) {
+	switch (allocation) {
+		case Util::AllocationType::NonValueAdded:
+			return "NonValueAdded";
+		case Util::AllocationType::Others:
+			return "Others";
+		case Util::AllocationType::Transfer:
+			return "Transfer";
+		case Util::AllocationType::ValueAdded:
+			return "ValueAdded";
+		case Util::AllocationType::Wait:
+			return "Wait";
+		default:
+			return "Unknown";
+	}
+}
+
 Util::identification Util::GenerateNewId() {
 	Util::_S_lastId++;
 	return Util::_S_lastId;

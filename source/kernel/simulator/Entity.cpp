@@ -81,7 +81,6 @@ std::string Entity::show() {
 }
 
 double Entity::getAttributeValue(std::string attributeName) {
-
 	return getAttributeValue("", attributeName);
 }
 
@@ -89,6 +88,10 @@ double Entity::getAttributeValue(std::string index, std::string attributeName) {
 	int rank = _parentModel->getDataManager()->getRankOf(Util::TypeOf<Attribute>(), attributeName);
 	if (rank >= 0) {
 		std::map<std::string, double>* map = this->_attributeValues->getAtRank(rank);
+		if (map == nullptr) {
+			map = new std::map<std::string, double>();
+			_attributeValues->setAtRank(rank, map);
+		}
 		std::map<std::string, double>::iterator mapIt = map->find(index);
 		if (mapIt != map->end()) {//found
 			return (*mapIt).second;
@@ -101,7 +104,6 @@ double Entity::getAttributeValue(std::string index, std::string attributeName) {
 }
 
 double Entity::getAttributeValue(Util::identification attributeID) {
-
 	return getAttributeValue("", attributeID);
 }
 
@@ -115,38 +117,46 @@ double Entity::getAttributeValue(std::string index, Util::identification attribu
 	return 0.0; // attribute not found
 }
 
-void Entity::setAttributeValue(std::string attributeName, double value) {
-	setAttributeValue("", attributeName, value);
+void Entity::setAttributeValue(std::string attributeName, double value, bool createIfNotFound) {
+	setAttributeValue("", attributeName, value, createIfNotFound);
 }
 
-void Entity::setAttributeValue(std::string index, std::string attributeName, double value) {
+void Entity::setAttributeValue(std::string index, std::string attributeName, double value, bool createIfNotFound) {
 	int rank = _parentModel->getDataManager()->getRankOf(Util::TypeOf<Attribute>(), attributeName);
+	if (rank < 0) {
+		if (createIfNotFound) {
+			new Attribute(_parentModel, attributeName);
+			rank = _parentModel->getDataManager()->getRankOf(Util::TypeOf<Attribute>(), attributeName);
+			std::map<std::string, double>* map = new std::map<std::string, double>();
+			_attributeValues->setAtRank(rank, map);
+		} else
+			_parentModel->getTracer()->traceError(TraceManager::Level::L3_errorRecover, "Attribute \"" + attributeName + "\" not found");
+	}
 	if (rank >= 0) {
 		std::map<std::string, double>* map = _attributeValues->getAtRank(rank);
+		if (map == nullptr) {
+			map = new std::map<std::string, double>();
+			_attributeValues->setAtRank(rank, map);
+		}
 		std::map<std::string, double>::iterator mapIt = map->find(index);
 		if (mapIt != map->end()) {//found
 			(*mapIt).second = value;
 		} else { // not found
 			map->insert({index, value}); // (map->end(), std::pair<std::string, double>(index, value));
 		}
-	} else
-		_parentModel->getTracer()->traceError(TraceManager::Level::L3_errorRecover, "Attribute \"" + attributeName + "\" not found");
-
+	}
 }
 
 void Entity::setAttributeValue(Util::identification attributeID, double value) {
-
 	setAttributeValue("", attributeID, value);
 }
 
 void Entity::setAttributeValue(std::string index, Util::identification attributeID, double value) {
-
 	std::string attrname = _parentModel->getDataManager()->getDataDefinition(Util::TypeOf<Attribute>(), attributeID)->getName();
 	setAttributeValue(index, attrname, value);
 }
 
 Util::identification Entity::entityNumber() const {
-
 	return _entityNumber;
 }
 
