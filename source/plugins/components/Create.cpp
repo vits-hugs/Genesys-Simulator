@@ -54,8 +54,9 @@ std::string Create::show() {
 void Create::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 	_parentModel->getDataManager()->insert(entity->getClassname(), entity);
 	double tnow = _parentModel->getSimulation()->getSimulatedTime();
-	entity->setAttributeValue("Entity.ArrivalTime", tnow); // ->find("Entity.ArrivalTime")->second->setValue(tnow);
-	//entity->setAttributeValue("Entity.Picture", 1); // ->find("Entity.ArrivalTime")->second->setValue(tnow);
+	entity->setAttributeValue("Entity.ArrivalTime", tnow);
+	entity->setAttributeValue("Entity.Type", (double) entity->getEntityType()->getId());
+	//entity->setAttributeValue("Entity.Picture", 1); 
 	double timeBetweenCreations, timeScale, newArrivalTime;
 	unsigned int _maxCreations = _parentModel->parseExpression(this->_maxCreationsExpression);
 	if (tnow != _lastArrival) {

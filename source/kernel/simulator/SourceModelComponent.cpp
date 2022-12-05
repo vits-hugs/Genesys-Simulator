@@ -81,7 +81,7 @@ bool SourceModelComponent::_check(std::string* errorMessage) {
 }
 
 void SourceModelComponent::_createInternalAndAttachedData() {
-	_attachedAttributesInsert({"Entity.ArrivalTime"});
+	_attachedAttributesInsert({"Entity.ArrivalTime", "Entity.Type"});
 	if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
 		if (this->_entityType == nullptr) {
 			_entityType = new EntityType(_parentModel, DEFAULT.entityTypename);

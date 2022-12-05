@@ -68,9 +68,11 @@ public:
 	static ModelComponent* LoadInstance(Model* model, PersistenceRecord *fields);
 	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
-	void setStation(Station* _station);
 	void setStationName(std::string stationName);
+	void setStation(Station* _station);
 	Station* getStation() const;
+    void setStationExpression(std::string _stationExpression);
+    std::string getStationExpression() const;
 	void setRouteTimeExpression(std::string _routeTimeExpression);
 	std::string getRouteTimeExpression() const;
 	void setRouteTimeTimeUnit(Util::TimeUnit _routeTimeTimeUnit);
@@ -91,10 +93,12 @@ private:
 
 	const struct DEFAULT_VALUES {
 		std::string routeTimeExpression = "0.0";
+		std::string stationExpression = "";
 		Util::TimeUnit routeTimeTimeUnit = Util::TimeUnit::second;
 		Route::DestinationType routeDestinationType = DestinationType::Station;
 	} DEFAULT;
 	std::string _routeTimeExpression = DEFAULT.routeTimeExpression;
+	std::string _stationExpression = DEFAULT.stationExpression;
 	Util::TimeUnit _routeTimeTimeUnit = DEFAULT.routeTimeTimeUnit;
 	Route::DestinationType _routeDestinationType = DEFAULT.routeDestinationType;
 private: // association
