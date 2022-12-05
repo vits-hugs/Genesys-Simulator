@@ -141,9 +141,9 @@ private: //methods
 private:
 
 	const struct DEFAULT_VALUES {
-		unsigned int capacity = 1;
-		double cost = 1.0;
-		ResourceState resourceState = ResourceState::IDLE;
+		const unsigned int capacity = 1;
+		const double cost = 1.0;
+		const ResourceState resourceState = ResourceState::IDLE;
 	} DEFAULT;
 	unsigned int _capacity = DEFAULT.capacity;
 	double _costBusyHour = DEFAULT.cost;

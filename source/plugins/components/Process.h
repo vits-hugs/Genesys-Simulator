@@ -35,8 +35,8 @@ public: // static
 public:
 	void setPriority(unsigned short _priority);
 	unsigned short getPriority() const;
-	void setAllocationType(unsigned int _allocationType);
-	unsigned int getAllocationType() const;
+	void setAllocationType(EntityType::AllocationType _allocationType);
+	EntityType::AllocationType getAllocationType() const;
 	List<SeizableItem*>* getSeizeRequests() const;
 	void setQueueableItem(QueueableItem* _queueableItem);
 	QueueableItem* getQueueableItem() const;

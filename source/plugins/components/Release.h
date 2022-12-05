@@ -87,8 +87,8 @@ protected:
 private:
 
 	const struct DEFAULT_VALUES {
-		unsigned short priority = 0;
-		unsigned int releaseRequestSize = 1;
+		const unsigned short priority = 0;
+		const unsigned int releaseRequestSize = 1;
 	} DEFAULT;
 	unsigned short _priority = DEFAULT.priority;
 	List<SeizableItem*>* _releaseRequests = new List<SeizableItem*>();

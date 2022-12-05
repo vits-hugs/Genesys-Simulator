@@ -54,8 +54,8 @@ protected: // virtual
 private: // methods
 private: // attributes 1:1
 	const struct DEFAULT_VALUES {
-		WriteToType writeToType = Write::WriteToType::SCREEN;
-		std::string filename = "";
+		const WriteToType writeToType = Write::WriteToType::SCREEN;
+		const std::string filename = "";
 	} DEFAULT;
 	WriteToType _writeToType = DEFAULT.writeToType;
 	std::string _filename = DEFAULT.filename;

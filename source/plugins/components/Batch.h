@@ -97,11 +97,11 @@ private: // methods
 private: // attributes 1:1
 
 	const struct DEFAULT_VALUES {
-		Batch::BatchType batchType = Batch::BatchType::Temporary;
-		Batch::Rule rule = Batch::Rule::Any;
-		Batch::GroupedAttribs groupedAttributes = Batch::GroupedAttribs::FirstEntity;
-		std::string batchSize = "2";
-		std::string attributeName = "";
+		const Batch::BatchType batchType = Batch::BatchType::Temporary;
+		const Batch::Rule rule = Batch::Rule::Any;
+		const Batch::GroupedAttribs groupedAttributes = Batch::GroupedAttribs::FirstEntity;
+		const std::string batchSize = "2";
+		const std::string attributeName = "";
 	} DEFAULT;
 	Batch::BatchType _batchType = DEFAULT.batchType;
 	Batch::Rule _rule = DEFAULT.rule;

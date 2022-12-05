@@ -68,6 +68,7 @@ public:
 	const struct DEFAULT_VALUES {
 		const std::string delayExpression = "1.0";
 		const Util::TimeUnit delayTimeUnit = Util::TimeUnit::second;
+		
 	} DEFAULT;
 private:
 	std::string _delayExpression = DEFAULT.delayExpression;

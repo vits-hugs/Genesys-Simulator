@@ -137,20 +137,20 @@ private:
 private:
 
 	const struct DEFAULT_VALUES {
-		unsigned int numberOfReplications = 1;
-		double replicationLength = 60.0; // by default, 60s = 1min
-		Util::TimeUnit replicationLengthTimeUnit = Util::TimeUnit::second;
-		Util::TimeUnit replicationBeseTimeUnit = Util::TimeUnit::second;
-		Util::TimeUnit replicationReportBaseTimeUnit = Util::TimeUnit::second;
-		double warmUpPeriod = 0.0;
-		Util::TimeUnit warmUpPeriodTimeUnit = Util::TimeUnit::second;
-		std::string terminatingCondition = "";
-		bool initializeStatisticsBetweenReplications = true;
-		bool initializeSystem = true;
-		bool showReportsAfterSimulation = true;
-		bool showReportsAfterReplication = true;
-		bool showSimulationControlsInReport = false;
-		bool showSimulationResposesInReport = false;
+		const unsigned int numberOfReplications = 1;
+		const double replicationLength = 60.0; // by default, 60s = 1min
+		const Util::TimeUnit replicationLengthTimeUnit = Util::TimeUnit::second;
+		const Util::TimeUnit replicationBeseTimeUnit = Util::TimeUnit::second;
+		const Util::TimeUnit replicationReportBaseTimeUnit = Util::TimeUnit::second;
+		const double warmUpPeriod = 0.0;
+		const Util::TimeUnit warmUpPeriodTimeUnit = Util::TimeUnit::second;
+		const std::string terminatingCondition = "";
+		const bool initializeStatisticsBetweenReplications = true;
+		const bool initializeSystem = true;
+		const bool showReportsAfterSimulation = true;
+		const bool showReportsAfterReplication = true;
+		const bool showSimulationControlsInReport = false;
+		const bool showSimulationResposesInReport = false;
 	} DEFAULT;
 	unsigned int _numberOfReplications = DEFAULT.numberOfReplications;
 	double _replicationLength = DEFAULT.replicationLength;

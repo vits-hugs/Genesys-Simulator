@@ -60,9 +60,9 @@ protected: // could be overriden
 private:
 
 	const struct DEFAULT_VALUES {
-		double totalArea = 1;
-		unsigned int capacity = 10;
-		double unitsPerArea = 1;
+		const double totalArea = 1;
+		const unsigned int capacity = 10;
+		const double unitsPerArea = 1;
 	} DEFAULT;
 	double _totalArea = DEFAULT.totalArea;
 	unsigned int _capacity = DEFAULT.capacity;

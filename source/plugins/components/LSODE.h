@@ -54,7 +54,7 @@ private: // methods
 private: // attributes 1:1
 
 	const struct DEFAULT_VALUES {
-		std::string filename = "";
+		const std::string filename = "";
 	} DEFAULT;
 	List<std::string>* _diffEquations = new List<std::string>();
 	Variable* _variable;

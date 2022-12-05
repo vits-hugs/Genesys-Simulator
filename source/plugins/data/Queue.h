@@ -136,8 +136,8 @@ private: //1::n
 private: //1::1
 
 	const struct DEFAULT_VALUES {
-		OrderRule orderRule = OrderRule::FIFO;
-		std::string attributeName = "";
+		const OrderRule orderRule = OrderRule::FIFO;
+		const std::string attributeName = "";
 	} DEFAULT;
 	OrderRule _orderRule = DEFAULT.orderRule;
 	std::string _attributeName = DEFAULT.attributeName;

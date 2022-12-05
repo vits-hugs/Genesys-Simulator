@@ -121,13 +121,13 @@ private:
 private:
 
 	const struct DEFAULT_VALUES {
-		FailureType failureType = FailureType::TIME;
-		FailureRule failureRule = FailureRule::IGNORE;
-		std::string countExpression = "";
-		std::string upTimeExpression = "";
-		Util::TimeUnit upTimeTimeUnit = Util::TimeUnit::second;
-		std::string downTimeExpression = "";
-		Util::TimeUnit downTimeTimeUnit = Util::TimeUnit::second;
+		const FailureType failureType = FailureType::TIME;
+		const FailureRule failureRule = FailureRule::IGNORE;
+		const std::string countExpression = "";
+		const std::string upTimeExpression = "";
+		const Util::TimeUnit upTimeTimeUnit = Util::TimeUnit::second;
+		const std::string downTimeExpression = "";
+		const Util::TimeUnit downTimeTimeUnit = Util::TimeUnit::second;
 	} DEFAULT;
 	FailureType _failureType = DEFAULT.failureType;
 	FailureRule _failureRule = DEFAULT.failureRule;

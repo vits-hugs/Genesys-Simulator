@@ -42,8 +42,8 @@ private: // methods
 private: // attributes 1:1
 
 	const struct DEFAULT_VALUES {
-		std::string someString = "Test";
-		unsigned int someUint = 1;
+		const std::string someString = "Test";
+		const unsigned int someUint = 1;
 	} DEFAULT;
 	std::string _someString = DEFAULT.someString;
 	unsigned int _someUint = DEFAULT.someUint;

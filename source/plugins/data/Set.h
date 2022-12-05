@@ -79,8 +79,8 @@ private:
 	//ElementManager* _elems;
 
 	const struct DEFAULT_VALUES {
-		unsigned int membersSize = 0;
-		std::string setOfType = Util::TypeOf<EntityType>();
+		const unsigned int membersSize = 0;
+		const std::string setOfType = Util::TypeOf<EntityType>();
 	} DEFAULT;
 	List<ModelDataDefinition*>* _elementSet = new List<ModelDataDefinition*>();
 	std::string _setOfType = DEFAULT.setOfType;

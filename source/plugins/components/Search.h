@@ -99,11 +99,11 @@ private: // methods
 private: // attributes 1:1
 
 	const struct DEFAULT_VALUES {
-		SearchInType searchInType = SearchInType::QUEUE; 		
-		std::string startRank = "";
-		std::string endRank = "";
-		std::string searchCondition = "";
-		std::string saveFounRankAttribute = "";
+		const SearchInType searchInType = SearchInType::QUEUE; 		
+		const std::string startRank = "";
+		const std::string endRank = "";
+		const std::string searchCondition = "";
+		const std::string saveFounRankAttribute = "";
 	} DEFAULT;
 	ModelDataDefinition* _searchIn = nullptr;
 	Search::SearchInType _searchInType = DEFAULT.searchInType;

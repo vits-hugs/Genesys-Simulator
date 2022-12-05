@@ -92,10 +92,10 @@ protected:
 private:
 
 	const struct DEFAULT_VALUES {
-		std::string routeTimeExpression = "0.0";
-		std::string stationExpression = "";
-		Util::TimeUnit routeTimeTimeUnit = Util::TimeUnit::second;
-		Route::DestinationType routeDestinationType = DestinationType::Station;
+		const std::string routeTimeExpression = "0.0";
+		const std::string stationExpression = "";
+		const Util::TimeUnit routeTimeTimeUnit = Util::TimeUnit::second;
+		const Route::DestinationType routeDestinationType = DestinationType::Station;
 	} DEFAULT;
 	std::string _routeTimeExpression = DEFAULT.routeTimeExpression;
 	std::string _stationExpression = DEFAULT.stationExpression;

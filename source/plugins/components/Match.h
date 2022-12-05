@@ -81,10 +81,10 @@ private: // methods
 private: // attributes 1:1
 
 	const struct DEFAULT_VALUES {
-		Match::Rule rule = Match::Rule::Any;
-		unsigned int numberOfQueues = 2;
-		std::string matchSize = "1";
-		std::string attributeName = "";
+		const Match::Rule rule = Match::Rule::Any;
+		const unsigned int numberOfQueues = 2;
+		const std::string matchSize = "1";
+		const std::string attributeName = "";
 	} DEFAULT;
 	Match::Rule _rule = DEFAULT.rule;
 	unsigned int _numberOfQueues = DEFAULT.numberOfQueues;

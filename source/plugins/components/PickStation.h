@@ -111,9 +111,9 @@ private: // methods
 private: // attributes 1:1
 
 	const struct DEFAULT_VALUES {
-		std::string saveAttribute = "";
-		PickStation::TestCondition testCondition = TestCondition::MINIMUM;
-		PickStation::PickCondition pickCondition = PickCondition::NUMBER_BUSY_RESOURCE;
+		const std::string saveAttribute = "";
+		const PickStation::TestCondition testCondition = TestCondition::MINIMUM;
+		const PickStation::PickCondition pickCondition = PickCondition::NUMBER_BUSY_RESOURCE;
 	} DEFAULT;
 	std::string _saveAttribute = DEFAULT.saveAttribute;
 	PickStation::TestCondition _testCondition = DEFAULT.testCondition; 

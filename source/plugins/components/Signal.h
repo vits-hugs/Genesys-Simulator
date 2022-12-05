@@ -63,7 +63,7 @@ protected: // could be overriden .
 private: // methods
 private: // attributes 1:1
 	const struct DEFAULT_VALUES {
-		std::string limitExpression = "1";
+		const std::string limitExpression = "1";
 	} DEFAULT;
 	std::string _limitExpression = DEFAULT.limitExpression;
 	unsigned int _signalsTriggered = 0;

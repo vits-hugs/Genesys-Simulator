@@ -46,7 +46,7 @@ private: // methods
 private: // attributes 1:1
 
 	const struct DEFAULT_VALUES {
-		std::string numClonesExpression = "1";
+		const std::string numClonesExpression = "1";
 	} DEFAULT;
 	std::string _numClonesExpression = DEFAULT.numClonesExpression;
 	Counter* _counter = nullptr;

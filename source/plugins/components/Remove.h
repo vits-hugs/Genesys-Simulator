@@ -74,9 +74,9 @@ private: // methods
 private: // attributes 1:1
 
 	const struct DEFAULT_VALUES {
-		Remove::RemoveFromType removeFromType = Remove::RemoveFromType::QUEUE;
-		std::string removeStartRank = "";
-		std::string removeEndRank = "";
+		const Remove::RemoveFromType removeFromType = Remove::RemoveFromType::QUEUE;
+		const std::string removeStartRank = "";
+		const std::string removeEndRank = "";
 	} DEFAULT;
 	ModelDataDefinition* _removeFrom = nullptr;
 	Remove::RemoveFromType _removeFromType = DEFAULT.removeFromType;

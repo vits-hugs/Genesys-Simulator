@@ -112,8 +112,8 @@ private: // methods
 	void _handlerForAfterProcessEventEvent(SimulationEvent* event);
 private: // attributes 1:1
 	const struct DEFAULT_VALUES {
-		WaitType waitType = Wait::WaitType::WaitForSignal;
-		std::string condition = "";
+		const WaitType waitType = Wait::WaitType::WaitForSignal;
+		const std::string condition = "";
 	} DEFAULT;
 	WaitType _waitType = DEFAULT.waitType;
 	std::string _condition = DEFAULT.condition;

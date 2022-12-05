@@ -65,9 +65,9 @@ protected: // could be overriden by derived classes
 protected:
 
 	const struct DEFAULT_VALUES {
-		unsigned int nextSize = 1;
-		unsigned int nextinputPortNumber = 0;
-		std::string description = "";
+		const unsigned int nextSize = 1;
+		const unsigned int nextinputPortNumber = 0;
+		const std::string description = "";
 	} DEFAULT;
 	std::string _description = DEFAULT.description;
 	ConnectionManager* _connections = new ConnectionManager();
