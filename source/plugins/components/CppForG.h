@@ -13,7 +13,7 @@
 #pragma once
 
 #include "../../kernel/simulator/ModelComponent.h"
-#include "../data/CppCode.h"
+#include "../data/DynamicLinkedCode.h"
 
 /*!
  This component ...
@@ -42,7 +42,7 @@ protected: // virtual
 private: // methods
 private: // attributes 1:1
 	// internel
-	CppCode* _cppcode = nullptr;
+	DynamicLinkedCode* _cppcode = nullptr;
 private: // attributes 1:n
 };
 

@@ -55,7 +55,7 @@
 
 
 // Model data definitions
-#include "../../plugins/data/CppCode.h"
+#include "../../plugins/data/DynamicLinkedCode.h"
 #include "../../plugins/data/EntityGroup.h"
 #include "../../plugins/data/Failure.h"
 #include "../../plugins/data/File.h"
@@ -200,8 +200,8 @@ Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilen
 		GetInfo = &Start::GetPluginInformation;
 	else if (fn == "stop.so")
 		GetInfo = &Stop::GetPluginInformation;
-	else if (fn == "cppcode.so")
-		GetInfo = &CppCode::GetPluginInformation;
+	else if (fn == "dynamiclinkedcode.so")
+		GetInfo = &DynamicLinkedCode::GetPluginInformation;
 	else if (fn == "efsm.so")
 		GetInfo = &FiniteStateMachine::GetPluginInformation;
 	else if (fn == "efsmData.so")

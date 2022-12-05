@@ -167,8 +167,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/f13e5db9/Wait.o \
 	${OBJECTDIR}/_ext/f13e5db9/Write.o \
 	${OBJECTDIR}/_ext/ccae408d/AssignmentItem.o \
-	${OBJECTDIR}/_ext/ccae408d/CppCode.o \
 	${OBJECTDIR}/_ext/ccae408d/DummyElement.o \
+	${OBJECTDIR}/_ext/ccae408d/DynamicLinkedCode.o \
 	${OBJECTDIR}/_ext/ccae408d/EFSM.o \
 	${OBJECTDIR}/_ext/ccae408d/EntityGroup.o \
 	${OBJECTDIR}/_ext/ccae408d/Failure.o \
@@ -888,15 +888,15 @@ ${OBJECTDIR}/_ext/ccae408d/AssignmentItem.o: ../../source/plugins/data/Assignmen
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/AssignmentItem.o ../../source/plugins/data/AssignmentItem.cpp
 
-${OBJECTDIR}/_ext/ccae408d/CppCode.o: ../../source/plugins/data/CppCode.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/ccae408d
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/CppCode.o ../../source/plugins/data/CppCode.cpp
-
 ${OBJECTDIR}/_ext/ccae408d/DummyElement.o: ../../source/plugins/data/DummyElement.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/ccae408d
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/DummyElement.o ../../source/plugins/data/DummyElement.cpp
+
+${OBJECTDIR}/_ext/ccae408d/DynamicLinkedCode.o: ../../source/plugins/data/DynamicLinkedCode.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/ccae408d
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/DynamicLinkedCode.o ../../source/plugins/data/DynamicLinkedCode.cpp
 
 ${OBJECTDIR}/_ext/ccae408d/EFSM.o: ../../source/plugins/data/EFSM.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/ccae408d
@@ -2748,19 +2748,6 @@ ${OBJECTDIR}/_ext/ccae408d/AssignmentItem_nomain.o: ${OBJECTDIR}/_ext/ccae408d/A
 	    ${CP} ${OBJECTDIR}/_ext/ccae408d/AssignmentItem.o ${OBJECTDIR}/_ext/ccae408d/AssignmentItem_nomain.o;\
 	fi
 
-${OBJECTDIR}/_ext/ccae408d/CppCode_nomain.o: ${OBJECTDIR}/_ext/ccae408d/CppCode.o ../../source/plugins/data/CppCode.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/ccae408d
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/ccae408d/CppCode.o`; \
-	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
-	then  \
-	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/CppCode_nomain.o ../../source/plugins/data/CppCode.cpp;\
-	else  \
-	    ${CP} ${OBJECTDIR}/_ext/ccae408d/CppCode.o ${OBJECTDIR}/_ext/ccae408d/CppCode_nomain.o;\
-	fi
-
 ${OBJECTDIR}/_ext/ccae408d/DummyElement_nomain.o: ${OBJECTDIR}/_ext/ccae408d/DummyElement.o ../../source/plugins/data/DummyElement.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/ccae408d
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/ccae408d/DummyElement.o`; \
@@ -2772,6 +2759,19 @@ ${OBJECTDIR}/_ext/ccae408d/DummyElement_nomain.o: ${OBJECTDIR}/_ext/ccae408d/Dum
 	    $(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/DummyElement_nomain.o ../../source/plugins/data/DummyElement.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/ccae408d/DummyElement.o ${OBJECTDIR}/_ext/ccae408d/DummyElement_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/ccae408d/DynamicLinkedCode_nomain.o: ${OBJECTDIR}/_ext/ccae408d/DynamicLinkedCode.o ../../source/plugins/data/DynamicLinkedCode.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/ccae408d
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/ccae408d/DynamicLinkedCode.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -Wall -I../../source/gtest -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/DynamicLinkedCode_nomain.o ../../source/plugins/data/DynamicLinkedCode.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/ccae408d/DynamicLinkedCode.o ${OBJECTDIR}/_ext/ccae408d/DynamicLinkedCode_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/ccae408d/EFSM_nomain.o: ${OBJECTDIR}/_ext/ccae408d/EFSM.o ../../source/plugins/data/EFSM.cpp 

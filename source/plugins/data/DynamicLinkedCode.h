@@ -4,19 +4,19 @@
  */
 
 /* 
- * File:   CppCode.h
+ * File:   DynamicLinkedCode.h
  * Author: rlcancian
  *
  * Created on 11 de janeiro de 2022, 22:24
  */
 
-#ifndef CPPCODE_H
-#define CPPCODE_H
+#ifndef DYNAMICLINKEDCODE_H
+#define DYNAMICLINKEDCODE_H
 
 #include "../../kernel/simulator/ModelDataDefinition.h"
 //#include "../../kernel/simulator/ModelDataDefinition.h"
 
-class CppCode : public ModelDataDefinition {
+class DynamicLinkedCode : public ModelDataDefinition {
 public:
 
 	class CodeResult {
@@ -32,8 +32,8 @@ public:
 	};
 
 public:
-	CppCode(Model* model, std::string name = "");
-	virtual ~CppCode() = default;
+	DynamicLinkedCode(Model* model, std::string name = "");
+	virtual ~DynamicLinkedCode() = default;
 public: // static
 	static ModelDataDefinition* LoadInstance(Model* model, PersistenceRecord *fields);
 	static PluginInformation* GetPluginInformation();
@@ -72,5 +72,5 @@ private:
 	bool libraryLoaded = false;
 };
 
-#endif /* CPPCODE_H */
+#endif /* DYNAMICLINKEDCODE_H */
 

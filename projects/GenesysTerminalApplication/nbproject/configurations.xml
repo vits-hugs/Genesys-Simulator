@@ -377,10 +377,10 @@
         <logicalFolder name="data" displayName="data" projectFiles="true">
           <itemPath>../../source/plugins/data/AssignmentItem.cpp</itemPath>
           <itemPath>../../source/plugins/data/AssignmentItem.h</itemPath>
-          <itemPath>../../source/plugins/data/CppCode.cpp</itemPath>
-          <itemPath>../../source/plugins/data/CppCode.h</itemPath>
           <itemPath>../../source/plugins/data/DummyElement.cpp</itemPath>
           <itemPath>../../source/plugins/data/DummyElement.h</itemPath>
+          <itemPath>../../source/plugins/data/DynamicLinkedCode.cpp</itemPath>
+          <itemPath>../../source/plugins/data/DynamicLinkedCode.h</itemPath>
           <itemPath>../../source/plugins/data/EFSM.cpp</itemPath>
           <itemPath>../../source/plugins/data/EFSM.h</itemPath>
           <itemPath>../../source/plugins/data/EntityGroup.cpp</itemPath>
@@ -1990,22 +1990,22 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/plugins/data/CppCode.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/plugins/data/CppCode.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="../../source/plugins/data/DummyElement.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
       <item path="../../source/plugins/data/DummyElement.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/plugins/data/DynamicLinkedCode.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/plugins/data/DynamicLinkedCode.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -3761,22 +3761,22 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/plugins/data/CppCode.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/plugins/data/CppCode.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="../../source/plugins/data/DummyElement.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
       <item path="../../source/plugins/data/DummyElement.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/plugins/data/DynamicLinkedCode.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/plugins/data/DynamicLinkedCode.h"
             ex="false"
             tool="3"
             flavor2="0">

@@ -72,7 +72,7 @@ void CppForG::_saveInstance(PersistenceRecord *fields, bool saveDefaultValues) {
 
 bool CppForG::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	CppCode::CodeResult result;
+	DynamicLinkedCode::CodeResult result;
 	if (_cppcode->IsLibraryLoaded()) {
 		result = _cppcode->unloadLibrary();
 		resultAll = result.success;
@@ -94,8 +94,8 @@ bool CppForG::_check(std::string* errorMessage) {
 void CppForG::_createInternalAndAttachedData() {
 	if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
 		if (_cppcode == nullptr) {
-			_cppcode = new CppCode(_parentModel, getName() + ".CppCode");
-			_internalDataInsert("CppCode", _cppcode);
+			_cppcode = new DynamicLinkedCode(_parentModel, getName() + ".DynamicLinkedCode");
+			_internalDataInsert("DynamicLinkedCode", _cppcode);
 		}
 	}
 }
@@ -103,7 +103,7 @@ void CppForG::_createInternalAndAttachedData() {
 PluginInformation* CppForG::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<CppForG>(), &CppForG::LoadInstance, &CppForG::NewInstance);
 	info->setCategory("Logic");
-	info->insertDynamicLibFileDependence("cppcode.so");
+	info->insertDynamicLibFileDependence("dynamiclinkedcode.so");
 	info->setDescriptionHelp("//@TODO");
 	return info;
 }
