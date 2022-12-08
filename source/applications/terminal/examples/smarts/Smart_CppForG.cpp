@@ -27,20 +27,37 @@ int Smart_CppForG::main(int argc, char** argv) {
 	this->insertFakePluginsByHand(genesys);
 	genesys->getTracer()->setTraceLevel(TraceManager::Level::L9_mostDetailed);
 	// crete model
-	Model* m = genesys->getModels()->newModel();
+	Model* model = genesys->getModels()->newModel();
 	PluginManager* plugins = genesys->getPlugins();
-	Create* cr = plugins->newInstance<Create>(m);
-	CppForG* sc = plugins->newInstance<CppForG>(m);
-	Dispose* di = plugins->newInstance<Dispose>(m);
+	Create* create = plugins->newInstance<Create>(model);
+	CppForG* cpp = plugins->newInstance<CppForG>(model);
+	Dispose* dispose = plugins->newInstance<Dispose>(model);
+	std::string includeCode = "\
+#include \"../../source/kernel/simulator/ModelSimulation.h\"\n\
+";
+	cpp->setIncludesCode(includeCode);
+	std::string cppDispachEventCode = "\
+	std::cout << \"Executando código do usuário\" << std::endl;\n\
+	unsigned int numComponentes = model->getComponents()->getAllComponents()->size();\n\
+	std::cout << \"Este modelo tem \" << numComponentes << \" componentes\" << std::endl;\n\
+	double tnow = model->getSimulation()->getSimulatedTime();\n\
+	std::cout << \"O tempo simulado atual é \" << tnow << std::endl;\n\
+	";
+	cpp->setOnDispatchEventCode(cppDispachEventCode);
+	std::string initCode = "\
+	std::cout << \"Inicializando\" << std::endl;\n\
+	// mais nada\
+	";
+	cpp->setInitBetweenReplicationCode(initCode);
 	// connect model components to create a "workflow"
-	cr->getConnections()->insert(sc);
-	sc->getConnections()->insert(di);
+	create->getConnections()->insert(cpp);
+	cpp->getConnections()->insert(dispose);
 	// set options, save and simulate
-	ModelSimulation* s = m->getSimulation();
+	ModelSimulation* s = model->getSimulation();
 	s->setReplicationLength(10);
 	s->setShowReportsAfterReplication(false);
 	s->setShowReportsAfterSimulation(false);
-	m->save("./models/Smart_SourceCode.gen");
+	model->save("./models/Smart_CppForG.gen");
 	s->start();
 	delete genesys;
 	return 0;
