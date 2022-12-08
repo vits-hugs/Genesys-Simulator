@@ -138,10 +138,11 @@ extern \"C\" void initBetweenReplications_" + name + "(Model* model) {\n\
 	}\n\
 }\n";
 	// save the code for the compiler
-	std::string sourceFilename = /*_cppCompiler->getTempDir() + dirSeparator() +*/ _cppCompiler->getSourceFilename();
-
+	_sourceFilename = "./" + getName() + ".cpp";
+	_outputFilename = "./" + getName() + ".so";
 	try {
-		std::ofstream outfile(sourceFilename);
+		_parentModel->getTracer()->trace("Saving source file \""+_sourceFilename+"\"");
+		std::ofstream outfile(_sourceFilename);
 		outfile << sourceCode;
 		outfile.close();
 	} catch (...) {
@@ -150,7 +151,16 @@ extern \"C\" void initBetweenReplications_" + name + "(Model* model) {\n\
 	}
 	// if saved, compile
 	if (resultAll) {
-		CppCompiler::CompilationResult result = _cppCompiler->compileToDynamicLibrary(sourceFilename);
+		_cppCompiler->setSourceFilename(_sourceFilename);
+		_cppCompiler->setOutputFilename(_outputFilename);
+		CppCompiler::CompilationResult result = _cppCompiler->compileToDynamicLibrary();
+		if (result.success) {
+			_cppCompiler->unloadLibrary();
+			_cppCompiler->loadLibrary();
+		} else {
+			resultAll = false;
+			*errorMessage += result.generalMessage;
+		}
 	}
 	return resultAll;
 }

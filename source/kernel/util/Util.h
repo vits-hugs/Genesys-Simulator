@@ -109,6 +109,7 @@ public: // files
 	static inline std::string PathFromFullFilename(const std::string& s);
 	static std::string RunningPath();
 	static std::vector<std::string> ListFiles(std::string dir, std::string fileFilter = "", mode_t attribFilter = S_IFREG & S_IFDIR);
+	static bool FileExists(const std::string& name);
 
 public: // template implementations
 

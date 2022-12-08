@@ -35,12 +35,14 @@ public:
 
 	class CompilationResult {
 	public:
-		CompilationResult() {}
-		bool success=false;
-		std::string compilationOutput="";
-		std::string resultFilename="";
-		std::string generalMessage="";
-		unsigned int lineNumber=0;
+
+		CompilationResult() {
+		}
+		bool success = false;
+		std::string compilationOutput = "";
+		std::string resultFilename = "";
+		std::string generalMessage = "";
+		unsigned int lineNumber = 0;
 	};
 
 public:
@@ -76,11 +78,11 @@ public: // gets & sets
 	void setObjectFiles(std::string _objectFiles);
 	std::string getObjectFiles() const;
 public: // new methods
-	CompilationResult compileToExecutable(std::string sourceFilename);
-	CompilationResult compileToDynamicLibrary(std::string sourceFilename);
-	CompilationResult compileToStaticLibrary(std::string sourceFilename);
-	CompilationResult loadLibrary(std::string libraryFilename);
-	CompilationResult unloadLibrary(std::string libraryFilename);
+	CompilationResult compileToExecutable();
+	CompilationResult compileToDynamicLibrary();
+	CompilationResult compileToStaticLibrary();
+	CompilationResult loadLibrary();
+	CompilationResult unloadLibrary();
 
 protected: // must be overriden 
 	virtual bool _loadInstance(PersistenceRecord *fields);
@@ -111,7 +113,7 @@ protected: // to securelly invoke another program (the cpp compiler in linux)
 	//---
 	void _spc_sanitize_files(void);
 	static int _open_devnull(int fd);
-protected: 
+protected:
 	CompilationResult _invokeCompiler(std::string command);
 private:
 
@@ -121,7 +123,7 @@ private:
 		const std::string outputDir = ".temp/";
 		const std::string outputFilename = "";
 		const std::string compiler = "g++";
-		const std::string flagsGeneral = "-w -std=c++14";
+		const std::string flagsGeneral = "-v -w -std=c++14";
 		const std::string flagsDynamicLibrary = "-shared -fPIC";
 		const std::string flagsStaticLibrary = "-fPIC";
 		const std::string flagsExecutable = "";
@@ -137,7 +139,9 @@ private:
 	std::string _flagsStaticLibrary = DEFAULT.flagsStaticLibrary;
 	std::string _flagsExecutable = DEFAULT.flagsExecutable;
 	std::string _objectFiles = DEFAULT.objectFiles;
-	bool libraryLoaded = false;
+	//
+	bool _libraryLoaded = false;
+	bool _compiledToDynamicLibrary = false;
 };
 
 #endif /* CPPCOMPILER_H */

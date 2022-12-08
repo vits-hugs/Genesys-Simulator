@@ -133,6 +133,12 @@ CppCompiler::CompilationResult CppCompiler::_invokeCompiler(std::string command)
 				}
 				pclose(handle);
 				// compiler executed (compilation successfull or not)
+				if (Util::FileExists(this->_outputFilename)) {
+					result.success = true;
+				} else {
+					result.success = false;
+					result.generalMessage = "Error while compiling code"; //@TODO: Get message from compiler output
+				}
 			}
 		} catch (const std::exception& e) {
 			result.success = false;
@@ -158,36 +164,43 @@ CppCompiler::CompilationResult CppCompiler::_invokeCompiler(std::string command)
 
 }
 
-CppCompiler::CompilationResult CppCompiler::compileToExecutable(std::string sourceFilename) {
+CppCompiler::CompilationResult CppCompiler::compileToExecutable() {
 	CppCompiler::CompilationResult result;
 	Util::FileDelete(this->_outputFilename);
 	std::string command(_compilerCommand + " " + _flagsGeneral + " " + _flagsExecutable + " " + _objectFiles + " " + _sourceFilename + " -o " + _outputFilename);
 	result = _invokeCompiler(command);
+	_compiledToDynamicLibrary = false;
 	return result;
 }
 
-CppCompiler::CompilationResult CppCompiler::compileToDynamicLibrary(std::string sourceFilename) {
+CppCompiler::CompilationResult CppCompiler::compileToDynamicLibrary() {
 	CppCompiler::CompilationResult result;
 	Util::FileDelete(this->_outputFilename);
 	std::string command(_compilerCommand + " " + _flagsGeneral + " " + _flagsDynamicLibrary + " " + _objectFiles + " " + _sourceFilename + " -o " + _outputFilename);
 	result = _invokeCompiler(command);
+	if (result.success) {
+		_compiledToDynamicLibrary = true;
+	} else {
+		_compiledToDynamicLibrary = false;
+	}
 	return result;
 }
 
-CppCompiler::CompilationResult CppCompiler::compileToStaticLibrary(std::string sourceFilename) {
+CppCompiler::CompilationResult CppCompiler::compileToStaticLibrary() {
 	CppCompiler::CompilationResult result;
 	Util::FileDelete(this->_outputFilename);
 	std::string command(_compilerCommand + " " + _flagsGeneral + " " + _flagsStaticLibrary + " " + _objectFiles + " " + _sourceFilename + " -o " + _outputFilename);
 	result = _invokeCompiler(command);
+	_compiledToDynamicLibrary = false;
 	return result;
 }
 
-CppCompiler::CompilationResult CppCompiler::loadLibrary(std::string libraryFilename) {
+CppCompiler::CompilationResult CppCompiler::loadLibrary() {
 	CppCompiler::CompilationResult result;
 	return result;
 }
 
-CppCompiler::CompilationResult CppCompiler::unloadLibrary(std::string libraryFilename) {
+CppCompiler::CompilationResult CppCompiler::unloadLibrary() {
 	CppCompiler::CompilationResult result;
 	return result;
 }
@@ -209,7 +222,7 @@ std::string CppCompiler::getFlagsExecutable() const {
 }
 
 void CppCompiler::setLibraryLoaded(bool libraryLoaded) {
-	this->libraryLoaded = libraryLoaded;
+	this->_libraryLoaded = libraryLoaded;
 }
 
 void CppCompiler::setFlagsStaticLibrary(std::string _flagsStaticLibrary) {
@@ -269,7 +282,7 @@ std::string CppCompiler::getOutputFilename() const {
 }
 
 bool CppCompiler::IsLibraryLoaded() const {
-	return libraryLoaded;
+	return _libraryLoaded;
 }
 
 //--------------------------------------------------------------

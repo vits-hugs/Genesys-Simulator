@@ -35,8 +35,8 @@ public:
 	std::string getInitBetweenReplicationCode() const;
 	void setOnDispatchEventCode(std::string _onDispatchEventCode);
 	std::string getOnDispatchEventCode() const;
-    void setIncludesCode(std::string _includesCode);
-    std::string getIncludesCode() const;
+	void setIncludesCode(std::string _includesCode);
+	std::string getIncludesCode() const;
 protected: // must be overriden 
 	virtual bool _loadInstance(PersistenceRecord *fields);
 	virtual void _saveInstance(PersistenceRecord *fields, bool saveDefaultValues);
@@ -51,7 +51,7 @@ protected: // could be overriden by derived classes
 	//virtual void _addProperty(PropertyBase* property);
 
 private: // methods
-	
+
 private: // attributes 1:1
 
 	const struct DEFAULT_VALUES {
@@ -62,6 +62,9 @@ private: // attributes 1:1
 	std::string _onDispatchEventCode = DEFAULT.onDispatchEventCode;
 	std::string _initBetweenReplicationCode = DEFAULT.initBetweenReplicationCode;
 	std::string _includesCode = DEFAULT.includesCode;
+	//
+	std::string _sourceFilename;
+	std::string _outputFilename;
 private: // internel
 	CppCompiler* _cppCompiler = nullptr;
 private: // attributes 1:n

@@ -311,3 +311,12 @@ std::vector<std::string> Util::ListFiles(std::string dir, std::string fileFilter
 	closedir(dp);
 	return files;
 }
+
+bool Util::FileExists (const std::string& name) {
+    if (FILE *file = fopen(name.c_str(), "r")) {
+        fclose(file);
+        return true;
+    } else {
+        return false;
+    }   
+}
