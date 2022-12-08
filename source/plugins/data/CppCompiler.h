@@ -81,8 +81,9 @@ public: // new methods
 	CompilationResult compileToExecutable();
 	CompilationResult compileToDynamicLibrary();
 	CompilationResult compileToStaticLibrary();
-	CompilationResult loadLibrary();
-	CompilationResult unloadLibrary();
+	bool loadLibrary();
+	bool unloadLibrary();
+	void* getDynamicLibraryHandle() const;
 
 protected: // must be overriden 
 	virtual bool _loadInstance(PersistenceRecord *fields);
@@ -142,6 +143,7 @@ private:
 	//
 	bool _libraryLoaded = false;
 	bool _compiledToDynamicLibrary = false;
+	void* _handle = nullptr;
 };
 
 #endif /* CPPCOMPILER_H */

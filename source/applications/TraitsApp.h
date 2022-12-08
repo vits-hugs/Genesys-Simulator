@@ -79,9 +79,9 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Smart_AssignWriteSeizes Application;
 	//typedef Smart_BatchSeparate Application;
 	//typedef Smart_Clone Application;
-	//typedef Smart_CppForG Application;
+	typedef Smart_CppForG Application;
 	//typedef Smart_Delay Application;
-	typedef Smart_Dummy Application;
+	//typedef Smart_Dummy Application;
 	//typedef Smart_Failures Application;
 	//typedef Smart_FiniteStateMachine Application;
 	//typedef Smart_HoldSearchRemove Application;

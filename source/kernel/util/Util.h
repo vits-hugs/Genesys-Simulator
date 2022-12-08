@@ -41,6 +41,9 @@
 #include <iostream>
 #include <sys/stat.h>
 #include <cstring>
+
+#include <iostream>
+#include <string>
 //namespace GenesysKernel {
 
 class Util {
@@ -87,6 +90,7 @@ public: // indentation and string
 	static std::string Trim(std::string str);
 	static std::string StrReplace(std::string text, std::string searchFor, std::string replaceBy);
 	static std::string StrIndex(int index);
+	//static char* Str2CharPtr(std::string str);
 	static void Trimwithin(std::string &str);
 public: // show strucutres
 	static std::string Map2str(std::map<std::string, std::string>* mapss);

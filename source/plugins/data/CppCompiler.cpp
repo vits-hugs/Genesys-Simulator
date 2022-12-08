@@ -20,13 +20,15 @@
 #include <sys/wait.h>
 #include <sys/param.h>
 #include <grp.h>
-//
 #include <cstdlib>
-//
 #include <iostream>
 #include <cstdio>
-//
 #include <bits/stdc++.h> 
+// dynamic load
+#include <dlfcn.h>
+
+#include <iostream>
+#include <string>
 
 #include "../../kernel/simulator/Model.h"
 
@@ -113,9 +115,11 @@ void CppCompiler::_initBetweenReplications() {
 // -----------------------------------------
 
 CppCompiler::CompilationResult CppCompiler::_invokeCompiler(std::string command) {
-	CppCompiler::CompilationResult result;
 	_parentModel->getTracer()->trace("Invoking compiler: " + command);
-	bool secureInvoke = false;
+	CppCompiler::CompilationResult result;
+	result.success = true;
+	return result;
+	bool secureInvoke = true;
 	if (!secureInvoke) {
 		try {
 			//std::system(command.c_str());
@@ -133,7 +137,7 @@ CppCompiler::CompilationResult CppCompiler::_invokeCompiler(std::string command)
 				}
 				pclose(handle);
 				// compiler executed (compilation successfull or not)
-				if (Util::FileExists(this->_outputFilename)) {
+				if (Util::FileExists(_outputFilename)) {
 					result.success = true;
 				} else {
 					result.success = false;
@@ -175,7 +179,7 @@ CppCompiler::CompilationResult CppCompiler::compileToExecutable() {
 
 CppCompiler::CompilationResult CppCompiler::compileToDynamicLibrary() {
 	CppCompiler::CompilationResult result;
-	Util::FileDelete(this->_outputFilename);
+	//Util::FileDelete(this->_outputFilename);
 	std::string command(_compilerCommand + " " + _flagsGeneral + " " + _flagsDynamicLibrary + " " + _objectFiles + " " + _sourceFilename + " -o " + _outputFilename);
 	result = _invokeCompiler(command);
 	if (result.success) {
@@ -188,21 +192,36 @@ CppCompiler::CompilationResult CppCompiler::compileToDynamicLibrary() {
 
 CppCompiler::CompilationResult CppCompiler::compileToStaticLibrary() {
 	CppCompiler::CompilationResult result;
-	Util::FileDelete(this->_outputFilename);
+	Util::FileDelete(_outputFilename);
 	std::string command(_compilerCommand + " " + _flagsGeneral + " " + _flagsStaticLibrary + " " + _objectFiles + " " + _sourceFilename + " -o " + _outputFilename);
 	result = _invokeCompiler(command);
 	_compiledToDynamicLibrary = false;
 	return result;
 }
 
-CppCompiler::CompilationResult CppCompiler::loadLibrary() {
-	CppCompiler::CompilationResult result;
-	return result;
+bool CppCompiler::loadLibrary() {
+	_handle = dlopen(_outputFilename.c_str(), RTLD_LAZY);
+	_libraryLoaded = _handle != nullptr;
+	return _libraryLoaded;
 }
 
-CppCompiler::CompilationResult CppCompiler::unloadLibrary() {
-	CppCompiler::CompilationResult result;
-	return result;
+bool CppCompiler::unloadLibrary() {
+	if (_libraryLoaded) {
+		try {
+			dlclose(_handle);
+			_handle = nullptr;
+			_libraryLoaded = false;
+			return true;
+			_libraryLoaded = false;
+		} catch (const std::exception& e) {
+			return false;
+		}
+	}
+	return true;
+}
+
+void* CppCompiler::getDynamicLibraryHandle() const {
+	return _handle;
 }
 
 void CppCompiler::setObjectFiles(std::string _objectFiles) {
@@ -473,3 +492,30 @@ int CppCompiler::_spc_pclose(_SPC_PIPE * p) {
 	if (pid != -1 && WIFEXITED(status)) return WEXITSTATUS(status);
 	else return (pid == -1 ? -1 : 0);
 }
+
+/*
+ int main(int argc, char **argv) {
+	Simulator* simulator = new Simulator();
+	simulator->getTracer()->setTraceLevel(TraceManager::Level::L9_mostDetailed);
+	std::cout << "Loading lib..." << std::endl; 
+	void* handle = dlopen("./CppForG_01.so", RTLD_LAZY);
+	
+	std::cout << "Attaching lib function..." << std::endl; 
+	void (*dispatchEvent)(Simulator*);
+	dispatchEvent = (void(*)(Simulator*))dlsym(handle, "onDispatchEvent_CppForG_01");
+	
+	std::cout << "Invoking lib function..." << std::endl; 
+	dispatchEvent(simulator);
+	std::cout << "Finishing..." << std::endl; 
+	
+	std::cout << "Attaching lib function..." << std::endl; 
+	void (*initBetweenReplications)(Simulator*);
+	initBetweenReplications = (void(*)(Simulator*))dlsym(handle, "initBetweenReplications_CppForG_01");
+
+	std::cout << "Invoking lib function..." << std::endl; 
+	initBetweenReplications(simulator);
+	std::cout << "Finishing..." << std::endl; 
+
+	
+	return 0;	
+}*/

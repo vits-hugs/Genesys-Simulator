@@ -65,6 +65,8 @@ private: // attributes 1:1
 	//
 	std::string _sourceFilename;
 	std::string _outputFilename;
+	void (*dispatchEvent)(Entity*, Model*);
+	void (*initBetweenReplications)(Model*);
 private: // internel
 	CppCompiler* _cppCompiler = nullptr;
 private: // attributes 1:n

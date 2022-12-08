@@ -220,6 +220,20 @@ std::string Util::StrIndex(int index) {
 	return "[" + std::to_string(index) + "]";
 }
 
+/*
+char* Util::Str2CharPtr(std::string str) {
+	char * cstr = new char [str.length() + 1];
+	std::strcpy(cstr, str.c_str());
+	// cstr now contains a c-string copy of str
+	char * p = std::strtok(cstr, " ");
+	while (p != 0) {
+		std::cout << p << '\n';
+		p = std::strtok(NULL, " ");
+	}
+	return cstr;
+}
+*/
+
 // trim all spaces within the string (in place) -- used to transform general names into valid literals
 
 void Util::Trimwithin(std::string &str) {
@@ -312,11 +326,16 @@ std::vector<std::string> Util::ListFiles(std::string dir, std::string fileFilter
 	return files;
 }
 
-bool Util::FileExists (const std::string& name) {
-    if (FILE *file = fopen(name.c_str(), "r")) {
-        fclose(file);
-        return true;
-    } else {
-        return false;
-    }   
+bool Util::FileExists(const std::string& name) {
+	try {
+		if (FILE * file = fopen(name.c_str(), "r")) {
+			fclose(file);
+			return true;
+		} else {
+			return false;
+		}
+	} catch (const std::exception& e) {
+		return false;
+
+	}
 }
