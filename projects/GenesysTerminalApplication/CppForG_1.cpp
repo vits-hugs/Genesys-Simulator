@@ -17,7 +17,7 @@ void _onDispatchEvent_CppForG_1(Model* model) {
 
 void _initBetweenReplications_CppForG_1(Model* model) {
 	// user code
-	std::cout << "Inicializando" << std::endl;
+	std::cout << "Inicializando meu código" << std::endl;
 	// mais nada	
 }
 

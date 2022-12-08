@@ -273,8 +273,8 @@ std::string Util::FilenameFromFullFilename(const std::string& s) {
 }
 
 void Util::FileDelete(const std::string& filename) {
-	char removeFilename[filename.length() + 1] = {(*filename.c_str())};
-	//strcpy(removeFilename, filename.c_str());
+	char removeFilename[filename.length() + 1];
+	strcpy(removeFilename, filename.c_str());
 	std::remove(removeFilename);
 }
 
