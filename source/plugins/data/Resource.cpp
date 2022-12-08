@@ -47,11 +47,11 @@ Resource::Resource(Model* model, std::string name) : ModelDataDefinition(model, 
 
 std::string Resource::show() {
 	return ModelDataDefinition::show() +
-			",capacity=" + strTruncIfInt(std::to_string(_capacity)) +
-			",costBusyByour=" + strTruncIfInt(std::to_string(_costBusyHour)) +
-			",costIdleByour=" + strTruncIfInt(std::to_string(_costIdleHour)) +
-			",costPerUse=" + strTruncIfInt(std::to_string(_costPerUse)) +
-			",state=" + strTruncIfInt(std::to_string(static_cast<int> (_resourceState)));
+			",capacity=" + Util::strTruncIfInt(std::to_string(_capacity)) +
+			",costBusyByour=" + Util::strTruncIfInt(std::to_string(_costBusyHour)) +
+			",costIdleByour=" + Util::strTruncIfInt(std::to_string(_costIdleHour)) +
+			",costPerUse=" + Util::strTruncIfInt(std::to_string(_costPerUse)) +
+			",state=" + Util::strTruncIfInt(std::to_string(static_cast<int> (_resourceState)));
 }
 
 bool Resource::seize(unsigned int quantity) {

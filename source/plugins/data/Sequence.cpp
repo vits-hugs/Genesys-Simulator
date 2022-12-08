@@ -85,8 +85,8 @@ bool Sequence::_check(std::string* errorMessage) {
 	_attachedAttributesInsert({"Entity.Sequence", "Entity.SequenceStep"});
 	int i = 0;
 	for (SequenceStep* step : *_steps->list()) {
-		_attachedDataInsert("StepStation" + strIndex(i), step->getStation());
-		_attachedDataInsert("StepLabel" + strIndex(i), step->getLabel());
+		_attachedDataInsert("StepStation" + Util::strIndex(i), step->getStation());
+		_attachedDataInsert("StepLabel" + Util::strIndex(i), step->getLabel());
 		i++;
 	}
 	*errorMessage += "";
@@ -138,7 +138,7 @@ SequenceStep::SequenceStep(Model* model, std::string stationOrLabelName, bool is
 
 bool SequenceStep::_loadInstance(PersistenceRecord *fields, unsigned int parentIndex) {
 	bool res = true;
-	std::string num = strIndex(parentIndex);
+	std::string num = Util::strIndex(parentIndex);
 	std::string destination, expression;
 	try {
 		std::string stationName = fields->loadField("stepStation" + num, "");
@@ -162,7 +162,7 @@ bool SequenceStep::_loadInstance(PersistenceRecord *fields, unsigned int parentI
 }
 
 void SequenceStep::_saveInstance(PersistenceRecord *fields, unsigned int parentIndex, bool saveDefaultValues) {
-	std::string num = strIndex(parentIndex);
+	std::string num = Util::strIndex(parentIndex);
 	if (_station != nullptr) {
 		fields->saveField("stepStation" + num, _station->getName());
 	}

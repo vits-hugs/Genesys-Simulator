@@ -55,7 +55,7 @@
 
 
 // Model data definitions
-#include "../../plugins/data/DynamicLinkedCode.h"
+#include "../../plugins/data/CppCompiler.h"
 #include "../../plugins/data/EntityGroup.h"
 #include "../../plugins/data/Failure.h"
 #include "../../plugins/data/File.h"
@@ -87,7 +87,7 @@ Plugin* PluginConnectorDummyImpl1::check(const std::string dynamicLibraryFilenam
 }
 
 Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilename) {
-	std::string fn = getFileName(dynamicLibraryFilename);
+	std::string fn = Util::getFileName(dynamicLibraryFilename);
 	StaticGetPluginInformation GetInfo = nullptr;
 	Plugin* pluginResult = nullptr;
 	// @TODO: Dummy connections basically does nothing but give access to PluginInformation alreaady compiled
@@ -200,8 +200,8 @@ Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilen
 		GetInfo = &Start::GetPluginInformation;
 	else if (fn == "stop.so")
 		GetInfo = &Stop::GetPluginInformation;
-	else if (fn == "dynamiclinkedcode.so")
-		GetInfo = &DynamicLinkedCode::GetPluginInformation;
+	else if (fn == "cppcompiler.so")
+		GetInfo = &CppCompiler::GetPluginInformation;
 	else if (fn == "efsm.so")
 		GetInfo = &FiniteStateMachine::GetPluginInformation;
 	else if (fn == "efsmData.so")

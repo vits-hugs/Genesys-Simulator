@@ -40,7 +40,7 @@ public: // g&s
 	Variable* getVariable() const;
 	List<std::string>* getDiffEquations() const;
 	void setFilename(std::string filename);
-	std::string getFilename() const;
+	std::string getFileName() const;
 protected: // virtual
 	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
 	virtual bool _loadInstance(PersistenceRecord *fields);

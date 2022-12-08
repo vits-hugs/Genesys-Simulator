@@ -181,3 +181,135 @@ double Util::TimeUnitConvert(Util::TimeUnit timeUnit1, Util::TimeUnit timeUnit2)
 	}
 	return res;
 }
+
+//-------------------
+
+std::string Util::strTruncIfInt(double value) {
+	int intvalue = static_cast<int> (value);
+	if (intvalue == value)
+		return std::to_string(intvalue) + ".0";
+	else
+		return std::to_string(value);
+}
+
+std::string Util::strTruncIfInt(std::string strValue) {
+	if (strValue.length() > 7 && strValue.substr(strValue.length() - 7, 7) == ".000000")
+		return strValue.substr(0, strValue.length() - 7);
+	else
+		return strValue;
+}
+
+std::string Util::trim(std::string str) {
+	const char* typeOfWhitespaces = " \t\n\r\f\v";
+	str.erase(str.find_last_not_of(typeOfWhitespaces) + 1);
+	str.erase(0, str.find_first_not_of(typeOfWhitespaces));
+	return str;
+}
+
+std::string Util::strReplace(std::string text, std::string searchFor, std::string replaceBy) {
+	unsigned int pos = text.find(searchFor, 0);
+	while (pos < text.length()) {// != std::string::npos) {
+		text = text.replace(pos, searchFor.length(), replaceBy);
+		pos = text.find(searchFor, 0);
+	}
+	return text;
+}
+/// returns a string in the form "[<index>] for array indexes"
+
+std::string Util::strIndex(int index) {
+	return "[" + std::to_string(index) + "]";
+}
+
+// trim all spaces within the string (in place) -- used to transform general names into valid literals
+
+void Util::trimwithin(std::string &str) {
+	//ltrim(s);
+	//rtrim(s);
+	//s.erase(std::remove_if(s.begin(), s.end(), std::isspace), s.end());
+	str.erase(remove(str.begin(), str.end(), ' '), str.end());
+}
+
+std::string Util::map2str(std::map<std::string, std::string>* mapss) {
+	std::string res = "";
+	for (std::map<std::string, std::string>::iterator it = mapss->begin(); it != mapss->end(); it++) {
+		res += (*it).first + "=" + (*it).second + " ";
+	}
+	res = res.substr(0, res.length() - 1);
+	return res;
+}
+
+std::string Util::map2str(std::map<std::string, double>* mapss) {
+	std::string res = "";
+	for (std::map<std::string, double>::iterator it = mapss->begin(); it != mapss->end(); it++) {
+		res += (*it).first + "=" + strTruncIfInt(std::to_string((*it).second)) + " ";
+	}
+	res = res.substr(0, res.length() - 1);
+	return res;
+}
+
+char Util::dirSeparator() {
+	//#if defined(__linux__)	
+	return '/';
+	//#endif	
+	//	return '\';
+}
+
+std::string Util::list2str(std::list<unsigned int>* list) {
+	std::string res = "";
+	for (unsigned int elem : *list) {
+		res += std::to_string(elem) + ", ";
+	}
+	res = res.substr(0, res.length() - 2);
+	return res;
+}
+
+std::string Util::getFileName(const std::string& s) {
+	char sep = dirSeparator();
+	size_t i = s.rfind(sep, s.length());
+	if (i != std::string::npos) {
+		return (s.substr(i + 1, s.length() - i));
+	}
+	return s;
+}
+
+void Util::deleteFile(const std::string& filename) {
+	char removeFilename[filename.length() + 1]={(*filename.c_str())};
+	//strcpy(removeFilename, filename.c_str());
+	std::remove(removeFilename);
+}
+
+std::string Util::getPath(const std::string& s) {
+	char sep = dirSeparator();
+	return s.substr(0, s.find_last_of(sep));
+}
+
+/*
+static std::string getRunningPath() {
+		char result[ PATH_MAX ];
+		ssize_t count = readlink("/proc/self/exe", result, PATH_MAX);
+		std::string fullfilename = std::string(result, (count > 0) ? count : 0);
+		return getPath(fullfilename);
+}
+
+static std::vector<std::string> listFiles(std::string dir, std::string fileFilter = "", mode_t attribFilter = S_IFREG & S_IFDIR) {
+		std::vector<std::string> files;
+		DIR *dp;
+		struct dirent *dirp;
+		struct stat statbuffer;
+		if ((dp = opendir(dir.c_str())) == NULL) {
+				//cout << "Error(" << errno << ") opening " << dir << endl;
+				//return errno;
+		}
+		int status;
+		while ((dirp = readdir(dp)) != NULL) {
+				status = stat(dirp->d_name, &statbuffer);
+				if (status & attribFilter) { // https://pubs.opengroup.org/onlinepubs/7908799/xsh/sysstat.h.html
+						if (fileFilter == "" || std::string(dirp->d_name).find(fileFilter) != std::string::npos) {
+								files.push_back(std::string(dirp->d_name));
+						}
+				}
+		}
+		closedir(dp);
+		return files;
+}
+ */

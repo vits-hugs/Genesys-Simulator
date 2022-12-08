@@ -153,13 +153,13 @@ void Release::_createInternalAndAttachedData() {
 			if (resource == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
 				resource = _parentModel->getParentSimulator()->getPlugins()->newInstance<Resource>(_parentModel);
 			}
-			_attachedDataInsert("SeizableItem" + strIndex(i), resource);
+			_attachedDataInsert("SeizableItem" + Util::strIndex(i), resource);
 		} else if (seizable->getSeizableType() == SeizableItem::SeizableType::SET) {
 			Set* set = seizable->getSet();
 			if (set == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
 				set = _parentModel->getParentSimulator()->getPlugins()->newInstance<Set>(_parentModel);
 			}
-			_attachedDataInsert("SeizableItem" + strIndex(i), set);
+			_attachedDataInsert("SeizableItem" + Util::strIndex(i), set);
 		}
 		i++;
 	}

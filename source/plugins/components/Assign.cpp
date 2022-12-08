@@ -81,7 +81,7 @@ void Assign::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 		let = (*it);
 		double value = _parentModel->parseExpression(let->getExpression());
 		_parentModel->parseExpression(let->getDestination() + "=" + std::to_string(value));
-		_parentModel->getTracer()->traceSimulation(this, "Let \"" + let->getDestination() + "\" = " + strTruncIfInt(std::to_string(value)) + "  // " + let->getExpression());
+		_parentModel->getTracer()->traceSimulation(this, "Let \"" + let->getDestination() + "\" = " + Util::strTruncIfInt(std::to_string(value)) + "  // " + let->getExpression());
 	}
 
 	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
@@ -133,7 +133,7 @@ bool Assign::_check(std::string* errorMessage) {
 				_parentModel->getDataManager()->insert(data);
 			}
 		}
-		_attachedDataInsert("Assignment" + strIndex(i), data);
+		_attachedDataInsert("Assignment" + Util::strIndex(i), data);
 		// @TODO: +++ Reimplement it. Since 201910, attributes may have index, just like "atrrib1[2]" or "att[10,1]". Because of that, the string may contain not only the name of the attribute, but also its index and therefore, fails on the test bellow.
 		resultAll &= _parentModel->checkExpression(let->getExpression(), "assignment", errorMessage);
 		i++;

@@ -137,8 +137,8 @@ void Delay::_createInternalAndAttachedData() {
 		_cstatWaitTime = new StatisticsCollector(_parentModel, getName() + "." + "DelayTime", this);
 		_internalDataInsert("DelayTime", _cstatWaitTime);
 		// include StatisticsCollector needed in EntityType
-		ModelDataManager* elements = _parentModel->getDataManager();
-		std::list<ModelDataDefinition*>* enttypes = elements->getDataDefinitionList(Util::TypeOf<EntityType>())->list();
+		//ModelDataManager* elements = _parentModel->getDataManager();
+		//std::list<ModelDataDefinition*>* enttypes = elements->getDataDefinitionList(Util::TypeOf<EntityType>())->list();
 		//for (ModelDataDefinition* modeldatum : *enttypes) {
 		//	EntityType* enttype = static_cast<EntityType*> (modeldatum);
 		//	if (modeldatum->isReportStatistics())

@@ -42,7 +42,7 @@ void Decide::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 	unsigned short i = 0;
 	for (std::list<std::string>::iterator it = _conditions->list()->begin(); it != _conditions->list()->end(); it++) {
 		value = _parentModel->parseExpression((*it));
-		_parentModel->getTracer()->traceSimulation(this, _parentModel->getSimulation()->getSimulatedTime(), entity, this, std::to_string(i + 1) + "th condition evaluated to " + strTruncIfInt(std::to_string(value)) + "  // " + (*it));
+		_parentModel->getTracer()->traceSimulation(this, _parentModel->getSimulation()->getSimulatedTime(), entity, this, std::to_string(i + 1) + "th condition evaluated to " + Util::strTruncIfInt(std::to_string(value)) + "  // " + (*it));
 		if (value) {
 			if (_reportStatistics) {
 				_numberOuts->getAtRank(i)->incCountValue();
@@ -72,7 +72,7 @@ bool Decide::_loadInstance(PersistenceRecord *fields) {
 	if (res) {
 		unsigned int nv = fields->loadField("conditions", 0);
 		for (unsigned int i = 0; i < nv; i++) {
-			this->_conditions->insert(fields->loadField("condition" + strIndex(i), ""));
+			this->_conditions->insert(fields->loadField("condition" + Util::strIndex(i), ""));
 		}
 	}
 	return res;
@@ -83,7 +83,7 @@ void Decide::_saveInstance(PersistenceRecord *fields, bool saveDefaultValues) {
 	fields->saveField("conditions", _conditions->size(), 0u, saveDefaultValues);
 	unsigned short i = 0;
 	for (std::list<std::string>::iterator it = _conditions->list()->begin(); it != _conditions->list()->end(); it++, i++) {
-		fields->saveField("condition" + strIndex(i), (*it), "", saveDefaultValues);
+		fields->saveField("condition" + Util::strIndex(i), (*it), "", saveDefaultValues);
 	}
 }
 
@@ -103,9 +103,9 @@ void Decide::_createInternalAndAttachedData() {
 			_numberOuts = new List<Counter*>();
 		}
 		for (unsigned int i = _numberOuts->size(); i<this->_connections->size(); i++) {
-			Counter* counter = new Counter(_parentModel, getName() + "." + "CountNumberOut" + strIndex(i), this);
+			Counter* counter = new Counter(_parentModel, getName() + "." + "CountNumberOut" + Util::strIndex(i), this);
 			_numberOuts->insert(counter);
-			_internalDataInsert("CountNumberOut" + strIndex(i), counter);
+			_internalDataInsert("CountNumberOut" + Util::strIndex(i), counter);
 		}
 	} else if (!_reportStatistics && _numberOuts != nullptr) {
 		this->_internalDataClear();

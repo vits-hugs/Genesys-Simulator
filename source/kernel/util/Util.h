@@ -11,6 +11,15 @@
  * Created on 21 de Junho de 2018, 13:02
  */
 
+
+//
+// VINCULADOR 
+// SAIDA
+// ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/genesysterminalapplication
+//
+
+
+
 #ifndef UTIL_H
 #define UTIL_H
 
@@ -31,7 +40,7 @@
 #include <errno.h>
 #include <iostream>
 #include <sys/stat.h>
-
+#include <cstring>
 //namespace GenesysKernel {
 // trim from start (in place)
 
@@ -58,122 +67,6 @@ static inline void trim(std::string &s) {
 }
  */
 
-static inline std::string strTruncIfInt(double value) {
-	int intvalue = static_cast<int> (value);
-	if (intvalue == value)
-		return std::to_string(intvalue) + ".0";
-	else
-		return std::to_string(value);
-}
-
-static inline std::string strTruncIfInt(std::string strValue) {
-	if (strValue.length() > 7 && strValue.substr(strValue.length() - 7, 7) == ".000000")
-		return strValue.substr(0, strValue.length() - 7);
-	else
-		return strValue;
-}
-
-static inline std::string trim(std::string str) {
-	const char* typeOfWhitespaces = " \t\n\r\f\v";
-	str.erase(str.find_last_not_of(typeOfWhitespaces) + 1);
-	str.erase(0, str.find_first_not_of(typeOfWhitespaces));
-	return str;
-}
-
-static inline std::string strReplace(std::string text, std::string searchFor, std::string replaceBy) {
-	unsigned int pos = text.find(searchFor, 0);
-	while (pos < text.length()) {// != std::string::npos) {
-		text = text.replace(pos, searchFor.length(), replaceBy);
-		pos = text.find(searchFor, 0);
-	}
-	return text;
-}
-/// returns a string in the form "[<index>] for array indexes"
-
-static inline std::string strIndex(int index) {
-	return "[" + std::to_string(index) + "]";
-}
-
-// trim all spaces within the string (in place) -- used to transform general names into valid literals
-
-static inline void trimwithin(std::string &str) {
-	//ltrim(s);
-	//rtrim(s);
-	//s.erase(std::remove_if(s.begin(), s.end(), std::isspace), s.end());
-	str.erase(remove(str.begin(), str.end(), ' '), str.end());
-}
-
-static inline std::string map2str(std::map<std::string, std::string>* mapss) {
-	std::string res = "";
-	for (std::map<std::string, std::string>::iterator it = mapss->begin(); it != mapss->end(); it++) {
-		res += (*it).first + "=" + (*it).second + " ";
-	}
-	res = res.substr(0, res.length() - 1);
-	return res;
-}
-
-static inline std::string map2str(std::map<std::string, double>* mapss) {
-	std::string res = "";
-	for (std::map<std::string, double>::iterator it = mapss->begin(); it != mapss->end(); it++) {
-		res += (*it).first + "=" + strTruncIfInt(std::to_string((*it).second)) + " ";
-	}
-	res = res.substr(0, res.length() - 1);
-	return res;
-}
-
-static inline std::string list2str(std::list<unsigned int>* list) {
-	std::string res = "";
-	for (unsigned int elem : *list) {
-		res += std::to_string(elem) + ", ";
-	}
-	res = res.substr(0, res.length() - 2);
-	return res;
-}
-
-static inline std::string getFileName(const std::string& s) {
-	char sep = '/';
-	size_t i = s.rfind(sep, s.length());
-	if (i != std::string::npos) {
-		return (s.substr(i + 1, s.length() - i));
-	}
-	return s;
-}
-
-static inline std::string getPath(const std::string& s) {
-	char sep = '/';
-	return s.substr(0, s.find_last_of(sep));
-}
-
-/*
-static std::string getRunningPath() {
-		char result[ PATH_MAX ];
-		ssize_t count = readlink("/proc/self/exe", result, PATH_MAX);
-		std::string fullfilename = std::string(result, (count > 0) ? count : 0);
-		return getPath(fullfilename);
-}
-
-static std::vector<std::string> listFiles(std::string dir, std::string fileFilter = "", mode_t attribFilter = S_IFREG & S_IFDIR) {
-		std::vector<std::string> files;
-		DIR *dp;
-		struct dirent *dirp;
-		struct stat statbuffer;
-		if ((dp = opendir(dir.c_str())) == NULL) {
-				//cout << "Error(" << errno << ") opening " << dir << endl;
-				//return errno;
-		}
-		int status;
-		while ((dirp = readdir(dp)) != NULL) {
-				status = stat(dirp->d_name, &statbuffer);
-				if (status & attribFilter) { // https://pubs.opengroup.org/onlinepubs/7908799/xsh/sysstat.h.html
-						if (fileFilter == "" || std::string(dirp->d_name).find(fileFilter) != std::string::npos) {
-								files.push_back(std::string(dirp->d_name));
-						}
-				}
-		}
-		closedir(dp);
-		return files;
-}
- */
 class Util {
 public:
 	typedef unsigned long identification;
@@ -213,6 +106,16 @@ public: // indentation and string
 	static void SepKeyVal(std::string str, std::string *key, std::string *value);
 	static std::string Indent();
 	static std::string SetW(std::string text, unsigned short width);
+	static std::string strTruncIfInt(double value);
+	static std::string strTruncIfInt(std::string strValue);
+	static std::string trim(std::string str);
+	static std::string strReplace(std::string text, std::string searchFor, std::string replaceBy);
+	static std::string strIndex(int index);
+	static void trimwithin(std::string &str);
+public: // show strucutres
+	static std::string map2str(std::map<std::string, std::string>* mapss);
+	static std::string map2str(std::map<std::string, double>* mapss);
+	static std::string list2str(std::list<unsigned int>* list);
 public: // identitification //@TODO: CHECK ALL, since some should be private and available to FRIEND classes in the kernel
 	static Util::identification GenerateNewId();
 	static Util::identification GenerateNewIdOfType(std::string objtype);
@@ -222,6 +125,48 @@ public: // identitification //@TODO: CHECK ALL, since some should be private and
 
 public: // simulation support
 	static double TimeUnitConvert(Util::TimeUnit timeUnit1, Util::TimeUnit timeUnit2);
+
+public: // files
+	static char dirSeparator();
+	static std::string getFileName(const std::string& s);
+	static void deleteFile(const std::string& filename);
+	static inline std::string getPath(const std::string& s);
+
+	/*
+	static std::string getRunningPath() {
+			char result[ PATH_MAX ];
+			ssize_t count = readlink("/proc/self/exe", result, PATH_MAX);
+			std::string fullfilename = std::string(result, (count > 0) ? count : 0);
+			return getPath(fullfilename);
+	}
+
+	static std::vector<std::string> listFiles(std::string dir, std::string fileFilter = "", mode_t attribFilter = S_IFREG & S_IFDIR) {
+			std::vector<std::string> files;
+			DIR *dp;
+			struct dirent *dirp;
+			struct stat statbuffer;
+			if ((dp = opendir(dir.c_str())) == NULL) {
+					//cout << "Error(" << errno << ") opening " << dir << endl;
+					//return errno;
+			}
+			int status;
+			while ((dirp = readdir(dp)) != NULL) {
+					status = stat(dirp->d_name, &statbuffer);
+					if (status & attribFilter) { // https://pubs.opengroup.org/onlinepubs/7908799/xsh/sysstat.h.html
+							if (fileFilter == "" || std::string(dirp->d_name).find(fileFilter) != std::string::npos) {
+									files.push_back(std::string(dirp->d_name));
+							}
+					}
+			}
+			closedir(dp);
+			return files;
+	}
+	 */
+
+
+
+
+
 
 public: // template implementations
 

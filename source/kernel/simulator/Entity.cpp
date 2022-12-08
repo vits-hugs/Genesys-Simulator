@@ -62,12 +62,12 @@ std::string Entity::show() {
 		if (map->size() == 0) { // scalar
 			message += "NaN;"; //std::to_string(map->begin()->second) + ";";
 		} else if (map->size() == 1) { // scalar
-			message += strTruncIfInt(std::to_string(map->begin()->second)) + ", ";
+			message += Util::strTruncIfInt(std::to_string(map->begin()->second)) + ", ";
 		} else {
 			// array or matrix
 			message += "[";
 			for (std::pair<std::string, double> valIt : *map) {
-				message += valIt.first + "=>" + strTruncIfInt(std::to_string(valIt.second)) + ", ";
+				message += valIt.first + "=>" + Util::strTruncIfInt(std::to_string(valIt.second)) + ", ";
 			}
 			message = message.substr(0, message.length() - 2);
 			message += "];";

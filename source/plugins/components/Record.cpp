@@ -60,7 +60,7 @@ void Record::setFilename(std::string filename) {
 	this->_filename = filename;
 }
 
-std::string Record::getFilename() const {
+std::string Record::getFileName() const {
 	return _filename;
 }
 

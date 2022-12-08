@@ -102,7 +102,7 @@ bool CppSerializer::dump(std::ostream& output) {
 		unsigned short nextSize = var->loadField("nexts", 1);
 		for (unsigned short i = 0; i < nextSize; i++) {
 			// target id
-			Util::identification nextId = var->loadField("nextId" + strIndex(i), 0);
+			Util::identification nextId = var->loadField("nextId" + Util::strIndex(i), 0);
 			if (nextSize == 1) nextId = var->loadField("nextId", static_cast<unsigned int> (nextId));
 			// id -> component
 			ModelComponent* nextComponent = cm->find(nextId);
@@ -111,7 +111,7 @@ bool CppSerializer::dump(std::ostream& output) {
 				return false;
 			}
 			// target port
-			unsigned short nextPort = var->loadField("nextinputPortNumber" + strIndex(i), 0);
+			unsigned short nextPort = var->loadField("nextinputPortNumber" + Util::strIndex(i), 0);
 			// connect
 			auto target = nextComponent->getName();
 			output << indent(1) // << (origin.find(".") != std::string::npos || target.find(".") != std::string::npos ? "// " : "")

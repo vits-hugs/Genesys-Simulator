@@ -149,7 +149,7 @@ L      [A-Za-z0-9_.]+
 %{// probability distributions %}
 [rR][nN][dD]	  {return yy::genesyspp_parser::make_fRND1(obj_t(0, std::string(yytext)), loc);}
 [eE][xX][pP][oO]  {return yy::genesyspp_parser::make_fEXPO(obj_t(0, std::string(yytext)), loc);}
-[nN][oO][rR][mM]  {return yy::genesyspp_parser::make_fNORM(obj_t(0, std::string(yytext)), loc);}
+[nN][oO][rR][mM]  {return yy::genesyspp_parser::make_fNORM(obj_t(0, std::string(yytext)), loc); /*!< norm(average,stddev): Generates a normal distribution random value */}
 [uU][nN][iI][fF]  {return yy::genesyspp_parser::make_fUNIF(obj_t(0, std::string(yytext)), loc);}
 [wW][eE][iI][bB]  {return yy::genesyspp_parser::make_fWEIB(obj_t(0, std::string(yytext)), loc);}
 [lL][oO][gG][nN]  {return yy::genesyspp_parser::make_fLOGN(obj_t(0, std::string(yytext)), loc);}
@@ -245,7 +245,7 @@ T
         datadef = driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Variable>(), std::string(yytext));
         if (datadef != nullptr) { // it is a variable
             Variable* var = static_cast<Variable*>(datadef);
-            double variableID = var->getId();// ->getValue(); // var->getId()
+            //double variableID = var->getId();// ->getValue(); // var->getId()
 			//std::cout << "Found VARIABLE " << var->getName() <<" ID " << var->getId() << std::endl;
             return yy::genesyspp_parser::make_VARI(obj_t(0, Util::TypeOf<Variable>(), var->getId()),loc);
         }

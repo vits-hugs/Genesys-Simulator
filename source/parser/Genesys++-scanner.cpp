@@ -5604,7 +5604,7 @@ YY_RULE_SETUP
 case 48:
 YY_RULE_SETUP
 #line 153 "lexerparser.ll"
-{return yy::genesyspp_parser::make_fNORM(obj_t(0, std::string(yytext)), loc);}
+{return yy::genesyspp_parser::make_fNORM(obj_t(0, std::string(yytext)), loc); /*!< norm(average,stddev): Generates a normal distribution random value */}
 	YY_BREAK
 case 49:
 YY_RULE_SETUP

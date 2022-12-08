@@ -135,7 +135,7 @@ bool Write::_loadInstance(PersistenceRecord *fields) {
 		_filename = fields->loadField("filename", DEFAULT.filename);
 		unsigned short writesSize = fields->loadField("writes", 0u);
 		for (unsigned short i = 0; i < writesSize; i++) {
-			std::string text = fields->loadField("write" + strIndex(i), "");
+			std::string text = fields->loadField("write" + Util::strIndex(i), "");
 			_writeElements->insert(text);
 			i++;
 		}
@@ -151,7 +151,7 @@ void Write::_saveInstance(PersistenceRecord *fields, bool saveDefaultValues) {
 	unsigned short i = 0;
 	for (std::string text : *_writeElements->list()) {
 		//@ TODO: NEED TO AVOID \N TO BE SAVE AS A REAL NEW LINE. SHOULD SAVE "\n"
-		fields->saveField("write" + strIndex(i), text, "", saveDefaultValues);
+		fields->saveField("write" + Util::strIndex(i), text, "", saveDefaultValues);
 		i++;
 	}
 }
@@ -166,7 +166,7 @@ bool Write::_check(std::string* errorMessage) {
 		msgElem = (*it);
 		i++;
 		if (msgElem->isExpression) {
-			resultAll &= _parentModel->checkExpression(msgElem->text, "writeExpression" + strIndex(i), errorMessage);
+			resultAll &= _parentModel->checkExpression(msgElem->text, "writeExpression" + Util::strIndex(i), errorMessage);
 		}
 	}
 	 */

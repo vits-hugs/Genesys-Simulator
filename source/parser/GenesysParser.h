@@ -514,13 +514,13 @@ namespace yy {
       // fATRGR
       // input
       // expression
-      // numero
-      // aritmetica
-      // logica
+      // number
+      // arithmetic
+      // logical
       // relacional
-      // comando
-      // comandoIF
-      // comandoFOR
+      // command
+      // commandIF
+      // commandFOR
       // function
       // kernelFunction
       // elementFunction
@@ -529,10 +529,10 @@ namespace yy {
       // probFunction
       // userFunction
       // listaparm
-      // atributo
-      // variavel
+      // attribute
+      // variable
       // formula
-      // atribuicao
+      // assigment
       // pluginFunction
       char dummy1[sizeof (obj_t)];
     };
@@ -787,13 +787,13 @@ namespace yy {
         S_YYACCEPT = 92,                         // $accept
         S_input = 93,                            // input
         S_expression = 94,                       // expression
-        S_numero = 95,                           // numero
-        S_aritmetica = 96,                       // aritmetica
-        S_logica = 97,                           // logica
+        S_number = 95,                           // number
+        S_arithmetic = 96,                       // arithmetic
+        S_logical = 97,                          // logical
         S_relacional = 98,                       // relacional
-        S_comando = 99,                          // comando
-        S_comandoIF = 100,                       // comandoIF
-        S_comandoFOR = 101,                      // comandoFOR
+        S_command = 99,                          // command
+        S_commandIF = 100,                       // commandIF
+        S_commandFOR = 101,                      // commandFOR
         S_function = 102,                        // function
         S_kernelFunction = 103,                  // kernelFunction
         S_elementFunction = 104,                 // elementFunction
@@ -802,10 +802,10 @@ namespace yy {
         S_probFunction = 107,                    // probFunction
         S_userFunction = 108,                    // userFunction
         S_listaparm = 109,                       // listaparm
-        S_atributo = 110,                        // atributo
-        S_variavel = 111,                        // variavel
+        S_attribute = 110,                       // attribute
+        S_variable = 111,                        // variable
         S_formula = 112,                         // formula
-        S_atribuicao = 113,                      // atribuicao
+        S_assigment = 113,                       // assigment
         S_pluginFunction = 114                   // pluginFunction
       };
     };
@@ -918,13 +918,13 @@ namespace yy {
       case symbol_kind::S_fATRGR: // fATRGR
       case symbol_kind::S_input: // input
       case symbol_kind::S_expression: // expression
-      case symbol_kind::S_numero: // numero
-      case symbol_kind::S_aritmetica: // aritmetica
-      case symbol_kind::S_logica: // logica
+      case symbol_kind::S_number: // number
+      case symbol_kind::S_arithmetic: // arithmetic
+      case symbol_kind::S_logical: // logical
       case symbol_kind::S_relacional: // relacional
-      case symbol_kind::S_comando: // comando
-      case symbol_kind::S_comandoIF: // comandoIF
-      case symbol_kind::S_comandoFOR: // comandoFOR
+      case symbol_kind::S_command: // command
+      case symbol_kind::S_commandIF: // commandIF
+      case symbol_kind::S_commandFOR: // commandFOR
       case symbol_kind::S_function: // function
       case symbol_kind::S_kernelFunction: // kernelFunction
       case symbol_kind::S_elementFunction: // elementFunction
@@ -933,10 +933,10 @@ namespace yy {
       case symbol_kind::S_probFunction: // probFunction
       case symbol_kind::S_userFunction: // userFunction
       case symbol_kind::S_listaparm: // listaparm
-      case symbol_kind::S_atributo: // atributo
-      case symbol_kind::S_variavel: // variavel
+      case symbol_kind::S_attribute: // attribute
+      case symbol_kind::S_variable: // variable
       case symbol_kind::S_formula: // formula
-      case symbol_kind::S_atribuicao: // atribuicao
+      case symbol_kind::S_assigment: // assigment
       case symbol_kind::S_pluginFunction: // pluginFunction
         value.move< obj_t > (std::move (that.value));
         break;
@@ -1077,13 +1077,13 @@ switch (yykind)
       case symbol_kind::S_fATRGR: // fATRGR
       case symbol_kind::S_input: // input
       case symbol_kind::S_expression: // expression
-      case symbol_kind::S_numero: // numero
-      case symbol_kind::S_aritmetica: // aritmetica
-      case symbol_kind::S_logica: // logica
+      case symbol_kind::S_number: // number
+      case symbol_kind::S_arithmetic: // arithmetic
+      case symbol_kind::S_logical: // logical
       case symbol_kind::S_relacional: // relacional
-      case symbol_kind::S_comando: // comando
-      case symbol_kind::S_comandoIF: // comandoIF
-      case symbol_kind::S_comandoFOR: // comandoFOR
+      case symbol_kind::S_command: // command
+      case symbol_kind::S_commandIF: // commandIF
+      case symbol_kind::S_commandFOR: // commandFOR
       case symbol_kind::S_function: // function
       case symbol_kind::S_kernelFunction: // kernelFunction
       case symbol_kind::S_elementFunction: // elementFunction
@@ -1092,10 +1092,10 @@ switch (yykind)
       case symbol_kind::S_probFunction: // probFunction
       case symbol_kind::S_userFunction: // userFunction
       case symbol_kind::S_listaparm: // listaparm
-      case symbol_kind::S_atributo: // atributo
-      case symbol_kind::S_variavel: // variavel
+      case symbol_kind::S_attribute: // attribute
+      case symbol_kind::S_variable: // variable
       case symbol_kind::S_formula: // formula
-      case symbol_kind::S_atribuicao: // atribuicao
+      case symbol_kind::S_assigment: // assigment
       case symbol_kind::S_pluginFunction: // pluginFunction
         value.template destroy< obj_t > ();
         break;
@@ -3096,13 +3096,13 @@ switch (yykind)
       case symbol_kind::S_fATRGR: // fATRGR
       case symbol_kind::S_input: // input
       case symbol_kind::S_expression: // expression
-      case symbol_kind::S_numero: // numero
-      case symbol_kind::S_aritmetica: // aritmetica
-      case symbol_kind::S_logica: // logica
+      case symbol_kind::S_number: // number
+      case symbol_kind::S_arithmetic: // arithmetic
+      case symbol_kind::S_logical: // logical
       case symbol_kind::S_relacional: // relacional
-      case symbol_kind::S_comando: // comando
-      case symbol_kind::S_comandoIF: // comandoIF
-      case symbol_kind::S_comandoFOR: // comandoFOR
+      case symbol_kind::S_command: // command
+      case symbol_kind::S_commandIF: // commandIF
+      case symbol_kind::S_commandFOR: // commandFOR
       case symbol_kind::S_function: // function
       case symbol_kind::S_kernelFunction: // kernelFunction
       case symbol_kind::S_elementFunction: // elementFunction
@@ -3111,10 +3111,10 @@ switch (yykind)
       case symbol_kind::S_probFunction: // probFunction
       case symbol_kind::S_userFunction: // userFunction
       case symbol_kind::S_listaparm: // listaparm
-      case symbol_kind::S_atributo: // atributo
-      case symbol_kind::S_variavel: // variavel
+      case symbol_kind::S_attribute: // attribute
+      case symbol_kind::S_variable: // variable
       case symbol_kind::S_formula: // formula
-      case symbol_kind::S_atribuicao: // atribuicao
+      case symbol_kind::S_assigment: // assigment
       case symbol_kind::S_pluginFunction: // pluginFunction
         value.copy< obj_t > (YY_MOVE (that.value));
         break;
@@ -3225,13 +3225,13 @@ switch (yykind)
       case symbol_kind::S_fATRGR: // fATRGR
       case symbol_kind::S_input: // input
       case symbol_kind::S_expression: // expression
-      case symbol_kind::S_numero: // numero
-      case symbol_kind::S_aritmetica: // aritmetica
-      case symbol_kind::S_logica: // logica
+      case symbol_kind::S_number: // number
+      case symbol_kind::S_arithmetic: // arithmetic
+      case symbol_kind::S_logical: // logical
       case symbol_kind::S_relacional: // relacional
-      case symbol_kind::S_comando: // comando
-      case symbol_kind::S_comandoIF: // comandoIF
-      case symbol_kind::S_comandoFOR: // comandoFOR
+      case symbol_kind::S_command: // command
+      case symbol_kind::S_commandIF: // commandIF
+      case symbol_kind::S_commandFOR: // commandFOR
       case symbol_kind::S_function: // function
       case symbol_kind::S_kernelFunction: // kernelFunction
       case symbol_kind::S_elementFunction: // elementFunction
@@ -3240,10 +3240,10 @@ switch (yykind)
       case symbol_kind::S_probFunction: // probFunction
       case symbol_kind::S_userFunction: // userFunction
       case symbol_kind::S_listaparm: // listaparm
-      case symbol_kind::S_atributo: // atributo
-      case symbol_kind::S_variavel: // variavel
+      case symbol_kind::S_attribute: // attribute
+      case symbol_kind::S_variable: // variable
       case symbol_kind::S_formula: // formula
-      case symbol_kind::S_atribuicao: // atribuicao
+      case symbol_kind::S_assigment: // assigment
       case symbol_kind::S_pluginFunction: // pluginFunction
         value.move< obj_t > (YY_MOVE (s.value));
         break;

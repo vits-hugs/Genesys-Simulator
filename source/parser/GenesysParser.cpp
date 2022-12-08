@@ -282,13 +282,13 @@ namespace yy {
       case symbol_kind::S_fATRGR: // fATRGR
       case symbol_kind::S_input: // input
       case symbol_kind::S_expression: // expression
-      case symbol_kind::S_numero: // numero
-      case symbol_kind::S_aritmetica: // aritmetica
-      case symbol_kind::S_logica: // logica
+      case symbol_kind::S_number: // number
+      case symbol_kind::S_arithmetic: // arithmetic
+      case symbol_kind::S_logical: // logical
       case symbol_kind::S_relacional: // relacional
-      case symbol_kind::S_comando: // comando
-      case symbol_kind::S_comandoIF: // comandoIF
-      case symbol_kind::S_comandoFOR: // comandoFOR
+      case symbol_kind::S_command: // command
+      case symbol_kind::S_commandIF: // commandIF
+      case symbol_kind::S_commandFOR: // commandFOR
       case symbol_kind::S_function: // function
       case symbol_kind::S_kernelFunction: // kernelFunction
       case symbol_kind::S_elementFunction: // elementFunction
@@ -297,10 +297,10 @@ namespace yy {
       case symbol_kind::S_probFunction: // probFunction
       case symbol_kind::S_userFunction: // userFunction
       case symbol_kind::S_listaparm: // listaparm
-      case symbol_kind::S_atributo: // atributo
-      case symbol_kind::S_variavel: // variavel
+      case symbol_kind::S_attribute: // attribute
+      case symbol_kind::S_variable: // variable
       case symbol_kind::S_formula: // formula
-      case symbol_kind::S_atribuicao: // atribuicao
+      case symbol_kind::S_assigment: // assigment
       case symbol_kind::S_pluginFunction: // pluginFunction
         value.YY_MOVE_OR_COPY< obj_t > (YY_MOVE (that.value));
         break;
@@ -395,13 +395,13 @@ namespace yy {
       case symbol_kind::S_fATRGR: // fATRGR
       case symbol_kind::S_input: // input
       case symbol_kind::S_expression: // expression
-      case symbol_kind::S_numero: // numero
-      case symbol_kind::S_aritmetica: // aritmetica
-      case symbol_kind::S_logica: // logica
+      case symbol_kind::S_number: // number
+      case symbol_kind::S_arithmetic: // arithmetic
+      case symbol_kind::S_logical: // logical
       case symbol_kind::S_relacional: // relacional
-      case symbol_kind::S_comando: // comando
-      case symbol_kind::S_comandoIF: // comandoIF
-      case symbol_kind::S_comandoFOR: // comandoFOR
+      case symbol_kind::S_command: // command
+      case symbol_kind::S_commandIF: // commandIF
+      case symbol_kind::S_commandFOR: // commandFOR
       case symbol_kind::S_function: // function
       case symbol_kind::S_kernelFunction: // kernelFunction
       case symbol_kind::S_elementFunction: // elementFunction
@@ -410,10 +410,10 @@ namespace yy {
       case symbol_kind::S_probFunction: // probFunction
       case symbol_kind::S_userFunction: // userFunction
       case symbol_kind::S_listaparm: // listaparm
-      case symbol_kind::S_atributo: // atributo
-      case symbol_kind::S_variavel: // variavel
+      case symbol_kind::S_attribute: // attribute
+      case symbol_kind::S_variable: // variable
       case symbol_kind::S_formula: // formula
-      case symbol_kind::S_atribuicao: // atribuicao
+      case symbol_kind::S_assigment: // assigment
       case symbol_kind::S_pluginFunction: // pluginFunction
         value.move< obj_t > (YY_MOVE (that.value));
         break;
@@ -508,13 +508,13 @@ namespace yy {
       case symbol_kind::S_fATRGR: // fATRGR
       case symbol_kind::S_input: // input
       case symbol_kind::S_expression: // expression
-      case symbol_kind::S_numero: // numero
-      case symbol_kind::S_aritmetica: // aritmetica
-      case symbol_kind::S_logica: // logica
+      case symbol_kind::S_number: // number
+      case symbol_kind::S_arithmetic: // arithmetic
+      case symbol_kind::S_logical: // logical
       case symbol_kind::S_relacional: // relacional
-      case symbol_kind::S_comando: // comando
-      case symbol_kind::S_comandoIF: // comandoIF
-      case symbol_kind::S_comandoFOR: // comandoFOR
+      case symbol_kind::S_command: // command
+      case symbol_kind::S_commandIF: // commandIF
+      case symbol_kind::S_commandFOR: // commandFOR
       case symbol_kind::S_function: // function
       case symbol_kind::S_kernelFunction: // kernelFunction
       case symbol_kind::S_elementFunction: // elementFunction
@@ -523,10 +523,10 @@ namespace yy {
       case symbol_kind::S_probFunction: // probFunction
       case symbol_kind::S_userFunction: // userFunction
       case symbol_kind::S_listaparm: // listaparm
-      case symbol_kind::S_atributo: // atributo
-      case symbol_kind::S_variavel: // variavel
+      case symbol_kind::S_attribute: // attribute
+      case symbol_kind::S_variable: // variable
       case symbol_kind::S_formula: // formula
-      case symbol_kind::S_atribuicao: // atribuicao
+      case symbol_kind::S_assigment: // assigment
       case symbol_kind::S_pluginFunction: // pluginFunction
         value.copy< obj_t > (that.value);
         break;
@@ -620,13 +620,13 @@ namespace yy {
       case symbol_kind::S_fATRGR: // fATRGR
       case symbol_kind::S_input: // input
       case symbol_kind::S_expression: // expression
-      case symbol_kind::S_numero: // numero
-      case symbol_kind::S_aritmetica: // aritmetica
-      case symbol_kind::S_logica: // logica
+      case symbol_kind::S_number: // number
+      case symbol_kind::S_arithmetic: // arithmetic
+      case symbol_kind::S_logical: // logical
       case symbol_kind::S_relacional: // relacional
-      case symbol_kind::S_comando: // comando
-      case symbol_kind::S_comandoIF: // comandoIF
-      case symbol_kind::S_comandoFOR: // comandoFOR
+      case symbol_kind::S_command: // command
+      case symbol_kind::S_commandIF: // commandIF
+      case symbol_kind::S_commandFOR: // commandFOR
       case symbol_kind::S_function: // function
       case symbol_kind::S_kernelFunction: // kernelFunction
       case symbol_kind::S_elementFunction: // elementFunction
@@ -635,10 +635,10 @@ namespace yy {
       case symbol_kind::S_probFunction: // probFunction
       case symbol_kind::S_userFunction: // userFunction
       case symbol_kind::S_listaparm: // listaparm
-      case symbol_kind::S_atributo: // atributo
-      case symbol_kind::S_variavel: // variavel
+      case symbol_kind::S_attribute: // attribute
+      case symbol_kind::S_variable: // variable
       case symbol_kind::S_formula: // formula
-      case symbol_kind::S_atribuicao: // atribuicao
+      case symbol_kind::S_assigment: // assigment
       case symbol_kind::S_pluginFunction: // pluginFunction
         value.move< obj_t > (that.value);
         break;
@@ -987,13 +987,13 @@ namespace yy {
       case symbol_kind::S_fATRGR: // fATRGR
       case symbol_kind::S_input: // input
       case symbol_kind::S_expression: // expression
-      case symbol_kind::S_numero: // numero
-      case symbol_kind::S_aritmetica: // aritmetica
-      case symbol_kind::S_logica: // logica
+      case symbol_kind::S_number: // number
+      case symbol_kind::S_arithmetic: // arithmetic
+      case symbol_kind::S_logical: // logical
       case symbol_kind::S_relacional: // relacional
-      case symbol_kind::S_comando: // comando
-      case symbol_kind::S_comandoIF: // comandoIF
-      case symbol_kind::S_comandoFOR: // comandoFOR
+      case symbol_kind::S_command: // command
+      case symbol_kind::S_commandIF: // commandIF
+      case symbol_kind::S_commandFOR: // commandFOR
       case symbol_kind::S_function: // function
       case symbol_kind::S_kernelFunction: // kernelFunction
       case symbol_kind::S_elementFunction: // elementFunction
@@ -1002,10 +1002,10 @@ namespace yy {
       case symbol_kind::S_probFunction: // probFunction
       case symbol_kind::S_userFunction: // userFunction
       case symbol_kind::S_listaparm: // listaparm
-      case symbol_kind::S_atributo: // atributo
-      case symbol_kind::S_variavel: // variavel
+      case symbol_kind::S_attribute: // attribute
+      case symbol_kind::S_variable: // variable
       case symbol_kind::S_formula: // formula
-      case symbol_kind::S_atribuicao: // atribuicao
+      case symbol_kind::S_assigment: // assigment
       case symbol_kind::S_pluginFunction: // pluginFunction
         yylhs.value.emplace< obj_t > ();
         break;
@@ -1042,7 +1042,7 @@ namespace yy {
 #line 1043 "../GenesysParser.cpp"
     break;
 
-  case 4: // expression: numero
+  case 4: // expression: number
 #line 247 "bisonparser.yy"
                                        {yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor;}
 #line 1049 "../GenesysParser.cpp"
@@ -1054,27 +1054,27 @@ namespace yy {
 #line 1055 "../GenesysParser.cpp"
     break;
 
-  case 6: // expression: comando
+  case 6: // expression: command
 #line 249 "bisonparser.yy"
                                        {yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor;}
 #line 1061 "../GenesysParser.cpp"
     break;
 
-  case 7: // expression: atribuicao
+  case 7: // expression: assigment
 #line 250 "bisonparser.yy"
-                                       {yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor;}
+                                      {yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor;}
 #line 1067 "../GenesysParser.cpp"
     break;
 
-  case 8: // expression: aritmetica
+  case 8: // expression: arithmetic
 #line 251 "bisonparser.yy"
                                            {yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor;}
 #line 1073 "../GenesysParser.cpp"
     break;
 
-  case 9: // expression: logica
+  case 9: // expression: logical
 #line 252 "bisonparser.yy"
-                                       {yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor;}
+                                        {yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor;}
 #line 1079 "../GenesysParser.cpp"
     break;
 
@@ -1090,13 +1090,13 @@ namespace yy {
 #line 1091 "../GenesysParser.cpp"
     break;
 
-  case 12: // expression: atributo
+  case 12: // expression: attribute
 #line 255 "bisonparser.yy"
-                                       {yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor;}
+                                        {yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor;}
 #line 1097 "../GenesysParser.cpp"
     break;
 
-  case 13: // expression: variavel
+  case 13: // expression: variable
 #line 260 "bisonparser.yy"
                                                    {yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor;}
 #line 1103 "../GenesysParser.cpp"
@@ -1108,79 +1108,79 @@ namespace yy {
 #line 1109 "../GenesysParser.cpp"
     break;
 
-  case 15: // numero: NUMD
+  case 15: // number: NUMD
 #line 271 "bisonparser.yy"
               { yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor;}
 #line 1115 "../GenesysParser.cpp"
     break;
 
-  case 16: // numero: NUMH
+  case 16: // number: NUMH
 #line 272 "bisonparser.yy"
               { yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor;}
 #line 1121 "../GenesysParser.cpp"
     break;
 
-  case 17: // aritmetica: expression "+" expression
+  case 17: // arithmetic: expression "+" expression
 #line 276 "bisonparser.yy"
                                      { yylhs.value.as < obj_t > ().valor = yystack_[2].value.as < obj_t > ().valor + yystack_[0].value.as < obj_t > ().valor;}
 #line 1127 "../GenesysParser.cpp"
     break;
 
-  case 18: // aritmetica: expression "-" expression
+  case 18: // arithmetic: expression "-" expression
 #line 277 "bisonparser.yy"
                                      { yylhs.value.as < obj_t > ().valor = yystack_[2].value.as < obj_t > ().valor - yystack_[0].value.as < obj_t > ().valor;}
 #line 1133 "../GenesysParser.cpp"
     break;
 
-  case 19: // aritmetica: expression "/" expression
+  case 19: // arithmetic: expression "/" expression
 #line 278 "bisonparser.yy"
                                      { yylhs.value.as < obj_t > ().valor = yystack_[2].value.as < obj_t > ().valor / yystack_[0].value.as < obj_t > ().valor;}
 #line 1139 "../GenesysParser.cpp"
     break;
 
-  case 20: // aritmetica: expression "*" expression
+  case 20: // arithmetic: expression "*" expression
 #line 279 "bisonparser.yy"
                                      { yylhs.value.as < obj_t > ().valor = yystack_[2].value.as < obj_t > ().valor * yystack_[0].value.as < obj_t > ().valor;}
 #line 1145 "../GenesysParser.cpp"
     break;
 
-  case 21: // aritmetica: expression "^" expression
+  case 21: // arithmetic: expression "^" expression
 #line 280 "bisonparser.yy"
                                      { yylhs.value.as < obj_t > ().valor = pow(yystack_[2].value.as < obj_t > ().valor,yystack_[0].value.as < obj_t > ().valor);}
 #line 1151 "../GenesysParser.cpp"
     break;
 
-  case 22: // aritmetica: "-" expression
+  case 22: // arithmetic: "-" expression
 #line 281 "bisonparser.yy"
                                      { yylhs.value.as < obj_t > ().valor = -yystack_[0].value.as < obj_t > ().valor;}
 #line 1157 "../GenesysParser.cpp"
     break;
 
-  case 23: // logica: expression oAND expression
+  case 23: // logical: expression oAND expression
 #line 285 "bisonparser.yy"
                                     { yylhs.value.as < obj_t > ().valor = (int) yystack_[2].value.as < obj_t > ().valor && (int) yystack_[0].value.as < obj_t > ().valor;}
 #line 1163 "../GenesysParser.cpp"
     break;
 
-  case 24: // logica: expression oOR expression
+  case 24: // logical: expression oOR expression
 #line 286 "bisonparser.yy"
                                     { yylhs.value.as < obj_t > ().valor = (int) yystack_[2].value.as < obj_t > ().valor || (int) yystack_[0].value.as < obj_t > ().valor;}
 #line 1169 "../GenesysParser.cpp"
     break;
 
-  case 25: // logica: expression oNAND expression
+  case 25: // logical: expression oNAND expression
 #line 287 "bisonparser.yy"
                                     { yylhs.value.as < obj_t > ().valor = !((int) yystack_[2].value.as < obj_t > ().valor && (int) yystack_[0].value.as < obj_t > ().valor);}
 #line 1175 "../GenesysParser.cpp"
     break;
 
-  case 26: // logica: expression oXOR expression
+  case 26: // logical: expression oXOR expression
 #line 288 "bisonparser.yy"
                                     { yylhs.value.as < obj_t > ().valor = (!(int) yystack_[2].value.as < obj_t > ().valor && (int) yystack_[0].value.as < obj_t > ().valor) || ((int) yystack_[2].value.as < obj_t > ().valor && !(int) yystack_[0].value.as < obj_t > ().valor);}
 #line 1181 "../GenesysParser.cpp"
     break;
 
-  case 27: // logica: oNOT expression
+  case 27: // logical: oNOT expression
 #line 289 "bisonparser.yy"
                                     { yylhs.value.as < obj_t > ().valor = !(int) yystack_[0].value.as < obj_t > ().valor;}
 #line 1187 "../GenesysParser.cpp"
@@ -1222,37 +1222,37 @@ namespace yy {
 #line 1223 "../GenesysParser.cpp"
     break;
 
-  case 34: // comando: comandoIF
+  case 34: // command: commandIF
 #line 302 "bisonparser.yy"
                     { yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor; }
 #line 1229 "../GenesysParser.cpp"
     break;
 
-  case 35: // comando: comandoFOR
+  case 35: // command: commandFOR
 #line 303 "bisonparser.yy"
                     { yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor; }
 #line 1235 "../GenesysParser.cpp"
     break;
 
-  case 36: // comandoIF: cIF expression expression cELSE expression
+  case 36: // commandIF: cIF expression expression cELSE expression
 #line 307 "bisonparser.yy"
                                                    { yylhs.value.as < obj_t > ().valor = yystack_[3].value.as < obj_t > ().valor != 0 ? yystack_[2].value.as < obj_t > ().valor : yystack_[0].value.as < obj_t > ().valor; }
 #line 1241 "../GenesysParser.cpp"
     break;
 
-  case 37: // comandoIF: cIF expression expression
+  case 37: // commandIF: cIF expression expression
 #line 308 "bisonparser.yy"
                                                   { yylhs.value.as < obj_t > ().valor = yystack_[1].value.as < obj_t > ().valor != 0 ? yystack_[0].value.as < obj_t > ().valor : 0;}
 #line 1247 "../GenesysParser.cpp"
     break;
 
-  case 38: // comandoFOR: cFOR variavel "=" expression cTO expression cDO atribuicao
+  case 38: // commandFOR: cFOR variable "=" expression cTO expression cDO assigment
 #line 313 "bisonparser.yy"
-                                                                 {yylhs.value.as < obj_t > ().valor = 0; }
+                                                                {yylhs.value.as < obj_t > ().valor = 0; }
 #line 1253 "../GenesysParser.cpp"
     break;
 
-  case 39: // comandoFOR: cFOR atributo "=" expression cTO expression cDO atribuicao
+  case 39: // commandFOR: cFOR attribute "=" expression cTO expression cDO assigment
 #line 314 "bisonparser.yy"
                                                                   {yylhs.value.as < obj_t > ().valor = 0; }
 #line 1259 "../GenesysParser.cpp"
@@ -1492,7 +1492,7 @@ namespace yy {
 #line 1493 "../GenesysParser.cpp"
     break;
 
-  case 79: // atributo: ATRIB
+  case 79: // attribute: ATRIB
 #line 412 "bisonparser.yy"
                    {  
 		double attributeValue = 0.0;
@@ -1507,7 +1507,7 @@ namespace yy {
 #line 1508 "../GenesysParser.cpp"
     break;
 
-  case 80: // atributo: ATRIB "[" expression "]"
+  case 80: // attribute: ATRIB "[" expression "]"
 #line 422 "bisonparser.yy"
                                               {  
 		double attributeValue = 0.0;
@@ -1521,7 +1521,7 @@ namespace yy {
 #line 1522 "../GenesysParser.cpp"
     break;
 
-  case 81: // atributo: ATRIB "[" expression "," expression "]"
+  case 81: // attribute: ATRIB "[" expression "," expression "]"
 #line 431 "bisonparser.yy"
                                                              {  
 		double attributeValue = 0.0;
@@ -1535,7 +1535,7 @@ namespace yy {
 #line 1536 "../GenesysParser.cpp"
     break;
 
-  case 82: // atributo: ATRIB "[" expression "," expression "," expression "]"
+  case 82: // attribute: ATRIB "[" expression "," expression "," expression "]"
 #line 440 "bisonparser.yy"
                                                                             {  
 		double attributeValue = 0.0;
@@ -1549,13 +1549,13 @@ namespace yy {
 #line 1550 "../GenesysParser.cpp"
     break;
 
-  case 83: // variavel: VARI
+  case 83: // variable: VARI
 #line 454 "bisonparser.yy"
                             {yylhs.value.as < obj_t > ().valor = ((Variable*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Variable>(), yystack_[0].value.as < obj_t > ().id)))->getValue();}
 #line 1556 "../GenesysParser.cpp"
     break;
 
-  case 84: // variavel: VARI "[" expression "]"
+  case 84: // variable: VARI "[" expression "]"
 #line 455 "bisonparser.yy"
                                                                             { 
 					std::string index = std::to_string(static_cast<unsigned int>(yystack_[1].value.as < obj_t > ().valor));
@@ -1563,7 +1563,7 @@ namespace yy {
 #line 1564 "../GenesysParser.cpp"
     break;
 
-  case 85: // variavel: VARI "[" expression "," expression "]"
+  case 85: // variable: VARI "[" expression "," expression "]"
 #line 458 "bisonparser.yy"
                                                                                             { 
 					std::string index = std::to_string(static_cast<unsigned int>(yystack_[3].value.as < obj_t > ().valor))+","+std::to_string(static_cast<unsigned int>(yystack_[1].value.as < obj_t > ().valor)); 
@@ -1571,7 +1571,7 @@ namespace yy {
 #line 1572 "../GenesysParser.cpp"
     break;
 
-  case 86: // variavel: VARI "[" expression "," expression "," expression "]"
+  case 86: // variable: VARI "[" expression "," expression "," expression "]"
 #line 461 "bisonparser.yy"
                                                                                                      { 
 					std::string index = std::to_string(static_cast<unsigned int>(yystack_[5].value.as < obj_t > ().valor))+","+std::to_string(static_cast<unsigned int>(yystack_[3].value.as < obj_t > ().valor))+","+std::to_string(static_cast<unsigned int>(yystack_[1].value.as < obj_t > ().valor));
@@ -1627,16 +1627,16 @@ namespace yy {
 #line 1628 "../GenesysParser.cpp"
     break;
 
-  case 91: // atribuicao: ATRIB "=" expression
+  case 91: // assigment: ATRIB "=" expression
 #line 502 "bisonparser.yy"
-                                                 { 
+                                                { 
 					// @TODO: getCurrentEvent()->getEntity() may be nullptr if simulation hasn't started yet
 					driver.getModel()->getSimulation()->getCurrentEvent()->getEntity()->setAttributeValue("", yystack_[2].value.as < obj_t > ().id, yystack_[0].value.as < obj_t > ().valor);
 					yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor; }
 #line 1637 "../GenesysParser.cpp"
     break;
 
-  case 92: // atribuicao: ATRIB "[" expression "]" "=" expression
+  case 92: // assigment: ATRIB "[" expression "]" "=" expression
 #line 506 "bisonparser.yy"
                                                                                           { 
 					std::string index = std::to_string(static_cast<unsigned int>(yystack_[3].value.as < obj_t > ().valor));
@@ -1645,7 +1645,7 @@ namespace yy {
 #line 1646 "../GenesysParser.cpp"
     break;
 
-  case 93: // atribuicao: ATRIB "[" expression "," expression "]" "=" expression
+  case 93: // assigment: ATRIB "[" expression "," expression "]" "=" expression
 #line 510 "bisonparser.yy"
                                                                                                         {
 					std::string index = std::to_string(static_cast<unsigned int>(yystack_[5].value.as < obj_t > ().valor))+","+std::to_string(static_cast<unsigned int>(yystack_[3].value.as < obj_t > ().valor)); 
@@ -1654,7 +1654,7 @@ namespace yy {
 #line 1655 "../GenesysParser.cpp"
     break;
 
-  case 94: // atribuicao: ATRIB "[" expression "," expression "," expression "]" "=" expression
+  case 94: // assigment: ATRIB "[" expression "," expression "," expression "]" "=" expression
 #line 514 "bisonparser.yy"
                                                                                                                           {
 					std::string index = std::to_string(static_cast<unsigned int>(yystack_[7].value.as < obj_t > ().valor))+","+std::to_string(static_cast<unsigned int>(yystack_[5].value.as < obj_t > ().valor))+","+std::to_string(static_cast<unsigned int>(yystack_[3].value.as < obj_t > ().valor));
@@ -1663,7 +1663,7 @@ namespace yy {
 #line 1664 "../GenesysParser.cpp"
     break;
 
-  case 95: // atribuicao: VARI "=" expression
+  case 95: // assigment: VARI "=" expression
 #line 520 "bisonparser.yy"
                                                                 {
 					((Variable*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Variable>(), yystack_[2].value.as < obj_t > ().id)))->setValue(yystack_[0].value.as < obj_t > ().valor);
@@ -1672,7 +1672,7 @@ namespace yy {
 #line 1673 "../GenesysParser.cpp"
     break;
 
-  case 96: // atribuicao: VARI "[" expression "]" "=" expression
+  case 96: // assigment: VARI "[" expression "]" "=" expression
 #line 524 "bisonparser.yy"
                                                                                          { 
 					std::string index = std::to_string(static_cast<unsigned int>(yystack_[3].value.as < obj_t > ().valor));
@@ -1681,7 +1681,7 @@ namespace yy {
 #line 1682 "../GenesysParser.cpp"
     break;
 
-  case 97: // atribuicao: VARI "[" expression "," expression "]" "=" expression
+  case 97: // assigment: VARI "[" expression "," expression "]" "=" expression
 #line 528 "bisonparser.yy"
                                                                                                        {
 					std::string index = std::to_string(static_cast<unsigned int>(yystack_[5].value.as < obj_t > ().valor))+","+std::to_string(static_cast<unsigned int>(yystack_[3].value.as < obj_t > ().valor)); 
@@ -1690,7 +1690,7 @@ namespace yy {
 #line 1691 "../GenesysParser.cpp"
     break;
 
-  case 98: // atribuicao: VARI "[" expression "," expression "," expression "]" "=" expression
+  case 98: // assigment: VARI "[" expression "," expression "," expression "]" "=" expression
 #line 532 "bisonparser.yy"
                                                                                                                          {
 					std::string index = std::to_string(static_cast<unsigned int>(yystack_[7].value.as < obj_t > ().valor))+","+std::to_string(static_cast<unsigned int>(yystack_[5].value.as < obj_t > ().valor))+","+std::to_string(static_cast<unsigned int>(yystack_[3].value.as < obj_t > ().valor));
@@ -2723,11 +2723,11 @@ namespace yy {
   "fSAQUE", "fAQUE", "fENTATRANK", "SET", "fNUMSET", "VARI", "FORM",
   "fNUMGR", "fATRGR", "\"(\"", "\")\"", "\"[\"", "\"]\"", "\"+\"", "\"-\"",
   "\"*\"", "\"^\"", "\"/\"", "\"<\"", "\">\"", "\"=\"", "\",\"", "NEG",
-  "'\\n'", "\"USER\"", "$accept", "input", "expression", "numero",
-  "aritmetica", "logica", "relacional", "comando", "comandoIF",
-  "comandoFOR", "function", "kernelFunction", "elementFunction",
+  "'\\n'", "\"USER\"", "$accept", "input", "expression", "number",
+  "arithmetic", "logical", "relacional", "command", "commandIF",
+  "commandFOR", "function", "kernelFunction", "elementFunction",
   "trigonFunction", "mathFunction", "probFunction", "userFunction",
-  "listaparm", "atributo", "variavel", "formula", "atribuicao",
+  "listaparm", "attribute", "variable", "formula", "assigment",
   "pluginFunction", YY_NULLPTR
   };
 #endif

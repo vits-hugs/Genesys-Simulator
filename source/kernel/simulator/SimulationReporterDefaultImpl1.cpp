@@ -118,22 +118,22 @@ void SimulationReporterDefaultImpl1::showReplicationStatistics() {
 							Statistics_if* stat = dynamic_cast<StatisticsCollector*> (item)->getStatistics();
 							_model->getTracer()->traceReport(TraceManager::Level::L2_results,
 									Util::SetW(item->getName() + std::string(_nameW, '.'), _nameW - 1) + " " +
-									Util::SetW(strTruncIfInt(stat->numElements()), _w1) + " " +
-									Util::SetW(strTruncIfInt(stat->min()), _w1) + " " +
-									Util::SetW(strTruncIfInt(stat->max()), _w1) + " " +
-									Util::SetW(strTruncIfInt(stat->average()), _w1) + " " +
-									Util::SetW(strTruncIfInt(stat->variance()), _w1) + " " +
-									Util::SetW(strTruncIfInt(stat->stddeviation()), _w1) + " " +
-									Util::SetW(strTruncIfInt(stat->variationCoef()), _w1) + " " +
-									Util::SetW(strTruncIfInt(stat->halfWidthConfidenceInterval()), _w1) + " " +
-									Util::SetW(strTruncIfInt(stat->getConfidenceLevel()), _w)
+									Util::SetW(Util::strTruncIfInt(stat->numElements()), _w1) + " " +
+									Util::SetW(Util::strTruncIfInt(stat->min()), _w1) + " " +
+									Util::SetW(Util::strTruncIfInt(stat->max()), _w1) + " " +
+									Util::SetW(Util::strTruncIfInt(stat->average()), _w1) + " " +
+									Util::SetW(Util::strTruncIfInt(stat->variance()), _w1) + " " +
+									Util::SetW(Util::strTruncIfInt(stat->stddeviation()), _w1) + " " +
+									Util::SetW(Util::strTruncIfInt(stat->variationCoef()), _w1) + " " +
+									Util::SetW(Util::strTruncIfInt(stat->halfWidthConfidenceInterval()), _w1) + " " +
+									Util::SetW(Util::strTruncIfInt(stat->getConfidenceLevel()), _w)
 									);
 						} else {
 							if (item->getClassname() == UtilTypeOfCounter) {
 								Counter* count = dynamic_cast<Counter*> (item);
 								_model->getTracer()->traceReport(TraceManager::Level::L2_results,
 										Util::SetW(count->getName() + std::string(_nameW, '.'), _nameW - 1) + " " +
-										Util::SetW(strTruncIfInt(count->getCountValue()), _w)
+										Util::SetW(Util::strTruncIfInt(count->getCountValue()), _w)
 										);
 							}
 						}
@@ -233,22 +233,22 @@ void SimulationReporterDefaultImpl1::showSimulationStatistics() {//List<Statisti
 							Statistics_if* stat = dynamic_cast<StatisticsCollector*> (item)->getStatistics();
 							_model->getTracer()->traceReport(TraceManager::Level::L2_results,
 									Util::SetW(item->getName() + std::string(_nameW, '.'), _nameW - 1) + " " +
-									Util::SetW(strTruncIfInt(stat->numElements()), _w1) + " " +
-									Util::SetW(strTruncIfInt(stat->min()), _w1) + " " +
-									Util::SetW(strTruncIfInt(stat->max()), _w1) + " " +
-									Util::SetW(strTruncIfInt(stat->average()), _w1) + " " +
-									Util::SetW(strTruncIfInt(stat->variance()), _w1) + " " +
-									Util::SetW(strTruncIfInt(stat->stddeviation()), _w1) + " " +
-									Util::SetW(strTruncIfInt(stat->variationCoef()), _w1) + " " +
-									Util::SetW(strTruncIfInt(stat->halfWidthConfidenceInterval()), _w1) + " " +
-									Util::SetW(strTruncIfInt(stat->getConfidenceLevel()), _w)
+									Util::SetW(Util::strTruncIfInt(stat->numElements()), _w1) + " " +
+									Util::SetW(Util::strTruncIfInt(stat->min()), _w1) + " " +
+									Util::SetW(Util::strTruncIfInt(stat->max()), _w1) + " " +
+									Util::SetW(Util::strTruncIfInt(stat->average()), _w1) + " " +
+									Util::SetW(Util::strTruncIfInt(stat->variance()), _w1) + " " +
+									Util::SetW(Util::strTruncIfInt(stat->stddeviation()), _w1) + " " +
+									Util::SetW(Util::strTruncIfInt(stat->variationCoef()), _w1) + " " +
+									Util::SetW(Util::strTruncIfInt(stat->halfWidthConfidenceInterval()), _w1) + " " +
+									Util::SetW(Util::strTruncIfInt(stat->getConfidenceLevel()), _w)
 									);
 						} else {
 							if (item->getClassname() == UtilTypeOfCounter) {
 								Counter* cnt = dynamic_cast<Counter*> (item);
 								_model->getTracer()->traceReport(TraceManager::Level::L2_results,
 										Util::SetW(cnt->getName() + std::string(_nameW, '.'), _nameW - 1) + " " +
-										Util::SetW(strTruncIfInt(cnt->getCountValue()), _w)
+										Util::SetW(Util::strTruncIfInt(cnt->getCountValue()), _w)
 										);
 							}
 						}

@@ -99,7 +99,7 @@ bool GenSerializer::load(std::istream& input) {
 	bool res = true;
 	std::string line;
 	while (std::getline(input, line) && res) {
-		line = trim(line);
+		line = Util::trim(line);
 		if (line.substr(0, 1) == "#" || line.empty()) continue;
 		_model->getTracer()->trace(TraceManager::Level::L9_mostDetailed, line);
 
@@ -133,10 +133,10 @@ bool GenSerializer::load(std::istream& input) {
 			// 
 			tit = {(*it).begin(), (*it).end(), regex, -1};
 			std::vector<std::string> veckeyval = {tit,{}};
-			veckeyval[0] = trim((veckeyval[0]));
+			veckeyval[0] = Util::trim((veckeyval[0]));
 			if (veckeyval[0] != "") {
 				if (veckeyval.size() > 1) {
-					veckeyval[1] = trim((veckeyval[1]));
+					veckeyval[1] = Util::trim((veckeyval[1]));
 					if (veckeyval[1].substr(0, 1) == "\"" && veckeyval[1].substr(veckeyval[1].length() - 1, 1) == "\"") { // remove ""
 						veckeyval[1] = veckeyval[1].substr(1, veckeyval[1].length() - 2);
 					}

@@ -195,16 +195,16 @@
 
 %type <obj_t> input
 %type <obj_t> expression
-%type <obj_t> aritmetica
-%type <obj_t> logica
+%type <obj_t> arithmetic
+%type <obj_t> logical
 %type <obj_t> relacional
-%type <obj_t> comando
-%type <obj_t> comandoIF
-%type <obj_t> comandoFOR
+%type <obj_t> command
+%type <obj_t> commandIF
+%type <obj_t> commandFOR
 %type <obj_t> function
-%type <obj_t> numero
-%type <obj_t> atributo
-%type <obj_t> atribuicao
+%type <obj_t> number
+%type <obj_t> attribute
+%type <obj_t> assigment
 %type <obj_t> kernelFunction
 %type <obj_t> trigonFunction
 %type <obj_t> mathFunction
@@ -218,7 +218,7 @@
 /****begin_TypeObj_plugins****/
 
 	/**begin_TypeObj::Variable**/
-	%type <obj_t> variavel
+	%type <obj_t> variable
 	/**end_TypeObj::Variable**/
 
 	/**begin_TypeObj::Formula**/
@@ -244,20 +244,20 @@ input:
     ;
 
 expression:
-      numero                           {$$.valor = $1.valor;}
+      number                           {$$.valor = $1.valor;}
     | function                         {$$.valor = $1.valor;}
-    | comando                          {$$.valor = $1.valor;}
-    | atribuicao                       {$$.valor = $1.valor;}
-	| aritmetica                       {$$.valor = $1.valor;}
-    | logica                           {$$.valor = $1.valor;}
+    | command                          {$$.valor = $1.valor;}
+    | assigment                       {$$.valor = $1.valor;}
+	| arithmetic                       {$$.valor = $1.valor;}
+    | logical                           {$$.valor = $1.valor;}
     | relacional                       {$$.valor = $1.valor;}
     | "(" expression ")"               {$$.valor = $2.valor;}
-    | atributo                         {$$.valor = $1.valor;}
+    | attribute                         {$$.valor = $1.valor;}
 
 /****begin_Expression_plugins****/
 
 	/**begin_Expression:Variable**/
-		| variavel                         {$$.valor = $1.valor;}
+		| variable                         {$$.valor = $1.valor;}
 	/**end_Expression:Variable**/
 
 	/**begin_Expression:Formula**/
@@ -267,12 +267,12 @@ expression:
 /****end_Expression_plugins****/
     ;
 
-numero:
+number:
      NUMD     { $$.valor = $1.valor;}
     | NUMH    { $$.valor = $1.valor;}
     ;
 
-aritmetica:
+arithmetic:
      expression PLUS expression      { $$.valor = $1.valor + $3.valor;}
     | expression MINUS expression    { $$.valor = $1.valor - $3.valor;}
     | expression SLASH expression    { $$.valor = $1.valor / $3.valor;}
@@ -281,7 +281,7 @@ aritmetica:
     | MINUS expression %prec NEG     { $$.valor = -$2.valor;}
     ;
 
-logica:
+logical:
       expression oAND expression    { $$.valor = (int) $1.valor && (int) $3.valor;}
     | expression oOR  expression    { $$.valor = (int) $1.valor || (int) $3.valor;}
     | expression oNAND expression   { $$.valor = !((int) $1.valor && (int) $3.valor);}
@@ -298,20 +298,20 @@ relacional:
     | expression oNE  expression         { $$.valor = $1.valor != $3.valor ? 1 : 0;}
     ;
 
-comando:
-      comandoIF	    { $$.valor = $1.valor; }
-    | comandoFOR    { $$.valor = $1.valor; }
+command:
+      commandIF	    { $$.valor = $1.valor; }
+    | commandFOR    { $$.valor = $1.valor; }
     ;
 
-comandoIF:
+commandIF:
       cIF expression expression cELSE expression   { $$.valor = $2.valor != 0 ? $3.valor : $5.valor; }
     | cIF expression expression                   { $$.valor = $2.valor != 0 ? $3.valor : 0;}
     ;
 
 // \todo: check for function/need, for now will let cout (these should be commands for program, not expression
-comandoFOR: 
-     cFOR variavel "=" expression cTO expression cDO atribuicao  {$$.valor = 0; }
-    | cFOR atributo "=" expression cTO expression cDO atribuicao  {$$.valor = 0; }
+commandFOR: 
+     cFOR variable "=" expression cTO expression cDO assigment  {$$.valor = 0; }
+    | cFOR attribute "=" expression cTO expression cDO assigment  {$$.valor = 0; }
     ;
 
 function: 
@@ -408,7 +408,7 @@ illegal:
 
 
 // 20181003  ATRIB now returns the attribute ID not the attribute value anymore. So, now get the attribute value for the current entity
-atributo:
+attribute:
 	ATRIB      {  
 		double attributeValue = 0.0;
 		//std::cout << "Tentando..." << std::endl;
@@ -451,7 +451,7 @@ atributo:
 /****begin_ExpressionProdution_plugins****/
 
 	/**begin_ExpressionProdution:Variable**/
-	variavel    : VARI  {$$.valor = ((Variable*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Variable>(), $1.id)))->getValue();} 
+	variable    : VARI  {$$.valor = ((Variable*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Variable>(), $1.id)))->getValue();} 
 				| VARI LBRACKET expression RBRACKET	    { 
 					std::string index = std::to_string(static_cast<unsigned int>($3.valor));
 					$$.valor = ((Variable*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Variable>(), $1.id)))->getValue(index); }
@@ -498,8 +498,8 @@ atributo:
 	/**end_ExpressionProdution:Formula**/
 	/****end_ExpressionProdution_plugins****/
 
-	//Check if want to set the atributo or variavel with expression or just return the expression value, for now just returns expression value
-	atribuicao  : ATRIB ASSIGN expression    { 
+	//Check if want to set the attribute or variable with expression or just return the expression value, for now just returns expression value
+	assigment  : ATRIB ASSIGN expression    { 
 					// @TODO: getCurrentEvent()->getEntity() may be nullptr if simulation hasn't started yet
 					driver.getModel()->getSimulation()->getCurrentEvent()->getEntity()->setAttributeValue("", $1.id, $3.valor);
 					$$.valor = $3.valor; }

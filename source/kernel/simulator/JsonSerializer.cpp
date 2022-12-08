@@ -418,7 +418,7 @@ bool JsonSerializer::load(std::istream& input) {
 				{
 					int index = 0;
 					for (auto& element : val->sequence) {
-						auto indexedKey = key + strIndex(index);
+						auto indexedKey = key + Util::strIndex(index);
 						switch (element->kind) {
 							case Json::Kind::null:
 							case Json::Kind::object:

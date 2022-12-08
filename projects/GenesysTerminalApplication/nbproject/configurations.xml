@@ -377,10 +377,10 @@
         <logicalFolder name="data" displayName="data" projectFiles="true">
           <itemPath>../../source/plugins/data/AssignmentItem.cpp</itemPath>
           <itemPath>../../source/plugins/data/AssignmentItem.h</itemPath>
+          <itemPath>../../source/plugins/data/CppCompiler.cpp</itemPath>
+          <itemPath>../../source/plugins/data/CppCompiler.h</itemPath>
           <itemPath>../../source/plugins/data/DummyElement.cpp</itemPath>
           <itemPath>../../source/plugins/data/DummyElement.h</itemPath>
-          <itemPath>../../source/plugins/data/DynamicLinkedCode.cpp</itemPath>
-          <itemPath>../../source/plugins/data/DynamicLinkedCode.h</itemPath>
           <itemPath>../../source/plugins/data/EFSM.cpp</itemPath>
           <itemPath>../../source/plugins/data/EFSM.h</itemPath>
           <itemPath>../../source/plugins/data/EntityGroup.cpp</itemPath>
@@ -475,16 +475,19 @@
           <standard>10</standard>
         </cTool>
         <ccTool>
+          <developmentMode>2</developmentMode>
           <standard>11</standard>
           <incDir>
             <pElem>../../source/gtest</pElem>
           </incDir>
+          <commandLine>-fPIC</commandLine>
           <warningLevel>2</warningLevel>
         </ccTool>
         <asmTool>
           <warningLevel>2</warningLevel>
         </asmTool>
         <linkerTool>
+          <output>${CND_DISTDIR}/genesysterminalapplication</output>
           <linkerAddLib>
             <pElem>../GoogleTestsStaticLibrary/dist/Debug/GNU-Linux</pElem>
           </linkerAddLib>
@@ -1990,22 +1993,22 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../../source/plugins/data/CppCompiler.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/plugins/data/CppCompiler.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../../source/plugins/data/DummyElement.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
       <item path="../../source/plugins/data/DummyElement.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/plugins/data/DynamicLinkedCode.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/plugins/data/DynamicLinkedCode.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -3761,22 +3764,22 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../../source/plugins/data/CppCompiler.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/plugins/data/CppCompiler.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../../source/plugins/data/DummyElement.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
       <item path="../../source/plugins/data/DummyElement.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/plugins/data/DynamicLinkedCode.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/plugins/data/DynamicLinkedCode.h"
             ex="false"
             tool="3"
             flavor2="0">

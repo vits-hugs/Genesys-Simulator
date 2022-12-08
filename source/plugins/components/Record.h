@@ -65,7 +65,7 @@ public:
 	virtual ~Record();
 public:
 	void setFilename(std::string filename);
-	std::string getFilename() const;
+	std::string getFileName() const;
 	void setExpression(const std::string expression);
 	std::string getExpression() const;
 	void setExpressionName(std::string expressionName);

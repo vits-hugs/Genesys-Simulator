@@ -130,7 +130,7 @@ double SolverDefaultImpl1::integrate(double min, double max, double (*f)(double,
 double SolverDefaultImpl1::derivate(double initPoint, double initValue, double (*f)(double, double), double p2) {
 	double time, halfStep;
 	unsigned int i, numEqs = 1;
-	double k1[numEqs], k2[numEqs], k3[numEqs], k4[numEqs], valVar[numEqs], result[numEqs];
+	double k1[numEqs], k2[numEqs], k3[numEqs], k4[numEqs], result[numEqs];
 	time = initPoint;
 	halfStep = _stepSize * 0.5;
 	for (i = 0; i < numEqs; i++) {

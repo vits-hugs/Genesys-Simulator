@@ -8,9 +8,9 @@ CND_BUILDDIR=build
 CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-Linux
-CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux
+CND_ARTIFACT_DIR_Debug=dist
 CND_ARTIFACT_NAME_Debug=genesysterminalapplication
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/genesysterminalapplication
+CND_ARTIFACT_PATH_Debug=dist/genesysterminalapplication
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux/package
 CND_PACKAGE_NAME_Debug=genesysterminalapplication.tar
 CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/genesysterminalapplication.tar

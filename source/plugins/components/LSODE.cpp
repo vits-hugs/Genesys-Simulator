@@ -75,7 +75,7 @@ void LSODE::setFilename(std::string filename) {
 	this->_filename = filename;
 }
 
-std::string LSODE::getFilename() const {
+std::string LSODE::getFileName() const {
 	return _filename;
 }
 
