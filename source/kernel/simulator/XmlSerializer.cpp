@@ -186,7 +186,7 @@ bool XmlSerializer::load(std::istream& input) {
 				elements.push_back(std::move(finalized));
 			} else {
 				// if this was added to an outer element, that outer thing cannot be a leaf
-				if (Util::trim(stack.top().payload) != "") {
+				if (Util::Trim(stack.top().payload) != "") {
 					HALT("invalid XML syntax in subtree of <" + stack.top().tag + ">: \"" + stack.top().payload + "\"");
 				}
 				stack.top().children.push_back(std::make_unique<Xml>(std::move(finalized)));
@@ -251,7 +251,7 @@ bool XmlSerializer::load(std::istream& input) {
 			auto it = field->attributes.find("index");
 			if (it != field->attributes.end()) {
 				int index = std::stoi(it->second);
-				name = field->tag + Util::strIndex(index);
+				name = field->tag + Util::StrIndex(index);
 			}
 			auto kind = PersistenceRecord::Entry::Kind::text;
 			if (std::regex_match(field->payload, std::regex("^-?(?:[1-9]\\d+|\\d)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$"))) {

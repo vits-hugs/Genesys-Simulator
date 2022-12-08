@@ -216,7 +216,7 @@ void Seize::_createInternalAndAttachedData() {
 				resource = _parentModel->getParentSimulator()->getPlugins()->newInstance<Resource>(_parentModel);
 				seizable->setResource(resource);
 			}
-			_attachedDataInsert("SeizableItem" + Util::strIndex(i), resource);
+			_attachedDataInsert("SeizableItem" + Util::StrIndex(i), resource);
 			Resource::ResourceEventHandler handler = Resource::SetResourceEventHandler<Seize>(&Seize::_handlerForResourceEvent, this);
 			resource->addReleaseResourceEventHandler(handler, this, _priority);
 		} else if (seizable->getSeizableType() == SeizableItem::SeizableType::SET) {
@@ -224,7 +224,7 @@ void Seize::_createInternalAndAttachedData() {
 			if (set == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
 				set = _parentModel->getParentSimulator()->getPlugins()->newInstance<Set>(_parentModel);
 			}
-			_attachedDataInsert("SeizableItem" + Util::strIndex(i), set);
+			_attachedDataInsert("SeizableItem" + Util::StrIndex(i), set);
 			Resource* rec;
 			for (ModelDataDefinition* datum : *seizable->getSet()->getElementSet()->list()) {
 				rec = static_cast<Resource*> (datum);

@@ -67,7 +67,7 @@ bool Set::_loadInstance(PersistenceRecord *fields) {
 			_setOfType = fields->loadField("type", DEFAULT.setOfType);
 			unsigned int memberSize = fields->loadField("members", DEFAULT.membersSize);
 			for (unsigned int i = 0; i < memberSize; i++) {
-				std::string memberName = fields->loadField("member" + Util::strIndex(i));
+				std::string memberName = fields->loadField("member" + Util::StrIndex(i));
 				ModelDataDefinition* member = _parentModel->getDataManager()->getDataDefinition(_setOfType, memberName);
 				if (member == nullptr) { // not found. That's a problem. Resource not loaded yet (or mismatch name
 					_parentModel->getTracer()->traceError("ERROR: Could not found " + _setOfType + " set member named \"" + memberName + "\"", TraceManager::Level::L1_errorFatal);
@@ -87,7 +87,7 @@ void Set::_saveInstance(PersistenceRecord *fields, bool saveDefaultValues) {
 	fields->saveField("members", _elementSet->size(), DEFAULT.membersSize, saveDefaultValues);
 	unsigned int i = 0;
 	for (ModelDataDefinition* modeldatum : *_elementSet->list()) {
-		fields->saveField("member" + Util::strIndex(i), modeldatum->getName());
+		fields->saveField("member" + Util::StrIndex(i), modeldatum->getName());
 		i++;
 	}
 }
@@ -105,7 +105,7 @@ bool Set::_check(std::string* errorMessage) {
 	}
 	int i = 0;
 	for (ModelDataDefinition* data : *_elementSet->list()) {
-		this->_attachedDataInsert("Member" + Util::strIndex(i), data);
+		this->_attachedDataInsert("Member" + Util::StrIndex(i), data);
 	}
 	*errorMessage += "";
 	return resultAll;

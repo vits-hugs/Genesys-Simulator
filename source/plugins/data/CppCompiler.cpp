@@ -99,6 +99,7 @@ void CppCompiler::_saveInstance(PersistenceRecord *fields, bool saveDefaultValue
 // could be overriden 
 
 bool CppCompiler::_check(std::string* errorMessage) {
+	//@ TODO check if compiler command exists
 	return true;
 }
 
@@ -159,7 +160,7 @@ CppCompiler::CompilationResult CppCompiler::_invokeCompiler(std::string command)
 
 CppCompiler::CompilationResult CppCompiler::compileToExecutable(std::string sourceFilename) {
 	CppCompiler::CompilationResult result;
-	Util::deleteFile(this->_outputFilename);
+	Util::FileDelete(this->_outputFilename);
 	std::string command(_compilerCommand + " " + _flagsGeneral + " " + _flagsExecutable + " " + _objectFiles + " " + _sourceFilename + " -o " + _outputFilename);
 	result = _invokeCompiler(command);
 	return result;
@@ -167,7 +168,7 @@ CppCompiler::CompilationResult CppCompiler::compileToExecutable(std::string sour
 
 CppCompiler::CompilationResult CppCompiler::compileToDynamicLibrary(std::string sourceFilename) {
 	CppCompiler::CompilationResult result;
-	Util::deleteFile(this->_outputFilename);
+	Util::FileDelete(this->_outputFilename);
 	std::string command(_compilerCommand + " " + _flagsGeneral + " " + _flagsDynamicLibrary + " " + _objectFiles + " " + _sourceFilename + " -o " + _outputFilename);
 	result = _invokeCompiler(command);
 	return result;
@@ -175,7 +176,7 @@ CppCompiler::CompilationResult CppCompiler::compileToDynamicLibrary(std::string 
 
 CppCompiler::CompilationResult CppCompiler::compileToStaticLibrary(std::string sourceFilename) {
 	CppCompiler::CompilationResult result;
-	Util::deleteFile(this->_outputFilename);
+	Util::FileDelete(this->_outputFilename);
 	std::string command(_compilerCommand + " " + _flagsGeneral + " " + _flagsStaticLibrary + " " + _objectFiles + " " + _sourceFilename + " -o " + _outputFilename);
 	result = _invokeCompiler(command);
 	return result;

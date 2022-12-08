@@ -42,30 +42,6 @@
 #include <sys/stat.h>
 #include <cstring>
 //namespace GenesysKernel {
-// trim from start (in place)
-
-/*
-static inline void ltrim(std::string &s) {
-		s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](int ch) {
-				return !std::isspace(ch);
-		}));
-}
-
-// trim from end (in place)
-
-static inline void rtrim(std::string &s) {
-		s.erase(std::find_if(s.rbegin(), s.rend(), [](int ch) {
-				return !std::isspace(ch);
-		}).base(), s.end());
-}
-
-// trim from both ends (in place)
-
-static inline void trim(std::string &s) {
-		ltrim(s);
-		rtrim(s);
-}
- */
 
 class Util {
 public:
@@ -106,16 +82,16 @@ public: // indentation and string
 	static void SepKeyVal(std::string str, std::string *key, std::string *value);
 	static std::string Indent();
 	static std::string SetW(std::string text, unsigned short width);
-	static std::string strTruncIfInt(double value);
-	static std::string strTruncIfInt(std::string strValue);
-	static std::string trim(std::string str);
-	static std::string strReplace(std::string text, std::string searchFor, std::string replaceBy);
-	static std::string strIndex(int index);
-	static void trimwithin(std::string &str);
+	static std::string StrTruncIfInt(double value);
+	static std::string StrTruncIfInt(std::string strValue);
+	static std::string Trim(std::string str);
+	static std::string StrReplace(std::string text, std::string searchFor, std::string replaceBy);
+	static std::string StrIndex(int index);
+	static void Trimwithin(std::string &str);
 public: // show strucutres
-	static std::string map2str(std::map<std::string, std::string>* mapss);
-	static std::string map2str(std::map<std::string, double>* mapss);
-	static std::string list2str(std::list<unsigned int>* list);
+	static std::string Map2str(std::map<std::string, std::string>* mapss);
+	static std::string Map2str(std::map<std::string, double>* mapss);
+	static std::string List2str(std::list<unsigned int>* list);
 public: // identitification //@TODO: CHECK ALL, since some should be private and available to FRIEND classes in the kernel
 	static Util::identification GenerateNewId();
 	static Util::identification GenerateNewIdOfType(std::string objtype);
@@ -127,46 +103,12 @@ public: // simulation support
 	static double TimeUnitConvert(Util::TimeUnit timeUnit1, Util::TimeUnit timeUnit2);
 
 public: // files
-	static char dirSeparator();
-	static std::string getFileName(const std::string& s);
-	static void deleteFile(const std::string& filename);
-	static inline std::string getPath(const std::string& s);
-
-	/*
-	static std::string getRunningPath() {
-			char result[ PATH_MAX ];
-			ssize_t count = readlink("/proc/self/exe", result, PATH_MAX);
-			std::string fullfilename = std::string(result, (count > 0) ? count : 0);
-			return getPath(fullfilename);
-	}
-
-	static std::vector<std::string> listFiles(std::string dir, std::string fileFilter = "", mode_t attribFilter = S_IFREG & S_IFDIR) {
-			std::vector<std::string> files;
-			DIR *dp;
-			struct dirent *dirp;
-			struct stat statbuffer;
-			if ((dp = opendir(dir.c_str())) == NULL) {
-					//cout << "Error(" << errno << ") opening " << dir << endl;
-					//return errno;
-			}
-			int status;
-			while ((dirp = readdir(dp)) != NULL) {
-					status = stat(dirp->d_name, &statbuffer);
-					if (status & attribFilter) { // https://pubs.opengroup.org/onlinepubs/7908799/xsh/sysstat.h.html
-							if (fileFilter == "" || std::string(dirp->d_name).find(fileFilter) != std::string::npos) {
-									files.push_back(std::string(dirp->d_name));
-							}
-					}
-			}
-			closedir(dp);
-			return files;
-	}
-	 */
-
-
-
-
-
+	static char DirSeparator();
+	static std::string FilenameFromFullFilename(const std::string& s);
+	static void FileDelete(const std::string& filename);
+	static inline std::string PathFromFullFilename(const std::string& s);
+	static std::string RunningPath();
+	static std::vector<std::string> ListFiles(std::string dir, std::string fileFilter = "", mode_t attribFilter = S_IFREG & S_IFDIR);
 
 public: // template implementations
 

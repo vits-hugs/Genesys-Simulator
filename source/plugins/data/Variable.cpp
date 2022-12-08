@@ -32,7 +32,7 @@ Variable::Variable(Model* model, std::string name) : ModelDataDefinition(model, 
 std::string Variable::show() {
 	std::string text = "values:{";
 	for (std::pair<std::string, double> var : * this->_values) {
-		text += var.first + "=" + Util::strTruncIfInt(std::to_string(var.second)) + ", ";
+		text += var.first + "=" + Util::StrTruncIfInt(std::to_string(var.second)) + ", ";
 	}
 	text = text.substr(0, text.length() - 2);
 	text += "}";
@@ -124,14 +124,14 @@ bool Variable::_loadInstance(PersistenceRecord *fields) {
 		unsigned int nv;
 		nv = fields->loadField("dimensions", 0);
 		for (unsigned int i = 0; i < nv; i++) {
-			value = fields->loadField("dimension" + Util::strIndex(i), 0);
+			value = fields->loadField("dimension" + Util::StrIndex(i), 0);
 			//this->_dimensionSizes->insert(value);
 			this->insertDimentionSize(value);
 		}
 		nv = fields->loadField("values", 0);
 		for (unsigned int i = 0; i < nv; i++) {
-			pos = fields->loadField("valuePos" + Util::strIndex(i), 0);
-			value = fields->loadField("value" + Util::strIndex(i), 0);
+			pos = fields->loadField("valuePos" + Util::StrIndex(i), 0);
+			value = fields->loadField("value" + Util::StrIndex(i), 0);
 			this->_initialValues->emplace(pos, value);
 		}
 	}
@@ -142,12 +142,12 @@ void Variable::_saveInstance(PersistenceRecord *fields, bool saveDefaultValues) 
 	unsigned int i = 0;
 	fields->saveField("dimensions", _dimensionSizes->size(), 0u, saveDefaultValues);
 	for (unsigned int dimension : *_dimensionSizes) {
-		fields->saveField("dimension" + Util::strIndex(i), dimension, 1u, saveDefaultValues);
+		fields->saveField("dimension" + Util::StrIndex(i), dimension, 1u, saveDefaultValues);
 	}
 	fields->saveField("values", _initialValues->size(), 0);
 	for (std::map<std::string, double>::iterator it = _initialValues->begin(); it != _initialValues->end(); it++, i++) {
-		fields->saveField("valuePos" + Util::strIndex(i), (*it).first, "0", saveDefaultValues);
-		fields->saveField("value" + Util::strIndex(i), (*it).second, 0.0, saveDefaultValues);
+		fields->saveField("valuePos" + Util::StrIndex(i), (*it).first, "0", saveDefaultValues);
+		fields->saveField("value" + Util::StrIndex(i), (*it).second, 0.0, saveDefaultValues);
 	}
 }
 

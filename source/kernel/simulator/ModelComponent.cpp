@@ -135,10 +135,10 @@ void ModelComponent::_saveInstance(PersistenceRecord *fields, bool saveDefaultVa
 		if (_connections->connections()->size() == 1 && i == 0) {
 			fields->saveField("nextId", connectionPair.second->component->_id, 0, saveDefaultValues);
 		} else {
-			fields->saveField("nextId" + Util::strIndex(i), connectionPair.second->component->_id, 0, saveDefaultValues);
+			fields->saveField("nextId" + Util::StrIndex(i), connectionPair.second->component->_id, 0, saveDefaultValues);
 		}
 		if (connectionPair.second->channel.portNumber != 0) {//((*it)->second != 0) { // save nextinputPortNumber only if it is != 0
-			fields->saveField("nextinputPortNumber" + Util::strIndex(i), connectionPair.second->channel.portNumber, DEFAULT.nextinputPortNumber, saveDefaultValues);
+			fields->saveField("nextinputPortNumber" + Util::StrIndex(i), connectionPair.second->channel.portNumber, DEFAULT.nextinputPortNumber, saveDefaultValues);
 		}
 	}
 }

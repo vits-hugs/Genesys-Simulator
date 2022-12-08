@@ -67,7 +67,7 @@ bool SeizableItem::loadInstance(PersistenceRecord *fields) {
 
 bool SeizableItem::loadInstance(PersistenceRecord *fields, unsigned int parentIndex) {
 	bool res = true;
-	std::string num = Util::strIndex(parentIndex);
+	std::string num = Util::StrIndex(parentIndex);
 	try {
 		_seizableType = static_cast<SeizableItem::SeizableType> (fields->loadField("requestSeizableType" + num, static_cast<int> (DEFAULT.seizableType)));
 		_seizableName = fields->loadField("requestSeizable" + num, "");
@@ -100,7 +100,7 @@ bool SeizableItem::loadInstance(PersistenceRecord *fields, unsigned int parentIn
 }
 
 void SeizableItem::saveInstance(PersistenceRecord *fields, unsigned int parentIndex, bool saveDefaults) {
-	std::string num = Util::strIndex(parentIndex);
+	std::string num = Util::StrIndex(parentIndex);
 	fields->saveField("requestSeizableType" + num, static_cast<int> (_seizableType), static_cast<int> (DEFAULT.seizableType), saveDefaults);
 	fields->saveField("requestSeizable" + num, _resourceOrSet->getName(), "", saveDefaults);
 	fields->saveField("requestQuantityExpression" + num, _quantityExpression, DEFAULT.quantityExpression, saveDefaults);

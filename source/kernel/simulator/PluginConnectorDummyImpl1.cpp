@@ -87,7 +87,7 @@ Plugin* PluginConnectorDummyImpl1::check(const std::string dynamicLibraryFilenam
 }
 
 Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilename) {
-	std::string fn = Util::getFileName(dynamicLibraryFilename);
+	std::string fn = Util::FilenameFromFullFilename(dynamicLibraryFilename);
 	StaticGetPluginInformation GetInfo = nullptr;
 	Plugin* pluginResult = nullptr;
 	// @TODO: Dummy connections basically does nothing but give access to PluginInformation alreaady compiled

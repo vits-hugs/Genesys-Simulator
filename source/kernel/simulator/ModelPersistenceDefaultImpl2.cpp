@@ -203,7 +203,7 @@ bool ModelPersistenceDefaultImpl2::load(std::string filename) {
 			unsigned short nextSize = fields->loadField("nexts", 1);
 			for (unsigned short i = 0; i < nextSize; i++) {
 				// target id
-				Util::identification nextId = fields->loadField("nextId" + Util::strIndex(i), 0);
+				Util::identification nextId = fields->loadField("nextId" + Util::StrIndex(i), 0);
 				if (nextSize == 1) nextId = fields->loadField("nextId", static_cast<unsigned int> (nextId));
 				// id -> component
 				ModelComponent* nextComponent = cm->find(nextId);
@@ -212,7 +212,7 @@ bool ModelPersistenceDefaultImpl2::load(std::string filename) {
 					continue;
 				}
 				// target port
-				unsigned short nextPort = fields->loadField("nextinputPortNumber" + Util::strIndex(i), 0);
+				unsigned short nextPort = fields->loadField("nextinputPortNumber" + Util::StrIndex(i), 0);
 				// connect
 				component->getConnections()->insert(nextComponent, nextPort);
 				_model->getTracer()->trace(TraceManager::Level::L8_detailed, component->getName() + "<" + std::to_string(i) + ">" + " --> " + nextComponent->getName() + "<" + std::to_string(nextPort) + ">");

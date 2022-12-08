@@ -45,7 +45,7 @@ int Smart_CppForG::main(int argc, char** argv) {
 	";
 	cpp->setOnDispatchEventCode(cppDispachEventCode);
 	std::string initCode = "\
-	std::cout << \"Inicializando\" << std::endl;\n\
+	std::cout << \"Inicializando meu código\" << std::endl;\n\
 	// mais nada\
 	";
 	cpp->setInitBetweenReplicationCode(initCode);
