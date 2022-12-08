@@ -290,7 +290,7 @@ std::string Util::RunningPath() {
 	return PathFromFullFilename(fullfilename);
 }
 
-std::vector<std::string> Util::ListFiles(std::string dir, std::string fileFilter = "", mode_t attribFilter = S_IFREG & S_IFDIR) {
+std::vector<std::string> Util::ListFiles(std::string dir, std::string fileFilter, mode_t attribFilter) {
 	std::vector<std::string> files;
 	DIR *dp;
 	struct dirent *dirp;
