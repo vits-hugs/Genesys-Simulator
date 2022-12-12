@@ -140,6 +140,8 @@ L      [A-Za-z0-9_.]+
 [sS][qQ][rR][tT]      {return yy::genesyspp_parser::make_fSQRT(obj_t(0, std::string(yytext)), loc);}
 [lL][oO][gG]          {return yy::genesyspp_parser::make_fLOG(obj_t(0, std::string(yytext)), loc);}
 [lL][nN]              {return yy::genesyspp_parser::make_fLN(obj_t(0, std::string(yytext)), loc);}
+[min]				  {return yy::genesyspp_parser::make_mathMAX(obj_t(0, std::string(yytext)), loc);}
+[max]                 {return yy::genesyspp_parser::make_mathMIN(obj_t(0, std::string(yytext)), loc);}
 
 %{// string functions %}
 [vV][aA][lL]          {return yy::genesyspp_parser::make_fVAL(obj_t(0, std::string(yytext)), loc);}
@@ -165,6 +167,7 @@ L      [A-Za-z0-9_.]+
 [mM][aA][xX][rR][eE][pP]  {return yy::genesyspp_parser::make_fMAXREP(obj_t(0, std::string(yytext)), loc);}
 [nN][uU][mM][rR][eE][pP]  {return yy::genesyspp_parser::make_fNUMREP(obj_t(0, std::string(yytext)), loc);}
 [iI][dD][eE][nN][tT]      {return yy::genesyspp_parser::make_fIDENT(obj_t(0, std::string(yytext)), loc);}
+[EntitiesWIP]             {return yy::genesyspp_parser::make_simulEntitiesWIP(obj_t(0, std::string(yytext)), loc);}
 
 %{// Kernel elements, Counters and Statistic Collectors %}
 [tT][aA][vV][gG]          {return yy::genesyspp_parser::make_fTAVG(obj_t(0, std::string(yytext)), loc);}

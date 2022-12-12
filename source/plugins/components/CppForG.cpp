@@ -174,22 +174,28 @@ extern \"C\" void initBetweenReplications_" + name + "(Model* model) {\n\
 		_cppCompiler->unloadLibrary();
 		_parentModel->getTracer()->trace("Loading dynamic library \"" + _outputFilename + "\"");
 		resultAll = _cppCompiler->loadLibrary();
+		if (!resultAll) {
+			*errorMessage += "Error loading dynamic library";
+		}
 	}
 	// if dynamic library loaded, then vinculate pointers to loaded functions
 	if (resultAll) {
 		_parentModel->getTracer()->trace("Vinculating dynamic library functions");
-		void* handle = _cppCompiler->getDynamicLibraryHandle();
-		std::string strdispatchFunctionName = "onDispatchEvent_" + name;
-		const char *dispatchFunctionName = strdispatchFunctionName.c_str();
-		dispatchEvent = (void(*)(Entity*, Model*))dlsym(handle, dispatchFunctionName);
-		std::string strinitFunctionName = "initBetweenReplications_" + name;
-		const char *initFunctionName = strinitFunctionName.c_str();
-		initBetweenReplications = (void(*)(Model*))dlsym(handle, initFunctionName);
+		try {
+			void* handle = _cppCompiler->getDynamicLibraryHandle();
+			std::string strdispatchFunctionName = "onDispatchEvent_" + name;
+			const char *dispatchFunctionName = strdispatchFunctionName.c_str();
+			dispatchEvent = (void(*)(Entity*, Model*))dlsym(handle, dispatchFunctionName);
+			std::string strinitFunctionName = "initBetweenReplications_" + name;
+			const char *initFunctionName = strinitFunctionName.c_str();
+			initBetweenReplications = (void(*)(Model*))dlsym(handle, initFunctionName);
+		} catch (...) {
+			resultAll = false;
+			*errorMessage += "Error vinculating library functions";
+		}
 	} else {
 		dispatchEvent = nullptr;
 		initBetweenReplications = nullptr;
-		resultAll = false;
-		*errorMessage += "Error vinculating library functions";
 	}
 	return resultAll;
 }

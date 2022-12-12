@@ -143,7 +143,7 @@ private:
 	//
 	bool _libraryLoaded = false;
 	bool _compiledToDynamicLibrary = false;
-	void* _handle = nullptr;
+	void* _dynamicLibraryHandle = nullptr;
 };
 
 #endif /* CPPCOMPILER_H */

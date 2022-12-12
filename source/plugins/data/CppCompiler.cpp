@@ -29,6 +29,9 @@
 
 #include <iostream>
 #include <string>
+// execv
+#include <unistd.h>
+
 
 #include "../../kernel/simulator/Model.h"
 
@@ -118,9 +121,52 @@ CppCompiler::CompilationResult CppCompiler::_invokeCompiler(std::string command)
 	_parentModel->getTracer()->trace("Invoking compiler: " + command);
 	CppCompiler::CompilationResult result;
 	result.success = true;
-	return result;
-	bool secureInvoke = true;
-	if (!secureInvoke) {
+
+	int typeOfInvoke = 1;
+	if (typeOfInvoke == -1) { // Tests
+
+		pid_t child_pid, wpid;
+		int status = 0;
+		char* argument_list[] = {"ls", "-l", NULL};
+		if ((child_pid = fork()) == 0) {
+			printf("hello from child\n");
+			execvp("ls", argument_list);
+			printf("nunca vou ser executado\n");
+			//std::system(command.c_str());
+			//exit(0);
+		} else {
+			while ((wpid = wait(&status)) > 0);
+		}
+		printf("child has terminated\n");
+		if (Util::FileExists(_outputFilename)) {
+			result.success = true;
+		} else {
+			result.success = false;
+			result.generalMessage = "Error while compiling code"; //@TODO: Get message from compiler output
+		}
+		
+		
+
+	} else if (typeOfInvoke == 0) { //fork
+		pid_t child_pid, wpid;
+		int status = 0;
+		char* argument_list[] = {"ls", "-l", NULL};
+		if (true) {//((child_pid = fork()) == 0) {
+			printf("hello from child\n");
+			//execvp("ls", argument_list);
+			//std::system(command.c_str());
+			//exit(0);
+		} else {
+			while ((wpid = wait(&status)) > 0);
+		}
+		printf("child has terminated\n");
+		if (Util::FileExists(_outputFilename)) {
+			result.success = true;
+		} else {
+			result.success = false;
+			result.generalMessage = "Error while compiling code"; //@TODO: Get message from compiler output
+		}
+	} else if (typeOfInvoke == 1) { //!secureInvoke
 		try {
 			//std::system(command.c_str());
 			FILE *handle = popen(command.c_str(), "r");
@@ -148,7 +194,7 @@ CppCompiler::CompilationResult CppCompiler::_invokeCompiler(std::string command)
 			result.success = false;
 			result.generalMessage = "Error invoking compiler";
 		}
-	} else {
+	} else if (typeOfInvoke == 2) { //secure
 		_SPC_PIPE *pipe = this->_spc_popen(command.c_str(), nullptr, nullptr);
 		if (pipe != NULL) {
 			std::array<char, 128> buffer;
@@ -165,7 +211,6 @@ CppCompiler::CompilationResult CppCompiler::_invokeCompiler(std::string command)
 			result.generalMessage = "Error invoking compiler";
 		}
 	}
-
 }
 
 CppCompiler::CompilationResult CppCompiler::compileToExecutable() {
@@ -181,6 +226,7 @@ CppCompiler::CompilationResult CppCompiler::compileToDynamicLibrary() {
 	CppCompiler::CompilationResult result;
 	//Util::FileDelete(this->_outputFilename);
 	std::string command(_compilerCommand + " " + _flagsGeneral + " " + _flagsDynamicLibrary + " " + _objectFiles + " " + _sourceFilename + " -o " + _outputFilename);
+	//char* argument_list[] = {_compilerCommand, _flagsGeneral, _flagsDynamicLibrary, _objectFiles, _sourceFilename, "-o", _outputFilename, NULL};
 	result = _invokeCompiler(command);
 	if (result.success) {
 		_compiledToDynamicLibrary = true;
@@ -200,16 +246,16 @@ CppCompiler::CompilationResult CppCompiler::compileToStaticLibrary() {
 }
 
 bool CppCompiler::loadLibrary() {
-	_handle = dlopen(_outputFilename.c_str(), RTLD_LAZY);
-	_libraryLoaded = _handle != nullptr;
+	_dynamicLibraryHandle = dlopen(_outputFilename.c_str(), RTLD_LAZY);
+	_libraryLoaded = _dynamicLibraryHandle != nullptr;
 	return _libraryLoaded;
 }
 
 bool CppCompiler::unloadLibrary() {
 	if (_libraryLoaded) {
 		try {
-			dlclose(_handle);
-			_handle = nullptr;
+			dlclose(_dynamicLibraryHandle);
+			_dynamicLibraryHandle = nullptr;
 			_libraryLoaded = false;
 			return true;
 			_libraryLoaded = false;
@@ -221,7 +267,7 @@ bool CppCompiler::unloadLibrary() {
 }
 
 void* CppCompiler::getDynamicLibraryHandle() const {
-	return _handle;
+	return _dynamicLibraryHandle;
 }
 
 void CppCompiler::setObjectFiles(std::string _objectFiles) {

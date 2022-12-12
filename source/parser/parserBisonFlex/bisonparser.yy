@@ -9,6 +9,7 @@
 {
 	#include <string>
 	#include <cmath>
+	#include <algorithm>
 	#include "obj_t.h"
 	#include "../kernel/util/Util.h"
 	#include "../kernel/simulator/Attribute.h"
@@ -90,6 +91,8 @@
 %token <obj_t> fSQRT
 %token <obj_t> fLOG
 %token <obj_t> fLN
+%token <obj_t> mathMIN
+%token <obj_t> mathMAX
 
 // string functions
 %token <obj_t> fVAL
@@ -115,6 +118,7 @@
 %token <obj_t> fMAXREP
 %token <obj_t> fNUMREP
 %token <obj_t> fIDENT
+%token <obj_t> simulEntitiesWIP
 
 // algoritmic functions
 %token <obj_t> cIF
@@ -279,6 +283,10 @@ arithmetic:
     | expression STAR expression     { $$.valor = $1.valor * $3.valor;}
     | expression POWER expression    { $$.valor = pow($1.valor,$3.valor);}
     | MINUS expression %prec NEG     { $$.valor = -$2.valor;}
+
+
+	| mathMIN "(" expression "," expression ")"   { $$.valor = std::min($3.valor,$5.valor);}
+	| mathMAX "(" expression "," expression ")"   { $$.valor = std::max($3.valor,$5.valor);}
     ;
 
 logical:
@@ -330,6 +338,7 @@ kernelFunction:
     | fMAXREP    { $$.valor = driver.getModel()->getSimulation()->getNumberOfReplications();}
     | fNUMREP    { $$.valor = driver.getModel()->getSimulation()->getCurrentReplicationNumber();}
     | fIDENT     { $$.valor = driver.getModel()->getSimulation()->getCurrentEvent()->getEntity()->getId();}
+	| simulEntitiesWIP  { $$.valor = driver.getModel()->getDataManager()->getNumberOfDataDefinitions(Util::TypeOf<Entity>());}
 	;
 
 elementFunction:
