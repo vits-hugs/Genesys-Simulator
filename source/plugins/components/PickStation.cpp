@@ -29,6 +29,31 @@ ModelDataDefinition* PickStation::NewInstance(Model* model, std::string name) {
 	return new PickStation(model, name);
 }
 
+void PickStation::setPickConditionExpression(bool _pickConditionExpression) {
+	this->_pickConditionExpression = _pickConditionExpression;
+}
+
+bool PickStation::isPickConditionExpression() const {
+	return _pickConditionExpression;
+}
+
+void PickStation::setPickConditionNumberInQueue(bool _pickConditionNumberInQueue) {
+	this->_pickConditionNumberInQueue = _pickConditionNumberInQueue;
+}
+
+bool PickStation::isPickConditionNumberInQueue() const {
+	return _pickConditionNumberInQueue;
+}
+
+void PickStation::setPickConditionNumberBusyResource(bool _pickConditionNumberBusyResource) {
+	this->_pickConditionNumberBusyResource = _pickConditionNumberBusyResource;
+}
+
+bool PickStation::isPickConditionNumberBusyResource() const {
+	return _pickConditionNumberBusyResource;
+}
+
+/*
 void PickStation::setPickCondition(PickStation::PickCondition _pickCondition) {
 	this->_pickCondition = _pickCondition;
 }
@@ -36,6 +61,7 @@ void PickStation::setPickCondition(PickStation::PickCondition _pickCondition) {
 PickStation::PickCondition PickStation::getPickCondition() const {
 	return _pickCondition;
 }
+*/
 
 void PickStation::setTestCondition(PickStation::TestCondition _testCondition) {
 	this->_testCondition = _testCondition;
@@ -97,29 +123,36 @@ PluginInformation* PickStation::GetPluginInformation() {
 // protected virtual -- must be overriden
 
 void PickStation::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
-	double value, bestValue;
+	double value, valueResource=0, valueQueue=0, valueExpression=0, bestValue;
 	Station* bestStation = nullptr;
 	if (_testCondition == TestCondition::MAXIMUM) {
 		bestValue = std::numeric_limits<double>::min();
 	} else {
-		bestValue = std::numeric_limits<double>::max();		
+		bestValue = std::numeric_limits<double>::max();
 	}
-	for (PickableStationItem* item: *_pickableStationItens->list()) {
-		if (_pickCondition == PickCondition::EXPRESSION) {
-			value = _parentModel->parseExpression(item->getExpression());
-		} else if (_pickCondition == PickCondition::NUMBER_IN_QUEUE) {
+	for (PickableStationItem* item : *_pickableStationItens->list()) {
+		if (_pickConditionExpression) {
+			valueExpression = _parentModel->parseExpression(item->getExpression());
+		}
+		if (_pickConditionNumberInQueue) {
 			if (item->getQueue() != nullptr) {
-				value = item->getQueue()->size();
-			}
-		}else if (_pickCondition == PickCondition::NUMBER_BUSY_RESOURCE) {
-			if (item->getResource() != nullptr) {
-				value = item->getResource()->getNumberBusy();
+				valueQueue = item->getQueue()->size();
+			} else {
+				valueQueue = 0;
 			}
 		}
+		if (_pickConditionNumberBusyResource) {
+			if (item->getResource() != nullptr) {
+				valueResource = item->getResource()->getNumberBusy();
+			} else {
+				valueResource = 0;
+			}
+		}
+		value = valueResource + valueQueue + valueExpression;
 		if ((_testCondition == TestCondition::MAXIMUM && value > bestValue) || (_testCondition == TestCondition::MINIMUM && value < bestValue)) {
 			bestValue = value;
 			bestStation = item->getStation();
-		} 
+		}
 	}
 	entity->setAttributeValue(_saveAttribute, bestStation->getId());
 	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
@@ -164,15 +197,15 @@ void PickStation::_initBetweenReplications() {
 }
 
 void PickStation::_createInternalAndAttachedData() {
-	unsigned int i =0;
+	unsigned int i = 0;
 	_attachedDataClear();
 	for (PickableStationItem* item : *_pickableStationItens->list()) {
-		_attachedDataInsert("Station"+std::to_string(i), item->getStation());
+		_attachedDataInsert("Station" + std::to_string(i), item->getStation());
 		if (item->getResource() != nullptr) {
-			_attachedDataInsert("Resource"+std::to_string(i), item->getResource());			
+			_attachedDataInsert("Resource" + std::to_string(i), item->getResource());
 		}
 		if (item->getQueue() != nullptr) {
-			_attachedDataInsert("Queue"+std::to_string(i), item->getQueue());			
+			_attachedDataInsert("Queue" + std::to_string(i), item->getQueue());
 		}
 		i++;
 	}

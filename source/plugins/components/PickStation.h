@@ -72,9 +72,9 @@ public:
 		MINIMUM = 1, MAXIMUM = 2
 	};
 
-	enum class PickCondition : int {
-		NUMBER_BUSY_RESOURCE = 1, NUMBER_IN_QUEUE = 2, EXPRESSION = 3
-	};
+	//enum class PickCondition : int {
+	//	NUMBER_BUSY_RESOURCE = 1, NUMBER_IN_QUEUE = 2, EXPRESSION = 3
+	//};
 
 public: // constructors
 	PickStation(Model* model, std::string name = "");
@@ -82,18 +82,25 @@ public: // constructors
 public: // virtual
 	virtual std::string show();
 public:
-    void setPickCondition(PickStation::PickCondition _pickCondition);
-    PickStation::PickCondition getPickCondition() const;
-    void setTestCondition(PickStation::TestCondition _testCondition);
-    PickStation::TestCondition getTestCondition() const;
-    void setSaveAttribute(std::string _saveAttribute);
-    std::string getSaveAttribute() const;
+	//void setPickCondition(PickStation::PickCondition _pickCondition);
+	//PickStation::PickCondition getPickCondition() const;
+	void setTestCondition(PickStation::TestCondition _testCondition);
+	PickStation::TestCondition getTestCondition() const;
+	void setSaveAttribute(std::string _saveAttribute);
+	std::string getSaveAttribute() const;
 	List<PickableStationItem*>* getPickableStationItens() const;
+	void setPickConditionExpression(bool _pickConditionExpression);
+	bool isPickConditionExpression() const;
+	void setPickConditionNumberInQueue(bool _pickConditionNumberInQueue);
+	bool isPickConditionNumberInQueue() const;
+	void setPickConditionNumberBusyResource(bool _pickConditionNumberBusyResource);
+	bool isPickConditionNumberBusyResource() const;
 public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, PersistenceRecord *fields);
 	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
-	
+
+
 protected: // must be overriden 
 	virtual bool _loadInstance(PersistenceRecord *fields);
 	virtual void _saveInstance(PersistenceRecord *fields, bool saveDefaultValues);
@@ -113,11 +120,18 @@ private: // attributes 1:1
 	const struct DEFAULT_VALUES {
 		const std::string saveAttribute = "";
 		const PickStation::TestCondition testCondition = TestCondition::MINIMUM;
-		const PickStation::PickCondition pickCondition = PickCondition::NUMBER_BUSY_RESOURCE;
+		bool pickConditionNumberBusyResource = false;
+		bool pickConditionNumberInQueue = false;
+		bool pickConditionExpression = true;
+		//const PickStation::PickCondition pickCondition = PickCondition::NUMBER_BUSY_RESOURCE;
 	} DEFAULT;
 	std::string _saveAttribute = DEFAULT.saveAttribute;
-	PickStation::TestCondition _testCondition = DEFAULT.testCondition; 
-	PickStation::PickCondition _pickCondition = DEFAULT.pickCondition;
+	PickStation::TestCondition _testCondition = DEFAULT.testCondition;
+	//PickStation::PickCondition _pickCondition = DEFAULT.pickCondition;
+	bool _pickConditionNumberBusyResource = DEFAULT.pickConditionNumberBusyResource;
+	bool _pickConditionNumberInQueue = DEFAULT.pickConditionNumberInQueue;
+	bool _pickConditionExpression = DEFAULT.pickConditionExpression;
+
 	//DummyElement* _internalDataDefinition = nullptr;
 private: // attributes 1:n
 	List<PickableStationItem*>* _pickableStationItens = new List<PickableStationItem*>();

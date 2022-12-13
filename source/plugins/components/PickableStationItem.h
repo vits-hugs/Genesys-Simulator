@@ -20,17 +20,22 @@
 
 class PickableStationItem {
 public:
-	PickableStationItem(Model* model, std::string stationName, std::string queueName, std::string resourceName = "");
+	PickableStationItem(Model* model, std::string stationName, std::string queueName = "", std::string resourceName = "");
 	PickableStationItem(Model* model, std::string stationName, std::string expression);
 	PickableStationItem(Station* station, Queue* queue);
 	PickableStationItem(Station* station, Resource* resource);
 	PickableStationItem(Station* station, std::string expression);
+	PickableStationItem(Station* station);
 	virtual ~PickableStationItem() = default;
 public:
 	std::string getExpression() const;
 	Queue* getQueue() const;
 	Resource* getResource() const;
 	Station* getStation() const;
+    void setExpression(std::string _expression);
+    void setQueue(Queue* _queue);
+    void setResource(Resource* _resource);
+    void setStation(Station* _station);
 private:
 private:
 	Station* _station = nullptr;

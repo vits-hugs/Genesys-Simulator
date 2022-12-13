@@ -74,3 +74,19 @@ Station* PickableStationItem::getStation() const {
 	return _station;
 }
 
+void PickableStationItem::setExpression(std::string _expression) {
+	this->_expression = _expression;
+}
+
+void PickableStationItem::setQueue(Queue* _queue) {
+	this->_queue = _queue;
+}
+
+void PickableStationItem::setResource(Resource* _resource) {
+	this->_resource = _resource;
+}
+
+void PickableStationItem::setStation(Station* _station) {
+	this->_station = _station;
+}
+
