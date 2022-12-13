@@ -24,7 +24,7 @@ class SeizableItem {
 public:
 
 	enum class SelectionRule : int {
-		CYCLICAL = 1, RANDOM = 2, SPECIFICMEMBER = 3, LARGESTREMAININGCAPACITY = 4, SMALLESTNUMBERBUSY = 5
+		CYCLICAL = 1, RANDOM = 2, SPECIFICMEMBER = 3, LARGESTREMAININGCAPACITY = 4, SMALLESTNUMBERBUSY = 5, PREFEREDORDER = 6
 	};
 
 	enum class SeizableType : int {
@@ -61,6 +61,8 @@ public:
 	unsigned int getLastMemberSeized() const;
 	ModelDataDefinition* getSeizable() const;
 	void setElementManager(ModelDataManager* _modeldataManager);
+    void setLastPreferedOrder(unsigned int _lastPreferedOrder);
+    unsigned int getLastPreferedOrder() const;
 	//void setComponentManager(ComponentManager* _componentManager);
 
 private:
@@ -81,6 +83,7 @@ private:
 	std::string _seizableName;
 	std::string _quantityExpression;
 	unsigned int _lastMemberSeized = 0;
+	unsigned int _lastPreferedOrder = 0;
 private:
 	ModelDataManager* _modeldataManager;
 };

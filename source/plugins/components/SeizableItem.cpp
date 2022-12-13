@@ -201,6 +201,14 @@ void SeizableItem::setElementManager(ModelDataManager* _modeldataManager) {
 	this->_modeldataManager = _modeldataManager;
 }
 
+void SeizableItem::setLastPreferedOrder(unsigned int _lastPreferedOrder) {
+	this->_lastPreferedOrder = _lastPreferedOrder;
+}
+
+unsigned int SeizableItem::getLastPreferedOrder() const {
+	return _lastPreferedOrder;
+}
+
 //void SeizableItem::setComponentManager(ComponentManager* _componentManager) {
 //	this->_componentManager = _componentManager;
 //}
