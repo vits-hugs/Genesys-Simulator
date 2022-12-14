@@ -21,6 +21,9 @@
 #include "../../kernel/simulator/Counter.h"
 #include "../../kernel/simulator/Plugin.h"
 
+#include "../../plugins/data/Formula.h"
+#include "../../plugins/data/Schedule.h"
+
 /*!
  * Create is the most basic component to include the first entities into the model, and therefore is a source component (derived from SourceModelComponent)
 Create module
@@ -30,10 +33,10 @@ Entities are created using a schedule or based on a time between arrivals. Entit
 then leave the module to begin processing through the system. The entity type is
 specified in this module.
 TYPICAL USES
-* The start of a part’s production in a manufacturing line
-* A document’s arrival (for example, order, check, application) into a business
+ * The start of a part’s production in a manufacturing line
+ * A document’s arrival (for example, order, check, application) into a business
 process
-* A customer’s arrival at a service process (for example, retail store, restaurant,
+ * A customer’s arrival at a service process (for example, retail store, restaurant,
 information desk)
 PROMPTS
 Prompt Description
@@ -68,12 +71,18 @@ class Create : public SourceModelComponent {
 public:
 	Create(Model* model, std::string name = "");
 	virtual ~Create() = default;
-public:
+public: // virtual
 	virtual std::string show();
 public:
+	void setTimeBetweenCreationsFormula(Formula* _timeBetweenCreationsFormula);
+	Formula* getTimeBetweenCreationsFormula() const;
+	void setTimeBetweenCreationsSchedule(Schedule* _timeBetweenCreationsSchedule);
+	Schedule* getTimeBetweenCreationsSchedule() const;
+public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, PersistenceRecord *fields);
 	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+
 protected:
 	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
 	virtual bool _loadInstance(PersistenceRecord *fields);
@@ -82,8 +91,12 @@ protected:
 	virtual bool _check(std::string* errorMessage);
 	virtual void _createInternalAndAttachedData();
 private:
-	Counter* _numberOut = nullptr; // internel modeldatum
 	double _lastArrival = -1.0;
+private: // internal elements
+	Counter* _numberOut = nullptr; // internel modeldatum
+private: // attached elements
+	Schedule* _timeBetweenCreationsSchedule = nullptr;
+	Formula* _timeBetweenCreationsFormula = nullptr;
 };
 
 #endif /* CREATE_H */

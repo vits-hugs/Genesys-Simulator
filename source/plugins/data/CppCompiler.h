@@ -30,6 +30,11 @@
 #include "../../kernel/simulator/ModelDataDefinition.h"
 //#include "../../kernel/simulator/ModelDataDefinition.h"
 
+class CompilerThread {
+public:
+	void operator()();
+};
+
 class CppCompiler : public ModelDataDefinition {
 public:
 
@@ -93,8 +98,10 @@ protected: // could be overriden
 	// virtual ParserChangesInformation* _getParserChangesInformation();
 	virtual void _initBetweenReplications();
 	virtual void _createInternalAndAttachedData();
+protected:
+	CompilationResult _invokeCompiler(std::string command);
+	CompilationResult _invokeCompiler2(std::string command);
 protected: // to securelly invoke another program (the cpp compiler in linux)
-	//---
 	static int _orig_ngroups;
 	static gid_t _orig_gid;
 	static uid_t _orig_uid;
@@ -114,8 +121,6 @@ protected: // to securelly invoke another program (the cpp compiler in linux)
 	//---
 	void _spc_sanitize_files(void);
 	static int _open_devnull(int fd);
-protected:
-	CompilationResult _invokeCompiler(std::string command);
 private:
 
 	const struct DEFAULT_VALUES {

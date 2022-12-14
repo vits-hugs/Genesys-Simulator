@@ -31,6 +31,8 @@
 #include <string>
 // execv
 #include <unistd.h>
+//
+#include <thread>
 
 
 #include "../../kernel/simulator/Model.h"
@@ -117,8 +119,22 @@ void CppCompiler::_initBetweenReplications() {
 
 // -----------------------------------------
 
+void CompilerThread::operator()() {
+	std::cout << "I'm alive" << std::endl;
+}
+
+CppCompiler::CompilationResult CppCompiler::_invokeCompiler2(std::string command) {
+	CppCompiler::CompilationResult result;
+	std::thread t((CompilerThread()));
+    std::cout << "main thread\n";
+    t.join();
+	return result;
+}
+
 CppCompiler::CompilationResult CppCompiler::_invokeCompiler(std::string command) {
 	_parentModel->getTracer()->trace("Invoking compiler: " + command);
+	return _invokeCompiler2(command);
+	
 	CppCompiler::CompilationResult result;
 	result.success = true;
 

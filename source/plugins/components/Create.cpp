@@ -17,6 +17,7 @@
 #include "../../kernel/simulator/ModelDataManager.h"
 #include "../../kernel/simulator/Attribute.h"
 #include "Assign.h"
+#include <cassert>
 
 #ifdef PLUGINCONNECT_DYNAMIC
 
@@ -27,6 +28,22 @@ extern "C" StaticGetPluginInformation GetPluginInformation() {
 
 ModelDataDefinition* Create::NewInstance(Model* model, std::string name) {
 	return new Create(model, name);
+}
+
+void Create::setTimeBetweenCreationsFormula(Formula*_timeBetweenCreationsFormula) {
+	this->_timeBetweenCreationsFormula = _timeBetweenCreationsFormula;
+}
+
+Formula* Create::getTimeBetweenCreationsFormula() const {
+	return _timeBetweenCreationsFormula;
+}
+
+void Create::setTimeBetweenCreationsSchedule(Schedule* _timeBetweenCreationsSchedule) {
+	this->_timeBetweenCreationsSchedule = _timeBetweenCreationsSchedule;
+}
+
+Schedule* Create::getTimeBetweenCreationsSchedule() const {
+	return _timeBetweenCreationsSchedule;
 }
 
 Create::Create(Model* model, std::string name) : SourceModelComponent(model, Util::TypeOf<Create>(), name) {
@@ -61,7 +78,16 @@ void Create::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 	unsigned int _maxCreations = _parentModel->parseExpression(this->_maxCreationsExpression);
 	if (tnow != _lastArrival) {
 		_lastArrival = tnow;
-		timeBetweenCreations = _parentModel->parseExpression(this->_timeBetweenCreationsExpression);
+		if (_timeBetweenCreationsExpression != "") {
+			timeBetweenCreations = _parentModel->parseExpression(_timeBetweenCreationsExpression);
+		} else if (_timeBetweenCreationsSchedule != nullptr) {
+			timeBetweenCreations = _parentModel->parseExpression(_timeBetweenCreationsSchedule->getExpression());
+		} else if (_timeBetweenCreationsFormula != nullptr) {
+			timeBetweenCreations = _parentModel->parseExpression(_timeBetweenCreationsFormula->getExpression());
+		} else {
+			//Never could get here
+			assert(false);
+		}
 		timeScale = Util::TimeUnitConvert(this->_timeBetweenCreationsTimeUnit, _parentModel->getSimulation()->getReplicationBaseTimeUnit());
 		newArrivalTime = tnow + timeBetweenCreations*timeScale;
 		for (unsigned int i = 0; i<this->_entitiesPerCreation; i++) {
@@ -85,6 +111,8 @@ PluginInformation* Create::GetPluginInformation() {
 	info->setSource(true);
 	info->setMaximumInputs(0);
 	info->setMinimumInputs(0);
+	info->insertDynamicLibFileDependence("formula.so");
+	info->insertDynamicLibFileDependence("schedule.so");
 	std::string text = "This module is intended as the starting point for entities in a simulation model.";
 	text += "	Entities are created using a schedule or based on a time between arrivals. Entities then leave the module to begin processing through the system.";
 	text += "	The entity type is specified in this module.";
@@ -124,6 +152,7 @@ void Create::_saveInstance(PersistenceRecord *fields, bool saveDefaultValues) {
 
 bool Create::_check(std::string* errorMessage) {
 	bool resultAll = SourceModelComponent::_check(errorMessage);
+	// @TODO Check expression with Schedule and Formula all together
 	return resultAll;
 }
 

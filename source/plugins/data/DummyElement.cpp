@@ -19,7 +19,9 @@ extern "C" StaticGetPluginInformation GetPluginInformation() {
 }
 #endif
 
+//
 // constructors
+//
 
 ModelDataDefinition* DummyElement::NewInstance(Model* model, std::string name) {
 	return new DummyElement(model, name);
@@ -27,14 +29,17 @@ ModelDataDefinition* DummyElement::NewInstance(Model* model, std::string name) {
 
 DummyElement::DummyElement(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<DummyElement>(), name) {
 }
-
+//
 //public
+//
 
 std::string DummyElement::show() {
 	return ModelDataDefinition::show();
 }
 
+//
 // public static 
+//
 
 ModelDataDefinition* DummyElement::LoadInstance(Model* model, PersistenceRecord *fields) {
 	DummyElement* newElement = new DummyElement(model);
@@ -58,7 +63,9 @@ PluginInformation* DummyElement::GetPluginInformation() {
 	return info;
 }
 
+//
 // protected virtual -- must be overriden 
+//
 
 bool DummyElement::_loadInstance(PersistenceRecord *fields) {
 	bool res = ModelDataDefinition::_loadInstance(fields);
@@ -78,9 +85,9 @@ void DummyElement::_saveInstance(PersistenceRecord *fields, bool saveDefaultValu
 	fields->saveField("someString", _someString, DEFAULT.someString);
 }
 
+//
 // protected virtual -- could be overriden 
-
-//ParserChangesInformation* DummyElement::_getParserChangesInformation() {}
+//
 
 bool DummyElement::_check(std::string* errorMessage) {
 	bool resultAll = true;
@@ -117,4 +124,6 @@ void DummyElement::_addProperty(PropertyBase* property) {
 
 }
 
+//
 // private
+//
