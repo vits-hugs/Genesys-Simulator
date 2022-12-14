@@ -53,7 +53,7 @@
 #include "terminal/examples/smarts/Smart_WaitScanCondition.h"
 #include "terminal/examples/smarts/Smart_WaitSignal.h"
 // Smarts from ModelSim students 2022-2
-#include "terminal/examples/smarts/Smart_ValueAdded.h"
+//#include "terminal/examples/smarts/Smart_ValueAdded.h"
 
 
 // teachng
