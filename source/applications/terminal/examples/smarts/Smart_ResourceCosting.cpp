@@ -37,14 +37,14 @@ int Smart_ResourceCosting::main(int argc, char** argv) {
         // Initialize resources
         Resource* Resource_1 = plugins->newInstance<Resource>(model, "Biller");
         Resource_1->setCapacity(1);
-        Resource_1->setCostBusyHour(7.75);
-        Resource_1->setCostIdleHour(7.75);
+        Resource_1->setCostBusyTimeUnit(7.75);
+        Resource_1->setCostIdleTimeUnit(7.75);
         Resource_1->setCostPerUse(0.02);
         
         Resource* Resource_2 = plugins->newInstance<Resource>(model, "Mailer");
         Resource_2->setCapacity(1);
-        Resource_2->setCostBusyHour(5.15);
-        Resource_2->setCostIdleHour(5.15);
+        Resource_2->setCostBusyTimeUnit(5.15);
+        Resource_2->setCostIdleTimeUnit(5.15);
         Resource_2->setCostPerUse(0.02);
 	
         // initialize model parts

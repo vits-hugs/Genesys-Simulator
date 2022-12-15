@@ -38,14 +38,14 @@ int Smart_ResourceScheduleCosting::main(int argc, char** argv) {
         // Initialize resources
         Resource* Resource_1 = plugins->newInstance<Resource>(model, "Biller");
         Resource_1->setCapacity(1); // TODO: CAPACIDADE BASEADA NO SCHEDULE
-        Resource_1->setCostBusyHour(7.75);
-        Resource_1->setCostIdleHour(7.75);
+        Resource_1->setCostBusyTimeUnit(7.75);
+        Resource_1->setCostIdleTimeUnit(7.75);
         Resource_1->setCostPerUse(0.02);
         
         Resource* Resource_2 = plugins->newInstance<Resource>(model, "Mailer");
         Resource_2->setCapacity(1); // TODO: CAPACIDADE BASEADA NO SCHEDULE
-        Resource_2->setCostBusyHour(5.15);
-        Resource_2->setCostIdleHour(5.15);
+        Resource_2->setCostBusyTimeUnit(5.15);
+        Resource_2->setCostIdleTimeUnit(5.15);
         Resource_2->setCostPerUse(0.02);
 	
         // initialize model parts
@@ -82,7 +82,7 @@ int Smart_ResourceScheduleCosting::main(int argc, char** argv) {
 	
 	// set simulation parameters
 	ModelSimulation* sim = model->getSimulation();
-	sim->setNumberOfReplications(300);
+	sim->setNumberOfReplications(1);
         model->getSimulation()->setReplicationLength(480, Util::TimeUnit::minute);
         sim->setWarmUpPeriod(24);
 	sim->setWarmUpPeriodTimeUnit(Util::TimeUnit::minute);
@@ -90,8 +90,6 @@ int Smart_ResourceScheduleCosting::main(int argc, char** argv) {
 	model->save("./models/Smart_ResourceScheduleCosting.gen");
 	model->getSimulation()->start();
 	// run the simulation
-        model->check();
-        model->getDataManager()->show();
 	sim->start();
 	for (int i = 0; i < 1e9; i++); // give UI some time to finish std::cout
 	// free memory

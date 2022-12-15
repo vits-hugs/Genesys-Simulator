@@ -57,17 +57,17 @@ period of time. Applies only when type is Schedule.
 Schedule Rule Dictates when the actual capacity change is to occur when a
 decrease in capacity is required for a busy resource unit. Applies
 only when Type is Schedule.
-Busy/Hour Cost per hour of a resource that is processing an entity. The
+Busy/TimeUnit Cost per timeUnit of a resource that is processing an entity. The
 resource becomes busy when it is originally allocated to an entity
 and becomes idle when it is released. During the time when it is
-busy, cost will accumulate based on the busy/hour cost. The busy
-cost per hour is automatically converted to the appropriate base
+busy, cost will accumulate based on the busy/timeUnit cost. The busy
+cost per timeUnit is automatically converted to the appropriate base
 time unit specified within the Replication Parameters page of the
 Run > Setup menu item.
-Idle/Hour Cost per hour of a resource that is idle. The resource is idle while
+Idle/TimeUnit Cost per timeUnit of a resource that is idle. The resource is idle while
 it is not processing an entity. During the time when it is idle, cost
-will accumulate based on the idle/hour cost. The idle cost per
-hour is automatically converted to the appropriate base time unit
+will accumulate based on the idle/timeUnit cost. The idle cost per
+timeUnit is automatically converted to the appropriate base time unit
 specified within the Replication Parameters page of the Run >
 Setup menu item.
 Per Use Cost of a resource on a usage basis, regardless of the time for
@@ -125,10 +125,10 @@ public: // g&s
 	Resource::ResourceState getResourceState() const;
 	void setCapacity(unsigned int _capacity);
 	unsigned int getCapacity() const;
-	void setCostBusyHour(double _costBusyHour);
-	double getCostBusyHour() const;
-	void setCostIdleHour(double _costIdleHour);
-	double getCostIdleHour() const;
+	void setCostBusyTimeUnit(double _costBusyTimeUnit);
+	double getCostBusyTimeUnit() const;
+	void setCostIdleTimeUnit(double _costIdleTimeUnit);
+	double getCostIdleTimeUnit() const;
 	void setCostPerUse(double _costPerUse);
 	double getCostPerUse() const;
 	void setCapacitySchedule(Schedule* _capacitySchedule);
@@ -159,8 +159,8 @@ private:
 		const ResourceState resourceState = ResourceState::IDLE;
 	} DEFAULT;
 	unsigned int _capacity = DEFAULT.capacity;
-	double _costBusyHour = DEFAULT.cost;
-	double _costIdleHour = DEFAULT.cost;
+	double _costBusyTimeUnit = DEFAULT.cost;
+	double _costIdleTimeUnit = DEFAULT.cost;
 	double _costPerUse = DEFAULT.cost;
 	ResourceState _resourceState = DEFAULT.resourceState;
 private: // only gets
@@ -168,7 +168,10 @@ private: // only gets
 	double _lastTimeSeized = 0.0; // @TODO: It won't work for resources with capacity>1, when not all capacity is seized and them some more are seized. Seized time of first units will be lost. I don't have a solution so far
 	double _lastTimeReleased = 0.0;
 	double _lastTimeFailed = 0.0;
+	double _lastTimeCapacityEvaluated = 0.0;
 	double _lastTimeAnythingNumberBusy = 0.0;
+	double _lastTimeIdle = 0.0;
+	double _lastTimeBusy = 0.0;
 	double _sumNumberBusyOverTime = 0.0;
 	double _sumCapacityOverTime = 0.0;
 	bool _isActive = true;
@@ -188,6 +191,9 @@ private: // internel elements
 	Counter* _counterTotalTimeFailed;
 	Counter* _counterNumSeizes;
 	Counter* _counterNumReleases;
+	Counter* _counterTotalCostPerUse;
+	Counter* _counterTotalCostBusy;
+	Counter* _counterTotalCostIdle;
 };
 
 #endif /* RESOURCE_H */

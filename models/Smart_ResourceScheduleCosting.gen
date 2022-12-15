@@ -2,11 +2,11 @@
 # Simulator, Model and Simulation infos
 0   Simulator  "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220517 
 0   ModelInfo  "Model 1" version="1.0" projectTitle="" description="" analystName="" 
-0   ModelSimulation "" traceLevel=9 warmUpTimeTimeUnit=6 warmUpTime=24.000000 replicationLength=480.000000 numberOfReplications=300 terminatingCondition="count(Depart.CountNumberIn)>1000" replicationLengthTimeUnit=6 
+0   ModelSimulation "" traceLevel=9 warmUpTimeTimeUnit=6 warmUpTime=24.000000 replicationLength=480.000000 terminatingCondition="count(Depart.CountNumberIn)>1000" replicationLengthTimeUnit=6 
 
 # Model Data Definitions
-61  Resource   "Biller" costPerUse=0.020000 costIdleHour=7.750000 costBusyHour=7.750000 
-62  Resource   "Mailer" costPerUse=0.020000 costIdleHour=5.150000 costBusyHour=5.150000 
+61  Resource   "Biller" 
+62  Resource   "Mailer" 
 69  Queue      "BillingQueue" 
 74  Queue      "MailRoomQueue" 
 

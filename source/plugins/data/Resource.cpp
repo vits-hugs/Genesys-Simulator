@@ -49,27 +49,39 @@ Resource::Resource(Model* model, std::string name) : ModelDataDefinition(model, 
 std::string Resource::show() {
 	return ModelDataDefinition::show() +
 			",capacity=" + Util::StrTruncIfInt(std::to_string(_capacity)) +
-			",costBusyByour=" + Util::StrTruncIfInt(std::to_string(_costBusyHour)) +
-			",costIdleByour=" + Util::StrTruncIfInt(std::to_string(_costIdleHour)) +
+			",costBusyByTimeUnit=" + Util::StrTruncIfInt(std::to_string(_costBusyTimeUnit)) +
+			",costIdleByTimeUnit=" + Util::StrTruncIfInt(std::to_string(_costIdleTimeUnit)) +
 			",costPerUse=" + Util::StrTruncIfInt(std::to_string(_costPerUse)) +
 			",state=" + Util::StrTruncIfInt(std::to_string(static_cast<int> (_resourceState)));
 }
 
 bool Resource::seize(unsigned int quantity, double priority) {
+	double tnow = _parentModel->getSimulation()->getSimulatedTime();
+	_sumCapacityOverTime += _lastTimeCapacityEvaluated * getCapacity();
+	_lastTimeCapacityEvaluated = tnow;
 	bool canSeize = (getCapacity() - _numberBusy) >= quantity;
 	if (canSeize) {
+		_sumNumberBusyOverTime += std::max<double>(_lastTimeReleased, _lastTimeSeized) * _lastTimeAnythingNumberBusy;
 		_numberBusy += quantity;
 		if (_reportStatistics)
 			_counterNumSeizes->incCountValue(quantity);
-		_lastTimeSeized = _parentModel->getSimulation()->getSimulatedTime(); // instant when seized
-		_lastTimeAnythingNumberBusy = _numberBusy; 
-		_resourceState = Resource::ResourceState::BUSY;
+		_lastTimeSeized = tnow; // instant when seized
+		_lastTimeAnythingNumberBusy = _numberBusy;
+		_counterTotalCostPerUse->incCountValue(_costPerUse);
+		if (_resourceState != Resource::ResourceState::BUSY) {
+			_resourceState = Resource::ResourceState::BUSY;
+			_counterTotalCostIdle->incCountValue(_costIdleTimeUnit * (tnow - _lastTimeIdle));
+			_lastTimeBusy = tnow;
+		}
 	}
-	// @TODO implement costs
 	return canSeize;
 }
 
 void Resource::release(unsigned int quantity) {
+	double tnow = _parentModel->getSimulation()->getSimulatedTime();
+	_sumNumberBusyOverTime += std::max<double>(_lastTimeReleased, _lastTimeSeized) * _lastTimeAnythingNumberBusy;
+	_sumCapacityOverTime += _lastTimeCapacityEvaluated * getCapacity();
+	_lastTimeCapacityEvaluated = tnow;
 	if (_numberBusy >= quantity) {
 		_numberBusy -= quantity;
 	} else {
@@ -77,8 +89,10 @@ void Resource::release(unsigned int quantity) {
 	}
 	if (_numberBusy == 0) {
 		_resourceState = Resource::ResourceState::IDLE;
+		_counterTotalCostBusy->incCountValue(_costBusyTimeUnit * (tnow - _lastTimeBusy));
+		_lastTimeIdle = tnow;
 	}
-	_lastTimeReleased = _parentModel->getSimulation()->getSimulatedTime();
+	_lastTimeReleased = tnow;
 	_lastTimeAnythingNumberBusy = _numberBusy;
 	double timeSeized = _lastTimeReleased - _lastTimeSeized;
 	if (_reportStatistics) {
@@ -91,18 +105,23 @@ void Resource::release(unsigned int quantity) {
 }
 
 void Resource::_fail() {
-	_originalCapacity = _capacity;
-	_lastTimeFailed = _parentModel->getSimulation()->getSimulatedTime();
+	double tnow = _parentModel->getSimulation()->getSimulatedTime();
+	_sumCapacityOverTime += _lastTimeCapacityEvaluated * getCapacity();
+	_originalCapacity = getCapacity();
+	_lastTimeFailed = tnow;
+	_lastTimeCapacityEvaluated = tnow;
 	_capacity = 0;
 	_isActive = false;
 	_resourceState = ResourceState::FAILED;
-	_parentModel->getTracer()->traceSimulation(this, "Resource \"" + this->getName() + "\" has failed. Capacity " + std::to_string(_originalCapacity) + " changed to 0");
+	_parentModel->getTracer()->traceSimulation(this, "Resource \"" + getName() + "\" has failed. Capacity " + std::to_string(_originalCapacity) + " changed to 0");
 }
 
 void Resource::_active() {
+	double tnow = _parentModel->getSimulation()->getSimulatedTime();
 	_capacity = _originalCapacity;
+	_lastTimeCapacityEvaluated = tnow;
 	if (_reportStatistics) {
-		double failureTime = _parentModel->getSimulation()->getSimulatedTime() - _lastTimeFailed;
+		double failureTime = tnow - _lastTimeFailed;
 		_counterTotalTimeFailed->incCountValue(failureTime);
 		_cstatTimeFailed->getStatistics()->getCollector()->addValue(failureTime);
 	}
@@ -111,33 +130,15 @@ void Resource::_active() {
 		_resourceState = ResourceState::IDLE;
 	else
 		_resourceState = ResourceState::BUSY;
-	_parentModel->getTracer()->traceSimulation(this, "Resource \"" + this->getName() + "\" has been activated. Capacity set back to " + std::to_string(_capacity));
+	_parentModel->getTracer()->traceSimulation(this, "Resource \"" + getName() + "\" has been activated. Capacity set back to " + std::to_string(_capacity));
 }
 
-
-void Resource::_checkFailByCount() {
-	for (Failure* failure : *_failures->list()) {
-		if (failure->getFailureType() == Failure::FailureType::COUNT) {
-			failure->checkIsGoingToFailByCount(this);
-		}
-	}
-}
-
-// 
-void Resource::_initBetweenReplications() {
-	ModelDataDefinition::_initBetweenReplications();
-	_lastTimeSeized = 0.0;
-	_lastTimeReleased = 0.0;
-	_lastTimeFailed = 0.0;
-	_lastTimeAnythingNumberBusy = 0.0;
-	_sumNumberBusyOverTime = 0.0;
-	_sumCapacityOverTime = 0.0;
-	_numberBusy = 0;
-	_isActive = true;
-}
+//
+//
+//
 
 void Resource::setResourceState(ResourceState _resourceState) {
-	this->_resourceState = _resourceState;
+	_resourceState = _resourceState;
 }
 
 Resource::ResourceState Resource::getResourceState() const {
@@ -145,34 +146,34 @@ Resource::ResourceState Resource::getResourceState() const {
 }
 
 void Resource::setCapacity(unsigned int _capacity) {
-	this->_capacity = _capacity;
+	_capacity = _capacity;
 }
 
 unsigned int Resource::getCapacity() const {
-	if (this->_capacitySchedule == nullptr || _parentModel == nullptr || !_isActive)
+	if (_capacitySchedule == nullptr || _parentModel == nullptr || !_isActive)
 		return _capacity;
 	else
 		return _parentModel->parseExpression(_capacitySchedule->getExpression());
 }
 
-void Resource::setCostBusyHour(double _costBusyHour) {
-	this->_costBusyHour = _costBusyHour;
+void Resource::setCostBusyTimeUnit(double _costBusyTimeUnit) {
+	_costBusyTimeUnit = _costBusyTimeUnit;
 }
 
-double Resource::getCostBusyHour() const {
-	return _costBusyHour;
+double Resource::getCostBusyTimeUnit() const {
+	return _costBusyTimeUnit;
 }
 
-void Resource::setCostIdleHour(double _costIdleHour) {
-	this->_costIdleHour = _costIdleHour;
+void Resource::setCostIdleTimeUnit(double _costIdleTimeUnit) {
+	_costIdleTimeUnit = _costIdleTimeUnit;
 }
 
-double Resource::getCostIdleHour() const {
-	return _costIdleHour;
+double Resource::getCostIdleTimeUnit() const {
+	return _costIdleTimeUnit;
 }
 
 void Resource::setCostPerUse(double _costPerUse) {
-	this->_costPerUse = _costPerUse;
+	_costPerUse = _costPerUse;
 }
 
 double Resource::getCostPerUse() const {
@@ -185,7 +186,7 @@ unsigned int Resource::getNumberBusy() const {
 
 void Resource::addReleaseResourceEventHandler(ResourceEventHandler eventHandler, ModelComponent* component, unsigned int priority) {
 	ModelComponent* compHandler;
-	for (SortedResourceEventHandler* sreh : * this->_resourceEventHandlers->list()) {
+	for (SortedResourceEventHandler* sreh : * _resourceEventHandlers->list()) {
 		compHandler = sreh->first.second;
 		if (compHandler == component) {
 			return; // already exists. Do not insert again
@@ -200,24 +201,27 @@ void Resource::addReleaseResourceEventHandler(ResourceEventHandler eventHandler,
 double Resource::getLastTimeSeized() const {
 	return _lastTimeSeized;
 }
+
 double Resource::getInstantCapacityUtilization() const {
 	double capacity = getCapacity();
 	if (capacity == 0)
 		return 0.0;
-	else 
-		return _numberBusy/capacity;
+	else
+		return _numberBusy / capacity;
 }
 
 double Resource::getCapacityUtilization() const {
-	if (_parentModel != nullptr && _parentModel->getSimulation()->getSimulatedTime() > 0)
-		return this->_sumNumberBusyOverTime / (this->_sumCapacityOverTime * _parentModel->getSimulation()->getSimulatedTime());
+	double tnow = _parentModel->getSimulation()->getSimulatedTime();
+	if (_parentModel != nullptr && tnow > 0)
+		return _sumNumberBusyOverTime / (_sumCapacityOverTime * tnow);
 	else
 		return 0.0;
 }
 
 double Resource::getSeizedUtilization() const {
-	if (_parentModel != nullptr && _parentModel->getSimulation()->getSimulatedTime() > 0)
-		return _counterTotalTimeSeized->getCountValue() / _parentModel->getSimulation()->getSimulatedTime();
+	double tnow = _parentModel->getSimulation()->getSimulatedTime();
+	if (_parentModel != nullptr && tnow > 0)
+		return _counterTotalTimeSeized->getCountValue() / tnow;
 	else
 		return 0.0;
 }
@@ -233,16 +237,42 @@ void Resource::removeFailure(Failure* failure) {
 }
 
 void Resource::setCapacitySchedule(Schedule* _capacitySchedule) {
-	this->_capacitySchedule = _capacitySchedule;
+	_capacitySchedule = _capacitySchedule;
 }
 
 Schedule* Resource::getCapacitySchedule() const {
 	return _capacitySchedule;
 }
 
-//List<Failure*>* Resource::getFailures() const {
-//    return _failures;
-//}
+
+//
+//
+//
+
+void Resource::_checkFailByCount() {
+	for (Failure* failure : *_failures->list()) {
+		if (failure->getFailureType() == Failure::FailureType::COUNT) {
+			failure->checkIsGoingToFailByCount(this);
+		}
+	}
+}
+
+// 
+
+void Resource::_initBetweenReplications() {
+	ModelDataDefinition::_initBetweenReplications();
+	_lastTimeSeized = 0.0;
+	_lastTimeReleased = 0.0;
+	_lastTimeFailed = 0.0;
+	_lastTimeCapacityEvaluated = 0.0;
+	_lastTimeAnythingNumberBusy = 0.0;
+	_lastTimeIdle = 0.0;
+	_lastTimeBusy = 0.0;
+	_sumNumberBusyOverTime = 0.0;
+	_sumCapacityOverTime = 0.0;
+	_numberBusy = 0;
+	_isActive = true;
+}
 
 void Resource::_notifyReleaseEventHandlers() {
 	for (SortedResourceEventHandler* sortedHandler : *_resourceEventHandlers->list()) {
@@ -251,30 +281,12 @@ void Resource::_notifyReleaseEventHandlers() {
 	}
 }
 
-PluginInformation* Resource::GetPluginInformation() {
-	PluginInformation* info = new PluginInformation(Util::TypeOf<Resource>(), &Resource::LoadInstance, &Resource::NewInstance);
-	info->insertDynamicLibFileDependence("failure.so");
-	info->insertDynamicLibFileDependence("schedule.so");
-	//info->set...
-	return info;
-}
-
-ModelDataDefinition* Resource::LoadInstance(Model* model, PersistenceRecord *fields) {
-	Resource* newElement = new Resource(model);
-	try {
-		newElement->_loadInstance(fields);
-	} catch (const std::exception& e) {
-
-	}
-	return newElement;
-}
-
 bool Resource::_loadInstance(PersistenceRecord *fields) {
 	bool res = ModelDataDefinition::_loadInstance(fields);
 	if (res) {
 		_capacity = fields->loadField("capacity", DEFAULT.capacity);
-		_costBusyHour = fields->loadField("costBusyHour", DEFAULT.cost);
-		_costIdleHour = fields->loadField("costIdleHour", DEFAULT.cost);
+		_costBusyTimeUnit = fields->loadField("costBusyTimeUnit", DEFAULT.cost);
+		_costIdleTimeUnit = fields->loadField("costIdleTimeUnit", DEFAULT.cost);
 		_costPerUse = fields->loadField("costPerUse", DEFAULT.cost);
 		_resourceState = static_cast<Resource::ResourceState> (fields->loadField("resourceState", static_cast<int> (DEFAULT.resourceState)));
 	}
@@ -285,8 +297,8 @@ bool Resource::_loadInstance(PersistenceRecord *fields) {
 void Resource::_saveInstance(PersistenceRecord *fields, bool saveDefaultValues) {
 	ModelDataDefinition::_saveInstance(fields, saveDefaultValues);
 	fields->saveField("capacity", _capacity, DEFAULT.capacity, saveDefaultValues);
-	fields->saveField("costBusyHour", _costBusyHour, DEFAULT.cost, saveDefaultValues);
-	fields->saveField("costIdleHour", _costIdleHour, DEFAULT.cost, saveDefaultValues);
+	fields->saveField("costBusyTimeUnit", _costBusyTimeUnit, DEFAULT.cost, saveDefaultValues);
+	fields->saveField("costIdleTimeUnit", _costIdleTimeUnit, DEFAULT.cost, saveDefaultValues);
 	fields->saveField("costPerUse", _costPerUse, DEFAULT.cost, saveDefaultValues);
 	fields->saveField("resourceState", static_cast<int> (_resourceState), static_cast<int> (DEFAULT.resourceState), saveDefaultValues);
 	//@TODO: load failures
@@ -308,21 +320,27 @@ void Resource::_onReplicationEnd(SimulationEvent* se) {
 void Resource::_createInternalAndAttachedData() {
 	if (_reportStatistics && _cstatTimeSeized == nullptr) {
 		_cstatProportionSeized = new StatisticsCollector(_parentModel, getName() + "." + "ProportionSeized", this);
-		_cstatCapacityUtilization = new StatisticsCollector(_parentModel, getName() + "." + "CapacityUtilization", this);
-		_cstatTimeSeized = new StatisticsCollector(_parentModel, getName() + "." + "TimeSeized", this);
-		_cstatTimeFailed = new StatisticsCollector(_parentModel, getName() + "." + "TimeFailed", this);
-		_counterTotalTimeSeized = new Counter(_parentModel, getName() + "." + "TotalTimeSeized", this);
-		_counterTotalTimeFailed = new Counter(_parentModel, getName() + "." + "TotalTimeFailed", this);
-		_counterNumSeizes = new Counter(_parentModel, getName() + "." + "Seizes", this);
-		_counterNumReleases = new Counter(_parentModel, getName() + "." + "Releases", this);
 		_internalDataInsert("ProportionSeized", _cstatProportionSeized);
+		_cstatCapacityUtilization = new StatisticsCollector(_parentModel, getName() + "." + "CapacityUtilization", this);
 		_internalDataInsert("CapacityUtilization", _cstatCapacityUtilization);
+		_cstatTimeSeized = new StatisticsCollector(_parentModel, getName() + "." + "TimeSeized", this);
 		_internalDataInsert("TimeSeized", _cstatTimeSeized);
+		_cstatTimeFailed = new StatisticsCollector(_parentModel, getName() + "." + "TimeFailed", this);
 		_internalDataInsert("TimeFailed", _cstatTimeFailed);
+		_counterTotalTimeSeized = new Counter(_parentModel, getName() + "." + "TotalTimeSeized", this);
 		_internalDataInsert("TotalTimeSeized", _counterTotalTimeSeized);
+		_counterTotalTimeFailed = new Counter(_parentModel, getName() + "." + "TotalTimeFailed", this);
 		_internalDataInsert("TotalTimeFailed", _counterTotalTimeFailed);
+		_counterNumSeizes = new Counter(_parentModel, getName() + "." + "Seizes", this);
 		_internalDataInsert("Seizes", _counterNumSeizes);
+		_counterNumReleases = new Counter(_parentModel, getName() + "." + "Releases", this);
 		_internalDataInsert("Releases", _counterNumReleases);
+		_counterTotalCostBusy = new Counter(_parentModel, getName() + "." + "CostBusy", this);
+		_internalDataInsert("CostBusy", _counterTotalCostBusy);
+		_counterTotalCostIdle = new Counter(_parentModel, getName() + "." + "CostIdle", this);
+		_internalDataInsert("CostIdle", _counterTotalCostIdle);
+		_counterTotalCostPerUse = new Counter(_parentModel, getName() + "." + "CostPerUse", this);
+		_internalDataInsert("CostPerUse", _counterTotalCostPerUse);
 		_parentModel->getOnEvents()->addOnReplicationEndHandler(this, &Resource::_onReplicationEnd);
 	} else if (!_reportStatistics && _cstatTimeSeized != nullptr) {
 		_internalDataClear();
@@ -330,4 +348,26 @@ void Resource::_createInternalAndAttachedData() {
 	for (Failure* failure : *_failures->list()) {
 		_attachedDataInsert(getName() + "." + failure->getName(), failure);
 	}
+}
+
+//
+//
+//
+
+PluginInformation* Resource::GetPluginInformation() {
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Resource>(), &Resource::LoadInstance, &Resource::NewInstance);
+	info->insertDynamicLibFileDependence("failure.so");
+	info->insertDynamicLibFileDependence("schedule.so");
+	//info->set...
+	return info;
+}
+
+ModelDataDefinition* Resource::LoadInstance(Model* model, PersistenceRecord *fields) {
+	Resource* newElement = new Resource(model);
+	try {
+		newElement->_loadInstance(fields);
+	} catch (const std::exception& e) {
+
+	}
+	return newElement;
 }

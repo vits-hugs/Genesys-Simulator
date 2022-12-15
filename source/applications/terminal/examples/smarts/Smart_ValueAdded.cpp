@@ -37,14 +37,14 @@ int Smart_ValueAdded::main(int argc, char** argv) {
         // Initialize resources
         Resource* Resource_1 = plugins->newInstance<Resource>(model, "Processor");
         Resource_1->setCapacity(1);
-        Resource_1->setCostBusyHour(8.0);
-        Resource_1->setCostIdleHour(8.0);
+        Resource_1->setCostBusyTimeUnit(8.0);
+        Resource_1->setCostIdleTimeUnit(8.0);
         Resource_1->setCostPerUse(0.0);
         
         Resource* Resource_2 = plugins->newInstance<Resource>(model, "Notary");
         Resource_2->setCapacity(1);
-        Resource_2->setCostBusyHour(0.0);
-        Resource_2->setCostIdleHour(0.0);
+        Resource_2->setCostBusyTimeUnit(0.0);
+        Resource_2->setCostIdleTimeUnit(0.0);
         Resource_2->setCostPerUse(10.0);
 	
         // initialize model parts
