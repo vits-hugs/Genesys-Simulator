@@ -148,10 +148,8 @@ public: // get & set
 	List<SeizableItem*>* getSeizeRequests() const;
 	void setQueueableItem(QueueableItem* _queueableItem);
 	QueueableItem* getQueueableItem() const;
-	void setSaveAttribute(std::string _saveAttribute);
-	std::string getSaveAttribute() const;
-    void setPriorityExpression(std::string _priorityExpression);
-    std::string getPriorityExpression() const;
+	void setPriorityExpression(std::string _priorityExpression);
+	std::string getPriorityExpression() const;
 protected:
 	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
 	virtual bool _loadInstance(PersistenceRecord *fields);
@@ -161,7 +159,7 @@ protected:
 	virtual void _createInternalAndAttachedData();
 private:
 	void _handlerForResourceEvent(Resource* resource); ///< This method is indirectally invocked (notified) by resource when it's released, since it was added as ResourceEventHandler
-	Resource* _getResourceFromSeizableItem(SeizableItem* seizable, Entity* entity);
+	Resource* _getResourceFromSeizableItem(SeizableItem* seizable, Entity* entity, unsigned int*indexPtr);
 	Queue* _getQueue() const;
 public:
 
@@ -170,13 +168,11 @@ public:
 		const unsigned short priority = 0;
 		const std::string priorityExpression = "";
 		const unsigned int seizeRequestSize = 1;
-		const std::string saveAttribute = "";
 	} DEFAULT;
 private:
 	Util::AllocationType _allocationType = DEFAULT.allocationType; // uint ? enum?
 	unsigned short _priority = DEFAULT.priority;
 	std::string _priorityExpression = DEFAULT.priorityExpression;
-	std::string _saveAttribute = DEFAULT.saveAttribute;
 	QueueableItem* _queueableItem = nullptr; // usually has a queue, but not always (it could be a hold or a set)
 	List<SeizableItem*>* _seizeRequests = new List<SeizableItem*>();
 };

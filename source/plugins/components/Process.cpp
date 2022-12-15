@@ -29,7 +29,9 @@ ModelDataDefinition* Process::NewInstance(Model* model, std::string name) {
 }
 
 Process::Process(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Process>(), name) {
+	_flagConstructing = true;
 	_createInternalAndAttachedData(); // its's called by the constructor because internal components can be accessed by process' public methods, so they must exist ever since
+	_flagConstructing = false;
 }
 
 std::string Process::show() {
@@ -70,14 +72,6 @@ void Process::setQueueableItem(QueueableItem* _queueableItem) {
 
 QueueableItem* Process::getQueueableItem() const {
 	return _seize->getQueueableItem();
-}
-
-void Process::setSaveAttribute(std::string _saveAttribute) {
-	_seize->setSaveAttribute(_saveAttribute);
-}
-
-std::string Process::getSaveAttribute() const {
-	return _seize->getSaveAttribute();
 }
 
 void Process::setDelayExpression(std::string _delayExpression) {
@@ -128,14 +122,13 @@ bool Process::_loadInstance(PersistenceRecord *fields) {
 	if (res) {
 		_seize->setAllocationType(static_cast<Util::AllocationType> (fields->loadField("allocationType", static_cast<int> (_seize->DEFAULT.allocationType))));
 		_seize->setPriority(fields->loadField("priority", _seize->DEFAULT.priority));
-		_seize->setSaveAttribute(fields->loadField("saveAttribute", _seize->DEFAULT.saveAttribute));
 		QueueableItem* queueableItem = new QueueableItem(nullptr);
 		queueableItem->setElementManager(_parentModel->getDataManager());
 		queueableItem->loadInstance(fields);
 		_seize->setQueueableItem(queueableItem);
 		unsigned short numRequests = fields->loadField("resquests", _seize->DEFAULT.seizeRequestSize);
 		for (unsigned short i = 0; i < numRequests; i++) {
-			SeizableItem* item = new SeizableItem(nullptr);
+			SeizableItem* item = new SeizableItem(nullptr, "", SeizableItem::SelectionRule::LARGESTREMAININGCAPACITY);
 			item->setElementManager(_parentModel->getDataManager());
 			item->loadInstance(fields, i);
 			_seize->getSeizeRequests()->insert(item);
@@ -152,7 +145,7 @@ bool Process::_loadInstance(PersistenceRecord *fields) {
 void Process::_saveInstance(PersistenceRecord *fields, bool saveDefaultValues) {
 	_adjustConnections();
 	ModelComponent::_saveInstance(fields, saveDefaultValues);
-	auto seizefields = std::unique_ptr<PersistenceRecord>(fields->newInstance());
+	auto seizefields = std::unique_ptr<PersistenceRecord>(fields->newInstance()); //TODO: AUTO
 	ModelComponent::SaveInstance(seizefields.get(), _seize);
 	seizefields->erase("id");
 	seizefields->erase("typename");
@@ -203,15 +196,38 @@ void Process::_createInternalAndAttachedData() {
 		_internalDataInsert("Release", _release);
 	}
 	_adjustConnections();
+	if (!_flagConstructing) { // this method was called before checking the model, not by the object constructor
+		// garantee that release releases exactlly what seize seizes
+		_release->getReleaseRequests()->clear();
+		for (SeizableItem* item : *_seize->getSeizeRequests()->list()) {
+			_release->getReleaseRequests()->insert(new SeizableItem(item));
+		}
+		SeizableItem* releaseItem;
+		unsigned int i = 0;
+		for (SeizableItem* seizeItem : *_seize->getSeizeRequests()->list()) {
+			std::string saveAttr = seizeItem->getSaveAttribute();
+			if (saveAttr == "") { // force seize to have a save attribute
+				saveAttr = "Entity." + this->getName() + ".";
+				if (seizeItem->getSeizableType() == SeizableItem::SeizableType::RESOURCE)
+					saveAttr += seizeItem->getResourceName();
+				else
+					saveAttr += seizeItem->getSet()->getName();
+				saveAttr += ".SaveAttribute";
+				seizeItem->setSaveAttribute(saveAttr);
+			}
+			releaseItem = _release->getReleaseRequests()->getAtRank(i);
+			releaseItem->setSelectionRule(SeizableItem::SelectionRule::SPECIFICMEMBER);
+			releaseItem->setSaveAttribute(saveAttr);
+			if (_parentModel->isAutomaticallyCreatesModelDataDefinitions())
+				this->_attachedAttributesInsert({saveAttr});
+			i++;
+		}
+	}
 }
 
 bool Process::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	// garantee that release releases exactlly what seize seizes
-	_release->getReleaseRequests()->clear();
-	for (SeizableItem* item : *_seize->getSeizeRequests()->list()) {
-		_release->getReleaseRequests()->insert(item);
-	}
+
 	resultAll &= ModelComponent::Check(_seize);
 	resultAll &= ModelComponent::Check(_delay);
 	resultAll &= ModelComponent::Check(_release);

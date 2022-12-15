@@ -46,6 +46,7 @@ public:
 	ModelDataDefinition* newInstance(std::string pluginTypename, Model* model, std::string name = "");
 
 	template <typename T>T* newInstance(Model* model, std::string name = "") {
+		name = Util::StrReplace(name, " ", "_");
 		Plugin* plugin;
 		std::string pluginTypename = Util::TypeOf<T>();
 		//@TODO: Use Find method??

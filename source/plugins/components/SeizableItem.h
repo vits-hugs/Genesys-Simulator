@@ -34,7 +34,7 @@ public:
 public:
 	SeizableItem(ModelDataDefinition* resourceOrSet, std::string quantityExpression = "1", SeizableItem::SelectionRule selectionRule = SeizableItem::SelectionRule::LARGESTREMAININGCAPACITY, std::string saveAttribute = "", std::string index = "0");
 	SeizableItem(Model* model, std::string resourceName, std::string quantityExpression = "1", SeizableItem::SelectionRule selectionRule = SeizableItem::SelectionRule::LARGESTREMAININGCAPACITY, std::string saveAttribute = "", std::string index = "0");
-
+	SeizableItem(SeizableItem* original);
 public:
 	bool loadInstance(PersistenceRecord *fields, unsigned int parentIndex);
 	void saveInstance(PersistenceRecord *fields, unsigned int parentIndex, bool saveDefault);
@@ -61,8 +61,8 @@ public:
 	unsigned int getLastMemberSeized() const;
 	ModelDataDefinition* getSeizable() const;
 	void setElementManager(ModelDataManager* _modeldataManager);
-    void setLastPreferedOrder(unsigned int _lastPreferedOrder);
-    unsigned int getLastPreferedOrder() const;
+	void setLastPreferedOrder(unsigned int _lastPreferedOrder);
+	unsigned int getLastPreferedOrder() const;
 	//void setComponentManager(ComponentManager* _componentManager);
 
 private:

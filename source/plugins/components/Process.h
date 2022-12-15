@@ -42,8 +42,6 @@ public:
 	List<SeizableItem*>* getSeizeRequests() const;
 	void setQueueableItem(QueueableItem* _queueableItem);
 	QueueableItem* getQueueableItem() const;
-	void setSaveAttribute(std::string _saveAttribute);
-	std::string getSaveAttribute() const;
 	void setDelayExpression(std::string _delayExpression);
 	std::string delayExpression() const;
 	void setDelayTimeUnit(Util::TimeUnit _delayTimeUnit);
@@ -61,6 +59,7 @@ private: // attributes 1:1
 	Seize* _seize = nullptr;
 	Delay* _delay = nullptr;
 	Release* _release = nullptr;
+	bool _flagConstructing;
 	//ModelComponent* _nextComponent = nullptr;
 	//unsigned int _nextInput;
 private: // attributes 1:n

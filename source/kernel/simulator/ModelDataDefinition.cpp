@@ -25,9 +25,10 @@ ModelDataDefinition::ModelDataDefinition(Model* model, std::string thistypename,
 	_typename = thistypename;
 	_parentModel = model;
 	_reportStatistics = TraitsKernel<ModelDataDefinition>::reportStatistics; // @TODO: shoould be a parameter before insertIntoModel
+	name = Util::StrReplace(name, " ", "_");
 	if (name == "")
 		_name = thistypename + "_" + std::to_string(Util::GenerateNewIdOfType(thistypename));
-	else if (name.substr(name.length() - 1, 1) == "%")
+	else if (name.substr(name.length() - 1, 1) == "%")  // The "%" as suffix (last char means it will be replaced by a new ID
 		_name = name.substr(0, name.length() - 1) + std::to_string(Util::GenerateNewIdOfType(thistypename));
 	else
 		_name = name;
@@ -248,6 +249,7 @@ Util::identification ModelDataDefinition::getId() const {
 }
 
 void ModelDataDefinition::setName(std::string name) {
+	name = Util::StrReplace(name, " ", "_");
 	// rename every "stuff" related to this modeldatum (controls, responses and internelElements)
 	if (name != _name) {
 		std::string stuffName;

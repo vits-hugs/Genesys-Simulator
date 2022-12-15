@@ -42,6 +42,18 @@ SeizableItem::SeizableItem(Model* model, std::string resourceName, std::string q
 	SeizableItem(resource, quantityExpression, selectionRule, saveAttribute, index);
 }
 
+SeizableItem::SeizableItem(SeizableItem* original) {
+	_seizableType = original->getSeizableType();
+	if (original->getSeizableType() == SeizableItem::SeizableType::RESOURCE)
+		_resourceOrSet = original->getResource();
+	else
+		_resourceOrSet = original->getSet();
+	_quantityExpression = original->getQuantityExpression();
+	_selectionRule=original->getSelectionRule();
+	_saveAttribute=original->getSaveAttribute();
+	_index = original->getIndex();
+}
+
 bool SeizableItem::loadInstance(PersistenceRecord *fields) {
 	bool res = true;
 	try {
@@ -124,7 +136,7 @@ std::string SeizableItem::show() {
 }
 
 void SeizableItem::setIndex(std::string index) {
-	this->_index = index;
+	_index = index;
 }
 
 std::string SeizableItem::getIndex() const {
@@ -132,7 +144,7 @@ std::string SeizableItem::getIndex() const {
 }
 
 void SeizableItem::setSaveAttribute(std::string saveAttribute) {
-	this->_saveAttribute = saveAttribute;
+	_saveAttribute = saveAttribute;
 }
 
 std::string SeizableItem::getSaveAttribute() const {
@@ -140,7 +152,7 @@ std::string SeizableItem::getSaveAttribute() const {
 }
 
 void SeizableItem::setSelectionRule(SeizableItem::SelectionRule selectionRule) {
-	this->_selectionRule = selectionRule;
+	_selectionRule = selectionRule;
 }
 
 SeizableItem::SelectionRule SeizableItem::getSelectionRule() const {
@@ -148,7 +160,7 @@ SeizableItem::SelectionRule SeizableItem::getSelectionRule() const {
 }
 
 void SeizableItem::setQuantityExpression(std::string quantityExpression) {
-	this->_quantityExpression = quantityExpression;
+	_quantityExpression = quantityExpression;
 }
 
 std::string SeizableItem::getQuantityExpression() const {
@@ -160,7 +172,7 @@ std::string SeizableItem::getResourceName() const {
 }
 
 void SeizableItem::setResource(Resource* resource) {
-	this->_resourceOrSet = resource;
+	_resourceOrSet = resource;
 	_seizableName = resource->getName();
 }
 
@@ -169,7 +181,7 @@ Resource* SeizableItem::getResource() const {
 }
 
 void SeizableItem::setSet(Set* set) {
-	this->_resourceOrSet = set;
+	_resourceOrSet = set;
 	_seizableName = set->getName();
 }
 
@@ -178,7 +190,7 @@ Set* SeizableItem::getSet() const {
 }
 
 void SeizableItem::setSeizableType(SeizableItem::SeizableType resourceType) {
-	this->_seizableType = resourceType;
+	_seizableType = resourceType;
 }
 
 SeizableItem::SeizableType SeizableItem::getSeizableType() const {
@@ -186,7 +198,7 @@ SeizableItem::SeizableType SeizableItem::getSeizableType() const {
 }
 
 void SeizableItem::setLastMemberSeized(unsigned int lastMemberSeized) {
-	this->_lastMemberSeized = lastMemberSeized;
+	_lastMemberSeized = lastMemberSeized;
 }
 
 unsigned int SeizableItem::getLastMemberSeized() const {
@@ -198,11 +210,11 @@ ModelDataDefinition* SeizableItem::getSeizable() const {
 }
 
 void SeizableItem::setElementManager(ModelDataManager* _modeldataManager) {
-	this->_modeldataManager = _modeldataManager;
+	_modeldataManager = _modeldataManager;
 }
 
 void SeizableItem::setLastPreferedOrder(unsigned int _lastPreferedOrder) {
-	this->_lastPreferedOrder = _lastPreferedOrder;
+	_lastPreferedOrder = _lastPreferedOrder;
 }
 
 unsigned int SeizableItem::getLastPreferedOrder() const {
@@ -210,6 +222,6 @@ unsigned int SeizableItem::getLastPreferedOrder() const {
 }
 
 //void SeizableItem::setComponentManager(ComponentManager* _componentManager) {
-//	this->_componentManager = _componentManager;
+//	_componentManager = _componentManager;
 //}
 

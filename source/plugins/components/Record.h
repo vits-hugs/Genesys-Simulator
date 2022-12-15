@@ -91,7 +91,8 @@ private:
 	std::string _filename = "";
 private:
 	// not a child modeldatum
-	StatisticsCollector* _cstatExpression; /* @TODO: Create an internal class to agregate ExpressionStatisticsColelctor, and change Record to got a list of it, so Record cn record a set of expressions into a set of files */
+	StatisticsCollector* _cstatExpression = nullptr;
+	/* @TODO: Create an internal class to agregate ExpressionStatisticsColelctor, and change Record to got a list of it, so Record cn record a set of expressions into a set of files */
 };
 
 #endif /* RECORD_H */

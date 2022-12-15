@@ -126,7 +126,7 @@ int Smart_ResourceSets::main(int argc, char** argv) {
     //     loanOfficersSet->getElementSet()->insert(sr);
     // }
 
-    useLoanApproval->getSeizeRequests()->insert(new SeizableItem(loanOfficersSet, "1", SeizableItem::SelectionRule::SMALLESTNUMBERBUSY)); // TODO: Selection rule should be PreferredOrder
+    useLoanApproval->getSeizeRequests()->insert(new SeizableItem(loanOfficersSet, "1", SeizableItem::SelectionRule::PREFEREDORDER)); // TODO: Selection rule should be PreferredOrder
     useLoanApproval->setQueueableItem(new QueueableItem(loanQueue));
     
     // Use Senior Approval Officer Set
@@ -174,11 +174,9 @@ int Smart_ResourceSets::main(int argc, char** argv) {
     model->getSimulation()->setReplicationLength(480);
     model->getSimulation()->setReplicationLengthTimeUnit(Util::TimeUnit::minute);
     model->save("./models/Smart_ResourceSets.gen");
-    
-    do {
-		model->getSimulation()->step();
-	} while (model->getSimulation()->isPaused());
-	for (int i = 0; i < 1e9; i++);
+   
+ 	model->getSimulation()->start();
+	for (int i = 0; i < 1e3; i++);
 
     delete genesys;
     

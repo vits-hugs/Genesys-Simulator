@@ -32,9 +32,9 @@ When the entity enters the Release module, it gives up control of the specified
 resource(s). Any entities waiting in queues for those resources will gain control of the
 resources immediately.
 TYPICAL USES
-* Finishing a customer order (release the operator)
-* Completing a tax return (release the accountant)
-* Leaving the hospital (release the doctor, nurse, hospital room)
+ * Finishing a customer order (release the operator)
+ * Completing a tax return (release the accountant)
+ * Leaving the hospital (release the doctor, nurse, hospital room)
 PROMPTS
 Prompt Description
 Name Unique module identifier displayed on the module shape.
@@ -84,6 +84,8 @@ protected:
 	virtual void _saveInstance(PersistenceRecord *fields, bool saveDefaultValues);
 	virtual bool _check(std::string* errorMessage);
 	virtual void _createInternalAndAttachedData();
+private:
+	Resource* _getResourceFromSeizableItem(SeizableItem* seizable, Entity* entity);
 private:
 
 	const struct DEFAULT_VALUES {

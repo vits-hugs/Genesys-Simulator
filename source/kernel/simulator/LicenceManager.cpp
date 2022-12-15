@@ -27,11 +27,11 @@ void LicenceManager::setDefaultLicenceAndLimits() {
 	_licence += " All changes and improvements must be submitted to the git repository using pull requests.";
 	_licence += " Any commercial application is a violation of the license agreement.";
 	_licence += " Designed and developed by prof. Dr. Ing Rafael Luiz Cancian, 2019-2022.";
-	_licence += " Contact rafael.cancian@ufsc.br";
+	_licence += " Contacts: rafael.cancian@ufsc.br , cancian@lisha.ufsc.br";
 	_activationCode = "";
-	_components = 50;
-	_datadefinitions = 100;
-	_entities = 200;
+	_components = 100;
+	_datadefinitions = 300;
+	_entities = 300;
 	_hosts = 1;
 	_threads = 1;
 }
@@ -51,8 +51,10 @@ const std::string LicenceManager::showLimits() const {
 }
 
 const std::string LicenceManager::showActivationCode() const {
-	std::string msg = "ACTIVATION CODE: Not found.";
-	return msg;
+	if (_activationCode == "")
+		return "ACTIVATION CODE: " + _activationCode;
+	else
+		return "ACTIVATION CODE: Not found.";
 }
 
 bool LicenceManager::lookforActivationCode() {
