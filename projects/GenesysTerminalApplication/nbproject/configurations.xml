@@ -102,6 +102,10 @@
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_Process.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_ProcessSet.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_ProcessSet.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_ResourceCosting.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_ResourceCosting.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_ResourceScheduleCosting.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_ResourceScheduleCosting.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_ResourceSets.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_ResourceSets.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_RouteStation.cpp</itemPath>
@@ -800,6 +804,26 @@
             flavor2="0">
       </item>
       <item path="../../source/applications/terminal/examples/smarts/Smart_ProcessSet.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ResourceCosting.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ResourceCosting.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ResourceScheduleCosting.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ResourceScheduleCosting.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2591,6 +2615,26 @@
             flavor2="0">
       </item>
       <item path="../../source/applications/terminal/examples/smarts/Smart_ProcessSet.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ResourceCosting.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ResourceCosting.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ResourceScheduleCosting.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ResourceScheduleCosting.h"
             ex="false"
             tool="3"
             flavor2="0">

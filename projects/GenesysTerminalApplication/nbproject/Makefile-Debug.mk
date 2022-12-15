@@ -56,6 +56,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/296208d5/Smart_Plugin.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_Process.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_ProcessSet.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_ResourceCosting.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_ResourceScheduleCosting.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_ResourceSets.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_RouteStation.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_SeizeDelayRelease.o \
@@ -334,6 +336,16 @@ ${OBJECTDIR}/_ext/296208d5/Smart_ProcessSet.o: ../../source/applications/termina
 	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -O -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_ProcessSet.o ../../source/applications/terminal/examples/smarts/Smart_ProcessSet.cpp
+
+${OBJECTDIR}/_ext/296208d5/Smart_ResourceCosting.o: ../../source/applications/terminal/examples/smarts/Smart_ResourceCosting.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -O -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_ResourceCosting.o ../../source/applications/terminal/examples/smarts/Smart_ResourceCosting.cpp
+
+${OBJECTDIR}/_ext/296208d5/Smart_ResourceScheduleCosting.o: ../../source/applications/terminal/examples/smarts/Smart_ResourceScheduleCosting.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -O -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_ResourceScheduleCosting.o ../../source/applications/terminal/examples/smarts/Smart_ResourceScheduleCosting.cpp
 
 ${OBJECTDIR}/_ext/296208d5/Smart_ResourceSets.o: ../../source/applications/terminal/examples/smarts/Smart_ResourceSets.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
@@ -1315,6 +1327,32 @@ ${OBJECTDIR}/_ext/296208d5/Smart_ProcessSet_nomain.o: ${OBJECTDIR}/_ext/296208d5
 	    $(COMPILE.cc) -g -O -Wall -I../../source/gtest -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_ProcessSet_nomain.o ../../source/applications/terminal/examples/smarts/Smart_ProcessSet.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/296208d5/Smart_ProcessSet.o ${OBJECTDIR}/_ext/296208d5/Smart_ProcessSet_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/296208d5/Smart_ResourceCosting_nomain.o: ${OBJECTDIR}/_ext/296208d5/Smart_ResourceCosting.o ../../source/applications/terminal/examples/smarts/Smart_ResourceCosting.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/296208d5/Smart_ResourceCosting.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -O -Wall -I../../source/gtest -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_ResourceCosting_nomain.o ../../source/applications/terminal/examples/smarts/Smart_ResourceCosting.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/296208d5/Smart_ResourceCosting.o ${OBJECTDIR}/_ext/296208d5/Smart_ResourceCosting_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/296208d5/Smart_ResourceScheduleCosting_nomain.o: ${OBJECTDIR}/_ext/296208d5/Smart_ResourceScheduleCosting.o ../../source/applications/terminal/examples/smarts/Smart_ResourceScheduleCosting.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/296208d5/Smart_ResourceScheduleCosting.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -O -Wall -I../../source/gtest -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_ResourceScheduleCosting_nomain.o ../../source/applications/terminal/examples/smarts/Smart_ResourceScheduleCosting.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/296208d5/Smart_ResourceScheduleCosting.o ${OBJECTDIR}/_ext/296208d5/Smart_ResourceScheduleCosting_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/296208d5/Smart_ResourceSets_nomain.o: ${OBJECTDIR}/_ext/296208d5/Smart_ResourceSets.o ../../source/applications/terminal/examples/smarts/Smart_ResourceSets.cpp 

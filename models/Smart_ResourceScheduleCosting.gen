@@ -1,0 +1,17 @@
+# Genesys Simulation Model
+# Simulator, Model and Simulation infos
+0   Simulator  "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220517 
+0   ModelInfo  "Model 1" version="1.0" projectTitle="" description="" analystName="" 
+0   ModelSimulation "" traceLevel=9 warmUpTimeTimeUnit=6 warmUpTime=24.000000 replicationLength=480.000000 numberOfReplications=300 terminatingCondition="count(Depart.CountNumberIn)>1000" replicationLengthTimeUnit=6 
+
+# Model Data Definitions
+61  Resource   "Biller" costPerUse=0.020000 costIdleHour=7.750000 costBusyHour=7.750000 
+62  Resource   "Mailer" costPerUse=0.020000 costIdleHour=5.150000 costBusyHour=5.150000 
+69  Queue      "BillingQueue" 
+74  Queue      "MailRoomQueue" 
+
+# Model Components
+63  Create     "Arrival" entityType="Arrival" timeBetweenCreationsTimeUnit=6 nextId=65 timeBetweenCreations="expo(1.5)" 
+65  Process    "Billing" delayExpression="tria(0.5,1,1.5)" delayExpressionTimeUnit=6 queueable="BillingQueue" allocationType=1 nextId=70 requestSeizable[0]="Biller" 
+70  Process    "MailRoom" delayExpression="tria(0.5,1,1.5)" delayExpressionTimeUnit=6 queueable="MailRoomQueue" allocationType=1 nextId=75 requestSeizable[0]="Mailer" 
+75  Dispose    "Depart" nexts=0 

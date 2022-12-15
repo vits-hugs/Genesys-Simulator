@@ -54,8 +54,10 @@
 #include "terminal/examples/smarts/Smart_WaitScanCondition.h"
 #include "terminal/examples/smarts/Smart_WaitSignal.h"
 // Smarts from ModelSim students 2022-2
-//#include "terminal/examples/smarts/Smart_ValueAdded.h"
-
+#include "terminal/examples/smarts/Smart_ResourceCosting.h"
+#include "terminal/examples/smarts/Smart_ResourceScheduleCosting.h"
+#include "terminal/examples/smarts/Smart_SynchronizingParallelEntities.h"
+#include "terminal/examples/smarts/Smart_ValueAdded.h"
 
 // teachng
 #include "terminal/examples/teaching/AnElectronicAssemblyAndTestSystem.h"
@@ -95,11 +97,14 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Smart_Process Application;
 	//typedef Smart_ProcessSet Application;
 	//typedef Smart_ResourceSets Application;
+	//typedef Smart_ResourceCosting Application;
+	//typedef Smart_ResourceScheduleCosting Application;
 	//typedef Smart_RouteStation Application;
 	//typedef Smart_SeizeDelayRelease Application;
 	//typedef Smart_SeizeDelayReleaseNoDataDefs Application;
 	//typedef Smart_SeizeDelayReleaseMany Application;
 	//typedef Smart_Sequence Application;
+	//typedef Smart_SynchronizingParallelEntities Application;
 	//typedef Smart_SimulationControlResponse Application;
 	//typedef Smart_ValueAdded Application;
 	//typedef Smart_WaitScanCondition Application;
