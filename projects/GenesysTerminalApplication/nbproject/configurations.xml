@@ -60,6 +60,8 @@
         <logicalFolder name="terminal" displayName="terminal" projectFiles="true">
           <logicalFolder name="examples" displayName="examples" projectFiles="true">
             <logicalFolder name="book" displayName="book" projectFiles="true">
+              <logicalFolder name="smarts" displayName="smarts" projectFiles="true">
+              </logicalFolder>
               <itemPath>../../source/applications/terminal/examples/book/Book_Cap02_Example01.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/book/Book_Cap02_Example01.h</itemPath>
             </logicalFolder>
@@ -100,6 +102,8 @@
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_Process.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_ProcessSet.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_ProcessSet.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_ResourceSets.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_ResourceSets.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_RouteStation.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_RouteStation.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_SeizeDelayRelease.cpp</itemPath>
@@ -112,6 +116,8 @@
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_Sequence.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_SimulationControlResponse.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_SimulationControlResponse.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_SynchronizingParallelEntities.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/smarts/Smart_SynchronizingParallelEntities.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_ValueAdded.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_ValueAdded.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_WaitScanCondition.cpp</itemPath>
@@ -798,6 +804,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ResourceSets.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ResourceSets.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../../source/applications/terminal/examples/smarts/Smart_RouteStation.cpp"
             ex="false"
             tool="1"
@@ -854,6 +870,16 @@
             flavor2="0">
       </item>
       <item path="../../source/applications/terminal/examples/smarts/Smart_SimulationControlResponse.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_SynchronizingParallelEntities.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_SynchronizingParallelEntities.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2569,6 +2595,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ResourceSets.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_ResourceSets.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../../source/applications/terminal/examples/smarts/Smart_RouteStation.cpp"
             ex="false"
             tool="1"
@@ -2625,6 +2661,16 @@
             flavor2="0">
       </item>
       <item path="../../source/applications/terminal/examples/smarts/Smart_SimulationControlResponse.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_SynchronizingParallelEntities.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/smarts/Smart_SynchronizingParallelEntities.h"
             ex="false"
             tool="3"
             flavor2="0">

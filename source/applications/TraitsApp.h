@@ -44,6 +44,7 @@
 #include "terminal/examples/smarts/Smart_Plugin.h"
 #include "terminal/examples/smarts/Smart_Process.h"
 #include "terminal/examples/smarts/Smart_ProcessSet.h"
+#include "terminal/examples/smarts/Smart_ResourceSets.h"
 #include "terminal/examples/smarts/Smart_RouteStation.h"
 #include "terminal/examples/smarts/Smart_SeizeDelayRelease.h"
 #include "terminal/examples/smarts/Smart_SeizeDelayReleaseMany.h"
@@ -79,9 +80,9 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Smart_AssignWriteSeizes Application;
 	//typedef Smart_BatchSeparate Application;
 	//typedef Smart_Clone Application;
-	typedef Smart_CppForG Application;
+	//typedef Smart_CppForG Application;
 	//typedef Smart_Delay Application;
-	//typedef Smart_Dummy Application;
+	typedef Smart_Dummy Application;
 	//typedef Smart_Failures Application;
 	//typedef Smart_FiniteStateMachine Application;
 	//typedef Smart_HoldSearchRemove Application;
@@ -93,6 +94,7 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Smart_Plugin Application;
 	//typedef Smart_Process Application;
 	//typedef Smart_ProcessSet Application;
+	//typedef Smart_ResourceSets Application;
 	//typedef Smart_RouteStation Application;
 	//typedef Smart_SeizeDelayRelease Application;
 	//typedef Smart_SeizeDelayReleaseNoDataDefs Application;

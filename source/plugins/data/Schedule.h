@@ -19,9 +19,16 @@
 class SchedulableItem {
 public:
 
-	SchedulableItem(std::string expression, double duration) {
+	enum class Rule : int {
+		IGNORE = 1, PREEMPT = 2, WAIT = 3
+	};
+
+public:
+
+	SchedulableItem(std::string expression, double duration, SchedulableItem::Rule = SchedulableItem::Rule::IGNORE) {
 		this->expression = expression;
 		this->duration = duration;
+		this->rule = rule;
 	}
 public:
 
@@ -40,10 +47,22 @@ public:
 	std::string getExpression() const {
 		return expression;
 	}
+
+	void setRule(SchedulableItem::Rule rule) {
+		this->rule = rule;
+	}
+
+	SchedulableItem::Rule getRule() const {
+		return rule;
+	}
 private:
 	std::string expression;
 	double duration;
+	SchedulableItem::Rule rule;
 };
+
+//class SchedulableResourceItem : public SchedulableItem {
+//};
 
 class Schedule : public ModelDataDefinition {
 public:

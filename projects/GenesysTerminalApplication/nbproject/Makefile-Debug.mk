@@ -56,12 +56,14 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/296208d5/Smart_Plugin.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_Process.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_ProcessSet.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_ResourceSets.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_RouteStation.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_SeizeDelayRelease.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_SeizeDelayReleaseMany.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_SeizeDelayReleaseNoDataDefs.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_Sequence.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_SimulationControlResponse.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_SynchronizingParallelEntities.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_ValueAdded.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_WaitScanCondition.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_WaitSignal.o \
@@ -333,6 +335,11 @@ ${OBJECTDIR}/_ext/296208d5/Smart_ProcessSet.o: ../../source/applications/termina
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -O -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_ProcessSet.o ../../source/applications/terminal/examples/smarts/Smart_ProcessSet.cpp
 
+${OBJECTDIR}/_ext/296208d5/Smart_ResourceSets.o: ../../source/applications/terminal/examples/smarts/Smart_ResourceSets.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -O -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_ResourceSets.o ../../source/applications/terminal/examples/smarts/Smart_ResourceSets.cpp
+
 ${OBJECTDIR}/_ext/296208d5/Smart_RouteStation.o: ../../source/applications/terminal/examples/smarts/Smart_RouteStation.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
@@ -362,6 +369,11 @@ ${OBJECTDIR}/_ext/296208d5/Smart_SimulationControlResponse.o: ../../source/appli
 	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -O -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_SimulationControlResponse.o ../../source/applications/terminal/examples/smarts/Smart_SimulationControlResponse.cpp
+
+${OBJECTDIR}/_ext/296208d5/Smart_SynchronizingParallelEntities.o: ../../source/applications/terminal/examples/smarts/Smart_SynchronizingParallelEntities.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -O -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_SynchronizingParallelEntities.o ../../source/applications/terminal/examples/smarts/Smart_SynchronizingParallelEntities.cpp
 
 ${OBJECTDIR}/_ext/296208d5/Smart_ValueAdded.o: ../../source/applications/terminal/examples/smarts/Smart_ValueAdded.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
@@ -1305,6 +1317,19 @@ ${OBJECTDIR}/_ext/296208d5/Smart_ProcessSet_nomain.o: ${OBJECTDIR}/_ext/296208d5
 	    ${CP} ${OBJECTDIR}/_ext/296208d5/Smart_ProcessSet.o ${OBJECTDIR}/_ext/296208d5/Smart_ProcessSet_nomain.o;\
 	fi
 
+${OBJECTDIR}/_ext/296208d5/Smart_ResourceSets_nomain.o: ${OBJECTDIR}/_ext/296208d5/Smart_ResourceSets.o ../../source/applications/terminal/examples/smarts/Smart_ResourceSets.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/296208d5/Smart_ResourceSets.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -O -Wall -I../../source/gtest -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_ResourceSets_nomain.o ../../source/applications/terminal/examples/smarts/Smart_ResourceSets.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/296208d5/Smart_ResourceSets.o ${OBJECTDIR}/_ext/296208d5/Smart_ResourceSets_nomain.o;\
+	fi
+
 ${OBJECTDIR}/_ext/296208d5/Smart_RouteStation_nomain.o: ${OBJECTDIR}/_ext/296208d5/Smart_RouteStation.o ../../source/applications/terminal/examples/smarts/Smart_RouteStation.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/296208d5/Smart_RouteStation.o`; \
@@ -1381,6 +1406,19 @@ ${OBJECTDIR}/_ext/296208d5/Smart_SimulationControlResponse_nomain.o: ${OBJECTDIR
 	    $(COMPILE.cc) -g -O -Wall -I../../source/gtest -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_SimulationControlResponse_nomain.o ../../source/applications/terminal/examples/smarts/Smart_SimulationControlResponse.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/296208d5/Smart_SimulationControlResponse.o ${OBJECTDIR}/_ext/296208d5/Smart_SimulationControlResponse_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/296208d5/Smart_SynchronizingParallelEntities_nomain.o: ${OBJECTDIR}/_ext/296208d5/Smart_SynchronizingParallelEntities.o ../../source/applications/terminal/examples/smarts/Smart_SynchronizingParallelEntities.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/296208d5/Smart_SynchronizingParallelEntities.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -O -Wall -I../../source/gtest -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_SynchronizingParallelEntities_nomain.o ../../source/applications/terminal/examples/smarts/Smart_SynchronizingParallelEntities.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/296208d5/Smart_SynchronizingParallelEntities.o ${OBJECTDIR}/_ext/296208d5/Smart_SynchronizingParallelEntities_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/296208d5/Smart_ValueAdded_nomain.o: ${OBJECTDIR}/_ext/296208d5/Smart_ValueAdded.o ../../source/applications/terminal/examples/smarts/Smart_ValueAdded.cpp 

@@ -24,7 +24,6 @@ extern "C" StaticGetPluginInformation GetPluginInformation() {
 }
 #endif
 
-
 ModelDataDefinition* Process::NewInstance(Model* model, std::string name) {
 	return new Process(model, name);
 }
@@ -43,6 +42,14 @@ void Process::setPriority(unsigned short _priority) {
 
 unsigned short Process::getPriority() const {
 	return _seize->getPriority();
+}
+
+void Process::setPriorityExpression(std::string priority) {
+	_seize->setPriorityExpression(priority);
+}
+
+std::string Process::getPriorityExpression() const {
+	return _seize->getPriorityExpression();
 }
 
 void Process::setAllocationType(Util::AllocationType _allocationType) {
@@ -119,7 +126,7 @@ void Process::_adjustConnections() {
 bool Process::_loadInstance(PersistenceRecord *fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
-		_seize->setAllocationType(static_cast<Util::AllocationType>(fields->loadField("allocationType", static_cast<int>(_seize->DEFAULT.allocationType))));
+		_seize->setAllocationType(static_cast<Util::AllocationType> (fields->loadField("allocationType", static_cast<int> (_seize->DEFAULT.allocationType))));
 		_seize->setPriority(fields->loadField("priority", _seize->DEFAULT.priority));
 		_seize->setSaveAttribute(fields->loadField("saveAttribute", _seize->DEFAULT.saveAttribute));
 		QueueableItem* queueableItem = new QueueableItem(nullptr);

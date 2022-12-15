@@ -20,6 +20,8 @@
 #include "../../kernel/simulator/Counter.h"
 #include "../../kernel/simulator/Plugin.h"
 #include "Failure.h"
+#include "Schedule.h"
+
 
 class SeizableItem;
 
@@ -31,8 +33,8 @@ information and resource availability. Resources may have a fixed capacity that 
 not vary over the simulation run or may operate based on a schedule. Resource
 failures and states can also be specified in this module.
 TYPICAL USES
-* Equipment (machinery, cash register, phone line)
-* People (clerical, order processing, sales clerks, operators)
+ * Equipment (machinery, cash register, phone line)
+ * People (clerical, order processing, sales clerks, operators)
 PROMPTS
 Prompt Description
 Name The name of the resource whose characteristics are being
@@ -72,9 +74,9 @@ Initial State Initial state of a resource. If specified, the name must be define
 within the repeat group of state names. This field is shown only
 when a StateSet Name is defined.
 Failures Lists all failures that will be associated with the resource.
-* Failure Name–Name of the failure associated with the
+ * Failure Name–Name of the failure associated with the
 resource.
-* Failure Rule–Behavior that should occur when a failure is to
+ * Failure Rule–Behavior that should occur when a failure is to
 occur for a busy resource unit.
 Report Statistics Specifies whether or not statistics will be collected automatically
 and stored in the report database for this resource.
@@ -83,6 +85,7 @@ class Resource : public ModelDataDefinition {
 public:
 	typedef std::function<void(Resource*) > ResourceEventHandler;
 	typedef std::pair<std::pair<ResourceEventHandler, ModelComponent*>, unsigned int> SortedResourceEventHandler;
+
 	template<typename Class>
 	static ResourceEventHandler SetResourceEventHandler(void (Class::*function)(Resource*), Class * object) {
 		return std::bind(function, object, std::placeholders::_1);
@@ -103,7 +106,7 @@ public: // static
 	static ModelDataDefinition* LoadInstance(Model* model, PersistenceRecord *fields);
 	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
-	bool seize(unsigned int quantity);
+	bool seize(unsigned int quantity, double priority = 0);
 	void release(unsigned int quantity);
 public: // g&s
 	void setResourceState(ResourceState _resourceState);
@@ -116,13 +119,17 @@ public: // g&s
 	double getCostIdleHour() const;
 	void setCostPerUse(double _costPerUse);
 	double getCostPerUse() const;
+	void setCapacitySchedule(Schedule* _capacitySchedule);
+	Schedule* getCapacitySchedule() const;
 public: // gets
 	unsigned int getNumberBusy() const;
 public:
 	void addReleaseResourceEventHandler(ResourceEventHandler eventHandler, ModelComponent* component, unsigned int priority);
 	double getLastTimeSeized() const;
+	double getUtilization() const;
 	void insertFailure(Failure* failure);
 	void removeFailure(Failure* failure);
+
 	//List<Failure*>* getFailures() const;
 protected: // protected must override
 	virtual bool _loadInstance(PersistenceRecord *fields);
@@ -154,6 +161,8 @@ private: // only gets
 	unsigned int _numberBusy = 0;
 	//unsigned int _numberOut = 0;
 	double _lastTimeSeized = 0.0; // @TODO: It won't work for resources with capacity>1, when not all capacity is seized and them some more are seized. Seized time of first units will be lost. I don't have a solution so far
+	double _lastTimeFailed = 0.0;
+	bool _isActive = true;
 private: // not gets nor sets
 	unsigned int _originalCapacity; // used for failing purposes, when _capacity changes to 0
 private: //1::n
@@ -161,9 +170,14 @@ private: //1::n
 	List<Failure*>* _failures = new List<Failure*>();
 private: // inner internel elements
 	StatisticsCollector* _cstatTimeSeized = nullptr;
-	Counter* _totalTimeSeized;
-	Counter* _numSeizes;
-	Counter* _numReleases;
+	StatisticsCollector* _cstatTimeFailed = nullptr;
+	StatisticsCollector* _cstatUtilization = nullptr;
+	Counter* _counterTotalTimeSeized;
+	Counter* _counterTotalTimeFailed;
+	Counter* _counterNumSeizes;
+	Counter* _counterNumReleases;
+private: // attached elements
+	Schedule* _capacitySchedule = nullptr;
 };
 
 #endif /* RESOURCE_H */

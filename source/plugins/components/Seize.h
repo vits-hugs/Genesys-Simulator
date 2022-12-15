@@ -25,19 +25,23 @@
 
 class WaitingResource : public Waiting {
 public:
+
 	WaitingResource(Entity* entity, double timeStartedWaiting, unsigned int quantity, ModelComponent* thisComponent, unsigned int thisComponentOutputPort = 0) : Waiting(entity, timeStartedWaiting, thisComponent, thisComponentOutputPort) {
 		_quantity = quantity;
 	}
+
 	WaitingResource(const WaitingResource& orig) : Waiting(orig) {
 	}
 
 	virtual ~WaitingResource() = default;
 public:
+
 	virtual std::string show() {
 		return Waiting::show() +
 				",quantity=" + std::to_string(this->_quantity);
 	}
 public:
+
 	unsigned int getQuantity() const {
 		return _quantity;
 	}
@@ -56,9 +60,9 @@ When an entity enters this module, it waits in a queue (if specified) until all 
 resources are available simultaneously. Allocation type for resource usage is also
 specified.
 TYPICAL USES
-* Beginning a customer order (seize the operator)
-* Starting a tax return (seize the accountant)
-* Being admitted to hospital (seize the hospital room, nurse, doctor)
+ * Beginning a customer order (seize the operator)
+ * Starting a tax return (seize the accountant)
+ * Being admitted to hospital (seize the hospital room, nurse, doctor)
 PROMPTS
 Prompt Description
 Name Unique module identifier displayed on the module shape.
@@ -146,6 +150,8 @@ public: // get & set
 	QueueableItem* getQueueableItem() const;
 	void setSaveAttribute(std::string _saveAttribute);
 	std::string getSaveAttribute() const;
+    void setPriorityExpression(std::string _priorityExpression);
+    std::string getPriorityExpression() const;
 protected:
 	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
 	virtual bool _loadInstance(PersistenceRecord *fields);
@@ -158,15 +164,18 @@ private:
 	Resource* _getResourceFromSeizableItem(SeizableItem* seizable, Entity* entity);
 	Queue* _getQueue() const;
 public:
+
 	const struct DEFAULT_VALUES {
 		const Util::AllocationType allocationType = Util::AllocationType::Others;
 		const unsigned short priority = 0;
+		const std::string priorityExpression = "";
 		const unsigned int seizeRequestSize = 1;
 		const std::string saveAttribute = "";
 	} DEFAULT;
 private:
 	Util::AllocationType _allocationType = DEFAULT.allocationType; // uint ? enum?
 	unsigned short _priority = DEFAULT.priority;
+	std::string _priorityExpression = DEFAULT.priorityExpression;
 	std::string _saveAttribute = DEFAULT.saveAttribute;
 	QueueableItem* _queueableItem = nullptr; // usually has a queue, but not always (it could be a hold or a set)
 	List<SeizableItem*>* _seizeRequests = new List<SeizableItem*>();

@@ -103,6 +103,14 @@ std::string Seize::getSaveAttribute() const {
 	return _saveAttribute;
 }
 
+void Seize::setPriorityExpression(std::string _priorityExpression) {
+	this->_priorityExpression = _priorityExpression;
+}
+
+std::string Seize::getPriorityExpression() const {
+	return _priorityExpression;
+}
+
 // public static
 
 PluginInformation* Seize::GetPluginInformation() {
@@ -136,8 +144,12 @@ ModelComponent* Seize::LoadInstance(Model* model, PersistenceRecord *fields) {
 void Seize::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 	for (SeizableItem* seizable : *_seizeRequests->list()) {
 		Resource* resource = _getResourceFromSeizableItem(seizable, entity);
+		double priority = _priority;
+		if (_priorityExpression != "") {
+			priority = _parentModel->parseExpression(_priorityExpression);
+		}
 		unsigned int quantity = _parentModel->parseExpression(seizable->getQuantityExpression());
-		if (!resource->seize(quantity)) { // not enought free quantity to allocate. Entity goes to the queue
+		if (!resource->seize(quantity, priority)) { // not enought free quantity to allocate. Entity goes to the queue
 			WaitingResource* waitingRec = new WaitingResource(entity, _parentModel->getSimulation()->getSimulatedTime(), quantity, this);
 			Queue* queue;
 			if (_queueableItem->getQueueableType() == QueueableItem::QueueableType::QUEUE) {
@@ -164,6 +176,7 @@ bool Seize::_loadInstance(PersistenceRecord *fields) {
 	if (res) {
 		this->_allocationType = static_cast<Util::AllocationType> (fields->loadField("allocationType", static_cast<int> (DEFAULT.allocationType)));
 		this->_priority = fields->loadField("priority", DEFAULT.priority);
+		this->_priorityExpression = fields->loadField("priorityExpression", DEFAULT.priority);
 		this->_saveAttribute = fields->loadField("saveAttribute", DEFAULT.saveAttribute);
 		_queueableItem = new QueueableItem(nullptr);
 		_queueableItem->setElementManager(_parentModel->getDataManager());
@@ -183,6 +196,7 @@ void Seize::_saveInstance(PersistenceRecord *fields, bool saveDefaultValues) {
 	ModelComponent::_saveInstance(fields, saveDefaultValues);
 	fields->saveField("allocationType", static_cast<int> (_allocationType), static_cast<int> (DEFAULT.allocationType), saveDefaultValues);
 	fields->saveField("priority=", _priority, DEFAULT.priority, saveDefaultValues);
+	fields->saveField("priorityExpression=", _priorityExpression, DEFAULT.priorityExpression, saveDefaultValues);
 	fields->saveField("saveAttribute=", _saveAttribute, DEFAULT.saveAttribute, saveDefaultValues);
 	if (_queueableItem != nullptr) {
 		_queueableItem->saveInstance(fields, saveDefaultValues);

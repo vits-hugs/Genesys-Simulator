@@ -35,6 +35,8 @@ public: // static
 public:
 	void setPriority(unsigned short _priority);
 	unsigned short getPriority() const;
+	void setPriorityExpression(std::string priority);
+	std::string getPriorityExpression() const;
 	void setAllocationType(Util::AllocationType _allocationType);
 	Util::AllocationType getAllocationType() const;
 	List<SeizableItem*>* getSeizeRequests() const;
