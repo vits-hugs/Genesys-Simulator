@@ -19,8 +19,13 @@
 #include "../../kernel/simulator/ModelDataManager.h"
 #include "../../kernel/simulator/Counter.h"
 #include "../../kernel/simulator/Plugin.h"
+#include "../../kernel/simulator/OnEventManager.h"
+
 #include "Failure.h"
 #include "Schedule.h"
+
+#include <functional>
+
 
 
 class SeizableItem;
@@ -108,6 +113,13 @@ public: // static
 public:
 	bool seize(unsigned int quantity, double priority = 0);
 	void release(unsigned int quantity);
+	void insertFailure(Failure* failure);
+	void removeFailure(Failure* failure);
+	double getInstantCapacityUtilization() const;
+	double getCapacityUtilization() const;
+	double getSeizedUtilization() const;
+	double getLastTimeSeized() const; // used only by "Release" component
+	void addReleaseResourceEventHandler(ResourceEventHandler eventHandler, ModelComponent* component, unsigned int priority);
 public: // g&s
 	void setResourceState(ResourceState _resourceState);
 	Resource::ResourceState getResourceState() const;
@@ -121,16 +133,8 @@ public: // g&s
 	double getCostPerUse() const;
 	void setCapacitySchedule(Schedule* _capacitySchedule);
 	Schedule* getCapacitySchedule() const;
-public: // gets
 	unsigned int getNumberBusy() const;
-public:
-	void addReleaseResourceEventHandler(ResourceEventHandler eventHandler, ModelComponent* component, unsigned int priority);
-	double getLastTimeSeized() const;
-	double getUtilization() const;
-	void insertFailure(Failure* failure);
-	void removeFailure(Failure* failure);
 
-	//List<Failure*>* getFailures() const;
 protected: // protected must override
 	virtual bool _loadInstance(PersistenceRecord *fields);
 	virtual void _saveInstance(PersistenceRecord *fields, bool saveDefaultValues);
@@ -138,8 +142,10 @@ protected: // protected could override
 	virtual bool _check(std::string* errorMessage);
 	virtual void _createInternalAndAttachedData();
 	virtual void _initBetweenReplications();
+
 private: //methods
 	void _notifyReleaseEventHandlers(); ///< Notify observer classes that some of the resource capacity has been released. It is useful for allocation components (such as Seize) to know when an entity waiting into a queue can try to seize the resource again
+	void _onReplicationEnd(SimulationEvent* se); ///< Nofified whe replication ended to update cstats based on final replication length
 	void _fail();
 	void _active();
 	void _checkFailByCount();
@@ -159,25 +165,29 @@ private:
 	ResourceState _resourceState = DEFAULT.resourceState;
 private: // only gets
 	unsigned int _numberBusy = 0;
-	//unsigned int _numberOut = 0;
 	double _lastTimeSeized = 0.0; // @TODO: It won't work for resources with capacity>1, when not all capacity is seized and them some more are seized. Seized time of first units will be lost. I don't have a solution so far
+	double _lastTimeReleased = 0.0;
 	double _lastTimeFailed = 0.0;
+	double _lastTimeAnythingNumberBusy = 0.0;
+	double _sumNumberBusyOverTime = 0.0;
+	double _sumCapacityOverTime = 0.0;
 	bool _isActive = true;
 private: // not gets nor sets
 	unsigned int _originalCapacity; // used for failing purposes, when _capacity changes to 0
 private: //1::n
 	List<SortedResourceEventHandler*>* _resourceEventHandlers = new List<SortedResourceEventHandler*>();
 	List<Failure*>* _failures = new List<Failure*>();
-private: // inner internel elements
+private: // attached elements
+	Schedule* _capacitySchedule = nullptr;
+private: // internel elements
 	StatisticsCollector* _cstatTimeSeized = nullptr;
 	StatisticsCollector* _cstatTimeFailed = nullptr;
-	StatisticsCollector* _cstatUtilization = nullptr;
+	StatisticsCollector* _cstatProportionSeized = nullptr;
+	StatisticsCollector* _cstatCapacityUtilization = nullptr;
 	Counter* _counterTotalTimeSeized;
 	Counter* _counterTotalTimeFailed;
 	Counter* _counterNumSeizes;
 	Counter* _counterNumReleases;
-private: // attached elements
-	Schedule* _capacitySchedule = nullptr;
 };
 
 #endif /* RESOURCE_H */
