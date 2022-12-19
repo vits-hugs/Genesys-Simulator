@@ -31,23 +31,24 @@ Smart_Dummy::Smart_Dummy() {
  * It instanciates the simulator, builds a simulation model and then simulate that model.
  */
 int Smart_Dummy::main(int argc, char** argv) {
-    Simulator* genesys = new Simulator();
-    this->setDefaultTraceHandlers(genesys->getTracer());
-    this->insertFakePluginsByHand(genesys);
-    // crete model
-    Model* model = genesys->getModels()->newModel();
-    PluginManager* plugins = genesys->getPlugins();
-    Create* create1 = plugins->newInstance<Create>(model);
-    DummyComponent* dummy1 = plugins->newInstance<DummyComponent>(model);
-    Dispose* dispose1 = plugins->newInstance<Dispose>(model);
-    // connect model components to create a "workflow"
-    create1->getConnections()->insert(dummy1);
-    dummy1->getConnections()->insert(dispose1);
-    // set options, save and simulate
-    model->getSimulation()->setReplicationLength(60);
-    model->save("./models/Smart_Dummy.gen");
-    model->getSimulation()->start();
-    delete genesys;
-    return 0;
+	Simulator* genesys = new Simulator();
+	this->setDefaultTraceHandlers(genesys->getTracer());
+	this->insertFakePluginsByHand(genesys);
+	// crete model
+	Model* model = genesys->getModels()->newModel();
+	PluginManager* plugins = genesys->getPlugins();
+	Create* create1 = plugins->newInstance<Create>(model);
+	DummyComponent* dummy1 = plugins->newInstance<DummyComponent>(model);
+	Dispose* dispose1 = plugins->newInstance<Dispose>(model);
+	// connect model components to create a "workflow"
+	create1->getConnections()->insert(dummy1);
+	dummy1->getConnections()->insert(dispose1);
+	// set options, save and simulate
+	model->getSimulation()->setReplicationLength(60, Util::TimeUnit::second);
+	model->getSimulation()->setTerminatingCondition("count(Dispose_1.CountNumberIn)>30");
+	model->save("./models/Smart_Dummy.gen");
+	model->getSimulation()->start();
+	delete genesys;
+	return 0;
 };
 

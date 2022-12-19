@@ -5,7 +5,7 @@
 
 class AnimateExpression : public QGraphicsObject {
 public:
-    AnimateExpression();
+	AnimateExpression();
 };
 
 #endif // ANIMATEEXPRESSION_H

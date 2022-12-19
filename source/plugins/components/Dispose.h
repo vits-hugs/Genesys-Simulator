@@ -24,9 +24,9 @@ DESCRIPTION
 This module is intended as the ending point for entities in a simulation model. Entity
 statistics may be recorded before the entity is disposed of.
 TYPICAL USES
- * Parts leaving the modeled facility
- * The termination of a business process
- * Customers departing from the store
+* Parts leaving the modeled facility
+* The termination of a business process
+* Customers departing from the store
 Prompt Description
 Name Unique module identifier displayed on the module shape.
 Record Entity Statistics Determines whether or not the incoming entity’s statistics will be
@@ -37,23 +37,23 @@ and total cost.
  */
 class Dispose : public SinkModelComponent {
 public:
-    Dispose(Model* model, std::string name = "");
-    virtual ~Dispose() = default;
+	Dispose(Model* model, std::string name = "");
+	virtual ~Dispose() = default;
 public:
-    virtual std::string show();
+	virtual std::string show();
 public:
-    static PluginInformation* GetPluginInformation();
-    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+	static PluginInformation* GetPluginInformation();
+	static ModelComponent* LoadInstance(Model* model, PersistenceRecord *fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 protected:
-    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual void _initBetweenReplications();
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-    virtual bool _check(std::string* errorMessage);
-    virtual void _createInternalAndAttachedData();
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+	virtual bool _loadInstance(PersistenceRecord *fields);
+	virtual void _initBetweenReplications();
+	virtual void _saveInstance(PersistenceRecord *fields, bool saveDefaultValues);
+	virtual bool _check(std::string* errorMessage);
+	virtual void _createInternalAndAttachedData();
 private: // internel elements
-    Counter* _numberOut = nullptr;
+	Counter* _numberOut = nullptr;
 };
 
 #endif /* DISPOSE_H */

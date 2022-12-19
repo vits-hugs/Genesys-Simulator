@@ -63,35 +63,37 @@ Set Index Member index of the resource set that the entity will release.
  */
 class Release : public ModelComponent {
 public:
-    Release(Model* model, std::string name = "");
-    virtual ~Release() = default;
+	Release(Model* model, std::string name = "");
+	virtual ~Release() = default;
 public:
-    virtual std::string show();
+	virtual std::string show();
 public: //static
-    static PluginInformation* GetPluginInformation();
-    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+	static PluginInformation* GetPluginInformation();
+	static ModelComponent* LoadInstance(Model* model, PersistenceRecord *fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public: // get & set
-    void setPriority(unsigned short _priority);
-    unsigned short priority() const;
+	void setPriority(unsigned short _priority);
+	unsigned short priority() const;
 public: // gets
-    List<SeizableItem*>* getReleaseRequests() const;
+	List<SeizableItem*>* getReleaseRequests() const;
 
 protected:
-    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual void _initBetweenReplications();
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-    virtual bool _check(std::string* errorMessage);
-    virtual void _createInternalAndAttachedData();
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+	virtual bool _loadInstance(PersistenceRecord *fields);
+	virtual void _initBetweenReplications();
+	virtual void _saveInstance(PersistenceRecord *fields, bool saveDefaultValues);
+	virtual bool _check(std::string* errorMessage);
+	virtual void _createInternalAndAttachedData();
+private:
+	Resource* _getResourceFromSeizableItem(SeizableItem* seizable, Entity* entity);
 private:
 
-    const struct DEFAULT_VALUES {
-        unsigned short priority = 0;
-        unsigned int releaseRequestSize = 1;
-    } DEFAULT;
-    unsigned short _priority = DEFAULT.priority;
-    List<SeizableItem*>* _releaseRequests = new List<SeizableItem*>();
+	const struct DEFAULT_VALUES {
+		const unsigned short priority = 0;
+		const unsigned int releaseRequestSize = 1;
+	} DEFAULT;
+	unsigned short _priority = DEFAULT.priority;
+	List<SeizableItem*>* _releaseRequests = new List<SeizableItem*>();
 };
 
 #endif /* RELEASE_H */

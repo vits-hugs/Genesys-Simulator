@@ -5,7 +5,7 @@
 
 class PropertyManager {
 public:
-    PropertyManager();
+	PropertyManager();
 public:
 private:
 };

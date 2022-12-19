@@ -61,37 +61,38 @@ Set Index Index into the tally or counter set.
  */
 class Record : public ModelComponent {
 public:
-    Record(Model* model, std::string name = "");
-    virtual ~Record();
+	Record(Model* model, std::string name = "");
+	virtual ~Record();
 public:
-    void setFilename(std::string filename);
-    std::string getFilename() const;
-    void setExpression(const std::string expression);
-    std::string getExpression() const;
-    void setExpressionName(std::string expressionName);
-    std::string getExpressionName() const;
-    StatisticsCollector* getCstatExpression() const;
+	void setFilename(std::string filename);
+	std::string getFileName() const;
+	void setExpression(const std::string expression);
+	std::string getExpression() const;
+	void setExpressionName(std::string expressionName);
+	std::string getExpressionName() const;
+	StatisticsCollector* getCstatExpression() const;
 public:
-    virtual std::string show();
+	virtual std::string show();
 public:
-    static PluginInformation* GetPluginInformation();
-    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+	static PluginInformation* GetPluginInformation();
+	static ModelComponent* LoadInstance(Model* model, PersistenceRecord *fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 protected:
-    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+	virtual bool _loadInstance(PersistenceRecord *fields);
+	virtual void _saveInstance(PersistenceRecord *fields, bool saveDefaultValues);
 protected:
-    //virtual void _initBetweenReplications();
-    virtual bool _check(std::string* errorMessage);
-    virtual void _createInternalAndAttachedData();
+	//virtual void _initBetweenReplications();
+	virtual bool _check(std::string* errorMessage);
+	virtual void _createInternalAndAttachedData();
 private:
-    std::string _expression = "";
-    std::string _expressionName = "";
-    std::string _filename = "";
+	std::string _expression = "";
+	std::string _expressionName = "";
+	std::string _filename = "";
 private:
-    // not a child modeldatum
-    StatisticsCollector* _cstatExpression; /* @TODO: Cretae an internal class to agregate ExpressionStatisticsColelctor, and change Record to got a list of it, so Record cn record a set of expressions into a set of files */
+	// not a child modeldatum
+	StatisticsCollector* _cstatExpression = nullptr;
+	/* @TODO: Create an internal class to agregate ExpressionStatisticsColelctor, and change Record to got a list of it, so Record cn record a set of expressions into a set of files */
 };
 
 #endif /* RECORD_H */

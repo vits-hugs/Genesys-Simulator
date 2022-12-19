@@ -18,63 +18,60 @@
 #ifdef PLUGINCONNECT_DYNAMIC
 
 extern "C" StaticGetPluginInformation GetPluginInformation() {
-    return &Exit::GetPluginInformation;
+	return &Exit::GetPluginInformation;
 }
 #endif
 
 ModelDataDefinition* Exit::NewInstance(Model* model, std::string name) {
-    return new Exit(model, name);
+	return new Exit(model, name);
 }
 
 Exit::Exit(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Exit>(), name) {
 }
 
 std::string Exit::show() {
-    return ModelComponent::show() + "";
+	return ModelComponent::show() + "";
 }
 
-ModelComponent* Exit::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
-    Exit* newComponent = new Exit(model);
-    try {
-        newComponent->_loadInstance(fields);
-    } catch (const std::exception& e) {
+ModelComponent* Exit::LoadInstance(Model* model, PersistenceRecord *fields) {
+	Exit* newComponent = new Exit(model);
+	try {
+		newComponent->_loadInstance(fields);
+	} catch (const std::exception& e) {
 
-    }
-    return newComponent;
+	}
+	return newComponent;
 }
 
 void Exit::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
-    _parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
-    this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
+	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
+	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
-//void Exit::_initBetweenReplications() {}
-
-bool Exit::_loadInstance(std::map<std::string, std::string>* fields) {
-    bool res = ModelComponent::_loadInstance(fields);
-    if (res) {
-        // @TODO: not implemented yet
-    }
-    return res;
+bool Exit::_loadInstance(PersistenceRecord *fields) {
+	bool res = ModelComponent::_loadInstance(fields);
+	if (res) {
+		// @TODO: not implemented yet
+	}
+	return res;
 }
 
-std::map<std::string, std::string>* Exit::_saveInstance(bool saveDefaultValues) {
-    std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
-    // @TODO: not implemented yet
-    return fields;
+void Exit::_saveInstance(PersistenceRecord *fields, bool saveDefaultValues) {
+	ModelComponent::_saveInstance(fields, saveDefaultValues);
+	// @TODO: not implemented yet
 }
 
 bool Exit::_check(std::string* errorMessage) {
-    bool resultAll = true;
-    // @TODO: not implemented yet
-    *errorMessage += "";
-    return resultAll;
+	bool resultAll = true;
+	// @TODO: not implemented yet
+	*errorMessage += "";
+	return resultAll;
 }
 
 PluginInformation* Exit::GetPluginInformation() {
-    PluginInformation* info = new PluginInformation(Util::TypeOf<Exit>(), &Exit::LoadInstance, &Exit::NewInstance);
-    info->setCategory("Material Handling");
-    return info;
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Exit>(), &Exit::LoadInstance, &Exit::NewInstance);
+	info->setCategory("Material Handling");
+	return info;
 }
 
 

@@ -16,41 +16,45 @@
 //using namespace GenesysKernel;
 
 Event::Event(double time, Entity* entity, ModelComponent* component, unsigned int componentinputPortNumber) {
-    _time = time;
-    _entity = entity;
-    _component = component;
-    _componentinputPortNumber = componentinputPortNumber;
+	_time = time;
+	_entity = entity;
+	_component = component;
+	_componentinputPortNumber = componentinputPortNumber;
 }
 
 Event::Event(double time, Entity* entity, Connection* connection) {
-    _time = time;
-    _entity = entity;
-    _component = connection->component;
-    _componentinputPortNumber = connection->port;
+	_time = time;
+	_entity = entity;
+	_component = connection->component;
+	_componentinputPortNumber = connection->channel.portNumber;
 }
 
 std::string Event::show() {
-    std::string message = "time=" + std::to_string(_time) + //Util::StrTimeUnit(???)+
-            ",entity=" + _entity->getName() + //std::to_string(_entity->entityNumber()) +
-            ",component=\"" + _component->getName() + "\""; //+std::to_string(_component->getId())+"}";
-    if (this->_componentinputPortNumber > 0) {
-        message += ",input=" + std::to_string(this->_componentinputPortNumber);
-    }
-    return message;
+	std::string message = "time=" + std::to_string(_time) + //Util::StrTimeUnit(???)+
+			",entity=" + _entity->getName() + //std::to_string(_entity->entityNumber()) +
+			",component=\"" + _component->getName() + "\"<"+_component->getClassname()+">"; //+std::to_string(_component->getId())+"}";
+	if (this->_componentinputPortNumber > 0) {
+		message += ",input=" + std::to_string(this->_componentinputPortNumber);
+	}
+	return message;
+}
+
+void Event::setEntity(Entity* _entity) {
+	this->_entity = _entity;
 }
 
 unsigned int Event::getComponentinputPortNumber() const {
-    return _componentinputPortNumber;
+	return _componentinputPortNumber;
 }
 
 double Event::getTime() const {
-    return _time;
+	return _time;
 }
 
 ModelComponent* Event::getComponent() const {
-    return _component;
+	return _component;
 }
 
 Entity* Event::getEntity() const {
-    return _entity;
+	return _entity;
 }

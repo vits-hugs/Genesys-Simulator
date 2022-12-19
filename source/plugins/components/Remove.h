@@ -35,24 +35,55 @@ Queue Name Name of the queue from which the entity will be removed.
 Rank of Entity Rank of the entity to remove from within the queue.
  */
 class Remove : public ModelComponent {
+public:
+
+	enum class RemoveFromType : int {
+		QUEUE = 1, ENTITYGROUP = 2
+	};
 public: // constructors
-    Remove(Model* model, std::string name = "");
-    virtual ~Remove() = default;
+	Remove(Model* model, std::string name = "");
+	virtual ~Remove() = default;
 public: // virtual
-    virtual std::string show();
+	virtual std::string show();
+public:
+	void setRemoveStartRank(std::string _removeFromRank);
+	std::string getRemoveStartRank() const;
+    void setRemoveEndRank(std::string _removeEndRank);
+    std::string getRemoveEndRank() const;	void setRemoveFromType(Remove::RemoveFromType _removeFromType);
+	Remove::RemoveFromType getRemoveFromType() const;
+	void setRemoveFrom(ModelDataDefinition* _removeFrom);
+	ModelDataDefinition* getRemoveFrom() const;
+
 public: // static
-    static PluginInformation* GetPluginInformation();
-    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
-protected: // virtual
-    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-protected: // virtual
-    //virtual void _initBetweenReplications();
-    virtual bool _check(std::string* errorMessage);
+	static PluginInformation* GetPluginInformation();
+	static ModelComponent* LoadInstance(Model* model, PersistenceRecord *fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+protected: // must be overriden 
+	virtual bool _loadInstance(PersistenceRecord *fields);
+	virtual void _saveInstance(PersistenceRecord *fields, bool saveDefaultValues);
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+protected: // could be overriden by derived classes
+	virtual bool _check(std::string* errorMessage);
+	/*! This method returns all changes in the parser that are needed by plugins of this ModelDatas. When connecting a new plugin, ParserChangesInformation are used to change parser source code, whch is after compiled and dinamically linked to to simulator kernel to reflect the changes */
+	//virtual ParserChangesInformation* _getParserChangesInformation();
+	//virtual void _initBetweenReplications();
+	/*! This method is necessary only for those components that instantiate internal elements that must exist before simulation starts and even before model checking. That's the case of components that have internal StatisticsCollectors, since others components may refer to them as expressions (as in "TVAG(ThisCSTAT)") and therefore the modeldatum must exist before checking such expression */
+	virtual void _createInternalAndAttachedData(); /*< A ModelDataDefinition or ModelComponent that includes (internal) ou refers to (attach) other ModelDataDefinition must register them inside this method. */
+	//virtual void _addProperty(PropertyBase* property);
 private: // methods
 private: // attributes 1:1
+
+	const struct DEFAULT_VALUES {
+		const Remove::RemoveFromType removeFromType = Remove::RemoveFromType::QUEUE;
+		const std::string removeStartRank = "";
+		const std::string removeEndRank = "";
+	} DEFAULT;
+	ModelDataDefinition* _removeFrom = nullptr;
+	Remove::RemoveFromType _removeFromType = DEFAULT.removeFromType;
+	std::string _removeStartRank = DEFAULT.removeStartRank;
+	std::string _removeEndRank = DEFAULT.removeStartRank;
+	//std::string _removeFromRank = DEFAULT.removeFromRank;
+
 private: // attributes 1:n
 };
 

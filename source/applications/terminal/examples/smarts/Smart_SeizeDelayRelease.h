@@ -18,9 +18,9 @@
 
 class Smart_SeizeDelayRelease : public BaseGenesysTerminalApplication {
 public:
-    Smart_SeizeDelayRelease();
+	Smart_SeizeDelayRelease();
 public:
-    virtual int main(int argc, char** argv);
+	virtual int main(int argc, char** argv);
 };
 #endif /* SMART_SEIZEDELAYRELEASE_H */
 

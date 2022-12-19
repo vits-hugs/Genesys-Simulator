@@ -21,13 +21,13 @@
 
 class DataAnalyser_if {
 public:
-    virtual bool loadDataSet(std::string datafilename) = 0;
-    virtual bool saveDataSet(std::string datasetname) = 0;
-    virtual void newDataSet(std::string datasetname, std::string datafilename) = 0;
-    virtual Fitter_if* fitter() = 0;
-    virtual Sampler_if* sampler() = 0;
-    virtual ExperimentManager_if* experimenter() = 0;
-    virtual HypothesisTester_if* tester() = 0;
+	virtual bool loadDataSet(std::string datafilename) = 0;
+	virtual bool saveDataSet(std::string datasetname) = 0;
+	virtual void newDataSet(std::string datasetname, std::string datafilename) = 0;
+	virtual Fitter_if* fitter() = 0;
+	virtual Sampler_if* sampler() = 0;
+	virtual ExperimentManager_if* experimenter() = 0;
+	virtual HypothesisTester_if* tester() = 0;
 };
 
 

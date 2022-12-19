@@ -18,48 +18,48 @@
 #ifdef PLUGINCONNECT_DYNAMIC 
 
 extern "C" StaticGetPluginInformation GetPluginInformation() {
-    return &Attribute::GetPluginInformation;
+	return &Attribute::GetPluginInformation;
 }
 #endif
 
 ModelDataDefinition* Attribute::NewInstance(Model* model, std::string name) {
-    return new Attribute(model, name);
+	return new Attribute(model, name);
 }
 
 Attribute::Attribute(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<Attribute>(), name) {
 }
 
 std::string Attribute::show() {
-    return ModelDataDefinition::show();
+	return ModelDataDefinition::show();
 }
 
-bool Attribute::_loadInstance(std::map<std::string, std::string>* fields) {
-    return ModelDataDefinition::_loadInstance(fields);
+bool Attribute::_loadInstance(PersistenceRecord *fields) {
+	return ModelDataDefinition::_loadInstance(fields);
 }
 
 PluginInformation* Attribute::GetPluginInformation() {
-    PluginInformation* info = new PluginInformation(Util::TypeOf<Attribute>(), &Attribute::LoadInstance, &Attribute::NewInstance);
-    info->setDescriptionHelp("//@TODO");
-    return info;
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Attribute>(), &Attribute::LoadInstance, &Attribute::NewInstance);
+	info->setDescriptionHelp("//@TODO");
+	return info;
+
 }
 
-ModelDataDefinition* Attribute::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
-    Attribute* newElement = new Attribute(model);
-    try {
-        newElement->_loadInstance(fields);
-    } catch (const std::exception& e) {
+ModelDataDefinition* Attribute::LoadInstance(Model* model, PersistenceRecord *fields) {
+	Attribute* newElement = new Attribute(model);
+	try {
+		newElement->_loadInstance(fields);
+	} catch (const std::exception& e) {
 
-    }
-    return newElement;
+	}
+	return newElement;
 }
 
-std::map<std::string, std::string>* Attribute::_saveInstance(bool saveDefaultValues) {
-    bool saveDefaults = this->_getSaveDefaultsOption();
-    std::map<std::string, std::string>* fields = ModelDataDefinition::_saveInstance(saveDefaultValues); //Util::TypeOf<Attribute>());
-    return fields;
+void Attribute::_saveInstance(PersistenceRecord *fields, bool saveDefaultValues) {
+	bool saveDefaults = this->_getSaveDefaultsOption();
+	ModelDataDefinition::_saveInstance(fields, saveDefaultValues);
 }
 
 bool Attribute::_check(std::string* errorMessage) {
-    *errorMessage += "";
-    return true;
+	*errorMessage += "";
+	return true;
 }

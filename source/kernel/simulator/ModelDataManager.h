@@ -29,37 +29,37 @@ class Model;
  */
 class ModelDataManager {
 public:
-    ModelDataManager(Model* model);
-    virtual ~ModelDataManager() = default;
+	ModelDataManager(Model* model);
+	virtual ~ModelDataManager() = default;
 public:
-    bool insert(ModelDataDefinition* anElement);
-    void remove(ModelDataDefinition* anElement); ///< Deprected
-    bool insert(std::string datadefinitionTypename, ModelDataDefinition* anElement); ///< Deprected
-    void remove(std::string datadefinitionTypename, ModelDataDefinition* anElement);
-    bool check(std::string datadefinitionTypename, ModelDataDefinition* anElement, std::string expressionName, std::string* errorMessage);
-    bool check(std::string datadefinitionTypename, std::string elementName, std::string expressionName, bool mandatory, std::string* errorMessage);
-    void clear();
+	bool insert(ModelDataDefinition* anElement);
+	void remove(ModelDataDefinition* anElement); ///< Deprected
+	bool insert(std::string datadefinitionTypename, ModelDataDefinition* anElement); ///< Deprected
+	void remove(std::string datadefinitionTypename, ModelDataDefinition* anElement);
+	bool check(std::string datadefinitionTypename, ModelDataDefinition* anElement, std::string expressionName, std::string* errorMessage);
+	bool check(std::string datadefinitionTypename, std::string elementName, std::string expressionName, bool mandatory, std::string* errorMessage);
+	void clear();
 public:
-    ModelDataDefinition* getDataDefinition(std::string datadefinitionTypename, Util::identification id);
-    ModelDataDefinition* getDataDefinition(std::string datadefinitionTypename, std::string name);
-    unsigned int getNumberOfDataDefinitions(std::string datadefinitionTypename);
-    unsigned int getNumberOfDataDefinitions();
-    int getRankOf(std::string datadefinitionTypename, std::string name); ///< returns the position (1st position=0) of the modeldatum if found, or negative value if not found
-    std::list<std::string>* getDataDefinitionClassnames() const;
+	ModelDataDefinition* getDataDefinition(std::string datadefinitionTypename, Util::identification id);
+	ModelDataDefinition* getDataDefinition(std::string datadefinitionTypename, std::string name);
+	unsigned int getNumberOfDataDefinitions(std::string datadefinitionTypename);
+	unsigned int getNumberOfDataDefinitions();
+	int getRankOf(std::string datadefinitionTypename, std::string name); ///< returns the position (1st position=0) of the modeldatum if found, or negative value if not found
+	std::list<std::string>* getDataDefinitionClassnames() const;
 
-    //private:
+	//private:
 public:
-    // @TODO: Should be removed and replaced by GetElement(elementType, rank)
-    List<ModelDataDefinition*>* getDataDefinitionList(std::string datadefinitionTypename) const;
+	// @TODO: Should be removed and replaced by GetElement(elementType, rank)
+	List<ModelDataDefinition*>* getDataDefinitionList(std::string datadefinitionTypename) const;
 public:
-    void show();
-    Model* getParentModel() const;
-    bool hasChanged() const;
-    void setHasChanged(bool _hasChanged);
+	void show();
+	Model* getParentModel() const;
+	bool hasChanged() const;
+	void setHasChanged(bool _hasChanged);
 private:
-    std::map<std::string, List<ModelDataDefinition*>*>* _datadefinitions;
-    Model* _parentModel;
-    bool _hasChanged = false;
+	std::map<std::string, List<ModelDataDefinition*>*>* _datadefinitions;
+	Model* _parentModel;
+	bool _hasChanged = false;
 };
 //namespace\\}
 #endif /* ELEMENTMANAGER_H */

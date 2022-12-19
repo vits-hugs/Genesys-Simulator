@@ -10,8 +10,9 @@
 # include "obj_t.h"
 # include "../kernel/util/Util.h"
 # include "../kernel/util/List.h"
-# include "../kernel/simulator/ModelDataDefinition.h"
 # include "../kernel/simulator/Attribute.h"
+# include "../kernel/simulator/Counter.h"
+# include "../kernel/simulator/ModelDataDefinition.h"
 # include "../kernel/simulator/StatisticsCollector.h"
 /**begin_Includes_plugins**/
 /**begin_Includes:Variable**/
@@ -139,6 +140,8 @@ L      [A-Za-z0-9_.]+
 [sS][qQ][rR][tT]      {return yy::genesyspp_parser::make_fSQRT(obj_t(0, std::string(yytext)), loc);}
 [lL][oO][gG]          {return yy::genesyspp_parser::make_fLOG(obj_t(0, std::string(yytext)), loc);}
 [lL][nN]              {return yy::genesyspp_parser::make_fLN(obj_t(0, std::string(yytext)), loc);}
+[min]				  {return yy::genesyspp_parser::make_mathMAX(obj_t(0, std::string(yytext)), loc);}
+[max]                 {return yy::genesyspp_parser::make_mathMIN(obj_t(0, std::string(yytext)), loc);}
 
 %{// string functions %}
 [vV][aA][lL]          {return yy::genesyspp_parser::make_fVAL(obj_t(0, std::string(yytext)), loc);}
@@ -148,7 +151,7 @@ L      [A-Za-z0-9_.]+
 %{// probability distributions %}
 [rR][nN][dD]	  {return yy::genesyspp_parser::make_fRND1(obj_t(0, std::string(yytext)), loc);}
 [eE][xX][pP][oO]  {return yy::genesyspp_parser::make_fEXPO(obj_t(0, std::string(yytext)), loc);}
-[nN][oO][rR][mM]  {return yy::genesyspp_parser::make_fNORM(obj_t(0, std::string(yytext)), loc);}
+[nN][oO][rR][mM]  {return yy::genesyspp_parser::make_fNORM(obj_t(0, std::string(yytext)), loc); /*!< norm(average,stddev): Generates a normal distribution random value */}
 [uU][nN][iI][fF]  {return yy::genesyspp_parser::make_fUNIF(obj_t(0, std::string(yytext)), loc);}
 [wW][eE][iI][bB]  {return yy::genesyspp_parser::make_fWEIB(obj_t(0, std::string(yytext)), loc);}
 [lL][oO][gG][nN]  {return yy::genesyspp_parser::make_fLOGN(obj_t(0, std::string(yytext)), loc);}
@@ -164,8 +167,11 @@ L      [A-Za-z0-9_.]+
 [mM][aA][xX][rR][eE][pP]  {return yy::genesyspp_parser::make_fMAXREP(obj_t(0, std::string(yytext)), loc);}
 [nN][uU][mM][rR][eE][pP]  {return yy::genesyspp_parser::make_fNUMREP(obj_t(0, std::string(yytext)), loc);}
 [iI][dD][eE][nN][tT]      {return yy::genesyspp_parser::make_fIDENT(obj_t(0, std::string(yytext)), loc);}
+[EntitiesWIP]             {return yy::genesyspp_parser::make_simulEntitiesWIP(obj_t(0, std::string(yytext)), loc);}
 
-[tT][aA][vV][gG]  {return yy::genesyspp_parser::make_fTAVG(obj_t(0, std::string(yytext)), loc);}
+%{// Kernel elements, Counters and Statistic Collectors %}
+[tT][aA][vV][gG]          {return yy::genesyspp_parser::make_fTAVG(obj_t(0, std::string(yytext)), loc);}
+[cC][oO][uU][nN][tT]      {return yy::genesyspp_parser::make_fCOUNT(obj_t(0, std::string(yytext)), loc);}
 
 
 %{/****begin_Lexical_plugins****/%}
@@ -216,7 +222,7 @@ T
         // check if it is an ATTRIBUTE (and return the attribute ID (and not the value!)
 		datadef = driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Attribute>(), std::string(yytext));
         if (datadef != nullptr) {
-			//std::cout << "Found attribute" << std::string(yytext) << std::endl;
+			//std::cout << "Found ATTRIBUTE " << std::string(yytext) << std::endl;
             return yy::genesyspp_parser::make_ATRIB(obj_t(0, Util::TypeOf<Attribute>(), datadef->getId()),loc);
         }
 
@@ -224,7 +230,15 @@ T
         //check CSTAT
         datadef = driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<StatisticsCollector>(), std::string(yytext));
         if (datadef != nullptr) { 
+			//std::cout << "Found CSTAT" << std::string(yytext) << std::endl;
             return yy::genesyspp_parser::make_CSTAT(obj_t(0, Util::TypeOf<StatisticsCollector>(), datadef->getId()),loc);
+        }
+
+        //check COUNTER
+        datadef = driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Counter>(), std::string(yytext));
+        if (datadef != nullptr) { 
+			//std::cout << "Found COUNTER" << std::string(yytext) << std::endl;
+            return yy::genesyspp_parser::make_COUNTER(obj_t(0, Util::TypeOf<Counter>(), datadef->getId()),loc);
         }
 
 /****begin_LexicalLiterals_plugins****/
@@ -235,7 +249,7 @@ T
         if (datadef != nullptr) { // it is a variable
             Variable* var = static_cast<Variable*>(datadef);
             //double variableID = var->getId();// ->getValue(); // var->getId()
-	    //std::cout << "FOUND VARIABLE " << var->getName() <<" ID " << var->getId() << std::endl;
+			//std::cout << "Found VARIABLE " << var->getName() <<" ID " << var->getId() << std::endl;
             return yy::genesyspp_parser::make_VARI(obj_t(0, Util::TypeOf<Variable>(), var->getId()),loc);
         }
 /**end_LexicalLiterals:Variable**/
@@ -245,16 +259,22 @@ T
         datadef = driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), std::string(yytext));
         if (datadef != nullptr) { // it is a FORMULA
             Formula* form = static_cast<Formula*>(datadef);
-            //double formulaValue = form->getValue(); // return only formula ID
-	    //std::cout << "FOUND FORMULA " << form->getName() <<" ID " << form->getId() << std::endl;
+            // return only formula ID. NEVER should call getValue in LL
+			//std::cout << "Found FORMULA " << form->getName() <<" ID " << form->getId() << std::endl;
             return yy::genesyspp_parser::make_FORM(obj_t(0, Util::TypeOf<Formula>(), form->getId()),loc);
         }
 /**end_LexicalLiterals:Formula**/
 
 /**begin_LexicalLiterals:Queue**/
         // check QUEUE
+		//List<ModelDataDefinition*>* queues =  driver.getModel()->getDataManager()->getDataDefinitionList(Util::TypeOf<Queue>());
+		//std::cout << "Há " << queues->size() << " filas" << std::endl;
+		//for (ModelDataDefinition* dd: *queues->list()) {
+		//	std::cout << " queue: " << dd->getName() << std::endl;
+		//}
         datadef = driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Queue>(), std::string(yytext));
         if (datadef != nullptr) { 
+			//std::cout << "Found QUEUE " << datadef->getName() <<" ID " << datadef->getId() << std::endl;
             return yy::genesyspp_parser::make_QUEUE(obj_t(0, Util::TypeOf<Queue>(), datadef->getId()),loc);
         }
 /**end_LexicalLiterals:Queue**/
@@ -263,6 +283,7 @@ T
         // check RESOURCE
         datadef = driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Resource>(), std::string(yytext));
         if (datadef != nullptr) { 
+			//std::cout << "Found RESOURCE " << datadef->getName() <<" ID " << datadef->getId() << std::endl;
             return yy::genesyspp_parser::make_RESOURCE(obj_t(0, Util::TypeOf<Resource>(), datadef->getId()),loc);
         }
 /**end_LexicalLiterals:Resource**/
@@ -271,6 +292,7 @@ T
         //check SET
         datadef = driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Set>(), std::string(yytext));
         if (datadef != nullptr) { 
+			//std::cout << "Found SET " << datadef->getName() <<" ID " << datadef->getId() << std::endl;
             return yy::genesyspp_parser::make_SET(obj_t(0, Util::TypeOf<Set>(), datadef->getId()),loc);
         }
 /**end_LexicalLiterals:Set**/
@@ -279,6 +301,8 @@ T
 
 	// If no one before has identified this literal, then it is an ILLEGAL (not found, unknown) literal 
         //Case not found retturns a illegal token
+		//datadef = driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Set>(), std::string(yytext));
+		//std::cout << "NOT FOUND " << std::string(yytext) << std::endl;
         return yy::genesyspp_parser::make_ILLEGAL(obj_t(0, std::string("Illegal")), loc);
       }
 

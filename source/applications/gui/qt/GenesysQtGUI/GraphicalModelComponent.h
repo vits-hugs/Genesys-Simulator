@@ -42,52 +42,52 @@
 
 class GraphicalModelComponent : public QGraphicsObject { //QGraphicsItem {
 public:
-    GraphicalModelComponent(Plugin* plugin, ModelComponent* component, QPointF position, QColor color = Qt::blue, QGraphicsItem *parent = nullptr);
-    GraphicalModelComponent(const GraphicalModelComponent& orig);
-    virtual ~GraphicalModelComponent();
+	GraphicalModelComponent(Plugin* plugin, ModelComponent* component, QPointF position, QColor color = Qt::blue, QGraphicsItem *parent = nullptr);
+	GraphicalModelComponent(const GraphicalModelComponent& orig);
+	virtual ~GraphicalModelComponent();
 public:
-    QRectF boundingRect() const override;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
-    ModelComponent* getComponent() const;
-    QList<GraphicalComponentPort *> getGraphicalInputPorts() const;
-    QList<GraphicalComponentPort *> getGraphicalOutputPorts() const;
+	QRectF boundingRect() const override;
+	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+	ModelComponent* getComponent() const;
+	QList<GraphicalComponentPort *> getGraphicalInputPorts() const;
+	QList<GraphicalComponentPort *> getGraphicalOutputPorts() const;
 
 protected: // virtual
-    virtual bool sceneEvent(QEvent *event) override;
-    //virtual void	hoverEnterEvent(QGraphicsSceneHoverEvent * event)
-    //virtual void	hoverLeaveEvent(QGraphicsSceneHoverEvent * event)
-    //virtual void	hoverMoveEvent(QGraphicsSceneHoverEvent * event)
-    //virtual void	inputMethodEvent(QInputMethodEvent * event)
-    //virtual QVariant	inputMethodQuery(Qt::InputMethodQuery query) const
-    //virtual QVariant	itemChange(GraphicsItemChange change, const QVariant & value)
-    //virtual void	keyPressEvent(QKeyEvent * event)
-    //virtual void	keyReleaseEvent(QKeyEvent * event)
-    //   virtual void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event);
-    //   virtual void mouseMoveEvent(QGraphicsSceneMouseEvent * event);
-    //   virtual void mousePressEvent(QGraphicsSceneMouseEvent * event);
-    //virtual void	mouseReleaseEvent(QGraphicsSceneMouseEvent * event)
+	virtual bool sceneEvent(QEvent *event) override;
+	//virtual void	hoverEnterEvent(QGraphicsSceneHoverEvent * event)
+	//virtual void	hoverLeaveEvent(QGraphicsSceneHoverEvent * event)
+	//virtual void	hoverMoveEvent(QGraphicsSceneHoverEvent * event)
+	//virtual void	inputMethodEvent(QInputMethodEvent * event)
+	//virtual QVariant	inputMethodQuery(Qt::InputMethodQuery query) const
+	//virtual QVariant	itemChange(GraphicsItemChange change, const QVariant & value)
+	//virtual void	keyPressEvent(QKeyEvent * event)
+	//virtual void	keyReleaseEvent(QKeyEvent * event)
+	//   virtual void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event);
+	//   virtual void mouseMoveEvent(QGraphicsSceneMouseEvent * event);
+	//   virtual void mousePressEvent(QGraphicsSceneMouseEvent * event);
+	//virtual void	mouseReleaseEvent(QGraphicsSceneMouseEvent * event)
 protected:
-    qreal _width = 150;
-    qreal _height = _width * 0.67;
-    unsigned int _margin = 8;
-    unsigned int _selWidth = 8;
-    ModelComponent* _component;
-    QColor _color;
-    qreal _stretchPosTop = 0.5;
-    qreal _stretchPosBottom = 0.5;
-    qreal _stretchPosLeft = 0.5;
-    qreal _stretchPosRigth = 0.5;
-    qreal _stretchRigth = 0;
-    qreal _stretchLeft = 0;
-    qreal _stretchRigthMidle = 0;
-    qreal _stretchLeftMidle = 0;
-    qreal _stretchTop = 0;
-    qreal _stretchBottom = 0;
-    qreal _stretchTopMidle = 0;
-    qreal _stretchBottomMidle = 0;
+	qreal _width = 150;
+	qreal _height = _width * 0.67;
+	unsigned int _margin = 8;
+	unsigned int _selWidth = 8;
+	ModelComponent* _component;
+	QColor _color;
+	qreal _stretchPosTop = 0.5;
+	qreal _stretchPosBottom = 0.5;
+	qreal _stretchPosLeft = 0.5;
+	qreal _stretchPosRigth = 0.5;
+	qreal _stretchRigth = 0;
+	qreal _stretchLeft = 0;
+	qreal _stretchRigthMidle = 0;
+	qreal _stretchLeftMidle = 0;
+	qreal _stretchTop = 0;
+	qreal _stretchBottom = 0;
+	qreal _stretchTopMidle = 0;
+	qreal _stretchBottomMidle = 0;
 private:
-    QList<GraphicalComponentPort*> _graphicalInputPorts = QList<GraphicalComponentPort*>();
-    QList<GraphicalComponentPort*> _graphicalOutputPorts = QList<GraphicalComponentPort*>();
+	QList<GraphicalComponentPort*> _graphicalInputPorts = QList<GraphicalComponentPort*>();
+	QList<GraphicalComponentPort*> _graphicalOutputPorts = QList<GraphicalComponentPort*>();
 };
 
 #endif /* MODELCOMPONENTGRAPHICITEM_H */

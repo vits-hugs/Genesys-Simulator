@@ -17,30 +17,34 @@
 
 class DummyElement : public ModelDataDefinition {
 public:
-    DummyElement(Model* model, std::string name = "");
-    virtual ~DummyElement() = default;
+	DummyElement(Model* model, std::string name = "");
+	virtual ~DummyElement() = default;
 public: // static
-    static ModelDataDefinition* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-    static PluginInformation* GetPluginInformation();
-    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+	static ModelDataDefinition* LoadInstance(Model* model, PersistenceRecord *fields);
+	static PluginInformation* GetPluginInformation();
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
-    virtual std::string show();
+	virtual std::string show();
 protected: // must be overriden 
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-protected: // could be overriden .
-    virtual bool _check(std::string* errorMessage);
-    virtual void _initBetweenReplications();
-    virtual void _createInternalAndAttachedData();
-    //virtual ParserChangesInformation* _getParserChangesInformation();
+	virtual bool _loadInstance(PersistenceRecord *fields);
+	virtual void _saveInstance(PersistenceRecord *fields, bool saveDefaultValues);
+protected: // could be overriden by derived classes
+	virtual bool _check(std::string* errorMessage);
+	/*! This method returns all changes in the parser that are needed by plugins of this ModelDatas. When connecting a new plugin, ParserChangesInformation are used to change parser source code, whch is after compiled and dinamically linked to to simulator kernel to reflect the changes */
+	virtual ParserChangesInformation* _getParserChangesInformation();
+	virtual void _initBetweenReplications();
+	/*! This method is necessary only for those components that instantiate internal elements that must exist before simulation starts and even before model checking. That's the case of components that have internal StatisticsCollectors, since others components may refer to them as expressions (as in "TVAG(ThisCSTAT)") and therefore the modeldatum must exist before checking such expression */
+	virtual void _createInternalAndAttachedData(); /*< A ModelDataDefinition or ModelComponent that includes (internal) ou refers to (attach) other ModelDataDefinition must register them inside this method. */
+	virtual void _addProperty(PropertyBase* property);
+	
 private:
 
-    const struct DEFAULT_VALUES {
-        std::string someString = "Test";
-        unsigned int someUint = 1;
-    } DEFAULT;
-    std::string _someString = DEFAULT.someString;
-    unsigned int _someUint = DEFAULT.someUint;
+	const struct DEFAULT_VALUES {
+		const std::string someString = "Test";
+		const unsigned int someUint = 1;
+	} DEFAULT;
+	std::string _someString = DEFAULT.someString;
+	unsigned int _someUint = DEFAULT.someUint;
 };
 
 #endif /* DUMMYELEMENT_H */

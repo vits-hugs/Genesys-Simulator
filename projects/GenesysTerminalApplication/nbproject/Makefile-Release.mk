@@ -37,14 +37,57 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/_ext/6bf258f7/BaseGenesysTerminalApplication.o \
 	${OBJECTDIR}/_ext/acd0b333/GenesysShell.o \
+	${OBJECTDIR}/_ext/bea3505/AirportSecurityExample.o \
+	${OBJECTDIR}/_ext/bea3505/AirportSecurityExampleExtended.o \
+	${OBJECTDIR}/_ext/bea3505/Example_Basic_Order_Shipping.o \
+	${OBJECTDIR}/_ext/bea3505/Example_PublicTransport.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_AddingResource.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_AlternatingEntityCreation.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_ArrivalsEntityTypeVsAttribute.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_AssignExample.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_AutomaticStatisticsCollection.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_BasicModeling.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_BatchAndSeparate.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_ContinuousFlowEntities.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_Create.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_DecideNWayByChance.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_DefiningAttributesAsStrings.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_DefiningControlLogic.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_DefiningResourceCapacity.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_DelayBasedOnReplication.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_EntitiesProcessedByPriority.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_EvaluatingConditionsBeforeEnteringQueue.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_Expression.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_InventoryAndHoldingCosts.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_MaxArrivalsField.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_ModelRunUntil1000Parts.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_ModuleDisplayVariables.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_ParallelProcessingOfEntities.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_PlacingEntitiesInQueueSets.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_PriorityExample.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_ProcessArena.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_Record.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_ResourceCosting.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_ResourceScheduleCosting.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_ResourceSets.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_SeizingMultipleSimultaneosly.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_SelectingRouteBasedOnProbability.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_SelectingShorterQueue.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_SynchronizingParallelEntities.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_ValueAdded.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_WaitForSignal.o \
 	${OBJECTDIR}/_ext/d120e6b4/Book_Cap02_Example01.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_AssignWriteSeizes.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_BatchSeparate.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_CellularAutomata1.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_Clone.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_CppForG.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_Delay.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_Dummy.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_Failures.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_FiniteStateMachine.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_HoldSearchRemove.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_ModelInfoModelSimulation.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_ODE.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_OnEvent.o \
@@ -58,6 +101,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/296208d5/Smart_SeizeDelayReleaseMany.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_SeizeDelayReleaseNoDataDefs.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_Sequence.o \
+	${OBJECTDIR}/_ext/296208d5/Smart_SimulationControlResponse.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_WaitScanCondition.o \
 	${OBJECTDIR}/_ext/296208d5/Smart_WaitSignal.o \
 	${OBJECTDIR}/_ext/18d98d98/AnElectronicAssemblyAndTestSystem.o \
@@ -68,11 +112,14 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/113d9686/ComponentManager.o \
 	${OBJECTDIR}/_ext/113d9686/ConnectionManager.o \
 	${OBJECTDIR}/_ext/113d9686/Counter.o \
+	${OBJECTDIR}/_ext/113d9686/CppSerializer.o \
 	${OBJECTDIR}/_ext/113d9686/Entity.o \
 	${OBJECTDIR}/_ext/113d9686/EntityType.o \
 	${OBJECTDIR}/_ext/113d9686/Event.o \
 	${OBJECTDIR}/_ext/113d9686/ExperimentManager.o \
 	${OBJECTDIR}/_ext/113d9686/ExperimentManagerDefaultImpl1.o \
+	${OBJECTDIR}/_ext/113d9686/GenSerializer.o \
+	${OBJECTDIR}/_ext/113d9686/JsonSerializer.o \
 	${OBJECTDIR}/_ext/113d9686/LicenceManager.o \
 	${OBJECTDIR}/_ext/113d9686/Model.o \
 	${OBJECTDIR}/_ext/113d9686/ModelCheckerDefaultImpl1.o \
@@ -81,13 +128,15 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/113d9686/ModelDataManager.o \
 	${OBJECTDIR}/_ext/113d9686/ModelInfo.o \
 	${OBJECTDIR}/_ext/113d9686/ModelManager.o \
-	${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl1.o \
+	${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl2.o \
+	${OBJECTDIR}/_ext/113d9686/ModelSerializer.o \
 	${OBJECTDIR}/_ext/113d9686/ModelSimulation.o \
 	${OBJECTDIR}/_ext/113d9686/OnEventManager.o \
 	${OBJECTDIR}/_ext/113d9686/ParserChangesInformation.o \
 	${OBJECTDIR}/_ext/113d9686/ParserDefaultImpl1.o \
 	${OBJECTDIR}/_ext/113d9686/ParserDefaultImpl2.o \
 	${OBJECTDIR}/_ext/113d9686/ParserManager.o \
+	${OBJECTDIR}/_ext/113d9686/Persistence.o \
 	${OBJECTDIR}/_ext/113d9686/Plugin.o \
 	${OBJECTDIR}/_ext/113d9686/PluginConnectorDummyImpl1.o \
 	${OBJECTDIR}/_ext/113d9686/PluginInformation.o \
@@ -102,6 +151,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/113d9686/SourceModelComponent.o \
 	${OBJECTDIR}/_ext/113d9686/StatisticsCollector.o \
 	${OBJECTDIR}/_ext/113d9686/TraceManager.o \
+	${OBJECTDIR}/_ext/113d9686/XmlSerializer.o \
 	${OBJECTDIR}/_ext/5dd0aee1/CollectorDatafileDefaultImpl1.o \
 	${OBJECTDIR}/_ext/5dd0aee1/CollectorDefaultImpl1.o \
 	${OBJECTDIR}/_ext/5dd0aee1/SamplerBoostImpl.o \
@@ -118,6 +168,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/f13e5db9/Assign.o \
 	${OBJECTDIR}/_ext/f13e5db9/Batch.o \
 	${OBJECTDIR}/_ext/f13e5db9/CellularAutomata.o \
+	${OBJECTDIR}/_ext/f13e5db9/Clone.o \
 	${OBJECTDIR}/_ext/f13e5db9/CppForG.o \
 	${OBJECTDIR}/_ext/f13e5db9/Create.o \
 	${OBJECTDIR}/_ext/f13e5db9/Decide.o \
@@ -127,6 +178,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/f13e5db9/DummyComponent.o \
 	${OBJECTDIR}/_ext/f13e5db9/Enter.o \
 	${OBJECTDIR}/_ext/f13e5db9/Exit.o \
+	${OBJECTDIR}/_ext/f13e5db9/FiniteStateMachine.o \
 	${OBJECTDIR}/_ext/f13e5db9/LSODE.o \
 	${OBJECTDIR}/_ext/f13e5db9/Leave.o \
 	${OBJECTDIR}/_ext/f13e5db9/MarkovChain.o \
@@ -134,6 +186,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/f13e5db9/OLD_ODEelement.o \
 	${OBJECTDIR}/_ext/f13e5db9/PickStation.o \
 	${OBJECTDIR}/_ext/f13e5db9/PickUp.o \
+	${OBJECTDIR}/_ext/f13e5db9/PickableStationItem.o \
 	${OBJECTDIR}/_ext/f13e5db9/Process.o \
 	${OBJECTDIR}/_ext/f13e5db9/QueueableItem.o \
 	${OBJECTDIR}/_ext/f13e5db9/Record.o \
@@ -153,8 +206,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/f13e5db9/Wait.o \
 	${OBJECTDIR}/_ext/f13e5db9/Write.o \
 	${OBJECTDIR}/_ext/ccae408d/AssignmentItem.o \
-	${OBJECTDIR}/_ext/ccae408d/CppCode.o \
+	${OBJECTDIR}/_ext/ccae408d/CppCompiler.o \
 	${OBJECTDIR}/_ext/ccae408d/DummyElement.o \
+	${OBJECTDIR}/_ext/ccae408d/EFSM.o \
 	${OBJECTDIR}/_ext/ccae408d/EntityGroup.o \
 	${OBJECTDIR}/_ext/ccae408d/Failure.o \
 	${OBJECTDIR}/_ext/ccae408d/File.o \
@@ -223,6 +277,206 @@ ${OBJECTDIR}/_ext/acd0b333/GenesysShell.o: ../../source/applications/terminal/Ge
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/acd0b333/GenesysShell.o ../../source/applications/terminal/GenesysShell/GenesysShell.cpp
 
+${OBJECTDIR}/_ext/bea3505/AirportSecurityExample.o: ../../source/applications/terminal/examples/arenaExamples/AirportSecurityExample.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/bea3505
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/bea3505/AirportSecurityExample.o ../../source/applications/terminal/examples/arenaExamples/AirportSecurityExample.cpp
+
+${OBJECTDIR}/_ext/bea3505/AirportSecurityExampleExtended.o: ../../source/applications/terminal/examples/arenaExamples/AirportSecurityExampleExtended.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/bea3505
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/bea3505/AirportSecurityExampleExtended.o ../../source/applications/terminal/examples/arenaExamples/AirportSecurityExampleExtended.cpp
+
+${OBJECTDIR}/_ext/bea3505/Example_Basic_Order_Shipping.o: ../../source/applications/terminal/examples/arenaExamples/Example_Basic_Order_Shipping.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/bea3505
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/bea3505/Example_Basic_Order_Shipping.o ../../source/applications/terminal/examples/arenaExamples/Example_Basic_Order_Shipping.cpp
+
+${OBJECTDIR}/_ext/bea3505/Example_PublicTransport.o: ../../source/applications/terminal/examples/arenaExamples/Example_PublicTransport.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/bea3505
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/bea3505/Example_PublicTransport.o ../../source/applications/terminal/examples/arenaExamples/Example_PublicTransport.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_AddingResource.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_AddingResource.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_AddingResource.o ../../source/applications/terminal/examples/arenaSmarts/Smart_AddingResource.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_AlternatingEntityCreation.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_AlternatingEntityCreation.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_AlternatingEntityCreation.o ../../source/applications/terminal/examples/arenaSmarts/Smart_AlternatingEntityCreation.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_ArrivalsEntityTypeVsAttribute.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_ArrivalsEntityTypeVsAttribute.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_ArrivalsEntityTypeVsAttribute.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ArrivalsEntityTypeVsAttribute.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_AssignExample.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_AssignExample.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_AssignExample.o ../../source/applications/terminal/examples/arenaSmarts/Smart_AssignExample.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_AutomaticStatisticsCollection.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_AutomaticStatisticsCollection.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_AutomaticStatisticsCollection.o ../../source/applications/terminal/examples/arenaSmarts/Smart_AutomaticStatisticsCollection.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_BasicModeling.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_BasicModeling.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_BasicModeling.o ../../source/applications/terminal/examples/arenaSmarts/Smart_BasicModeling.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_BatchAndSeparate.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_BatchAndSeparate.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_BatchAndSeparate.o ../../source/applications/terminal/examples/arenaSmarts/Smart_BatchAndSeparate.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_ContinuousFlowEntities.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_ContinuousFlowEntities.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_ContinuousFlowEntities.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ContinuousFlowEntities.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_Create.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_Create.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_Create.o ../../source/applications/terminal/examples/arenaSmarts/Smart_Create.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_DecideNWayByChance.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_DecideNWayByChance.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_DecideNWayByChance.o ../../source/applications/terminal/examples/arenaSmarts/Smart_DecideNWayByChance.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_DefiningAttributesAsStrings.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningAttributesAsStrings.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_DefiningAttributesAsStrings.o ../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningAttributesAsStrings.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_DefiningControlLogic.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningControlLogic.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_DefiningControlLogic.o ../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningControlLogic.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_DefiningResourceCapacity.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningResourceCapacity.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_DefiningResourceCapacity.o ../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningResourceCapacity.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_DelayBasedOnReplication.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_DelayBasedOnReplication.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_DelayBasedOnReplication.o ../../source/applications/terminal/examples/arenaSmarts/Smart_DelayBasedOnReplication.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_EntitiesProcessedByPriority.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_EntitiesProcessedByPriority.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_EntitiesProcessedByPriority.o ../../source/applications/terminal/examples/arenaSmarts/Smart_EntitiesProcessedByPriority.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_EvaluatingConditionsBeforeEnteringQueue.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_EvaluatingConditionsBeforeEnteringQueue.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_EvaluatingConditionsBeforeEnteringQueue.o ../../source/applications/terminal/examples/arenaSmarts/Smart_EvaluatingConditionsBeforeEnteringQueue.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_Expression.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_Expression.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_Expression.o ../../source/applications/terminal/examples/arenaSmarts/Smart_Expression.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_InventoryAndHoldingCosts.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_InventoryAndHoldingCosts.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_InventoryAndHoldingCosts.o ../../source/applications/terminal/examples/arenaSmarts/Smart_InventoryAndHoldingCosts.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_MaxArrivalsField.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_MaxArrivalsField.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_MaxArrivalsField.o ../../source/applications/terminal/examples/arenaSmarts/Smart_MaxArrivalsField.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_ModelRunUntil1000Parts.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_ModelRunUntil1000Parts.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_ModelRunUntil1000Parts.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ModelRunUntil1000Parts.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_ModuleDisplayVariables.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_ModuleDisplayVariables.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_ModuleDisplayVariables.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ModuleDisplayVariables.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_ParallelProcessingOfEntities.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_ParallelProcessingOfEntities.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_ParallelProcessingOfEntities.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ParallelProcessingOfEntities.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_PlacingEntitiesInQueueSets.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_PlacingEntitiesInQueueSets.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_PlacingEntitiesInQueueSets.o ../../source/applications/terminal/examples/arenaSmarts/Smart_PlacingEntitiesInQueueSets.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_PriorityExample.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_PriorityExample.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_PriorityExample.o ../../source/applications/terminal/examples/arenaSmarts/Smart_PriorityExample.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_ProcessArena.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_ProcessArena.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_ProcessArena.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ProcessArena.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_Record.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_Record.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_Record.o ../../source/applications/terminal/examples/arenaSmarts/Smart_Record.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_ResourceCosting.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceCosting.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_ResourceCosting.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceCosting.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_ResourceScheduleCosting.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceScheduleCosting.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_ResourceScheduleCosting.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceScheduleCosting.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_ResourceSets.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceSets.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_ResourceSets.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceSets.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_SeizingMultipleSimultaneosly.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_SeizingMultipleSimultaneosly.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_SeizingMultipleSimultaneosly.o ../../source/applications/terminal/examples/arenaSmarts/Smart_SeizingMultipleSimultaneosly.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_SelectingRouteBasedOnProbability.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_SelectingRouteBasedOnProbability.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_SelectingRouteBasedOnProbability.o ../../source/applications/terminal/examples/arenaSmarts/Smart_SelectingRouteBasedOnProbability.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_SelectingShorterQueue.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_SelectingShorterQueue.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_SelectingShorterQueue.o ../../source/applications/terminal/examples/arenaSmarts/Smart_SelectingShorterQueue.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_SynchronizingParallelEntities.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_SynchronizingParallelEntities.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_SynchronizingParallelEntities.o ../../source/applications/terminal/examples/arenaSmarts/Smart_SynchronizingParallelEntities.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_ValueAdded.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_ValueAdded.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_ValueAdded.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ValueAdded.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_WaitForSignal.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_WaitForSignal.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_WaitForSignal.o ../../source/applications/terminal/examples/arenaSmarts/Smart_WaitForSignal.cpp
+
 ${OBJECTDIR}/_ext/d120e6b4/Book_Cap02_Example01.o: ../../source/applications/terminal/examples/book/Book_Cap02_Example01.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/d120e6b4
 	${RM} "$@.d"
@@ -243,6 +497,11 @@ ${OBJECTDIR}/_ext/296208d5/Smart_CellularAutomata1.o: ../../source/applications/
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_CellularAutomata1.o ../../source/applications/terminal/examples/smarts/Smart_CellularAutomata1.cpp
 
+${OBJECTDIR}/_ext/296208d5/Smart_Clone.o: ../../source/applications/terminal/examples/smarts/Smart_Clone.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_Clone.o ../../source/applications/terminal/examples/smarts/Smart_Clone.cpp
+
 ${OBJECTDIR}/_ext/296208d5/Smart_CppForG.o: ../../source/applications/terminal/examples/smarts/Smart_CppForG.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
@@ -262,6 +521,16 @@ ${OBJECTDIR}/_ext/296208d5/Smart_Failures.o: ../../source/applications/terminal/
 	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_Failures.o ../../source/applications/terminal/examples/smarts/Smart_Failures.cpp
+
+${OBJECTDIR}/_ext/296208d5/Smart_FiniteStateMachine.o: ../../source/applications/terminal/examples/smarts/Smart_FiniteStateMachine.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_FiniteStateMachine.o ../../source/applications/terminal/examples/smarts/Smart_FiniteStateMachine.cpp
+
+${OBJECTDIR}/_ext/296208d5/Smart_HoldSearchRemove.o: ../../source/applications/terminal/examples/smarts/Smart_HoldSearchRemove.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_HoldSearchRemove.o ../../source/applications/terminal/examples/smarts/Smart_HoldSearchRemove.cpp
 
 ${OBJECTDIR}/_ext/296208d5/Smart_ModelInfoModelSimulation.o: ../../source/applications/terminal/examples/smarts/Smart_ModelInfoModelSimulation.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
@@ -328,6 +597,11 @@ ${OBJECTDIR}/_ext/296208d5/Smart_Sequence.o: ../../source/applications/terminal/
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_Sequence.o ../../source/applications/terminal/examples/smarts/Smart_Sequence.cpp
 
+${OBJECTDIR}/_ext/296208d5/Smart_SimulationControlResponse.o: ../../source/applications/terminal/examples/smarts/Smart_SimulationControlResponse.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_SimulationControlResponse.o ../../source/applications/terminal/examples/smarts/Smart_SimulationControlResponse.cpp
+
 ${OBJECTDIR}/_ext/296208d5/Smart_WaitScanCondition.o: ../../source/applications/terminal/examples/smarts/Smart_WaitScanCondition.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	${RM} "$@.d"
@@ -378,6 +652,11 @@ ${OBJECTDIR}/_ext/113d9686/Counter.o: ../../source/kernel/simulator/Counter.cpp 
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/Counter.o ../../source/kernel/simulator/Counter.cpp
 
+${OBJECTDIR}/_ext/113d9686/CppSerializer.o: ../../source/kernel/simulator/CppSerializer.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/CppSerializer.o ../../source/kernel/simulator/CppSerializer.cpp
+
 ${OBJECTDIR}/_ext/113d9686/Entity.o: ../../source/kernel/simulator/Entity.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
 	${RM} "$@.d"
@@ -402,6 +681,16 @@ ${OBJECTDIR}/_ext/113d9686/ExperimentManagerDefaultImpl1.o: ../../source/kernel/
 	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/ExperimentManagerDefaultImpl1.o ../../source/kernel/simulator/ExperimentManagerDefaultImpl1.cpp
+
+${OBJECTDIR}/_ext/113d9686/GenSerializer.o: ../../source/kernel/simulator/GenSerializer.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/GenSerializer.o ../../source/kernel/simulator/GenSerializer.cpp
+
+${OBJECTDIR}/_ext/113d9686/JsonSerializer.o: ../../source/kernel/simulator/JsonSerializer.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/JsonSerializer.o ../../source/kernel/simulator/JsonSerializer.cpp
 
 ${OBJECTDIR}/_ext/113d9686/LicenceManager.o: ../../source/kernel/simulator/LicenceManager.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
@@ -443,10 +732,15 @@ ${OBJECTDIR}/_ext/113d9686/ModelManager.o: ../../source/kernel/simulator/ModelMa
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/ModelManager.o ../../source/kernel/simulator/ModelManager.cpp
 
-${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl1.o: ../../source/kernel/simulator/ModelPersistenceDefaultImpl1.cpp nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl2.o: ../../source/kernel/simulator/ModelPersistenceDefaultImpl2.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl1.o ../../source/kernel/simulator/ModelPersistenceDefaultImpl1.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl2.o ../../source/kernel/simulator/ModelPersistenceDefaultImpl2.cpp
+
+${OBJECTDIR}/_ext/113d9686/ModelSerializer.o: ../../source/kernel/simulator/ModelSerializer.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/ModelSerializer.o ../../source/kernel/simulator/ModelSerializer.cpp
 
 ${OBJECTDIR}/_ext/113d9686/ModelSimulation.o: ../../source/kernel/simulator/ModelSimulation.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
@@ -477,6 +771,11 @@ ${OBJECTDIR}/_ext/113d9686/ParserManager.o: ../../source/kernel/simulator/Parser
 	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/ParserManager.o ../../source/kernel/simulator/ParserManager.cpp
+
+${OBJECTDIR}/_ext/113d9686/Persistence.o: ../../source/kernel/simulator/Persistence.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/Persistence.o ../../source/kernel/simulator/Persistence.cpp
 
 ${OBJECTDIR}/_ext/113d9686/Plugin.o: ../../source/kernel/simulator/Plugin.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
@@ -547,6 +846,11 @@ ${OBJECTDIR}/_ext/113d9686/TraceManager.o: ../../source/kernel/simulator/TraceMa
 	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/TraceManager.o ../../source/kernel/simulator/TraceManager.cpp
+
+${OBJECTDIR}/_ext/113d9686/XmlSerializer.o: ../../source/kernel/simulator/XmlSerializer.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/XmlSerializer.o ../../source/kernel/simulator/XmlSerializer.cpp
 
 ${OBJECTDIR}/_ext/5dd0aee1/CollectorDatafileDefaultImpl1.o: ../../source/kernel/statistics/CollectorDatafileDefaultImpl1.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/5dd0aee1
@@ -628,6 +932,11 @@ ${OBJECTDIR}/_ext/f13e5db9/CellularAutomata.o: ../../source/plugins/components/C
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f13e5db9/CellularAutomata.o ../../source/plugins/components/CellularAutomata.cpp
 
+${OBJECTDIR}/_ext/f13e5db9/Clone.o: ../../source/plugins/components/Clone.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f13e5db9/Clone.o ../../source/plugins/components/Clone.cpp
+
 ${OBJECTDIR}/_ext/f13e5db9/CppForG.o: ../../source/plugins/components/CppForG.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
 	${RM} "$@.d"
@@ -673,6 +982,11 @@ ${OBJECTDIR}/_ext/f13e5db9/Exit.o: ../../source/plugins/components/Exit.cpp nbpr
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f13e5db9/Exit.o ../../source/plugins/components/Exit.cpp
 
+${OBJECTDIR}/_ext/f13e5db9/FiniteStateMachine.o: ../../source/plugins/components/FiniteStateMachine.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f13e5db9/FiniteStateMachine.o ../../source/plugins/components/FiniteStateMachine.cpp
+
 ${OBJECTDIR}/_ext/f13e5db9/LSODE.o: ../../source/plugins/components/LSODE.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
 	${RM} "$@.d"
@@ -707,6 +1021,11 @@ ${OBJECTDIR}/_ext/f13e5db9/PickUp.o: ../../source/plugins/components/PickUp.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f13e5db9/PickUp.o ../../source/plugins/components/PickUp.cpp
+
+${OBJECTDIR}/_ext/f13e5db9/PickableStationItem.o: ../../source/plugins/components/PickableStationItem.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f13e5db9/PickableStationItem.o ../../source/plugins/components/PickableStationItem.cpp
 
 ${OBJECTDIR}/_ext/f13e5db9/Process.o: ../../source/plugins/components/Process.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
@@ -803,15 +1122,20 @@ ${OBJECTDIR}/_ext/ccae408d/AssignmentItem.o: ../../source/plugins/data/Assignmen
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/AssignmentItem.o ../../source/plugins/data/AssignmentItem.cpp
 
-${OBJECTDIR}/_ext/ccae408d/CppCode.o: ../../source/plugins/data/CppCode.cpp nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/ccae408d/CppCompiler.o: ../../source/plugins/data/CppCompiler.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/ccae408d
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/CppCode.o ../../source/plugins/data/CppCode.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/CppCompiler.o ../../source/plugins/data/CppCompiler.cpp
 
 ${OBJECTDIR}/_ext/ccae408d/DummyElement.o: ../../source/plugins/data/DummyElement.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/ccae408d
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/DummyElement.o ../../source/plugins/data/DummyElement.cpp
+
+${OBJECTDIR}/_ext/ccae408d/EFSM.o: ../../source/plugins/data/EFSM.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/ccae408d
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/EFSM.o ../../source/plugins/data/EFSM.cpp
 
 ${OBJECTDIR}/_ext/ccae408d/EntityGroup.o: ../../source/plugins/data/EntityGroup.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/ccae408d
@@ -968,6 +1292,526 @@ ${OBJECTDIR}/_ext/acd0b333/GenesysShell_nomain.o: ${OBJECTDIR}/_ext/acd0b333/Gen
 	    ${CP} ${OBJECTDIR}/_ext/acd0b333/GenesysShell.o ${OBJECTDIR}/_ext/acd0b333/GenesysShell_nomain.o;\
 	fi
 
+${OBJECTDIR}/_ext/bea3505/AirportSecurityExample_nomain.o: ${OBJECTDIR}/_ext/bea3505/AirportSecurityExample.o ../../source/applications/terminal/examples/arenaExamples/AirportSecurityExample.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/bea3505
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/bea3505/AirportSecurityExample.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/bea3505/AirportSecurityExample_nomain.o ../../source/applications/terminal/examples/arenaExamples/AirportSecurityExample.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/bea3505/AirportSecurityExample.o ${OBJECTDIR}/_ext/bea3505/AirportSecurityExample_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/bea3505/AirportSecurityExampleExtended_nomain.o: ${OBJECTDIR}/_ext/bea3505/AirportSecurityExampleExtended.o ../../source/applications/terminal/examples/arenaExamples/AirportSecurityExampleExtended.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/bea3505
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/bea3505/AirportSecurityExampleExtended.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/bea3505/AirportSecurityExampleExtended_nomain.o ../../source/applications/terminal/examples/arenaExamples/AirportSecurityExampleExtended.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/bea3505/AirportSecurityExampleExtended.o ${OBJECTDIR}/_ext/bea3505/AirportSecurityExampleExtended_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/bea3505/Example_Basic_Order_Shipping_nomain.o: ${OBJECTDIR}/_ext/bea3505/Example_Basic_Order_Shipping.o ../../source/applications/terminal/examples/arenaExamples/Example_Basic_Order_Shipping.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/bea3505
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/bea3505/Example_Basic_Order_Shipping.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/bea3505/Example_Basic_Order_Shipping_nomain.o ../../source/applications/terminal/examples/arenaExamples/Example_Basic_Order_Shipping.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/bea3505/Example_Basic_Order_Shipping.o ${OBJECTDIR}/_ext/bea3505/Example_Basic_Order_Shipping_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/bea3505/Example_PublicTransport_nomain.o: ${OBJECTDIR}/_ext/bea3505/Example_PublicTransport.o ../../source/applications/terminal/examples/arenaExamples/Example_PublicTransport.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/bea3505
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/bea3505/Example_PublicTransport.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/bea3505/Example_PublicTransport_nomain.o ../../source/applications/terminal/examples/arenaExamples/Example_PublicTransport.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/bea3505/Example_PublicTransport.o ${OBJECTDIR}/_ext/bea3505/Example_PublicTransport_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_AddingResource_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_AddingResource.o ../../source/applications/terminal/examples/arenaSmarts/Smart_AddingResource.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_AddingResource.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_AddingResource_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_AddingResource.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_AddingResource.o ${OBJECTDIR}/_ext/577f3b86/Smart_AddingResource_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_AlternatingEntityCreation_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_AlternatingEntityCreation.o ../../source/applications/terminal/examples/arenaSmarts/Smart_AlternatingEntityCreation.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_AlternatingEntityCreation.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_AlternatingEntityCreation_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_AlternatingEntityCreation.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_AlternatingEntityCreation.o ${OBJECTDIR}/_ext/577f3b86/Smart_AlternatingEntityCreation_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime.o ${OBJECTDIR}/_ext/577f3b86/Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_ArrivalsEntityTypeVsAttribute_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_ArrivalsEntityTypeVsAttribute.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ArrivalsEntityTypeVsAttribute.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_ArrivalsEntityTypeVsAttribute.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_ArrivalsEntityTypeVsAttribute_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ArrivalsEntityTypeVsAttribute.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_ArrivalsEntityTypeVsAttribute.o ${OBJECTDIR}/_ext/577f3b86/Smart_ArrivalsEntityTypeVsAttribute_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_AssignExample_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_AssignExample.o ../../source/applications/terminal/examples/arenaSmarts/Smart_AssignExample.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_AssignExample.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_AssignExample_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_AssignExample.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_AssignExample.o ${OBJECTDIR}/_ext/577f3b86/Smart_AssignExample_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_AutomaticStatisticsCollection_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_AutomaticStatisticsCollection.o ../../source/applications/terminal/examples/arenaSmarts/Smart_AutomaticStatisticsCollection.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_AutomaticStatisticsCollection.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_AutomaticStatisticsCollection_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_AutomaticStatisticsCollection.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_AutomaticStatisticsCollection.o ${OBJECTDIR}/_ext/577f3b86/Smart_AutomaticStatisticsCollection_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_BasicModeling_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_BasicModeling.o ../../source/applications/terminal/examples/arenaSmarts/Smart_BasicModeling.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_BasicModeling.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_BasicModeling_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_BasicModeling.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_BasicModeling.o ${OBJECTDIR}/_ext/577f3b86/Smart_BasicModeling_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_BatchAndSeparate_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_BatchAndSeparate.o ../../source/applications/terminal/examples/arenaSmarts/Smart_BatchAndSeparate.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_BatchAndSeparate.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_BatchAndSeparate_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_BatchAndSeparate.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_BatchAndSeparate.o ${OBJECTDIR}/_ext/577f3b86/Smart_BatchAndSeparate_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_ContinuousFlowEntities_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_ContinuousFlowEntities.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ContinuousFlowEntities.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_ContinuousFlowEntities.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_ContinuousFlowEntities_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ContinuousFlowEntities.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_ContinuousFlowEntities.o ${OBJECTDIR}/_ext/577f3b86/Smart_ContinuousFlowEntities_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_Create_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_Create.o ../../source/applications/terminal/examples/arenaSmarts/Smart_Create.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_Create.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_Create_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_Create.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_Create.o ${OBJECTDIR}/_ext/577f3b86/Smart_Create_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_DecideNWayByChance_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_DecideNWayByChance.o ../../source/applications/terminal/examples/arenaSmarts/Smart_DecideNWayByChance.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_DecideNWayByChance.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_DecideNWayByChance_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_DecideNWayByChance.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_DecideNWayByChance.o ${OBJECTDIR}/_ext/577f3b86/Smart_DecideNWayByChance_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_DefiningAttributesAsStrings_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_DefiningAttributesAsStrings.o ../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningAttributesAsStrings.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_DefiningAttributesAsStrings.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_DefiningAttributesAsStrings_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningAttributesAsStrings.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_DefiningAttributesAsStrings.o ${OBJECTDIR}/_ext/577f3b86/Smart_DefiningAttributesAsStrings_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_DefiningControlLogic_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_DefiningControlLogic.o ../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningControlLogic.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_DefiningControlLogic.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_DefiningControlLogic_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningControlLogic.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_DefiningControlLogic.o ${OBJECTDIR}/_ext/577f3b86/Smart_DefiningControlLogic_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_DefiningResourceCapacity_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_DefiningResourceCapacity.o ../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningResourceCapacity.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_DefiningResourceCapacity.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_DefiningResourceCapacity_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningResourceCapacity.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_DefiningResourceCapacity.o ${OBJECTDIR}/_ext/577f3b86/Smart_DefiningResourceCapacity_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_DelayBasedOnReplication_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_DelayBasedOnReplication.o ../../source/applications/terminal/examples/arenaSmarts/Smart_DelayBasedOnReplication.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_DelayBasedOnReplication.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_DelayBasedOnReplication_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_DelayBasedOnReplication.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_DelayBasedOnReplication.o ${OBJECTDIR}/_ext/577f3b86/Smart_DelayBasedOnReplication_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_EntitiesProcessedByPriority_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_EntitiesProcessedByPriority.o ../../source/applications/terminal/examples/arenaSmarts/Smart_EntitiesProcessedByPriority.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_EntitiesProcessedByPriority.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_EntitiesProcessedByPriority_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_EntitiesProcessedByPriority.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_EntitiesProcessedByPriority.o ${OBJECTDIR}/_ext/577f3b86/Smart_EntitiesProcessedByPriority_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_EvaluatingConditionsBeforeEnteringQueue_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_EvaluatingConditionsBeforeEnteringQueue.o ../../source/applications/terminal/examples/arenaSmarts/Smart_EvaluatingConditionsBeforeEnteringQueue.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_EvaluatingConditionsBeforeEnteringQueue.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_EvaluatingConditionsBeforeEnteringQueue_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_EvaluatingConditionsBeforeEnteringQueue.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_EvaluatingConditionsBeforeEnteringQueue.o ${OBJECTDIR}/_ext/577f3b86/Smart_EvaluatingConditionsBeforeEnteringQueue_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_Expression_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_Expression.o ../../source/applications/terminal/examples/arenaSmarts/Smart_Expression.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_Expression.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_Expression_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_Expression.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_Expression.o ${OBJECTDIR}/_ext/577f3b86/Smart_Expression_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_InventoryAndHoldingCosts_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_InventoryAndHoldingCosts.o ../../source/applications/terminal/examples/arenaSmarts/Smart_InventoryAndHoldingCosts.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_InventoryAndHoldingCosts.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_InventoryAndHoldingCosts_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_InventoryAndHoldingCosts.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_InventoryAndHoldingCosts.o ${OBJECTDIR}/_ext/577f3b86/Smart_InventoryAndHoldingCosts_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_MaxArrivalsField_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_MaxArrivalsField.o ../../source/applications/terminal/examples/arenaSmarts/Smart_MaxArrivalsField.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_MaxArrivalsField.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_MaxArrivalsField_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_MaxArrivalsField.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_MaxArrivalsField.o ${OBJECTDIR}/_ext/577f3b86/Smart_MaxArrivalsField_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_ModelRunUntil1000Parts_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_ModelRunUntil1000Parts.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ModelRunUntil1000Parts.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_ModelRunUntil1000Parts.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_ModelRunUntil1000Parts_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ModelRunUntil1000Parts.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_ModelRunUntil1000Parts.o ${OBJECTDIR}/_ext/577f3b86/Smart_ModelRunUntil1000Parts_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_ModuleDisplayVariables_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_ModuleDisplayVariables.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ModuleDisplayVariables.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_ModuleDisplayVariables.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_ModuleDisplayVariables_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ModuleDisplayVariables.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_ModuleDisplayVariables.o ${OBJECTDIR}/_ext/577f3b86/Smart_ModuleDisplayVariables_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_ParallelProcessingOfEntities_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_ParallelProcessingOfEntities.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ParallelProcessingOfEntities.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_ParallelProcessingOfEntities.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_ParallelProcessingOfEntities_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ParallelProcessingOfEntities.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_ParallelProcessingOfEntities.o ${OBJECTDIR}/_ext/577f3b86/Smart_ParallelProcessingOfEntities_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_PlacingEntitiesInQueueSets_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_PlacingEntitiesInQueueSets.o ../../source/applications/terminal/examples/arenaSmarts/Smart_PlacingEntitiesInQueueSets.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_PlacingEntitiesInQueueSets.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_PlacingEntitiesInQueueSets_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_PlacingEntitiesInQueueSets.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_PlacingEntitiesInQueueSets.o ${OBJECTDIR}/_ext/577f3b86/Smart_PlacingEntitiesInQueueSets_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_PriorityExample_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_PriorityExample.o ../../source/applications/terminal/examples/arenaSmarts/Smart_PriorityExample.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_PriorityExample.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_PriorityExample_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_PriorityExample.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_PriorityExample.o ${OBJECTDIR}/_ext/577f3b86/Smart_PriorityExample_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_ProcessArena_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_ProcessArena.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ProcessArena.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_ProcessArena.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_ProcessArena_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ProcessArena.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_ProcessArena.o ${OBJECTDIR}/_ext/577f3b86/Smart_ProcessArena_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_Record_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_Record.o ../../source/applications/terminal/examples/arenaSmarts/Smart_Record.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_Record.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_Record_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_Record.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_Record.o ${OBJECTDIR}/_ext/577f3b86/Smart_Record_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_ResourceCosting_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_ResourceCosting.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceCosting.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_ResourceCosting.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_ResourceCosting_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceCosting.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_ResourceCosting.o ${OBJECTDIR}/_ext/577f3b86/Smart_ResourceCosting_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_ResourceScheduleCosting_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_ResourceScheduleCosting.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceScheduleCosting.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_ResourceScheduleCosting.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_ResourceScheduleCosting_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceScheduleCosting.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_ResourceScheduleCosting.o ${OBJECTDIR}/_ext/577f3b86/Smart_ResourceScheduleCosting_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_ResourceSets_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_ResourceSets.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceSets.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_ResourceSets.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_ResourceSets_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceSets.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_ResourceSets.o ${OBJECTDIR}/_ext/577f3b86/Smart_ResourceSets_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_SeizingMultipleSimultaneosly_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_SeizingMultipleSimultaneosly.o ../../source/applications/terminal/examples/arenaSmarts/Smart_SeizingMultipleSimultaneosly.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_SeizingMultipleSimultaneosly.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_SeizingMultipleSimultaneosly_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_SeizingMultipleSimultaneosly.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_SeizingMultipleSimultaneosly.o ${OBJECTDIR}/_ext/577f3b86/Smart_SeizingMultipleSimultaneosly_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_SelectingRouteBasedOnProbability_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_SelectingRouteBasedOnProbability.o ../../source/applications/terminal/examples/arenaSmarts/Smart_SelectingRouteBasedOnProbability.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_SelectingRouteBasedOnProbability.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_SelectingRouteBasedOnProbability_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_SelectingRouteBasedOnProbability.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_SelectingRouteBasedOnProbability.o ${OBJECTDIR}/_ext/577f3b86/Smart_SelectingRouteBasedOnProbability_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_SelectingShorterQueue_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_SelectingShorterQueue.o ../../source/applications/terminal/examples/arenaSmarts/Smart_SelectingShorterQueue.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_SelectingShorterQueue.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_SelectingShorterQueue_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_SelectingShorterQueue.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_SelectingShorterQueue.o ${OBJECTDIR}/_ext/577f3b86/Smart_SelectingShorterQueue_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_SynchronizingParallelEntities_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_SynchronizingParallelEntities.o ../../source/applications/terminal/examples/arenaSmarts/Smart_SynchronizingParallelEntities.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_SynchronizingParallelEntities.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_SynchronizingParallelEntities_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_SynchronizingParallelEntities.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_SynchronizingParallelEntities.o ${OBJECTDIR}/_ext/577f3b86/Smart_SynchronizingParallelEntities_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_ValueAdded_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_ValueAdded.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ValueAdded.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_ValueAdded.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_ValueAdded_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ValueAdded.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_ValueAdded.o ${OBJECTDIR}/_ext/577f3b86/Smart_ValueAdded_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_WaitForSignal_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_WaitForSignal.o ../../source/applications/terminal/examples/arenaSmarts/Smart_WaitForSignal.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_WaitForSignal.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_WaitForSignal_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_WaitForSignal.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_WaitForSignal.o ${OBJECTDIR}/_ext/577f3b86/Smart_WaitForSignal_nomain.o;\
+	fi
+
 ${OBJECTDIR}/_ext/d120e6b4/Book_Cap02_Example01_nomain.o: ${OBJECTDIR}/_ext/d120e6b4/Book_Cap02_Example01.o ../../source/applications/terminal/examples/book/Book_Cap02_Example01.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/d120e6b4
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/d120e6b4/Book_Cap02_Example01.o`; \
@@ -1020,6 +1864,19 @@ ${OBJECTDIR}/_ext/296208d5/Smart_CellularAutomata1_nomain.o: ${OBJECTDIR}/_ext/2
 	    ${CP} ${OBJECTDIR}/_ext/296208d5/Smart_CellularAutomata1.o ${OBJECTDIR}/_ext/296208d5/Smart_CellularAutomata1_nomain.o;\
 	fi
 
+${OBJECTDIR}/_ext/296208d5/Smart_Clone_nomain.o: ${OBJECTDIR}/_ext/296208d5/Smart_Clone.o ../../source/applications/terminal/examples/smarts/Smart_Clone.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/296208d5/Smart_Clone.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_Clone_nomain.o ../../source/applications/terminal/examples/smarts/Smart_Clone.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/296208d5/Smart_Clone.o ${OBJECTDIR}/_ext/296208d5/Smart_Clone_nomain.o;\
+	fi
+
 ${OBJECTDIR}/_ext/296208d5/Smart_CppForG_nomain.o: ${OBJECTDIR}/_ext/296208d5/Smart_CppForG.o ../../source/applications/terminal/examples/smarts/Smart_CppForG.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/296208d5/Smart_CppForG.o`; \
@@ -1070,6 +1927,32 @@ ${OBJECTDIR}/_ext/296208d5/Smart_Failures_nomain.o: ${OBJECTDIR}/_ext/296208d5/S
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_Failures_nomain.o ../../source/applications/terminal/examples/smarts/Smart_Failures.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/296208d5/Smart_Failures.o ${OBJECTDIR}/_ext/296208d5/Smart_Failures_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/296208d5/Smart_FiniteStateMachine_nomain.o: ${OBJECTDIR}/_ext/296208d5/Smart_FiniteStateMachine.o ../../source/applications/terminal/examples/smarts/Smart_FiniteStateMachine.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/296208d5/Smart_FiniteStateMachine.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_FiniteStateMachine_nomain.o ../../source/applications/terminal/examples/smarts/Smart_FiniteStateMachine.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/296208d5/Smart_FiniteStateMachine.o ${OBJECTDIR}/_ext/296208d5/Smart_FiniteStateMachine_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/296208d5/Smart_HoldSearchRemove_nomain.o: ${OBJECTDIR}/_ext/296208d5/Smart_HoldSearchRemove.o ../../source/applications/terminal/examples/smarts/Smart_HoldSearchRemove.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/296208d5/Smart_HoldSearchRemove.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_HoldSearchRemove_nomain.o ../../source/applications/terminal/examples/smarts/Smart_HoldSearchRemove.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/296208d5/Smart_HoldSearchRemove.o ${OBJECTDIR}/_ext/296208d5/Smart_HoldSearchRemove_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/296208d5/Smart_ModelInfoModelSimulation_nomain.o: ${OBJECTDIR}/_ext/296208d5/Smart_ModelInfoModelSimulation.o ../../source/applications/terminal/examples/smarts/Smart_ModelInfoModelSimulation.cpp 
@@ -1241,6 +2124,19 @@ ${OBJECTDIR}/_ext/296208d5/Smart_Sequence_nomain.o: ${OBJECTDIR}/_ext/296208d5/S
 	    ${CP} ${OBJECTDIR}/_ext/296208d5/Smart_Sequence.o ${OBJECTDIR}/_ext/296208d5/Smart_Sequence_nomain.o;\
 	fi
 
+${OBJECTDIR}/_ext/296208d5/Smart_SimulationControlResponse_nomain.o: ${OBJECTDIR}/_ext/296208d5/Smart_SimulationControlResponse.o ../../source/applications/terminal/examples/smarts/Smart_SimulationControlResponse.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/296208d5/Smart_SimulationControlResponse.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/296208d5/Smart_SimulationControlResponse_nomain.o ../../source/applications/terminal/examples/smarts/Smart_SimulationControlResponse.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/296208d5/Smart_SimulationControlResponse.o ${OBJECTDIR}/_ext/296208d5/Smart_SimulationControlResponse_nomain.o;\
+	fi
+
 ${OBJECTDIR}/_ext/296208d5/Smart_WaitScanCondition_nomain.o: ${OBJECTDIR}/_ext/296208d5/Smart_WaitScanCondition.o ../../source/applications/terminal/examples/smarts/Smart_WaitScanCondition.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/296208d5
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/296208d5/Smart_WaitScanCondition.o`; \
@@ -1371,6 +2267,19 @@ ${OBJECTDIR}/_ext/113d9686/Counter_nomain.o: ${OBJECTDIR}/_ext/113d9686/Counter.
 	    ${CP} ${OBJECTDIR}/_ext/113d9686/Counter.o ${OBJECTDIR}/_ext/113d9686/Counter_nomain.o;\
 	fi
 
+${OBJECTDIR}/_ext/113d9686/CppSerializer_nomain.o: ${OBJECTDIR}/_ext/113d9686/CppSerializer.o ../../source/kernel/simulator/CppSerializer.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/113d9686/CppSerializer.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/CppSerializer_nomain.o ../../source/kernel/simulator/CppSerializer.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/113d9686/CppSerializer.o ${OBJECTDIR}/_ext/113d9686/CppSerializer_nomain.o;\
+	fi
+
 ${OBJECTDIR}/_ext/113d9686/Entity_nomain.o: ${OBJECTDIR}/_ext/113d9686/Entity.o ../../source/kernel/simulator/Entity.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/113d9686/Entity.o`; \
@@ -1434,6 +2343,32 @@ ${OBJECTDIR}/_ext/113d9686/ExperimentManagerDefaultImpl1_nomain.o: ${OBJECTDIR}/
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/ExperimentManagerDefaultImpl1_nomain.o ../../source/kernel/simulator/ExperimentManagerDefaultImpl1.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/113d9686/ExperimentManagerDefaultImpl1.o ${OBJECTDIR}/_ext/113d9686/ExperimentManagerDefaultImpl1_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/113d9686/GenSerializer_nomain.o: ${OBJECTDIR}/_ext/113d9686/GenSerializer.o ../../source/kernel/simulator/GenSerializer.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/113d9686/GenSerializer.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/GenSerializer_nomain.o ../../source/kernel/simulator/GenSerializer.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/113d9686/GenSerializer.o ${OBJECTDIR}/_ext/113d9686/GenSerializer_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/113d9686/JsonSerializer_nomain.o: ${OBJECTDIR}/_ext/113d9686/JsonSerializer.o ../../source/kernel/simulator/JsonSerializer.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/113d9686/JsonSerializer.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/JsonSerializer_nomain.o ../../source/kernel/simulator/JsonSerializer.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/113d9686/JsonSerializer.o ${OBJECTDIR}/_ext/113d9686/JsonSerializer_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/113d9686/LicenceManager_nomain.o: ${OBJECTDIR}/_ext/113d9686/LicenceManager.o ../../source/kernel/simulator/LicenceManager.cpp 
@@ -1540,17 +2475,30 @@ ${OBJECTDIR}/_ext/113d9686/ModelManager_nomain.o: ${OBJECTDIR}/_ext/113d9686/Mod
 	    ${CP} ${OBJECTDIR}/_ext/113d9686/ModelManager.o ${OBJECTDIR}/_ext/113d9686/ModelManager_nomain.o;\
 	fi
 
-${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl1_nomain.o: ${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl1.o ../../source/kernel/simulator/ModelPersistenceDefaultImpl1.cpp 
+${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl2_nomain.o: ${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl2.o ../../source/kernel/simulator/ModelPersistenceDefaultImpl2.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl1.o`; \
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl2.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl1_nomain.o ../../source/kernel/simulator/ModelPersistenceDefaultImpl1.cpp;\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl2_nomain.o ../../source/kernel/simulator/ModelPersistenceDefaultImpl2.cpp;\
 	else  \
-	    ${CP} ${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl1.o ${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl1_nomain.o;\
+	    ${CP} ${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl2.o ${OBJECTDIR}/_ext/113d9686/ModelPersistenceDefaultImpl2_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/113d9686/ModelSerializer_nomain.o: ${OBJECTDIR}/_ext/113d9686/ModelSerializer.o ../../source/kernel/simulator/ModelSerializer.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/113d9686/ModelSerializer.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/ModelSerializer_nomain.o ../../source/kernel/simulator/ModelSerializer.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/113d9686/ModelSerializer.o ${OBJECTDIR}/_ext/113d9686/ModelSerializer_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/113d9686/ModelSimulation_nomain.o: ${OBJECTDIR}/_ext/113d9686/ModelSimulation.o ../../source/kernel/simulator/ModelSimulation.cpp 
@@ -1629,6 +2577,19 @@ ${OBJECTDIR}/_ext/113d9686/ParserManager_nomain.o: ${OBJECTDIR}/_ext/113d9686/Pa
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/ParserManager_nomain.o ../../source/kernel/simulator/ParserManager.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/113d9686/ParserManager.o ${OBJECTDIR}/_ext/113d9686/ParserManager_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/113d9686/Persistence_nomain.o: ${OBJECTDIR}/_ext/113d9686/Persistence.o ../../source/kernel/simulator/Persistence.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/113d9686/Persistence.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/Persistence_nomain.o ../../source/kernel/simulator/Persistence.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/113d9686/Persistence.o ${OBJECTDIR}/_ext/113d9686/Persistence_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/113d9686/Plugin_nomain.o: ${OBJECTDIR}/_ext/113d9686/Plugin.o ../../source/kernel/simulator/Plugin.cpp 
@@ -1811,6 +2772,19 @@ ${OBJECTDIR}/_ext/113d9686/TraceManager_nomain.o: ${OBJECTDIR}/_ext/113d9686/Tra
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/TraceManager_nomain.o ../../source/kernel/simulator/TraceManager.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/113d9686/TraceManager.o ${OBJECTDIR}/_ext/113d9686/TraceManager_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/113d9686/XmlSerializer_nomain.o: ${OBJECTDIR}/_ext/113d9686/XmlSerializer.o ../../source/kernel/simulator/XmlSerializer.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/113d9686/XmlSerializer.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/XmlSerializer_nomain.o ../../source/kernel/simulator/XmlSerializer.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/113d9686/XmlSerializer.o ${OBJECTDIR}/_ext/113d9686/XmlSerializer_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/5dd0aee1/CollectorDatafileDefaultImpl1_nomain.o: ${OBJECTDIR}/_ext/5dd0aee1/CollectorDatafileDefaultImpl1.o ../../source/kernel/statistics/CollectorDatafileDefaultImpl1.cpp 
@@ -2021,6 +2995,19 @@ ${OBJECTDIR}/_ext/f13e5db9/CellularAutomata_nomain.o: ${OBJECTDIR}/_ext/f13e5db9
 	    ${CP} ${OBJECTDIR}/_ext/f13e5db9/CellularAutomata.o ${OBJECTDIR}/_ext/f13e5db9/CellularAutomata_nomain.o;\
 	fi
 
+${OBJECTDIR}/_ext/f13e5db9/Clone_nomain.o: ${OBJECTDIR}/_ext/f13e5db9/Clone.o ../../source/plugins/components/Clone.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/f13e5db9/Clone.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f13e5db9/Clone_nomain.o ../../source/plugins/components/Clone.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/f13e5db9/Clone.o ${OBJECTDIR}/_ext/f13e5db9/Clone_nomain.o;\
+	fi
+
 ${OBJECTDIR}/_ext/f13e5db9/CppForG_nomain.o: ${OBJECTDIR}/_ext/f13e5db9/CppForG.o ../../source/plugins/components/CppForG.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/f13e5db9/CppForG.o`; \
@@ -2138,6 +3125,19 @@ ${OBJECTDIR}/_ext/f13e5db9/Exit_nomain.o: ${OBJECTDIR}/_ext/f13e5db9/Exit.o ../.
 	    ${CP} ${OBJECTDIR}/_ext/f13e5db9/Exit.o ${OBJECTDIR}/_ext/f13e5db9/Exit_nomain.o;\
 	fi
 
+${OBJECTDIR}/_ext/f13e5db9/FiniteStateMachine_nomain.o: ${OBJECTDIR}/_ext/f13e5db9/FiniteStateMachine.o ../../source/plugins/components/FiniteStateMachine.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/f13e5db9/FiniteStateMachine.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f13e5db9/FiniteStateMachine_nomain.o ../../source/plugins/components/FiniteStateMachine.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/f13e5db9/FiniteStateMachine.o ${OBJECTDIR}/_ext/f13e5db9/FiniteStateMachine_nomain.o;\
+	fi
+
 ${OBJECTDIR}/_ext/f13e5db9/LSODE_nomain.o: ${OBJECTDIR}/_ext/f13e5db9/LSODE.o ../../source/plugins/components/LSODE.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/f13e5db9/LSODE.o`; \
@@ -2227,6 +3227,19 @@ ${OBJECTDIR}/_ext/f13e5db9/PickUp_nomain.o: ${OBJECTDIR}/_ext/f13e5db9/PickUp.o 
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f13e5db9/PickUp_nomain.o ../../source/plugins/components/PickUp.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/f13e5db9/PickUp.o ${OBJECTDIR}/_ext/f13e5db9/PickUp_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/f13e5db9/PickableStationItem_nomain.o: ${OBJECTDIR}/_ext/f13e5db9/PickableStationItem.o ../../source/plugins/components/PickableStationItem.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/f13e5db9/PickableStationItem.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f13e5db9/PickableStationItem_nomain.o ../../source/plugins/components/PickableStationItem.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/f13e5db9/PickableStationItem.o ${OBJECTDIR}/_ext/f13e5db9/PickableStationItem_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/f13e5db9/Process_nomain.o: ${OBJECTDIR}/_ext/f13e5db9/Process.o ../../source/plugins/components/Process.cpp 
@@ -2476,17 +3489,17 @@ ${OBJECTDIR}/_ext/ccae408d/AssignmentItem_nomain.o: ${OBJECTDIR}/_ext/ccae408d/A
 	    ${CP} ${OBJECTDIR}/_ext/ccae408d/AssignmentItem.o ${OBJECTDIR}/_ext/ccae408d/AssignmentItem_nomain.o;\
 	fi
 
-${OBJECTDIR}/_ext/ccae408d/CppCode_nomain.o: ${OBJECTDIR}/_ext/ccae408d/CppCode.o ../../source/plugins/data/CppCode.cpp 
+${OBJECTDIR}/_ext/ccae408d/CppCompiler_nomain.o: ${OBJECTDIR}/_ext/ccae408d/CppCompiler.o ../../source/plugins/data/CppCompiler.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/ccae408d
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/ccae408d/CppCode.o`; \
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/ccae408d/CppCompiler.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/CppCode_nomain.o ../../source/plugins/data/CppCode.cpp;\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/CppCompiler_nomain.o ../../source/plugins/data/CppCompiler.cpp;\
 	else  \
-	    ${CP} ${OBJECTDIR}/_ext/ccae408d/CppCode.o ${OBJECTDIR}/_ext/ccae408d/CppCode_nomain.o;\
+	    ${CP} ${OBJECTDIR}/_ext/ccae408d/CppCompiler.o ${OBJECTDIR}/_ext/ccae408d/CppCompiler_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/ccae408d/DummyElement_nomain.o: ${OBJECTDIR}/_ext/ccae408d/DummyElement.o ../../source/plugins/data/DummyElement.cpp 
@@ -2500,6 +3513,19 @@ ${OBJECTDIR}/_ext/ccae408d/DummyElement_nomain.o: ${OBJECTDIR}/_ext/ccae408d/Dum
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/DummyElement_nomain.o ../../source/plugins/data/DummyElement.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/ccae408d/DummyElement.o ${OBJECTDIR}/_ext/ccae408d/DummyElement_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/ccae408d/EFSM_nomain.o: ${OBJECTDIR}/_ext/ccae408d/EFSM.o ../../source/plugins/data/EFSM.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/ccae408d
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/ccae408d/EFSM.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ccae408d/EFSM_nomain.o ../../source/plugins/data/EFSM.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/ccae408d/EFSM.o ${OBJECTDIR}/_ext/ccae408d/EFSM_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/ccae408d/EntityGroup_nomain.o: ${OBJECTDIR}/_ext/ccae408d/EntityGroup.o ../../source/plugins/data/EntityGroup.cpp 

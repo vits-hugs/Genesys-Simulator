@@ -18,65 +18,64 @@
 #ifdef PLUGINCONNECT_DYNAMIC
 
 extern "C" StaticGetPluginInformation GetPluginInformation() {
-    return &Access::GetPluginInformation;
+	return &Access::GetPluginInformation;
 }
 #endif
 
 ModelDataDefinition* Access::NewInstance(Model* model, std::string name) {
-    return new Access(model, name);
+	return new Access(model, name);
 }
 
 Access::Access(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Access>(), name) {
 }
 
 std::string Access::show() {
-    return ModelComponent::show() + "";
+	return ModelComponent::show() + "";
 }
 
-ModelComponent* Access::LoadInstance(Model* model, std::map<std::string, std::string>* fields) {
-    Access* newComponent = new Access(model);
-    try {
-        newComponent->_loadInstance(fields);
-    } catch (const std::exception& e) {
+ModelComponent* Access::LoadInstance(Model* model, PersistenceRecord *fields) {
+	Access* newComponent = new Access(model);
+	try {
+		newComponent->_loadInstance(fields);
+	} catch (const std::exception& e) {
 
-    }
-    return newComponent;
+	}
+	return newComponent;
 }
 
 void Access::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
-    _parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
-    this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
+	_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
+	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
-bool Access::_loadInstance(std::map<std::string, std::string>* fields) {
-    bool res = ModelComponent::_loadInstance(fields);
-    if (res) {
-        // @TODO: not implemented yet
-    }
-    return res;
+bool Access::_loadInstance(PersistenceRecord *fields) {
+	bool res = ModelComponent::_loadInstance(fields);
+	if (res) {
+		// @TODO: not implemented yet
+	}
+	return res;
 }
 
 //void Access::_initBetweenReplications() {}
 
-std::map<std::string, std::string>* Access::_saveInstance(bool saveDefaultValues) {
-    std::map<std::string, std::string>* fields = ModelComponent::_saveInstance(saveDefaultValues);
-    // @TODO: not implemented yet
-    return fields;
+void Access::_saveInstance(PersistenceRecord *fields, bool saveDefaultValues) {
+	ModelComponent::_saveInstance(fields, saveDefaultValues);
+	// @TODO: not implemented yet
 }
 
 bool Access::_check(std::string* errorMessage) {
-    bool resultAll = true;
-    // @TODO: not implemented yet
-    *errorMessage += "";
-    return resultAll;
+	bool resultAll = true;
+	// @TODO: not implemented yet
+	*errorMessage += "";
+	return resultAll;
 }
 
 PluginInformation* Access::GetPluginInformation() {
-    PluginInformation* info = new PluginInformation(Util::TypeOf<Access>(), &Access::LoadInstance, &Access::NewInstance);
-    info->setCategory("Material Handling");
-    info->setDescriptionHelp("//@TODO");
-    // ...
-    return info;
+	PluginInformation* info = new PluginInformation(Util::TypeOf<Access>(), &Access::LoadInstance, &Access::NewInstance);
+	info->setCategory("Material Handling");
+	info->setDescriptionHelp("//@TODO");
+	// ...
+	return info;
 }
 
 

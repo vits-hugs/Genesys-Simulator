@@ -21,27 +21,27 @@
 
 class ModelManager {
 public:
-    ModelManager(Simulator* simulator);
-    virtual ~ModelManager() = default;
+	ModelManager(Simulator* simulator);
+	virtual ~ModelManager() = default;
 public:
-    Model* newModel();
-    void insert(Model* model);
-    void remove(Model* model);
-    void setCurrent(Model* model);
-    bool saveModel(std::string filename);
-    bool loadModel(std::string filename);
-    bool createFromLanguage(std::string modelSpecification);
-    unsigned int size();
+	Model* newModel();
+	void insert(Model* model);
+	void remove(Model* model);
+	void setCurrent(Model* model);
+	bool saveModel(std::string filename);
+	bool loadModel(std::string filename);
+	bool createFromLanguage(std::string modelSpecification);
+	unsigned int size();
 public:
-    Model* front();
-    Model* current();
-    Model* next();
-    //Model* end();
+	Model* front();
+	Model* current();
+	Model* next();
+	//Model* end();
 private:
-    List<Model*>* _models = new List<Model*>();
-    Model* _currentModel;
+	List<Model*>* _models = new List<Model*>();
+	Model* _currentModel;
 private:
-    Simulator* _simulator;
+	Simulator* _simulator;
 };
 //namespace\\}
 #endif /* MODELMANAGER_H */

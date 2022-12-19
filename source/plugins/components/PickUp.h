@@ -14,7 +14,7 @@
 #ifndef PICKUP_H
 #define PICKUP_H
 
-#include "../../kernel/simulator/ModelComponent.h"
+#include "../../plugins/components/Remove.h"
 
 /*!
 Pickup module
@@ -23,9 +23,9 @@ The Pickup module removes a number of consecutive entities from a given queue
 starting at a specified rank in the queue. The entities that are picked up are added to
 the end of the incoming entity’s group.
 TYPICAL USES
- * Gathering an order from various queue locations
- * Gathering completed forms for an office order
- * Picking up students at a bus stop for school
+* Gathering an order from various queue locations
+* Gathering completed forms for an office order
+* Picking up students at a bus stop for school
 PROMPTS
 Prompt Description
 Name Unique module identifier displayed on the module shape.
@@ -35,26 +35,14 @@ starting at the specified rank.
 Starting Rank Starting rank of the entities to pick up from the queue, Queue
 Name.
  */
-class PickUp : public ModelComponent {
+class PickUp : public Remove {
 public: // constructors
-    PickUp(Model* model, std::string name = "");
-    virtual ~PickUp() = default;
-public: // virtual
-    virtual std::string show();
+	PickUp(Model* model, std::string name = "");
+	virtual ~PickUp() = default;
 public: // static
-    static PluginInformation* GetPluginInformation();
-    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
-protected: // virtual
-    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
-protected: // virtual
-    //virtual void _initBetweenReplications();
-    virtual bool _check(std::string* errorMessage);
-private: // methods
-private: // attributes 1:1
-private: // attributes 1:n
+	static PluginInformation* GetPluginInformation();
+	//static ModelComponent* LoadInstance(Model* model, PersistenceRecord *fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 };
 
 

@@ -9,9 +9,11 @@
 {
 	#include <string>
 	#include <cmath>
+	#include <algorithm>
 	#include "obj_t.h"
 	#include "../kernel/util/Util.h"
 	#include "../kernel/simulator/Attribute.h"
+	#include "../kernel/simulator/Counter.h"
 
 	/****begin_Includes_plugins****/
 
@@ -62,20 +64,24 @@
 %token <obj_t> NUMD
 %token <obj_t> NUMH
 %token <obj_t> CTEZERO
+
 // relational operators
 %token <obj_t> oLE
 %token <obj_t> oGE
 %token <obj_t> oEQ
 %token <obj_t> oNE
+
 // logic operators
 %token <obj_t> oAND
 %token <obj_t> oOR
 %token <obj_t> oNAND
 %token <obj_t> oXOR
 %token <obj_t> oNOT
+
 // trigonometric functions
 %token <obj_t> fSIN
 %token <obj_t> fCOS
+
 // math functions
 %token <obj_t> fROUND
 %token <obj_t> fMOD
@@ -85,10 +91,14 @@
 %token <obj_t> fSQRT
 %token <obj_t> fLOG
 %token <obj_t> fLN
+%token <obj_t> mathMIN
+%token <obj_t> mathMAX
+
 // string functions
 %token <obj_t> fVAL
 %token <obj_t> fEVAL
 %token <obj_t> fLENG
+
 // probability distributionsformulaValue
 %token <obj_t> fRND1
 %token <obj_t> fEXPO
@@ -101,22 +111,32 @@
 %token <obj_t> fTRIA
 %token <obj_t> fBETA
 %token <obj_t> fDISC
+
 // simulation infos
 %token <obj_t> fTNOW
 %token <obj_t> fTFIN
 %token <obj_t> fMAXREP
 %token <obj_t> fNUMREP
 %token <obj_t> fIDENT
+%token <obj_t> simulEntitiesWIP
+
 // algoritmic functions
 %token <obj_t> cIF
 %token <obj_t> cELSE
 %token <obj_t> cFOR
 %token <obj_t> cTO
 %token <obj_t> cDO
+
 // kernel elements
 %token <obj_t> ATRIB
 %token <obj_t> CSTAT
+%token <obj_t> COUNTER
+
+// kernel elements' functions
 %token <obj_t> fTAVG
+%token <obj_t> fCOUNT
+
+// not found, wrong, illegal
 %token <obj_t> ILLEGAL     /* illegal token */
 
 /****begin_Tokens_plugins****/
@@ -179,29 +199,30 @@
 
 %type <obj_t> input
 %type <obj_t> expression
-%type <obj_t> aritmetica
-%type <obj_t> logica
+%type <obj_t> arithmetic
+%type <obj_t> logical
 %type <obj_t> relacional
-%type <obj_t> comando
-%type <obj_t> comandoIF
-%type <obj_t> comandoFOR
+%type <obj_t> command
+%type <obj_t> commandIF
+%type <obj_t> commandFOR
 %type <obj_t> function
-%type <obj_t> numero
-%type <obj_t> atributo
-%type <obj_t> atribuicao
+%type <obj_t> number
+%type <obj_t> attribute
+%type <obj_t> assigment
 %type <obj_t> kernelFunction
 %type <obj_t> trigonFunction
 %type <obj_t> mathFunction
 %type <obj_t> probFunction
 %type <obj_t> pluginFunction
 %type <obj_t> userFunction
+%type <obj_t> elementFunction
 %type <obj_t> listaparm
 %type <obj_t> illegal
 
 /****begin_TypeObj_plugins****/
 
 	/**begin_TypeObj::Variable**/
-	%type <obj_t> variavel
+	%type <obj_t> variable
 	/**end_TypeObj::Variable**/
 
 	/**begin_TypeObj::Formula**/
@@ -227,20 +248,20 @@ input:
     ;
 
 expression:
-      numero                           {$$.valor = $1.valor;}
+      number                           {$$.valor = $1.valor;}
     | function                         {$$.valor = $1.valor;}
-    | comando                          {$$.valor = $1.valor;}
-    | atribuicao                       {$$.valor = $1.valor;}
-	| aritmetica                       {$$.valor = $1.valor;}
-    | logica                           {$$.valor = $1.valor;}
+    | command                          {$$.valor = $1.valor;}
+    | assigment                       {$$.valor = $1.valor;}
+	| arithmetic                       {$$.valor = $1.valor;}
+    | logical                           {$$.valor = $1.valor;}
     | relacional                       {$$.valor = $1.valor;}
     | "(" expression ")"               {$$.valor = $2.valor;}
-    | atributo                         {$$.valor = $1.valor;}
+    | attribute                         {$$.valor = $1.valor;}
 
 /****begin_Expression_plugins****/
 
 	/**begin_Expression:Variable**/
-		| variavel                         {$$.valor = $1.valor;}
+		| variable                         {$$.valor = $1.valor;}
 	/**end_Expression:Variable**/
 
 	/**begin_Expression:Formula**/
@@ -250,21 +271,25 @@ expression:
 /****end_Expression_plugins****/
     ;
 
-numero:
+number:
      NUMD     { $$.valor = $1.valor;}
     | NUMH    { $$.valor = $1.valor;}
     ;
 
-aritmetica:
+arithmetic:
      expression PLUS expression      { $$.valor = $1.valor + $3.valor;}
     | expression MINUS expression    { $$.valor = $1.valor - $3.valor;}
     | expression SLASH expression    { $$.valor = $1.valor / $3.valor;}
     | expression STAR expression     { $$.valor = $1.valor * $3.valor;}
     | expression POWER expression    { $$.valor = pow($1.valor,$3.valor);}
     | MINUS expression %prec NEG     { $$.valor = -$2.valor;}
+
+
+	| mathMIN "(" expression "," expression ")"   { $$.valor = std::min($3.valor,$5.valor);}
+	| mathMAX "(" expression "," expression ")"   { $$.valor = std::max($3.valor,$5.valor);}
     ;
 
-logica:
+logical:
       expression oAND expression    { $$.valor = (int) $1.valor && (int) $3.valor;}
     | expression oOR  expression    { $$.valor = (int) $1.valor || (int) $3.valor;}
     | expression oNAND expression   { $$.valor = !((int) $1.valor && (int) $3.valor);}
@@ -281,20 +306,20 @@ relacional:
     | expression oNE  expression         { $$.valor = $1.valor != $3.valor ? 1 : 0;}
     ;
 
-comando:
-      comandoIF	    { $$.valor = $1.valor; }
-    | comandoFOR    { $$.valor = $1.valor; }
+command:
+      commandIF	    { $$.valor = $1.valor; }
+    | commandFOR    { $$.valor = $1.valor; }
     ;
 
-comandoIF:
+commandIF:
       cIF expression expression cELSE expression   { $$.valor = $2.valor != 0 ? $3.valor : $5.valor; }
     | cIF expression expression                   { $$.valor = $2.valor != 0 ? $3.valor : 0;}
     ;
 
 // \todo: check for function/need, for now will let cout (these should be commands for program, not expression
-comandoFOR: 
-     cFOR variavel "=" expression cTO expression cDO atribuicao  {$$.valor = 0; }
-    | cFOR atributo "=" expression cTO expression cDO atribuicao  {$$.valor = 0; }
+commandFOR: 
+     cFOR variable "=" expression cTO expression cDO assigment  {$$.valor = 0; }
+    | cFOR attribute "=" expression cTO expression cDO assigment  {$$.valor = 0; }
     ;
 
 function: 
@@ -302,6 +327,7 @@ function:
     | trigonFunction     { $$.valor = $1.valor; }
     | probFunction       { $$.valor = $1.valor; }
     | kernelFunction     { $$.valor = $1.valor; }
+    | elementFunction    { $$.valor = $1.valor; }
     | pluginFunction     { $$.valor = $1.valor; }
     | userFunction       { $$.valor = $1.valor; }
     ;
@@ -312,12 +338,20 @@ kernelFunction:
     | fMAXREP    { $$.valor = driver.getModel()->getSimulation()->getNumberOfReplications();}
     | fNUMREP    { $$.valor = driver.getModel()->getSimulation()->getCurrentReplicationNumber();}
     | fIDENT     { $$.valor = driver.getModel()->getSimulation()->getCurrentEvent()->getEntity()->getId();}
-    | CSTAT		 { $$.valor = 0; }
+	| simulEntitiesWIP  { $$.valor = driver.getModel()->getDataManager()->getNumberOfDataDefinitions(Util::TypeOf<Entity>());}
+	;
+
+elementFunction:
+    //| CSTAT		 { $$.valor = 0; }
     | fTAVG  "(" CSTAT ")"     {
                     StatisticsCollector* cstat = ((StatisticsCollector*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<StatisticsCollector>(), $3.id)));
                     double value = cstat->getStatistics()->average();
                     $$.valor = value; }
-    ;
+	| fCOUNT "(" COUNTER ")" {
+					Counter* counter = ((Counter*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Counter>(), $3.id)));
+                    double value = counter->getCountValue();
+                    $$.valor = value; }
+   ;
 
 trigonFunction:
       fSIN   "(" expression ")"   { $$.valor = sin($3.valor); }
@@ -383,7 +417,7 @@ illegal:
 
 
 // 20181003  ATRIB now returns the attribute ID not the attribute value anymore. So, now get the attribute value for the current entity
-atributo:
+attribute:
 	ATRIB      {  
 		double attributeValue = 0.0;
 		//std::cout << "Tentando..." << std::endl;
@@ -426,7 +460,7 @@ atributo:
 /****begin_ExpressionProdution_plugins****/
 
 	/**begin_ExpressionProdution:Variable**/
-	variavel    : VARI  {$$.valor = ((Variable*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Variable>(), $1.id)))->getValue();} 
+	variable    : VARI  {$$.valor = ((Variable*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Variable>(), $1.id)))->getValue();} 
 				| VARI LBRACKET expression RBRACKET	    { 
 					std::string index = std::to_string(static_cast<unsigned int>($3.valor));
 					$$.valor = ((Variable*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Variable>(), $1.id)))->getValue(index); }
@@ -440,24 +474,41 @@ atributo:
 	/**end_ExpressionProdution:Variable**/
 
 	/**begin_ExpressionProdution:Formula**/
-	// \todo: THERE IS A PROBLEM WITH FORMULA: TO EVALUATE THE FORMULA EXPRESSION, PARSER IS REINVOKED, AND THEN IT CRASHES (NO REENTRACE?)
+	// \todo: THERE IS A SERIOUS PROBLEM WITH FORMULA: TO EVALUATE THE FORMULA EXPRESSION, PARSER IS REINVOKED, AND THEN IT CRASHES (NO REENTRACE?)
 	formula     : FORM	    { 
-					$$.valor = ((Formula*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), $1.id)))->value();} 
+					std::string index = "";
+					Formula* formula = dynamic_cast<Formula*>(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), $1.id));
+					std::string expression = formula->getExpression(index);
+					std::cout << "Formula["<< index <<"]="<< expression << std::endl;
+					double value = 0.0; //@TODO: Can't parse the epression!  //formula->getValue(index);
+					$$.valor = value;}
 				| FORM LBRACKET expression RBRACKET {
 					std::string index = std::to_string(static_cast<unsigned int>($3.valor));
-					$$.valor = ((Formula*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), $1.id)))->value(index);}
+					Formula* formula = dynamic_cast<Formula*>(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), $1.id));
+					std::string expression = formula->getExpression(index);
+					std::cout << "Formula["<< index <<"]="<< expression << std::endl;
+					double value = 0.0; //@TODO: Can't parse the epression!  //formula->getValue(index);
+					$$.valor = value;}
 				| FORM LBRACKET expression "," expression RBRACKET {
 					std::string index = std::to_string(static_cast<unsigned int>($3.valor)) +","+std::to_string(static_cast<unsigned int>($5.valor));
-					$$.valor = ((Formula*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), $1.id)))->value(index);}
+					Formula* formula = dynamic_cast<Formula*>(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), $1.id));
+					std::string expression = formula->getExpression(index);
+					std::cout << "Formula["<< index <<"]="<< expression << std::endl;
+					double value = 0.0; //@TODO: Can't parse the epression!  //formula->getValue(index);
+					$$.valor = value;}
 				| FORM LBRACKET expression "," expression "," expression RBRACKET {
 					std::string index = std::to_string(static_cast<unsigned int>($3.valor)) +","+std::to_string(static_cast<unsigned int>($5.valor))+","+std::to_string(static_cast<unsigned int>($7.valor));
-					$$.valor = ((Formula*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), $1.id)))->value(index);}
+					Formula* formula = dynamic_cast<Formula*>(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), $1.id));
+					std::string expression = formula->getExpression(index);
+					std::cout << "Formula["<< index <<"]="<< expression << std::endl;
+					double value = 0.0; //@TODO: Can't parse the epression!  //formula->getValue(index);
+					$$.valor = value;}
 				;
 	/**end_ExpressionProdution:Formula**/
 	/****end_ExpressionProdution_plugins****/
 
-	//Check if want to set the atributo or variavel with expression or just return the expression value, for now just returns expression value
-	atribuicao  : ATRIB ASSIGN expression    { 
+	//Check if want to set the attribute or variable with expression or just return the expression value, for now just returns expression value
+	assigment  : ATRIB ASSIGN expression    { 
 					// @TODO: getCurrentEvent()->getEntity() may be nullptr if simulation hasn't started yet
 					driver.getModel()->getSimulation()->getCurrentEvent()->getEntity()->setAttributeValue("", $1.id, $3.valor);
 					$$.valor = $3.valor; }
@@ -512,12 +563,12 @@ pluginFunction  :
                     $$.valor = 0;
                 } }
     | fSAQUE "(" QUEUE "," ATRIB ")"   {   
-                Util::identification queueID = $3.id;
+                //Util::identification queueID = $3.id;
                 Util::identification attrID = $5.id;
                 double sum = ((Queue*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Queue>(), $3.id)))->sumAttributesFromWaiting(attrID);
                 $$.valor = sum; }
     | fAQUE "(" QUEUE "," NUMD "," ATRIB ")" {
-                Util::identification queueID = $3.id;
+                //Util::identification queueID = $3.id;
                 Util::identification attrID = $7.id;
                 double value = ((Queue*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Queue>(), $3.id)))->getAttributeFromWaitingRank($5.valor-1, attrID); // rank starts on 0 in genesys
                 $$.valor = value; }

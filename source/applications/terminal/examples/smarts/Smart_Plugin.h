@@ -17,9 +17,9 @@
 
 class Smart_Plugin : public BaseGenesysTerminalApplication {
 public:
-    Smart_Plugin();
+	Smart_Plugin();
 public:
-    virtual int main(int argc, char** argv);
+	virtual int main(int argc, char** argv);
 };
 
 #endif /* SMART_PLUGIN_H */

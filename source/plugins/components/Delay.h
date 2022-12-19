@@ -27,9 +27,9 @@ the entity remains in the module for the resulting time period. The time is then
 allocated to the entity’s value-added, non-value added, transfer, wait, or other time.
 Associated costs are calculated and allocated as well.
 TYPICAL USES
- * Processing a check at a bank
- * Performing a setup on a machine
- * Transferring a document to another department
+* Processing a check at a bank
+* Performing a setup on a machine
+* Transferring a document to another department
 PROMPTS
 Prompt Description
 Name Unique module identifier displayed on the module shape.
@@ -40,40 +40,45 @@ Units Time units used for the delay time.
  */
 class Delay : public ModelComponent {
 public:
-    Delay(Model* model, std::string name = "");
-    virtual ~Delay() = default;
+	Delay(Model* model, std::string name = "");
+	virtual ~Delay() = default;
 public:
-    void setDelayExpression(std::string _delayExpression);
-    std::string delayExpression() const;
-    void setDelay(double delay);
-    double delay() const;
-    void setDelayTimeUnit(Util::TimeUnit _delayTimeUnit);
-    Util::TimeUnit delayTimeUnit() const;
+	void setDelayExpression(std::string _delayExpression);
+	void setDelayExpression(std::string _delayExpression, Util::TimeUnit _delayTimeUnit);
+	std::string delayExpression() const;
+	void setDelay(double delay);
+	double delay() const;
+	void setDelayTimeUnit(Util::TimeUnit _delayTimeUnit);
+	Util::TimeUnit delayTimeUnit() const;
+    void setAllocation(Util::AllocationType allocation);
+    Util::AllocationType getAllocation() const;
 public:
-    virtual std::string show();
+	virtual std::string show();
 public:
-    static PluginInformation* GetPluginInformation();
-    static ModelComponent* LoadInstance(Model* model, std::map<std::string, std::string>* fields);
-    static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+	static PluginInformation* GetPluginInformation();
+	static ModelComponent* LoadInstance(Model* model, PersistenceRecord *fields);
+	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 protected:
-    virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
-    virtual bool _loadInstance(std::map<std::string, std::string>* fields);
-    virtual std::map<std::string, std::string>* _saveInstance(bool saveDefaultValues);
+	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
+	virtual bool _loadInstance(PersistenceRecord *fields);
+	virtual void _saveInstance(PersistenceRecord *fields, bool saveDefaultValues);
 protected:
-    //virtual void _initBetweenReplications();
-    virtual bool _check(std::string* errorMessage);
-    virtual void _createInternalAndAttachedData();
+	//virtual void _initBetweenReplications();
+	virtual bool _check(std::string* errorMessage);
+	virtual void _createInternalAndAttachedData();
 public:
-
-    const struct DEFAULT_VALUES {
-        const std::string delayExpression = "1.0";
-        const Util::TimeUnit delayTimeUnit = Util::TimeUnit::second;
-    } DEFAULT;
+	const struct DEFAULT_VALUES {
+		const std::string delayExpression = "1.0";
+		const Util::TimeUnit delayTimeUnit = Util::TimeUnit::second;
+		const Util::AllocationType allocation = Util::AllocationType::Wait; 
+		
+	} DEFAULT;
 private:
-    std::string _delayExpression = DEFAULT.delayExpression;
-    Util::TimeUnit _delayTimeUnit = DEFAULT.delayTimeUnit;
+	std::string _delayExpression = DEFAULT.delayExpression;
+	Util::TimeUnit _delayTimeUnit = DEFAULT.delayTimeUnit;
+	Util::AllocationType _allocation = DEFAULT.allocation;
 private: // inner internel elements
-    StatisticsCollector* _cstatWaitTime = nullptr;
+	StatisticsCollector* _cstatWaitTime = nullptr;
 };
 
 #endif /* DELAY_H */
