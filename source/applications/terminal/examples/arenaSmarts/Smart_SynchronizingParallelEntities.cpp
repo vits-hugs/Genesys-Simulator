@@ -6,7 +6,8 @@
 
 /* 
  * File:   Smart_SynchronizingParallelEntities.cpp
- * Author:
+ * Author: rlcancian
+ * Author: douglaspereira04
  * 
  */
 
@@ -125,11 +126,11 @@ int Smart_SynchronizingParallelEntities::main(int argc, char** argv) {
         
 	// set options, save and simulate
 	ModelSimulation* sim = model->getSimulation();
-        //sim->setWarmUpPeriod(*0.05);
-        //sim->setWarmUpPeriodTimeUnit(Util::TimeUnit::minute);
-	sim->setNumberOfReplications(1);
+        sim->setWarmUpPeriod(4312.813209*0.05);
+        sim->setWarmUpPeriodTimeUnit(Util::TimeUnit::minute);
+	sim->setNumberOfReplications(300);
 	sim->setReplicationLength(std::numeric_limits<double>::max(), Util::TimeUnit::week);
-	sim->setTerminatingCondition("count(DeliverOrder.CountNumberIn)>1000 or EntitiesWIP>=150");
+	sim->setTerminatingCondition("count(DeliverOrder.CountNumberIn)>1000 or (((count(OrdersArrive.CountNumberOut)-count(DeliverOrder.CountNumberIn))*2)>=150)");
         sim->setReplicationReportBaseTimeUnit(Util::TimeUnit::minute);
         model->save("./models/Smart_SynchronizingParallelEntities.gen");
 	// execute the simulation
@@ -137,3 +138,4 @@ int Smart_SynchronizingParallelEntities::main(int argc, char** argv) {
 	delete genesys;
 	return 0;
 };
+

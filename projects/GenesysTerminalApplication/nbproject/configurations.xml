@@ -59,6 +59,93 @@
                      projectFiles="true">
         <logicalFolder name="terminal" displayName="terminal" projectFiles="true">
           <logicalFolder name="examples" displayName="examples" projectFiles="true">
+            <logicalFolder name="arenaExamples"
+                           displayName="arenaExamples"
+                           projectFiles="true">
+              <itemPath>../../source/applications/terminal/examples/arenaExamples/AirportSecurityExample.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaExamples/AirportSecurityExample.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaExamples/AirportSecurityExampleExtended.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaExamples/AirportSecurityExampleExtended.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaExamples/Example_Basic_Order_Shipping.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaExamples/Example_Basic_Order_Shipping.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaExamples/Example_PublicTransport.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaExamples/Example_PublicTransport.h</itemPath>
+            </logicalFolder>
+            <logicalFolder name="arenaSmarts" displayName="arenaSmarts" projectFiles="true">
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Arrivals Element Stops Entities Arriving After a Set Time Modificado.doe</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_AddingResource.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_AddingResource.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_AlternatingEntityCreation.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_AlternatingEntityCreation.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ArrivalsEntityTypeVsAttribute.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ArrivalsEntityTypeVsAttribute.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_AssignExample.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_AssignExample.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_AutomaticStatisticsCollection.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_AutomaticStatisticsCollection.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_BasicModeling.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_BasicModeling.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_BatchAndSeparate.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_BatchAndSeparate.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ContinuousFlowEntities.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ContinuousFlowEntities.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_Create.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_Create.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_DecideNWayByChance.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_DecideNWayByChance.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningAttributesAsStrings.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningAttributesAsStrings.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningControlLogic.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningControlLogic.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningResourceCapacity.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningResourceCapacity.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_DelayBasedOnReplication.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_DelayBasedOnReplication.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_EntitiesProcessedByPriority.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_EntitiesProcessedByPriority.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_EvaluatingConditionsBeforeEnteringQueue.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_EvaluatingConditionsBeforeEnteringQueue.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_Expression.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_Expression.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_InventoryAndHoldingCosts.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_InventoryAndHoldingCosts.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_MaxArrivalsField.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_MaxArrivalsField.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ModelRunUntil1000Parts.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ModelRunUntil1000Parts.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ModuleDisplayVariables.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ModuleDisplayVariables.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ParallelProcessingOfEntities.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ParallelProcessingOfEntities.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_PlacingEntitiesInQueueSets.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_PlacingEntitiesInQueueSets.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_PriorityExample.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_PriorityExample.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ProcessArena.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ProcessArena.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_Record.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_Record.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceCosting.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceCosting.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceScheduleCosting.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceScheduleCosting.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceSets.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceSets.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_SeizingMultipleSimultaneosly.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_SeizingMultipleSimultaneosly.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_SelectingRouteBasedOnProbability.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_SelectingRouteBasedOnProbability.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_SelectingShorterQueue.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_SelectingShorterQueue.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_SynchronizingParallelEntities.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_SynchronizingParallelEntities.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ValueAdded.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ValueAdded.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_WaitForSignal.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_WaitForSignal.h</itemPath>
+            </logicalFolder>
             <logicalFolder name="book" displayName="book" projectFiles="true">
               <logicalFolder name="smarts" displayName="smarts" projectFiles="true">
               </logicalFolder>
@@ -102,12 +189,6 @@
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_Process.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_ProcessSet.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_ProcessSet.h</itemPath>
-              <itemPath>../../source/applications/terminal/examples/smarts/Smart_ResourceCosting.cpp</itemPath>
-              <itemPath>../../source/applications/terminal/examples/smarts/Smart_ResourceCosting.h</itemPath>
-              <itemPath>../../source/applications/terminal/examples/smarts/Smart_ResourceScheduleCosting.cpp</itemPath>
-              <itemPath>../../source/applications/terminal/examples/smarts/Smart_ResourceScheduleCosting.h</itemPath>
-              <itemPath>../../source/applications/terminal/examples/smarts/Smart_ResourceSets.cpp</itemPath>
-              <itemPath>../../source/applications/terminal/examples/smarts/Smart_ResourceSets.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_RouteStation.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_RouteStation.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_SeizeDelayRelease.cpp</itemPath>
@@ -120,10 +201,6 @@
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_Sequence.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_SimulationControlResponse.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_SimulationControlResponse.h</itemPath>
-              <itemPath>../../source/applications/terminal/examples/smarts/Smart_SynchronizingParallelEntities.cpp</itemPath>
-              <itemPath>../../source/applications/terminal/examples/smarts/Smart_SynchronizingParallelEntities.h</itemPath>
-              <itemPath>../../source/applications/terminal/examples/smarts/Smart_ValueAdded.cpp</itemPath>
-              <itemPath>../../source/applications/terminal/examples/smarts/Smart_ValueAdded.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_WaitScanCondition.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_WaitScanCondition.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/smarts/Smart_WaitSignal.cpp</itemPath>
@@ -618,6 +695,411 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/AirportSecurityExample.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/AirportSecurityExample.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/AirportSecurityExampleExtended.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/AirportSecurityExampleExtended.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/Example_Basic_Order_Shipping.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/Example_Basic_Order_Shipping.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/Example_PublicTransport.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/Example_PublicTransport.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Arrivals Element Stops Entities Arriving After a Set Time Modificado.doe"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_AddingResource.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_AddingResource.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_AlternatingEntityCreation.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_AlternatingEntityCreation.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ArrivalsEntityTypeVsAttribute.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ArrivalsEntityTypeVsAttribute.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_AssignExample.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_AssignExample.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_AutomaticStatisticsCollection.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_AutomaticStatisticsCollection.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_BasicModeling.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_BasicModeling.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_BatchAndSeparate.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_BatchAndSeparate.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ContinuousFlowEntities.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ContinuousFlowEntities.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_Create.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_Create.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_DecideNWayByChance.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_DecideNWayByChance.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningAttributesAsStrings.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningAttributesAsStrings.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningControlLogic.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningControlLogic.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningResourceCapacity.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningResourceCapacity.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_DelayBasedOnReplication.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_DelayBasedOnReplication.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_EntitiesProcessedByPriority.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_EntitiesProcessedByPriority.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_EvaluatingConditionsBeforeEnteringQueue.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_EvaluatingConditionsBeforeEnteringQueue.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_Expression.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_Expression.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_InventoryAndHoldingCosts.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_InventoryAndHoldingCosts.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_MaxArrivalsField.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_MaxArrivalsField.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ModelRunUntil1000Parts.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ModelRunUntil1000Parts.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ModuleDisplayVariables.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ModuleDisplayVariables.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ParallelProcessingOfEntities.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ParallelProcessingOfEntities.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_PlacingEntitiesInQueueSets.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_PlacingEntitiesInQueueSets.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_PriorityExample.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_PriorityExample.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ProcessArena.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ProcessArena.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_Record.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_Record.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceCosting.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceCosting.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceScheduleCosting.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceScheduleCosting.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceSets.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceSets.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_SeizingMultipleSimultaneosly.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_SeizingMultipleSimultaneosly.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_SelectingRouteBasedOnProbability.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_SelectingRouteBasedOnProbability.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_SelectingShorterQueue.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_SelectingShorterQueue.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_SynchronizingParallelEntities.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_SynchronizingParallelEntities.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ValueAdded.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ValueAdded.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_WaitForSignal.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_WaitForSignal.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../../source/applications/terminal/examples/book/Book_Cap02_Example01.cpp"
             ex="false"
             tool="1"
@@ -808,36 +1290,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/applications/terminal/examples/smarts/Smart_ResourceCosting.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/applications/terminal/examples/smarts/Smart_ResourceCosting.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/applications/terminal/examples/smarts/Smart_ResourceScheduleCosting.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/applications/terminal/examples/smarts/Smart_ResourceScheduleCosting.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/applications/terminal/examples/smarts/Smart_ResourceSets.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/applications/terminal/examples/smarts/Smart_ResourceSets.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="../../source/applications/terminal/examples/smarts/Smart_RouteStation.cpp"
             ex="false"
             tool="1"
@@ -894,26 +1346,6 @@
             flavor2="0">
       </item>
       <item path="../../source/applications/terminal/examples/smarts/Smart_SimulationControlResponse.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/applications/terminal/examples/smarts/Smart_SynchronizingParallelEntities.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/applications/terminal/examples/smarts/Smart_SynchronizingParallelEntities.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/applications/terminal/examples/smarts/Smart_ValueAdded.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/applications/terminal/examples/smarts/Smart_ValueAdded.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2429,6 +2861,411 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/AirportSecurityExample.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/AirportSecurityExample.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/AirportSecurityExampleExtended.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/AirportSecurityExampleExtended.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/Example_Basic_Order_Shipping.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/Example_Basic_Order_Shipping.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/Example_PublicTransport.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/Example_PublicTransport.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Arrivals Element Stops Entities Arriving After a Set Time Modificado.doe"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_AddingResource.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_AddingResource.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_AlternatingEntityCreation.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_AlternatingEntityCreation.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ArrivalsEntityTypeVsAttribute.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ArrivalsEntityTypeVsAttribute.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_AssignExample.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_AssignExample.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_AutomaticStatisticsCollection.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_AutomaticStatisticsCollection.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_BasicModeling.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_BasicModeling.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_BatchAndSeparate.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_BatchAndSeparate.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ContinuousFlowEntities.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ContinuousFlowEntities.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_Create.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_Create.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_DecideNWayByChance.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_DecideNWayByChance.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningAttributesAsStrings.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningAttributesAsStrings.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningControlLogic.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningControlLogic.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningResourceCapacity.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_DefiningResourceCapacity.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_DelayBasedOnReplication.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_DelayBasedOnReplication.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_EntitiesProcessedByPriority.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_EntitiesProcessedByPriority.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_EvaluatingConditionsBeforeEnteringQueue.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_EvaluatingConditionsBeforeEnteringQueue.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_Expression.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_Expression.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_InventoryAndHoldingCosts.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_InventoryAndHoldingCosts.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_MaxArrivalsField.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_MaxArrivalsField.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ModelRunUntil1000Parts.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ModelRunUntil1000Parts.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ModuleDisplayVariables.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ModuleDisplayVariables.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ParallelProcessingOfEntities.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ParallelProcessingOfEntities.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_PlacingEntitiesInQueueSets.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_PlacingEntitiesInQueueSets.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_PriorityExample.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_PriorityExample.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ProcessArena.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ProcessArena.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_Record.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_Record.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceCosting.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceCosting.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceScheduleCosting.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceScheduleCosting.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceSets.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceSets.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_SeizingMultipleSimultaneosly.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_SeizingMultipleSimultaneosly.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_SelectingRouteBasedOnProbability.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_SelectingRouteBasedOnProbability.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_SelectingShorterQueue.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_SelectingShorterQueue.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_SynchronizingParallelEntities.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_SynchronizingParallelEntities.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ValueAdded.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ValueAdded.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_WaitForSignal.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_WaitForSignal.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../../source/applications/terminal/examples/book/Book_Cap02_Example01.cpp"
             ex="false"
             tool="1"
@@ -2619,36 +3456,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/applications/terminal/examples/smarts/Smart_ResourceCosting.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/applications/terminal/examples/smarts/Smart_ResourceCosting.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/applications/terminal/examples/smarts/Smart_ResourceScheduleCosting.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/applications/terminal/examples/smarts/Smart_ResourceScheduleCosting.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/applications/terminal/examples/smarts/Smart_ResourceSets.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/applications/terminal/examples/smarts/Smart_ResourceSets.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="../../source/applications/terminal/examples/smarts/Smart_RouteStation.cpp"
             ex="false"
             tool="1"
@@ -2705,26 +3512,6 @@
             flavor2="0">
       </item>
       <item path="../../source/applications/terminal/examples/smarts/Smart_SimulationControlResponse.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/applications/terminal/examples/smarts/Smart_SynchronizingParallelEntities.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/applications/terminal/examples/smarts/Smart_SynchronizingParallelEntities.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/applications/terminal/examples/smarts/Smart_ValueAdded.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/applications/terminal/examples/smarts/Smart_ValueAdded.h"
             ex="false"
             tool="3"
             flavor2="0">

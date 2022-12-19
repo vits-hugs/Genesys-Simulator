@@ -39,10 +39,10 @@ int Smart_ResourceSets::main(int argc, char** argv) {
     this->setDefaultTraceHandlers(genesys->getTracer());
     this->insertFakePluginsByHand(genesys);
 
-    bool isDevelop = true;    
+    bool isDevelop = false;    
 
     if (isDevelop) {
-        genesys->getTracer()->setTraceLevel(TraceManager::Level::L9_mostDetailed);
+        genesys->getTracer()->setTraceLevel(TraceManager::Level::L8_detailed);
     } else {
         genesys->getTracer()->setTraceLevel(TraceManager::Level::L2_results);
     }
@@ -59,13 +59,13 @@ int Smart_ResourceSets::main(int argc, char** argv) {
     Decide* decideLoan = plugins->newInstance<Decide>(model, "Determine if loan is approved");
     Delay* sendApproval = plugins->newInstance<Delay>(model, "Send Approval");
     Delay* sendDenial = plugins->newInstance<Delay>(model, "Send Denial");
-    Dispose* fileLoan = plugins->newInstance<Dispose>(model, "File Loan");
-    Dispose* disposeApplication = plugins->newInstance<Dispose>(model, "Dispose of Application");
+    Dispose* fileLoan = plugins->newInstance<Dispose>(model, "File_Loan");
+    Dispose* disposeApplication = plugins->newInstance<Dispose>(model, "Dispose_of_Application");
 
     // Mail Loans Arrive
     mailLoanArrives->getConnections()->insert(useLoanApproval);
     mailLoanArrives->setEntityTypeName("Mail Loan");
-    mailLoanArrives->setTimeBetweenCreationsExpression("EXPO(10)");
+    mailLoanArrives->setTimeBetweenCreationsExpression("EXPO(20)");
     mailLoanArrives->setTimeUnit(Util::TimeUnit::minute);
     mailLoanArrives->setEntitiesPerCreation(1);
     mailLoanArrives->setFirstCreation(0.0);
@@ -73,7 +73,7 @@ int Smart_ResourceSets::main(int argc, char** argv) {
     // Internet Loans Arrive
     internetLoanArrives->getConnections()->insert(useLoanApproval);
     internetLoanArrives->setEntityTypeName("Internet Loan");
-    internetLoanArrives->setTimeBetweenCreationsExpression("EXPO(1)");
+    internetLoanArrives->setTimeBetweenCreationsExpression("EXPO(2)");
     internetLoanArrives->setTimeUnit(Util::TimeUnit::hour);
     internetLoanArrives->setEntitiesPerCreation(1);
     internetLoanArrives->setFirstCreation(0.0);
@@ -81,23 +81,23 @@ int Smart_ResourceSets::main(int argc, char** argv) {
     // Phone Loans Arrive
     phoneLoanArrives->getConnections()->insert(useLoanApproval);
     phoneLoanArrives->setEntityTypeName("Phone Loan");
-    phoneLoanArrives->setTimeBetweenCreationsExpression("EXPO(30)");
-    phoneLoanArrives->setTimeUnit(Util::TimeUnit::minute);
+    phoneLoanArrives->setTimeBetweenCreationsExpression("EXPO(1)");
+    phoneLoanArrives->setTimeUnit(Util::TimeUnit::hour);
     phoneLoanArrives->setEntitiesPerCreation(1);
     phoneLoanArrives->setFirstCreation(0.0);
 
     // Create the needed resources for the Process entities.
-    Resource* loanOfficer1 = plugins->newInstance<Resource>(model, "Loan Officer 1");
-    Resource* loanOfficer2 = plugins->newInstance<Resource>(model, "Loan Officer 2");
-    Resource* loanOfficer3 = plugins->newInstance<Resource>(model, "Loan Officer 3");
-    Resource* loanOfficer4 = plugins->newInstance<Resource>(model, "Loan Officer 4");
-    Resource* loanOfficer5 = plugins->newInstance<Resource>(model, "Loan Officer 5");
+    Resource* loanOfficerResource1 = plugins->newInstance<Resource>(model, "Loan Officer 1");
+    Resource* loanOfficerResource2 = plugins->newInstance<Resource>(model, "Loan Officer 2");
+    Resource* loanOfficerResource3 = plugins->newInstance<Resource>(model, "Loan Officer 3");
+    Resource* loanOfficerResource4 = plugins->newInstance<Resource>(model, "Loan Officer 4");
+    Resource* loanOfficerResource5 = plugins->newInstance<Resource>(model, "Loan Officer 5");
 
-    Resource* seniorLoanOfficer1 = plugins->newInstance<Resource>(model, "Senior Loan Officer 1");
-    Resource* seniorLoanOfficer2 = plugins->newInstance<Resource>(model, "Senior Loan Officer 2");
+    Resource* seniorResource1 = plugins->newInstance<Resource>(model, "Senior Officer 1");
+    Resource* seniorResource2 = plugins->newInstance<Resource>(model, "Senior Officer 2");
 
-    std::vector<Resource*> loanResource = { loanOfficer1, loanOfficer2, loanOfficer3, loanOfficer4, loanOfficer5 };
-    std::vector<Resource*> seniorResources = { seniorLoanOfficer1, seniorLoanOfficer2 };
+    std::vector<Resource*> loanResources = { loanOfficerResource1, loanOfficerResource2, loanOfficerResource3, loanOfficerResource4, loanOfficerResource5 };
+    std::vector<Resource*> seniorResources = { seniorResource1, seniorResource2 };
 
     // Use Loan Approval Officer Set
     useLoanApproval->getConnections()->insert(useSeniorApproval);
@@ -110,23 +110,17 @@ int Smart_ResourceSets::main(int argc, char** argv) {
 
     Set* loanOfficersSet = plugins->newInstance<Set>(model);
     loanOfficersSet->setName("Loan Officers");
-    loanOfficersSet->setSetOfType("Resource");
+    loanOfficersSet->setSetOfType(Util::TypeOf<Resource>());
 
-    loanOfficersSet->getElementSet()->insert(loanOfficer1);
-    loanOfficersSet->getElementSet()->insert(loanOfficer2);
-    loanOfficersSet->getElementSet()->insert(loanOfficer3);
-    loanOfficersSet->getElementSet()->insert(loanOfficer4);
-    loanOfficersSet->getElementSet()->insert(loanOfficer5);
+    for (auto r : loanResources ) {
+        loanOfficersSet->getElementSet()->insert(r);
+    }
 
-    // for (auto r : loanResource ) {
-    //     loanOfficersSet->getElementSet()->insert(r);
-    // }
+    for (auto sr : seniorResources) {
+        loanOfficersSet->getElementSet()->insert(sr);
+    }
 
-    // for (auto sr : seniorResources) {
-    //     loanOfficersSet->getElementSet()->insert(sr);
-    // }
-
-    useLoanApproval->getSeizeRequests()->insert(new SeizableItem(loanOfficersSet, "1", SeizableItem::SelectionRule::PREFEREDORDER)); // TODO: Selection rule should be PreferredOrder
+    useLoanApproval->getSeizeRequests()->insert(new SeizableItem(loanOfficersSet, "1", SeizableItem::SelectionRule::PREFEREDORDER)); 
     useLoanApproval->setQueueableItem(new QueueableItem(loanQueue));
     
     // Use Senior Approval Officer Set
@@ -167,18 +161,23 @@ int Smart_ResourceSets::main(int argc, char** argv) {
     sendDenial->setDelayExpression("TRIA(0.5, 1, 1.5)"); 
 
     // Set options, save and run simulation.
-    // TODO: Add a 5% warmup and find a way to stop simulation with 1k elements.
-    // TODO: Change replications to 300
     model->getInfos()->setName("Resources Sets");
-    model->getSimulation()->setNumberOfReplications(1);
-    model->getSimulation()->setReplicationLength(480);
-    model->getSimulation()->setReplicationLengthTimeUnit(Util::TimeUnit::minute);
     model->save("./models/Smart_ResourceSets.gen");
-   
- 	model->getSimulation()->start();
-	for (int i = 0; i < 1e3; i++);
+
+    model->getSimulation()->setTerminatingCondition("COUNT(Dispose_of_Application.CountNumberIn) + COUNT(File_Loan.CountNumberIn) > 1000");
+
+    auto replicationLength = 179546; // +/- Needed to achieve 1k entities
+	model->getSimulation()->setReplicationLength(std::numeric_limits<double>::max(), Util::TimeUnit::week); // This is a "infinity" value.
+    model->getSimulation()->setReplicationReportBaseTimeUnit(Util::TimeUnit::minute);
+
+    model->getSimulation()->setWarmUpPeriod(replicationLength * 0.05);
+    model->getSimulation()->setWarmUpPeriodTimeUnit(Util::TimeUnit::minute);
+
+    model->getSimulation()->setNumberOfReplications(100);
+    model->getSimulation()->start();
+
+	for (int i = 0; i < 1e9; i++); // Give time to UI print everything.
 
     delete genesys;
-    
     return 0;
 }

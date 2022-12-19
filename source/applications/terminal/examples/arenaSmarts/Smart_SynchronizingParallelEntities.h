@@ -22,3 +22,4 @@ public:
 	virtual int main(int argc, char** argv);
 };
 #endif /* SMART_SYNCHRONIZINGPARALLELENTITIES_H */
+

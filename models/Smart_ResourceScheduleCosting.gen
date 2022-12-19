@@ -2,16 +2,17 @@
 # Simulator, Model and Simulation infos
 0   Simulator  "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=220517 
 0   ModelInfo  "Model 1" version="1.0" projectTitle="" description="" analystName="" 
-0   ModelSimulation "" traceLevel=9 warmUpTimeTimeUnit=6 warmUpTime=24.000000 replicationLength=480.000000 terminatingCondition="count(Depart.CountNumberIn)>1000" replicationLengthTimeUnit=6 
+0   ModelSimulation "" traceLevel=9 warmUpTimeTimeUnit=6 warmUpTime=75.000000 replicationLength=1500.000000 numberOfReplications=300 terminatingCondition="count(Depart.CountNumberIn)>1000" replicationLengthTimeUnit=6 
 
 # Model Data Definitions
-61  Resource   "Biller" 
-62  Resource   "Mailer" 
-69  Queue      "BillingQueue" 
-74  Queue      "MailRoomQueue" 
+61  Schedule   "Schedule" 
+62  Resource   "Biller" 
+63  Resource   "Mailer" 
+70  Queue      "BillingQueue" 
+75  Queue      "MailRoomQueue" 
 
 # Model Components
-63  Create     "Arrival" entityType="Arrival" timeBetweenCreationsTimeUnit=6 nextId=65 timeBetweenCreations="expo(1.5)" 
-65  Process    "Billing" delayExpression="tria(0.5,1,1.5)" delayExpressionTimeUnit=6 queueable="BillingQueue" allocationType=1 nextId=70 requestSeizable[0]="Biller" 
-70  Process    "MailRoom" delayExpression="tria(0.5,1,1.5)" delayExpressionTimeUnit=6 queueable="MailRoomQueue" allocationType=1 nextId=75 requestSeizable[0]="Mailer" 
-75  Dispose    "Depart" nexts=0 
+64  Create     "Arrival" entityType="Arrival" timeBetweenCreationsTimeUnit=6 nextId=66 timeBetweenCreations="expo(1.5)" 
+66  Process    "Billing" delayExpression="tria(0.5,1,1.5)" delayExpressionTimeUnit=6 queueable="BillingQueue" allocationType=1 nextId=71 requestSeizable[0]="Biller" 
+71  Process    "MailRoom" delayExpression="tria(0.5,1,1.5)" delayExpressionTimeUnit=6 queueable="MailRoomQueue" allocationType=1 nextId=76 requestSeizable[0]="Mailer" 
+76  Dispose    "Depart" nexts=0 

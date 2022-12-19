@@ -3,7 +3,7 @@
  * For your own safety, please review this file before compiling and running it.
  */
 
-#include "Smart_ResourceScheduleCosting.h"
+#include "Smart_ValueAdded.h"
 
 #include "../../../../kernel/simulator/Simulator.h"
 #include "../../../../plugins/components/Create.h"
@@ -18,12 +18,11 @@
 #include "../../../../plugins/data/Queue.h"
 #include "../../../../plugins/data/Resource.h"
 #include "../../../../plugins/data/Variable.h"
-#include "../../../../plugins/data/Schedule.h"
 
-Smart_ResourceScheduleCosting::Smart_ResourceScheduleCosting() {
+Smart_ValueAdded::Smart_ValueAdded() {
 }
 
-int Smart_ResourceScheduleCosting::main(int argc, char** argv) {
+int Smart_ValueAdded::main(int argc, char** argv) {
 	// instantiate simulator
 	Simulator* genesys = new Simulator();
         this->setDefaultTraceHandlers(genesys->getTracer());
@@ -36,44 +35,45 @@ int Smart_ResourceScheduleCosting::main(int argc, char** argv) {
 	// model->load("model.gen")
 	
         // Initialize resources
-        Resource* Resource_1 = plugins->newInstance<Resource>(model, "Biller");
-        Resource_1->setCapacity(1); // TODO: CAPACIDADE BASEADA NO SCHEDULE
-        Resource_1->setCostBusyTimeUnit(7.75);
-        Resource_1->setCostIdleTimeUnit(7.75);
-        Resource_1->setCostPerUse(0.02);
+        Resource* Resource_1 = plugins->newInstance<Resource>(model, "Processor");
+        Resource_1->setCapacity(1);
+        Resource_1->setCostBusyTimeUnit(8.0);
+        Resource_1->setCostIdleTimeUnit(8.0);
+        Resource_1->setCostPerUse(0.0);
         
-        Resource* Resource_2 = plugins->newInstance<Resource>(model, "Mailer");
-        Resource_2->setCapacity(1); // TODO: CAPACIDADE BASEADA NO SCHEDULE
-        Resource_2->setCostBusyTimeUnit(5.15);
-        Resource_2->setCostIdleTimeUnit(5.15);
-        Resource_2->setCostPerUse(0.02);
+        Resource* Resource_2 = plugins->newInstance<Resource>(model, "Notary");
+        Resource_2->setCapacity(1);
+        Resource_2->setCostBusyTimeUnit(0.0);
+        Resource_2->setCostIdleTimeUnit(0.0);
+        Resource_2->setCostPerUse(10.0);
 	
         // initialize model parts
 
-        // Create 2
-	Create* Create_2 = plugins->newInstance<Create>(model, "Arrival");
-        Create_2->setEntityTypeName("Arrival");
-	Create_2->setTimeBetweenCreationsExpression("expo(1.5)", Util::TimeUnit::minute);
+        // Create 2 ContractArrives
+	Create* Create_2 = plugins->newInstance<Create>(model, "ContractArrives");
+        Create_2->setEntityTypeName("Contract");
+	Create_2->setTimeBetweenCreationsExpression("expo(1)", Util::TimeUnit::hour);
 	Create_2->setEntitiesPerCreation(1);
         Create_2->setFirstCreation(0.0);
         
-        // Process 3
-        Process* Process_3 =  plugins->newInstance<Process>(model, "Billing");
+        // Process 3 AddContractAddendum
+        Process* Process_3 =  plugins->newInstance<Process>(model, "AddContractAddendum");
         Process_3->getSeizeRequests()->insert(new SeizableItem(Resource_1));
-	Process_3->setQueueableItem(new QueueableItem(model, "BillingQueue"));
+	Process_3->setQueueableItem(new QueueableItem(model, "AddContractAddendumQueue")); // ??
 	Process_3->setDelayExpression("tria(0.5,1,1.5)");
-        Process_3->setDelayTimeUnit(Util::TimeUnit::minute);
-        Process_3->setAllocationType(Util::AllocationType::ValueAdded);     
+        Process_3->setDelayTimeUnit(Util::TimeUnit::hour);
+        Process_3->setAllocationType(Util::AllocationType::ValueAdded);    
         
-        // process 4
-        Process* Process_4 =  plugins->newInstance<Process>(model, "MailRoom");
+        // process 4 SignandNotorizeContract
+        Process* Process_4 =  plugins->newInstance<Process>(model, "SignandNotorizeContract");
         Process_4->getSeizeRequests()->insert(new SeizableItem(Resource_2));
-	Process_4->setQueueableItem(new QueueableItem(model, "MailRoomQueue")); // ??
+	Process_4->setQueueableItem(new QueueableItem(model, "SignandNotorizeContractQueue")); // ??
 	Process_4->setDelayExpression("tria(0.5,1,1.5)");
-        Process_4->setDelayTimeUnit(Util::TimeUnit::minute);
+        Process_4->setDelayTimeUnit(Util::TimeUnit::hour);
         Process_4->setAllocationType(Util::AllocationType::ValueAdded);
-        // dispose 1
-        Dispose* Dispose_1 = plugins->newInstance<Dispose>(model, "Depart");
+        
+        // dispose 1 SendContract
+        Dispose* Dispose_1 = plugins->newInstance<Dispose>(model, "SendContract");
               
 	// connect model components
 	Create_2->getConnections()->insert(Process_3);
@@ -82,14 +82,16 @@ int Smart_ResourceScheduleCosting::main(int argc, char** argv) {
 	
 	// set simulation parameters
 	ModelSimulation* sim = model->getSimulation();
-	sim->setNumberOfReplications(1);
-        model->getSimulation()->setReplicationLength(480, Util::TimeUnit::minute);
-        sim->setWarmUpPeriod(24);
-	sim->setWarmUpPeriodTimeUnit(Util::TimeUnit::minute);
-	model->getSimulation()->setTerminatingCondition("count(Depart.CountNumberIn)>1000");
-	model->save("./models/Smart_ResourceScheduleCosting.gen");
+	sim->setNumberOfReplications(300);
+        model->getSimulation()->setReplicationLength(1000, Util::TimeUnit::hour);
+        sim->setWarmUpPeriod(50);
+	sim->setWarmUpPeriodTimeUnit(Util::TimeUnit::hour);
+	model->getSimulation()->setTerminatingCondition("count(SendContract.CountNumberIn)>1000");
+	model->save("./models/Smart_ValueAdded.gen");
 	model->getSimulation()->start();
 	// run the simulation
+        model->check();
+        model->getDataManager()->show();
 	sim->start();
 	for (int i = 0; i < 1e9; i++); // give UI some time to finish std::cout
 	// free memory

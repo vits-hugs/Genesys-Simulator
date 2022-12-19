@@ -3,7 +3,7 @@
  * For your own safety, please review this file before compiling and running it.
  */
 
-#include "Smart_ResourceCosting.h"
+#include "Smart_ResourceScheduleCosting.h"
 
 #include "../../../../kernel/simulator/Simulator.h"
 #include "../../../../plugins/components/Create.h"
@@ -18,11 +18,12 @@
 #include "../../../../plugins/data/Queue.h"
 #include "../../../../plugins/data/Resource.h"
 #include "../../../../plugins/data/Variable.h"
+#include "../../../../plugins/data/Schedule.h"
 
-Smart_ResourceCosting::Smart_ResourceCosting() {
+Smart_ResourceScheduleCosting::Smart_ResourceScheduleCosting() {
 }
 
-int Smart_ResourceCosting::main(int argc, char** argv) {
+int Smart_ResourceScheduleCosting::main(int argc, char** argv) {
 	// instantiate simulator
 	Simulator* genesys = new Simulator();
         this->setDefaultTraceHandlers(genesys->getTracer());
@@ -35,14 +36,25 @@ int Smart_ResourceCosting::main(int argc, char** argv) {
 	// model->load("model.gen")
 	
         // Initialize resources
+        Schedule* Schedule_1 = plugins->newInstance<Schedule>(model, "Schedule");
+        Schedule_1->getSchedulableItems()->insert(new SchedulableItem ("1",135));
+        Schedule_1->getSchedulableItems()->insert(new SchedulableItem ("0",15));
+        Schedule_1->getSchedulableItems()->insert(new SchedulableItem ("1",90));
+        Schedule_1->getSchedulableItems()->insert(new SchedulableItem ("0",60));
+        Schedule_1->getSchedulableItems()->insert(new SchedulableItem ("1",90));
+        Schedule_1->getSchedulableItems()->insert(new SchedulableItem ("0",15));
+        Schedule_1->getSchedulableItems()->insert(new SchedulableItem ("1",45));
+        Schedule_1->getSchedulableItems()->insert(new SchedulableItem ("1",9999999999999)); // 1, Infinito
+        
+        
         Resource* Resource_1 = plugins->newInstance<Resource>(model, "Biller");
-        Resource_1->setCapacity(1);
+        Resource_1->setCapacitySchedule(Schedule_1);
         Resource_1->setCostBusyTimeUnit(7.75);
         Resource_1->setCostIdleTimeUnit(7.75);
         Resource_1->setCostPerUse(0.02);
         
         Resource* Resource_2 = plugins->newInstance<Resource>(model, "Mailer");
-        Resource_2->setCapacity(1);
+        Resource_2->setCapacitySchedule(Schedule_1);
         Resource_2->setCostBusyTimeUnit(5.15);
         Resource_2->setCostIdleTimeUnit(5.15);
         Resource_2->setCostPerUse(0.02);
@@ -52,7 +64,7 @@ int Smart_ResourceCosting::main(int argc, char** argv) {
         // Create 2
 	Create* Create_2 = plugins->newInstance<Create>(model, "Arrival");
         Create_2->setEntityTypeName("Arrival");
-	Create_2->setTimeBetweenCreationsExpression("expo(1)", Util::TimeUnit::minute);
+	Create_2->setTimeBetweenCreationsExpression("expo(1.5)", Util::TimeUnit::minute);
 	Create_2->setEntitiesPerCreation(1);
         Create_2->setFirstCreation(0.0);
         
@@ -62,8 +74,7 @@ int Smart_ResourceCosting::main(int argc, char** argv) {
 	Process_3->setQueueableItem(new QueueableItem(model, "BillingQueue"));
 	Process_3->setDelayExpression("tria(0.5,1,1.5)");
         Process_3->setDelayTimeUnit(Util::TimeUnit::minute);
-        Process_3->setAllocationType(Util::AllocationType::ValueAdded);
-        // Process_3->setPriority();        
+        Process_3->setAllocationType(Util::AllocationType::ValueAdded);     
         
         // process 4
         Process* Process_4 =  plugins->newInstance<Process>(model, "MailRoom");
@@ -72,7 +83,7 @@ int Smart_ResourceCosting::main(int argc, char** argv) {
 	Process_4->setDelayExpression("tria(0.5,1,1.5)");
         Process_4->setDelayTimeUnit(Util::TimeUnit::minute);
         Process_4->setAllocationType(Util::AllocationType::ValueAdded);
-        // dispose 1 SendContract
+        // dispose 1
         Dispose* Dispose_1 = plugins->newInstance<Dispose>(model, "Depart");
               
 	// connect model components
@@ -83,15 +94,13 @@ int Smart_ResourceCosting::main(int argc, char** argv) {
 	// set simulation parameters
 	ModelSimulation* sim = model->getSimulation();
 	sim->setNumberOfReplications(300);
-        model->getSimulation()->setReplicationLength(480, Util::TimeUnit::minute);
-        sim->setWarmUpPeriod(24);
+        model->getSimulation()->setReplicationLength(1500, Util::TimeUnit::minute);
+        sim->setWarmUpPeriod(75);
 	sim->setWarmUpPeriodTimeUnit(Util::TimeUnit::minute);
 	model->getSimulation()->setTerminatingCondition("count(Depart.CountNumberIn)>1000");
-	model->save("./models/Smart_ResourceCosting.gen");
+	model->save("./models/Smart_ResourceScheduleCosting.gen");
 	model->getSimulation()->start();
 	// run the simulation
-        model->check();
-        model->getDataManager()->show();
 	sim->start();
 	for (int i = 0; i < 1e9; i++); // give UI some time to finish std::cout
 	// free memory
