@@ -74,6 +74,8 @@
               <itemPath>../../source/applications/terminal/examples/arenaExamples/Banking_Transactions.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/arenaExamples/Example_BasicOrderShipping.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/arenaExamples/Example_BasicOrderShipping.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaExamples/Example_PortModel.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaExamples/Example_PortModel.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/arenaExamples/Example_PublicTransport.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/arenaExamples/Example_PublicTransport.h</itemPath>
             </logicalFolder>
@@ -122,6 +124,8 @@
               <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ModelRunUntil1000Parts.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ModuleDisplayVariables.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ModuleDisplayVariables.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_OverlappingResources.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_OverlappingResources.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ParallelProcessingOfEntities.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ParallelProcessingOfEntities.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_PlacingEntitiesInQueueSets.cpp</itemPath>
@@ -132,6 +136,8 @@
               <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ProcessArena.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_Record.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_Record.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_RemovingAndReorderingEntitiesInAQueue.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_RemovingAndReorderingEntitiesInAQueue.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceCosting.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceCosting.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceScheduleCosting.cpp</itemPath>
@@ -786,6 +792,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/Example_PortModel.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/Example_PortModel.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../../source/applications/terminal/examples/arenaExamples/Example_PublicTransport.cpp"
             ex="false"
             tool="1"
@@ -1016,6 +1032,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_OverlappingResources.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_OverlappingResources.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ParallelProcessingOfEntities.cpp"
             ex="false"
             tool="1"
@@ -1062,6 +1088,16 @@
             flavor2="0">
       </item>
       <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_Record.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_RemovingAndReorderingEntitiesInAQueue.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_RemovingAndReorderingEntitiesInAQueue.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -3090,6 +3126,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/Example_PortModel.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/Example_PortModel.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../../source/applications/terminal/examples/arenaExamples/Example_PublicTransport.cpp"
             ex="false"
             tool="1"
@@ -3320,6 +3366,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_OverlappingResources.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_OverlappingResources.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_ParallelProcessingOfEntities.cpp"
             ex="false"
             tool="1"
@@ -3366,6 +3422,16 @@
             flavor2="0">
       </item>
       <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_Record.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_RemovingAndReorderingEntitiesInAQueue.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaSmarts/Smart_RemovingAndReorderingEntitiesInAQueue.h"
             ex="false"
             tool="3"
             flavor2="0">

@@ -43,6 +43,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/bea3505/Assembly_Line.o \
 	${OBJECTDIR}/_ext/bea3505/Banking_Transactions.o \
 	${OBJECTDIR}/_ext/bea3505/Example_BasicOrderShipping.o \
+	${OBJECTDIR}/_ext/bea3505/Example_PortModel.o \
 	${OBJECTDIR}/_ext/bea3505/Example_PublicTransport.o \
 	${OBJECTDIR}/_ext/577f3b86/Smart_AddingResource.o \
 	${OBJECTDIR}/_ext/577f3b86/Smart_AlternatingEntityCreation.o \
@@ -66,11 +67,13 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/577f3b86/Smart_MaxArrivalsField.o \
 	${OBJECTDIR}/_ext/577f3b86/Smart_ModelRunUntil1000Parts.o \
 	${OBJECTDIR}/_ext/577f3b86/Smart_ModuleDisplayVariables.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_OverlappingResources.o \
 	${OBJECTDIR}/_ext/577f3b86/Smart_ParallelProcessingOfEntities.o \
 	${OBJECTDIR}/_ext/577f3b86/Smart_PlacingEntitiesInQueueSets.o \
 	${OBJECTDIR}/_ext/577f3b86/Smart_PriorityExample.o \
 	${OBJECTDIR}/_ext/577f3b86/Smart_ProcessArena.o \
 	${OBJECTDIR}/_ext/577f3b86/Smart_Record.o \
+	${OBJECTDIR}/_ext/577f3b86/Smart_RemovingAndReorderingEntitiesInAQueue.o \
 	${OBJECTDIR}/_ext/577f3b86/Smart_ResourceCosting.o \
 	${OBJECTDIR}/_ext/577f3b86/Smart_ResourceScheduleCosting.o \
 	${OBJECTDIR}/_ext/577f3b86/Smart_ResourceSets.o \
@@ -309,6 +312,11 @@ ${OBJECTDIR}/_ext/bea3505/Example_BasicOrderShipping.o: ../../source/application
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -O -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/bea3505/Example_BasicOrderShipping.o ../../source/applications/terminal/examples/arenaExamples/Example_BasicOrderShipping.cpp
 
+${OBJECTDIR}/_ext/bea3505/Example_PortModel.o: ../../source/applications/terminal/examples/arenaExamples/Example_PortModel.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/bea3505
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -O -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/bea3505/Example_PortModel.o ../../source/applications/terminal/examples/arenaExamples/Example_PortModel.cpp
+
 ${OBJECTDIR}/_ext/bea3505/Example_PublicTransport.o: ../../source/applications/terminal/examples/arenaExamples/Example_PublicTransport.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/bea3505
 	${RM} "$@.d"
@@ -424,6 +432,11 @@ ${OBJECTDIR}/_ext/577f3b86/Smart_ModuleDisplayVariables.o: ../../source/applicat
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -O -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_ModuleDisplayVariables.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ModuleDisplayVariables.cpp
 
+${OBJECTDIR}/_ext/577f3b86/Smart_OverlappingResources.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_OverlappingResources.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -O -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_OverlappingResources.o ../../source/applications/terminal/examples/arenaSmarts/Smart_OverlappingResources.cpp
+
 ${OBJECTDIR}/_ext/577f3b86/Smart_ParallelProcessingOfEntities.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_ParallelProcessingOfEntities.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
 	${RM} "$@.d"
@@ -448,6 +461,11 @@ ${OBJECTDIR}/_ext/577f3b86/Smart_Record.o: ../../source/applications/terminal/ex
 	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -O -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_Record.o ../../source/applications/terminal/examples/arenaSmarts/Smart_Record.cpp
+
+${OBJECTDIR}/_ext/577f3b86/Smart_RemovingAndReorderingEntitiesInAQueue.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_RemovingAndReorderingEntitiesInAQueue.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -O -Wall -I../../source/gtest -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_RemovingAndReorderingEntitiesInAQueue.o ../../source/applications/terminal/examples/arenaSmarts/Smart_RemovingAndReorderingEntitiesInAQueue.cpp
 
 ${OBJECTDIR}/_ext/577f3b86/Smart_ResourceCosting.o: ../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceCosting.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
@@ -1382,6 +1400,19 @@ ${OBJECTDIR}/_ext/bea3505/Example_BasicOrderShipping_nomain.o: ${OBJECTDIR}/_ext
 	    ${CP} ${OBJECTDIR}/_ext/bea3505/Example_BasicOrderShipping.o ${OBJECTDIR}/_ext/bea3505/Example_BasicOrderShipping_nomain.o;\
 	fi
 
+${OBJECTDIR}/_ext/bea3505/Example_PortModel_nomain.o: ${OBJECTDIR}/_ext/bea3505/Example_PortModel.o ../../source/applications/terminal/examples/arenaExamples/Example_PortModel.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/bea3505
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/bea3505/Example_PortModel.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -O -Wall -I../../source/gtest -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/bea3505/Example_PortModel_nomain.o ../../source/applications/terminal/examples/arenaExamples/Example_PortModel.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/bea3505/Example_PortModel.o ${OBJECTDIR}/_ext/bea3505/Example_PortModel_nomain.o;\
+	fi
+
 ${OBJECTDIR}/_ext/bea3505/Example_PublicTransport_nomain.o: ${OBJECTDIR}/_ext/bea3505/Example_PublicTransport.o ../../source/applications/terminal/examples/arenaExamples/Example_PublicTransport.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/bea3505
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/bea3505/Example_PublicTransport.o`; \
@@ -1681,6 +1712,19 @@ ${OBJECTDIR}/_ext/577f3b86/Smart_ModuleDisplayVariables_nomain.o: ${OBJECTDIR}/_
 	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_ModuleDisplayVariables.o ${OBJECTDIR}/_ext/577f3b86/Smart_ModuleDisplayVariables_nomain.o;\
 	fi
 
+${OBJECTDIR}/_ext/577f3b86/Smart_OverlappingResources_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_OverlappingResources.o ../../source/applications/terminal/examples/arenaSmarts/Smart_OverlappingResources.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_OverlappingResources.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -O -Wall -I../../source/gtest -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_OverlappingResources_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_OverlappingResources.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_OverlappingResources.o ${OBJECTDIR}/_ext/577f3b86/Smart_OverlappingResources_nomain.o;\
+	fi
+
 ${OBJECTDIR}/_ext/577f3b86/Smart_ParallelProcessingOfEntities_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_ParallelProcessingOfEntities.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ParallelProcessingOfEntities.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_ParallelProcessingOfEntities.o`; \
@@ -1744,6 +1788,19 @@ ${OBJECTDIR}/_ext/577f3b86/Smart_Record_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Sma
 	    $(COMPILE.cc) -g -O -Wall -I../../source/gtest -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_Record_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_Record.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_Record.o ${OBJECTDIR}/_ext/577f3b86/Smart_Record_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/577f3b86/Smart_RemovingAndReorderingEntitiesInAQueue_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_RemovingAndReorderingEntitiesInAQueue.o ../../source/applications/terminal/examples/arenaSmarts/Smart_RemovingAndReorderingEntitiesInAQueue.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/577f3b86
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/577f3b86/Smart_RemovingAndReorderingEntitiesInAQueue.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -O -Wall -I../../source/gtest -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/577f3b86/Smart_RemovingAndReorderingEntitiesInAQueue_nomain.o ../../source/applications/terminal/examples/arenaSmarts/Smart_RemovingAndReorderingEntitiesInAQueue.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/577f3b86/Smart_RemovingAndReorderingEntitiesInAQueue.o ${OBJECTDIR}/_ext/577f3b86/Smart_RemovingAndReorderingEntitiesInAQueue_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/577f3b86/Smart_ResourceCosting_nomain.o: ${OBJECTDIR}/_ext/577f3b86/Smart_ResourceCosting.o ../../source/applications/terminal/examples/arenaSmarts/Smart_ResourceCosting.cpp 

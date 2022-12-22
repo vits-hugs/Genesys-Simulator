@@ -73,11 +73,13 @@
 #include "terminal/examples/arenaSmarts/Smart_MaxArrivalsField.h"
 #include "terminal/examples/arenaSmarts/Smart_ModelRunUntil1000Parts.h"
 #include "terminal/examples/arenaSmarts/Smart_ModuleDisplayVariables.h"
+#include "terminal/examples/arenaSmarts/Smart_OverlappingResources.h"
 #include "terminal/examples/arenaSmarts/Smart_ParallelProcessingOfEntities.h"
 #include "terminal/examples/arenaSmarts/Smart_PlacingEntitiesInQueueSets.h"
 #include "terminal/examples/arenaSmarts/Smart_PriorityExample.h"
 #include "terminal/examples/arenaSmarts/Smart_ProcessArena.h"
 #include "terminal/examples/arenaSmarts/Smart_Record.h"
+#include "terminal/examples/arenaSmarts/Smart_RemovingAndReorderingEntitiesInAQueue.h"
 #include "terminal/examples/arenaSmarts/Smart_ResourceCosting.h"
 #include "terminal/examples/arenaSmarts/Smart_ResourceScheduleCosting.h"
 #include "terminal/examples/arenaSmarts/Smart_ResourceSets.h"
@@ -95,6 +97,7 @@
 #include "terminal/examples/arenaExamples/Assembly_Line.h"
 #include "terminal/examples/arenaExamples/Banking_Transactions.h"
 #include "terminal/examples/arenaExamples/Example_BasicOrderShipping.h"
+#include "terminal/examples/arenaExamples/Example_PortModel.h"
 #include "terminal/examples/arenaExamples/Example_PublicTransport.h"
 
 // teachng
@@ -164,11 +167,13 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Smart_MaxArrivalsField Application;
 	//typedef Smart_ModelRunUntil1000Parts Application;
 	//typedef Smart_ModuleDisplayVariables Application;
+	//typedef Smart_OverlappingResources Application;
 	//typedef Smart_ParallelProcessingOfEntities Application;
 	//typedef Smart_PlacingEntitiesInQueueSets Application;
 	//typedef Smart_PriorityExample Application;
 	//typedef Smart_ProcessArena Application;
 	//typedef Smart_Record Application;
+	//typedef Smart_RemovingAndReorderingEntitiesInAQueue Application;
 	//typedef Smart_ResourceCosting Application;
 	//typedef Smart_ResourceScheduleCosting Application;
 	//typedef Smart_ResourceSets Application;
@@ -185,8 +190,8 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Airport_Extended1 Application;
 	//typedef Assembly_Line Application;
 	//typedef Banking_Transactions Application;
-
 	//typedef BasicOrderShipping Application;
+	//typedef Example_PortModel Application;
 	//typedef Example_PublicTransport Application;
 
 

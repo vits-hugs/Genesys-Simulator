@@ -43,6 +43,7 @@ public:
 	void setQueueableItem(QueueableItem* _queueableItem);
 	QueueableItem* getQueueableItem() const;
 	void setDelayExpression(std::string _delayExpression);
+	void setDelayExpression(std::string _delayExpression, Util::TimeUnit _delayTimeUnit);
 	std::string delayExpression() const;
 	void setDelayTimeUnit(Util::TimeUnit _delayTimeUnit);
 	Util::TimeUnit delayTimeUnit() const;
