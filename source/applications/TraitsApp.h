@@ -91,7 +91,10 @@
 // arena examples
 #include "terminal/examples/arenaExamples/AirportSecurityExample.h"
 #include "terminal/examples/arenaExamples/AirportSecurityExampleExtended.h"
-#include "terminal/examples/arenaExamples/Example_Basic_Order_Shipping.h"
+#include "terminal/examples/arenaExamples/Airport_Extended1.h"
+#include "terminal/examples/arenaExamples/Assembly_Line.h"
+#include "terminal/examples/arenaExamples/Banking_Transactions.h"
+#include "terminal/examples/arenaExamples/Example_BasicOrderShipping.h"
 #include "terminal/examples/arenaExamples/Example_PublicTransport.h"
 
 // teachng
@@ -109,9 +112,6 @@ struct TraitsApp {
 template <> struct TraitsApp<GenesysApplication_if> {
 	//static const bool runTests = false;
 	static const TraceManager::Level traceLevel = TraceManager::Level::L9_mostDetailed;
-
-	//// TESTS @TODO: To be replaced by googletest
-	//typedef Tests Application;
 
 	//// SMART SMARTs ALPHA SORTED
 	//typedef Smart_AssignWriteSeizes Application;
@@ -180,10 +180,14 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Smart_WaitForSignal Application;
 
 	//// ARENA EXAMPLES
-	//typedef AirportSecurityExample.h Application;
-	//typedef AirportSecurityExampleExtended.h Application;
-	//typedef Example_Basic_Order_Shipping.h Application;
-	//typedef Example_PublicTransport.h Application;
+	//typedef AirportSecurityExample Application;
+	//typedef AirportSecurityExampleExtended Application;
+	//typedef Airport_Extended1 Application;
+	//typedef Assembly_Line Application;
+	//typedef Banking_Transactions Application;
+
+	//typedef BasicOrderShipping Application;
+	//typedef Example_PublicTransport Application;
 
 
 	//// TEACHING

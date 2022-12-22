@@ -71,14 +71,11 @@ int Smart_Expression::main(int argc, char** argv) {
     decide->getConnections()->insert(department2);
 
     ModelSimulation* simulation = model->getSimulation();
-    simulation->setReplicationLength(10);
-    simulation->setReplicationLengthTimeUnit(Util::TimeUnit::minute);
-    simulation->setNumberOfReplications(300);
-    simulation->setWarmUpPeriod(0.05);
-    simulation->setWarmUpPeriodTimeUnit(Util::TimeUnit::minute);
+    simulation->setNumberOfReplications(3);
+    simulation->setReplicationLength(10, Util::TimeUnit::minute);
+    simulation->setWarmUpPeriod(0.05, Util::TimeUnit::minute);
     model->save("./models/Smart_Expression.gen");
     model->getSimulation()->start();
-    while (model->getSimulation()-> isPaused());
     for (int i=0;i < 1e9;i++);
     delete genesys;
     return 0;

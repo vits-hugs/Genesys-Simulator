@@ -89,7 +89,7 @@ void Create::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 			assert(false);
 		}
 		timeScale = Util::TimeUnitConvert(this->_timeBetweenCreationsTimeUnit, _parentModel->getSimulation()->getReplicationBaseTimeUnit());
-		newArrivalTime = tnow + timeBetweenCreations*timeScale;
+		newArrivalTime = std::max<double>(tnow + timeBetweenCreations*timeScale, tnow); // force no time travel to past. Not sure if it should really be avoided
 		for (unsigned int i = 0; i<this->_entitiesPerCreation; i++) {
 			if (_entitiesCreatedSoFar < _maxCreations) {
 				_entitiesCreatedSoFar++;

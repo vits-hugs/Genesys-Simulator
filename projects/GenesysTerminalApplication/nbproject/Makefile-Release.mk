@@ -39,7 +39,10 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/acd0b333/GenesysShell.o \
 	${OBJECTDIR}/_ext/bea3505/AirportSecurityExample.o \
 	${OBJECTDIR}/_ext/bea3505/AirportSecurityExampleExtended.o \
-	${OBJECTDIR}/_ext/bea3505/Example_Basic_Order_Shipping.o \
+	${OBJECTDIR}/_ext/bea3505/Airport_Extended1.o \
+	${OBJECTDIR}/_ext/bea3505/Assembly_Line.o \
+	${OBJECTDIR}/_ext/bea3505/Banking_Transactions.o \
+	${OBJECTDIR}/_ext/bea3505/Example_BasicOrderShipping.o \
 	${OBJECTDIR}/_ext/bea3505/Example_PublicTransport.o \
 	${OBJECTDIR}/_ext/577f3b86/Smart_AddingResource.o \
 	${OBJECTDIR}/_ext/577f3b86/Smart_AlternatingEntityCreation.o \
@@ -286,10 +289,25 @@ ${OBJECTDIR}/_ext/bea3505/AirportSecurityExampleExtended.o: ../../source/applica
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/bea3505/AirportSecurityExampleExtended.o ../../source/applications/terminal/examples/arenaExamples/AirportSecurityExampleExtended.cpp
 
-${OBJECTDIR}/_ext/bea3505/Example_Basic_Order_Shipping.o: ../../source/applications/terminal/examples/arenaExamples/Example_Basic_Order_Shipping.cpp nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/bea3505/Airport_Extended1.o: ../../source/applications/terminal/examples/arenaExamples/Airport_Extended1.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/bea3505
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/bea3505/Example_Basic_Order_Shipping.o ../../source/applications/terminal/examples/arenaExamples/Example_Basic_Order_Shipping.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/bea3505/Airport_Extended1.o ../../source/applications/terminal/examples/arenaExamples/Airport_Extended1.cpp
+
+${OBJECTDIR}/_ext/bea3505/Assembly_Line.o: ../../source/applications/terminal/examples/arenaExamples/Assembly_Line.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/bea3505
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/bea3505/Assembly_Line.o ../../source/applications/terminal/examples/arenaExamples/Assembly_Line.cpp
+
+${OBJECTDIR}/_ext/bea3505/Banking_Transactions.o: ../../source/applications/terminal/examples/arenaExamples/Banking_Transactions.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/bea3505
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/bea3505/Banking_Transactions.o ../../source/applications/terminal/examples/arenaExamples/Banking_Transactions.cpp
+
+${OBJECTDIR}/_ext/bea3505/Example_BasicOrderShipping.o: ../../source/applications/terminal/examples/arenaExamples/Example_BasicOrderShipping.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/bea3505
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/bea3505/Example_BasicOrderShipping.o ../../source/applications/terminal/examples/arenaExamples/Example_BasicOrderShipping.cpp
 
 ${OBJECTDIR}/_ext/bea3505/Example_PublicTransport.o: ../../source/applications/terminal/examples/arenaExamples/Example_PublicTransport.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/bea3505
@@ -1312,17 +1330,56 @@ ${OBJECTDIR}/_ext/bea3505/AirportSecurityExampleExtended_nomain.o: ${OBJECTDIR}/
 	    ${CP} ${OBJECTDIR}/_ext/bea3505/AirportSecurityExampleExtended.o ${OBJECTDIR}/_ext/bea3505/AirportSecurityExampleExtended_nomain.o;\
 	fi
 
-${OBJECTDIR}/_ext/bea3505/Example_Basic_Order_Shipping_nomain.o: ${OBJECTDIR}/_ext/bea3505/Example_Basic_Order_Shipping.o ../../source/applications/terminal/examples/arenaExamples/Example_Basic_Order_Shipping.cpp 
+${OBJECTDIR}/_ext/bea3505/Airport_Extended1_nomain.o: ${OBJECTDIR}/_ext/bea3505/Airport_Extended1.o ../../source/applications/terminal/examples/arenaExamples/Airport_Extended1.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/bea3505
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/bea3505/Example_Basic_Order_Shipping.o`; \
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/bea3505/Airport_Extended1.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/bea3505/Example_Basic_Order_Shipping_nomain.o ../../source/applications/terminal/examples/arenaExamples/Example_Basic_Order_Shipping.cpp;\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/bea3505/Airport_Extended1_nomain.o ../../source/applications/terminal/examples/arenaExamples/Airport_Extended1.cpp;\
 	else  \
-	    ${CP} ${OBJECTDIR}/_ext/bea3505/Example_Basic_Order_Shipping.o ${OBJECTDIR}/_ext/bea3505/Example_Basic_Order_Shipping_nomain.o;\
+	    ${CP} ${OBJECTDIR}/_ext/bea3505/Airport_Extended1.o ${OBJECTDIR}/_ext/bea3505/Airport_Extended1_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/bea3505/Assembly_Line_nomain.o: ${OBJECTDIR}/_ext/bea3505/Assembly_Line.o ../../source/applications/terminal/examples/arenaExamples/Assembly_Line.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/bea3505
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/bea3505/Assembly_Line.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/bea3505/Assembly_Line_nomain.o ../../source/applications/terminal/examples/arenaExamples/Assembly_Line.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/bea3505/Assembly_Line.o ${OBJECTDIR}/_ext/bea3505/Assembly_Line_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/bea3505/Banking_Transactions_nomain.o: ${OBJECTDIR}/_ext/bea3505/Banking_Transactions.o ../../source/applications/terminal/examples/arenaExamples/Banking_Transactions.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/bea3505
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/bea3505/Banking_Transactions.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/bea3505/Banking_Transactions_nomain.o ../../source/applications/terminal/examples/arenaExamples/Banking_Transactions.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/bea3505/Banking_Transactions.o ${OBJECTDIR}/_ext/bea3505/Banking_Transactions_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/bea3505/Example_BasicOrderShipping_nomain.o: ${OBJECTDIR}/_ext/bea3505/Example_BasicOrderShipping.o ../../source/applications/terminal/examples/arenaExamples/Example_BasicOrderShipping.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/bea3505
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/bea3505/Example_BasicOrderShipping.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/bea3505/Example_BasicOrderShipping_nomain.o ../../source/applications/terminal/examples/arenaExamples/Example_BasicOrderShipping.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/bea3505/Example_BasicOrderShipping.o ${OBJECTDIR}/_ext/bea3505/Example_BasicOrderShipping_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/bea3505/Example_PublicTransport_nomain.o: ${OBJECTDIR}/_ext/bea3505/Example_PublicTransport.o ../../source/applications/terminal/examples/arenaExamples/Example_PublicTransport.cpp 

@@ -64,7 +64,7 @@ int Smart_Create::main(int argc, char** argv) {
     ModelSimulation* simulation = model->getSimulation();
     simulation->setReplicationLength(10);
     simulation->setReplicationLengthTimeUnit(Util::TimeUnit::minute);
-    simulation->setNumberOfReplications(300);
+    simulation->setNumberOfReplications(3);
     simulation->setWarmUpPeriod(0.05);
     simulation->setWarmUpPeriodTimeUnit(Util::TimeUnit::minute);
     model->save("./models/Smart_Create.gen");

@@ -236,6 +236,12 @@ void Seize::_createInternalAndAttachedData() {
 				rec->addReleaseResourceEventHandler(Resource::SetResourceEventHandler<Seize>(&Seize::_handlerForResourceEvent, this), this, _priority);
 			}
 		}
+		if (seizable->getSaveAttribute() != "") {
+			Attribute* attr = static_cast<Attribute*>(_parentModel->getDataManager()->getDataDefinition(Util::TypeOf<Attribute>(),seizable->getSaveAttribute()));
+			if (attr == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+				_attachedAttributesInsert({seizable->getSaveAttribute()});
+			}
+		}
 		i++;
 	}
 	// Check QueueableItem

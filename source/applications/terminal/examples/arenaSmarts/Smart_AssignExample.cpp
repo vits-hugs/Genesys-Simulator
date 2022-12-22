@@ -27,7 +27,6 @@ int Smart_AssignExample::main(int argc, char** argv) {
     create->setName("Calls Arrive");
     create->setEntityTypeName("Call");
     create->setTimeBetweenCreationsExpression("expo(1)", Util::TimeUnit::hour);
-    create->setEntitiesPerCreation(1);
     
     Assign *assign = plugins->newInstance<Assign>(model);
     assign->setName("Assign Module");
@@ -52,7 +51,6 @@ int Smart_AssignExample::main(int argc, char** argv) {
     process1->setDelayTimeUnit(Util::TimeUnit::hour);
 
     Resource *resource2 = plugins->newInstance<Resource>(model, "Accountant");
-    resource2->setCapacity(1);
     
     Process *process2 = plugins->newInstance<Process>(model);
     process2->setName("Accounting");
@@ -73,8 +71,8 @@ int Smart_AssignExample::main(int argc, char** argv) {
     process2->getConnections()->insert(dispose);
     
     ModelSimulation *s = model->getSimulation();
-    s->setNumberOfReplications(300);
-    double replicationLength = 7;
+    s->setNumberOfReplications(3);
+    double replicationLength = 1;
     s->setReplicationLength(replicationLength, Util::TimeUnit::week);
     s->setWarmUpPeriod(replicationLength * 0.05);
     s->setWarmUpPeriodTimeUnit(Util::TimeUnit::week);

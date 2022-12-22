@@ -15,6 +15,7 @@
 #include <iostream>
 #include <cassert>
 #include <chrono>
+#include <thread>
 #include "Model.h"
 #include "Simulator.h"
 #include "SourceModelComponent.h"
@@ -610,8 +611,14 @@ Util::TimeUnit ModelSimulation::getReplicationLengthTimeUnit() const {
 	return _replicationLengthTimeUnit;
 }
 
-void ModelSimulation::setWarmUpPeriod(double _warmUpPeriod) {
-	this->_warmUpPeriod = _warmUpPeriod;
+void ModelSimulation::setWarmUpPeriod(double warmUpPeriod) {
+	this->_warmUpPeriod = warmUpPeriod;
+	_hasChanged = true;
+}
+
+void ModelSimulation::setWarmUpPeriod(double warmUpPeriod, Util::TimeUnit warmUpPeriodTimeUnit) {
+	this->_warmUpPeriod = warmUpPeriod;
+	this->_warmUpPeriodTimeUnit = warmUpPeriodTimeUnit;
 	_hasChanged = true;
 }
 

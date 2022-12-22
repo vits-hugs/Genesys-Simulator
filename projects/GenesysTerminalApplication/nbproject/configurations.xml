@@ -66,13 +66,18 @@
               <itemPath>../../source/applications/terminal/examples/arenaExamples/AirportSecurityExample.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/arenaExamples/AirportSecurityExampleExtended.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/arenaExamples/AirportSecurityExampleExtended.h</itemPath>
-              <itemPath>../../source/applications/terminal/examples/arenaExamples/Example_Basic_Order_Shipping.cpp</itemPath>
-              <itemPath>../../source/applications/terminal/examples/arenaExamples/Example_Basic_Order_Shipping.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaExamples/Airport_Extended1.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaExamples/Airport_Extended1.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaExamples/Assembly_Line.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaExamples/Assembly_Line.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaExamples/Banking_Transactions.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaExamples/Banking_Transactions.h</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaExamples/Example_BasicOrderShipping.cpp</itemPath>
+              <itemPath>../../source/applications/terminal/examples/arenaExamples/Example_BasicOrderShipping.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/arenaExamples/Example_PublicTransport.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/arenaExamples/Example_PublicTransport.h</itemPath>
             </logicalFolder>
             <logicalFolder name="arenaSmarts" displayName="arenaSmarts" projectFiles="true">
-              <itemPath>../../source/applications/terminal/examples/arenaSmarts/Arrivals Element Stops Entities Arriving After a Set Time Modificado.doe</itemPath>
               <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_AddingResource.cpp</itemPath>
               <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_AddingResource.h</itemPath>
               <itemPath>../../source/applications/terminal/examples/arenaSmarts/Smart_AlternatingEntityCreation.cpp</itemPath>
@@ -741,12 +746,42 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/applications/terminal/examples/arenaExamples/Example_Basic_Order_Shipping.cpp"
+      <item path="../../source/applications/terminal/examples/arenaExamples/Airport_Extended1.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/applications/terminal/examples/arenaExamples/Example_Basic_Order_Shipping.h"
+      <item path="../../source/applications/terminal/examples/arenaExamples/Airport_Extended1.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/Assembly_Line.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/Assembly_Line.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/Banking_Transactions.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/Banking_Transactions.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/Example_BasicOrderShipping.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/Example_BasicOrderShipping.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -757,11 +792,6 @@
             flavor2="0">
       </item>
       <item path="../../source/applications/terminal/examples/arenaExamples/Example_PublicTransport.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/applications/terminal/examples/arenaSmarts/Arrivals Element Stops Entities Arriving After a Set Time Modificado.doe"
             ex="false"
             tool="3"
             flavor2="0">
@@ -3020,12 +3050,42 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/applications/terminal/examples/arenaExamples/Example_Basic_Order_Shipping.cpp"
+      <item path="../../source/applications/terminal/examples/arenaExamples/Airport_Extended1.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/applications/terminal/examples/arenaExamples/Example_Basic_Order_Shipping.h"
+      <item path="../../source/applications/terminal/examples/arenaExamples/Airport_Extended1.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/Assembly_Line.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/Assembly_Line.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/Banking_Transactions.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/Banking_Transactions.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/Example_BasicOrderShipping.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/examples/arenaExamples/Example_BasicOrderShipping.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -3036,11 +3096,6 @@
             flavor2="0">
       </item>
       <item path="../../source/applications/terminal/examples/arenaExamples/Example_PublicTransport.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/applications/terminal/examples/arenaSmarts/Arrivals Element Stops Entities Arriving After a Set Time Modificado.doe"
             ex="false"
             tool="3"
             flavor2="0">

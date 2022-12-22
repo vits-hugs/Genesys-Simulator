@@ -39,14 +39,6 @@ int Smart_ResourceSets::main(int argc, char** argv) {
     this->setDefaultTraceHandlers(genesys->getTracer());
     this->insertFakePluginsByHand(genesys);
 
-    bool isDevelop = false;    
-
-    if (isDevelop) {
-        genesys->getTracer()->setTraceLevel(TraceManager::Level::L8_detailed);
-    } else {
-        genesys->getTracer()->setTraceLevel(TraceManager::Level::L2_results);
-    }
-
     // Create the model and components instances.
     Model* model = genesys->getModels()->newModel();
     PluginManager* plugins = genesys->getPlugins();
@@ -83,8 +75,6 @@ int Smart_ResourceSets::main(int argc, char** argv) {
     phoneLoanArrives->setEntityTypeName("Phone Loan");
     phoneLoanArrives->setTimeBetweenCreationsExpression("EXPO(1)");
     phoneLoanArrives->setTimeUnit(Util::TimeUnit::hour);
-    phoneLoanArrives->setEntitiesPerCreation(1);
-    phoneLoanArrives->setFirstCreation(0.0);
 
     // Create the needed resources for the Process entities.
     Resource* loanOfficerResource1 = plugins->newInstance<Resource>(model, "Loan Officer 1");
@@ -162,22 +152,20 @@ int Smart_ResourceSets::main(int argc, char** argv) {
 
     // Set options, save and run simulation.
     model->getInfos()->setName("Resources Sets");
-    model->save("./models/Smart_ResourceSets.gen");
 
-    model->getSimulation()->setTerminatingCondition("COUNT(Dispose_of_Application.CountNumberIn) + COUNT(File_Loan.CountNumberIn) > 1000");
-
-    auto replicationLength = 179546; // +/- Needed to achieve 1k entities
-	model->getSimulation()->setReplicationLength(std::numeric_limits<double>::max(), Util::TimeUnit::week); // This is a "infinity" value.
+    //model->getSimulation()->setTerminatingCondition("COUNT(Dispose_of_Application.CountNumberIn) + COUNT(File_Loan.CountNumberIn) > 1000");
+   auto replicationLength = 3000;
+ 	model->getSimulation()->setReplicationLength(replicationLength, Util::TimeUnit::minute);
     model->getSimulation()->setReplicationReportBaseTimeUnit(Util::TimeUnit::minute);
-
     model->getSimulation()->setWarmUpPeriod(replicationLength * 0.05);
     model->getSimulation()->setWarmUpPeriodTimeUnit(Util::TimeUnit::minute);
+    model->getSimulation()->setNumberOfReplications(3);
 
-    model->getSimulation()->setNumberOfReplications(100);
+    model->save("./models/Smart_ResourceSets.gen");
+
     model->getSimulation()->start();
 
 	for (int i = 0; i < 1e9; i++); // Give time to UI print everything.
-
     delete genesys;
     return 0;
 }

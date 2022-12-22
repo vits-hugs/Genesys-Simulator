@@ -50,9 +50,7 @@ int Smart_AlternatingEntityCreation::main(int argc, char** argv) {
 	create1->setEntityTypeName("Entity_1");
 	create1->setTimeBetweenCreationsExpression("EXPO(1)");
 	create1->setTimeUnit(Util::TimeUnit::minute);
-	create1->setEntitiesPerCreation(1);
 	create1->setMaxCreations(99999999999999); // Infinite
-	create1->setFirstCreation(0.0);
 
 	Assign* assign = plugins->newInstance<Assign>(model);
 	assign->getAssignments()->insert(new Assignment(model, "serialNumber", "serialNumber + 1", false));
@@ -63,7 +61,12 @@ int Smart_AlternatingEntityCreation::main(int argc, char** argv) {
 	decide1->getConditions()->insert("isEven==1");
  
 	Assign* assign1 = plugins->newInstance<Assign>(model, "Assign_1");
+	EntityType* typeA = new EntityType(model, "typeA");
+	assign1->getAssignments()->insert(new Assignment("Entity.Type",std::to_string(typeA->getId()), true));
+
+	EntityType* typeB = new EntityType(model, "typeB");
 	Assign* assign2 = plugins->newInstance<Assign>(model, "Assign_1");
+	assign2->getAssignments()->insert(new Assignment("Entity.Type",std::to_string(typeB->getId()), true));
 	
 	Dispose* dipose1 = plugins->newInstance<Dispose>(model, "Dispose_1");
 	Dispose* dipose2 = plugins->newInstance<Dispose>(model, "Dispose_2");
@@ -77,7 +80,7 @@ int Smart_AlternatingEntityCreation::main(int argc, char** argv) {
 	assign2->getConnections()->insert(dipose2);
  
 	// set options, save and simulate
-	model->getSimulation()->setNumberOfReplications(300);
+	model->getSimulation()->setNumberOfReplications(3);
 	model->getSimulation()->setReplicationLength(60, Util::TimeUnit::minute);
 
 	double replication_length = model->getSimulation()->getReplicationLength(); 
@@ -85,6 +88,7 @@ int Smart_AlternatingEntityCreation::main(int argc, char** argv) {
 	
 	model->save("./models/Smart_AlternatingEntityCreation.gen");
 	model->getSimulation()->start();
+	for (int i=0; i<1e9; i++);
 	delete genesys;
 	return 0;
 };

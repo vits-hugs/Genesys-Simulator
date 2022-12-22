@@ -31,7 +31,6 @@ int Smart_ArrivalsEntityTypeVsAttribute::main(int argc, char** argv) {
 
     Create* cr1 = plugins->newInstance<Create>(m, "Create1");
     cr1->setTimeBetweenCreationsExpression("expo(1)", Util::TimeUnit::hour);
-    cr1->setEntitiesPerCreation(1);
     
     // Widget1
     Assign *assignCR1 = plugins->newInstance<Assign>(m);
@@ -39,15 +38,13 @@ int Smart_ArrivalsEntityTypeVsAttribute::main(int argc, char** argv) {
     
     Create* cr2 = plugins->newInstance<Create>(m, "Create2");
     cr2->setTimeBetweenCreationsExpression("expo(1)", Util::TimeUnit::hour);
-    cr2->setEntitiesPerCreation(1);
     
     // Widget2
     Assign *assignCR2 = plugins->newInstance<Assign>(m);
     assignCR2->getAssignments()->insert(new Assignment(m, "Entity.Type", "2"));
     
     Assign *assign = plugins->newInstance<Assign>(m);
-    assign->setName("Assign 1");
-    
+    assign->setName("Assign 1");   
     // Checking expression "cont(0.5,10,1,20)", syntax error, unexpected ILLEGAL -> valor alterado para uma uniforme
     assign->getAssignments()->insert(new Assignment(m, "Weight", "unif(0.2,1)"));
     
@@ -81,8 +78,8 @@ int Smart_ArrivalsEntityTypeVsAttribute::main(int argc, char** argv) {
     decide->getConnections()->insert(di2);
     
     ModelSimulation* s = m->getSimulation();
-    s->setNumberOfReplications(300);
-    double replicationLength = 7;
+    s->setNumberOfReplications(3);
+    double replicationLength = 1;
     s->setReplicationLength(replicationLength, Util::TimeUnit::week);
     s->setWarmUpPeriod(replicationLength * 0.05);
     s->setWarmUpPeriodTimeUnit(Util::TimeUnit::week);

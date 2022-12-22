@@ -39,14 +39,6 @@ int Smart_ParallelProcessingOfEntities::main(int argc, char** argv) {
     this->setDefaultTraceHandlers(genesys->getTracer());
     this->insertFakePluginsByHand(genesys);
 
-    bool isDevelop = false;    
-
-    if (isDevelop) {
-        genesys->getTracer()->setTraceLevel(TraceManager::Level::L9_mostDetailed);
-    } else {
-        genesys->getTracer()->setTraceLevel(TraceManager::Level::L2_results);
-    }
-
     // Create the model and components instances.
     Model* model = genesys->getModels()->newModel();
     PluginManager* plugins = genesys->getPlugins();
@@ -131,19 +123,16 @@ int Smart_ParallelProcessingOfEntities::main(int argc, char** argv) {
     batchCombinePaperwork->setAttributeName("Entity.SerialNumber");
         
     // set options, save and simulate
-    model->getInfos()->setName("Parallel Processing of Entities");
-    model->save("./models/Smart_ParallelProcessingOfEntities.gen");
-    
-    
+    auto replicationLength = 100; 
 	model->getSimulation()->setReplicationLength(std::numeric_limits<double>::max(), Util::TimeUnit::week); // This is a "infinity" value.
-
-    auto replicationLength = 8000; // +/- Needed to achieve 1k entities
     model->getSimulation()->setWarmUpPeriod(replicationLength * 0.05);
     model->getSimulation()->setWarmUpPeriodTimeUnit(Util::TimeUnit::minute);
-    
     model->getSimulation()->setTerminatingCondition("COUNT(disposeEquipmentPlacedInWarehouse.CountNumberIn) > 1000");
+    model->getSimulation()->setNumberOfReplications(3);
 
-    model->getSimulation()->setNumberOfReplications(300);
+    model->getInfos()->setName("Parallel Processing of Entities");
+    model->save("./models/Smart_ParallelProcessingOfEntities.gen"); 
+
     model->getSimulation()->start();
 	for (int i = 0; i < 1e9; i++);
     

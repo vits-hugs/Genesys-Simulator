@@ -41,7 +41,7 @@ public:
 public:
 	ModelDataDefinition* loadNew(Model* model, PersistenceRecord *fields); ///< creates a new ModelDataDefinition from fields loaded from a file
 	bool loadAndInsertNew(Model* model, PersistenceRecord *fields);
-	ModelDataDefinition* newInstance(Model* model, std::string name="");
+	ModelDataDefinition* newInstance(Model* model, std::string name = "");
 private:
 	ModelComponent* _loadNewComponent(Model* model, PersistenceRecord *fields);
 	ModelDataDefinition* _loadNewElement(Model* model, PersistenceRecord *fields);

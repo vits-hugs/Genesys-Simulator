@@ -18,6 +18,8 @@
 #include "../kernel/simulator/TraceManager.h"
 #include "../kernel/simulator/OnEventManager.h"
 
+#include <thread>
+
 class BaseGenesysTerminalApplication : public GenesysApplication_if {
 public:
 	BaseGenesysTerminalApplication();

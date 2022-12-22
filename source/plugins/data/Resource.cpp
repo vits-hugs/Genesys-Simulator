@@ -55,7 +55,7 @@ std::string Resource::show() {
 			",state=" + Util::StrTruncIfInt(std::to_string(static_cast<int> (_resourceState)));
 }
 
-bool Resource::seize(unsigned int quantity, double priority) {
+bool Resource::seize(unsigned int quantity, double priority) {  //@ TODO: Considere priority. (Is it here??)
 	double tnow = _parentModel->getSimulation()->getSimulatedTime();
 	_sumCapacityOverTime += _lastTimeCapacityEvaluated * getCapacity();
 	_lastTimeCapacityEvaluated = tnow;

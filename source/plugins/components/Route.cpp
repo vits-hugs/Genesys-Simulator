@@ -73,6 +73,11 @@ void Route::setRouteTimeExpression(std::string _routeTimeExpression) {
 	this->_routeTimeExpression = _routeTimeExpression;
 }
 
+void Route::setRouteTimeExpression(std::string _routeTimeExpression, Util::TimeUnit _routeTimeTimeUnit) {
+	this->_routeTimeExpression = _routeTimeExpression;
+	this->_routeTimeTimeUnit = _routeTimeTimeUnit;
+}
+
 std::string Route::getRouteTimeExpression() const {
 	return _routeTimeExpression;
 }
