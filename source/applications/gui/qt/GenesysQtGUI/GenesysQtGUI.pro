@@ -70,6 +70,7 @@ SOURCES += \
 	../../../../plugins/components/Assign.cpp \
 	../../../../plugins/components/Batch.cpp \
 	../../../../plugins/components/CellularAutomata.cpp \
+	../../../../plugins/components/Clone.cpp \
 	../../../../plugins/components/CppForG.cpp \
 	../../../../plugins/components/Create.cpp \
 	../../../../plugins/components/Decide.cpp \
@@ -80,6 +81,7 @@ SOURCES += \
 	../../../../plugins/components/Enter.cpp \
 	../../../../plugins/components/Exit.cpp \
 	../../../../plugins/components/FiniteStateMachine.cpp \
+	../../../../plugins/components/PickableStationItem.cpp \
 	../../../../plugins/components/Wait.cpp \
 	../../../../plugins/components/LSODE.cpp \
 	../../../../plugins/components/Leave.cpp \
@@ -106,10 +108,10 @@ SOURCES += \
 	../../../../plugins/components/Unstore.cpp \
 	../../../../plugins/components/Write.cpp \
 	../../../../plugins/data/AssignmentItem.cpp \
-	../../../../plugins/data/CppCode.cpp \
+	../../../../plugins/data/CppCompiler.cpp \
 	../../../../plugins/data/DummyElement.cpp \
+	../../../../plugins/data/EFSM.cpp \
 	../../../../plugins/data/EntityGroup.cpp \
-	../../../../plugins/data/ExFiStatMac.cpp \
 	../../../../plugins/data/Failure.cpp \
 	../../../../plugins/data/File.cpp \
 	../../../../plugins/data/Formula.cpp \
@@ -123,7 +125,6 @@ SOURCES += \
 	../../../../plugins/data/Station.cpp \
 	../../../../plugins/data/Storage.cpp \
 	../../../../plugins/data/Variable.cpp \
-	../../../../tests/Tests.cpp \
 	../../../../tools/HypothesisTesterDefaultImpl1.cpp \
 	../../../../tools/ProbabilityDistribution.cpp \
 	../../../../tools/ProbabilityDistributionBase.cpp \
@@ -249,6 +250,7 @@ HEADERS += \
 	../../../../plugins/components/Assign.h \
 	../../../../plugins/components/Batch.h \
 	../../../../plugins/components/CellularAutomata.h \
+	../../../../plugins/components/Clone.h \
 	../../../../plugins/components/CppForG.h \
 	../../../../plugins/components/Create.h \
 	../../../../plugins/components/Decide.h \
@@ -259,6 +261,7 @@ HEADERS += \
 	../../../../plugins/components/Enter.h \
 	../../../../plugins/components/Exit.h \
 	../../../../plugins/components/FiniteStateMachine.h \
+	../../../../plugins/components/PickableStationItem.h \
 	../../../../plugins/components/Wait.h \
 	../../../../plugins/components/LSODE.h \
 	../../../../plugins/components/Leave.h \
@@ -285,10 +288,10 @@ HEADERS += \
 	../../../../plugins/components/Unstore.h \
 	../../../../plugins/components/Write.h \
 	../../../../plugins/data/AssignmentItem.h \
-	../../../../plugins/data/CppCode.h \
+	../../../../plugins/data/CppCompiler.h \
 	../../../../plugins/data/DummyElement.h \
+	../../../../plugins/data/EFSM.h \
 	../../../../plugins/data/EntityGroup.h \
-	../../../../plugins/data/ExFiStatMac.h \
 	../../../../plugins/data/Failure.h \
 	../../../../plugins/data/File.h \
 	../../../../plugins/data/Formula.h \
@@ -302,7 +305,6 @@ HEADERS += \
 	../../../../plugins/data/Station.h \
 	../../../../plugins/data/Storage.h \
 	../../../../plugins/data/Variable.h \
-	../../../../tests/Tests.h \
 	../../../../tools/DataAnalyser_if.h \
 	../../../../tools/HypothesisTesterDefaultImpl1.h \
 	../../../../tools/HypothesisTester_if.h \
@@ -310,12 +312,10 @@ HEADERS += \
 	../../../../tools/ProbabilityDistributionBase.h \
 	../../../../tools/SolverDefaultImpl1.h \
 	../../../../tools/TraitsTools.h \
-	../../../../tools/solver_if.h \
 	../../../BaseGenesysTerminalApplication.h \
 	../../../GenesysApplication_if.h \
 	../../../TraitsApp.h \
 	../../../terminal/GenesysShell/GenesysShell_if.h \
-	../../../terminal/GenesysShell/TraitsTerminalApplications.h \
 	../../../terminal/examples/book/Book_Cap02_Example01.h \
 	../../../terminal/examples/smarts/Smart_AssignWriteSeizes.h \
 	../../../terminal/examples/smarts/Smart_BatchSeparate.h \

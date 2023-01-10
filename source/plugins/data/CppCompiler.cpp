@@ -3,10 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/cppFiles/class.cc to edit this template
  */
 
-/* 
+/*
  * File:   DynamicLinkedCode.cpp
  * Author: rlcancian
- * 
+ *
  * Created on 11 de janeiro de 2022, 22:24
  */
 
@@ -23,7 +23,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <cstdio>
-#include <bits/stdc++.h> 
+#include <bits/stdc++.h>
 // dynamic load
 #include <dlfcn.h>
 
@@ -52,7 +52,7 @@ ModelDataDefinition* CppCompiler::NewInstance(Model* model, std::string name) {
 CppCompiler::CppCompiler(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<CppCompiler>(), name) {
 }
 
-// static 
+// static
 
 ModelDataDefinition* CppCompiler::LoadInstance(Model* model, PersistenceRecord *fields) {
 	CppCompiler* newElement = new CppCompiler(model);
@@ -88,7 +88,7 @@ void CppCompiler::setSourceFilename(std::string _code) {
 std::string CppCompiler::getSourceFilename() const {
 	return _sourceFilename;
 }
-// must be overriden 
+// must be overriden
 
 bool CppCompiler::_loadInstance(PersistenceRecord *fields) {
 	bool res = ModelDataDefinition::_loadInstance(fields);
@@ -103,7 +103,7 @@ void CppCompiler::_saveInstance(PersistenceRecord *fields, bool saveDefaultValue
 	// @TODO: not implemented yet
 }
 
-// could be overriden 
+// could be overriden
 
 bool CppCompiler::_check(std::string* errorMessage) {
 	//@ TODO check if compiler command exists
@@ -126,15 +126,15 @@ void CompilerThread::operator()() {
 CppCompiler::CompilationResult CppCompiler::_invokeCompiler2(std::string command) {
 	CppCompiler::CompilationResult result;
 	std::thread t((CompilerThread()));
-    std::cout << "main thread\n";
-    t.join();
+	std::cout << "main thread\n";
+	t.join();
 	return result;
 }
 
 CppCompiler::CompilationResult CppCompiler::_invokeCompiler(std::string command) {
 	_parentModel->getTracer()->trace("Invoking compiler: " + command);
 	return _invokeCompiler2(command);
-	
+
 	CppCompiler::CompilationResult result;
 	result.success = true;
 
@@ -160,8 +160,8 @@ CppCompiler::CompilationResult CppCompiler::_invokeCompiler(std::string command)
 			result.success = false;
 			result.generalMessage = "Error while compiling code"; //@TODO: Get message from compiler output
 		}
-		
-		
+
+
 
 	} else if (typeOfInvoke == 0) { //fork
 		pid_t child_pid, wpid;
@@ -398,7 +398,7 @@ void CppCompiler::_spc_drop_privileges(int permanent) {
 		setegid(newgid);
 		if (permanent && setgid(newgid) == -1) abort();
 #else
-		if (setregid((permanent ? newgid : -1), newgid) = = -1) abort();
+		if (setregid((permanent ? newgid : -1), newgid) == -1) abort();
 #endif
 	}
 
@@ -407,7 +407,7 @@ void CppCompiler::_spc_drop_privileges(int permanent) {
 		seteuid(newuid);
 		if (permanent && setuid(newuid) == -1) abort();
 #else
-		if (setreuid((permanent ? newuid : -1), newuid) = = -1) abort();
+		if (setreuid((permanent ? newuid : -1), newuid) == -1) abort();
 #endif
 	}
 
@@ -559,25 +559,25 @@ int CppCompiler::_spc_pclose(_SPC_PIPE * p) {
  int main(int argc, char **argv) {
 	Simulator* simulator = new Simulator();
 	simulator->getTracer()->setTraceLevel(TraceManager::Level::L9_mostDetailed);
-	std::cout << "Loading lib..." << std::endl; 
+	std::cout << "Loading lib..." << std::endl;
 	void* handle = dlopen("./CppForG_01.so", RTLD_LAZY);
-	
-	std::cout << "Attaching lib function..." << std::endl; 
+
+	std::cout << "Attaching lib function..." << std::endl;
 	void (*dispatchEvent)(Simulator*);
 	dispatchEvent = (void(*)(Simulator*))dlsym(handle, "onDispatchEvent_CppForG_01");
-	
-	std::cout << "Invoking lib function..." << std::endl; 
+
+	std::cout << "Invoking lib function..." << std::endl;
 	dispatchEvent(simulator);
-	std::cout << "Finishing..." << std::endl; 
-	
-	std::cout << "Attaching lib function..." << std::endl; 
+	std::cout << "Finishing..." << std::endl;
+
+	std::cout << "Attaching lib function..." << std::endl;
 	void (*initBetweenReplications)(Simulator*);
 	initBetweenReplications = (void(*)(Simulator*))dlsym(handle, "initBetweenReplications_CppForG_01");
 
-	std::cout << "Invoking lib function..." << std::endl; 
+	std::cout << "Invoking lib function..." << std::endl;
 	initBetweenReplications(simulator);
-	std::cout << "Finishing..." << std::endl; 
+	std::cout << "Finishing..." << std::endl;
 
-	
-	return 0;	
+
+	return 0;
 }*/

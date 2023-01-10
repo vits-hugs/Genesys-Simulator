@@ -243,9 +243,9 @@ void MainWindow::_actualizeDebugVariables(bool force) {
 			QTableWidgetItem* newItem;
 			newItem = new QTableWidgetItem(QString::fromStdString(variable->getName()));
 			ui->tableWidget_Variables->setItem(row, 0, newItem);
-			newItem = new QTableWidgetItem(QString::fromStdString(list2str(variable->getDimensionSizes())));
+			newItem = new QTableWidgetItem(QString::fromStdString(Util::List2str(variable->getDimensionSizes())));
 			ui->tableWidget_Variables->setItem(row, 1, newItem);
-			newItem = new QTableWidgetItem(QString::fromStdString(map2str(variable->getValues())));
+			newItem = new QTableWidgetItem(QString::fromStdString(Util::Map2str(variable->getValues())));
 			ui->tableWidget_Variables->setItem(row, 2, newItem);
 		}
 	}
@@ -450,9 +450,9 @@ bool MainWindow::_setSimulationModelBasedOnText() {
 }
 
 std::string MainWindow::_adjustDotName(std::string name) {
-	std::string text = strReplace(name, "[", "_");
-	text = strReplace(text, "]", "");
-	return strReplace(text, ".", "_");
+	std::string text = Util::StrReplace(name, "[", "_");
+	text = Util::StrReplace(text, "]", "");
+	return Util::StrReplace(text, ".", "_");
 }
 
 void MainWindow::_insertTextInDot(std::string text, unsigned int compLevel, unsigned int compRank, std::map<unsigned int, std::map<unsigned int, std::list<std::string>*>*>* dotmap, bool isNode) {
