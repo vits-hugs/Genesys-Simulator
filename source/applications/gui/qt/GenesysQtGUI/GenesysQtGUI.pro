@@ -4,6 +4,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 QT += printsupport
 
 CONFIG += c++14
+CONFIG += designer
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -44,7 +45,6 @@ SOURCES += \
 	../../../../kernel/simulator/PluginInformation.cpp \
 	../../../../kernel/simulator/PluginManager.cpp \
 	../../../../kernel/simulator/Property.cpp \
-	../../../../kernel/simulator/PropertyManager.cpp \
 	../../../../kernel/simulator/SimulationExperiment.cpp \
 	../../../../kernel/simulator/SimulationReporterDefaultImpl1.cpp \
 	../../../../kernel/simulator/SimulationScenario.cpp \
@@ -164,7 +164,16 @@ SOURCES += \
 	GraphicalModelDataDefinition.cpp \
 	ModelGraphicsScene.cpp \
 	ModelGraphicsView.cpp \
+	ObjectPropertyBrowser.cpp \
 	PropertyEditor.cpp \
+	QPropertyBrowser/qtbuttonpropertybrowser.cpp \
+	QPropertyBrowser/qteditorfactory.cpp \
+	QPropertyBrowser/qtgroupboxpropertybrowser.cpp \
+	QPropertyBrowser/qtpropertybrowser.cpp \
+	QPropertyBrowser/qtpropertybrowserutils.cpp \
+	QPropertyBrowser/qtpropertymanager.cpp \
+	QPropertyBrowser/qttreepropertybrowser.cpp \
+	QPropertyBrowser/qtvariantproperty.cpp \
 	dialogBreakpoint.cpp \
 	main.cpp \
 	mainwindow.cpp \
@@ -210,7 +219,6 @@ HEADERS += \
 	../../../../kernel/simulator/PluginInformation.h \
 	../../../../kernel/simulator/PluginManager.h \
 	../../../../kernel/simulator/Property.h \
-	../../../../kernel/simulator/PropertyManager.h \
 	../../../../kernel/simulator/ScenarioExperiment_if.h \
 	../../../../kernel/simulator/SimulationExperiment.h \
 	../../../../kernel/simulator/SimulationReporterDefaultImpl1.h \
@@ -351,7 +359,65 @@ HEADERS += \
 	LineNumberArea.h \
 	ModelGraphicsScene.h \
 	ModelGraphicsView.h \
+	ObjectPropertyBrowser.h \
 	PropertyEditor.h \
+	QPropertyBrowser/QtAbstractEditorFactoryBase \
+	QPropertyBrowser/QtAbstractPropertyBrowser \
+	QPropertyBrowser/QtAbstractPropertyManager \
+	QPropertyBrowser/QtBoolPropertyManager \
+	QPropertyBrowser/QtBrowserItem \
+	QPropertyBrowser/QtButtonPropertyBrowser \
+	QPropertyBrowser/QtCharEditorFactory \
+	QPropertyBrowser/QtCharPropertyManager \
+	QPropertyBrowser/QtCheckBoxFactory \
+	QPropertyBrowser/QtColorEditorFactory \
+	QPropertyBrowser/QtColorPropertyManager \
+	QPropertyBrowser/QtCursorEditorFactory \
+	QPropertyBrowser/QtCursorPropertyManager \
+	QPropertyBrowser/QtDateEditFactory \
+	QPropertyBrowser/QtDatePropertyManager \
+	QPropertyBrowser/QtDateTimeEditFactory \
+	QPropertyBrowser/QtDateTimePropertyManager \
+	QPropertyBrowser/QtDoublePropertyManager \
+	QPropertyBrowser/QtDoubleSpinBoxFactory \
+	QPropertyBrowser/QtEnumEditorFactory \
+	QPropertyBrowser/QtEnumPropertyManager \
+	QPropertyBrowser/QtFlagPropertyManager \
+	QPropertyBrowser/QtFontEditorFactory \
+	QPropertyBrowser/QtFontPropertyManager \
+	QPropertyBrowser/QtGroupBoxPropertyBrowser \
+	QPropertyBrowser/QtGroupPropertyManager \
+	QPropertyBrowser/QtIntPropertyManager \
+	QPropertyBrowser/QtKeySequenceEditorFactory \
+	QPropertyBrowser/QtKeySequencePropertyManager \
+	QPropertyBrowser/QtLineEditFactory \
+	QPropertyBrowser/QtLocalePropertyManager \
+	QPropertyBrowser/QtPointFPropertyManager \
+	QPropertyBrowser/QtPointPropertyManager \
+	QPropertyBrowser/QtProperty \
+	QPropertyBrowser/QtRectFPropertyManager \
+	QPropertyBrowser/QtRectPropertyManager \
+	QPropertyBrowser/QtScrollBarFactory \
+	QPropertyBrowser/QtSizeFPropertyManager \
+	QPropertyBrowser/QtSizePolicyPropertyManager \
+	QPropertyBrowser/QtSizePropertyManager \
+	QPropertyBrowser/QtSliderFactory \
+	QPropertyBrowser/QtSpinBoxFactory \
+	QPropertyBrowser/QtStringPropertyManager \
+	QPropertyBrowser/QtTimeEditFactory \
+	QPropertyBrowser/QtTimePropertyManager \
+	QPropertyBrowser/QtTreePropertyBrowser \
+	QPropertyBrowser/QtVariantEditorFactory \
+	QPropertyBrowser/QtVariantProperty \
+	QPropertyBrowser/QtVariantPropertyManager \
+	QPropertyBrowser/qtbuttonpropertybrowser.h \
+	QPropertyBrowser/qteditorfactory.h \
+	QPropertyBrowser/qtgroupboxpropertybrowser.h \
+	QPropertyBrowser/qtpropertybrowser.h \
+	QPropertyBrowser/qtpropertybrowserutils_p.h \
+	QPropertyBrowser/qtpropertymanager.h \
+	QPropertyBrowser/qttreepropertybrowser.h \
+	QPropertyBrowser/qtvariantproperty.h \
 	dialogBreakpoint.h \
 	mainwindow.h \
 	qcustomplot.h
@@ -370,7 +436,29 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-DISTFILES +=
+DISTFILES += \
+	QPropertyBrowser/CMakeLists.txt \
+	QPropertyBrowser/images/cursor-arrow.png \
+	QPropertyBrowser/images/cursor-busy.png \
+	QPropertyBrowser/images/cursor-closedhand.png \
+	QPropertyBrowser/images/cursor-cross.png \
+	QPropertyBrowser/images/cursor-forbidden.png \
+	QPropertyBrowser/images/cursor-hand.png \
+	QPropertyBrowser/images/cursor-hsplit.png \
+	QPropertyBrowser/images/cursor-ibeam.png \
+	QPropertyBrowser/images/cursor-openhand.png \
+	QPropertyBrowser/images/cursor-sizeall.png \
+	QPropertyBrowser/images/cursor-sizeb.png \
+	QPropertyBrowser/images/cursor-sizef.png \
+	QPropertyBrowser/images/cursor-sizeh.png \
+	QPropertyBrowser/images/cursor-sizev.png \
+	QPropertyBrowser/images/cursor-uparrow.png \
+	QPropertyBrowser/images/cursor-vsplit.png \
+	QPropertyBrowser/images/cursor-wait.png \
+	QPropertyBrowser/images/cursor-whatsthis.png \
+	QPropertyBrowser/qtpropertybrowser.pri
 
 RESOURCES += \
-	GenesysQtGUI_resources.qrc
+	GenesysQtGUI_resources.qrc \
+	QPropertyBrowser/qtpropertybrowser.qrc \
+	QPropertyBrowser/qtpropertybrowser.qrc

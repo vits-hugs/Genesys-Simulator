@@ -32,23 +32,32 @@
 #include "GraphicalModelDataDefinition.h"
 #include "GraphicalComponentPort.h"
 #include <QPainter>
+#include <QVariant>
 
-GraphicalModelDataDefinition::GraphicalModelDataDefinition(Plugin* plugin, ModelComponent* component, qreal x, qreal y, QColor color, QGraphicsItem *parent) : QGraphicsObject(parent) {
+GraphicalModelDataDefinition::GraphicalModelDataDefinition(Plugin* plugin, ModelComponent* component, QPointF position,  QColor color, QGraphicsItem *parent) : QGraphicsObject(parent) {
 	// parent =
 	_component = component;
 	_color = color;
 	_color.setAlpha(128);
-	setPos(x, y);
+	setPos(position);
 	setFlags(QGraphicsItem::ItemIsMovable | QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsFocusable);
 	setAcceptHoverEvents(true);
 	setAcceptTouchEvents(true);
 	setActive(true);
 	setSelected(false);
 	setToolTip(QString::fromStdString(component->getName()));
+	// TODO set properties
+	for (PropertyBaseG* prop: *_component->getPropertiesG()->list()) {
+		//std::cout << prop->getName() << " = " << prop->getValue() << std::endl;
+		QVariant value;
+		this->setProperty(prop->getName().c_str(), value);
+	}
+
+
+	/*
 	GraphicalComponentPort* port;
 	qreal px, py = 0;
 	qreal step = (double) _height / (double) (plugin->getPluginInfo()->getMinimumInputs() + 1);
-	/*
 	for (unsigned int i=0; i< plugin->getPluginInfo()->getMinimumInputs(); i++) {
 	port= new GraphicalComponentPort(this, true, i, parent);
 	port->setX(0);

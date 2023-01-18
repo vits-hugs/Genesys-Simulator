@@ -344,8 +344,6 @@
           <itemPath>../../source/kernel/simulator/PluginManager.h</itemPath>
           <itemPath>../../source/kernel/simulator/Property.cpp</itemPath>
           <itemPath>../../source/kernel/simulator/Property.h</itemPath>
-          <itemPath>../../source/kernel/simulator/PropertyManager.cpp</itemPath>
-          <itemPath>../../source/kernel/simulator/PropertyManager.h</itemPath>
           <itemPath>../../source/kernel/simulator/ScenarioExperiment_if.h</itemPath>
           <itemPath>../../source/kernel/simulator/SimulationExperiment.cpp</itemPath>
           <itemPath>../../source/kernel/simulator/SimulationExperiment.h</itemPath>
@@ -1987,16 +1985,6 @@
             flavor2="0">
       </item>
       <item path="../../source/kernel/simulator/Property.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/PropertyManager.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/PropertyManager.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -4321,16 +4309,6 @@
             flavor2="0">
       </item>
       <item path="../../source/kernel/simulator/Property.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/PropertyManager.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/PropertyManager.h"
             ex="false"
             tool="3"
             flavor2="0">

@@ -39,8 +39,9 @@
 #include "../../../../kernel/simulator/ModelComponent.h"
 #include "../../../../kernel/simulator/Plugin.h"
 #include "GraphicalComponentPort.h"
+#include "GraphicalModelDataDefinition.h"
 
-class GraphicalModelComponent : public QGraphicsObject { //QGraphicsItem {
+class GraphicalModelComponent : public GraphicalModelDataDefinition {
 public:
 	GraphicalModelComponent(Plugin* plugin, ModelComponent* component, QPointF position, QColor color = Qt::blue, QGraphicsItem *parent = nullptr);
 	GraphicalModelComponent(const GraphicalModelComponent& orig);

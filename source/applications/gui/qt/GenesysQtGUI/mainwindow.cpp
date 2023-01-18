@@ -1,9 +1,17 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "dialogBreakpoint.h"
+// Kernel
 #include "../../../../kernel/simulator/SinkModelComponent.h"
 #include "../../../../kernel/simulator/Attribute.h"
+// GUI
 #include "ModelGraphicsScene.h"
+// PropEditor
+#include "QPropertyBrowser/qteditorfactory.h"
+#include "QPropertyBrowser/qttreepropertybrowser.h"
+#include "QPropertyBrowser/qtpropertymanager.h"
+#include "QPropertyBrowser/qtvariantproperty.h"
+// QT
 #include <string>
 #include <fstream>
 #include <streambuf>
@@ -31,9 +39,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 	_insertFakePlugins();
 	simulator->getTracer()->setTraceLevel(TraceManager::Level::L7_internal);
 	// Docks
+	//ui->dockWidgetPlugins->doc
 	//ui->dockWidgetContentsPlugin->setMinimumHeight(250);
 	//ui->dockWidgetContentsPlugin->setMaximumWidth(230);
-	tabifyDockWidget(ui->dockWidgetConsole, ui->dockWidgetPropertyEditor);
+	//UNCOMMENT//  tabifyDockWidget(ui->dockWidgetConsole, ui->dockWidgetPropertyEditor);
 	// plugins
 	ui->treeWidget_Plugins->sortByColumn(0, Qt::AscendingOrder);
 	// Text Code Editor // @todo No need for programming
@@ -85,7 +94,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 	_actualizeActions();
 	// graphicsView
 	_initModelGraphicsView();
+
 	//// FOR TESTS ONLY
+
+	ui->treeViewPropertyEditor->setAlternatingRowColors(true);
+	//ui->treeViewPropertyEditor->set
+	this->on_actionNew_triggered();
+
+
 	//on_actionNew_triggered();
 	//ui->tabWidget_Model->setCurrentIndex(CONST.TabModelGraphicEditIndex);
 }
@@ -340,8 +356,8 @@ void MainWindow::_actualizeModelComponents(bool force) {
 			treeComp->setText(1, QString::fromStdString(comp->getClassname()));
 			treeComp->setText(2, QString::fromStdString(comp->getName()));
 			std::string properties = "";
-			for (auto prop : *comp->getProperties()) {
-				properties += prop->getName() + ":" + std::to_string(prop->getValue()) + ", ";
+			for (auto prop : *comp->getPropertiesG()->list()) {
+				properties += prop->getName() + ":" + prop->getValueText() + ", ";
 			}
 			properties = properties.substr(0, properties.length() - 2);
 			treeComp->setText(3, QString::fromStdString(properties));
@@ -367,8 +383,8 @@ void MainWindow::_actualizeModelDataDefinitions(bool force) {
 				treeComp->setText(1, QString::fromStdString(comp->getClassname()));
 				treeComp->setText(2, QString::fromStdString(comp->getName()));
 				std::string properties = "";
-				for (auto prop : *comp->getProperties()) {
-					properties += prop->getName() + ":" + std::to_string(prop->getValue()) + ", ";
+				for (auto prop : *comp->getPropertiesG()->list()) {
+					properties += prop->getName() + ":" + prop->getValueText() + ", ";
 				}
 				properties = properties.substr(0, properties.length() - 2);
 				treeComp->setText(3, QString::fromStdString(properties));
@@ -947,7 +963,7 @@ void MainWindow::sceneChanged(const QList<QRectF> &region) {
 }
 
 void MainWindow::sceneFocusItemChanged(QGraphicsItem *newFocusItem, QGraphicsItem *oldFocusItem, Qt::FocusReason reason) {
-	//int a = 0;
+	// int a = 0;
 }
 //void sceneRectChanged(const QRectF &rect){}
 
@@ -956,11 +972,14 @@ void MainWindow::sceneSelectionChanged() {
 		QGraphicsItem * item = ui->graphicsView->selectedItems().at(0);
 		GraphicalModelComponent* gmc = dynamic_cast<GraphicalModelComponent*> (item);
 		if (gmc != nullptr) {
-			ui->treeViewPropertyEditor->setModelBlock(gmc->getComponent());
+			// https://doc.qt.io/archives/qq/qq18-propertybrowser.html
+			// http://qt.nokia.com/products/appdev/add-on-products/catalog/4/Widgets/qtpropertybrowser/
+			// // ui->treeViewPropertyEditor->setModelBlock(gmc->getComponent());
+			ui->treeViewPropertyEditor->setActiveObject(gmc, gmc->getComponent());
 			return;
 		}
 	}
-	ui->treeViewPropertyEditor->clear();
+	// // ui->treeViewPropertyEditor->clear();
 }
 
 //-----------------------------------------

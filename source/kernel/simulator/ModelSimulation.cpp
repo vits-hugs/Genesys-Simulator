@@ -246,13 +246,13 @@ void ModelSimulation::_showSimulationHeader() {
 	// model controls and responses
 	std::string controls;
 	for (PropertyBase* control : * _model->getControls()->list()) {
-		controls += control->getName() + "(" + control->getClassname() + ")=" + std::to_string(control->getValue()) + ", ";
+		controls += control->getName() + "(" + control->getClassName() + ")=" + control->getValueText() + ", ";
 	}
 	controls = controls.substr(0, controls.length() - 2);
 	tm->traceReport("> Simulation controls: " + controls);
 	std::string responses;
 	for (PropertyBase* pg : *_model->getResponses()->list()) {
-		responses += pg->getName() + "(" + pg->getClassname() + "), ";
+		responses += pg->getName() + "(" + pg->getClassName() + "), ";
 	}
 	responses = responses.substr(0, responses.length() - 2);
 	if (TraitsKernel<SimulationReporter_if>::showSimulationResponses) {

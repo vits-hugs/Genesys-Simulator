@@ -9,9 +9,15 @@
 #include "../../../../kernel/simulator/ModelComponent.h"
 #include "../../../../kernel/simulator/Plugin.h"
 
+
+// TODO: THIS SHOULD BE AN ABSTRACT INTERFACE, SO DIFFERENT GRAPHICAL IMPLEMENTATIONS COULD TAKE PLACE
 class GraphicalModelDataDefinition : public QGraphicsObject {
+	Q_OBJECT
+signals:
+	void propertyChanged();
+
 public:
-	GraphicalModelDataDefinition(Plugin* plugin, ModelComponent* component, qreal x, qreal y, QColor color = Qt::blue, QGraphicsItem *parent = nullptr);
+	GraphicalModelDataDefinition(Plugin* plugin, ModelComponent* component, QPointF position, QColor color = Qt::blue, QGraphicsItem *parent = nullptr);
 	GraphicalModelDataDefinition(const GraphicalModelDataDefinition& orig);
 	virtual ~GraphicalModelDataDefinition();
 public:

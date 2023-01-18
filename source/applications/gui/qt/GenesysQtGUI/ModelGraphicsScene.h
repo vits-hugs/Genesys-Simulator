@@ -132,7 +132,9 @@ private:
 	GraphicalComponentPort* _sourceGraphicalComponentPort;
 private:
 	QList<QGraphicsItem*>* _graphicalModelComponents = new QList<QGraphicsItem*>();
+	QList<QGraphicsItem*>* _graphicalModelDataDefinitions = new QList<QGraphicsItem*>();
 	QList<QGraphicsItem*>* _graphicalConnections = new QList<QGraphicsItem*>();
+	QList<QGraphicsItem*>* _graphicalAssociations = new QList<QGraphicsItem*>();
 	QList<QGraphicsItem*>* _graphicalDrawings = new QList<QGraphicsItem*>();
 	QList<QGraphicsItem*>* _graphicalAnimations = new QList<QGraphicsItem*>();
 	QList<QGraphicsItem*>* _graphicalEntities = new QList<QGraphicsItem*>();

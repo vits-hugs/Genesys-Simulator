@@ -18,6 +18,19 @@
 //using namespace GenesysKernel;
 
 SourceModelComponent::SourceModelComponent(Model* model, std::string componentTypename, std::string name) : ModelComponent(model, componentTypename, name) {
+	// ADD_PROPERTY(double, SourceModelComponent, "First Creation", getFirstCreation, setFirstCreation)
+	// ADD_PROPERTY(unsigned int, SourceModelComponent, "Entities Per Creation", getEntitiesPerCreation, setEntitiesPerCreation)
+	// ADD_PROPERTY(std::string, SourceModelComponent, "Max Creations", getMaxCreations, setMaxCreations)
+	// ADD_PROPERTY(std::string, SourceModelComponent, "Time Between Creations", getTimeBetweenCreationsExpression, setTimeBetweenCreationsExpression)
+	// ADD_PROPERTY(Util::TimeUnit, SourceModelComponent, "Time Unit", getTimeUnit, setTimeUnit)
+	// ADD_PROPERTY(EntityType*, SourceModelComponent, "Entity Type", getEntityType, setEntityType)
+
+	//model->getControls()->insert(_properties->getProperty("First Creation"));
+	//model->getControls()->insert(_properties->getProperty("Entities Per Creation"));
+	//model->getControls()->insert(_properties->getProperty("Max Creations"));
+	//model->getControls()->insert(_properties->getProperty("Time Between Creations"));
+	//model->getControls()->insert(_properties->getProperty("Time Unit"));
+	// todo continue
 }
 
 std::string SourceModelComponent::show() {

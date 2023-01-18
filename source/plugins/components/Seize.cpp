@@ -33,6 +33,7 @@ ModelDataDefinition* Seize::NewInstance(Model* model, std::string name) {
 
 Seize::Seize(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Seize>(), name) {
 	// properties
+	/*
 	_addProperty(new PropertyT<unsigned short>(Util::TypeOf<Seize>(), "Priority",
 			DefineGetter<Seize, unsigned short>(this, &Seize::getPriority),
 			DefineSetter<Seize, unsigned short>(this, &Seize::setPriority)));
@@ -44,9 +45,10 @@ Seize::Seize(Model* model, std::string name) : ModelComponent(model, Util::TypeO
 	_addProperty(new PropertyT<List<SeizableItem*>*>(Util::TypeOf<Seize>(), "Seize Requests",
 			DefineGetter<Seize, List<SeizableItem*>*>(this, &Seize::getSeizeRequests),
 			nullptr));
+	*/
 }
 
-// public 
+// public
 
 std::string Seize::show() {
 	std::string txt = ModelComponent::show() +
@@ -246,7 +248,7 @@ void Seize::_createInternalAndAttachedData() {
 	}
 	// Check QueueableItem
 	if (_queueableItem == nullptr) {
-		//* @TODO: Implement. 
+		//* @TODO: Implement.
 	} else {
 		if (_queueableItem->getQueueableType() == QueueableItem::QueueableType::QUEUE) {
 			Queue* queue = _queueableItem->getQueue();
@@ -416,7 +418,7 @@ Resource* Seize::_getResourceFromSeizableItem(SeizableItem* seizable, Entity* en
 				}
 				unsigned int lastPreferedOrder = seizable->getLastPreferedOrder();
 				if (numRecAvaliable == 0) {
-					// to avoid the entity always to be waiting on the queue of the resource index 0 when there is no avaliable resource, 
+					// to avoid the entity always to be waiting on the queue of the resource index 0 when there is no avaliable resource,
 					// it will be waiting on the "preferedOrder"-th index member
 					if (++lastPreferedOrder < seizable->getSet()->getElementSet()->size()) {
 						index = lastPreferedOrder;

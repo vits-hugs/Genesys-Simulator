@@ -43,7 +43,7 @@ Resource::Resource(Model* model, std::string name) : ModelDataDefinition(model, 
 			DefineGetter<Resource, unsigned int>(this, &Resource::getCapacity),
 			DefineSetter<Resource, unsigned int>(this, &Resource::setCapacity));
 	_parentModel->getControls()->insert(prop1);
-	_addProperty(prop1);
+	//_addProperty(prop1);
 }
 
 std::string Resource::show() {
@@ -257,7 +257,7 @@ void Resource::_checkFailByCount() {
 	}
 }
 
-// 
+//
 
 void Resource::_initBetweenReplications() {
 	ModelDataDefinition::_initBetweenReplications();

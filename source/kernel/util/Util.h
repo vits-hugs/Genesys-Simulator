@@ -13,7 +13,7 @@
 
 
 //
-// VINCULADOR 
+// VINCULADOR
 // SAIDA
 // ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/genesysterminalapplication
 //
@@ -120,7 +120,7 @@ public: // template implementations
 	/*!
 	 * Return the name of the class used as T.
 	 */
-	template<class T> static std::string TypeOf() {
+	template<typename T> static std::string TypeOf() {
 		std::string name = typeid (T).name();
 		std::map<std::string, std::string>::iterator it = _S_TypeOf.find(name);
 		if (it != _S_TypeOf.end()) {

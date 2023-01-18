@@ -47,21 +47,6 @@ Schedule* Create::getTimeBetweenCreationsSchedule() const {
 }
 
 Create::Create(Model* model, std::string name) : SourceModelComponent(model, Util::TypeOf<Create>(), name) {
-	PropertyT<unsigned int>* prop1 = new PropertyT<unsigned int>(Util::TypeOf<Create>(), "Entities Per Creation",
-			DefineGetter<Create, unsigned int>(this, &Create::getEntitiesPerCreation),
-			DefineSetter<Create, unsigned int>(this, &Create::setEntitiesPerCreation));
-	model->getControls()->insert(prop1);
-	_addProperty(prop1);
-	PropertyT<std::string>* prop2 = new PropertyT<std::string>(Util::TypeOf<Create>(), "Time Between Creations",
-			DefineGetter<Create, std::string>(this, &Create::getTimeBetweenCreationsExpression),
-			DefineSetter<Create, std::string>(this, &Create::setTimeBetweenCreationsExpression));
-	model->getControls()->insert(prop2);
-	_addProperty(prop2);
-	PropertyT<Util::TimeUnit>* prop3 = new PropertyT<Util::TimeUnit>(Util::TypeOf<Create>(), "Time Unit",
-			DefineGetter<Create, Util::TimeUnit>(this, &Create::getTimeUnit),
-			DefineSetter<Create, Util::TimeUnit>(this, &Create::setTimeUnit));
-	model->getControls()->insert(prop3);
-	_addProperty(prop3);
 }
 
 std::string Create::show() {
@@ -73,7 +58,7 @@ void Create::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 	double tnow = _parentModel->getSimulation()->getSimulatedTime();
 	entity->setAttributeValue("Entity.ArrivalTime", tnow);
 	entity->setAttributeValue("Entity.Type", (double) entity->getEntityType()->getId());
-	//entity->setAttributeValue("Entity.Picture", 1); 
+	//entity->setAttributeValue("Entity.Picture", 1);
 	double timeBetweenCreations, timeScale, newArrivalTime;
 	unsigned int _maxCreations = _parentModel->parseExpression(this->_maxCreationsExpression);
 	if (tnow != _lastArrival) {

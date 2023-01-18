@@ -114,6 +114,7 @@ void ModelGraphicsView::notifySceneMouseEventHandler(QGraphicsSceneMouseEvent* m
 
 void ModelGraphicsView::notifySceneGraphicalModelEventHandler(GraphicalModelEvent* modelGraphicsEvent) {
 	this->_sceneGraphicalModelEventHandler(modelGraphicsEvent);
+	// todo actualize property editor?
 }
 
 

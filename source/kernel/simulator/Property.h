@@ -1,382 +1,465 @@
-#ifndef PROPERTY_H
-#define PROPERTY_H
+#ifndef PROPERTY_GENESYS_H
+#define PROPERTY_GENESYS_H
 
-#include "../util/Util.h"
-//#include "../util/List.h"
+#include "../util/List.h"
+
 #include <string>
 #include <functional>
+#include <unordered_map>
+#include <typeinfo>
+#include <iostream>
+#include <cstdlib>
+#include <new>
+#include <cassert>
 
-class SeizableItem;
-class QueueableItem;
+// https://doc.qt.io/qt-6/properties.html
 
-//---------------------------------------------------------------------------
+// -------------------------
 
-class PropertyBase {
-public:
-
-	PropertyBase(std::string classname, std::string name, std::string parentName = "") {
-		_classename = classname;
-		_name = name;
-		_parentname = parentName;
-	}
-	virtual ~PropertyBase() = default;
-public:
-
-	std::string show() const {
-		return "classname=" + _classename + ", name=" + _name + ", parentname=" + _parentname;
-	};
-
-	std::string getClassname() const {
-		return _classename;
-	};
-
-	std::string getParentName() const {
-		return _parentname;
-	};
-
-	std::string getName() const {
-		return _name;
-	};
-
-	std::string getType() const {
-		return _type;
-	};
-
-	void setName(const std::string&name) {
-		_name = name;
-	}
-public: // hate it
-
-	double getValue() const {
-		return -1;
-	};
-
-	void setValue(double value) {
-	};
-	//virtual std::string getStringValue() const=0;
-protected:
-	std::string _name;
-	std::string _parentname;
-	std::string _classename;
-	std::string _type = "none";
-};
-
-template<typename T>
+template<class T>
 struct Getter {
 	typedef std::function<T() > Member;
 };
 
-template<typename Class, typename T>
+template<class Class, class T>
 typename Getter<T>::Member DefineGetter(Class * object, T(Class::*function)() const) {
 	return std::bind(function, object);
 }
 
-template<typename Class, typename T>
+template<class Class, class T>
 typename Getter<T>::Member DefineGetter(Class * object, T(Class::*function)()) {
 	return std::bind(function, object);
 }
 
-template<typename T>
+template<class T>
 struct Setter {
 	typedef std::function<void(T) > Member;
 };
 
-template<typename Class, typename T>
+template<class Class, class T>
 typename Setter<T>::Member DefineSetter(Class * object, void (Class::*function)(T)) {
 	return std::bind(function, object, std::placeholders::_1);
 }
 
-template<typename T>
-class PropertyT : public PropertyBase {
-public:
+// -----------------
 
-	PropertyT(std::string classname, std::string name, typename Getter<T>::Member getter, typename Setter<T>::Member setter, std::string parentName = "") : PropertyBase(classname, name, parentName) {
+template<class T>
+class ReadOnlyPropertyG {
+public:
+	ReadOnlyPropertyG(typename Getter<T>::Member getter) {
 		_getter = getter;
-		_setter = setter;
 	};
 public:
 
 	T getValue() {
 		return _getter();
 	};
-	void setValue(T value);
-	//virtual std::string getStringValue() const override;
+	virtual std::string getValueText() const;
 protected:
 	typename Getter<T>::Member _getter;
-	typename Setter<T>::Member _setter;
 	const std::string _type = Util::TypeOf<T>();
 };
-
-//template<typename T> std::string PropertyT<T>::getStringValue() const {return std::to_string(_getter());}
+template<class T> std::string ReadOnlyPropertyG<T>::getValueText() const {return std::to_string(_getter());}
+template<> std::string ReadOnlyPropertyG<std::string>::getValueText() const {return _getter();}
+//template<class T> std::string PropertyT<T>::getStringValue() const {return std::to_string(_getter());}
 //template<> std::string PropertyT<std::string>::getStringValue() const {return _getter();}
-//template<> std::string PropertyT<Util::TimeUnit>::getStringValue() const {return Util::StrTimeUnitLong(_getter());}
 //template<> std::string PropertyT<List<SeizableItem*>>::getStringValue() const {return "[]size:"+std::to_string(_getter().size());}
 //template<> std::string PropertyT<List<QueueableItem*>>::getStringValue() const {return "[]size:"+std::to_string(_getter().size());}
 
-/*
-template<>
-class PropertyT<std::string>: public PropertyBase {
+
+template<class T>
+class PropertyG : public ReadOnlyPropertyG<T> {
 public:
-	PropertyT(std::string classname, std::string name, typename Getter<std::string>::Member getter, typename Setter<std::string>::Member setter, std::string parentName=""):PropertyBase(classname,name, parentName) {
-		_getter = getter;
+
+	PropertyG(typename Getter<T>::Member getter, typename Setter<T>::Member setter) : ReadOnlyPropertyG<T>(getter) {
 		_setter = setter;
 	};
 public:
-	std::string getValue() {return _getter();};
-	void setValue(std::string value){_setter(value);};
-	virtual std::string getStringValue() const {return _getter();};
+	void setValue(T value);
 protected:
-	typename Getter<std::string>::Member _getter;
-	typename Setter<std::string>::Member _setter;
-	const std::string _type = Util::TypeOf<std::string>();
+	typename Setter<T>::Member _setter;
 };
-template<>
-class PropertyT<Util::TimeUnit>: public PropertyBase {
+
+template<class T> void PropertyG<T>::setValue(T value) {_setter(value);}
+
+
+// -------------------------
+
+class PropertyBaseG {
 public:
-	PropertyT(std::string classname, std::string name, typename Getter<Util::TimeUnit>::Member getter, typename Setter<Util::TimeUnit>::Member setter, std::string parentName=""):PropertyBase(classname,name, parentName) {
-		_getter = getter;
+	typedef std::pair<std::string, void*> PropertyAttribute;
+public:
+	PropertyBaseG(std::string propertyName, std::string propertyTypeName, int propertyType, bool writable, bool hasValue, void* propertyG, std::string className, std::string parentName, std::string displayText, std::string statusTip, std::string toolTip, std::string whatIsThis) {
+		_propertyName=propertyName;
+		_propertyTypeName=propertyTypeName;
+		_propertyType=propertyType;
+		_writable=writable;
+		_hasValue=hasValue;
+		_propertyG=propertyG;
+		_className=className;
+		_parentName=parentName;
+		_displayText=displayText;
+		_statusTip=statusTip;
+		_toolTip=toolTip;
+		_whatIsThis=whatIsThis;
+	}
+	PropertyBaseG(std::string className, std::string propertyName, std::string propertyType, std::string parentName = "") {
+		_className = className;
+		_propertyName = propertyName;
+		_propertyTypeName = propertyType;
+		_parentName = parentName;
+	}
+	PropertyBaseG(std::string propertyType, std::string propertyName){
+		_propertyTypeName = propertyType;
+		_propertyName = propertyName;
+	}
+	PropertyBaseG(int propertyType, std::string propertyName){
+		_propertyType = propertyType;
+		_propertyName = propertyName;
+	}
+public: //virtual
+	virtual std::string show(){
+		std::string message = " type="+_propertyTypeName+" ("+std::to_string(_propertyType)+"), name="+_propertyName+", class="+_className+", writable="+std::to_string(_writable);
+		return message;
+	}
+public: // gets & sets
+	void* getAttributeValue(const std::string attribute) const {
+		for (PropertyAttribute attrib: *_attributes->list()) {
+			if (attrib.first == attribute) {
+				return attrib.second;
+			}
+		}
+		return nullptr;
+	}
+	int getPropertyType() const{ return _propertyType; }
+	void setAttribute(std::string attribute, void* value){
+		for (PropertyAttribute attrib: *_attributes->list()) {
+			if (attrib.first == attribute) {
+				attrib.second = value;
+			}
+		}
+		_attributes->insert({attribute, value});
+	}
+	void setValue(void* value){
+		// todo
+	}
+	void* getValue() const{
+		// todo
+	}
+	void addSubProperty(PropertyBaseG* property){ _subProperties->insert(property); }
+	std::string getDisplayText() const{ return _displayText; }
+	void setDisplayText(std::string displayText) { _displayText = displayText; }
+	bool getHasValue() const{ return _hasValue; }
+	void setHasValue(bool hasValue) { _hasValue = hasValue; }
+	std::string getPropertyName() const{ return _propertyName; }
+	void setPropertyName(std::string propertyName){ _propertyName = propertyName; }
+	std::string getName() const{ return _propertyName; } // same as propertyName
+	void setName(std::string propertyName){ _propertyName = propertyName; }
+	std::string getClassName() const{ return _className; }
+	void setClassName(std::string className){ _className = className; }
+	std::string getParentName() const{ return _parentName; }
+	void setParentName(std::string parentName){ _parentName = parentName; }
+	std::string getStatusTip() const{ return _statusTip; }
+	void setStatusTip(std::string statusTip){ _statusTip = statusTip; }
+	std::string getToolTip() const{ return _toolTip; }
+	void setToolTip(std::string toolTip){ _toolTip = toolTip; }
+	std::string getWhatIsThis() const{ return _whatIsThis; }
+	void setWhatIsThis(std::string whatIsThis){ _whatIsThis = whatIsThis; }
+	std::string getValueText() const{
+		// todo (virtual?)
+	}
+	bool getWritable() const{ return _writable; }
+	void setWritable(bool writable) { _writable = writable; }
+	//template<class T>
+	//void setGetterMethod(typename Getter<T>::Member getter){ _getter = getter; }
+	//template<class T>
+	//typename Getter<T>::Member getGetterMethod() const{ return _getter; }
+	//template<class T>
+	//void setSetterMethod(typename Setter<T>::Member setter){ _setter = setter; }
+	//template<class T>
+	//typename Setter<T>::Member getSetterMethod() const{ return _setter; }
+	template<class T>
+	void setValue(T value){
+		// todo
+	}
+	template<class T>
+	T getValue() const{
+		// todo
+	}
+protected:
+	std::string _propertyName;
+	std::string _propertyTypeName;
+	int _propertyType;
+	bool _writable;
+	bool _hasValue;
+	//void* _getter;
+	//void* _setter;
+	void* _propertyG = nullptr;
+	std::string _className;
+	std::string _parentName;
+	std::string _displayText;
+	std::string _statusTip;
+	std::string _toolTip;
+	std::string _whatIsThis;
+	//template<class T>
+	//typename Getter<T>::Member getter<T>;
+	//template<class T>
+	//typename Setter<T>::Member _setter<T>;
+	List<PropertyBaseG*>* _subProperties = new List<PropertyBaseG*>();
+	List<PropertyAttribute>* _attributes = new List<PropertyAttribute>();
+};
+
+
+// -------------------------
+
+
+
+#define ADD_PROPERTY_G(propertyName, propertyType, propertyTypeInt, hasValue, className, getter, setter, parentName, displayText, statusTip, toolTip, whatIsThis)\
+	_addPropertyG( \
+		new PropertyBaseG(propertyName, "propertyType", propertyTypeInt, true, hasValue, \
+				new PropertyG<propertyType>( \
+					DefineGetter<className, propertyType>(this, &className::getter), \
+					DefineSetter<className, propertyType>(this, &className::setter) \
+				), \
+				"className", parentName, displayText, statusTip, toolTip, whatIsThis \
+		) \
+	);
+
+#define ADD_READYONLY_PROPERTY_G(propertyName, propertyType, propertyTypeInt, hasValue, className, getter, setter, parentName, displayText, statusTip, toolTip, whatIsThis)\
+	_addPropertyG( \
+		new PropertyBaseG(propertyName, "propertyType", propertyTypeInt, false, hasValue, \
+				new ReadOnlyPropertyG<propertyType>( \
+					DefineGetter<className, propertyType>(this, &className::getter) \
+				), \
+				"className", parentName, displayText, statusTip, toolTip, whatIsThis \
+		) \
+	);
+
+
+// -------------------------
+
+
+
+class PropertyListG {
+public:
+	PropertyListG () {}
+	void insert(PropertyBaseG* property) {
+		_properties->insert(property);
+	}
+	PropertyBaseG* getProperty(std::string propertyName) {
+		for (PropertyBaseG* prop: *_properties->list()) {
+			if (prop->getPropertyName() == propertyName) {
+				return prop;
+			}
+		}
+		return nullptr;
+	}
+	std::list<PropertyBaseG*>* list() {
+		_properties->list();
+	}
+private:
+	List<PropertyBaseG*>* _properties = new List<PropertyBaseG*>();
+};
+
+
+
+// -------------------------
+
+// -------------------------
+
+// -------------------------
+
+// -------------------------
+
+// -------------------------
+
+// -------------------------
+
+
+
+// -------------------------
+
+class PropertyBase {
+public:
+	typedef std::pair<std::string, void*> PropertyAttribute;
+public:
+	PropertyBase(std::string propertyName, std::string propertyTypeName, int propertyType, bool writable, bool hasValue,
+				 std::string className,	std::string parentName,
+				 std::string displayText, std::string statusTip, std::string toolTip, std::string whatIsThis) {
+		_propertyName=propertyName;
+		_propertyTypeName=propertyTypeName;
+		_propertyType=propertyType;
+		_writable=writable;
+		_hasValue=hasValue;
+		_className=className;
+		_parentName=parentName;
+		_displayText=displayText;
+		_statusTip=statusTip;
+		_toolTip=toolTip;
+		_whatIsThis=whatIsThis;
+	}
+	PropertyBase(std::string className, std::string propertyName, std::string propertyType, std::string parentName = "") {
+		_className = className;
+		_propertyName = propertyName;
+		_propertyTypeName = propertyType;
+		_parentName = parentName;
+	}
+	PropertyBase(std::string propertyType, std::string propertyName){
+		_propertyTypeName = propertyType;
+		_propertyName = propertyName;
+	}
+	PropertyBase(int propertyType, std::string propertyName){
+		_propertyType = propertyType;
+		_propertyName = propertyName;
+	}
+public: //virtual
+	virtual std::string show(){
+		std::string message = " type="+_propertyTypeName+" ("+std::to_string(_propertyType)+"), name="+_propertyName+", class="+_className+", writable="+std::to_string(_writable);
+		return message;
+	}
+public: // gets & sets
+	void* getAttributeValue(const std::string attribute) const {
+		for (PropertyAttribute attrib: *_attributes->list()) {
+			if (attrib.first == attribute) {
+				return attrib.second;
+			}
+		}
+		return nullptr;
+	}
+	int getPropertyType() const{ return _propertyType; }
+	void setAttribute(std::string attribute, void* value){
+		for (PropertyAttribute attrib: *_attributes->list()) {
+			if (attrib.first == attribute) {
+				attrib.second = value;
+			}
+		}
+		_attributes->insert({attribute, value});
+	}
+	void setValue(void* value){
+		// todo
+	}
+	void* getValue() const{
+		// todo
+	}
+	void addSubProperty(PropertyBase* property){ _subProperties->insert(property); }
+	std::string getDisplayText() const{ return _displayText; }
+	void setDisplayText(std::string displayText) { _displayText = displayText; }
+	bool getHasValue() const{ return _hasValue; }
+	void setHasValue(bool hasValue) { _hasValue = hasValue; }
+	std::string getPropertyName() const{ return _propertyName; }
+	void setPropertyName(std::string propertyName){ _propertyName = propertyName; }
+	std::string getName() const{ return _propertyName; } // same as propertyName
+	void setName(std::string propertyName){ _propertyName = propertyName; }
+	std::string getClassName() const{ return _className; }
+	void setClassName(std::string className){ _className = className; }
+	std::string getParentName() const{ return _parentName; }
+	void setParentName(std::string parentName){ _parentName = parentName; }
+	std::string getStatusTip() const{ return _statusTip; }
+	void setStatusTip(std::string statusTip){ _statusTip = statusTip; }
+	std::string getToolTip() const{ return _toolTip; }
+	void setToolTip(std::string toolTip){ _toolTip = toolTip; }
+	std::string getWhatIsThis() const{ return _whatIsThis; }
+	void setWhatIsThis(std::string whatIsThis){ _whatIsThis = whatIsThis; }
+	std::string getValueText() const{
+		// todo (virtual?)
+	}
+	bool getWritable() const{ return _writable; }
+	void setWritable(bool writable) { _writable = writable; }
+	template<class T>
+	void setGetterMethod(typename Getter<T>::Member getter){ _getter = getter; }
+	template<class T>
+	typename Getter<T>::Member getGetterMethod() const{ return _getter; }
+	template<class T>
+	void setSetterMethod(typename Setter<T>::Member setter){ _setter = setter; }
+	template<class T>
+	typename Setter<T>::Member getSetterMethod() const{ return _setter; }
+	template<class T>
+	void setValue(T value){
+		// todo
+	}
+	template<class T>
+	T getValue() const{
+		// todo
+	}
+protected:
+	std::string _propertyName;
+	std::string _propertyTypeName;
+	int _propertyType;
+	bool _writable;
+	bool _hasValue;
+	void* _getter;
+	void* _setter;
+	std::string _className;
+	std::string _parentName;
+	std::string _displayText;
+	std::string _statusTip;
+	std::string _toolTip;
+	std::string _whatIsThis;
+	//template<class T>
+	//typename Getter<T>::Member getter<T>;
+	//template<class T>
+	//typename Setter<T>::Member _setter<T>;
+	List<PropertyBase*>* _subProperties = new List<PropertyBase*>();
+	List<PropertyAttribute>* _attributes = new List<PropertyAttribute>();
+};
+
+class PropertyList {
+public:
+	PropertyList () {}
+	void insert(PropertyBase* property) {
+		_properties->insert(property);
+	}
+	PropertyBase* getProperty(std::string propertyName) {
+		for (PropertyBase* prop: *_properties->list()) {
+			if (prop->getPropertyName() == propertyName) {
+				return prop;
+			}
+		}
+		return nullptr;
+	}
+	std::list<PropertyBase*>* list() {
+		_properties->list();
+	}
+private:
+	List<PropertyBase*>* _properties = new List<PropertyBase*>();
+};
+
+
+
+
+template<class T>
+class ReadOnlyPropertyT : public PropertyBase {
+		public:
+			ReadOnlyPropertyT(std::string classname, std::string name, typename Getter<T>::Member getter, std::string parentName = "") : PropertyBase(classname, name, parentName) {
+				_getter = getter;
+			};
+		public:
+
+			T getValue() {
+				return _getter();
+			};
+			//virtual std::string getStringValue() const override;
+		protected:
+			typename Getter<T>::Member _getter;
+			const std::string _type = Util::TypeOf<T>();
+		};
+
+// -------------------------
+
+template<class T>
+class PropertyT : public ReadOnlyPropertyT<T> {
+public:
+
+	PropertyT(std::string classname, std::string name, typename Getter<T>::Member getter, typename Setter<T>::Member setter, std::string parentName = "") : ReadOnlyPropertyT<T>(classname, name, getter, parentName) {
 		_setter = setter;
 	};
 public:
-	Util::TimeUnit getValue() {return _getter();};
-	void setValue(Util::TimeUnit value){_setter(value);};
-	virtual std::string getStringValue() const {return Util::StrTimeUnitLong(_getter()); };
+	void setValue(T value);
+	//virtual std::string getStringValue() const override;
 protected:
-	typename Getter<Util::TimeUnit>::Member _getter;
-	typename Setter<Util::TimeUnit>::Member _setter;
-	const std::string _type = Util::TypeOf<Util::TimeUnit>();
-};
- */
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-
-class PropertyGetterBase {
-public:
-	PropertyGetterBase(std::string classname, std::string name, std::string parentName="");
-public:
-	std::string show() const;
-	std::string getClassname() const;
-	std::string getParentName() const;
-	std::string getName() const;
-	void setName(const std::string &name);
-	std::string getType() const;
-public:
-	double getValue();
-protected:
-	std::string _name;
-	std::string _parentname;
-	std::string _classename;
-	const std::string _type = "void";
-};
-
-class PropertySetterBase: public PropertyGetterBase {
-public:
-	PropertySetterBase(std::string classname, std::string name, std::string parentName="");
-public:
-	void setValue(double value);
-};
-
-
-//
-// unsigned int
-//
-typedef std::function<unsigned int()> GetterUInt;
-template<typename Class>
-GetterUInt DefineGetterUInt(Class * object, unsigned int (Class::*function)() const) {
-	return std::bind(function, object);
-}
-class PropertyGetterUInt: public PropertyGetterBase {
-public:
-	PropertyGetterUInt(std::string classname, std::string name, GetterUInt getter, std::string parentName="");
-public:
-	unsigned int getValue();
-
-protected:
-	GetterUInt _getter;
-	const std::string _type = "unsigned int";
-};
-
-typedef std::function<void(unsigned int) > SetterUInt;
-template<typename Class>
-SetterUInt DefineSetterUInt(Class * object, void (Class::*function)(unsigned int)) {
-	return std::bind(function, object, std::placeholders::_1);
-}
-class PropertySetterUInt: public PropertyGetterUInt {
-public:
-	PropertySetterUInt(std::string classname, std::string name, GetterUInt getter, SetterUInt setter, std::string parentName="");
-public:
-	void setValue(unsigned int value);
-protected:
-	SetterUInt _setter;
-};
-
-//
-// double
-//
-typedef std::function<double()> GetterDouble;
-template<typename Class>
-GetterDouble DefineGetterDouble(Class * object, double (Class::*function)() const) {
-	return std::bind(function, object);
-}
-class PropertyGetterDouble: public PropertyGetterBase {
-public:
-	PropertyGetterDouble(std::string classname, std::string name, GetterDouble getter, std::string parentName="");
-public:
-	double getValue();
-protected:
-	GetterDouble _getter;
-	const std::string _type = "double";
-};
-
-typedef std::function<void(double) > SetterDouble;
-template<typename Class>
-SetterDouble DefineSetterDouble(Class * object, void (Class::*function)(double)) {
-	return std::bind(function, object, std::placeholders::_1);
-}
-class PropertySetterDouble: public PropertyGetterDouble {
-public:
-	PropertySetterDouble(std::string classname, std::string name, GetterDouble getter, SetterDouble setter, std::string parentName="");
-public:
-	void setValue(double value);
-protected:
-	SetterDouble _setter;
-};
-
-
-//
-// string
-//
-typedef std::function<std::string()> GetterString;
-template<typename Class>
-GetterString DefineGetterString(Class * object, std::string (Class::*function)() const) {
-	return std::bind(function, object);
-}
-class PropertyGetterString: public PropertyGetterBase {
-public:
-	PropertyGetterString(std::string classname, std::string name, GetterString getter, std::string parentName="");
-public:
-	std::string getValue();
-protected:
-	GetterString _getter;
-	const std::string _type = "string";
-};
-
-typedef std::function<void(std::string) > SetterString;
-template<typename Class>
-SetterString DefineSetterString(Class * object, void (Class::*function)(std::string)) {
-	return std::bind(function, object, std::placeholders::_1);
-}
-class PropertySetterString: public PropertyGetterString {
-public:
-	PropertySetterString(std::string classname, std::string name, GetterString getter, SetterString setter, std::string parentName="");
-public:
-	void setValue(std::string value);
-protected:
-	SetterString _setter;
+	typename Setter<T>::Member _setter;
 };
 
 
 
-//
-// time unit
-//
-typedef std::function<Util::TimeUnit()> GetterTimeUnit;
-template<typename Class>
-GetterTimeUnit DefineGetterTimeUnit(Class * object, Util::TimeUnit (Class::*function)() const) {
-	return std::bind(function, object);
-}
-class PropertyGetterTimeUnit: public PropertyGetterBase {
-public:
-	PropertyGetterTimeUnit(std::string classname, std::string name, GetterTimeUnit getter, std::string parentName="");
-public:
-	Util::TimeUnit getValue();
-protected:
-	GetterTimeUnit _getter;
-	const std::string _type = "TimeUnit";
-};
-
-typedef std::function<void(Util::TimeUnit) > SetterTimeUnit;
-template<typename Class>
-SetterTimeUnit DefineSetterTimeUnit(Class * object, void (Class::*function)(Util::TimeUnit)) {
-	return std::bind(function, object, std::placeholders::_1);
-}
-class PropertySetterTimeUnit: public PropertyGetterTimeUnit {
-public:
-	PropertySetterTimeUnit(std::string classname, std::string name, GetterTimeUnit getter, SetterTimeUnit setter, std::string parentName="");
-public:
-	void setValue(Util::TimeUnit value);
-protected:
-	SetterTimeUnit _setter;
-};
-
-
-
-
-//
-// bool
-//
-typedef std::function<bool()> GetterBool;
-template<typename Class>
-GetterBool DefineGetterBool(Class * object, bool (Class::*function)() const) {
-	return std::bind(function, object);
-}
-class PropertyGetterBool: public PropertyGetterBase {
-public:
-	PropertyGetterBool(std::string classname, std::string name, GetterBool getter, std::string parentName="");
-public:
-	bool getValue();
-protected:
-	GetterBool _getter;
-	const std::string _type = "bool";
-};
-
-typedef std::function<void(bool) > SetterBool;
-template<typename Class>
-SetterBool DefineSetterBool(Class * object, void (Class::*function)(bool)) {
-	return std::bind(function, object, std::placeholders::_1);
-}
-class PropertySetterBool: public PropertyGetterBool {
-public:
-	PropertySetterBool(std::string classname, std::string name, GetterBool getter, SetterBool setter, std::string parentName="");
-public:
-	void setValue(bool value);
-protected:
-	SetterBool _setter;
-};
-
-
- */
-
-#endif // PROPERTY_H
+#endif

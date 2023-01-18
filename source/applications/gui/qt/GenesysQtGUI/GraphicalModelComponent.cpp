@@ -33,7 +33,7 @@
 #include "GraphicalComponentPort.h"
 #include <QPainter>
 
-GraphicalModelComponent::GraphicalModelComponent(Plugin* plugin, ModelComponent* component, QPointF position, QColor color, QGraphicsItem *parent) : QGraphicsObject(parent) {
+GraphicalModelComponent::GraphicalModelComponent(Plugin* plugin, ModelComponent* component, QPointF position, QColor color, QGraphicsItem *parent) :  GraphicalModelDataDefinition(plugin, component, position, color) { //  QGraphicsObject(parent) {
 	_component = component;
 	_color = color;
 	_color.setAlpha(128);
@@ -96,7 +96,7 @@ GraphicalModelComponent::GraphicalModelComponent(Plugin* plugin, ModelComponent*
 	}
 }
 
-GraphicalModelComponent::GraphicalModelComponent(const GraphicalModelComponent& orig) {
+GraphicalModelComponent::GraphicalModelComponent(const GraphicalModelComponent& orig): GraphicalModelDataDefinition(orig) {
 }
 
 GraphicalModelComponent::~GraphicalModelComponent() {

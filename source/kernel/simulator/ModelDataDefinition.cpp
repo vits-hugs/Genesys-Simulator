@@ -36,20 +36,10 @@ ModelDataDefinition::ModelDataDefinition(Model* model, std::string thistypename,
 	if (insertIntoModel) {
 		model->insert(this);
 	}
-	/*
-	_addProperty(new PropertySetterString(Util::TypeOf<ModelDataDefinition>(), "name",
-		DefineGetterString<ModelDataDefinition>(this, &ModelDataDefinition::getName),
-		DefineSetterString<ModelDataDefinition>(this, &ModelDataDefinition::setName)));
-	_addProperty(new PropertySetterBool(Util::TypeOf<ModelDataDefinition>(), "report statistics",
-		DefineGetterBool<ModelDataDefinition>(this, &ModelDataDefinition::isReportStatistics),
-		DefineSetterBool<ModelDataDefinition>(this, &ModelDataDefinition::setReportStatistics)));
-	 */
-	_addProperty(new PropertyT<std::string>(Util::TypeOf<ModelDataDefinition>(), "Name",
-			DefineGetter<ModelDataDefinition, std::string>(this, &ModelDataDefinition::getName),
-			DefineSetter<ModelDataDefinition, std::string>(this, &ModelDataDefinition::setName)));
-	_addProperty(new PropertyT<bool>(Util::TypeOf<ModelDataDefinition>(), "Report Statistics",
-			DefineGetter<ModelDataDefinition, bool>(this, &ModelDataDefinition::isReportStatistics),
-			DefineSetter<ModelDataDefinition, bool>(this, &ModelDataDefinition::setReportStatistics)));
+
+	// ADD_PROPERTY(std::string, ModelDataDefinition, "Name", getName, setName)
+	// ADD_PROPERTY(bool, ModelDataDefinition, "Report Statistics", isReportStatistics, setReportStatistics)
+	//ADD_READONLY_PROPERTY(Util::identification, ModelDataDefinition, "ID", getId)
 }
 
 bool ModelDataDefinition::hasChanged() const {
@@ -177,7 +167,7 @@ bool ModelDataDefinition::_loadInstance(PersistenceRecord *fields) {
 	int id = fields->loadField("id", -1);
 	if (id > 0) this->_id = id;
 	else        return false;
-	
+
 	setName(fields->loadField("name", ""));
 	this->_reportStatistics = fields->loadField("reportStatistics", TraitsKernel<ModelDataDefinition>::reportStatistics);
 
@@ -363,12 +353,20 @@ void ModelDataDefinition::_createInternalAndAttachedData() {
 
 }
 
-void ModelDataDefinition::_addProperty(PropertyBase* property) {
-	_properties->insert(_properties->end(), property);
+//void ModelDataDefinition::_addProperty(PropertyBase* property) {
+//	_properties->insert(property);
+//}
+
+void ModelDataDefinition::_addPropertyG(PropertyBaseG* property) {
+	_propertiesG->insert(property);
 }
 
-std::list<PropertyBase *> *ModelDataDefinition::getProperties() const {
-	return _properties;
+//PropertyList *ModelDataDefinition::getProperties() const {
+//	return _properties;
+//}
+
+PropertyListG *ModelDataDefinition::getPropertiesG() const {
+	return _propertiesG;
 }
 
 void ModelDataDefinition::setReportStatistics(bool reportStatistics) {

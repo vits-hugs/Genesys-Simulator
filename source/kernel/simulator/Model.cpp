@@ -52,6 +52,12 @@ Model::Model(Simulator* simulator, unsigned int level) {
 	_futureEvents->setSortFunc([](const Event* a, const Event * b) {
 		return a->getTime() < b->getTime(); /// Events are sorted chronologically
 	});
+
+	_controls = new List<PropertyBase*>();
+	_responses = new List<PropertyBase*>(); // ready-only properties
+	// TODO: Add properties
+
+
 	// for process analyser
 	//_responses = new List<SimulationResponse*>();
 	//_controls = new List<SimulationControl*>();
@@ -66,6 +72,7 @@ Model::Model(Simulator* simulator, unsigned int level) {
 	//        DefineGetterMember<ModelSimulation>(this->_simulation, &ModelSimulation::getWarmUpPeriod),
 	//        DefineSetterMember<ModelSimulation>(this->_simulation, &ModelSimulation::setWarmUpPeriod)) );
 	// for NEW process analyser
+	/*
 	_responsesNew = new List<PropertyBase*>();
 	_controlsNew = new List<PropertyBase*>();
 	// insert NEW controls
@@ -78,6 +85,8 @@ Model::Model(Simulator* simulator, unsigned int level) {
 	_controlsNew->insert(new PropertyT<double>("ModelSimulation", "WarmupPeriod",
 			DefineGetter<ModelSimulation, double>(this->_simulation, &ModelSimulation::getWarmUpPeriod),
 			DefineSetter<ModelSimulation, double>(this->_simulation, &ModelSimulation::setWarmUpPeriod)));
+
+	*/
 }
 
 void Model::sendEntityToComponent(Entity* entity, Connection* connection, double timeDelay) {
@@ -221,7 +230,7 @@ void Model::_showComponents() const {
 void Model::_showSimulationControls() const {
 	getTracer()->trace(TraceManager::Level::L2_results, "Simulation Controls:");
 	Util::IncIndent();
-	for (PropertyBase* control : *_controlsNew->list()) {
+	for (PropertyBase* control : *_controls->list()) {
 		getTracer()->trace(TraceManager::Level::L2_results, control->show()); ////
 	}
 	Util::DecIndent();
@@ -230,7 +239,7 @@ void Model::_showSimulationControls() const {
 void Model::_showSimulationResponses() const {
 	getTracer()->trace(TraceManager::Level::L2_results, "Simulation Responses:");
 	Util::IncIndent();
-	for (PropertyBase* response : *_responsesNew->list()) {
+	for (PropertyBase* response : *_responses->list()) {
 		getTracer()->trace(TraceManager::Level::L2_results, response->show()); ////
 	}
 	Util::DecIndent();
@@ -290,12 +299,12 @@ void Model::_createModelInternalElements() {
 	Util::DecIndent();
 }
 
-List<PropertyBase *> *Model::getControls() const {
-	return _controlsNew;
+List<PropertyBase*>* Model::getControls() const {
+	return _controls;
 }
 
-List<PropertyBase *> *Model::getResponses() const {
-	return _responsesNew;
+List<PropertyBase*>* Model::getResponses() const {
+	return _responses;
 }
 
 bool Model::check() {

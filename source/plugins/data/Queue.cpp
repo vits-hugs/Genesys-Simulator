@@ -30,7 +30,7 @@ Queue::Queue(Model* model, std::string name) : ModelDataDefinition(model, Util::
 	PropertyT<std::string>* prop1 = new PropertyT<std::string>(Util::TypeOf<Queue>(), "Attribute Name",
 			DefineGetter<Queue, std::string>(this, &Queue::getAttributeName),
 			DefineSetter<Queue, std::string>(this, &Queue::setAttributeName));
-	_addProperty(prop1);
+	//_addProperty(prop1);
 	//@TODO: OrderRule!!
 }
 
@@ -148,7 +148,7 @@ bool Queue::_check(std::string* errorMessage) {
 void Queue::_createInternalAndAttachedData() {
 	if (_reportStatistics) {
 		if (_cstatNumberInQueue == nullptr) {
-			_cstatNumberInQueue = new StatisticsCollector(_parentModel, getName() + "." + "NumberInQueue", this); 
+			_cstatNumberInQueue = new StatisticsCollector(_parentModel, getName() + "." + "NumberInQueue", this);
 			_cstatTimeInQueue = new StatisticsCollector(_parentModel, getName() + "." + "TimeInQueue", this);
 			_internalDataInsert("NumberInQueue", _cstatNumberInQueue);
 			_internalDataInsert("TimeInQueue", _cstatTimeInQueue);
