@@ -23,11 +23,11 @@ void PropertyEditor::setModelBlock(ModelDataDefinition* modelblock) {
 	QTreeWidgetItem *treeRootItem;
 	QString category;
 	QBrush brush;
-	PropertyT<double>* propDouble;
-	PropertyT<unsigned int>* propUInt;
-	PropertyT<bool>* propBool;
-	PropertyT<std::string>* propStr;
-	PropertyT<Util::TimeUnit>* propTUnit;
+	//PropertyT<double>* propDouble;
+	//PropertyT<unsigned int>* propUInt;
+	//PropertyT<bool>* propBool;
+	//PropertyT<std::string>* propStr;
+	//PropertyT<Util::TimeUnit>* propTUnit;
 	for (auto prop : *modelblock->getPropertiesG()->list()) {
 		//propDouble = dynamic_cast<PropertyT<double>*>(prop);
 		//propUInt = dynamic_cast<PropertyT<unsigned int>*>(prop);

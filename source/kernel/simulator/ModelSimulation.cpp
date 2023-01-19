@@ -34,6 +34,9 @@ ModelSimulation::ModelSimulation(Model* model) {
 		return a->getId() < b->getId();
 	});
 	_simulationReporter = new TraitsKernel<SimulationReporter_if>::Implementation(this, model, this->_cstatsAndCountersSimulation);
+
+	// properties
+
 }
 
 std::string ModelSimulation::show() {
@@ -245,13 +248,13 @@ void ModelSimulation::_showSimulationHeader() {
 	//tm->traceReport(TraceManager::Level::simulation, "");
 	// model controls and responses
 	std::string controls;
-	for (PropertyBase* control : * _model->getControls()->list()) {
+	for (PropertyBaseG* control : * _model->getControls()->list()) {
 		controls += control->getName() + "(" + control->getClassName() + ")=" + control->getValueText() + ", ";
 	}
 	controls = controls.substr(0, controls.length() - 2);
 	tm->traceReport("> Simulation controls: " + controls);
 	std::string responses;
-	for (PropertyBase* pg : *_model->getResponses()->list()) {
+	for (PropertyBaseG* pg : *_model->getResponses()->list()) {
 		responses += pg->getName() + "(" + pg->getClassName() + "), ";
 	}
 	responses = responses.substr(0, responses.length() - 2);

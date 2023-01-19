@@ -67,6 +67,7 @@ public:
 	static std::string StrTimeUnitShort(Util::TimeUnit timeUnit);
 	static std::string StrTimeUnitLong(Util::TimeUnit timeUnit);
 
+	// TODO check: here? Shouldn´t it be on SimulationReport interface?
 	enum class AllocationType : int {
 		ValueAdded = 1, NonValueAdded = 2, Transfer = 3, Wait = 4, Others = 5
 	};
@@ -89,6 +90,7 @@ public: // indentation and string
 	static std::string StrTruncIfInt(std::string strValue);
 	static std::string Trim(std::string str);
 	static std::string StrReplace(std::string text, std::string searchFor, std::string replaceBy);
+	static std::string StrReplaceSpecialChars(std::string text);
 	static std::string StrIndex(int index);
 	//static char* Str2CharPtr(std::string str);
 	static void Trimwithin(std::string &str);

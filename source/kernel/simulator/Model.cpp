@@ -53,8 +53,8 @@ Model::Model(Simulator* simulator, unsigned int level) {
 		return a->getTime() < b->getTime(); /// Events are sorted chronologically
 	});
 
-	_controls = new List<PropertyBase*>();
-	_responses = new List<PropertyBase*>(); // ready-only properties
+	_controls = new List<PropertyBaseG*>();
+	_responses = new List<PropertyBaseG*>(); // ready-only properties
 	// TODO: Add properties
 
 
@@ -73,8 +73,8 @@ Model::Model(Simulator* simulator, unsigned int level) {
 	//        DefineSetterMember<ModelSimulation>(this->_simulation, &ModelSimulation::setWarmUpPeriod)) );
 	// for NEW process analyser
 	/*
-	_responsesNew = new List<PropertyBase*>();
-	_controlsNew = new List<PropertyBase*>();
+	_responsesNew = new List<PropertyBaseG*>();
+	_controlsNew = new List<PropertyBaseG*>();
 	// insert NEW controls
 	_controlsNew->insert(new PropertyT<unsigned int>("ModelSimulation", "NumberOfReplications",
 			DefineGetter<ModelSimulation, unsigned int>(this->_simulation, &ModelSimulation::getNumberOfReplications),
@@ -230,7 +230,7 @@ void Model::_showComponents() const {
 void Model::_showSimulationControls() const {
 	getTracer()->trace(TraceManager::Level::L2_results, "Simulation Controls:");
 	Util::IncIndent();
-	for (PropertyBase* control : *_controls->list()) {
+	for (PropertyBaseG* control : *_controls->list()) {
 		getTracer()->trace(TraceManager::Level::L2_results, control->show()); ////
 	}
 	Util::DecIndent();
@@ -239,7 +239,7 @@ void Model::_showSimulationControls() const {
 void Model::_showSimulationResponses() const {
 	getTracer()->trace(TraceManager::Level::L2_results, "Simulation Responses:");
 	Util::IncIndent();
-	for (PropertyBase* response : *_responses->list()) {
+	for (PropertyBaseG* response : *_responses->list()) {
 		getTracer()->trace(TraceManager::Level::L2_results, response->show()); ////
 	}
 	Util::DecIndent();
@@ -299,11 +299,11 @@ void Model::_createModelInternalElements() {
 	Util::DecIndent();
 }
 
-List<PropertyBase*>* Model::getControls() const {
+List<PropertyBaseG*>* Model::getControls() const {
 	return _controls;
 }
 
-List<PropertyBase*>* Model::getResponses() const {
+List<PropertyBaseG*>* Model::getResponses() const {
 	return _responses;
 }
 

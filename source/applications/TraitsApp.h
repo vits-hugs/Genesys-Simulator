@@ -122,7 +122,7 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Smart_Clone Application;
 	//typedef Smart_CppForG Application;
 	//typedef Smart_Delay Application;
-	typedef Smart_Dummy Application;
+	//typedef Smart_Dummy Application;
 	//typedef Smart_Failures Application;
 	//typedef Smart_FiniteStateMachine Application;
 	//typedef Smart_HoldSearchRemove Application;
@@ -137,7 +137,7 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Smart_RouteStation Application;
 	//typedef Smart_SeizeDelayRelease Application;
 	//typedef Smart_SeizeDelayReleaseNoDataDefs Application;
-	//typedef Smart_SeizeDelayReleaseMany Application;
+	typedef Smart_SeizeDelayReleaseMany Application;
 	//typedef Smart_Sequence Application;
 	//typedef Smart_SynchronizingParallelEntities Application;
 	//typedef Smart_SimulationControlResponse Application;

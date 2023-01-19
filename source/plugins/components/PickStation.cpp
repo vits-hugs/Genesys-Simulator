@@ -216,7 +216,7 @@ void PickStation::_createInternalAndAttachedData() {
 	//}
 }
 
-void PickStation::_addProperty(PropertyBase* property) {
+void PickStation::_addProperty(PropertyBaseG* property) {
 
 }
 

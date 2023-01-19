@@ -36,6 +36,12 @@ ModelDataDefinition::ModelDataDefinition(Model* model, std::string thistypename,
 	if (insertIntoModel) {
 		model->insert(this);
 	}
+	Property_bool *property = new Property_bool();
+	property->setGetter(DefineGetter<ModelDataDefinition, bool>(this, &ModelDataDefinition::isReportStatistics));
+	property->setSetter(DefineSetter<ModelDataDefinition, bool>(this, &ModelDataDefinition::setReportStatistics));
+	property->setClassName(_typename);
+	property->setPropertyName("Report Statistics");
+	_addPropertyG(property);
 
 	// ADD_PROPERTY(std::string, ModelDataDefinition, "Name", getName, setName)
 	// ADD_PROPERTY(bool, ModelDataDefinition, "Report Statistics", isReportStatistics, setReportStatistics)
@@ -253,7 +259,7 @@ void ModelDataDefinition::setName(std::string name) {
 			}
 		}
 
-		for (PropertyBase* control : *_parentModel->getControls()->list()) {
+		for (PropertyBaseG* control : *_parentModel->getControls()->list()) {
 			stuffName = control->getName();
 			pos = stuffName.find(getName(), 0);
 			if (pos < stuffName.length()) { // != std::string::npos) {
@@ -262,7 +268,7 @@ void ModelDataDefinition::setName(std::string name) {
 			}
 		}
 
-		for (PropertyBase* response : *_parentModel->getResponses()->list()) {
+		for (PropertyBaseG* response : *_parentModel->getResponses()->list()) {
 			stuffName = response->getName();
 			pos = stuffName.find(getName(), 0);
 			if (pos < stuffName.length()) {// != std::string::npos) {
@@ -353,9 +359,10 @@ void ModelDataDefinition::_createInternalAndAttachedData() {
 
 }
 
-//void ModelDataDefinition::_addProperty(PropertyBase* property) {
+//void ModelDataDefinition::_addProperty(PropertyBaseG* property) {
 //	_properties->insert(property);
 //}
+
 
 void ModelDataDefinition::_addPropertyG(PropertyBaseG* property) {
 	_propertiesG->insert(property);

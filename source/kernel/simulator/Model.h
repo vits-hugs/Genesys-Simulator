@@ -76,8 +76,8 @@ public: // only gets
 	List<Event*>* getFutureEvents() const; ///< The future events list chronologically sorted; Events are scheduled by components when processing other events, and a replication evolves over time by sequentially processing the very first event in this list. It's initialized with events first described by source components (SourceComponentModel).
 	//List<SimulationControl*>* getControls() const; ///< Returns a list of values that can be externally controlled (changed). They usually correspond to input parameters in the simulation model that must be changed for an experimental design.
 	//List<SimulationResponse*>* getResponses() const; ///< Returns a list of exits or simulation results that can be read externally. They usually correspond to statistics resulting from the simulation that must be read for an experiment design.
-	List<PropertyBase*> *getResponses() const;
-	List<PropertyBase*> *getControls() const;
+	List<PropertyBaseG*> *getResponses() const;
+	List<PropertyBaseG*> *getControls() const;
 
 public: // gets and sets
 	void setTracer(TraceManager* _traceManager);
@@ -117,10 +117,10 @@ private: // read only public access (gets)
 	// for process analyser
 	//List<SimulationResponse*>* _responses;
 	//List<SimulationControl*>* _controls;
-	//List<PropertyBase*>* _responsesNew;
-	//List<PropertyBase*>* _controlsNew;
-	List<PropertyBase*>* _responses;
-	List<PropertyBase*>* _controls;
+	//List<PropertyBaseG*>* _responsesNew;
+	//List<PropertyBaseG*>* _controlsNew;
+	List<PropertyBaseG*>* _responses;
+	List<PropertyBaseG*>* _controls;
 
 private: // no public access (no gets / sets)
 	ModelChecker_if* _modelChecker;

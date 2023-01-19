@@ -33,10 +33,13 @@ typedef TraitsKernel<Model>::StatisticsCollector_StatisticsImplementation Statis
 StatisticsCollector::StatisticsCollector(Model* model, std::string name, ModelDataDefinition* parent, bool insertIntoModel) : ModelDataDefinition(model, Util::TypeOf<StatisticsCollector>(), name, insertIntoModel) {
 	_parent = parent;
 	_initStaticsAndCollector();
+
+	/*
 	_parentModel->getResponses()->insert(new PropertyT<double>(Util::TypeOf<StatisticsClass>(), getName() + ".average",
 			DefineGetter<StatisticsClass, double>(static_cast<StatisticsClass*>(this->_statistics),  &StatisticsClass::average), nullptr, getName()));
 	_parentModel->getResponses()->insert(new PropertyT<double>(Util::TypeOf<StatisticsClass>(), getName() + ".halfwidth",
 			DefineGetter<StatisticsClass,double>(static_cast<StatisticsClass*>(this->_statistics),  &StatisticsClass::halfWidthConfidenceInterval), nullptr, getName()));
+			*/
 }
 
 void StatisticsCollector::_initStaticsAndCollector() {

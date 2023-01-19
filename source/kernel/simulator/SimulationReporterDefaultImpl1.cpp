@@ -29,7 +29,7 @@ void SimulationReporterDefaultImpl1::showSimulationControls() {
 	_model->getTracer()->traceReport("Simulation Controls:");
 	Util::IncIndent();
 	{
-		for (PropertyBase* control : *_model->getControls()->list()) {
+		for (PropertyBaseG* control : *_model->getControls()->list()) {
 			_model->getTracer()->traceReport(control->getName() +  "(" + control->getClassName() + "): " + control->getValueText());
 		}
 	}
@@ -154,7 +154,7 @@ void SimulationReporterDefaultImpl1::showSimulationResponses() {
 	_model->getTracer()->traceReport("Simulation Responses:");
 	Util::IncIndent();
 	{
-		for (PropertyBase* response : *_model->getResponses()->list()) {
+		for (PropertyBaseG* response : *_model->getResponses()->list()) {
 			_model->getTracer()->traceReport(response->getName() + ": " + response->getValueText());
 		}
 	}

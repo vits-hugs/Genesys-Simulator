@@ -214,8 +214,17 @@ std::string Util::StrReplace(std::string text, std::string searchFor, std::strin
 	}
 	return text;
 }
-/// returns a string in the form "[<index>] for array indexes"
 
+std::string Util::StrReplaceSpecialChars(std::string text) {
+	text = StrReplace(text, " ", "_");
+	text = StrReplace(text, "::", "_");
+	text = StrReplace(text, "*", "_");
+	text = StrReplace(text, "\"", "");
+	return text;
+}
+
+
+/// returns a string in the form "[<index>] for array indexes"
 std::string Util::StrIndex(int index) {
 	return "[" + std::to_string(index) + "]";
 }
@@ -262,9 +271,9 @@ std::string Util::Map2str(std::map<std::string, double>* mapss) {
 }
 
 char Util::DirSeparator() {
-	//#if defined(__linux__)	
+	//#if defined(__linux__)
 	return '/';
-	//#endif	
+	//#endif
 	//	return '\';
 }
 

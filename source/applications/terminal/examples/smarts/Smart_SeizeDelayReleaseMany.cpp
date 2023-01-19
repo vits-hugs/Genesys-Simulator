@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   Smart_SeizeDelayReleaseMany.cpp
  * Author: rlcancian
- * 
+ *
  * Created on 9 de abril de 2021, 18:09
  */
 
@@ -71,7 +71,7 @@ int Smart_SeizeDelayReleaseMany::main(int argc, char** argv) {
 	seize1->getConnections()->insert(delay1);
 	delay1->getConnections()->insert(release1);
 	release1->getConnections()->insert(dispose1);
-	// set options, save and simulate 
+	// set options, save and simulate
 	ModelSimulation* sim = m->getSimulation();
 	sim->setReplicationLength(10);
 	sim->setNumberOfReplications(3);
@@ -79,7 +79,7 @@ int Smart_SeizeDelayReleaseMany::main(int argc, char** argv) {
 	do {
 		sim->start(); //step();
 		//std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
-	} while (sim->isPaused());
+	} while (false); //(sim->isPaused());
 	for(int i=0;i<1e6;i++);
 	delete genesys;
 	return 0;
