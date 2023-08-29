@@ -6,6 +6,7 @@
 #include <QPen>
 #include <QBrush>
 #include "../../../../kernel/simulator/ModelComponent.h"
+#include "TraitsGUI.h"
 //#include "GraphicalConnection.h"
 
 class GraphicalModelComponent;
@@ -34,12 +35,13 @@ public: // sets and gets
 	bool isInputPort() const;
 	GraphicalModelComponent *graphicalComponent() const;
 	QList<GraphicalConnection*>*getConnections() const;
-
 private:
-	qreal _width = 20;
+	QColor myrgba(uint64_t color); // TODO: Should NOT be here, but in UtilGUI.h, but then it generates multiple definitions error
+private:
+	qreal _width = TraitsGUI<GComponentPort>::width;//20;
 	qreal _height = _width;
-	qreal _margin = 2;
-	int _raise = 3;
+	qreal _margin = TraitsGUI<GComponentPort>::margin; //2
+	int _raise = TraitsGUI<GComponentPort>::raise; //3;
 	bool _isInputPort;
 	unsigned int _portNum;
 	GraphicalModelComponent* _componentGraph;

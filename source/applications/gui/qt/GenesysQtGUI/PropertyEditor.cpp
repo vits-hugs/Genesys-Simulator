@@ -1,6 +1,6 @@
 #include "PropertyEditor.h"
 #include "../../../../kernel/simulator/ModelDataDefinition.h"
-#include "../../../../kernel/simulator/Property.h"
+#include "../../../../kernel/simulator/PropertyGenesys.h"
 #include <QLineEdit>
 
 PropertyEditor::PropertyEditor(QWidget *parent)
@@ -28,13 +28,13 @@ void PropertyEditor::setModelBlock(ModelDataDefinition* modelblock) {
 	//PropertyT<bool>* propBool;
 	//PropertyT<std::string>* propStr;
 	//PropertyT<Util::TimeUnit>* propTUnit;
-	for (auto prop : *modelblock->getPropertiesG()->list()) {
+	for (auto prop : *modelblock->getProperties()->list()) {
 		//propDouble = dynamic_cast<PropertyT<double>*>(prop);
 		//propUInt = dynamic_cast<PropertyT<unsigned int>*>(prop);
 		//propBool = dynamic_cast<PropertyT<bool>*>(prop);
 		//propStr = dynamic_cast<PropertyT<std::string>*>(prop);
 		//propTUnit = dynamic_cast<PropertyT<Util::TimeUnit>*>(prop);
-		category = QString::fromStdString(prop->getClassName());
+		category = QString::fromStdString(prop->getName()); //// TODO Era para ser getClassName());
 		QList<QTreeWidgetItem*> founds = findItems(category, Qt::MatchContains);
 		if (founds.size() == 0) {
 			treeRootItem = new QTreeWidgetItem(this);
@@ -71,7 +71,7 @@ void PropertyEditor::setModelBlock(ModelDataDefinition* modelblock) {
 		//treeItemChild->setStatusTip(0, QString::fromStdString(plugin->getPluginInfo()->getLanguageTemplate()));
 		//treeItemChild->setFlags(Qt::ItemIsSelectable | Qt::ItemIsDragEnabled | Qt::ItemNeverHasChildren);
 		treeRootItem->addChild(treeItemChild);
-		QWidget* lineEdit = new QLineEdit(QString::fromStdString(prop->getValueText()));
+		QWidget* lineEdit = new QLineEdit(QString::fromStdString(std::to_string(prop->getValue())));
 		this->setItemWidget(treeItemChild, 1, lineEdit);
 	}
 	resizeColumnToContents(0);

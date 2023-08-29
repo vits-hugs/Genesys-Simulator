@@ -12,8 +12,8 @@ GraphicalConnection::GraphicalConnection(GraphicalComponentPort* sourceGraphical
 	// connect graphically
 	_sourceGraphicalPort = sourceGraphicalPort;
 	_destinationGraphicalPort = destinationGraphicalPort;
-	_sourceConnection = new Connection({sourceGraphicalPort->graphicalComponent()->getComponent(), sourceGraphicalPort->portNum()});
-	_destinationConnection = new Connection({_destinationGraphicalPort->graphicalComponent()->getComponent(), _destinationGraphicalPort->portNum()});
+	_sourceConnection = new Connection({sourceGraphicalPort->graphicalComponent()->getComponent(), {sourceGraphicalPort->portNum()}});
+	_destinationConnection = new Connection({_destinationGraphicalPort->graphicalComponent()->getComponent(), {_destinationGraphicalPort->portNum()}});
 	_color = color;
 	setFlags(QGraphicsItem::ItemIsMovable | QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsFocusable);
 	setAcceptHoverEvents(true);
@@ -36,6 +36,25 @@ GraphicalConnection::~GraphicalConnection() {
 	_destinationGraphicalPort->removeGraphicalConnection(this);
 }
 
+QColor GraphicalConnection::myrgba(uint64_t color) {
+	uint8_t r, g, b, a;
+	r = (color&0xFF000000)>>24;
+	g = (color&0x00FF0000)>>16;
+	b = (color&0x0000FF00)>>8;
+	a = (color&0x000000FF);
+	return QColor(r, g, b, a);
+}
+
+GraphicalConnection::ConnectionType GraphicalConnection::connectionType() const
+{
+	return _connectionType;
+}
+
+void GraphicalConnection::setConnectionType(GraphicalConnection::ConnectionType newConnectionType)
+{
+	_connectionType = newConnectionType;
+}
+
 void GraphicalConnection::updateDimensionsAndPosition() {
 	qreal x1, x2, y1, y2, w1, w2, h1, h2;
 	x1 = _sourceGraphicalPort->scenePos().x();
@@ -47,13 +66,17 @@ void GraphicalConnection::updateDimensionsAndPosition() {
 	w2 = _destinationGraphicalPort->width();
 	h2 = _destinationGraphicalPort->height();
 	setPos((x1 < x2 ? x1 + w1 : x2 + w2) - 2/*penwidth*/, y1 < y2 ? y1 : y2);
+	//setPos((x1 < x2 ? x1 + w1 : x2 + w2) - 2/*penwidth*/, y1 < y2 ? y1 : y2);
 	_width = abs(x2 - x1)-(x1 < x2 ? w2 : w1);
-	_height = abs(y2 - y1)+ (y1 < y2 ? h2 : h1);
+	_height = abs(y2 - y1)+(y1 < y2 ? h2 : h1);
 	update(); //@TODO SHould not call it here
 }
 
 QRectF GraphicalConnection::boundingRect() const {
-	return QRectF(0, 0, _width, _height);
+	int portWidth = _sourceGraphicalPort->width(); // TODO REMOVE. Did not solve redraw issue
+	int portHeight = _sourceGraphicalPort->height();
+	return QRectF(0-portWidth, 0-portHeight, _width+portWidth, _height+portHeight); // TODO add port dimensions
+	return QRectF(0, 0, _width, _height); // TODO add port dimensions
 }
 
 void GraphicalConnection::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
@@ -65,14 +88,15 @@ void GraphicalConnection::paint(QPainter *painter, const QStyleOptionGraphicsIte
 	QPointF inipos;
 	QPointF endpos;
 
-	qreal x1, x2, y1, y2;
+	qreal x1, x2, y1, y2; // x1 < x2
 	if (_sourceGraphicalPort->scenePos().x() < _destinationGraphicalPort->scenePos().x()) {
-		x1 = 0; //_sourceGraphicalPort->width();
-		x2 = _width; //-_sourceGraphicalPort->width();
+		x1 = 0-_sourceGraphicalPort->width()/2;
+		x2 = _width+_destinationGraphicalPort->width()/2;
 	} else {
-		x2 = 0; //_sourceGraphicalPort->width();
-		x1 = _width; //-_sourceGraphicalPort->width();
+		x2 = 0-_destinationGraphicalPort->width()/2;
+		x1 = _width+_sourceGraphicalPort->width()/2;
 	}
+	// y1 < y2
 	if (_sourceGraphicalPort->scenePos().y() < _destinationGraphicalPort->scenePos().y()) {
 		y1 = _sourceGraphicalPort->height() / 2.0;
 		y2 = _height - _sourceGraphicalPort->height() / 2.0;
@@ -83,8 +107,21 @@ void GraphicalConnection::paint(QPainter *painter, const QStyleOptionGraphicsIte
 	inipos = QPointF(x1, y1); //QPointF(_sourceGraphicalPort->pos());//_sourceGraphicalPort->pos().x()+_sourceGraphicalPort->width()/2.0, _sourceGraphicalPort->pos().y()+_sourceGraphicalPort->height()/2.0
 	endpos = QPointF(x2, y2); //QPointF(_destinationGraphicalPort->pos());// _destinationGraphicalPort->pos().x()+_destinationGraphicalPort->width()/2.0, _destinationGraphicalPort->pos().y()+_destinationGraphicalPort->height()/2.0
 	path.moveTo(inipos);
-	path.lineTo((x1 + x2) / 2, y1);
-	path.lineTo((x1 + x2) / 2, y2);
+	switch (_connectionType) {
+		case ConnectionType::HORIZONTAL:
+			path.lineTo((x1 + x2) / 2, y1);
+			path.lineTo((x1 + x2) / 2, y2);
+			break;
+		case ConnectionType::VERTICAL:
+			path.lineTo(x1, (y1 + y2) / 2);
+			path.lineTo(x2, (y1 + y2) / 2);
+			break;
+		case ConnectionType::DIRECT:
+			break;
+		case ConnectionType::USERDEFINED:
+			// TODO: draw intermediate points
+			break;
+	}
 	path.lineTo(endpos);
 	painter->drawPath(path);
 	//
@@ -95,6 +132,7 @@ void GraphicalConnection::paint(QPainter *painter, const QStyleOptionGraphicsIte
 		QBrush brush = QBrush(Qt::SolidPattern);
 		brush.setColor(Qt::black);
 		painter->setBrush(brush);
+		// TODO Check this out to see if it solves the move redraw issue
 		painter->drawRect(QRectF(x1 < x2 ? x1 : x1 - _selWidth, y1 - _selWidth / 2, _selWidth, _selWidth));
 		painter->drawRect(QRectF(x2 < x1 ? x2 : x2 - _selWidth, y2 - _selWidth / 2, _selWidth, _selWidth));
 		painter->drawRect(QRectF((x1 + x2) / 2 - _selWidth / 2, y1 - _selWidth / 2, _selWidth, _selWidth));

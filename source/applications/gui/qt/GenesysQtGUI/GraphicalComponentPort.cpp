@@ -2,6 +2,8 @@
 #include "GraphicalConnection.h"
 #include "GraphicalModelComponent.h"
 #include <QPainter>
+#include "TraitsGUI.h"
+#include "UtilGUI.h"
 
 GraphicalComponentPort::GraphicalComponentPort(GraphicalModelComponent* componentGraph, bool isInputPort, unsigned int portNum, QGraphicsItem *parent) : QGraphicsObject(parent) {
 	//_component = component;
@@ -69,8 +71,17 @@ QRectF GraphicalComponentPort::boundingRect() const {
 	return QRectF(0, 0, _width, _height);
 }
 
+QColor GraphicalComponentPort::myrgba(uint64_t color) {
+	uint8_t r, g, b, a;
+	r = (color&0xFF000000)>>24;
+	g = (color&0x00FF0000)>>16;
+	b = (color&0x0000FF00)>>8;
+	a = (color&0x000000FF);
+	return QColor(r, g, b, a);
+}
+
 void GraphicalComponentPort::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
-	int _penWidth = 1;
+	int _penWidth = TraitsGUI<GComponentPort>::penWidth;
 	int _iwidth = _width - 2 * _margin - _penWidth;
 	int _iheight = _height - 2 * _margin - _penWidth;
 	QPen pen;
@@ -78,15 +89,15 @@ void GraphicalComponentPort::paint(QPainter *painter, const QStyleOptionGraphics
 	QRect rect;
 	QPainterPath path;
 	QPainterPath path2;
-	// pen
-	pen = QPen(Qt::black);
+	// pen border
+	pen = QPen(myrgba(TraitsGUI<GComponentPort>::borderColor));//Qt::black);
 	pen.setWidth(_penWidth);
 	pen.setJoinStyle(Qt::RoundJoin);
 	painter->setPen(pen);
 	if (_isInputPort) {
 		// Path raised
 		brush = QBrush(Qt::SolidPattern);
-		brush.setColor(Qt::darkGray);
+		brush.setColor(myrgba(TraitsGUI<GComponentPort>::pathRaised));//Qt::darkGray);
 		painter->setBrush(brush);
 		path.moveTo(_margin, _margin);
 		path.lineTo(_margin, _margin + _iheight);
@@ -99,7 +110,7 @@ void GraphicalComponentPort::paint(QPainter *painter, const QStyleOptionGraphics
 		painter->drawPath(path);
 		// path stunken
 		brush = QBrush(Qt::SolidPattern);
-		brush.setColor(Qt::white);
+		brush.setColor(myrgba(TraitsGUI<GComponentPort>::pathStunken));//Qt::white);
 		painter->setBrush(brush);
 		path2.moveTo(_margin + _iwidth, _margin + _iheight);
 		path2.lineTo(_margin + _iwidth, _margin);
@@ -111,13 +122,12 @@ void GraphicalComponentPort::paint(QPainter *painter, const QStyleOptionGraphics
 		path2.lineTo(_margin + _iwidth - _raise, _margin + _iheight - _raise);
 		painter->drawPath(path2);
 		// fill
-		QColor _color = QColor(0, 0, 0, 25);
-		//brush = QBrush(Qt::NoBrush);
-		if (_connections->size() > 0) {
-			_color = QColor(0, 0, 0, 225); //QColor(255,0,0,225);
-		}
 		brush = QBrush(Qt::SolidPattern);
-		brush.setColor(_color);
+		if (_connections->size() > 0) { // connected port
+			brush.setColor(myrgba(TraitsGUI<GComponentPort>::connectedBackgroundColor));
+		} else {
+			brush.setColor(myrgba(TraitsGUI<GComponentPort>::unconnectedBackgroundColor));
+		}
 		painter->setBrush(brush);
 		rect = QRect(_margin + _raise, _margin + _raise, _margin + _iwidth - 2 * _raise - _margin, _margin + _iheight - 2 * _raise - _margin);
 		painter->drawRect(rect);
@@ -125,7 +135,7 @@ void GraphicalComponentPort::paint(QPainter *painter, const QStyleOptionGraphics
 		// output port
 		// Path raised
 		brush = QBrush(Qt::SolidPattern);
-		brush.setColor(Qt::darkGray);
+		brush.setColor(myrgba(TraitsGUI<GComponentPort>::pathRaised));//Qt::darkGray);
 		painter->setBrush(brush);
 		path.moveTo(_margin, _margin);
 		path.lineTo(_margin, _margin + _iheight);
@@ -138,7 +148,7 @@ void GraphicalComponentPort::paint(QPainter *painter, const QStyleOptionGraphics
 		painter->drawPath(path);
 		// path stunken
 		brush = QBrush(Qt::SolidPattern);
-		brush.setColor(Qt::white);
+		brush.setColor(myrgba(TraitsGUI<GComponentPort>::pathStunken));//Qt::white);
 		painter->setBrush(brush);
 		path2.moveTo(_margin + _iwidth, _margin + _iheight / 2.0);
 		path2.lineTo(_margin + _iwidth - 1 - _raise, _margin + _iheight / 2.0);
@@ -147,13 +157,12 @@ void GraphicalComponentPort::paint(QPainter *painter, const QStyleOptionGraphics
 		path2.lineTo(_margin + _iwidth, _margin + _iheight / 2.0);
 		painter->drawPath(path2);
 		// fill
-		QColor _color = QColor(0, 0, 0, 25);
-		//brush = QBrush(Qt::NoBrush);
-		if (_connections->size() > 0) {
-			_color = QColor(0, 0, 0, 225); //QColor(255,0,0,225);
-		}
 		brush = QBrush(Qt::SolidPattern);
-		brush.setColor(_color);
+		if (_connections->size() > 0) { // connected port
+			brush.setColor(myrgba(TraitsGUI<GComponentPort>::connectedBackgroundColor));
+		} else {
+			brush.setColor(myrgba(TraitsGUI<GComponentPort>::unconnectedBackgroundColor));
+		}
 		painter->setBrush(brush);
 		QPainterPath path3;
 		path3.moveTo(_margin + _raise, _margin + 1 + _raise);
@@ -163,7 +172,7 @@ void GraphicalComponentPort::paint(QPainter *painter, const QStyleOptionGraphics
 	}
 	if (this->isSelected()) { //draw squares on corners
 		brush = QBrush(Qt::NoBrush);
-		brush.setColor(QColor(0, 0, 0, 255));
+		brush.setColor(myrgba(TraitsGUI<GComponentPort>::selectionSquaresColor));//QColor(0, 0, 0, 255));
 		painter->setBrush(brush);
 		rect = QRect(0, 0, _width - _penWidth, _height - _penWidth);
 		painter->drawRect(rect);

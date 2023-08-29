@@ -40,7 +40,7 @@
 
 ModelGraphicsScene::ModelGraphicsScene(qreal x, qreal y, qreal width, qreal height, QObject *parent) : QGraphicsScene(x, y, width, height, parent) {
 	// grid
-	_grid.pen.setWidth(1);
+	_grid.pen.setWidth(TraitsGUI<GScene>::gridPenWidth);
 	_grid.pen.setStyle(Qt::DotLine);
 	showGrid();
 }
@@ -49,7 +49,6 @@ ModelGraphicsScene::ModelGraphicsScene(const ModelGraphicsScene& orig) {
 }
 
 ModelGraphicsScene::~ModelGraphicsScene() {
-	//
 }
 
 
@@ -65,7 +64,7 @@ GraphicalModelComponent* ModelGraphicsScene::addGraphicalModelComponent(Plugin* 
 			ModelComponent* otherComp = otherGraphComp->getComponent();
 			unsigned int i = 0;
 			bool connCreated = false;
-			while (i < otherComp->getConnections()->size() && !connCreated) {
+			while (i < otherComp->getConnections()->getMaxOutputConnections() && !connCreated) {
 				if (otherComp->getConnections()->getConnectionAtPort(i) == nullptr) {
 					// create connection (both model and grapically, since model is being built
 					// model
@@ -118,7 +117,6 @@ void ModelGraphicsScene::addGraphicalConnection(GraphicalComponentPort* sourcePo
 	//notify graphical model change
 	GraphicalModelEvent* modelGraphicsEvent = new GraphicalModelEvent(GraphicalModelEvent::EventType::CREATE, GraphicalModelEvent::EventObjectType::CONNECTION, graphicconnection);
 	dynamic_cast<ModelGraphicsView*> (views().at(0))->notifySceneGraphicalModelEventHandler(modelGraphicsEvent);
-
 }
 
 void ModelGraphicsScene::addDrawing() {
@@ -218,37 +216,43 @@ void ModelGraphicsScene::beginConnection() {
 
 void ModelGraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) {
 	QGraphicsScene::mousePressEvent(mouseEvent);
-	if (_connectingStep > 0 && mouseEvent->button() == Qt::LeftButton) {
-		QGraphicsItem* item = this->itemAt(mouseEvent->scenePos(), QTransform());
-		if (item != nullptr) {
-			GraphicalComponentPort* port = dynamic_cast<GraphicalComponentPort*> (item);
-			if (port != nullptr) {
-				if (_connectingStep == 1 && !port->isInputPort()) {
-					_sourceGraphicalComponentPort = port;
-					_connectingStep = 2;
-					return;
-				} else if (_connectingStep == 2 && port->isInputPort()) {
-					_connectingStep = 3;
-					// create connection
-					// in the model
-					ModelComponent* sourceComp = _sourceGraphicalComponentPort->graphicalComponent()->getComponent();
-					ModelComponent* destComp = port->graphicalComponent()->getComponent();
-					sourceComp->getConnections()->insertAtPort(_sourceGraphicalComponentPort->portNum(), new Connection({destComp, port->portNum()}));
-					// graphically
-					GraphicalConnection* graphicconnection = new GraphicalConnection(_sourceGraphicalComponentPort, port);
-					_sourceGraphicalComponentPort->addGraphicalConnection(graphicconnection);
-					port->addGraphicalConnection(graphicconnection);
-					addItem(graphicconnection);
-					//
-					((ModelGraphicsView *) (this->parent()))->unsetCursor();
-					_connectingStep = 0;
-					return;
-				}
-			}
-		}
-		((ModelGraphicsView *) (this->parent()))->unsetCursor();
-		_connectingStep = 0;
-	}
+    if (mouseEvent->button() == Qt::LeftButton) {
+        QGraphicsItem* item = this->itemAt(mouseEvent->scenePos(), QTransform());
+        if (_connectingStep > 0) {
+            if (item != nullptr) {
+                GraphicalComponentPort* port = dynamic_cast<GraphicalComponentPort*> (item);
+                if (port != nullptr) {
+                    if (_connectingStep == 1 && !port->isInputPort()) {
+                        _sourceGraphicalComponentPort = port;
+                        _connectingStep = 2;
+                        return;
+                    } else if (_connectingStep == 2 && port->isInputPort()) {
+                        _connectingStep = 3;
+                        // create connection
+                        // in the model
+                        ModelComponent* sourceComp = _sourceGraphicalComponentPort->graphicalComponent()->getComponent();
+                        ModelComponent* destComp = port->graphicalComponent()->getComponent();
+                        sourceComp->getConnections()->insertAtPort(_sourceGraphicalComponentPort->portNum(), new Connection({destComp, port->portNum()}));
+                        // graphically
+                        GraphicalConnection* graphicconnection = new GraphicalConnection(_sourceGraphicalComponentPort, port);
+                        _sourceGraphicalComponentPort->addGraphicalConnection(graphicconnection);
+                        port->addGraphicalConnection(graphicconnection);
+                        addItem(graphicconnection);
+                        //
+                        ((ModelGraphicsView *) (this->parent()))->unsetCursor();
+                        _connectingStep = 0;
+                        return;
+                    }
+                }
+            }
+            ((ModelGraphicsView *) (this->parent()))->unsetCursor();
+            _connectingStep = 0;
+        } else {
+            if (item==nullptr) {
+                //ui->treeViewPropertyEditor->setActiveObject(nullptr, nullptr);
+            }
+        }
+    }
 }
 
 void ModelGraphicsScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent) {
@@ -258,7 +262,7 @@ void ModelGraphicsScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
 void ModelGraphicsScene::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *mouseEvent) {
 	QGraphicsScene::mouseDoubleClickEvent(mouseEvent);
 	GraphicalComponentPort* port = dynamic_cast<GraphicalComponentPort*> (this->itemAt(mouseEvent->scenePos(), QTransform()));
-	if (port != nullptr) {
+    if (port != nullptr) { // if doubleclick on a port, then start connecting
 		if (!port->isInputPort() && this->_connectingStep == 0) {
 			_sourceGraphicalComponentPort = port;
 			_connectingStep = 2;
@@ -269,6 +273,9 @@ void ModelGraphicsScene::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *mouseEv
 
 void ModelGraphicsScene::wheelEvent(QGraphicsSceneWheelEvent *wheelEvent) {
 	QGraphicsScene::wheelEvent(wheelEvent);
+	if (_controlIsPressed) {
+		// TODO: ZOOM!!
+	}
 }
 
 QList<QGraphicsItem*>*ModelGraphicsScene::getGraphicalEntities() const {
@@ -315,6 +322,14 @@ void ModelGraphicsScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent) {
 	}
 }
 
+void ModelGraphicsScene::focusInEvent(QFocusEvent *focusEvent) {
+	QGraphicsScene::focusInEvent(focusEvent);
+}
+
+void ModelGraphicsScene::focusOutEvent(QFocusEvent *focusEvent) {
+	QGraphicsScene::focusOutEvent(focusEvent);
+}
+
 void ModelGraphicsScene::dropEvent(QGraphicsSceneDragDropEvent *event) {
 	QGraphicsScene::dropEvent(event);
 	if (this->_objectBeingDragged != nullptr) {
@@ -337,6 +352,10 @@ void ModelGraphicsScene::dropEvent(QGraphicsSceneDragDropEvent *event) {
 		}
 	}
 	event->setAccepted(false);
+}
+
+void ModelGraphicsScene::contextMenuEvent(QGraphicsSceneContextMenuEvent *contextMenuEvent) {
+	QGraphicsScene::contextMenuEvent(contextMenuEvent);
 }
 
 void ModelGraphicsScene::dragEnterEvent(QGraphicsSceneDragDropEvent *event) {
@@ -362,6 +381,7 @@ void ModelGraphicsScene::dragMoveEvent(QGraphicsSceneDragDropEvent *event) {
 }
 
 void ModelGraphicsScene::keyPressEvent(QKeyEvent *keyEvent) {
+	QGraphicsScene::keyPressEvent(keyEvent);
 	QList<QGraphicsItem*> selected = this->selectedItems();
 	if (keyEvent->key() == Qt::Key_Delete && selected.size() > 0) {
 		QMessageBox::StandardButton reply = QMessageBox::question(this->_parentWidget, "Delete Component", "Are you sure you want to delete the selected components?", QMessageBox::Yes | QMessageBox::No);
@@ -390,6 +410,13 @@ void ModelGraphicsScene::keyPressEvent(QKeyEvent *keyEvent) {
 			}
 		}
 	}
+	_controlIsPressed = (keyEvent->key() == Qt::Key_Control);
+}
+
+void ModelGraphicsScene::keyReleaseEvent(QKeyEvent *keyEvent) {
+	QGraphicsScene::keyReleaseEvent(keyEvent);
+	if (_controlIsPressed)
+		_controlIsPressed = (keyEvent->key() != Qt::Key_Control);
 }
 
 //--------------------------

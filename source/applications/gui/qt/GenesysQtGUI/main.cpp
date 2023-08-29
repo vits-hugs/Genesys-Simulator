@@ -1,18 +1,23 @@
 #include "mainwindow.h"
 #include <QApplication>
+#include <QDesktopWidget>
 
 #include "../../../GenesysApplication_if.h"
 #include "../../../TraitsApp.h"
-
-//*************************************************************
-// Configure the app: GUI (true) or TerminalApplication (false)
-bool runGUI = false;
-//*************************************************************
+#include "TraitsGUI.h"
 
 int mainGraphicQtApp(int argc, char *argv[]) {
 	QApplication a(argc, argv);
 	MainWindow w;
-	w.showMaximized(); //.show();
+	if (TraitsGUI<GMainWindow>::startMaximized) {
+        w.setWindowState(Qt::WindowMaximized);
+        QRect screenGeometry = QApplication::desktop()->availableGeometry();
+        w.resize(screenGeometry.width(), screenGeometry.height());
+        //w.showNormal();
+        w.showMaximized();
+    } else {
+        w.show();
+    }
 	return a.exec();
 }
 
@@ -22,7 +27,7 @@ int mainTerminalApp(int argc, char *argv[]) {
 }
 
 int main(int argc, char *argv[]) {
-	if (runGUI) {
+    if (TraitsApp<GenesysApplication_if>::runGraphicalUserInterface) {
 		return mainGraphicQtApp(argc, argv);
 	} else {
 		return mainTerminalApp(argc, argv);

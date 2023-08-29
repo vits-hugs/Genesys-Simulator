@@ -1,13 +1,12 @@
 #ifndef OBJECTPROPERTYBROWSER_H
 #define OBJECTPROPERTYBROWSER_H
 
+
 #include <QObject>
 #include <QPushButton>
 #include <QMap>
 #include <QMetaProperty>
-#include "QPropertyBrowser/qteditorfactory.h"
 #include "QPropertyBrowser/qttreepropertybrowser.h"
-#include "QPropertyBrowser/qtpropertymanager.h"
 #include "QPropertyBrowser/qtvariantproperty.h"
 
 #include "../../../../kernel/simulator/ModelDataDefinition.h"
@@ -17,8 +16,8 @@ class ObjectPropertyBrowser : public QtTreePropertyBrowser
 	Q_OBJECT
 
 public:
-	ObjectPropertyBrowser(QWidget* parent);
-	void setActiveObject(QObject *obj, ModelDataDefinition* mdd = nullptr);
+    ObjectPropertyBrowser(QWidget* parent);
+    void setActiveObject(QObject *obj, ModelDataDefinition* mdd = nullptr);
 
 private:
 	QtVariantPropertyManager *variantManager;

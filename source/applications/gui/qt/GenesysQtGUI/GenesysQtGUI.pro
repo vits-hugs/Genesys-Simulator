@@ -1,10 +1,8 @@
-QT       += core gui
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT += core gui
 QT += printsupport
-
+QT += designer
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 CONFIG += c++14
-CONFIG += designer
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -27,6 +25,7 @@ SOURCES += \
 	../../../../kernel/simulator/Model.cpp \
 	../../../../kernel/simulator/ModelCheckerDefaultImpl1.cpp \
 	../../../../kernel/simulator/ModelComponent.cpp \
+	../../../../kernel/simulator/ModelControlAndResponse.cpp \
 	../../../../kernel/simulator/ModelDataDefinition.cpp \
 	../../../../kernel/simulator/ModelDataManager.cpp \
 	../../../../kernel/simulator/ModelInfo.cpp \
@@ -44,9 +43,12 @@ SOURCES += \
 	../../../../kernel/simulator/PluginConnectorDummyImpl1.cpp \
 	../../../../kernel/simulator/PluginInformation.cpp \
 	../../../../kernel/simulator/PluginManager.cpp \
-	../../../../kernel/simulator/Property.cpp \
+        ../../../../kernel/simulator/PropertyGenesys.cpp \
+    ../../../../kernel/simulator/SimulationControl.cpp \
+	../../../../kernel/simulator/SimulationControlAndResponse.cpp \
 	../../../../kernel/simulator/SimulationExperiment.cpp \
 	../../../../kernel/simulator/SimulationReporterDefaultImpl1.cpp \
+    ../../../../kernel/simulator/SimulationResponse.cpp \
 	../../../../kernel/simulator/SimulationScenario.cpp \
 	../../../../kernel/simulator/Simulator.cpp \
 	../../../../kernel/simulator/SinkModelComponent.cpp \
@@ -138,6 +140,7 @@ SOURCES += \
 	../../../terminal/examples/smarts/Smart_Delay.cpp \
 	../../../terminal/examples/smarts/Smart_Dummy.cpp \
 	../../../terminal/examples/smarts/Smart_Failures.cpp \
+    ../../../terminal/examples/smarts/Smart_SimulationControlResponse.cpp \
 	../../../terminal/examples/smarts/Smart_WaitScanCondition.cpp \
 	../../../terminal/examples/smarts/Smart_WaitSignal.cpp \
 	../../../terminal/examples/smarts/Smart_ModelInfoModelSimulation.cpp \
@@ -158,6 +161,8 @@ SOURCES += \
 	../../../terminal/examples/teaching/OperatingSystem03.cpp \
 	AnimateExpression.cpp \
 	CodeEditor.cpp \
+    Dialogmodelinformation.cpp \
+    GraphicalAssociation.cpp \
 	GraphicalComponentPort.cpp \
 	GraphicalConnection.cpp \
 	GraphicalModelComponent.cpp \
@@ -166,15 +171,18 @@ SOURCES += \
 	ModelGraphicsView.cpp \
 	ObjectPropertyBrowser.cpp \
 	PropertyEditor.cpp \
-	QPropertyBrowser/qtbuttonpropertybrowser.cpp \
-	QPropertyBrowser/qteditorfactory.cpp \
-	QPropertyBrowser/qtgroupboxpropertybrowser.cpp \
-	QPropertyBrowser/qtpropertybrowser.cpp \
-	QPropertyBrowser/qtpropertybrowserutils.cpp \
-	QPropertyBrowser/qtpropertymanager.cpp \
-	QPropertyBrowser/qttreepropertybrowser.cpp \
-	QPropertyBrowser/qtvariantproperty.cpp \
+    QPropertyBrowser/qtbuttonpropertybrowser.cpp \
+    QPropertyBrowser/qteditorfactory.cpp \
+    QPropertyBrowser/qtgroupboxpropertybrowser.cpp \
+    QPropertyBrowser/qtpropertybrowser.cpp \
+    QPropertyBrowser/qtpropertybrowserutils.cpp \
+    QPropertyBrowser/qtpropertymanager.cpp \
+    QPropertyBrowser/qttreepropertybrowser.cpp \
+    QPropertyBrowser/qtvariantproperty.cpp \
 	dialogBreakpoint.cpp \
+    dialogpluginmanager.cpp \
+    dialogsimulationconfigure.cpp \
+    dialogsystempreferences.cpp \
 	main.cpp \
 	mainwindow.cpp \
 	qcustomplot.cpp
@@ -186,6 +194,7 @@ HEADERS += \
 	../../../../kernel/simulator/ConnectionManager.h \
 	../../../../kernel/simulator/Counter.h \
 	../../../../kernel/simulator/CppSerializer.h \
+	../../../../kernel/simulator/DefineGetterSetter.h \
 	../../../../kernel/simulator/Entity.h \
 	../../../../kernel/simulator/EntityType.h \
 	../../../../kernel/simulator/Event.h \
@@ -199,6 +208,7 @@ HEADERS += \
 	../../../../kernel/simulator/ModelCheckerDefaultImpl1.h \
 	../../../../kernel/simulator/ModelChecker_if.h \
 	../../../../kernel/simulator/ModelComponent.h \
+	../../../../kernel/simulator/ModelControlAndResponse.h \
 	../../../../kernel/simulator/ModelDataDefinition.h \
 	../../../../kernel/simulator/ModelDataManager.h \
 	../../../../kernel/simulator/ModelInfo.h \
@@ -218,11 +228,14 @@ HEADERS += \
 	../../../../kernel/simulator/PluginConnector_if.h \
 	../../../../kernel/simulator/PluginInformation.h \
 	../../../../kernel/simulator/PluginManager.h \
-	../../../../kernel/simulator/Property.h \
+        ../../../../kernel/simulator/PropertyGenesys.h \
 	../../../../kernel/simulator/ScenarioExperiment_if.h \
+    ../../../../kernel/simulator/SimulationControl.h \
+	../../../../kernel/simulator/SimulationControlAndResponse.h \
 	../../../../kernel/simulator/SimulationExperiment.h \
 	../../../../kernel/simulator/SimulationReporterDefaultImpl1.h \
 	../../../../kernel/simulator/SimulationReporter_if.h \
+    ../../../../kernel/simulator/SimulationResponse.h \
 	../../../../kernel/simulator/SimulationScenario.h \
 	../../../../kernel/simulator/Simulator.h \
 	../../../../kernel/simulator/SinkModelComponent.h \
@@ -332,6 +345,7 @@ HEADERS += \
 	../../../terminal/examples/smarts/Smart_Delay.h \
 	../../../terminal/examples/smarts/Smart_Dummy.h \
 	../../../terminal/examples/smarts/Smart_Failures.h \
+    ../../../terminal/examples/smarts/Smart_SimulationControlResponse.h \
 	../../../terminal/examples/smarts/Smart_WaitScanCondition.h \
 	../../../terminal/examples/smarts/Smart_WaitSignal.h \
 	../../../terminal/examples/smarts/Smart_ModelInfoModelSimulation.h \
@@ -352,6 +366,8 @@ HEADERS += \
 	../../../terminal/examples/teaching/OperatingSystem03.h \
 	AnimateExpression.h \
 	CodeEditor.h \
+    Dialogmodelinformation.h \
+    GraphicalAssociation.h \
 	GraphicalComponentPort.h \
 	GraphicalConnection.h \
 	GraphicalModelComponent.h \
@@ -361,69 +377,29 @@ HEADERS += \
 	ModelGraphicsView.h \
 	ObjectPropertyBrowser.h \
 	PropertyEditor.h \
-	QPropertyBrowser/QtAbstractEditorFactoryBase \
-	QPropertyBrowser/QtAbstractPropertyBrowser \
-	QPropertyBrowser/QtAbstractPropertyManager \
-	QPropertyBrowser/QtBoolPropertyManager \
-	QPropertyBrowser/QtBrowserItem \
-	QPropertyBrowser/QtButtonPropertyBrowser \
-	QPropertyBrowser/QtCharEditorFactory \
-	QPropertyBrowser/QtCharPropertyManager \
-	QPropertyBrowser/QtCheckBoxFactory \
-	QPropertyBrowser/QtColorEditorFactory \
-	QPropertyBrowser/QtColorPropertyManager \
-	QPropertyBrowser/QtCursorEditorFactory \
-	QPropertyBrowser/QtCursorPropertyManager \
-	QPropertyBrowser/QtDateEditFactory \
-	QPropertyBrowser/QtDatePropertyManager \
-	QPropertyBrowser/QtDateTimeEditFactory \
-	QPropertyBrowser/QtDateTimePropertyManager \
-	QPropertyBrowser/QtDoublePropertyManager \
-	QPropertyBrowser/QtDoubleSpinBoxFactory \
-	QPropertyBrowser/QtEnumEditorFactory \
-	QPropertyBrowser/QtEnumPropertyManager \
-	QPropertyBrowser/QtFlagPropertyManager \
-	QPropertyBrowser/QtFontEditorFactory \
-	QPropertyBrowser/QtFontPropertyManager \
-	QPropertyBrowser/QtGroupBoxPropertyBrowser \
-	QPropertyBrowser/QtGroupPropertyManager \
-	QPropertyBrowser/QtIntPropertyManager \
-	QPropertyBrowser/QtKeySequenceEditorFactory \
-	QPropertyBrowser/QtKeySequencePropertyManager \
-	QPropertyBrowser/QtLineEditFactory \
-	QPropertyBrowser/QtLocalePropertyManager \
-	QPropertyBrowser/QtPointFPropertyManager \
-	QPropertyBrowser/QtPointPropertyManager \
-	QPropertyBrowser/QtProperty \
-	QPropertyBrowser/QtRectFPropertyManager \
-	QPropertyBrowser/QtRectPropertyManager \
-	QPropertyBrowser/QtScrollBarFactory \
-	QPropertyBrowser/QtSizeFPropertyManager \
-	QPropertyBrowser/QtSizePolicyPropertyManager \
-	QPropertyBrowser/QtSizePropertyManager \
-	QPropertyBrowser/QtSliderFactory \
-	QPropertyBrowser/QtSpinBoxFactory \
-	QPropertyBrowser/QtStringPropertyManager \
-	QPropertyBrowser/QtTimeEditFactory \
-	QPropertyBrowser/QtTimePropertyManager \
-	QPropertyBrowser/QtTreePropertyBrowser \
-	QPropertyBrowser/QtVariantEditorFactory \
-	QPropertyBrowser/QtVariantProperty \
-	QPropertyBrowser/QtVariantPropertyManager \
-	QPropertyBrowser/qtbuttonpropertybrowser.h \
-	QPropertyBrowser/qteditorfactory.h \
-	QPropertyBrowser/qtgroupboxpropertybrowser.h \
-	QPropertyBrowser/qtpropertybrowser.h \
-	QPropertyBrowser/qtpropertybrowserutils_p.h \
-	QPropertyBrowser/qtpropertymanager.h \
-	QPropertyBrowser/qttreepropertybrowser.h \
-	QPropertyBrowser/qtvariantproperty.h \
+    QPropertyBrowser/qtbuttonpropertybrowser.h \
+    QPropertyBrowser/qteditorfactory.h \
+    QPropertyBrowser/qtgroupboxpropertybrowser.h \
+    QPropertyBrowser/qtpropertybrowser.h \
+    QPropertyBrowser/qtpropertybrowserutils_p.h \
+    QPropertyBrowser/qtpropertymanager.h \
+    QPropertyBrowser/qttreepropertybrowser.h \
+    QPropertyBrowser/qtvariantproperty.h \
+    TraitsGUI.h \
+    UtilGUI.h \
 	dialogBreakpoint.h \
+    dialogpluginmanager.h \
+    dialogsimulationconfigure.h \
+    dialogsystempreferences.h \
 	mainwindow.h \
 	qcustomplot.h
 
 FORMS += \
+	Dialogmodelinformation.ui \
 	dialogBreakpoint.ui \
+	dialogpluginmanager.ui \
+	dialogsimulationconfigure.ui \
+	dialogsystempreferences.ui \
 	mainwindow.ui
 
 TRANSLATIONS += \

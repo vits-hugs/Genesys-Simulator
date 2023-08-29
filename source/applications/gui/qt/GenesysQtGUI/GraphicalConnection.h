@@ -14,6 +14,11 @@
 
 class GraphicalConnection : public QGraphicsObject {
 public:
+	enum class ConnectionType : int {
+		HORIZONTAL = 1, VERTICAL = 2, DIRECT = 3, USERDEFINED = 4
+	};
+
+public:
 	GraphicalConnection(GraphicalComponentPort* sourceGraphicalPort, GraphicalComponentPort* destinationGraphicalPort, QColor color = Qt::black, QGraphicsItem *parent = nullptr);
 	GraphicalConnection(const GraphicalConnection& orig);
 	virtual ~GraphicalConnection();
@@ -23,6 +28,9 @@ public:
 	Connection* getSource() const;
 	Connection* getDestination() const;
 	void updateDimensionsAndPosition();
+	GraphicalConnection::ConnectionType connectionType() const;
+	void setConnectionType(GraphicalConnection::ConnectionType newConnectionType);
+
 protected: // virtual
 	virtual bool sceneEvent(QEvent *event) override;
 	//virtual void	hoverEnterEvent(QGraphicsSceneHoverEvent * event)
@@ -38,11 +46,14 @@ protected: // virtual
 	//virtual void mousePressEvent(QGraphicsSceneMouseEvent * event);
 	//virtual void	mouseReleaseEvent(QGraphicsSceneMouseEvent * event)
 private:
+	QColor myrgba(uint64_t color); // TODO: Should NOT be here, but in UtilGUI.h, but then it generates multiple definitions error
+	//TraitsGUI<GConnection>::foreColor
 private:
 	qreal _width;
 	qreal _height;
-	unsigned int _margin = 2;
-	unsigned int _selWidth = 8;
+	unsigned int _margin = TraitsGUI<GConnection>::margin;//2;
+	unsigned int _selWidth = TraitsGUI<GConnection>::selectionWidth;//8;
+	ConnectionType _connectionType = ConnectionType::HORIZONTAL;
 	Connection* _sourceConnection;
 	Connection* _destinationConnection;
 	GraphicalComponentPort* _sourceGraphicalPort;

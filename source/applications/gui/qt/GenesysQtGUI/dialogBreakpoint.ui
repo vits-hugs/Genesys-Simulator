@@ -23,7 +23,7 @@
    <string>Insert Breakpoint</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="simpleGUI_resources.qrc">
+   <iconset resource="GenesysQtGUI_resources.qrc">
     <normaloff>:/resources/icons/genesysico.gif</normaloff>:/resources/icons/genesysico.gif</iconset>
   </property>
   <property name="modal">
@@ -106,7 +106,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="simpleGUI_resources.qrc"/>
+  <include location="GenesysQtGUI_resources.qrc"/>
  </resources>
  <connections>
   <connection>

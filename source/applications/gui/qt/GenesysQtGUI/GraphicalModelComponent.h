@@ -1,26 +1,5 @@
-/*
- * The MIT License
- *
- * Copyright 2022 rlcancian.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
+#ifndef GRAPHICALMODELCOMPONENT_H
+#define GRAPHICALMODELCOMPONENT_H
 
 /*
  * File:   ModelComponentGraphicItem.h
@@ -28,9 +7,6 @@
  *
  * Created on 16 de fevereiro de 2022, 11:41
  */
-
-#ifndef MODELCOMPONENTGRAPHICITEM_H
-#define MODELCOMPONENTGRAPHICITEM_H
 
 #include <QGraphicsItem>
 #include <QGraphicsObject>
@@ -40,6 +16,7 @@
 #include "../../../../kernel/simulator/Plugin.h"
 #include "GraphicalComponentPort.h"
 #include "GraphicalModelDataDefinition.h"
+#include "TraitsGUI.h"
 
 class GraphicalModelComponent : public GraphicalModelDataDefinition {
 public:
@@ -52,7 +29,8 @@ public:
 	ModelComponent* getComponent() const;
 	QList<GraphicalComponentPort *> getGraphicalInputPorts() const;
 	QList<GraphicalComponentPort *> getGraphicalOutputPorts() const;
-
+private:
+	QColor myrgba(uint64_t color); // TODO: Should NOT be here, but in UtilGUI.h, but then it generates multiple definitions error
 protected: // virtual
 	virtual bool sceneEvent(QEvent *event) override;
 	//virtual void	hoverEnterEvent(QGraphicsSceneHoverEvent * event)
@@ -68,24 +46,24 @@ protected: // virtual
 	//   virtual void mousePressEvent(QGraphicsSceneMouseEvent * event);
 	//virtual void	mouseReleaseEvent(QGraphicsSceneMouseEvent * event)
 protected:
-	qreal _width = 150;
-	qreal _height = _width * 0.67;
-	unsigned int _margin = 8;
-	unsigned int _selWidth = 8;
+	qreal _width = TraitsGUI<GModelComponent>::width; //150;
+	qreal _height = _width * TraitsGUI<GModelComponent>::heightProportion; //0.67;
+	unsigned int _margin = TraitsGUI<GModelComponent>::margin;//8;
+	unsigned int _selWidth = TraitsGUI<GModelComponent>::selectionWidth;//8;
 	ModelComponent* _component;
 	QColor _color;
-	qreal _stretchPosTop = 0.5;
-	qreal _stretchPosBottom = 0.5;
-	qreal _stretchPosLeft = 0.5;
-	qreal _stretchPosRigth = 0.5;
-	qreal _stretchRigth = 0;
-	qreal _stretchLeft = 0;
-	qreal _stretchRigthMidle = 0;
-	qreal _stretchLeftMidle = 0;
-	qreal _stretchTop = 0;
-	qreal _stretchBottom = 0;
-	qreal _stretchTopMidle = 0;
-	qreal _stretchBottomMidle = 0;
+	qreal _stretchPosTop = TraitsGUI<GModelComponent>::stretchPos;//0.5;
+	qreal _stretchPosBottom = TraitsGUI<GModelComponent>::stretchPos;//0.5;
+	qreal _stretchPosLeft = TraitsGUI<GModelComponent>::stretchPos;//0.5;
+	qreal _stretchPosRigth = TraitsGUI<GModelComponent>::stretchPos;//0.5;
+	qreal _stretchRigth = TraitsGUI<GModelComponent>::stretch;//0;
+	qreal _stretchLeft = TraitsGUI<GModelComponent>::stretch;//0;
+	qreal _stretchRigthMidle = TraitsGUI<GModelComponent>::stretch;//0;
+	qreal _stretchLeftMidle = TraitsGUI<GModelComponent>::stretch;//0;
+	qreal _stretchTop = TraitsGUI<GModelComponent>::stretch;//0;
+	qreal _stretchBottom = TraitsGUI<GModelComponent>::stretch;//0;
+	qreal _stretchTopMidle = TraitsGUI<GModelComponent>::stretch;//0;
+	qreal _stretchBottomMidle = TraitsGUI<GModelComponent>::stretch;//0;
 private:
 	QList<GraphicalComponentPort*> _graphicalInputPorts = QList<GraphicalComponentPort*>();
 	QList<GraphicalComponentPort*> _graphicalOutputPorts = QList<GraphicalComponentPort*>();

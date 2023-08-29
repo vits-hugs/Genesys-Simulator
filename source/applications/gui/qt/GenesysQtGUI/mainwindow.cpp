@@ -1,16 +1,20 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+// Dialogs
 #include "dialogBreakpoint.h"
+#include "Dialogmodelinformation.h"
+#include "dialogsimulationconfigure.h"
+#include "dialogpluginmanager.h"
+#include "dialogsystempreferences.h"
 // Kernel
 #include "../../../../kernel/simulator/SinkModelComponent.h"
 #include "../../../../kernel/simulator/Attribute.h"
+#include "../../../TraitsApp.h"
 // GUI
 #include "ModelGraphicsScene.h"
+#include "TraitsGUI.h"
 // PropEditor
-#include "QPropertyBrowser/qteditorfactory.h"
 #include "QPropertyBrowser/qttreepropertybrowser.h"
-#include "QPropertyBrowser/qtpropertymanager.h"
-#include "QPropertyBrowser/qtvariantproperty.h"
 // QT
 #include <string>
 #include <fstream>
@@ -21,36 +25,46 @@
 #include <Qt>
 #include <qt5/QtWidgets/qgraphicsitem.h>
 #include <QGraphicsScene>
+#include <QDesktopWidget>
 
-// @TODO: Should not be hardcoded
-#include "../../../../plugins/components/Create.h"
-#include "../../../../plugins/components/Delay.h"
+// @TODO: Should NOT be hardcoded!!!
 #include "../../../../plugins/data/Variable.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
 	ui->setupUi(this);
-	// Genesys Simulator
+    //
+    // Genesys Simulator
 	simulator = new Simulator();
-	simulator->getTracer()->setTraceLevel(TraceManager::Level::L9_mostDetailed);
+    simulator->getTracer()->setTraceLevel(TraitsApp<GenesysApplication_if>::traceLevel);
 	simulator->getTracer()->addTraceHandler<MainWindow>(this, &MainWindow::_simulatorTraceHandler);
 	simulator->getTracer()->addTraceErrorHandler<MainWindow>(this, &MainWindow::_simulatorTraceErrorHandler);
 	simulator->getTracer()->addTraceReportHandler<MainWindow>(this, &MainWindow::_simulatorTraceReportsHandler);
 	simulator->getTracer()->addTraceSimulationHandler<MainWindow>(this, &MainWindow::_simulatorTraceSimulationHandler);
-	_insertFakePlugins();
-	simulator->getTracer()->setTraceLevel(TraceManager::Level::L7_internal);
-	// Docks
+    _insertFakePlugins(); // todo hate this
+    //
+	// Docks // TODO how place them in a specified rank?
+	//
 	//ui->dockWidgetPlugins->doc
 	//ui->dockWidgetContentsPlugin->setMinimumHeight(250);
 	//ui->dockWidgetContentsPlugin->setMaximumWidth(230);
 	//UNCOMMENT//  tabifyDockWidget(ui->dockWidgetConsole, ui->dockWidgetPropertyEditor);
-	// plugins
+	//
+	// Docks // TODO Trying again to set some of them to minimum height
+    //
+	ui->dockWidgetConsole->setMinimumHeight(100);
+	QSizePolicy policy = ui->dockWidgetConsole->sizePolicy();
+	policy.setVerticalPolicy(QSizePolicy::Minimum);
+	ui->dockWidgetConsole->setSizePolicy(policy);
+	//...
+    // plugins
 	ui->treeWidget_Plugins->sortByColumn(0, Qt::AscendingOrder);
 	// Text Code Editor // @todo No need for programming
 	//QVBoxLayout* layout = dynamic_cast<QVBoxLayout*> (ui->tabModelText->layout());
 	//ui->TextCodeEditor = new CodeEditor(ui->tabModelText);
 	//layout->addWidget(ui->TextCodeEditor);
 	//connect(ui->TextCodeEditor, SIGNAL(textChanged()), this, SLOT(on_ui->TextCodeEditor_textChanged()));
-	// Tables
+    //
+    // Tables
 	QStringList headers;
 	headers << tr("Time") << tr("Component") << tr("Entity");
 	ui->tableWidget_Simulation_Event->setHorizontalHeaderLabels(headers);
@@ -68,7 +82,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 	ui->tableWidget_Entities->setHorizontalHeaderLabels(headers);
 	ui->tableWidget_Entities->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 	ui->tableWidget_Simulation_Event->setContentsMargins(1, 0, 1, 0);
-	// Trees
+    //
+    // Trees
 	QTreeWidgetItem *treeHeader = ui->treeWidgetComponents->headerItem();
 	treeHeader->setText(0, "Id");
 	treeHeader->setText(1, "Type");
@@ -81,27 +96,54 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 	treeHeader->setText(2, "Name");
 	treeHeader->setText(3, "Properties");
 	treeHeader->setExpanded(true);
-	// ModelGraphic
+    //
+    // ModelGraphic
 	ui->graphicsView->setParentWidget(ui->centralwidget);
 	ui->graphicsView->setSimulator(simulator);
 	_zoomValue = ui->horizontalSlider_ZoomGraphical->maximum() / 2;
-	// set current tabs
+    //
+    // set current tabs
 	ui->tabWidgetCentral->setCurrentIndex(CONST.TabCentralModelIndex);
 	ui->tabWidgetModel->setCurrentIndex(CONST.TabModelSimLangIndex);
 	ui->tabWidgetSimulation->setCurrentIndex(CONST.TabSimulationBreakpointsIndex);
 	ui->tabWidgetReports->setCurrentIndex(CONST.TabReportReportIndex);
 	//
-	_actualizeActions();
-	// graphicsView
+	// adjust toolbars position and ranking
+	//
+	addToolBar(Qt::LeftToolBarArea, ui->toolBarModel);
+	addToolBar(Qt::LeftToolBarArea, ui->toolBarEdit);
+	addToolBar(Qt::LeftToolBarArea, ui->toolBarView);
+	addToolBar(Qt::LeftToolBarArea, ui->toolBarArranje);
+	addToolBar(Qt::LeftToolBarArea, ui->toolBarDraw);
+	addToolBar(Qt::LeftToolBarArea, ui->toolBarSimulation);
+	addToolBar(Qt::LeftToolBarArea, ui->toolBarGraphicalModel);
+	addToolBar(Qt::LeftToolBarArea, ui->toolBarAnimate);
+	addToolBar(Qt::LeftToolBarArea, ui->toolBarAbout);
+	//
+	addToolBar(Qt::TopToolBarArea, ui->toolBarModel);
+	addToolBar(Qt::TopToolBarArea, ui->toolBarEdit);
+	addToolBar(Qt::TopToolBarArea, ui->toolBarView);
+	addToolBar(Qt::TopToolBarArea, ui->toolBarArranje);
+	//addToolBar(Qt::LeftToolBarArea, ui->toolBarDraw);
+	addToolBar(Qt::TopToolBarArea, ui->toolBarSimulation);
+	addToolBar(Qt::TopToolBarArea, ui->toolBarGraphicalModel);
+	//addToolBar(Qt::LeftToolBarArea, ui->toolBarAnimate);
+	addToolBar(Qt::TopToolBarArea, ui->toolBarAbout);
+	//
+    // graphicsView
 	_initModelGraphicsView();
-
-	//// FOR TESTS ONLY
-
-	ui->treeViewPropertyEditor->setAlternatingRowColors(true);
+    //
+    // property editor
+    ui->treeViewPropertyEditor->setAlternatingRowColors(true);
+    // finally
+    _actualizeActions();
+	// another try to start maximized (it should not be that hard)
+	QRect screenGeometry = QApplication::desktop()->availableGeometry();
+	this->resize(screenGeometry.width(), screenGeometry.height());
+    //
+    // FOR TESTS ONLY
 	//ui->treeViewPropertyEditor->set
-	this->on_actionNew_triggered();
-
-
+    //this->on_actionNew_triggered();
 	//on_actionNew_triggered();
 	//ui->tabWidget_Model->setCurrentIndex(CONST.TabModelGraphicEditIndex);
 }
@@ -158,35 +200,52 @@ void MainWindow::_actualizeActions() {
 	bool opened = simulator->getModels()->current() != nullptr;
 	bool running = false;
 	bool paused = false;
+	unsigned int numSelectedGraphicals = 0;
+	unsigned int actualCommandundoRedo = 0; // TODO
+	unsigned int maxCommandundoRedo = 0; // TODO
 	if (opened) {
 		running = simulator->getModels()->current()->getSimulation()->isRunning();
 		paused = simulator->getModels()->current()->getSimulation()->isPaused();
+		numSelectedGraphicals = 0;// TODO get total of selected graphical objects (this should br on another "actualize", I think
 	}
 	//
 	ui->graphicsView->setEnabled(opened);
 	ui->tabWidgetCentral->setEnabled(opened);
 	// model
-	ui->actionSave->setEnabled(opened);
-	ui->actionClose->setEnabled(opened);
-	ui->actionCheck->setEnabled(opened);
-	ui->menuSimulation->setEnabled(opened);
+	ui->actionModelSave->setEnabled(opened);
+	ui->actionModelClose->setEnabled(opened);
+	ui->actionModelInformation->setEnabled(opened);
+	ui->actionModelCheck->setEnabled(opened);
 	//edit
 	ui->toolBarEdit->setEnabled(opened);
 	ui->menuEdit->setEnabled(opened);
+	// view
+	ui->menuView->setEnabled(opened);
+	ui->toolBarView->setEnabled(opened);
+	ui->toolBarAnimate->setEnabled(opened);
+	ui->toolBarGraphicalModel->setEnabled(opened);
+	ui->toolBarDraw->setEnabled(opened);
 	// simulation
-	ui->actionStart->setEnabled(opened && !running);
-	ui->actionStep->setEnabled(opened && !running);
-	ui->actionStop->setEnabled(opened && (running || paused));
-	ui->actionPause->setEnabled(opened && running);
-	ui->actionResume->setEnabled(opened && paused);
+	ui->menuSimulation->setEnabled(opened);
+	ui->actionSimulationConfigure->setEnabled(opened);
+	ui->actionSimulationStart->setEnabled(opened && !running);
+	ui->actionSimulationStep->setEnabled(opened && !running);
+	ui->actionSimulationStop->setEnabled(opened && (running || paused));
+	ui->actionSimulationPause->setEnabled(opened && running);
+	ui->actionSimulationResume->setEnabled(opened && paused);
 	// debug
 	ui->tableWidget_Breakpoints->setEnabled(opened);
 	ui->tableWidget_Entities->setEnabled(opened);
 	ui->tableWidget_Variables->setEnabled(opened);
-	// tool bars
-	ui->toolBarAnimation->setEnabled(opened);
-	ui->toolBarView->setEnabled(opened);
-	ui->toolBarGraphicalModel->setEnabled(opened);
+
+	// based on SELECTED GRAPHICAL OBJECTS or on COMMANDS DONE (UNDO/REDO)
+	ui->toolBarArranje->setEnabled(numSelectedGraphicals>0);
+	ui->actionEditCopy->setEnabled(numSelectedGraphicals>0);
+	ui->actionEditCut->setEnabled(numSelectedGraphicals>0);
+	ui->actionEditDelete->setEnabled(numSelectedGraphicals>0);
+	ui->actionEditUndo->setEnabled(actualCommandundoRedo>0);
+	ui->actionEditRedo->setEnabled(actualCommandundoRedo<maxCommandundoRedo);
+
 	// sliders
 	ui->horizontalSlider_ZoomGraphical->setEnabled(opened);
 	if (_modelWasOpened && !opened) {
@@ -356,8 +415,8 @@ void MainWindow::_actualizeModelComponents(bool force) {
 			treeComp->setText(1, QString::fromStdString(comp->getClassname()));
 			treeComp->setText(2, QString::fromStdString(comp->getName()));
 			std::string properties = "";
-			for (auto prop : *comp->getPropertiesG()->list()) {
-				properties += prop->getName() + ":" + prop->getValueText() + ", ";
+			for (auto prop : *comp->getProperties()->list()) {
+				properties += prop->getName() + ":" + std::to_string(prop->getValue()) + ", ";
 			}
 			properties = properties.substr(0, properties.length() - 2);
 			treeComp->setText(3, QString::fromStdString(properties));
@@ -383,8 +442,8 @@ void MainWindow::_actualizeModelDataDefinitions(bool force) {
 				treeComp->setText(1, QString::fromStdString(comp->getClassname()));
 				treeComp->setText(2, QString::fromStdString(comp->getName()));
 				std::string properties = "";
-				for (auto prop : *comp->getPropertiesG()->list()) {
-					properties += prop->getName() + ":" + prop->getValueText() + ", ";
+				for (auto prop : *comp->getProperties()->list()) {
+					properties += prop->getName() + ":" + std::to_string(prop->getValue()) + ", ";
 				}
 				properties = properties.substr(0, properties.length() - 2);
 				treeComp->setText(3, QString::fromStdString(properties));
@@ -403,8 +462,23 @@ void MainWindow::_actualizeGraphicalModel(SimulationEvent * re) {
 	}
 }
 
+QColor MainWindow::myrgba(uint64_t color) {
+	uint8_t r, g, b, a;
+	r = (color&0xFF000000)>>24;
+	g = (color&0x00FF0000)>>16;
+	b = (color&0x0000FF00)>>8;
+	a = (color&0x000000FF);
+	return QColor(r, g, b, a);
+}
+
+std::string MainWindow::dotColor(uint64_t color) {
+	std::stringstream stream;
+	stream << std::hex << "#" << color;
+	return stream.str();
+}
+
 void MainWindow::_insertCommandInConsole(std::string text) {
-	ui->textEdit_Console->setTextColor(QColor::fromRgb(0, 128, 0));
+	ui->textEdit_Console->setTextColor(myrgba(TraitsGUI<GMainWindow>::consoleTextColor));
 	QFont font(ui->textEdit_Console->font());
 	font.setBold(true);
 	ui->textEdit_Console->setFont(font);
@@ -490,6 +564,47 @@ void MainWindow::_insertTextInDot(std::string text, unsigned int compLevel, unsi
 
 void MainWindow::_recursiveCreateModelGraphicPicture(ModelDataDefinition* componentOrData, std::list<ModelDataDefinition*>* visited, std::map<unsigned int, std::map<unsigned int, std::list<std::string>*>*>* dotmap) {
 
+	/*
+	const struct DOT_STYLES {
+		std::string nodeComponent = std::string("shape=record")+
+									std::string(", fontsize=")+std::to_string(TraitsGUI<GModelGraphicPic>::nodeComponentFontSize)+
+									std::string(", fontcolor=")+dotColor(TraitsGUI<GModelGraphicPic>::nodeComponentFontColor)+
+									std::string(", style=filled")+
+									std::string(", fillcolor=")+dotColor(TraitsGUI<GModelGraphicPic>::nodeComponentFillColor); //fillcolor=goldenrod3
+		std::string edgeComponent = std::string("style=solid")+
+									std::string(", arrowhead=\"normal\" color=")+dotColor(TraitsGUI<GModelGraphicPic>::edgeComponentEdgeColor)+
+									std::string(", fontcolor=")+dotColor(TraitsGUI<GModelGraphicPic>::edgeComponentFontColor)+
+									std::string(", fontsize=")+dotColor(TraitsGUI<GModelGraphicPic>::edgeComponentFontSize);
+		std::string nodeDataDefInternal = std::string("shape=record")+
+										  std::string(", fontsize=")+std::to_string(TraitsGUI<GModelGraphicPic>::nodeDatadefInternalFontSize)+
+										  std::string(", color=")+dotColor(TraitsGUI<GModelGraphicPic>::nodeDatadefInternalColor)+
+										  std::string(", fontcolor=")+dotColor(TraitsGUI<GModelGraphicPic>::nodeDatadefInternalFontColor);
+		std::string nodeDataDefAttached = std::string("shape=record")+
+										  std::string(", fontsize=10")+ // TODO Continue replacing fized styles by TraitsGUI...
+										  std::string(", color=gray50")+
+										  std::string(", fontcolor=gray50")+
+										  std::string(", style=filled")+
+										  std::string(", fillcolor=darkolivegreen3");
+		std::string edgeDataDefInternal = std::string("style=dashed")+
+										  std::string(", arrowhead=\"diamond\"")+
+										  std::string(", color=gray55")+
+										  std::string(", fontcolor=gray55")+
+										  std::string(", fontsize=7");
+		std::string edgeDataDefAttached = std::string("style=dashed")+
+										  std::string(", arrowhead=\"ediamond\"")+
+										  std::string(", color=gray50")+
+										  std::string(", fontcolor=gray50")+
+										  std::string(", fontsize=7");
+		unsigned int rankSource = 0;
+		unsigned int rankSink = 1;
+		unsigned int rankComponent = 99;
+		unsigned int rankComponentOtherLevel = 99;
+		unsigned int rankDataDefInternal = 99;
+		unsigned int rankDataDefAttached = 99;
+		unsigned int rankDataDefRecursive = 99;
+		unsigned int rankEdge = 99;
+	} DOT;
+	*/
 	const struct DOT_STYLES {
 		std::string nodeComponent = "shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=bisque";
 		//std::string nodeComponentOtherLevel = "shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=goldenrod3";
@@ -507,6 +622,8 @@ void MainWindow::_recursiveCreateModelGraphicPicture(ModelDataDefinition* compon
 		unsigned int rankDataDefRecursive = 99;
 		unsigned int rankEdge = 99;
 	} DOT;
+
+
 	visited->insert(visited->end(), componentOrData);
 	std::string text;
 	unsigned int modellevel = simulator->getModels()->current()->getLevel();
@@ -615,7 +732,7 @@ void MainWindow::_actualizeModelCppCode() {
 		std::string text, text2, name;
 		std::map<std::string, std::string>* code = new std::map<std::string, std::string>();
 		text = _addCppCodeLine("/*");
-		text += _addCppCodeLine(" * This C++ source cod was automatically generated by Genesys");
+		text += _addCppCodeLine(" * This C++ source code was automatically generated by GenESyS");
 		text += _addCppCodeLine(" */");
 		code->insert({"1begin", text});
 
@@ -693,9 +810,11 @@ void MainWindow::_actualizeModelCppCode() {
 		text += _addCppCodeLine("sim->setWarmUpPeriod(" + std::to_string(sim->getWarmUpPeriod()) + ");", tabs);
 		text += _addCppCodeLine("sim->setWarmUpPeriodTimeUnit(Util::TimeUnit::" + Util::StrTimeUnitLong(sim->getWarmUpPeriodTimeUnit()) + ");", tabs);
 		text += _addCppCodeLine("sim->setReplicationReportBaseTimeUnit(Util::TimeUnit::" + Util::StrTimeUnitLong(sim->getReplicationBaseTimeUnit()) + ");", tabs);
+		text2 = sim->isShowReportsAfterSimulation()?"true":"false";
+		text += _addCppCodeLine("sim->setsetShowReportsAfterSimulation("+text2+");", tabs);
 		code->insert({"7simulation", text});
 
-		text = _addCppCodeLine("// simulate", tabs);
+		text = _addCppCodeLine("// simulate and show report", tabs);
 		text += _addCppCodeLine("sim->start();", tabs);
 		text += _addCppCodeLine("return 0;", tabs);
 		tabs--;
@@ -883,6 +1002,25 @@ void MainWindow::_simulatorTraceReportsHandler(TraceEvent e) {
 	QCoreApplication::processEvents();
 }
 
+//
+// simulator event handlers
+//
+
+void MainWindow::_onModelCheckSuccessHandler(ModelEvent* re) {
+	// create (and positione and draw) or remove GraphicalModelDataDefinitions based on what actually exists on the model
+	Model* model = simulator->getModels()->current();
+	if (simulator->getModels()->current() == re->getModel()) { // the current model is the one changed
+		ModelDataManager* dm = model->getDataManager();
+		ModelGraphicsView* modelGraphView = ((ModelGraphicsView*)(ui->graphicsView));
+		for(auto elemclassname: *dm->getDataDefinitionClassnames()) {
+			for (ModelDataDefinition* elem: *dm->getDataDefinitionList(elemclassname)->list()) {
+				Util::identification id = elem->getId();
+				//modelGraphView->;
+			}
+		}
+	}
+}
+
 void MainWindow::_onReplicationStartHandler(SimulationEvent * re) {
 
 	ModelSimulation* sim = simulator->getModels()->current()->getSimulation();
@@ -977,9 +1115,12 @@ void MainWindow::sceneSelectionChanged() {
 			// // ui->treeViewPropertyEditor->setModelBlock(gmc->getComponent());
 			ui->treeViewPropertyEditor->setActiveObject(gmc, gmc->getComponent());
 			return;
-		}
-	}
-	// // ui->treeViewPropertyEditor->clear();
+        } else { // nothing selected
+            ui->treeViewPropertyEditor->clear();
+        }
+    } else if (ui->graphicsView->selectedItems().size() == 0) {
+        ui->treeViewPropertyEditor->clear();
+    }
 }
 
 //-----------------------------------------
@@ -1203,220 +1344,34 @@ void MainWindow::_insertFakePlugins() {
 	}
 }
 
+//-------------
+
+void MainWindow::_gentle_zoom(double factor) {
+	QPointF target_scene_pos, target_viewport_pos;
+	QPoint mouse_event_pos = QPoint(ui->graphicsView->width()/2, ui->graphicsView->height()/2); //QPoint(100, 100);
+	target_viewport_pos = mouse_event_pos;
+	target_scene_pos = ui->graphicsView->mapToScene(mouse_event_pos);
+	ui->graphicsView->scale(factor, factor);
+	ui->graphicsView->centerOn(target_scene_pos);
+	QPointF delta_viewport_pos = target_viewport_pos - QPointF(ui->graphicsView->viewport()->width() / 2.0,
+			ui->graphicsView->viewport()->height() / 2.0);
+	QPointF viewport_center = ui->graphicsView->mapFromScene(target_scene_pos) - delta_viewport_pos;
+	ui->graphicsView->centerOn(ui->graphicsView->mapToScene(viewport_center.toPoint()));
+	//emit zoomed();
+}
+
+void MainWindow::showMessageNotImplemented(){
+	QMessageBox::warning(this, "Ops...", "Sorry. This functionalitty was not implemented yet. Genesys is a free open-source simulator (and tools) available at 'https://github.com/rlcancian/Genesys-Simulator'. Help us by submiting your pull requests containing code improvements.");
+}
+
 //-------------------------
 // PRIVATE SLOTS
 //-------------------------
 
-void MainWindow::on_actionNew_triggered() {
-	Model* m;
-	if ((m = simulator->getModels()->current()) != nullptr) {
-		QMessageBox::StandardButton reply = QMessageBox::question(this, "New Model", "There is a model already oppened. Do you want to close it and to create new model?", QMessageBox::Yes | QMessageBox::No);
-		if (reply == QMessageBox::No) {
-			return;
-		} else {
-			this->on_actionClose_triggered();
-			//return; //@TODO Ceck if needed (since will remove bellow)
-		}
-	}
-	_insertCommandInConsole("new");
-	if (m != nullptr) {
-		simulator->getModels()->remove(m);
-	}
-	m = simulator->getModels()->newModel();
-	ui->TextCodeEditor->clear();
-	ui->textEdit_Simulation->clear();
-	ui->textEdit_Reports->clear();
-	ui->textEdit_Console->moveCursor(QTextCursor::End);
-	// create a basic initial template for the model
-	std::string tempFilename = "./temp.tmp";
-	m->getPersistence()->setOption(ModelPersistence_if::Options::SAVEDEFAULTS, true);
-	bool res = m->save(tempFilename);
-	m->getPersistence()->setOption(ModelPersistence_if::Options::SAVEDEFAULTS, false);
-	if (res) { // read the file saved and copy its contents to the model text editor
-		std::string line;
-		std::ifstream file(tempFilename);
-		if (file.is_open()) {
-			ui->TextCodeEditor->appendPlainText("# Genesys Model File");
-			ui->TextCodeEditor->appendPlainText("# Simulator, ModelInfo and ModelSimulation");
-			while (std::getline(file, line)) {
-				ui->TextCodeEditor->appendPlainText(QString::fromStdString(line));
-			}
-			file.close();
-			//QMessageBox::information(this, "New Model", "Model successfully created");
-		} else {
-			ui->textEdit_Console->append(QString("Error reading template model file"));
-		}
-		_actualizeModelTextHasChanged(true);
-		_setOnEventHandlers();
-	} else {
-		ui->textEdit_Console->append(QString("Error saving template model file"));
-	}
-	_modelfilename = "";
-	_actualizeActions();
-	_actualizeTabPanes();
-}
 
-void MainWindow::on_actionSave_triggered() {
-	QString fileName = QFileDialog::getSaveFileName(this,
-			tr("Save Model"), _modelfilename,
-			tr("Genesys Model (*.gen);;All Files (*)"));
-	if (fileName.isEmpty())
-		return;
-	else {
-		_insertCommandInConsole("save " + fileName.toStdString());
-		QFile file(fileName);
-		if (!file.open(QIODevice::WriteOnly)) {
-			QMessageBox::information(this, tr("Unable to access file to save"),
-					file.errorString());
-			return;
-		}
-		std::ofstream savefile;
-		savefile.open(fileName.toStdString(), std::ofstream::out);
-		QString data = ui->TextCodeEditor->toPlainText();
-		QStringList strList = data.split(QRegExp("[\n]"), QString::SkipEmptyParts);
-		for (unsigned int i = 0; i < strList.size(); i++) {
-
-			savefile << strList.at(i).toStdString() << std::endl;
-		}
-		savefile.close();
-		_saveGraphicalModel(fileName.toStdString() + ".gui");
-		_modelfilename = fileName;
-		QMessageBox::information(this, "Save Model", "Model successfully saved");
-		// convert text info Model
-		_setSimulationModelBasedOnText();
-		//
-		_actualizeModelTextHasChanged(false);
-	}
-	_actualizeActions();
-}
-
-void MainWindow::on_actionClose_triggered() {
-	if (_textModelHasChanged || simulator->getModels()->current()->hasChanged()) {
-		QMessageBox::StandardButton res = QMessageBox::question(this, "Close ModelSyS", "Model has changed. Do you want to save it?", QMessageBox::Yes | QMessageBox::No);
-		if (res == QMessageBox::Yes) {
-			this->on_actionSave_triggered();
-			return;
-		}
-	}
-	_insertCommandInConsole("close");
-	simulator->getModels()->remove(simulator->getModels()->current());
-	_actualizeActions();
-	_actualizeTabPanes();
-	//QMessageBox::information(this, "Close Model", "Model successfully closed");
-}
-
-void MainWindow::on_actionExit_triggered() {
-	QMessageBox::StandardButton res;
-	if (this->_textModelHasChanged) {
-		res = QMessageBox::question(this, "Exit GenESyS", "Model has changed. Do you want to save it?", QMessageBox::Yes | QMessageBox::No);
-		if (res == QMessageBox::Yes) {
-			this->on_actionSave_triggered();
-			return;
-		}
-	}
-	res = QMessageBox::question(this, "Exit GenESyS", "Do you want to exit GenESyS?", QMessageBox::Yes | QMessageBox::No);
-	if (res == QMessageBox::Yes) {
-		QApplication::quit();
-	} else {
-		// it does not quit, but the window is closed. Check it. @TODO
-	}
-}
-
-void MainWindow::on_actionStop_triggered() {
-	_insertCommandInConsole("stop");
-	simulator->getModels()->current()->getSimulation()->stop();
-	_actualizeActions();
-}
-
-void MainWindow::on_actionStart_triggered() {
-	_insertCommandInConsole("start");
-	if (_setSimulationModelBasedOnText())
-		simulator->getModels()->current()->getSimulation()->start();
-}
-
-void MainWindow::on_actionStep_triggered() {
-	_insertCommandInConsole("step");
-
-	if (_setSimulationModelBasedOnText())
-		simulator->getModels()->current()->getSimulation()->step();
-}
-
-void MainWindow::on_actionPause_triggered() {
-
-	_insertCommandInConsole("pause");
-	simulator->getModels()->current()->getSimulation()->pause();
-}
-
-void MainWindow::on_actionResume_triggered() {
-	_insertCommandInConsole("resume");
-
-	if (_setSimulationModelBasedOnText())
-		simulator->getModels()->current()->getSimulation()->start();
-}
-
-void MainWindow::on_actionOpen_triggered() {
-	QString fileName = QFileDialog::getOpenFileName(
-			this, "Open Model", "./models/",
-			tr("All files (*.*);;Genesys model (*.gen)"));
-	if (fileName == "") {
-		return;
-	}
-	_insertCommandInConsole("load " + fileName.toStdString());
-	// load Model (in the simulator)
-	bool result = simulator->getModels()->loadModel(fileName.toStdString());
-	if (result) { // now load the text into the GUI
-		_clearModelEditors();
-		std::string line;
-		std::ifstream file(fileName.toStdString());
-		if (file.is_open()) {
-			while (std::getline(file, line)) {
-				ui->TextCodeEditor->appendPlainText(QString::fromStdString(line));
-			}
-			file.close();
-		} else {
-			ui->textEdit_Console->append(QString("Error reading model file"));
-		}
-		ui->textEdit_Console->append("\n");
-		_setOnEventHandlers();
-		_actualizeModelTextHasChanged(false);
-		_actualizeActions();
-		_modelfilename = fileName;
-		QMessageBox::information(this, "Open Model", "Model successfully oppened");
-	} else {
-
-		QMessageBox::warning(this, "Open Model", "Error while opening model");
-	}
-	_actualizeActions();
-	_actualizeTabPanes();
-}
-
-//void MainWindow::on_ui->TextCodeEditor_textChanged() {
-//	this->_actualizeModelTextHasChanged(true);
-//}
-
-void MainWindow::on_actionCheck_triggered() {
-	_insertCommandInConsole("check");
-	bool res = simulator->getModels()->current()->check();
-	_actualizeActions();
-	_actualizeTabPanes();
-	if (res) {
-		QMessageBox::information(this, "Model Check", "Model successfully checked.");
-	} else {
-		QMessageBox::critical(this, "Model Check", "Model has erros. See the console for more information.");
-	}
-}
-
-void MainWindow::on_actionAbout_triggered() {
-	QMessageBox::about(this, "About Genesys", "Genesys is a result of teaching and research activities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics and simulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesys development he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of that tool, including its graphical interface. Genesys allowed the inclusion of new simulation components through dynamic link libraries and also the parallel execution of simulation models in a distributed environment. The development of Genesys continued until 2009, when the professor stopped teaching systems simulation classes. Ten years later the professor starts again to teach systems simulation classes and to carry out scientific research in the area. So in 2019 Genesys is reborn, with new language and programming techniques, and even more ambitious goals.");
-}
-
-void MainWindow::on_actionLicence_triggered() {
-	LicenceManager* licman = simulator->getLicenceManager();
-	std::string text = licman->showLicence() + "\n";
-	text += licman->showLimits() + "\n";
-	text += licman->showActivationCode();
-	QMessageBox::about(this, "About Licence", QString::fromStdString(text));
-}
+// -------------------------------------
+// on Widgets
+// -------------------------------------
 
 void MainWindow::on_tabWidget_Model_tabBarClicked(int index) {
 
@@ -1450,10 +1405,6 @@ void MainWindow::on_horizontalSlider_Zoom_valueChanged(int value) {
 
 void MainWindow::on_checkBox_ShowRecursive_stateChanged(int arg1) {
 	bool result = _createModelImage();
-}
-
-void MainWindow::on_actionGet_Involved_triggered() {
-	QMessageBox::about(this, "Get Inveolved", "Genesys is a free open-source simulator (and tools) available at 'https://github.com/rlcancian/Genesys-Simulator'. Help us by submiting your pull requests containing code improvements. Contact: rafael.cancian@ufsc.br");
 }
 
 void MainWindow::on_checkBox_ShowLevels_stateChanged(int arg1) {
@@ -1540,24 +1491,6 @@ void MainWindow::on_horizontalSlider_ZoomGraphical_valueChanged(int value) {
 	_gentle_zoom(1.0 + factor);
 }
 
-void MainWindow::_gentle_zoom(double factor) {
-	QPointF target_scene_pos, target_viewport_pos;
-	QPoint mouse_event_pos = QPoint(100, 100);
-	target_viewport_pos = mouse_event_pos;
-	target_scene_pos = ui->graphicsView->mapToScene(mouse_event_pos);
-	ui->graphicsView->scale(factor, factor);
-	ui->graphicsView->centerOn(target_scene_pos);
-	QPointF delta_viewport_pos = target_viewport_pos - QPointF(ui->graphicsView->viewport()->width() / 2.0,
-			ui->graphicsView->viewport()->height() / 2.0);
-	QPointF viewport_center = ui->graphicsView->mapFromScene(target_scene_pos) - delta_viewport_pos;
-	ui->graphicsView->centerOn(ui->graphicsView->mapToScene(viewport_center.toPoint()));
-	//emit zoomed();
-}
-
-void MainWindow::showMessageNotImplemented(){
-	QMessageBox::warning(this, "Ops...", "Sorry. This functionalitty was not implemented yet. Genesys is a free open-source simulator (and tools) available at 'https://github.com/rlcancian/Genesys-Simulator'. Help us by submiting your pull requests containing code improvements.");
-}
-
 void MainWindow::on_actionConnect_triggered() {
 	((ModelGraphicsView*) ui->graphicsView)->beginConnection();
 }
@@ -1619,58 +1552,119 @@ void MainWindow::on_tabWidgetReports_currentChanged(int index) {
 	_actualizeTabPanes();
 }
 
-void MainWindow::on_actionUndo_triggered() {
+//-------------------------
+// PRIVATE SLOTS
+//-------------------------
+
+// -------------------------------------------------
+//  menu actions
+// -------------------------------------------------
+
+
+void MainWindow::on_actionSimulationStop_triggered() {
+	_insertCommandInConsole("stop");
+	simulator->getModels()->current()->getSimulation()->stop();
+	_actualizeActions();
+}
+
+void MainWindow::on_actionSimulationStart_triggered() {
+	_insertCommandInConsole("start");
+	if (_setSimulationModelBasedOnText())
+		simulator->getModels()->current()->getSimulation()->start();
+}
+
+void MainWindow::on_actionSimulationStep_triggered() {
+	_insertCommandInConsole("step");
+
+	if (_setSimulationModelBasedOnText())
+		simulator->getModels()->current()->getSimulation()->step();
+}
+
+void MainWindow::on_actionSimulationPause_triggered() {
+
+	_insertCommandInConsole("pause");
+	simulator->getModels()->current()->getSimulation()->pause();
+}
+
+void MainWindow::on_actionSimulationResume_triggered() {
+	_insertCommandInConsole("resume");
+
+	if (_setSimulationModelBasedOnText())
+		simulator->getModels()->current()->getSimulation()->start();
+}
+
+
+void MainWindow::on_actionAboutAbout_triggered() {
+	QMessageBox::about(this, "About Genesys", "Genesys is a result of teaching and research activities of Professor Dr. Ing Rafael Luiz Cancian. It began in early 2002 as a way to teach students the basics and simulation techniques of systems implemented by other comercial simulation tools, such as Arena. In Genesys development he replicated all the SIMAN language, used by Arena software, and Genesys has become a clone of that tool, including its graphical interface. Genesys allowed the inclusion of new simulation components through dynamic link libraries and also the parallel execution of simulation models in a distributed environment. The development of Genesys continued until 2009, when the professor stopped teaching systems simulation classes. Ten years later the professor starts again to teach systems simulation classes and to carry out scientific research in the area. So in 2019 Genesys is reborn, with new language and programming techniques, and even more ambitious goals.");
+}
+
+void MainWindow::on_actionAboutLicence_triggered() {
+	LicenceManager* licman = simulator->getLicenceManager();
+	std::string text = licman->showLicence() + "\n";
+	text += licman->showLimits() + "\n";
+	text += licman->showActivationCode();
+	QMessageBox::about(this, "About Licence", QString::fromStdString(text));
+}
+
+void MainWindow::on_actionAboutGetInvolved_triggered() {
+	QMessageBox::about(this, "Get Inveolved", "Genesys is a free open-source simulator (and tools) available at 'https://github.com/rlcancian/Genesys-Simulator'. Help us by submiting your pull requests containing code improvements. Contact: rafael.cancian@ufsc.br");
+}
+
+void MainWindow::on_actionEditUndo_triggered() {
 	showMessageNotImplemented();
 }
 
 
-void MainWindow::on_actionRedo_triggered() {
+void MainWindow::on_actionEditRedo_triggered() {
 	showMessageNotImplemented();
 }
 
 
-void MainWindow::on_actionFind_triggered() {
+void MainWindow::on_actionEditFind_triggered() {
 	showMessageNotImplemented();
 }
 
 
-void MainWindow::on_actionReplace_triggered() {
+void MainWindow::on_actionEditReplace_triggered() {
 	showMessageNotImplemented();
 }
 
 
-void MainWindow::on_actionCut_triggered() {
+void MainWindow::on_actionEditCut_triggered() {
 	showMessageNotImplemented();
 }
 
 
-void MainWindow::on_actionCopy_triggered() {
+void MainWindow::on_actionEditCopy_triggered() {
 	showMessageNotImplemented();
 }
 
 
-void MainWindow::on_actionPaste_triggered() {
+void MainWindow::on_actionEditPaste_triggered() {
 	showMessageNotImplemented();
 }
 
 
-void MainWindow::on_actionRule_triggered() {
+void MainWindow::on_actionShowRule_triggered() {
 	showMessageNotImplemented();
 }
 
 
-void MainWindow::on_actionGuides_triggered() {
+void MainWindow::on_actionShowGuides_triggered() {
 	showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionZoom_In_triggered() {
-	showMessageNotImplemented();
+	int value = ui->horizontalSlider_ZoomGraphical->value();
+	ui->horizontalSlider_ZoomGraphical->setValue(value+TraitsGUI<GMainWindow>::zoomButtonChange);
 }
 
 
 void MainWindow::on_actionZoom_Out_triggered() {
-	showMessageNotImplemented();
+	int value = ui->horizontalSlider_ZoomGraphical->value();
+	ui->horizontalSlider_ZoomGraphical->setValue(value-TraitsGUI<GMainWindow>::zoomButtonChange);
+
 }
 
 
@@ -1679,47 +1673,385 @@ void MainWindow::on_actionZoom_All_triggered() {
 }
 
 
-void MainWindow::on_actionLine_triggered() {
+void MainWindow::on_actionDrawLine_triggered() {
 	showMessageNotImplemented();
 }
 
 
-void MainWindow::on_actionRectangle_triggered() {
+void MainWindow::on_actionDrawRectangle_triggered() {
 	showMessageNotImplemented();
 }
 
 
-void MainWindow::on_actionEllipse_triggered() {
+void MainWindow::on_actionDrawEllipse_triggered() {
 	showMessageNotImplemented();
 }
 
 
-void MainWindow::on_actionClock_triggered() {
+void MainWindow::on_actionAnimateVariable_triggered() {
 	showMessageNotImplemented();
 }
 
 
-void MainWindow::on_actionVariable_triggered() {
+void MainWindow::on_actionAnimateExpression_triggered() {
 	showMessageNotImplemented();
 }
 
 
-void MainWindow::on_actionExpression_triggered() {
+void MainWindow::on_actionAnimateResource_triggered() {
 	showMessageNotImplemented();
 }
 
 
-void MainWindow::on_actionResource_triggered() {
+void MainWindow::on_actionAnimateQueue_triggered() {
 	showMessageNotImplemented();
 }
 
 
-void MainWindow::on_actionQueue_triggered() {
+void MainWindow::on_actionAnimateStation_triggered() {
 	showMessageNotImplemented();
 }
 
 
-void MainWindow::on_actionStation_triggered() {
+void MainWindow::on_actionEditDelete_triggered()
+{
 	showMessageNotImplemented();
 }
+
+
+void MainWindow::on_actionModelPreferences_triggered()
+{
+	DialogSystemPreferences* dialog = new DialogSystemPreferences(this);
+	dialog->show();
+}
+
+
+void MainWindow::on_actionAlignMiddle_triggered()
+{
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionAlignTop_triggered()
+{
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionAlignRight_triggered()
+{
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionAlignCenter_triggered()
+{
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionAlignLeft_triggered()
+{
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionAnimateSimulatedTime_triggered()
+{
+	showMessageNotImplemented();
+}
+
+
+
+void MainWindow::on_actionDrawText_triggered()
+{
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionDrawPoligon_triggered()
+{
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionAnimateCounter_triggered()
+{
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionAnimateEntity_triggered()
+{
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionAnimateEvent_triggered()
+{
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionAnimateAttribute_triggered()
+{
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionAnimateStatistics_triggered()
+{
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionToolsPluginManager_triggered()
+{
+	DialogPluginManager* dialog = new DialogPluginManager(this);
+	dialog->show();
+}
+
+
+void MainWindow::on_actionEditGroup_triggered()
+{
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionEditUngroup_triggered()
+{
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionToolsParserGrammarChecker_triggered()
+{
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionToolsExperimentation_triggered()
+{
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionToolsOptimizator_triggered()
+{
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionToolsDataAnalyzer_triggered()
+{
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionAnimatePlot_triggered()
+{
+	showMessageNotImplemented();
+}
+
+
+void MainWindow::on_actionViewConfigure_triggered()
+{
+	showMessageNotImplemented();
+}
+
+//void MainWindow::on_actionConfigure_triggered() {//?????????????????????????
+//}
+//void MainWindow::on_actionOpen_triggered() {//?????????????????????????
+//}
+
+void MainWindow::on_actionModelNew_triggered()
+{
+	Model* m;
+	if ((m = simulator->getModels()->current()) != nullptr) {
+		QMessageBox::StandardButton reply = QMessageBox::question(this, "New Model", "There is a model already oppened. Do you want to close it and to create new model?", QMessageBox::Yes | QMessageBox::No);
+		if (reply == QMessageBox::No) {
+			return;
+		} else {
+			this->on_actionModelClose_triggered();
+			//return; //@TODO Ceck if needed (since will remove bellow)
+		}
+	}
+	_insertCommandInConsole("new");
+	if (m != nullptr) {
+		simulator->getModels()->remove(m);
+	}
+	m = simulator->getModels()->newModel();
+	ui->TextCodeEditor->clear();
+	ui->textEdit_Simulation->clear();
+	ui->textEdit_Reports->clear();
+	ui->textEdit_Console->moveCursor(QTextCursor::End);
+	// create a basic initial template for the model
+	std::string tempFilename = "./temp.tmp";
+	m->getPersistence()->setOption(ModelPersistence_if::Options::SAVEDEFAULTS, true);
+	bool res = m->save(tempFilename);
+	m->getPersistence()->setOption(ModelPersistence_if::Options::SAVEDEFAULTS, false);
+	if (res) { // read the file saved and copy its contents to the model text editor
+		std::string line;
+		std::ifstream file(tempFilename);
+		if (file.is_open()) {
+			ui->TextCodeEditor->appendPlainText("# Genesys Model File");
+			ui->TextCodeEditor->appendPlainText("# Simulator, ModelInfo and ModelSimulation");
+			while (std::getline(file, line)) {
+				ui->TextCodeEditor->appendPlainText(QString::fromStdString(line));
+			}
+			file.close();
+			//QMessageBox::information(this, "New Model", "Model successfully created");
+		} else {
+			ui->textEdit_Console->append(QString("Error reading template model file"));
+		}
+		_actualizeModelTextHasChanged(true);
+		_setOnEventHandlers();
+	} else {
+		ui->textEdit_Console->append(QString("Error saving template model file"));
+	}
+	_modelfilename = "";
+	_actualizeActions();
+	_actualizeTabPanes();
+
+}
+
+
+void MainWindow::on_actionModelOpen_triggered()
+{
+	QString fileName = QFileDialog::getOpenFileName(
+			this, "Open Model", "./models/",
+			tr("All files (*.*);;Genesys model (*.gen)"));
+	if (fileName == "") {
+		return;
+	}
+	_insertCommandInConsole("load " + fileName.toStdString());
+	// load Model (in the simulator)
+	bool result = simulator->getModels()->loadModel(fileName.toStdString());
+	if (result) { // now load the text into the GUI
+		_clearModelEditors();
+		std::string line;
+		std::ifstream file(fileName.toStdString());
+		if (file.is_open()) {
+			while (std::getline(file, line)) {
+				ui->TextCodeEditor->appendPlainText(QString::fromStdString(line));
+			}
+			file.close();
+		} else {
+			ui->textEdit_Console->append(QString("Error reading model file"));
+		}
+		ui->textEdit_Console->append("\n");
+		_setOnEventHandlers();
+		_actualizeModelTextHasChanged(false);
+		_actualizeActions();
+		_modelfilename = fileName;
+		QMessageBox::information(this, "Open Model", "Model successfully oppened");
+	} else {
+
+		QMessageBox::warning(this, "Open Model", "Error while opening model");
+	}
+	_actualizeActions();
+	_actualizeTabPanes();
+}
+
+
+void MainWindow::on_actionModelSave_triggered()
+{
+	QString fileName = QFileDialog::getSaveFileName(this,
+			tr("Save Model"), _modelfilename,
+			tr("Genesys Model (*.gen);;All Files (*)"));
+	if (fileName.isEmpty())
+		return;
+	else {
+		_insertCommandInConsole("save " + fileName.toStdString());
+		QFile file(fileName);
+		if (!file.open(QIODevice::WriteOnly)) {
+			QMessageBox::information(this, tr("Unable to access file to save"),
+					file.errorString());
+			return;
+		}
+		std::ofstream savefile;
+		savefile.open(fileName.toStdString(), std::ofstream::out);
+		QString data = ui->TextCodeEditor->toPlainText();
+		QStringList strList = data.split(QRegExp("[\n]"), QString::SkipEmptyParts);
+		for (unsigned int i = 0; i < strList.size(); i++) {
+
+			savefile << strList.at(i).toStdString() << std::endl;
+		}
+		savefile.close();
+		_saveGraphicalModel(fileName.toStdString() + ".gui");
+		_modelfilename = fileName;
+		QMessageBox::information(this, "Save Model", "Model successfully saved");
+		// convert text info Model
+		_setSimulationModelBasedOnText();
+		//
+		_actualizeModelTextHasChanged(false);
+	}
+	_actualizeActions();
+}
+
+
+void MainWindow::on_actionModelClose_triggered()
+{
+	if (_textModelHasChanged || simulator->getModels()->current()->hasChanged()) {
+		QMessageBox::StandardButton res = QMessageBox::question(this, "Close ModelSyS", "Model has changed. Do you want to save it?", QMessageBox::Yes | QMessageBox::No);
+		if (res == QMessageBox::Yes) {
+			this->on_actionModelSave_triggered();
+			return;
+		}
+	}
+	_insertCommandInConsole("close");
+	simulator->getModels()->remove(simulator->getModels()->current());
+	_actualizeActions();
+	_actualizeTabPanes();
+	//QMessageBox::information(this, "Close Model", "Model successfully closed");
+}
+
+
+void MainWindow::on_actionModelInformation_triggered()
+{
+	DialogModelInformation* diag = new DialogModelInformation(this);
+	diag->show();
+}
+
+
+void MainWindow::on_actionModelCheck_triggered()
+{
+	_insertCommandInConsole("check");
+	bool res = simulator->getModels()->current()->check();
+	_actualizeActions();
+	_actualizeTabPanes();
+	if (res) {
+		QMessageBox::information(this, "Model Check", "Model successfully checked.");
+	} else {
+		QMessageBox::critical(this, "Model Check", "Model has erros. See the console for more information.");
+	}
+}
+
+
+void MainWindow::on_actionModelExit_triggered()
+{
+	QMessageBox::StandardButton res;
+	if (this->_textModelHasChanged) {
+		res = QMessageBox::question(this, "Exit GenESyS", "Model has changed. Do you want to save it?", QMessageBox::Yes | QMessageBox::No);
+		if (res == QMessageBox::Yes) {
+			this->on_actionModelSave_triggered();
+			return;
+		}
+	}
+	res = QMessageBox::question(this, "Exit GenESyS", "Do you want to exit GenESyS?", QMessageBox::Yes | QMessageBox::No);
+	if (res == QMessageBox::Yes) {
+		QApplication::quit();
+	} else {
+		// it does not quit, but the window is closed. Check it. @TODO
+	}
+}
+
+
+void MainWindow::on_actionSimulationConfigure_triggered()
+{
+	DialogSimulationConfigure* dialog = new DialogSimulationConfigure(this);
+	dialog->show();
+}
+
+
 

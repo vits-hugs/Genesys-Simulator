@@ -84,10 +84,30 @@ protected:// slots:
 	void sceneRectChanged(const QRectF &rect);
 	void selectionChanged();
 protected: // virtual functions
+	virtual void contextMenuEvent(QContextMenuEvent *event) override;
 	virtual void dragEnterEvent(QDragEnterEvent *event) override;
-	//virtual void dropEvent(QDropEvent *event) override;
 	//virtual void dragLeaveEvent(QDragLeaveEvent *event) override;
 	//virtual void dragMoveEvent(QDragMoveEvent *event) override;
+	//virtual void dropEvent(QDropEvent *event) override;
+	//virtual bool event(QEvent *event) override;
+	//virtual void focusInEvent(QFocusEvent *event) override;
+	//virtual bool focusNextPrevChild(bool next) override;
+	//virtual void focusOutEvent(QFocusEvent *event) override;
+	//virtual void inputMethodEvent(QInputMethodEvent *event) override;
+	virtual void keyPressEvent(QKeyEvent *event) override;
+	virtual void keyReleaseEvent(QKeyEvent *event) override;
+	//virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
+	//virtual void mouseMoveEvent(QMouseEvent *event) override;
+	//virtual void mousePressEvent(QMouseEvent *event) override;
+	//virtual void mouseReleaseEvent(QMouseEvent *event) override;
+	//virtual void paintEvent(QPaintEvent *event) override;
+	//virtual void resizeEvent(QResizeEvent *event) override;
+	//virtual void scrollContentsBy(int dx, int dy) override;
+	//virtual void showEvent(QShowEvent *event) override;
+	//virtual bool viewportEvent(QEvent *event) override;
+	virtual void wheelEvent(QWheelEvent *event) override;
+private:
+	QColor myrgba(uint64_t color); // TODO: Should NOT be here, but in UtilGUI.h, but then it generates multiple definitions error
 private:
 	typedef std::function<void(QGraphicsSceneMouseEvent*) > sceneMouseEventHandlerMethod;
 	typedef std::function<void(GraphicalModelEvent*) > sceneGraphicalModelEventHandlerMethod;

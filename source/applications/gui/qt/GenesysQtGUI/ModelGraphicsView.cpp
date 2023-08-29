@@ -32,6 +32,7 @@
 #include "ModelGraphicsView.h"
 #include "ModelGraphicsScene.h"
 #include "GraphicalModelComponent.h"
+#include "TraitsGUI.h"
 #include <Qt>
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
@@ -41,8 +42,11 @@
 ModelGraphicsView::ModelGraphicsView(QWidget *parent) : QGraphicsView(parent) {
 	setInteractive(true);
 	setEnabled(false);
-	// scene
-	ModelGraphicsScene* scene = new ModelGraphicsScene(-1024, -1024, 1024 * 2, 1024 * 2, this);
+    //
+    // scene
+	int iniPos = TraitsGUI<GView>::sceneCenter-TraitsGUI<GView>::sceneDistanceCenter;
+	int tam = 2*TraitsGUI<GView>::sceneDistanceCenter;
+	ModelGraphicsScene* scene = new ModelGraphicsScene(iniPos, iniPos, tam, tam, this);
 	setScene(scene);
 }
 
@@ -78,7 +82,6 @@ void ModelGraphicsView::selectModelComponent(ModelComponent* component) {
 		GraphicalModelComponent* gmc = (GraphicalModelComponent*) item;
 		if (gmc->getComponent() == component) {
 			gmc->setSelected(true);
-			//return;
 		} else {
 			gmc->setSelected(false);
 		}
@@ -90,6 +93,15 @@ void ModelGraphicsView::setSimulator(Simulator* simulator) {
 	((ModelGraphicsScene*) scene())->setSimulator(simulator);
 }
 
+QColor ModelGraphicsView::myrgba(uint64_t color) {
+	uint8_t r, g, b, a;
+	r = (color&0xFF000000)>>24;
+	g = (color&0x00FF0000)>>16;
+	b = (color&0x0000FF00)>>8;
+	a = (color&0x000000FF);
+	return QColor(r, g, b, a);
+}
+
 void ModelGraphicsView::setEnabled(bool enabled) {
 	QGraphicsView::setEnabled(enabled);
 	QBrush background;
@@ -97,10 +109,10 @@ void ModelGraphicsView::setEnabled(bool enabled) {
 		// background
 		//unsigned int colorVal1 = 255 * 13.0 / 16.0;
 		//unsigned int colorVal2 = 255 * 15.0 / 16.0;
-		background = QColor(255, 255, 128, 64);
+		background = QColor(myrgba(TraitsGUI<GView>::backgroundEnabledColor));//255, 255, 128, 64);
 	} else {
 		// background
-		background = Qt::lightGray;
+		background = myrgba(TraitsGUI<GView>::backgroundDisabledColor);//Qt::lightGray;
 	}
 	background.setStyle(Qt::SolidPattern);
 	setBackgroundBrush(background);
@@ -119,6 +131,10 @@ void ModelGraphicsView::notifySceneGraphicalModelEventHandler(GraphicalModelEven
 
 
 //---------------------------------------------------------
+
+void ModelGraphicsView::contextMenuEvent(QContextMenuEvent *event) {
+	QGraphicsView::contextMenuEvent(event);
+}
 
 void ModelGraphicsView::dragEnterEvent(QDragEnterEvent *event) {
 	QGraphicsView::dragEnterEvent(event);
@@ -143,6 +159,20 @@ void ModelGraphicsView::dragEnterEvent(QDragEnterEvent *event) {
 		}
 	}
 	event->setAccepted(false);
+}
+
+void ModelGraphicsView::keyPressEvent(QKeyEvent *event) {
+	QGraphicsView::keyPressEvent(event);
+}
+void ModelGraphicsView::keyReleaseEvent(QKeyEvent *event) {
+	QGraphicsView::keyReleaseEvent(event);
+}
+
+
+
+void ModelGraphicsView::wheelEvent(QWheelEvent *event) {
+	QGraphicsView::wheelEvent(event);
+	//event->
 }
 
 void ModelGraphicsView::setParentWidget(QWidget *parentWidget) {

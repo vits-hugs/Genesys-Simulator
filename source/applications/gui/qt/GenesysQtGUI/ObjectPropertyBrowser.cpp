@@ -27,8 +27,8 @@ void ObjectPropertyBrowser::setActiveObject(QObject *obj, ModelDataDefinition* m
 
 	if (mdd != nullptr) {
 		std::string className;
-		for (PropertyBaseG* prop: *mdd->getPropertiesG()->list()) {
-			className = prop->getClassName();
+		for (PropertyGenesys* prop: *mdd->getProperties()->list()) {
+			className = prop->getName(); // TODO Era para ser getClassName();
 			std::map<std::string, QtVariantProperty*>::iterator it;
 			if ((it = propGroupMap.find(className))==propGroupMap.end()) {
 				groupProperty = variantManager->addProperty(QVariant::Char, className.c_str());
@@ -79,7 +79,7 @@ void ObjectPropertyBrowser::setActiveObject(QObject *obj, ModelDataDefinition* m
 	/*
 	if (mdd != nullptr) {
 		std::string className;
-		for (PropertyBaseG* prop: *mdd->getProperties()->list()) {
+		for (PropertyG* prop: *mdd->getProperties()->list()) {
 			className = prop->getClassname();
 			std::map<std::string, QtVariantProperty*>::iterator it;
 			//if ((it = propGroupMap.find(className))==propGroupMap.end()) {

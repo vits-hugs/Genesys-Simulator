@@ -31,12 +31,15 @@
 
 #include "GraphicalModelComponent.h"
 #include "GraphicalComponentPort.h"
+#include "TraitsGUI.h"
+#include "UtilGUI.h"
 #include <QPainter>
+#include <QRgba64>
 
 GraphicalModelComponent::GraphicalModelComponent(Plugin* plugin, ModelComponent* component, QPointF position, QColor color, QGraphicsItem *parent) :  GraphicalModelDataDefinition(plugin, component, position, color) { //  QGraphicsObject(parent) {
 	_component = component;
 	_color = color;
-	_color.setAlpha(128);
+	_color.setAlpha(TraitsGUI<GModelComponent>::opacity);
 	// define shape
 	if (plugin->getPluginInfo()->isSource()) {
 		_stretchRigth = 0.3;
@@ -109,9 +112,18 @@ QRectF GraphicalModelComponent::boundingRect() const {
 	return QRectF(0, 0, _width, _height);
 }
 
+QColor GraphicalModelComponent::myrgba(uint64_t color) {
+	uint8_t r, g, b, a;
+	r = (color&0xFF000000)>>24;
+	g = (color&0x00FF0000)>>16;
+	b = (color&0x0000FF00)>>8;
+	a = (color&0x000000FF);
+	return QColor(r, g, b, a);
+}
+
 void GraphicalModelComponent::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
-	int _penWidth = 1;
-	int _raise = 5;
+	int _penWidth = TraitsGUI<GModelComponent>::penWidth; //1;
+	int _raise = TraitsGUI<GModelComponent>::raise; // 5;
 	int wi = _width - 2 * _margin - _penWidth;
 	int hi = _height - 2 * _margin - _penWidth;
 	int wt2 = _width*_stretchPosTop;
@@ -152,12 +164,13 @@ void GraphicalModelComponent::paint(QPainter *painter, const QStyleOptionGraphic
 	pp15 = QPointF(wb2, _margin + hi - _raise - sfbm);
 	pp16 = QPointF(wb2 + shiftb, _margin + hi - sfbm);
 	// pen
-	pen = QPen(Qt::black);
+	pen = QPen(myrgba(TraitsGUI<GModelComponent>::borderColor));
+	//pen = QPen(Qt::black);
 	pen.setWidth(_penWidth);
 	painter->setPen(pen);
 	// Path raised
 	brush = QBrush(Qt::SolidPattern);
-	brush.setColor(Qt::white);
+	brush.setColor(myrgba(TraitsGUI<GModelComponent>::pathRaised)); // default white
 	painter->setBrush(brush);
 	QPainterPath path;
 	path.moveTo(pp1);
@@ -183,7 +196,7 @@ void GraphicalModelComponent::paint(QPainter *painter, const QStyleOptionGraphic
 	painter->drawPath(path);
 	// path stunken
 	brush = QBrush(Qt::SolidPattern);
-	brush.setColor(Qt::darkGray);
+	brush.setColor(myrgba(TraitsGUI<GModelComponent>::pathStunken)); //Qt::darkGray);
 	painter->setBrush(brush);
 	QPainterPath path2;
 	path2.moveTo(pp11);
@@ -208,8 +221,13 @@ void GraphicalModelComponent::paint(QPainter *painter, const QStyleOptionGraphic
 	path2.lineTo(pp14);
 	painter->drawPath(path2);
 	// fill
-	brush = QBrush(Qt::SolidPattern);
-	brush.setColor(_color);
+	QLinearGradient gradient(0,0,_width,_height);
+	gradient.setColorAt(0.0, Qt::white);
+	gradient.setColorAt(0.33, _color.lighter());
+	gradient.setColorAt(0.67, _color);
+	gradient.setColorAt(1.0, _color.darker());
+	//brush.setColor(_color);
+	brush = QBrush(gradient);//Qt::SolidPattern);// TODO: Oportunity do improve LinearGradientPattern);
 	painter->setBrush(brush);
 	QPainterPath pathFill;
 	pathFill.moveTo(pp6);
@@ -223,20 +241,23 @@ void GraphicalModelComponent::paint(QPainter *painter, const QStyleOptionGraphic
 	pathFill.lineTo(pp6);
 	painter->drawPath(pathFill);
 	// text
-	brush = QBrush(Qt::NoBrush);
-	painter->setBrush(brush);
-	pen = QPen(Qt::white);
-	painter->setPen(pen);
 	QString text = QString::fromStdString(_component->getName());
 	QRect rect2 = QRect(_margin + _raise + 1, _margin + _raise + 1, _margin + wi - 2 * _raise - _margin, _margin + hi - 2 * _raise - _margin);
-	painter->drawText(rect2, Qt::AlignCenter, text);
-	pen = QPen(Qt::black);
+	brush = QBrush(Qt::NoBrush);
+	painter->setBrush(brush);
+	pen = QPen(myrgba(TraitsGUI<GModelComponent>::textColor));
+	pen.setWidth(2);
+	pen.setCosmetic(true);
 	painter->setPen(pen);
-	painter->drawText(rect, Qt::AlignCenter, text);
+	painter->drawText(rect2, Qt::AlignCenter, text);
+	pen.setColor(myrgba(TraitsGUI<GModelComponent>::textShadowColor));
+	painter->setPen(pen);
+	painter->drawText(rect2.adjusted(0,2,2,0), Qt::AlignCenter, text);
+	// text shadow
 	//
 	if (isSelected()) { //draw squares on corners
 		brush = QBrush(Qt::SolidPattern);
-		brush.setColor(QColor(0, 0, 0, 255));
+		brush.setColor(myrgba(TraitsGUI<GModelComponent>::selectionSquaresColor));
 		painter->setBrush(brush);
 		rect = QRect(0, 0, _selWidth, _selWidth);
 		painter->drawRect(rect);
@@ -251,7 +272,7 @@ void GraphicalModelComponent::paint(QPainter *painter, const QStyleOptionGraphic
 	if (mc->hasBreakpointAt()) {
 		brush = QBrush(Qt::NoBrush);
 		painter->setBrush(brush);
-		pen = QPen(Qt::red);
+		pen = QPen(myrgba(TraitsGUI<GModelComponent>::breakpointColor));
 		pen.setWidth(1);
 		painter->setPen(pen);
 		rect = QRect(0, 0, _width, _height);
