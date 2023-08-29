@@ -14,6 +14,7 @@
 #define SCHEDULE_H
 
 #include "../../kernel/simulator/ModelDataDefinition.h"
+#include "../../kernel/simulator/PluginInformation.h"
 #include "../../kernel/util/List.h"
 
 class SchedulableItem {
@@ -89,7 +90,7 @@ protected: // could be overriden by derived classes
 	virtual void _initBetweenReplications();
 	/*! This method is necessary only for those components that instantiate internal elements that must exist before simulation starts and even before model checking. That's the case of components that have internal StatisticsCollectors, since others components may refer to them as expressions (as in "TVAG(ThisCSTAT)") and therefore the modeldatum must exist before checking such expression */
 	virtual void _createInternalAndAttachedData(); /*< A ModelDataDefinition or ModelComponent that includes (internal) ou refers to (attach) other ModelDataDefinition must register them inside this method. */
-	virtual void _addProperty(PropertyBaseG* property);
+	virtual void _addProperty(PropertyGenesys* property);
 
 private:
 

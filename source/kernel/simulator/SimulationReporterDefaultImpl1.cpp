@@ -29,8 +29,10 @@ void SimulationReporterDefaultImpl1::showSimulationControls() {
 	_model->getTracer()->traceReport("Simulation Controls:");
 	Util::IncIndent();
 	{
-		for (PropertyBaseG* control : *_model->getControls()->list()) {
-			_model->getTracer()->traceReport(control->getName() +  "(" + control->getClassName() + "): " + control->getValueText());
+		for (/*PropertyGenesys**/SimulationControl* control : *_model->getControls()->list()) {
+			/// TODO IMPORTANT CONTROLS AND RESPONSES MUST WORK NO MATTER THE PROPERTIES
+/// TODO PProperties ///			
+			//_model->getTracer()->traceReport(control->getName() +  "(" + control->getClassName() + "): " + control->getValueText());
 		}
 	}
 	Util::DecIndent();
@@ -154,8 +156,10 @@ void SimulationReporterDefaultImpl1::showSimulationResponses() {
 	_model->getTracer()->traceReport("Simulation Responses:");
 	Util::IncIndent();
 	{
-		for (PropertyBaseG* response : *_model->getResponses()->list()) {
-			_model->getTracer()->traceReport(response->getName() + ": " + response->getValueText());
+		for (/*PropertyGenesys**/SimulationResponse* response : *_model->getResponses()->list()) {
+/// TODO IMPORTANT CONTROLS AND RESPONSES MUST WORK NO MATTER THE PROPERTIES
+/// TODO PProperties ///			
+			//_model->getTracer()->traceReport(response->getName() + ": " + response->getValueText());
 		}
 	}
 	Util::DecIndent();

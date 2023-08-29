@@ -13,11 +13,47 @@
 
 #include "SourceModelComponent.h"
 #include "Model.h"
-#include "Attribute.h"
+#include "PropertyGenesys.h"
 
 //using namespace GenesysKernel;
 
 SourceModelComponent::SourceModelComponent(Model* model, std::string componentTypename, std::string name) : ModelComponent(model, componentTypename, name) {
+/*	_addSimulationControl(new SimulationControl("SourceModelComponent", "First Creation",
+			DefineGetterMember<SourceModelComponent>(this, &SourceModelComponent::getFirstCreation),
+			DefineSetterMember<SourceModelComponent>(this, &SourceModelComponent::setFirstCreation)) );
+
+	_addSimulationControl(new SimulationControl("SourceModelComponent", "Entities Per Creation",
+			DefineGetterMember<SourceModelComponent>(this, &SourceModelComponent::getEntitiesPerCreation),
+			DefineSetterMember<SourceModelComponent>(this, &SourceModelComponent::setEntitiesPerCreation)) );
+
+	_addSimulationControl(new SimulationControl("SourceModelComponent", "Time Unit",
+			DefineGetterMember<SourceModelComponent,Util::TimeUnit>(this, &SourceModelComponent::getTimeUnit),
+			DefineSetterMember<SourceModelComponent,Util::TimeUnit>(this, &SourceModelComponent::setTimeUnit)) );
+
+	_addSimulationControl(new SimulationControl("SourceModelComponent", "Time Between Creations Expression",
+			DefineGetterMember<SourceModelComponent>(this, &SourceModelComponent::getTimeBetweenCreationsExpression),
+			DefineSetterMember<SourceModelComponent>(this, &SourceModelComponent::setTimeBetweenCreationsExpression)) );
+*/
+	/*
+	GetterMemberDouble getterFirstCreation = DefineGetterMember<SourceModelComponent, double>(this, &SourceModelComponent::getFirstCreation);
+	SetterMemberDouble setterFirstCreation = DefineSetterMember<SourceModelComponent, double>(this, &SourceModelComponent::setFirstCreation);
+	SimulationControl* controlFirstCreation = new SimulationControl("double", "First Creation", getterFirstCreation, setterFirstCreation, this->getName());
+	_addSimulationControl(controlFirstCreation);
+	GetterMemberUInt getterEntitiesPerCreation = DefineGetterMember<SourceModelComponent, unsigned int>(this, &SourceModelComponent::getEntitiesPerCreation);
+	SetterMemberUInt setterEntitiesPerCreation = DefineSetterMember<SourceModelComponent, unsigned int>(this, &SourceModelComponent::setEntitiesPerCreation);
+	SimulationControl* controlEntitiesPerCreation = new SimulationControl("uint", "Entities Per Creation", getterEntitiesPerCreation, setterEntitiesPerCreation, this->getName());
+	_addSimulationControl(controlFirstCreation);
+	GetterMemberTimeUnit getterTimeUnit = DefineGetterMember<SourceModelComponent, Util::TimeUnit>(this, &SourceModelComponent::getTimeUnit);
+	SetterMemberTimeUnit setterTimeUnit = DefineSetterMember<SourceModelComponent, Util::TimeUnit>(this, &SourceModelComponent::setTimeUnit);
+	SimulationControl* controlTimeUnit = new SimulationControl("uint", "Time Unit", getterTimeUnit, setterTimeUnit, this->getName());
+	_addSimulationControl(controlFirstCreation);
+	GetterMemberString getterTimeBetweenCreationsExpression = DefineGetterMember<SourceModelComponent, std::string>(this, &SourceModelComponent::getTimeBetweenCreationsExpression);
+	SetterMemberString setterTimeBetweenCreationsExpression = DefineSetterMember<SourceModelComponent, std::string>(this, &SourceModelComponent::setTimeBetweenCreationsExpression);
+	SimulationControl* controlTimeBetweenCreationsExpression = new SimulationControl("std::string", "TimeBetweenCreationsExpression", getterTimeBetweenCreationsExpression, setterTimeBetweenCreationsExpression, this->getName());
+	_addSimulationControl(controlFirstCreation);
+	*/
+
+// -----------------  MESSY STUFF ---------------------
 	// ADD_PROPERTY(double, SourceModelComponent, "First Creation", getFirstCreation, setFirstCreation)
 	// ADD_PROPERTY(unsigned int, SourceModelComponent, "Entities Per Creation", getEntitiesPerCreation, setEntitiesPerCreation)
 	// ADD_PROPERTY(std::string, SourceModelComponent, "Max Creations", getMaxCreations, setMaxCreations)
@@ -25,12 +61,29 @@ SourceModelComponent::SourceModelComponent(Model* model, std::string componentTy
 	// ADD_PROPERTY(Util::TimeUnit, SourceModelComponent, "Time Unit", getTimeUnit, setTimeUnit)
 	// ADD_PROPERTY(EntityType*, SourceModelComponent, "Entity Type", getEntityType, setEntityType)
 
+	// properties//
+//	Property_double *propertyD = new Property_double();
+//	propertyD->setGetter(DefineGetterMember<SourceModelComponent, double>(this, &SourceModelComponent::getFirstCreation));
+//	propertyD->setSetter(DefineSetterMember<SourceModelComponent, double>(this, &SourceModelComponent::setFirstCreation));
+/// TODO PProperties ///	propertyD->setClassName(_typename);
+/// TODO PProperties ///	propertyD->setPropertyName("First Creation");
+/// TODO PProperties ///	_addPropertyG(propertyD);
+//	//
+//	Property_unsigned_int *propertyI = new Property_unsigned_int();
+//	propertyI->setGetter(DefineGetterMember<SourceModelComponent, unsigned int>(this, &SourceModelComponent::getEntitiesPerCreation));
+//	propertyI->setSetter(DefineSetterMember<SourceModelComponent, unsigned int>(this, &SourceModelComponent::setEntitiesPerCreation));
+/// TODO PProperties ///	propertyI->setClassName(_typename);
+/// TODO PProperties ///	propertyI->setPropertyName("Entities Per Creation");
+/// TODO PProperties ///	_addPropertyG(propertyI);
+
+
 	//model->getControls()->insert(_properties->getProperty("First Creation"));
 	//model->getControls()->insert(_properties->getProperty("Entities Per Creation"));
 	//model->getControls()->insert(_properties->getProperty("Max Creations"));
 	//model->getControls()->insert(_properties->getProperty("Time Between Creations"));
 	//model->getControls()->insert(_properties->getProperty("Time Unit"));
 	// todo continue
+
 }
 
 std::string SourceModelComponent::show() {
@@ -101,6 +154,19 @@ void SourceModelComponent::_createInternalAndAttachedData() {
 		}
 	}
 	_attachedDataInsert("EntityType", _entityType);
+}
+
+double SourceModelComponent::propertyfirstCreation() const
+{
+	return _propertyfirstCreation;
+}
+
+void SourceModelComponent::setPropertyfirstCreation(double newPropertyfirstCreation)
+{
+	if (qFuzzyCompare(_propertyfirstCreation, newPropertyfirstCreation))
+		return;
+	_propertyfirstCreation = newPropertyfirstCreation;
+	//emit propertyfirstCreationChanged();
 }
 
 void SourceModelComponent::setFirstCreation(double _firstCreation) {

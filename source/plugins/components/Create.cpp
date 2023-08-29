@@ -15,8 +15,6 @@
 #include "../../kernel/simulator/Model.h"
 #include "../../kernel/simulator/EntityType.h"
 #include "../../kernel/simulator/ModelDataManager.h"
-#include "../../kernel/simulator/Attribute.h"
-#include "Assign.h"
 #include <cassert>
 
 #ifdef PLUGINCONNECT_DYNAMIC
@@ -150,4 +148,17 @@ void Create::_createInternalAndAttachedData() {
 		this->_internalDataClear();
 		_numberOut = nullptr;
 	}
+}
+
+double Create::testePropertyCreateDouble() const
+{
+	return _testePropertyCreateDouble;
+}
+
+void Create::setTestePropertyCreateDouble(double newTestePropertyCreateDouble)
+{
+	if (qFuzzyCompare(_testePropertyCreateDouble, newTestePropertyCreateDouble))
+		return;
+	_testePropertyCreateDouble = newTestePropertyCreateDouble;
+	//emit testePropertyCreateDoubleChanged();
 }

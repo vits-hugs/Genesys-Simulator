@@ -22,7 +22,7 @@
 #include "StatisticsCollector.h"
 #include "Counter.h"
 #include "ComponentManager.h"
-#include "Property.h"
+#include "PropertyGenesys.h"
 #include "../TraitsKernel.h"
 
 //using namespace GenesysKernel;
@@ -248,14 +248,16 @@ void ModelSimulation::_showSimulationHeader() {
 	//tm->traceReport(TraceManager::Level::simulation, "");
 	// model controls and responses
 	std::string controls;
-	for (PropertyBaseG* control : * _model->getControls()->list()) {
-		controls += control->getName() + "(" + control->getClassName() + ")=" + control->getValueText() + ", ";
+	for (/*PropertyGenesys**/SimulationControl* control : * _model->getControls()->list()) {
+		/// TODO IMPORTANT CONTROLS AND RESPONSES MUST WORK NO MATTER THE PROPERTIES
+/// TODO PProperties ///		
+		//controls += control->getName() + "(" + control->getClassName() + ")=" + control->getValueText() + ", ";
 	}
 	controls = controls.substr(0, controls.length() - 2);
 	tm->traceReport("> Simulation controls: " + controls);
 	std::string responses;
-	for (PropertyBaseG* pg : *_model->getResponses()->list()) {
-		responses += pg->getName() + "(" + pg->getClassName() + "), ";
+	for (/*PropertyGenesys**/SimulationResponse* pg : *_model->getResponses()->list()) {
+		//responses += pg->getName() + "(" + pg->getClassName() + "), ";
 	}
 	responses = responses.substr(0, responses.length() - 2);
 	if (TraitsKernel<SimulationReporter_if>::showSimulationResponses) {

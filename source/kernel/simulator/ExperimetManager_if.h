@@ -16,7 +16,7 @@
 
 #include "../util/List.h"
 #include "SimulationScenario.h"
-#include "Property.h"
+#include "PropertyGenesys.h"
 #include "TraceManager.h"
 
 /*!

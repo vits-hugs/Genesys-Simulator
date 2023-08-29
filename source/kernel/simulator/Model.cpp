@@ -53,18 +53,25 @@ Model::Model(Simulator* simulator, unsigned int level) {
 		return a->getTime() < b->getTime(); /// Events are sorted chronologically
 	});
 
-	_controls = new List<PropertyBaseG*>();
-	_responses = new List<PropertyBaseG*>(); // ready-only properties
 	// TODO: Add properties
 
-
 	// for process analyser
-	//_responses = new List<SimulationResponse*>();
-	//_controls = new List<SimulationControl*>();
+	_responses = new List<SimulationResponse*>();
+	_controls = new List<SimulationControl*>();
+
+
+	//_controls = new List<PropertyGenesys*>();
+	//_responses = new List<PropertyGenesys*>(); // ready-only properties
 	// insert controls
-	//_controls->insert(new SimulationControl("ModelSimulation", "NumberOfReplications",
-	//        DefineGetterMember<ModelSimulation>(this->_simulation, &ModelSimulation::getNumberOfReplications),
-	//        DefineSetterMember<ModelSimulation>(this->_simulation, &ModelSimulation::setNumberOfReplications)) );
+	//GetterMemberT<unsigned int>::Getter getter = DefineGetterMember<ModelSimulation>(this->_simulation, &ModelSimulation::getNumberOfReplications);
+	//SetterMemberT<unsigned int>::Setter setter = DefineSetterMember<ModelSimulation>(this->_simulation, &ModelSimulation::setNumberOfReplications);
+	//SimulationResponseSpecific<unsigned int>* response = new SimulationResponseSpecific<unsigned int>(getter);
+														 //SimulationResponseSpecific<unsigned int>(
+														   //"ModelSimulation", "NumberOfReplications", getter);
+
+	//SimulationControlSpecific<unsigned int>* control = new SimulationControlSpecific<unsigned int>(
+	//													   "ModelSimulation", "NumberOfReplications", getter, setter);
+	//_controls->insert(control);
 	//_controls->insert(new SimulationControl("ModelSimulation", "ReplicationLength",
 	//        DefineGetterMember<ModelSimulation>(this->_simulation, &ModelSimulation::getReplicationLength),
 	//        DefineSetterMember<ModelSimulation>(this->_simulation, &ModelSimulation::setReplicationLength)) );
@@ -73,8 +80,8 @@ Model::Model(Simulator* simulator, unsigned int level) {
 	//        DefineSetterMember<ModelSimulation>(this->_simulation, &ModelSimulation::setWarmUpPeriod)) );
 	// for NEW process analyser
 	/*
-	_responsesNew = new List<PropertyBaseG*>();
-	_controlsNew = new List<PropertyBaseG*>();
+	_responsesNew = new List<PropertyGenesys*>();
+	_controlsNew = new List<PropertyGenesys*>();
 	// insert NEW controls
 	_controlsNew->insert(new PropertyT<unsigned int>("ModelSimulation", "NumberOfReplications",
 			DefineGetter<ModelSimulation, unsigned int>(this->_simulation, &ModelSimulation::getNumberOfReplications),
@@ -85,7 +92,6 @@ Model::Model(Simulator* simulator, unsigned int level) {
 	_controlsNew->insert(new PropertyT<double>("ModelSimulation", "WarmupPeriod",
 			DefineGetter<ModelSimulation, double>(this->_simulation, &ModelSimulation::getWarmUpPeriod),
 			DefineSetter<ModelSimulation, double>(this->_simulation, &ModelSimulation::setWarmUpPeriod)));
-
 	*/
 }
 
@@ -230,7 +236,7 @@ void Model::_showComponents() const {
 void Model::_showSimulationControls() const {
 	getTracer()->trace(TraceManager::Level::L2_results, "Simulation Controls:");
 	Util::IncIndent();
-	for (PropertyBaseG* control : *_controls->list()) {
+	for (/*PropertyGenesys**/SimulationControl* control : *_controls->list()) {
 		getTracer()->trace(TraceManager::Level::L2_results, control->show()); ////
 	}
 	Util::DecIndent();
@@ -239,7 +245,7 @@ void Model::_showSimulationControls() const {
 void Model::_showSimulationResponses() const {
 	getTracer()->trace(TraceManager::Level::L2_results, "Simulation Responses:");
 	Util::IncIndent();
-	for (PropertyBaseG* response : *_responses->list()) {
+	for (/*PropertyGenesys**/SimulationResponse* response : *_responses->list()) {
 		getTracer()->trace(TraceManager::Level::L2_results, response->show()); ////
 	}
 	Util::DecIndent();
@@ -299,11 +305,11 @@ void Model::_createModelInternalElements() {
 	Util::DecIndent();
 }
 
-List<PropertyBaseG*>* Model::getControls() const {
+List</*PropertyGenesys**/SimulationControl*>* Model::getControls() const {
 	return _controls;
 }
 
-List<PropertyBaseG*>* Model::getResponses() const {
+List</*PropertyGenesys**/SimulationResponse*>* Model::getResponses() const {
 	return _responses;
 }
 

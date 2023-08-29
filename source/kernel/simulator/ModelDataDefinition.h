@@ -18,12 +18,14 @@
 #include <list>
 #include <vector>
 #include <map>
-#include "../util/List.h"
 
+#include "../util/List.h"
 #include "ParserChangesInformation.h"
 #include "Persistence.h"
-#include "PluginInformation.h"
-#include "Property.h"
+//#include "PropertyGenesys.h"
+#include "SimulationControl.h"
+#include "SimulationResponse.h"
+
 
 //namespace GenesysKernel {
 class Model;
@@ -72,8 +74,7 @@ public:
 	bool hasChanged() const;
 	unsigned int getLevel() const;
 	void setModelLevel(unsigned int _modelLevel);
-	//PropertyList *getProperties() const;
-	PropertyListG *getPropertiesG() const;
+	List<PropertyGenesys*> *getProperties() const;
 
 protected: // methods to be called inside the _createInternalAndAttachedData() method
 	void _internalDataClear();
@@ -95,8 +96,9 @@ protected: // could be overriden by derived classes
 	virtual void _initBetweenReplications();
 	/*! This method is necessary only for those components that instantiate internal elements that must exist before simulation starts and even before model checking. That's the case of components that have internal StatisticsCollectors, since others components may refer to them as expressions (as in "TVAG(ThisCSTAT)") and therefore the modeldatum must exist before checking such expression */
 	virtual void _createInternalAndAttachedData(); /*< A ModelDataDefinition or ModelComponent that includes (internal) ou refers to (attach) other ModelDataDefinition must register them inside this method. */
-	//virtual void _addProperty(PropertyBaseG* property);
-	virtual void _addPropertyG(PropertyBaseG* property);
+	virtual void _addProperty(PropertyGenesys* property);
+	virtual void _addSimulationResponse(SimulationResponse* response);
+	virtual void _addSimulationControl(SimulationControl* control);
 
 private: // name is now private. So changes in name must be throught setName, wich gives oportunity to rename internelElements, SimulationControls and SimulationResponses
 	std::string _name;
@@ -111,9 +113,10 @@ protected:
 	unsigned int _modelLevel = 0; // the ID of parent component (submodel or process, for now) in the "superlevel"
 	Model* _parentModel;
 protected:
-	//std::list<PropertyBaseG*>* _properties = new std::list<PropertyBaseG*>();
-	//PropertyList* _properties = new PropertyList();
-	PropertyListG* _propertiesG = new PropertyListG();
+	List<SimulationResponse*>* _simulationResponses = new List<SimulationResponse*>();
+	List<SimulationControl*>* _simulationControls = new List<SimulationControl*>();
+	List<PropertyGenesys*>* _properties = new List<PropertyGenesys*>();
+	//PropertyListG* _propertiesG = new PropertyListG();
 };
 //namespace\\}
 

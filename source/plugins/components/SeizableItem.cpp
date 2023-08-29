@@ -114,6 +114,7 @@ bool SeizableItem::loadInstance(PersistenceRecord *fields, unsigned int parentIn
 void SeizableItem::saveInstance(PersistenceRecord *fields, unsigned int parentIndex, bool saveDefaults) {
 	std::string num = Util::StrIndex(parentIndex);
 	fields->saveField("requestSeizableType" + num, static_cast<int> (_seizableType), static_cast<int> (DEFAULT.seizableType), saveDefaults);
+	//_resourceOrSet->getName();
 	fields->saveField("requestSeizable" + num, _resourceOrSet->getName(), "", saveDefaults);
 	fields->saveField("requestQuantityExpression" + num, _quantityExpression, DEFAULT.quantityExpression, saveDefaults);
 	fields->saveField("requestSelectionRule" + num, static_cast<int> (_selectionRule), static_cast<int> (DEFAULT.selectionRule), saveDefaults);

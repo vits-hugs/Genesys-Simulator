@@ -64,7 +64,7 @@ void StatisticsDefaultImpl1::collectorClearHandler() {
 
 void StatisticsDefaultImpl1::initStatistics() {
 	_elems = 0;
-	_min = +1e+99;
+	_min = +1e+99; // TODO: Change by the double min and man
 	_max = -1e+99;
 	_sum = 0.0;
 	_sumSquare = 0.0;

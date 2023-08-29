@@ -14,8 +14,6 @@
 #ifndef TRAITSAPP_H
 #define TRAITSAPP_H
 
-#include "../kernel/util/Util.h"
-
 // TERMINAL USER INTERFACES
 #include "terminal/GenesysShell/GenesysShell.h"
 //
@@ -105,6 +103,9 @@
 #include "terminal/examples/teaching/OperatingSystem02.h"
 #include "terminal/examples/teaching/OperatingSystem03.h"
 
+
+// under development
+#include "terminal/underDevelopment/TestingTerminalApp.h"
 template <typename T>
 struct TraitsApp {
 };
@@ -115,6 +116,7 @@ struct TraitsApp {
 template <> struct TraitsApp<GenesysApplication_if> {
 	//static const bool runTests = false;
 	static const TraceManager::Level traceLevel = TraceManager::Level::L9_mostDetailed;
+	static const bool runGraphicalUserInterface = false;
 
 	//// SMART SMARTs ALPHA SORTED
 	//typedef Smart_AssignWriteSeizes Application;
@@ -137,7 +139,7 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Smart_RouteStation Application;
 	//typedef Smart_SeizeDelayRelease Application;
 	//typedef Smart_SeizeDelayReleaseNoDataDefs Application;
-	typedef Smart_SeizeDelayReleaseMany Application;
+	//typedef Smart_SeizeDelayReleaseMany Application;
 	//typedef Smart_Sequence Application;
 	//typedef Smart_SynchronizingParallelEntities Application;
 	//typedef Smart_SimulationControlResponse Application;
@@ -206,6 +208,9 @@ template <> struct TraitsApp<GenesysApplication_if> {
 
 	//// TERMINAL APPLICATIONS
 	//typedef GenesysTerminalApp Application;
+
+	//// UNDER DEVELPMENT
+	typedef TestingTerminalApp Application;
 };
 
 #endif /* TRAITSAPP_H */

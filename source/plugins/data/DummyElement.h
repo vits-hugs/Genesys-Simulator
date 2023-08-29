@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/cppFiles/class.h to edit this template
  */
 
-/* 
+/*
  * File:   DummyElement.h
  * Author: rlcancian
  *
@@ -14,6 +14,7 @@
 #define DUMMYELEMENT_H
 
 #include "../../kernel/simulator/ModelDataDefinition.h"
+#include "../../kernel/simulator/PluginInformation.h"
 
 class DummyElement : public ModelDataDefinition {
 public:
@@ -25,7 +26,7 @@ public: // static
 	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
 public:
 	virtual std::string show();
-protected: // must be overriden 
+protected: // must be overriden
 	virtual bool _loadInstance(PersistenceRecord *fields);
 	virtual void _saveInstance(PersistenceRecord *fields, bool saveDefaultValues);
 protected: // could be overriden by derived classes
@@ -35,8 +36,8 @@ protected: // could be overriden by derived classes
 	virtual void _initBetweenReplications();
 	/*! This method is necessary only for those components that instantiate internal elements that must exist before simulation starts and even before model checking. That's the case of components that have internal StatisticsCollectors, since others components may refer to them as expressions (as in "TVAG(ThisCSTAT)") and therefore the modeldatum must exist before checking such expression */
 	virtual void _createInternalAndAttachedData(); /*< A ModelDataDefinition or ModelComponent that includes (internal) ou refers to (attach) other ModelDataDefinition must register them inside this method. */
-	virtual void _addProperty(PropertyBaseG* property);
-	
+	virtual void _addProperty(PropertyGenesys* property);
+
 private:
 
 	const struct DEFAULT_VALUES {

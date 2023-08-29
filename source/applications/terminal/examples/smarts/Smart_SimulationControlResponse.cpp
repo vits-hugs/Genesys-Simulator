@@ -33,16 +33,19 @@ int Smart_SimulationControlResponse::main(int argc, char** argv) {
 	Model* model = genesys->getModels()->newModel();
 	PluginManager* plugins = genesys->getPlugins();
 	Create* create1 = plugins->newInstance<Create>(model);
-	Process* process1 = plugins->newInstance<Process>(model);
-	process1->setQueueableItem(new QueueableItem(model, "Queue_1"));
-	process1->getSeizeRequests()->insert(new SeizableItem(model, "Resource_1"));
+	//Process* process1 = plugins->newInstance<Process>(model);
+	//process1->setQueueableItem(new QueueableItem(model, "Queue_1"));
+	//process1->getSeizeRequests()->insert(new SeizableItem(model, "Resource_1"));
+	Delay* process1 = plugins->newInstance<Delay>(model);
 	Dispose* dispose1 = plugins->newInstance<Dispose>(model);
 	// connect model components to create a "workflow"
 	create1->getConnections()->insert(process1);
 	process1->getConnections()->insert(dispose1);
 	// set options, save and simulate
 	model->getSimulation()->setReplicationLength(60, Util::TimeUnit::second);
-	model->save("./models/Smart_SimulationControlResponse.gen");
+	//model->save("./models/Smart_SimulationControlResponse.gen");
+	model->check();
+	model->show();
 	model->getSimulation()->start();
 	delete genesys;
 	return 0;

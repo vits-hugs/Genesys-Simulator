@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/cppFiles/class.h to edit this template
  */
 
-/* 
+/*
  * File:   DynamicLinkedCode.h
  * Author: rlcancian
  *
@@ -28,7 +28,8 @@
 #include <paths.h>
 
 #include "../../kernel/simulator/ModelDataDefinition.h"
-//#include "../../kernel/simulator/ModelDataDefinition.h"
+#include "../../kernel/simulator/PluginInformation.h""
+
 
 class CompilerThread {
 public:
@@ -90,10 +91,10 @@ public: // new methods
 	bool unloadLibrary();
 	void* getDynamicLibraryHandle() const;
 
-protected: // must be overriden 
+protected: // must be overriden
 	virtual bool _loadInstance(PersistenceRecord *fields);
 	virtual void _saveInstance(PersistenceRecord *fields, bool saveDefaultValues);
-protected: // could be overriden 
+protected: // could be overriden
 	virtual bool _check(std::string* errorMessage);
 	// virtual ParserChangesInformation* _getParserChangesInformation();
 	virtual void _initBetweenReplications();

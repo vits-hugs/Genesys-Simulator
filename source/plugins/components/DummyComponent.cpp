@@ -105,6 +105,6 @@ void DummyComponent::_createInternalAndAttachedData() {
 	}
 }
 
-void DummyComponent::_addProperty(PropertyBaseG* property) {
+void DummyComponent::_addProperty(PropertyGenesys* property) {
 
 }

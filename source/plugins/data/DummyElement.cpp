@@ -120,7 +120,7 @@ ParserChangesInformation* DummyElement::_getParserChangesInformation() {
 	return changes;
 }
 
-void DummyElement::_addProperty(PropertyBaseG* property) {
+void DummyElement::_addProperty(PropertyGenesys* property) {
 
 }
 

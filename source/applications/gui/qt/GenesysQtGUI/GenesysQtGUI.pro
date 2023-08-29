@@ -159,6 +159,7 @@ SOURCES += \
 	../../../terminal/examples/teaching/FullSimulationOfComplexModel.cpp \
 	../../../terminal/examples/teaching/OperatingSystem02.cpp \
 	../../../terminal/examples/teaching/OperatingSystem03.cpp \
+	../../../terminal/underDevelopment/TestingTerminalApp.cpp \
 	AnimateExpression.cpp \
 	CodeEditor.cpp \
     Dialogmodelinformation.cpp \
@@ -337,6 +338,52 @@ HEADERS += \
 	../../../GenesysApplication_if.h \
 	../../../TraitsApp.h \
 	../../../terminal/GenesysShell/GenesysShell_if.h \
+	../../../terminal/examples/arenaExamples/AirportSecurityExample.h \
+	../../../terminal/examples/arenaExamples/AirportSecurityExampleExtended.h \
+	../../../terminal/examples/arenaExamples/Airport_Extended1.h \
+	../../../terminal/examples/arenaExamples/Assembly_Line.h \
+	../../../terminal/examples/arenaExamples/Banking_Transactions.h \
+	../../../terminal/examples/arenaExamples/Example_BasicOrderShipping.h \
+	../../../terminal/examples/arenaExamples/Example_PortModel.h \
+	../../../terminal/examples/arenaExamples/Example_PublicTransport.h \
+	../../../terminal/examples/arenaSmarts/Smart_AddingResource.h \
+	../../../terminal/examples/arenaSmarts/Smart_AlternatingEntityCreation.h \
+	../../../terminal/examples/arenaSmarts/Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime.h \
+	../../../terminal/examples/arenaSmarts/Smart_ArrivalsEntityTypeVsAttribute.h \
+	../../../terminal/examples/arenaSmarts/Smart_AssignExample.h \
+	../../../terminal/examples/arenaSmarts/Smart_AutomaticStatisticsCollection.h \
+	../../../terminal/examples/arenaSmarts/Smart_BasicModeling.h \
+	../../../terminal/examples/arenaSmarts/Smart_BatchAndSeparate.h \
+	../../../terminal/examples/arenaSmarts/Smart_ContinuousFlowEntities.h \
+	../../../terminal/examples/arenaSmarts/Smart_Create.h \
+	../../../terminal/examples/arenaSmarts/Smart_DecideNWayByChance.h \
+	../../../terminal/examples/arenaSmarts/Smart_DefiningAttributesAsStrings.h \
+	../../../terminal/examples/arenaSmarts/Smart_DefiningControlLogic.h \
+	../../../terminal/examples/arenaSmarts/Smart_DefiningResourceCapacity.h \
+	../../../terminal/examples/arenaSmarts/Smart_DelayBasedOnReplication.h \
+	../../../terminal/examples/arenaSmarts/Smart_EntitiesProcessedByPriority.h \
+	../../../terminal/examples/arenaSmarts/Smart_EvaluatingConditionsBeforeEnteringQueue.h \
+	../../../terminal/examples/arenaSmarts/Smart_Expression.h \
+	../../../terminal/examples/arenaSmarts/Smart_InventoryAndHoldingCosts.h \
+	../../../terminal/examples/arenaSmarts/Smart_MaxArrivalsField.h \
+	../../../terminal/examples/arenaSmarts/Smart_ModelRunUntil1000Parts.h \
+	../../../terminal/examples/arenaSmarts/Smart_ModuleDisplayVariables.h \
+	../../../terminal/examples/arenaSmarts/Smart_OverlappingResources.h \
+	../../../terminal/examples/arenaSmarts/Smart_ParallelProcessingOfEntities.h \
+	../../../terminal/examples/arenaSmarts/Smart_PlacingEntitiesInQueueSets.h \
+	../../../terminal/examples/arenaSmarts/Smart_PriorityExample.h \
+	../../../terminal/examples/arenaSmarts/Smart_ProcessArena.h \
+	../../../terminal/examples/arenaSmarts/Smart_Record.h \
+	../../../terminal/examples/arenaSmarts/Smart_RemovingAndReorderingEntitiesInAQueue.h \
+	../../../terminal/examples/arenaSmarts/Smart_ResourceCosting.h \
+	../../../terminal/examples/arenaSmarts/Smart_ResourceScheduleCosting.h \
+	../../../terminal/examples/arenaSmarts/Smart_ResourceSets.h \
+	../../../terminal/examples/arenaSmarts/Smart_SeizingMultipleSimultaneosly.h \
+	../../../terminal/examples/arenaSmarts/Smart_SelectingRouteBasedOnProbability.h \
+	../../../terminal/examples/arenaSmarts/Smart_SelectingShorterQueue.h \
+	../../../terminal/examples/arenaSmarts/Smart_SynchronizingParallelEntities.h \
+	../../../terminal/examples/arenaSmarts/Smart_ValueAdded.h \
+	../../../terminal/examples/arenaSmarts/Smart_WaitForSignal.h \
 	../../../terminal/examples/book/Book_Cap02_Example01.h \
 	../../../terminal/examples/smarts/Smart_AssignWriteSeizes.h \
 	../../../terminal/examples/smarts/Smart_BatchSeparate.h \
@@ -364,6 +411,7 @@ HEADERS += \
 	../../../terminal/examples/teaching/FullSimulationOfComplexModel.h \
 	../../../terminal/examples/teaching/OperatingSystem02.h \
 	../../../terminal/examples/teaching/OperatingSystem03.h \
+	../../../terminal/underDevelopment/TestingTerminalApp.h \
 	AnimateExpression.h \
 	CodeEditor.h \
     Dialogmodelinformation.h \

@@ -17,6 +17,7 @@
 
 // GEnSyS Simulator
 #include "../../../../kernel/simulator/Simulator.h"
+#include "../../../../kernel/simulator/PropertyGenesys.h"
 
 // Model Components
 #include "../../../../plugins/components/Create.h"
@@ -41,6 +42,7 @@ int Smart_SeizeDelayReleaseMany::main(int argc, char** argv) {
 	Model* m = genesys->getModels()->newModel();
 	PluginManager* plugins = genesys->getPlugins();
 	Create* create1 = plugins->newInstance<Create>(m);
+	create1->setEntitiesPerCreation(2);
 	Resource* machine1 = plugins->newInstance<Resource>(m);
 	Resource* machine2 = plugins->newInstance<Resource>(m);
 	Resource* machine3 = plugins->newInstance<Resource>(m);

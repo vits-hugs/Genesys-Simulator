@@ -19,6 +19,17 @@
 BaseGenesysTerminalApplication::BaseGenesysTerminalApplication() {
 }
 
+int BaseGenesysTerminalApplication::main(int argc, char** argv) {
+	Simulator* genesys = new Simulator();
+	this->setDefaultTraceHandlers(genesys->getTracer());
+	this->insertFakePluginsByHand(genesys);
+	genesys->getTracer()->setTraceLevel(TraceManager::Level::L9_mostDetailed);
+	Model* model = genesys->getModels()->newModel();
+	PluginManager* plugins = genesys->getPlugins();
+	Simulate(genesys, model, plugins);
+}
+
+
 
 // default Trace Handlers
 
