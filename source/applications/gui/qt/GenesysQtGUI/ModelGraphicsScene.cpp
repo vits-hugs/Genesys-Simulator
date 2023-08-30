@@ -42,7 +42,6 @@ ModelGraphicsScene::ModelGraphicsScene(qreal x, qreal y, qreal width, qreal heig
 	// grid
 	_grid.pen.setWidth(TraitsGUI<GScene>::gridPenWidth);
 	_grid.pen.setStyle(Qt::DotLine);
-	showGrid();
 }
 
 ModelGraphicsScene::ModelGraphicsScene(const ModelGraphicsScene& orig) {
@@ -190,19 +189,21 @@ void ModelGraphicsScene::removeAnimation() {
 //------------------------------------------------------------------------
 
 void ModelGraphicsScene::showGrid() {
-	// remove xisting grid
-	for (QGraphicsLineItem* line : *_grid.lines) {
-		removeItem((QGraphicsItem*) line);
+	// remove existing grid
+	if (items().size() > 0) {
+	//	for (QGraphicsLineItem* line : *_grid.lines) {
+	//		removeItem((QGraphicsItem*) line);
+	//	}
 	}
 	_grid.lines->clear();
 	// add new grid
 	for (int i = sceneRect().left(); i < sceneRect().right(); i += _grid.interval) {
 		QGraphicsLineItem* line = addLine(i, sceneRect().top(), i, sceneRect().bottom(), _grid.pen);
-		_grid.lines->insert(_grid.lines->end(), line);
+	//	_grid.lines->insert(_grid.lines->end(), line);
 	}
 	for (int j = sceneRect().top(); j < sceneRect().bottom(); j += _grid.interval) {
 		QGraphicsLineItem* line = addLine(sceneRect().left(), j, sceneRect().right(), j, _grid.pen);
-		_grid.lines->insert(_grid.lines->end(), line);
+	//	_grid.lines->insert(_grid.lines->end(), line);
 	}
 }
 

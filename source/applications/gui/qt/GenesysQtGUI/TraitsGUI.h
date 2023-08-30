@@ -48,7 +48,7 @@ template <> struct TraitsGUI<GConnection> {
 
 class GView;
 template <> struct TraitsGUI<GView> {
-	constexpr static const int sceneCenter = 0;
+	constexpr static const int sceneCenter = 1024;
 	constexpr static const int sceneDistanceCenter = 1024;
 	static const uint64_t backgroundEnabledColor = 0xFFFF8040;
 	static const uint64_t backgroundDisabledColor = 0xC0C0C020;

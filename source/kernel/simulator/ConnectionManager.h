@@ -72,11 +72,11 @@ public:
 	unsigned int getMinInputConnections() const;
 private:
 	std::map<unsigned int, Connection*>* _nextConnections = new std::map<unsigned int, Connection*>();
-	unsigned int _minInputConnections = 1;
-	unsigned int _maxInputConnections = 1;
-	unsigned int _currentInputConnections = 1;
-	unsigned int _minOutputConnections = 1;
-	unsigned int _maxOutputConnections = 1;
+	unsigned int _minInputConnections = 0;
+	unsigned int _maxInputConnections = 0;
+	unsigned int _currentInputConnections = 0;
+	unsigned int _minOutputConnections = 0;
+	unsigned int _maxOutputConnections = 0;
 };
 //namespace\\}
 #endif /* CONNECTIONMANAGER_H */

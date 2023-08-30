@@ -171,6 +171,7 @@ private: // simulator related
 	std::string _addCppCodeLine(std::string line, unsigned int indent = 0);
 private: // view
 	void _initModelGraphicsView();
+	void _initUiForNewModel(Model* m);
 	void _actualizeActions();
 	void _actualizeTabPanes();
 	void _actualizeModelSimLanguage();
@@ -191,7 +192,7 @@ private: // view
 	//bool _checkStartSimulation();
 private: // graphical model persistence
 	bool _saveGraphicalModel(std::string filename);
-	bool _loadGraphicalModel(std::string filename);
+	Model* _loadGraphicalModel(std::string filename);
 private:
 	QColor myrgba(uint64_t color); // TODO: Should NOT be here, but in UtilGUI.h, but then it generates multiple definitions error
 	static std::string dotColor(uint64_t color); // TODO: Should NOT be here, but in UtilGUI.h, but then it generates multiple definitions error

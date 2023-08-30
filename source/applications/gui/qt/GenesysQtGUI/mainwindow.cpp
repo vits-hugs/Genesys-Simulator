@@ -185,9 +185,9 @@ bool MainWindow::_saveGraphicalModel(std::string filename) {
 	//}
 }
 
-bool MainWindow::_loadGraphicalModel(std::string filename) {
-	bool result = simulator->getModels()->loadModel(filename);
-	if (result) { // now load the text into the GUI
+Model* MainWindow::_loadGraphicalModel(std::string filename) {
+	Model* model = simulator->getModels()->loadModel(filename);
+	if (model != nullptr) { // now load the text into the GUI
 		_clearModelEditors();
 		std::string line;
 		std::ifstream file(filename);
@@ -200,15 +200,14 @@ bool MainWindow::_loadGraphicalModel(std::string filename) {
 			ui->textEdit_Console->append(QString("Error reading model file"));
 		}
 		ui->textEdit_Console->append("\n");
-		_setOnEventHandlers();
-		_actualizeModelTextHasChanged(false);
-		_actualizeActions();
 		_modelfilename = QString::fromStdString(filename);
+		_initUiForNewModel(model);
 		// /TODO: LOAD THE GRAPHICAL PART O A MODEL
 		if (true) { // there is no graphical part in the file
 			this->_generateGraphicalModelFromModel();
 		}
 	}
+	return model;
 }
 
 //-----------------------------------------------------------------
@@ -219,7 +218,6 @@ bool MainWindow::_loadGraphicalModel(std::string filename) {
 //-----------------
 
 void MainWindow::_recursivalyGenerateGraphicalModelFromModel(ModelComponent* component, List<ModelComponent*>* visited, std::map<ModelComponent*,GraphicalModelComponent*>* map, int *x, int *y, int *ymax, int sequenceInLine) {
-	std::cout << "Generating " << component->getName() << " at (" << *x <<"," << *y <<")" << std::endl;
 	PluginManager* pm = simulator->getPlugins();
 	GraphicalModelComponent *gmc;
 	ModelGraphicsScene* scene = ui->graphicsView->getScene();
@@ -234,12 +232,11 @@ void MainWindow::_recursivalyGenerateGraphicalModelFromModel(ModelComponent* com
 	int xIni = *x;
 	const int deltaY = TraitsGUI<GModelComponent>::width * TraitsGUI<GModelComponent>::heightProportion * 1.5;
 	GraphicalComponentPort *sourceGraphicalPort, *destinyGraphicalPort;
-	std::cout << "Num conections: " <<component->getConnections()->connections()->size() << std::endl;
 	for(auto connectionMap: *component->getConnections()->connections()) {
 		ModelComponent* nextComp = connectionMap.second->component;
 		if (visited->find(nextComp)==visited->list()->end()) { // nextComponent was not visited yet
-			if (++sequenceInLine==5) {
-				*x -= 4 * TraitsGUI<GModelComponent>::width * 1.5;
+			if (++sequenceInLine==6) {
+				*x -= 5 * TraitsGUI<GModelComponent>::width * 1.5;
 				*y+= deltaY;
 				sequenceInLine = 0;
 			} else {
@@ -247,7 +244,6 @@ void MainWindow::_recursivalyGenerateGraphicalModelFromModel(ModelComponent* com
 			}
 			if (*y > *ymax)
 				*ymax = *y;
-			std::cout << "Output connection at port "<< connectionMap.first << " to component " <<connectionMap.second->component->getName() << std::endl;
 			_recursivalyGenerateGraphicalModelFromModel(nextComp, visited, map, x, y, ymax, sequenceInLine);
 			GraphicalModelComponent *destinyGmc = map->at(nextComp);
 			sourceGraphicalPort = gmc->getGraphicalOutputPorts().at(connectionMap.first);
@@ -255,6 +251,7 @@ void MainWindow::_recursivalyGenerateGraphicalModelFromModel(ModelComponent* com
 			scene->addGraphicalConnection(sourceGraphicalPort, destinyGraphicalPort);
 			*x = xIni;
 			*y+= deltaY;
+			sequenceInLine--;
 		}
 	}
 	*y = yIni;
@@ -264,6 +261,7 @@ void MainWindow::_generateGraphicalModelFromModel() {
 	Model* m=simulator->getModels()->current();
 	if (m!=nullptr) {
 		ui->graphicsView->setCanNotifyGraphicalModelEventHandlers(false);
+		//ui->graphicsView->getScene()->showGrid();
 		int x, y, ymax;
 		x=TraitsGUI<GView>::sceneCenter - TraitsGUI<GView>::sceneDistanceCenter*0.8; //ui->graphicsView->sceneRect().left();
 		y=TraitsGUI<GView>::sceneCenter - TraitsGUI<GView>::sceneDistanceCenter*0.8; //ui->graphicsView->sceneRect().top();
@@ -287,8 +285,8 @@ void MainWindow::_generateGraphicalModelFromModel() {
 				}
 			}
 		} while (foundNotVisited);
-		map->~map();
-		visited->~List();
+		delete map;
+		delete visited;
 		ui->graphicsView->setCanNotifyGraphicalModelEventHandlers(true);
 	}
 }
@@ -378,7 +376,7 @@ void MainWindow::_actualizeTabPanes() {
 				_actualizeDebugVariables(true);
 			}
 		} else if (index == CONST.TabCentralReportsIndex) {
-			index = ui->tabWidgetReports->currentIndex();
+			index = ui->tabWidgetReports->currentIndex(); // TODO: Add results
 		}
 	}
 }
@@ -1233,7 +1231,6 @@ void MainWindow::sceneGraphicalModelChanged() {
 void MainWindow::_initModelGraphicsView() {
 	((ModelGraphicsView*) (ui->graphicsView))->setSceneMouseEventHandler(this, &MainWindow::_onSceneMouseEvent);
 	((ModelGraphicsView*) (ui->graphicsView))->setGraphicalModelEventHandler(this, &MainWindow::_onSceneGraphicalModelEvent);
-	ui->graphicsView->showGrid(); //@TODO not here
 	connect(ui->graphicsView->scene(), &QGraphicsScene::changed, this, &MainWindow::sceneChanged);
 	connect(ui->graphicsView->scene(), &QGraphicsScene::focusItemChanged, this, &MainWindow::sceneFocusItemChanged);
 	connect(ui->graphicsView->scene(), &QGraphicsScene::selectionChanged, this, &MainWindow::sceneSelectionChanged);
@@ -1965,8 +1962,45 @@ void MainWindow::on_actionViewConfigure_triggered()
 //void MainWindow::on_actionOpen_triggered() {//?????????????????????????
 //}
 
-void MainWindow::on_actionModelNew_triggered()
-{
+void MainWindow::_initUiForNewModel(Model* m) {
+	ui->graphicsView->getScene()->showGrid(); // TODO: Bad place to be
+	ui->textEdit_Simulation->clear();
+	ui->textEdit_Reports->clear();
+	ui->textEdit_Console->moveCursor(QTextCursor::End);
+	if (m == nullptr) { // a new model. Create the model template
+		ui->TextCodeEditor->clear();
+		// create a basic initial template for the model
+		std::string tempFilename = "./temp.tmp";
+		m->getPersistence()->setOption(ModelPersistence_if::Options::SAVEDEFAULTS, true);
+		bool res = m->save(tempFilename);
+		m->getPersistence()->setOption(ModelPersistence_if::Options::SAVEDEFAULTS, false);
+		if (res) { // read the file saved and copy its contents to the model text editor
+			std::string line;
+			std::ifstream file(tempFilename);
+			if (file.is_open()) {
+				ui->TextCodeEditor->appendPlainText("# Genesys Model File");
+				ui->TextCodeEditor->appendPlainText("# Simulator, ModelInfo and ModelSimulation");
+				while (std::getline(file, line)) {
+					ui->TextCodeEditor->appendPlainText(QString::fromStdString(line));
+				}
+				file.close();
+				//QMessageBox::information(this, "New Model", "Model successfully created");
+			} else {
+				ui->textEdit_Console->append(QString("Error reading template model file"));
+			}
+			_actualizeModelTextHasChanged(true);
+			_setOnEventHandlers();
+		} else {
+			ui->textEdit_Console->append(QString("Error saving template model file"));
+		}
+		_modelfilename = "";
+	} else {	// beind loaded
+		_setOnEventHandlers();
+	}
+	_actualizeActions();
+	_actualizeTabPanes();
+}
+void MainWindow::on_actionModelNew_triggered() {
 	Model* m;
 	if ((m = simulator->getModels()->current()) != nullptr) {
 		QMessageBox::StandardButton reply = QMessageBox::question(this, "New Model", "There is a model already oppened. Do you want to close it and to create new model?", QMessageBox::Yes | QMessageBox::No);
@@ -1982,38 +2016,7 @@ void MainWindow::on_actionModelNew_triggered()
 		simulator->getModels()->remove(m);
 	}
 	m = simulator->getModels()->newModel();
-	ui->TextCodeEditor->clear();
-	ui->textEdit_Simulation->clear();
-	ui->textEdit_Reports->clear();
-	ui->textEdit_Console->moveCursor(QTextCursor::End);
-	// create a basic initial template for the model
-	std::string tempFilename = "./temp.tmp";
-	m->getPersistence()->setOption(ModelPersistence_if::Options::SAVEDEFAULTS, true);
-	bool res = m->save(tempFilename);
-	m->getPersistence()->setOption(ModelPersistence_if::Options::SAVEDEFAULTS, false);
-	if (res) { // read the file saved and copy its contents to the model text editor
-		std::string line;
-		std::ifstream file(tempFilename);
-		if (file.is_open()) {
-			ui->TextCodeEditor->appendPlainText("# Genesys Model File");
-			ui->TextCodeEditor->appendPlainText("# Simulator, ModelInfo and ModelSimulation");
-			while (std::getline(file, line)) {
-				ui->TextCodeEditor->appendPlainText(QString::fromStdString(line));
-			}
-			file.close();
-			//QMessageBox::information(this, "New Model", "Model successfully created");
-		} else {
-			ui->textEdit_Console->append(QString("Error reading template model file"));
-		}
-		_actualizeModelTextHasChanged(true);
-		_setOnEventHandlers();
-	} else {
-		ui->textEdit_Console->append(QString("Error saving template model file"));
-	}
-	_modelfilename = "";
-	_actualizeActions();
-	_actualizeTabPanes();
-
+	_initUiForNewModel(m);
 }
 
 
@@ -2031,9 +2034,10 @@ void MainWindow::on_actionModelOpen_triggered()
 		QMessageBox::information(this, "Open Model", "Model successfully oppened");
 	} else {
 		QMessageBox::warning(this, "Open Model", "Error while opening model");
+		_actualizeActions();
+		_actualizeTabPanes();
 	}
-	_actualizeActions();
-	_actualizeTabPanes();
+
 }
 
 
@@ -2083,6 +2087,7 @@ void MainWindow::on_actionModelClose_triggered()
 		}
 	}
 	_insertCommandInConsole("close");
+	ui->graphicsView->clear();
 	simulator->getModels()->remove(simulator->getModels()->current());
 	_actualizeActions();
 	_actualizeTabPanes();

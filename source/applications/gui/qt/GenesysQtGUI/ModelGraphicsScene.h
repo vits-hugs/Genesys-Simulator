@@ -124,7 +124,7 @@ private:
 
 	struct GRID {
 		unsigned int interval = TraitsGUI<GScene>::gridInterval;//20;
-		QPen pen = QPen(Qt::gray); //TODO: To use TraitsGUI<GScene>::gridColor must solve myrgba first
+		QPen pen = QPen(TraitsGUI<GScene>::gridColor);//QPen(Qt::gray); //TODO: To use TraitsGUI<GScene>::gridColor must solve myrgba first
 		std::list<QGraphicsLineItem*>* lines = new std::list<QGraphicsLineItem*>();
 	} _grid;
 	Simulator* _simulator = nullptr;

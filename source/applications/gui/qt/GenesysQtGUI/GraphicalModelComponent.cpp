@@ -78,8 +78,9 @@ GraphicalModelComponent::GraphicalModelComponent(Plugin* plugin, ModelComponent*
 	// create input output ports
 	GraphicalComponentPort* port;
 	qreal px, py = 0;
-	qreal step = (double) _height / (double) (component->getConnections()->getCurrentInputConnectionsSize()+1);//(plugin->getPluginInfo()->getMinimumInputs() + 1);
-	for (unsigned int i = 0; i < component->getConnections()->getCurrentInputConnectionsSize()/*plugin->getPluginInfo()->getMinimumInputs()*/; i++) {
+	unsigned int numInputPorts = std::max<unsigned int>(component->getConnections()->getCurrentInputConnectionsSize(), plugin->getPluginInfo()->getMinimumInputs());
+	qreal step = (double) _height / (double) (numInputPorts+1);
+	for (unsigned int i = 0; i < numInputPorts; i++) {
 		port = new GraphicalComponentPort(this, true, i, parent);
 		port->setX(0);
 		py += step;
@@ -88,8 +89,9 @@ GraphicalModelComponent::GraphicalModelComponent(Plugin* plugin, ModelComponent*
 		this->_graphicalInputPorts.append(port);
 	}
 	py = 0;
-	step = (double) _height / (double) (component->getConnections()->getCurrentOutputConnectionsSize()+1); //(plugin->getPluginInfo()->getMinimumOutputs() + 1);
-	for (unsigned int i = 0; i < component->getConnections()->getCurrentOutputConnectionsSize() /*plugin->getPluginInfo()->getMinimumOutputs()*/; i++) {
+	unsigned int numOutputPorts = std::max<unsigned int>(component->getConnections()->getCurrentOutputConnectionsSize(), plugin->getPluginInfo()->getMinimumOutputs());
+	step = (double) _height / (double) (numOutputPorts+1);
+	for (unsigned int i = 0; i < numOutputPorts; i++) {
 		port = new GraphicalComponentPort(this, false, i, parent);
 		port->setX(this->_width - port->width());
 		py += step;

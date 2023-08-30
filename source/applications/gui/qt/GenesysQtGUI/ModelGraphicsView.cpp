@@ -114,6 +114,7 @@ void ModelGraphicsView::setEnabled(bool enabled) {
 		//unsigned int colorVal1 = 255 * 13.0 / 16.0;
 		//unsigned int colorVal2 = 255 * 15.0 / 16.0;
 		background = QColor(myrgba(TraitsGUI<GView>::backgroundEnabledColor));//255, 255, 128, 64);
+		//getScene()->showGrid();
 	} else {
 		// background
 		background = myrgba(TraitsGUI<GView>::backgroundDisabledColor);//Qt::lightGray;
