@@ -143,7 +143,7 @@ int AnElectronicAssemblyAndTestSystem::main(int argc, char** argv) {
 	sim->setWarmUpPeriodTimeUnit(Util::TimeUnit::hour);
 	sim->setReplicationReportBaseTimeUnit(Util::TimeUnit::minute);
 	//save the model
-	model->save("./models/Smart_AnElectronicAssemblyAndTestSystem.gen");
+	model->save("./models/AnElectronicAssemblyAndTestSystem.gen");
 	//simulating the model
 	sim->start();
 	delete genesys;

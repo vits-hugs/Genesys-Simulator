@@ -210,12 +210,12 @@ ModelDataDefinition* SeizableItem::getSeizable() const {
 	return _resourceOrSet;
 }
 
-void SeizableItem::setElementManager(ModelDataManager* _modeldataManager) {
-	_modeldataManager = _modeldataManager;
+void SeizableItem::setElementManager(ModelDataManager* modeldataManager) {
+	_modeldataManager = modeldataManager;
 }
 
-void SeizableItem::setLastPreferedOrder(unsigned int _lastPreferedOrder) {
-	_lastPreferedOrder = _lastPreferedOrder;
+void SeizableItem::setLastPreferedOrder(unsigned int lastPreferedOrder) {
+	_lastPreferedOrder = lastPreferedOrder;
 }
 
 unsigned int SeizableItem::getLastPreferedOrder() const {

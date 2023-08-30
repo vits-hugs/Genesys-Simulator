@@ -27,7 +27,7 @@ public:
 	virtual ~BaseGenesysTerminalApplication() = default;
 public:
 	virtual int main(int argc, char** argv);
-	virtual void Simulate(Simulator* genesys, Model* model, PluginManager *plugins)=0;
+	virtual void Simulate(Simulator* genesys, Model* model, PluginManager *plugins);
 public:
 	void setDefaultTraceHandlers(TraceManager* tm);
 	void setDefaultEventHandlers(OnEventManager* oem); /*!< Add default method to handle simulator events so information is plotted to output screen */

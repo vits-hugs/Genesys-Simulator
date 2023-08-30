@@ -32,3 +32,5 @@
 *.app
 /build/
 /dist/
+/projects/GenesysTerminalApplication/build/
+/projects/GenesysTerminalApplication/dist/

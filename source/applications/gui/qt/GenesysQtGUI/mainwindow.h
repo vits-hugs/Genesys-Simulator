@@ -185,7 +185,9 @@ private: // view
 	void _insertCommandInConsole(std::string text);
 	void _clearModelEditors();
 	void _gentle_zoom(double factor);
-	void showMessageNotImplemented();
+	void _showMessageNotImplemented();
+	void _recursivalyGenerateGraphicalModelFromModel(ModelComponent* component, List<ModelComponent*>* visited, std::map<ModelComponent*,GraphicalModelComponent*>* map, int *x, int *y, int *ymax, int sequenceInline);
+	void _generateGraphicalModelFromModel();
 	//bool _checkStartSimulation();
 private: // graphical model persistence
 	bool _saveGraphicalModel(std::string filename);
@@ -201,6 +203,7 @@ private: // misc useful
 	bool _graphicalModelHasChanged = false;
 	bool _modelWasOpened = false;
 	QString _modelfilename;
+	std::map<std::string /*category*/,QColor>* _pluginCategoryColor = new std::map<std::string,QColor>();
     int _zoomValue; // todo should be set for each open graphical model, such as view rect, etc
 private:
 

@@ -59,9 +59,13 @@ ModelGraphicsView::~ModelGraphicsView() {
 
 //------------------------------------------------------------------
 
-bool ModelGraphicsView::addGraphicalModelComponent(Plugin* plugin, ModelComponent* component, QPointF position) {
-	GraphicalModelComponent* item = ((ModelGraphicsScene*) scene())->addGraphicalModelComponent(plugin, component, position);
-	return item != nullptr;
+//GraphicalModelComponent* ModelGraphicsView::addGraphicalModelComponent(Plugin* plugin, ModelComponent* component, QPointF position) {
+//	GraphicalModelComponent* item = ((ModelGraphicsScene*) scene())->addGraphicalModelComponent(plugin, component, position);
+//	return item;
+//}
+
+ModelGraphicsScene* ModelGraphicsView::getScene() {
+	return (ModelGraphicsScene*) scene();
 }
 
 void ModelGraphicsView::showGrid() {
@@ -125,10 +129,14 @@ void ModelGraphicsView::notifySceneMouseEventHandler(QGraphicsSceneMouseEvent* m
 }
 
 void ModelGraphicsView::notifySceneGraphicalModelEventHandler(GraphicalModelEvent* modelGraphicsEvent) {
-	this->_sceneGraphicalModelEventHandler(modelGraphicsEvent);
+	if (_notifyGraphicalModelEventHandlers)
+		this->_sceneGraphicalModelEventHandler(modelGraphicsEvent);
 	// todo actualize property editor?
 }
 
+void ModelGraphicsView::setCanNotifyGraphicalModelEventHandlers(bool can) {
+	_notifyGraphicalModelEventHandlers = can;
+}
 
 //---------------------------------------------------------
 

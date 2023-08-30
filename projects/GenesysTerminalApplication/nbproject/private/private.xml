@@ -7,10 +7,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/source/kernel/simulator/Counter.cpp</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/source/applications/TraitsApp.h</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/source/kernel/simulator/Property.h</file>
-            <file>file:/home/rlcancian/Laboratory/Software_Lab/IA32_Architecture/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/source/applications/terminal/examples/arenaExamples/AirportSecurityExampleExtended.h</file>
+            <file>file:/home/cancian/Laboratory/Software/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/source/kernel/simulator/PluginManager.h</file>
+            <file>file:/home/cancian/Laboratory/Software/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/source/kernel/simulator/ModelSimulation.h</file>
+            <file>file:/home/cancian/Laboratory/Software/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/source/kernel/simulator/SourceModelComponent.h</file>
+            <file>file:/home/cancian/Laboratory/Software/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/source/applications/terminal/examples/smarts/Smart_SimulationControlResponse.cpp</file>
+            <file>file:/home/cancian/Laboratory/Software/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/source/kernel/simulator/ComponentManager.h</file>
+            <file>file:/home/cancian/Laboratory/Software/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/source/kernel/simulator/ModelInfo.h</file>
+            <file>file:/home/cancian/Laboratory/Software/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/source/applications/TraitsApp.h</file>
+            <file>file:/home/cancian/Laboratory/Software/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/source/kernel/simulator/Entity.h</file>
+            <file>file:/home/cancian/Laboratory/Software/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/projects/GenesysTerminalApplication/main.cpp</file>
+            <file>file:/home/cancian/Laboratory/Software/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/source/applications/terminal/examples/smarts/Smart_SimulationControlResponse.h</file>
+            <file>file:/home/cancian/Laboratory/Software/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/source/applications/BaseGenesysTerminalApplication.cpp</file>
         </group>
     </open-files>
 </project-private>

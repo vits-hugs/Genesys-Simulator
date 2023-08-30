@@ -83,7 +83,7 @@ int Smart_DecideNWayByChance::main(int argc, char** argv) {
 
     // Set options, save and run simulation.
     model->getInfos()->setName("Decide N-way By Chance");
-    model->save("./models/Smart_DecideNWayByChance.gen");
+	model->save("./models/Smart_DecideNWayByChance.gen");
 
 	model->getSimulation()->setReplicationLength(std::numeric_limits<double>::max(), Util::TimeUnit::week); // This is a "infinity" value.
     model->getSimulation()->setReplicationReportBaseTimeUnit(Util::TimeUnit::minute);
@@ -102,7 +102,6 @@ int Smart_DecideNWayByChance::main(int argc, char** argv) {
     std::string totalEntities = " > 1000";
     model->getSimulation()->setTerminatingCondition(countWarehouse + countRebuild + countRefinish + countRepackage + countScrap + totalEntities);
     model->getSimulation()->setNumberOfReplications(3);
-
     model->getSimulation()->start();
 
 	for (int i = 0; i < 1e9; i++); // Give time to UI print everything.

@@ -143,8 +143,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     //
     // FOR TESTS ONLY
 	//ui->treeViewPropertyEditor->set
-    //this->on_actionNew_triggered();
-	//on_actionNew_triggered();
+	//this->on_actionModelNew_triggered();
+	//this->_loadGraphicalModel("./models/Smart_AnElectronicAssemblyAndTestSystem.gen"); //("../../../../../models/Smart_Delay.gen"); // Smart_AnElectronicAssemblyAndTestSystem.gen");
 	//ui->tabWidget_Model->setCurrentIndex(CONST.TabModelGraphicEditIndex);
 }
 
@@ -186,7 +186,29 @@ bool MainWindow::_saveGraphicalModel(std::string filename) {
 }
 
 bool MainWindow::_loadGraphicalModel(std::string filename) {
-	return false;
+	bool result = simulator->getModels()->loadModel(filename);
+	if (result) { // now load the text into the GUI
+		_clearModelEditors();
+		std::string line;
+		std::ifstream file(filename);
+		if (file.is_open()) {
+			while (std::getline(file, line)) {
+				ui->TextCodeEditor->appendPlainText(QString::fromStdString(line));
+			}
+			file.close();
+		} else {
+			ui->textEdit_Console->append(QString("Error reading model file"));
+		}
+		ui->textEdit_Console->append("\n");
+		_setOnEventHandlers();
+		_actualizeModelTextHasChanged(false);
+		_actualizeActions();
+		_modelfilename = QString::fromStdString(filename);
+		// /TODO: LOAD THE GRAPHICAL PART O A MODEL
+		if (true) { // there is no graphical part in the file
+			this->_generateGraphicalModelFromModel();
+		}
+	}
 }
 
 //-----------------------------------------------------------------
@@ -195,6 +217,81 @@ bool MainWindow::_loadGraphicalModel(std::string filename) {
 //-----------------
 // View
 //-----------------
+
+void MainWindow::_recursivalyGenerateGraphicalModelFromModel(ModelComponent* component, List<ModelComponent*>* visited, std::map<ModelComponent*,GraphicalModelComponent*>* map, int *x, int *y, int *ymax, int sequenceInLine) {
+	std::cout << "Generating " << component->getName() << " at (" << *x <<"," << *y <<")" << std::endl;
+	PluginManager* pm = simulator->getPlugins();
+	GraphicalModelComponent *gmc;
+	ModelGraphicsScene* scene = ui->graphicsView->getScene();
+	Plugin* plugin = pm->find(component->getClassname());
+	assert(plugin!=nullptr);
+	// get color from category
+	QColor color = _pluginCategoryColor->at(plugin->getPluginInfo()->getCategory());
+	gmc = scene->addGraphicalModelComponent(plugin, component, QPoint(*x, *y), color);
+	map->insert({component,gmc});
+	visited->insert(component);
+	int yIni = *y;
+	int xIni = *x;
+	const int deltaY = TraitsGUI<GModelComponent>::width * TraitsGUI<GModelComponent>::heightProportion * 1.5;
+	GraphicalComponentPort *sourceGraphicalPort, *destinyGraphicalPort;
+	std::cout << "Num conections: " <<component->getConnections()->connections()->size() << std::endl;
+	for(auto connectionMap: *component->getConnections()->connections()) {
+		ModelComponent* nextComp = connectionMap.second->component;
+		if (visited->find(nextComp)==visited->list()->end()) { // nextComponent was not visited yet
+			if (++sequenceInLine==5) {
+				*x -= 4 * TraitsGUI<GModelComponent>::width * 1.5;
+				*y+= deltaY;
+				sequenceInLine = 0;
+			} else {
+				*x += TraitsGUI<GModelComponent>::width * 1.5;
+			}
+			if (*y > *ymax)
+				*ymax = *y;
+			std::cout << "Output connection at port "<< connectionMap.first << " to component " <<connectionMap.second->component->getName() << std::endl;
+			_recursivalyGenerateGraphicalModelFromModel(nextComp, visited, map, x, y, ymax, sequenceInLine);
+			GraphicalModelComponent *destinyGmc = map->at(nextComp);
+			sourceGraphicalPort = gmc->getGraphicalOutputPorts().at(connectionMap.first);
+			destinyGraphicalPort = destinyGmc->getGraphicalInputPorts().at(connectionMap.second->channel.portNumber);
+			scene->addGraphicalConnection(sourceGraphicalPort, destinyGraphicalPort);
+			*x = xIni;
+			*y+= deltaY;
+		}
+	}
+	*y = yIni;
+}
+
+void MainWindow::_generateGraphicalModelFromModel() {
+	Model* m=simulator->getModels()->current();
+	if (m!=nullptr) {
+		ui->graphicsView->setCanNotifyGraphicalModelEventHandlers(false);
+		int x, y, ymax;
+		x=TraitsGUI<GView>::sceneCenter - TraitsGUI<GView>::sceneDistanceCenter*0.8; //ui->graphicsView->sceneRect().left();
+		y=TraitsGUI<GView>::sceneCenter - TraitsGUI<GView>::sceneDistanceCenter*0.8; //ui->graphicsView->sceneRect().top();
+		ymax=y;
+		ComponentManager* cm = m->getComponents();
+		List<ModelComponent*>* visited = new List<ModelComponent*>();
+		std::map<ModelComponent*,GraphicalModelComponent*>* map = new std::map<ModelComponent*,GraphicalModelComponent*>();
+		for(SourceModelComponent* source: *cm->getSourceComponents()) {
+			_recursivalyGenerateGraphicalModelFromModel(source, visited, map, &x, &y, &ymax, 0);
+			y= ymax + TraitsGUI<GModelComponent>::width * TraitsGUI<GModelComponent>::heightProportion * 3; // get heigth mapped to scene??
+		}
+		// check if any component remains unvisited
+		bool foundNotVisited;
+		do {
+			foundNotVisited = false;
+			for (ModelComponent* comp: *cm->getAllComponents()) {
+				if (visited->find(comp) == visited->list()->end()) { // found a compponent not visited yet
+					foundNotVisited = true;
+					visited->insert(comp);
+					// recursive create
+				}
+			}
+		} while (foundNotVisited);
+		map->~map();
+		visited->~List();
+		ui->graphicsView->setCanNotifyGraphicalModelEventHandlers(true);
+	}
+}
 
 void MainWindow::_actualizeActions() {
 	bool opened = simulator->getModels()->current() != nullptr;
@@ -950,6 +1047,8 @@ bool MainWindow::_createModelImage() {
 	return false;
 }
 
+
+
 //-------------------------
 // Simulator Trace Handlers
 //-------------------------
@@ -1232,6 +1331,9 @@ void MainWindow::_insertPluginUI(Plugin * plugin) {
 				treeRootItem->setFont(0, font);
 				treeRootItem->setExpanded(false); //(true);
 				//treeRootItem->sortChildren(0, Qt::AscendingOrder);
+				if (plugin->getPluginInfo()->getCategory() == category.toStdString()) {
+					_pluginCategoryColor->insert({plugin->getPluginInfo()->getCategory(), bbackground.color()});
+				}
 			} else {
 				treeRootItem = *founds.begin();
 			}
@@ -1360,7 +1462,7 @@ void MainWindow::_gentle_zoom(double factor) {
 	//emit zoomed();
 }
 
-void MainWindow::showMessageNotImplemented(){
+void MainWindow::_showMessageNotImplemented(){
 	QMessageBox::warning(this, "Ops...", "Sorry. This functionalitty was not implemented yet. Genesys is a free open-source simulator (and tools) available at 'https://github.com/rlcancian/Genesys-Simulator'. Help us by submiting your pull requests containing code improvements.");
 }
 
@@ -1482,7 +1584,7 @@ void MainWindow::on_treeWidget_Plugins_itemDoubleClicked(QTreeWidgetItem *item, 
 }
 
 void MainWindow::on_graphicsView_rubberBandChanged(const QRect &viewportRect, const QPointF &fromScenePoint, const QPointF &toScenePoint) {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 void MainWindow::on_horizontalSlider_ZoomGraphical_valueChanged(int value) {
@@ -1496,7 +1598,7 @@ void MainWindow::on_actionConnect_triggered() {
 }
 
 void MainWindow::on_pushButton_Export_clicked() {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 void MainWindow::on_tabWidgetModelLanguages_currentChanged(int index) {
@@ -1508,7 +1610,6 @@ void MainWindow::on_tabWidgetModelLanguages_currentChanged(int index) {
 		_actualizeModelCppCode();
 	}
 	_actualizeActions();
-
 }
 
 void MainWindow::on_actionComponent_Breakpoint_triggered() {
@@ -1529,7 +1630,7 @@ void MainWindow::on_actionComponent_Breakpoint_triggered() {
 }
 
 void MainWindow::on_treeWidgetComponents_itemSelectionChanged() {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 void MainWindow::on_treeWidget_Plugins_itemClicked(QTreeWidgetItem *item, int column) {
@@ -1611,47 +1712,47 @@ void MainWindow::on_actionAboutGetInvolved_triggered() {
 }
 
 void MainWindow::on_actionEditUndo_triggered() {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionEditRedo_triggered() {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionEditFind_triggered() {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionEditReplace_triggered() {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionEditCut_triggered() {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionEditCopy_triggered() {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionEditPaste_triggered() {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionShowRule_triggered() {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionShowGuides_triggered() {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
@@ -1669,53 +1770,53 @@ void MainWindow::on_actionZoom_Out_triggered() {
 
 
 void MainWindow::on_actionZoom_All_triggered() {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionDrawLine_triggered() {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionDrawRectangle_triggered() {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionDrawEllipse_triggered() {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionAnimateVariable_triggered() {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionAnimateExpression_triggered() {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionAnimateResource_triggered() {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionAnimateQueue_triggered() {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionAnimateStation_triggered() {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionEditDelete_triggered()
 {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
@@ -1728,80 +1829,80 @@ void MainWindow::on_actionModelPreferences_triggered()
 
 void MainWindow::on_actionAlignMiddle_triggered()
 {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionAlignTop_triggered()
 {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionAlignRight_triggered()
 {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionAlignCenter_triggered()
 {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionAlignLeft_triggered()
 {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionAnimateSimulatedTime_triggered()
 {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 
 void MainWindow::on_actionDrawText_triggered()
 {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionDrawPoligon_triggered()
 {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionAnimateCounter_triggered()
 {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionAnimateEntity_triggered()
 {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionAnimateEvent_triggered()
 {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionAnimateAttribute_triggered()
 {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionAnimateStatistics_triggered()
 {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
@@ -1814,49 +1915,49 @@ void MainWindow::on_actionToolsPluginManager_triggered()
 
 void MainWindow::on_actionEditGroup_triggered()
 {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionEditUngroup_triggered()
 {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionToolsParserGrammarChecker_triggered()
 {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionToolsExperimentation_triggered()
 {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionToolsOptimizator_triggered()
 {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionToolsDataAnalyzer_triggered()
 {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionAnimatePlot_triggered()
 {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 
 void MainWindow::on_actionViewConfigure_triggered()
 {
-	showMessageNotImplemented();
+	_showMessageNotImplemented();
 }
 
 //void MainWindow::on_actionConfigure_triggered() {//?????????????????????????
@@ -1926,27 +2027,9 @@ void MainWindow::on_actionModelOpen_triggered()
 	}
 	_insertCommandInConsole("load " + fileName.toStdString());
 	// load Model (in the simulator)
-	bool result = simulator->getModels()->loadModel(fileName.toStdString());
-	if (result) { // now load the text into the GUI
-		_clearModelEditors();
-		std::string line;
-		std::ifstream file(fileName.toStdString());
-		if (file.is_open()) {
-			while (std::getline(file, line)) {
-				ui->TextCodeEditor->appendPlainText(QString::fromStdString(line));
-			}
-			file.close();
-		} else {
-			ui->textEdit_Console->append(QString("Error reading model file"));
-		}
-		ui->textEdit_Console->append("\n");
-		_setOnEventHandlers();
-		_actualizeModelTextHasChanged(false);
-		_actualizeActions();
-		_modelfilename = fileName;
+	if (this->_loadGraphicalModel(fileName.toStdString())) {
 		QMessageBox::information(this, "Open Model", "Model successfully oppened");
 	} else {
-
 		QMessageBox::warning(this, "Open Model", "Error while opening model");
 	}
 	_actualizeActions();

@@ -101,7 +101,6 @@
 // teachng
 #include "terminal/examples/teaching/AnElectronicAssemblyAndTestSystem.h"
 #include "terminal/examples/teaching/OperatingSystem02.h"
-#include "terminal/examples/teaching/OperatingSystem03.h"
 
 
 // under development
@@ -116,7 +115,7 @@ struct TraitsApp {
 template <> struct TraitsApp<GenesysApplication_if> {
 	//static const bool runTests = false;
 	static const TraceManager::Level traceLevel = TraceManager::Level::L9_mostDetailed;
-	static const bool runGraphicalUserInterface = false;
+	static const bool runGraphicalUserInterface = true;
 
 	//// SMART SMARTs ALPHA SORTED
 	//typedef Smart_AssignWriteSeizes Application;
@@ -157,7 +156,7 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Smart_BatchAndSeparate Application;
 	//typedef Smart_ContinuousFlowEntities Application;
 	//typedef Smart_Create Application;
-	//typedef Smart_DecideNWayByChance Application;
+	typedef Smart_DecideNWayByChance Application;
 	//typedef Smart_DefiningAttributesAsStrings Application;
 	//typedef Smart_DefiningControlLogic Application;
 	//typedef Smart_DefiningResourceCapacity Application;
@@ -210,7 +209,7 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef GenesysTerminalApp Application;
 
 	//// UNDER DEVELPMENT
-	typedef TestingTerminalApp Application;
+	//typedef TestingTerminalApp Application;
 };
 
 #endif /* TRAITSAPP_H */

@@ -132,6 +132,52 @@ SOURCES += \
 	../../../../tools/ProbabilityDistributionBase.cpp \
 	../../../../tools/SolverDefaultImpl1.cpp \
 	../../../BaseGenesysTerminalApplication.cpp \
+	../../../terminal/examples/arenaExamples/AirportSecurityExample.cpp \
+	../../../terminal/examples/arenaExamples/AirportSecurityExampleExtended.cpp \
+	../../../terminal/examples/arenaExamples/Airport_Extended1.cpp \
+	../../../terminal/examples/arenaExamples/Assembly_Line.cpp \
+	../../../terminal/examples/arenaExamples/Banking_Transactions.cpp \
+	../../../terminal/examples/arenaExamples/Example_BasicOrderShipping.cpp \
+	../../../terminal/examples/arenaExamples/Example_PortModel.cpp \
+	../../../terminal/examples/arenaExamples/Example_PublicTransport.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_AddingResource.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_AlternatingEntityCreation.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_ArrivalsEntityTypeVsAttribute.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_AssignExample.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_AutomaticStatisticsCollection.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_BasicModeling.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_BatchAndSeparate.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_ContinuousFlowEntities.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_Create.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_DecideNWayByChance.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_DefiningAttributesAsStrings.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_DefiningControlLogic.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_DefiningResourceCapacity.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_DelayBasedOnReplication.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_EntitiesProcessedByPriority.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_EvaluatingConditionsBeforeEnteringQueue.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_Expression.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_InventoryAndHoldingCosts.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_MaxArrivalsField.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_ModelRunUntil1000Parts.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_ModuleDisplayVariables.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_OverlappingResources.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_ParallelProcessingOfEntities.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_PlacingEntitiesInQueueSets.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_PriorityExample.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_ProcessArena.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_Record.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_RemovingAndReorderingEntitiesInAQueue.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_ResourceCosting.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_ResourceScheduleCosting.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_ResourceSets.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_SeizingMultipleSimultaneosly.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_SelectingRouteBasedOnProbability.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_SelectingShorterQueue.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_SynchronizingParallelEntities.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_ValueAdded.cpp \
+	../../../terminal/examples/arenaSmarts/Smart_WaitForSignal.cpp \
 	../../../terminal/examples/book/Book_Cap02_Example01.cpp \
 	../../../terminal/examples/smarts/Smart_AssignWriteSeizes.cpp \
 	../../../terminal/examples/smarts/Smart_BatchSeparate.cpp \

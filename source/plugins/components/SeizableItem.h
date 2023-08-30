@@ -60,8 +60,8 @@ public:
 	void setLastMemberSeized(unsigned int lastMemberSeized);
 	unsigned int getLastMemberSeized() const;
 	ModelDataDefinition* getSeizable() const;
-	void setElementManager(ModelDataManager* _modeldataManager);
-	void setLastPreferedOrder(unsigned int _lastPreferedOrder);
+	void setElementManager(ModelDataManager* modeldataManager);
+	void setLastPreferedOrder(unsigned int lastPreferedOrder);
 	unsigned int getLastPreferedOrder() const;
 	//void setComponentManager(ComponentManager* _componentManager);
 

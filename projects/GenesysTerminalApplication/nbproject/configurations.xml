@@ -342,9 +342,11 @@
           <itemPath>../../source/kernel/simulator/PluginInformation.h</itemPath>
           <itemPath>../../source/kernel/simulator/PluginManager.cpp</itemPath>
           <itemPath>../../source/kernel/simulator/PluginManager.h</itemPath>
-          <itemPath>../../source/kernel/simulator/Property.cpp</itemPath>
-          <itemPath>../../source/kernel/simulator/Property.h</itemPath>
+          <itemPath>../../source/kernel/simulator/PropertyGenesys.cpp</itemPath>
+          <itemPath>../../source/kernel/simulator/PropertyGenesys.h</itemPath>
           <itemPath>../../source/kernel/simulator/ScenarioExperiment_if.h</itemPath>
+          <itemPath>../../source/kernel/simulator/SimulationControlAndResponse.cpp</itemPath>
+          <itemPath>../../source/kernel/simulator/SimulationControlAndResponse.h</itemPath>
           <itemPath>../../source/kernel/simulator/SimulationExperiment.cpp</itemPath>
           <itemPath>../../source/kernel/simulator/SimulationExperiment.h</itemPath>
           <itemPath>../../source/kernel/simulator/SimulationReporterDefaultImpl1.cpp</itemPath>
@@ -603,7 +605,7 @@
             <pElem>../../source/gtest</pElem>
           </incDir>
           <commandLine>-fPIC</commandLine>
-          <warningLevel>2</warningLevel>
+          <warningLevel>0</warningLevel>
         </ccTool>
         <asmTool>
           <warningLevel>2</warningLevel>
@@ -1979,17 +1981,27 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/kernel/simulator/Property.cpp"
+      <item path="../../source/kernel/simulator/PropertyGenesys.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/kernel/simulator/Property.h"
+      <item path="../../source/kernel/simulator/PropertyGenesys.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
       <item path="../../source/kernel/simulator/ScenarioExperiment_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/kernel/simulator/SimulationControlAndResponse.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/kernel/simulator/SimulationControlAndResponse.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -4303,17 +4315,27 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/kernel/simulator/Property.cpp"
+      <item path="../../source/kernel/simulator/PropertyGenesys.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../source/kernel/simulator/Property.h"
+      <item path="../../source/kernel/simulator/PropertyGenesys.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
       <item path="../../source/kernel/simulator/ScenarioExperiment_if.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../source/kernel/simulator/SimulationControlAndResponse.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/kernel/simulator/SimulationControlAndResponse.h"
             ex="false"
             tool="3"
             flavor2="0">

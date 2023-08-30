@@ -108,7 +108,7 @@ bool ModelCheckerDefaultImpl1::checkConnected() {
 					resultAll = false;
 			}
 		}
-		// check if any component remais unconnected
+		// check if any component remains unconnected
 		for (std::list<ModelComponent*>::iterator it = _model->getComponents()->begin(); it != _model->getComponents()->end(); it++) {
 			comp = (*it);
 			if (visited->find(comp) == visited->list()->end()) { //not found
@@ -116,7 +116,6 @@ bool ModelCheckerDefaultImpl1::checkConnected() {
 				_model->getTracer()->traceError(TraceManager::Level::L1_errorFatal, "Component \"" + comp->getName() + "\" is unconnected.");
 			}
 		}
-
 	}
 	_showResult(resultAll, "Checking connected");
 	Util::DecIndent();

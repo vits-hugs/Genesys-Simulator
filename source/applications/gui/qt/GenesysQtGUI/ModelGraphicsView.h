@@ -48,7 +48,8 @@ public:
 	ModelGraphicsView(const ModelGraphicsView& orig);
 	virtual ~ModelGraphicsView();
 public: // editing graphic model
-	bool addGraphicalModelComponent(Plugin* plugin, ModelComponent* component, QPointF position);
+	// TODO: AddGraphicalModelComponent should be only on scene
+	//GraphicalModelComponent* addGraphicalModelComponent(Plugin* plugin, ModelComponent* component, QPointF position);
 	//bool removeGraphicalModelComponent(GraphicalModelComponent* gmc);
 	//bool addGraphicalConnection(GraphicalComponentPort* sourcePort, GraphicalComponentPort* destinationPort);
 	//bool removeGraphicalConnection(GraphicalConnection* gc);
@@ -56,6 +57,7 @@ public: // editing graphic model
 	//bool removeDrawing();
 	//bool addAnimation();
 	//bool removeAnimation();
+	ModelGraphicsScene* getScene();
 public:
 	void showGrid();
 	void clear();
@@ -77,6 +79,7 @@ public: // events and notifications
 	}
 	void notifySceneMouseEventHandler(QGraphicsSceneMouseEvent* mouseEvent);
 	void notifySceneGraphicalModelEventHandler(GraphicalModelEvent* modelGraphicsEvent);
+	void setCanNotifyGraphicalModelEventHandlers(bool can);
 	void setParentWidget(QWidget *parentWidget);
 protected:// slots:
 	void changed(const QList<QRectF> &region);
@@ -115,6 +118,7 @@ private:
 	sceneGraphicalModelEventHandlerMethod _sceneGraphicalModelEventHandler;
 	Simulator* _simulator = nullptr;
 	QWidget* _parentWidget;
+	bool _notifyGraphicalModelEventHandlers = true;
 };
 
 #endif /* QMODELGRAPHICVIEW_H */

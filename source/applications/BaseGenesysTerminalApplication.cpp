@@ -29,6 +29,9 @@ int BaseGenesysTerminalApplication::main(int argc, char** argv) {
 	Simulate(genesys, model, plugins);
 }
 
+void BaseGenesysTerminalApplication::Simulate(Simulator* genesys, Model* model, PluginManager *plugins) {
+	// in case it's not overriden
+}
 
 
 // default Trace Handlers

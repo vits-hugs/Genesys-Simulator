@@ -147,7 +147,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/113d9686/PluginConnectorDummyImpl1.o \
 	${OBJECTDIR}/_ext/113d9686/PluginInformation.o \
 	${OBJECTDIR}/_ext/113d9686/PluginManager.o \
-	${OBJECTDIR}/_ext/113d9686/Property.o \
+	${OBJECTDIR}/_ext/113d9686/PropertyGenesys.o \
+	${OBJECTDIR}/_ext/113d9686/SimulationControlAndResponse.o \
 	${OBJECTDIR}/_ext/113d9686/SimulationExperiment.o \
 	${OBJECTDIR}/_ext/113d9686/SimulationReporterDefaultImpl1.o \
 	${OBJECTDIR}/_ext/113d9686/SimulationScenario.o \
@@ -831,10 +832,15 @@ ${OBJECTDIR}/_ext/113d9686/PluginManager.o: ../../source/kernel/simulator/Plugin
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/PluginManager.o ../../source/kernel/simulator/PluginManager.cpp
 
-${OBJECTDIR}/_ext/113d9686/Property.o: ../../source/kernel/simulator/Property.cpp nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/113d9686/PropertyGenesys.o: ../../source/kernel/simulator/PropertyGenesys.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/Property.o ../../source/kernel/simulator/Property.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/PropertyGenesys.o ../../source/kernel/simulator/PropertyGenesys.cpp
+
+${OBJECTDIR}/_ext/113d9686/SimulationControlAndResponse.o: ../../source/kernel/simulator/SimulationControlAndResponse.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/SimulationControlAndResponse.o ../../source/kernel/simulator/SimulationControlAndResponse.cpp
 
 ${OBJECTDIR}/_ext/113d9686/SimulationExperiment.o: ../../source/kernel/simulator/SimulationExperiment.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
@@ -2746,17 +2752,30 @@ ${OBJECTDIR}/_ext/113d9686/PluginManager_nomain.o: ${OBJECTDIR}/_ext/113d9686/Pl
 	    ${CP} ${OBJECTDIR}/_ext/113d9686/PluginManager.o ${OBJECTDIR}/_ext/113d9686/PluginManager_nomain.o;\
 	fi
 
-${OBJECTDIR}/_ext/113d9686/Property_nomain.o: ${OBJECTDIR}/_ext/113d9686/Property.o ../../source/kernel/simulator/Property.cpp 
+${OBJECTDIR}/_ext/113d9686/PropertyGenesys_nomain.o: ${OBJECTDIR}/_ext/113d9686/PropertyGenesys.o ../../source/kernel/simulator/PropertyGenesys.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/113d9686/Property.o`; \
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/113d9686/PropertyGenesys.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/Property_nomain.o ../../source/kernel/simulator/Property.cpp;\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/PropertyGenesys_nomain.o ../../source/kernel/simulator/PropertyGenesys.cpp;\
 	else  \
-	    ${CP} ${OBJECTDIR}/_ext/113d9686/Property.o ${OBJECTDIR}/_ext/113d9686/Property_nomain.o;\
+	    ${CP} ${OBJECTDIR}/_ext/113d9686/PropertyGenesys.o ${OBJECTDIR}/_ext/113d9686/PropertyGenesys_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/113d9686/SimulationControlAndResponse_nomain.o: ${OBJECTDIR}/_ext/113d9686/SimulationControlAndResponse.o ../../source/kernel/simulator/SimulationControlAndResponse.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/113d9686
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/113d9686/SimulationControlAndResponse.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/113d9686/SimulationControlAndResponse_nomain.o ../../source/kernel/simulator/SimulationControlAndResponse.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/113d9686/SimulationControlAndResponse.o ${OBJECTDIR}/_ext/113d9686/SimulationControlAndResponse_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/113d9686/SimulationExperiment_nomain.o: ${OBJECTDIR}/_ext/113d9686/SimulationExperiment.o ../../source/kernel/simulator/SimulationExperiment.cpp 

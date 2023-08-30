@@ -103,6 +103,7 @@ bool ModelPersistenceDefaultImpl2::save(std::string filename) {
 	Util::IncIndent();
 	std::ofstream file{filename};
 	bool ok = serializer->dump(file);
+	file.close();
 	Util::DecIndent();
 
 	// finish save

@@ -110,8 +110,8 @@ ModelDataDefinition* QueueableItem::getQueueable() const {
 	return _queueOrSet;
 }
 
-void QueueableItem::setElementManager(ModelDataManager* _modeldataManager) {
-	this->_modeldataManager = _modeldataManager;
+void QueueableItem::setElementManager(ModelDataManager* modeldataManager) {
+	_modeldataManager = modeldataManager;
 }
 
 //void QueueableItem::setComponentManager(ComponentManager* componentManager) {

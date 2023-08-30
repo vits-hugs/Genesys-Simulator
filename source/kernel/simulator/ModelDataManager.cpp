@@ -152,8 +152,9 @@ void ModelDataManager::setHasChanged(bool _hasChanged) {
 }
 
 List<ModelDataDefinition*>* ModelDataManager::getDataDefinitionList(std::string datadefinitionTypename) const {
-	std::map<std::string, List<ModelDataDefinition*>*>::iterator it = this->_datadefinitions->find(datadefinitionTypename);
-	if (it == this->_datadefinitions->end()) {
+	bool found = (_datadefinitions->find(datadefinitionTypename) != _datadefinitions->end());
+	auto it = _datadefinitions->find(datadefinitionTypename);
+	if (not found) {
 		// list does not exists yet. Create it and set a valid iterator
 		List<ModelDataDefinition*>* newList = new List<ModelDataDefinition*>();
 		newList->setSortFunc([](const ModelDataDefinition* a, const ModelDataDefinition * b) {
