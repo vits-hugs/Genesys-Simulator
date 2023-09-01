@@ -1817,7 +1817,7 @@ void MainWindow::on_actionEditDelete_triggered()
 }
 
 
-void MainWindow::on_actionModelPreferences_triggered()
+void MainWindow::on_actionSimulatorPreferences_triggered()
 {
 	DialogSystemPreferences* dialog = new DialogSystemPreferences(this);
 	dialog->show();
@@ -1903,7 +1903,7 @@ void MainWindow::on_actionAnimateStatistics_triggered()
 }
 
 
-void MainWindow::on_actionToolsPluginManager_triggered()
+void MainWindow::on_actionSimulatorPluginManager_triggered()
 {
 	DialogPluginManager* dialog = new DialogPluginManager(this);
 	dialog->show();
@@ -2116,7 +2116,7 @@ void MainWindow::on_actionModelCheck_triggered()
 }
 
 
-void MainWindow::on_actionModelExit_triggered()
+void MainWindow::on_actionSimulatorExit_triggered()
 {
 	QMessageBox::StandardButton res;
 	if (this->_textModelHasChanged) {

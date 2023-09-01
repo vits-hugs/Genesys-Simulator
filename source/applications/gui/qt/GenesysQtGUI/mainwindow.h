@@ -86,11 +86,14 @@ private slots:
 	void on_actionAlignCenter_triggered();
 	void on_actionAlignLeft_triggered();
 
-	void on_actionToolsPluginManager_triggered();
 	void on_actionToolsParserGrammarChecker_triggered();
 	void on_actionToolsExperimentation_triggered();
 	void on_actionToolsOptimizator_triggered();
 	void on_actionToolsDataAnalyzer_triggered();
+
+	void on_actionSimulatorPluginManager_triggered();
+	void on_actionSimulatorExit_triggered();
+	void on_actionSimulatorPreferences_triggered();
 
 	void on_actionModelNew_triggered();
 	void on_actionModelOpen_triggered();
@@ -98,8 +101,6 @@ private slots:
 	void on_actionModelClose_triggered();
 	void on_actionModelInformation_triggered();
 	void on_actionModelCheck_triggered();
-	void on_actionModelExit_triggered();
-	void on_actionModelPreferences_triggered();
 
 
     // widget events

@@ -5,7 +5,7 @@
  */
 
 /*
- * File:   Traits.h
+ * File:   TraitsApp.h
  * Author: rafael.luiz.cancian
  *
  * Created on 14 de Agosto de 2018, 19:36
@@ -123,7 +123,7 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Smart_Clone Application;
 	//typedef Smart_CppForG Application;
 	//typedef Smart_Delay Application;
-	//typedef Smart_Dummy Application;
+	typedef Smart_Dummy Application;
 	//typedef Smart_Failures Application;
 	//typedef Smart_FiniteStateMachine Application;
 	//typedef Smart_HoldSearchRemove Application;
@@ -156,7 +156,7 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Smart_BatchAndSeparate Application;
 	//typedef Smart_ContinuousFlowEntities Application;
 	//typedef Smart_Create Application;
-	typedef Smart_DecideNWayByChance Application;
+	//typedef Smart_DecideNWayByChance Application;
 	//typedef Smart_DefiningAttributesAsStrings Application;
 	//typedef Smart_DefiningControlLogic Application;
 	//typedef Smart_DefiningResourceCapacity Application;

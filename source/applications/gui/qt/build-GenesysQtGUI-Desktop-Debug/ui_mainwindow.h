@@ -48,7 +48,7 @@ public:
     QAction *actionModelNew;
     QAction *actionModelOpen;
     QAction *actionModelSave;
-    QAction *actionModelExit;
+    QAction *actionSimulatorExit;
     QAction *actionSimulationStart;
     QAction *actionSimulationStep;
     QAction *actionSimulationStop;
@@ -85,7 +85,7 @@ public:
     QAction *actionGModelShowConnect;
     QAction *actionGModelComponentBreakpoint;
     QAction *actionArranje;
-    QAction *actionModelPreferences;
+    QAction *actionSimulatorPreferences;
     QAction *actionEditDelete;
     QAction *actionArranjeLeft;
     QAction *actionArranjeCenter;
@@ -104,7 +104,7 @@ public:
     QAction *actionAnimateAttribute;
     QAction *actionAnimateStatistics;
     QAction *actionViewConfigure;
-    QAction *actionToolsPluginManager;
+    QAction *actionSimulatorsPluginManager;
     QAction *actionModelInformation;
     QAction *actionToolsDataAnalyzer;
     QAction *actionToolsOptimizator;
@@ -196,6 +196,7 @@ public:
     QMenu *menuViewShow;
     QMenu *menuEdit;
     QMenu *menuTools;
+    QMenu *menuSimulator;
     QStatusBar *statusbar;
     QToolBar *toolBarModel;
     QDockWidget *dockWidgetConsole;
@@ -223,7 +224,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(1081, 640);
+        MainWindow->resize(1081, 763);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/resources/icons/genesysico.gif"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
@@ -244,11 +245,11 @@ public:
         QIcon icon3;
         icon3.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/download.ico"), QSize(), QIcon::Normal, QIcon::Off);
         actionModelSave->setIcon(icon3);
-        actionModelExit = new QAction(MainWindow);
-        actionModelExit->setObjectName(QString::fromUtf8("actionModelExit"));
+        actionSimulatorExit = new QAction(MainWindow);
+        actionSimulatorExit->setObjectName(QString::fromUtf8("actionSimulatorExit"));
         QIcon icon4;
         icon4.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/exit.ico"), QSize(), QIcon::Normal, QIcon::Off);
-        actionModelExit->setIcon(icon4);
+        actionSimulatorExit->setIcon(icon4);
         actionSimulationStart = new QAction(MainWindow);
         actionSimulationStart->setObjectName(QString::fromUtf8("actionSimulationStart"));
         actionSimulationStart->setEnabled(true);
@@ -428,11 +429,11 @@ public:
         actionGModelComponentBreakpoint->setIcon(icon34);
         actionArranje = new QAction(MainWindow);
         actionArranje->setObjectName(QString::fromUtf8("actionArranje"));
-        actionModelPreferences = new QAction(MainWindow);
-        actionModelPreferences->setObjectName(QString::fromUtf8("actionModelPreferences"));
+        actionSimulatorPreferences = new QAction(MainWindow);
+        actionSimulatorPreferences->setObjectName(QString::fromUtf8("actionSimulatorPreferences"));
         QIcon icon35;
         icon35.addFile(QString::fromUtf8(":/mxgraph/resources/icons/pack4/iconsMxGraph/preferences.gif"), QSize(), QIcon::Normal, QIcon::On);
-        actionModelPreferences->setIcon(icon35);
+        actionSimulatorPreferences->setIcon(icon35);
         actionEditDelete = new QAction(MainWindow);
         actionEditDelete->setObjectName(QString::fromUtf8("actionEditDelete"));
         QIcon icon36;
@@ -532,11 +533,11 @@ public:
         QIcon icon53;
         icon53.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/picture.ico"), QSize(), QIcon::Normal, QIcon::Off);
         actionViewConfigure->setIcon(icon53);
-        actionToolsPluginManager = new QAction(MainWindow);
-        actionToolsPluginManager->setObjectName(QString::fromUtf8("actionToolsPluginManager"));
+        actionSimulatorsPluginManager = new QAction(MainWindow);
+        actionSimulatorsPluginManager->setObjectName(QString::fromUtf8("actionSimulatorsPluginManager"));
         QIcon icon54;
         icon54.addFile(QString::fromUtf8(":/icons3/resources/icons/pack3/ico/componentblue.ico"), QSize(), QIcon::Normal, QIcon::Off);
-        actionToolsPluginManager->setIcon(icon54);
+        actionSimulatorsPluginManager->setIcon(icon54);
         actionModelInformation = new QAction(MainWindow);
         actionModelInformation->setObjectName(QString::fromUtf8("actionModelInformation"));
         QIcon icon55;
@@ -656,7 +657,7 @@ public:
         scrollArea_Graphic->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 680, 36));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 680, 70));
         scrollAreaWidgetContents->setAutoFillBackground(true);
         verticalLayout_5 = new QVBoxLayout(scrollAreaWidgetContents);
         verticalLayout_5->setObjectName(QString::fromUtf8("verticalLayout_5"));
@@ -994,6 +995,8 @@ public:
         menuEdit->setObjectName(QString::fromUtf8("menuEdit"));
         menuTools = new QMenu(menubar);
         menuTools->setObjectName(QString::fromUtf8("menuTools"));
+        menuSimulator = new QMenu(menubar);
+        menuSimulator->setObjectName(QString::fromUtf8("menuSimulator"));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -1122,6 +1125,7 @@ public:
         toolBarArranje->setObjectName(QString::fromUtf8("toolBarArranje"));
         MainWindow->addToolBar(Qt::TopToolBarArea, toolBarArranje);
 
+        menubar->addAction(menuSimulator->menuAction());
         menubar->addAction(menuModel->menuAction());
         menubar->addAction(menuEdit->menuAction());
         menubar->addAction(menuView->menuAction());
@@ -1136,9 +1140,6 @@ public:
         menuModel->addSeparator();
         menuModel->addAction(actionModelInformation);
         menuModel->addAction(actionModelCheck);
-        menuModel->addSeparator();
-        menuModel->addAction(actionModelPreferences);
-        menuModel->addAction(actionModelExit);
         menuSimulation->addAction(actionSimulationConfigure);
         menuSimulation->addSeparator();
         menuSimulation->addAction(actionSimulationStart);
@@ -1207,10 +1208,14 @@ public:
         menuEdit->addSeparator();
         menuEdit->addAction(actionEditFind);
         menuEdit->addSeparator();
-        menuTools->addAction(actionToolsPluginManager);
         menuTools->addAction(actionToolsDataAnalyzer);
         menuTools->addAction(actionToolsOptimizator);
         menuTools->addAction(actionToolsParserGrammarChecker);
+        menuSimulator->addAction(actionSimulatorsPluginManager);
+        menuSimulator->addSeparator();
+        menuSimulator->addAction(actionSimulatorPreferences);
+        menuSimulator->addSeparator();
+        menuSimulator->addAction(actionSimulatorExit);
         toolBarModel->addAction(actionModelNew);
         toolBarModel->addAction(actionModelOpen);
         toolBarModel->addAction(actionModelSave);
@@ -1219,7 +1224,7 @@ public:
         toolBarModel->addAction(actionModelInformation);
         toolBarModel->addAction(actionModelCheck);
         toolBarModel->addSeparator();
-        toolBarModel->addAction(actionModelExit);
+        toolBarModel->addAction(actionSimulatorExit);
         toolBarGraphicalModel->addAction(actionGModelShowConnect);
         toolBarGraphicalModel->addAction(actionGModelComponentBreakpoint);
         toolBarGraphicalModel->addSeparator();
@@ -1310,12 +1315,12 @@ public:
 #if QT_CONFIG(shortcut)
         actionModelSave->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+S", nullptr));
 #endif // QT_CONFIG(shortcut)
-        actionModelExit->setText(QCoreApplication::translate("MainWindow", "Exit", nullptr));
+        actionSimulatorExit->setText(QCoreApplication::translate("MainWindow", "Exit", nullptr));
 #if QT_CONFIG(tooltip)
-        actionModelExit->setToolTip(QCoreApplication::translate("MainWindow", "Exit Genesys", nullptr));
+        actionSimulatorExit->setToolTip(QCoreApplication::translate("MainWindow", "Exit Genesys", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(shortcut)
-        actionModelExit->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+X", nullptr));
+        actionSimulatorExit->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+X", nullptr));
 #endif // QT_CONFIG(shortcut)
         actionSimulationStart->setText(QCoreApplication::translate("MainWindow", "Start", nullptr));
 #if QT_CONFIG(tooltip)
@@ -1440,9 +1445,9 @@ public:
         actionGModelComponentBreakpoint->setToolTip(QCoreApplication::translate("MainWindow", "Component Breakpoint", nullptr));
 #endif // QT_CONFIG(tooltip)
         actionArranje->setText(QCoreApplication::translate("MainWindow", "Arranje", nullptr));
-        actionModelPreferences->setText(QCoreApplication::translate("MainWindow", "Preferences", nullptr));
+        actionSimulatorPreferences->setText(QCoreApplication::translate("MainWindow", "Preferences", nullptr));
 #if QT_CONFIG(tooltip)
-        actionModelPreferences->setToolTip(QCoreApplication::translate("MainWindow", "Application Preferences", nullptr));
+        actionSimulatorPreferences->setToolTip(QCoreApplication::translate("MainWindow", "Application Preferences", nullptr));
 #endif // QT_CONFIG(tooltip)
         actionEditDelete->setText(QCoreApplication::translate("MainWindow", "Delete", nullptr));
         actionArranjeLeft->setText(QCoreApplication::translate("MainWindow", "Left", nullptr));
@@ -1483,7 +1488,7 @@ public:
 #if QT_CONFIG(tooltip)
         actionViewConfigure->setToolTip(QCoreApplication::translate("MainWindow", "Configure View", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionToolsPluginManager->setText(QCoreApplication::translate("MainWindow", "Plugin Manager", nullptr));
+        actionSimulatorsPluginManager->setText(QCoreApplication::translate("MainWindow", "Plugin Manager", nullptr));
         actionModelInformation->setText(QCoreApplication::translate("MainWindow", "Information", nullptr));
 #if QT_CONFIG(tooltip)
         actionModelInformation->setToolTip(QCoreApplication::translate("MainWindow", "Model Information", nullptr));
@@ -1533,6 +1538,7 @@ public:
         menuViewShow->setTitle(QCoreApplication::translate("MainWindow", "Show", nullptr));
         menuEdit->setTitle(QCoreApplication::translate("MainWindow", "Edit", nullptr));
         menuTools->setTitle(QCoreApplication::translate("MainWindow", "Tools", nullptr));
+        menuSimulator->setTitle(QCoreApplication::translate("MainWindow", "Simulator", nullptr));
         toolBarModel->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
         dockWidgetConsole->setWindowTitle(QCoreApplication::translate("MainWindow", "Console", nullptr));
         textEdit_Console->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"

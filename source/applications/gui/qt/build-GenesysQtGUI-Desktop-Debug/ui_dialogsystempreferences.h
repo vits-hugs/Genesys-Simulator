@@ -12,10 +12,12 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCheckBox>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QRadioButton>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QVBoxLayout>
@@ -37,6 +39,9 @@ public:
     QRadioButton *radioButton_2;
     QRadioButton *radioButton;
     QCheckBox *checkBox;
+    QHBoxLayout *horizontalLayout;
+    QLabel *label;
+    QComboBox *comboBox;
     QWidget *tab2;
     QDialogButtonBox *buttonBox;
 
@@ -44,7 +49,8 @@ public:
     {
         if (DialogSystemPreferences->objectName().isEmpty())
             DialogSystemPreferences->setObjectName(QString::fromUtf8("DialogSystemPreferences"));
-        DialogSystemPreferences->resize(377, 228);
+        DialogSystemPreferences->resize(377, 270);
+        DialogSystemPreferences->setMinimumSize(QSize(0, 270));
         verticalLayout = new QVBoxLayout(DialogSystemPreferences);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         tabWidget = new QTabWidget(DialogSystemPreferences);
@@ -91,6 +97,21 @@ public:
 
         verticalLayout_2->addWidget(checkBox);
 
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        label = new QLabel(tab1);
+        label->setObjectName(QString::fromUtf8("label"));
+
+        horizontalLayout->addWidget(label);
+
+        comboBox = new QComboBox(tab1);
+        comboBox->setObjectName(QString::fromUtf8("comboBox"));
+
+        horizontalLayout->addWidget(comboBox);
+
+
+        verticalLayout_2->addLayout(horizontalLayout);
+
         tabWidget->addTab(tab1, QString());
         tab2 = new QWidget();
         tab2->setObjectName(QString::fromUtf8("tab2"));
@@ -125,6 +146,7 @@ public:
         radioButton_2->setText(QCoreApplication::translate("DialogSystemPreferences", "New model", nullptr));
         radioButton->setText(QCoreApplication::translate("DialogSystemPreferences", "Open last used", nullptr));
         checkBox->setText(QCoreApplication::translate("DialogSystemPreferences", "Automatically install plugins", nullptr));
+        label->setText(QCoreApplication::translate("DialogSystemPreferences", "Trace Level:", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab1), QCoreApplication::translate("DialogSystemPreferences", "General", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab2), QCoreApplication::translate("DialogSystemPreferences", "View", nullptr));
     } // retranslateUi

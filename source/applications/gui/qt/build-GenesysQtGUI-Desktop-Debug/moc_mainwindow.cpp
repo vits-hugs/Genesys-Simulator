@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[95];
-    char stringdata0[2912];
+    char stringdata0[2924];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -81,52 +81,52 @@ QT_MOC_LITERAL(45, 1384, 27), // "on_actionAlignTop_triggered"
 QT_MOC_LITERAL(46, 1412, 29), // "on_actionAlignRight_triggered"
 QT_MOC_LITERAL(47, 1442, 30), // "on_actionAlignCenter_triggered"
 QT_MOC_LITERAL(48, 1473, 28), // "on_actionAlignLeft_triggered"
-QT_MOC_LITERAL(49, 1502, 37), // "on_actionToolsPluginManager_t..."
-QT_MOC_LITERAL(50, 1540, 44), // "on_actionToolsParserGrammarCh..."
-QT_MOC_LITERAL(51, 1585, 39), // "on_actionToolsExperimentation..."
-QT_MOC_LITERAL(52, 1625, 35), // "on_actionToolsOptimizator_tri..."
-QT_MOC_LITERAL(53, 1661, 36), // "on_actionToolsDataAnalyzer_tr..."
-QT_MOC_LITERAL(54, 1698, 27), // "on_actionModelNew_triggered"
-QT_MOC_LITERAL(55, 1726, 28), // "on_actionModelOpen_triggered"
-QT_MOC_LITERAL(56, 1755, 28), // "on_actionModelSave_triggered"
-QT_MOC_LITERAL(57, 1784, 29), // "on_actionModelClose_triggered"
-QT_MOC_LITERAL(58, 1814, 35), // "on_actionModelInformation_tri..."
-QT_MOC_LITERAL(59, 1850, 29), // "on_actionModelCheck_triggered"
-QT_MOC_LITERAL(60, 1880, 28), // "on_actionModelExit_triggered"
-QT_MOC_LITERAL(61, 1909, 35), // "on_actionModelPreferences_tri..."
-QT_MOC_LITERAL(62, 1945, 32), // "on_tabWidget_Model_tabBarClicked"
-QT_MOC_LITERAL(63, 1978, 5), // "index"
-QT_MOC_LITERAL(64, 1984, 33), // "on_tabWidget_Debug_currentCha..."
-QT_MOC_LITERAL(65, 2018, 37), // "on_horizontalSlider_Zoom_valu..."
-QT_MOC_LITERAL(66, 2056, 5), // "value"
-QT_MOC_LITERAL(67, 2062, 37), // "on_checkBox_ShowElements_stat..."
-QT_MOC_LITERAL(68, 2100, 4), // "arg1"
-QT_MOC_LITERAL(69, 2105, 38), // "on_checkBox_ShowInternals_sta..."
-QT_MOC_LITERAL(70, 2144, 38), // "on_checkBox_ShowRecursive_sta..."
-QT_MOC_LITERAL(71, 2183, 35), // "on_checkBox_ShowLevels_stateC..."
-QT_MOC_LITERAL(72, 2219, 39), // "on_pushButton_Breakpoint_Inse..."
-QT_MOC_LITERAL(73, 2259, 39), // "on_pushButton_Breakpoint_Remo..."
-QT_MOC_LITERAL(74, 2299, 34), // "on_tabWidgetCentral_currentCh..."
-QT_MOC_LITERAL(75, 2334, 33), // "on_tabWidgetCentral_tabBarCli..."
-QT_MOC_LITERAL(76, 2368, 39), // "on_treeWidget_Plugins_itemDou..."
-QT_MOC_LITERAL(77, 2408, 16), // "QTreeWidgetItem*"
-QT_MOC_LITERAL(78, 2425, 4), // "item"
-QT_MOC_LITERAL(79, 2430, 6), // "column"
-QT_MOC_LITERAL(80, 2437, 33), // "on_graphicsView_rubberBandCha..."
-QT_MOC_LITERAL(81, 2471, 12), // "viewportRect"
-QT_MOC_LITERAL(82, 2484, 14), // "fromScenePoint"
-QT_MOC_LITERAL(83, 2499, 12), // "toScenePoint"
-QT_MOC_LITERAL(84, 2512, 46), // "on_horizontalSlider_ZoomGraph..."
-QT_MOC_LITERAL(85, 2559, 26), // "on_actionConnect_triggered"
-QT_MOC_LITERAL(86, 2586, 28), // "on_pushButton_Export_clicked"
-QT_MOC_LITERAL(87, 2615, 41), // "on_tabWidgetModelLanguages_cu..."
-QT_MOC_LITERAL(88, 2657, 39), // "on_actionComponent_Breakpoint..."
-QT_MOC_LITERAL(89, 2697, 44), // "on_treeWidgetComponents_itemS..."
-QT_MOC_LITERAL(90, 2742, 33), // "on_treeWidget_Plugins_itemCli..."
-QT_MOC_LITERAL(91, 2776, 29), // "on_TextCodeEditor_textChanged"
-QT_MOC_LITERAL(92, 2806, 32), // "on_tabWidgetModel_currentChanged"
-QT_MOC_LITERAL(93, 2839, 37), // "on_tabWidgetSimulation_curren..."
-QT_MOC_LITERAL(94, 2877, 34) // "on_tabWidgetReports_currentCh..."
+QT_MOC_LITERAL(49, 1502, 44), // "on_actionToolsParserGrammarCh..."
+QT_MOC_LITERAL(50, 1547, 39), // "on_actionToolsExperimentation..."
+QT_MOC_LITERAL(51, 1587, 35), // "on_actionToolsOptimizator_tri..."
+QT_MOC_LITERAL(52, 1623, 36), // "on_actionToolsDataAnalyzer_tr..."
+QT_MOC_LITERAL(53, 1660, 41), // "on_actionSimulatorPluginManag..."
+QT_MOC_LITERAL(54, 1702, 32), // "on_actionSimulatorExit_triggered"
+QT_MOC_LITERAL(55, 1735, 39), // "on_actionSimulatorPreferences..."
+QT_MOC_LITERAL(56, 1775, 27), // "on_actionModelNew_triggered"
+QT_MOC_LITERAL(57, 1803, 28), // "on_actionModelOpen_triggered"
+QT_MOC_LITERAL(58, 1832, 28), // "on_actionModelSave_triggered"
+QT_MOC_LITERAL(59, 1861, 29), // "on_actionModelClose_triggered"
+QT_MOC_LITERAL(60, 1891, 35), // "on_actionModelInformation_tri..."
+QT_MOC_LITERAL(61, 1927, 29), // "on_actionModelCheck_triggered"
+QT_MOC_LITERAL(62, 1957, 32), // "on_tabWidget_Model_tabBarClicked"
+QT_MOC_LITERAL(63, 1990, 5), // "index"
+QT_MOC_LITERAL(64, 1996, 33), // "on_tabWidget_Debug_currentCha..."
+QT_MOC_LITERAL(65, 2030, 37), // "on_horizontalSlider_Zoom_valu..."
+QT_MOC_LITERAL(66, 2068, 5), // "value"
+QT_MOC_LITERAL(67, 2074, 37), // "on_checkBox_ShowElements_stat..."
+QT_MOC_LITERAL(68, 2112, 4), // "arg1"
+QT_MOC_LITERAL(69, 2117, 38), // "on_checkBox_ShowInternals_sta..."
+QT_MOC_LITERAL(70, 2156, 38), // "on_checkBox_ShowRecursive_sta..."
+QT_MOC_LITERAL(71, 2195, 35), // "on_checkBox_ShowLevels_stateC..."
+QT_MOC_LITERAL(72, 2231, 39), // "on_pushButton_Breakpoint_Inse..."
+QT_MOC_LITERAL(73, 2271, 39), // "on_pushButton_Breakpoint_Remo..."
+QT_MOC_LITERAL(74, 2311, 34), // "on_tabWidgetCentral_currentCh..."
+QT_MOC_LITERAL(75, 2346, 33), // "on_tabWidgetCentral_tabBarCli..."
+QT_MOC_LITERAL(76, 2380, 39), // "on_treeWidget_Plugins_itemDou..."
+QT_MOC_LITERAL(77, 2420, 16), // "QTreeWidgetItem*"
+QT_MOC_LITERAL(78, 2437, 4), // "item"
+QT_MOC_LITERAL(79, 2442, 6), // "column"
+QT_MOC_LITERAL(80, 2449, 33), // "on_graphicsView_rubberBandCha..."
+QT_MOC_LITERAL(81, 2483, 12), // "viewportRect"
+QT_MOC_LITERAL(82, 2496, 14), // "fromScenePoint"
+QT_MOC_LITERAL(83, 2511, 12), // "toScenePoint"
+QT_MOC_LITERAL(84, 2524, 46), // "on_horizontalSlider_ZoomGraph..."
+QT_MOC_LITERAL(85, 2571, 26), // "on_actionConnect_triggered"
+QT_MOC_LITERAL(86, 2598, 28), // "on_pushButton_Export_clicked"
+QT_MOC_LITERAL(87, 2627, 41), // "on_tabWidgetModelLanguages_cu..."
+QT_MOC_LITERAL(88, 2669, 39), // "on_actionComponent_Breakpoint..."
+QT_MOC_LITERAL(89, 2709, 44), // "on_treeWidgetComponents_itemS..."
+QT_MOC_LITERAL(90, 2754, 33), // "on_treeWidget_Plugins_itemCli..."
+QT_MOC_LITERAL(91, 2788, 29), // "on_TextCodeEditor_textChanged"
+QT_MOC_LITERAL(92, 2818, 32), // "on_tabWidgetModel_currentChanged"
+QT_MOC_LITERAL(93, 2851, 37), // "on_tabWidgetSimulation_curren..."
+QT_MOC_LITERAL(94, 2889, 34) // "on_tabWidgetReports_currentCh..."
 
     },
     "MainWindow\0on_actionEditUndo_triggered\0"
@@ -176,19 +176,19 @@ QT_MOC_LITERAL(94, 2877, 34) // "on_tabWidgetReports_currentCh..."
     "on_actionAlignRight_triggered\0"
     "on_actionAlignCenter_triggered\0"
     "on_actionAlignLeft_triggered\0"
-    "on_actionToolsPluginManager_triggered\0"
     "on_actionToolsParserGrammarChecker_triggered\0"
     "on_actionToolsExperimentation_triggered\0"
     "on_actionToolsOptimizator_triggered\0"
     "on_actionToolsDataAnalyzer_triggered\0"
+    "on_actionSimulatorPluginManager_triggered\0"
+    "on_actionSimulatorExit_triggered\0"
+    "on_actionSimulatorPreferences_triggered\0"
     "on_actionModelNew_triggered\0"
     "on_actionModelOpen_triggered\0"
     "on_actionModelSave_triggered\0"
     "on_actionModelClose_triggered\0"
     "on_actionModelInformation_triggered\0"
     "on_actionModelCheck_triggered\0"
-    "on_actionModelExit_triggered\0"
-    "on_actionModelPreferences_triggered\0"
     "on_tabWidget_Model_tabBarClicked\0index\0"
     "on_tabWidget_Debug_currentChanged\0"
     "on_horizontalSlider_Zoom_valueChanged\0"
@@ -459,19 +459,19 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 44: _t->on_actionAlignRight_triggered(); break;
         case 45: _t->on_actionAlignCenter_triggered(); break;
         case 46: _t->on_actionAlignLeft_triggered(); break;
-        case 47: _t->on_actionToolsPluginManager_triggered(); break;
-        case 48: _t->on_actionToolsParserGrammarChecker_triggered(); break;
-        case 49: _t->on_actionToolsExperimentation_triggered(); break;
-        case 50: _t->on_actionToolsOptimizator_triggered(); break;
-        case 51: _t->on_actionToolsDataAnalyzer_triggered(); break;
-        case 52: _t->on_actionModelNew_triggered(); break;
-        case 53: _t->on_actionModelOpen_triggered(); break;
-        case 54: _t->on_actionModelSave_triggered(); break;
-        case 55: _t->on_actionModelClose_triggered(); break;
-        case 56: _t->on_actionModelInformation_triggered(); break;
-        case 57: _t->on_actionModelCheck_triggered(); break;
-        case 58: _t->on_actionModelExit_triggered(); break;
-        case 59: _t->on_actionModelPreferences_triggered(); break;
+        case 47: _t->on_actionToolsParserGrammarChecker_triggered(); break;
+        case 48: _t->on_actionToolsExperimentation_triggered(); break;
+        case 49: _t->on_actionToolsOptimizator_triggered(); break;
+        case 50: _t->on_actionToolsDataAnalyzer_triggered(); break;
+        case 51: _t->on_actionSimulatorPluginManager_triggered(); break;
+        case 52: _t->on_actionSimulatorExit_triggered(); break;
+        case 53: _t->on_actionSimulatorPreferences_triggered(); break;
+        case 54: _t->on_actionModelNew_triggered(); break;
+        case 55: _t->on_actionModelOpen_triggered(); break;
+        case 56: _t->on_actionModelSave_triggered(); break;
+        case 57: _t->on_actionModelClose_triggered(); break;
+        case 58: _t->on_actionModelInformation_triggered(); break;
+        case 59: _t->on_actionModelCheck_triggered(); break;
         case 60: _t->on_tabWidget_Model_tabBarClicked((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 61: _t->on_tabWidget_Debug_currentChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 62: _t->on_horizontalSlider_Zoom_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;

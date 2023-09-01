@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1081</width>
-    <height>640</height>
+    <height>763</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -151,7 +151,7 @@
                      <x>0</x>
                      <y>0</y>
                      <width>680</width>
-                     <height>36</height>
+                     <height>70</height>
                     </rect>
                    </property>
                    <property name="autoFillBackground">
@@ -715,9 +715,6 @@
     <addaction name="separator"/>
     <addaction name="actionModelInformation"/>
     <addaction name="actionModelCheck"/>
-    <addaction name="separator"/>
-    <addaction name="actionModelPreferences"/>
-    <addaction name="actionModelExit"/>
    </widget>
    <widget class="QMenu" name="menuSimulation">
     <property name="enabled">
@@ -839,11 +836,21 @@
     <property name="title">
      <string>Tools</string>
     </property>
-    <addaction name="actionToolsPluginManager"/>
     <addaction name="actionToolsDataAnalyzer"/>
     <addaction name="actionToolsOptimizator"/>
     <addaction name="actionToolsParserGrammarChecker"/>
    </widget>
+   <widget class="QMenu" name="menuSimulator">
+    <property name="title">
+     <string>Simulator</string>
+    </property>
+    <addaction name="actionSimulatorsPluginManager"/>
+    <addaction name="separator"/>
+    <addaction name="actionSimulatorPreferences"/>
+    <addaction name="separator"/>
+    <addaction name="actionSimulatorExit"/>
+   </widget>
+   <addaction name="menuSimulator"/>
    <addaction name="menuModel"/>
    <addaction name="menuEdit"/>
    <addaction name="menuView"/>
@@ -870,7 +877,7 @@
    <addaction name="actionModelInformation"/>
    <addaction name="actionModelCheck"/>
    <addaction name="separator"/>
-   <addaction name="actionModelExit"/>
+   <addaction name="actionSimulatorExit"/>
   </widget>
   <widget class="QDockWidget" name="dockWidgetConsole">
    <property name="sizePolicy">
@@ -1243,7 +1250,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Ctrl+S</string>
    </property>
   </action>
-  <action name="actionModelExit">
+  <action name="actionSimulatorExit">
    <property name="icon">
     <iconset resource="GenesysQtGUI_resources.qrc">
      <normaloff>:/icons3/resources/icons/pack3/ico/exit.ico</normaloff>:/icons3/resources/icons/pack3/ico/exit.ico</iconset>
@@ -1699,7 +1706,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Arranje</string>
    </property>
   </action>
-  <action name="actionModelPreferences">
+  <action name="actionSimulatorPreferences">
    <property name="icon">
     <iconset>
      <normalon>:/mxgraph/resources/icons/pack4/iconsMxGraph/preferences.gif</normalon>
@@ -1907,7 +1914,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Configure View</string>
    </property>
   </action>
-  <action name="actionToolsPluginManager">
+  <action name="actionSimulatorsPluginManager">
    <property name="icon">
     <iconset resource="GenesysQtGUI_resources.qrc">
      <normaloff>:/icons3/resources/icons/pack3/ico/componentblue.ico</normaloff>:/icons3/resources/icons/pack3/ico/componentblue.ico</iconset>

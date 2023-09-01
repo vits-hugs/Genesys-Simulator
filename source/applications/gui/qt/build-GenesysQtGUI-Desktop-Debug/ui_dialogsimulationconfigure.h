@@ -43,12 +43,15 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QSpinBox *spinBox_2;
     QComboBox *comboBox_2;
+    QLabel *label_6;
+    QComboBox *comboBox_3;
     QHBoxLayout *horizontalLayout_4;
     QCheckBox *checkBox;
     QCheckBox *checkBox_4;
     QHBoxLayout *horizontalLayout_3;
     QCheckBox *checkBox_3;
     QCheckBox *checkBox_2;
+    QHBoxLayout *horizontalLayout_5;
     QDialogButtonBox *buttonBox;
 
     void setupUi(QDialog *DialogSimulationConfigure)
@@ -56,11 +59,12 @@ public:
         if (DialogSimulationConfigure->objectName().isEmpty())
             DialogSimulationConfigure->setObjectName(QString::fromUtf8("DialogSimulationConfigure"));
         DialogSimulationConfigure->setWindowModality(Qt::WindowModal);
-        DialogSimulationConfigure->resize(534, 301);
+        DialogSimulationConfigure->resize(534, 416);
         verticalLayout = new QVBoxLayout(DialogSimulationConfigure);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         formLayout = new QFormLayout();
         formLayout->setObjectName(QString::fromUtf8("formLayout"));
+        formLayout->setContentsMargins(0, -1, -1, 2);
         label = new QLabel(DialogSimulationConfigure);
         label->setObjectName(QString::fromUtf8("label"));
 
@@ -145,6 +149,16 @@ public:
 
         formLayout->setLayout(4, QFormLayout::FieldRole, horizontalLayout_2);
 
+        label_6 = new QLabel(DialogSimulationConfigure);
+        label_6->setObjectName(QString::fromUtf8("label_6"));
+
+        formLayout->setWidget(6, QFormLayout::LabelRole, label_6);
+
+        comboBox_3 = new QComboBox(DialogSimulationConfigure);
+        comboBox_3->setObjectName(QString::fromUtf8("comboBox_3"));
+
+        formLayout->setWidget(6, QFormLayout::FieldRole, comboBox_3);
+
 
         verticalLayout->addLayout(formLayout);
 
@@ -177,6 +191,12 @@ public:
 
 
         verticalLayout->addLayout(horizontalLayout_3);
+
+        horizontalLayout_5 = new QHBoxLayout();
+        horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
+        horizontalLayout_5->setContentsMargins(0, 10, -1, 0);
+
+        verticalLayout->addLayout(horizontalLayout_5);
 
         buttonBox = new QDialogButtonBox(DialogSimulationConfigure);
         buttonBox->setObjectName(QString::fromUtf8("buttonBox"));
@@ -218,6 +238,7 @@ public:
         label_3->setText(QCoreApplication::translate("DialogSimulationConfigure", "Replication Length", nullptr));
         label_4->setText(QCoreApplication::translate("DialogSimulationConfigure", "Warmup Period:", nullptr));
         label_5->setText(QCoreApplication::translate("DialogSimulationConfigure", "Terminating Condition:", nullptr));
+        label_6->setText(QCoreApplication::translate("DialogSimulationConfigure", "Trace Level:", nullptr));
         checkBox->setText(QCoreApplication::translate("DialogSimulationConfigure", "Initialize system", nullptr));
         checkBox_4->setText(QCoreApplication::translate("DialogSimulationConfigure", "Initialize statistics between replications", nullptr));
         checkBox_3->setText(QCoreApplication::translate("DialogSimulationConfigure", "Show reports after replication", nullptr));
