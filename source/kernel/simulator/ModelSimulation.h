@@ -133,8 +133,8 @@ private:
 	bool _replicationIsInitiaded = false;
 	bool _showReportsAfterSimulation = true;
 	bool _showReportsAfterReplication = true;
-	bool _showSimulationControlsInReport = false;
-	bool _showSimulationResposesInReport = false;
+	bool _showSimulationControlsInReport = true;
+	bool _showSimulationResposesInReport = true;
 private:
 
 	const struct DEFAULT_VALUES {
@@ -150,8 +150,8 @@ private:
 		const bool initializeSystem = true;
 		const bool showReportsAfterSimulation = true;
 		const bool showReportsAfterReplication = true;
-		const bool showSimulationControlsInReport = false;
-		const bool showSimulationResposesInReport = false;
+		const bool showSimulationControlsInReport = true;
+		const bool showSimulationResposesInReport = true;
 	} DEFAULT;
 	unsigned int _numberOfReplications = DEFAULT.numberOfReplications;
 	double _replicationLength = DEFAULT.replicationLength;

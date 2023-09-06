@@ -29,10 +29,9 @@ void SimulationReporterDefaultImpl1::showSimulationControls() {
 	_model->getTracer()->traceReport("Simulation Controls:");
 	Util::IncIndent();
 	{
-		for (/*PropertyGenesys**/SimulationControl* control : *_model->getControls()->list()) {
-			/// TODO IMPORTANT CONTROLS AND RESPONSES MUST WORK NO MATTER THE PROPERTIES
-/// TODO PProperties ///			
-			//_model->getTracer()->traceReport(control->getName() +  "(" + control->getClassName() + "): " + control->getValueText());
+		for (/*PropertyBase**/PropertyBase* control : *_model->getControls()->list()) {
+			/// TODO IMPORTANT CONTROLS AND RESPONSES MUST WORK NO MATTER THE PROPERTIES /// TODO PProperties ///
+			_model->getTracer()->traceReport(control->getName() +  "(" + control->getClassname() + "): " + control->getValueText());
 		}
 	}
 	Util::DecIndent();
@@ -156,10 +155,9 @@ void SimulationReporterDefaultImpl1::showSimulationResponses() {
 	_model->getTracer()->traceReport("Simulation Responses:");
 	Util::IncIndent();
 	{
-		for (/*PropertyGenesys**/SimulationResponse* response : *_model->getResponses()->list()) {
-/// TODO IMPORTANT CONTROLS AND RESPONSES MUST WORK NO MATTER THE PROPERTIES
-/// TODO PProperties ///			
-			//_model->getTracer()->traceReport(response->getName() + ": " + response->getValueText());
+		for (/*PropertyBase**/PropertyBase* response : *_model->getResponses()->list()) {
+/// TODO IMPORTANT CONTROLS AND RESPONSES MUST WORK NO MATTER THE PROPERTIES /// TODO PProperties ///
+			_model->getTracer()->traceReport(response->getName() + ": " + response->getValueText());
 		}
 	}
 	Util::DecIndent();

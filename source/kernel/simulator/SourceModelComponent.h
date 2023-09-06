@@ -15,7 +15,6 @@
 #define SOURCEMODELCOMPONENT_H
 
 #include "ModelComponent.h"
-#include "qobjectdefs.h"
 #include <string>
 #include <limits>
 //namespace GenesysKernel {
@@ -49,11 +48,6 @@ public: // get & set
 	unsigned int getEntitiesPerCreation() const;
 public:
 	virtual std::string show();
-	double propertyfirstCreation() const;
-	void setPropertyfirstCreation(double newPropertyfirstCreation);
-
-//signals:
-//	void propertyfirstCreationChanged();
 
 protected:
 	virtual bool _loadInstance(PersistenceRecord *fields);
@@ -79,9 +73,6 @@ protected: // get & set
 	std::string _timeBetweenCreationsExpression = DEFAULT.timeBetweenCreationsExpression;
 	Util::TimeUnit _timeBetweenCreationsTimeUnit = DEFAULT.timeBetweenCreationsTimeUnit;
 	unsigned int _entitiesCreatedSoFar = 0;
-	double _propertyfirstCreation;
-private:
-	Q_PROPERTY(double propertyfirstCreation READ propertyfirstCreation WRITE setPropertyfirstCreation NOTIFY propertyfirstCreationChanged);
 };
 //namespace\\}
 #endif /* SOURCEMODELCOMPONENT_H */

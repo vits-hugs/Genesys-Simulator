@@ -147,7 +147,7 @@ ParserChangesInformation* Schedule::_getParserChangesInformation() {
 	return changes;
 }
 
-void Schedule::_addProperty(PropertyGenesys* property) {
+void Schedule::_addProperty(PropertyBase* property) {
 
 }
 

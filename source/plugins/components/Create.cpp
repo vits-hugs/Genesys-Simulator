@@ -149,16 +149,3 @@ void Create::_createInternalAndAttachedData() {
 		_numberOut = nullptr;
 	}
 }
-
-double Create::testePropertyCreateDouble() const
-{
-	return _testePropertyCreateDouble;
-}
-
-void Create::setTestePropertyCreateDouble(double newTestePropertyCreateDouble)
-{
-	if (qFuzzyCompare(_testePropertyCreateDouble, newTestePropertyCreateDouble))
-		return;
-	_testePropertyCreateDouble = newTestePropertyCreateDouble;
-	//emit testePropertyCreateDoubleChanged();
-}

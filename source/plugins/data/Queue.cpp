@@ -27,10 +27,10 @@ ModelDataDefinition* Queue::NewInstance(Model* model, std::string name) {
 }
 
 Queue::Queue(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<Queue>(), name) {
-	//PropertyT<std::string>* prop1 = new PropertyT<std::string>(Util::TypeOf<Queue>(), "Attribute Name",
-	//		DefineGetter<Queue, std::string>(this, &Queue::getAttributeName),
-	//		DefineSetter<Queue, std::string>(this, &Queue::setAttributeName));
-	//_addProperty(prop1);
+	PropertyT<std::string>* prop1 = new PropertyT<std::string>(Util::TypeOf<Queue>(), "Attribute Name",
+			DefineGetter<Queue, std::string>(this, &Queue::getAttributeName),
+			DefineSetter<Queue, std::string>(this, &Queue::setAttributeName));
+	_addProperty(prop1);
 	//@TODO: OrderRule!!
 }
 

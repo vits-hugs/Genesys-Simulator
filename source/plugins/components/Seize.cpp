@@ -33,7 +33,6 @@ ModelDataDefinition* Seize::NewInstance(Model* model, std::string name) {
 
 Seize::Seize(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Seize>(), name) {
 	// properties
-	/*
 	_addProperty(new PropertyT<unsigned short>(Util::TypeOf<Seize>(), "Priority",
 			DefineGetter<Seize, unsigned short>(this, &Seize::getPriority),
 			DefineSetter<Seize, unsigned short>(this, &Seize::setPriority)));
@@ -45,7 +44,6 @@ Seize::Seize(Model* model, std::string name) : ModelComponent(model, Util::TypeO
 	_addProperty(new PropertyT<List<SeizableItem*>*>(Util::TypeOf<Seize>(), "Seize Requests",
 			DefineGetter<Seize, List<SeizableItem*>*>(this, &Seize::getSeizeRequests),
 			nullptr));
-	*/
 }
 
 // public

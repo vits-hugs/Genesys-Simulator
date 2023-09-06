@@ -22,9 +22,9 @@
 #include "../util/List.h"
 #include "ParserChangesInformation.h"
 #include "Persistence.h"
-//#include "PropertyGenesys.h"
-#include "SimulationControl.h"
-#include "SimulationResponse.h"
+#include "PropertyGenesys.h"
+//#include "SimulationControl.h"
+//#include "SimulationResponse.h"
 
 
 //namespace GenesysKernel {
@@ -74,7 +74,7 @@ public:
 	bool hasChanged() const;
 	unsigned int getLevel() const;
 	void setModelLevel(unsigned int _modelLevel);
-	List<PropertyGenesys*> *getProperties() const;
+	List<PropertyBase*> *getProperties() const;
 
 protected: // methods to be called inside the _createInternalAndAttachedData() method
 	void _internalDataClear();
@@ -96,9 +96,9 @@ protected: // could be overriden by derived classes
 	virtual void _initBetweenReplications();
 	/*! This method is necessary only for those components that instantiate internal elements that must exist before simulation starts and even before model checking. That's the case of components that have internal StatisticsCollectors, since others components may refer to them as expressions (as in "TVAG(ThisCSTAT)") and therefore the modeldatum must exist before checking such expression */
 	virtual void _createInternalAndAttachedData(); /*< A ModelDataDefinition or ModelComponent that includes (internal) ou refers to (attach) other ModelDataDefinition must register them inside this method. */
-	virtual void _addProperty(PropertyGenesys* property);
-	virtual void _addSimulationResponse(SimulationResponse* response);
-	virtual void _addSimulationControl(SimulationControl* control);
+	virtual void _addProperty(PropertyBase* property);
+	virtual void _addSimulationResponse(PropertyBase* response);
+	virtual void _addSimulationControl(PropertyBase* control);
 
 private: // name is now private. So changes in name must be throught setName, wich gives oportunity to rename internelElements, SimulationControls and SimulationResponses
 	std::string _name;
@@ -113,9 +113,9 @@ protected:
 	unsigned int _modelLevel = 0; // the ID of parent component (submodel or process, for now) in the "superlevel"
 	Model* _parentModel;
 protected:
-	List<SimulationResponse*>* _simulationResponses = new List<SimulationResponse*>();
-	List<SimulationControl*>* _simulationControls = new List<SimulationControl*>();
-	List<PropertyGenesys*>* _properties = new List<PropertyGenesys*>();
+	List<PropertyBase*>* _simulationResponses = new List<PropertyBase*>();
+	List<PropertyBase*>* _simulationControls = new List<PropertyBase*>();
+	List<PropertyBase*>* _properties = new List<PropertyBase*>();
 	//PropertyListG* _propertiesG = new PropertyListG();
 };
 //namespace\\}

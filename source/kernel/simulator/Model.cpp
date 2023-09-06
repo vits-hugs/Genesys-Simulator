@@ -56,43 +56,44 @@ Model::Model(Simulator* simulator, unsigned int level) {
 	// TODO: Add properties
 
 	// for process analyser
-	_responses = new List<SimulationResponse*>();
-	_controls = new List<SimulationControl*>();
+	_responses = new List<PropertyBase*>();
+	_controls = new List<PropertyBase*>();
 
 
-	//_controls = new List<PropertyGenesys*>();
-	//_responses = new List<PropertyGenesys*>(); // ready-only properties
 	// insert controls
-	//GetterMemberT<unsigned int>::Getter getter = DefineGetterMember<ModelSimulation>(this->_simulation, &ModelSimulation::getNumberOfReplications);
-	//SetterMemberT<unsigned int>::Setter setter = DefineSetterMember<ModelSimulation>(this->_simulation, &ModelSimulation::setNumberOfReplications);
-	//SimulationResponseSpecific<unsigned int>* response = new SimulationResponseSpecific<unsigned int>(getter);
+	/*
+	GetterMemberT<unsigned int>::Getter getter = DefineGetterMember<ModelSimulation>(this->_simulation, &ModelSimulation::getNumberOfReplications);
+	SetterMemberT<unsigned int>::Setter setter = DefineSetterMember<ModelSimulation>(this->_simulation, &ModelSimulation::setNumberOfReplications);
+	SimulationResponseSpecific<unsigned int>* response = new SimulationResponseSpecific<unsigned int>(getter);
 														 //SimulationResponseSpecific<unsigned int>(
 														   //"ModelSimulation", "NumberOfReplications", getter);
 
-	//SimulationControlSpecific<unsigned int>* control = new SimulationControlSpecific<unsigned int>(
-	//													   "ModelSimulation", "NumberOfReplications", getter, setter);
-	//_controls->insert(control);
-	//_controls->insert(new SimulationControl("ModelSimulation", "ReplicationLength",
-	//        DefineGetterMember<ModelSimulation>(this->_simulation, &ModelSimulation::getReplicationLength),
-	//        DefineSetterMember<ModelSimulation>(this->_simulation, &ModelSimulation::setReplicationLength)) );
-	//_controls->insert(new SimulationControl("ModelSimulation", "WarmupPeriod",
-	//        DefineGetterMember<ModelSimulation>(this->_simulation, &ModelSimulation::getWarmUpPeriod),
-	//        DefineSetterMember<ModelSimulation>(this->_simulation, &ModelSimulation::setWarmUpPeriod)) );
-	// for NEW process analyser
-	/*
-	_responsesNew = new List<PropertyGenesys*>();
-	_controlsNew = new List<PropertyGenesys*>();
+	SimulationControlSpecific<unsigned int>* control = new SimulationControlSpecific<unsigned int>(
+														   "ModelSimulation", "NumberOfReplications", getter, setter);
+	_controls->insert(control);
+	_controls->insert(new SimulationControl("ModelSimulation", "ReplicationLength",
+			DefineGetterMember<ModelSimulation>(this->_simulation, &ModelSimulation::getReplicationLength),
+			DefineSetterMember<ModelSimulation>(this->_simulation, &ModelSimulation::setReplicationLength)) );
+	_controls->insert(new SimulationControl("ModelSimulation", "WarmupPeriod",
+			DefineGetterMember<ModelSimulation>(this->_simulation, &ModelSimulation::getWarmUpPeriod),
+			DefineSetterMember<ModelSimulation>(this->_simulation, &ModelSimulation::setWarmUpPeriod)) );
+*/
+	 //for NEW process analyser
+
 	// insert NEW controls
-	_controlsNew->insert(new PropertyT<unsigned int>("ModelSimulation", "NumberOfReplications",
+	//_responsesNew = new List<PropertyBase*>();
+	//_controlsNew = new List<PropertyBase*>();
+	_controls->insert(new PropertyT<unsigned int>("ModelSimulation", "NumberOfReplications",
 			DefineGetter<ModelSimulation, unsigned int>(this->_simulation, &ModelSimulation::getNumberOfReplications),
 			DefineSetter<ModelSimulation, unsigned int>(this->_simulation, &ModelSimulation::setNumberOfReplications)));
-	_controlsNew->insert(new PropertyT<double>("ModelSimulation", "ReplicationLength",
+	_controls->insert(new PropertyT<double>("ModelSimulation", "ReplicationLength",
 			DefineGetter<ModelSimulation, double>(this->_simulation, &ModelSimulation::getReplicationLength),
 			DefineSetter<ModelSimulation, double>(this->_simulation, &ModelSimulation::setReplicationLength)));
-	_controlsNew->insert(new PropertyT<double>("ModelSimulation", "WarmupPeriod",
+	_controls->insert(new PropertyT<double>("ModelSimulation", "WarmupPeriod",
 			DefineGetter<ModelSimulation, double>(this->_simulation, &ModelSimulation::getWarmUpPeriod),
 			DefineSetter<ModelSimulation, double>(this->_simulation, &ModelSimulation::setWarmUpPeriod)));
-	*/
+
+
 }
 
 void Model::sendEntityToComponent(Entity* entity, Connection* connection, double timeDelay) {
@@ -236,7 +237,7 @@ void Model::_showComponents() const {
 void Model::_showSimulationControls() const {
 	getTracer()->trace(TraceManager::Level::L2_results, "Simulation Controls:");
 	Util::IncIndent();
-	for (/*PropertyGenesys**/SimulationControl* control : *_controls->list()) {
+	for (/*PropertyBase**/PropertyBase* control : *_controls->list()) {
 		getTracer()->trace(TraceManager::Level::L2_results, control->show()); ////
 	}
 	Util::DecIndent();
@@ -245,7 +246,7 @@ void Model::_showSimulationControls() const {
 void Model::_showSimulationResponses() const {
 	getTracer()->trace(TraceManager::Level::L2_results, "Simulation Responses:");
 	Util::IncIndent();
-	for (/*PropertyGenesys**/SimulationResponse* response : *_responses->list()) {
+	for (/*PropertyBase**/PropertyBase* response : *_responses->list()) {
 		getTracer()->trace(TraceManager::Level::L2_results, response->show()); ////
 	}
 	Util::DecIndent();
@@ -305,11 +306,11 @@ void Model::_createModelInternalElements() {
 	Util::DecIndent();
 }
 
-List</*PropertyGenesys**/SimulationControl*>* Model::getControls() const {
+List</*PropertyBase**/PropertyBase*>* Model::getControls() const {
 	return _controls;
 }
 
-List</*PropertyGenesys**/SimulationResponse*>* Model::getResponses() const {
+List</*PropertyBase**/PropertyBase*>* Model::getResponses() const {
 	return _responses;
 }
 
@@ -393,11 +394,11 @@ ComponentManager * Model::getComponents() const {
 	return _componentManager;
 }
 
-//List<SimulationControl*>* Model::getControls() const {
+//List<PropertyBase*>* Model::getControls() const {
 //    return _controls;
 //}
 
-//List<SimulationResponse*>* Model::getResponses() const {
+//List<PropertyBase*>* Model::getResponses() const {
 //    return _responses;
 //}
 

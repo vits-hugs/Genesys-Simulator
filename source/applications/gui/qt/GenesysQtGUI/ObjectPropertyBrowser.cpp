@@ -27,7 +27,7 @@ void ObjectPropertyBrowser::setActiveObject(QObject *obj, ModelDataDefinition* m
 
 	if (mdd != nullptr) {
 		std::string className;
-		for (PropertyGenesys* prop: *mdd->getProperties()->list()) {
+		for (PropertyBase* prop: *mdd->getProperties()->list()) {
 			className = prop->getName(); // TODO Era para ser getClassName();
 			std::map<std::string, QtVariantProperty*>::iterator it;
 			if ((it = propGroupMap.find(className))==propGroupMap.end()) {

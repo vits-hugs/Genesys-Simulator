@@ -102,33 +102,39 @@ private slots:
 	void on_actionModelInformation_triggered();
 	void on_actionModelCheck_triggered();
 
+	void on_actionConnect_triggered();
+	void on_actionComponent_Breakpoint_triggered();
+
 
     // widget events
 	//void on_textCodeEdit_Model_textChanged();
 	void on_tabWidget_Model_tabBarClicked(int index);
 	void on_tabWidget_Debug_currentChanged(int index);
+	void on_tabWidgetCentral_currentChanged(int index);
+	void on_tabWidgetCentral_tabBarClicked(int index);
+	void on_tabWidgetModel_currentChanged(int index);
+	void on_tabWidgetSimulation_currentChanged(int index);
+	void on_tabWidgetReports_currentChanged(int index);
+	void on_tabWidgetModelLanguages_currentChanged(int index);
+
+	void on_treeWidget_Plugins_itemDoubleClicked(QTreeWidgetItem *item, int column);
+	void on_treeWidgetComponents_itemSelectionChanged();
+	void on_treeWidget_Plugins_itemClicked(QTreeWidgetItem *item, int column);
+
 	void on_horizontalSlider_Zoom_valueChanged(int value);
+	void on_horizontalSlider_ZoomGraphical_valueChanged(int value);
+
 	void on_checkBox_ShowElements_stateChanged(int arg1);
 	void on_checkBox_ShowInternals_stateChanged(int arg1);
 	void on_checkBox_ShowRecursive_stateChanged(int arg1);
 	void on_checkBox_ShowLevels_stateChanged(int arg1);
+
 	void on_pushButton_Breakpoint_Insert_clicked();
 	void on_pushButton_Breakpoint_Remove_clicked();
-	void on_tabWidgetCentral_currentChanged(int index);
-	void on_tabWidgetCentral_tabBarClicked(int index);
-	void on_treeWidget_Plugins_itemDoubleClicked(QTreeWidgetItem *item, int column);
-	void on_graphicsView_rubberBandChanged(const QRect &viewportRect, const QPointF &fromScenePoint, const QPointF &toScenePoint);
-	void on_horizontalSlider_ZoomGraphical_valueChanged(int value);
-	void on_actionConnect_triggered();
 	void on_pushButton_Export_clicked();
-	void on_tabWidgetModelLanguages_currentChanged(int index);
-	void on_actionComponent_Breakpoint_triggered();
-	void on_treeWidgetComponents_itemSelectionChanged();
-	void on_treeWidget_Plugins_itemClicked(QTreeWidgetItem *item, int column);
+
+	void on_graphicsView_rubberBandChanged(const QRect &viewportRect, const QPointF &fromScenePoint, const QPointF &toScenePoint);
 	void on_TextCodeEditor_textChanged();
-	void on_tabWidgetModel_currentChanged(int index);
-	void on_tabWidgetSimulation_currentChanged(int index);
-	void on_tabWidgetReports_currentChanged(int index);
 
 
 

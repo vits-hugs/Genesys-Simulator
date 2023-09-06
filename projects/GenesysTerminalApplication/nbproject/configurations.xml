@@ -233,6 +233,10 @@
             <itemPath>../../source/applications/terminal/GenesysShell/GenesysShell.h</itemPath>
             <itemPath>../../source/applications/terminal/GenesysShell/GenesysShell_if.h</itemPath>
           </logicalFolder>
+          <logicalFolder name="f2" displayName="underDevelopment" projectFiles="true">
+            <itemPath>../../source/applications/terminal/underDevelopment/TestingTerminalApp.cpp</itemPath>
+            <itemPath>../../source/applications/terminal/underDevelopment/TestingTerminalApp.h</itemPath>
+          </logicalFolder>
         </logicalFolder>
         <itemPath>../../source/applications/BaseGenesysTerminalApplication.cpp</itemPath>
         <itemPath>../../source/applications/BaseGenesysTerminalApplication.h</itemPath>
@@ -342,11 +346,7 @@
           <itemPath>../../source/kernel/simulator/PluginInformation.h</itemPath>
           <itemPath>../../source/kernel/simulator/PluginManager.cpp</itemPath>
           <itemPath>../../source/kernel/simulator/PluginManager.h</itemPath>
-          <itemPath>../../source/kernel/simulator/PropertyGenesys.cpp</itemPath>
-          <itemPath>../../source/kernel/simulator/PropertyGenesys.h</itemPath>
           <itemPath>../../source/kernel/simulator/ScenarioExperiment_if.h</itemPath>
-          <itemPath>../../source/kernel/simulator/SimulationControlAndResponse.cpp</itemPath>
-          <itemPath>../../source/kernel/simulator/SimulationControlAndResponse.h</itemPath>
           <itemPath>../../source/kernel/simulator/SimulationExperiment.cpp</itemPath>
           <itemPath>../../source/kernel/simulator/SimulationExperiment.h</itemPath>
           <itemPath>../../source/kernel/simulator/SimulationReporterDefaultImpl1.cpp</itemPath>
@@ -1502,6 +1502,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../../source/applications/terminal/underDevelopment/TestingTerminalApp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/underDevelopment/TestingTerminalApp.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../../source/gtest/gtest/gtest-assertion-result.h"
             ex="false"
             tool="3"
@@ -1981,27 +1991,7 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/kernel/simulator/PropertyGenesys.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/PropertyGenesys.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="../../source/kernel/simulator/ScenarioExperiment_if.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/SimulationControlAndResponse.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/SimulationControlAndResponse.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -3836,6 +3826,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../../source/applications/terminal/underDevelopment/TestingTerminalApp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../source/applications/terminal/underDevelopment/TestingTerminalApp.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../../source/gtest/gtest/gtest-assertion-result.h"
             ex="false"
             tool="3"
@@ -4315,27 +4315,7 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../source/kernel/simulator/PropertyGenesys.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/PropertyGenesys.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="../../source/kernel/simulator/ScenarioExperiment_if.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/SimulationControlAndResponse.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../source/kernel/simulator/SimulationControlAndResponse.h"
             ex="false"
             tool="3"
             flavor2="0">

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../../BaseGenesysTerminalApplication.h"
+#include "../../BaseGenesysTerminalApplication.h"
 
 
 class TestingTerminalApp : public BaseGenesysTerminalApplication {

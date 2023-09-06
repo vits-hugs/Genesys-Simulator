@@ -86,9 +86,6 @@ public: // static
 	double testePropertyCreateDouble() const;
 	void setTestePropertyCreateDouble(double newTestePropertyCreateDouble);
 
-signals:
-	void testePropertyCreateDoubleChanged();
-
 protected:
 	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
 	virtual bool _loadInstance(PersistenceRecord *fields);
@@ -103,8 +100,6 @@ private: // internal elements
 private: // attached elements
 	Schedule* _timeBetweenCreationsSchedule = nullptr;
 	Formula* _timeBetweenCreationsFormula = nullptr;
-	double _testePropertyCreateDouble;
-	Q_PROPERTY(double testePropertyCreateDouble READ testePropertyCreateDouble WRITE setTestePropertyCreateDouble NOTIFY testePropertyCreateDoubleChanged)
 };
 
 #endif /* CREATE_H */

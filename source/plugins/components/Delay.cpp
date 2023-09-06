@@ -35,18 +35,16 @@ Util::AllocationType Delay::getAllocation() const {
 }
 
 Delay::Delay(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Delay>(), name) {
-	/*
 	PropertyT<std::string>* prop1 = new PropertyT<std::string>(Util::TypeOf<Delay>(), "Delay Expression",
-			DefineGetter<Delay, std::string>(this, &Delay::delayExpression),
-			DefineSetter<Delay, std::string>(this, &Delay::setDelayExpression));
+															   DefineGetter<Delay, std::string>(this, &Delay::delayExpression),
+															   DefineSetter<Delay, std::string>(this, &Delay::setDelayExpression));
 	model->getControls()->insert(prop1);
-	//_addProperty(prop1);
+	_addProperty(prop1);
 	PropertyT<Util::TimeUnit>* prop2 = new PropertyT<Util::TimeUnit>(Util::TypeOf<Delay>(), "Delay Time Unit",
-			DefineGetter<Delay, Util::TimeUnit>(this, &Delay::delayTimeUnit),
-			DefineSetter<Delay, Util::TimeUnit>(this, &Delay::setDelayTimeUnit));
+																	 DefineGetter<Delay, Util::TimeUnit>(this, &Delay::delayTimeUnit),
+																	 DefineSetter<Delay, Util::TimeUnit>(this, &Delay::setDelayTimeUnit));
 	model->getControls()->insert(prop2);
-	//_addProperty(prop2);
-	*/
+	_addProperty(prop2);
 }
 
 void Delay::setDelay(double delay) {

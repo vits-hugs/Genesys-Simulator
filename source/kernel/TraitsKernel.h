@@ -47,7 +47,6 @@ template <> struct TraitsKernel<Simulator> {
 template <> struct TraitsKernel<SimulationReporter_if> {
 	typedef SimulationReporterDefaultImpl1 Implementation;
 	typedef Counter CounterImplementation;
-	static constexpr bool showSimulationResponses = false;
 	static const TraceManager::Level traceLevel = TraceManager::Level::L2_results;
 };
 

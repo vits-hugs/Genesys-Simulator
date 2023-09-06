@@ -269,7 +269,7 @@ void ModelDataDefinition::setName(std::string name) {
 			}
 		}
 
-		for (/*PropertyGenesys**/SimulationControl* control : *_parentModel->getControls()->list()) {
+		for (/*PropertyBase**/PropertyBase* control : *_parentModel->getControls()->list()) {
 			stuffName = control->getName();
 			pos = stuffName.find(getName(), 0);
 			if (pos < stuffName.length()) { // != std::string::npos) {
@@ -278,7 +278,7 @@ void ModelDataDefinition::setName(std::string name) {
 			}
 		}
 
-		for (/*PropertyGenesys**/SimulationResponse* response : *_parentModel->getResponses()->list()) {
+		for (/*PropertyBase**/PropertyBase* response : *_parentModel->getResponses()->list()) {
 			stuffName = response->getName();
 			pos = stuffName.find(getName(), 0);
 			if (pos < stuffName.length()) {// != std::string::npos) {
@@ -369,20 +369,20 @@ void ModelDataDefinition::_createInternalAndAttachedData() {
 
 }
 
-void ModelDataDefinition::_addProperty(PropertyGenesys* property) {
+void ModelDataDefinition::_addProperty(PropertyBase* property) {
 	_properties->insert(property);
 }
 
-void ModelDataDefinition::_addSimulationResponse(SimulationResponse* response) {
+void ModelDataDefinition::_addSimulationResponse(PropertyBase* response) {
 	_simulationResponses->insert(response); // TODO: Check if exists before insert?
 }
 
-void ModelDataDefinition::_addSimulationControl(SimulationControl* control) {
+void ModelDataDefinition::_addSimulationControl(PropertyBase* control) {
 	_simulationControls->insert(control);
 }
 
 
-List<PropertyGenesys*> *ModelDataDefinition::getProperties() const {
+List<PropertyBase*> *ModelDataDefinition::getProperties() const {
 	return _properties;
 }
 

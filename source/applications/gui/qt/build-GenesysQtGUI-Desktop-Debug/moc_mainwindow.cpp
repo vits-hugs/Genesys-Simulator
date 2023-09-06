@@ -94,39 +94,39 @@ QT_MOC_LITERAL(58, 1832, 28), // "on_actionModelSave_triggered"
 QT_MOC_LITERAL(59, 1861, 29), // "on_actionModelClose_triggered"
 QT_MOC_LITERAL(60, 1891, 35), // "on_actionModelInformation_tri..."
 QT_MOC_LITERAL(61, 1927, 29), // "on_actionModelCheck_triggered"
-QT_MOC_LITERAL(62, 1957, 32), // "on_tabWidget_Model_tabBarClicked"
-QT_MOC_LITERAL(63, 1990, 5), // "index"
-QT_MOC_LITERAL(64, 1996, 33), // "on_tabWidget_Debug_currentCha..."
-QT_MOC_LITERAL(65, 2030, 37), // "on_horizontalSlider_Zoom_valu..."
-QT_MOC_LITERAL(66, 2068, 5), // "value"
-QT_MOC_LITERAL(67, 2074, 37), // "on_checkBox_ShowElements_stat..."
-QT_MOC_LITERAL(68, 2112, 4), // "arg1"
-QT_MOC_LITERAL(69, 2117, 38), // "on_checkBox_ShowInternals_sta..."
-QT_MOC_LITERAL(70, 2156, 38), // "on_checkBox_ShowRecursive_sta..."
-QT_MOC_LITERAL(71, 2195, 35), // "on_checkBox_ShowLevels_stateC..."
-QT_MOC_LITERAL(72, 2231, 39), // "on_pushButton_Breakpoint_Inse..."
-QT_MOC_LITERAL(73, 2271, 39), // "on_pushButton_Breakpoint_Remo..."
-QT_MOC_LITERAL(74, 2311, 34), // "on_tabWidgetCentral_currentCh..."
-QT_MOC_LITERAL(75, 2346, 33), // "on_tabWidgetCentral_tabBarCli..."
-QT_MOC_LITERAL(76, 2380, 39), // "on_treeWidget_Plugins_itemDou..."
-QT_MOC_LITERAL(77, 2420, 16), // "QTreeWidgetItem*"
-QT_MOC_LITERAL(78, 2437, 4), // "item"
-QT_MOC_LITERAL(79, 2442, 6), // "column"
-QT_MOC_LITERAL(80, 2449, 33), // "on_graphicsView_rubberBandCha..."
-QT_MOC_LITERAL(81, 2483, 12), // "viewportRect"
-QT_MOC_LITERAL(82, 2496, 14), // "fromScenePoint"
-QT_MOC_LITERAL(83, 2511, 12), // "toScenePoint"
-QT_MOC_LITERAL(84, 2524, 46), // "on_horizontalSlider_ZoomGraph..."
-QT_MOC_LITERAL(85, 2571, 26), // "on_actionConnect_triggered"
-QT_MOC_LITERAL(86, 2598, 28), // "on_pushButton_Export_clicked"
-QT_MOC_LITERAL(87, 2627, 41), // "on_tabWidgetModelLanguages_cu..."
-QT_MOC_LITERAL(88, 2669, 39), // "on_actionComponent_Breakpoint..."
-QT_MOC_LITERAL(89, 2709, 44), // "on_treeWidgetComponents_itemS..."
-QT_MOC_LITERAL(90, 2754, 33), // "on_treeWidget_Plugins_itemCli..."
-QT_MOC_LITERAL(91, 2788, 29), // "on_TextCodeEditor_textChanged"
-QT_MOC_LITERAL(92, 2818, 32), // "on_tabWidgetModel_currentChanged"
-QT_MOC_LITERAL(93, 2851, 37), // "on_tabWidgetSimulation_curren..."
-QT_MOC_LITERAL(94, 2889, 34) // "on_tabWidgetReports_currentCh..."
+QT_MOC_LITERAL(62, 1957, 26), // "on_actionConnect_triggered"
+QT_MOC_LITERAL(63, 1984, 39), // "on_actionComponent_Breakpoint..."
+QT_MOC_LITERAL(64, 2024, 32), // "on_tabWidget_Model_tabBarClicked"
+QT_MOC_LITERAL(65, 2057, 5), // "index"
+QT_MOC_LITERAL(66, 2063, 33), // "on_tabWidget_Debug_currentCha..."
+QT_MOC_LITERAL(67, 2097, 34), // "on_tabWidgetCentral_currentCh..."
+QT_MOC_LITERAL(68, 2132, 33), // "on_tabWidgetCentral_tabBarCli..."
+QT_MOC_LITERAL(69, 2166, 32), // "on_tabWidgetModel_currentChanged"
+QT_MOC_LITERAL(70, 2199, 37), // "on_tabWidgetSimulation_curren..."
+QT_MOC_LITERAL(71, 2237, 34), // "on_tabWidgetReports_currentCh..."
+QT_MOC_LITERAL(72, 2272, 41), // "on_tabWidgetModelLanguages_cu..."
+QT_MOC_LITERAL(73, 2314, 39), // "on_treeWidget_Plugins_itemDou..."
+QT_MOC_LITERAL(74, 2354, 16), // "QTreeWidgetItem*"
+QT_MOC_LITERAL(75, 2371, 4), // "item"
+QT_MOC_LITERAL(76, 2376, 6), // "column"
+QT_MOC_LITERAL(77, 2383, 44), // "on_treeWidgetComponents_itemS..."
+QT_MOC_LITERAL(78, 2428, 33), // "on_treeWidget_Plugins_itemCli..."
+QT_MOC_LITERAL(79, 2462, 37), // "on_horizontalSlider_Zoom_valu..."
+QT_MOC_LITERAL(80, 2500, 5), // "value"
+QT_MOC_LITERAL(81, 2506, 46), // "on_horizontalSlider_ZoomGraph..."
+QT_MOC_LITERAL(82, 2553, 37), // "on_checkBox_ShowElements_stat..."
+QT_MOC_LITERAL(83, 2591, 4), // "arg1"
+QT_MOC_LITERAL(84, 2596, 38), // "on_checkBox_ShowInternals_sta..."
+QT_MOC_LITERAL(85, 2635, 38), // "on_checkBox_ShowRecursive_sta..."
+QT_MOC_LITERAL(86, 2674, 35), // "on_checkBox_ShowLevels_stateC..."
+QT_MOC_LITERAL(87, 2710, 39), // "on_pushButton_Breakpoint_Inse..."
+QT_MOC_LITERAL(88, 2750, 39), // "on_pushButton_Breakpoint_Remo..."
+QT_MOC_LITERAL(89, 2790, 28), // "on_pushButton_Export_clicked"
+QT_MOC_LITERAL(90, 2819, 33), // "on_graphicsView_rubberBandCha..."
+QT_MOC_LITERAL(91, 2853, 12), // "viewportRect"
+QT_MOC_LITERAL(92, 2866, 14), // "fromScenePoint"
+QT_MOC_LITERAL(93, 2881, 12), // "toScenePoint"
+QT_MOC_LITERAL(94, 2894, 29) // "on_TextCodeEditor_textChanged"
 
     },
     "MainWindow\0on_actionEditUndo_triggered\0"
@@ -189,32 +189,32 @@ QT_MOC_LITERAL(94, 2889, 34) // "on_tabWidgetReports_currentCh..."
     "on_actionModelClose_triggered\0"
     "on_actionModelInformation_triggered\0"
     "on_actionModelCheck_triggered\0"
+    "on_actionConnect_triggered\0"
+    "on_actionComponent_Breakpoint_triggered\0"
     "on_tabWidget_Model_tabBarClicked\0index\0"
     "on_tabWidget_Debug_currentChanged\0"
+    "on_tabWidgetCentral_currentChanged\0"
+    "on_tabWidgetCentral_tabBarClicked\0"
+    "on_tabWidgetModel_currentChanged\0"
+    "on_tabWidgetSimulation_currentChanged\0"
+    "on_tabWidgetReports_currentChanged\0"
+    "on_tabWidgetModelLanguages_currentChanged\0"
+    "on_treeWidget_Plugins_itemDoubleClicked\0"
+    "QTreeWidgetItem*\0item\0column\0"
+    "on_treeWidgetComponents_itemSelectionChanged\0"
+    "on_treeWidget_Plugins_itemClicked\0"
     "on_horizontalSlider_Zoom_valueChanged\0"
-    "value\0on_checkBox_ShowElements_stateChanged\0"
+    "value\0on_horizontalSlider_ZoomGraphical_valueChanged\0"
+    "on_checkBox_ShowElements_stateChanged\0"
     "arg1\0on_checkBox_ShowInternals_stateChanged\0"
     "on_checkBox_ShowRecursive_stateChanged\0"
     "on_checkBox_ShowLevels_stateChanged\0"
     "on_pushButton_Breakpoint_Insert_clicked\0"
     "on_pushButton_Breakpoint_Remove_clicked\0"
-    "on_tabWidgetCentral_currentChanged\0"
-    "on_tabWidgetCentral_tabBarClicked\0"
-    "on_treeWidget_Plugins_itemDoubleClicked\0"
-    "QTreeWidgetItem*\0item\0column\0"
+    "on_pushButton_Export_clicked\0"
     "on_graphicsView_rubberBandChanged\0"
     "viewportRect\0fromScenePoint\0toScenePoint\0"
-    "on_horizontalSlider_ZoomGraphical_valueChanged\0"
-    "on_actionConnect_triggered\0"
-    "on_pushButton_Export_clicked\0"
-    "on_tabWidgetModelLanguages_currentChanged\0"
-    "on_actionComponent_Breakpoint_triggered\0"
-    "on_treeWidgetComponents_itemSelectionChanged\0"
-    "on_treeWidget_Plugins_itemClicked\0"
-    "on_TextCodeEditor_textChanged\0"
-    "on_tabWidgetModel_currentChanged\0"
-    "on_tabWidgetSimulation_currentChanged\0"
-    "on_tabWidgetReports_currentChanged"
+    "on_TextCodeEditor_textChanged"
 };
 #undef QT_MOC_LITERAL
 
@@ -292,30 +292,30 @@ static const uint qt_meta_data_MainWindow[] = {
       59,    0,  491,    2, 0x08 /* Private */,
       60,    0,  492,    2, 0x08 /* Private */,
       61,    0,  493,    2, 0x08 /* Private */,
-      62,    1,  494,    2, 0x08 /* Private */,
-      64,    1,  497,    2, 0x08 /* Private */,
-      65,    1,  500,    2, 0x08 /* Private */,
-      67,    1,  503,    2, 0x08 /* Private */,
-      69,    1,  506,    2, 0x08 /* Private */,
-      70,    1,  509,    2, 0x08 /* Private */,
-      71,    1,  512,    2, 0x08 /* Private */,
-      72,    0,  515,    2, 0x08 /* Private */,
-      73,    0,  516,    2, 0x08 /* Private */,
-      74,    1,  517,    2, 0x08 /* Private */,
-      75,    1,  520,    2, 0x08 /* Private */,
-      76,    2,  523,    2, 0x08 /* Private */,
-      80,    3,  528,    2, 0x08 /* Private */,
-      84,    1,  535,    2, 0x08 /* Private */,
-      85,    0,  538,    2, 0x08 /* Private */,
-      86,    0,  539,    2, 0x08 /* Private */,
-      87,    1,  540,    2, 0x08 /* Private */,
-      88,    0,  543,    2, 0x08 /* Private */,
-      89,    0,  544,    2, 0x08 /* Private */,
-      90,    2,  545,    2, 0x08 /* Private */,
-      91,    0,  550,    2, 0x08 /* Private */,
-      92,    1,  551,    2, 0x08 /* Private */,
-      93,    1,  554,    2, 0x08 /* Private */,
-      94,    1,  557,    2, 0x08 /* Private */,
+      62,    0,  494,    2, 0x08 /* Private */,
+      63,    0,  495,    2, 0x08 /* Private */,
+      64,    1,  496,    2, 0x08 /* Private */,
+      66,    1,  499,    2, 0x08 /* Private */,
+      67,    1,  502,    2, 0x08 /* Private */,
+      68,    1,  505,    2, 0x08 /* Private */,
+      69,    1,  508,    2, 0x08 /* Private */,
+      70,    1,  511,    2, 0x08 /* Private */,
+      71,    1,  514,    2, 0x08 /* Private */,
+      72,    1,  517,    2, 0x08 /* Private */,
+      73,    2,  520,    2, 0x08 /* Private */,
+      77,    0,  525,    2, 0x08 /* Private */,
+      78,    2,  526,    2, 0x08 /* Private */,
+      79,    1,  531,    2, 0x08 /* Private */,
+      81,    1,  534,    2, 0x08 /* Private */,
+      82,    1,  537,    2, 0x08 /* Private */,
+      84,    1,  540,    2, 0x08 /* Private */,
+      85,    1,  543,    2, 0x08 /* Private */,
+      86,    1,  546,    2, 0x08 /* Private */,
+      87,    0,  549,    2, 0x08 /* Private */,
+      88,    0,  550,    2, 0x08 /* Private */,
+      89,    0,  551,    2, 0x08 /* Private */,
+      90,    3,  552,    2, 0x08 /* Private */,
+      94,    0,  559,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -378,30 +378,30 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,   63,
-    QMetaType::Void, QMetaType::Int,   63,
-    QMetaType::Void, QMetaType::Int,   66,
-    QMetaType::Void, QMetaType::Int,   68,
-    QMetaType::Void, QMetaType::Int,   68,
-    QMetaType::Void, QMetaType::Int,   68,
-    QMetaType::Void, QMetaType::Int,   68,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,   63,
-    QMetaType::Void, QMetaType::Int,   63,
-    QMetaType::Void, 0x80000000 | 77, QMetaType::Int,   78,   79,
-    QMetaType::Void, QMetaType::QRect, QMetaType::QPointF, QMetaType::QPointF,   81,   82,   83,
-    QMetaType::Void, QMetaType::Int,   66,
+    QMetaType::Void, QMetaType::Int,   65,
+    QMetaType::Void, QMetaType::Int,   65,
+    QMetaType::Void, QMetaType::Int,   65,
+    QMetaType::Void, QMetaType::Int,   65,
+    QMetaType::Void, QMetaType::Int,   65,
+    QMetaType::Void, QMetaType::Int,   65,
+    QMetaType::Void, QMetaType::Int,   65,
+    QMetaType::Void, QMetaType::Int,   65,
+    QMetaType::Void, 0x80000000 | 74, QMetaType::Int,   75,   76,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 74, QMetaType::Int,   75,   76,
+    QMetaType::Void, QMetaType::Int,   80,
+    QMetaType::Void, QMetaType::Int,   80,
+    QMetaType::Void, QMetaType::Int,   83,
+    QMetaType::Void, QMetaType::Int,   83,
+    QMetaType::Void, QMetaType::Int,   83,
+    QMetaType::Void, QMetaType::Int,   83,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,   63,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QRect, QMetaType::QPointF, QMetaType::QPointF,   91,   92,   93,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 77, QMetaType::Int,   78,   79,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,   63,
-    QMetaType::Void, QMetaType::Int,   63,
-    QMetaType::Void, QMetaType::Int,   63,
 
        0        // eod
 };
@@ -472,30 +472,30 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 57: _t->on_actionModelClose_triggered(); break;
         case 58: _t->on_actionModelInformation_triggered(); break;
         case 59: _t->on_actionModelCheck_triggered(); break;
-        case 60: _t->on_tabWidget_Model_tabBarClicked((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 61: _t->on_tabWidget_Debug_currentChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 62: _t->on_horizontalSlider_Zoom_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 63: _t->on_checkBox_ShowElements_stateChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 64: _t->on_checkBox_ShowInternals_stateChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 65: _t->on_checkBox_ShowRecursive_stateChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 66: _t->on_checkBox_ShowLevels_stateChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 67: _t->on_pushButton_Breakpoint_Insert_clicked(); break;
-        case 68: _t->on_pushButton_Breakpoint_Remove_clicked(); break;
-        case 69: _t->on_tabWidgetCentral_currentChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 70: _t->on_tabWidgetCentral_tabBarClicked((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 71: _t->on_treeWidget_Plugins_itemDoubleClicked((*reinterpret_cast< QTreeWidgetItem*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 72: _t->on_graphicsView_rubberBandChanged((*reinterpret_cast< const QRect(*)>(_a[1])),(*reinterpret_cast< const QPointF(*)>(_a[2])),(*reinterpret_cast< const QPointF(*)>(_a[3]))); break;
-        case 73: _t->on_horizontalSlider_ZoomGraphical_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 74: _t->on_actionConnect_triggered(); break;
-        case 75: _t->on_pushButton_Export_clicked(); break;
-        case 76: _t->on_tabWidgetModelLanguages_currentChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 77: _t->on_actionComponent_Breakpoint_triggered(); break;
-        case 78: _t->on_treeWidgetComponents_itemSelectionChanged(); break;
-        case 79: _t->on_treeWidget_Plugins_itemClicked((*reinterpret_cast< QTreeWidgetItem*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 80: _t->on_TextCodeEditor_textChanged(); break;
-        case 81: _t->on_tabWidgetModel_currentChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 82: _t->on_tabWidgetSimulation_currentChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 83: _t->on_tabWidgetReports_currentChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 60: _t->on_actionConnect_triggered(); break;
+        case 61: _t->on_actionComponent_Breakpoint_triggered(); break;
+        case 62: _t->on_tabWidget_Model_tabBarClicked((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 63: _t->on_tabWidget_Debug_currentChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 64: _t->on_tabWidgetCentral_currentChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 65: _t->on_tabWidgetCentral_tabBarClicked((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 66: _t->on_tabWidgetModel_currentChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 67: _t->on_tabWidgetSimulation_currentChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 68: _t->on_tabWidgetReports_currentChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 69: _t->on_tabWidgetModelLanguages_currentChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 70: _t->on_treeWidget_Plugins_itemDoubleClicked((*reinterpret_cast< QTreeWidgetItem*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 71: _t->on_treeWidgetComponents_itemSelectionChanged(); break;
+        case 72: _t->on_treeWidget_Plugins_itemClicked((*reinterpret_cast< QTreeWidgetItem*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 73: _t->on_horizontalSlider_Zoom_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 74: _t->on_horizontalSlider_ZoomGraphical_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 75: _t->on_checkBox_ShowElements_stateChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 76: _t->on_checkBox_ShowInternals_stateChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 77: _t->on_checkBox_ShowRecursive_stateChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 78: _t->on_checkBox_ShowLevels_stateChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 79: _t->on_pushButton_Breakpoint_Insert_clicked(); break;
+        case 80: _t->on_pushButton_Breakpoint_Remove_clicked(); break;
+        case 81: _t->on_pushButton_Export_clicked(); break;
+        case 82: _t->on_graphicsView_rubberBandChanged((*reinterpret_cast< const QRect(*)>(_a[1])),(*reinterpret_cast< const QPointF(*)>(_a[2])),(*reinterpret_cast< const QPointF(*)>(_a[3]))); break;
+        case 83: _t->on_TextCodeEditor_textChanged(); break;
         default: ;
         }
     }
