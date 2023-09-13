@@ -75,7 +75,7 @@ public: // only gets
 	//List<ModelComponent*>* getComponents() const; ///< Returns the list of components (such as Create, Delay, Dispose, etc.) that make up the simulation model.
 	List<Event*>* getFutureEvents() const; ///< The future events list chronologically sorted; Events are scheduled by components when processing other events, and a replication evolves over time by sequentially processing the very first event in this list. It's initialized with events first described by source components (SourceComponentModel).
 	List<SimulationControl*>* getControls() const; ///< Returns a list of values that can be externally controlled (changed). They usually correspond to input parameters in the simulation model that must be changed for an experimental design.
-	List<SimulationResponse*>* getResponses() const; ///< Returns a list of exits or simulation results that can be read externally. They usually correspond to statistics resulting from the simulation that must be read for an experiment design.
+	List<SimulationControl*>* getResponses() const; ///< Returns a list of exits or simulation results that can be read externally. They usually correspond to statistics resulting from the simulation that must be read for an experiment design.
 
 public: // gets and sets
 	void setTracer(TraceManager* _traceManager);
@@ -113,7 +113,7 @@ private: // read only public access (gets)
 	//List<ModelComponent*>* _components;
 	List<Event*>* _futureEvents; ///< This is the calendar of future events, chronologically sorted, from where events are taken to be processed. This is one of the most important structures in Event driven simulation system
 	// for process analyser
-	List<SimulationResponse*>* _responses;
+	List<SimulationControl*>* _responses;
 	List<SimulationControl*>* _controls;
 
 private: // no public access (no gets / sets)

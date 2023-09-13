@@ -35,8 +35,8 @@ int Smart_ODE::main(int argc, char** argv) {
 	// define variables for the ordinary differential equations
 	Variable* varx = plugins->newInstance<Variable>(model, "x");
 	varx->insertDimentionSize(2);
-	varx->setInitialValue("0", 1.0); //x[0] = 1.0
-	varx->setInitialValue("1", 0.0); //x[1] = 0.0
+	varx->setInitialValue(1.0, "0"); //x[0] = 1.0
+	varx->setInitialValue(0.0, "1"); //x[1] = 0.0
 	Variable* vart = plugins->newInstance<Variable>(model, "t");
 	LSODE* ode1 = plugins->newInstance<LSODE>(model);
 	ode1->setVariable(varx);

@@ -102,10 +102,10 @@ public:
     void setValue(double value);
     double getValue(std::string index);
     void setValue(std::string index, double value);
-    double getInitialValue();
-    void setInitialValue(double value);
-    double getInitialValue(std::string index);
-    void setInitialValue(std::string index, double value);
+	//double getInitialValue();
+	//void setInitialValue(double value);
+	double getInitialValue(std::string index = "");
+	void setInitialValue(double value, std::string index="");
 	void insertDimentionSize(unsigned int size);
 	std::list<unsigned int>* getDimensionSizes() const;
 

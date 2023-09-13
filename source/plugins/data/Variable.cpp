@@ -13,6 +13,7 @@
 
 #include "Variable.h"
 #include "../../kernel/simulator/Plugin.h"
+#include "../../kernel/simulator/Model.h"
 
 #ifdef PLUGINCONNECT_DYNAMIC
 
@@ -27,6 +28,9 @@ ModelDataDefinition* Variable::NewInstance(Model* model, std::string name) {
 
 Variable::Variable(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<Variable>(), name) {
 	setName(name);
+	_parentModel->getControls()->insert(new SimulationControlDouble(
+						std::bind(&Variable::getInitialValue, this, ""), std::bind(&Variable::setInitialValue, this, std::placeholders::_1, ""),
+						Util::TypeOf<Variable>(), name, "InitialValue", ""));
 }
 
 std::string Variable::show() {
@@ -71,6 +75,7 @@ void Variable::setValue(std::string index, double value) {
 	}
 }
 
+/*
 double Variable::getInitialValue() {
 	return getInitialValue("");
 }
@@ -78,6 +83,7 @@ double Variable::getInitialValue() {
 void Variable::setInitialValue(double value) {
 	setInitialValue("", value);
 }
+*/
 
 double Variable::getInitialValue(std::string index) {
 	std::map<std::string, double>::iterator it = _initialValues->find(index);
@@ -88,7 +94,7 @@ double Variable::getInitialValue(std::string index) {
 	}
 }
 
-void Variable::setInitialValue(std::string index, double value) {
+void Variable::setInitialValue(double value, std::string index) {
 	std::map<std::string, double>::iterator it = _initialValues->find(index);
 	if (it == _initialValues->end()) {
 		// index does not exist. Create it.

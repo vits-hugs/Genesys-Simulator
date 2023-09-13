@@ -10,8 +10,9 @@
 
 class PropertyGenesysBase {
 public:
-	PropertyGenesysBase(std::string className, std::string propertyName, std::string whatsThis="") {
+	PropertyGenesysBase(std::string className, std::string elementName, std::string propertyName, std::string whatsThis="") {
 		_className=className;
+		_elementName=elementName;
 		_propertyName=propertyName;
 		_whatsThis=whatsThis;
 	}
@@ -19,11 +20,13 @@ public:
 public:
 	std::string whatsThis() const { return _whatsThis; }
 	std::string getClassname() const { return _className; }
+	std::string getElementName() const { return _elementName; }
 	std::string getName() const { return _propertyName; }
 	std::string propertyType() const { return _propertyType; }
 	void setWhatsThis(const std::string text);
 	void setName(std::string name) { _propertyName = name; }
 protected:
+	std::string _elementName;
 	std::string _className;
 	std::string _propertyName;
 	std::string _propertyType;
@@ -32,8 +35,8 @@ protected:
 
 class PropertyGenesys: public PropertyGenesysBase {
 public:
-	PropertyGenesys(std::string className, std::string propertyName, std::string whatsThis="", std::string propertyId="", std::string toolTip="", std::string statusTip="")
-		: PropertyGenesysBase(className, propertyName, whatsThis){
+	PropertyGenesys(std::string className, std::string elementName, std::string propertyName, std::string whatsThis="", std::string propertyId="", std::string toolTip="", std::string statusTip="")
+		: PropertyGenesysBase(className, elementName, propertyName, whatsThis){
 		_propertyId=propertyId;
 		_toolTip=toolTip;
 		_statusTip=statusTip;
@@ -82,10 +85,18 @@ protected:
 
 class SimulationControl: public PropertyGenesysBase {
 public:
-	SimulationControl(std::string className, std::string propertyName, std::string whatsThis="")
-		: PropertyGenesysBase(className, propertyName, whatsThis){
+	SimulationControl(std::string className, std::string elementName, std::string propertyName, std::string whatsThis="")
+		: PropertyGenesysBase(className, elementName, propertyName, whatsThis){
 	}
-	std::string show() const { return "classname="+_className+ ",name="+_propertyName+", type="+_propertyType+", value="+this->getValue(); }
+	std::string show() const {
+		std::string msg = "classname="+_className+ ", elementName="+_elementName+", name=\""+_propertyName+"\"";
+		if (_readonly) {
+			msg += " (readonly)";
+		}
+		//msg += ", type="+_propertyType;
+		msg += ", value="+getValue();
+		return msg;
+	}
 	bool isReadOnly() const { return _readonly; }
 public:
 	virtual std::string getValue() const  = 0;
@@ -93,7 +104,6 @@ public:
 protected:
 	bool _readonly;
 };
-typedef  SimulationControl SimulationResponse;
 
 // -----------------------------------------------------------
 
@@ -101,7 +111,10 @@ typedef std::function<std::string()> GetterString;
 typedef std::function<void(std::string)> SetterString;
 class SimulationControlString: public SimulationControl {
 public:
-	SimulationControlString(GetterString getter, SetterString setter, std::string className, std::string propertyName, std::string whatsThis="") : SimulationControl(className, propertyName, whatsThis) {
+//	SimulationControlString(GetterString getter, std::string className, std::string elementName, std::string propertyName, std::string whatsThis="") : SimulationControl(className, elementName, propertyName, whatsThis) {
+//		SimulationControlString(getter, nullptr, className, propertyName, whatsThis);
+//	}
+	SimulationControlString(GetterString getter, SetterString setter, std::string className, std::string elementName, std::string propertyName, std::string whatsThis="") : SimulationControl(className, elementName, propertyName, whatsThis) {
 		_getter= getter;
 		_setter = setter;
 		_readonly = setter == nullptr;
@@ -122,7 +135,10 @@ typedef std::function<double()> GetterDouble;
 typedef std::function<void(double)> SetterDouble;
 class SimulationControlDouble: public SimulationControl {
 public:
-	SimulationControlDouble(GetterDouble getter, SetterDouble setter, std::string className, std::string propertyName, std::string whatsThis="") : SimulationControl(className, propertyName, whatsThis){
+//	SimulationControlDouble(GetterDouble getter, std::string className, std::string elementName, std::string propertyName, std::string whatsThis="") : SimulationControl(className, elementName, propertyName, whatsThis) {
+//		SimulationControlDouble(getter, nullptr, className, propertyName, whatsThis);
+//	}
+	SimulationControlDouble(GetterDouble getter, SetterDouble setter, std::string className, std::string elementName, std::string propertyName, std::string whatsThis="") : SimulationControl(className, elementName, propertyName, whatsThis){
 		_getter= getter;
 		_setter = setter;
 		_readonly = setter == nullptr;
@@ -142,7 +158,10 @@ typedef std::function<bool()> GetterBool;
 typedef std::function<void(bool)> SetterBool;
 class SimulationControlBool: public SimulationControl {
 public:
-	SimulationControlBool(GetterBool getter, SetterBool setter, std::string className, std::string propertyName, std::string whatsThis="") : SimulationControl(className, propertyName, whatsThis){
+//	SimulationControlBool(GetterBool getter, std::string className, std::string elementName, std::string propertyName, std::string whatsThis="") : SimulationControl(className, elementName, propertyName, whatsThis) {
+//		SimulationControlBool(getter, nullptr, className, propertyName, whatsThis);
+//	}
+	SimulationControlBool(GetterBool getter, SetterBool setter, std::string className, std::string elementName, std::string propertyName, std::string whatsThis="") : SimulationControl(className, elementName, propertyName, whatsThis){
 		_getter= getter;
 		_setter = setter;
 		_readonly = setter == nullptr;
@@ -163,7 +182,10 @@ typedef std::function<unsigned int()> GetterUInt;
 typedef std::function<void(unsigned int)> SetterUInt;
 class SimulationControlUInt: public SimulationControl {
 public:
-	SimulationControlUInt(GetterUInt getter, SetterUInt setter, std::string className, std::string propertyName, std::string whatsThis="") : SimulationControl(className, propertyName, whatsThis){
+//	SimulationControlUInt(GetterUInt getter, std::string className, std::string elementName, std::string propertyName, std::string whatsThis="") : SimulationControl(className, elementName, propertyName, whatsThis) {
+//		SimulationControlUInt(getter, nullptr, className, propertyName, whatsThis);
+//	}
+	SimulationControlUInt(GetterUInt getter, SetterUInt setter, std::string className, std::string elementName, std::string propertyName, std::string whatsThis="") : SimulationControl(className, elementName, propertyName, whatsThis){
 		_getter= getter;
 		_setter = setter;
 		_readonly = setter == nullptr;
@@ -177,6 +199,52 @@ private:
 	SetterUInt _setter;
 };
 
+// -----------------------------------------------------------
+
+typedef std::function<unsigned short()> GetterUShort;
+typedef std::function<void(unsigned short)> SetterUShort;
+class SimulationControlUShort: public SimulationControl {
+public:
+//	SimulationControlUShort(GetterUShort getter, std::string className, std::string elementName, std::string propertyName, std::string whatsThis="") : SimulationControl(className, elementName, propertyName, whatsThis) {
+//		SimulationControlUShort(getter, nullptr, className, propertyName, whatsThis);
+//	}
+	SimulationControlUShort(GetterUShort getter, SetterUShort setter, std::string className, std::string elementName, std::string propertyName, std::string whatsThis="") : SimulationControl(className, elementName, propertyName, whatsThis){
+		_getter= getter;
+		_setter = setter;
+		_readonly = setter == nullptr;
+		_propertyType = Util::TypeOf<unsigned int>();
+	}
+public:
+	virtual std::string getValue() const override { return std::to_string(_getter()); }
+	virtual void setValue(std::string value) override { _setter(std::stoul(value)); };
+private:
+	GetterUShort _getter;
+	SetterUShort _setter;
+};
+
+
+// -----------------------------------------------------------
+
+typedef std::function<int()> GetterInt;
+typedef std::function<void(int)> SetterInt;
+class SimulationControlInt: public SimulationControl {
+public:
+//	SimulationControlInt(GetterInt getter, std::string className, std::string elementName, std::string propertyName, std::string whatsThis="") : SimulationControl(className, elementName, propertyName, whatsThis) {
+//		SimulationControlInt(getter, nullptr, className, propertyName, whatsThis);
+//	}
+	SimulationControlInt(GetterInt getter, SetterInt setter, std::string className, std::string elementName, std::string propertyName, std::string whatsThis="") : SimulationControl(className, elementName, propertyName, whatsThis){
+		_getter= getter;
+		_setter = setter;
+		_readonly = setter == nullptr;
+		_propertyType = Util::TypeOf<unsigned int>();
+	}
+public:
+	virtual std::string getValue() const override { return std::to_string(_getter()); }
+	virtual void setValue(std::string value) override { _setter(std::stoi(value)); };
+private:
+	GetterInt _getter;
+	SetterInt _setter;
+};
 
 // -----------------------------------------------------------
 
@@ -184,7 +252,10 @@ typedef std::function<Util::TimeUnit()> GetterTimeUnit;
 typedef std::function<void(Util::TimeUnit)> SetterTimeUnit;
 class SimulationControlTimeUnit: public SimulationControl {
 public:
-	SimulationControlTimeUnit(GetterTimeUnit getter, SetterTimeUnit setter, std::string className, std::string propertyName, std::string whatsThis="") : SimulationControl(className, propertyName, whatsThis){
+//	SimulationControlTimeUnit(GetterTimeUnit getter, std::string className, std::string elementName, std::string propertyName, std::string whatsThis="") : SimulationControl(className, elementName, propertyName, whatsThis) {
+//		SimulationControlTimeUnit(getter, nullptr, className, propertyName, whatsThis);
+//	}
+	SimulationControlTimeUnit(GetterTimeUnit getter, SetterTimeUnit setter, std::string className, std::string elementName, std::string propertyName, std::string whatsThis="") : SimulationControl(className, elementName, propertyName, whatsThis){
 		_getter= getter;
 		_setter = setter;
 		_readonly = setter == nullptr;

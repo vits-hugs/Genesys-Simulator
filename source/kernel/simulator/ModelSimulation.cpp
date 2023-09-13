@@ -255,7 +255,7 @@ void ModelSimulation::_showSimulationHeader() {
 	controls = controls.substr(0, controls.length() - 2);
 	tm->traceReport("> Simulation controls: " + controls);
 	std::string responses;
-	for (SimulationResponse* pg : *_model->getResponses()->list()) {
+	for (SimulationControl* pg : *_model->getResponses()->list()) {
 		responses += pg->getName() + "(" + pg->getClassname() + "), ";
 	}
 	responses = responses.substr(0, responses.length() - 2);

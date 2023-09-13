@@ -43,8 +43,8 @@ public:
 	Delay(Model* model, std::string name = "");
 	virtual ~Delay() = default;
 public:
-	void setDelayExpression(std::string _delayExpression);
-	void setDelayExpression(std::string _delayExpression, Util::TimeUnit _delayTimeUnit);
+	//void setDelayExpression(std::string _delayExpression);
+	void setDelayExpression(std::string _delayExpression, Util::TimeUnit _delayTimeUnit=Util::TimeUnit::unknown);
 	std::string delayExpression() const;
 	void setDelay(double delay);
 	double delay() const;

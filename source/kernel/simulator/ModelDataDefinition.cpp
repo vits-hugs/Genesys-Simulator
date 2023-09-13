@@ -259,7 +259,7 @@ void ModelDataDefinition::setName(std::string name) {
 			}
 		}
 
-		for (SimulationResponse* response : *_parentModel->getResponses()->list()) {
+		for (SimulationControl* response : *_parentModel->getResponses()->list()) {
 			stuffName = response->getName();
 			pos = stuffName.find(getName(), 0);
 			if (pos < stuffName.length()) {// != std::string::npos) {
@@ -355,7 +355,7 @@ void ModelDataDefinition::_addProperty(PropertyBase* property) {
 }
 
 /*
-void ModelDataDefinition::_addSimulationResponse(SimulationResponse* response) {
+void ModelDataDefinition::_addSimulationResponse(SimulationControl* response) {
 	_simulationResponses->insert(response); // TODO: Check if exists before insert?
 }
 

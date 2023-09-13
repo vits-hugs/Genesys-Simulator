@@ -35,18 +35,19 @@ StatisticsCollector::StatisticsCollector(Model* model, std::string name, ModelDa
 	: ModelDataDefinition(model, Util::TypeOf<StatisticsCollector>(), name, insertIntoModel) {
 	_parent = parent;
 	_initStaticsAndCollector();
+	StatisticsClass* statThis = static_cast<StatisticsClass*>(this->_statistics);
+	std::string classname = Util::TypeOf<StatisticsClass>();
+	_parentModel->getResponses()->insert(new SimulationControlDouble(
+				 std::bind(&StatisticsClass::average, statThis), nullptr, classname, getName(), "Average"));
+	_parentModel->getResponses()->insert(new SimulationControlDouble(
+				 std::bind(&StatisticsClass::min, statThis), nullptr, classname, getName(), "Minimum"));
+	_parentModel->getResponses()->insert(new SimulationControlDouble(
+				 std::bind(&StatisticsClass::max, statThis), nullptr, classname, getName(), "Maximum"));
+	_parentModel->getResponses()->insert(new SimulationControlDouble(
+				 std::bind(&StatisticsClass::numElements, statThis), nullptr, classname, getName(), "NumberOfElements"));
+	_parentModel->getResponses()->insert(new SimulationControlDouble(
+				 std::bind(&StatisticsClass::halfWidthConfidenceInterval, statThis), nullptr, classname, getName(), "HalfWidthConfidenceInterval"));
 
-
-	//SimulationResponse* resp = new SimulationResponse(
-	//			Util::TypeOf<StatisticsCollector>(), getName(),
-	//			DefineGetterMember<StatisticsClass>(static_cast<StatisticsClass*>(this->_statistics), &StatisticsClass::average) );
-	//_parentModel->getResponses()->insert(resp);
-	/*
-	_parentModel->getResponses()->insert(new PropertyT<double>(Util::TypeOf<StatisticsClass>(), getName() + ".average",
-			DefineGetter<StatisticsClass, double>(static_cast<StatisticsClass*>(this->_statistics),  &StatisticsClass::average), nullptr, getName()));
-	_parentModel->getResponses()->insert(new PropertyT<double>(Util::TypeOf<StatisticsClass>(), getName() + ".halfwidth",
-			DefineGetter<StatisticsClass,double>(static_cast<StatisticsClass*>(this->_statistics),  &StatisticsClass::halfWidthConfidenceInterval), nullptr, getName()));
-			*/
 }
 
 void StatisticsCollector::_initStaticsAndCollector() {

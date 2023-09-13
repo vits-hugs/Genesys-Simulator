@@ -18,29 +18,23 @@
 //using namespace GenesysKernel;
 
 SourceModelComponent::SourceModelComponent(Model* model, std::string componentTypename, std::string name) : ModelComponent(model, componentTypename, name) {
+	std::string className = this->getClassname();
 	_parentModel->getControls()->insert(new SimulationControlDouble(
 				std::bind(&SourceModelComponent::getFirstCreation, this),
 				std::bind(&SourceModelComponent::setFirstCreation, this, std::placeholders::_1),
-				this->getName(), "First Creation", "The instant when the first entity arrives")	);
+				className, name, "FirstCreation", "The instant when the first entity arrives")	);
 	_parentModel->getControls()->insert(new SimulationControlUInt(
 				std::bind(&SourceModelComponent::getEntitiesPerCreation, this),
 				std::bind(&SourceModelComponent::setEntitiesPerCreation, this, std::placeholders::_1),
-				this->getName(), "Entities Per Creation", "The amount of entities to be created on each arrival") );
-//	auto overloadedSetter = std::bind(static_cast<void(&)(std::string) (SourceModelComponent::setTimeBetweenCreationsExpression), this, std::placeholders::_1);
+				className, name, "EntitiesPerCreation", "The amount of entities to be created on each arrival") );
 	_parentModel->getControls()->insert(new SimulationControlString(
 				std::bind(&SourceModelComponent::getTimeBetweenCreationsExpression, this),
 				std::bind(&SourceModelComponent::setTimeBetweenCreationsExpression, this, std::placeholders::_1, Util::TimeUnit::unknown),
-				this->getName(), "Time Between Arrivals", "Expression that defines the interval between two consecutive arrivals") );
+				className, name, "TimeBetweenArrivals", "Expression that defines the interval between two consecutive arrivals") );
 	_parentModel->getControls()->insert(new SimulationControlTimeUnit(
 				std::bind(&SourceModelComponent::getTimeUnit, this),
 				std::bind(&SourceModelComponent::setTimeUnit, this, std::placeholders::_1),
-				this->getName(), "Time Unit", "The time unit of time between arrivals") );
-/*
-
-	_addSimulationControl(new SimulationControl("SourceModelComponent", "Time Between Creations Expression",
-			DefineGetterMember<SourceModelComponent>(this, &SourceModelComponent::getTimeBetweenCreationsExpression),
-			DefineSetterMember<SourceModelComponent>(this, &SourceModelComponent::setTimeBetweenCreationsExpression)) );
-*/
+				className, name, "TimeUnit", "The time unit of time between arrivals") );
 }
 
 std::string SourceModelComponent::show() {

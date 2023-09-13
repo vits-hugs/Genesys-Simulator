@@ -30,7 +30,8 @@ void SimulationReporterDefaultImpl1::showSimulationControls() {
 	Util::IncIndent();
 	{
 		for (SimulationControl* control : *_model->getControls()->list()) {
-			_model->getTracer()->traceReport(control->getName() +  "(" + control->getClassname() + "): " + control->getValue());
+//			_model->getTracer()->traceReport(control->getClassname() + "." +control->getName() + ": " + control->getValue());
+			_model->getTracer()->traceReport("("+control->getClassname() + ") "+ control->getElementName()+"." +control->getName() + ": " + control->getValue());
 		}
 	}
 	Util::DecIndent();
@@ -152,8 +153,8 @@ void SimulationReporterDefaultImpl1::showSimulationResponses() {
 	_model->getTracer()->traceReport("Simulation Responses:");
 	Util::IncIndent();
 	{
-		for (SimulationResponse* response : *_model->getResponses()->list()) {
-			_model->getTracer()->traceReport(response->getName() + ": " + response->getValue());
+		for (SimulationControl* response : *_model->getResponses()->list()) {
+			_model->getTracer()->traceReport("("+response->getClassname() + ") "+ response->getElementName()+"." +response->getName() + ": " + response->getValue());
 		}
 	}
 	Util::DecIndent();

@@ -56,7 +56,7 @@ Model::Model(Simulator* simulator, unsigned int level) {
 	// TODO: Add properties
 
 	// for process analyser
-	_responses = new List<SimulationResponse*>();
+	_responses = new List<SimulationControl*>();
 	_controls = new List<SimulationControl*>();
 
 
@@ -249,7 +249,7 @@ void Model::_showSimulationControls() const {
 void Model::_showSimulationResponses() const {
 	getTracer()->trace(TraceManager::Level::L2_results, "Simulation Responses:");
 	Util::IncIndent();
-	for (SimulationResponse* response : *_responses->list()) {
+	for (SimulationControl* response : *_responses->list()) {
 		getTracer()->trace(TraceManager::Level::L2_results, response->show()); ////
 	}
 	Util::DecIndent();
@@ -313,7 +313,7 @@ List<SimulationControl*>* Model::getControls() const {
 	return _controls;
 }
 
-List<SimulationResponse*>* Model::getResponses() const {
+List<SimulationControl*>* Model::getResponses() const {
 	return _responses;
 }
 

@@ -48,12 +48,9 @@ int Smart_SimulationControlResponse::main(int argc, char** argv) {
 	model->check();
 	model->show();
 	genesys->getTracer()->setTraceLevel(TraceManager::Level::L9_mostDetailed);
-	for (SimulationControl* control: *model->getControls()->list()) {
-		std::cout << control->show() << std::endl;
-	}
-
-
-//	model->getSimulation()->start();
+	model->getSimulation()->setShowSimulationControlsInReport(true);
+	model->getSimulation()->setShowSimulationResposesInReport(true);
+	model->getSimulation()->start();
 	delete genesys;
 	return 0;
 };
