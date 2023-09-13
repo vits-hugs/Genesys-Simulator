@@ -14,6 +14,7 @@
 #include "Delay.h"
 #include "../../kernel/simulator/Model.h"
 #include "../../kernel/simulator/Attribute.h"
+#include "../../kernel/simulator/SimulationControlAndResponse.h"
 
 #ifdef PLUGINCONNECT_DYNAMIC
 
@@ -35,6 +36,27 @@ Util::AllocationType Delay::getAllocation() const {
 }
 
 Delay::Delay(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Delay>(), name) {
+
+	//SetterClassT<Delay, std::string> s(this, &Delay::setDelayExpression);
+	//SetterClass *s = new SetterClassT<Delay, std::string>(this, &Delay::setDelayExpression);
+	//std:: cout << s->classT.name() << std::endl;
+	//std:: cout << s->typeT.name() << std::endl;
+	//std:: cout << typeid(s).name() << std::endl;
+	//std:: cout << this->delayExpression() << std::endl;
+	//s->setter("isso");
+	//std:: cout << this->delayExpression() << std::endl;
+
+
+//	SimulationControl* controlDelayExpression = new SimulationControl(Util::TypeOf<Delay>(), "Delay Expression",
+//															   DefineGetterMember<Delay>(this, &Delay::delayExpression),
+//															   DefineSetterMember<Delay, std::string>(this, &Delay::setDelayExpression));
+//	model->getControls()->insert(controlDelayExpression);
+//	SimulationControl* controlDelayTimeUnit = new SimulationControl(Util::TypeOf<Delay>(), "Delay Time Unit",
+//																	 DefineGetterMember<Delay>(this, &Delay::delayTimeUnit),
+//																	 DefineSetterMember<Delay>(this, &Delay::setDelayTimeUnit));
+//	model->getControls()->insert(controlDelayTimeUnit);
+
+/*
 	PropertyT<std::string>* prop1 = new PropertyT<std::string>(Util::TypeOf<Delay>(), "Delay Expression",
 															   DefineGetter<Delay, std::string>(this, &Delay::delayExpression),
 															   DefineSetter<Delay, std::string>(this, &Delay::setDelayExpression));
@@ -45,6 +67,7 @@ Delay::Delay(Model* model, std::string name) : ModelComponent(model, Util::TypeO
 																	 DefineSetter<Delay, Util::TimeUnit>(this, &Delay::setDelayTimeUnit));
 	model->getControls()->insert(prop2);
 	_addProperty(prop2);
+*/
 }
 
 void Delay::setDelay(double delay) {

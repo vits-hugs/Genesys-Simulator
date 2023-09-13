@@ -511,7 +511,7 @@ void MainWindow::_actualizeModelComponents(bool force) {
 			treeComp->setText(2, QString::fromStdString(comp->getName()));
 			std::string properties = "";
 			for (auto prop : *comp->getProperties()->list()) {
-				properties += prop->getName() + ":" + std::to_string(prop->getValue()) + ", ";
+				properties += prop->getName() + ":" + prop->getValue() + ", ";
 			}
 			properties = properties.substr(0, properties.length() - 2);
 			treeComp->setText(3, QString::fromStdString(properties));
@@ -538,7 +538,7 @@ void MainWindow::_actualizeModelDataDefinitions(bool force) {
 				treeComp->setText(2, QString::fromStdString(comp->getName()));
 				std::string properties = "";
 				for (auto prop : *comp->getProperties()->list()) {
-					properties += prop->getName() + ":" + std::to_string(prop->getValue()) + ", ";
+					properties += prop->getName() + ":" + prop->getValue() + ", ";
 				}
 				properties = properties.substr(0, properties.length() - 2);
 				treeComp->setText(3, QString::fromStdString(properties));

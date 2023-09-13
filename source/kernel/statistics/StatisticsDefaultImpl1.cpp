@@ -120,7 +120,7 @@ void StatisticsDefaultImpl1::setConfidenceLevel(double confidencelevel) {
 
 }
 
-double StatisticsDefaultImpl1::getConfidenceLevel() {
+double StatisticsDefaultImpl1::confidenceLevel() {
 	return _confidenceLevel;
 }
 
@@ -128,7 +128,7 @@ unsigned int StatisticsDefaultImpl1::newSampleSize(double halfWidth) {
 	return 0;
 }
 
-Collector_if* StatisticsDefaultImpl1::getCollector() {
+Collector_if* StatisticsDefaultImpl1::getCollector() const {
 	return this->_collector;
 }
 

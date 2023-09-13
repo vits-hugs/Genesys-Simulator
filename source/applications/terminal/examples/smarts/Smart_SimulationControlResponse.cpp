@@ -27,16 +27,17 @@ Smart_SimulationControlResponse::Smart_SimulationControlResponse() {
 
 int Smart_SimulationControlResponse::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
+	genesys->getTracer()->setTraceLevel(TraceManager::Level::L2_results);
 	this->setDefaultTraceHandlers(genesys->getTracer());
 	this->insertFakePluginsByHand(genesys);
 	// crete model
 	Model* model = genesys->getModels()->newModel();
 	PluginManager* plugins = genesys->getPlugins();
 	Create* create1 = plugins->newInstance<Create>(model);
-	//Process* process1 = plugins->newInstance<Process>(model);
-	//process1->setQueueableItem(new QueueableItem(model, "Queue_1"));
-	//process1->getSeizeRequests()->insert(new SeizableItem(model, "Resource_1"));
-	Delay* process1 = plugins->newInstance<Delay>(model);
+	Process* process1 = plugins->newInstance<Process>(model);
+	process1->setQueueableItem(new QueueableItem(model, "Queue_1"));
+	process1->getSeizeRequests()->insert(new SeizableItem(model, "Resource_1"));
+	//Delay* process1 = plugins->newInstance<Delay>(model);
 	Dispose* dispose1 = plugins->newInstance<Dispose>(model);
 	// connect model components to create a "workflow"
 	create1->getConnections()->insert(process1);
@@ -46,7 +47,13 @@ int Smart_SimulationControlResponse::main(int argc, char** argv) {
 	//model->save("./models/Smart_SimulationControlResponse.gen");
 	model->check();
 	model->show();
-	model->getSimulation()->start();
+	genesys->getTracer()->setTraceLevel(TraceManager::Level::L9_mostDetailed);
+	for (SimulationControl* control: *model->getControls()->list()) {
+		std::cout << control->show() << std::endl;
+	}
+
+
+//	model->getSimulation()->start();
 	delete genesys;
 	return 0;
 };

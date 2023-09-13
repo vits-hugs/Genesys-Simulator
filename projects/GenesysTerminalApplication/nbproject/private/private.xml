@@ -7,17 +7,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/cancian/Laboratory/Software/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/source/kernel/simulator/PluginManager.h</file>
-            <file>file:/home/cancian/Laboratory/Software/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/source/kernel/simulator/ModelSimulation.h</file>
-            <file>file:/home/cancian/Laboratory/Software/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/source/kernel/simulator/SourceModelComponent.h</file>
-            <file>file:/home/cancian/Laboratory/Software/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/source/applications/terminal/examples/smarts/Smart_SimulationControlResponse.cpp</file>
-            <file>file:/home/cancian/Laboratory/Software/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/source/kernel/simulator/ComponentManager.h</file>
-            <file>file:/home/cancian/Laboratory/Software/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/source/kernel/simulator/ModelInfo.h</file>
+            <file>file:/home/cancian/Laboratory/Software/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/source/applications/terminal/underDevelopment/TestingTerminalApp.h</file>
+            <file>file:/home/cancian/Laboratory/Software/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/source/kernel/simulator/PropertyGenesys.h</file>
             <file>file:/home/cancian/Laboratory/Software/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/source/applications/TraitsApp.h</file>
-            <file>file:/home/cancian/Laboratory/Software/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/source/kernel/simulator/Entity.h</file>
+            <file>file:/home/cancian/Laboratory/Software/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/source/applications/terminal/underDevelopment/TestingTerminalApp.cpp</file>
             <file>file:/home/cancian/Laboratory/Software/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/projects/GenesysTerminalApplication/main.cpp</file>
-            <file>file:/home/cancian/Laboratory/Software/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/source/applications/terminal/examples/smarts/Smart_SimulationControlResponse.h</file>
-            <file>file:/home/cancian/Laboratory/Software/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/source/applications/BaseGenesysTerminalApplication.cpp</file>
         </group>
     </open-files>
 </project-private>

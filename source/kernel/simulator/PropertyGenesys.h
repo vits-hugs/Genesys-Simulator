@@ -1,13 +1,14 @@
 #ifndef PROPERTY_H
 #define PROPERTY_H
 
+/*
 #include "../util/Util.h"
 //#include "../util/List.h"
 #include <string>
 #include <functional>
 
-class SeizableItem;
-class QueueableItem;
+//class SeizableItem;
+//class QueueableItem;
 
 //---------------------------------------------------------------------------
 
@@ -155,37 +156,7 @@ protected:
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*
-
-
 class PropertyGetterBase {
 public:
 	PropertyGetterBase(std::string classname, std::string name, std::string parentName="");
@@ -381,9 +352,7 @@ protected:
 };
 
 
- */
 
-#endif // PROPERTY_H
 
 
 
@@ -938,5 +907,4 @@ SetterMemberTimeUnit DefineSetterMember(Class * object, void (Class::*function)(
 
 */
 
-//#endif
-
+#endif

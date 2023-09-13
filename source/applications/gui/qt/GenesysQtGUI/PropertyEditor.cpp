@@ -71,7 +71,7 @@ void PropertyEditor::setModelBlock(ModelDataDefinition* modelblock) {
 		//treeItemChild->setStatusTip(0, QString::fromStdString(plugin->getPluginInfo()->getLanguageTemplate()));
 		//treeItemChild->setFlags(Qt::ItemIsSelectable | Qt::ItemIsDragEnabled | Qt::ItemNeverHasChildren);
 		treeRootItem->addChild(treeItemChild);
-		QWidget* lineEdit = new QLineEdit(QString::fromStdString(std::to_string(prop->getValue())));
+		QWidget* lineEdit = new QLineEdit(QString::fromStdString(prop->getValue()));
 		this->setItemWidget(treeItemChild, 1, lineEdit);
 	}
 	resizeColumnToContents(0);

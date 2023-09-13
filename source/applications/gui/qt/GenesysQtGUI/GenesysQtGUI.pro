@@ -25,7 +25,6 @@ SOURCES += \
 	../../../../kernel/simulator/Model.cpp \
 	../../../../kernel/simulator/ModelCheckerDefaultImpl1.cpp \
 	../../../../kernel/simulator/ModelComponent.cpp \
-	../../../../kernel/simulator/ModelControlAndResponse.cpp \
 	../../../../kernel/simulator/ModelDataDefinition.cpp \
 	../../../../kernel/simulator/ModelDataManager.cpp \
 	../../../../kernel/simulator/ModelInfo.cpp \
@@ -251,7 +250,6 @@ HEADERS += \
 	../../../../kernel/simulator/ModelCheckerDefaultImpl1.h \
 	../../../../kernel/simulator/ModelChecker_if.h \
 	../../../../kernel/simulator/ModelComponent.h \
-	../../../../kernel/simulator/ModelControlAndResponse.h \
 	../../../../kernel/simulator/ModelDataDefinition.h \
 	../../../../kernel/simulator/ModelDataManager.h \
 	../../../../kernel/simulator/ModelInfo.h \
@@ -273,6 +271,7 @@ HEADERS += \
 	../../../../kernel/simulator/PluginManager.h \
         ../../../../kernel/simulator/PropertyGenesys.h \
 	../../../../kernel/simulator/ScenarioExperiment_if.h \
+	../../../../kernel/simulator/SimulationControlAndResponse.h \
 	../../../../kernel/simulator/SimulationExperiment.h \
 	../../../../kernel/simulator/SimulationReporterDefaultImpl1.h \
 	../../../../kernel/simulator/SimulationReporter_if.h \

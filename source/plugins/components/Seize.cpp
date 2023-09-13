@@ -32,6 +32,20 @@ ModelDataDefinition* Seize::NewInstance(Model* model, std::string name) {
 }
 
 Seize::Seize(Model* model, std::string name) : ModelComponent(model, Util::TypeOf<Seize>(), name) {
+	// controls and Responses
+	//_parentModel->getControls()->insert(new SimulationControl(Util::TypeOf<Seize>(), "Priority",
+	//		DefineGetterMember<Seize, unsigned short>(this, &Seize::getPriority),
+	//		DefineSetterMember<Seize, unsigned short>(this, &Seize::setPriority)));
+	//unsigned int _allocationType = DEFAULT.allocationType; // uint ? enum?
+//	_parentModel->getControls()->insert(new SimulationControl(Util::TypeOf<Seize>(), "Queueable Item",
+//			DefineGetterMember<Seize, QueueableItem*>(this, &Seize::getQueueableItem),
+//			DefineSetterMember<Seize, QueueableItem*>(this, &Seize::setQueueableItem)));
+	//List<SeizableItem*>* _seizeRequests = new List<SeizableItem*>();
+//	_parentModel->getResponses()->insert(new SimulationResponse(Util::TypeOf<Seize>(), "Seize Requests",
+//			DefineGetterMember<Seize, List<SeizableItem*>*>(this, &Seize::getSeizeRequests),
+//			nullptr));
+
+/*
 	// properties
 	_addProperty(new PropertyT<unsigned short>(Util::TypeOf<Seize>(), "Priority",
 			DefineGetter<Seize, unsigned short>(this, &Seize::getPriority),
@@ -44,6 +58,7 @@ Seize::Seize(Model* model, std::string name) : ModelComponent(model, Util::TypeO
 	_addProperty(new PropertyT<List<SeizableItem*>*>(Util::TypeOf<Seize>(), "Seize Requests",
 			DefineGetter<Seize, List<SeizableItem*>*>(this, &Seize::getSeizeRequests),
 			nullptr));
+*/
 }
 
 // public

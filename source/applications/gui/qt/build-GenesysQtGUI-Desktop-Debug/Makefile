@@ -68,7 +68,6 @@ SOURCES       = ../../../../kernel/simulator/Attribute.cpp \
 		../../../../kernel/simulator/Model.cpp \
 		../../../../kernel/simulator/ModelCheckerDefaultImpl1.cpp \
 		../../../../kernel/simulator/ModelComponent.cpp \
-		../../../../kernel/simulator/ModelControlAndResponse.cpp \
 		../../../../kernel/simulator/ModelDataDefinition.cpp \
 		../../../../kernel/simulator/ModelDataManager.cpp \
 		../../../../kernel/simulator/ModelInfo.cpp \
@@ -300,7 +299,6 @@ OBJECTS       = Attribute.o \
 		Model.o \
 		ModelCheckerDefaultImpl1.o \
 		ModelComponent.o \
-		ModelControlAndResponse.o \
 		ModelDataDefinition.o \
 		ModelDataManager.o \
 		ModelInfo.o \
@@ -654,7 +652,6 @@ DIST          = ../GenesysQtGUI/QPropertyBrowser/CMakeLists.txt \
 		../../../../kernel/simulator/ModelCheckerDefaultImpl1.h \
 		../../../../kernel/simulator/ModelChecker_if.h \
 		../../../../kernel/simulator/ModelComponent.h \
-		../../../../kernel/simulator/ModelControlAndResponse.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ModelDataManager.h \
 		../../../../kernel/simulator/ModelInfo.h \
@@ -676,6 +673,7 @@ DIST          = ../GenesysQtGUI/QPropertyBrowser/CMakeLists.txt \
 		../../../../kernel/simulator/PluginManager.h \
 		../../../../kernel/simulator/PropertyGenesys.h \
 		../../../../kernel/simulator/ScenarioExperiment_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
 		../../../../kernel/simulator/SimulationExperiment.h \
 		../../../../kernel/simulator/SimulationReporterDefaultImpl1.h \
 		../../../../kernel/simulator/SimulationReporter_if.h \
@@ -898,7 +896,6 @@ DIST          = ../GenesysQtGUI/QPropertyBrowser/CMakeLists.txt \
 		../../../../kernel/simulator/Model.cpp \
 		../../../../kernel/simulator/ModelCheckerDefaultImpl1.cpp \
 		../../../../kernel/simulator/ModelComponent.cpp \
-		../../../../kernel/simulator/ModelControlAndResponse.cpp \
 		../../../../kernel/simulator/ModelDataDefinition.cpp \
 		../../../../kernel/simulator/ModelDataManager.cpp \
 		../../../../kernel/simulator/ModelInfo.cpp \
@@ -1333,8 +1330,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents ../GenesysQtGUI/GenesysQtGUI_en_US.ts $(DISTDIR)/
 	$(COPY_FILE) --parents ../GenesysQtGUI/GenesysQtGUI_resources.qrc ../GenesysQtGUI/QPropertyBrowser/qtpropertybrowser.qrc ../GenesysQtGUI/QPropertyBrowser/qtpropertybrowser.qrc qmake_qmake_qm_files.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../../../../kernel/TraitsKernel.h ../../../../kernel/simulator/Attribute.h ../../../../kernel/simulator/ComponentManager.h ../../../../kernel/simulator/ConnectionManager.h ../../../../kernel/simulator/Counter.h ../../../../kernel/simulator/CppSerializer.h ../../../../kernel/simulator/DefineGetterSetter.h ../../../../kernel/simulator/Entity.h ../../../../kernel/simulator/EntityType.h ../../../../kernel/simulator/Event.h ../../../../kernel/simulator/ExperimentManager.h ../../../../kernel/simulator/ExperimentManagerDefaultImpl1.h ../../../../kernel/simulator/ExperimetManager_if.h ../../../../kernel/simulator/GenSerializer.h ../../../../kernel/simulator/JsonSerializer.h ../../../../kernel/simulator/LicenceManager.h ../../../../kernel/simulator/Model.h ../../../../kernel/simulator/ModelCheckerDefaultImpl1.h ../../../../kernel/simulator/ModelChecker_if.h ../../../../kernel/simulator/ModelComponent.h ../../../../kernel/simulator/ModelControlAndResponse.h ../../../../kernel/simulator/ModelDataDefinition.h ../../../../kernel/simulator/ModelDataManager.h ../../../../kernel/simulator/ModelInfo.h ../../../../kernel/simulator/ModelManager.h ../../../../kernel/simulator/ModelPersistenceDefaultImpl2.h ../../../../kernel/simulator/ModelSerializer.h ../../../../kernel/simulator/ModelSimulation.h ../../../../kernel/simulator/OnEventManager.h ../../../../kernel/simulator/ParserChangesInformation.h ../../../../kernel/simulator/ParserDefaultImpl1.h ../../../../kernel/simulator/ParserDefaultImpl2.h ../../../../kernel/simulator/ParserManager.h ../../../../kernel/simulator/Parser_if.h ../../../../kernel/simulator/Persistence.h ../../../../kernel/simulator/Plugin.h ../../../../kernel/simulator/PluginConnectorDummyImpl1.h ../../../../kernel/simulator/PluginConnector_if.h ../../../../kernel/simulator/PluginInformation.h ../../../../kernel/simulator/PluginManager.h ../../../../kernel/simulator/PropertyGenesys.h ../../../../kernel/simulator/ScenarioExperiment_if.h ../../../../kernel/simulator/SimulationExperiment.h ../../../../kernel/simulator/SimulationReporterDefaultImpl1.h ../../../../kernel/simulator/SimulationReporter_if.h ../../../../kernel/simulator/SimulationScenario.h ../../../../kernel/simulator/Simulator.h ../../../../kernel/simulator/SinkModelComponent.h ../../../../kernel/simulator/SourceModelComponent.h ../../../../kernel/simulator/StatisticsCollector.h ../../../../kernel/simulator/TraceManager.h ../../../../kernel/simulator/XmlSerializer.h ../../../../kernel/statistics/CollectorDatafileDefaultImpl1.h ../../../../kernel/statistics/CollectorDatafile_if.h ../../../../kernel/statistics/CollectorDefaultImpl1.h ../../../../kernel/statistics/Collector_if.h ../../../../kernel/statistics/SamplerBoostImpl.h ../../../../kernel/statistics/SamplerDefaultImpl1.h ../../../../kernel/statistics/Sampler_if.h ../../../../kernel/statistics/SorttFile.h ../../../../kernel/statistics/StatisticsDataFileDefaultImpl.h ../../../../kernel/statistics/StatisticsDataFile_if.h ../../../../kernel/statistics/StatisticsDefaultImpl1.h ../../../../kernel/statistics/Statistics_if.h ../../../../kernel/util/Exact.h ../../../../kernel/util/List.h ../../../../kernel/util/ListObservable.h ../../../../kernel/util/Util.h ../../../../parser/Genesys++-driver.h ../../../../parser/GenesysParser.h ../../../../parser/location.hh ../../../../parser/obj_t.h ../../../../parser/parserBisonFlex/bisonparser.yy ../../../../parser/parserBisonFlex/lexerparser.ll ../../../../parser/position.hh ../../../../parser/stack.hh ../../../../plugins/components/Access.h ../../../../plugins/components/Assign.h ../../../../plugins/components/Batch.h ../../../../plugins/components/CellularAutomata.h ../../../../plugins/components/Clone.h ../../../../plugins/components/CppForG.h ../../../../plugins/components/Create.h ../../../../plugins/components/Decide.h ../../../../plugins/components/Delay.h ../../../../plugins/components/Dispose.h ../../../../plugins/components/DropOff.h ../../../../plugins/components/DummyComponent.h ../../../../plugins/components/Enter.h ../../../../plugins/components/Exit.h ../../../../plugins/components/FiniteStateMachine.h ../../../../plugins/components/PickableStationItem.h ../../../../plugins/components/Wait.h ../../../../plugins/components/LSODE.h ../../../../plugins/components/Leave.h ../../../../plugins/components/MarkovChain.h ../../../../plugins/components/Match.h ../../../../plugins/components/OLD_ODEelement.h ../../../../plugins/components/PickStation.h ../../../../plugins/components/PickUp.h ../../../../plugins/components/Process.h ../../../../plugins/components/QueueableItem.h ../../../../plugins/components/Record.h ../../../../plugins/components/Release.h ../../../../plugins/components/Remove.h ../../../../plugins/components/Route.h ../../../../plugins/components/Search.h ../../../../plugins/components/SeizableItem.h ../../../../plugins/components/Seize.h ../../../../plugins/components/Separate.h ../../../../plugins/components/Signal.h ../../../../plugins/components/Start.h ../../../../plugins/components/Stop.h ../../../../plugins/components/Store.h ../../../../plugins/components/Submodel.h ../../../../plugins/components/Unstore.h ../../../../plugins/components/Write.h ../../../../plugins/data/AssignmentItem.h ../../../../plugins/data/CppCompiler.h ../../../../plugins/data/DummyElement.h ../../../../plugins/data/EFSM.h ../../../../plugins/data/EntityGroup.h ../../../../plugins/data/Failure.h ../../../../plugins/data/File.h ../../../../plugins/data/Formula.h ../../../../plugins/data/Label.h ../../../../plugins/data/Queue.h ../../../../plugins/data/Resource.h ../../../../plugins/data/Schedule.h ../../../../plugins/data/Sequence.h ../../../../plugins/data/Set.h ../../../../plugins/data/SignalData.h ../../../../plugins/data/Station.h ../../../../plugins/data/Storage.h ../../../../plugins/data/Variable.h ../../../../tools/DataAnalyser_if.h ../../../../tools/HypothesisTesterDefaultImpl1.h ../../../../tools/HypothesisTester_if.h ../../../../tools/ProbabilityDistribution.h ../../../../tools/ProbabilityDistributionBase.h ../../../../tools/SolverDefaultImpl1.h ../../../../tools/TraitsTools.h ../../../BaseGenesysTerminalApplication.h ../../../GenesysApplication_if.h ../../../TraitsApp.h ../../../terminal/GenesysShell/GenesysShell_if.h ../../../terminal/examples/arenaExamples/AirportSecurityExample.h ../../../terminal/examples/arenaExamples/AirportSecurityExampleExtended.h ../../../terminal/examples/arenaExamples/Airport_Extended1.h ../../../terminal/examples/arenaExamples/Assembly_Line.h ../../../terminal/examples/arenaExamples/Banking_Transactions.h ../../../terminal/examples/arenaExamples/Example_BasicOrderShipping.h ../../../terminal/examples/arenaExamples/Example_PortModel.h ../../../terminal/examples/arenaExamples/Example_PublicTransport.h ../../../terminal/examples/arenaSmarts/Smart_AddingResource.h ../../../terminal/examples/arenaSmarts/Smart_AlternatingEntityCreation.h ../../../terminal/examples/arenaSmarts/Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime.h ../../../terminal/examples/arenaSmarts/Smart_ArrivalsEntityTypeVsAttribute.h ../../../terminal/examples/arenaSmarts/Smart_AssignExample.h ../../../terminal/examples/arenaSmarts/Smart_AutomaticStatisticsCollection.h ../../../terminal/examples/arenaSmarts/Smart_BasicModeling.h ../../../terminal/examples/arenaSmarts/Smart_BatchAndSeparate.h ../../../terminal/examples/arenaSmarts/Smart_ContinuousFlowEntities.h ../../../terminal/examples/arenaSmarts/Smart_Create.h ../../../terminal/examples/arenaSmarts/Smart_DecideNWayByChance.h ../../../terminal/examples/arenaSmarts/Smart_DefiningAttributesAsStrings.h ../../../terminal/examples/arenaSmarts/Smart_DefiningControlLogic.h ../../../terminal/examples/arenaSmarts/Smart_DefiningResourceCapacity.h ../../../terminal/examples/arenaSmarts/Smart_DelayBasedOnReplication.h ../../../terminal/examples/arenaSmarts/Smart_EntitiesProcessedByPriority.h ../../../terminal/examples/arenaSmarts/Smart_EvaluatingConditionsBeforeEnteringQueue.h ../../../terminal/examples/arenaSmarts/Smart_Expression.h ../../../terminal/examples/arenaSmarts/Smart_InventoryAndHoldingCosts.h ../../../terminal/examples/arenaSmarts/Smart_MaxArrivalsField.h ../../../terminal/examples/arenaSmarts/Smart_ModelRunUntil1000Parts.h ../../../terminal/examples/arenaSmarts/Smart_ModuleDisplayVariables.h ../../../terminal/examples/arenaSmarts/Smart_OverlappingResources.h ../../../terminal/examples/arenaSmarts/Smart_ParallelProcessingOfEntities.h ../../../terminal/examples/arenaSmarts/Smart_PlacingEntitiesInQueueSets.h ../../../terminal/examples/arenaSmarts/Smart_PriorityExample.h ../../../terminal/examples/arenaSmarts/Smart_ProcessArena.h ../../../terminal/examples/arenaSmarts/Smart_Record.h ../../../terminal/examples/arenaSmarts/Smart_RemovingAndReorderingEntitiesInAQueue.h ../../../terminal/examples/arenaSmarts/Smart_ResourceCosting.h ../../../terminal/examples/arenaSmarts/Smart_ResourceScheduleCosting.h ../../../terminal/examples/arenaSmarts/Smart_ResourceSets.h ../../../terminal/examples/arenaSmarts/Smart_SeizingMultipleSimultaneosly.h ../../../terminal/examples/arenaSmarts/Smart_SelectingRouteBasedOnProbability.h ../../../terminal/examples/arenaSmarts/Smart_SelectingShorterQueue.h ../../../terminal/examples/arenaSmarts/Smart_SynchronizingParallelEntities.h ../../../terminal/examples/arenaSmarts/Smart_ValueAdded.h ../../../terminal/examples/arenaSmarts/Smart_WaitForSignal.h ../../../terminal/examples/book/Book_Cap02_Example01.h ../../../terminal/examples/smarts/Smart_AssignWriteSeizes.h ../../../terminal/examples/smarts/Smart_BatchSeparate.h ../../../terminal/examples/smarts/Smart_CellularAutomata1.h ../../../terminal/examples/smarts/Smart_CppForG.h ../../../terminal/examples/smarts/Smart_Delay.h ../../../terminal/examples/smarts/Smart_Dummy.h ../../../terminal/examples/smarts/Smart_Failures.h ../../../terminal/examples/smarts/Smart_SimulationControlResponse.h ../../../terminal/examples/smarts/Smart_WaitScanCondition.h ../../../terminal/examples/smarts/Smart_WaitSignal.h ../../../terminal/examples/smarts/Smart_ModelInfoModelSimulation.h ../../../terminal/examples/smarts/Smart_ODE.h ../../../terminal/examples/smarts/Smart_OnEvent.h ../../../terminal/examples/smarts/Smart_Parser.h ../../../terminal/examples/smarts/Smart_ParserModelFunctions.h ../../../terminal/examples/smarts/Smart_Plugin.h ../../../terminal/examples/smarts/Smart_Process.h ../../../terminal/examples/smarts/Smart_ProcessSet.h ../../../terminal/examples/smarts/Smart_RouteStation.h ../../../terminal/examples/smarts/Smart_SeizeDelayRelease.h ../../../terminal/examples/smarts/Smart_SeizeDelayReleaseMany.h ../../../terminal/examples/smarts/Smart_Sequence.h ../../../terminal/examples/teaching/AnElectronicAssemblyAndTestSystem.h ../../../terminal/examples/teaching/FullSimulationOfComplexModel.h ../../../terminal/examples/teaching/OperatingSystem02.h ../../../terminal/examples/teaching/OperatingSystem03.h ../../../terminal/underDevelopment/TestingTerminalApp.h ../GenesysQtGUI/AnimateExpression.h ../GenesysQtGUI/CodeEditor.h ../GenesysQtGUI/Dialogmodelinformation.h ../GenesysQtGUI/GraphicalAssociation.h ../GenesysQtGUI/GraphicalComponentPort.h ../GenesysQtGUI/GraphicalConnection.h ../GenesysQtGUI/GraphicalModelComponent.h ../GenesysQtGUI/GraphicalModelDataDefinition.h ../GenesysQtGUI/LineNumberArea.h ../GenesysQtGUI/ModelGraphicsScene.h ../GenesysQtGUI/ModelGraphicsView.h ../GenesysQtGUI/ObjectPropertyBrowser.h ../GenesysQtGUI/PropertyEditor.h ../GenesysQtGUI/QPropertyBrowser/qtbuttonpropertybrowser.h ../GenesysQtGUI/QPropertyBrowser/qteditorfactory.h ../GenesysQtGUI/QPropertyBrowser/qtgroupboxpropertybrowser.h ../GenesysQtGUI/QPropertyBrowser/qtpropertybrowser.h ../GenesysQtGUI/QPropertyBrowser/qtpropertybrowserutils_p.h ../GenesysQtGUI/QPropertyBrowser/qtpropertymanager.h ../GenesysQtGUI/QPropertyBrowser/qttreepropertybrowser.h ../GenesysQtGUI/QPropertyBrowser/qtvariantproperty.h ../GenesysQtGUI/TraitsGUI.h ../GenesysQtGUI/UtilGUI.h ../GenesysQtGUI/dialogBreakpoint.h ../GenesysQtGUI/dialogpluginmanager.h ../GenesysQtGUI/dialogsimulationconfigure.h ../GenesysQtGUI/dialogsystempreferences.h ../GenesysQtGUI/mainwindow.h ../GenesysQtGUI/qcustomplot.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../../../../kernel/simulator/Attribute.cpp ../../../../kernel/simulator/ComponentManager.cpp ../../../../kernel/simulator/ConnectionManager.cpp ../../../../kernel/simulator/Counter.cpp ../../../../kernel/simulator/CppSerializer.cpp ../../../../kernel/simulator/Entity.cpp ../../../../kernel/simulator/EntityType.cpp ../../../../kernel/simulator/Event.cpp ../../../../kernel/simulator/ExperimentManager.cpp ../../../../kernel/simulator/ExperimentManagerDefaultImpl1.cpp ../../../../kernel/simulator/GenSerializer.cpp ../../../../kernel/simulator/JsonSerializer.cpp ../../../../kernel/simulator/LicenceManager.cpp ../../../../kernel/simulator/Model.cpp ../../../../kernel/simulator/ModelCheckerDefaultImpl1.cpp ../../../../kernel/simulator/ModelComponent.cpp ../../../../kernel/simulator/ModelControlAndResponse.cpp ../../../../kernel/simulator/ModelDataDefinition.cpp ../../../../kernel/simulator/ModelDataManager.cpp ../../../../kernel/simulator/ModelInfo.cpp ../../../../kernel/simulator/ModelManager.cpp ../../../../kernel/simulator/ModelPersistenceDefaultImpl2.cpp ../../../../kernel/simulator/ModelSerializer.cpp ../../../../kernel/simulator/ModelSimulation.cpp ../../../../kernel/simulator/OnEventManager.cpp ../../../../kernel/simulator/ParserChangesInformation.cpp ../../../../kernel/simulator/ParserDefaultImpl1.cpp ../../../../kernel/simulator/ParserDefaultImpl2.cpp ../../../../kernel/simulator/ParserManager.cpp ../../../../kernel/simulator/Persistence.cpp ../../../../kernel/simulator/Plugin.cpp ../../../../kernel/simulator/PluginConnectorDummyImpl1.cpp ../../../../kernel/simulator/PluginInformation.cpp ../../../../kernel/simulator/PluginManager.cpp ../../../../kernel/simulator/SimulationExperiment.cpp ../../../../kernel/simulator/SimulationReporterDefaultImpl1.cpp ../../../../kernel/simulator/SimulationScenario.cpp ../../../../kernel/simulator/Simulator.cpp ../../../../kernel/simulator/SinkModelComponent.cpp ../../../../kernel/simulator/SourceModelComponent.cpp ../../../../kernel/simulator/StatisticsCollector.cpp ../../../../kernel/simulator/TraceManager.cpp ../../../../kernel/simulator/XmlSerializer.cpp ../../../../kernel/statistics/CollectorDatafileDefaultImpl1.cpp ../../../../kernel/statistics/CollectorDefaultImpl1.cpp ../../../../kernel/statistics/SamplerBoostImpl.cpp ../../../../kernel/statistics/SamplerDefaultImpl1.cpp ../../../../kernel/statistics/SorttFile.cpp ../../../../kernel/statistics/StatisticsDataFileDefaultImpl.cpp ../../../../kernel/statistics/StatisticsDefaultImpl1.cpp ../../../../kernel/util/Util.cpp ../../../../parser/Genesys++-driver.cpp ../../../../parser/Genesys++-scanner.cpp ../../../../parser/GenesysParser.cpp ../../../../parser/obj_t.cpp ../../../../plugins/components/Access.cpp ../../../../plugins/components/Assign.cpp ../../../../plugins/components/Batch.cpp ../../../../plugins/components/CellularAutomata.cpp ../../../../plugins/components/Clone.cpp ../../../../plugins/components/CppForG.cpp ../../../../plugins/components/Create.cpp ../../../../plugins/components/Decide.cpp ../../../../plugins/components/Delay.cpp ../../../../plugins/components/Dispose.cpp ../../../../plugins/components/DropOff.cpp ../../../../plugins/components/DummyComponent.cpp ../../../../plugins/components/Enter.cpp ../../../../plugins/components/Exit.cpp ../../../../plugins/components/FiniteStateMachine.cpp ../../../../plugins/components/PickableStationItem.cpp ../../../../plugins/components/Wait.cpp ../../../../plugins/components/LSODE.cpp ../../../../plugins/components/Leave.cpp ../../../../plugins/components/MarkovChain.cpp ../../../../plugins/components/Match.cpp ../../../../plugins/components/OLD_ODEelement.cpp ../../../../plugins/components/PickStation.cpp ../../../../plugins/components/PickUp.cpp ../../../../plugins/components/Process.cpp ../../../../plugins/components/QueueableItem.cpp ../../../../plugins/components/Record.cpp ../../../../plugins/components/Release.cpp ../../../../plugins/components/Remove.cpp ../../../../plugins/components/Route.cpp ../../../../plugins/components/Search.cpp ../../../../plugins/components/SeizableItem.cpp ../../../../plugins/components/Seize.cpp ../../../../plugins/components/Separate.cpp ../../../../plugins/components/Signal.cpp ../../../../plugins/components/Start.cpp ../../../../plugins/components/Stop.cpp ../../../../plugins/components/Store.cpp ../../../../plugins/components/Submodel.cpp ../../../../plugins/components/Unstore.cpp ../../../../plugins/components/Write.cpp ../../../../plugins/data/AssignmentItem.cpp ../../../../plugins/data/CppCompiler.cpp ../../../../plugins/data/DummyElement.cpp ../../../../plugins/data/EFSM.cpp ../../../../plugins/data/EntityGroup.cpp ../../../../plugins/data/Failure.cpp ../../../../plugins/data/File.cpp ../../../../plugins/data/Formula.cpp ../../../../plugins/data/Label.cpp ../../../../plugins/data/Queue.cpp ../../../../plugins/data/Resource.cpp ../../../../plugins/data/Schedule.cpp ../../../../plugins/data/Sequence.cpp ../../../../plugins/data/Set.cpp ../../../../plugins/data/SignalData.cpp ../../../../plugins/data/Station.cpp ../../../../plugins/data/Storage.cpp ../../../../plugins/data/Variable.cpp ../../../../tools/HypothesisTesterDefaultImpl1.cpp ../../../../tools/ProbabilityDistribution.cpp ../../../../tools/ProbabilityDistributionBase.cpp ../../../../tools/SolverDefaultImpl1.cpp ../../../BaseGenesysTerminalApplication.cpp ../../../terminal/examples/arenaExamples/AirportSecurityExample.cpp ../../../terminal/examples/arenaExamples/AirportSecurityExampleExtended.cpp ../../../terminal/examples/arenaExamples/Airport_Extended1.cpp ../../../terminal/examples/arenaExamples/Assembly_Line.cpp ../../../terminal/examples/arenaExamples/Banking_Transactions.cpp ../../../terminal/examples/arenaExamples/Example_BasicOrderShipping.cpp ../../../terminal/examples/arenaExamples/Example_PortModel.cpp ../../../terminal/examples/arenaExamples/Example_PublicTransport.cpp ../../../terminal/examples/arenaSmarts/Smart_AddingResource.cpp ../../../terminal/examples/arenaSmarts/Smart_AlternatingEntityCreation.cpp ../../../terminal/examples/arenaSmarts/Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime.cpp ../../../terminal/examples/arenaSmarts/Smart_ArrivalsEntityTypeVsAttribute.cpp ../../../terminal/examples/arenaSmarts/Smart_AssignExample.cpp ../../../terminal/examples/arenaSmarts/Smart_AutomaticStatisticsCollection.cpp ../../../terminal/examples/arenaSmarts/Smart_BasicModeling.cpp ../../../terminal/examples/arenaSmarts/Smart_BatchAndSeparate.cpp ../../../terminal/examples/arenaSmarts/Smart_ContinuousFlowEntities.cpp ../../../terminal/examples/arenaSmarts/Smart_Create.cpp ../../../terminal/examples/arenaSmarts/Smart_DecideNWayByChance.cpp ../../../terminal/examples/arenaSmarts/Smart_DefiningAttributesAsStrings.cpp ../../../terminal/examples/arenaSmarts/Smart_DefiningControlLogic.cpp ../../../terminal/examples/arenaSmarts/Smart_DefiningResourceCapacity.cpp ../../../terminal/examples/arenaSmarts/Smart_DelayBasedOnReplication.cpp ../../../terminal/examples/arenaSmarts/Smart_EntitiesProcessedByPriority.cpp ../../../terminal/examples/arenaSmarts/Smart_EvaluatingConditionsBeforeEnteringQueue.cpp ../../../terminal/examples/arenaSmarts/Smart_Expression.cpp ../../../terminal/examples/arenaSmarts/Smart_InventoryAndHoldingCosts.cpp ../../../terminal/examples/arenaSmarts/Smart_MaxArrivalsField.cpp ../../../terminal/examples/arenaSmarts/Smart_ModelRunUntil1000Parts.cpp ../../../terminal/examples/arenaSmarts/Smart_ModuleDisplayVariables.cpp ../../../terminal/examples/arenaSmarts/Smart_OverlappingResources.cpp ../../../terminal/examples/arenaSmarts/Smart_ParallelProcessingOfEntities.cpp ../../../terminal/examples/arenaSmarts/Smart_PlacingEntitiesInQueueSets.cpp ../../../terminal/examples/arenaSmarts/Smart_PriorityExample.cpp ../../../terminal/examples/arenaSmarts/Smart_ProcessArena.cpp ../../../terminal/examples/arenaSmarts/Smart_Record.cpp ../../../terminal/examples/arenaSmarts/Smart_RemovingAndReorderingEntitiesInAQueue.cpp ../../../terminal/examples/arenaSmarts/Smart_ResourceCosting.cpp ../../../terminal/examples/arenaSmarts/Smart_ResourceScheduleCosting.cpp ../../../terminal/examples/arenaSmarts/Smart_ResourceSets.cpp ../../../terminal/examples/arenaSmarts/Smart_SeizingMultipleSimultaneosly.cpp ../../../terminal/examples/arenaSmarts/Smart_SelectingRouteBasedOnProbability.cpp ../../../terminal/examples/arenaSmarts/Smart_SelectingShorterQueue.cpp ../../../terminal/examples/arenaSmarts/Smart_SynchronizingParallelEntities.cpp ../../../terminal/examples/arenaSmarts/Smart_ValueAdded.cpp ../../../terminal/examples/arenaSmarts/Smart_WaitForSignal.cpp ../../../terminal/examples/book/Book_Cap02_Example01.cpp ../../../terminal/examples/smarts/Smart_AssignWriteSeizes.cpp ../../../terminal/examples/smarts/Smart_BatchSeparate.cpp ../../../terminal/examples/smarts/Smart_CellularAutomata1.cpp ../../../terminal/examples/smarts/Smart_CppForG.cpp ../../../terminal/examples/smarts/Smart_Delay.cpp ../../../terminal/examples/smarts/Smart_Dummy.cpp ../../../terminal/examples/smarts/Smart_Failures.cpp ../../../terminal/examples/smarts/Smart_SimulationControlResponse.cpp ../../../terminal/examples/smarts/Smart_WaitScanCondition.cpp ../../../terminal/examples/smarts/Smart_WaitSignal.cpp ../../../terminal/examples/smarts/Smart_ModelInfoModelSimulation.cpp ../../../terminal/examples/smarts/Smart_ODE.cpp ../../../terminal/examples/smarts/Smart_OnEvent.cpp ../../../terminal/examples/smarts/Smart_Parser.cpp ../../../terminal/examples/smarts/Smart_ParserModelFunctions.cpp ../../../terminal/examples/smarts/Smart_Plugin.cpp ../../../terminal/examples/smarts/Smart_Process.cpp ../../../terminal/examples/smarts/Smart_ProcessSet.cpp ../../../terminal/examples/smarts/Smart_RouteStation.cpp ../../../terminal/examples/smarts/Smart_SeizeDelayRelease.cpp ../../../terminal/examples/smarts/Smart_SeizeDelayReleaseMany.cpp ../../../terminal/examples/smarts/Smart_Sequence.cpp ../../../terminal/examples/teaching/AnElectronicAssemblyAndTestSystem.cpp ../../../terminal/examples/teaching/FullSimulationOfComplexModel.cpp ../../../terminal/examples/teaching/OperatingSystem02.cpp ../../../terminal/examples/teaching/OperatingSystem03.cpp ../../../terminal/underDevelopment/TestingTerminalApp.cpp ../GenesysQtGUI/AnimateExpression.cpp ../GenesysQtGUI/CodeEditor.cpp ../GenesysQtGUI/Dialogmodelinformation.cpp ../GenesysQtGUI/GraphicalAssociation.cpp ../GenesysQtGUI/GraphicalComponentPort.cpp ../GenesysQtGUI/GraphicalConnection.cpp ../GenesysQtGUI/GraphicalModelComponent.cpp ../GenesysQtGUI/GraphicalModelDataDefinition.cpp ../GenesysQtGUI/ModelGraphicsScene.cpp ../GenesysQtGUI/ModelGraphicsView.cpp ../GenesysQtGUI/ObjectPropertyBrowser.cpp ../GenesysQtGUI/PropertyEditor.cpp ../GenesysQtGUI/QPropertyBrowser/qtbuttonpropertybrowser.cpp ../GenesysQtGUI/QPropertyBrowser/qteditorfactory.cpp ../GenesysQtGUI/QPropertyBrowser/qtgroupboxpropertybrowser.cpp ../GenesysQtGUI/QPropertyBrowser/qtpropertybrowser.cpp ../GenesysQtGUI/QPropertyBrowser/qtpropertybrowserutils.cpp ../GenesysQtGUI/QPropertyBrowser/qtpropertymanager.cpp ../GenesysQtGUI/QPropertyBrowser/qttreepropertybrowser.cpp ../GenesysQtGUI/QPropertyBrowser/qtvariantproperty.cpp ../GenesysQtGUI/dialogBreakpoint.cpp ../GenesysQtGUI/dialogpluginmanager.cpp ../GenesysQtGUI/dialogsimulationconfigure.cpp ../GenesysQtGUI/dialogsystempreferences.cpp ../GenesysQtGUI/main.cpp ../GenesysQtGUI/mainwindow.cpp ../GenesysQtGUI/qcustomplot.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../../../kernel/TraitsKernel.h ../../../../kernel/simulator/Attribute.h ../../../../kernel/simulator/ComponentManager.h ../../../../kernel/simulator/ConnectionManager.h ../../../../kernel/simulator/Counter.h ../../../../kernel/simulator/CppSerializer.h ../../../../kernel/simulator/DefineGetterSetter.h ../../../../kernel/simulator/Entity.h ../../../../kernel/simulator/EntityType.h ../../../../kernel/simulator/Event.h ../../../../kernel/simulator/ExperimentManager.h ../../../../kernel/simulator/ExperimentManagerDefaultImpl1.h ../../../../kernel/simulator/ExperimetManager_if.h ../../../../kernel/simulator/GenSerializer.h ../../../../kernel/simulator/JsonSerializer.h ../../../../kernel/simulator/LicenceManager.h ../../../../kernel/simulator/Model.h ../../../../kernel/simulator/ModelCheckerDefaultImpl1.h ../../../../kernel/simulator/ModelChecker_if.h ../../../../kernel/simulator/ModelComponent.h ../../../../kernel/simulator/ModelDataDefinition.h ../../../../kernel/simulator/ModelDataManager.h ../../../../kernel/simulator/ModelInfo.h ../../../../kernel/simulator/ModelManager.h ../../../../kernel/simulator/ModelPersistenceDefaultImpl2.h ../../../../kernel/simulator/ModelSerializer.h ../../../../kernel/simulator/ModelSimulation.h ../../../../kernel/simulator/OnEventManager.h ../../../../kernel/simulator/ParserChangesInformation.h ../../../../kernel/simulator/ParserDefaultImpl1.h ../../../../kernel/simulator/ParserDefaultImpl2.h ../../../../kernel/simulator/ParserManager.h ../../../../kernel/simulator/Parser_if.h ../../../../kernel/simulator/Persistence.h ../../../../kernel/simulator/Plugin.h ../../../../kernel/simulator/PluginConnectorDummyImpl1.h ../../../../kernel/simulator/PluginConnector_if.h ../../../../kernel/simulator/PluginInformation.h ../../../../kernel/simulator/PluginManager.h ../../../../kernel/simulator/PropertyGenesys.h ../../../../kernel/simulator/ScenarioExperiment_if.h ../../../../kernel/simulator/SimulationControlAndResponse.h ../../../../kernel/simulator/SimulationExperiment.h ../../../../kernel/simulator/SimulationReporterDefaultImpl1.h ../../../../kernel/simulator/SimulationReporter_if.h ../../../../kernel/simulator/SimulationScenario.h ../../../../kernel/simulator/Simulator.h ../../../../kernel/simulator/SinkModelComponent.h ../../../../kernel/simulator/SourceModelComponent.h ../../../../kernel/simulator/StatisticsCollector.h ../../../../kernel/simulator/TraceManager.h ../../../../kernel/simulator/XmlSerializer.h ../../../../kernel/statistics/CollectorDatafileDefaultImpl1.h ../../../../kernel/statistics/CollectorDatafile_if.h ../../../../kernel/statistics/CollectorDefaultImpl1.h ../../../../kernel/statistics/Collector_if.h ../../../../kernel/statistics/SamplerBoostImpl.h ../../../../kernel/statistics/SamplerDefaultImpl1.h ../../../../kernel/statistics/Sampler_if.h ../../../../kernel/statistics/SorttFile.h ../../../../kernel/statistics/StatisticsDataFileDefaultImpl.h ../../../../kernel/statistics/StatisticsDataFile_if.h ../../../../kernel/statistics/StatisticsDefaultImpl1.h ../../../../kernel/statistics/Statistics_if.h ../../../../kernel/util/Exact.h ../../../../kernel/util/List.h ../../../../kernel/util/ListObservable.h ../../../../kernel/util/Util.h ../../../../parser/Genesys++-driver.h ../../../../parser/GenesysParser.h ../../../../parser/location.hh ../../../../parser/obj_t.h ../../../../parser/parserBisonFlex/bisonparser.yy ../../../../parser/parserBisonFlex/lexerparser.ll ../../../../parser/position.hh ../../../../parser/stack.hh ../../../../plugins/components/Access.h ../../../../plugins/components/Assign.h ../../../../plugins/components/Batch.h ../../../../plugins/components/CellularAutomata.h ../../../../plugins/components/Clone.h ../../../../plugins/components/CppForG.h ../../../../plugins/components/Create.h ../../../../plugins/components/Decide.h ../../../../plugins/components/Delay.h ../../../../plugins/components/Dispose.h ../../../../plugins/components/DropOff.h ../../../../plugins/components/DummyComponent.h ../../../../plugins/components/Enter.h ../../../../plugins/components/Exit.h ../../../../plugins/components/FiniteStateMachine.h ../../../../plugins/components/PickableStationItem.h ../../../../plugins/components/Wait.h ../../../../plugins/components/LSODE.h ../../../../plugins/components/Leave.h ../../../../plugins/components/MarkovChain.h ../../../../plugins/components/Match.h ../../../../plugins/components/OLD_ODEelement.h ../../../../plugins/components/PickStation.h ../../../../plugins/components/PickUp.h ../../../../plugins/components/Process.h ../../../../plugins/components/QueueableItem.h ../../../../plugins/components/Record.h ../../../../plugins/components/Release.h ../../../../plugins/components/Remove.h ../../../../plugins/components/Route.h ../../../../plugins/components/Search.h ../../../../plugins/components/SeizableItem.h ../../../../plugins/components/Seize.h ../../../../plugins/components/Separate.h ../../../../plugins/components/Signal.h ../../../../plugins/components/Start.h ../../../../plugins/components/Stop.h ../../../../plugins/components/Store.h ../../../../plugins/components/Submodel.h ../../../../plugins/components/Unstore.h ../../../../plugins/components/Write.h ../../../../plugins/data/AssignmentItem.h ../../../../plugins/data/CppCompiler.h ../../../../plugins/data/DummyElement.h ../../../../plugins/data/EFSM.h ../../../../plugins/data/EntityGroup.h ../../../../plugins/data/Failure.h ../../../../plugins/data/File.h ../../../../plugins/data/Formula.h ../../../../plugins/data/Label.h ../../../../plugins/data/Queue.h ../../../../plugins/data/Resource.h ../../../../plugins/data/Schedule.h ../../../../plugins/data/Sequence.h ../../../../plugins/data/Set.h ../../../../plugins/data/SignalData.h ../../../../plugins/data/Station.h ../../../../plugins/data/Storage.h ../../../../plugins/data/Variable.h ../../../../tools/DataAnalyser_if.h ../../../../tools/HypothesisTesterDefaultImpl1.h ../../../../tools/HypothesisTester_if.h ../../../../tools/ProbabilityDistribution.h ../../../../tools/ProbabilityDistributionBase.h ../../../../tools/SolverDefaultImpl1.h ../../../../tools/TraitsTools.h ../../../BaseGenesysTerminalApplication.h ../../../GenesysApplication_if.h ../../../TraitsApp.h ../../../terminal/GenesysShell/GenesysShell_if.h ../../../terminal/examples/arenaExamples/AirportSecurityExample.h ../../../terminal/examples/arenaExamples/AirportSecurityExampleExtended.h ../../../terminal/examples/arenaExamples/Airport_Extended1.h ../../../terminal/examples/arenaExamples/Assembly_Line.h ../../../terminal/examples/arenaExamples/Banking_Transactions.h ../../../terminal/examples/arenaExamples/Example_BasicOrderShipping.h ../../../terminal/examples/arenaExamples/Example_PortModel.h ../../../terminal/examples/arenaExamples/Example_PublicTransport.h ../../../terminal/examples/arenaSmarts/Smart_AddingResource.h ../../../terminal/examples/arenaSmarts/Smart_AlternatingEntityCreation.h ../../../terminal/examples/arenaSmarts/Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime.h ../../../terminal/examples/arenaSmarts/Smart_ArrivalsEntityTypeVsAttribute.h ../../../terminal/examples/arenaSmarts/Smart_AssignExample.h ../../../terminal/examples/arenaSmarts/Smart_AutomaticStatisticsCollection.h ../../../terminal/examples/arenaSmarts/Smart_BasicModeling.h ../../../terminal/examples/arenaSmarts/Smart_BatchAndSeparate.h ../../../terminal/examples/arenaSmarts/Smart_ContinuousFlowEntities.h ../../../terminal/examples/arenaSmarts/Smart_Create.h ../../../terminal/examples/arenaSmarts/Smart_DecideNWayByChance.h ../../../terminal/examples/arenaSmarts/Smart_DefiningAttributesAsStrings.h ../../../terminal/examples/arenaSmarts/Smart_DefiningControlLogic.h ../../../terminal/examples/arenaSmarts/Smart_DefiningResourceCapacity.h ../../../terminal/examples/arenaSmarts/Smart_DelayBasedOnReplication.h ../../../terminal/examples/arenaSmarts/Smart_EntitiesProcessedByPriority.h ../../../terminal/examples/arenaSmarts/Smart_EvaluatingConditionsBeforeEnteringQueue.h ../../../terminal/examples/arenaSmarts/Smart_Expression.h ../../../terminal/examples/arenaSmarts/Smart_InventoryAndHoldingCosts.h ../../../terminal/examples/arenaSmarts/Smart_MaxArrivalsField.h ../../../terminal/examples/arenaSmarts/Smart_ModelRunUntil1000Parts.h ../../../terminal/examples/arenaSmarts/Smart_ModuleDisplayVariables.h ../../../terminal/examples/arenaSmarts/Smart_OverlappingResources.h ../../../terminal/examples/arenaSmarts/Smart_ParallelProcessingOfEntities.h ../../../terminal/examples/arenaSmarts/Smart_PlacingEntitiesInQueueSets.h ../../../terminal/examples/arenaSmarts/Smart_PriorityExample.h ../../../terminal/examples/arenaSmarts/Smart_ProcessArena.h ../../../terminal/examples/arenaSmarts/Smart_Record.h ../../../terminal/examples/arenaSmarts/Smart_RemovingAndReorderingEntitiesInAQueue.h ../../../terminal/examples/arenaSmarts/Smart_ResourceCosting.h ../../../terminal/examples/arenaSmarts/Smart_ResourceScheduleCosting.h ../../../terminal/examples/arenaSmarts/Smart_ResourceSets.h ../../../terminal/examples/arenaSmarts/Smart_SeizingMultipleSimultaneosly.h ../../../terminal/examples/arenaSmarts/Smart_SelectingRouteBasedOnProbability.h ../../../terminal/examples/arenaSmarts/Smart_SelectingShorterQueue.h ../../../terminal/examples/arenaSmarts/Smart_SynchronizingParallelEntities.h ../../../terminal/examples/arenaSmarts/Smart_ValueAdded.h ../../../terminal/examples/arenaSmarts/Smart_WaitForSignal.h ../../../terminal/examples/book/Book_Cap02_Example01.h ../../../terminal/examples/smarts/Smart_AssignWriteSeizes.h ../../../terminal/examples/smarts/Smart_BatchSeparate.h ../../../terminal/examples/smarts/Smart_CellularAutomata1.h ../../../terminal/examples/smarts/Smart_CppForG.h ../../../terminal/examples/smarts/Smart_Delay.h ../../../terminal/examples/smarts/Smart_Dummy.h ../../../terminal/examples/smarts/Smart_Failures.h ../../../terminal/examples/smarts/Smart_SimulationControlResponse.h ../../../terminal/examples/smarts/Smart_WaitScanCondition.h ../../../terminal/examples/smarts/Smart_WaitSignal.h ../../../terminal/examples/smarts/Smart_ModelInfoModelSimulation.h ../../../terminal/examples/smarts/Smart_ODE.h ../../../terminal/examples/smarts/Smart_OnEvent.h ../../../terminal/examples/smarts/Smart_Parser.h ../../../terminal/examples/smarts/Smart_ParserModelFunctions.h ../../../terminal/examples/smarts/Smart_Plugin.h ../../../terminal/examples/smarts/Smart_Process.h ../../../terminal/examples/smarts/Smart_ProcessSet.h ../../../terminal/examples/smarts/Smart_RouteStation.h ../../../terminal/examples/smarts/Smart_SeizeDelayRelease.h ../../../terminal/examples/smarts/Smart_SeizeDelayReleaseMany.h ../../../terminal/examples/smarts/Smart_Sequence.h ../../../terminal/examples/teaching/AnElectronicAssemblyAndTestSystem.h ../../../terminal/examples/teaching/FullSimulationOfComplexModel.h ../../../terminal/examples/teaching/OperatingSystem02.h ../../../terminal/examples/teaching/OperatingSystem03.h ../../../terminal/underDevelopment/TestingTerminalApp.h ../GenesysQtGUI/AnimateExpression.h ../GenesysQtGUI/CodeEditor.h ../GenesysQtGUI/Dialogmodelinformation.h ../GenesysQtGUI/GraphicalAssociation.h ../GenesysQtGUI/GraphicalComponentPort.h ../GenesysQtGUI/GraphicalConnection.h ../GenesysQtGUI/GraphicalModelComponent.h ../GenesysQtGUI/GraphicalModelDataDefinition.h ../GenesysQtGUI/LineNumberArea.h ../GenesysQtGUI/ModelGraphicsScene.h ../GenesysQtGUI/ModelGraphicsView.h ../GenesysQtGUI/ObjectPropertyBrowser.h ../GenesysQtGUI/PropertyEditor.h ../GenesysQtGUI/QPropertyBrowser/qtbuttonpropertybrowser.h ../GenesysQtGUI/QPropertyBrowser/qteditorfactory.h ../GenesysQtGUI/QPropertyBrowser/qtgroupboxpropertybrowser.h ../GenesysQtGUI/QPropertyBrowser/qtpropertybrowser.h ../GenesysQtGUI/QPropertyBrowser/qtpropertybrowserutils_p.h ../GenesysQtGUI/QPropertyBrowser/qtpropertymanager.h ../GenesysQtGUI/QPropertyBrowser/qttreepropertybrowser.h ../GenesysQtGUI/QPropertyBrowser/qtvariantproperty.h ../GenesysQtGUI/TraitsGUI.h ../GenesysQtGUI/UtilGUI.h ../GenesysQtGUI/dialogBreakpoint.h ../GenesysQtGUI/dialogpluginmanager.h ../GenesysQtGUI/dialogsimulationconfigure.h ../GenesysQtGUI/dialogsystempreferences.h ../GenesysQtGUI/mainwindow.h ../GenesysQtGUI/qcustomplot.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../../../../kernel/simulator/Attribute.cpp ../../../../kernel/simulator/ComponentManager.cpp ../../../../kernel/simulator/ConnectionManager.cpp ../../../../kernel/simulator/Counter.cpp ../../../../kernel/simulator/CppSerializer.cpp ../../../../kernel/simulator/Entity.cpp ../../../../kernel/simulator/EntityType.cpp ../../../../kernel/simulator/Event.cpp ../../../../kernel/simulator/ExperimentManager.cpp ../../../../kernel/simulator/ExperimentManagerDefaultImpl1.cpp ../../../../kernel/simulator/GenSerializer.cpp ../../../../kernel/simulator/JsonSerializer.cpp ../../../../kernel/simulator/LicenceManager.cpp ../../../../kernel/simulator/Model.cpp ../../../../kernel/simulator/ModelCheckerDefaultImpl1.cpp ../../../../kernel/simulator/ModelComponent.cpp ../../../../kernel/simulator/ModelDataDefinition.cpp ../../../../kernel/simulator/ModelDataManager.cpp ../../../../kernel/simulator/ModelInfo.cpp ../../../../kernel/simulator/ModelManager.cpp ../../../../kernel/simulator/ModelPersistenceDefaultImpl2.cpp ../../../../kernel/simulator/ModelSerializer.cpp ../../../../kernel/simulator/ModelSimulation.cpp ../../../../kernel/simulator/OnEventManager.cpp ../../../../kernel/simulator/ParserChangesInformation.cpp ../../../../kernel/simulator/ParserDefaultImpl1.cpp ../../../../kernel/simulator/ParserDefaultImpl2.cpp ../../../../kernel/simulator/ParserManager.cpp ../../../../kernel/simulator/Persistence.cpp ../../../../kernel/simulator/Plugin.cpp ../../../../kernel/simulator/PluginConnectorDummyImpl1.cpp ../../../../kernel/simulator/PluginInformation.cpp ../../../../kernel/simulator/PluginManager.cpp ../../../../kernel/simulator/SimulationExperiment.cpp ../../../../kernel/simulator/SimulationReporterDefaultImpl1.cpp ../../../../kernel/simulator/SimulationScenario.cpp ../../../../kernel/simulator/Simulator.cpp ../../../../kernel/simulator/SinkModelComponent.cpp ../../../../kernel/simulator/SourceModelComponent.cpp ../../../../kernel/simulator/StatisticsCollector.cpp ../../../../kernel/simulator/TraceManager.cpp ../../../../kernel/simulator/XmlSerializer.cpp ../../../../kernel/statistics/CollectorDatafileDefaultImpl1.cpp ../../../../kernel/statistics/CollectorDefaultImpl1.cpp ../../../../kernel/statistics/SamplerBoostImpl.cpp ../../../../kernel/statistics/SamplerDefaultImpl1.cpp ../../../../kernel/statistics/SorttFile.cpp ../../../../kernel/statistics/StatisticsDataFileDefaultImpl.cpp ../../../../kernel/statistics/StatisticsDefaultImpl1.cpp ../../../../kernel/util/Util.cpp ../../../../parser/Genesys++-driver.cpp ../../../../parser/Genesys++-scanner.cpp ../../../../parser/GenesysParser.cpp ../../../../parser/obj_t.cpp ../../../../plugins/components/Access.cpp ../../../../plugins/components/Assign.cpp ../../../../plugins/components/Batch.cpp ../../../../plugins/components/CellularAutomata.cpp ../../../../plugins/components/Clone.cpp ../../../../plugins/components/CppForG.cpp ../../../../plugins/components/Create.cpp ../../../../plugins/components/Decide.cpp ../../../../plugins/components/Delay.cpp ../../../../plugins/components/Dispose.cpp ../../../../plugins/components/DropOff.cpp ../../../../plugins/components/DummyComponent.cpp ../../../../plugins/components/Enter.cpp ../../../../plugins/components/Exit.cpp ../../../../plugins/components/FiniteStateMachine.cpp ../../../../plugins/components/PickableStationItem.cpp ../../../../plugins/components/Wait.cpp ../../../../plugins/components/LSODE.cpp ../../../../plugins/components/Leave.cpp ../../../../plugins/components/MarkovChain.cpp ../../../../plugins/components/Match.cpp ../../../../plugins/components/OLD_ODEelement.cpp ../../../../plugins/components/PickStation.cpp ../../../../plugins/components/PickUp.cpp ../../../../plugins/components/Process.cpp ../../../../plugins/components/QueueableItem.cpp ../../../../plugins/components/Record.cpp ../../../../plugins/components/Release.cpp ../../../../plugins/components/Remove.cpp ../../../../plugins/components/Route.cpp ../../../../plugins/components/Search.cpp ../../../../plugins/components/SeizableItem.cpp ../../../../plugins/components/Seize.cpp ../../../../plugins/components/Separate.cpp ../../../../plugins/components/Signal.cpp ../../../../plugins/components/Start.cpp ../../../../plugins/components/Stop.cpp ../../../../plugins/components/Store.cpp ../../../../plugins/components/Submodel.cpp ../../../../plugins/components/Unstore.cpp ../../../../plugins/components/Write.cpp ../../../../plugins/data/AssignmentItem.cpp ../../../../plugins/data/CppCompiler.cpp ../../../../plugins/data/DummyElement.cpp ../../../../plugins/data/EFSM.cpp ../../../../plugins/data/EntityGroup.cpp ../../../../plugins/data/Failure.cpp ../../../../plugins/data/File.cpp ../../../../plugins/data/Formula.cpp ../../../../plugins/data/Label.cpp ../../../../plugins/data/Queue.cpp ../../../../plugins/data/Resource.cpp ../../../../plugins/data/Schedule.cpp ../../../../plugins/data/Sequence.cpp ../../../../plugins/data/Set.cpp ../../../../plugins/data/SignalData.cpp ../../../../plugins/data/Station.cpp ../../../../plugins/data/Storage.cpp ../../../../plugins/data/Variable.cpp ../../../../tools/HypothesisTesterDefaultImpl1.cpp ../../../../tools/ProbabilityDistribution.cpp ../../../../tools/ProbabilityDistributionBase.cpp ../../../../tools/SolverDefaultImpl1.cpp ../../../BaseGenesysTerminalApplication.cpp ../../../terminal/examples/arenaExamples/AirportSecurityExample.cpp ../../../terminal/examples/arenaExamples/AirportSecurityExampleExtended.cpp ../../../terminal/examples/arenaExamples/Airport_Extended1.cpp ../../../terminal/examples/arenaExamples/Assembly_Line.cpp ../../../terminal/examples/arenaExamples/Banking_Transactions.cpp ../../../terminal/examples/arenaExamples/Example_BasicOrderShipping.cpp ../../../terminal/examples/arenaExamples/Example_PortModel.cpp ../../../terminal/examples/arenaExamples/Example_PublicTransport.cpp ../../../terminal/examples/arenaSmarts/Smart_AddingResource.cpp ../../../terminal/examples/arenaSmarts/Smart_AlternatingEntityCreation.cpp ../../../terminal/examples/arenaSmarts/Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime.cpp ../../../terminal/examples/arenaSmarts/Smart_ArrivalsEntityTypeVsAttribute.cpp ../../../terminal/examples/arenaSmarts/Smart_AssignExample.cpp ../../../terminal/examples/arenaSmarts/Smart_AutomaticStatisticsCollection.cpp ../../../terminal/examples/arenaSmarts/Smart_BasicModeling.cpp ../../../terminal/examples/arenaSmarts/Smart_BatchAndSeparate.cpp ../../../terminal/examples/arenaSmarts/Smart_ContinuousFlowEntities.cpp ../../../terminal/examples/arenaSmarts/Smart_Create.cpp ../../../terminal/examples/arenaSmarts/Smart_DecideNWayByChance.cpp ../../../terminal/examples/arenaSmarts/Smart_DefiningAttributesAsStrings.cpp ../../../terminal/examples/arenaSmarts/Smart_DefiningControlLogic.cpp ../../../terminal/examples/arenaSmarts/Smart_DefiningResourceCapacity.cpp ../../../terminal/examples/arenaSmarts/Smart_DelayBasedOnReplication.cpp ../../../terminal/examples/arenaSmarts/Smart_EntitiesProcessedByPriority.cpp ../../../terminal/examples/arenaSmarts/Smart_EvaluatingConditionsBeforeEnteringQueue.cpp ../../../terminal/examples/arenaSmarts/Smart_Expression.cpp ../../../terminal/examples/arenaSmarts/Smart_InventoryAndHoldingCosts.cpp ../../../terminal/examples/arenaSmarts/Smart_MaxArrivalsField.cpp ../../../terminal/examples/arenaSmarts/Smart_ModelRunUntil1000Parts.cpp ../../../terminal/examples/arenaSmarts/Smart_ModuleDisplayVariables.cpp ../../../terminal/examples/arenaSmarts/Smart_OverlappingResources.cpp ../../../terminal/examples/arenaSmarts/Smart_ParallelProcessingOfEntities.cpp ../../../terminal/examples/arenaSmarts/Smart_PlacingEntitiesInQueueSets.cpp ../../../terminal/examples/arenaSmarts/Smart_PriorityExample.cpp ../../../terminal/examples/arenaSmarts/Smart_ProcessArena.cpp ../../../terminal/examples/arenaSmarts/Smart_Record.cpp ../../../terminal/examples/arenaSmarts/Smart_RemovingAndReorderingEntitiesInAQueue.cpp ../../../terminal/examples/arenaSmarts/Smart_ResourceCosting.cpp ../../../terminal/examples/arenaSmarts/Smart_ResourceScheduleCosting.cpp ../../../terminal/examples/arenaSmarts/Smart_ResourceSets.cpp ../../../terminal/examples/arenaSmarts/Smart_SeizingMultipleSimultaneosly.cpp ../../../terminal/examples/arenaSmarts/Smart_SelectingRouteBasedOnProbability.cpp ../../../terminal/examples/arenaSmarts/Smart_SelectingShorterQueue.cpp ../../../terminal/examples/arenaSmarts/Smart_SynchronizingParallelEntities.cpp ../../../terminal/examples/arenaSmarts/Smart_ValueAdded.cpp ../../../terminal/examples/arenaSmarts/Smart_WaitForSignal.cpp ../../../terminal/examples/book/Book_Cap02_Example01.cpp ../../../terminal/examples/smarts/Smart_AssignWriteSeizes.cpp ../../../terminal/examples/smarts/Smart_BatchSeparate.cpp ../../../terminal/examples/smarts/Smart_CellularAutomata1.cpp ../../../terminal/examples/smarts/Smart_CppForG.cpp ../../../terminal/examples/smarts/Smart_Delay.cpp ../../../terminal/examples/smarts/Smart_Dummy.cpp ../../../terminal/examples/smarts/Smart_Failures.cpp ../../../terminal/examples/smarts/Smart_SimulationControlResponse.cpp ../../../terminal/examples/smarts/Smart_WaitScanCondition.cpp ../../../terminal/examples/smarts/Smart_WaitSignal.cpp ../../../terminal/examples/smarts/Smart_ModelInfoModelSimulation.cpp ../../../terminal/examples/smarts/Smart_ODE.cpp ../../../terminal/examples/smarts/Smart_OnEvent.cpp ../../../terminal/examples/smarts/Smart_Parser.cpp ../../../terminal/examples/smarts/Smart_ParserModelFunctions.cpp ../../../terminal/examples/smarts/Smart_Plugin.cpp ../../../terminal/examples/smarts/Smart_Process.cpp ../../../terminal/examples/smarts/Smart_ProcessSet.cpp ../../../terminal/examples/smarts/Smart_RouteStation.cpp ../../../terminal/examples/smarts/Smart_SeizeDelayRelease.cpp ../../../terminal/examples/smarts/Smart_SeizeDelayReleaseMany.cpp ../../../terminal/examples/smarts/Smart_Sequence.cpp ../../../terminal/examples/teaching/AnElectronicAssemblyAndTestSystem.cpp ../../../terminal/examples/teaching/FullSimulationOfComplexModel.cpp ../../../terminal/examples/teaching/OperatingSystem02.cpp ../../../terminal/examples/teaching/OperatingSystem03.cpp ../../../terminal/underDevelopment/TestingTerminalApp.cpp ../GenesysQtGUI/AnimateExpression.cpp ../GenesysQtGUI/CodeEditor.cpp ../GenesysQtGUI/Dialogmodelinformation.cpp ../GenesysQtGUI/GraphicalAssociation.cpp ../GenesysQtGUI/GraphicalComponentPort.cpp ../GenesysQtGUI/GraphicalConnection.cpp ../GenesysQtGUI/GraphicalModelComponent.cpp ../GenesysQtGUI/GraphicalModelDataDefinition.cpp ../GenesysQtGUI/ModelGraphicsScene.cpp ../GenesysQtGUI/ModelGraphicsView.cpp ../GenesysQtGUI/ObjectPropertyBrowser.cpp ../GenesysQtGUI/PropertyEditor.cpp ../GenesysQtGUI/QPropertyBrowser/qtbuttonpropertybrowser.cpp ../GenesysQtGUI/QPropertyBrowser/qteditorfactory.cpp ../GenesysQtGUI/QPropertyBrowser/qtgroupboxpropertybrowser.cpp ../GenesysQtGUI/QPropertyBrowser/qtpropertybrowser.cpp ../GenesysQtGUI/QPropertyBrowser/qtpropertybrowserutils.cpp ../GenesysQtGUI/QPropertyBrowser/qtpropertymanager.cpp ../GenesysQtGUI/QPropertyBrowser/qttreepropertybrowser.cpp ../GenesysQtGUI/QPropertyBrowser/qtvariantproperty.cpp ../GenesysQtGUI/dialogBreakpoint.cpp ../GenesysQtGUI/dialogpluginmanager.cpp ../GenesysQtGUI/dialogsimulationconfigure.cpp ../GenesysQtGUI/dialogsystempreferences.cpp ../GenesysQtGUI/main.cpp ../GenesysQtGUI/mainwindow.cpp ../GenesysQtGUI/qcustomplot.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../GenesysQtGUI/Dialogmodelinformation.ui ../GenesysQtGUI/dialogBreakpoint.ui ../GenesysQtGUI/dialogpluginmanager.ui ../GenesysQtGUI/dialogsimulationconfigure.ui ../GenesysQtGUI/dialogsystempreferences.ui ../GenesysQtGUI/mainwindow.ui $(DISTDIR)/
 	$(COPY_FILE) --parents ../GenesysQtGUI/GenesysQtGUI_en_US.ts $(DISTDIR)/
 
@@ -2177,6 +2174,8 @@ moc_ObjectPropertyBrowser.cpp: ../GenesysQtGUI/ObjectPropertyBrowser.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/cancian/Laboratory/Software/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/source/applications/gui/qt/build-GenesysQtGUI-Desktop-Debug/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/cancian/Laboratory/Software/GccProjects/GenericExpansibleSystemSimulator/Genesys-Simulator/source/applications/gui/qt/GenesysQtGUI -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtDesigner -I/usr/include/x86_64-linux-gnu/qt5/QtUiPlugin -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/12 -I/usr/include/x86_64-linux-gnu/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/x86_64-linux-gnu/12/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../GenesysQtGUI/ObjectPropertyBrowser.h -o moc_ObjectPropertyBrowser.cpp
@@ -2242,6 +2241,8 @@ moc_dialogBreakpoint.cpp: ../GenesysQtGUI/dialogBreakpoint.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -2299,6 +2300,8 @@ moc_mainwindow.cpp: ../GenesysQtGUI/mainwindow.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -2410,6 +2413,8 @@ ui_mainwindow.h: ../GenesysQtGUI/mainwindow.ui \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -2448,7 +2453,9 @@ ui_mainwindow.h: ../GenesysQtGUI/mainwindow.ui \
 		../../../../kernel/util/Util.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
-		../../../../kernel/simulator/ModelPersistence_if.h
+		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h
 	/usr/lib/qt5/bin/uic ../GenesysQtGUI/mainwindow.ui -o ui_mainwindow.h
 
 compiler_yacc_decl_make_all:
@@ -2468,6 +2475,8 @@ Attribute.o: ../../../../kernel/simulator/Attribute.cpp ../../../../kernel/simul
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/ModelDataManager.h \
 		../../../../kernel/simulator/Plugin.h \
 		../../../../kernel/simulator/PluginInformation.h
@@ -2484,6 +2493,8 @@ ComponentManager.o: ../../../../kernel/simulator/ComponentManager.cpp ../../../.
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -2524,6 +2535,8 @@ Counter.o: ../../../../kernel/simulator/Counter.cpp ../../../../kernel/simulator
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/ModelDataManager.h \
 		../../../../kernel/simulator/Plugin.h \
 		../../../../kernel/simulator/PluginInformation.h \
@@ -2562,6 +2575,8 @@ CppSerializer.o: ../../../../kernel/simulator/CppSerializer.cpp ../../../../kern
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -2597,6 +2612,8 @@ Entity.o: ../../../../kernel/simulator/Entity.cpp ../../../../kernel/simulator/E
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -2629,6 +2646,8 @@ EntityType.o: ../../../../kernel/simulator/EntityType.cpp ../../../../kernel/sim
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
 		../../../../kernel/statistics/Collector_if.h \
@@ -2660,6 +2679,8 @@ Event.o: ../../../../kernel/simulator/Event.cpp ../../../../kernel/simulator/Eve
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -2686,6 +2707,8 @@ ExperimentManager.o: ../../../../kernel/simulator/ExperimentManager.cpp ../../..
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -2726,6 +2749,8 @@ ExperimentManagerDefaultImpl1.o: ../../../../kernel/simulator/ExperimentManagerD
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -2766,6 +2791,8 @@ GenSerializer.o: ../../../../kernel/simulator/GenSerializer.cpp ../../../../kern
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -2807,6 +2834,8 @@ JsonSerializer.o: ../../../../kernel/simulator/JsonSerializer.cpp ../../../../ke
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -2841,6 +2870,8 @@ Model.o: ../../../../kernel/simulator/Model.cpp ../../../../kernel/simulator/Mod
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -2909,6 +2940,8 @@ ModelCheckerDefaultImpl1.o: ../../../../kernel/simulator/ModelCheckerDefaultImpl
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -2947,6 +2980,8 @@ ModelComponent.o: ../../../../kernel/simulator/ModelComponent.cpp ../../../../ke
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -2997,16 +3032,14 @@ ModelComponent.o: ../../../../kernel/simulator/ModelComponent.cpp ../../../../ke
 		../../../../kernel/statistics/SamplerDefaultImpl1.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ModelComponent.o ../../../../kernel/simulator/ModelComponent.cpp
 
-ModelControlAndResponse.o: ../../../../kernel/simulator/ModelControlAndResponse.cpp ../../../../kernel/simulator/ModelControlAndResponse.h \
-		../../../../kernel/util/Util.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ModelControlAndResponse.o ../../../../kernel/simulator/ModelControlAndResponse.cpp
-
 ModelDataDefinition.o: ../../../../kernel/simulator/ModelDataDefinition.cpp ../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/util/List.h \
 		../../../../kernel/util/Util.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Model.h \
 		../../../../kernel/simulator/ModelComponent.h \
 		../../../../kernel/simulator/Plugin.h \
@@ -3068,6 +3101,8 @@ ModelDataManager.o: ../../../../kernel/simulator/ModelDataManager.cpp ../../../.
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Model.h \
 		../../../../kernel/simulator/ModelComponent.h \
 		../../../../kernel/simulator/Plugin.h \
@@ -3104,6 +3139,8 @@ ModelInfo.o: ../../../../kernel/simulator/ModelInfo.cpp ../../../../kernel/simul
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -3135,6 +3172,8 @@ ModelManager.o: ../../../../kernel/simulator/ModelManager.cpp ../../../../kernel
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -3174,6 +3213,8 @@ ModelPersistenceDefaultImpl2.o: ../../../../kernel/simulator/ModelPersistenceDef
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -3222,6 +3263,8 @@ ModelSimulation.o: ../../../../kernel/simulator/ModelSimulation.cpp ../../../../
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -3288,6 +3331,8 @@ OnEventManager.o: ../../../../kernel/simulator/OnEventManager.cpp ../../../../ke
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -3322,6 +3367,8 @@ ParserDefaultImpl2.o: ../../../../kernel/simulator/ParserDefaultImpl2.cpp ../../
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -3373,6 +3420,8 @@ Plugin.o: ../../../../kernel/simulator/Plugin.cpp ../../../../kernel/simulator/P
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -3407,6 +3456,8 @@ PluginConnectorDummyImpl1.o: ../../../../kernel/simulator/PluginConnectorDummyIm
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -3504,6 +3555,8 @@ PluginManager.o: ../../../../kernel/simulator/PluginManager.cpp ../../../../kern
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -3569,6 +3622,8 @@ SimulationReporterDefaultImpl1.o: ../../../../kernel/simulator/SimulationReporte
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -3605,6 +3660,8 @@ SimulationScenario.o: ../../../../kernel/simulator/SimulationScenario.cpp ../../
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -3644,6 +3701,8 @@ Simulator.o: ../../../../kernel/simulator/Simulator.cpp ../../../../kernel/simul
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -3682,6 +3741,8 @@ SinkModelComponent.o: ../../../../kernel/simulator/SinkModelComponent.cpp ../../
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -3701,6 +3762,8 @@ SourceModelComponent.o: ../../../../kernel/simulator/SourceModelComponent.cpp ..
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -3728,6 +3791,8 @@ StatisticsCollector.o: ../../../../kernel/simulator/StatisticsCollector.cpp ../.
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/statistics/Statistics_if.h \
 		../../../../kernel/statistics/Collector_if.h \
 		../../../../kernel/simulator/ModelDataManager.h \
@@ -3795,6 +3860,8 @@ TraceManager.o: ../../../../kernel/simulator/TraceManager.cpp ../../../../kernel
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -3854,6 +3921,8 @@ XmlSerializer.o: ../../../../kernel/simulator/XmlSerializer.cpp ../../../../kern
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -3913,6 +3982,8 @@ StatisticsDataFileDefaultImpl.o: ../../../../kernel/statistics/StatisticsDataFil
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/simulator/ModelDataManager.h \
@@ -3970,6 +4041,8 @@ StatisticsDefaultImpl1.o: ../../../../kernel/statistics/StatisticsDefaultImpl1.c
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/simulator/ModelDataManager.h \
@@ -4027,6 +4100,8 @@ Genesys++-driver.o: ../../../../parser/Genesys++-driver.cpp ../../../../parser/G
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/ModelDataManager.h \
 		../../../../kernel/simulator/Plugin.h \
 		../../../../kernel/simulator/PluginInformation.h \
@@ -4071,6 +4146,8 @@ Genesys++-scanner.o: ../../../../parser/Genesys++-scanner.cpp ../../../../parser
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/ModelDataManager.h \
 		../../../../kernel/simulator/Plugin.h \
 		../../../../kernel/simulator/PluginInformation.h \
@@ -4114,6 +4191,8 @@ GenesysParser.o: ../../../../parser/GenesysParser.cpp ../../../../parser/Genesys
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/ModelDataManager.h \
 		../../../../kernel/simulator/Plugin.h \
 		../../../../kernel/simulator/PluginInformation.h \
@@ -4163,6 +4242,8 @@ Access.o: ../../../../plugins/components/Access.cpp ../../../../plugins/componen
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -4195,6 +4276,8 @@ Assign.o: ../../../../plugins/components/Assign.cpp ../../../../plugins/componen
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -4242,6 +4325,8 @@ Batch.o: ../../../../plugins/components/Batch.cpp ../../../../plugins/components
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -4285,6 +4370,8 @@ CellularAutomata.o: ../../../../plugins/components/CellularAutomata.cpp ../../..
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -4317,6 +4404,8 @@ Clone.o: ../../../../plugins/components/Clone.cpp ../../../../plugins/components
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -4359,6 +4448,8 @@ CppForG.o: ../../../../plugins/components/CppForG.cpp ../../../../plugins/compon
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -4393,6 +4484,8 @@ Create.o: ../../../../plugins/components/Create.cpp ../../../../plugins/componen
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -4427,6 +4520,8 @@ Decide.o: ../../../../plugins/components/Decide.cpp ../../../../plugins/componen
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -4460,6 +4555,8 @@ Delay.o: ../../../../plugins/components/Delay.cpp ../../../../plugins/components
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -4494,6 +4591,8 @@ Dispose.o: ../../../../plugins/components/Dispose.cpp ../../../../plugins/compon
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -4527,6 +4626,8 @@ DropOff.o: ../../../../plugins/components/DropOff.cpp ../../../../plugins/compon
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -4559,6 +4660,8 @@ DummyComponent.o: ../../../../plugins/components/DummyComponent.cpp ../../../../
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -4600,6 +4703,8 @@ Enter.o: ../../../../plugins/components/Enter.cpp ../../../../plugins/components
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -4642,6 +4747,8 @@ Exit.o: ../../../../plugins/components/Exit.cpp ../../../../plugins/components/E
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -4674,6 +4781,8 @@ FiniteStateMachine.o: ../../../../plugins/components/FiniteStateMachine.cpp ../.
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -4716,6 +4825,8 @@ PickableStationItem.o: ../../../../plugins/components/PickableStationItem.cpp ..
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -4761,6 +4872,8 @@ Wait.o: ../../../../plugins/components/Wait.cpp ../../../../plugins/components/W
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -4803,6 +4916,8 @@ LSODE.o: ../../../../plugins/components/LSODE.cpp ../../../../plugins/components
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -4837,6 +4952,8 @@ Leave.o: ../../../../plugins/components/Leave.cpp ../../../../plugins/components
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -4879,6 +4996,8 @@ MarkovChain.o: ../../../../plugins/components/MarkovChain.cpp ../../../../plugin
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -4946,6 +5065,8 @@ Match.o: ../../../../plugins/components/Match.cpp ../../../../plugins/components
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -4983,6 +5104,8 @@ OLD_ODEelement.o: ../../../../plugins/components/OLD_ODEelement.cpp ../../../../
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/ModelDataManager.h \
 		../../../../kernel/simulator/Plugin.h \
 		../../../../kernel/simulator/PluginInformation.h \
@@ -5019,6 +5142,8 @@ PickStation.o: ../../../../plugins/components/PickStation.cpp ../../../../plugin
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -5067,6 +5192,8 @@ PickUp.o: ../../../../plugins/components/PickUp.cpp ../../../../plugins/componen
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -5086,6 +5213,8 @@ Process.o: ../../../../plugins/components/Process.cpp ../../../../plugins/compon
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -5134,6 +5263,8 @@ QueueableItem.o: ../../../../plugins/components/QueueableItem.cpp ../../../../pl
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -5179,6 +5310,8 @@ Record.o: ../../../../plugins/components/Record.cpp ../../../../plugins/componen
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -5211,6 +5344,8 @@ Release.o: ../../../../plugins/components/Release.cpp ../../../../plugins/compon
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -5257,6 +5392,8 @@ Remove.o: ../../../../plugins/components/Remove.cpp ../../../../plugins/componen
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -5299,6 +5436,8 @@ Route.o: ../../../../plugins/components/Route.cpp ../../../../plugins/components
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -5345,6 +5484,8 @@ Search.o: ../../../../plugins/components/Search.cpp ../../../../plugins/componen
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -5385,6 +5526,8 @@ SeizableItem.o: ../../../../plugins/components/SeizableItem.cpp ../../../../plug
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
 		../../../../kernel/statistics/Collector_if.h \
@@ -5433,6 +5576,8 @@ Seize.o: ../../../../plugins/components/Seize.cpp ../../../../plugins/components
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -5482,6 +5627,8 @@ Separate.o: ../../../../plugins/components/Separate.cpp ../../../../plugins/comp
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -5516,6 +5663,8 @@ Signal.o: ../../../../plugins/components/Signal.cpp ../../../../plugins/componen
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -5557,6 +5706,8 @@ Start.o: ../../../../plugins/components/Start.cpp ../../../../plugins/components
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -5589,6 +5740,8 @@ Stop.o: ../../../../plugins/components/Stop.cpp ../../../../plugins/components/S
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -5621,6 +5774,8 @@ Store.o: ../../../../plugins/components/Store.cpp ../../../../plugins/components
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -5653,6 +5808,8 @@ Submodel.o: ../../../../plugins/components/Submodel.cpp ../../../../plugins/comp
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -5685,6 +5842,8 @@ Unstore.o: ../../../../plugins/components/Unstore.cpp ../../../../plugins/compon
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -5717,6 +5876,8 @@ Write.o: ../../../../plugins/components/Write.cpp ../../../../plugins/components
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -5750,6 +5911,8 @@ AssignmentItem.o: ../../../../plugins/data/AssignmentItem.cpp ../../../../plugin
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -5779,6 +5942,8 @@ CppCompiler.o: ../../../../plugins/data/CppCompiler.cpp ../../../../plugins/data
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/PluginInformation.h \
 		../../../../kernel/simulator/Model.h \
 		../../../../kernel/simulator/ModelComponent.h \
@@ -5811,6 +5976,8 @@ DummyElement.o: ../../../../plugins/data/DummyElement.cpp ../../../../plugins/da
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/PluginInformation.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o DummyElement.o ../../../../plugins/data/DummyElement.cpp
 
@@ -5821,6 +5988,8 @@ EFSM.o: ../../../../plugins/data/EFSM.cpp ../../../../plugins/data/EFSM.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/PluginInformation.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o EFSM.o ../../../../plugins/data/EFSM.cpp
 
@@ -5831,6 +6000,8 @@ EntityGroup.o: ../../../../plugins/data/EntityGroup.cpp ../../../../plugins/data
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -5864,6 +6035,8 @@ Failure.o: ../../../../plugins/data/Failure.cpp ../../../../plugins/data/Failure
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/ModelDataManager.h \
 		../../../../kernel/simulator/PluginInformation.h \
 		../../../../kernel/simulator/Model.h \
@@ -5899,6 +6072,8 @@ File.o: ../../../../plugins/data/File.cpp ../../../../plugins/data/File.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/ModelDataManager.h \
 		../../../../kernel/simulator/PluginInformation.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o File.o ../../../../plugins/data/File.cpp
@@ -5910,6 +6085,8 @@ Formula.o: ../../../../plugins/data/Formula.cpp ../../../../plugins/data/Formula
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/ModelDataManager.h \
 		../../../../kernel/simulator/Plugin.h \
 		../../../../kernel/simulator/PluginInformation.h \
@@ -5970,6 +6147,8 @@ Label.o: ../../../../plugins/data/Label.cpp ../../../../plugins/data/Label.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -6002,6 +6181,8 @@ Queue.o: ../../../../plugins/data/Queue.cpp ../../../../plugins/data/Queue.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -6035,6 +6216,8 @@ Resource.o: ../../../../plugins/data/Resource.cpp ../../../../plugins/data/Resou
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
 		../../../../kernel/statistics/Collector_if.h \
@@ -6070,6 +6253,8 @@ Schedule.o: ../../../../plugins/data/Schedule.cpp ../../../../plugins/data/Sched
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/PluginInformation.h \
 		../../../../kernel/simulator/Model.h \
 		../../../../kernel/simulator/ModelComponent.h \
@@ -6102,6 +6287,8 @@ Sequence.o: ../../../../plugins/data/Sequence.cpp ../../../../plugins/data/Seque
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/ModelDataManager.h \
 		../../../../kernel/simulator/PluginInformation.h \
 		../../../../plugins/data/Station.h \
@@ -6146,6 +6333,8 @@ Set.o: ../../../../plugins/data/Set.cpp ../../../../plugins/data/Set.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/ModelDataManager.h \
 		../../../../kernel/simulator/PluginInformation.h \
 		../../../../kernel/simulator/EntityType.h \
@@ -6178,6 +6367,8 @@ SignalData.o: ../../../../plugins/data/SignalData.cpp ../../../../plugins/data/S
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/ModelComponent.h \
 		../../../../kernel/simulator/Plugin.h \
 		../../../../kernel/simulator/PluginInformation.h \
@@ -6197,6 +6388,8 @@ Station.o: ../../../../plugins/data/Station.cpp ../../../../plugins/data/Station
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/ModelDataManager.h \
 		../../../../kernel/simulator/Plugin.h \
 		../../../../kernel/simulator/PluginInformation.h \
@@ -6230,6 +6423,8 @@ Storage.o: ../../../../plugins/data/Storage.cpp ../../../../plugins/data/Storage
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/ModelDataManager.h \
 		../../../../kernel/simulator/PluginInformation.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Storage.o ../../../../plugins/data/Storage.cpp
@@ -6241,6 +6436,8 @@ Variable.o: ../../../../plugins/data/Variable.cpp ../../../../plugins/data/Varia
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/ModelDataManager.h \
 		../../../../kernel/simulator/Plugin.h \
 		../../../../kernel/simulator/PluginInformation.h
@@ -6268,6 +6465,8 @@ HypothesisTesterDefaultImpl1.o: ../../../../tools/HypothesisTesterDefaultImpl1.c
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/simulator/ModelDataManager.h \
@@ -6345,6 +6544,8 @@ BaseGenesysTerminalApplication.o: ../../../BaseGenesysTerminalApplication.cpp ..
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -6387,6 +6588,8 @@ AirportSecurityExample.o: ../../../terminal/examples/arenaExamples/AirportSecuri
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -6446,6 +6649,8 @@ AirportSecurityExampleExtended.o: ../../../terminal/examples/arenaExamples/Airpo
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -6510,6 +6715,8 @@ Airport_Extended1.o: ../../../terminal/examples/arenaExamples/Airport_Extended1.
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -6568,6 +6775,8 @@ Assembly_Line.o: ../../../terminal/examples/arenaExamples/Assembly_Line.cpp ../.
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -6636,6 +6845,8 @@ Banking_Transactions.o: ../../../terminal/examples/arenaExamples/Banking_Transac
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -6704,6 +6915,8 @@ Example_BasicOrderShipping.o: ../../../terminal/examples/arenaExamples/Example_B
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -6770,6 +6983,8 @@ Example_PortModel.o: ../../../terminal/examples/arenaExamples/Example_PortModel.
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -6838,6 +7053,8 @@ Example_PublicTransport.o: ../../../terminal/examples/arenaExamples/Example_Publ
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -6906,6 +7123,8 @@ Smart_AddingResource.o: ../../../terminal/examples/arenaSmarts/Smart_AddingResou
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -6964,6 +7183,8 @@ Smart_AlternatingEntityCreation.o: ../../../terminal/examples/arenaSmarts/Smart_
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -7031,6 +7252,8 @@ Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime.o: ../../../terminal/exa
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -7094,6 +7317,8 @@ Smart_ArrivalsEntityTypeVsAttribute.o: ../../../terminal/examples/arenaSmarts/Sm
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -7157,6 +7382,8 @@ Smart_AssignExample.o: ../../../terminal/examples/arenaSmarts/Smart_AssignExampl
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -7220,6 +7447,8 @@ Smart_AutomaticStatisticsCollection.o: ../../../terminal/examples/arenaSmarts/Sm
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -7278,6 +7507,8 @@ Smart_BasicModeling.o: ../../../terminal/examples/arenaSmarts/Smart_BasicModelin
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -7336,6 +7567,8 @@ Smart_BatchAndSeparate.o: ../../../terminal/examples/arenaSmarts/Smart_BatchAndS
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -7393,6 +7626,8 @@ Smart_ContinuousFlowEntities.o: ../../../terminal/examples/arenaSmarts/Smart_Con
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -7458,6 +7693,8 @@ Smart_Create.o: ../../../terminal/examples/arenaSmarts/Smart_Create.cpp ../../..
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -7511,6 +7748,8 @@ Smart_DecideNWayByChance.o: ../../../terminal/examples/arenaSmarts/Smart_DecideN
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -7561,6 +7800,8 @@ Smart_DefiningAttributesAsStrings.o: ../../../terminal/examples/arenaSmarts/Smar
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -7616,6 +7857,8 @@ Smart_DefiningControlLogic.o: ../../../terminal/examples/arenaSmarts/Smart_Defin
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -7683,6 +7926,8 @@ Smart_DefiningResourceCapacity.o: ../../../terminal/examples/arenaSmarts/Smart_D
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -7742,6 +7987,8 @@ Smart_DelayBasedOnReplication.o: ../../../terminal/examples/arenaSmarts/Smart_De
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -7809,6 +8056,8 @@ Smart_EntitiesProcessedByPriority.o: ../../../terminal/examples/arenaSmarts/Smar
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -7871,6 +8120,8 @@ Smart_EvaluatingConditionsBeforeEnteringQueue.o: ../../../terminal/examples/aren
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -7933,6 +8184,8 @@ Smart_Expression.o: ../../../terminal/examples/arenaSmarts/Smart_Expression.cpp 
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -7987,6 +8240,8 @@ Smart_InventoryAndHoldingCosts.o: ../../../terminal/examples/arenaSmarts/Smart_I
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -8051,6 +8306,8 @@ Smart_MaxArrivalsField.o: ../../../terminal/examples/arenaSmarts/Smart_MaxArriva
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -8100,6 +8357,8 @@ Smart_ModelRunUntil1000Parts.o: ../../../terminal/examples/arenaSmarts/Smart_Mod
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -8163,6 +8422,8 @@ Smart_ModuleDisplayVariables.o: ../../../terminal/examples/arenaSmarts/Smart_Mod
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -8221,6 +8482,8 @@ Smart_OverlappingResources.o: ../../../terminal/examples/arenaSmarts/Smart_Overl
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -8278,6 +8541,8 @@ Smart_ParallelProcessingOfEntities.o: ../../../terminal/examples/arenaSmarts/Sma
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -8344,6 +8609,8 @@ Smart_PlacingEntitiesInQueueSets.o: ../../../terminal/examples/arenaSmarts/Smart
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -8402,6 +8669,8 @@ Smart_PriorityExample.o: ../../../terminal/examples/arenaSmarts/Smart_PriorityEx
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -8466,6 +8735,8 @@ Smart_ProcessArena.o: ../../../terminal/examples/arenaSmarts/Smart_ProcessArena.
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -8515,6 +8786,8 @@ Smart_Record.o: ../../../terminal/examples/arenaSmarts/Smart_Record.cpp ../../..
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -8569,6 +8842,8 @@ Smart_RemovingAndReorderingEntitiesInAQueue.o: ../../../terminal/examples/arenaS
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -8633,6 +8908,8 @@ Smart_ResourceCosting.o: ../../../terminal/examples/arenaSmarts/Smart_ResourceCo
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -8697,6 +8974,8 @@ Smart_ResourceScheduleCosting.o: ../../../terminal/examples/arenaSmarts/Smart_Re
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -8761,6 +9040,8 @@ Smart_ResourceSets.o: ../../../terminal/examples/arenaSmarts/Smart_ResourceSets.
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -8820,6 +9101,8 @@ Smart_SeizingMultipleSimultaneosly.o: ../../../terminal/examples/arenaSmarts/Sma
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -8877,6 +9160,8 @@ Smart_SelectingRouteBasedOnProbability.o: ../../../terminal/examples/arenaSmarts
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -8942,6 +9227,8 @@ Smart_SelectingShorterQueue.o: ../../../terminal/examples/arenaSmarts/Smart_Sele
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -9001,6 +9288,8 @@ Smart_SynchronizingParallelEntities.o: ../../../terminal/examples/arenaSmarts/Sm
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -9066,6 +9355,8 @@ Smart_ValueAdded.o: ../../../terminal/examples/arenaSmarts/Smart_ValueAdded.cpp 
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -9130,6 +9421,8 @@ Smart_WaitForSignal.o: ../../../terminal/examples/arenaSmarts/Smart_WaitForSigna
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -9191,6 +9484,8 @@ Book_Cap02_Example01.o: ../../../terminal/examples/book/Book_Cap02_Example01.cpp
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -9240,6 +9535,8 @@ Smart_AssignWriteSeizes.o: ../../../terminal/examples/smarts/Smart_AssignWriteSe
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -9304,6 +9601,8 @@ Smart_BatchSeparate.o: ../../../terminal/examples/smarts/Smart_BatchSeparate.cpp
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -9364,6 +9663,8 @@ Smart_CppForG.o: ../../../terminal/examples/smarts/Smart_CppForG.cpp ../../../te
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -9414,6 +9715,8 @@ Smart_Delay.o: ../../../terminal/examples/smarts/Smart_Delay.cpp ../../../termin
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -9463,6 +9766,8 @@ Smart_Dummy.o: ../../../terminal/examples/smarts/Smart_Dummy.cpp ../../../termin
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -9513,6 +9818,8 @@ Smart_Failures.o: ../../../terminal/examples/smarts/Smart_Failures.cpp ../../../
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -9570,6 +9877,8 @@ Smart_SimulationControlResponse.o: ../../../terminal/examples/smarts/Smart_Simul
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -9628,6 +9937,8 @@ Smart_WaitScanCondition.o: ../../../terminal/examples/smarts/Smart_WaitScanCondi
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -9683,6 +9994,8 @@ Smart_WaitSignal.o: ../../../terminal/examples/smarts/Smart_WaitSignal.cpp ../..
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -9735,6 +10048,8 @@ Smart_ModelInfoModelSimulation.o: ../../../terminal/examples/smarts/Smart_ModelI
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -9784,6 +10099,8 @@ Smart_ODE.o: ../../../terminal/examples/smarts/Smart_ODE.cpp ../../../terminal/e
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -9834,6 +10151,8 @@ Smart_OnEvent.o: ../../../terminal/examples/smarts/Smart_OnEvent.cpp ../../../te
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -9883,6 +10202,8 @@ Smart_Parser.o: ../../../terminal/examples/smarts/Smart_Parser.cpp ../../../term
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -9931,6 +10252,8 @@ Smart_ParserModelFunctions.o: ../../../terminal/examples/smarts/Smart_ParserMode
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -9991,6 +10314,8 @@ Smart_Plugin.o: ../../../terminal/examples/smarts/Smart_Plugin.cpp ../../../term
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -10033,6 +10358,8 @@ Smart_Process.o: ../../../terminal/examples/smarts/Smart_Process.cpp ../../../te
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -10091,6 +10418,8 @@ Smart_ProcessSet.o: ../../../terminal/examples/smarts/Smart_ProcessSet.cpp ../..
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -10149,6 +10478,8 @@ Smart_RouteStation.o: ../../../terminal/examples/smarts/Smart_RouteStation.cpp .
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -10204,6 +10535,8 @@ Smart_SeizeDelayRelease.o: ../../../terminal/examples/smarts/Smart_SeizeDelayRel
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -10261,6 +10594,8 @@ Smart_SeizeDelayReleaseMany.o: ../../../terminal/examples/smarts/Smart_SeizeDela
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -10318,6 +10653,8 @@ Smart_Sequence.o: ../../../terminal/examples/smarts/Smart_Sequence.cpp ../../../
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -10377,6 +10714,8 @@ AnElectronicAssemblyAndTestSystem.o: ../../../terminal/examples/teaching/AnElect
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -10440,6 +10779,8 @@ FullSimulationOfComplexModel.o: ../../../terminal/examples/teaching/FullSimulati
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -10503,6 +10844,8 @@ OperatingSystem02.o: ../../../terminal/examples/teaching/OperatingSystem02.cpp .
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -10570,6 +10913,8 @@ OperatingSystem03.o: ../../../terminal/examples/teaching/OperatingSystem03.cpp .
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -10637,6 +10982,8 @@ TestingTerminalApp.o: ../../../terminal/underDevelopment/TestingTerminalApp.cpp 
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
@@ -10699,6 +11046,8 @@ GraphicalComponentPort.o: ../GenesysQtGUI/GraphicalComponentPort.cpp ../GenesysQ
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -10724,6 +11073,8 @@ GraphicalConnection.o: ../GenesysQtGUI/GraphicalConnection.cpp ../GenesysQtGUI/G
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -10746,6 +11097,8 @@ GraphicalModelComponent.o: ../GenesysQtGUI/GraphicalModelComponent.cpp ../Genesy
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -10767,7 +11120,9 @@ GraphicalModelDataDefinition.o: ../GenesysQtGUI/GraphicalModelDataDefinition.cpp
 		../GenesysQtGUI/TraitsGUI.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/util/List.h \
-		../../../../kernel/simulator/ParserChangesInformation.h
+		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o GraphicalModelDataDefinition.o ../GenesysQtGUI/GraphicalModelDataDefinition.cpp
 
 ModelGraphicsScene.o: ../GenesysQtGUI/ModelGraphicsScene.cpp ../GenesysQtGUI/ModelGraphicsScene.h \
@@ -10782,6 +11137,8 @@ ModelGraphicsScene.o: ../GenesysQtGUI/ModelGraphicsScene.cpp ../GenesysQtGUI/Mod
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -10829,6 +11186,8 @@ ModelGraphicsView.o: ../GenesysQtGUI/ModelGraphicsView.cpp ../GenesysQtGUI/Model
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -10870,7 +11229,9 @@ ObjectPropertyBrowser.o: ../GenesysQtGUI/ObjectPropertyBrowser.cpp ../GenesysQtG
 		../../../../kernel/util/Util.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
-		../../../../kernel/simulator/ModelPersistence_if.h
+		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ObjectPropertyBrowser.o ../GenesysQtGUI/ObjectPropertyBrowser.cpp
 
 PropertyEditor.o: ../GenesysQtGUI/PropertyEditor.cpp ../GenesysQtGUI/PropertyEditor.h \
@@ -10880,6 +11241,8 @@ PropertyEditor.o: ../GenesysQtGUI/PropertyEditor.cpp ../GenesysQtGUI/PropertyEdi
 		../../../../kernel/simulator/ParserChangesInformation.h \
 		../../../../kernel/simulator/Persistence.h \
 		../../../../kernel/simulator/ModelPersistence_if.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/PropertyGenesys.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o PropertyEditor.o ../GenesysQtGUI/PropertyEditor.cpp
 
@@ -10942,6 +11305,8 @@ dialogBreakpoint.o: ../GenesysQtGUI/dialogBreakpoint.cpp ../GenesysQtGUI/dialogB
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -10995,6 +11360,8 @@ main.o: ../GenesysQtGUI/main.cpp ../GenesysQtGUI/mainwindow.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \
@@ -11120,6 +11487,8 @@ mainwindow.o: ../GenesysQtGUI/mainwindow.cpp ../GenesysQtGUI/mainwindow.h \
 		../../../../kernel/simulator/Entity.h \
 		../../../../kernel/simulator/ModelDataDefinition.h \
 		../../../../kernel/simulator/ParserChangesInformation.h \
+		../../../../kernel/simulator/SimulationControlAndResponse.h \
+		../../../../kernel/simulator/DefineGetterSetter.h \
 		../../../../kernel/simulator/EntityType.h \
 		../../../../kernel/simulator/StatisticsCollector.h \
 		../../../../kernel/statistics/Statistics_if.h \

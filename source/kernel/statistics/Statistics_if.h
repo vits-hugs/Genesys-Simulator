@@ -22,7 +22,7 @@
  */
 class Statistics_if {
 public:
-	virtual Collector_if* getCollector() = 0;
+	virtual Collector_if* getCollector() const = 0;
 	virtual void setCollector(Collector_if* collector) = 0;
 public:
 	virtual unsigned int numElements() = 0;
@@ -33,8 +33,8 @@ public:
 	virtual double stddeviation() = 0;
 	virtual double variationCoef() = 0;
 	virtual double halfWidthConfidenceInterval() = 0;
+	virtual double confidenceLevel() = 0;
 	virtual unsigned int newSampleSize(double halfWidth) = 0;
-	virtual double getConfidenceLevel() = 0;
 	virtual void setConfidenceLevel(double confidencelevel) = 0;
 };
 

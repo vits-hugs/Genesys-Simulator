@@ -138,10 +138,10 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Smart_RouteStation Application;
 	//typedef Smart_SeizeDelayRelease Application;
 	//typedef Smart_SeizeDelayReleaseNoDataDefs Application;
-	typedef Smart_SeizeDelayReleaseMany Application;
+	//typedef Smart_SeizeDelayReleaseMany Application;
 	//typedef Smart_Sequence Application;
 	//typedef Smart_SynchronizingParallelEntities Application;
-	//typedef Smart_SimulationControlResponse Application;
+	typedef Smart_SimulationControlResponse Application;
 	//typedef Smart_WaitScanCondition Application;
 	//typedef Smart_WaitSignal Application;
 

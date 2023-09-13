@@ -34,15 +34,14 @@ Counter::Counter(Model* model, std::string name, ModelDataDefinition* parent) : 
 		parentName = _parent->getName();
 	// OLD
 	//GetterMemberDouble getterMember = DefineGetterMember<Counter>(this, &Counter::getCountValue);
-	//PropertyBase* resp = new SimulationResponse(Util::TypeOf<Counter>(), /*parentName + ":" +*/ getName(), getterMember, parentName);
+	//SimulationResponse* resp = new SimulationResponse(Util::TypeOf<Counter>(), /*parentName + ":" +*/ getName(), getterMember, parentName);
 	//_parentModel->getResponses()->insert(resp);
+
 	// NEW !!
-
-
-	PropertyT<double>* property = new PropertyT<double>(Util::TypeOf<Counter>(), getName(),
-				DefineGetter<Counter,double>(this, &Counter::getCountValue),
-				nullptr);
-	model->getResponses()->insert(property);
+	//PropertyT<double>* property = new PropertyT<double>(Util::TypeOf<Counter>(), getName(),
+	//			DefineGetter<Counter,double>(this, &Counter::getCountValue),
+	//			nullptr);
+	//model->getResponses()->insert(property);
 
 }
 

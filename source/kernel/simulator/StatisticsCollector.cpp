@@ -13,6 +13,7 @@
 
 #include "StatisticsCollector.h"
 #include "../TraitsKernel.h"
+#include "DefineGetterSetter.h"
 
 //using namespace GenesysKernel;
 
@@ -30,15 +31,22 @@ ModelDataDefinition* StatisticsCollector::NewInstance(Model* model, std::string 
 
 typedef TraitsKernel<Model>::StatisticsCollector_StatisticsImplementation StatisticsClass;
 
-StatisticsCollector::StatisticsCollector(Model* model, std::string name, ModelDataDefinition* parent, bool insertIntoModel) : ModelDataDefinition(model, Util::TypeOf<StatisticsCollector>(), name, insertIntoModel) {
+StatisticsCollector::StatisticsCollector(Model* model, std::string name, ModelDataDefinition* parent, bool insertIntoModel)
+	: ModelDataDefinition(model, Util::TypeOf<StatisticsCollector>(), name, insertIntoModel) {
 	_parent = parent;
 	_initStaticsAndCollector();
 
 
+	//SimulationResponse* resp = new SimulationResponse(
+	//			Util::TypeOf<StatisticsCollector>(), getName(),
+	//			DefineGetterMember<StatisticsClass>(static_cast<StatisticsClass*>(this->_statistics), &StatisticsClass::average) );
+	//_parentModel->getResponses()->insert(resp);
+	/*
 	_parentModel->getResponses()->insert(new PropertyT<double>(Util::TypeOf<StatisticsClass>(), getName() + ".average",
 			DefineGetter<StatisticsClass, double>(static_cast<StatisticsClass*>(this->_statistics),  &StatisticsClass::average), nullptr, getName()));
 	_parentModel->getResponses()->insert(new PropertyT<double>(Util::TypeOf<StatisticsClass>(), getName() + ".halfwidth",
 			DefineGetter<StatisticsClass,double>(static_cast<StatisticsClass*>(this->_statistics),  &StatisticsClass::halfWidthConfidenceInterval), nullptr, getName()));
+			*/
 }
 
 void StatisticsCollector::_initStaticsAndCollector() {

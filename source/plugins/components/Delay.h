@@ -58,6 +58,10 @@ public:
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, PersistenceRecord *fields);
 	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+//public: // properties
+	//using property_owner_t = Delay;
+	//decl_property(DelayExpression, decl_get(std::string){return delayExpression();} void decl_set(std::string val){setDelayExpression(val);});
+
 protected:
 	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber);
 	virtual bool _loadInstance(PersistenceRecord *fields);
@@ -80,6 +84,7 @@ private:
 private: // inner internel elements
 	StatisticsCollector* _cstatWaitTime = nullptr;
 };
+//enable_this_owner(Delay, DelayExpression);
 
 #endif /* DELAY_H */
 

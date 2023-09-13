@@ -15,6 +15,7 @@
 #include "ModelDataDefinition.h"
 #include <iostream>
 #include <cassert>
+#include <string>
 #include "Model.h"
 #include "../TraitsKernel.h"
 
@@ -36,26 +37,6 @@ ModelDataDefinition::ModelDataDefinition(Model* model, std::string thistypename,
 	if (insertIntoModel) {
 		model->insert(this);
 	}
-	// properties
-	//Property_bool *propertyB = new Property_bool();
-	//propertyB->setGetter(DefineGetterMember<ModelDataDefinition, bool>(this, &ModelDataDefinition::isReportStatistics));
-	//propertyB->setSetter(DefineSetterMember<ModelDataDefinition, bool>(this, &ModelDataDefinition::setReportStatistics));
-	/// TODO PProperties ///propertyB->setClassName(_typename);
-	/// TODO PProperties ///propertyB->setPropertyName("Report Statistics");
-	/// TODO PProperties ///_addPropertyG(propertyB);
-	//
-	//Property_string *propertyStr = new Property_string();
-	//propertyStr->setGetter(DefineGetterMember<ModelDataDefinition, std::string>(this, &ModelDataDefinition::getName));
-	//propertyStr->setSetter(DefineSetterMember<ModelDataDefinition, std::string>(this, &ModelDataDefinition::setName));
-	/// TODO PProperties ///propertyStr->setClassName(_typename);
-	/// TODO PProperties ///propertyStr->setPropertyName("Name");
-	/// TODO PProperties ///_addPropertyG(propertyStr);
-
-
-
-	// ADD_PROPERTY(std::string, ModelDataDefinition, "Name", getName, setName)
-	// ADD_PROPERTY(bool, ModelDataDefinition, "Report Statistics", isReportStatistics, setReportStatistics)
-	//ADD_READONLY_PROPERTY(Util::identification, ModelDataDefinition, "ID", getId)
 }
 
 bool ModelDataDefinition::hasChanged() const {
@@ -278,7 +259,7 @@ void ModelDataDefinition::setName(std::string name) {
 			}
 		}
 
-		for (/*PropertyBase**/PropertyBase* response : *_parentModel->getResponses()->list()) {
+		for (SimulationResponse* response : *_parentModel->getResponses()->list()) {
 			stuffName = response->getName();
 			pos = stuffName.find(getName(), 0);
 			if (pos < stuffName.length()) {// != std::string::npos) {
@@ -373,14 +354,15 @@ void ModelDataDefinition::_addProperty(PropertyBase* property) {
 	_properties->insert(property);
 }
 
-void ModelDataDefinition::_addSimulationResponse(PropertyBase* response) {
+/*
+void ModelDataDefinition::_addSimulationResponse(SimulationResponse* response) {
 	_simulationResponses->insert(response); // TODO: Check if exists before insert?
 }
 
-void ModelDataDefinition::_addSimulationControl(PropertyBase* control) {
+void ModelDataDefinition::_addSimulationControl(SimulationControl* control) {
 	_simulationControls->insert(control);
 }
-
+*/
 
 List<PropertyBase*> *ModelDataDefinition::getProperties() const {
 	return _properties;

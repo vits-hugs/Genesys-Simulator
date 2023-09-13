@@ -24,7 +24,7 @@ public:
 	StatisticsDefaultImpl1(Collector_if* collector);
 	virtual ~StatisticsDefaultImpl1() = default;
 public:
-	virtual Collector_if* getCollector();
+	virtual Collector_if* getCollector() const;
 	virtual void setCollector(Collector_if* collector);
 public:
 	virtual unsigned int numElements();
@@ -35,8 +35,8 @@ public:
 	virtual double stddeviation();
 	virtual double variationCoef();
 	virtual double halfWidthConfidenceInterval();
+	virtual double confidenceLevel();
 	virtual unsigned int newSampleSize(double halfWidth);
-	virtual double getConfidenceLevel();
 	virtual void setConfidenceLevel(double confidencelevel);
 private:
 	void collectorAddHandler(double newValue);

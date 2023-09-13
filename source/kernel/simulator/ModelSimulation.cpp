@@ -248,14 +248,14 @@ void ModelSimulation::_showSimulationHeader() {
 	//tm->traceReport(TraceManager::Level::simulation, "");
 	// model controls and responses
 	std::string controls;
-	for (/*PropertyBase**/PropertyBase* control : * _model->getControls()->list()) {
+	for (/*PropertyBase**/SimulationControl* control : * _model->getControls()->list()) {
 		/// TODO IMPORTANT CONTROLS AND RESPONSES MUST WORK NO MATTER THE PROPERTIES /// TODO PProperties ///
-		controls += control->getName() + "(" + control->getClassname() + ")=" + control->getValueText() + ", ";
+		controls += control->getName() + "(" + control->getClassname() + ")=" + control->getValue() + ", ";
 	}
 	controls = controls.substr(0, controls.length() - 2);
 	tm->traceReport("> Simulation controls: " + controls);
 	std::string responses;
-	for (/*PropertyBase**/PropertyBase* pg : *_model->getResponses()->list()) {
+	for (SimulationResponse* pg : *_model->getResponses()->list()) {
 		responses += pg->getName() + "(" + pg->getClassname() + "), ";
 	}
 	responses = responses.substr(0, responses.length() - 2);

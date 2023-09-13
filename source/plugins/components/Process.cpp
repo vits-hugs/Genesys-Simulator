@@ -205,7 +205,7 @@ void Process::_createInternalAndAttachedData() {
 		// garantee that release releases exactlly what seize seizes
 		_release->getReleaseRequests()->clear();
 		for (SeizableItem* item : *_seize->getSeizeRequests()->list()) {
-			_release->getReleaseRequests()->insert(new SeizableItem(item));
+			_release->getReleaseRequests()->insert(item);
 		}
 		SeizableItem* releaseItem;
 		unsigned int i = 0;
@@ -217,7 +217,7 @@ void Process::_createInternalAndAttachedData() {
 					saveAttr += seizeItem->getResourceName();
 				else
 					saveAttr += seizeItem->getSet()->getName();
-				saveAttr += ".SaveAttribute";
+				saveAttr += "SaveAttribute";
 				seizeItem->setSaveAttribute(saveAttr);
 			}
 			releaseItem = _release->getReleaseRequests()->getAtRank(i);

@@ -54,6 +54,7 @@ public:
 	//@TODO: Should be insde ModelSimulation, where time goes on
 
 	enum class TimeUnit : int {
+		unknown = 0,
 		picosecond = 1,
 		nanosecond = 2,
 		microsecond = 3,

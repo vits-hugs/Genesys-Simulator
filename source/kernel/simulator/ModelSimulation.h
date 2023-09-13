@@ -118,6 +118,7 @@ private:
 	friend class Model;
 private:
 	double _simulatedTime = 0.0;
+	double _justTriggeredBreakpointsOnTime = 0.0;
 	// @TODO: list of double double _breakOnTimes;
 	// @TODO: list of modules _breakOnModules;
 	bool _stepByStep = false;
@@ -131,10 +132,7 @@ private:
 	bool _stopRequested = false;
 	bool _simulationIsInitiated = false;
 	bool _replicationIsInitiaded = false;
-	bool _showReportsAfterSimulation = true;
-	bool _showReportsAfterReplication = true;
-	bool _showSimulationControlsInReport = true;
-	bool _showSimulationResposesInReport = true;
+	bool _hasChanged = false;
 private:
 
 	const struct DEFAULT_VALUES {
@@ -151,7 +149,7 @@ private:
 		const bool showReportsAfterSimulation = true;
 		const bool showReportsAfterReplication = true;
 		const bool showSimulationControlsInReport = true;
-		const bool showSimulationResposesInReport = true;
+		const bool showSimulationResposesInReport = false;
 	} DEFAULT;
 	unsigned int _numberOfReplications = DEFAULT.numberOfReplications;
 	double _replicationLength = DEFAULT.replicationLength;
@@ -160,7 +158,11 @@ private:
 	double _warmUpPeriod = DEFAULT.warmUpPeriod;
 	Util::TimeUnit _warmUpPeriodTimeUnit = DEFAULT.warmUpPeriodTimeUnit;
 	std::string _terminatingCondition = DEFAULT.terminatingCondition;
-	bool _hasChanged = false;
+	bool _showReportsAfterSimulation = DEFAULT.showReportsAfterSimulation;
+	bool _showReportsAfterReplication = DEFAULT.showReportsAfterReplication;
+	bool _showSimulationControlsInReport = DEFAULT.showSimulationControlsInReport;
+	bool _showSimulationResposesInReport = DEFAULT.showSimulationResposesInReport;
+	//
 	double _replicationTimeScaleFactorToBase; // a scale that converts ReplicationLenghtTimeUnit to ReplicationBaseTimeUnit. Future events are in "times" of unit ReplicationBaseTimeUnit
 	std::chrono::system_clock::time_point _startRealSimulationTimeSimulation;
 	std::chrono::system_clock::time_point _startRealSimulationTimeReplication;
@@ -179,7 +181,6 @@ private:
 	List<double>* _breakpointsOnTime = new List<double>();
 	List<ModelComponent*>* _breakpointsOnComponent = new List<ModelComponent*>();
 	List<Entity*>* _breakpointsOnEntity = new List<Entity*>();
-	double _justTriggeredBreakpointsOnTime = 0.0;
 	ModelComponent* _justTriggeredBreakpointsOnComponent = nullptr;
 	Entity* _justTriggeredBreakpointsOnEntity = nullptr;
 };

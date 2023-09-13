@@ -29,7 +29,9 @@ QueueableItem::QueueableItem(Model* model, std::string queueName = "") {
 	if (data != nullptr) {
 		_queueOrSet = dynamic_cast<Queue*> (data);
 	} else {
-		_queueOrSet = model->getParentSimulator()->getPlugins()->newInstance<Queue>(model, queueName);
+		if (model->isAutomaticallyCreatesModelDataDefinitions()) {
+			_queueOrSet = model->getParentSimulator()->getPlugins()->newInstance<Queue>(model, queueName);
+		}
 	}
 	_index = "0";
 }
