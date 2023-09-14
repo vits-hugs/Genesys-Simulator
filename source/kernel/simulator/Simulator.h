@@ -67,8 +67,8 @@ private: // attributes 1:1 objects
 
 private: // attributes 1:1 native
 	const std::string _name = "GenESyS - GENeric and Expansible SYstem Simulator";
-	const std::string _versionName = "gowndictator";
-	const unsigned int _versionNumber = 220517;
+	const std::string _versionName = "turnaroud";
+	const unsigned int _versionNumber = 230914;
 };
 //namespace\\}
 

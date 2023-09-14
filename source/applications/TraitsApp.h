@@ -127,7 +127,7 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Smart_AssignWriteSeizes Application;
 	//typedef Smart_BatchSeparate Application;
 	//typedef Smart_Clone Application;
-	//typedef Smart_CppForG Application;
+	typedef Smart_CppForG Application;
 	//typedef Smart_Delay Application;
 	//typedef Smart_Dummy Application;
 	//typedef Smart_Failures Application;
@@ -207,7 +207,7 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef OperatingSystem01 Application;
 	//typedef OperatingSystem02 Application;
 	//typedef OperatingSystem03 Application;
-	typedef BufferFIFO Application;
+	//typedef BufferFIFO Application;
 
 	//// BOOK
 	//typedef Book_Cap02_Example01 Application;

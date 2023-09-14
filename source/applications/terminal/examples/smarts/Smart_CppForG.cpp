@@ -33,7 +33,7 @@ int Smart_CppForG::main(int argc, char** argv) {
 	CppForG* cpp = plugins->newInstance<CppForG>(model);
 	Dispose* dispose = plugins->newInstance<Dispose>(model);
 	std::string includeCode = "\
-#include \"../../source/kernel/simulator/ModelSimulation.h\"\n\
+#include \"../../../../kernel/simulator/ModelSimulation.h\"\n\
 ";
 	cpp->setIncludesCode(includeCode);
 	std::string cppDispachEventCode = "\
