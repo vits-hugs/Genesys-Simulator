@@ -38,7 +38,7 @@ Smart_PriorityExample::Smart_PriorityExample() {
 int Smart_PriorityExample::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	this->setDefaultTraceHandlers(genesys->getTracer());
-	this->insertFakePluginsByHand(genesys);
+	genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
 	// crete model
 	Model* model = genesys->getModels()->newModel();
 	PluginManager* plugins = genesys->getPlugins();

@@ -42,7 +42,7 @@ Assembly_Line::Assembly_Line() {
 int Assembly_Line::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	this->setDefaultTraceHandlers(genesys->getTracer());
-	this->insertFakePluginsByHand(genesys);
+	genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
 	// create model
 	Model* model = genesys->getModels()->newModel();
 	PluginManager* plugins = genesys->getPlugins();

@@ -86,6 +86,19 @@ Plugin* PluginConnectorDummyImpl1::check(const std::string dynamicLibraryFilenam
 	return nullptr; /**@ @TODO:To implement */
 }
 
+bool PluginConnectorDummyImpl1::disconnect(const std::string dynamicLibraryFilename) {
+	// @TODO: To implement!
+	//dynamicLibraryFilename = ""; // just to use ut
+	return true;
+}
+
+bool PluginConnectorDummyImpl1::disconnect(Plugin* plugin) {
+	// @TODO: To implement!
+	return true;
+}
+
+
+
 Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilename) {
 	std::string fn = Util::FilenameFromFullFilename(dynamicLibraryFilename);
 	StaticGetPluginInformation GetInfo = nullptr;
@@ -93,8 +106,6 @@ Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilen
 	// @TODO: Dummy connections basically does nothing but give access to PluginInformation alreaady compiled
 
 	// Model data definitions
-
-
 	//if (fn == "attribute.so")
 	//    GetInfo = &Attribute::GetPluginInformation;
 	if (fn == "assign.so")
@@ -218,15 +229,6 @@ Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilen
 	return pluginResult;
 }
 
-bool PluginConnectorDummyImpl1::disconnect(const std::string dynamicLibraryFilename) {
-	// @TODO: To implement!
-	//dynamicLibraryFilename = ""; // just to use ut
-	return true;
-}
 
-bool PluginConnectorDummyImpl1::disconnect(Plugin* plugin) {
-	// @TODO: To implement!
-	return true;
-}
 
 //namespace\\}

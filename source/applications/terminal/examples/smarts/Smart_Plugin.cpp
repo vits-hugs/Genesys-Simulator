@@ -19,7 +19,7 @@ Smart_Plugin::Smart_Plugin() {
 
 int Smart_Plugin::main(int argc, char** argv) {
 	Simulator* simulator = new Simulator();
-	this->insertFakePluginsByHand(simulator);
+	simulator->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
 	// just show information about the connected plugins
 	for (unsigned int i = 0; i < simulator->getPlugins()->size(); i++) {
 		std::cout << std::endl << simulator->getPlugins()->getAtRank(i)->show() << std::endl;

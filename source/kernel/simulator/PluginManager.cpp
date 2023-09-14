@@ -11,6 +11,7 @@
  * Created on 30 de Maio de 2019, 17:49
  */
 
+#include <fstream>
 #include "PluginManager.h"
 #include "Simulator.h"
 #include "../TraitsKernel.h"
@@ -24,8 +25,28 @@
 
 PluginManager::PluginManager(Simulator* simulator) {
 	_simulator = simulator;
-	this->_pluginConnector = new TraitsKernel<PluginConnector_if>::Implementation();
-	this->_insertDefaultKernelElements();
+	_pluginConnector = new TraitsKernel<PluginConnector_if>::Implementation();
+	_insertDefaultKernelElements();
+}
+
+bool PluginManager::autoInsertPlugins(const std::string pluginsListFilename) {
+	std::string line;
+	std::string fullFilename = Util::RunningPath()+Util::DirSeparator()+pluginsListFilename;
+	std::ifstream file(fullFilename, std::ifstream::in);
+	if (file.is_open()) {
+		while (std::getline(file, line)) {
+			if (line.length()>=1) {
+				if (line[0] != '#') { // not a comment
+					insert(line);
+				}
+			}
+		}
+		file.close();
+		completePluginsFieldsAndTemplates();
+	} else {
+		return false;
+	}
+	return true;
 }
 
 std::string PluginManager::show() {
@@ -131,7 +152,7 @@ Plugin * PluginManager::insert(std::string dynamicLibraryFilename) {
 
 		return nullptr;
 	}
-	return plugin;
+	return plugin; // TODO Use of memory after it is freed
 }
 
 bool PluginManager::remove(std::string dynamicLibraryFilename) {

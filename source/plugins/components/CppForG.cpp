@@ -145,8 +145,8 @@ extern \"C\" void initBetweenReplications_" + name + "(Model* model) {\n\
 	}\n\
 }\n";
 	// save the code for the compiler
-	_sourceFilename = "./" + getName() + ".cpp";
-	_outputFilename = "./" + getName() + ".so";
+	_sourceFilename = "."+Util::DirSeparator() + getName() + ".cpp";
+	_outputFilename = "."+Util::DirSeparator() + getName() + ".so";
 	try {
 		_parentModel->getTracer()->trace("Saving source file \"" + _sourceFilename + "\"");
 		std::ofstream outfile(_sourceFilename);

@@ -36,6 +36,8 @@ public:
 	bool remove(const std::string dynamicLibraryFilename);
 	bool remove(Plugin* plugin);
 	Plugin* find(std::string pluginTypeName);
+	bool autoInsertPlugins(const std::string pluginsListFilename);
+
 public:
 	Plugin* front();
 	Plugin* next();

@@ -11429,7 +11429,8 @@ main.o: ../GenesysQtGUI/main.cpp ../GenesysQtGUI/mainwindow.h \
 		../../../../plugins/components/Dispose.h \
 		../../../../kernel/simulator/SinkModelComponent.h \
 		../../../../plugins/components/Decide.h \
-		../../../../plugins/data/Variable.h
+		../../../../plugins/data/Variable.h \
+		../../../terminal/examples/smarts/Smart_Parser.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../GenesysQtGUI/main.cpp
 
 mainwindow.o: ../GenesysQtGUI/mainwindow.cpp ../GenesysQtGUI/mainwindow.h \
@@ -11478,12 +11479,6 @@ mainwindow.o: ../GenesysQtGUI/mainwindow.cpp ../GenesysQtGUI/mainwindow.h \
 		../GenesysQtGUI/TraitsGUI.h \
 		../GenesysQtGUI/GraphicalModelDataDefinition.h \
 		ui_mainwindow.h \
-		../GenesysQtGUI/CodeEditor.h \
-		../GenesysQtGUI/ModelGraphicsView.h \
-		../GenesysQtGUI/ObjectPropertyBrowser.h \
-		../GenesysQtGUI/QPropertyBrowser/qttreepropertybrowser.h \
-		../GenesysQtGUI/QPropertyBrowser/qtpropertybrowser.h \
-		../GenesysQtGUI/QPropertyBrowser/qtvariantproperty.h \
 		../GenesysQtGUI/dialogBreakpoint.h \
 		ui_dialogBreakpoint.h \
 		../GenesysQtGUI/Dialogmodelinformation.h \
@@ -11507,7 +11502,10 @@ mainwindow.o: ../GenesysQtGUI/mainwindow.cpp ../GenesysQtGUI/mainwindow.h \
 		../../../../plugins/components/Signal.h \
 		../../../../plugins/components/Dispose.h \
 		../../../../plugins/components/Decide.h \
-		../../../../plugins/data/Variable.h
+		../../../../plugins/data/Variable.h \
+		../../../terminal/examples/smarts/Smart_Parser.h \
+		../GenesysQtGUI/QPropertyBrowser/qttreepropertybrowser.h \
+		../GenesysQtGUI/QPropertyBrowser/qtpropertybrowser.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../GenesysQtGUI/mainwindow.cpp
 
 qcustomplot.o: ../GenesysQtGUI/qcustomplot.cpp ../GenesysQtGUI/qcustomplot.h

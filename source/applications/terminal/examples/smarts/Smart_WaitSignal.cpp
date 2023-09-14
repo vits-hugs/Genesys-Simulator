@@ -37,7 +37,7 @@ Smart_WaitSignal::Smart_WaitSignal() {
 int Smart_WaitSignal::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	this->setDefaultTraceHandlers(genesys->getTracer());
-	this->insertFakePluginsByHand(genesys);
+	genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
 	genesys->getTracer()->setTraceLevel(TraceManager::Level::L7_internal);
 	Model* model = genesys->getModels()->newModel();
 	PluginManager* plugins = genesys->getPlugins();

@@ -33,7 +33,7 @@ int Smart_ModelInfoModelSimulation::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	genesys->getTracer()->setTraceLevel(TraceManager::Level::L6_arrival);
 	this->setDefaultTraceHandlers(genesys->getTracer());
-	this->insertFakePluginsByHand(genesys);
+	genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
 	//
 	Model* model = genesys->getModels()->newModel();
 	PluginManager* plugins = genesys->getPlugins();

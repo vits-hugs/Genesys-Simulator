@@ -27,7 +27,7 @@ Smart_AddingResource::Smart_AddingResource() {
 int Smart_AddingResource::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	this->setDefaultTraceHandlers(genesys->getTracer());
-	this->insertFakePluginsByHand(genesys);
+	genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
 	genesys->getTracer()->setTraceLevel(TraceManager::Level::L2_results);
 	// create model
 	Model* model = genesys->getModels()->newModel();

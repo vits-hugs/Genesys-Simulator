@@ -33,7 +33,7 @@ Smart_AutomaticStatisticsCollection::Smart_AutomaticStatisticsCollection() {
 int Smart_AutomaticStatisticsCollection::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	this->setDefaultTraceHandlers(genesys->getTracer());
-	this->insertFakePluginsByHand(genesys);
+	genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
 	genesys->getTracer()->setTraceLevel(TraceManager::Level::L8_detailed);
 
 	// crete model

@@ -22,7 +22,7 @@ Smart_Failures::Smart_Failures() {
 int Smart_Failures::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	this->setDefaultTraceHandlers(genesys->getTracer());
-	this->insertFakePluginsByHand(genesys);
+	genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
 	genesys->getTracer()->setTraceLevel(TraceManager::Level::L9_mostDetailed);
 	// crete model
 	Model* model = genesys->getModels()->newModel();

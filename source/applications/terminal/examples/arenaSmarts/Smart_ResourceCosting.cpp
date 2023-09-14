@@ -26,7 +26,7 @@ int Smart_ResourceCosting::main(int argc, char** argv) {
 	// instantiate simulator
 	Simulator* genesys = new Simulator();
         this->setDefaultTraceHandlers(genesys->getTracer());
-	this->insertFakePluginsByHand(genesys);
+	genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
 	genesys->getTracer()->setTraceLevel(TraceManager::Level::L9_mostDetailed);
 	PluginManager* plugins = genesys->getPlugins();
 	

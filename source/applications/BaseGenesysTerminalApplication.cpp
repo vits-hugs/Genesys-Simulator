@@ -22,7 +22,7 @@ BaseGenesysTerminalApplication::BaseGenesysTerminalApplication() {
 int BaseGenesysTerminalApplication::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	this->setDefaultTraceHandlers(genesys->getTracer());
-	this->insertFakePluginsByHand(genesys);
+	genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
 	genesys->getTracer()->setTraceLevel(TraceManager::Level::L9_mostDetailed);
 	Model* model = genesys->getModels()->newModel();
 	PluginManager* plugins = genesys->getPlugins();
@@ -127,103 +127,4 @@ void BaseGenesysTerminalApplication::setDefaultTraceHandlers(TraceManager* tm) {
 	tm->addTraceErrorHandler<BaseGenesysTerminalApplication>(this, &BaseGenesysTerminalApplication::traceErrorHandler);
 	tm->addTraceReportHandler<BaseGenesysTerminalApplication>(this, &BaseGenesysTerminalApplication::traceReportHandler);
 	tm->addTraceSimulationHandler<BaseGenesysTerminalApplication>(this, &BaseGenesysTerminalApplication::traceSimulationHandler);
-}
-
-void BaseGenesysTerminalApplication::insertFakePluginsByHand(Simulator* simulator) {
-	PluginManager* pm = simulator->getPlugins();
-	// TRYING SOME NEW ORGANIZATION (BASED ON ARENA 16..20)
-
-	// DISCRETE PROCESSING
-
-	// GROUPING
-
-	//INPUT/OUTPUT
-
-	// MATERIAL HANDLING
-
-	// CONTINUOS
-
-	// DATA DEFINITION
-
-
-	//-----------------------------------------------------
-
-	// OLD ORGANIZATION
-
-	// model components
-	// arena basic process
-	pm->insert("create.so");
-	pm->insert("dispose.so");
-	pm->insert("decide.so");
-	pm->insert("batch.so");
-	pm->insert("separate.so");
-	pm->insert("clone.so");
-	pm->insert("assign.so");
-	pm->insert("record.so");
-	pm->insert("process.so");
-	pm->insert("submodel.so");
-	pm->insert("entitygroup.so");
-	pm->insert("queue.so");
-	pm->insert("set.so");
-	pm->insert("resource.so");
-	pm->insert("variable.so");
-	pm->insert("schedule.so");
-	pm->insert("entitygroup.so");
-	// arena advanced process
-	pm->insert("delay.so");
-	pm->insert("dropoff.so");
-	pm->insert("hold.so");
-	pm->insert("match.so");
-	pm->insert("pickup.so");
-	pm->insert("read.so");
-	pm->insert("write.so");
-	pm->insert("release.so");
-	pm->insert("remove.so");
-	pm->insert("seize.so");
-	pm->insert("search.so");
-	pm->insert("signal.so");
-	pm->insert("signaldata.so");
-	pm->insert("store.so");
-	pm->insert("unstore.so");
-	pm->insert("expression.so");
-	pm->insert("formula.so");
-	pm->insert("failure.so");
-	pm->insert("file.so");
-	pm->insert("storage.so");
-	// arena transfer station
-	pm->insert("enter.so");
-	pm->insert("leave.so");
-	pm->insert("pickstation.so");
-	pm->insert("route.so");
-	pm->insert("sequence.so");
-	pm->insert("station.so");
-	pm->insert("label.so");
-	// arena transfer conveyour
-	pm->insert("access.so");
-	pm->insert("exit.so");
-	pm->insert("start.so");
-	pm->insert("stop.so");
-	pm->insert("conveyour.so");
-	pm->insert("segment.so");
-	// arena transfer transport
-	pm->insert("alocate.so");
-	pm->insert("free.so");
-	pm->insert("halt.so");
-	pm->insert("move.so");
-	pm->insert("request.so");
-	pm->insert("transporter.so");
-	pm->insert("distance.so");
-	pm->insert("network.so");
-	pm->insert("networklink.so");
-	// others
-	pm->insert("dummy.so");
-	pm->insert("lsode.so");
-	pm->insert("biochemical.so");
-	pm->insert("markovchain.so");
-	pm->insert("cellularautomata.so");
-	pm->insert("cppforg.so");
-	pm->insert("efsm.so");
-	pm->insert("efsmData.so");
-	// now complete the information
-	simulator->getPlugins()->completePluginsFieldsAndTemplates();
 }

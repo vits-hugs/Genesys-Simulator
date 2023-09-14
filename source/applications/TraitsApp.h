@@ -13,6 +13,11 @@
 
 #ifndef TRAITSAPP_H
 #define TRAITSAPP_H
+#include "BaseGenesysTerminalApplication.h"
+#include "terminal/examples/teaching/BufferFIFO.h"
+
+#include "terminal/examples/smarts/Smart_Parser.h"
+
 
 // TERMINAL USER INTERFACES
 #include "terminal/GenesysShell/GenesysShell.h"
@@ -102,9 +107,10 @@
 #include "terminal/examples/teaching/AnElectronicAssemblyAndTestSystem.h"
 #include "terminal/examples/teaching/OperatingSystem02.h"
 
-
 // under development
 #include "terminal/underDevelopment/TestingTerminalApp.h"
+
+
 template <typename T>
 struct TraitsApp {
 };
@@ -141,7 +147,7 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Smart_SeizeDelayReleaseMany Application;
 	//typedef Smart_Sequence Application;
 	//typedef Smart_SynchronizingParallelEntities Application;
-	typedef Smart_SimulationControlResponse Application;
+	//typedef Smart_SimulationControlResponse Application;
 	//typedef Smart_WaitScanCondition Application;
 	//typedef Smart_WaitSignal Application;
 
@@ -201,6 +207,7 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef OperatingSystem01 Application;
 	//typedef OperatingSystem02 Application;
 	//typedef OperatingSystem03 Application;
+	typedef BufferFIFO Application;
 
 	//// BOOK
 	//typedef Book_Cap02_Example01 Application;

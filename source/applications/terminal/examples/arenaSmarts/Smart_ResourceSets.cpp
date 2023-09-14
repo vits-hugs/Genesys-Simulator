@@ -37,7 +37,7 @@ int Smart_ResourceSets::main(int argc, char** argv) {
     // Create a new simulator instance.
     Simulator* genesys = new Simulator();
     this->setDefaultTraceHandlers(genesys->getTracer());
-    this->insertFakePluginsByHand(genesys);
+    genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
 
     // Create the model and components instances.
     Model* model = genesys->getModels()->newModel();

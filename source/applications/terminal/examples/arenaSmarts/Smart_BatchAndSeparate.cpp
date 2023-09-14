@@ -22,7 +22,7 @@ int Smart_BatchAndSeparate::main(int argc, char** argv) {
     Simulator* genesys = new Simulator();
     genesys->getTracer()->setTraceLevel(TraceManager::Level::L2_results);
     this->setDefaultTraceHandlers(genesys->getTracer());
-    this->insertFakePluginsByHand(genesys);
+    genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
 
     Model* m = new Model(genesys);
     PluginManager* plugins = genesys->getPlugins();

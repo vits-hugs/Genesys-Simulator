@@ -34,7 +34,7 @@ Smart_DefiningResourceCapacity::Smart_DefiningResourceCapacity() {
 int Smart_DefiningResourceCapacity::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	this->setDefaultTraceHandlers(genesys->getTracer());
-	this->insertFakePluginsByHand(genesys);
+	genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
 	genesys->getTracer()->setTraceLevel(TraceManager::Level::L2_results);
 
 	// crete model

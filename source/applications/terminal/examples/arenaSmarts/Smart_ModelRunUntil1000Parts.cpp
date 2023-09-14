@@ -41,7 +41,7 @@ int Smart_ModelRunUntil1000Parts::main(int argc, char** argv) {
     // Create a new simulator instance.
     Simulator* genesys = new Simulator();
     this->setDefaultTraceHandlers(genesys->getTracer());
-    this->insertFakePluginsByHand(genesys);
+    genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
 
     bool isDevelop = false;    
 

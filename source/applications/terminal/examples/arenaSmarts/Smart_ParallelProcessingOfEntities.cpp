@@ -37,7 +37,7 @@ Smart_ParallelProcessingOfEntities::Smart_ParallelProcessingOfEntities() {
 int Smart_ParallelProcessingOfEntities::main(int argc, char** argv) {
     Simulator* genesys = new Simulator();
     this->setDefaultTraceHandlers(genesys->getTracer());
-    this->insertFakePluginsByHand(genesys);
+    genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
 
     // Create the model and components instances.
     Model* model = genesys->getModels()->newModel();

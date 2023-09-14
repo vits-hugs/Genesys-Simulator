@@ -33,7 +33,7 @@ Smart_ProcessSet::Smart_ProcessSet() {
 int Smart_ProcessSet::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	this->setDefaultTraceHandlers(genesys->getTracer());
-	this->insertFakePluginsByHand(genesys);
+	genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
 	genesys->getTracer()->setTraceLevel(TraceManager::Level::L8_detailed);
 	// create model
 	Model* model = genesys->getModels()->newModel();

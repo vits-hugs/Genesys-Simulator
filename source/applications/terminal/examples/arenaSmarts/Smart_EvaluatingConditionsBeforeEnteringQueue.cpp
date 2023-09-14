@@ -40,7 +40,7 @@ Smart_EvaluatingConditionsBeforeEnteringQueue::Smart_EvaluatingConditionsBeforeE
 int Smart_EvaluatingConditionsBeforeEnteringQueue::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
 	this->setDefaultTraceHandlers(genesys->getTracer());
-	this->insertFakePluginsByHand(genesys);
+	genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
 
 
 	// crete model
