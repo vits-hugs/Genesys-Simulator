@@ -34,9 +34,9 @@ ModelSimulation::ModelSimulation(Model* model) {
 		return a->getId() < b->getId();
 	});
 	_simulationReporter = new TraitsKernel<SimulationReporter_if>::Implementation(this, model, this->_cstatsAndCountersSimulation);
-
-	// properties
-
+	// controls
+	// TODO Add ReplicationLength, getReplicationLengthTimeUnit, getReplicationBaseTimeUnit, warmUpPeriod, ...
+	//_model->getControls()->insert();
 }
 
 std::string ModelSimulation::show() {
@@ -592,10 +592,10 @@ unsigned int ModelSimulation::getNumberOfReplications() const {
 	return _numberOfReplications;
 }
 
-void ModelSimulation::setReplicationLength(double _replicationLength) {
-	this->_replicationLength = _replicationLength;
-	_hasChanged = true;
-}
+//void ModelSimulation::setReplicationLength(double _replicationLength) {
+//	this->_replicationLength = _replicationLength;
+//	_hasChanged = true;
+//}
 
 void ModelSimulation::setReplicationLength(double replicationLength, Util::TimeUnit replicationLengthTimeUnit) {
 	this->_replicationLength = replicationLength;

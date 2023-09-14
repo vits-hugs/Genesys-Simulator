@@ -62,6 +62,10 @@ void ParserDefaultImpl2::setSampler(Sampler_if* _sampler) {
 	_wrapper.setSampler(_sampler);
 }
 
-Sampler_if* ParserDefaultImpl2::sampler() const {
-	return _wrapper.sampler();
+Sampler_if* ParserDefaultImpl2::getSampler() const {
+	return _wrapper.getSampler();
+}
+
+genesyspp_driver ParserDefaultImpl2::getParser() const {
+	return _wrapper;
 }

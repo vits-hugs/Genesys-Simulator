@@ -446,6 +446,7 @@ HEADERS += \
 	../../../terminal/examples/smarts/Smart_SeizeDelayReleaseMany.h \
 	../../../terminal/examples/smarts/Smart_Sequence.h \
 	../../../terminal/examples/teaching/AnElectronicAssemblyAndTestSystem.h \
+	../../../terminal/examples/teaching/BufferFIFO.h \
 	../../../terminal/examples/teaching/FullSimulationOfComplexModel.h \
 	../../../terminal/examples/teaching/OperatingSystem02.h \
 	../../../terminal/examples/teaching/OperatingSystem03.h \

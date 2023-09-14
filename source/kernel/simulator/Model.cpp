@@ -16,6 +16,7 @@
 #include <iostream>
 #include <algorithm>
 #include <string>
+#include <list>
 
 #include "SourceModelComponent.h"
 #include "Simulator.h"
@@ -158,6 +159,16 @@ bool Model::checkExpression(const std::string expression, const std::string expr
 		errorMessage->append(msg);
 	}
 	return result;
+}
+
+void Model::checkReferencesToDataDefinitions(std::string expression, std::map<std::string, std::list<std::string>*>* referencedDataDefinitions) {
+	genesyspp_driver wrapper = _parser->getParser();
+	wrapper.setRegisterReferedDataElements(true);
+	wrapper.clearReferedDataElements();
+	wrapper.parse_str(expression);
+	std::map<std::string, std::list<std::string>*>* refs = wrapper.getReferedDataElements();
+	referencedDataDefinitions->insert(refs->begin(), refs->end());
+	wrapper.setRegisterReferedDataElements(false);
 }
 
 double Model::parseExpression(const std::string expression, bool* success, std::string* errorMessage) {

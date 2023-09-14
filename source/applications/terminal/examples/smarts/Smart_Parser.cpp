@@ -37,6 +37,10 @@ int Smart_Parser::main(int argc, char** argv) {
 	// Just parser evaluating different expressions 
 	// (arithmetic, trigonometric, matemathic, logic, statistic and conditional)
 	std::vector<std::string> expressions = {
+		"1e-3",
+		"0x2fE-0x1b",
+		"(1.0<=2.5)==0",
+		"min(10e1, 1e-3)", // TODO!!! THE RESULT IS WRONG
 		"-3 + 2*0.25 +0xc/4 -1.34e-3 *(-1*-1)-2^5",
 		"sin(0.3) - cos(1.75)",
 		"trunc(12.99) + round(12.99) + frac(45.009)",
@@ -44,7 +48,12 @@ int Smart_Parser::main(int argc, char** argv) {
 		"not false and (3 nand (0 xor false))",
 		"norm(0,1) + expo(10) + unif(2,5) + weib(2,1) + logn(10,1) + erla(2,1) + beta(6,2,1,1) + tria(1,4,5)",
 		"disc(0.1,1,0.3,2,0.6,3,1,4)", // not implemented in parser
-		"if 0 if 1 0 else 1 else if 1 2 else 3"
+		"if false and true 0 else 1",
+		"if false or true 0 else 1",
+		"if 1 if 1 2 else 3",
+		"if 1 if 0 2 else 3",
+		"if 1 (if 0 2) else 3",
+		"if false if true 0 else 1 else if true 2 else 3"
 	};
 	// an empty model is created since parser is attached to a model
 	Model* model = genesys->getModels()->newModel();

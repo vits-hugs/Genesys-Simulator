@@ -27,9 +27,9 @@ ModelCheckerDefaultImpl1::ModelCheckerDefaultImpl1(Model* model) {
 
 bool ModelCheckerDefaultImpl1::checkAll() {
 	bool res = true;
-	res = checkOrphaned();
+	res &= checkSymbols();
 	if (res)
-		res &= checkSymbols();
+		res = checkOrphaned();
 	if (res)
 		res &= checkLimits();
 	if (res)
@@ -270,11 +270,15 @@ bool ModelCheckerDefaultImpl1::checkOrphaned() {
 		}
 		// every one in orphaned list now is really orphaned
 		if (orphaned->size() > 0) {
-			_model->getTracer()->trace(TraceManager::Level::L7_internal, "Orphaned DataDefinitions found and removed:");
-			for (ModelDataDefinition* orphanElem : *orphaned) {
-				_model->getTracer()->trace(TraceManager::Level::L8_detailed, "(" + orphanElem->getClassname() + ") " + orphanElem->getName() + "(id=" + std::to_string(orphanElem->getId()) + ")");
-				_model->getDataManager()->remove(orphanElem);
+			_model->getTracer()->trace(TraceManager::Level::L7_internal, "Orphaned DataDefinitions found and will be removed:");
+			Util::IncIndent();
+			{
+				for (ModelDataDefinition* orphanElem : *orphaned) {
+					_model->getTracer()->trace(TraceManager::Level::L8_detailed, "Orphan (" + orphanElem->getClassname() + ") " + orphanElem->getName() + "(id=" + std::to_string(orphanElem->getId()) + ") removed");
+					_model->getDataManager()->remove(orphanElem);
+				}
 			}
+			Util::DecIndent();
 			// inoke again, recursivelly (removing some datadefinitions may create some other orphans)
 			Util::IncIndent();
 			{

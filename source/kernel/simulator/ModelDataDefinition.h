@@ -83,6 +83,8 @@ protected: // methods to be called inside the _createInternalAndAttachedData() m
 	void _attachedDataRemove(std::string key);
 	void _attachedDataClear();
 	void _attachedAttributesInsert(std::vector<std::string> neededNames);
+protected: // method to be called to insert attached dataelements that are referenced by string expressions (detected by the parser), to avoid orphaned data definitions
+	void _checkCreateAttachedReferencedDataDefinition(std::string expression);//(std::map<std::string, std::list<std::string>*>* referencedDataDefinitions);
 protected:
 	bool _getSaveDefaultsOption();
 protected: // must be overriden by derived classes

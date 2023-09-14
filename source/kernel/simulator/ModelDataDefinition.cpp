@@ -156,6 +156,25 @@ void ModelDataDefinition::_attachedDataClear() {
 	_attachedData->clear();
 }
 
+void ModelDataDefinition::_checkCreateAttachedReferencedDataDefinition(std::string expression) {//(std::map<std::string, std::list<std::string>*>* referencedDataDefinitions) {
+	std::map<std::string, std::list<std::string>*> referencedDataDefinitions;// = nullptr; // = new std::map<std::string, std::list<std::string>*>();
+	_parentModel->checkReferencesToDataDefinitions(expression, &referencedDataDefinitions);
+	if (referencedDataDefinitions.size()>0) {
+		Util::IncIndent();
+				ModelDataDefinition* referedElem;
+		ModelDataManager* elemMan = _parentModel->getDataManager();
+		for (auto pair: referencedDataDefinitions) {
+			for (std::string referedName: *pair.second) {
+				referedElem = elemMan->getDataDefinition(pair.first, referedName);
+				assert(referedElem != nullptr);
+				_attachedDataInsert("Refered_"+pair.first, referedElem);
+				_parentModel->getTracer()->trace(this->getName()+" has an expression that refers to "+pair.first+ " "+referedName+", and therefore was attached.");
+			}
+		}
+		Util::DecIndent();
+	}
+}
+
 bool ModelDataDefinition::_getSaveDefaultsOption() {
 	return _parentModel->getPersistence()->getOption(ModelPersistence_if::Options::SAVEDEFAULTS);
 }

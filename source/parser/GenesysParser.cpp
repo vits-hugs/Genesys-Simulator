@@ -42,7 +42,7 @@
 
 
 // Unqualified %code blocks.
-#line 58 "bisonparser.yy"
+#line 62 "bisonparser.yy"
 
 # include "Genesys++-driver.h"
 
@@ -803,7 +803,7 @@ namespace yy {
 
 
     // User initialization code.
-#line 51 "bisonparser.yy"
+#line 55 "bisonparser.yy"
 {
   // Initialize the initial location.
   //@$.begin.filename = @$.end.filename = &driver.getFile();
@@ -1046,487 +1046,488 @@ namespace yy {
           switch (yyn)
             {
   case 2: // input: expression
-#line 246 "bisonparser.yy"
+#line 250 "bisonparser.yy"
                     { driver.setResult(yystack_[0].value.as < obj_t > ().valor);}
 #line 1052 "../GenesysParser.cpp"
     break;
 
   case 3: // input: error '\n'
-#line 247 "bisonparser.yy"
+#line 251 "bisonparser.yy"
                         { yyerrok; }
 #line 1058 "../GenesysParser.cpp"
     break;
 
   case 4: // expression: number
-#line 251 "bisonparser.yy"
+#line 255 "bisonparser.yy"
                                        {yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor;}
 #line 1064 "../GenesysParser.cpp"
     break;
 
   case 5: // expression: function
-#line 252 "bisonparser.yy"
+#line 256 "bisonparser.yy"
                                        {yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor;}
 #line 1070 "../GenesysParser.cpp"
     break;
 
   case 6: // expression: command
-#line 253 "bisonparser.yy"
+#line 257 "bisonparser.yy"
                                        {yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor;}
 #line 1076 "../GenesysParser.cpp"
     break;
 
   case 7: // expression: assigment
-#line 254 "bisonparser.yy"
+#line 258 "bisonparser.yy"
                                       {yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor;}
 #line 1082 "../GenesysParser.cpp"
     break;
 
   case 8: // expression: arithmetic
-#line 255 "bisonparser.yy"
+#line 259 "bisonparser.yy"
                                            {yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor;}
 #line 1088 "../GenesysParser.cpp"
     break;
 
   case 9: // expression: logical
-#line 256 "bisonparser.yy"
+#line 260 "bisonparser.yy"
                                         {yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor;}
 #line 1094 "../GenesysParser.cpp"
     break;
 
   case 10: // expression: relacional
-#line 257 "bisonparser.yy"
+#line 261 "bisonparser.yy"
                                        {yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor;}
 #line 1100 "../GenesysParser.cpp"
     break;
 
   case 11: // expression: "(" expression ")"
-#line 258 "bisonparser.yy"
-                                       {yylhs.value.as < obj_t > ().valor = yystack_[1].value.as < obj_t > ().valor;}
+#line 262 "bisonparser.yy"
+                                            {yylhs.value.as < obj_t > ().valor = yystack_[1].value.as < obj_t > ().valor;}
 #line 1106 "../GenesysParser.cpp"
     break;
 
   case 12: // expression: attribute
-#line 259 "bisonparser.yy"
+#line 263 "bisonparser.yy"
                                         {yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor;}
 #line 1112 "../GenesysParser.cpp"
     break;
 
   case 13: // expression: variable
-#line 264 "bisonparser.yy"
+#line 268 "bisonparser.yy"
                                                    {yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor;}
 #line 1118 "../GenesysParser.cpp"
     break;
 
   case 14: // expression: formula
-#line 268 "bisonparser.yy"
+#line 272 "bisonparser.yy"
                                                    {yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor;}
 #line 1124 "../GenesysParser.cpp"
     break;
 
   case 15: // number: NUMD
-#line 275 "bisonparser.yy"
+#line 279 "bisonparser.yy"
               { yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor;}
 #line 1130 "../GenesysParser.cpp"
     break;
 
   case 16: // number: NUMH
-#line 276 "bisonparser.yy"
+#line 280 "bisonparser.yy"
               { yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor;}
 #line 1136 "../GenesysParser.cpp"
     break;
 
   case 17: // arithmetic: expression "+" expression
-#line 280 "bisonparser.yy"
+#line 284 "bisonparser.yy"
                                      { yylhs.value.as < obj_t > ().valor = yystack_[2].value.as < obj_t > ().valor + yystack_[0].value.as < obj_t > ().valor;}
 #line 1142 "../GenesysParser.cpp"
     break;
 
   case 18: // arithmetic: expression "-" expression
-#line 281 "bisonparser.yy"
+#line 285 "bisonparser.yy"
                                      { yylhs.value.as < obj_t > ().valor = yystack_[2].value.as < obj_t > ().valor - yystack_[0].value.as < obj_t > ().valor;}
 #line 1148 "../GenesysParser.cpp"
     break;
 
   case 19: // arithmetic: expression "/" expression
-#line 282 "bisonparser.yy"
+#line 286 "bisonparser.yy"
                                      { yylhs.value.as < obj_t > ().valor = yystack_[2].value.as < obj_t > ().valor / yystack_[0].value.as < obj_t > ().valor;}
 #line 1154 "../GenesysParser.cpp"
     break;
 
   case 20: // arithmetic: expression "*" expression
-#line 283 "bisonparser.yy"
+#line 287 "bisonparser.yy"
                                      { yylhs.value.as < obj_t > ().valor = yystack_[2].value.as < obj_t > ().valor * yystack_[0].value.as < obj_t > ().valor;}
 #line 1160 "../GenesysParser.cpp"
     break;
 
   case 21: // arithmetic: expression "^" expression
-#line 284 "bisonparser.yy"
+#line 288 "bisonparser.yy"
                                      { yylhs.value.as < obj_t > ().valor = pow(yystack_[2].value.as < obj_t > ().valor,yystack_[0].value.as < obj_t > ().valor);}
 #line 1166 "../GenesysParser.cpp"
     break;
 
   case 22: // arithmetic: "-" expression
-#line 285 "bisonparser.yy"
+#line 289 "bisonparser.yy"
                                      { yylhs.value.as < obj_t > ().valor = -yystack_[0].value.as < obj_t > ().valor;}
 #line 1172 "../GenesysParser.cpp"
     break;
 
   case 23: // arithmetic: mathMIN "(" expression "," expression ")"
-#line 288 "bisonparser.yy"
-                                                      { yylhs.value.as < obj_t > ().valor = std::min(yystack_[3].value.as < obj_t > ().valor,yystack_[1].value.as < obj_t > ().valor);}
-#line 1178 "../GenesysParser.cpp"
+#line 292 "bisonparser.yy"
+                                                            {std::cout <<"MIN(" << yystack_[3].value.as < obj_t > ().valor << "," << yystack_[1].value.as < obj_t > ().valor <<")"<< std::endl;
+														 yylhs.value.as < obj_t > ().valor = std::min(yystack_[3].value.as < obj_t > ().valor,yystack_[1].value.as < obj_t > ().valor);}
+#line 1179 "../GenesysParser.cpp"
     break;
 
   case 24: // arithmetic: mathMAX "(" expression "," expression ")"
-#line 289 "bisonparser.yy"
-                                                      { yylhs.value.as < obj_t > ().valor = std::max(yystack_[3].value.as < obj_t > ().valor,yystack_[1].value.as < obj_t > ().valor);}
-#line 1184 "../GenesysParser.cpp"
+#line 294 "bisonparser.yy"
+                                                            { yylhs.value.as < obj_t > ().valor = std::max(yystack_[3].value.as < obj_t > ().valor,yystack_[1].value.as < obj_t > ().valor);}
+#line 1185 "../GenesysParser.cpp"
     break;
 
   case 25: // logical: expression oAND expression
-#line 293 "bisonparser.yy"
+#line 298 "bisonparser.yy"
                                     { yylhs.value.as < obj_t > ().valor = (int) yystack_[2].value.as < obj_t > ().valor && (int) yystack_[0].value.as < obj_t > ().valor;}
-#line 1190 "../GenesysParser.cpp"
+#line 1191 "../GenesysParser.cpp"
     break;
 
   case 26: // logical: expression oOR expression
-#line 294 "bisonparser.yy"
+#line 299 "bisonparser.yy"
                                     { yylhs.value.as < obj_t > ().valor = (int) yystack_[2].value.as < obj_t > ().valor || (int) yystack_[0].value.as < obj_t > ().valor;}
-#line 1196 "../GenesysParser.cpp"
+#line 1197 "../GenesysParser.cpp"
     break;
 
   case 27: // logical: expression oNAND expression
-#line 295 "bisonparser.yy"
+#line 300 "bisonparser.yy"
                                     { yylhs.value.as < obj_t > ().valor = !((int) yystack_[2].value.as < obj_t > ().valor && (int) yystack_[0].value.as < obj_t > ().valor);}
-#line 1202 "../GenesysParser.cpp"
+#line 1203 "../GenesysParser.cpp"
     break;
 
   case 28: // logical: expression oXOR expression
-#line 296 "bisonparser.yy"
+#line 301 "bisonparser.yy"
                                     { yylhs.value.as < obj_t > ().valor = (!(int) yystack_[2].value.as < obj_t > ().valor && (int) yystack_[0].value.as < obj_t > ().valor) || ((int) yystack_[2].value.as < obj_t > ().valor && !(int) yystack_[0].value.as < obj_t > ().valor);}
-#line 1208 "../GenesysParser.cpp"
+#line 1209 "../GenesysParser.cpp"
     break;
 
   case 29: // logical: oNOT expression
-#line 297 "bisonparser.yy"
+#line 302 "bisonparser.yy"
                                     { yylhs.value.as < obj_t > ().valor = !(int) yystack_[0].value.as < obj_t > ().valor;}
-#line 1214 "../GenesysParser.cpp"
+#line 1215 "../GenesysParser.cpp"
     break;
 
   case 30: // relacional: expression "<" expression
-#line 301 "bisonparser.yy"
+#line 306 "bisonparser.yy"
                                          { yylhs.value.as < obj_t > ().valor = yystack_[2].value.as < obj_t > ().valor < yystack_[0].value.as < obj_t > ().valor ? 1 : 0;}
-#line 1220 "../GenesysParser.cpp"
+#line 1221 "../GenesysParser.cpp"
     break;
 
   case 31: // relacional: expression ">" expression
-#line 302 "bisonparser.yy"
+#line 307 "bisonparser.yy"
                                          { yylhs.value.as < obj_t > ().valor = yystack_[2].value.as < obj_t > ().valor > yystack_[0].value.as < obj_t > ().valor ? 1 : 0;}
-#line 1226 "../GenesysParser.cpp"
+#line 1227 "../GenesysParser.cpp"
     break;
 
   case 32: // relacional: expression oLE expression
-#line 303 "bisonparser.yy"
+#line 308 "bisonparser.yy"
                                          { yylhs.value.as < obj_t > ().valor = yystack_[2].value.as < obj_t > ().valor <= yystack_[0].value.as < obj_t > ().valor ? 1 : 0;}
-#line 1232 "../GenesysParser.cpp"
+#line 1233 "../GenesysParser.cpp"
     break;
 
   case 33: // relacional: expression oGE expression
-#line 304 "bisonparser.yy"
+#line 309 "bisonparser.yy"
                                          { yylhs.value.as < obj_t > ().valor = yystack_[2].value.as < obj_t > ().valor >= yystack_[0].value.as < obj_t > ().valor ? 1 : 0;}
-#line 1238 "../GenesysParser.cpp"
+#line 1239 "../GenesysParser.cpp"
     break;
 
   case 34: // relacional: expression oEQ expression
-#line 305 "bisonparser.yy"
+#line 310 "bisonparser.yy"
                                          { yylhs.value.as < obj_t > ().valor = yystack_[2].value.as < obj_t > ().valor == yystack_[0].value.as < obj_t > ().valor ? 1 : 0;}
-#line 1244 "../GenesysParser.cpp"
+#line 1245 "../GenesysParser.cpp"
     break;
 
   case 35: // relacional: expression oNE expression
-#line 306 "bisonparser.yy"
+#line 311 "bisonparser.yy"
                                          { yylhs.value.as < obj_t > ().valor = yystack_[2].value.as < obj_t > ().valor != yystack_[0].value.as < obj_t > ().valor ? 1 : 0;}
-#line 1250 "../GenesysParser.cpp"
+#line 1251 "../GenesysParser.cpp"
     break;
 
   case 36: // command: commandIF
-#line 310 "bisonparser.yy"
+#line 315 "bisonparser.yy"
                     { yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor; }
-#line 1256 "../GenesysParser.cpp"
+#line 1257 "../GenesysParser.cpp"
     break;
 
   case 37: // command: commandFOR
-#line 311 "bisonparser.yy"
+#line 316 "bisonparser.yy"
                     { yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor; }
-#line 1262 "../GenesysParser.cpp"
+#line 1263 "../GenesysParser.cpp"
     break;
 
   case 38: // commandIF: cIF expression expression cELSE expression
-#line 315 "bisonparser.yy"
+#line 320 "bisonparser.yy"
                                                    { yylhs.value.as < obj_t > ().valor = yystack_[3].value.as < obj_t > ().valor != 0 ? yystack_[2].value.as < obj_t > ().valor : yystack_[0].value.as < obj_t > ().valor; }
-#line 1268 "../GenesysParser.cpp"
+#line 1269 "../GenesysParser.cpp"
     break;
 
   case 39: // commandIF: cIF expression expression
-#line 316 "bisonparser.yy"
+#line 321 "bisonparser.yy"
                                                   { yylhs.value.as < obj_t > ().valor = yystack_[1].value.as < obj_t > ().valor != 0 ? yystack_[0].value.as < obj_t > ().valor : 0;}
-#line 1274 "../GenesysParser.cpp"
+#line 1275 "../GenesysParser.cpp"
     break;
 
   case 40: // commandFOR: cFOR variable "=" expression cTO expression cDO assigment
-#line 321 "bisonparser.yy"
+#line 326 "bisonparser.yy"
                                                                 {yylhs.value.as < obj_t > ().valor = 0; }
-#line 1280 "../GenesysParser.cpp"
+#line 1281 "../GenesysParser.cpp"
     break;
 
   case 41: // commandFOR: cFOR attribute "=" expression cTO expression cDO assigment
-#line 322 "bisonparser.yy"
+#line 327 "bisonparser.yy"
                                                                   {yylhs.value.as < obj_t > ().valor = 0; }
-#line 1286 "../GenesysParser.cpp"
+#line 1287 "../GenesysParser.cpp"
     break;
 
   case 42: // function: mathFunction
-#line 326 "bisonparser.yy"
+#line 331 "bisonparser.yy"
                          { yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor; }
-#line 1292 "../GenesysParser.cpp"
+#line 1293 "../GenesysParser.cpp"
     break;
 
   case 43: // function: trigonFunction
-#line 327 "bisonparser.yy"
+#line 332 "bisonparser.yy"
                          { yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor; }
-#line 1298 "../GenesysParser.cpp"
+#line 1299 "../GenesysParser.cpp"
     break;
 
   case 44: // function: probFunction
-#line 328 "bisonparser.yy"
+#line 333 "bisonparser.yy"
                          { yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor; }
-#line 1304 "../GenesysParser.cpp"
+#line 1305 "../GenesysParser.cpp"
     break;
 
   case 45: // function: kernelFunction
-#line 329 "bisonparser.yy"
+#line 334 "bisonparser.yy"
                          { yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor; }
-#line 1310 "../GenesysParser.cpp"
+#line 1311 "../GenesysParser.cpp"
     break;
 
   case 46: // function: elementFunction
-#line 330 "bisonparser.yy"
+#line 335 "bisonparser.yy"
                          { yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor; }
-#line 1316 "../GenesysParser.cpp"
+#line 1317 "../GenesysParser.cpp"
     break;
 
   case 47: // function: pluginFunction
-#line 331 "bisonparser.yy"
+#line 336 "bisonparser.yy"
                          { yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor; }
-#line 1322 "../GenesysParser.cpp"
+#line 1323 "../GenesysParser.cpp"
     break;
 
   case 48: // function: userFunction
-#line 332 "bisonparser.yy"
+#line 337 "bisonparser.yy"
                          { yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor; }
-#line 1328 "../GenesysParser.cpp"
+#line 1329 "../GenesysParser.cpp"
     break;
 
   case 49: // kernelFunction: fTNOW
-#line 336 "bisonparser.yy"
+#line 341 "bisonparser.yy"
                  { yylhs.value.as < obj_t > ().valor = driver.getModel()->getSimulation()->getSimulatedTime();}
-#line 1334 "../GenesysParser.cpp"
+#line 1335 "../GenesysParser.cpp"
     break;
 
   case 50: // kernelFunction: fTFIN
-#line 337 "bisonparser.yy"
+#line 342 "bisonparser.yy"
                  { yylhs.value.as < obj_t > ().valor = driver.getModel()->getSimulation()->getReplicationLength();}
-#line 1340 "../GenesysParser.cpp"
+#line 1341 "../GenesysParser.cpp"
     break;
 
   case 51: // kernelFunction: fMAXREP
-#line 338 "bisonparser.yy"
+#line 343 "bisonparser.yy"
                  { yylhs.value.as < obj_t > ().valor = driver.getModel()->getSimulation()->getNumberOfReplications();}
-#line 1346 "../GenesysParser.cpp"
+#line 1347 "../GenesysParser.cpp"
     break;
 
   case 52: // kernelFunction: fNUMREP
-#line 339 "bisonparser.yy"
+#line 344 "bisonparser.yy"
                  { yylhs.value.as < obj_t > ().valor = driver.getModel()->getSimulation()->getCurrentReplicationNumber();}
-#line 1352 "../GenesysParser.cpp"
+#line 1353 "../GenesysParser.cpp"
     break;
 
   case 53: // kernelFunction: fIDENT
-#line 340 "bisonparser.yy"
+#line 345 "bisonparser.yy"
                  { yylhs.value.as < obj_t > ().valor = driver.getModel()->getSimulation()->getCurrentEvent()->getEntity()->getId();}
-#line 1358 "../GenesysParser.cpp"
+#line 1359 "../GenesysParser.cpp"
     break;
 
   case 54: // kernelFunction: simulEntitiesWIP
-#line 341 "bisonparser.yy"
+#line 346 "bisonparser.yy"
                             { yylhs.value.as < obj_t > ().valor = driver.getModel()->getDataManager()->getNumberOfDataDefinitions(Util::TypeOf<Entity>());}
-#line 1364 "../GenesysParser.cpp"
+#line 1365 "../GenesysParser.cpp"
     break;
 
   case 56: // elementFunction: fTAVG "(" CSTAT ")"
-#line 346 "bisonparser.yy"
+#line 351 "bisonparser.yy"
                                {
                     StatisticsCollector* cstat = ((StatisticsCollector*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<StatisticsCollector>(), yystack_[1].value.as < obj_t > ().id)));
                     double value = cstat->getStatistics()->average();
                     yylhs.value.as < obj_t > ().valor = value; }
-#line 1373 "../GenesysParser.cpp"
+#line 1374 "../GenesysParser.cpp"
     break;
 
   case 57: // elementFunction: fCOUNT "(" COUNTER ")"
-#line 350 "bisonparser.yy"
+#line 355 "bisonparser.yy"
                                  {
 					Counter* counter = ((Counter*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Counter>(), yystack_[1].value.as < obj_t > ().id)));
                     double value = counter->getCountValue();
                     yylhs.value.as < obj_t > ().valor = value; }
-#line 1382 "../GenesysParser.cpp"
+#line 1383 "../GenesysParser.cpp"
     break;
 
   case 58: // trigonFunction: fSIN "(" expression ")"
-#line 357 "bisonparser.yy"
+#line 362 "bisonparser.yy"
                                   { yylhs.value.as < obj_t > ().valor = sin(yystack_[1].value.as < obj_t > ().valor); }
-#line 1388 "../GenesysParser.cpp"
+#line 1389 "../GenesysParser.cpp"
     break;
 
   case 59: // trigonFunction: fCOS "(" expression ")"
-#line 358 "bisonparser.yy"
+#line 363 "bisonparser.yy"
                                   { yylhs.value.as < obj_t > ().valor = cos(yystack_[1].value.as < obj_t > ().valor); }
-#line 1394 "../GenesysParser.cpp"
+#line 1395 "../GenesysParser.cpp"
     break;
 
   case 60: // mathFunction: fROUND "(" expression ")"
-#line 362 "bisonparser.yy"
+#line 367 "bisonparser.yy"
                                         { yylhs.value.as < obj_t > ().valor = round(yystack_[1].value.as < obj_t > ().valor);}
-#line 1400 "../GenesysParser.cpp"
+#line 1401 "../GenesysParser.cpp"
     break;
 
   case 61: // mathFunction: fFRAC "(" expression ")"
-#line 363 "bisonparser.yy"
+#line 368 "bisonparser.yy"
                                         { yylhs.value.as < obj_t > ().valor = yystack_[1].value.as < obj_t > ().valor - (int) yystack_[1].value.as < obj_t > ().valor;}
-#line 1406 "../GenesysParser.cpp"
+#line 1407 "../GenesysParser.cpp"
     break;
 
   case 62: // mathFunction: fTRUNC "(" expression ")"
-#line 364 "bisonparser.yy"
+#line 369 "bisonparser.yy"
                                         { yylhs.value.as < obj_t > ().valor = trunc(yystack_[1].value.as < obj_t > ().valor);}
-#line 1412 "../GenesysParser.cpp"
+#line 1413 "../GenesysParser.cpp"
     break;
 
   case 63: // mathFunction: fEXP "(" expression ")"
-#line 365 "bisonparser.yy"
+#line 370 "bisonparser.yy"
                                     { yylhs.value.as < obj_t > ().valor = exp(yystack_[1].value.as < obj_t > ().valor);}
-#line 1418 "../GenesysParser.cpp"
+#line 1419 "../GenesysParser.cpp"
     break;
 
   case 64: // mathFunction: fSQRT "(" expression ")"
-#line 366 "bisonparser.yy"
+#line 371 "bisonparser.yy"
                                     { yylhs.value.as < obj_t > ().valor = sqrt(yystack_[1].value.as < obj_t > ().valor);}
-#line 1424 "../GenesysParser.cpp"
+#line 1425 "../GenesysParser.cpp"
     break;
 
   case 65: // mathFunction: fLOG "(" expression ")"
-#line 367 "bisonparser.yy"
+#line 372 "bisonparser.yy"
                                     { yylhs.value.as < obj_t > ().valor = log10(yystack_[1].value.as < obj_t > ().valor);}
-#line 1430 "../GenesysParser.cpp"
+#line 1431 "../GenesysParser.cpp"
     break;
 
   case 66: // mathFunction: fLN "(" expression ")"
-#line 368 "bisonparser.yy"
+#line 373 "bisonparser.yy"
                                     { yylhs.value.as < obj_t > ().valor = log(yystack_[1].value.as < obj_t > ().valor);}
-#line 1436 "../GenesysParser.cpp"
+#line 1437 "../GenesysParser.cpp"
     break;
 
   case 67: // mathFunction: fMOD "(" expression "," expression ")"
-#line 369 "bisonparser.yy"
+#line 374 "bisonparser.yy"
                                                { yylhs.value.as < obj_t > ().valor = (int) yystack_[3].value.as < obj_t > ().valor % (int) yystack_[1].value.as < obj_t > ().valor; }
-#line 1442 "../GenesysParser.cpp"
+#line 1443 "../GenesysParser.cpp"
     break;
 
   case 68: // probFunction: fRND1
-#line 373 "bisonparser.yy"
-                                                     { yylhs.value.as < obj_t > ().valor = driver.sampler()->sampleUniform(0.0,1.0);}
-#line 1448 "../GenesysParser.cpp"
+#line 378 "bisonparser.yy"
+                                                     { yylhs.value.as < obj_t > ().valor = driver.getSampler()->sampleUniform(0.0,1.0);}
+#line 1449 "../GenesysParser.cpp"
     break;
 
   case 69: // probFunction: fEXPO "(" expression ")"
-#line 374 "bisonparser.yy"
-                                     { yylhs.value.as < obj_t > ().valor = driver.sampler()->sampleExponential(yystack_[1].value.as < obj_t > ().valor);}
-#line 1454 "../GenesysParser.cpp"
+#line 379 "bisonparser.yy"
+                                     { yylhs.value.as < obj_t > ().valor = driver.getSampler()->sampleExponential(yystack_[1].value.as < obj_t > ().valor);}
+#line 1455 "../GenesysParser.cpp"
     break;
 
   case 70: // probFunction: fNORM "(" expression "," expression ")"
-#line 375 "bisonparser.yy"
-                                                { yylhs.value.as < obj_t > ().valor = driver.sampler()->sampleNormal(yystack_[3].value.as < obj_t > ().valor,yystack_[1].value.as < obj_t > ().valor);}
-#line 1460 "../GenesysParser.cpp"
+#line 380 "bisonparser.yy"
+                                                    { yylhs.value.as < obj_t > ().valor = driver.getSampler()->sampleNormal(yystack_[3].value.as < obj_t > ().valor,yystack_[1].value.as < obj_t > ().valor);}
+#line 1461 "../GenesysParser.cpp"
     break;
 
   case 71: // probFunction: fUNIF "(" expression "," expression ")"
-#line 376 "bisonparser.yy"
-                                                { yylhs.value.as < obj_t > ().valor = driver.sampler()->sampleUniform(yystack_[3].value.as < obj_t > ().valor,yystack_[1].value.as < obj_t > ().valor);}
-#line 1466 "../GenesysParser.cpp"
+#line 381 "bisonparser.yy"
+                                                    { yylhs.value.as < obj_t > ().valor = driver.getSampler()->sampleUniform(yystack_[3].value.as < obj_t > ().valor,yystack_[1].value.as < obj_t > ().valor);}
+#line 1467 "../GenesysParser.cpp"
     break;
 
   case 72: // probFunction: fWEIB "(" expression "," expression ")"
-#line 377 "bisonparser.yy"
-                                                { yylhs.value.as < obj_t > ().valor = driver.sampler()->sampleWeibull(yystack_[3].value.as < obj_t > ().valor,yystack_[1].value.as < obj_t > ().valor);}
-#line 1472 "../GenesysParser.cpp"
+#line 382 "bisonparser.yy"
+                                                    { yylhs.value.as < obj_t > ().valor = driver.getSampler()->sampleWeibull(yystack_[3].value.as < obj_t > ().valor,yystack_[1].value.as < obj_t > ().valor);}
+#line 1473 "../GenesysParser.cpp"
     break;
 
   case 73: // probFunction: fLOGN "(" expression "," expression ")"
-#line 378 "bisonparser.yy"
-                                                { yylhs.value.as < obj_t > ().valor = driver.sampler()->sampleLogNormal(yystack_[3].value.as < obj_t > ().valor,yystack_[1].value.as < obj_t > ().valor);}
-#line 1478 "../GenesysParser.cpp"
+#line 383 "bisonparser.yy"
+                                                    { yylhs.value.as < obj_t > ().valor = driver.getSampler()->sampleLogNormal(yystack_[3].value.as < obj_t > ().valor,yystack_[1].value.as < obj_t > ().valor);}
+#line 1479 "../GenesysParser.cpp"
     break;
 
   case 74: // probFunction: fGAMM "(" expression "," expression ")"
-#line 379 "bisonparser.yy"
-                                                { yylhs.value.as < obj_t > ().valor = driver.sampler()->sampleGamma(yystack_[3].value.as < obj_t > ().valor,yystack_[1].value.as < obj_t > ().valor);}
-#line 1484 "../GenesysParser.cpp"
+#line 384 "bisonparser.yy"
+                                                    { yylhs.value.as < obj_t > ().valor = driver.getSampler()->sampleGamma(yystack_[3].value.as < obj_t > ().valor,yystack_[1].value.as < obj_t > ().valor);}
+#line 1485 "../GenesysParser.cpp"
     break;
 
   case 75: // probFunction: fERLA "(" expression "," expression ")"
-#line 380 "bisonparser.yy"
-                                                { yylhs.value.as < obj_t > ().valor = driver.sampler()->sampleErlang(yystack_[3].value.as < obj_t > ().valor,yystack_[1].value.as < obj_t > ().valor);}
-#line 1490 "../GenesysParser.cpp"
+#line 385 "bisonparser.yy"
+                                                    { yylhs.value.as < obj_t > ().valor = driver.getSampler()->sampleErlang(yystack_[3].value.as < obj_t > ().valor,yystack_[1].value.as < obj_t > ().valor);}
+#line 1491 "../GenesysParser.cpp"
     break;
 
   case 76: // probFunction: fTRIA "(" expression "," expression "," expression ")"
-#line 381 "bisonparser.yy"
-                                                                { yylhs.value.as < obj_t > ().valor = driver.sampler()->sampleTriangular(yystack_[5].value.as < obj_t > ().valor,yystack_[3].value.as < obj_t > ().valor,yystack_[1].value.as < obj_t > ().valor);}
-#line 1496 "../GenesysParser.cpp"
+#line 386 "bisonparser.yy"
+                                                                    { yylhs.value.as < obj_t > ().valor = driver.getSampler()->sampleTriangular(yystack_[5].value.as < obj_t > ().valor,yystack_[3].value.as < obj_t > ().valor,yystack_[1].value.as < obj_t > ().valor);}
+#line 1497 "../GenesysParser.cpp"
     break;
 
   case 77: // probFunction: fBETA "(" expression "," expression "," expression "," expression ")"
-#line 382 "bisonparser.yy"
-                                                                              { yylhs.value.as < obj_t > ().valor = driver.sampler()->sampleBeta(yystack_[7].value.as < obj_t > ().valor,yystack_[5].value.as < obj_t > ().valor,yystack_[3].value.as < obj_t > ().valor,yystack_[1].value.as < obj_t > ().valor);}
-#line 1502 "../GenesysParser.cpp"
+#line 387 "bisonparser.yy"
+                                                                                  { yylhs.value.as < obj_t > ().valor = driver.getSampler()->sampleBeta(yystack_[7].value.as < obj_t > ().valor,yystack_[5].value.as < obj_t > ().valor,yystack_[3].value.as < obj_t > ().valor,yystack_[1].value.as < obj_t > ().valor);}
+#line 1503 "../GenesysParser.cpp"
     break;
 
   case 78: // probFunction: fDISC "(" listaparm ")"
-#line 383 "bisonparser.yy"
-                                                { yylhs.value.as < obj_t > ().valor = driver.sampler()->sampleDiscrete(0,0); /*@TODO: NOT IMPLEMENTED YET*/ }
-#line 1508 "../GenesysParser.cpp"
+#line 388 "bisonparser.yy"
+                                                    { yylhs.value.as < obj_t > ().valor = driver.getSampler()->sampleDiscrete(0,0); /*@TODO: NOT IMPLEMENTED YET*/ }
+#line 1509 "../GenesysParser.cpp"
     break;
 
   case 79: // userFunction: "USER" "(" expression ")"
-#line 389 "bisonparser.yy"
+#line 394 "bisonparser.yy"
                                         { yylhs.value.as < obj_t > ().valor = yystack_[1].value.as < obj_t > ().valor; }
-#line 1514 "../GenesysParser.cpp"
+#line 1515 "../GenesysParser.cpp"
     break;
 
   case 80: // listaparm: listaparm "," expression "," expression
-#line 394 "bisonparser.yy"
+#line 399 "bisonparser.yy"
                                                  {/*@TODO: NOT IMPLEMENTED YET*/}
-#line 1520 "../GenesysParser.cpp"
+#line 1521 "../GenesysParser.cpp"
     break;
 
   case 81: // listaparm: expression "," expression
-#line 395 "bisonparser.yy"
+#line 400 "bisonparser.yy"
                                                  {/*@TODO: NOT IMPLEMENTED YET*/}
-#line 1526 "../GenesysParser.cpp"
+#line 1527 "../GenesysParser.cpp"
     break;
 
   case 82: // attribute: ATRIB
-#line 421 "bisonparser.yy"
+#line 426 "bisonparser.yy"
                    {  
 		double attributeValue = 0.0;
 		//std::cout << "Tentando..." << std::endl;
@@ -1537,11 +1538,11 @@ namespace yy {
 		//std::cout << "Passei" << std::endl;
 		yylhs.value.as < obj_t > ().valor = attributeValue; 
 	}
-#line 1541 "../GenesysParser.cpp"
+#line 1542 "../GenesysParser.cpp"
     break;
 
   case 83: // attribute: ATRIB "[" expression "]"
-#line 431 "bisonparser.yy"
+#line 436 "bisonparser.yy"
                                               {  
 		double attributeValue = 0.0;
 		std::string index = std::to_string(static_cast<unsigned int>(yystack_[1].value.as < obj_t > ().valor));
@@ -1551,11 +1552,11 @@ namespace yy {
 		}
 		yylhs.value.as < obj_t > ().valor = attributeValue; 
 	}
-#line 1555 "../GenesysParser.cpp"
+#line 1556 "../GenesysParser.cpp"
     break;
 
   case 84: // attribute: ATRIB "[" expression "," expression "]"
-#line 440 "bisonparser.yy"
+#line 445 "bisonparser.yy"
                                                              {  
 		double attributeValue = 0.0;
 		std::string index = std::to_string(static_cast<unsigned int>(yystack_[3].value.as < obj_t > ().valor))+","+std::to_string(static_cast<unsigned int>(yystack_[1].value.as < obj_t > ().valor));
@@ -1565,11 +1566,11 @@ namespace yy {
 		}
 		yylhs.value.as < obj_t > ().valor = attributeValue; 
 	}
-#line 1569 "../GenesysParser.cpp"
+#line 1570 "../GenesysParser.cpp"
     break;
 
   case 85: // attribute: ATRIB "[" expression "," expression "," expression "]"
-#line 449 "bisonparser.yy"
+#line 454 "bisonparser.yy"
                                                                             {  
 		double attributeValue = 0.0;
 		std::string index = std::to_string(static_cast<unsigned int>(yystack_[5].value.as < obj_t > ().valor))+","+std::to_string(static_cast<unsigned int>(yystack_[3].value.as < obj_t > ().valor))+","+std::to_string(static_cast<unsigned int>(yystack_[1].value.as < obj_t > ().valor));
@@ -1579,180 +1580,180 @@ namespace yy {
 		}
 		yylhs.value.as < obj_t > ().valor = attributeValue; 
 	}
-#line 1583 "../GenesysParser.cpp"
+#line 1584 "../GenesysParser.cpp"
     break;
 
   case 86: // variable: VARI
-#line 463 "bisonparser.yy"
+#line 468 "bisonparser.yy"
                             {yylhs.value.as < obj_t > ().valor = ((Variable*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Variable>(), yystack_[0].value.as < obj_t > ().id)))->getValue();}
-#line 1589 "../GenesysParser.cpp"
+#line 1590 "../GenesysParser.cpp"
     break;
 
   case 87: // variable: VARI "[" expression "]"
-#line 464 "bisonparser.yy"
+#line 469 "bisonparser.yy"
                                                                             { 
 					std::string index = std::to_string(static_cast<unsigned int>(yystack_[1].value.as < obj_t > ().valor));
 					yylhs.value.as < obj_t > ().valor = ((Variable*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Variable>(), yystack_[3].value.as < obj_t > ().id)))->getValue(index); }
-#line 1597 "../GenesysParser.cpp"
+#line 1598 "../GenesysParser.cpp"
     break;
 
   case 88: // variable: VARI "[" expression "," expression "]"
-#line 467 "bisonparser.yy"
+#line 472 "bisonparser.yy"
                                                                                             { 
 					std::string index = std::to_string(static_cast<unsigned int>(yystack_[3].value.as < obj_t > ().valor))+","+std::to_string(static_cast<unsigned int>(yystack_[1].value.as < obj_t > ().valor)); 
 					yylhs.value.as < obj_t > ().valor = ((Variable*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Variable>(), yystack_[5].value.as < obj_t > ().id)))->getValue(index);}
-#line 1605 "../GenesysParser.cpp"
+#line 1606 "../GenesysParser.cpp"
     break;
 
   case 89: // variable: VARI "[" expression "," expression "," expression "]"
-#line 470 "bisonparser.yy"
+#line 475 "bisonparser.yy"
                                                                                                      { 
 					std::string index = std::to_string(static_cast<unsigned int>(yystack_[5].value.as < obj_t > ().valor))+","+std::to_string(static_cast<unsigned int>(yystack_[3].value.as < obj_t > ().valor))+","+std::to_string(static_cast<unsigned int>(yystack_[1].value.as < obj_t > ().valor));
 					yylhs.value.as < obj_t > ().valor = ((Variable*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Variable>(), yystack_[7].value.as < obj_t > ().id)))->getValue(index);}
-#line 1613 "../GenesysParser.cpp"
+#line 1614 "../GenesysParser.cpp"
     break;
 
   case 90: // formula: FORM
-#line 478 "bisonparser.yy"
+#line 483 "bisonparser.yy"
                                     { 
 					std::string index = "";
 					Formula* formula = dynamic_cast<Formula*>(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), yystack_[0].value.as < obj_t > ().id));
 					std::string expression = formula->getExpression(index);
-					std::cout << "Formula["<< index <<"]="<< expression << std::endl;
+					//std::cout << "Formula["<< index <<"]="<< expression << std::endl;
 					double value = 0.0; //@TODO: Can't parse the epression!  //formula->getValue(index);
 					yylhs.value.as < obj_t > ().valor = value;}
-#line 1625 "../GenesysParser.cpp"
+#line 1626 "../GenesysParser.cpp"
     break;
 
   case 91: // formula: FORM "[" expression "]"
-#line 485 "bisonparser.yy"
+#line 490 "bisonparser.yy"
                                                                     {
 					std::string index = std::to_string(static_cast<unsigned int>(yystack_[1].value.as < obj_t > ().valor));
 					Formula* formula = dynamic_cast<Formula*>(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), yystack_[3].value.as < obj_t > ().id));
 					std::string expression = formula->getExpression(index);
-					std::cout << "Formula["<< index <<"]="<< expression << std::endl;
+					//std::cout << "Formula["<< index <<"]="<< expression << std::endl;
 					double value = 0.0; //@TODO: Can't parse the epression!  //formula->getValue(index);
 					yylhs.value.as < obj_t > ().valor = value;}
-#line 1637 "../GenesysParser.cpp"
+#line 1638 "../GenesysParser.cpp"
     break;
 
   case 92: // formula: FORM "[" expression "," expression "]"
-#line 492 "bisonparser.yy"
+#line 497 "bisonparser.yy"
                                                                                    {
 					std::string index = std::to_string(static_cast<unsigned int>(yystack_[3].value.as < obj_t > ().valor)) +","+std::to_string(static_cast<unsigned int>(yystack_[1].value.as < obj_t > ().valor));
 					Formula* formula = dynamic_cast<Formula*>(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), yystack_[5].value.as < obj_t > ().id));
 					std::string expression = formula->getExpression(index);
-					std::cout << "Formula["<< index <<"]="<< expression << std::endl;
+					//std::cout << "Formula["<< index <<"]="<< expression << std::endl;
 					double value = 0.0; //@TODO: Can't parse the epression!  //formula->getValue(index);
 					yylhs.value.as < obj_t > ().valor = value;}
-#line 1649 "../GenesysParser.cpp"
+#line 1650 "../GenesysParser.cpp"
     break;
 
   case 93: // formula: FORM "[" expression "," expression "," expression "]"
-#line 499 "bisonparser.yy"
+#line 504 "bisonparser.yy"
                                                                                                   {
 					std::string index = std::to_string(static_cast<unsigned int>(yystack_[5].value.as < obj_t > ().valor)) +","+std::to_string(static_cast<unsigned int>(yystack_[3].value.as < obj_t > ().valor))+","+std::to_string(static_cast<unsigned int>(yystack_[1].value.as < obj_t > ().valor));
 					Formula* formula = dynamic_cast<Formula*>(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), yystack_[7].value.as < obj_t > ().id));
 					std::string expression = formula->getExpression(index);
-					std::cout << "Formula["<< index <<"]="<< expression << std::endl;
+					//std::cout << "Formula["<< index <<"]="<< expression << std::endl;
 					double value = 0.0; //@TODO: Can't parse the epression!  //formula->getValue(index);
 					yylhs.value.as < obj_t > ().valor = value;}
-#line 1661 "../GenesysParser.cpp"
+#line 1662 "../GenesysParser.cpp"
     break;
 
   case 94: // assigment: ATRIB "=" expression
-#line 511 "bisonparser.yy"
+#line 516 "bisonparser.yy"
                                                 { 
 					// @TODO: getCurrentEvent()->getEntity() may be nullptr if simulation hasn't started yet
 					driver.getModel()->getSimulation()->getCurrentEvent()->getEntity()->setAttributeValue("", yystack_[2].value.as < obj_t > ().id, yystack_[0].value.as < obj_t > ().valor);
 					yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor; }
-#line 1670 "../GenesysParser.cpp"
+#line 1671 "../GenesysParser.cpp"
     break;
 
   case 95: // assigment: ATRIB "[" expression "]" "=" expression
-#line 515 "bisonparser.yy"
+#line 520 "bisonparser.yy"
                                                                                           { 
 					std::string index = std::to_string(static_cast<unsigned int>(yystack_[3].value.as < obj_t > ().valor));
 					driver.getModel()->getSimulation()->getCurrentEvent()->getEntity()->setAttributeValue(index, yystack_[5].value.as < obj_t > ().id, yystack_[0].value.as < obj_t > ().valor);
 					yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor; }
-#line 1679 "../GenesysParser.cpp"
+#line 1680 "../GenesysParser.cpp"
     break;
 
   case 96: // assigment: ATRIB "[" expression "," expression "]" "=" expression
-#line 519 "bisonparser.yy"
+#line 524 "bisonparser.yy"
                                                                                                         {
 					std::string index = std::to_string(static_cast<unsigned int>(yystack_[5].value.as < obj_t > ().valor))+","+std::to_string(static_cast<unsigned int>(yystack_[3].value.as < obj_t > ().valor)); 
 					driver.getModel()->getSimulation()->getCurrentEvent()->getEntity()->setAttributeValue(index, yystack_[7].value.as < obj_t > ().id, yystack_[0].value.as < obj_t > ().valor); 
 					yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor;}
-#line 1688 "../GenesysParser.cpp"
+#line 1689 "../GenesysParser.cpp"
     break;
 
   case 97: // assigment: ATRIB "[" expression "," expression "," expression "]" "=" expression
-#line 523 "bisonparser.yy"
+#line 528 "bisonparser.yy"
                                                                                                                           {
 					std::string index = std::to_string(static_cast<unsigned int>(yystack_[7].value.as < obj_t > ().valor))+","+std::to_string(static_cast<unsigned int>(yystack_[5].value.as < obj_t > ().valor))+","+std::to_string(static_cast<unsigned int>(yystack_[3].value.as < obj_t > ().valor));
 					driver.getModel()->getSimulation()->getCurrentEvent()->getEntity()->setAttributeValue(index, yystack_[9].value.as < obj_t > ().id, yystack_[0].value.as < obj_t > ().valor);
 					yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor; }
-#line 1697 "../GenesysParser.cpp"
+#line 1698 "../GenesysParser.cpp"
     break;
 
   case 98: // assigment: VARI "=" expression
-#line 529 "bisonparser.yy"
+#line 534 "bisonparser.yy"
                                                                 {
 					((Variable*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Variable>(), yystack_[2].value.as < obj_t > ().id)))->setValue(yystack_[0].value.as < obj_t > ().valor);
 					yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor; 
 					}
-#line 1706 "../GenesysParser.cpp"
+#line 1707 "../GenesysParser.cpp"
     break;
 
   case 99: // assigment: VARI "[" expression "]" "=" expression
-#line 533 "bisonparser.yy"
+#line 538 "bisonparser.yy"
                                                                                          { 
 					std::string index = std::to_string(static_cast<unsigned int>(yystack_[3].value.as < obj_t > ().valor));
 					((Variable*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Variable>(), yystack_[5].value.as < obj_t > ().id)))->setValue(index, yystack_[0].value.as < obj_t > ().valor); 
 					yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor; }
-#line 1715 "../GenesysParser.cpp"
+#line 1716 "../GenesysParser.cpp"
     break;
 
   case 100: // assigment: VARI "[" expression "," expression "]" "=" expression
-#line 537 "bisonparser.yy"
+#line 542 "bisonparser.yy"
                                                                                                        {
 					std::string index = std::to_string(static_cast<unsigned int>(yystack_[5].value.as < obj_t > ().valor))+","+std::to_string(static_cast<unsigned int>(yystack_[3].value.as < obj_t > ().valor)); 
 					((Variable*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Variable>(), yystack_[7].value.as < obj_t > ().id)))->setValue(index, yystack_[0].value.as < obj_t > ().valor);
 					yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor; }
-#line 1724 "../GenesysParser.cpp"
+#line 1725 "../GenesysParser.cpp"
     break;
 
   case 101: // assigment: VARI "[" expression "," expression "," expression "]" "=" expression
-#line 541 "bisonparser.yy"
+#line 546 "bisonparser.yy"
                                                                                                                          {
 					std::string index = std::to_string(static_cast<unsigned int>(yystack_[7].value.as < obj_t > ().valor))+","+std::to_string(static_cast<unsigned int>(yystack_[5].value.as < obj_t > ().valor))+","+std::to_string(static_cast<unsigned int>(yystack_[3].value.as < obj_t > ().valor));
 					((Variable*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Variable>(), yystack_[9].value.as < obj_t > ().id)))->setValue(index, yystack_[0].value.as < obj_t > ().valor); 
 					yylhs.value.as < obj_t > ().valor = yystack_[0].value.as < obj_t > ().valor; }
-#line 1733 "../GenesysParser.cpp"
+#line 1734 "../GenesysParser.cpp"
     break;
 
   case 102: // pluginFunction: CTEZERO
-#line 552 "bisonparser.yy"
+#line 557 "bisonparser.yy"
                                                      { yylhs.value.as < obj_t > ().valor = 0; }
-#line 1739 "../GenesysParser.cpp"
+#line 1740 "../GenesysParser.cpp"
     break;
 
   case 103: // pluginFunction: fNQ "(" QUEUE ")"
-#line 555 "bisonparser.yy"
+#line 560 "bisonparser.yy"
                                     {   //std::cout << "Queue ID: " << $3.id << ", Size: " << ((Queue*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Queue>(), $3.id)))->size() << std::endl; 
                                         yylhs.value.as < obj_t > ().valor = ((Queue*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Queue>(), yystack_[1].value.as < obj_t > ().id)))->size();}
-#line 1746 "../GenesysParser.cpp"
+#line 1747 "../GenesysParser.cpp"
     break;
 
   case 104: // pluginFunction: fLASTINQ "(" QUEUE ")"
-#line 557 "bisonparser.yy"
+#line 562 "bisonparser.yy"
                                     {/*For now does nothing because need acces to list of QUEUE, or at least the last element*/ }
-#line 1752 "../GenesysParser.cpp"
+#line 1753 "../GenesysParser.cpp"
     break;
 
   case 105: // pluginFunction: fFIRSTINQ "(" QUEUE ")"
-#line 558 "bisonparser.yy"
+#line 563 "bisonparser.yy"
                                     { 
                 if (((Queue*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Queue>(), yystack_[1].value.as < obj_t > ().id)))->size() > 0){
                     //id da 1a entidade da fila, talvez pegar nome
@@ -1760,61 +1761,61 @@ namespace yy {
                 }else{
                     yylhs.value.as < obj_t > ().valor = 0;
                 } }
-#line 1764 "../GenesysParser.cpp"
+#line 1765 "../GenesysParser.cpp"
     break;
 
   case 106: // pluginFunction: fSAQUE "(" QUEUE "," ATRIB ")"
-#line 565 "bisonparser.yy"
+#line 570 "bisonparser.yy"
                                        {   
                 //Util::identification queueID = $3.id;
                 Util::identification attrID = yystack_[1].value.as < obj_t > ().id;
                 double sum = ((Queue*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Queue>(), yystack_[3].value.as < obj_t > ().id)))->sumAttributesFromWaiting(attrID);
                 yylhs.value.as < obj_t > ().valor = sum; }
-#line 1774 "../GenesysParser.cpp"
+#line 1775 "../GenesysParser.cpp"
     break;
 
   case 107: // pluginFunction: fAQUE "(" QUEUE "," NUMD "," ATRIB ")"
-#line 570 "bisonparser.yy"
+#line 575 "bisonparser.yy"
                                              {
                 //Util::identification queueID = $3.id;
                 Util::identification attrID = yystack_[1].value.as < obj_t > ().id;
                 double value = ((Queue*)(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Queue>(), yystack_[5].value.as < obj_t > ().id)))->getAttributeFromWaitingRank(yystack_[3].value.as < obj_t > ().valor-1, attrID); // rank starts on 0 in genesys
                 yylhs.value.as < obj_t > ().valor = value; }
-#line 1784 "../GenesysParser.cpp"
+#line 1785 "../GenesysParser.cpp"
     break;
 
   case 108: // pluginFunction: fMR "(" RESOURCE ")"
-#line 578 "bisonparser.yy"
+#line 583 "bisonparser.yy"
                                         { yylhs.value.as < obj_t > ().valor = ((Resource*)driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Resource>(), yystack_[1].value.as < obj_t > ().id))->getCapacity();}
-#line 1790 "../GenesysParser.cpp"
+#line 1791 "../GenesysParser.cpp"
     break;
 
   case 109: // pluginFunction: fNR "(" RESOURCE ")"
-#line 579 "bisonparser.yy"
+#line 584 "bisonparser.yy"
                                          { yylhs.value.as < obj_t > ().valor = ((Resource*)driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Resource>(), yystack_[1].value.as < obj_t > ().id))->getNumberBusy();}
-#line 1796 "../GenesysParser.cpp"
+#line 1797 "../GenesysParser.cpp"
     break;
 
   case 110: // pluginFunction: fRESSEIZES "(" RESOURCE ")"
-#line 580 "bisonparser.yy"
+#line 585 "bisonparser.yy"
                                          { /*\TODO: For now does nothing because needs get Seizes, check with teacher*/}
-#line 1802 "../GenesysParser.cpp"
+#line 1803 "../GenesysParser.cpp"
     break;
 
   case 111: // pluginFunction: fSTATE "(" RESOURCE ")"
-#line 581 "bisonparser.yy"
+#line 586 "bisonparser.yy"
                                          {  yylhs.value.as < obj_t > ().valor = static_cast<int>(((Resource*)driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Resource>(), yystack_[1].value.as < obj_t > ().id))->getResourceState()); }
-#line 1808 "../GenesysParser.cpp"
+#line 1809 "../GenesysParser.cpp"
     break;
 
   case 112: // pluginFunction: fIRF "(" RESOURCE ")"
-#line 582 "bisonparser.yy"
+#line 587 "bisonparser.yy"
                                          { yylhs.value.as < obj_t > ().valor = ((Resource*)driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Resource>(), yystack_[1].value.as < obj_t > ().id))->getResourceState() == Resource::ResourceState::FAILED ? 1 : 0; }
-#line 1814 "../GenesysParser.cpp"
+#line 1815 "../GenesysParser.cpp"
     break;
 
   case 113: // pluginFunction: fSETSUM "(" SET ")"
-#line 583 "bisonparser.yy"
+#line 588 "bisonparser.yy"
                               {
                 unsigned int count=0;
                 Resource* res;
@@ -1828,17 +1829,17 @@ namespace yy {
                     }
                 }
                 yylhs.value.as < obj_t > ().valor = count; }
-#line 1832 "../GenesysParser.cpp"
+#line 1833 "../GenesysParser.cpp"
     break;
 
   case 114: // pluginFunction: fNUMSET "(" SET ")"
-#line 599 "bisonparser.yy"
+#line 604 "bisonparser.yy"
                                 { yylhs.value.as < obj_t > ().valor = ((Set*)driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Set>(),yystack_[1].value.as < obj_t > ().id))->getElementSet()->size(); }
-#line 1838 "../GenesysParser.cpp"
+#line 1839 "../GenesysParser.cpp"
     break;
 
 
-#line 1842 "../GenesysParser.cpp"
+#line 1843 "../GenesysParser.cpp"
 
             default:
               break;
@@ -2795,18 +2796,18 @@ namespace yy {
   const short
   genesyspp_parser::yyrline_[] =
   {
-       0,   246,   246,   247,   251,   252,   253,   254,   255,   256,
-     257,   258,   259,   264,   268,   275,   276,   280,   281,   282,
-     283,   284,   285,   288,   289,   293,   294,   295,   296,   297,
-     301,   302,   303,   304,   305,   306,   310,   311,   315,   316,
-     321,   322,   326,   327,   328,   329,   330,   331,   332,   336,
-     337,   338,   339,   340,   341,   344,   346,   350,   357,   358,
-     362,   363,   364,   365,   366,   367,   368,   369,   373,   374,
-     375,   376,   377,   378,   379,   380,   381,   382,   383,   389,
-     394,   395,   421,   431,   440,   449,   463,   464,   467,   470,
-     478,   485,   492,   499,   511,   515,   519,   523,   529,   533,
-     537,   541,   552,   555,   557,   558,   565,   570,   578,   579,
-     580,   581,   582,   583,   599
+       0,   250,   250,   251,   255,   256,   257,   258,   259,   260,
+     261,   262,   263,   268,   272,   279,   280,   284,   285,   286,
+     287,   288,   289,   292,   294,   298,   299,   300,   301,   302,
+     306,   307,   308,   309,   310,   311,   315,   316,   320,   321,
+     326,   327,   331,   332,   333,   334,   335,   336,   337,   341,
+     342,   343,   344,   345,   346,   349,   351,   355,   362,   363,
+     367,   368,   369,   370,   371,   372,   373,   374,   378,   379,
+     380,   381,   382,   383,   384,   385,   386,   387,   388,   394,
+     399,   400,   426,   436,   445,   454,   468,   469,   472,   475,
+     483,   490,   497,   504,   516,   520,   524,   528,   534,   538,
+     542,   546,   557,   560,   562,   563,   570,   575,   583,   584,
+     585,   586,   587,   588,   604
   };
 
   void
@@ -2838,9 +2839,9 @@ namespace yy {
 
 
 } // yy
-#line 2842 "../GenesysParser.cpp"
+#line 2843 "../GenesysParser.cpp"
 
-#line 606 "bisonparser.yy"
+#line 611 "bisonparser.yy"
 
 void
 yy::genesyspp_parser::error (const location_type& l,

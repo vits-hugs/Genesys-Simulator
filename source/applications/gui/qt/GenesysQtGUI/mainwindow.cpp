@@ -567,9 +567,11 @@ QColor MainWindow::myrgba(uint64_t color) {
 }
 
 std::string MainWindow::dotColor(uint64_t color) {
-	std::stringstream stream;
-	stream << std::hex << "#" << color;
-	return stream.str();
+	// TODO ????? Just started to report an error
+//	std::stringstream stream;
+//	stream << std::hex << "#" << color;
+//	return stream.str();
+	return "#F0F0F0";
 }
 
 void MainWindow::_insertCommandInConsole(std::string text) {

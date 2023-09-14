@@ -93,6 +93,8 @@ bool Decide::_check(std::string* errorMessage) {
 	for (std::list<std::string>::iterator it = _conditions->list()->begin(); it != _conditions->list()->end(); it++) {
 		condition = (*it);
 		allResult &= _parentModel->checkExpression(condition, "condition", errorMessage);
+		_checkCreateAttachedReferencedDataDefinition(condition);
+		//_parentModel->checkReferencesToDataDefinitions(condition);
 	}
 	return allResult;
 }

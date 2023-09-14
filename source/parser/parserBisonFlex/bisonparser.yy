@@ -39,6 +39,10 @@
 
 	/****end_Includes_plugins****/
 
+#ifdef YYDEBUG
+  yydebug = 1;
+#endif
+
 	class genesyspp_driver;
 }
 
@@ -255,7 +259,7 @@ expression:
 	| arithmetic                       {$$.valor = $1.valor;}
     | logical                           {$$.valor = $1.valor;}
     | relacional                       {$$.valor = $1.valor;}
-    | "(" expression ")"               {$$.valor = $2.valor;}
+	| LPAREN expression RPAREN          {$$.valor = $2.valor;}
     | attribute                         {$$.valor = $1.valor;}
 
 /****begin_Expression_plugins****/
@@ -285,8 +289,9 @@ arithmetic:
     | MINUS expression %prec NEG     { $$.valor = -$2.valor;}
 
 
-	| mathMIN "(" expression "," expression ")"   { $$.valor = std::min($3.valor,$5.valor);}
-	| mathMAX "(" expression "," expression ")"   { $$.valor = std::max($3.valor,$5.valor);}
+	| mathMIN LPAREN expression "," expression RPAREN   {std::cout <<"MIN(" << $3.valor << "," << $5.valor <<")"<< std::endl;
+														 $$.valor = std::min($3.valor,$5.valor);}
+	| mathMAX LPAREN expression "," expression RPAREN   { $$.valor = std::max($3.valor,$5.valor);}
     ;
 
 logical:
@@ -370,17 +375,17 @@ mathFunction:
     ;
 
 probFunction:
-      fRND1					     { $$.valor = driver.sampler()->sampleUniform(0.0,1.0);}
-	| fEXPO  "(" expression ")"  { $$.valor = driver.sampler()->sampleExponential($3.valor);}
-    | fNORM  "(" expression "," expression ")"  { $$.valor = driver.sampler()->sampleNormal($3.valor,$5.valor);}
-    | fUNIF  "(" expression "," expression ")"  { $$.valor = driver.sampler()->sampleUniform($3.valor,$5.valor);}
-    | fWEIB  "(" expression "," expression ")"  { $$.valor = driver.sampler()->sampleWeibull($3.valor,$5.valor);}
-    | fLOGN  "(" expression "," expression ")"  { $$.valor = driver.sampler()->sampleLogNormal($3.valor,$5.valor);}
-    | fGAMM  "(" expression "," expression ")"  { $$.valor = driver.sampler()->sampleGamma($3.valor,$5.valor);}
-    | fERLA  "(" expression "," expression ")"  { $$.valor = driver.sampler()->sampleErlang($3.valor,$5.valor);}
-    | fTRIA  "(" expression "," expression "," expression ")"   { $$.valor = driver.sampler()->sampleTriangular($3.valor,$5.valor,$7.valor);}
-    | fBETA  "(" expression "," expression "," expression "," expression ")"  { $$.valor = driver.sampler()->sampleBeta($3.valor,$5.valor,$7.valor,$9.valor);}
-    | fDISC  "(" listaparm ")"                  { $$.valor = driver.sampler()->sampleDiscrete(0,0); /*@TODO: NOT IMPLEMENTED YET*/ }
+	  fRND1					     { $$.valor = driver.getSampler()->sampleUniform(0.0,1.0);}
+	| fEXPO  "(" expression ")"  { $$.valor = driver.getSampler()->sampleExponential($3.valor);}
+	| fNORM  "(" expression "," expression ")"  { $$.valor = driver.getSampler()->sampleNormal($3.valor,$5.valor);}
+	| fUNIF  "(" expression "," expression ")"  { $$.valor = driver.getSampler()->sampleUniform($3.valor,$5.valor);}
+	| fWEIB  "(" expression "," expression ")"  { $$.valor = driver.getSampler()->sampleWeibull($3.valor,$5.valor);}
+	| fLOGN  "(" expression "," expression ")"  { $$.valor = driver.getSampler()->sampleLogNormal($3.valor,$5.valor);}
+	| fGAMM  "(" expression "," expression ")"  { $$.valor = driver.getSampler()->sampleGamma($3.valor,$5.valor);}
+	| fERLA  "(" expression "," expression ")"  { $$.valor = driver.getSampler()->sampleErlang($3.valor,$5.valor);}
+	| fTRIA  "(" expression "," expression "," expression ")"   { $$.valor = driver.getSampler()->sampleTriangular($3.valor,$5.valor,$7.valor);}
+	| fBETA  "(" expression "," expression "," expression "," expression ")"  { $$.valor = driver.getSampler()->sampleBeta($3.valor,$5.valor,$7.valor,$9.valor);}
+	| fDISC  "(" listaparm ")"                  { $$.valor = driver.getSampler()->sampleDiscrete(0,0); /*@TODO: NOT IMPLEMENTED YET*/ }
     ;
 
 
@@ -479,28 +484,28 @@ attribute:
 					std::string index = "";
 					Formula* formula = dynamic_cast<Formula*>(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), $1.id));
 					std::string expression = formula->getExpression(index);
-					std::cout << "Formula["<< index <<"]="<< expression << std::endl;
+					//std::cout << "Formula["<< index <<"]="<< expression << std::endl;
 					double value = 0.0; //@TODO: Can't parse the epression!  //formula->getValue(index);
 					$$.valor = value;}
 				| FORM LBRACKET expression RBRACKET {
 					std::string index = std::to_string(static_cast<unsigned int>($3.valor));
 					Formula* formula = dynamic_cast<Formula*>(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), $1.id));
 					std::string expression = formula->getExpression(index);
-					std::cout << "Formula["<< index <<"]="<< expression << std::endl;
+					//std::cout << "Formula["<< index <<"]="<< expression << std::endl;
 					double value = 0.0; //@TODO: Can't parse the epression!  //formula->getValue(index);
 					$$.valor = value;}
 				| FORM LBRACKET expression "," expression RBRACKET {
 					std::string index = std::to_string(static_cast<unsigned int>($3.valor)) +","+std::to_string(static_cast<unsigned int>($5.valor));
 					Formula* formula = dynamic_cast<Formula*>(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), $1.id));
 					std::string expression = formula->getExpression(index);
-					std::cout << "Formula["<< index <<"]="<< expression << std::endl;
+					//std::cout << "Formula["<< index <<"]="<< expression << std::endl;
 					double value = 0.0; //@TODO: Can't parse the epression!  //formula->getValue(index);
 					$$.valor = value;}
 				| FORM LBRACKET expression "," expression "," expression RBRACKET {
 					std::string index = std::to_string(static_cast<unsigned int>($3.valor)) +","+std::to_string(static_cast<unsigned int>($5.valor))+","+std::to_string(static_cast<unsigned int>($7.valor));
 					Formula* formula = dynamic_cast<Formula*>(driver.getModel()->getDataManager()->getDataDefinition(Util::TypeOf<Formula>(), $1.id));
 					std::string expression = formula->getExpression(index);
-					std::cout << "Formula["<< index <<"]="<< expression << std::endl;
+					//std::cout << "Formula["<< index <<"]="<< expression << std::endl;
 					double value = 0.0; //@TODO: Can't parse the epression!  //formula->getValue(index);
 					$$.valor = value;}
 				;

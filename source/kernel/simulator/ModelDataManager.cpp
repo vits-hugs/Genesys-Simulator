@@ -200,9 +200,9 @@ std::list<std::string>* ModelDataManager::getDataDefinitionClassnames() const {
 
 ModelDataDefinition * ModelDataManager::getDataDefinition(std::string datadefinitionTypename, std::string name) {
 	List<ModelDataDefinition*>* list = getDataDefinitionList(datadefinitionTypename);
-	for (std::list<ModelDataDefinition*>::iterator it = list->list()->begin(); it != list->list()->end(); it++) {
-		if ((*it)->getName() == name) { // found
-			return (*it);
+	for (ModelDataDefinition* dd: *list->list()) {
+		if (dd->getName() == name) {
+			return dd;
 		}
 	}
 	return nullptr;

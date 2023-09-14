@@ -61,6 +61,7 @@ public: // model control
 	double parseExpression(const std::string expression); ///< Invokes the parser to evaluate tyhe expression. Result is always a double, even if expression has syntatic errors (returns 0)
 	double parseExpression(const std::string expression, bool* success, std::string* errorMessage); ///< Invokes the parser to evaluate tyhe expression. Result is always a double, even if expression has syntatic errors (returns 0). Explicitly informs if there was an error
 	bool checkExpression(const std::string expression, const std::string expressionName, std::string* errorMessage); ///< This is invoked by ModelComponents and ModelDatas in their private method _check() to verify if an expression defined by user is valid or not
+	void checkReferencesToDataDefinitions(std::string expression, std::map<std::string, std::list<std::string>*>* referencedDataDefinitions);
 public: // only gets
 	Util::identification getId() const;
 	bool hasChanged() const;

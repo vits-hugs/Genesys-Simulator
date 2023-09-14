@@ -44,8 +44,8 @@ public: // simulation control
 public: // old modelInfos
 	void setNumberOfReplications(unsigned int _numberOfReplications);
 	unsigned int getNumberOfReplications() const;
-	void setReplicationLength(double _replicationLength);
-	void setReplicationLength(double _replicationLength, Util::TimeUnit _replicationLengthTimeUnit);
+	//void setReplicationLength(double _replicationLength);
+	void setReplicationLength(double _replicationLength, Util::TimeUnit _replicationLengthTimeUnit = Util::TimeUnit::unknown);
 	double getReplicationLength() const;
 	void setReplicationLengthTimeUnit(Util::TimeUnit _replicationLengthTimeUnit);
 	Util::TimeUnit getReplicationLengthTimeUnit() const;

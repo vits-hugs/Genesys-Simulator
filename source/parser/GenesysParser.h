@@ -79,9 +79,13 @@
 
 	/****end_Includes_plugins****/
 
+#ifdef YYDEBUG
+  yydebug = 1;
+#endif
+
 	class genesyspp_driver;
 
-#line 85 "../GenesysParser.h"
+#line 89 "../GenesysParser.h"
 
 # include <cassert>
 # include <cstdlib> // std::abort
@@ -221,7 +225,7 @@
 #endif
 
 namespace yy {
-#line 225 "../GenesysParser.h"
+#line 229 "../GenesysParser.h"
 
 
 
@@ -3381,7 +3385,7 @@ switch (yykind)
 
 
 } // yy
-#line 3385 "../GenesysParser.h"
+#line 3389 "../GenesysParser.h"
 
 
 
