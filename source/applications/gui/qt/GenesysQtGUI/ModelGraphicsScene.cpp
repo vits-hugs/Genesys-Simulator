@@ -33,10 +33,10 @@
 #include <QTreeWidget>
 #include <QMessageBox>
 #include "ModelGraphicsScene.h"
-#include "GraphicalModelComponent.h"
 #include "ModelGraphicsView.h"
-#include "GraphicalComponentPort.h"
-#include "GraphicalConnection.h"
+#include "graphicals/GraphicalModelComponent.h"
+#include "graphicals/GraphicalComponentPort.h"
+#include "graphicals/GraphicalConnection.h"
 
 ModelGraphicsScene::ModelGraphicsScene(qreal x, qreal y, qreal width, qreal height, QObject *parent) : QGraphicsScene(x, y, width, height, parent) {
 	// grid

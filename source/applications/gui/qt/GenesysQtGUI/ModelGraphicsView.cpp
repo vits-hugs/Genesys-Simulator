@@ -31,7 +31,7 @@
 
 #include "ModelGraphicsView.h"
 #include "ModelGraphicsScene.h"
-#include "GraphicalModelComponent.h"
+#include "graphicals/GraphicalModelComponent.h"
 #include "TraitsGUI.h"
 #include <Qt>
 #include <QTreeWidget>

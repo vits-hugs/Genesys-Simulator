@@ -36,8 +36,8 @@
 #include <QGraphicsProxyWidget>
 #include <QGraphicsRectItem>
 #include <QTreeWidgetItem>
-#include "GraphicalModelComponent.h"
-#include "GraphicalComponentPort.h"
+#include "graphicals/GraphicalModelComponent.h"
+#include "graphicals/GraphicalComponentPort.h"
 #include "TraitsGUI.h"
 #include "../../../../kernel/simulator/ModelComponent.h"
 #include "../../../../kernel/simulator/Simulator.h"
