@@ -201,18 +201,16 @@ SOURCES += \
 	../../../terminal/examples/teaching/OperatingSystem02.cpp \
 	../../../terminal/examples/teaching/OperatingSystem03.cpp \
 	../../../terminal/underDevelopment/TestingTerminalApp.cpp \
-	AnimateExpression.cpp \
 	CodeEditor.cpp \
-    Dialogmodelinformation.cpp \
-    GraphicalAssociation.cpp \
-	GraphicalComponentPort.cpp \
-	GraphicalConnection.cpp \
-	GraphicalModelComponent.cpp \
-	GraphicalModelDataDefinition.cpp \
 	ModelGraphicsScene.cpp \
 	ModelGraphicsView.cpp \
 	ObjectPropertyBrowser.cpp \
 	PropertyEditor.cpp \
+	dialogs/Dialogmodelinformation.cpp \
+	dialogs/dialogBreakpoint.cpp \
+	dialogs/dialogpluginmanager.cpp \
+	dialogs/dialogsimulationconfigure.cpp \
+	dialogs/dialogsystempreferences.cpp \
     QPropertyBrowser/qtbuttonpropertybrowser.cpp \
     QPropertyBrowser/qteditorfactory.cpp \
     QPropertyBrowser/qtgroupboxpropertybrowser.cpp \
@@ -221,10 +219,12 @@ SOURCES += \
     QPropertyBrowser/qtpropertymanager.cpp \
     QPropertyBrowser/qttreepropertybrowser.cpp \
     QPropertyBrowser/qtvariantproperty.cpp \
-	dialogBreakpoint.cpp \
-    dialogpluginmanager.cpp \
-    dialogsimulationconfigure.cpp \
-    dialogsystempreferences.cpp \
+	graphicals/GraphicalAnimateExpression.cpp \
+	graphicals/GraphicalAssociation.cpp \
+	graphicals/GraphicalComponentPort.cpp \
+	graphicals/GraphicalConnection.cpp \
+	graphicals/GraphicalModelComponent.cpp \
+	graphicals/GraphicalModelDataDefinition.cpp \
 	main.cpp \
 	mainwindow.cpp \
 	qcustomplot.cpp
@@ -451,14 +451,7 @@ HEADERS += \
 	../../../terminal/examples/teaching/OperatingSystem02.h \
 	../../../terminal/examples/teaching/OperatingSystem03.h \
 	../../../terminal/underDevelopment/TestingTerminalApp.h \
-	AnimateExpression.h \
 	CodeEditor.h \
-    Dialogmodelinformation.h \
-    GraphicalAssociation.h \
-	GraphicalComponentPort.h \
-	GraphicalConnection.h \
-	GraphicalModelComponent.h \
-	GraphicalModelDataDefinition.h \
 	LineNumberArea.h \
 	ModelGraphicsScene.h \
 	ModelGraphicsView.h \
@@ -474,19 +467,26 @@ HEADERS += \
     QPropertyBrowser/qtvariantproperty.h \
     TraitsGUI.h \
     UtilGUI.h \
-	dialogBreakpoint.h \
-    dialogpluginmanager.h \
-    dialogsimulationconfigure.h \
-    dialogsystempreferences.h \
+	dialogs/Dialogmodelinformation.h \
+	dialogs/dialogBreakpoint.h \
+	dialogs/dialogpluginmanager.h \
+	dialogs/dialogsimulationconfigure.h \
+	dialogs/dialogsystempreferences.h \
+	graphicals/GraphicalAnimateExpression.h \
+	graphicals/GraphicalAssociation.h \
+	graphicals/GraphicalComponentPort.h \
+	graphicals/GraphicalConnection.h \
+	graphicals/GraphicalModelComponent.h \
+	graphicals/GraphicalModelDataDefinition.h \
 	mainwindow.h \
 	qcustomplot.h
 
 FORMS += \
-	Dialogmodelinformation.ui \
-	dialogBreakpoint.ui \
-	dialogpluginmanager.ui \
-	dialogsimulationconfigure.ui \
-	dialogsystempreferences.ui \
+	dialogs/Dialogmodelinformation.ui \
+	dialogs/dialogBreakpoint.ui \
+	dialogs/dialogpluginmanager.ui \
+	dialogs/dialogsimulationconfigure.ui \
+	dialogs/dialogsystempreferences.ui \
 	mainwindow.ui
 
 TRANSLATIONS += \

@@ -10,7 +10,6 @@
 #include "../../../../kernel/simulator/Simulator.h"
 #include "../../../../kernel/simulator/TraceManager.h"
 #include "ModelGraphicsScene.h"
-#include "TraitsGUI.h"
 
 QT_BEGIN_NAMESPACE
 		namespace Ui {

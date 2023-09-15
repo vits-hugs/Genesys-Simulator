@@ -1,11 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 // Dialogs
-#include "dialogBreakpoint.h"
-#include "Dialogmodelinformation.h"
-#include "dialogsimulationconfigure.h"
-#include "dialogpluginmanager.h"
-#include "dialogsystempreferences.h"
+#include "dialogs/dialogBreakpoint.h"
+#include "dialogs/Dialogmodelinformation.h"
+#include "dialogs/dialogsimulationconfigure.h"
+#include "dialogs/dialogpluginmanager.h"
+#include "dialogs/dialogsystempreferences.h"
 // Kernel
 #include "../../../../kernel/simulator/SinkModelComponent.h"
 #include "../../../../kernel/simulator/Attribute.h"
