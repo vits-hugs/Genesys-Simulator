@@ -132,7 +132,6 @@ CppCompiler::CompilationResult CppCompiler::compileToExecutable() {
 CppCompiler::CompilationResult CppCompiler::compileToDynamicLibrary() {
 	CppCompiler::CompilationResult result;
 	std::string command(_compilerCommand + " " + _flagsGeneral + " " + _flagsDynamicLibrary + " " + _objectFiles + " " + _sourceFilename + " -o " + _outputFilename);
-	//char* argument_list[] = {_compilerCommand, _flagsGeneral, _flagsDynamicLibrary, _objectFiles, _sourceFilename, "-o", _outputFilename, NULL};
 	result = _invokeCompiler(command);
 	_compiledToDynamicLibrary = result.success;
 	return result;
@@ -156,7 +155,9 @@ bool CppCompiler::loadLibrary(std::string* errorMessage) {
 		*errorMessage += e.what();
 		return false;
 	}
-	*errorMessage += dlerror();
+	if (_dynamicLibraryHandle == nullptr) {
+		*errorMessage += dlerror();
+	}
 	_libraryLoaded = _dynamicLibraryHandle != nullptr;
 	return _libraryLoaded;
 }
@@ -176,7 +177,7 @@ bool CppCompiler::unloadLibrary() {
 	return true;
 }
 
-void* CppCompiler::getDynamicLibraryHandle() const {
+void* CppCompiler::getDynamicLibraryHandler() const {
 	return _dynamicLibraryHandle;
 }
 
@@ -284,14 +285,14 @@ CppCompiler::CompilationResult CppCompiler::_invokeCompiler(std::string command)
 	Util::FileDelete(destPath + "stdout.log");
 
 	const std::string execCommand = command + redirect;
-	_parentModel->getTracer()->trace(execCommand);
+	//_parentModel->getTracer()->trace(execCommand);
 	system(execCommand.c_str());
 	for (short i = 0; i < 32; i++)
 		std::this_thread::yield(); // give the system some time
 	const std::string resultStdout = _read(destPath+"stdout.log");
 	const std::string resultStderr = _read(destPath+"stderr.log");
-	_parentModel->getTracer()->trace(resultStdout);
-	_parentModel->getTracer()->trace(resultStderr);
+	//_parentModel->getTracer()->trace(resultStdout);
+	//_parentModel->getTracer()->trace(resultStderr);
 
 	CppCompiler::CompilationResult result;
 	std::ifstream f(_outputFilename.c_str());

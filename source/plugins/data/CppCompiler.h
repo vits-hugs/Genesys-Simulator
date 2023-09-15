@@ -41,7 +41,6 @@ public:
 
 	class CompilationResult {
 	public:
-
 		CompilationResult() { }
 		bool success = false;
 		std::string compilationStdOutput = "";
@@ -88,7 +87,7 @@ public: // new methods
 	CompilationResult compileToStaticLibrary();
 	bool loadLibrary(std::string* errorMessage);
 	bool unloadLibrary();
-	void* getDynamicLibraryHandle() const;
+	void* getDynamicLibraryHandler() const;
 
 protected: // must be overriden
 	virtual bool _loadInstance(PersistenceRecord *fields);

@@ -139,7 +139,7 @@ bool Model::load(std::string filename) {
 double Model::parseExpression(const std::string expression) {
 	try {
 		return _parser->parse(expression);
-	} catch (...) {
+	} catch (const std::exception& e) {
 		//@TODO Create a onParserError event handler
 		return 0.0; // @TODO: HOW SAY THERE WAS AN ERROR?
 	}
@@ -150,7 +150,7 @@ bool Model::checkExpression(const std::string expression, const std::string expr
 	getTracer()->trace("Checking expression \"" + expression + "\"", TraceManager::Level::L8_detailed);
 	try {
 		parseExpression(expression, &result, errorMessage);
-	} catch (...) {
+	} catch (const std::exception& e) {
 		result = false;
 	}
 	if (!result) {
