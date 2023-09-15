@@ -26,6 +26,7 @@
 #include "../../../../plugins/components/Wait.h"
 #include "../../../../plugins/components/Process.h"
 #include "../../../../plugins/components/Decide.h"
+#include "../../../TraitsApp.h"
 
 Smart_AlternatingEntityCreation::Smart_AlternatingEntityCreation() {
 }
@@ -37,14 +38,12 @@ Smart_AlternatingEntityCreation::Smart_AlternatingEntityCreation() {
 
 int Smart_AlternatingEntityCreation::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	this->setDefaultTraceHandlers(genesys->getTracer());
-	genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
-	// crete model
-	Model* model = genesys->getModels()->newModel();
+	genesys->getTracer()->setTraceLevel(TraitsApp<GenesysApplication_if>::traceLevel);
+	setDefaultTraceHandlers(genesys->getTracer());
 	PluginManager* plugins = genesys->getPlugins();
-	
-	///////////////////////// Alternating Entity Creation (Arivals) /////////////////////////
-
+	plugins->autoInsertPlugins("autoloadplugins.txt");
+	Model* model = genesys->getModels()->newModel();
+	// create model
 	// Create 1
 	Create* create1 = plugins->newInstance<Create>(model);
 	create1->setEntityTypeName("Entity_1");

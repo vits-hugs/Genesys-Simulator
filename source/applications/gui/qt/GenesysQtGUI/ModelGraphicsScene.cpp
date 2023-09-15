@@ -44,7 +44,7 @@ ModelGraphicsScene::ModelGraphicsScene(qreal x, qreal y, qreal width, qreal heig
 	_grid.pen.setStyle(Qt::DotLine);
 }
 
-ModelGraphicsScene::ModelGraphicsScene(const ModelGraphicsScene& orig) {
+ModelGraphicsScene::ModelGraphicsScene(const ModelGraphicsScene& orig) { // : QGraphicsScene(orig) {
 }
 
 ModelGraphicsScene::~ModelGraphicsScene() {
@@ -337,8 +337,8 @@ void ModelGraphicsScene::dropEvent(QGraphicsSceneDragDropEvent *event) {
 	QGraphicsScene::dropEvent(event);
 	if (this->_objectBeingDragged != nullptr) {
 		QTreeWidgetItem* treeItem = /*dynamic_cast<QTreeWidgetItem*>*/(_objectBeingDragged);
-		if (treeItem != nullptr) {
-			QColor color = treeItem->textColor(0);
+		if (treeItem != nullptr) {			
+			QColor color = treeItem->foreground(0).color(); // treeItem->textColor(0);
 			QString pluginname = treeItem->whatsThis(0);
 			Plugin* plugin = _simulator->getPlugins()->find(pluginname.toStdString());
 			if (plugin != nullptr) {

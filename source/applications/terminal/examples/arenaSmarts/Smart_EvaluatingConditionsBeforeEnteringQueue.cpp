@@ -29,6 +29,7 @@
 #include "../../../../plugins/components/Delay.h"
 #include "../../../../plugins/components/Release.h"
 #include "../../../../plugins/components/Dispose.h"
+#include "../../../TraitsApp.h"
 
 Smart_EvaluatingConditionsBeforeEnteringQueue::Smart_EvaluatingConditionsBeforeEnteringQueue() {
 }
@@ -39,13 +40,12 @@ Smart_EvaluatingConditionsBeforeEnteringQueue::Smart_EvaluatingConditionsBeforeE
  */
 int Smart_EvaluatingConditionsBeforeEnteringQueue::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	this->setDefaultTraceHandlers(genesys->getTracer());
-	genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
-
-
-	// crete model
-	Model* model = genesys->getModels()->newModel();
+	genesys->getTracer()->setTraceLevel(TraitsApp<GenesysApplication_if>::traceLevel);
+	setDefaultTraceHandlers(genesys->getTracer());
 	PluginManager* plugins = genesys->getPlugins();
+	plugins->autoInsertPlugins("autoloadplugins.txt");
+	Model* model = genesys->getModels()->newModel();
+	// create model
 
 	Variable* procStartTime = plugins->newInstance<Variable>(model, "procstarttime");
 	Variable* procTime = plugins->newInstance<Variable>(model, "proctime");

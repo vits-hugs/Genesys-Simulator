@@ -25,6 +25,7 @@
 #include "../../../../plugins/components/Delay.h"
 #include "../../../../plugins/components/Release.h"
 #include "../../../../plugins/components/Dispose.h"
+#include "../../../TraitsApp.h"
 
 Smart_SeizeDelayReleaseMany::Smart_SeizeDelayReleaseMany() {
 }
@@ -35,22 +36,22 @@ Smart_SeizeDelayReleaseMany::Smart_SeizeDelayReleaseMany() {
  */
 int Smart_SeizeDelayReleaseMany::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	this->setDefaultTraceHandlers(genesys->getTracer());
-	genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
-	genesys->getTracer()->setTraceLevel(TraceManager::Level::L9_mostDetailed);
-	// create model
-	Model* m = genesys->getModels()->newModel();
+	genesys->getTracer()->setTraceLevel(TraitsApp<GenesysApplication_if>::traceLevel);
+	setDefaultTraceHandlers(genesys->getTracer());
 	PluginManager* plugins = genesys->getPlugins();
-	Create* create1 = plugins->newInstance<Create>(m);
+	plugins->autoInsertPlugins("autoloadplugins.txt");
+	Model* model = genesys->getModels()->newModel();
+	// create model
+	Create* create1 = plugins->newInstance<Create>(model);
 	create1->setEntitiesPerCreation(2);
-	Resource* machine1 = plugins->newInstance<Resource>(m);
-	Resource* machine2 = plugins->newInstance<Resource>(m);
-	Resource* machine3 = plugins->newInstance<Resource>(m);
-	Resource* machine4 = plugins->newInstance<Resource>(m);
-	Resource* machine5 = plugins->newInstance<Resource>(m);
-	Queue* queueSeize1 = plugins->newInstance<Queue>(m);
+	Resource* machine1 = plugins->newInstance<Resource>(model);
+	Resource* machine2 = plugins->newInstance<Resource>(model);
+	Resource* machine3 = plugins->newInstance<Resource>(model);
+	Resource* machine4 = plugins->newInstance<Resource>(model);
+	Resource* machine5 = plugins->newInstance<Resource>(model);
+	Queue* queueSeize1 = plugins->newInstance<Queue>(model);
 	queueSeize1->setOrderRule(Queue::OrderRule::FIFO);
-	Seize* seize1 = plugins->newInstance<Seize>(m);
+	Seize* seize1 = plugins->newInstance<Seize>(model);
 	seize1->getSeizeRequests()->insert(new SeizableItem(machine1));
 	seize1->getSeizeRequests()->insert(new SeizableItem(machine2));
 	seize1->getSeizeRequests()->insert(new SeizableItem(machine3));
@@ -58,26 +59,26 @@ int Smart_SeizeDelayReleaseMany::main(int argc, char** argv) {
 	seize1->getSeizeRequests()->insert(new SeizableItem(machine5));
 	seize1->setQueue(queueSeize1);
 	seize1->setAllocationType(Util::AllocationType::Others);
-	Delay* delay1 = plugins->newInstance<Delay>(m);
+	Delay* delay1 = plugins->newInstance<Delay>(model);
 	delay1->setDelayExpression("unif(0.6,1.5)");
 	delay1->setAllocation(Util::AllocationType::ValueAdded);
-	Release* release1 = plugins->newInstance<Release>(m);
+	Release* release1 = plugins->newInstance<Release>(model);
 	release1->getReleaseRequests()->insert(new SeizableItem(machine1));
 	release1->getReleaseRequests()->insert(new SeizableItem(machine2));
 	release1->getReleaseRequests()->insert(new SeizableItem(machine3));
 	release1->getReleaseRequests()->insert(new SeizableItem(machine4));
 	release1->getReleaseRequests()->insert(new SeizableItem(machine5));
-	Dispose* dispose1 = plugins->newInstance<Dispose>(m);
+	Dispose* dispose1 = plugins->newInstance<Dispose>(model);
 	// connect model components to create a "workflow"
 	create1->getConnections()->insert(seize1);
 	seize1->getConnections()->insert(delay1);
 	delay1->getConnections()->insert(release1);
 	release1->getConnections()->insert(dispose1);
 	// set options, save and simulate
-	ModelSimulation* sim = m->getSimulation();
+	ModelSimulation* sim = model->getSimulation();
 	sim->setReplicationLength(10);
 	sim->setNumberOfReplications(3);
-	m->save("./models/Smart_SeizeDelayReleaseMany.gen");
+	model->save("./models/Smart_SeizeDelayReleaseMany.gen");
 	do {
 		sim->start(); //step();
 		//std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');

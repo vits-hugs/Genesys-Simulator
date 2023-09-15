@@ -30,6 +30,7 @@
 #include "../../../../plugins/components/Clone.h"
 #include "../../../../plugins/data/Resource.h"
 #include "../../../../plugins/data/Variable.h"
+#include "../../../TraitsApp.h"
 
 Smart_ContinuousFlowEntities::Smart_ContinuousFlowEntities() {
 }
@@ -40,12 +41,12 @@ Smart_ContinuousFlowEntities::Smart_ContinuousFlowEntities() {
  */
 int Smart_ContinuousFlowEntities::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	this->setDefaultTraceHandlers(genesys->getTracer());
-	genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
-	// crete model
-	Model* model = genesys->getModels()->newModel();
+	genesys->getTracer()->setTraceLevel(TraitsApp<GenesysApplication_if>::traceLevel);
+	setDefaultTraceHandlers(genesys->getTracer());
 	PluginManager* plugins = genesys->getPlugins();
-	// create components
+	plugins->autoInsertPlugins("autoloadplugins.txt");
+	Model* model = genesys->getModels()->newModel();
+	// create model
 	Create* create1 = plugins->newInstance<Create>(model);
 	Seize* seize1 = plugins->newInstance<Seize>(model);
 	Delay* delay1 = plugins->newInstance<Delay>(model);

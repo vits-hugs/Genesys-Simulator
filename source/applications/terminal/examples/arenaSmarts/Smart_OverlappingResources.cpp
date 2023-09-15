@@ -23,6 +23,7 @@
 
 #include "../../../../plugins/data/Queue.h"
 #include "../../../../plugins/data/Resource.h"
+#include "../../../TraitsApp.h"
 
 Smart_OverlappingResources::Smart_OverlappingResources() {
 }
@@ -33,12 +34,12 @@ Smart_OverlappingResources::Smart_OverlappingResources() {
  */
 int Smart_OverlappingResources::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	this->setDefaultTraceHandlers(genesys->getTracer());
-	genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
-	genesys->getTracer()->setTraceLevel(TraceManager::Level::L2_results);
-	// crete model
-	Model* model = genesys->getModels()->newModel();
+	genesys->getTracer()->setTraceLevel(TraitsApp<GenesysApplication_if>::traceLevel);
+	setDefaultTraceHandlers(genesys->getTracer());
 	PluginManager* plugins = genesys->getPlugins();
+	plugins->autoInsertPlugins("autoloadplugins.txt");
+	Model* model = genesys->getModels()->newModel();
+	// create model
 
 	Resource* resource3 = plugins->newInstance<Resource>(model, "Resource_3");
 	Resource* resource4 = plugins->newInstance<Resource>(model, "Resource_4");

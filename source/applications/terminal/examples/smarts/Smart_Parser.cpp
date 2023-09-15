@@ -21,6 +21,7 @@
 // Model Components
 #include "../../../../plugins/components/Create.h"
 #include "../../../../plugins/components/Dispose.h"
+#include "../../../TraitsApp.h"
 
 Smart_Parser::Smart_Parser() {
 }
@@ -31,10 +32,12 @@ Smart_Parser::Smart_Parser() {
  */
 int Smart_Parser::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	this->setDefaultTraceHandlers(genesys->getTracer());
-	genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
-	genesys->getTracer()->setTraceLevel(TraceManager::Level::L9_mostDetailed);
-	// Just parser evaluating different expressions 
+	genesys->getTracer()->setTraceLevel(TraitsApp<GenesysApplication_if>::traceLevel);
+	setDefaultTraceHandlers(genesys->getTracer());
+	PluginManager* plugins = genesys->getPlugins();
+	plugins->autoInsertPlugins("autoloadplugins.txt");
+	Model* model = genesys->getModels()->newModel();
+	// Just parser evaluating different expressions
 	// (arithmetic, trigonometric, matemathic, logic, statistic and conditional)
 	std::vector<std::string> expressions = {
 		"1e-3",
@@ -56,7 +59,6 @@ int Smart_Parser::main(int argc, char** argv) {
 		"if false if true 0 else 1 else if true 2 else 3"
 	};
 	// an empty model is created since parser is attached to a model
-	Model* model = genesys->getModels()->newModel();
 	for (unsigned int i = 0; i < expressions.size(); i++) {
 		std::cout << "\"" << expressions[i] << "\" = " << model->parseExpression(expressions[i]) << std::endl;
 	}

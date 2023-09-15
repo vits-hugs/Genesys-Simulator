@@ -22,6 +22,7 @@
 #include "../../../../plugins/components/Create.h"
 #include "../../../../plugins/components/Delay.h"
 #include "../../../../plugins/components/Dispose.h"
+#include "../../../TraitsApp.h"
 
 Smart_ProcessArena::Smart_ProcessArena() {
 }
@@ -31,11 +32,13 @@ Smart_ProcessArena::Smart_ProcessArena() {
  * It instanciates the simulator, builds a simulation model and then simulate that model.
  */
 int Smart_ProcessArena::main(int argc, char** argv) {
-    Simulator* genesys = new Simulator();
-    genesys -> getTracer() -> setTraceLevel(TraceManager::Level::L2_results);
-    this->setDefaultTraceHandlers(genesys->getTracer());
-    genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
-    Model* model = genesys->getModels()->newModel();
+	Simulator* genesys = new Simulator();
+	genesys->getTracer()->setTraceLevel(TraitsApp<GenesysApplication_if>::traceLevel);
+	setDefaultTraceHandlers(genesys->getTracer());
+	PluginManager* plugins = genesys->getPlugins();
+	plugins->autoInsertPlugins("autoloadplugins.txt");
+	Model* model = genesys->getModels()->newModel();
+	// create model
 
     EntityType* entityType = new EntityType(model, "Entity 1");
     Create* create = new Create(model);

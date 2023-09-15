@@ -22,6 +22,7 @@
 #include "../../../../plugins/components/Create.h"
 #include "../../../../plugins/components/Process.h"
 #include "../../../../plugins/components/Dispose.h"
+#include "../../../TraitsApp.h"
 
 Smart_AutomaticStatisticsCollection::Smart_AutomaticStatisticsCollection() {
 }
@@ -32,14 +33,12 @@ Smart_AutomaticStatisticsCollection::Smart_AutomaticStatisticsCollection() {
  */
 int Smart_AutomaticStatisticsCollection::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	this->setDefaultTraceHandlers(genesys->getTracer());
-	genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
-	genesys->getTracer()->setTraceLevel(TraceManager::Level::L8_detailed);
-
-	// crete model
-	Model* model = genesys->getModels()->newModel();
+	genesys->getTracer()->setTraceLevel(TraitsApp<GenesysApplication_if>::traceLevel);
+	setDefaultTraceHandlers(genesys->getTracer());
 	PluginManager* plugins = genesys->getPlugins();
-
+	plugins->autoInsertPlugins("autoloadplugins.txt");
+	Model* model = genesys->getModels()->newModel();
+	// create model
 	EntityType* entity1 = plugins->newInstance<EntityType>(model);
 
 	Create* create = plugins->newInstance<Create>(model, "Equipment Arrives");

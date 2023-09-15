@@ -28,7 +28,7 @@
 #include <paths.h>
 
 #include "../../kernel/simulator/ModelDataDefinition.h"
-#include "../../kernel/simulator/PluginInformation.h""
+#include "../../kernel/simulator/PluginInformation.h"
 
 
 class CompilerThread {
@@ -86,7 +86,7 @@ public: // new methods
 	CompilationResult compileToExecutable();
 	CompilationResult compileToDynamicLibrary();
 	CompilationResult compileToStaticLibrary();
-	bool loadLibrary();
+	bool loadLibrary(std::string* errorMessage);
 	bool unloadLibrary();
 	void* getDynamicLibraryHandle() const;
 

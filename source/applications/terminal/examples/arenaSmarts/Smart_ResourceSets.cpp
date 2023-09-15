@@ -22,6 +22,7 @@
 #include "../../../../plugins/components/Delay.h"
 #include "../../../../plugins/components/Dispose.h"
 #include "../../../../plugins/components/Decide.h"
+#include "../../../TraitsApp.h"
 
 Smart_ResourceSets::Smart_ResourceSets() {
 
@@ -34,15 +35,14 @@ Smart_ResourceSets::Smart_ResourceSets() {
  * then simulate that model.
 */
 int Smart_ResourceSets::main(int argc, char** argv) {
-    // Create a new simulator instance.
-    Simulator* genesys = new Simulator();
-    this->setDefaultTraceHandlers(genesys->getTracer());
-    genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
+	Simulator* genesys = new Simulator();
+	genesys->getTracer()->setTraceLevel(TraitsApp<GenesysApplication_if>::traceLevel);
+	setDefaultTraceHandlers(genesys->getTracer());
+	PluginManager* plugins = genesys->getPlugins();
+	plugins->autoInsertPlugins("autoloadplugins.txt");
+	Model* model = genesys->getModels()->newModel();
+	// create model
 
-    // Create the model and components instances.
-    Model* model = genesys->getModels()->newModel();
-    PluginManager* plugins = genesys->getPlugins();
-    
     Create* mailLoanArrives = plugins->newInstance<Create>(model, "Mail Loans Arrive");
     Create* internetLoanArrives = plugins->newInstance<Create>(model, "Internet Loans Arrive");
     Create* phoneLoanArrives = plugins->newInstance<Create>(model, "Phone Loans Arrive");

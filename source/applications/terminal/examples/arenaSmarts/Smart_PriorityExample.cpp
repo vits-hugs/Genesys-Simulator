@@ -27,6 +27,7 @@
 #include "../../../../plugins/components/Delay.h"
 #include "../../../../plugins/components/Release.h"
 #include "../../../../plugins/data/Resource.h"
+#include "../../../TraitsApp.h"
 
 Smart_PriorityExample::Smart_PriorityExample() {
 }
@@ -37,11 +38,12 @@ Smart_PriorityExample::Smart_PriorityExample() {
  */
 int Smart_PriorityExample::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	this->setDefaultTraceHandlers(genesys->getTracer());
-	genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
-	// crete model
-	Model* model = genesys->getModels()->newModel();
+	genesys->getTracer()->setTraceLevel(TraitsApp<GenesysApplication_if>::traceLevel);
+	setDefaultTraceHandlers(genesys->getTracer());
 	PluginManager* plugins = genesys->getPlugins();
+	plugins->autoInsertPlugins("autoloadplugins.txt");
+	Model* model = genesys->getModels()->newModel();
+	// create model
 	// create components
 	Create* create1 = plugins->newInstance<Create>(model, "GP");
 	Seize* seize1 = plugins->newInstance<Seize>(model, "General Triage");

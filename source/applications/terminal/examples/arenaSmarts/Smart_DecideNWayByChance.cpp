@@ -21,6 +21,7 @@
 #include "../../../../plugins/components/Delay.h"
 #include "../../../../plugins/components/Decide.h"
 #include "../../../../plugins/components/Dispose.h"
+#include "../../../TraitsApp.h"
 
 Smart_DecideNWayByChance::Smart_DecideNWayByChance() {
 
@@ -34,16 +35,14 @@ Smart_DecideNWayByChance::Smart_DecideNWayByChance() {
 */
 
 int Smart_DecideNWayByChance::main(int argc, char** argv) {
-    // Create a new simulator instance.
-    Simulator* genesys = new Simulator();
-    this->setDefaultTraceHandlers(genesys->getTracer());
-    genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
-    
-    // Create the model and components instances.
-    Model* model = genesys->getModels()->newModel();
-    PluginManager* plugins = genesys->getPlugins();
-    
-    Create* create_1 = plugins->newInstance<Create>(model, "Create_1");
+	Simulator* genesys = new Simulator();
+	genesys->getTracer()->setTraceLevel(TraitsApp<GenesysApplication_if>::traceLevel);
+	setDefaultTraceHandlers(genesys->getTracer());
+	PluginManager* plugins = genesys->getPlugins();
+	plugins->autoInsertPlugins("autoloadplugins.txt");
+	Model* model = genesys->getModels()->newModel();
+	// create model
+	Create* create_1 = plugins->newInstance<Create>(model, "Create_1");
     Delay* process_1 = plugins->newInstance<Delay>(model, "Process_1");
     Decide* decide_1 = plugins->newInstance<Decide>(model, "5_Way_Decide_By_Chance");
     Dispose* dispose_1 = plugins->newInstance<Dispose>(model, "Send_to_Warehouse");

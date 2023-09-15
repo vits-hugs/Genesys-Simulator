@@ -103,11 +103,11 @@ void SimulationReporterDefaultImpl1::showReplicationStatistics() {
 	Util::DecIndent();
 	Util::DecIndent();
 	const unsigned short _w1 = _w - 1;
-	for (auto const mapmapItem : *mapMapTypeStat) {
+	for (auto mapmapItem : *mapMapTypeStat) {
 		_model->getTracer()->traceReport("Statistics for " + mapmapItem.first + ":");
 		Util::IncIndent();
 		{
-			for (auto const mapItem : *(mapmapItem.second)) {
+			for (auto mapItem : *(mapmapItem.second)) {
 				_model->getTracer()->traceReport(mapItem.first + ":");
 				Util::IncIndent();
 				{
@@ -221,11 +221,11 @@ void SimulationReporterDefaultImpl1::showSimulationStatistics() {//List<Statisti
 	Util::DecIndent();
 	/// @TODO: USE REFERENCE TO MAPITEM TO AVOID COPY
 	const unsigned short _w1 = _w - 1;
-	for (auto const mapmapItem : *mapMapTypeStat) {
+	for (auto mapmapItem : *mapMapTypeStat) {
 		_model->getTracer()->traceReport("Statistics for " + mapmapItem.first + ":");
 		Util::IncIndent();
 		{
-			for (auto const mapItem : *(mapmapItem.second)) {
+			for (auto mapItem : *(mapmapItem.second)) {
 				_model->getTracer()->traceReport(mapItem.first + ":");
 				Util::IncIndent();
 				{

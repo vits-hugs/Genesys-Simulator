@@ -24,6 +24,7 @@
 #include "../../../../plugins/components/Process.h"
 #include "../../../../plugins/components/Decide.h"
 #include "../../../../plugins/components/Dispose.h"
+#include "../../../TraitsApp.h"
 
 Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime::Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime() {
 }
@@ -34,16 +35,12 @@ Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime::Smart_ArrivalsElementSt
  */
 int Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	genesys->getTracer()->setTraceLevel(TraceManager::Level::L2_results);
-	this->setDefaultTraceHandlers(genesys->getTracer());
-	genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
-
-	// crete model
-	Model* model = genesys->getModels()->newModel();
+	genesys->getTracer()->setTraceLevel(TraitsApp<GenesysApplication_if>::traceLevel);
+	setDefaultTraceHandlers(genesys->getTracer());
 	PluginManager* plugins = genesys->getPlugins();
-
-	// Modelo
-
+	plugins->autoInsertPlugins("autoloadplugins.txt");
+	Model* model = genesys->getModels()->newModel();
+	// create model
 	EntityType* entityType = plugins->newInstance<EntityType>(model);
 	Create* create = plugins->newInstance<Create>(model);
 	create->setEntityType(entityType);

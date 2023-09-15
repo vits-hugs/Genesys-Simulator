@@ -26,6 +26,7 @@
 #include "../../../../plugins/components/Batch.h"
 #include "../../../../plugins/components/Dispose.h"
 #include "../../../../plugins/components/Assign.h"
+#include "../../../TraitsApp.h"
 
 Smart_ParallelProcessingOfEntities::Smart_ParallelProcessingOfEntities() {
 }
@@ -35,14 +36,14 @@ Smart_ParallelProcessingOfEntities::Smart_ParallelProcessingOfEntities() {
  * It instanciates the simulator, builds a simulation model and then simulate that model.
  */
 int Smart_ParallelProcessingOfEntities::main(int argc, char** argv) {
-    Simulator* genesys = new Simulator();
-    this->setDefaultTraceHandlers(genesys->getTracer());
-    genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
+	Simulator* genesys = new Simulator();
+	genesys->getTracer()->setTraceLevel(TraitsApp<GenesysApplication_if>::traceLevel);
+	setDefaultTraceHandlers(genesys->getTracer());
+	PluginManager* plugins = genesys->getPlugins();
+	plugins->autoInsertPlugins("autoloadplugins.txt");
+	Model* model = genesys->getModels()->newModel();
+	// create model
 
-    // Create the model and components instances.
-    Model* model = genesys->getModels()->newModel();
-    PluginManager* plugins = genesys->getPlugins();
-    
     Create* createEquipmentArrives = plugins->newInstance<Create>(model, "createEquipmentArrives");
     Clone * clone_1 = plugins->newInstance<Clone>(model, "separate_1");
     Clone * clone_2 = plugins->newInstance<Clone>(model, "separate_2");

@@ -18,22 +18,20 @@
 #include "../../../../plugins/data/Queue.h"
 #include "../../../../plugins/data/Resource.h"
 #include "../../../../plugins/data/Variable.h"
+#include "../../../TraitsApp.h"
 
 Smart_InventoryAndHoldingCosts::Smart_InventoryAndHoldingCosts() {
 }
 
 int Smart_InventoryAndHoldingCosts::main(int argc, char** argv) {
-	// instantiate simulator
 	Simulator* genesys = new Simulator();
-        this->setDefaultTraceHandlers(genesys->getTracer());
-	genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
-//	genesys->getTracer()->setTraceLevel(TraceManager::Level::L9_mostDetailed);
+	genesys->getTracer()->setTraceLevel(TraitsApp<GenesysApplication_if>::traceLevel);
+	setDefaultTraceHandlers(genesys->getTracer());
 	PluginManager* plugins = genesys->getPlugins();
-	
-	// create model
+	plugins->autoInsertPlugins("autoloadplugins.txt");
 	Model* model = genesys->getModels()->newModel();
-	// model->load("model.gen")
-	
+	// create model
+
         // Initialize resources
         Resource* Resource_1 = plugins->newInstance<Resource>(model, "Resource 1");
         Resource_1->setCapacity(1);

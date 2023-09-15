@@ -15,18 +15,21 @@
 #include <iostream>
 
 #include "../kernel/simulator/Simulator.h"
+#include "TraitsApp.h"
 
 BaseGenesysTerminalApplication::BaseGenesysTerminalApplication() {
 }
 
 int BaseGenesysTerminalApplication::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	this->setDefaultTraceHandlers(genesys->getTracer());
-	genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
-	genesys->getTracer()->setTraceLevel(TraceManager::Level::L9_mostDetailed);
-	Model* model = genesys->getModels()->newModel();
+	genesys->getTracer()->setTraceLevel(TraitsApp<GenesysApplication_if>::traceLevel);
+	setDefaultTraceHandlers(genesys->getTracer());
 	PluginManager* plugins = genesys->getPlugins();
+	plugins->autoInsertPlugins("autoloadplugins.txt");
+	Model* model = genesys->getModels()->newModel();
 	Simulate(genesys, model, plugins);
+	delete genesys;
+	return 0;
 }
 
 void BaseGenesysTerminalApplication::Simulate(Simulator* genesys, Model* model, PluginManager *plugins) {

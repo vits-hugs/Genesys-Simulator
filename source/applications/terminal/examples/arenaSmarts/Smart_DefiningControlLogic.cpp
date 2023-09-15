@@ -30,6 +30,7 @@
 #include "../../../../plugins/components/Delay.h"
 #include "../../../../plugins/components/Release.h"
 
+#include "../../../TraitsApp.h"
 
 
 
@@ -44,14 +45,12 @@ Smart_DefiningControlLogic::Smart_DefiningControlLogic() {
 
 int Smart_DefiningControlLogic::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	this->setDefaultTraceHandlers(genesys->getTracer());
-	genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
-	// crete model
-	Model* model = genesys->getModels()->newModel();
+	genesys->getTracer()->setTraceLevel(TraitsApp<GenesysApplication_if>::traceLevel);
+	setDefaultTraceHandlers(genesys->getTracer());
 	PluginManager* plugins = genesys->getPlugins();
-
-	///////////////////////// Defining Control Logic (Control Logic) /////////////////////////
-
+	plugins->autoInsertPlugins("autoloadplugins.txt");
+	Model* model = genesys->getModels()->newModel();
+	// create model
 	Create* create2 = plugins->newInstance<Create>(model);
 	create2->setEntityTypeName("Entity 2");
 	create2->setTimeBetweenCreationsExpression("EXPO(1)"); // Random(Expo), 9

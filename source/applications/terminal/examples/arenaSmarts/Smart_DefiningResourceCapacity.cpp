@@ -23,6 +23,7 @@
 #include "../../../../plugins/components/Clone.h"
 #include "../../../../plugins/components/Process.h"
 #include "../../../../plugins/components/Dispose.h"
+#include "../../../TraitsApp.h"
 
 Smart_DefiningResourceCapacity::Smart_DefiningResourceCapacity() {
 }
@@ -33,14 +34,12 @@ Smart_DefiningResourceCapacity::Smart_DefiningResourceCapacity() {
  */
 int Smart_DefiningResourceCapacity::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	this->setDefaultTraceHandlers(genesys->getTracer());
-	genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
-	genesys->getTracer()->setTraceLevel(TraceManager::Level::L2_results);
-
-	// crete model
-	Model* model = genesys->getModels()->newModel();
+	genesys->getTracer()->setTraceLevel(TraitsApp<GenesysApplication_if>::traceLevel);
+	setDefaultTraceHandlers(genesys->getTracer());
 	PluginManager* plugins = genesys->getPlugins();
-
+	plugins->autoInsertPlugins("autoloadplugins.txt");
+	Model* model = genesys->getModels()->newModel();
+	// create model
 	Create* create = plugins->newInstance<Create>(model, "Create_1");
 	create->setTimeBetweenCreationsExpression("expo(3)");
 	create->setTimeUnit(Util::TimeUnit::minute);

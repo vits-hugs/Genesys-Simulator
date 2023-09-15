@@ -25,6 +25,7 @@
 #include "../../../../plugins/components/Assign.h"
 #include "../../../../plugins/components/Wait.h"
 #include "../../../../plugins/components/Decide.h"
+#include "../../../TraitsApp.h"
 
 Smart_PlacingEntitiesInQueueSets::Smart_PlacingEntitiesInQueueSets() {
 }
@@ -36,14 +37,13 @@ Smart_PlacingEntitiesInQueueSets::Smart_PlacingEntitiesInQueueSets() {
 
 int Smart_PlacingEntitiesInQueueSets::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	this->setDefaultTraceHandlers(genesys->getTracer());
-	genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
-	// crete model
-	Model* model = genesys->getModels()->newModel();
+	genesys->getTracer()->setTraceLevel(TraitsApp<GenesysApplication_if>::traceLevel);
+	setDefaultTraceHandlers(genesys->getTracer());
 	PluginManager* plugins = genesys->getPlugins();
-	
-	///////////////////////// Placing Entities in Queue Sets (Queue) ///////////////////////// 
-	
+	plugins->autoInsertPlugins("autoloadplugins.txt");
+	Model* model = genesys->getModels()->newModel();
+	// create model
+
 	// Create Customer into system
 	Create* create1 = plugins->newInstance<Create>(model);
 	create1->setEntityTypeName("Entity 1");

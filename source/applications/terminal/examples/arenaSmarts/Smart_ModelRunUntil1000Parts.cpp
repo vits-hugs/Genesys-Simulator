@@ -25,6 +25,7 @@
 
 #include "../../../../plugins/data/Variable.h"
 #include "../../../../kernel/simulator/Attribute.h"
+#include "../../../TraitsApp.h"
 
 
 Smart_ModelRunUntil1000Parts::Smart_ModelRunUntil1000Parts() {
@@ -38,22 +39,13 @@ Smart_ModelRunUntil1000Parts::Smart_ModelRunUntil1000Parts() {
  * then simulate that model.
 */
 int Smart_ModelRunUntil1000Parts::main(int argc, char** argv) {
-    // Create a new simulator instance.
-    Simulator* genesys = new Simulator();
-    this->setDefaultTraceHandlers(genesys->getTracer());
-    genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
-
-    bool isDevelop = false;    
-
-    if (isDevelop) {
-        genesys->getTracer()->setTraceLevel(TraceManager::Level::L9_mostDetailed);
-    } else {
-        genesys->getTracer()->setTraceLevel(TraceManager::Level::L2_results);
-    }
-
-    // Create the model and components instances.
-    Model* model = genesys->getModels()->newModel();
-    PluginManager* plugins = genesys->getPlugins();
+	Simulator* genesys = new Simulator();
+	genesys->getTracer()->setTraceLevel(TraitsApp<GenesysApplication_if>::traceLevel);
+	setDefaultTraceHandlers(genesys->getTracer());
+	PluginManager* plugins = genesys->getPlugins();
+	plugins->autoInsertPlugins("autoloadplugins.txt");
+	Model* model = genesys->getModels()->newModel();
+	// create model
 
     Create* create_1 = plugins->newInstance<Create>(model, "Create_1");
     Process* process_1 = plugins->newInstance<Process>(model, "Process_1");

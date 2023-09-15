@@ -23,6 +23,7 @@
 #include "../../../../plugins/components/Decide.h"
 #include "../../../../plugins/components/Delay.h"
 #include "../../../../plugins/components/Dispose.h"
+#include "../../../TraitsApp.h"
 
 Smart_Expression::Smart_Expression() {
 }
@@ -32,11 +33,13 @@ Smart_Expression::Smart_Expression() {
  * It instanciates the simulator, builds a simulation model and then simulate that model.
  */
 int Smart_Expression::main(int argc, char** argv) {
-    Simulator* genesys = new Simulator();
-    genesys -> getTracer() -> setTraceLevel(TraceManager::Level::L2_results);
-    this->setDefaultTraceHandlers(genesys->getTracer());
-    genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
-    Model* model = genesys->getModels()->newModel();
+	Simulator* genesys = new Simulator();
+	genesys->getTracer()->setTraceLevel(TraitsApp<GenesysApplication_if>::traceLevel);
+	setDefaultTraceHandlers(genesys->getTracer());
+	PluginManager* plugins = genesys->getPlugins();
+	plugins->autoInsertPlugins("autoloadplugins.txt");
+	Model* model = genesys->getModels()->newModel();
+	// create model
 
     EntityType* entityType = new EntityType(model, "Package");
     Create* create = new Create(model);

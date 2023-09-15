@@ -13,6 +13,7 @@
 #include "Smart_Plugin.h"
 
 #include "../../../../kernel/simulator/Simulator.h"
+#include "../../../TraitsApp.h"
 
 Smart_Plugin::Smart_Plugin() {
 }

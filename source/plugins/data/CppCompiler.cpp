@@ -25,6 +25,7 @@
 #include <fstream>
 #include <cstdio>
 #include <bits/stdc++.h>
+#include <thread>
 // dynamic load
 #include <dlfcn.h>
 
@@ -133,11 +134,7 @@ CppCompiler::CompilationResult CppCompiler::compileToDynamicLibrary() {
 	std::string command(_compilerCommand + " " + _flagsGeneral + " " + _flagsDynamicLibrary + " " + _objectFiles + " " + _sourceFilename + " -o " + _outputFilename);
 	//char* argument_list[] = {_compilerCommand, _flagsGeneral, _flagsDynamicLibrary, _objectFiles, _sourceFilename, "-o", _outputFilename, NULL};
 	result = _invokeCompiler(command);
-	if (result.success) {
-		_compiledToDynamicLibrary = true;
-	} else {
-		_compiledToDynamicLibrary = false;
-	}
+	_compiledToDynamicLibrary = result.success;
 	return result;
 }
 
@@ -150,8 +147,16 @@ CppCompiler::CompilationResult CppCompiler::compileToStaticLibrary() {
 	return result;
 }
 
-bool CppCompiler::loadLibrary() {
-	_dynamicLibraryHandle = dlopen(_outputFilename.c_str(), RTLD_LAZY);
+bool CppCompiler::loadLibrary(std::string* errorMessage) {
+	try {
+		_dynamicLibraryHandle = dlopen(_outputFilename.c_str(), RTLD_LAZY);
+	} catch (const std::exception& e) {
+		if (dlerror() != NULL)
+			*errorMessage += dlerror();
+		*errorMessage += e.what();
+		return false;
+	}
+	*errorMessage += dlerror();
 	_libraryLoaded = _dynamicLibraryHandle != nullptr;
 	return _libraryLoaded;
 }
@@ -269,16 +274,24 @@ std::string CppCompiler::_read(std::string filename) {
 }
 
 CppCompiler::CompilationResult CppCompiler::_invokeCompiler(std::string command) {
-	std::string destPath, redirect, execCommand, resultStdout, resultStderr;
-	redirect = " >" + destPath + "stdout.log 2>" + destPath + "stderr.log";
+	const std::string destPath = "";
+	const std::string redirect = " >" + destPath + "stdout.log 2>" + destPath + "stdout.log";
+
+	Util::IncIndent();
 
 	Util::FileDelete(_outputFilename);
-	execCommand = command + redirect;
-	//std::cout << execCommand << std::endl;
+	Util::FileDelete(destPath + "stdout.log");
+	Util::FileDelete(destPath + "stdout.log");
+
+	const std::string execCommand = command + redirect;
+	_parentModel->getTracer()->trace(execCommand);
 	system(execCommand.c_str());
-	resultStdout = _read(destPath+"stdout.log");
-	resultStderr = _read(destPath+"stderr.log");
-	//std::cout << resultStdout << resultStderr << std::endl;
+	for (short i = 0; i < 32; i++)
+		std::this_thread::yield(); // give the system some time
+	const std::string resultStdout = _read(destPath+"stdout.log");
+	const std::string resultStderr = _read(destPath+"stderr.log");
+	_parentModel->getTracer()->trace(resultStdout);
+	_parentModel->getTracer()->trace(resultStderr);
 
 	CppCompiler::CompilationResult result;
 	std::ifstream f(_outputFilename.c_str());
@@ -286,5 +299,11 @@ CppCompiler::CompilationResult CppCompiler::_invokeCompiler(std::string command)
 	result.compilationStdOutput = resultStdout;
 	result.compilationErrOutput = resultStderr;
 	result.destinationPath = destPath;
+
+	Util::FileDelete(destPath + "stdout.log");
+	Util::FileDelete(destPath + "stderr.log");
+
+	Util::DecIndent();
+
 	return result;
 }

@@ -162,8 +162,7 @@ extern \"C\" void initBetweenReplications_" + name + "(Model* model) {\n\
 		_parentModel->getTracer()->trace("Compiling source file \"" + _sourceFilename + "\"");
 		_cppCompiler->setSourceFilename(_sourceFilename);
 		_cppCompiler->setOutputFilename(_outputFilename);
-
-		std::string objectFiles = "Simulator.o Model.o"; // TODO COMPLETE...  //"../../build/kernel/simulator/*.o ../../build/kernel/util/*.o ../../build/kernel/statistics/*.o ../../build/parser/*.o ../../build/applications/genesysTerminalApplications/*.o ../../build/plugins/components/*.o ../../build/plugins/dataElements/*.o";
+		std::string objectFiles = "Simulator.o Model.o ModelComponent.o ModelDataDefinition.o Entity.o Util.o Attribute.o EntityType.o StatisticsCollector.o StatisticsDefaultImpl1.o"; // TODO COMPLETE...
 		_cppCompiler->setObjectFiles(objectFiles);
 		CppCompiler::CompilationResult result = _cppCompiler->compileToDynamicLibrary();
 		if (!result.success) {
@@ -175,9 +174,9 @@ extern \"C\" void initBetweenReplications_" + name + "(Model* model) {\n\
 	if (resultAll) {
 		_cppCompiler->unloadLibrary();
 		_parentModel->getTracer()->trace("Loading dynamic library \"" + _outputFilename + "\"");
-		resultAll = _cppCompiler->loadLibrary();
+		resultAll = _cppCompiler->loadLibrary(errorMessage);
 		if (!resultAll) {
-			*errorMessage += "Error loading dynamic library";
+			*errorMessage += ". Error loading dynamic library.";
 		}
 	}
 	// if dynamic library loaded, then vinculate pointers to loaded functions

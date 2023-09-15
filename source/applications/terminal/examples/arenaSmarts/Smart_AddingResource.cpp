@@ -16,6 +16,7 @@
 #include "../../../../plugins/components/Create.h"
 #include "../../../../plugins/components/Dispose.h"
 #include "../../../../plugins/components/Process.h"
+#include "../../../TraitsApp.h"
 
 Smart_AddingResource::Smart_AddingResource() {
 }
@@ -26,14 +27,12 @@ Smart_AddingResource::Smart_AddingResource() {
  */
 int Smart_AddingResource::main(int argc, char** argv) {
 	Simulator* genesys = new Simulator();
-	this->setDefaultTraceHandlers(genesys->getTracer());
-	genesys->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
-	genesys->getTracer()->setTraceLevel(TraceManager::Level::L2_results);
-	// create model
-	Model* model = genesys->getModels()->newModel();
+	genesys->getTracer()->setTraceLevel(TraitsApp<GenesysApplication_if>::traceLevel);
+	setDefaultTraceHandlers(genesys->getTracer());
 	PluginManager* plugins = genesys->getPlugins();
-
-	// create 1S
+	plugins->autoInsertPlugins("autoloadplugins.txt");
+	Model* model = genesys->getModels()->newModel();
+	// create model
 	Create* create1 = plugins->newInstance<Create>(model);
 	create1->setEntityTypeName("Create 1");
 	create1->setTimeBetweenCreationsExpression("expo(2)");
