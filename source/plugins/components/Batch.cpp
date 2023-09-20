@@ -154,7 +154,7 @@ void Batch::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 		}
 		unsigned int groupIdKey = representativeEnt->getId(); // an "EntityGroup" is a MAP, with one LIST for every RepresentativeEntity ID as KEY
 		if (_batchType == Batch::BatchType::Temporary) {
-			representativeEnt->setAttributeValue("Entity.Group", _entityGroup->getId()); // The "Entity.Group" attribute is the EntityGroup Id (an internel modeldatum of Batch), while the ID of the representative entity is the KEY of the map of that EntityGroup
+			representativeEnt->setAttributeValue("Entity.Group", _entityGroup->getId()); // The "Entity.Group" attribute is the EntityGroup Id (an internal modeldatum of Batch), while the ID of the representative entity is the KEY of the map of that EntityGroup
 		}
 		// remove all entities from the queue while storing attributes depending on representative
 		Entity* enqueuedEnt;

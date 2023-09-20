@@ -38,7 +38,7 @@ public:
 		",entity=" + std::to_string(_entity->getId()) +
 				",component=\"" + _thisComponent->getName() + "\"" +
 				",inputPort=\"" + std::to_string(_thisComponentOutputPort) + "\"" +
-				",timeStatedWaiting=" + std::to_string(_timeStartedWaiting);
+				",timeStartedWaiting=" + std::to_string(_timeStartedWaiting);
 	}
 public:
 	double getTimeStartedWaiting() const {
@@ -141,7 +141,7 @@ private: //1::1
 	} DEFAULT;
 	OrderRule _orderRule = DEFAULT.orderRule;
 	std::string _attributeName = DEFAULT.attributeName;
-private: // inner internel elements
+private: // inner internal elements
 	StatisticsCollector* _cstatNumberInQueue = nullptr;
 	StatisticsCollector* _cstatTimeInQueue;
 };

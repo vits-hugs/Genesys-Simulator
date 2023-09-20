@@ -213,15 +213,15 @@ void ModelDataDefinition::_initBetweenReplications() {
 }
 
 std::string ModelDataDefinition::show() {
-	std::string internel = "";
+	std::string internal = "";
 	if (_internalData->size() > 0) {
-		internel = ", internel=[";
+		internal = ", internal=[";
 		for (std::map<std::string, ModelDataDefinition*>::iterator it = _internalData->begin(); it != _internalData->end(); it++) {
-			internel += (*it).second->getName() + ",";
+			internal += (*it).second->getName() + ",";
 		}
-		internel = internel.substr(0, internel.length() - 1) + "]";
+		internal = internal.substr(0, internal.length() - 1) + "]";
 	}
-	return "id=" + std::to_string(_id) + ",name=\"" + _name + "\"" + internel;
+	return "id=" + std::to_string(_id) + ",name=\"" + _name + "\"" + internal;
 }
 
 ModelDataDefinition* ModelDataDefinition::getInternalData(std::string name) const {

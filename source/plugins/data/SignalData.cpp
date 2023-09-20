@@ -11,6 +11,7 @@
  */
 
 #include "SignalData.h"
+#include "../../kernel/simulator/Model.h"
 
 #ifdef PLUGINCONNECT_DYNAMIC
 
@@ -42,7 +43,6 @@ unsigned int SignalData::generateSignal(double signalValue, unsigned int limit) 
 
 void SignalData::addSignalDataEventHandler(SignalDataEventHandler eventHandler, ModelComponent* component) {
 	ModelComponent* compHandler;
-	// SEG FAULT??????
 	for (PairSignalDataEventHandler* sreh : *_signalDataEventHandlers->list()) {
 		compHandler = sreh->second;
 		if (compHandler == component) {
@@ -99,6 +99,10 @@ void SignalData::_saveInstance(PersistenceRecord *fields, bool saveDefaultValues
 bool SignalData::_check(std::string* errorMessage) {
 	bool resultAll = true;
 	///@TODO
+	resultAll &= _signalDataEventHandlers->size() > 0;
+	if (!resultAll) {
+		_parentModel->getTracer()->traceError("There is no handler added to SignalData "+this->getName());
+	}
 	//resultAll &= _quantityExpression != "";
 	return resultAll;
 }

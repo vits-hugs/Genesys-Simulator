@@ -182,7 +182,7 @@ private: //1::n
 	List<Failure*>* _failures = new List<Failure*>();
 private: // attached elements
 	Schedule* _capacitySchedule = nullptr;
-private: // internel elements
+private: // internal elements
 	StatisticsCollector* _cstatTimeSeized = nullptr;
 	StatisticsCollector* _cstatTimeFailed = nullptr;
 	StatisticsCollector* _cstatProportionSeized = nullptr;

@@ -81,7 +81,7 @@ private:
 	std::string _delayExpression = DEFAULT.delayExpression;
 	Util::TimeUnit _delayTimeUnit = DEFAULT.delayTimeUnit;
 	Util::AllocationType _allocation = DEFAULT.allocation;
-private: // inner internel elements
+private: // inner internal elements
 	StatisticsCollector* _cstatWaitTime = nullptr;
 };
 //enable_this_owner(Delay, DelayExpression);

@@ -105,7 +105,7 @@ private:
 private: // association
 	Station* _station = nullptr;
 	Label* _label = nullptr;
-private: // internel elements
+private: // internal elements
 	Counter* _numberIn = nullptr;
 };
 

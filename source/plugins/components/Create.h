@@ -96,7 +96,7 @@ protected:
 private:
 	double _lastArrival = -1.0;
 private: // internal elements
-	Counter* _numberOut = nullptr; // internel modeldatum
+	Counter* _numberOut = nullptr; // internal modeldatum
 private: // attached elements
 	Schedule* _timeBetweenCreationsSchedule = nullptr;
 	Formula* _timeBetweenCreationsFormula = nullptr;
