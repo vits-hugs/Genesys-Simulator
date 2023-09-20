@@ -18,6 +18,7 @@
 #include "../../plugins/components/Access.h"
 #include "../../plugins/components/Assign.h"
 #include "../../plugins/components/Batch.h"
+#include "../../plugins/components/Buffer.h"
 #include "../../plugins/components/Clone.h"
 #include "../../plugins/components/CppForG.h"
 #include "../../plugins/components/Create.h"
@@ -114,6 +115,8 @@ Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilen
 		GetInfo = &EntityGroup::GetPluginInformation;
 		//	else if (fn == "ode.so")
 		//		GetInfo = &OLD_ODEelement::GetPluginInformation;
+	else if (fn == "buffer.so")
+		GetInfo = &Buffer::GetPluginInformation;
 	else if (fn == "queue.so")
 		GetInfo = &Queue::GetPluginInformation;
 	else if (fn == "resource.so")

@@ -68,6 +68,7 @@ SOURCES += \
 	../../../../plugins/components/Access.cpp \
 	../../../../plugins/components/Assign.cpp \
 	../../../../plugins/components/Batch.cpp \
+	../../../../plugins/components/Buffer.cpp \
 	../../../../plugins/components/CellularAutomata.cpp \
 	../../../../plugins/components/Clone.cpp \
 	../../../../plugins/components/CppForG.cpp \
@@ -178,6 +179,7 @@ SOURCES += \
 	../../../terminal/examples/book/Book_Cap02_Example01.cpp \
 	../../../terminal/examples/smarts/Smart_AssignWriteSeizes.cpp \
 	../../../terminal/examples/smarts/Smart_BatchSeparate.cpp \
+	../../../terminal/examples/smarts/Smart_Buffer.cpp \
 	../../../terminal/examples/smarts/Smart_CellularAutomata1.cpp \
 	../../../terminal/examples/smarts/Smart_CppForG.cpp \
 	../../../terminal/examples/smarts/Smart_Delay.cpp \
@@ -311,6 +313,7 @@ HEADERS += \
 	../../../../plugins/components/Access.h \
 	../../../../plugins/components/Assign.h \
 	../../../../plugins/components/Batch.h \
+	../../../../plugins/components/Buffer.h \
 	../../../../plugins/components/CellularAutomata.h \
 	../../../../plugins/components/Clone.h \
 	../../../../plugins/components/CppForG.h \
@@ -427,6 +430,7 @@ HEADERS += \
 	../../../terminal/examples/book/Book_Cap02_Example01.h \
 	../../../terminal/examples/smarts/Smart_AssignWriteSeizes.h \
 	../../../terminal/examples/smarts/Smart_BatchSeparate.h \
+	../../../terminal/examples/smarts/Smart_Buffer.h \
 	../../../terminal/examples/smarts/Smart_CellularAutomata1.h \
 	../../../terminal/examples/smarts/Smart_CppForG.h \
 	../../../terminal/examples/smarts/Smart_Delay.h \
