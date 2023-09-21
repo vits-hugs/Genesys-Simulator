@@ -130,6 +130,7 @@ SOURCES += \
 	../../../../tools/ProbabilityDistributionBase.cpp \
 	../../../../tools/SolverDefaultImpl1.cpp \
 	../../../BaseGenesysTerminalApplication.cpp \
+	../../../terminal/GenesysShell/GenesysShell.cpp \
 	../../../terminal/examples/arenaExamples/AirportSecurityExample.cpp \
 	../../../terminal/examples/arenaExamples/AirportSecurityExampleExtended.cpp \
 	../../../terminal/examples/arenaExamples/Airport_Extended1.cpp \
@@ -380,6 +381,7 @@ HEADERS += \
 	../../../BaseGenesysTerminalApplication.h \
 	../../../GenesysApplication_if.h \
 	../../../TraitsApp.h \
+	../../../terminal/GenesysShell/GenesysShell.h \
 	../../../terminal/GenesysShell/GenesysShell_if.h \
 	../../../terminal/examples/arenaExamples/AirportSecurityExample.h \
 	../../../terminal/examples/arenaExamples/AirportSecurityExampleExtended.h \

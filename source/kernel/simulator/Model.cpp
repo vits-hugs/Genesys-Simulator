@@ -277,7 +277,7 @@ void Model::clear() {
 }
 
 void Model::_createModelInternalElements() {
-	if (_automaticallyCreatesModelDataDefinitions) {
+	if (!_automaticallyCreatesModelDataDefinitions) {
 		getTracer()->trace("Automatically creating internal elements disabled", TraceManager::Level::L7_internal);
 	} else {
 		getTracer()->trace("Automatically creating internal elements", TraceManager::Level::L7_internal);

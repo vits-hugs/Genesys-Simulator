@@ -13,12 +13,8 @@
 
 #ifndef TRAITSAPP_H
 #define TRAITSAPP_H
-#include "BaseGenesysTerminalApplication.h"
 
-//#include "terminal/examples/smarts/Smart_Buffer.h"
-#include "terminal/examples/smarts/Smart_ODE.h"
-
-
+#include "terminal/GenesysShell/GenesysShell.h"
 
 template <typename T>
 struct TraitsApp {
@@ -44,7 +40,7 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Smart_FiniteStateMachine Application;
 	//typedef Smart_HoldSearchRemove Application;
 	//typedef Smart_ModelInfoModelSimulation Application;
-	typedef Smart_ODE Application;
+	//typedef Smart_ODE Application;
 	//typedef Smart_OnEvent Application;
 	//typedef Smart_Parser Application;
 	//typedef Smart_ParserModelFunctions Application;
@@ -123,7 +119,7 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Book_Cap02_Example01 Application;
 
 	//// TERMINAL APPLICATIONS
-	//typedef GenesysTerminalApp Application;
+	typedef GenesysShell Application;
 
 	//// UNDER DEVELPMENT
 	//typedef TestingTerminalApp Application;

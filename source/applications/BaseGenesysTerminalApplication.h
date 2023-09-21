@@ -18,6 +18,7 @@
 #include "../kernel/simulator/TraceManager.h"
 #include "../kernel/simulator/OnEventManager.h"
 #include "../kernel/simulator/PluginManager.h"
+//#include "TraitsApp.h"
 
 #include <thread>
 

@@ -172,6 +172,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/f13e5db9/Access.o \
 	${OBJECTDIR}/_ext/f13e5db9/Assign.o \
 	${OBJECTDIR}/_ext/f13e5db9/Batch.o \
+	${OBJECTDIR}/_ext/f13e5db9/Buffer.o \
 	${OBJECTDIR}/_ext/f13e5db9/CellularAutomata.o \
 	${OBJECTDIR}/_ext/f13e5db9/Clone.o \
 	${OBJECTDIR}/_ext/f13e5db9/CppForG.o \
@@ -955,6 +956,11 @@ ${OBJECTDIR}/_ext/f13e5db9/Batch.o: ../../source/plugins/components/Batch.cpp nb
 	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f13e5db9/Batch.o ../../source/plugins/components/Batch.cpp
+
+${OBJECTDIR}/_ext/f13e5db9/Buffer.o: ../../source/plugins/components/Buffer.cpp nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f13e5db9/Buffer.o ../../source/plugins/components/Buffer.cpp
 
 ${OBJECTDIR}/_ext/f13e5db9/CellularAutomata.o: ../../source/plugins/components/CellularAutomata.cpp nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
@@ -3069,6 +3075,19 @@ ${OBJECTDIR}/_ext/f13e5db9/Batch_nomain.o: ${OBJECTDIR}/_ext/f13e5db9/Batch.o ..
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f13e5db9/Batch_nomain.o ../../source/plugins/components/Batch.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/f13e5db9/Batch.o ${OBJECTDIR}/_ext/f13e5db9/Batch_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/f13e5db9/Buffer_nomain.o: ${OBJECTDIR}/_ext/f13e5db9/Buffer.o ../../source/plugins/components/Buffer.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/f13e5db9/Buffer.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f13e5db9/Buffer_nomain.o ../../source/plugins/components/Buffer.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/f13e5db9/Buffer.o ${OBJECTDIR}/_ext/f13e5db9/Buffer_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/f13e5db9/CellularAutomata_nomain.o: ${OBJECTDIR}/_ext/f13e5db9/CellularAutomata.o ../../source/plugins/components/CellularAutomata.cpp 
