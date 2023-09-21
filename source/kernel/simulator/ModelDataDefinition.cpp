@@ -58,7 +58,7 @@ void ModelDataDefinition::setModelLevel(unsigned int _modelLevel) {
 //}
 
 ModelDataDefinition::~ModelDataDefinition() {
-	////_parentModel->getTracer()->trace(TraceManager::Level::L9_mostDetailed, "Removing Element \"" + this->_name + "\" from the model");
+	////trace(TraceManager::Level::L9_mostDetailed, "Removing Element \"" + this->_name + "\" from the model");
 	_internalDataClear();
 	_parentModel->getDataManager()->remove(this);
 }
@@ -168,7 +168,7 @@ void ModelDataDefinition::_checkCreateAttachedReferencedDataDefinition(std::stri
 				referedElem = elemMan->getDataDefinition(pair.first, referedName);
 				assert(referedElem != nullptr);
 				_attachedDataInsert("Refered_"+pair.first, referedElem);
-				_parentModel->getTracer()->trace(this->getName()+" has an expression that refers to "+pair.first+ " "+referedName+", and therefore was attached.");
+				trace(this->getName()+" has an expression that refers to "+pair.first+ " "+referedName+", and therefore was attached.");
 			}
 		}
 		Util::DecIndent();
@@ -300,11 +300,11 @@ std::string ModelDataDefinition::getClassname() const {
 }
 
 void ModelDataDefinition::InitBetweenReplications(ModelDataDefinition* modeldatum) {
-	modeldatum->_parentModel->getTracer()->trace("Initing " + modeldatum->getClassname() + " \"" + modeldatum->getName() + "\"", TraceManager::Level::L9_mostDetailed); //std::to_string(component->_id));
+	modeldatum->trace("Initing " + modeldatum->getClassname() + " \"" + modeldatum->getName() + "\"", TraceManager::Level::L9_mostDetailed); //std::to_string(component->_id));
 	try {
 		modeldatum->_initBetweenReplications();
 	} catch (const std::exception& e) {
-		modeldatum->_parentModel->getTracer()->traceError(e, "Error initing modeldatum " + modeldatum->show());
+		modeldatum->traceError("Error initing modeldatum " + modeldatum->show(), e);
 	};
 }
 
@@ -375,7 +375,7 @@ void ModelDataDefinition::_addProperty(PropertyBase* property) {
 
 /*
 void ModelDataDefinition::_addSimulationResponse(SimulationControl* response) {
-	_simulationResponses->insert(response); // TODO: Check if exists before insert?
+	_simulationResponses->insert(response); //@TODO: Check if exists before insert?
 }
 
 void ModelDataDefinition::_addSimulationControl(SimulationControl* control) {
@@ -397,4 +397,30 @@ void ModelDataDefinition::setReportStatistics(bool reportStatistics) {
 
 bool ModelDataDefinition::isReportStatistics() const {
 	return _reportStatistics;
+}
+
+
+// just an easy access to trace manager
+void ModelDataDefinition::trace(std::string text, TraceManager::Level level){
+	_parentModel->getTracer()->traceReport(text, level);
+}
+
+void ModelDataDefinition::traceError(std::string text, TraceManager::Level level){
+	_parentModel->getTracer()->traceError(text, level);
+}
+
+void ModelDataDefinition::traceError(std::string text, std::exception e) {
+	_parentModel->getTracer()->traceError(text, e);
+}
+
+void ModelDataDefinition::traceReport(std::string text, TraceManager::Level level){
+	_parentModel->getTracer()->traceReport(text, level);
+}
+
+void ModelDataDefinition::traceSimulation(void* thisobject, std::string text, TraceManager::Level level){
+	_parentModel->getTracer()->traceSimulation(thisobject, text, level);
+}
+
+void ModelDataDefinition::traceSimulation(void* thisobject, TraceManager::Level level, std::string text) {
+	_parentModel->getTracer()->traceSimulation(thisobject, text, level);
 }

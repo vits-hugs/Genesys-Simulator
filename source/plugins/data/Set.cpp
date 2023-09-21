@@ -70,7 +70,7 @@ bool Set::_loadInstance(PersistenceRecord *fields) {
 				std::string memberName = fields->loadField("member" + Util::StrIndex(i));
 				ModelDataDefinition* member = _parentModel->getDataManager()->getDataDefinition(_setOfType, memberName);
 				if (member == nullptr) { // not found. That's a problem. Resource not loaded yet (or mismatch name
-					_parentModel->getTracer()->traceError("ERROR: Could not found " + _setOfType + " set member named \"" + memberName + "\"", TraceManager::Level::L1_errorFatal);
+					traceError("ERROR: Could not found " + _setOfType + " set member named \"" + memberName + "\"", TraceManager::Level::L1_errorFatal);
 				} else {//found
 					_elementSet->insert(member);
 				}

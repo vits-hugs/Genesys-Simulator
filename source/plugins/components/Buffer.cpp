@@ -57,39 +57,19 @@ PluginInformation* Buffer::GetPluginInformation() {
 // protected virtual -- must be overriden
 
 void Buffer::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
-	if (_internalQueue->size() == _capacity) { //full buffer
-		if (this->_advanceOn == AdvanceOn::NewArrivals) { // that's fine. Buffer advances on new arrivals
-			Waiting *first = _internalQueue->first();
-			_internalQueue->removeElement(first);
-			// TODO: Collect statistics about waiting
-			_parentModel->getTracer()->trace("Entity "+first->getEntity()->getName()+" leaves the buffer");
-			this->_parentModel->sendEntityToComponent(first->getEntity(), this->getConnections()->getFrontConnection());
-			// enqueue
-			_parentModel->getTracer()->trace("Entity "+entity->getName()+" enters on the buffer at position "+std::to_string(_internalQueue->size()+1)+"/"+std::to_string(_capacity));
-			_internalQueue->insertElement(new Waiting(entity, _parentModel->getSimulation()->getSimulatedTime(), this));
-		} else { // ops. Arrival in a full buffer that doesn't advance on new arrivals
-			if (_arrivalOnFullBufferRule == ArrivalOnFullBufferRule::SendToBulkPort) {
-				_parentModel->getTracer()->trace("Entity " + entity->getName()+" got a full buffer and will be send to the bulk port");
-				_parentModel->sendEntityToComponent(entity, this->getConnections()->getConnectionAtPort(1)); // port 1 is the bulk one
-			} else if (_arrivalOnFullBufferRule == ArrivalOnFullBufferRule::Dispose) {
-				_parentModel->getTracer()->trace("Entity " + entity->getName()+" got a full buffer and will be just removed");
-				_parentModel->removeEntity(entity);
-			} else if (_arrivalOnFullBufferRule == ArrivalOnFullBufferRule::ReplaceLastPosition) {
-				Waiting *lastEntity = _internalQueue->getAtRank(_internalQueue->size()-1);
-				_parentModel->getTracer()->trace("Entity " + entity->getName()+" got a full buffer and will replace entity "+lastEntity->getEntity()->getName()+" in the buffer, wich will be just removed");
-				_internalQueue->removeElement(lastEntity);
-				_parentModel->removeEntity(lastEntity->getEntity());
-				delete(lastEntity);
-				// will enqueue current entity
-				// enqueue
-				_parentModel->getTracer()->trace("Entity "+entity->getName()+" enters on the buffer at position "+std::to_string(_internalQueue->size()+1)+"/"+std::to_string(_capacity));
-				_internalQueue->insertElement(new Waiting(entity, _parentModel->getSimulation()->getSimulatedTime(), this));
-			}
+	if (_buffer->at(_capacity-1) != nullptr) { // full buffer
+		trace("Entity arrived on a full buffer");
+		switch (_arrivalOnFullBufferRule) {
+			case ArrivalOnFullBufferRule::Dispose:
+
+				break;
+			case ArrivalOnFullBufferRule::ReplaceLastPosition:
+
+				break;
+			case ArrivalOnFullBufferRule::SendToBulkPort:
+
+				break;
 		}
-	} else {
-		// enqueue
-		_parentModel->getTracer()->trace("Entity "+entity->getName()+" enters on the buffer at position "+std::to_string(_internalQueue->size()+1)+"/"+std::to_string(_capacity));
-		_internalQueue->insertElement(new Waiting(entity, _parentModel->getSimulation()->getSimulatedTime(), this));
 	}
 }
 
@@ -113,7 +93,7 @@ void Buffer::_saveInstance(PersistenceRecord *fields, bool saveDefaultValues) {
 
 bool Buffer::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	resultAll &= _parentModel->checkExpression(_advanceTimeExpression, "Advance Time Expession", errorMessage);
+	//...
 	return resultAll;
 }
 
@@ -126,70 +106,42 @@ ParserChangesInformation* Buffer::_getParserChangesInformation() {
 }
 
 void Buffer::_initBetweenReplications() {
-//	_someString = "Test";
-//	_someUint = 1;
+	_buffer->clear();
+	_buffer->resize(_capacity);
 }
 
 unsigned int Buffer::_handlerForSignalDataEvent(SignalData* signalData) {
 	// got a signal. Buffer will advance
-	_parentModel->getTracer()->trace("Buffer "+this->getName()+" received signal "+signalData->getName());
-	if (_internalQueue->size() > 0) {
-		Waiting *first = _internalQueue->first();
-		_internalQueue->removeElement(first);
-		// TODO: Collect statistics about waiting
-		_parentModel->getTracer()->trace("Entity "+first->getEntity()->getName()+" leaves the buffer");
-		this->_parentModel->sendEntityToComponent(first->getEntity(), this->getConnections()->getFrontConnection());
-		return 1; // one entity was "freed"
-	} else {
-		_parentModel->getTracer()->trace("Buffer is empty. Nothing happens");
-		return 0; // no entity was "freed" (sent forward)
+	trace("Buffer "+this->getName()+" received signal "+signalData->getName());
+	Entity* first = _advance(nullptr);
+	if (first != nullptr) {
+		trace("Buffer entities moved forward");
+		_parentModel->sendEntityToComponent(first, this->getConnections()->getFrontConnection());
 	}
+	return 1;
 }
 
 
 void Buffer::_createInternalAndAttachedData() {
 	PluginManager* pm = _parentModel->getParentSimulator()->getPlugins();
-	if (_internalQueue == nullptr) {
-		_internalQueue = pm->newInstance<Queue>(_parentModel, getName() + "." + "Queue");
-		_internalDataInsert("Queue", _internalQueue);
-	}
 	//attached
 	if (_advanceOn == AdvanceOn::Signal) {
 		if (_attachedSignal  == nullptr) {
 			if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
 				_attachedSignal = pm->newInstance<SignalData>(_parentModel, getName() + "." + "SignalData");
 			}
-			SignalData::SignalDataEventHandler handler = SignalData::SetSignalDataEventHandler<Buffer>(&Buffer::_handlerForSignalDataEvent, this);
-			_attachedSignal->addSignalDataEventHandler(handler, this);
-			_attachedDataInsert("SignalData", _attachedSignal);
 		}
+		SignalData::SignalDataEventHandler handler = SignalData::SetSignalDataEventHandler<Buffer>(&Buffer::_handlerForSignalDataEvent, this);
+		_attachedSignal->addSignalDataEventHandler(handler, this);
+		_attachedDataInsert("SignalData", _attachedSignal);
 	} else {
 		_attachedDataRemove("SignalData");
 	}
 }
 
 void Buffer::_addProperty(PropertyBase* property) {
-
 }
 
-Util::TimeUnit Buffer::getadvanceTimeTimeUnit() const {
-	return _advanceTimeTimeUnit;
-}
-
-void Buffer::setAdvanceTimeTimeUnit(Util::TimeUnit newAdvanceTimeTimeUnit) {
-	_advanceTimeTimeUnit = newAdvanceTimeTimeUnit;
-}
-
-std::string Buffer::getadvanceTimeExpression() const {
-	return _advanceTimeExpression;
-}
-
-void Buffer::setAdvanceTimeExpression(const std::string &newAdvanceTimeExpression, Util::TimeUnit timeunit) {
-	_advanceTimeExpression = newAdvanceTimeExpression;
-	if (timeunit != Util::TimeUnit::unknown) {
-		_advanceTimeTimeUnit = timeunit;
-	}
-}
 
 SignalData *Buffer::getsignal() const {
 	return _attachedSignal;
@@ -197,14 +149,6 @@ SignalData *Buffer::getsignal() const {
 
 void Buffer::setSignal(SignalData *newSignal) {
 	_attachedSignal = newSignal;
-}
-
-Queue *Buffer::getinternalQueue() const {
-	return _internalQueue;
-}
-
-void Buffer::setInternalQueue(Queue *newInternalQueue) {
-	_internalQueue = newInternalQueue;
 }
 
 unsigned int Buffer::getcapacity() const {
@@ -229,4 +173,11 @@ Buffer::ArrivalOnFullBufferRule Buffer::getarrivalOnFullBufferRule() const {
 
 void Buffer::setArrivalOnFullBufferRule(Buffer::ArrivalOnFullBufferRule newArrivalOnFullBufferRule){
 	_arrivalOnFullBufferRule = newArrivalOnFullBufferRule;
+}
+
+Entity* Buffer::_advance(Entity* enteringEntity) {
+	Entity *result = _buffer->front();
+	_buffer->erase(_buffer->begin());
+	_buffer->push_back(enteringEntity);
+	return result;
 }

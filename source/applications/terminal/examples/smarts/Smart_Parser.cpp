@@ -43,7 +43,7 @@ int Smart_Parser::main(int argc, char** argv) {
 		"1e-3",
 		"0x2fE-0x1b",
 		"(1.0<=2.5)==0",
-		"min(10e1, 1e-3)", // TODO!!! THE RESULT IS WRONG
+		"min(10e1, 1e-3)", //@TODO!!! THE RESULT IS WRONG
 		"-3 + 2*0.25 +0xc/4 -1.34e-3 *(-1*-1)-2^5",
 		"sin(0.3) - cos(1.75)",
 		"trunc(12.99) + round(12.99) + frac(45.009)",

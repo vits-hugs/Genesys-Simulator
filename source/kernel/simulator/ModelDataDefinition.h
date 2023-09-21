@@ -25,9 +25,11 @@
 //#include "PropertyGenesys.h"
 #include "SimulationControlAndResponse.h"
 #include "DefineGetterSetter.h"
+#include "TraceManager.h"
 
 //namespace GenesysKernel {
 class Model;
+
 
 /*!
  * This class is the basis for any modeldatum of the model (such as Queue, Resource, Variable, etc.) and also for any component of the model.
@@ -83,13 +85,16 @@ protected: // methods to be called inside the _createInternalAndAttachedData() m
 	void _attachedDataRemove(std::string key);
 	void _attachedDataClear();
 	void _attachedAttributesInsert(std::vector<std::string> neededNames);
+
 protected: // method to be called to insert attached dataelements that are referenced by string expressions (detected by the parser), to avoid orphaned data definitions
 	void _checkCreateAttachedReferencedDataDefinition(std::string expression);//(std::map<std::string, std::list<std::string>*>* referencedDataDefinitions);
 protected:
 	bool _getSaveDefaultsOption();
+
 protected: // must be overriden by derived classes
 	virtual bool _loadInstance(PersistenceRecord *fields);
 	virtual void _saveInstance(PersistenceRecord *fields, bool saveDefaultValues);
+
 protected: // could be overriden by derived classes
 	virtual bool _check(std::string* errorMessage);
 	/*! This method returns all changes in the parser that are needed by plugins of this ModelDatas. When connecting a new plugin, ParserChangesInformation are used to change parser source code, whch is after compiled and dinamically linked to to simulator kernel to reflect the changes */
@@ -103,9 +108,11 @@ protected: // could be overriden by derived classes
 
 private: // name is now private. So changes in name must be throught setName, wich gives oportunity to rename internelElements, SimulationControls and SimulationResponses
 	std::string _name;
+
 private:
 	std::map<std::string, ModelDataDefinition*>* _internalData = new std::map<std::string, ModelDataDefinition*>();
 	std::map<std::string, ModelDataDefinition*>* _attachedData = new std::map<std::string, ModelDataDefinition*>();
+
 protected:
 	Util::identification _id;
 	std::string _typename;
@@ -113,6 +120,15 @@ protected:
 	bool _hasChanged;
 	unsigned int _modelLevel = 0; // the ID of parent component (submodel or process, for now) in the "superlevel"
 	Model* _parentModel;
+
+protected: // just an easy access to trace manager
+	void trace(std::string text, TraceManager::Level level = TraceManager::Level::L8_detailed);
+	void traceError(std::string text, std::exception e);
+	void traceError(std::string text, TraceManager::Level level = TraceManager::Level::L1_errorFatal);
+	void traceReport(std::string text, TraceManager::Level level = TraceManager::Level::L2_results);
+	void traceSimulation(void* thisobject, std::string text, TraceManager::Level level = TraceManager::Level::L8_detailed);
+	void traceSimulation(void* thisobject, TraceManager::Level level, std::string text);
+
 protected:
 	//List<SimulationControl*>* _simulationResponses = new List<SimulationControl*>();
 	//List<SimulationControl*>* _simulationControls = new List<SimulationControl*>();

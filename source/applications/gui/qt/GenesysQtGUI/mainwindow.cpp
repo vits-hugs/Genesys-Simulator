@@ -43,14 +43,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 	simulator->getTracer()->addTraceSimulationHandler<MainWindow>(this, &MainWindow::_simulatorTraceSimulationHandler);
     _insertFakePlugins(); // todo hate this
     //
-	// Docks // TODO how place them in a specified rank?
+	// Docks //@TODO how place them in a specified rank?
 	//
 	//ui->dockWidgetPlugins->doc
 	//ui->dockWidgetContentsPlugin->setMinimumHeight(250);
 	//ui->dockWidgetContentsPlugin->setMaximumWidth(230);
 	//UNCOMMENT//  tabifyDockWidget(ui->dockWidgetConsole, ui->dockWidgetPropertyEditor);
 	//
-	// Docks // TODO Trying again to set some of them to minimum height
+	// Docks //@TODO Trying again to set some of them to minimum height
     //
 	ui->dockWidgetConsole->setMinimumHeight(100);
 	QSizePolicy policy = ui->dockWidgetConsole->sizePolicy();
@@ -297,12 +297,12 @@ void MainWindow::_actualizeActions() {
 	bool running = false;
 	bool paused = false;
 	unsigned int numSelectedGraphicals = 0;
-	unsigned int actualCommandundoRedo = 0; // TODO
-	unsigned int maxCommandundoRedo = 0; // TODO
+	unsigned int actualCommandundoRedo = 0; //@TODO
+	unsigned int maxCommandundoRedo = 0; //@TODO
 	if (opened) {
 		running = simulator->getModels()->current()->getSimulation()->isRunning();
 		paused = simulator->getModels()->current()->getSimulation()->isPaused();
-		numSelectedGraphicals = 0;// TODO get total of selected graphical objects (this should br on another "actualize", I think
+		numSelectedGraphicals = 0;//@TODO get total of selected graphical objects (this should br on another "actualize", I think
 	}
 	//
 	ui->graphicsView->setEnabled(opened);
@@ -377,7 +377,7 @@ void MainWindow::_actualizeTabPanes() {
 				_actualizeDebugVariables(true);
 			}
 		} else if (index == CONST.TabCentralReportsIndex) {
-			index = ui->tabWidgetReports->currentIndex(); // TODO: Add results
+			index = ui->tabWidgetReports->currentIndex(); //@TODO: Add results
 		}
 	}
 }
@@ -676,7 +676,7 @@ void MainWindow::_recursiveCreateModelGraphicPicture(ModelDataDefinition* compon
 										  std::string(", color=")+dotColor(TraitsGUI<GModelGraphicPic>::nodeDatadefInternalColor)+
 										  std::string(", fontcolor=")+dotColor(TraitsGUI<GModelGraphicPic>::nodeDatadefInternalFontColor);
 		std::string nodeDataDefAttached = std::string("shape=record")+
-										  std::string(", fontsize=10")+ // TODO Continue replacing fized styles by TraitsGUI...
+										  std::string(", fontsize=10")+ //@TODO Continue replacing fized styles by TraitsGUI...
 										  std::string(", color=gray50")+
 										  std::string(", fontcolor=gray50")+
 										  std::string(", style=filled")+
@@ -1964,7 +1964,7 @@ void MainWindow::on_actionViewConfigure_triggered()
 //}
 
 void MainWindow::_initUiForNewModel(Model* m) {
-	ui->graphicsView->getScene()->showGrid(); // TODO: Bad place to be
+	ui->graphicsView->getScene()->showGrid(); //@TODO: Bad place to be
 	ui->textEdit_Simulation->clear();
 	ui->textEdit_Reports->clear();
 	ui->textEdit_Console->moveCursor(QTextCursor::End);

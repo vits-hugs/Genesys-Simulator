@@ -99,7 +99,7 @@ double Entity::getAttributeValue(std::string index, std::string attributeName) {
 			return 0.0;
 		}
 	}
-	_parentModel->getTracer()->traceError(TraceManager::Level::L3_errorRecover, "Attribute \"" + attributeName + "\" not found");
+	traceError("Attribute \"" + attributeName + "\" not found", TraceManager::Level::L3_errorRecover);
 	return 0.0;
 }
 
@@ -130,7 +130,7 @@ void Entity::setAttributeValue(std::string index, std::string attributeName, dou
 			std::map<std::string, double>* map = new std::map<std::string, double>();
 			_attributeValues->setAtRank(rank, map);
 		} else
-			_parentModel->getTracer()->traceError(TraceManager::Level::L3_errorRecover, "Attribute \"" + attributeName + "\" not found");
+			traceError("Attribute \"" + attributeName + "\" not found", TraceManager::Level::L3_errorRecover);
 	}
 	if (rank >= 0) {
 		std::map<std::string, double>* map = _attributeValues->getAtRank(rank);

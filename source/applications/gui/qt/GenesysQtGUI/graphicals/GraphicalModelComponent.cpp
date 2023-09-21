@@ -229,7 +229,7 @@ void GraphicalModelComponent::paint(QPainter *painter, const QStyleOptionGraphic
 	gradient.setColorAt(0.67, _color);
 	gradient.setColorAt(1.0, _color.darker());
 	//brush.setColor(_color);
-	brush = QBrush(gradient);//Qt::SolidPattern);// TODO: Oportunity do improve LinearGradientPattern);
+	brush = QBrush(gradient);//Qt::SolidPattern);//@TODO: Oportunity do improve LinearGradientPattern);
 	painter->setBrush(brush);
 	QPainterPath pathFill;
 	pathFill.moveTo(pp6);

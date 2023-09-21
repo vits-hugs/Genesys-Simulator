@@ -107,10 +107,10 @@ void Batch::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 			for (unsigned int i = 0; i < _queue->size(); i++) {
 				entitiesToGroup->insert(entitiesToGroup->end(), _queue->getAtRank(i));
 			}
-			_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L7_internal, "Queue has " + std::to_string(_queue->size()) + " elements and a group with " + std::to_string(batchSize) + " elements will be created");
+			traceSimulation(this, "Queue has " + std::to_string(_queue->size()) + " elements and a group with " + std::to_string(batchSize) + " elements will be created",TraceManager::Level::L7_internal);
 
 		} else {
-			_parentModel->getTracer()->traceSimulation(this, "Queue has " + std::to_string(_queue->size()) + " elements, not enought to form a group with " + std::to_string(batchSize));
+			traceSimulation(this, "Queue has " + std::to_string(_queue->size()) + " elements, not enought to form a group with " + std::to_string(batchSize));
 		}
 	} else if (_rule == Batch::Rule::ByAttribute) {// rule IS Batch::Rule::ByAttribute
 		std::map<double, unsigned int>* countByValue = new std::map<double, unsigned int>();
@@ -133,7 +133,7 @@ void Batch::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 						entitiesToGroup->insert(entitiesToGroup->end(), we);
 					}
 				}
-				_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L7_internal, "Found " + std::to_string(entitiesToGroup->size()) + " elements in queue with the same value (" + std::to_string(value) + ") for attribute \"" + _attributeName + "\", and a group will be created");
+				traceSimulation(this,  "Found " + std::to_string(entitiesToGroup->size()) + " elements in queue with the same value (" + std::to_string(value) + ") for attribute \"" + _attributeName + "\", and a group will be created", TraceManager::Level::L7_internal);
 				break; //@TODO //breake? //next? 
 			}
 		}
@@ -141,7 +141,7 @@ void Batch::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 
 	}
 	if (entitiesToGroup != nullptr) { // there are enought entities to group in
-		//_parentModel->getTracer()->traceSimulation(this, "Queue has " + std::to_string(_queue->size()) + " elements, not enought to form a group");
+		//traceSimulation(this, "Queue has " + std::to_string(_queue->size()) + " elements, not enought to form a group");
 		assert(entitiesToGroup->size() == batchSize);
 		// creates a new entity that represents the group
 		Entity* representativeEnt;
@@ -187,16 +187,16 @@ void Batch::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 		}
 		txtEntsInGroup = txtEntsInGroup.substr(0, txtEntsInGroup.length() - 2);
 		if (_batchType == Batch::BatchType::Temporary) {
-			_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L7_internal, "Group key " + std::to_string(groupIdKey) + " was created containing entities: " + txtEntsInGroup + " and representative entity wih attribute 'Entity.Group'=" + std::to_string(_entityGroup->getId()));
+			traceSimulation(this, "Group key " + std::to_string(groupIdKey) + " was created containing entities: " + txtEntsInGroup + " and representative entity wih attribute 'Entity.Group'=" + std::to_string(_entityGroup->getId()), TraceManager::Level::L7_internal);
 		} else {
-			_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L7_internal, "Entity \"" + representativeEnt->getName() + "\" id=" + std::to_string(groupIdKey) + " now represented the removed entities: " + txtEntsInGroup);
+			traceSimulation(this, "Entity \"" + representativeEnt->getName() + "\" id=" + std::to_string(groupIdKey) + " now represented the removed entities: " + txtEntsInGroup, TraceManager::Level::L7_internal);
 		}
 		this->_parentModel->sendEntityToComponent(representativeEnt, this->getConnections()->getFrontConnection());
 	} else {
 		if (_rule == Batch::Rule::Any) {
-			_parentModel->getTracer()->traceSimulation(this, "Entity \"" + entity->getName() + "\" is waiting in the queue " + _queue->getName());
+			traceSimulation(this, "Entity \"" + entity->getName() + "\" is waiting in the queue " + _queue->getName());
 		} else if (_rule == Batch::Rule::ByAttribute) {
-			_parentModel->getTracer()->traceSimulation(this, "Entity \"" + entity->getName() + "\" with attribute '" + _attributeName + "'=" + std::to_string(entity->getAttributeValue(_attributeName)) + " is waiting in the queue " + _queue->getName());
+			traceSimulation(this, "Entity \"" + entity->getName() + "\" with attribute '" + _attributeName + "'=" + std::to_string(entity->getAttributeValue(_attributeName)) + " is waiting in the queue " + _queue->getName());
 		} else { // by entity type
 		}
 	}

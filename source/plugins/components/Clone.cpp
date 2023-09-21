@@ -70,7 +70,7 @@ PluginInformation* Clone::GetPluginInformation() {
 
 void Clone::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 	unsigned int numClones = _parentModel->parseExpression(_numClonesExpression);
-	_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L7_internal, "Clonig " + std::to_string(numClones) + " entities.  // " + _numClonesExpression);
+	traceSimulation(this, TraceManager::Level::L7_internal, "Clonig " + std::to_string(numClones) + " entities.  // " + _numClonesExpression);
 	std::string attribName;
 	double value;
 	for (unsigned int i = 0; i < numClones; i++) {
@@ -81,7 +81,7 @@ void Clone::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 			value = entity->getAttributeValue(attribName);
 			newEntity->setAttributeValue(attribName, value);
 		}
-		_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L8_detailed, "Entity \"" + entity->getName() + "\" was cloned to " + newEntity->getName());
+		traceSimulation(this, TraceManager::Level::L8_detailed, "Entity \"" + entity->getName() + "\" was cloned to " + newEntity->getName());
 		_parentModel->sendEntityToComponent(newEntity, this->getConnections()->getConnectionAtPort(1)); // port 1 is the clone output port
 	}
 	if (_reportStatistics) {

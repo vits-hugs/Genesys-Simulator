@@ -116,7 +116,7 @@ ModelComponent* Search::LoadInstance(Model* model, PersistenceRecord *fields) {
 void Search::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 	int startRank = _parentModel->parseExpression(_startRank);
 	int endRank = _parentModel->parseExpression(_endRank);
-	_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L7_internal, "Searching for \"" + _searchCondition + "\" in \"" + _searchIn->getName() + "\" from rank " + std::to_string(startRank) + " to " + std::to_string(endRank));
+	traceSimulation(this, TraceManager::Level::L7_internal, "Searching for \"" + _searchCondition + "\" in \"" + _searchIn->getName() + "\" from rank " + std::to_string(startRank) + " to " + std::to_string(endRank));
 	Entity* searchedEnt;
 	bool found = false;
 	int i = startRank;
@@ -127,14 +127,14 @@ void Search::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 			searchedEnt = queue->getAtRank(i)->getEntity();
 			_parentModel->getSimulation()->getCurrentEvent()->setEntity(searchedEnt); // condition MUST be tested on the entity being searched, so set it as the current entity
 			value = _parentModel->parseExpression(_searchCondition);
-			_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L9_mostDetailed, "Searching on entity \"" + searchedEnt->getName() + "\": " + std::to_string(value));
+			traceSimulation(this, TraceManager::Level::L9_mostDetailed, "Searching on entity \"" + searchedEnt->getName() + "\": " + std::to_string(value));
 			found = value != 0;
 			i++;
 		}
 		_parentModel->getSimulation()->getCurrentEvent()->setEntity(entity); // set back original entity as the current one
 		if (found) {
 			i--;
-			_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L8_detailed, "Found entity \"" + searchedEnt->getName() + "\" at rank " + std::to_string(i) + ". Saved on \"" + _saveFounRankAttribute + "\" attribute.");
+			traceSimulation(this, TraceManager::Level::L8_detailed, "Found entity \"" + searchedEnt->getName() + "\" at rank " + std::to_string(i) + ". Saved on \"" + _saveFounRankAttribute + "\" attribute.");
 			entity->setAttributeValue(_saveFounRankAttribute, i);
 		}
 	} else if (_searchInType == SearchInType::ENTITYGROUP) {

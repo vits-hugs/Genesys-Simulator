@@ -90,7 +90,7 @@ bool LSODE::_doStep() {
 	tnow = _parentModel->getSimulation()->getSimulatedTime();
 	// @TODO: numerical error treatment by just adding 1e-15
 	bool res = time + _step <= tnow + 1e-15;
-	if (res) {
+	if (res) { // if simulatedTime has not reached a single step, do not solve
 		halfStep = _step * 0.5;
 		for (i = 0; i < numEqs; i++) {//(std::list<std::string>::iterator it = eqs->begin(); it != eqs->end(); it++) {
 			expression = _diffEquations->getAtRank(i);
@@ -146,7 +146,7 @@ void LSODE::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 		for (unsigned int i = 0; i < _variable->getDimensionSizes()->front(); i++) {
 			message += " ," + _variable->getName() + "[" + std::to_string(i) + "]=" + std::to_string(_variable->getValue(std::to_string(i)));
 		}
-		_parentModel->getTracer()->traceSimulation(this, message, TraceManager::Level::L8_detailed);
+		traceSimulation(this, message, TraceManager::Level::L8_detailed);
 		if (_filename != "") {
 			message = std::to_string(_timeVariable->getValue());
 			for (unsigned int i = 0; i < _variable->getDimensionSizes()->front(); i++) {
@@ -189,7 +189,7 @@ bool LSODE::_check(std::string* errorMessage) {
 					message += "\t" + _variable->getName() + "[" + std::to_string(i) + "]";
 				}
 				savefile << message << std::endl;
-				// TODO: It should save the initial values only AFTER variables are initialized. For now, initial values may be wrong
+				//@TODO: It should save the initial values only AFTER variables are initialized. For now, initial values may be wrong
 				message = std::to_string(_timeVariable->getValue());
 				for (unsigned int i = 0; i < _variable->getDimensionSizes()->front(); i++) {
 					message += "\t" + std::to_string(_variable->getValue(std::to_string(i)));

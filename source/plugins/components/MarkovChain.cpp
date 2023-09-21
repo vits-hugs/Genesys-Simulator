@@ -81,7 +81,7 @@ bool MarkovChain::isInitilized() const {
 }
 
 void MarkovChain::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
-	//_parentModel->getTracer()->trace("I'm just a dummy model and I'll just send the entity forward");
+	//trace("I'm just a dummy model and I'll just send the entity forward");
 	unsigned int size;
 	double rnd, sum, value;
 	if (!_initilized) {
@@ -97,7 +97,7 @@ void MarkovChain::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber)
 				break;
 			}
 		}
-		_parentModel->getTracer()->traceSimulation(this, "Initial current state=" + std::to_string(_currentState->getValue()));
+		traceSimulation(this, "Initial current state=" + std::to_string(_currentState->getValue()));
 		_initilized = true;
 	} else {
 		size = _transitionProbMatrix->getDimensionSizes()->front();
@@ -112,7 +112,7 @@ void MarkovChain::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber)
 				break;
 			}
 		}
-		_parentModel->getTracer()->trace("Current state=" + std::to_string(_currentState->getValue()));
+		trace("Current state=" + std::to_string(_currentState->getValue()));
 	}
 	_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }

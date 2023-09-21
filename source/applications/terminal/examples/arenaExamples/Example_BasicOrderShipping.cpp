@@ -116,7 +116,7 @@ int Example_BasicOrderShipping::main(int argc, char** argv) {
 	Create_2->setFirstCreation(0.0);
 
 	Assign* assignDay = plugins->newInstance<Assign>(model); //variable
-	assignDay->getAssignments()->insert(new Assignment(model, "v_day", "v_day+1", true)); // TODO variable eh diff
+	assignDay->getAssignments()->insert(new Assignment(model, "v_day", "v_day+1", true)); //@TODO variable eh diff
 	Delay* delay24 = plugins->newInstance<Delay>(model);
 	delay24->setDelayExpression("24", Util::TimeUnit::hour);
 	Decide* decideIf = plugins->newInstance<Decide>(model); //variable v_day

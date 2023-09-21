@@ -68,7 +68,7 @@ PluginInformation* Signal::GetPluginInformation() {
 
 void Signal::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 	unsigned int limit = _parentModel->parseExpression(_limitExpression);
-	_parentModel->getTracer()->trace("Triggering signal \""+_signalData->getName()+"\" with limit \""+_limitExpression+"\"="+std::to_string(limit));
+	trace("Triggering signal \""+_signalData->getName()+"\" with limit \""+_limitExpression+"\"="+std::to_string(limit));
 	unsigned int freed = _signalData->generateSignal(_signalData->getId(),limit);
 	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }

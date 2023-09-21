@@ -43,7 +43,7 @@ bool ModelDataManager::insert(std::string datadefinitionTypename, ModelDataDefin
 		if (_parentModel->getSimulation()->isRunning()) {
 			_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L8_detailed, text);
 		} else {
-			_parentModel->getTracer()->trace(TraceManager::Level::L8_detailed, text);
+			_parentModel->getTracer()->trace(text);
 		}
 	}
 	return result;
@@ -54,7 +54,7 @@ void ModelDataManager::remove(ModelDataDefinition * anElement) {
 	List<ModelDataDefinition*>* listElements = getDataDefinitionList(datadefinitionTypename);
 	listElements->remove(anElement);
 	_hasChanged = true;
-	////_parentModel->getTracer()->trace(TraceManager::Level::L8_detailed, "Element successfully removed.");
+	////trace("Element successfully removed.");
 
 }
 
@@ -106,7 +106,7 @@ unsigned int ModelDataManager::getNumberOfDataDefinitions() {
 }
 
 void ModelDataManager::show() {
-	_parentModel->getTracer()->trace(TraceManager::Level::L8_detailed, "Model Data Definitions:");
+	_parentModel->getTracer()->trace("Model Data Definitions:");
 	//std::map<std::string, List<ModelDataDefinition*>*>* _datadefinitions;
 	std::string key;
 	List<ModelDataDefinition*>* list;
@@ -115,11 +115,11 @@ void ModelDataManager::show() {
 		for (std::map<std::string, List<ModelDataDefinition*>*>::iterator infraIt = _datadefinitions->begin(); infraIt != _datadefinitions->end(); infraIt++) {
 			key = (*infraIt).first;
 			list = (*infraIt).second;
-			_parentModel->getTracer()->trace(TraceManager::Level::L8_detailed, key + ": (" + std::to_string(list->size()) + ")");
+			_parentModel->getTracer()->trace(key + ": (" + std::to_string(list->size()) + ")");
 			Util::IncIndent();
 			{
 				for (std::list<ModelDataDefinition*>::iterator it = list->list()->begin(); it != list->list()->end(); it++) {
-					_parentModel->getTracer()->trace(TraceManager::Level::L8_detailed, (*it)->show());
+					_parentModel->getTracer()->trace((*it)->show());
 				}
 			}
 			Util::DecIndent();

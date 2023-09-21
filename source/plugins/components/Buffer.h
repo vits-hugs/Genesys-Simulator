@@ -24,7 +24,7 @@
 class Buffer : public ModelComponent {
 public:
 	enum class AdvanceOn : int {
-		NewArrivals = 0, Time = 1, Signal = 2
+		NewArrivals = 0, Signal = 1
 	};
 	enum class ArrivalOnFullBufferRule : int {
 		Dispose = 0, SendToBulkPort = 1, ReplaceLastPosition = 2
@@ -45,15 +45,8 @@ public:
 	void setAdvanceOn(Buffer::AdvanceOn newAdvanceOn);
 	unsigned int getcapacity() const;
 	void setCapacity(unsigned int newCapacity);
-	Queue *getinternalQueue() const;
-	void setInternalQueue(Queue *newInternalQueue);
 	SignalData *getsignal() const;
 	void setSignal(SignalData *newSignal);
-
-	std::string getadvanceTimeExpression() const;
-	void setAdvanceTimeExpression(const std::string &newAdvanceTimeExpression, Util::TimeUnit timeunit = Util::TimeUnit::unknown);
-	Util::TimeUnit getadvanceTimeTimeUnit() const;
-	void setAdvanceTimeTimeUnit(Util::TimeUnit newAdvanceTimeTimeUnit);
 
 protected: // must be overriden
 	virtual bool _loadInstance(PersistenceRecord *fields);
@@ -69,23 +62,21 @@ protected: // could be overriden by derived classes
 	virtual void _addProperty(PropertyBase* property);
 private: // methods
 	unsigned int _handlerForSignalDataEvent(SignalData* signalData);
+	Entity* _advance(Entity* enteringEntity);
 private: // attributes 1:1
 
 	const struct DEFAULT_VALUES {
 		const AdvanceOn advanceOn = AdvanceOn::NewArrivals;
 		const ArrivalOnFullBufferRule arrivalOnFullBufferRule = ArrivalOnFullBufferRule::Dispose;
 		const unsigned int capacity = 1;
-		const std::string advanceTimeExpression = "1";
-		const Util::TimeUnit advanceTimeTimeUnit = Util::TimeUnit::second;
 	} DEFAULT;
 	ArrivalOnFullBufferRule _arrivalOnFullBufferRule = DEFAULT.arrivalOnFullBufferRule;
 	AdvanceOn _advanceOn = DEFAULT.advanceOn;
 	unsigned int _capacity = DEFAULT.capacity;
-	std::string _advanceTimeExpression = DEFAULT.advanceTimeExpression;
-	Util::TimeUnit _advanceTimeTimeUnit = DEFAULT.advanceTimeTimeUnit;
-	Queue* _internalQueue = nullptr;
+private:
+	std::vector<Entity*>* _buffer = new std::vector<Entity*>;
+private: // attached
 	SignalData* _attachedSignal = nullptr;
-private: // attributes 1:n
 };
 
 #endif /* BUFFER_H */

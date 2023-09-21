@@ -54,7 +54,7 @@ GraphicalModelDataDefinition::GraphicalModelDataDefinition(Plugin* plugin, Model
 	setSelected(false);
 	setToolTip(QString::fromStdString(element->getName()));
 	// create associstions
-	// TODO
+	//@TODO
 }
 
 GraphicalModelDataDefinition::GraphicalModelDataDefinition(const GraphicalModelDataDefinition& orig)
@@ -186,7 +186,7 @@ void GraphicalModelDataDefinition::paint(QPainter *painter, const QStyleOptionGr
 	gradient.setColorAt(0.67, _color);
 	gradient.setColorAt(1.0, _color.darker());
 	//brush.setColor(_color);
-	brush = QBrush(gradient);//Qt::SolidPattern);// TODO: Oportunity do improve LinearGradientPattern);
+	brush = QBrush(gradient);//Qt::SolidPattern);//@TODO: Oportunity do improve LinearGradientPattern);
 	painter->setBrush(brush);
 	QPainterPath pathFill;
 	pathFill.moveTo(pp6);

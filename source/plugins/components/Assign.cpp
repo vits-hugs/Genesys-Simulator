@@ -81,7 +81,7 @@ void Assign::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 		let = (*it);
 		double value = _parentModel->parseExpression(let->getExpression());
 		_parentModel->parseExpression(let->getDestination() + "=" + std::to_string(value));
-		_parentModel->getTracer()->traceSimulation(this, "Let \"" + let->getDestination() + "\" = " + Util::StrTruncIfInt(std::to_string(value)) + "  // " + let->getExpression());
+		traceSimulation(this, "Let \"" + let->getDestination() + "\" = " + Util::StrTruncIfInt(std::to_string(value)) + "  // " + let->getExpression());
 	}
 
 	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());

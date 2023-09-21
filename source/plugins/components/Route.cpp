@@ -138,10 +138,10 @@ void Route::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 		destinyStation = dynamic_cast<Station*> (_parentModel->getDataManager()->getDataDefinition(Util::TypeOf<Station>(), stationID));
 		if (destinyStation != nullptr) {
 			if (destinyStation->getEnterIntoStationComponent() == nullptr) {
-				_parentModel->getTracer()->traceSimulation(this, "Evaluation of StationExpression \"" + _stationExpression + "\"= " + std::to_string(stationID) + " is Station \"" + destinyStation->getName() + "\", which has no Enter component to it. Impossible to route.", TraceManager::Level::L1_errorFatal);
+				traceSimulation(this, "Evaluation of StationExpression \"" + _stationExpression + "\"= " + std::to_string(stationID) + " is Station \"" + destinyStation->getName() + "\", which has no Enter component to it. Impossible to route.", TraceManager::Level::L1_errorFatal);
 			}
 		} else {
-			_parentModel->getTracer()->traceSimulation(this, "Evaluation of StationExpression \"" + _stationExpression + "\"= " + std::to_string(stationID) + " is not a Station Id. Impossible to route.", TraceManager::Level::L1_errorFatal);
+			traceSimulation(this, "Evaluation of StationExpression \"" + _stationExpression + "\"= " + std::to_string(stationID) + " is not a Station Id. Impossible to route.", TraceManager::Level::L1_errorFatal);
 		}
 	}
 	if (_reportStatistics)
@@ -158,10 +158,10 @@ void Route::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 		Event* newEvent;
 		if (destinyStation != nullptr) {
 			newEvent = new Event(routeEndTime, entity, destinyStation->getEnterIntoStationComponent());
-			_parentModel->getTracer()->traceSimulation(this, "End of route of "/*entity " + std::to_string(entity->entityNumber())*/ + entity->getName() + " to the component \"" + destinyStation->getEnterIntoStationComponent()->getName() + "\" was scheduled to time " + std::to_string(routeEndTime));
+			traceSimulation(this, "End of route of "/*entity " + std::to_string(entity->entityNumber())*/ + entity->getName() + " to the component \"" + destinyStation->getEnterIntoStationComponent()->getName() + "\" was scheduled to time " + std::to_string(routeEndTime));
 		} else {// destination is Label
 			newEvent = new Event(routeEndTime, entity, destinyLabel->getEnterIntoLabelComponent());
-			_parentModel->getTracer()->traceSimulation(this, "End of route of "/*entity " + std::to_string(entity->entityNumber())*/ + entity->getName() + " to the component \"" + destinyLabel->getEnterIntoLabelComponent()->getName() + "\" was scheduled to time " + std::to_string(routeEndTime));
+			traceSimulation(this, "End of route of "/*entity " + std::to_string(entity->entityNumber())*/ + entity->getName() + " to the component \"" + destinyLabel->getEnterIntoLabelComponent()->getName() + "\" was scheduled to time " + std::to_string(routeEndTime));
 		}
 		_parentModel->getFutureEvents()->insert(newEvent);
 	} else {

@@ -80,7 +80,7 @@ std::string CppForG::getIncludesCode() const {
 }
 
 void CppForG::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
-	_parentModel->getTracer()->trace("Invoking cpp user code for dispatchEvent");
+	trace("Invoking cpp user code for dispatchEvent");
 	try {
 		if (dispatchEvent_SharedLibHandler != nullptr)
 			dispatchEvent_SharedLibHandler(_parentModel->getParentSimulator(), _parentModel, entity); // call shared library
@@ -116,7 +116,7 @@ bool CppForG::_check(std::string* errorMessage) {
 //\n\
 #include <iostream>\n\
 #include <string>\n\
-// TODO: Adjust depending on the running path\n\
+//@TODO: Adjust depending on the running path\n\
 #include \"../../../../kernel/simulator/Entity.h\"\n\
 #include \"../../../../kernel/simulator/Model.h\"\n\
 // user includes\n\
@@ -152,7 +152,7 @@ extern \"C\" void initBetweenReplications" + "(Model* model) {\n\
 	_sourceFilename = "./" + getName() + ".cpp";
 	_outputFilename = "./" + getName() + ".so";
 	try {
-		_parentModel->getTracer()->trace("Saving source file \"" + _sourceFilename + "\"");
+		trace("Saving source file \"" + _sourceFilename + "\"");
 		std::ofstream outfile(_sourceFilename);
 		outfile << sourceCode;
 		outfile.close();
@@ -162,7 +162,7 @@ extern \"C\" void initBetweenReplications" + "(Model* model) {\n\
 	}
 	// if saved, compile
 	if (resultAll) {
-		_parentModel->getTracer()->trace("Compiling source file \"" + _sourceFilename + "\"");
+		trace("Compiling source file \"" + _sourceFilename + "\"");
 		_cppCompiler->setSourceFilename(_sourceFilename);
 		_cppCompiler->setOutputFilename(_outputFilename);
 		std::string objectFiles = "";
@@ -179,7 +179,7 @@ extern \"C\" void initBetweenReplications" + "(Model* model) {\n\
 	// if compiled, load dynamic library
 	if (resultAll) {
 		_cppCompiler->unloadLibrary();
-		_parentModel->getTracer()->trace("Loading dynamic library \"" + _outputFilename + "\"");
+		trace("Loading dynamic library \"" + _outputFilename + "\"");
 		resultAll = _cppCompiler->loadLibrary(errorMessage);
 		if (!resultAll) {
 			*errorMessage += ". Error loading dynamic library.";
@@ -187,7 +187,7 @@ extern \"C\" void initBetweenReplications" + "(Model* model) {\n\
 	}
 	// if dynamic library loaded, then vinculate pointers to loaded functions
 	if (resultAll) {
-		_parentModel->getTracer()->trace("Vinculating dynamic library functions");
+		trace("Vinculating dynamic library functions");
 		try {
 			void* handle = _cppCompiler->getDynamicLibraryHandler();
 			dispatchEvent_SharedLibHandler = (onDispatchEvent_t)dlsym(handle, "onDispatchEvent");
@@ -209,10 +209,10 @@ void CppForG::_initBetweenReplications() {
 		if (initBetweenReplications_SharedLibHandler != nullptr) {
 			initBetweenReplications_SharedLibHandler(_parentModel);
 		} else {
-			_parentModel->getTracer()->traceError("Could not call function in shared library for "+getName());
+			traceError("Could not call function in shared library for "+getName());
 		}
 	} catch (...) {
-		_parentModel->getTracer()->traceError("Could not call function in shared library for "+getName());
+		traceError("Could not call function in shared library for "+getName());
 	}
 }
 

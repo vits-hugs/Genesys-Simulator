@@ -277,7 +277,7 @@ void ModelGraphicsScene::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *mouseEv
 void ModelGraphicsScene::wheelEvent(QGraphicsSceneWheelEvent *wheelEvent) {
 	QGraphicsScene::wheelEvent(wheelEvent);
 	if (_controlIsPressed) {
-		// TODO: ZOOM!!
+		//@TODO: ZOOM!!
 	}
 }
 

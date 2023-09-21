@@ -33,6 +33,7 @@ Smart_Buffer::Smart_Buffer() {
  * It instanciates the simulator, builds a simulation model and then simulate that model.
  */
 int Smart_Buffer::main(int argc, char** argv) {
+/*
 	Simulator* genesys = new Simulator();
 	genesys->getTracer()->setTraceLevel(TraitsApp<GenesysApplication_if>::traceLevel);
 	setDefaultTraceHandlers(genesys->getTracer());
@@ -86,11 +87,13 @@ int Smart_Buffer::main(int argc, char** argv) {
 	signal5->getConnections()->insert(dispose1);
 
 	// set options, save and simulate
+	model->getSimulation()->setNumberOfReplications(1);
 	model->getSimulation()->setReplicationLength(60, Util::TimeUnit::second);
 	model->getSimulation()->setTerminatingCondition("count(Dispose_1.CountNumberIn)>30");
 	model->save("./models/Smart_Buffer.gen");
 	model->getSimulation()->start();
 	delete genesys;
+	*/
 	return 0;
 };
 

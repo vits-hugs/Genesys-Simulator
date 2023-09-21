@@ -15,7 +15,8 @@
 #define TRAITSAPP_H
 #include "BaseGenesysTerminalApplication.h"
 
-#include "terminal/examples/smarts/Smart_Buffer.h"
+//#include "terminal/examples/smarts/Smart_Buffer.h"
+#include "terminal/examples/smarts/Smart_ODE.h"
 
 
 
@@ -34,7 +35,7 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//// SMART SMARTs ALPHA SORTED
 	//typedef Smart_AssignWriteSeizes Application;
 	//typedef Smart_BatchSeparate Application;
-	typedef Smart_Buffer Application;
+	//typedef Smart_Buffer Application;
 	//typedef Smart_Clone Application;
 	//typedef Smart_CppForG Application;
 	//typedef Smart_Delay Application;
@@ -43,7 +44,7 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Smart_FiniteStateMachine Application;
 	//typedef Smart_HoldSearchRemove Application;
 	//typedef Smart_ModelInfoModelSimulation Application;
-	//typedef Smart_ODE Application;
+	typedef Smart_ODE Application;
 	//typedef Smart_OnEvent Application;
 	//typedef Smart_Parser Application;
 	//typedef Smart_ParserModelFunctions Application;

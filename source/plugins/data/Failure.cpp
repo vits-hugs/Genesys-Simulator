@@ -59,7 +59,7 @@ void Failure::_scheduleActivation(Resource* resource) {
 	InternalEvent* intEvent = new InternalEvent(time, "Resource Activated");//, res);
 	intEvent->setEventHandler<Failure>(this, &Failure::_onFailureActiveEventHandler, resource);
 	_parentModel->getFutureEvents()->insert(intEvent);
-	_parentModel->getTracer()->traceSimulation(this,"Activation of Resource \""+resource->getName()+"\" schedule to "+std::to_string(time), TraceManager::Level::L8_detailed);
+	traceSimulation(this,"Activation of Resource \""+resource->getName()+"\" schedule to "+std::to_string(time), TraceManager::Level::L8_detailed);
 }
 
 void Failure::setFailureType(FailureType _failureType) {
@@ -160,7 +160,7 @@ bool Failure::_check(std::string* errorMessage) {
 }
 
 void Failure::_initBetweenReplications() {
-	_releaseCounts->clear(); //TODO: really needed?
+	_releaseCounts->clear(); //@TODO: really needed?
 	if (_failureType==FailureType::TIME) {
 		double time, timeScale;
 		for (Resource* res: *_falingResources->list()) {

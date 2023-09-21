@@ -35,7 +35,7 @@ ModelSimulation::ModelSimulation(Model* model) {
 	});
 	_simulationReporter = new TraitsKernel<SimulationReporter_if>::Implementation(this, model, this->_cstatsAndCountersSimulation);
 	// controls
-	// TODO Add ReplicationLength, getReplicationLengthTimeUnit, getReplicationBaseTimeUnit, warmUpPeriod, ...
+	//@TODO Add ReplicationLength, getReplicationLengthTimeUnit, getReplicationBaseTimeUnit, warmUpPeriod, ...
 	//_model->getControls()->insert();
 }
 
@@ -67,7 +67,8 @@ void ModelSimulation::_traceReplicationEnded() {
 		causeTerminated = "replication length " + std::to_string(_replicationLength) + " " + Util::StrTimeUnitLong(_replicationLengthTimeUnit) + " was achieved";
 	} else if (_model->parseExpression(_terminatingCondition)) {
 		causeTerminated = "termination condition was achieved";
-	} else causeTerminated = "unknown";
+	} else //@TODO WTF?
+		causeTerminated = "it just did it :-|. Sorry";
 	std::chrono::duration<double> duration = std::chrono::system_clock::now() - this->_startRealSimulationTimeReplication;
 	std::string message = "Replication " + std::to_string(_currentReplicationNumber) + " of " + std::to_string(_numberOfReplications) + " has finished with last event at time " + std::to_string(_simulatedTime) + " " + Util::StrTimeUnitLong(_replicationBaseTimeUnit) + " because " + causeTerminated + "; Elapsed time " + std::to_string(duration.count()) + " seconds.";
 	_model->getTracer()->traceSimulation(this, TraceManager::Level::L2_results, message);
@@ -96,7 +97,7 @@ void ModelSimulation::start() {
 	if (!_simulationIsInitiated) { // begin of a new simulation
 		Util::SetIndent(0); //force indentation
 		if (!_model->check()) {
-			_model->getTracer()->traceError(TraceManager::Level::L1_errorFatal, "Model check failed. Cannot start simulation.");
+			_model->getTracer()->traceError("Model check failed. Cannot start simulation.");
 			return;
 		}
 		_initSimulation();
@@ -156,7 +157,7 @@ void ModelSimulation::_simulationEnded() {
 	_simulationIsInitiated = false;
 	std::chrono::duration<double> duration = std::chrono::system_clock::now() - this->_startRealSimulationTimeSimulation;
 	Util::DecIndent();
-	_model->getTracer()->traceSimulation(this, TraceManager::Level::L5_event, "Simulation of model \"" + _info->getName() + "\" has finished. Elapsed time " + std::to_string(duration.count()) + " seconds.");
+	_model->getTracer()->traceSimulation(this,  "Simulation of model \"" + _info->getName() + "\" has finished. Elapsed time " + std::to_string(duration.count()) + " seconds.", TraceManager::Level::L5_event);
 	_model->getOnEvents()->NotifySimulationEndHandlers(_createSimulationEvent());
 	if (this->_showReportsAfterSimulation)
 		_simulationReporter->showSimulationStatistics(); //_cStatsSimulation);
@@ -249,7 +250,7 @@ void ModelSimulation::_showSimulationHeader() {
 	// model controls and responses
 	std::string controls;
 	for (/*PropertyBase**/SimulationControl* control : * _model->getControls()->list()) {
-		/// TODO IMPORTANT CONTROLS AND RESPONSES MUST WORK NO MATTER THE PROPERTIES /// TODO PProperties ///
+		///@TODO IMPORTANT CONTROLS AND RESPONSES MUST WORK NO MATTER THE PROPERTIES ///@TODO PProperties ///
 		controls += control->getName() + "(" + control->getClassname() + ")=" + control->getValue() + ", ";
 	}
 	controls = controls.substr(0, controls.length() - 2);
@@ -391,8 +392,8 @@ void ModelSimulation::_stepSimulation() {
 			_model->getOnEvents()->NotifyProcessEventHandlers(_createSimulationEvent());
 			try {
 				_dispatchEvent(nextEvent);
-			} catch (std::exception *e) {
-				_model->getTracer()->traceError(*e, "Error on processing event (" + nextEvent->show() + ")");
+			} catch (std::exception e) {
+				_model->getTracer()->traceError("Error on processing event (" + nextEvent->show() + ")", e);
 			}
 			_model->getOnEvents()->NotifyAfterProcessEventHandlers(_createSimulationEvent());
 			if (_pauseOnEvent) {
@@ -401,7 +402,6 @@ void ModelSimulation::_stepSimulation() {
 			Util::DecIndent();
 		}
 	} else {
-
 		this->_simulatedTime = _replicationLength; ////nextEvent->getTime(); // just to advance time to beyond simulatedTime
 	}
 }
@@ -413,7 +413,7 @@ void ModelSimulation::_dispatchEvent(Event* event) {
 		try {
 			ModelComponent::DispatchEvent(event);//->_onDispatchEvent(entity, inputPortNumber);
 		} catch (const std::exception& e) {
-			_model->getTracer()->traceError(e, "Error executing component " + event->getComponent()->show());
+			_model->getTracer()->traceError("Error executing component " + event->getComponent()->show(), e);
 		}
 	} else { // ohh, this is brand new (2022/07/05). An "Internal Event", wich is unrelated to an entity or to a component
 		ModelDataDefinition* df = static_cast<ModelDataDefinition*>(intEvent->object());

@@ -101,7 +101,7 @@ bool SignalData::_check(std::string* errorMessage) {
 	///@TODO
 	resultAll &= _signalDataEventHandlers->size() > 0;
 	if (!resultAll) {
-		_parentModel->getTracer()->traceError("There is no handler added to SignalData "+this->getName());
+		traceError("There is no handler added to SignalData "+this->getName());
 	}
 	//resultAll &= _quantityExpression != "";
 	return resultAll;

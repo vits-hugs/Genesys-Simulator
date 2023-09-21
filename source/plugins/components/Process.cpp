@@ -150,7 +150,7 @@ bool Process::_loadInstance(PersistenceRecord *fields) {
 void Process::_saveInstance(PersistenceRecord *fields, bool saveDefaultValues) {
 	_adjustConnections();
 	ModelComponent::_saveInstance(fields, saveDefaultValues);
-	auto seizefields = std::unique_ptr<PersistenceRecord>(fields->newInstance()); //TODO: AUTO
+	auto seizefields = std::unique_ptr<PersistenceRecord>(fields->newInstance()); //@TODO: AUTO
 	ModelComponent::SaveInstance(seizefields.get(), _seize);
 	seizefields->erase("id");
 	seizefields->erase("typename");

@@ -285,14 +285,14 @@ CppCompiler::CompilationResult CppCompiler::_invokeCompiler(std::string command)
 	Util::FileDelete(destPath + "stdout.log");
 
 	const std::string execCommand = command + redirect;
-	//_parentModel->getTracer()->trace(execCommand);
+	//trace(execCommand);
 	system(execCommand.c_str());
 	for (short i = 0; i < 32; i++)
 		std::this_thread::yield(); // give the system some time
 	const std::string resultStdout = _read(destPath+"stdout.log");
 	const std::string resultStderr = _read(destPath+"stderr.log");
-	//_parentModel->getTracer()->trace(resultStdout);
-	//_parentModel->getTracer()->trace(resultStderr);
+	//trace(resultStdout);
+	//trace(resultStderr);
 
 	CppCompiler::CompilationResult result;
 	std::ifstream f(_outputFilename.c_str());

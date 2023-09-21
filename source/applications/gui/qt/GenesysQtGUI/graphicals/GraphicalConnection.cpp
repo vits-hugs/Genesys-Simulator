@@ -73,10 +73,10 @@ void GraphicalConnection::updateDimensionsAndPosition() {
 }
 
 QRectF GraphicalConnection::boundingRect() const {
-	int portWidth = _sourceGraphicalPort->width(); // TODO REMOVE. Did not solve redraw issue
+	int portWidth = _sourceGraphicalPort->width(); //@TODO REMOVE. Did not solve redraw issue
 	int portHeight = _sourceGraphicalPort->height();
-	return QRectF(0-portWidth, 0-portHeight, _width+portWidth, _height+portHeight); // TODO add port dimensions
-	return QRectF(0, 0, _width, _height); // TODO add port dimensions
+	return QRectF(0-portWidth, 0-portHeight, _width+portWidth, _height+portHeight); //@TODO add port dimensions
+	return QRectF(0, 0, _width, _height); //@TODO add port dimensions
 }
 
 void GraphicalConnection::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
@@ -119,7 +119,7 @@ void GraphicalConnection::paint(QPainter *painter, const QStyleOptionGraphicsIte
 		case ConnectionType::DIRECT:
 			break;
 		case ConnectionType::USERDEFINED:
-			// TODO: draw intermediate points
+			//@TODO: draw intermediate points
 			break;
 	}
 	path.lineTo(endpos);
@@ -132,7 +132,7 @@ void GraphicalConnection::paint(QPainter *painter, const QStyleOptionGraphicsIte
 		QBrush brush = QBrush(Qt::SolidPattern);
 		brush.setColor(Qt::black);
 		painter->setBrush(brush);
-		// TODO Check this out to see if it solves the move redraw issue
+		//@TODO Check this out to see if it solves the move redraw issue
 		painter->drawRect(QRectF(x1 < x2 ? x1 : x1 - _selWidth, y1 - _selWidth / 2, _selWidth, _selWidth));
 		painter->drawRect(QRectF(x2 < x1 ? x2 : x2 - _selWidth, y2 - _selWidth / 2, _selWidth, _selWidth));
 		painter->drawRect(QRectF((x1 + x2) / 2 - _selWidth / 2, y1 - _selWidth / 2, _selWidth, _selWidth));

@@ -139,7 +139,7 @@ void Seize::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 			} else { // assume SET
 				Set* set = _queueableItem->getSet();
 				unsigned int index = _parentModel->parseExpression(_queueableItem->getIndex());
-				_parentModel->getTracer()->traceSimulation(this, "Member of set " + set->getName() + " chosen index " + std::to_string(index), TraceManager::Level::L8_detailed);
+				traceSimulation(this, "Member of set " + set->getName() + " chosen index " + std::to_string(index), TraceManager::Level::L8_detailed);
 				queue = static_cast<Queue*> (set->getElementSet()->getAtRank(index));
 			}
 			queue->insertElement(waitingRec); // ->list()->insert(waitingRec);
@@ -321,8 +321,8 @@ void Seize::_handlerForResourceEvent(Resource* resource) { //@TODO Resource is u
 		}
 		if (canSeizeAll) {
 			queue->removeElement(first);
-			//_parentModel->getTracer()->traceSimulation(this, tnow, first->getEntity(), this, "Waiting entity " + first->getEntity()->getName() + " removed from queue and will try to seize the resources");// now seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\"");
-			_parentModel->getTracer()->trace("Waiting entity " + first->getEntity()->getName() + " removed from queue and will try to seize the resources"); // now seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\"");
+			//traceSimulation(this, tnow, first->getEntity(), this, "Waiting entity " + first->getEntity()->getName() + " removed from queue and will try to seize the resources");// now seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\"");
+			trace("Waiting entity " + first->getEntity()->getName() + " removed from queue and will try to seize the resources"); // now seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\"");
 			_parentModel->sendEntityToComponent(first->getEntity(), this); // move waiting entity from queue to this component
 		}
 		/*
@@ -333,7 +333,7 @@ void Seize::_handlerForResourceEvent(Resource* resource) { //@TODO Resource is u
 				resource->seize(quantity, tnow);
 				_parentModel->getFutureEvents()->insert(new Event(tnow, first->getEntity(), this->getNextComponents()->getFrontConnection()));
 				queue->removeElement(first);
-				_parentModel->getTracer()->traceSimulation(this, tnow, first->getEntity(), this, "Waiting entity " + first->getEntity()->getName() + " removed from queue and now seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\"");
+				traceSimulation(this, tnow, first->getEntity(), this, "Waiting entity " + first->getEntity()->getName() + " removed from queue and now seizes " + std::to_string(quantity) + " elements of resource \"" + resource->getName() + "\"");
 			}
 		}
 		 */
@@ -353,7 +353,7 @@ Resource* Seize::_getResourceFromSeizableItem(SeizableItem* seizable, Entity* en
 		switch (rule) {
 			case SeizableItem::SelectionRule::CYCLICAL:
 				index = (seizable->getLastMemberSeized() + 1) % _seizeRequests->list()->size();
-				_parentModel->getTracer()->trace("Member index " + std::to_string(index) + " was cyclically choosen", TraceManager::Level::L9_mostDetailed);
+				trace("Member index " + std::to_string(index) + " was cyclically choosen", TraceManager::Level::L9_mostDetailed);
 				break;
 			case SeizableItem::SelectionRule::LARGESTREMAININGCAPACITY:
 				unsigned int bestIndex;
@@ -366,7 +366,7 @@ Resource* Seize::_getResourceFromSeizableItem(SeizableItem* seizable, Entity* en
 						bestValue = value;
 						bestIndex = index;
 					}
-					_parentModel->getTracer()->trace("Member index " + std::to_string(index) + " has " + Util::StrTruncIfInt(value) + " remaining capacity. Largest one is " + Util::StrTruncIfInt(bestValue) + " from index " + std::to_string(bestIndex), TraceManager::Level::L9_mostDetailed);
+					trace("Member index " + std::to_string(index) + " has " + Util::StrTruncIfInt(value) + " remaining capacity. Largest one is " + Util::StrTruncIfInt(bestValue) + " from index " + std::to_string(bestIndex), TraceManager::Level::L9_mostDetailed);
 					(index)++;
 				}
 				index = bestIndex;
@@ -374,7 +374,7 @@ Resource* Seize::_getResourceFromSeizableItem(SeizableItem* seizable, Entity* en
 			case SeizableItem::SelectionRule::RANDOM:
 				// @TODO: RANDOM IS REALLY A PROBLEM!!! NOW IT MAY CAUSE AN ERROR (DEQUEUE AN ENTITY BECAUSE IT CAN SEIZE ALL REQUESTS, BUT ANOTHER RANDOM REQUEST MY BE SELECTED AFTER, IT IT MAY BE BUSY
 				index = std::trunc(rand() * _seizeRequests->list()->size());
-				_parentModel->getTracer()->trace("Member index " + std::to_string(index) + " was randomlly choosen", TraceManager::Level::L9_mostDetailed);
+				trace("Member index " + std::to_string(index) + " was randomlly choosen", TraceManager::Level::L9_mostDetailed);
 				break;
 			case SeizableItem::SelectionRule::SMALLESTNUMBERBUSY:
 				bestValue = std::numeric_limits<double>::max();
@@ -386,14 +386,14 @@ Resource* Seize::_getResourceFromSeizableItem(SeizableItem* seizable, Entity* en
 						bestValue = value;
 						bestIndex = index;
 					}
-					_parentModel->getTracer()->trace("Member index " + std::to_string(index) + " has " + Util::StrTruncIfInt(value) + " number busy. Smallest one is " + Util::StrTruncIfInt(bestValue) + " from index " + std::to_string(bestIndex), TraceManager::Level::L9_mostDetailed);
+					trace("Member index " + std::to_string(index) + " has " + Util::StrTruncIfInt(value) + " number busy. Smallest one is " + Util::StrTruncIfInt(bestValue) + " from index " + std::to_string(bestIndex), TraceManager::Level::L9_mostDetailed);
 					(index)++;
 				}
 				index = bestIndex;
 				break;
 			case SeizableItem::SelectionRule::SPECIFICMEMBER:
 				index = _parentModel->parseExpression(seizable->getIndex());
-				_parentModel->getTracer()->trace("Member index " + std::to_string(index) + " was specifically choosen", TraceManager::Level::L9_mostDetailed);
+				trace("Member index " + std::to_string(index) + " was specifically choosen", TraceManager::Level::L9_mostDetailed);
 				break;
 			case SeizableItem::SelectionRule::PREFEREDORDER:
 				bestValue = 0;
@@ -413,12 +413,12 @@ Resource* Seize::_getResourceFromSeizableItem(SeizableItem* seizable, Entity* en
 					if (++lastPreferedOrder < seizable->getSet()->getElementSet()->size()) {
 						index = lastPreferedOrder;
 					}
-					_parentModel->getTracer()->trace("There is no available resources. Will request the " + std::to_string(index) + "th member index", TraceManager::Level::L9_mostDetailed);
+					trace("There is no available resources. Will request the " + std::to_string(index) + "th member index", TraceManager::Level::L9_mostDetailed);
 				} else {
 					seizable->setLastPreferedOrder(++lastPreferedOrder);
 					if (lastPreferedOrder >= numRecAvaliable) {
 						seizable->setLastPreferedOrder(1);
-						_parentModel->getTracer()->trace("There isn't " + std::to_string(lastPreferedOrder) + " available resources. Preferable order is now the 1th", TraceManager::Level::L9_mostDetailed);
+						trace("There isn't " + std::to_string(lastPreferedOrder) + " available resources. Preferable order is now the 1th", TraceManager::Level::L9_mostDetailed);
 					}
 					for (ModelDataDefinition* dd : *seizable->getSet()->getElementSet()->list()) {
 						resource = static_cast<Resource*> (dd);
@@ -427,12 +427,12 @@ Resource* Seize::_getResourceFromSeizableItem(SeizableItem* seizable, Entity* en
 							if (bestValue <= lastPreferedOrder) { // changed "==" to "<=" so if not enought available resources, entity will not be always on the index=0 resource's queue
 								bestIndex = index;
 							}
-							_parentModel->getTracer()->trace("Member index " + std::to_string(index) + " is the " + Util::StrTruncIfInt(bestValue) + "th available one. Will chosse the  " + Util::StrTruncIfInt(lastPreferedOrder) + "th one.", TraceManager::Level::L9_mostDetailed);
+							trace("Member index " + std::to_string(index) + " is the " + Util::StrTruncIfInt(bestValue) + "th available one. Will chosse the  " + Util::StrTruncIfInt(lastPreferedOrder) + "th one.", TraceManager::Level::L9_mostDetailed);
 							if (bestValue == lastPreferedOrder) {
 								break;
 							}
 						} else {
-							_parentModel->getTracer()->trace("Member index " + std::to_string(index) + " is not available", TraceManager::Level::L9_mostDetailed);
+							trace("Member index " + std::to_string(index) + " is not available", TraceManager::Level::L9_mostDetailed);
 						}
 						index++;
 					}
@@ -440,7 +440,7 @@ Resource* Seize::_getResourceFromSeizableItem(SeizableItem* seizable, Entity* en
 				}
 				break;
 		}
-		_parentModel->getTracer()->trace("Member of set " + set->getName() + " chosen index " + std::to_string(index), TraceManager::Level::L8_detailed);
+		trace("Member of set " + set->getName() + " chosen index " + std::to_string(index), TraceManager::Level::L8_detailed);
 		resource = static_cast<Resource*> (set->getElementSet()->getAtRank(index));
 		assert(resource != nullptr);
 	}

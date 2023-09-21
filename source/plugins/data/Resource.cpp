@@ -113,7 +113,7 @@ void Resource::_fail() {
 	_capacity = 0;
 	_isActive = false;
 	_resourceState = ResourceState::FAILED;
-	_parentModel->getTracer()->traceSimulation(this, "Resource \"" + getName() + "\" has failed. Capacity " + std::to_string(_originalCapacity) + " changed to 0");
+	traceSimulation(this, "Resource \"" + getName() + "\" has failed. Capacity " + std::to_string(_originalCapacity) + " changed to 0");
 }
 
 void Resource::_active() {
@@ -130,7 +130,7 @@ void Resource::_active() {
 		_resourceState = ResourceState::IDLE;
 	else
 		_resourceState = ResourceState::BUSY;
-	_parentModel->getTracer()->traceSimulation(this, "Resource \"" + getName() + "\" has been activated. Capacity set back to " + std::to_string(_capacity));
+	traceSimulation(this, "Resource \"" + getName() + "\" has been activated. Capacity set back to " + std::to_string(_capacity));
 }
 
 //

@@ -176,7 +176,7 @@ unsigned int Wait::_handlerForSignalDataEvent(SignalData* signalData) {
 void Wait::_handlerForAfterProcessEventEvent(SimulationEvent* event) {
 	double result = _parentModel->parseExpression(_condition);
 	//std::string message = "Condition \"" + _condition + "\" evaluates to " + std::to_string(result);
-	//_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L7_internal, _parentModel->getSimulation()->getSimulatedTime(), event->getCurrentEvent()->getEntity(), this, message);
+	//traceSimulation(this, TraceManager::Level::L7_internal, _parentModel->getSimulation()->getSimulatedTime(), event->getCurrentEvent()->getEntity(), this, message);
 	if (result) { // condition is true. Remove entities from the queue
 		while (_queue->size() > 0) {
 			Waiting* w = _queue->getAtRank(0);

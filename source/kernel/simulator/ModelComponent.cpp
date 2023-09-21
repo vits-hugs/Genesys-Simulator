@@ -37,13 +37,13 @@ void ModelComponent::DispatchEvent(Event* event) {
 		msg += ": " + component->getDescription();
 	if (inputPortNumber > 0)
 		msg += " by input " + std::to_string(inputPortNumber);
-	component->_parentModel->getTracer()->traceSimulation(component, TraceManager::Level::L7_internal, msg); //:L6_arrival
+	component->traceSimulation(component, TraceManager::Level::L7_internal, msg); //:L6_arrival
 	*/
 	Util::IncIndent();
 	try {
 		component->_onDispatchEvent(entity, inputPortNumber);
 	} catch (const std::exception& e) {
-		component->_parentModel->getTracer()->traceError(e, "Error executing component " + component->show());
+		component->traceError("Error executing component " + component->show(), e);
 	}
 	Util::DecIndent();
 }
@@ -52,17 +52,17 @@ void ModelComponent::CreateInternalData(ModelComponent* component) {
 	//component->_model->getTraceManager()->trace(TraceManager::Level::blockArrival, "Writing component \"" + component->_name + "\""); //std::to_string(component->_id));
 	try {
 		component->_createInternalAndAttachedData();
-	} catch (const std::exception& e) {
-		component->_parentModel->getTracer()->traceError(e, "Error creating elements of component " + component->show());
+	} catch (const std::exception e) {
+		component->traceError("Error creating elements of component " + component->show(), e);
 	};
 }
 
 void ModelComponent::SaveInstance(PersistenceRecord *fields, ModelComponent* component) {
-	component->_parentModel->getTracer()->trace(TraceManager::Level::L9_mostDetailed, "Writing component \"" + component->getName() + "\"");
+	component->trace("Writing component \"" + component->getName() + "\"", TraceManager::Level::L9_mostDetailed);
 	try {
 		component->_saveInstance(fields, component->_getSaveDefaultsOption());
 	} catch (const std::exception& e) {
-		component->_parentModel->getTracer()->traceError(e, "Error executing component " + component->show());
+		component->traceError("Error executing component " + component->show(), e);
 	}
 }
 
@@ -78,7 +78,7 @@ std::string ModelComponent::getDescription() const {
 }
 
 bool ModelComponent::Check(ModelComponent* component) {
-	component->_parentModel->getTracer()->trace(TraceManager::Level::L8_detailed, "Checking " + component->_typename + ": \"" + component->getName() + "\""); //std::to_string(component->_id));
+	component->trace("Checking " + component->_typename + ": \"" + component->getName() + "\""); //std::to_string(component->_id));
 	bool res = false;
 	std::string* errorMessage = new std::string();
 	Util::IncIndent();
@@ -86,10 +86,10 @@ bool ModelComponent::Check(ModelComponent* component) {
 		try {
 			res = component->_check(errorMessage);
 			if (!res) {
-				component->_parentModel->getTracer()->traceError(TraceManager::Level::L1_errorFatal, "Error: Checking has failed with message '" + *errorMessage + "'");
+				component->traceError("Error: Checking has failed with message '" + *errorMessage + "'");
 			}
 		} catch (const std::exception& e) {
-			component->_parentModel->getTracer()->traceError(e, "Error verifying component " + component->show());
+			component->traceError("Error verifying component " + component->show(), e);
 		}
 	}
 	Util::DecIndent();
@@ -136,3 +136,8 @@ void ModelComponent::_saveInstance(PersistenceRecord *fields, bool saveDefaultVa
 		}
 	}
 }
+
+// just an easy access to trace
+//void ModelComponent::traceSimulation(void* thisobject, double time, Entity* entity, ModelComponent* component, std::string text, TraceManager::Level level){
+//	_parentModel->getTracer()->traceSimulation(thisobject, time, entity, component, text, level);
+//}

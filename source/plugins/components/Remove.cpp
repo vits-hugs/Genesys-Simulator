@@ -83,9 +83,9 @@ void Remove::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 		unsigned int startRank = _parentModel->parseExpression(_removeStartRank);
 		unsigned int endRank = _parentModel->parseExpression(_removeEndRank);
 		if (startRank == endRank) {
-			_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L7_internal, "Removing entity from queue \"" + queue->getName() + "\" at rank " + std::to_string(startRank) + "  // " + _removeStartRank);
+			traceSimulation(this, TraceManager::Level::L7_internal, "Removing entity from queue \"" + queue->getName() + "\" at rank " + std::to_string(startRank) + "  // " + _removeStartRank);
 		} else {
-			_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L7_internal, "Removing entities from queue \"" + queue->getName() + "\" from rank " + std::to_string(startRank) + " to rank " + std::to_string(endRank) + "  // " + _removeStartRank + "  // " + _removeEndRank);
+			traceSimulation(this, TraceManager::Level::L7_internal, "Removing entities from queue \"" + queue->getName() + "\" from rank " + std::to_string(startRank) + " to rank " + std::to_string(endRank) + "  // " + _removeStartRank + "  // " + _removeEndRank);
 		}
 		Waiting* waiting;
 		for (unsigned int rank = startRank; rank < endRank; rank++) {
@@ -93,10 +93,10 @@ void Remove::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 			if (waiting != nullptr) {
 				//queue->removeElement(waiting); // will remove later, on other loop
 				Entity* removedEntity = waiting->getEntity();
-				_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L8_detailed, "Entity \"" + removedEntity->getName() + "\" was removed from queue \"" + queue->getName() + "\" at rank "+std::to_string(rank));
+				traceSimulation(this, TraceManager::Level::L8_detailed, "Entity \"" + removedEntity->getName() + "\" was removed from queue \"" + queue->getName() + "\" at rank "+std::to_string(rank));
 				_parentModel->sendEntityToComponent(removedEntity, this->getConnections()->getConnectionAtPort(1)); // port 1 is the removed entities output
 			} else {
-				_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L8_detailed, "Could not remove entity from queue \"" + queue->getName() + "\" at rank " + std::to_string(rank));
+				traceSimulation(this, TraceManager::Level::L8_detailed, "Could not remove entity from queue \"" + queue->getName() + "\" at rank " + std::to_string(rank));
 			}
 		}
 		for (unsigned int rank = startRank; rank < endRank; rank++) {

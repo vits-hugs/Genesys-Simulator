@@ -96,7 +96,7 @@ void Write::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 			message = message.substr(0, message.length() - 1);
 			if (message != "") {
 				if (this->_writeToType == Write::WriteToType::SCREEN) { //@TODO: Write To FILE not implemented
-					_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L2_results, message);
+					traceSimulation(this, TraceManager::Level::L2_results, message);
 				} else if (this->_writeToType == Write::WriteToType::FILE) {
 					savefile << message << std::endl;
 				}
@@ -106,7 +106,7 @@ void Write::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 	}
 	if (!lastWasShown) {
 		if (this->_writeToType == Write::WriteToType::SCREEN) { //@TODO: Write To FILE not implemented
-			_parentModel->getTracer()->traceSimulation(this, TraceManager::Level::L2_results, message);
+			traceSimulation(this, TraceManager::Level::L2_results, message);
 		} else if (this->_writeToType == Write::WriteToType::FILE) {
 			savefile << message << std::endl;
 		}
