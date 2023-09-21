@@ -4,11 +4,11 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   Buffer.cpp
+/*
+ * File:   Dummy.cpp
  * Author: rafael.luiz.cancian
- * 
- * Created on
+ *
+ * Created on 22 de Maio de 2019, 18:41
  */
 
 #include "Buffer.h"
@@ -34,7 +34,7 @@ std::string Buffer::show() {
 	return ModelComponent::show() + "";
 }
 
-// public static 
+// public static
 
 ModelComponent* Buffer::LoadInstance(Model* model, PersistenceRecord *fields) {
 	Buffer* newComponent = new Buffer(model);
@@ -49,29 +49,14 @@ ModelComponent* Buffer::LoadInstance(Model* model, PersistenceRecord *fields) {
 PluginInformation* Buffer::GetPluginInformation() {
 	PluginInformation* info = new PluginInformation(Util::TypeOf<Buffer>(), &Buffer::LoadInstance, &Buffer::NewInstance);
 	info->setDescriptionHelp("//@TODO");
-	info->insertDynamicLibFileDependence("queue.so");
-	info->insertDynamicLibFileDependence("signaldata.so");
 	return info;
 }
 
 // protected virtual -- must be overriden
 
 void Buffer::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
-	if (_buffer->at(_capacity-1) != nullptr) { // full buffer
-		traceSimulation(this, "Entity arrived on a full buffer");
-		switch (_arrivalOnFullBufferRule) {
-			case ArrivalOnFullBufferRule::Dispose:
-				traceSimulation(this, "Disposing arriving entity "+entity->getName());
-				break;
-			case ArrivalOnFullBufferRule::ReplaceLastPosition:
-				traceSimulation(this, "Entity "+entity->getName()+" will replace entity "+" on the buffer");
-				traceSimulation(this, "Disposing replaced entity "+entity->getName());
-				break;
-			case ArrivalOnFullBufferRule::SendToBulkPort:
-				traceSimulation(this, "Sending entity to the bulk port");
-				break;
-		}
-	}
+	traceSimulation(this, "I'm just a dummy model and I'll just send the entity forward");
+	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
 bool Buffer::_loadInstance(PersistenceRecord *fields) {
@@ -88,13 +73,14 @@ void Buffer::_saveInstance(PersistenceRecord *fields, bool saveDefaultValues) {
 }
 
 
-// protected virtual -- could be overriden 
+// protected virtual -- could be overriden
 
 //ParserChangesInformation* DummyElement::_getParserChangesInformation() {}
 
 bool Buffer::_check(std::string* errorMessage) {
 	bool resultAll = true;
-	//...
+	resultAll &= _someString != "";
+	resultAll &= _someUint > 0;
 	return resultAll;
 }
 
@@ -107,78 +93,18 @@ ParserChangesInformation* Buffer::_getParserChangesInformation() {
 }
 
 void Buffer::_initBetweenReplications() {
-	_buffer->clear();
-	_buffer->resize(_capacity);
+	_someString = "Test";
+	_someUint = 1;
 }
-
-unsigned int Buffer::_handlerForSignalDataEvent(SignalData* signalData) {
-	// got a signal. Buffer will advance
-	trace("Buffer "+this->getName()+" received signal "+signalData->getName());
-	Entity* first = _advance(nullptr);
-	if (first != nullptr) {
-		trace("Buffer entities moved forward");
-		_parentModel->sendEntityToComponent(first, this->getConnections()->getFrontConnection());
-	}
-	return 1;
-}
-
 
 void Buffer::_createInternalAndAttachedData() {
-	PluginManager* pm = _parentModel->getParentSimulator()->getPlugins();
-	//attached
-	if (_advanceOn == AdvanceOn::Signal) {
-		if (_attachedSignal  == nullptr) {
-			if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
-				_attachedSignal = pm->newInstance<SignalData>(_parentModel, getName() + "." + "SignalData");
-			}
-		}
-		SignalData::SignalDataEventHandler handler = SignalData::SetSignalDataEventHandler<Buffer>(&Buffer::_handlerForSignalDataEvent, this);
-		_attachedSignal->addSignalDataEventHandler(handler, this);
-		_attachedDataInsert("SignalData", _attachedSignal);
-	} else {
-		_attachedDataRemove("SignalData");
+	if (_internalDataDefinition == nullptr) {
+		PluginManager* pm = _parentModel->getParentSimulator()->getPlugins();
+		_internalDataDefinition = pm->newInstance<DummyElement>(_parentModel, getName() + "." + "JustaDummy");
+		_internalDataInsert("JustaDummy", _internalDataDefinition);
 	}
 }
 
 void Buffer::_addProperty(PropertyBase* property) {
-}
 
-
-SignalData *Buffer::getsignal() const {
-	return _attachedSignal;
-}
-
-void Buffer::setSignal(SignalData *newSignal) {
-	_attachedSignal = newSignal;
-}
-
-unsigned int Buffer::getcapacity() const {
-	return _capacity;
-}
-
-void Buffer::setCapacity(unsigned int newCapacity) {
-	_capacity = newCapacity;
-}
-
-Buffer::AdvanceOn Buffer::getadvanceOn() const {
-	return _advanceOn;
-}
-
-void Buffer::setAdvanceOn(Buffer::AdvanceOn newAdvanceOn) {
-	_advanceOn = newAdvanceOn;
-}
-
-Buffer::ArrivalOnFullBufferRule Buffer::getarrivalOnFullBufferRule() const {
-	return _arrivalOnFullBufferRule;
-}
-
-void Buffer::setArrivalOnFullBufferRule(Buffer::ArrivalOnFullBufferRule newArrivalOnFullBufferRule){
-	_arrivalOnFullBufferRule = newArrivalOnFullBufferRule;
-}
-
-Entity* Buffer::_advance(Entity* enteringEntity) {
-	Entity *result = _buffer->front();
-	_buffer->erase(_buffer->begin());
-	_buffer->push_back(enteringEntity);
-	return result;
 }
