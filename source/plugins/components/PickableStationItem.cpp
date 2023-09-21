@@ -15,15 +15,15 @@
 
 PickableStationItem::PickableStationItem(Model* model, std::string stationName, std::string queueName, std::string resourceName) {
 	ModelDataDefinition* station = model->getDataManager()->getDataDefinition(Util::TypeOf<Station>(), stationName);
-	if (station == nullptr && model->isAutomaticallyCreatesModelDataDefinitions()) {
+	if (station == nullptr) {
 		station = model->getParentSimulator()->getPlugins()->newInstance<Station>(model, stationName);
 	}
 	ModelDataDefinition* resource = model->getDataManager()->getDataDefinition(Util::TypeOf<Resource>(), resourceName);
-	if (resource == nullptr && model->isAutomaticallyCreatesModelDataDefinitions()) {
+	if (resource == nullptr) {
 		resource = model->getParentSimulator()->getPlugins()->newInstance<Resource>(model, resourceName);
 	}
 	ModelDataDefinition* queue = model->getDataManager()->getDataDefinition(Util::TypeOf<Queue>(), queueName);
-	if (queue == nullptr && model->isAutomaticallyCreatesModelDataDefinitions()) {
+	if (queue == nullptr) {
 		queue = model->getParentSimulator()->getPlugins()->newInstance<Queue>(model, queueName);
 	}	
 	if (queue != nullptr) {
@@ -35,7 +35,7 @@ PickableStationItem::PickableStationItem(Model* model, std::string stationName, 
 
 PickableStationItem::PickableStationItem(Model* model, std::string stationName, std::string expression) {
 	ModelDataDefinition* station = model->getDataManager()->getDataDefinition(Util::TypeOf<Station>(), stationName);
-	if (station == nullptr && model->isAutomaticallyCreatesModelDataDefinitions()) {
+	if (station == nullptr) {
 		station = model->getParentSimulator()->getPlugins()->newInstance<Station>(model, stationName);
 	}
 	PickableStationItem(dynamic_cast<Station*>(station),expression);

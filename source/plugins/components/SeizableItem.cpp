@@ -36,7 +36,7 @@ SeizableItem::SeizableItem(ModelDataDefinition* resourceOrSet, std::string quant
 
 SeizableItem::SeizableItem(Model* model, std::string resourceName, std::string quantityExpression, SeizableItem::SelectionRule selectionRule, std::string saveAttribute, std::string index) {
 	ModelDataDefinition* resource = model->getDataManager()->getDataDefinition(Util::TypeOf<Resource>(), resourceName);
-	if (resource == nullptr && model->isAutomaticallyCreatesModelDataDefinitions()) {
+	if (resource == nullptr) {
 		resource = model->getParentSimulator()->getPlugins()->newInstance<Resource>(model, resourceName);
 	}
 	SeizableItem(resource, quantityExpression, selectionRule, saveAttribute, index);

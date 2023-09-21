@@ -111,15 +111,12 @@ void Enter::_createInternalAndAttachedData() {
 		}
 	} else
 		if (_numberIn != nullptr) {
-		_internalDataClear();
-	}
-	if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
-		if (_station == nullptr) {
-			_station = _parentModel->getParentSimulator()->getPlugins()->newInstance<Station>(_parentModel);
+			_internalDataClear();
 		}
+	if (_station == nullptr) {
+		_station = _parentModel->getParentSimulator()->getPlugins()->newInstance<Station>(_parentModel);
 	}
 	_attachedDataInsert("Station", _station);
-
 }
 
 bool Enter::_check(std::string* errorMessage) {

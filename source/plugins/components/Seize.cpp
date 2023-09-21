@@ -209,7 +209,7 @@ void Seize::_createInternalAndAttachedData() {
 	for (SeizableItem* seizable : *_seizeRequests->list()) {
 		if (seizable->getSeizableType() == SeizableItem::SeizableType::RESOURCE) {
 			Resource* resource = seizable->getResource();
-			if (resource == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+			if (resource == nullptr) {
 				resource = _parentModel->getParentSimulator()->getPlugins()->newInstance<Resource>(_parentModel);
 				seizable->setResource(resource);
 			}
@@ -218,7 +218,7 @@ void Seize::_createInternalAndAttachedData() {
 			resource->addReleaseResourceEventHandler(handler, this, _priority);
 		} else if (seizable->getSeizableType() == SeizableItem::SeizableType::SET) {
 			Set* set = seizable->getSet();
-			if (set == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+			if (set == nullptr) {
 				set = _parentModel->getParentSimulator()->getPlugins()->newInstance<Set>(_parentModel);
 			}
 			_attachedDataInsert("SeizableItem" + Util::StrIndex(i), set);
@@ -230,7 +230,7 @@ void Seize::_createInternalAndAttachedData() {
 		}
 		if (seizable->getSaveAttribute() != "") {
 			Attribute* attr = static_cast<Attribute*>(_parentModel->getDataManager()->getDataDefinition(Util::TypeOf<Attribute>(),seizable->getSaveAttribute()));
-			if (attr == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+			if (attr == nullptr) {
 				_attachedAttributesInsert({seizable->getSaveAttribute()});
 			}
 		}
@@ -242,14 +242,14 @@ void Seize::_createInternalAndAttachedData() {
 	} else {
 		if (_queueableItem->getQueueableType() == QueueableItem::QueueableType::QUEUE) {
 			Queue* queue = _queueableItem->getQueue();
-			if (queue == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+			if (queue == nullptr) {
 				queue = _parentModel->getParentSimulator()->getPlugins()->newInstance<Queue>(_parentModel);
 				_queueableItem->setQueue(queue);
 			}
 			_attachedDataInsert("QueueableItem", queue);
 		} else if (_queueableItem->getQueueableType() == QueueableItem::QueueableType::SET) {
 			Set* set = _queueableItem->getSet();
-			if (set == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+			if (set == nullptr) {
 				set = _parentModel->getParentSimulator()->getPlugins()->newInstance<Set>(_parentModel);
 				_queueableItem->setSet(set);
 			}

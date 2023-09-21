@@ -217,13 +217,11 @@ void CppForG::_initBetweenReplications() {
 }
 
 void CppForG::_createInternalAndAttachedData() {
-	if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
-		if (_cppCompiler == nullptr) {
-			_cppCompiler = new CppCompiler(_parentModel, getName() + ".CppCompiler");
-			_cppCompiler->setSourceFilename(getName() + ".cpp");
-			_cppCompiler->setOutputFilename(getName() + ".so");
-			_internalDataInsert("CppCompiler", _cppCompiler);
-		}
+	if (_cppCompiler == nullptr) {
+		_cppCompiler = new CppCompiler(_parentModel, getName() + ".CppCompiler");
+		_cppCompiler->setSourceFilename(getName() + ".cpp");
+		_cppCompiler->setOutputFilename(getName() + ".so");
+		_internalDataInsert("CppCompiler", _cppCompiler);
 	}
 }
 

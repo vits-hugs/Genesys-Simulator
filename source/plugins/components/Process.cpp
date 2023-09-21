@@ -223,8 +223,7 @@ void Process::_createInternalAndAttachedData() {
 			releaseItem = _release->getReleaseRequests()->getAtRank(i);
 			releaseItem->setSelectionRule(SeizableItem::SelectionRule::SPECIFICMEMBER);
 			releaseItem->setSaveAttribute(saveAttr);
-			if (_parentModel->isAutomaticallyCreatesModelDataDefinitions())
-				this->_attachedAttributesInsert({saveAttr});
+			this->_attachedAttributesInsert({saveAttr});
 			i++;
 		}
 	}

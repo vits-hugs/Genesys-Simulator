@@ -235,19 +235,17 @@ void Route::_createInternalAndAttachedData() {
 		}
 	} else
 		if (_numberIn != nullptr) {
-		_internalDataClear();
-	}
+			_internalDataClear();
+		}
 	_attachedAttributesInsert({"Entity.TotalTransferTime", "Entity.Station", "Entity.Sequence", "Entity.SequenceStep"});
-	if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
-		if (_station == nullptr && this->_routeDestinationType == Route::DestinationType::Station && this->_stationExpression == "") {
-			_station = _parentModel->getParentSimulator()->getPlugins()->newInstance<Station>(_parentModel);
-		}
-		if (_label == nullptr && this->_routeDestinationType == Route::DestinationType::Label) {
-			_label = _parentModel->getParentSimulator()->getPlugins()->newInstance<Label>(_parentModel);
-		}
+	if (_station == nullptr && this->_routeDestinationType == Route::DestinationType::Station && this->_stationExpression == "") {
+		_station = _parentModel->getParentSimulator()->getPlugins()->newInstance<Station>(_parentModel);
 	}
-	this->_attachedDataInsert("Station", _station);
-	this->_attachedDataInsert("Label", _label);
+	if (_label == nullptr && this->_routeDestinationType == Route::DestinationType::Label) {
+		_label = _parentModel->getParentSimulator()->getPlugins()->newInstance<Label>(_parentModel);
+	}
+	_attachedDataInsert("Station", _station);
+	_attachedDataInsert("Label", _label);
 }
 
 bool Route::_check(std::string* errorMessage) {

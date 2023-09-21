@@ -232,20 +232,18 @@ void Batch::_saveInstance(PersistenceRecord *fields, bool saveDefaultValues) {
 
 void Batch::_createInternalAndAttachedData() {
 	_attachedAttributesInsert({"Entity.Group"});
-	if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
-		_attachedDataInsert("GroupdEntityType", _groupedEntityType);
-		if (_queue == nullptr) {
-			PluginManager* plugins = _parentModel->getParentSimulator()->getPlugins();
-			_queue = plugins->newInstance<Queue>(_parentModel, this->getName() + ".Queue");
-			_internalDataInsert("EntityQueue", _queue);
-			_entityGroup = plugins->newInstance<EntityGroup>(_parentModel, this->getName() + ".EntiyGroup");
-			_internalDataInsert("EntityGroup", _entityGroup);
-		}
-		if (_attributeName != "") {
-			ModelDataManager* elements = _parentModel->getDataManager();
-			ModelDataDefinition* attribute = elements->getDataDefinition(Util::TypeOf<Attribute>(), _attributeName);
-			_attachedDataInsert("AttributeName", attribute);
-		}
+	_attachedDataInsert("GroupdEntityType", _groupedEntityType);
+	if (_queue == nullptr) {
+		PluginManager* plugins = _parentModel->getParentSimulator()->getPlugins();
+		_queue = plugins->newInstance<Queue>(_parentModel, this->getName() + ".Queue");
+		_internalDataInsert("EntityQueue", _queue);
+		_entityGroup = plugins->newInstance<EntityGroup>(_parentModel, this->getName() + ".EntiyGroup");
+		_internalDataInsert("EntityGroup", _entityGroup);
+	}
+	if (_attributeName != "") {
+		ModelDataManager* elements = _parentModel->getDataManager();
+		ModelDataDefinition* attribute = elements->getDataDefinition(Util::TypeOf<Attribute>(), _attributeName);
+		_attachedDataInsert("AttributeName", attribute);
 	}
 }
 

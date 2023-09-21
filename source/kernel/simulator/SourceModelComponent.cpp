@@ -99,17 +99,15 @@ bool SourceModelComponent::_check(std::string* errorMessage) {
 
 void SourceModelComponent::_createInternalAndAttachedData() {
 	_attachedAttributesInsert({"Entity.ArrivalTime", "Entity.Type"});
-	if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
-		if (this->_entityType == nullptr) {
-			std::string defaulName = DEFAULT.entityTypename;
-			for (ModelDataDefinition* elem : *_parentModel->getDataManager()->getDataDefinitionList(Util::TypeOf<EntityType>())->list()) {
-				if (elem->getName() == defaulName) { // there is an entitytype wich the same default name.
-					_entityType = static_cast<EntityType*>(elem);
-					return;
-				}
+	if (this->_entityType == nullptr) {
+		std::string defaulName = DEFAULT.entityTypename;
+		for (ModelDataDefinition* elem : *_parentModel->getDataManager()->getDataDefinitionList(Util::TypeOf<EntityType>())->list()) {
+			if (elem->getName() == defaulName) { // there is an entitytype wich the same default name.
+				_entityType = static_cast<EntityType*>(elem);
+				return;
 			}
-			_entityType = new EntityType(_parentModel, DEFAULT.entityTypename);
 		}
+		_entityType = new EntityType(_parentModel, DEFAULT.entityTypename);
 	}
 	_attachedDataInsert("EntityType", _entityType);
 }

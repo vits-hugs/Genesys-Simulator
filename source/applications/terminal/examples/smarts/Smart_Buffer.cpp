@@ -33,7 +33,7 @@ Smart_Buffer::Smart_Buffer() {
  * It instanciates the simulator, builds a simulation model and then simulate that model.
  */
 int Smart_Buffer::main(int argc, char** argv) {
-/*
+
 	Simulator* genesys = new Simulator();
 	genesys->getTracer()->setTraceLevel(TraitsApp<GenesysApplication_if>::traceLevel);
 	setDefaultTraceHandlers(genesys->getTracer());
@@ -47,19 +47,6 @@ int Smart_Buffer::main(int argc, char** argv) {
 	buffer1->setAdvanceOn(Buffer::AdvanceOn::NewArrivals);
 	Dispose* dispose1 = plugins->newInstance<Dispose>(model);
 
-	Create* create2 = plugins->newInstance<Create>(model);
-	Buffer* buffer2 = plugins->newInstance<Buffer>(model);
-	buffer2->setCapacity(5);
-	buffer2->setAdvanceOn(Buffer::AdvanceOn::Time);
-	buffer2->setAdvanceTimeExpression("2", Util::TimeUnit::second);
-	buffer2->setArrivalOnFullBufferRule(Buffer::ArrivalOnFullBufferRule::ReplaceLastPosition);
-
-	Create* create3 = plugins->newInstance<Create>(model);
-	Buffer* buffer3 = plugins->newInstance<Buffer>(model);
-	buffer3->setCapacity(5);
-	buffer3->setAdvanceOn(Buffer::AdvanceOn::Time);
-	buffer3->setAdvanceTimeExpression("2", Util::TimeUnit::second);
-	buffer3->setArrivalOnFullBufferRule(Buffer::ArrivalOnFullBufferRule::SendToBulkPort);
 
 	Create* create4 = plugins->newInstance<Create>(model);
 	Buffer* buffer4 = plugins->newInstance<Buffer>(model);
@@ -76,11 +63,6 @@ int Smart_Buffer::main(int argc, char** argv) {
 	// connect model components to create a "workflow"
 	create1->getConnections()->insert(buffer1);
 	buffer1->getConnections()->insert(dispose1);
-	create2->getConnections()->insert(buffer2);
-	buffer2->getConnections()->insert(dispose1);
-	create3->getConnections()->insert(buffer3);
-	buffer3->getConnections()->insert(dispose1);
-	buffer3->getConnections()->insert(dispose1);
 	create4->getConnections()->insert(buffer4);
 	buffer4->getConnections()->insert(dispose1);
 	create5->getConnections()->insert(signal5);
@@ -93,7 +75,7 @@ int Smart_Buffer::main(int argc, char** argv) {
 	model->save("./models/Smart_Buffer.gen");
 	model->getSimulation()->start();
 	delete genesys;
-	*/
+
 	return 0;
 };
 

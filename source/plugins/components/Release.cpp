@@ -231,13 +231,13 @@ void Release::_createInternalAndAttachedData() {
 	for (SeizableItem* seizable : * _releaseRequests->list()) {
 		if (seizable->getSeizableType() == SeizableItem::SeizableType::RESOURCE) {
 			Resource* resource = seizable->getResource();
-			if (resource == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+			if (resource == nullptr) {
 				resource = _parentModel->getParentSimulator()->getPlugins()->newInstance<Resource>(_parentModel);
 			}
 			_attachedDataInsert("SeizableItem" + Util::StrIndex(i), resource);
 		} else if (seizable->getSeizableType() == SeizableItem::SeizableType::SET) {
 			Set* set = seizable->getSet();
-			if (set == nullptr && _parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
+			if (set == nullptr) {
 				set = _parentModel->getParentSimulator()->getPlugins()->newInstance<Set>(_parentModel);
 			}
 			_attachedDataInsert("SeizableItem" + Util::StrIndex(i), set);
