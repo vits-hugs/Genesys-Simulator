@@ -98,6 +98,9 @@ public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, PersistenceRecord *fields);
 	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+	std::string getlimitExpression() const;
+	void setLimitExpression(const std::string &newLimitExpression);
+
 protected: // must be overriden
 	virtual bool _loadInstance(PersistenceRecord *fields);
 	virtual void _saveInstance(PersistenceRecord *fields, bool saveDefaultValues);
@@ -115,9 +118,11 @@ private: // attributes 1:1
 	const struct DEFAULT_VALUES {
 		const WaitType waitType = Wait::WaitType::WaitForSignal;
 		const std::string condition = "";
+		const std::string limitExpression = 0;
 	} DEFAULT;
 	WaitType _waitType = DEFAULT.waitType;
 	std::string _condition = DEFAULT.condition;
+	std::string limitExpression = DEFAULT.limitExpression;
 private: // internal
 	Queue *_queue = nullptr; // @TODO: It should be a QueueableItem, (Queue or Set)
 private: // attached

@@ -67,6 +67,14 @@ void Wait::setQueue(Queue* queue) {
 	_queue = queue;
 }
 
+std::string Wait::getlimitExpression() const {
+	return limitExpression;
+}
+
+void Wait::setLimitExpression(const std::string &newLimitExpression){
+	limitExpression = newLimitExpression;
+}
+
 
 //public static
 
@@ -160,7 +168,8 @@ void Wait::_initBetweenReplications() {
 
 unsigned int Wait::_handlerForSignalDataEvent(SignalData* signalData) {
 	unsigned int freed = 0;
-	while (_queue->size() > 0 && signalData->remainsToLimit() > 0) {
+	unsigned int waitLimit = _parentModel->parseExpression(limitExpression);
+	while (_queue->size() > 0 && signalData->remainsToLimit() > 0 &&  freed <= waitLimit) {
 		Waiting* w = _queue->getAtRank(0);
 		_queue->removeElement(w);
 		freed++;
@@ -189,3 +198,4 @@ void Wait::_handlerForAfterProcessEventEvent(SimulationEvent* event) {
 
 	}
 }
+
