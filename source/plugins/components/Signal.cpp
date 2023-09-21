@@ -102,9 +102,7 @@ void Signal::_createInternalAndAttachedData() {
 	PluginManager* pm = _parentModel->getParentSimulator()->getPlugins();
 	//attached
 	if (_signalData == nullptr) {
-		if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
-			_signalData = pm->newInstance<SignalData>(_parentModel);
-		}
+		_signalData = pm->newInstance<SignalData>(_parentModel);
 	}
 	_attachedDataInsert("SignalData", _signalData);
 }

@@ -46,7 +46,7 @@ Model::Model(Simulator* simulator, unsigned int level) {
 	_parser = new TraitsKernel<Parser_if>::Implementation(this, new TraitsKernel<Sampler_if>::Implementation());
 	_modelChecker = new TraitsKernel<ModelChecker_if>::Implementation(this);
 	_modelPersistence = new TraitsKernel<ModelPersistence_if>::Implementation(this);
-	_automaticallyCreatesModelDataDefinitions = TraitsKernel<Model>::automaticallyCreatesModelDatas;
+	_automaticallyCreatesModelDataDefinitions = TraitsKernel<Model>::automaticallyCreatesModelData;
 	// 1:n associations
 	_futureEvents = new List<Event*>(); /// The future events list must be chronologicaly sorted
 	//_events->setSortFunc(&EventCompare); // It works too
@@ -277,47 +277,51 @@ void Model::clear() {
 }
 
 void Model::_createModelInternalElements() {
-	getTracer()->trace("Creating internal elements", TraceManager::Level::L7_internal);
-	Util::IncIndent();
-
-	for (ModelComponent* component : *_componentManager) {
-		getTracer()->trace("Internals for " + component->getClassname() + " \"" + component->getName() + "\"");
+	if (_automaticallyCreatesModelDataDefinitions) {
+		getTracer()->trace("Automatically creating internal elements disabled", TraceManager::Level::L7_internal);
+	} else {
+		getTracer()->trace("Automatically creating internal elements", TraceManager::Level::L7_internal);
 		Util::IncIndent();
-		ModelComponent::CreateInternalData(component);
-		Util::DecIndent();
-	}
 
-	std::list<ModelDataDefinition*>* modelElements;
-	unsigned int originalSize = getDataManager()->getDataDefinitionClassnames()->size(), pos = 1;
-	//for (std::list<std::string>::iterator itty = elements()->elementClassnames()->begin(); itty != elements()->elementClassnames()->end(); itty++) {
-	std::list<std::string>::iterator itty = getDataManager()->getDataDefinitionClassnames()->begin();
-	while (itty != getDataManager()->getDataDefinitionClassnames()->end() && pos <= originalSize) {
-		//try {
-		modelElements = getDataManager()->getDataDefinitionList((*itty))->list();
-		//} catch (const std::exception& e) {
-		// @TODO Is there a better solution to iterate over a changing sorted list??
-		// ops. Sorted list has changed and iteration fails. Starts iterating again
-		//	itty = elements()->elementClassnames()->begin();
-		//	modelElements = elements()->elementList((*itty))->list();
-		//	tracer()->trace(TraceManager::Level::L7_internal, "Creating internal elements");
-		//}
-		for (std::list<ModelDataDefinition*>::iterator itel = modelElements->begin(); itel != modelElements->end(); itel++) {
-			getTracer()->trace("Internals for " + (*itel)->getClassname() + " \"" + (*itel)->getName() + "\""); // (" + std::to_string(pos) + "/" + std::to_string(originalSize) + ")");
+		for (ModelComponent* component : *_componentManager) {
+			getTracer()->trace("Internals for " + component->getClassname() + " \"" + component->getName() + "\"");
 			Util::IncIndent();
-			ModelDataDefinition::CreateInternalData((*itel));
+			ModelComponent::CreateInternalData(component);
 			Util::DecIndent();
 		}
-		if (originalSize == getDataManager()->getDataDefinitionClassnames()->size()) {
-			itty++;
-			pos++;
-		} else {
-			originalSize = getDataManager()->getDataDefinitionClassnames()->size();
-			itty = getDataManager()->getDataDefinitionClassnames()->begin();
-			pos = 1;
-			getTracer()->trace("Restarting to create internal elements (due to previous creations)",TraceManager::Level::L7_internal);
+
+		std::list<ModelDataDefinition*>* modelElements;
+		unsigned int originalSize = getDataManager()->getDataDefinitionClassnames()->size(), pos = 1;
+		//for (std::list<std::string>::iterator itty = elements()->elementClassnames()->begin(); itty != elements()->elementClassnames()->end(); itty++) {
+		std::list<std::string>::iterator itty = getDataManager()->getDataDefinitionClassnames()->begin();
+		while (itty != getDataManager()->getDataDefinitionClassnames()->end() && pos <= originalSize) {
+			//try {
+			modelElements = getDataManager()->getDataDefinitionList((*itty))->list();
+			//} catch (const std::exception& e) {
+			// @TODO Is there a better solution to iterate over a changing sorted list??
+			// ops. Sorted list has changed and iteration fails. Starts iterating again
+			//	itty = elements()->elementClassnames()->begin();
+			//	modelElements = elements()->elementList((*itty))->list();
+			//	tracer()->trace(TraceManager::Level::L7_internal, "Creating internal elements");
+			//}
+			for (std::list<ModelDataDefinition*>::iterator itel = modelElements->begin(); itel != modelElements->end(); itel++) {
+				getTracer()->trace("Internals for " + (*itel)->getClassname() + " \"" + (*itel)->getName() + "\""); // (" + std::to_string(pos) + "/" + std::to_string(originalSize) + ")");
+				Util::IncIndent();
+				ModelDataDefinition::CreateInternalData((*itel));
+				Util::DecIndent();
+			}
+			if (originalSize == getDataManager()->getDataDefinitionClassnames()->size()) {
+				itty++;
+				pos++;
+			} else {
+				originalSize = getDataManager()->getDataDefinitionClassnames()->size();
+				itty = getDataManager()->getDataDefinitionClassnames()->begin();
+				pos = 1;
+				getTracer()->trace("Restarting to create internal elements (due to previous creations)",TraceManager::Level::L7_internal);
+			}
 		}
+		Util::DecIndent();
 	}
-	Util::DecIndent();
 }
 
 List<SimulationControl*>* Model::getControls() const {

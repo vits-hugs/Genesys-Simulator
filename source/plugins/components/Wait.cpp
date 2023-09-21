@@ -148,9 +148,7 @@ void Wait::_createInternalAndAttachedData() {
 	//attached
 	if (_waitType == Wait::WaitType::WaitForSignal) {
 		if (_signalData == nullptr) {
-			if (_parentModel->isAutomaticallyCreatesModelDataDefinitions()) {
-				_signalData = pm->newInstance<SignalData>(_parentModel);
-			}
+			_signalData = pm->newInstance<SignalData>(_parentModel);
 		}
 		SignalData::SignalDataEventHandler handler = SignalData::SetSignalDataEventHandler<Wait>(&Wait::_handlerForSignalDataEvent, this);
 		_signalData->addSignalDataEventHandler(handler, this);
