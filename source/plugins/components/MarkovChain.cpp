@@ -112,7 +112,7 @@ void MarkovChain::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber)
 				break;
 			}
 		}
-		trace("Current state=" + std::to_string(_currentState->getValue()));
+		traceSimulation(this, "Current state=" + std::to_string(_currentState->getValue()));
 	}
 	_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }

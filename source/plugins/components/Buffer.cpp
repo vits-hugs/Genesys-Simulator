@@ -58,16 +58,17 @@ PluginInformation* Buffer::GetPluginInformation() {
 
 void Buffer::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 	if (_buffer->at(_capacity-1) != nullptr) { // full buffer
-		trace("Entity arrived on a full buffer");
+		traceSimulation(this, "Entity arrived on a full buffer");
 		switch (_arrivalOnFullBufferRule) {
 			case ArrivalOnFullBufferRule::Dispose:
-
+				traceSimulation(this, "Disposing arriving entity "+entity->getName());
 				break;
 			case ArrivalOnFullBufferRule::ReplaceLastPosition:
-
+				traceSimulation(this, "Entity "+entity->getName()+" will replace entity "+" on the buffer");
+				traceSimulation(this, "Disposing replaced entity "+entity->getName());
 				break;
 			case ArrivalOnFullBufferRule::SendToBulkPort:
-
+				traceSimulation(this, "Sending entity to the bulk port");
 				break;
 		}
 	}

@@ -80,7 +80,7 @@ std::string CppForG::getIncludesCode() const {
 }
 
 void CppForG::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
-	trace("Invoking cpp user code for dispatchEvent");
+	traceSimulation(this, "Invoking cpp user code for dispatchEvent");
 	try {
 		if (dispatchEvent_SharedLibHandler != nullptr)
 			dispatchEvent_SharedLibHandler(_parentModel->getParentSimulator(), _parentModel, entity); // call shared library

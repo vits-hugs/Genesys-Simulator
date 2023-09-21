@@ -55,7 +55,7 @@ PluginInformation* DummyComponent::GetPluginInformation() {
 // protected virtual -- must be overriden
 
 void DummyComponent::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
-	trace("I'm just a dummy model and I'll just send the entity forward");
+	traceSimulation(this, "I'm just a dummy model and I'll just send the entity forward");
 	this->_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
 
