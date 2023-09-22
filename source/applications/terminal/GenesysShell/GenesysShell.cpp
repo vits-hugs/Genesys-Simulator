@@ -14,14 +14,17 @@
 #include "GenesysShell.h"
 #include "../../../kernel/simulator/Simulator.h"
 #include <regex>
-#include <fstream>
 #include <assert.h>
 #include <string>
-#include <stdio.h>
-#include <unistd.h>
 #include <chrono>
 #include <thread>
-#include <stdlib.h>
+
+#include <fstream>
+#include <istream>
+#include <ios>
+#include <iostream>
+#include <ostream>
+#include <sstream>
 
 
 using namespace std;
@@ -35,28 +38,30 @@ void GenesysShell::Trace(string message) {
 	cout<<message<<endl;
 }
 
-/*int i;
-const char progress[] = "|/-\\";
-
-for (i = 0; i < 100; i += 10) {
-  printf("Processing: %3d%%\r",i); /* \r returns the caret to the line start //
-  fflush(stdout);
-  //sleep(1);
-}
-printf("\n"); /* goes to the next line //
-fflush(stdout);
-
-printf("Processing: ");
-for (i = 0; i < 100; i += 10) {
-  printf("%c\b", progress[(i/10)%sizeof(progress)]); /* \b goes one back //
-  fflush(stdout);
-  //sleep(1);
-}
-printf("\n"); /* goes to the next line //
-fflush(stdout);
-return 0;*/
-
 void GenesysShell::run(List<string>* commandlineArgs) {
+	/*
+	int i;
+	const char progress[] = "|/-\\";
+
+	for (i = 0; i<100; i += 1) {
+		printf("$genesys> %3d%%\r", i);
+		fflush(stdout);
+		std::this_thread::sleep_for(std::chrono::milliseconds(50));
+	}
+	printf("\n");
+	fflush(stdout);
+	printf("$genesys> ");
+	for (i = 0; i<100; i += 1) {
+		printf("%c\b", progress[i%(sizeof(progress)-1)]); 
+		fflush(stdout);
+		std::this_thread::sleep_for(std::chrono::milliseconds(50));
+	}
+	printf("\n"); 
+	fflush(stdout);
+	return;
+	*/
+
+
 	simulator->getTracer()->setTraceLevel(TraceManager::Level::L1_errorFatal);
 	simulator->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
 	simulator->getTracer()->setTraceLevel(TraceManager::Level::L7_internal);
@@ -64,6 +69,7 @@ void GenesysShell::run(List<string>* commandlineArgs) {
 	Trace("Genesys Shell is running. Type your command. For help, type the command \"help\".");
 	string inputText, historyText; //, shortPrefix, longPrefix, separator; //,longPrefix, separator;
 	char c, c1, c2, c3;
+	char buf[1];
 	unsigned short historyPosition = 0;
 	while (!_exitRequested) {
 		if (!commandlineArgs->empty()) {
@@ -72,17 +78,22 @@ void GenesysShell::run(List<string>* commandlineArgs) {
 			_history->push_back(inputText);
 			tryExecuteCommand(inputText);
 		} else {
+			cout.setf(std::ios_base::unitbuf);
+			//std::basic_istream::
 			cout<<_prompt<<" ";
-			//getline(cin, inputText);
-			std::cin>>std::noskipws; //don't skip whitespaces
 			inputText = "";
-			//std::basic_ios::sync_with_stdio(false);
-			while (c = getchar()) {
+			//std::ios_base::flags();
+			//std::cin::setf();
+			while (cin.get(c)) {
 				if (c=='\n')
 					break;
-				//cout << int(c)<<','<<flush;//<<int(c1)<<','<<int(c2)<<endl;
+				//cout.put('x');// << c << endl;
+				//cout.flush();
+				//cout << int(c)<<','<<flush;//<<int(c1)<<','<<int(c2)<<endl;				
 				if ((c==65||c==66)&&c1==91&&c2==27) { // Up or down pressed. Show history
-					printf("\b\b\b%c%c%c\b\b\b", ' ', ' ', ' ');
+					//cout << "ISSO!!!" << endl;
+					//printf("isso!!\n");
+					//printf("\b\b\b%c%c%c\b\b\b", ' ', ' ', ' ');
 					fflush(stdout);
 					if (_history->size()>0) {
 						historyText = _history->at(historyPosition);
@@ -159,11 +170,11 @@ int GenesysShell::main(int argc, char** argv) {
 
 void GenesysShell::defineCommands() {
 	_commands->insert(new ShellCommand("", "help", "", "Show the list of commands", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdHelp)));
-	_commands->insert(new ShellCommand("", "quit", "", "Exit the simulator", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdQuit)));
+	_commands->insert(new ShellCommand("", "exit", "", "Quit the simulator", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdQuit)));
 	//_commands->insert(new ShellCommand("", "dir", "<path>", "List the files in the <path>", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdListFiles)));
 	_commands->insert(new ShellCommand("", "bash", "<bash command>", "Execute a bash command", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdBash)));
 	_commands->insert(new ShellCommand("", "script", "[-r|--run|-s|--show]=<script filename>", "Execute or show commands in a script file", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdScript)));
-	_commands->insert(new ShellCommand("", "trace", "<level 1-9>", "Set the trace level", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdTraceLevel)));
+	_commands->insert(new ShellCommand("", "trace", "[-l=<level 1-9>] [-s|--show]", "Set or show current the trace level", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdTraceLevel)));
 	_commands->insert(new ShellCommand("", "plugin", "[-l|--list] [-i|--info]=<plugin typename>", "List or get information about installed plugins", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdPlugin)));
 	//_commands->insert(new ShellCommand("", "plugininfo", "<plugin name>", "Show infos about a plugin", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdPluginInfo)));
 	//_commands->insert(new ShellCommand("", "pluginadd", "<plugin filename>", "", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdPluginAdd)));
@@ -171,7 +182,7 @@ void GenesysShell::defineCommands() {
 	_commands->insert(new ShellCommand("", "simul", "[-s|--start|-p|--step]", "Control simulation", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdSimulation)));
 	//_commands->insert(new ShellCommand("", "step", "", "Step simulation", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdSimulationStep)));
 	//_commands->insert(new ShellCommand("", "stop", "", "Stop simulation", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdSimulationStop)));
-	_commands->insert(new ShellCommand("", "replication", "[-num=<number>] [-len=<replication>] [-tu=<time unit>] [-s|--show]", "Configure simulation", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdReplication)));
+	_commands->insert(new ShellCommand("", "config", "[-n|--number=<number of repliations>] [-l|--length=<replication length>] [-t|--time=<replication time unit>] [-s|--show]", "Configure simulation", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdReplication)));
 	//_commands->insert(new ShellCommand("", "showsetup", "", "Show simulation info", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdSimulationInfo)));
 	//_commands->insert(new ShellCommand("", "showreport", "", "Show simulation report", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdShowReport)));
 	//_commands->insert(new ShellCommand("", "show", "", "Show the model structure", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdModelShow)));
@@ -254,17 +265,31 @@ void GenesysShell::cmdScript() {
 }
 
 void GenesysShell::cmdTraceLevel() {
-	if (_typedWords->size()!=2) {
+	if (_typedWords->size()<2) {
 		cout<<"Wrong number of parameters"<<endl;
 		return;
 	}
-	int levelInt = stoi(_typedWords->at(1));
-	if (levelInt>=1) {
-		cout<<"Setting tracelevel to "<<levelInt<<endl;
-		TraceManager::Level level = static_cast<TraceManager::Level> (levelInt);
-		simulator->getTracer()->setTraceLevel(level);
-	} else {
-		cout<<"Error: "<<_typedWords->at(1)<<" is not a valid level"<<endl;
+	string parameter;
+	string key, value;
+	for (unsigned short i = 1; i<_typedWords->size(); i++) {
+		parameter = _typedWords->at(i);
+		key = "";
+		value = "";
+		Util::SepKeyVal(parameter, key, value);
+		if (key=="-l"||key=="--level") {
+			int levelInt = stoi(value);
+			if (levelInt>=1) {
+				cout<<"Setting tracelevel to "<<levelInt<<endl;
+				TraceManager::Level level = static_cast<TraceManager::Level> (levelInt);
+				simulator->getTracer()->setTraceLevel(level);
+			} else {
+				cout<<"Error: "<<value<<" is not a valid level"<<endl;
+			}
+		} else if (key=="-s"||key=="--show") {
+			cout<<"Trace level is "<<static_cast<int> (simulator->getTracer()->getTraceLevel())<<endl;
+		} else {
+			cout<<"Syntax error on "<<parameter<<endl;
+		}
 	}
 }
 
@@ -372,13 +397,13 @@ void GenesysShell::cmdReplication() {
 		value = "";
 		//cout<<parameter<<endl;
 		Util::SepKeyVal(parameter, key, value);
-		if (key=="-num") {
+		if (key=="-n"||key=="--number") {
 			cout<<"Setting number of replications to "<<value<<endl;
 			model->getSimulation()->setNumberOfReplications(stoi(value));
-		} else if (key=="-len") {
+		} else if (key=="-l"||key=="-length") {
 			cout<<"Setting replication length to "<<value<<endl;
 			model->getSimulation()->setReplicationLength(stod(value));
-		} else if (key=="-tu") {
+		} else if (key=="-t"||key=="-time") {
 			cout<<"Setting replication time unit to "<<value<<endl;
 			model->getSimulation()->setReplicationLengthTimeUnit(static_cast<Util::TimeUnit> (stoi(value)));
 		} else if (key=="-s"||key=="--show") {
