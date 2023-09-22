@@ -50,6 +50,7 @@ public: // model control
 	bool load(std::string filename);
 	bool check(); ///< Checks the integrity and consistency of the model, possibly corrects some inconsistencies, and returns if the model is in position to the simulated.
 	void clear();
+	std::string showLanguage();
 	void show();
 	bool insert(ModelDataDefinition* elemOrComp); ///< Insert a new ModelDataDefinition or ModelComponent into the model (since 20191015). It's a generic access to ComponentManager->insert() or ModelDatao->insert()
 	void remove(ModelDataDefinition* elemOrComp); ///< Remove a new ModelDataDefinition or ModelComponent into the model (since 20191015). It's a generic access to ComponentManager->remove() or ModelDatao->remove()

@@ -39,7 +39,7 @@ bool ModelPersistenceDefaultImpl2::save(std::string filename) {
 			_model->getTracer()->trace(TraceManager::Level::L7_internal, "Serializing as C++");
 			serializer = std::make_unique<CppSerializer>(_model);
 		} else { // default
-			_model->getTracer()->trace(TraceManager::Level::L7_internal, "Serializing in GenESyS lang");
+			_model->getTracer()->trace(TraceManager::Level::L7_internal, "Serializing as GenESyS simulation language");
 			serializer = std::make_unique<GenSerializer>(_model);
 		}
 	}
@@ -131,7 +131,7 @@ bool ModelPersistenceDefaultImpl2::load(std::string filename) {
 			Util::DecIndent();
 			return false;
 		} else { // default
-			_model->getTracer()->trace(TraceManager::Level::L7_internal, "Parsing as GenESyS lang");
+			_model->getTracer()->trace(TraceManager::Level::L7_internal, "Parsing as GenESyS simulation language");
 			parser = std::make_unique<GenSerializer>(_model);
 		}
 	}

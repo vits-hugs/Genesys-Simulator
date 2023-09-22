@@ -159,28 +159,28 @@ int GenesysShell::main(int argc, char** argv) {
 
 void GenesysShell::defineCommands() {
 	_commands->insert(new ShellCommand("", "help", "", "Show the list of commands", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdHelp)));
-	_commands->insert(new ShellCommand("", "quit", "[-y|--yes]", "Exit the simulator", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdQuit)));
+	_commands->insert(new ShellCommand("", "quit", "", "Exit the simulator", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdQuit)));
 	//_commands->insert(new ShellCommand("", "dir", "<path>", "List the files in the <path>", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdListFiles)));
 	_commands->insert(new ShellCommand("", "bash", "<bash command>", "Execute a bash command", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdBash)));
-	_commands->insert(new ShellCommand("", "script", "<script filename>", "Execute commands in a script file", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdScript)));
-	_commands->insert(new ShellCommand("", "tracelevel", "<level>", "Set the trace level", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdTraceLevel)));
-	_commands->insert(new ShellCommand("", "pluginlist", "", "List installed plugins", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdPluginList)));
-	_commands->insert(new ShellCommand("", "plugininfo", "<plugin name>", "Show infos about a plugin", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdPluginInfo)));
+	_commands->insert(new ShellCommand("", "script", "[-r|--run|-s|--show]=<script filename>", "Execute or show commands in a script file", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdScript)));
+	_commands->insert(new ShellCommand("", "trace", "<level 1-9>", "Set the trace level", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdTraceLevel)));
+	_commands->insert(new ShellCommand("", "plugin", "[-l|--list] [-i|--info]=<plugin typename>", "List or get information about installed plugins", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdPlugin)));
+	//_commands->insert(new ShellCommand("", "plugininfo", "<plugin name>", "Show infos about a plugin", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdPluginInfo)));
 	//_commands->insert(new ShellCommand("", "pluginadd", "<plugin filename>", "", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdPluginAdd)));
 	//_commands->insert(new ShellCommand("", "pluginremove", "<classname>", "", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdPluginRemove)));
 	_commands->insert(new ShellCommand("", "simul", "[-s|--start|-p|--step]", "Control simulation", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdSimulation)));
 	//_commands->insert(new ShellCommand("", "step", "", "Step simulation", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdSimulationStep)));
 	//_commands->insert(new ShellCommand("", "stop", "", "Stop simulation", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdSimulationStop)));
-	_commands->insert(new ShellCommand("", "replication", "[-num=<number>] [-len=<replication>] [-tu=<time unit>] [-s|--show]", "Configure simulation", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdSimulationSetup)));
+	_commands->insert(new ShellCommand("", "replication", "[-num=<number>] [-len=<replication>] [-tu=<time unit>] [-s|--show]", "Configure simulation", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdReplication)));
 	//_commands->insert(new ShellCommand("", "showsetup", "", "Show simulation info", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdSimulationInfo)));
-	_commands->insert(new ShellCommand("", "showreport", "", "Show simulation report", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdShowReport)));
+	//_commands->insert(new ShellCommand("", "showreport", "", "Show simulation report", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdShowReport)));
 	//_commands->insert(new ShellCommand("", "show", "", "Show the model structure", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdModelShow)));
-	_commands->insert(new ShellCommand("", "model", "[-n|--new|-r|--remove|-c|--check|-s|--show]", "Create, check, show or close a model", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdModelNew)));
+	_commands->insert(new ShellCommand("", "model", "[-n|--new|-r|--remove|-c|--check|-s|--show]", "Create, check, show or close a model", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdModel)));
 	//_commands->insert(new ShellCommand("", "close", "", "Close the odel", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdModelClose)));
 	//_commands->insert(new ShellCommand("", "check", "", "Check the model", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdModelCheck)));
 	_commands->insert(new ShellCommand("", "load", "<filename>", "Load a model from a file", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdModelLoad)));
 	_commands->insert(new ShellCommand("", "save", "<filename>", "Save a model to a file", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdModelSave)));
-	_commands->insert(new ShellCommand("", "setInfos", "", "Set information of the model", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdModelSetInfos)));
+	//_commands->insert(new ShellCommand("", "setInfos", "", "Set information of the model", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdModelSetInfos)));
 }
 
 void GenesysShell::cmdHelp() {
@@ -189,8 +189,8 @@ void GenesysShell::cmdHelp() {
 	for (ShellCommand *command : *_commands->list()) {
 		parameters = command->parameters;
 		if (parameters=="")
-			parameters = "\t\t";
-		cout<<command->longname<<"\t"<<parameters<<"\t; "<<command->descrition<<endl;
+			parameters = "\t\t\t";
+		cout<<command->longname<<"\t"<<parameters<<"\t\t; "<<command->descrition<<endl;
 	}
 }
 
@@ -212,30 +212,38 @@ void GenesysShell::cmdBash() {
 	system(command.c_str());
 }
 
-void GenesysShell::cmdListFiles() {
-	if (_typedWords->size()!=2) {
-		cout<<"Wrong number of parameters"<<endl;
-		return;
-	}
-	std::string parameter = _typedWords->at(1);
-	const std::string command = "ls -l "+parameter;
-	system(command.c_str());
-}
-
 void GenesysShell::cmdScript() {
 	if (_typedWords->size()!=2) {
 		cout<<"Wrong number of parameters"<<endl;
 		return;
 	}
 	string parameter = _typedWords->at(1);
-	ifstream file(parameter);
+	string key = "";
+	string value = "";
+	Util::SepKeyVal(parameter, key, value);
+	bool run = key=="-r"||key=="-run";
+	bool show = key=="-s"||key=="--show";
+	if (!run && !show) {
+		cout<<"Syntax error on "<<parameter<<endl;
+		return;
+	}
+	if (show)
+		cout<<"Showing script "<<value<<endl;
+	if (run)
+		cout<<"Running script "<<value<<endl;
+	ifstream file(value);
 	if (file.is_open()) {
 		string line;
 		while (getline(file, line)) {
-			cout<<line<<endl;
-			if (line!="") {
-				if (line[0]!='#') { // not a comment
-					tryExecuteCommand(line);
+			if (show) {
+				cout<<line<<endl;
+			}
+			if (run) {
+				if (line!="") {
+					if (line[0]!='#') { // not a comment
+						cout<<"$script> "<<line<<endl;
+						tryExecuteCommand(line);
+					}
 				}
 			}
 		}
@@ -260,50 +268,73 @@ void GenesysShell::cmdTraceLevel() {
 	}
 }
 
-void GenesysShell::cmdPluginList() {
-	PluginInformation* p;
-	cout<<"List of installed plugins:"<<endl;
-	for (unsigned short i = 0; i<simulator->getPlugins()->size(); i++) {
-		p = simulator->getPlugins()->getAtRank(i)->getPluginInfo();
-		if (p->isSource())
-			cout<<"Source ";
-		if (p->isSink())
-			cout<<"Sink ";
-		if (p->isSendTransfer())
-			cout<<"SendTransfer ";
-		if (p->isSendTransfer())
-			cout<<"ReceiveTransfer ";
-		if (p->isGenerateReport())
-			cout<<"GenerateReport ";
-		if (p->isComponent())
-			cout<<"Component ";
-		else
-			cout<<"DataElement ";
-		cout<<p->getPluginTypename()<<" ("<<p->getCategory()<<")";
-		cout<<endl;
-	}
-}
-//void GenesysShell::cmdPluginAdd() {}
-
-void GenesysShell::cmdPluginInfo() {
-	if (_typedWords->size()!=2) {
+void GenesysShell::cmdPlugin() {
+	if (_typedWords->size()<2) {
 		cout<<"Wrong number of parameters"<<endl;
 		return;
 	}
-	std::string parameter = _typedWords->at(1);
-	Plugin* p;
-	for (unsigned short i = 0; i<simulator->getPlugins()->size(); i++) {
-		p = simulator->getPlugins()->getAtRank(i);
-		if (p->getPluginInfo()->getPluginTypename()==parameter) {
-			cout<<"Information for plugin "<<parameter<<":"<<endl;
-			cout<<p->show()<<endl;
-			return;
+	string parameter;
+	string key, value;
+	for (unsigned short i = 1; i<_typedWords->size(); i++) {
+		parameter = _typedWords->at(i);
+		key = "";
+		value = "";
+		Util::SepKeyVal(parameter, key, value);
+		if (key=="-l"||key=="--list") {
+			PluginInformation* p;
+			cout<<"List of installed plugins:"<<endl;
+			for (unsigned short i = 0; i<simulator->getPlugins()->size(); i++) {
+				p = simulator->getPlugins()->getAtRank(i)->getPluginInfo();
+				if (p->isSource())
+					cout<<"Source ";
+				if (p->isSink())
+					cout<<"Sink ";
+				if (p->isSendTransfer())
+					cout<<"SendTransfer ";
+				if (p->isSendTransfer())
+					cout<<"ReceiveTransfer ";
+				if (p->isGenerateReport())
+					cout<<"GenerateReport ";
+				if (p->isComponent())
+					cout<<"Component ";
+				else
+					cout<<"DataElement ";
+				cout<<p->getPluginTypename()<<" ("<<p->getCategory()<<")";
+				cout<<endl;
+			}
+		} else if (key=="-i"||key=="--info") {
+			Plugin* p;
+			for (unsigned short i = 0; i<simulator->getPlugins()->size(); i++) {
+				p = simulator->getPlugins()->getAtRank(i);
+				if (p->getPluginInfo()->getPluginTypename()==value) {
+					cout<<"Information for plugin "<<value<<":"<<endl;
+					cout<<p->show()<<endl;
+					return;
+				}
+			}
+			cout<<"Error: Could not find plugin of type "<<value<<endl;
+		} else if (key=="-t"||key=="--template") {
+			Plugin* p;
+			string pf = "";
+			for (unsigned short i = 0; i<simulator->getPlugins()->size(); i++) {
+				p = simulator->getPlugins()->getAtRank(i);
+				if (p->getPluginInfo()->getPluginTypename()==value) {
+					//cout<<"Template for plugin "<<value<<":"<<endl;
+					for (std::pair<std::string, std::string> field : *p->getPluginInfo()->getFields()) {
+						pf += field.first+", ";
+					}
+					pf = pf.substr(0, pf.length()-1);
+					cout<<"Parameters: "<<pf<<endl;
+					cout<<"Template: "<<p->getPluginInfo()->getLanguageTemplate()<<endl;
+					return;
+				}
+			}
+			cout<<"Error: Could not find plugin of type "<<value<<endl;
+		} else {
+			cout<<"Syntax error on "<<parameter<<endl;
 		}
 	}
-	cout<<"Error: Could not find plugin of type "<<parameter<<endl;
 }
-
-void GenesysShell::cmdPluginRemove() { }
 
 void GenesysShell::cmdSimulation() {
 	if (model==nullptr) {
@@ -323,32 +354,7 @@ void GenesysShell::cmdSimulation() {
 		cout<<"Syntax error on "+parameter<<endl;
 }
 
-void GenesysShell::cmdSimulationStep() {
-	if (model==nullptr) {
-		cout<<"Error: There is no loaded model to simulate."<<endl;
-		return;
-	}
-	model->getSimulation()->step();
-}
-
-void GenesysShell::cmdSimulationStop() {
-	if (model==nullptr) {
-		cout<<"Error: There is no loaded model to simulate."<<endl;
-		return;
-	}
-	cout<<"Stoping simulation"<<endl;
-	model->getSimulation()->stop();
-}
-
-void GenesysShell::cmdSimulationInfo() {
-	if (model==nullptr) {
-		cout<<"Error: There is no loaded model to simulate."<<endl;
-		return;
-	}
-	cout<<model->getSimulation()->show()<<endl;
-}
-
-void GenesysShell::cmdSimulationSetup() {
+void GenesysShell::cmdReplication() {
 	if (model==nullptr) {
 		cout<<"Error: There is no loaded model to setup its simulation."<<endl;
 		return;
@@ -375,7 +381,7 @@ void GenesysShell::cmdSimulationSetup() {
 		} else if (key=="-tu") {
 			cout<<"Setting replication time unit to "<<value<<endl;
 			model->getSimulation()->setReplicationLengthTimeUnit(static_cast<Util::TimeUnit> (stoi(value)));
-		} else if (key=="-s" || key=="--show") {
+		} else if (key=="-s"||key=="--show") {
 			cout<<model->getSimulation()->show()<<endl;
 			//model->getSimulation()->setReplicationLengthTimeUnit(static_cast<Util::TimeUnit> (stoi(value)));
 		} else {
@@ -384,14 +390,7 @@ void GenesysShell::cmdSimulationSetup() {
 	}
 }
 
-void GenesysShell::cmdShowReport() {
-	if (model==nullptr) {
-		cout<<"Error: There is no loaded model to show report."<<endl;
-		return;
-	}
-}
-
-void GenesysShell::cmdModelNew() {
+void GenesysShell::cmdModel() {
 	if (_typedWords->size()!=2) {
 		cout<<"Wrong number of parameters"<<endl;
 		return;
@@ -437,22 +436,13 @@ void GenesysShell::cmdModelNew() {
 				cout<<"Error: There is no loaded model to close."<<endl;
 				return;
 			}
-			model->show();
+			cout<<model->showLanguage()<<endl;
+			//model->show();
 		} else {
 			cout<<"Syntax error on "+parameter<<endl;
 		}
 	}
 
-}
-
-void GenesysShell::cmdModelClose() {
-	if (model==nullptr) {
-		cout<<"Error: There is no loaded model to close."<<endl;
-		return;
-	}
-	cout<<"Closing the model"<<endl;
-	simulator->getModels()->remove(model);
-	model = nullptr;
 }
 
 void GenesysShell::cmdModelLoad() {
@@ -468,14 +458,6 @@ void GenesysShell::cmdModelLoad() {
 	} else {
 		cout<<"Model loaded"<<endl;
 	}
-}
-
-void GenesysShell::cmdModelCheck() {
-	if (model==nullptr) {
-		cout<<"Error: There is no loaded model to check."<<endl;
-		return;
-	}
-	model->check();
 }
 
 void GenesysShell::cmdModelSave() {
@@ -496,6 +478,78 @@ void GenesysShell::cmdModelSave() {
 	}
 }
 
+/*
+ void GenesysShell::cmdShowReport() {
+	if (model==nullptr) {
+		cout<<"Error: There is no loaded model to show report."<<endl;
+		return;
+	}
+}
+
+ void GenesysShell::cmdPluginInfo() {
+	if (_typedWords->size()!=2) {
+		cout<<"Wrong number of parameters"<<endl;
+		return;
+	}
+	std::string parameter = _typedWords->at(1);
+	Plugin* p;
+	for (unsigned short i = 0; i<simulator->getPlugins()->size(); i++) {
+		p = simulator->getPlugins()->getAtRank(i);
+		if (p->getPluginInfo()->getPluginTypename()==parameter) {
+			cout<<"Information for plugin "<<parameter<<":"<<endl;
+			cout<<p->show()<<endl;
+			return;
+		}
+	}
+	cout<<"Error: Could not find plugin of type "<<parameter<<endl;
+}
+
+
+void GenesysShell::cmdSimulationStep() {
+	if (model==nullptr) {
+		cout<<"Error: There is no loaded model to simulate."<<endl;
+		return;
+	}
+	model->getSimulation()->step();
+}
+
+void GenesysShell::cmdSimulationStop() {
+	if (model==nullptr) {
+		cout<<"Error: There is no loaded model to simulate."<<endl;
+		return;
+	}
+	cout<<"Stoping simulation"<<endl;
+	model->getSimulation()->stop();
+}
+
+void GenesysShell::cmdSimulationInfo() {
+	if (model==nullptr) {
+		cout<<"Error: There is no loaded model to simulate."<<endl;
+		return;
+	}
+	cout<<model->getSimulation()->show()<<endl;
+}
+
+void GenesysShell::cmdModelClose() {
+	if (model==nullptr) {
+		cout<<"Error: There is no loaded model to close."<<endl;
+		return;
+	}
+	cout<<"Closing the model"<<endl;
+	simulator->getModels()->remove(model);
+	model = nullptr;
+}
+
+void GenesysShell::cmdModelCheck() {
+	if (model==nullptr) {
+		cout<<"Error: There is no loaded model to check."<<endl;
+		return;
+	}
+	model->check();
+}
+
+
+
 void GenesysShell::cmdModelShow() {
 	if (model==nullptr) {
 		cout<<"Error: There is no loaded model to show."<<endl;
@@ -510,3 +564,14 @@ void GenesysShell::cmdModelSetInfos() {
 		return;
 	}
 }
+
+void GenesysShell::cmdListFiles() {
+	if (_typedWords->size()!=2) {
+		cout<<"Wrong number of parameters"<<endl;
+		return;
+	}
+	std::string parameter = _typedWords->at(1);
+	const std::string command = "ls -l "+parameter;
+	system(command.c_str());
+}
+ */
