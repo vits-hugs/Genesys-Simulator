@@ -59,11 +59,11 @@ void GenesysShell::run(List<string>* commandlineArgs) {
 	printf("\n"); 
 	fflush(stdout);
 	return;
-	*/
-
+	 */
 
 	simulator->getTracer()->setTraceLevel(TraceManager::Level::L1_errorFatal);
-	simulator->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
+	if (!simulator->getPlugins()->autoInsertPlugins("autoloadplugins.txt"))
+		cout << "Error: Could not auto load plugins from file \"autoloadplugins.txt\"." << endl;
 	simulator->getTracer()->setTraceLevel(TraceManager::Level::L7_internal);
 	_history->resize(100);
 	Trace("Genesys Shell is running. Type your command. For help, type the command \"help\".");
@@ -175,7 +175,7 @@ void GenesysShell::defineCommands() {
 	_commands->insert(new ShellCommand("", "bash", "<bash command>", "Execute a bash command", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdBash)));
 	_commands->insert(new ShellCommand("", "script", "[-r|--run|-s|--show]=<script filename>", "Execute or show commands in a script file", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdScript)));
 	_commands->insert(new ShellCommand("", "trace", "[-l=<level 1-9>] [-s|--show]", "Set or show current the trace level", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdTraceLevel)));
-	_commands->insert(new ShellCommand("", "plugin", "[-l|--list] [-i|--info]=<plugin typename> [-t|--template[=<plugintypename>]", "List or get information about installed plugins and templates of genesys language", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdPlugin)));
+	_commands->insert(new ShellCommand("", "plugin", "[-l|--list] [[-i|--info]=<plugin typename>] [[-a|--autoload]=<filename plugin list>] [-t|--template[=<plugintypename>]", "List, load or get information about installed plugins and templates of genesys language", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdPlugin)));
 	//_commands->insert(new ShellCommand("", "plugininfo", "<plugin name>", "Show infos about a plugin", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdPluginInfo)));
 	//_commands->insert(new ShellCommand("", "pluginadd", "<plugin filename>", "", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdPluginAdd)));
 	//_commands->insert(new ShellCommand("", "pluginremove", "<classname>", "", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdPluginRemove)));
@@ -306,6 +306,10 @@ void GenesysShell::cmdPlugin() {
 		value = "";
 		Util::SepKeyVal(parameter, key, value);
 		if (key=="-l"||key=="--list") {
+			if (simulator->getPlugins()->size()==0) {
+				cout<<"There is no installed plugins. Install some using the plugin --autoload=<filename>"<<endl;
+				return;
+			}
 			PluginInformation* p;
 			cout<<"List of installed plugins:"<<endl;
 			for (unsigned short i = 0; i<simulator->getPlugins()->size(); i++) {
@@ -327,7 +331,14 @@ void GenesysShell::cmdPlugin() {
 				cout<<"\""<<p->getPluginTypename()<<"\" ("<<p->getCategory()<<")";
 				cout<<endl;
 			}
+		} else if (key=="-a"||key=="--autoload") {
+			cout<<"Loading list of plugins from file "<<value<<endl;
+			simulator->getPlugins()->autoInsertPlugins(value);
 		} else if (key=="-i"||key=="--info") {
+			if (simulator->getPlugins()->size()==0) {
+				cout<<"There is no installed plugins. Install some using the plugin --autoload=<filename>"<<endl;
+				return;
+			}
 			Plugin* p;
 			for (unsigned short i = 0; i<simulator->getPlugins()->size(); i++) {
 				p = simulator->getPlugins()->getAtRank(i);
@@ -339,14 +350,18 @@ void GenesysShell::cmdPlugin() {
 			}
 			cout<<"Error: Could not find plugin of type "<<value<<endl;
 		} else if (key=="-t"||key=="--template") {
+			if (simulator->getPlugins()->size()==0) {
+				cout<<"There is no installed plugins. Install some using the plugin --autoload=<filename>"<<endl;
+				return;
+			}
 			Plugin* p;
 			string pf;
 			for (unsigned short i = 0; i<simulator->getPlugins()->size(); i++) {
 				pf = "";
 				p = simulator->getPlugins()->getAtRank(i);
-				if (p->getPluginInfo()->getPluginTypename()==value || value=="") {
-					if (value=="") 
-						cout << "Language syntax for plugin \"" << p->getPluginInfo()->getPluginTypename() << "\":" <<endl;
+				if (p->getPluginInfo()->getPluginTypename()==value||value=="") {
+					if (value=="")
+						cout<<"Language syntax for plugin \""<<p->getPluginInfo()->getPluginTypename()<<"\":"<<endl;
 					//cout<<"Template for plugin "<<value<<":"<<endl;
 					for (std::pair<std::string, std::string> field : *p->getPluginInfo()->getFields()) {
 						pf += field.first+", ";
@@ -354,8 +369,8 @@ void GenesysShell::cmdPlugin() {
 					pf = pf.substr(0, pf.length()-1);
 					cout<<"Parameters: "<<pf<<endl;
 					cout<<"Template: "<<p->getPluginInfo()->getLanguageTemplate()<<endl;
-					if (value=="") 
-						cout << endl;
+					if (value=="")
+						cout<<endl;
 					else
 						return;
 				}
