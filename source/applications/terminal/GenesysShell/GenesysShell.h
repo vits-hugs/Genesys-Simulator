@@ -57,7 +57,7 @@ public: // commands
 	void cmdHelp();
 	void cmdQuit();
 	void cmdBash();
-	//void cmdListFiles();
+	void cmdParser();
 	void cmdTraceLevel();
 	void cmdPlugin();
 	//void cmdPluginInfo();

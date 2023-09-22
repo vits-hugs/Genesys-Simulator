@@ -171,6 +171,7 @@ int GenesysShell::main(int argc, char** argv) {
 void GenesysShell::defineCommands() {
 	_commands->insert(new ShellCommand("", "help", "", "Show the list of commands", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdHelp)));
 	_commands->insert(new ShellCommand("", "exit", "", "Quit the simulator", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdQuit)));
+	_commands->insert(new ShellCommand("", "parse", "<expression>", "Evaluate or watch an expression", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdParser)));
 	//_commands->insert(new ShellCommand("", "dir", "<path>", "List the files in the <path>", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdListFiles)));
 	_commands->insert(new ShellCommand("", "bash", "<bash command>", "Execute a bash command", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdBash)));
 	_commands->insert(new ShellCommand("", "script", "[-r|--run|-s|--show]=<script filename>", "Execute or show commands in a script file", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdScript)));
@@ -208,6 +209,31 @@ void GenesysShell::cmdHelp() {
 void GenesysShell::cmdQuit() {
 	cout<<"Quiting. Bye."<<endl;
 	_exitRequested = true;
+}
+
+void GenesysShell::cmdParser() {
+	if (model==nullptr) {
+		cout<<"Error: There is no loaded model to simulate."<<endl;
+		return;
+	}
+	if (_typedWords->size()<2) {
+		cout<<"Wrong number of parameters"<<endl;
+		return;
+	}
+	std::string parameters = "";
+	for (unsigned short i = 1; i<_typedWords->size(); i++) {
+		parameters += _typedWords->at(i)+" ";
+	}
+	const std::string expression = parameters;
+	bool success = false;
+	string* errorMessage = new string();
+	cout << "Evaluating expression \""<<expression<<"\""<<endl;
+	double res = model->parseExpression(expression, &success, errorMessage);
+	if (success) {
+		cout << "Expression evaluates to "<<res<<endl;
+	} else {
+		cout << "Syntax error: "<<*errorMessage<<endl;
+	}
 }
 
 void GenesysShell::cmdBash() {
