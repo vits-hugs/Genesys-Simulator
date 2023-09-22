@@ -26,9 +26,18 @@ struct TraitsApp {
 template <> struct TraitsApp<GenesysApplication_if> {
 	//static const bool runTests = false;
 	static const TraceManager::Level traceLevel = TraceManager::Level::L9_mostDetailed;
-	static const bool runGraphicalUserInterface = false;
+	static const bool runGraphicalUserInterface = true;
 
-	//// SMART SMARTs ALPHA SORTED
+	//
+	// TERMINAL APPLICATIONS (Generic simulator shell)
+	//
+	typedef GenesysShell Application;
+
+	//
+	// MODEL SPECIFIC TERMINAL SIMULATORS:
+	//
+
+	// SMART SMARTs ALPHA SORTED
 	//typedef Smart_AssignWriteSeizes Application;
 	//typedef Smart_BatchSeparate Application;
 	//typedef Smart_Buffer Application;
@@ -57,7 +66,7 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Smart_WaitScanCondition Application;
 	//typedef Smart_WaitSignal Application;
 
-	//// ARENA SMARTS
+	// ARENA SMARTS
 	//typedef Smart_AddingResource Application;
 	//typedef Smart_AlternatingEntityCreation Application;
 	//typedef Smart_ArrivalsElementStopsEntitiesArrivingAfterASetTime Application;
@@ -97,7 +106,7 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Smart_ValueAdded Application;
 	//typedef Smart_WaitForSignal Application;
 
-	//// ARENA EXAMPLES
+	// ARENA EXAMPLES
 	//typedef AirportSecurityExample Application;
 	//typedef AirportSecurityExampleExtended Application;
 	//typedef Airport_Extended1 Application;
@@ -108,20 +117,18 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Example_PublicTransport Application;
 
 
-	//// TEACHING
+	// TEACHING
 	//typedef AnElectronicAssemblyAndTestSystem Application;
 	//typedef OperatingSystem01 Application;
 	//typedef OperatingSystem02 Application;
 	//typedef OperatingSystem03 Application;
 	//typedef BufferFIFO Application;
 
-	//// BOOK
+	// BOOK
 	//typedef Book_Cap02_Example01 Application;
 
-	//// TERMINAL APPLICATIONS
-	typedef GenesysShell Application;
 
-	//// UNDER DEVELPMENT
+	// UNDER DEVELPMENT
 	//typedef TestingTerminalApp Application;
 };
 
