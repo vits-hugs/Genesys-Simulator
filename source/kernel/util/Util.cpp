@@ -34,25 +34,25 @@ void Util::DecIndent() {
 	Util::_S_indentation--;
 }
 
-void Util::SepKeyVal(std::string str, std::string *key, std::string *value) {
-	// @TODO: Check pointers when spliting string. There is an error
-	//char *c;
+void Util::SepKeyVal(std::string str, std::string &key, std::string &value) {
 	bool settingKey = true;
-	//key = new std::string();
-	//value = new std::string();
-	key->clear();
-	value->clear();
+	key.clear();
+	value.clear();
+	key.reserve(256);
+	value.reserve(256);
 	for (std::string::iterator it = str.begin(); it != str.end(); it++) {
+		const char c = (*it);
 		if (settingKey) {
-			if ((*it) != '=') {
-				key->append(new char((*it)));
-			} else {
+			if (c != '=') 
+				key+=c;
+			else
 				settingKey = false;
-			}
 		} else {
-			value->append(new char((*it)));
+			value+=c;
 		}
 	}
+	key.shrink_to_fit();
+	value.shrink_to_fit();
 }
 
 std::string Util::Indent() {
@@ -97,7 +97,7 @@ std::string Util::StrTimeUnitLong(Util::TimeUnit timeUnit) {
 		case 8: return "day";
 		case 9: return "week";
 	}
-	return "";
+	return "unknown";
 }
 
 std::string Util::StrAllocation(Util::AllocationType allocation) {

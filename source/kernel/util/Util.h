@@ -84,7 +84,7 @@ public: // indentation and string
 	static void SetIndent(const unsigned short indent);
 	static void IncIndent();
 	static void DecIndent();
-	static void SepKeyVal(std::string str, std::string *key, std::string *value);
+	static void SepKeyVal(std::string str, std::string &key, std::string &value);
 	static std::string Indent();
 	static std::string SetW(std::string text, unsigned short width);
 	static std::string StrTruncIfInt(double value);

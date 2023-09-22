@@ -21,13 +21,14 @@
 #include <unistd.h>
 #include <chrono>
 #include <thread>
+#include <stdlib.h>
 
 
 using namespace std;
 //#include "ProbDistribDefaultImpl1.h"
 
-GenesysShell::GenesysShell() { 
-	this->setDefaultTraceHandlers(simulator->getTracer());
+GenesysShell::GenesysShell() {
+	setDefaultTraceHandlers(simulator->getTracer());
 }
 
 void GenesysShell::Trace(string message) {
@@ -56,7 +57,9 @@ fflush(stdout);
 return 0;*/
 
 void GenesysShell::run(List<string>* commandlineArgs) {
+	simulator->getTracer()->setTraceLevel(TraceManager::Level::L1_errorFatal);
 	simulator->getPlugins()->autoInsertPlugins("autoloadplugins.txt");
+	simulator->getTracer()->setTraceLevel(TraceManager::Level::L7_internal);
 	_history->resize(100);
 	Trace("Genesys Shell is running. Type your command. For help, type the command \"help\".");
 	string inputText, historyText; //, shortPrefix, longPrefix, separator; //,longPrefix, separator;
@@ -67,23 +70,23 @@ void GenesysShell::run(List<string>* commandlineArgs) {
 			inputText = commandlineArgs->front();
 			commandlineArgs->pop_front();
 			_history->push_back(inputText);
-			tryExecuteCommand(inputText, "-", "--", "=");
+			tryExecuteCommand(inputText);
 		} else {
 			cout<<_prompt<<" ";
 			//getline(cin, inputText);
 			std::cin>>std::noskipws; //don't skip whitespaces
 			inputText = "";
 			//std::basic_ios::sync_with_stdio(false);
-			while (c=getchar()) {
+			while (c = getchar()) {
 				if (c=='\n')
 					break;
 				//cout << int(c)<<','<<flush;//<<int(c1)<<','<<int(c2)<<endl;
-				if ((c==65||c==66) && c1==91 && c2==27) { // Up or down pressed. Show history
-					printf("\b\b\b%c%c%c\b\b\b", ' ',' ',' '); 
+				if ((c==65||c==66)&&c1==91&&c2==27) { // Up or down pressed. Show history
+					printf("\b\b\b%c%c%c\b\b\b", ' ', ' ', ' ');
 					fflush(stdout);
 					if (_history->size()>0) {
 						historyText = _history->at(historyPosition);
-						if (c == 65) {
+						if (c==65) {
 							historyPosition++;
 						} else {
 							historyPosition--;
@@ -91,7 +94,7 @@ void GenesysShell::run(List<string>* commandlineArgs) {
 						if (historyPosition>_history->size())
 							historyPosition = 0;
 						inputText = historyText;
-						cout << inputText;
+						cout<<inputText;
 					}
 				} else { // normal key. Add to the text being typed
 					inputText.push_back(c);
@@ -102,16 +105,25 @@ void GenesysShell::run(List<string>* commandlineArgs) {
 			}
 			if (inputText!="") {
 				_history->push_back(inputText);
-				tryExecuteCommand(inputText, "", "", " ");
+				tryExecuteCommand(inputText);
 			}
 		}
 	}
 }
 
-void GenesysShell::tryExecuteCommand(string inputText, string shortPrefix, string longPrefix, string separator) {
-	regex regex{R"([\s]+)"}; // split on space R"([\s]+)"
-	sregex_token_iterator it{inputText.begin(), inputText.end(), regex, -1};
+std::vector<std::string> GenesysShell::split(std::string text, std::string separatorRegex) {
+	string expression = "(["+separatorRegex+"]+)";
+	regex regex{expression};
+	sregex_token_iterator it{text.begin(), text.end(), regex, -1};
 	vector<string> fields{it,{}};
+	return fields;
+}
+
+void GenesysShell::tryExecuteCommand(string inputText) {
+	//regex regex{R"([\s]+)"}; // split on space R"([\s]+)"
+	//sregex_token_iterator it{inputText.begin(), inputText.end(), regex, -1};
+	//vector<string> fields{it,{}};
+	vector<string> fields = split(inputText, "\\s");
 	string typedCommandStr = fields[0];
 	bool found = false;
 	_typedWords->clear();
@@ -148,28 +160,37 @@ int GenesysShell::main(int argc, char** argv) {
 void GenesysShell::defineCommands() {
 	_commands->insert(new ShellCommand("", "help", "", "Show the list of commands", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdHelp)));
 	_commands->insert(new ShellCommand("", "quit", "[-y|--yes]", "Exit the simulator", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdQuit)));
+	//_commands->insert(new ShellCommand("", "dir", "<path>", "List the files in the <path>", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdListFiles)));
+	_commands->insert(new ShellCommand("", "bash", "<bash command>", "Execute a bash command", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdBash)));
 	_commands->insert(new ShellCommand("", "script", "<script filename>", "Execute commands in a script file", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdScript)));
 	_commands->insert(new ShellCommand("", "tracelevel", "<level>", "Set the trace level", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdTraceLevel)));
 	_commands->insert(new ShellCommand("", "pluginlist", "", "List installed plugins", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdPluginList)));
 	_commands->insert(new ShellCommand("", "plugininfo", "<plugin name>", "Show infos about a plugin", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdPluginInfo)));
 	//_commands->insert(new ShellCommand("", "pluginadd", "<plugin filename>", "", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdPluginAdd)));
 	//_commands->insert(new ShellCommand("", "pluginremove", "<classname>", "", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdPluginRemove)));
-	_commands->insert(new ShellCommand("", "start", "", "Start simulation", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdSimulationStart)));
-	_commands->insert(new ShellCommand("", "step", "", "Step simulation", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdSimulationStep)));
-	_commands->insert(new ShellCommand("", "stop", "", "Stop simulation", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdSimulationStop)));
-	_commands->insert(new ShellCommand("", "simulinfo", "", "Show simulation info", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdSimulationInfo)));
+	_commands->insert(new ShellCommand("", "simul", "[-s|--start|-p|--step]", "Control simulation", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdSimulation)));
+	//_commands->insert(new ShellCommand("", "step", "", "Step simulation", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdSimulationStep)));
+	//_commands->insert(new ShellCommand("", "stop", "", "Stop simulation", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdSimulationStop)));
+	_commands->insert(new ShellCommand("", "replication", "[-num=<number>] [-len=<replication>] [-tu=<time unit>] [-s|--show]", "Configure simulation", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdSimulationSetup)));
+	//_commands->insert(new ShellCommand("", "showsetup", "", "Show simulation info", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdSimulationInfo)));
 	_commands->insert(new ShellCommand("", "showreport", "", "Show simulation report", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdShowReport)));
-	_commands->insert(new ShellCommand("", "show", "", "Show the model structure", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdModelShow)));
-	_commands->insert(new ShellCommand("", "check", "", "Check the odel", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdModelCheck)));
+	//_commands->insert(new ShellCommand("", "show", "", "Show the model structure", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdModelShow)));
+	_commands->insert(new ShellCommand("", "model", "[-n|--new|-r|--remove|-c|--check|-s|--show]", "Create, check, show or close a model", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdModelNew)));
+	//_commands->insert(new ShellCommand("", "close", "", "Close the odel", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdModelClose)));
+	//_commands->insert(new ShellCommand("", "check", "", "Check the model", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdModelCheck)));
 	_commands->insert(new ShellCommand("", "load", "<filename>", "Load a model from a file", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdModelLoad)));
 	_commands->insert(new ShellCommand("", "save", "<filename>", "Save a model to a file", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdModelSave)));
-
+	_commands->insert(new ShellCommand("", "setInfos", "", "Set information of the model", DefineExecuterMember<GenesysShell>(this, &GenesysShell::cmdModelSetInfos)));
 }
 
 void GenesysShell::cmdHelp() {
 	cout<<"List of commands:"<<endl;
+	string parameters;
 	for (ShellCommand *command : *_commands->list()) {
-		cout<<command->longname<<" "<<command->parameters<<" - "<<command->descrition<<endl;
+		parameters = command->parameters;
+		if (parameters=="")
+			parameters = "\t\t";
+		cout<<command->longname<<"\t"<<parameters<<"\t; "<<command->descrition<<endl;
 	}
 }
 
@@ -178,11 +199,55 @@ void GenesysShell::cmdQuit() {
 	_exitRequested = true;
 }
 
-void GenesysShell::cmdScript() { }
+void GenesysShell::cmdBash() {
+	if (_typedWords->size()<2) {
+		cout<<"Wrong number of parameters"<<endl;
+		return;
+	}
+	std::string parameters = "";
+	for (unsigned short i = 1; i<_typedWords->size(); i++) {
+		parameters += _typedWords->at(i)+" ";
+	}
+	const std::string command = parameters;
+	system(command.c_str());
+}
+
+void GenesysShell::cmdListFiles() {
+	if (_typedWords->size()!=2) {
+		cout<<"Wrong number of parameters"<<endl;
+		return;
+	}
+	std::string parameter = _typedWords->at(1);
+	const std::string command = "ls -l "+parameter;
+	system(command.c_str());
+}
+
+void GenesysShell::cmdScript() {
+	if (_typedWords->size()!=2) {
+		cout<<"Wrong number of parameters"<<endl;
+		return;
+	}
+	string parameter = _typedWords->at(1);
+	ifstream file(parameter);
+	if (file.is_open()) {
+		string line;
+		while (getline(file, line)) {
+			cout<<line<<endl;
+			if (line!="") {
+				if (line[0]!='#') { // not a comment
+					tryExecuteCommand(line);
+				}
+			}
+		}
+		file.close();
+	} else {
+		cout<<"Error: Could not load the script"<<endl;
+	}
+}
 
 void GenesysShell::cmdTraceLevel() {
 	if (_typedWords->size()!=2) {
-		cout<<"Syntax error"<<endl;
+		cout<<"Wrong number of parameters"<<endl;
 		return;
 	}
 	int levelInt = stoi(_typedWords->at(1));
@@ -222,7 +287,7 @@ void GenesysShell::cmdPluginList() {
 
 void GenesysShell::cmdPluginInfo() {
 	if (_typedWords->size()!=2) {
-		cout<<"Syntax error"<<endl;
+		cout<<"Wrong number of parameters"<<endl;
 		return;
 	}
 	std::string parameter = _typedWords->at(1);
@@ -240,12 +305,22 @@ void GenesysShell::cmdPluginInfo() {
 
 void GenesysShell::cmdPluginRemove() { }
 
-void GenesysShell::cmdSimulationStart() {
+void GenesysShell::cmdSimulation() {
 	if (model==nullptr) {
 		cout<<"Error: There is no loaded model to simulate."<<endl;
 		return;
 	}
-	model->getSimulation()->start();
+	if (_typedWords->size()!=2) {
+		cout<<"Wrong number of parameters"<<endl;
+		return;
+	}
+	string parameter = _typedWords->at(1);
+	if (parameter=="-s"||parameter=="--start")
+		model->getSimulation()->start();
+	else if (parameter=="-p"||parameter=="--step")
+		model->getSimulation()->step();
+	else
+		cout<<"Syntax error on "+parameter<<endl;
 }
 
 void GenesysShell::cmdSimulationStep() {
@@ -261,6 +336,7 @@ void GenesysShell::cmdSimulationStop() {
 		cout<<"Error: There is no loaded model to simulate."<<endl;
 		return;
 	}
+	cout<<"Stoping simulation"<<endl;
 	model->getSimulation()->stop();
 }
 
@@ -269,7 +345,43 @@ void GenesysShell::cmdSimulationInfo() {
 		cout<<"Error: There is no loaded model to simulate."<<endl;
 		return;
 	}
-	//model->getSimulation()->get;
+	cout<<model->getSimulation()->show()<<endl;
+}
+
+void GenesysShell::cmdSimulationSetup() {
+	if (model==nullptr) {
+		cout<<"Error: There is no loaded model to setup its simulation."<<endl;
+		return;
+	}
+	if (_typedWords->size()<2) {
+		cout<<"Wrong number of parameters"<<endl;
+		return;
+	}
+	string parameter;
+	string key, value;
+	for (unsigned short i = 1; i<_typedWords->size(); i++) {
+		parameter = _typedWords->at(i);
+		//vector<string> keyvalue = split(parameter, "=");
+		key = "";
+		value = "";
+		//cout<<parameter<<endl;
+		Util::SepKeyVal(parameter, key, value);
+		if (key=="-num") {
+			cout<<"Setting number of replications to "<<value<<endl;
+			model->getSimulation()->setNumberOfReplications(stoi(value));
+		} else if (key=="-len") {
+			cout<<"Setting replication length to "<<value<<endl;
+			model->getSimulation()->setReplicationLength(stod(value));
+		} else if (key=="-tu") {
+			cout<<"Setting replication time unit to "<<value<<endl;
+			model->getSimulation()->setReplicationLengthTimeUnit(static_cast<Util::TimeUnit> (stoi(value)));
+		} else if (key=="-s" || key=="--show") {
+			cout<<model->getSimulation()->show()<<endl;
+			//model->getSimulation()->setReplicationLengthTimeUnit(static_cast<Util::TimeUnit> (stoi(value)));
+		} else {
+			cout<<"Syntax error on "<<parameter<<endl;
+		}
+	}
 }
 
 void GenesysShell::cmdShowReport() {
@@ -279,18 +391,82 @@ void GenesysShell::cmdShowReport() {
 	}
 }
 
-void GenesysShell::cmdModelLoad() { 
+void GenesysShell::cmdModelNew() {
 	if (_typedWords->size()!=2) {
-		cout<<"Syntax error"<<endl;
+		cout<<"Wrong number of parameters"<<endl;
+		return;
+	}
+
+	string parameter;
+	string key, value;
+	for (unsigned short i = 1; i<_typedWords->size(); i++) {
+		parameter = _typedWords->at(i);
+		if (parameter=="-n"||parameter=="--new") {
+			if (model!=nullptr) {
+				//if (_typedWords->size()!=2) {
+				//	cout<<"There is an open model. Close it before create a new one, of force close with -f or --force parameters"<<endl;
+				//	return;
+				//}
+				//std::string parameter = _typedWords->at(1);
+				//if (parameter!="-f"&&parameter!="--force") {
+				//	cout<<"Wrong number of parameters"<<endl;
+				//	return;
+				//} else {
+				simulator->getModels()->remove(model);
+				model = nullptr;
+				//}
+			}
+			cout<<"Creating a new model"<<endl;
+			model = simulator->getModels()->newModel();
+		} else if (parameter=="-r"||parameter=="--remove") {
+			if (model==nullptr) {
+				cout<<"Error: There is no loaded model to close."<<endl;
+				return;
+			}
+			cout<<"Closing the model"<<endl;
+			simulator->getModels()->remove(model);
+			model = nullptr;
+		} else if (parameter=="-c"||parameter=="--check") {
+			if (model==nullptr) {
+				cout<<"Error: There is no loaded model to close."<<endl;
+				return;
+			}
+			model->check();
+		} else if (parameter=="-s"||parameter=="--show") {
+			if (model==nullptr) {
+				cout<<"Error: There is no loaded model to close."<<endl;
+				return;
+			}
+			model->show();
+		} else {
+			cout<<"Syntax error on "+parameter<<endl;
+		}
+	}
+
+}
+
+void GenesysShell::cmdModelClose() {
+	if (model==nullptr) {
+		cout<<"Error: There is no loaded model to close."<<endl;
+		return;
+	}
+	cout<<"Closing the model"<<endl;
+	simulator->getModels()->remove(model);
+	model = nullptr;
+}
+
+void GenesysShell::cmdModelLoad() {
+	if (_typedWords->size()!=2) {
+		cout<<"Wrong number of parameters"<<endl;
 		return;
 	}
 	std::string parameter = _typedWords->at(1);
-	cout << "Loading model "<< parameter << endl;
+	cout<<"Loading model "<<parameter<<endl;
 	model = simulator->getModels()->loadModel(parameter);
 	if (model==nullptr) {
-		cout << "Error: Could not load the model" << endl;
+		cout<<"Error: Could not load the model"<<endl;
 	} else {
-		cout << "Model loaded" << endl;
+		cout<<"Model loaded"<<endl;
 	}
 }
 
@@ -308,15 +484,15 @@ void GenesysShell::cmdModelSave() {
 		return;
 	}
 	if (_typedWords->size()!=2) {
-		cout<<"Syntax error"<<endl;
+		cout<<"Wrong number of parameters"<<endl;
 		return;
 	}
 	std::string parameter = _typedWords->at(1);
-	cout << "Saving model "<< parameter << endl;
+	cout<<"Saving model "<<parameter<<endl;
 	if (model->save(parameter)) {
-		cout << "Model saved" << endl;
+		cout<<"Model saved"<<endl;
 	} else {
-		cout << "Error: Could not save the model" << endl;
+		cout<<"Error: Could not save the model"<<endl;
 	}
 }
 
@@ -326,4 +502,11 @@ void GenesysShell::cmdModelShow() {
 		return;
 	}
 	model->show();
+}
+
+void GenesysShell::cmdModelSetInfos() {
+	if (model==nullptr) {
+		cout<<"Error: There is no loaded model to set information."<<endl;
+		return;
+	}
 }

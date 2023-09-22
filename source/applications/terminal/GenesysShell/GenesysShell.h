@@ -56,26 +56,33 @@ public: // commands
 	void cmdScript();
 	void cmdHelp();
 	void cmdQuit();
+	void cmdBash();
+	void cmdListFiles();
 	void cmdTraceLevel();
 	void cmdPluginList();
 	void cmdPluginInfo();
 	//void cmdPluginAdd();
 	void cmdPluginRemove();
-	void cmdSimulationStart();
+	void cmdSimulation();
 	void cmdSimulationStep();
 	void cmdSimulationStop();
 	void cmdSimulationInfo();
+	void cmdSimulationSetup();
 	void cmdShowReport();
+	void cmdModelNew();
+	void cmdModelClose();
 	void cmdModelLoad();
 	void cmdModelCheck();
 	void cmdModelSave();
 	void cmdModelShow();
+	void cmdModelSetInfos();
 private:
 	void defineCommands();
 	void run(List<std::string>* arguments);
 	void Trace(std::string message);
 	//void tryExecuteCommand(std::string inputText, const char* shortPrefix, const char* longPrefix, std::string separator);
-	void tryExecuteCommand(std::string inputText, std::string shortPrefix, std::string longPrefix, std::string separator);
+	void tryExecuteCommand(std::string inputText);
+	std::vector<std::string> split(std::string text, std::string separatorRegex);
 private:
 	Simulator* simulator = new Simulator();
 	Model* model = nullptr;
