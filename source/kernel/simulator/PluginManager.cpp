@@ -30,8 +30,14 @@ PluginManager::PluginManager(Simulator* simulator) {
 }
 
 bool PluginManager::autoInsertPlugins(const std::string pluginsListFilename) {
+	if (pluginsListFilename.empty())
+		return false;
 	std::string line;
-	std::string fullFilename = Util::RunningPath()+Util::DirSeparator()+pluginsListFilename;
+	std::string fullFilename;
+	if (pluginsListFilename[0] == Util::DirSeparator()) // absolute path
+		fullFilename = pluginsListFilename;
+	else	// relative path
+		fullFilename = Util::RunningPath()+Util::DirSeparator()+pluginsListFilename;
 	std::ifstream file(fullFilename, std::ifstream::in);
 	if (file.is_open()) {
 		while (std::getline(file, line)) {
