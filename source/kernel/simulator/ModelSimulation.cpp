@@ -18,11 +18,9 @@
 #include <thread>
 #include "Model.h"
 #include "Simulator.h"
-#include "SourceModelComponent.h"
 #include "StatisticsCollector.h"
 #include "Counter.h"
 #include "ComponentManager.h"
-#include "PropertyGenesys.h"
 #include "../TraitsKernel.h"
 
 //using namespace GenesysKernel;
@@ -36,7 +34,30 @@ ModelSimulation::ModelSimulation(Model* model) {
 	_simulationReporter = new TraitsKernel<SimulationReporter_if>::Implementation(this, model, this->_cstatsAndCountersSimulation);
 	// controls
 	//@TODO Add ReplicationLength, getReplicationLengthTimeUnit, getReplicationBaseTimeUnit, warmUpPeriod, ...
-	//_model->getControls()->insert();
+	_model->getControls()->insert(new SimulationControlTimeUnit(
+					 std::bind(&ModelSimulation::getReplicationBaseTimeUnit, this),
+					 std::bind(&ModelSimulation::setReplicationReportBaseTimeUnit, this, std::placeholders::_1),
+					 Util::TypeOf<ModelSimulation>(), "ModelSimulation", "ReplicationBaseTimeUnit"));
+	_model->getControls()->insert(new SimulationControlTimeUnit(
+					 std::bind(&ModelSimulation::getReplicationLengthTimeUnit, this),
+					 std::bind(&ModelSimulation::setReplicationLengthTimeUnit, this, std::placeholders::_1),
+					 Util::TypeOf<ModelSimulation>(), "ModelSimulation", "ReplicationLengthTimeUnit"));
+	_model->getControls()->insert(new SimulationControlTimeUnit(
+					 std::bind(&ModelSimulation::getWarmUpPeriodTimeUnit, this),
+					 std::bind(&ModelSimulation::setWarmUpPeriodTimeUnit, this, std::placeholders::_1),
+					 Util::TypeOf<ModelSimulation>(), "ModelSimulation", "WarmUpPeriodTimeUnit"));
+	_model->getControls()->insert(new SimulationControlDouble(
+					 std::bind(&ModelSimulation::getWarmUpPeriod, this),
+					 std::bind(&ModelSimulation::setWarmUpPeriod, this, std::placeholders::_1, Util::TimeUnit::unknown),
+					 Util::TypeOf<ModelSimulation>(), "ModelSimulation", "WarmUpPeriod"));
+	_model->getControls()->insert(new SimulationControlUInt(
+					 std::bind(&ModelSimulation::getNumberOfReplications, this),
+					 std::bind(&ModelSimulation::setNumberOfReplications, this, std::placeholders::_1),
+					 Util::TypeOf<ModelSimulation>(), "ModelSimulation", "NumberOfReplications"));
+	_model->getControls()->insert(new SimulationControlString(
+					 std::bind(&ModelSimulation::getTerminatingCondition, this),
+					 std::bind(&ModelSimulation::setTerminatingCondition, this, std::placeholders::_1),
+					 Util::TypeOf<ModelSimulation>(), "ModelSimulation", "TerminatingCondition"));
 }
 
 std::string ModelSimulation::show() {
@@ -465,7 +486,7 @@ bool ModelSimulation::_checkBreakpointAt(Event* event) {
 			}
 		}
 	}
-	return res;
+	return res; //@TODO: One more memory leak...
 }
 
 void ModelSimulation::pause() {
@@ -617,14 +638,15 @@ Util::TimeUnit ModelSimulation::getReplicationLengthTimeUnit() const {
 	return _replicationLengthTimeUnit;
 }
 
-void ModelSimulation::setWarmUpPeriod(double warmUpPeriod) {
-	this->_warmUpPeriod = warmUpPeriod;
-	_hasChanged = true;
-}
+//void ModelSimulation::setWarmUpPeriod(double warmUpPeriod) {
+//	this->_warmUpPeriod = warmUpPeriod;
+//	_hasChanged = true;
+//}
 
 void ModelSimulation::setWarmUpPeriod(double warmUpPeriod, Util::TimeUnit warmUpPeriodTimeUnit) {
 	this->_warmUpPeriod = warmUpPeriod;
-	this->_warmUpPeriodTimeUnit = warmUpPeriodTimeUnit;
+	if (warmUpPeriodTimeUnit != Util::TimeUnit::unknown)
+		this->_warmUpPeriodTimeUnit = warmUpPeriodTimeUnit;
 	_hasChanged = true;
 }
 

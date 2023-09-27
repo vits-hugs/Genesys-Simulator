@@ -51,8 +51,8 @@ public: // old modelInfos
 	Util::TimeUnit getReplicationLengthTimeUnit() const;
 	void setReplicationReportBaseTimeUnit(Util::TimeUnit _replicationReportBaseTimeUnit);
 	Util::TimeUnit getReplicationBaseTimeUnit() const;
-	void setWarmUpPeriod(double warmUpPeriod);
-	void setWarmUpPeriod(double warmUpPeriod, Util::TimeUnit warmUpPeriodTimeUnit);
+	//void setWarmUpPeriod(double warmUpPeriod);
+	void setWarmUpPeriod(double warmUpPeriod, Util::TimeUnit warmUpPeriodTimeUnit = Util::TimeUnit::unknown);
 	double getWarmUpPeriod() const;
 	void setWarmUpPeriodTimeUnit(Util::TimeUnit _warmUpPeriodTimeUnit);
 	Util::TimeUnit getWarmUpPeriodTimeUnit() const;

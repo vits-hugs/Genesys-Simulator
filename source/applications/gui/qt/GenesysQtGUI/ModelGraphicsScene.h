@@ -47,11 +47,11 @@ class GraphicalModelEvent {
 public:
 
 	enum class EventType : int {
-		CREATE = 1, REMOVE = 2, EDIT = 3, CLONE = 4, OTHER = 5
+		CREATE = 1, REMOVE = 2, EDIT = 3, CLONE = 4, OTHER = 9
 	};
 
 	enum class EventObjectType : int {
-		COMPONENT = 1, DATADEFINITION = 2, CONNECTION = 3, DRAWING = 4, ANIMATION = 5, OTHER = 6
+		COMPONENT = 1, DATADEFINITION = 2, CONNECTION = 3, DRAWING = 4, ANIMATION = 5, PLOT = 6, OTHER = 9
 	};
 public:
 

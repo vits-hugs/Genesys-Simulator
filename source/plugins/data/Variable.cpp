@@ -29,7 +29,8 @@ ModelDataDefinition* Variable::NewInstance(Model* model, std::string name) {
 Variable::Variable(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<Variable>(), name) {
 	setName(name);
 	_parentModel->getControls()->insert(new SimulationControlDouble(
-						std::bind(&Variable::getInitialValue, this, ""), std::bind(&Variable::setInitialValue, this, std::placeholders::_1, ""),
+						std::bind(&Variable::getInitialValue, this, ""),
+						std::bind(&Variable::setInitialValue, this, std::placeholders::_1, ""),
 						Util::TypeOf<Variable>(), name, "InitialValue", ""));
 }
 

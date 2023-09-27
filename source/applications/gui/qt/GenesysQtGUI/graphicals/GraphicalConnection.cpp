@@ -20,6 +20,15 @@ GraphicalConnection::GraphicalConnection(GraphicalComponentPort* sourceGraphical
 	setAcceptTouchEvents(true);
 	setActive(true);
 	setSelected(false);
+	std::string tooltip = sourceGraphicalPort->graphicalComponent()->getComponent()->getName();
+	if (sourceGraphicalPort->graphicalComponent()->getComponent()->getConnections()->size()>1) {
+		tooltip += "["+std::to_string(sourceGraphicalPort->portNum())+ "]";
+	}
+	tooltip+= " to "+destinationGraphicalPort->graphicalComponent()->getComponent()->getName();
+	if (destinationGraphicalPort->graphicalComponent()->getComponent()->getConnections()->getCurrentInputConnectionsSize()>1) {
+		tooltip+=+"["+std::to_string(destinationGraphicalPort->portNum())+ "]";
+	}
+	setToolTip(QString::fromStdString(tooltip));
 	updateDimensionsAndPosition();
 	//update source and dest PORTS
 	sourceGraphicalPort->addGraphicalConnection(this); // to update connection on port position change

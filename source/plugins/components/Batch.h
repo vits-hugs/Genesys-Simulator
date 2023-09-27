@@ -113,6 +113,7 @@ private: // attributes 1:1
 	EntityGroup* _entityGroup = nullptr;
 	Queue* _queue = nullptr;
 private: // attributes 1:n
+	// count number of batches?
 };
 
 

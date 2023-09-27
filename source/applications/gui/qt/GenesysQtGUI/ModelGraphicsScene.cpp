@@ -114,6 +114,7 @@ GraphicalConnection* ModelGraphicsScene::addGraphicalConnection(GraphicalCompone
 	GraphicalConnection* graphicconnection = new GraphicalConnection(sourcePort, destinationPort);
 	addItem(graphicconnection);
 	_graphicalConnections->append(graphicconnection);
+
 	//notify graphical model change
 	GraphicalModelEvent* modelGraphicsEvent = new GraphicalModelEvent(GraphicalModelEvent::EventType::CREATE, GraphicalModelEvent::EventObjectType::CONNECTION, graphicconnection);
 	dynamic_cast<ModelGraphicsView*> (views().at(0))->notifySceneGraphicalModelEventHandler(modelGraphicsEvent);

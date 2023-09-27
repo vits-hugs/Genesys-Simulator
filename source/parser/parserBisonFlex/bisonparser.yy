@@ -248,7 +248,7 @@
 
 input: 
       expression    { driver.setResult($1.valor);}
-    | error '\n'        { yyerrok; }
+//    | error '\n'        { yyerrok; }
     ;
 
 expression:

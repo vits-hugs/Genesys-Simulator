@@ -91,7 +91,7 @@ private slots:
 	void on_actionToolsOptimizator_triggered();
 	void on_actionToolsDataAnalyzer_triggered();
 
-	void on_actionSimulatorPluginManager_triggered();
+	void on_actionSimulatorsPluginManager_triggered();
 	void on_actionSimulatorExit_triggered();
 	void on_actionSimulatorPreferences_triggered();
 
@@ -137,7 +137,6 @@ private slots:
 	void on_TextCodeEditor_textChanged();
 
 
-
 private: // VIEW
 
 private: // trace handlers
@@ -168,7 +167,7 @@ private: // Similar to QGraphicsScene Slots
 private: // simulator related
 	void _setOnEventHandlers();
 	void _insertPluginUI(Plugin* plugin);
-	void _insertFakePlugins();
+	//void _insertFakePlugins();
 	bool _setSimulationModelBasedOnText();
 	bool _createModelImage();
 	std::string _adjustDotName(std::string name);
@@ -200,20 +199,21 @@ private: // view
 private: // graphical model persistence
 	bool _saveGraphicalModel(std::string filename);
 	Model* _loadGraphicalModel(std::string filename);
-private:
-	QColor myrgba(uint64_t color); // TODO: Should NOT be here, but in UtilGUI.h, but then it generates multiple definitions error
-	static std::string dotColor(uint64_t color); // TODO: Should NOT be here, but in UtilGUI.h, but then it generates multiple definitions error
+private: //???
 private: // interface and model main elements to join
 	Ui::MainWindow *ui;
 	Simulator* simulator;
+private: // attributes to be saved and loaded withing the graphical model
+	int _zoomValue; // todo should be set for each open graphical model, such as view rect, etc
 private: // misc useful
 	bool _textModelHasChanged = false;
 	bool _graphicalModelHasChanged = false;
 	bool _modelWasOpened = false;
+	QString _autoLoadPluginsFilename = "autoloadplugins.txt";
 	QString _modelfilename;
 	std::map<std::string /*category*/,QColor>* _pluginCategoryColor = new std::map<std::string,QColor>();
-    int _zoomValue; // todo should be set for each open graphical model, such as view rect, etc
-private:
+	QColor myrgba(uint64_t color); // TODO: Should NOT be here, but in UtilGUI.h, but then it generates multiple definitions error
+	static std::string dotColor(uint64_t color); // TODO: Should NOT be here, but in UtilGUI.h, but then it generates multiple definitions error
 
 	const struct TABINDEXES_STRUC {
 		const int TabCentralModelIndex = 0;

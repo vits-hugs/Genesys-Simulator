@@ -143,16 +143,17 @@ void genesyspp_driver::addRefered(std::pair<std::string,std::string> referedElem
 }
 
 void genesyspp_driver::error(const yy::location& l, const std::string& m) {
+	//std::cout << "Location: "<<l.begin<<" - "<<l.end<<std::endl;
 	std::string erro(m);
+	erro.append(" from line "+ std::to_string(l.begin.line) + " column "+std::to_string(l.begin.column));
+	erro.append(" to line "+std::to_string(l.end.line)+" column "+std::to_string(l.end.column));
 	erro.append("\n");
 	setErrorMessage(m);
 	setResult(-1);
-	_model->getTracer()->trace(/*GenesysKernel::*/TraceManager::Level::L1_errorFatal, erro);
 }
 
 void
 genesyspp_driver::error(const std::string& m) {
 	setErrorMessage(m);
 	setResult(-1);
-	_model->getTracer()->trace(/*GenesysKernel::*/TraceManager::Level::L1_errorFatal, m);
 }

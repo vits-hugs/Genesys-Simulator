@@ -221,7 +221,7 @@ std::string ModelDataDefinition::show() {
 		}
 		internal = internal.substr(0, internal.length() - 1) + "]";
 	}
-	return "id=" + std::to_string(_id) + ",name=\"" + _name + "\"" + internal;
+	return _name + internal;//"id=" + std::to_string(_id) + ",name=\"" + _name + "\"" + internal;
 }
 
 ModelDataDefinition* ModelDataDefinition::getInternalData(std::string name) const {

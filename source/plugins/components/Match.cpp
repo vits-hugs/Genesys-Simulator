@@ -93,7 +93,10 @@ void Match::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 bool Match::_loadInstance(PersistenceRecord *fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
-		// @TODO: not implemented yet
+		_rule =  static_cast<Rule>(fields->loadField("rule", static_cast<int>(DEFAULT.rule)));
+		_matchSize = fields->loadField("matchSize", DEFAULT.matchSize);
+		_attributeName = fields->loadField("attributeName", DEFAULT.attributeName);
+		//@TODO _queues
 	}
 	return res;
 }

@@ -116,9 +116,9 @@ ModelComponent* Delay::LoadInstance(Model* model, PersistenceRecord *fields) {
 bool Delay::_loadInstance(PersistenceRecord *fields) {
 	bool res = ModelComponent::_loadInstance(fields);
 	if (res) {
-		this->_delayExpression = fields->loadField("delayExpression", DEFAULT.delayExpression);
-		this->_delayTimeUnit = fields->loadField("delayExpressionTimeUnit", DEFAULT.delayTimeUnit);
-		this->_allocation = static_cast<Util::AllocationType> (fields->loadField("allocation", static_cast<int> (DEFAULT.allocation)));
+		_delayExpression = fields->loadField("delayExpression", DEFAULT.delayExpression);
+		_delayTimeUnit = fields->loadField("delayExpressionTimeUnit", DEFAULT.delayTimeUnit);
+		_allocation = static_cast<Util::AllocationType> (fields->loadField("allocation", static_cast<int> (DEFAULT.allocation)));
 	}
 	return res;
 }

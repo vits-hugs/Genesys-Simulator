@@ -50,6 +50,7 @@ bool PluginManager::autoInsertPlugins(const std::string pluginsListFilename) {
 		file.close();
 		completePluginsFieldsAndTemplates();
 	} else {
+		_simulator->getTracer()->traceError("Could not open file \""+pluginsListFilename+"\" (\""+fullFilename+"\")");
 		return false;
 	}
 	return true;

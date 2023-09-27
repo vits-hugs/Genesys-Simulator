@@ -25,6 +25,10 @@ extern "C" StaticGetPluginInformation GetPluginInformation() {
 
 ModelDataDefinition* DummyElement::NewInstance(Model* model, std::string name) {
 	return new DummyElement(model, name);
+//	_parentModel->getResponses()->insert(new SimulationControlDouble(
+//					 std::bind(&DummyElement::getter, this),
+//					 std::bind(&DummyElement::setter, this, std::placeholders::_1),
+//					 this->getClassname(), getName(), "NameOfControl"));
 }
 
 DummyElement::DummyElement(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<DummyElement>(), name) {

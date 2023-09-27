@@ -15,6 +15,7 @@
 #define WRITE_H
 
 #include <list>
+#include <fstream>
 #include "../../kernel/simulator/ModelComponent.h"
 
 /*!
@@ -59,6 +60,7 @@ private: // attributes 1:1
 	} DEFAULT;
 	WriteToType _writeToType = DEFAULT.writeToType;
 	std::string _filename = DEFAULT.filename;
+	std::ofstream _savefile;
 private: // attributes 1:n
 	List<std::string>* _writeElements = new List<std::string>();
 };

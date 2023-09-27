@@ -28,7 +28,7 @@
 #include <QGraphicsScene>
 #include <QDesktopWidget>
 
-// @TODO: Should NOT be hardcoded!!!
+// @TODO: Should NOT be hardcoded!!! (Used to visualize variables)
 #include "../../../../plugins/data/Variable.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
@@ -41,8 +41,17 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 	simulator->getTracer()->addTraceErrorHandler<MainWindow>(this, &MainWindow::_simulatorTraceErrorHandler);
 	simulator->getTracer()->addTraceReportHandler<MainWindow>(this, &MainWindow::_simulatorTraceReportsHandler);
 	simulator->getTracer()->addTraceSimulationHandler<MainWindow>(this, &MainWindow::_simulatorTraceSimulationHandler);
-    _insertFakePlugins(); // todo hate this
-    //
+
+	simulator->getPlugins()->autoInsertPlugins(_autoLoadPluginsFilename.toStdString());
+	// now complete the information
+	for (unsigned int i = 0; i < simulator->getPlugins()->size(); i++) {
+		//@TODO: now it's the opportunity to adjust template
+		_insertPluginUI(simulator->getPlugins()->getAtRank(i));
+	}
+
+	//_insertFakePlugins(); // todo hate this
+
+	//
 	// Docks //@TODO how place them in a specified rank?
 	//
 	//ui->dockWidgetPlugins->doc
@@ -705,8 +714,8 @@ void MainWindow::_recursiveCreateModelGraphicPicture(ModelDataDefinition* compon
 		std::string nodeComponent = "shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=bisque";
 		//std::string nodeComponentOtherLevel = "shape=record, fontsize=12, fontcolor=black, style=filled, fillcolor=goldenrod3";
 		std::string edgeComponent = "style=solid, arrowhead=\"normal\" color=black, fontcolor=black, fontsize=7";
-		std::string nodeDataDefInternal = "shape=record, fontsize=8, color=gray50, fontcolor=gray50";
-		std::string nodeDataDefAttached = "shape=record, fontsize=10, color=gray50, fontcolor=gray50, style=filled, fillcolor=darkolivegreen3";
+		std::string nodeDataDefInternal = "shape=record, fontsize=8, color=gray50, fontcolor=gray50, style=filled, fillcolor=#d9ebbd";
+		std::string nodeDataDefAttached = "shape=record, fontsize=10, color=gray50, fontcolor=gray50, style=filled, fillcolor=#a2cd5a";
 		std::string edgeDataDefInternal = "style=dashed, arrowhead=\"diamond\", color=gray55, fontcolor=gray55, fontsize=7";
 		std::string edgeDataDefAttached = "style=dashed, arrowhead=\"ediamond\", color=gray50, fontcolor=gray50, fontsize=7";
 		unsigned int rankSource = 0;
@@ -1360,6 +1369,7 @@ void MainWindow::_insertPluginUI(Plugin * plugin) {
 	}
 }
 
+/*
 void MainWindow::_insertFakePlugins() {
 	PluginManager* pm = simulator->getPlugins();
 	// TRYING SOME NEW ORGANIZATION (BASED ON ARENA 16..20)
@@ -1443,6 +1453,7 @@ void MainWindow::_insertFakePlugins() {
 		_insertPluginUI(simulator->getPlugins()->getAtRank(i));
 	}
 }
+*/
 
 //-------------
 
@@ -1904,13 +1915,6 @@ void MainWindow::on_actionAnimateStatistics_triggered()
 }
 
 
-void MainWindow::on_actionSimulatorPluginManager_triggered()
-{
-	DialogPluginManager* dialog = new DialogPluginManager(this);
-	dialog->show();
-}
-
-
 void MainWindow::on_actionEditGroup_triggered()
 {
 	_showMessageNotImplemented();
@@ -2143,4 +2147,11 @@ void MainWindow::on_actionSimulationConfigure_triggered()
 }
 
 
+
+
+void MainWindow::on_actionSimulatorsPluginManager_triggered()
+{
+	DialogPluginManager* dialog = new DialogPluginManager(this);
+	dialog->show();
+}
 

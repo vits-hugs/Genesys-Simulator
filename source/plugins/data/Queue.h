@@ -115,6 +115,8 @@ public:
 	std::string getAttributeName() const;
 	void setOrderRule(OrderRule _orderRule);
 	Queue::OrderRule getOrderRule() const;
+	void setOrderRuleInt(int orderRule);
+	int getOrderRuleInt() const;
 public: // to implement SIMAN functions
 	double sumAttributesFromWaiting(Util::identification attributeID); // use to implement SIMAN SAQUE function
 	double getAttributeFromWaitingRank(unsigned int rank, Util::identification attributeID);

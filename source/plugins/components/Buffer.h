@@ -5,22 +5,29 @@
  */
 
 /*
- * File:   Dummy.h
+ * File:   Buffer.h
  * Author: rafael.luiz.cancian
  *
- * Created on 22 de Maio de 2019, 18:41
+ * Created on
  */
 
-#ifndef Buffer_H
-#define Buffer_H
+#ifndef BUFFER_H
+#define BUFFER_H
 
 #include "../../kernel/simulator/ModelComponent.h"
-#include "../data/DummyElement.h"
+#include "../data/SignalData.h"
 
 /*!
  This component ...
  */
 class Buffer : public ModelComponent {
+public:
+	enum class AdvanceOn : int {
+		NewArrivals = 0, Signal = 1
+	};
+	enum class ArrivalOnFullBufferRule : int {
+		Dispose = 0, SendToBulkPort = 1, ReplaceLastPosition = 2
+	};
 public: // constructors
 	Buffer(Model* model, std::string name = "");
 	virtual ~Buffer() = default;
@@ -30,6 +37,16 @@ public: // static
 	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, PersistenceRecord *fields);
 	static ModelDataDefinition* NewInstance(Model* model, std::string name = "");
+public:
+	Buffer::ArrivalOnFullBufferRule getarrivalOnFullBufferRule() const;
+	void setArrivalOnFullBufferRule(Buffer::ArrivalOnFullBufferRule newArrivalOnFullBufferRule);
+	Buffer::AdvanceOn getadvanceOn() const;
+	void setAdvanceOn(Buffer::AdvanceOn newAdvanceOn);
+	unsigned int getcapacity() const;
+	void setCapacity(unsigned int newCapacity);
+	SignalData *getsignal() const;
+	void setSignal(SignalData *newSignal);
+
 protected: // must be overriden
 	virtual bool _loadInstance(PersistenceRecord *fields);
 	virtual void _saveInstance(PersistenceRecord *fields, bool saveDefaultValues);
@@ -43,17 +60,22 @@ protected: // could be overriden by derived classes
 	virtual void _createInternalAndAttachedData(); /*< A ModelDataDefinition or ModelComponent that includes (internal) ou refers to (attach) other ModelDataDefinition must register them inside this method. */
 	virtual void _addProperty(PropertyBase* property);
 private: // methods
+	unsigned int _handlerForSignalDataEvent(SignalData* signalData);
+	Entity* _advance(Entity* enteringEntity);
 private: // attributes 1:1
 
 	const struct DEFAULT_VALUES {
-		const std::string someString = "Test";
-		const unsigned int someUint = 1;
+		const AdvanceOn advanceOn = AdvanceOn::NewArrivals;
+		const ArrivalOnFullBufferRule arrivalOnFullBufferRule = ArrivalOnFullBufferRule::Dispose;
+		const unsigned int capacity = 1;
 	} DEFAULT;
-	std::string _someString = DEFAULT.someString;
-	unsigned int _someUint = DEFAULT.someUint;
-	DummyElement* _internalDataDefinition = nullptr;
-private: // attributes 1:n
+	ArrivalOnFullBufferRule _arrivalOnFullBufferRule = DEFAULT.arrivalOnFullBufferRule;
+	AdvanceOn _advanceOn = DEFAULT.advanceOn;
+	unsigned int _capacity = DEFAULT.capacity;
+private:
+	std::vector<Entity*>* _buffer = new std::vector<Entity*>;
+private: // attached
+	SignalData* _attachedSignal = nullptr;
 };
 
-#endif /* Buffer_H */
-
+#endif /* BUFFER_H */

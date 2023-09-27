@@ -37,15 +37,18 @@ bool EventCompare(const Event* a, const Event * b) {
 Model::Model(Simulator* simulator, unsigned int level) {
 	_parentSimulator = simulator; // a simulator is the "parent" of a model
 	_level = level;
+	// for process analyser (create this lists before other component add any contyrol or response
+	_responses = new List<SimulationControl*>();
+	_controls = new List<SimulationControl*>();
 	// 1:1 associations (no Traits)
 	_traceManager = simulator->getTracer(); // every model starts with the same tracer, unless a specific one is set
-	_modelInfo = new ModelInfo();
+	_modelInfo = new ModelInfo();	//Sampler_if* sampler = new Traits<Sampler_if>::Implementation();
+
 	_eventManager = new OnEventManager(); // should be on .h (all that does not depends on THIS)
 	_modeldataManager = new ModelDataManager(this);
 	_componentManager = new ComponentManager(this);
 	_simulation = new ModelSimulation(this);
 	// 1:1 associations (Traits)
-	//Sampler_if* sampler = new Traits<Sampler_if>::Implementation();
 	_parser = new TraitsKernel<Parser_if>::Implementation(this, new TraitsKernel<Sampler_if>::Implementation());
 	_modelChecker = new TraitsKernel<ModelChecker_if>::Implementation(this);
 	_modelPersistence = new TraitsKernel<ModelPersistence_if>::Implementation(this);
@@ -58,11 +61,6 @@ Model::Model(Simulator* simulator, unsigned int level) {
 	});
 
 	//@TODO: Add properties
-
-	// for process analyser
-	_responses = new List<SimulationControl*>();
-	_controls = new List<SimulationControl*>();
-
 
 	// insert controls
 	/*
@@ -141,7 +139,12 @@ bool Model::load(std::string filename) {
 
 double Model::parseExpression(const std::string expression) {
 	try {
-		return _parser->parse(expression);
+		double res = _parser->parse(expression);
+		//yy::location l;
+		//std::string m;
+		//_parser->getParser().error(l, m);
+		//std::cout << "l:" <<l<<", m:"<<m<<std::endl;
+		return res;
 	} catch (const std::exception& e) {
 		//@TODO Create a onParserError event handler
 		return 0.0; // @TODO: HOW SAY THERE WAS AN ERROR?
@@ -176,6 +179,10 @@ void Model::checkReferencesToDataDefinitions(std::string expression, std::map<st
 
 double Model::parseExpression(const std::string expression, bool* success, std::string* errorMessage) {
 	double value = _parser->parse(expression, success, errorMessage);
+	//yy::location l/
+	//std::string m;
+	//_parser->getParser().error(l, m);
+	//std::cout << "l:" <<l<<", m:"<<m<<std::endl;
 	return value;
 }
 

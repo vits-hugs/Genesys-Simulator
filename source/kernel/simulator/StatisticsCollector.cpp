@@ -38,16 +38,20 @@ StatisticsCollector::StatisticsCollector(Model* model, std::string name, ModelDa
 	StatisticsClass* statThis = static_cast<StatisticsClass*>(this->_statistics);
 	std::string classname = Util::TypeOf<StatisticsClass>();
 	_parentModel->getResponses()->insert(new SimulationControlDouble(
-				 std::bind(&StatisticsClass::average, statThis), nullptr, classname, getName(), "Average"));
+				 std::bind(&StatisticsClass::average, statThis), nullptr,
+				 classname, getName(), "Average"));
 	_parentModel->getResponses()->insert(new SimulationControlDouble(
-				 std::bind(&StatisticsClass::min, statThis), nullptr, classname, getName(), "Minimum"));
+				 std::bind(&StatisticsClass::min, statThis), nullptr,
+				 classname, getName(), "Minimum"));
 	_parentModel->getResponses()->insert(new SimulationControlDouble(
-				 std::bind(&StatisticsClass::max, statThis), nullptr, classname, getName(), "Maximum"));
+				 std::bind(&StatisticsClass::max, statThis), nullptr,
+				 classname, getName(), "Maximum"));
 	_parentModel->getResponses()->insert(new SimulationControlDouble(
-				 std::bind(&StatisticsClass::numElements, statThis), nullptr, classname, getName(), "NumberOfElements"));
+				 std::bind(&StatisticsClass::numElements, statThis), nullptr,
+				 classname, getName(), "NumberOfElements"));
 	_parentModel->getResponses()->insert(new SimulationControlDouble(
-				 std::bind(&StatisticsClass::halfWidthConfidenceInterval, statThis), nullptr, classname, getName(), "HalfWidthConfidenceInterval"));
-
+				 std::bind(&StatisticsClass::halfWidthConfidenceInterval, statThis), nullptr,
+				 classname, getName(), "HalfWidthConfidenceInterval"));
 }
 
 void StatisticsCollector::_initStaticsAndCollector() {

@@ -27,12 +27,15 @@ ModelDataDefinition* Queue::NewInstance(Model* model, std::string name) {
 }
 
 Queue::Queue(Model* model, std::string name) : ModelDataDefinition(model, Util::TypeOf<Queue>(), name) {
-	// properties
-//	PropertyT<std::string>* prop1 = new PropertyT<std::string>(Util::TypeOf<Queue>(), "Attribute Name",
-//			DefineGetter<Queue, std::string>(this, &Queue::getAttributeName),
-//			DefineSetter<Queue, std::string>(this, &Queue::setAttributeName));
-//	_addProperty(prop1);
-	//@TODO: OrderRule!!
+	//controls
+	_parentModel->getControls()->insert(new SimulationControlInt(
+					 std::bind(&Queue::getOrderRuleInt, this),
+					 std::bind(&Queue::setOrderRuleInt, this, std::placeholders::_1),
+					 Util::TypeOf<Queue>(), getName(), "OrderRule"));
+	_parentModel->getControls()->insert(new SimulationControlString(
+					 std::bind(&Queue::getAttributeName, this),
+					 std::bind(&Queue::setAttributeName, this, std::placeholders::_1),
+					 Util::TypeOf<Queue>(), getName(), "AttributeName"));
 }
 
 Queue::~Queue() {
@@ -87,11 +90,20 @@ std::string Queue::getAttributeName() const {
 
 void Queue::setOrderRule(OrderRule _orderRule) {
 	this->_orderRule = _orderRule;
+	//@TODO: SORT THE QUEUE BASED ON QUE RULE. Create comparators
 }
 
 Queue::OrderRule Queue::getOrderRule() const {
 	return _orderRule;
 }
+
+void Queue::setOrderRuleInt(int orderRule){
+	setOrderRule(static_cast<Queue::OrderRule>(orderRule));
+}
+int Queue::getOrderRuleInt() const{
+	return static_cast<int>(_orderRule);
+}
+
 
 double Queue::sumAttributesFromWaiting(Util::identification attributeID) {
 	double sum = 0.0;
