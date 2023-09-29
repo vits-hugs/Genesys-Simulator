@@ -16,6 +16,7 @@
 
 #include "terminal/GenesysShell/GenesysShell.h"
 
+
 template <typename T>
 struct TraitsApp {
 };
@@ -26,7 +27,7 @@ struct TraitsApp {
 template <> struct TraitsApp<GenesysApplication_if> {
 	//static const bool runTests = false;
 	static const TraceManager::Level traceLevel = TraceManager::Level::L9_mostDetailed;
-	static const bool runGraphicalUserInterface = true;
+	static const bool runGraphicalUserInterface = false;
 
 	//
 	// TERMINAL APPLICATIONS (Generic simulator shell)
@@ -56,6 +57,7 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef Smart_Plugin Application;
 	//typedef Smart_Process Application;
 	//typedef Smart_ProcessSet Application;
+	//typedef Smart_Record Application;
 	//typedef Smart_RouteStation Application;
 	//typedef Smart_SeizeDelayRelease Application;
 	//typedef Smart_SeizeDelayReleaseNoDataDefs Application;
@@ -123,6 +125,7 @@ template <> struct TraitsApp<GenesysApplication_if> {
 	//typedef OperatingSystem02 Application;
 	//typedef OperatingSystem03 Application;
 	//typedef BufferFIFO Application;
+	//typedef ContinuousModel Application;
 
 	// BOOK
 	//typedef Book_Cap02_Example01 Application;
