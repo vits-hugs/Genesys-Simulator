@@ -16,6 +16,7 @@
 
 #include "CollectorDatafile_if.h"
 #include "Statistics_if.h"
+#include <vector>
 
 class StatisticsDatafile_if : public Statistics_if {
 	//public:
@@ -31,7 +32,10 @@ public:
 	virtual unsigned short histogramNumClasses() = 0;
 	virtual double histogramClassLowerLimit(unsigned short classNum) = 0;
 	virtual unsigned int histogramClassFrequency(unsigned short classNum) = 0;
-
+	virtual std::vector<double> movingAverage(int dataPoints) = 0;
+	virtual int sturges() = 0;
+	virtual int squareRoot() = 0;
+	virtual void clearCache() = 0;
 };
 
 #endif /* STATISTICSDATAFILE_IF_H */

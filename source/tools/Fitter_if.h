@@ -15,21 +15,54 @@
 #define FITTER_IF_H
 
 #include <string>
+#include "HypothesisTesterDefaultImpl1.h"
+#include "../kernel/statistics/CollectorOutputAnalyser.h"
 
 class Fitter_if {
 public:
-	virtual bool isNormalDistributed(double confidencelevel) = 0;
-	virtual void fitUniform(double *sqrerror, double *min, double *max) = 0;
-	virtual void fitTriangular(double *sqrerror, double *min, double *mo, double *max) = 0;
-	virtual void fitNormal(double *sqrerror, double *avg, double *stddev) = 0;
-	virtual void fitExpo(double *sqrerror, double *avg1) = 0;
-	virtual void fitErlang(double *sqrerror, double *avg, double *m) = 0;
-	virtual void fitBeta(double *sqrerror, double *alpha, double *beta, double *infLimit, double *supLimit) = 0;
-	virtual void fitWeibull(double *sqrerror, double *alpha, double *scale) = 0;
-	virtual void fitAll(double *sqrerror, std::string *name) = 0;
-public:
-	virtual void setDataFilename(std::string dataFilename) = 0;
-	virtual std::string getDataFilename() = 0;
+	virtual void fitUniform(unsigned int histogramClasses, 
+                    HypothesisTester_if::TestResult *chi2Result,
+                    HypothesisTester_if::TestResult *ksResult, 
+                    double *min, double *max) = 0;
+
+    virtual void fitTriangular(unsigned int histogramClasses,
+                        HypothesisTester_if::TestResult *chi2Result,
+                        HypothesisTester_if::TestResult *ksResult,
+                        double *min, double *mo, double *max) = 0;
+
+    virtual void fitNormal(unsigned int histogramClasses,
+                    HypothesisTester_if::TestResult *chi2Result,
+                    HypothesisTester_if::TestResult *ksResult,
+                    double *avg, double *stddev) = 0;
+
+    virtual void fitExpo(unsigned int histogramClasses, 
+                    HypothesisTester_if::TestResult *chi2Result, 
+                    HypothesisTester_if::TestResult *ksResult, 
+                    double *avg1) = 0;
+    
+    virtual void fitErlang(unsigned int histogramClasses, 
+                    HypothesisTester_if::TestResult *chi2Result, 
+                    HypothesisTester_if::TestResult *ksResult, 
+                    double *avg, double *m) = 0;
+
+    virtual void fitBeta(unsigned int histogramClasses, 
+                    HypothesisTester_if::TestResult *chi2Result, 
+                    HypothesisTester_if::TestResult *ksResult, 
+                    double *alpha, double *beta, 
+                    double *infLimit, double *supLimit) = 0;
+
+    virtual void fitWeibull(unsigned int histogramClasses, 
+                    HypothesisTester_if::TestResult *chi2Result, 
+                    HypothesisTester_if::TestResult *ksResult, 
+                    double *alpha, double *scale) = 0;
+
+    virtual void fitAll(unsigned int histogramClasses, 
+                HypothesisTester_if::TestResult *chi2Result, 
+                HypothesisTester_if::TestResult *ksResult, 
+                std::string *name) = 0;
+
+    virtual void setStatistics(StatisticsDatafile_if* statistic) = 0;
+    virtual void setCollector(CollectorOutputAnalyser& collector) = 0;
 };
 
 #endif /* FITTER_IF_H */

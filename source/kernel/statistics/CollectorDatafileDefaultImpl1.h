@@ -33,6 +33,8 @@ public:
 	virtual void seekFirstValue() override;
 	virtual std::string getDataFilename() override;
 	virtual void setDataFilename(std::string filename) override;
+    virtual void sort() override;
+    virtual CollectorDatafile_if* clone() const override;
 public:
 	virtual void setAddValueHandler(CollectorAddValueHandler addValueHandler) override;
 	virtual void setClearHandler(CollectorClearHandler clearHandler) override;
@@ -40,6 +42,8 @@ private:
 	std::string _filename;
 	double _lastValue;
 	unsigned int _numElements;
+    SortFile * sorter = new SortFile();
+    bool _sorted = false;
 };
 
 #endif /* COLLECTORDATAFILEDEFAULTIMPL1_H */

@@ -50,14 +50,21 @@ public:
 	virtual unsigned short histogramNumClasses() override;
 	virtual double histogramClassLowerLimit(unsigned short classNum) override;
 	virtual unsigned int histogramClassFrequency(unsigned short classNum) override;
+	virtual std::vector<double> movingAverage(int dataPoints) override;
+	virtual void clearCache() override;
+public:
+	virtual int sturges() override;
+	virtual int squareRoot() override;
 private:
 	void _sortFile();
 	bool _hasNewValue();
 	double _getNormalProbability(double confidenceLevel);
-private:
+
+protected:
 	CollectorDatafile_if* _collector;
 	CollectorDatafile_if* _collectorSorted;
 	//CollectorDatafile_if* _collector;
+private:
 	SortFile * sort = new SortFile();
 	double _confidenceLevel = 0.95;
 	unsigned long _numElements = 0;

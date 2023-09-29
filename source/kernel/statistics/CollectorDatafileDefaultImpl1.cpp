@@ -101,3 +101,29 @@ void CollectorDatafileDefaultImpl1::setAddValueHandler(CollectorAddValueHandler 
 void CollectorDatafileDefaultImpl1::setClearHandler(CollectorClearHandler clearHandler) {
 	// @TODO: just to use it
 }
+
+CollectorDatafile_if* CollectorDatafileDefaultImpl1::clone() const {
+    return new CollectorDatafileDefaultImpl1(*this);
+}
+
+void CollectorDatafileDefaultImpl1::sort() {
+
+    CollectorDatafileDefaultImpl1 collector = CollectorDatafileDefaultImpl1();
+
+    if (!_sorted) {
+        collector.setDataFilename(getDataFilename() + "_sorted");
+        collector.clear();
+        _sorted = true;
+    }
+
+    if (collector.numElements() < numElements()) {
+        for (unsigned long position = collector.numElements(); position < numElements(); position++) {
+            collector.addValue(getValue(position));
+        }
+    }
+    sorter->setDataFilename(collector.getDataFilename());
+    sorter->sort();
+    this->setDataFilename(collector.getDataFilename());
+    _numElements = collector.numElements();
+
+}

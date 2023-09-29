@@ -34,34 +34,38 @@ Collector_if* StatisticsDatafileDefaultImpl1::getCollector() const {
 
 void StatisticsDatafileDefaultImpl1::setCollector(Collector_if* collector) {
 	_collector = static_cast<CollectorDatafile_if*> (collector);
+	clearCache();
 }
 
 bool StatisticsDatafileDefaultImpl1::_hasNewValue() {
 	if (_numElements < _collector->numElements()) {
 		_numElements = _collector->numElements();
-		_maxCalculated = false;
-		_minCalculated = false;
-		_averageCalculated = false;
-		_varianceCalculated = false;
-		_modeCalculated = false;
-		_medianeCalculated = false;
-		_stddeviationCalculated = false;
-		_variationCoefCalculated = false;
-		_halfWidthConfidenceIntervalCalculated = false;
-		_newSampleSizeCalculated = false;
-		_quartilCalculated = false;
-		_decilCalculated = false;
-		_centilCalculated = false;
-		_histogramNumClassesCalculated = false;
-		_histogramClassLowerLimitCalculated = false;
-		_histogramClassFrequencyCalculated = false;
-		_proportionCalculed = false;
-		_fileSorted = false;
+		clearCache();
 		return true;
 	} else {
 		return false;
 	}
+}
 
+void StatisticsDatafileDefaultImpl1::clearCache() {
+	_maxCalculated = false;
+	_minCalculated = false;
+	_averageCalculated = false;
+	_varianceCalculated = false;
+	_modeCalculated = false;
+	_medianeCalculated = false;
+	_stddeviationCalculated = false;
+	_variationCoefCalculated = false;
+	_halfWidthConfidenceIntervalCalculated = false;
+	_newSampleSizeCalculated = false;
+	_quartilCalculated = false;
+	_decilCalculated = false;
+	_centilCalculated = false;
+	_histogramNumClassesCalculated = false;
+	_histogramClassLowerLimitCalculated = false;
+	_histogramClassFrequencyCalculated = false;
+	_proportionCalculed = false;
+	_fileSorted = false;
 }
 
 unsigned int StatisticsDatafileDefaultImpl1::numElements() {
@@ -259,11 +263,20 @@ double StatisticsDatafileDefaultImpl1::centil(unsigned short num) {
 
 void StatisticsDatafileDefaultImpl1::setHistogramNumClasses(unsigned short num) {
 	_histogramNumClasses = num;
+	_histogramNumClassesCalculated = true;
+}
+
+int StatisticsDatafileDefaultImpl1::sturges() {
+    return ceil(log2(_collector->numElements()) + 1);
+}
+
+int StatisticsDatafileDefaultImpl1::squareRoot() {
+    return ceil(sqrt(_collector->numElements()));
 }
 
 unsigned short StatisticsDatafileDefaultImpl1::histogramNumClasses() {
 	if (_hasNewValue() || !_histogramNumClassesCalculated) {
-		_histogramNumClasses = ceil(1 + 3.32 * log10(_numElements));
+		_histogramNumClasses = sturges();
 		_histogramNumClassesCalculated = true;
 	}
 	return _histogramNumClasses;
@@ -298,6 +311,10 @@ unsigned int StatisticsDatafileDefaultImpl1::histogramClassFrequency(unsigned sh
 				break;
 			}
 		}
+		if (classNum == histogramNumClasses() - 1) {
+			// Count the last value, as it fails the test (tmpValue < classUpperLimit)
+			frequency++;
+		}
 		_histogramClassFrequency = frequency;
 		_histogramClassFrequencyCalculated = true;
 		_lastClassNumHistogramClassFrequency = classNum;
@@ -306,19 +323,31 @@ unsigned int StatisticsDatafileDefaultImpl1::histogramClassFrequency(unsigned sh
 }
 
 void StatisticsDatafileDefaultImpl1::_sortFile() {
-
-	if (!_fileSortedCreated) {
-		_collectorSorted->setDataFilename(_collector->getDataFilename() + "_sorted");
-		_collectorSorted->clear();
-		_fileSortedCreated = true;
-	}
-
-	if (_collectorSorted->numElements() < _collector->numElements()) {
-		for (unsigned long position = _collectorSorted->numElements(); position < _collector->numElements(); position++) {
-			_collectorSorted->addValue(_collector->getValue(position));
-		}
-	}
-	sort->setDataFilename(_collectorSorted->getDataFilename());
-	sort->sort();
+    _collectorSorted = _collector->clone();
+    _collectorSorted->sort();
 	_fileSorted = true;
+}
+
+std::vector<double> StatisticsDatafileDefaultImpl1::movingAverage(int dataPoints) {
+    std::vector<double> _movingAverage(_collector->numElements());
+    double currSum = 0;
+
+    int prevLeftIndex = 0, prevRightIndex = -1;
+    for (int i = 0; i < int(_movingAverage.size()); i++) {
+        int leftIndex = std::max(0, i - (dataPoints / 2));
+        int rightIndex = std::min(int(_movingAverage.size()) - 1, i + (dataPoints / 2));
+
+        while (prevLeftIndex < leftIndex) {
+            currSum -= _collector->getValue(prevLeftIndex);
+            prevLeftIndex++;
+        }
+        while (prevRightIndex < rightIndex) {
+            prevRightIndex++;
+            currSum += _collector->getValue(prevRightIndex);
+        }
+
+        _movingAverage[i] = currSum / (rightIndex - leftIndex + 1);
+    }
+
+    return _movingAverage;
 }

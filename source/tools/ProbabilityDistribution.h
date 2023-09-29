@@ -17,6 +17,7 @@
 
 class ProbabilityDistribution : public ProbabilityDistributionBase {
 public:
+	static Solver_if* getIntegrator();
 	static double inverseChi2(double cumulativeProbability, double degreeFreedom);
 	static double inverseFFisherSnedecor(double cumulativeProbability, double d1, double d2);
 	static double inverseNormal(double cumulativeProbability, double mean, double stddev);

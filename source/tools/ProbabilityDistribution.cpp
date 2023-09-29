@@ -130,7 +130,7 @@ double ProbabilityDistribution::_findInverseFFisherSnedecor(double a, double fa,
 	double x = ((cumulativeProbability - fa) / (fb - fa)) * (b - a) + a;
 	double fx = fa + integrator->integrate(a, x, ProbabilityDistributionBase::fisherSnedecor, d1, d2);
 	++recursions;
-	if ((recursions == integrator->getMaxSteps()) || (abs(fx - cumulativeProbability) <= integrator->getPrecision())) {
+	if ((recursions == integrator->getMaxSteps()) || (std::abs(fx - cumulativeProbability) <= integrator->getPrecision())) {
 		return x;
 	} else if (fx < cumulativeProbability) {
 		return ProbabilityDistribution::_findInverseFFisherSnedecor(x, fx, b, fb, recursions, cumulativeProbability, d1, d2);
@@ -143,7 +143,7 @@ double ProbabilityDistribution::_findInverseNormal(double a, double fa, double b
 	double x = ((cumulativeProbability - fa) / (fb - fa)) * (b - a) + a;
 	double fx = fa + integrator->integrate(a, x, ProbabilityDistributionBase::normal, mean, stddev);
 	++recursions;
-	if ((recursions == integrator->getMaxSteps()) || (abs(fx - cumulativeProbability) <= integrator->getPrecision())) {
+	if ((recursions == integrator->getMaxSteps()) || (std::abs(fx - cumulativeProbability) <= integrator->getPrecision())) {
 		return x;
 	} else if (fx < cumulativeProbability) {
 		return ProbabilityDistribution::_findInverseNormal(x, fx, b, fb, recursions, cumulativeProbability, mean, stddev);
@@ -159,7 +159,7 @@ double ProbabilityDistribution::_findInverseTStudent(double a, double fa, double
 		return fx;
 	}
 	++recursions;
-	if ((recursions == integrator->getMaxSteps()) || (abs(fx - cumulativeProbability) <= integrator->getPrecision())) {
+	if ((recursions == integrator->getMaxSteps()) || (std::abs(fx - cumulativeProbability) <= integrator->getPrecision())) {
 		return x;
 	} else if (fx < cumulativeProbability) {
 		return ProbabilityDistribution::_findInverseTStudent(x, fx, b, fb, recursions, cumulativeProbability, mean, stddev, degreeFreedom);
@@ -172,11 +172,15 @@ double ProbabilityDistribution::_findInverseChi2(double a, double fa, double b, 
 	double x = ((cumulativeProbability - fa) / (fb - fa)) * (b - a) + a;
 	double fx = fa + integrator->integrate(a, x, ProbabilityDistributionBase::chi2, degreeFreedom);
 	++recursions;
-	if ((recursions == integrator->getMaxSteps()) || (abs(fx - cumulativeProbability) <= integrator->getPrecision())) {
+	if ((recursions == integrator->getMaxSteps()) || (std::abs(fx - cumulativeProbability) <= integrator->getPrecision())) {
 		return x;
 	} else if (fx < cumulativeProbability) {
 		return ProbabilityDistribution::_findInverseChi2(x, fx, b, fb, recursions, cumulativeProbability, degreeFreedom);
 	} else {
 		return ProbabilityDistribution::_findInverseChi2(a, fa, x, fx, recursions, cumulativeProbability, degreeFreedom);
 	}
+}
+
+Solver_if* ProbabilityDistribution::getIntegrator() {
+	return integrator;
 }

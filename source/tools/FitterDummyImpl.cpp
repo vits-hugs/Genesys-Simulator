@@ -14,53 +14,70 @@
 #include "FitterDummyImpl.h"
 
 FitterDummyImpl::FitterDummyImpl() {
-}
-
-FitterDummyImpl::FitterDummyImpl(const FitterDummyImpl& orig) {
-}
-
-FitterDummyImpl::~FitterDummyImpl() {
-}
-
-bool FitterDummyImpl::isNormalDistributed(double confidencelevel) {
 
 }
 
-void FitterDummyImpl::fitUniform(double *sqrerror, double *min, double *max) {
+void FitterDummyImpl::fitUniform(unsigned int histogramClasses, 
+                    HypothesisTester_if::TestResult *chi2Result,
+                    HypothesisTester_if::TestResult *ksResult, 
+                    double *min, double *max) {
 
 }
 
-void FitterDummyImpl::fitTriangular(double *sqrerror, double *min, double *mo, double *max) {
+void FitterDummyImpl::fitTriangular(unsigned int histogramClasses,
+                    HypothesisTester_if::TestResult *chi2Result,
+                    HypothesisTester_if::TestResult *ksResult,
+                    double *min, double *mo, double *max) {
 
 }
 
-void FitterDummyImpl::fitNormal(double *sqrerror, double *avg, double *stddev) {
+void FitterDummyImpl::fitNormal(unsigned int histogramClasses,
+                HypothesisTester_if::TestResult *chi2Result,
+                HypothesisTester_if::TestResult *ksResult,
+                double *avg, double *stddev) {
 
 }
 
-void FitterDummyImpl::fitExpo(double *sqrerror, double *avg1) {
-}
-
-void FitterDummyImpl::fitErlang(double *sqrerror, double *avg, double *m) {
-
-}
-
-void FitterDummyImpl::fitBeta(double *sqrerror, double *alpha, double *beta, double *infLimit, double *supLimit) {
+void FitterDummyImpl::fitExpo(unsigned int histogramClasses, 
+                HypothesisTester_if::TestResult *chi2Result, 
+                HypothesisTester_if::TestResult *ksResult, 
+                double *avg1) {
 
 }
 
-void FitterDummyImpl::fitWeibull(double *sqrerror, double *alpha, double *scale) {
+void FitterDummyImpl::fitErlang(unsigned int histogramClasses, 
+                HypothesisTester_if::TestResult *chi2Result, 
+                HypothesisTester_if::TestResult *ksResult, 
+                double *avg, double *m) {
 
 }
 
-void FitterDummyImpl::fitAll(double *sqrerror, std::string *name) {
+void FitterDummyImpl::fitBeta(unsigned int histogramClasses, 
+                HypothesisTester_if::TestResult *chi2Result, 
+                HypothesisTester_if::TestResult *ksResult, 
+                double *alpha, double *beta, 
+                double *infLimit, double *supLimit) {
 
 }
 
-void FitterDummyImpl::setDataFilename(std::string dataFilename) {
+void FitterDummyImpl::fitWeibull(unsigned int histogramClasses, 
+                HypothesisTester_if::TestResult *chi2Result, 
+                HypothesisTester_if::TestResult *ksResult, 
+                double *alpha, double *scale) {
 
 }
 
-std::string FitterDummyImpl::getDataFilename() {
+void FitterDummyImpl::fitAll(unsigned int histogramClasses, 
+            HypothesisTester_if::TestResult *chi2Result, 
+            HypothesisTester_if::TestResult *ksResult, 
+            std::string *name) {
 
+}
+
+void FitterDummyImpl::setStatistics(StatisticsDatafile_if* statistic) {
+
+}
+
+void FitterDummyImpl::setCollector(CollectorOutputAnalyser& collector) {
+    
 }

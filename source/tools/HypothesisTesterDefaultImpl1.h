@@ -29,7 +29,7 @@ public:
 	virtual HypothesisTester_if::ConfidenceInterval varianceConfidenceInterval(double var, unsigned int n, double confidenceLevel);
 	// confidence intervals of differences of parameters
 	virtual HypothesisTester_if::ConfidenceInterval averageDifferenceConfidenceInterval(double avg1, double stddev1, unsigned int n1, double avg2, double stddev2, unsigned int n2, double confidenceLevel);
-	virtual HypothesisTester_if::ConfidenceInterval proportionDifferenceConfidenceInterval(double avg1, double stddev1, unsigned int n1, double avg2, double stddev2, unsigned int n2, double confidenceLevel);
+	virtual HypothesisTester_if::ConfidenceInterval proportionDifferenceConfidenceInterval(double prop1, unsigned int n1, double prop2, unsigned int n2, double confidenceLevel);
 	virtual HypothesisTester_if::ConfidenceInterval varianceRatioConfidenceInterval(double var1, unsigned int n1, double var2, unsigned int n2, double confidenceLevel);
 	// confidence intervals based on datafile
 	virtual HypothesisTester_if::ConfidenceInterval averageConfidenceInterval(std::string sampleDataFilename, double confidenceLevel);
@@ -42,7 +42,7 @@ public:
 	//virtual HypothesisTester_if::ConfidenceInterval proportionConfidenceInterval(StatisticsDataFile_if* cstat, checkProportionFunction function, double N, double confidenceLevel);
 	//virtual HypothesisTester_if::ConfidenceInterval varianceConfidenceInterval(StatisticsDataFile_if* cstat, double confidenceLevel);
 	// determine sample size based on confidence interval
-	virtual unsigned int estimateSampleSize(double avg, double stddev, double desiredE0, double confidenceLevel);
+	virtual unsigned int estimateSampleSize(double avg, double stddev, unsigned int n, double desiredE0, double confidenceLevel);
 	//
 	// parametric tests
 	//
@@ -64,7 +64,8 @@ public:
 	virtual HypothesisTester_if::TestResult testVariance(std::string firstSampleDataFilename, std::string secondSampleDataFilename, double confidenceLevel, HypothesisTester_if::H1Comparition comp);
 	//
 	// non parametric tests
-	//private:
+	static HypothesisTester_if::TestResult testChiSquare(std::vector<double> observedFreq, std::vector<double> expectedFreq, double confidenceLevel, double minimumExpectedFrequency);
+	static HypothesisTester_if::TestResult testKolmogorovSmirnov(std::vector<double> accumf1, std::vector<double> accumf2, double confidenceLevel);
 
 };
 

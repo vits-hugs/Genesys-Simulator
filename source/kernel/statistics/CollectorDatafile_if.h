@@ -15,6 +15,7 @@
 #define COLLECTORDATAFILE_IF_H
 
 #include "Collector_if.h"
+#include "SorttFile.h"
 
 /**
  * Interface for collecting values of a stochastic variable that will be stores in a datafile. 
@@ -26,6 +27,8 @@ public:
 	virtual double getNextValue() = 0; /**< Get the next value in the file and advances the pointer */
 	virtual std::string getDataFilename() = 0;
 	virtual void setDataFilename(std::string filename) = 0;
+    virtual void sort() = 0;
+    virtual CollectorDatafile_if* clone() const = 0;
 };
 
 #endif /* COLLECTORDATAFILE_IF_H */

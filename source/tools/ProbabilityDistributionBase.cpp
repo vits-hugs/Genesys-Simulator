@@ -85,7 +85,7 @@ double ProbabilityDistributionBase::triangular(double x, double min, double mode
 	else if (x == mode)
 		return 2 / (max - min);
 	else
-		return 1 - pow(max - x, 2) / ((max - min)*(max - mode));
+		return 2*(max - x) / ((max - min)*(max - mode));
 }
 
 double ProbabilityDistributionBase::tStudent(double x, double mean, double stddev, double degreeFreedom) {
